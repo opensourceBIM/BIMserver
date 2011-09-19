@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SClash implements SBase
@@ -37,7 +38,6 @@ public class SClash implements SBase
 	private java.lang.String type2;
 	private long revision1Id;
 	private long revision2Id;
-
 	public java.lang.String getName1() {
 		return name1;
 	}
@@ -45,7 +45,6 @@ public class SClash implements SBase
 	public void setName1(java.lang.String name1) {
 		this.name1 = name1;
 	}
-
 	public java.lang.String getName2() {
 		return name2;
 	}
@@ -53,7 +52,6 @@ public class SClash implements SBase
 	public void setName2(java.lang.String name2) {
 		this.name2 = name2;
 	}
-
 	public java.lang.String getType1() {
 		return type1;
 	}
@@ -61,7 +59,6 @@ public class SClash implements SBase
 	public void setType1(java.lang.String type1) {
 		this.type1 = type1;
 	}
-
 	public java.lang.String getType2() {
 		return type2;
 	}

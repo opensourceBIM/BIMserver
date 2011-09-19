@@ -1,13 +1,9 @@
 <%@page import="org.bimserver.ifc.compare.CompareResult"%>
-<%@page import="org.bimserver.shared.SRevisionSummary"%>
 <%@page import="org.bimserver.web.JspHelper"%>
-<%@page import="org.bimserver.shared.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
-<%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);

@@ -1,13 +1,8 @@
+<%@page import="org.bimserver.interfaces.objects.SPluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.pb.Service.LoginAnonymousRequest"%>
-<%@page import="org.bimserver.shared.SPlugin"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
-<%@page import="org.bimserver.shared.SPlugin.SPluginState"%>
-<%@page import="org.bimserver.shared.SPlugin.SPluginState"%>
-<%@page import="org.bimserver.shared.SPlugin.SPluginState"%>
 <%@ include file="header.jsp" %>
-<%@page import="org.bimserver.shared.SPlugin.SPluginState"%>
 <jsp:include page="serversettingsmenu.jsp"/>
 <div class="content">
 <h1>Plugins</h1>
@@ -23,25 +18,25 @@
 				loginManager.getService().disablePlugin(pluginName);
 			}
 		}
-		List<SPlugin> plugins = loginManager.getService().getAllPlugins();
+		List<SPluginDescriptor> plugins = loginManager.getService().getAllPlugins();
 %>
 <table class="formatted">
 <tr><th>Name</th><th>Description</th><th>Location</th><th>State</th><th>Actions</th></tr>
 <%
-	for (SPlugin plugin : plugins) {
+	for (SPluginDescriptor plugin : plugins) {
 %>
 <tr>
 	<td><%=plugin.getName() %></td>
 	<td><%=plugin.getDescription() %></td>
 	<td><%=plugin.getLocation() %></td>
-	<td class="<%=plugin.getState() == SPlugin.SPluginState.ENABLED ? "enabledPlugin" : "disabledPlugin" %>"><%=plugin.getState().getNiceName() %></td>
+	<td class="<%=plugin.isEnabled() ? "enabledPlugin" : "disabledPlugin" %>"><%=plugin.isEnabled() ? "Enabked" : "Disabled" %></td>
 	<td>
 <%
-	if (plugin.getState() == SPlugin.SPluginState.ENABLED) {
+	if (plugin.isEnabled()) {
 %>
 <a href="plugins.jsp?action=disable&plugin=<%=plugin.getName() %>">Disable</a>
 <%
-	} else if (plugin.getState() == SPlugin.SPluginState.DISABLED) {
+	} else {
 %>
 <a href="plugins.jsp?action=enable&plugin=<%=plugin.getName() %>">Enable</a>
 <%

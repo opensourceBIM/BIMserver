@@ -3,9 +3,9 @@ package org.bimserver.longaction;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
+import org.bimserver.interfaces.objects.LongActionState;
+import org.bimserver.interfaces.objects.LongActionState.ActionState;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.objects.LongActionState;
-import org.bimserver.shared.objects.LongActionState.ActionState;
 
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 

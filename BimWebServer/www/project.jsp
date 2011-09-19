@@ -1,3 +1,7 @@
+<%@page import="org.bimserver.shared.comparators.SUserNameComparator"%>
+<%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
+<%@page import="org.bimserver.shared.comparators.SCheckoutDateComparator"%>
+<%@page import="org.bimserver.shared.comparators.SRevisionIdComparator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.TreeSet"%>
@@ -13,12 +17,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.models.store.SIPrefix"%>
 <%@page import="org.bimserver.rights.RightsManager"%>
-<%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
-<%@page import="org.bimserver.shared.SProjectNameComparator"%>
-<%@page import="org.bimserver.shared.SRevisionIdComparator"%>
-<%@page import="org.bimserver.shared.SRevisionSummary"%>
-<%@page import="org.bimserver.shared.SUserNameComparator"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.utils.WebUtils"%>
@@ -71,7 +70,7 @@
 			SUser anonymousUser = null;
 			try {
 				anonymousUser = loginManager.getService().getAnonymousUser();
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 			}
 			boolean anonymousAccess = anonymousUser != null && project.getHasAuthorizedUsers().contains(anonymousUser.getOid());
 			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.ANONYMOUS;
@@ -380,7 +379,7 @@
 									try {
 										SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
 										subProjects.add(subProject);
-									} catch (UserException e) {
+									} catch (ServiceException e) {
 									}
 								}
 								for (SProject subProject : subProjects) {
@@ -1098,7 +1097,7 @@
 </script>
 	<%
 		}
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				if (e.getCause() instanceof OutOfMemoryError) {
 					response.sendRedirect(getServletContext().getContextPath());
 				} else {

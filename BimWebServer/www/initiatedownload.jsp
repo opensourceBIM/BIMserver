@@ -1,7 +1,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.bimserver.shared.LongActionState"%>
+<%@page import="org.bimserver.interfaces.objects.LongActionState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	try {

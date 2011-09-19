@@ -2,7 +2,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <div class="loginwrapper">
 <div class="header"><a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver"/></a></div>
 <div>
@@ -14,7 +14,7 @@
 			loginManager.getSystemService().requestPasswordChange(user.getOid());
 			showForm = false;
 			out.println("An email with instructions on how to reset your password has been sent to your address");
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}
 	}

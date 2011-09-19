@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SConcreteRevision implements SBase
@@ -36,12 +37,12 @@ public class SConcreteRevision implements SBase
 	private int id;
 	private long projectId;
 	private SCheckinState state;
-	private byte[] checksum;
+	@XmlMimeType("application/octet-stream")
+	private DataHandler checksum;
 	private List<Long> revisions = new ArrayList<Long>();
 	private long size;
 	private java.util.Date date;
 	private java.lang.String lastError;
-
 	public int getId() {
 		return id;
 	}
@@ -64,12 +65,11 @@ public class SConcreteRevision implements SBase
 	public void setState(SCheckinState state) {
 		this.state = state;
 	}
-
-	public byte[] getChecksum() {
+	public DataHandler getChecksum() {
 		return checksum;
 	}
 
-	public void setChecksum(byte[] checksum) {
+	public void setChecksum(DataHandler checksum) {
 		this.checksum = checksum;
 	}
 	public List<Long> getRevisions() {
@@ -79,7 +79,6 @@ public class SConcreteRevision implements SBase
 	public void setRevisions(List<Long> revisions) {
 		this.revisions = revisions;
 	}
-
 	public long getSize() {
 		return size;
 	}
@@ -87,7 +86,6 @@ public class SConcreteRevision implements SBase
 	public void setSize(long size) {
 		this.size = size;
 	}
-
 	public java.util.Date getDate() {
 		return date;
 	}
@@ -95,7 +93,6 @@ public class SConcreteRevision implements SBase
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
-
 	public java.lang.String getLastError() {
 		return lastError;
 	}

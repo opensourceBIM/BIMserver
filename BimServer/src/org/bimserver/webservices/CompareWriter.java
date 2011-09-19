@@ -3,10 +3,10 @@ package org.bimserver.webservices;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.interfaces.objects.SCompareResult;
+import org.bimserver.interfaces.objects.SCompareType;
+import org.bimserver.interfaces.objects.SObjectModified;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.objects.SCompareResult;
-import org.bimserver.shared.objects.SCompareResult.SCompareType;
-import org.bimserver.shared.objects.SCompareResult.SObjectModified;
 
 public class CompareWriter {
 	public static String writeCompareResult(SCompareResult compareResult, int rid1, int rid2, SCompareType sCompareType, SProject project, boolean webPage) {

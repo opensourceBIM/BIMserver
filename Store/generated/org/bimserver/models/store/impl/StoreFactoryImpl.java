@@ -115,6 +115,11 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.PLUGIN_DESCRIPTOR: return (EObject)createPluginDescriptor();
 			case StorePackage.LONG_ACTION: return (EObject)createLongAction();
 			case StorePackage.GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR: return (EObject)createGuidanceProviderPluginDescriptor();
+			case StorePackage.COMPARE_ITEM: return (EObject)createCompareItem();
+			case StorePackage.OBJECT_ADDED: return (EObject)createObjectAdded();
+			case StorePackage.OBJECT_REMOVED: return (EObject)createObjectRemoved();
+			case StorePackage.OBJECT_MODIFIED: return (EObject)createObjectModified();
+			case StorePackage.COMPARE_CONTAINER: return (EObject)createCompareContainer();
 			case StorePackage.COMPARE_RESULT: return (EObject)createCompareResult();
 			case StorePackage.LONG_ACTION_STATE: return (EObject)createLongActionState();
 			default:
@@ -140,6 +145,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return createObjectStateFromString(eDataType, initialValue);
 			case StorePackage.MERGE_IDENTIFIER:
 				return createMergeIdentifierFromString(eDataType, initialValue);
+			case StorePackage.COMPARE_IDENTIFIER:
+				return createCompareIdentifierFromString(eDataType, initialValue);
+			case StorePackage.COMPARE_TYPE:
+				return createCompareTypeFromString(eDataType, initialValue);
 			case StorePackage.ACTION_STATE:
 				return createActionStateFromString(eDataType, initialValue);
 			default:
@@ -165,6 +174,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return convertObjectStateToString(eDataType, instanceValue);
 			case StorePackage.MERGE_IDENTIFIER:
 				return convertMergeIdentifierToString(eDataType, instanceValue);
+			case StorePackage.COMPARE_IDENTIFIER:
+				return convertCompareIdentifierToString(eDataType, instanceValue);
+			case StorePackage.COMPARE_TYPE:
+				return convertCompareTypeToString(eDataType, instanceValue);
 			case StorePackage.ACTION_STATE:
 				return convertActionStateToString(eDataType, instanceValue);
 			default:
@@ -517,6 +530,56 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CompareItem createCompareItem() {
+		CompareItemImpl compareItem = new CompareItemImpl();
+		return compareItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectAdded createObjectAdded() {
+		ObjectAddedImpl objectAdded = new ObjectAddedImpl();
+		return objectAdded;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectRemoved createObjectRemoved() {
+		ObjectRemovedImpl objectRemoved = new ObjectRemovedImpl();
+		return objectRemoved;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectModified createObjectModified() {
+		ObjectModifiedImpl objectModified = new ObjectModifiedImpl();
+		return objectModified;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompareContainer createCompareContainer() {
+		CompareContainerImpl compareContainer = new CompareContainerImpl();
+		return compareContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CompareResult createCompareResult() {
 		CompareResultImpl compareResult = new CompareResultImpl();
 		return compareResult;
@@ -629,6 +692,46 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertMergeIdentifierToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompareIdentifier createCompareIdentifierFromString(EDataType eDataType, String initialValue) {
+		CompareIdentifier result = CompareIdentifier.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCompareIdentifierToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompareType createCompareTypeFromString(EDataType eDataType, String initialValue) {
+		CompareType result = CompareType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCompareTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

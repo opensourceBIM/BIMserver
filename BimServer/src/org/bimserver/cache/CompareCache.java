@@ -1,8 +1,8 @@
 package org.bimserver.cache;
 
 import org.bimserver.ifc.compare.CompareResult;
-import org.bimserver.shared.objects.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.objects.SCompareResult.SCompareType;
+import org.bimserver.models.store.CompareIdentifier;
+import org.bimserver.models.store.CompareType;
 
 public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareCache.CompareValue> {
 	private static final int MAX_UNACCESSED_TIME_MS = 1000 * 60 * 30; // 30 minutes
@@ -10,10 +10,10 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 	public static class CompareKey extends GenericCacheKey {
 		private final long roid1;
 		private final long roid2;
-		private final SCompareType sCompareType;
-		private final SCompareIdentifier sCompareIdentifier;
+		private final CompareType sCompareType;
+		private final CompareIdentifier sCompareIdentifier;
 
-		public CompareKey(long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {
+		public CompareKey(long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier) {
 			super();
 			this.roid1 = roid1;
 			this.roid2 = roid2;
@@ -81,7 +81,7 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		super();
 	}
 
-	public CompareResult getCompareResults(long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {
+	public CompareResult getCompareResults(long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier) {
 		CompareValue compareValue = getValue(new CompareKey(roid1, roid2, sCompareType, sCompareIdentifier));
 		if (compareValue != null) {
 			compareValue.access();
@@ -90,7 +90,7 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		return null;
 	}
 
-	public void storeResults(long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier, CompareResult compareResults) {
+	public void storeResults(long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier, CompareResult compareResults) {
 		store(new CompareKey(roid1, roid2, sCompareType, sCompareIdentifier), new CompareValue(compareResults));
 	}
 }

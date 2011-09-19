@@ -1,6 +1,5 @@
 <%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="java.util.Set"%>
-<%@page import="org.bimserver.shared.ServerException"%>
 <%@page import="org.bimserver.ServerInfo"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />

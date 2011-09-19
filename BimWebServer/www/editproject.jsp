@@ -4,7 +4,7 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Comparator"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
@@ -32,7 +32,7 @@
 		SUser anonymousUser = null;
 		try {
 			anonymousUser = loginManager.getService().getAnonymousUser();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 		}
 		boolean anonymousAccess = anonymousUser != null && sProject.getHasAuthorizedUsers().contains(anonymousUser.getOid());
 		try {
@@ -65,7 +65,7 @@
 						loginManager.getService().addUserToProject(anonymousUser.getOid(), poid);
 					}
 					response.sendRedirect("project.jsp?poid=" + poid);
-				} catch (UserException e) {
+				} catch (ServiceException e) {
 					JspHelper.showException(out, e);
 				}
 			}
@@ -205,7 +205,7 @@ $(document).ready(function(){
 	});
 });
 </script> <%
- 	} catch (UserException e) {
+ 	} catch (ServiceException e) {
 		JspHelper.showException(out, e);
  		}
  	}

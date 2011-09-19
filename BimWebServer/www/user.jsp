@@ -4,19 +4,19 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.Message"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
-<%@page import="org.bimserver.shared.SProjectNameComparator"%>
+<%@page import="org.bimserver.shared.comparators.SCheckoutDateComparator"%>
+<%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="org.bimserver.web.SProjectComparator"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
-<%@page import="org.bimserver.shared.SRevisionDateComparator"%>
+<%@page import="org.bimserver.shared.comparators.SRevisionDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@ include file="header.jsp" %>
 <%
@@ -226,7 +226,7 @@ if (userHasCheckinRights) { %>
 </div>
 </div>
 <% 
-	} catch (UserException e) {
+	} catch (ServiceException e) {
 		JspHelper.showException(out, e);
 	}
 }

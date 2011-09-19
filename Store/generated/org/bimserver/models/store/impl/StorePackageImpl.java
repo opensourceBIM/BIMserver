@@ -17,7 +17,12 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.CompareContainer;
+import org.bimserver.models.store.CompareIdentifier;
+import org.bimserver.models.store.CompareIdentifer;
+import org.bimserver.models.store.CompareItem;
 import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DataValue;
@@ -35,6 +40,9 @@ import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.ObjectAdded;
+import org.bimserver.models.store.ObjectModified;
+import org.bimserver.models.store.ObjectRemoved;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Plugin;
 import org.bimserver.models.store.PluginDescriptor;
@@ -312,6 +320,41 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass compareItemEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectAddedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectRemovedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectModifiedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compareContainerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass compareResultEClass = null;
 
 	/**
@@ -355,6 +398,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EEnum mergeIdentifierEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum compareIdentifierEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum compareTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2403,8 +2460,116 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCompareItem() {
+		return compareItemEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompareItem_DataObject() {
+		return (EReference)compareItemEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getObjectAdded() {
+		return objectAddedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getObjectRemoved() {
+		return objectRemovedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getObjectModified() {
+		return objectModifiedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectModified_FieldName() {
+		return (EAttribute)objectModifiedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectModified_OldValue() {
+		return (EAttribute)objectModifiedEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectModified_NewValue() {
+		return (EAttribute)objectModifiedEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompareContainer() {
+		return compareContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompareContainer_Type() {
+		return (EAttribute)compareContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompareContainer_Items() {
+		return (EReference)compareContainerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompareResult() {
 		return compareResultEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompareResult_Items() {
+		return (EReference)compareResultEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2477,6 +2642,24 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EEnum getMergeIdentifier() {
 		return mergeIdentifierEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getCompareIdentifier() {
+		return compareIdentifierEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getCompareType() {
+		return compareTypeEEnum;
 	}
 
 	/**
@@ -2768,7 +2951,24 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		guidanceProviderPluginDescriptorEClass = createEClass(GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR);
 		createEAttribute(guidanceProviderPluginDescriptorEClass, GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME);
 
+		compareItemEClass = createEClass(COMPARE_ITEM);
+		createEReference(compareItemEClass, COMPARE_ITEM__DATA_OBJECT);
+
+		objectAddedEClass = createEClass(OBJECT_ADDED);
+
+		objectRemovedEClass = createEClass(OBJECT_REMOVED);
+
+		objectModifiedEClass = createEClass(OBJECT_MODIFIED);
+		createEAttribute(objectModifiedEClass, OBJECT_MODIFIED__FIELD_NAME);
+		createEAttribute(objectModifiedEClass, OBJECT_MODIFIED__OLD_VALUE);
+		createEAttribute(objectModifiedEClass, OBJECT_MODIFIED__NEW_VALUE);
+
+		compareContainerEClass = createEClass(COMPARE_CONTAINER);
+		createEAttribute(compareContainerEClass, COMPARE_CONTAINER__TYPE);
+		createEReference(compareContainerEClass, COMPARE_CONTAINER__ITEMS);
+
 		compareResultEClass = createEClass(COMPARE_RESULT);
+		createEReference(compareResultEClass, COMPARE_RESULT__ITEMS);
 
 		longActionStateEClass = createEClass(LONG_ACTION_STATE);
 		createEAttribute(longActionStateEClass, LONG_ACTION_STATE__PROGRESS);
@@ -2780,6 +2980,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		siPrefixEEnum = createEEnum(SI_PREFIX);
 		objectStateEEnum = createEEnum(OBJECT_STATE);
 		mergeIdentifierEEnum = createEEnum(MERGE_IDENTIFIER);
+		compareIdentifierEEnum = createEEnum(COMPARE_IDENTIFIER);
+		compareTypeEEnum = createEEnum(COMPARE_TYPE);
 		actionStateEEnum = createEEnum(ACTION_STATE);
 	}
 
@@ -2820,6 +3022,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		referenceDataValueEClass.getESuperTypes().add(this.getDataValue());
 		listDataValueEClass.getESuperTypes().add(this.getDataValue());
 		simpleDataValueEClass.getESuperTypes().add(this.getDataValue());
+		objectAddedEClass.getESuperTypes().add(this.getCompareItem());
+		objectRemovedEClass.getESuperTypes().add(this.getCompareItem());
+		objectModifiedEClass.getESuperTypes().add(this.getCompareItem());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3074,7 +3279,24 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEClass(guidanceProviderPluginDescriptorEClass, GuidanceProviderPluginDescriptor.class, "GuidanceProviderPluginDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGuidanceProviderPluginDescriptor_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, GuidanceProviderPluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(compareItemEClass, CompareItem.class, "CompareItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompareItem_DataObject(), this.getDataObject(), null, "dataObject", null, 0, 1, CompareItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(objectAddedEClass, ObjectAdded.class, "ObjectAdded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(objectRemovedEClass, ObjectRemoved.class, "ObjectRemoved", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(objectModifiedEClass, ObjectModified.class, "ObjectModified", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getObjectModified_FieldName(), ecorePackage.getEString(), "fieldName", null, 0, 1, ObjectModified.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectModified_OldValue(), ecorePackage.getEString(), "oldValue", null, 0, 1, ObjectModified.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectModified_NewValue(), ecorePackage.getEString(), "newValue", null, 0, 1, ObjectModified.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compareContainerEClass, CompareContainer.class, "CompareContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCompareContainer_Type(), ecorePackage.getEString(), "type", null, 0, 1, CompareContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompareContainer_Items(), this.getCompareItem(), null, "items", null, 0, -1, CompareContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(compareResultEClass, CompareResult.class, "CompareResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompareResult_Items(), this.getCompareContainer(), null, "items", null, 0, -1, CompareResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(longActionStateEClass, LongActionState.class, "LongActionState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLongActionState_Progress(), ecorePackage.getEInt(), "progress", null, 0, 1, LongActionState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3123,6 +3345,16 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		addEEnumLiteral(mergeIdentifierEEnum, MergeIdentifier.NAME);
 		addEEnumLiteral(mergeIdentifierEEnum, MergeIdentifier.GUID);
 
+		initEEnum(compareIdentifierEEnum, CompareIdentifier.class, "CompareIdentifier");
+		addEEnumLiteral(compareIdentifierEEnum, CompareIdentifier.NAME);
+		addEEnumLiteral(compareIdentifierEEnum, CompareIdentifier.GUID);
+
+		initEEnum(compareTypeEEnum, CompareType.class, "CompareType");
+		addEEnumLiteral(compareTypeEEnum, CompareType.ALL);
+		addEEnumLiteral(compareTypeEEnum, CompareType.ADD);
+		addEEnumLiteral(compareTypeEEnum, CompareType.MODIFY);
+		addEEnumLiteral(compareTypeEEnum, CompareType.DELETE);
+
 		initEEnum(actionStateEEnum, ActionState.class, "ActionState");
 		addEEnumLiteral(actionStateEEnum, ActionState.UNKNOWN);
 		addEEnumLiteral(actionStateEEnum, ActionState.STARTED);
@@ -3161,6 +3393,16 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		   });		
 		addAnnotation
 		  (getRevisionSummary_List(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getCompareItem_DataObject(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getCompareContainer_Items(), 
 		   source, 
 		   new String[] {
 		   });

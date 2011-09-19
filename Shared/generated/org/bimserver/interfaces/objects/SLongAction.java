@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SLongAction implements SBase
@@ -35,7 +36,6 @@ public class SLongAction implements SBase
 	private java.util.Date start;
 	private java.lang.String username;
 	private java.lang.String name;
-
 	public java.lang.String getIdentification() {
 		return identification;
 	}
@@ -51,7 +51,6 @@ public class SLongAction implements SBase
 		this.userId = userId;
 	}
 	
-
 	public java.util.Date getStart() {
 		return start;
 	}
@@ -59,7 +58,6 @@ public class SLongAction implements SBase
 	public void setStart(java.util.Date start) {
 		this.start = start;
 	}
-
 	public java.lang.String getUsername() {
 		return username;
 	}
@@ -67,7 +65,6 @@ public class SLongAction implements SBase
 	public void setUsername(java.lang.String username) {
 		this.username = username;
 	}
-
 	public java.lang.String getName() {
 		return name;
 	}

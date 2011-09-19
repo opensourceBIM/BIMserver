@@ -1,5 +1,5 @@
 <%@page import="org.bimserver.web.WebServerHelper"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Properties"%>
@@ -29,7 +29,7 @@
 	String username = request.getParameter("register_username");
 	try {
 		long uoid = loginManager.getSystemService().addUser(username, name, SUserType.USER, true);
-	} catch (UserException e) {
+	} catch (ServiceException e) {
 		errorMessages.add(e.getUserMessage());
 	}
 	if (errorMessages.size() == 0) {

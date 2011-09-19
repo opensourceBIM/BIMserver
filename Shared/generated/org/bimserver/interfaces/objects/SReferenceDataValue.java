@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SReferenceDataValue extends SDataValue implements SBase
@@ -30,7 +31,6 @@ public class SReferenceDataValue extends SDataValue implements SBase
 	}
 	private java.lang.String typeName;
 	private java.lang.String guid;
-
 	public java.lang.String getTypeName() {
 		return typeName;
 	}
@@ -38,7 +38,6 @@ public class SReferenceDataValue extends SDataValue implements SBase
 	public void setTypeName(java.lang.String typeName) {
 		this.typeName = typeName;
 	}
-
 	public java.lang.String getGuid() {
 		return guid;
 	}

@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SCheckinResult implements SBase
@@ -39,7 +40,6 @@ public class SCheckinResult implements SBase
 		this.revisionId = revisionId;
 	}
 	
-
 	public int getRid() {
 		return rid;
 	}

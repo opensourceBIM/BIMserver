@@ -222,6 +222,26 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 				return createGuidanceProviderPluginDescriptorAdapter();
 			}
 			@Override
+			public Adapter caseCompareItem(CompareItem object) {
+				return createCompareItemAdapter();
+			}
+			@Override
+			public Adapter caseObjectAdded(ObjectAdded object) {
+				return createObjectAddedAdapter();
+			}
+			@Override
+			public Adapter caseObjectRemoved(ObjectRemoved object) {
+				return createObjectRemovedAdapter();
+			}
+			@Override
+			public Adapter caseObjectModified(ObjectModified object) {
+				return createObjectModifiedAdapter();
+			}
+			@Override
+			public Adapter caseCompareContainer(CompareContainer object) {
+				return createCompareContainerAdapter();
+			}
+			@Override
 			public Adapter caseCompareResult(CompareResult object) {
 				return createCompareResultAdapter();
 			}
@@ -722,6 +742,76 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGuidanceProviderPluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.CompareItem <em>Compare Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.CompareItem
+	 * @generated
+	 */
+	public Adapter createCompareItemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ObjectAdded <em>Object Added</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ObjectAdded
+	 * @generated
+	 */
+	public Adapter createObjectAddedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ObjectRemoved <em>Object Removed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ObjectRemoved
+	 * @generated
+	 */
+	public Adapter createObjectRemovedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ObjectModified <em>Object Modified</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ObjectModified
+	 * @generated
+	 */
+	public Adapter createObjectModifiedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.CompareContainer <em>Compare Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.CompareContainer
+	 * @generated
+	 */
+	public Adapter createCompareContainerAdapter() {
 		return null;
 	}
 

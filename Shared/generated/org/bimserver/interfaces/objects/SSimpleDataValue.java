@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SSimpleDataValue extends SDataValue implements SBase
@@ -28,7 +29,6 @@ public class SSimpleDataValue extends SDataValue implements SBase
 		return sClass;
 	}
 	private java.lang.String stringValue;
-
 	public java.lang.String getStringValue() {
 		return stringValue;
 	}

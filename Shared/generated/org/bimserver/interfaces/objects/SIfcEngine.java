@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SIfcEngine implements SBase
@@ -31,7 +32,6 @@ public class SIfcEngine implements SBase
 	private java.lang.String name;
 	private boolean active;
 	private long settingsId;
-
 	public java.lang.String getName() {
 		return name;
 	}
@@ -39,7 +39,6 @@ public class SIfcEngine implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-
 	public boolean isActive() {
 		return active;
 	}

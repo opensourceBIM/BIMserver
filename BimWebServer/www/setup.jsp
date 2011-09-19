@@ -1,5 +1,5 @@
 <%@page import="org.bimserver.web.JspHelper"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:include page="htmlheader.jsp" />
 <body>
@@ -16,7 +16,7 @@
 		try {
 			loginManager.getService().setup(siteAddress, smtpServer, adminName, adminUsername, adminPassword, createAnonymousUser);
 			response.sendRedirect("login.jsp?username=" + adminUsername);
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}
 	}

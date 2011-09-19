@@ -1,7 +1,7 @@
 <%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Date"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
@@ -10,7 +10,7 @@
 	Date lastReset = null;
 	try {
 		lastReset = loginManager.getSystemService().getLastDatabaseReset();
-	} catch (UserException e) {
+	} catch (ServiceException e) {
 		// Ignore		
 	}
 %>

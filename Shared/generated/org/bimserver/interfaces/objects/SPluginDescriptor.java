@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SPluginDescriptor implements SBase
@@ -33,7 +34,6 @@ public class SPluginDescriptor implements SBase
 	private java.lang.String description;
 	private java.lang.String location;
 	private boolean enabled;
-
 	public java.lang.String getName() {
 		return name;
 	}
@@ -41,7 +41,6 @@ public class SPluginDescriptor implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -49,7 +48,6 @@ public class SPluginDescriptor implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
-
 	public java.lang.String getLocation() {
 		return location;
 	}
@@ -57,7 +55,6 @@ public class SPluginDescriptor implements SBase
 	public void setLocation(java.lang.String location) {
 		this.location = location;
 	}
-
 	public boolean isEnabled() {
 		return enabled;
 	}

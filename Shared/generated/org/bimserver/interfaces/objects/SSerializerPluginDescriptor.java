@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SSerializerPluginDescriptor implements SBase
@@ -33,7 +34,6 @@ public class SSerializerPluginDescriptor implements SBase
 	private java.lang.String defaultName;
 	private java.lang.String defaultExtension;
 	private java.lang.String defaultContentType;
-
 	public java.lang.String getPluginClassName() {
 		return pluginClassName;
 	}
@@ -41,7 +41,6 @@ public class SSerializerPluginDescriptor implements SBase
 	public void setPluginClassName(java.lang.String pluginClassName) {
 		this.pluginClassName = pluginClassName;
 	}
-
 	public java.lang.String getDefaultName() {
 		return defaultName;
 	}
@@ -49,7 +48,6 @@ public class SSerializerPluginDescriptor implements SBase
 	public void setDefaultName(java.lang.String defaultName) {
 		this.defaultName = defaultName;
 	}
-
 	public java.lang.String getDefaultExtension() {
 		return defaultExtension;
 	}
@@ -57,7 +55,6 @@ public class SSerializerPluginDescriptor implements SBase
 	public void setDefaultExtension(java.lang.String defaultExtension) {
 		this.defaultExtension = defaultExtension;
 	}
-
 	public java.lang.String getDefaultContentType() {
 		return defaultContentType;
 	}

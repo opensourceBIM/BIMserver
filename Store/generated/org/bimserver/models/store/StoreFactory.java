@@ -332,6 +332,51 @@ public interface StoreFactory extends EFactory {
 	GuidanceProviderPluginDescriptor createGuidanceProviderPluginDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Compare Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compare Item</em>'.
+	 * @generated
+	 */
+	CompareItem createCompareItem();
+
+	/**
+	 * Returns a new object of class '<em>Object Added</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Added</em>'.
+	 * @generated
+	 */
+	ObjectAdded createObjectAdded();
+
+	/**
+	 * Returns a new object of class '<em>Object Removed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Removed</em>'.
+	 * @generated
+	 */
+	ObjectRemoved createObjectRemoved();
+
+	/**
+	 * Returns a new object of class '<em>Object Modified</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Modified</em>'.
+	 * @generated
+	 */
+	ObjectModified createObjectModified();
+
+	/**
+	 * Returns a new object of class '<em>Compare Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compare Container</em>'.
+	 * @generated
+	 */
+	CompareContainer createCompareContainer();
+
+	/**
 	 * Returns a new object of class '<em>Compare Result</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

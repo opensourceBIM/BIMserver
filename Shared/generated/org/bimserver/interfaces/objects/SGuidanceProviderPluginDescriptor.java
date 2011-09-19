@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SGuidanceProviderPluginDescriptor implements SBase
@@ -27,7 +28,6 @@ public class SGuidanceProviderPluginDescriptor implements SBase
 		return sClass;
 	}
 	private java.lang.String className;
-
 	public java.lang.String getClassName() {
 		return className;
 	}

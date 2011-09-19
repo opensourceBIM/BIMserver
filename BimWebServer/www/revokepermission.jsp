@@ -1,5 +1,5 @@
 <%@page import="org.bimserver.web.JspHelper"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@ include file="header.jsp" %>
 <%
 	if (loginManager.getService().isLoggedIn()) {
@@ -12,7 +12,7 @@
 			} else if (request.getParameter("type").equals("user")) {
 				response.sendRedirect("user.jsp?uoid=" + uoid);
 			}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}
 	}

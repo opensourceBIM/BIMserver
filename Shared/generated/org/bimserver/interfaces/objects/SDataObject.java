@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SDataObject implements SBase
@@ -33,7 +34,6 @@ public class SDataObject implements SBase
 	private java.lang.String guid;
 	private java.lang.String name;
 	private List<SDataValue> values = new ArrayList<SDataValue>();
-
 	public java.lang.String getType() {
 		return type;
 	}
@@ -41,7 +41,6 @@ public class SDataObject implements SBase
 	public void setType(java.lang.String type) {
 		this.type = type;
 	}
-
 	public java.lang.String getGuid() {
 		return guid;
 	}
@@ -49,7 +48,6 @@ public class SDataObject implements SBase
 	public void setGuid(java.lang.String guid) {
 		this.guid = guid;
 	}
-
 	public java.lang.String getName() {
 		return name;
 	}

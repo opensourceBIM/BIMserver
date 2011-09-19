@@ -268,7 +268,7 @@ public class JspHelper {
 		sb.append("</li>");
 	}
 	
-	public static void showException(JspWriter out, UserException e) throws IOException {
+	public static void showException(JspWriter out, ServiceException e) throws IOException {
 		out.println("<div class=\"error\">" + e.getUserMessage() + " <a class=\"errorLink\" href=\"#\">Show origin</a>");
 		out.println("<div class=\"errorBody\" style=\"display: none\">");
 		for (StackTraceElement element : e.getStackTrace()) {

@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SLongActionState implements SBase
@@ -29,7 +30,6 @@ public class SLongActionState implements SBase
 	}
 	private int progress;
 	private SActionState state;
-
 	public int getProgress() {
 		return progress;
 	}

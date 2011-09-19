@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SSettings implements SBase
@@ -71,7 +72,6 @@ public class SSettings implements SBase
 	private List<Long> ifcEngines = new ArrayList<Long>();
 	private List<Long> plugins = new ArrayList<Long>();
 	private List<Long> deserializers = new ArrayList<Long>();
-
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
 	}
@@ -79,7 +79,6 @@ public class SSettings implements SBase
 	public void setShowVersionUpgradeAvailable(boolean showVersionUpgradeAvailable) {
 		this.showVersionUpgradeAvailable = showVersionUpgradeAvailable;
 	}
-
 	public boolean isSendConfirmationEmailAfterRegistration() {
 		return sendConfirmationEmailAfterRegistration;
 	}
@@ -87,7 +86,6 @@ public class SSettings implements SBase
 	public void setSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) {
 		this.sendConfirmationEmailAfterRegistration = sendConfirmationEmailAfterRegistration;
 	}
-
 	public boolean isUseCaching() {
 		return useCaching;
 	}
@@ -95,7 +93,6 @@ public class SSettings implements SBase
 	public void setUseCaching(boolean useCaching) {
 		this.useCaching = useCaching;
 	}
-
 	public boolean isAllowSelfRegistration() {
 		return allowSelfRegistration;
 	}
@@ -103,7 +100,6 @@ public class SSettings implements SBase
 	public void setAllowSelfRegistration(boolean allowSelfRegistration) {
 		this.allowSelfRegistration = allowSelfRegistration;
 	}
-
 	public boolean isAutoTestClashes() {
 		return autoTestClashes;
 	}
@@ -111,7 +107,6 @@ public class SSettings implements SBase
 	public void setAutoTestClashes(boolean autoTestClashes) {
 		this.autoTestClashes = autoTestClashes;
 	}
-
 	public boolean isIntelligentMerging() {
 		return intelligentMerging;
 	}
@@ -119,7 +114,6 @@ public class SSettings implements SBase
 	public void setIntelligentMerging(boolean intelligentMerging) {
 		this.intelligentMerging = intelligentMerging;
 	}
-
 	public boolean isAllowUsersToCreateTopLevelProjects() {
 		return allowUsersToCreateTopLevelProjects;
 	}
@@ -127,7 +121,6 @@ public class SSettings implements SBase
 	public void setAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) {
 		this.allowUsersToCreateTopLevelProjects = allowUsersToCreateTopLevelProjects;
 	}
-
 	public boolean isCheckinMergingEnabled() {
 		return checkinMergingEnabled;
 	}
@@ -135,7 +128,6 @@ public class SSettings implements SBase
 	public void setCheckinMergingEnabled(boolean checkinMergingEnabled) {
 		this.checkinMergingEnabled = checkinMergingEnabled;
 	}
-
 	public java.lang.String getRegistrationAddition() {
 		return registrationAddition;
 	}
@@ -143,7 +135,6 @@ public class SSettings implements SBase
 	public void setRegistrationAddition(java.lang.String registrationAddition) {
 		this.registrationAddition = registrationAddition;
 	}
-
 	public java.lang.String getSmtpServer() {
 		return smtpServer;
 	}
@@ -151,7 +142,6 @@ public class SSettings implements SBase
 	public void setSmtpServer(java.lang.String smtpServer) {
 		this.smtpServer = smtpServer;
 	}
-
 	public java.lang.String getEmailSenderAddress() {
 		return emailSenderAddress;
 	}
@@ -159,7 +149,6 @@ public class SSettings implements SBase
 	public void setEmailSenderAddress(java.lang.String emailSenderAddress) {
 		this.emailSenderAddress = emailSenderAddress;
 	}
-
 	public java.lang.String getEnabledExportTypes() {
 		return enabledExportTypes;
 	}
@@ -167,7 +156,6 @@ public class SSettings implements SBase
 	public void setEnabledExportTypes(java.lang.String enabledExportTypes) {
 		this.enabledExportTypes = enabledExportTypes;
 	}
-
 	public java.lang.String getCustomLogoAddress() {
 		return customLogoAddress;
 	}
@@ -175,7 +163,6 @@ public class SSettings implements SBase
 	public void setCustomLogoAddress(java.lang.String customLogoAddress) {
 		this.customLogoAddress = customLogoAddress;
 	}
-
 	public java.lang.String getSiteAddress() {
 		return siteAddress;
 	}
@@ -197,7 +184,6 @@ public class SSettings implements SBase
 	public void setGuidanceProviders(List<Long> guidanceProviders) {
 		this.guidanceProviders = guidanceProviders;
 	}
-
 	public java.lang.String getHeaderAddition() {
 		return headerAddition;
 	}
@@ -205,7 +191,6 @@ public class SSettings implements SBase
 	public void setHeaderAddition(java.lang.String headerAddition) {
 		this.headerAddition = headerAddition;
 	}
-
 	public java.lang.String getFooterAddition() {
 		return footerAddition;
 	}
@@ -220,7 +205,6 @@ public class SSettings implements SBase
 	public void setMergeIdentifier(SMergeIdentifier mergeIdentifier) {
 		this.mergeIdentifier = mergeIdentifier;
 	}
-
 	public boolean isCacheOutputFiles() {
 		return cacheOutputFiles;
 	}

@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SUser implements SBase
@@ -51,7 +52,6 @@ public class SUser implements SBase
 	private java.lang.String validationToken;
 	private java.util.Date validationTokenCreated;
 	private java.lang.String notificationUrl;
-
 	public java.lang.String getName() {
 		return name;
 	}
@@ -59,7 +59,6 @@ public class SUser implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-
 	public java.lang.String getPassword() {
 		return password;
 	}
@@ -88,7 +87,6 @@ public class SUser implements SBase
 	public void setState(SObjectState state) {
 		this.state = state;
 	}
-
 	public java.util.Date getCreatedOn() {
 		return createdOn;
 	}
@@ -111,7 +109,6 @@ public class SUser implements SBase
 	public void setUserType(SUserType userType) {
 		this.userType = userType;
 	}
-
 	public java.lang.String getUsername() {
 		return username;
 	}
@@ -119,7 +116,6 @@ public class SUser implements SBase
 	public void setUsername(java.lang.String username) {
 		this.username = username;
 	}
-
 	public java.util.Date getLastSeen() {
 		return lastSeen;
 	}
@@ -127,7 +123,6 @@ public class SUser implements SBase
 	public void setLastSeen(java.util.Date lastSeen) {
 		this.lastSeen = lastSeen;
 	}
-
 	public java.lang.String getValidationToken() {
 		return validationToken;
 	}
@@ -135,7 +130,6 @@ public class SUser implements SBase
 	public void setValidationToken(java.lang.String validationToken) {
 		this.validationToken = validationToken;
 	}
-
 	public java.util.Date getValidationTokenCreated() {
 		return validationTokenCreated;
 	}
@@ -143,7 +137,6 @@ public class SUser implements SBase
 	public void setValidationTokenCreated(java.util.Date validationTokenCreated) {
 		this.validationTokenCreated = validationTokenCreated;
 	}
-
 	public java.lang.String getNotificationUrl() {
 		return notificationUrl;
 	}

@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SLogAction implements SBase
@@ -31,7 +32,6 @@ public class SLogAction implements SBase
 	private java.util.Date date;
 	private long executorId;
 	private SAccessMethod accessMethod;
-
 	public java.util.Date getDate() {
 		return date;
 	}

@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SGeoTag implements SBase
@@ -39,7 +40,6 @@ public class SGeoTag implements SBase
 	private float z;
 	private int epsg;
 	private float directionAngle;
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -54,7 +54,6 @@ public class SGeoTag implements SBase
 	public void setProjects(List<Long> projects) {
 		this.projects = projects;
 	}
-
 	public float getX() {
 		return x;
 	}
@@ -62,7 +61,6 @@ public class SGeoTag implements SBase
 	public void setX(float x) {
 		this.x = x;
 	}
-
 	public float getY() {
 		return y;
 	}
@@ -70,7 +68,6 @@ public class SGeoTag implements SBase
 	public void setY(float y) {
 		this.y = y;
 	}
-
 	public float getZ() {
 		return z;
 	}
@@ -78,7 +75,6 @@ public class SGeoTag implements SBase
 	public void setZ(float z) {
 		this.z = z;
 	}
-
 	public int getEpsg() {
 		return epsg;
 	}
@@ -86,7 +82,6 @@ public class SGeoTag implements SBase
 	public void setEpsg(int epsg) {
 		this.epsg = epsg;
 	}
-
 	public float getDirectionAngle() {
 		return directionAngle;
 	}

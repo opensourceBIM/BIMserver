@@ -6,11 +6,8 @@
 <%@page import="java.io.PrintStream"%>
 <%@page import="org.bimserver.ifc.compare.CompareResult"%>
 <%@page import="org.bimserver.web.JspHelper"%>
-<%@page import="org.bimserver.shared.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
-<%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
-<%@page import="org.bimserver.shared.SCompareResult.SCompareIdentifier"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp" %>
 <%
@@ -21,8 +18,8 @@
 		SProject project = loginManager.getService().getProjectByPoid(poid);
 		SRevision revision1 = loginManager.getService().getRevision(roid1);
 		SRevision revision2 = loginManager.getService().getRevision(roid2);
-		SCompareType sCompareType = SCompareResult.SCompareType.valueOf(request.getParameter("type"));
-		SCompareResult.SCompareIdentifier sCompareIdentifier = SCompareResult.SCompareIdentifier.valueOf(request.getParameter("identifier"));
+		SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
+		SCompareIdentifier sCompareIdentifier = SCompareIdentifier.valueOf(request.getParameter("identifier"));
 		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
 %>
 Back to 

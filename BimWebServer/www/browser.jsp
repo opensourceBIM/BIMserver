@@ -1,16 +1,17 @@
-<%@page import="org.bimserver.shared.SDataObject.SSimpleDataValue"%>
-<%@page import="org.bimserver.shared.SDataObject"%>
-<%@page import="org.bimserver.shared.SDataObject.SDataValue"%>
-<%@page import="org.bimserver.shared.SDataObject.SReferenceDataValue"%>
-<%@page import="org.bimserver.shared.SDataObject.SSimpleDataValue"%>
+<%@page import="org.bimserver.interfaces.objects.SListDataValue"%>
+<%@page import="org.bimserver.interfaces.objects.SSimpleDataValue"%>
+<%@page import="org.bimserver.interfaces.objects.SDataObject"%>
+<%@page import="org.bimserver.interfaces.objects.SDataValue"%>
+<%@page import="org.bimserver.interfaces.objects.SReferenceDataValue"%>
+<%@page import="org.bimserver.interfaces.objects.SSimpleDataValue"%>
 <%@page import="java.util.List"%>
-<%@page import="org.bimserver.shared.SRevisionSummary"%>
+<%@page import="org.bimserver.interfaces.objects.SRevisionSummary"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Collections"%>
-<%@page import="org.bimserver.shared.SRevisionIdComparator"%><div id="browser">
+<%@page import="org.bimserver.shared.comparators.SRevisionIdComparator"%><div id="browser">
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
@@ -40,21 +41,21 @@ for (SRevision sRevision : revisionsInc) {
 	  			out.println("<table>");
 	  			for (SDataValue dataValue : dataObject.getValues()) {
 	  				String fieldName = dataValue.getFieldName();
-	  				if (dataValue instanceof SDataObject.SSimpleDataValue) {
+	  				if (dataValue instanceof SSimpleDataValue) {
 	  					SSimpleDataValue simpleDataValue = (SSimpleDataValue)dataValue;
 		  				out.println("<tr><td>" + fieldName + "</td><td>" + simpleDataValue.getStringValue() +"</td></tr>");
-	  				} else if (dataValue instanceof SDataObject.SReferenceDataValue) {
-	  					SDataObject.SReferenceDataValue referenceDataValue = (SDataObject.SReferenceDataValue)dataValue;
+	  				} else if (dataValue instanceof SReferenceDataValue) {
+	  					SReferenceDataValue referenceDataValue = (SReferenceDataValue)dataValue;
 		  				out.println("<tr><td>" + fieldName + "</td><td><a href=\"#\" class=\"browserlink\" browserurl=\"" + request.getRequestURI() + "?roid=" + roid + "&oid=" + referenceDataValue.getOid() + "&className=" + referenceDataValue.getTypeName() + "\">" + referenceDataValue.getTypeName() +"</a></td></tr>");
-	  				} else if (dataValue instanceof SDataObject.SListDataValue) {
-	  					SDataObject.SListDataValue listDataValue = (SDataObject.SListDataValue)dataValue;
+	  				} else if (dataValue instanceof SListDataValue) {
+	  					SListDataValue listDataValue = (SListDataValue)dataValue;
 	  					out.println("<tr><td>" + fieldName + "</td><td>");
-	  					for (SDataObject.SDataValue item : listDataValue.getValues()) {
-	  						if (item instanceof SDataObject.SReferenceDataValue) {
-	  							SDataObject.SReferenceDataValue referenceDataValue = (SDataObject.SReferenceDataValue)item;
+	  					for (SDataValue item : listDataValue.getValues()) {
+	  						if (item instanceof SReferenceDataValue) {
+	  							SReferenceDataValue referenceDataValue = (SReferenceDataValue)item;
 				  				out.println("<a href=\"#\" class=\"browserlink\" browserurl=\"" + request.getRequestURI() + "?roid=" + roid + "&oid=" + referenceDataValue.getOid() + "&className=" + referenceDataValue.getTypeName() + "\">" + referenceDataValue.getTypeName() +"</a> ");
-	  						} else if (item instanceof SDataObject.SSimpleDataValue) {
-	  							SDataObject.SSimpleDataValue simpleDataValue = (SDataObject.SSimpleDataValue)item;
+	  						} else if (item instanceof SSimpleDataValue) {
+	  							SSimpleDataValue simpleDataValue = (SSimpleDataValue)item;
 				  				out.println(simpleDataValue.getStringValue() + " ");
 	  						}
 	  					}
@@ -111,7 +112,7 @@ for (SRevision sRevision : revisionsInc) {
 	  			SRevisionSummary revisionSummary = loginManager.getService().getRevisionSummary(roid);
 	  			out.print(JspHelper.writeSummaryTable(project, roid, revisionSummary, request));
 	  		}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}
   	%>

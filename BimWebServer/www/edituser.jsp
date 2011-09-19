@@ -1,6 +1,6 @@
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <div class="sidebar">
 </div>
@@ -19,7 +19,7 @@
 			loginManager.getService().changeUserType(uoid, userType);
 			loginManager.getService().setHttpCallback(uoid, notificationUrl);
 			response.sendRedirect("user.jsp?uoid=" + uoid);
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}
 	}

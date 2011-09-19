@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SMigration implements SBase
@@ -31,7 +32,6 @@ public class SMigration implements SBase
 	private int number;
 	private java.lang.String description;
 	private boolean executed;
-
 	public int getNumber() {
 		return number;
 	}
@@ -39,7 +39,6 @@ public class SMigration implements SBase
 	public void setNumber(int number) {
 		this.number = number;
 	}
-
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -47,7 +46,6 @@ public class SMigration implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
-
 	public boolean isExecuted() {
 		return executed;
 	}

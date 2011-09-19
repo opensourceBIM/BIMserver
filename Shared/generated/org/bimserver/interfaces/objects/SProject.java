@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SProject implements SBase
@@ -59,7 +60,6 @@ public class SProject implements SBase
 	private java.lang.String description;
 	private long clashDetectionSettingsId;
 	private SSIPrefix exportLengthMeasurePrefix;
-
 	public int getId() {
 		return id;
 	}
@@ -67,7 +67,6 @@ public class SProject implements SBase
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public java.lang.String getName() {
 		return name;
 	}
@@ -126,7 +125,6 @@ public class SProject implements SBase
 	public void setState(SObjectState state) {
 		this.state = state;
 	}
-
 	public java.util.Date getCreatedDate() {
 		return createdDate;
 	}
@@ -165,7 +163,6 @@ public class SProject implements SBase
 		this.parentId = parentId;
 	}
 	
-
 	public java.lang.String getDescription() {
 		return description;
 	}

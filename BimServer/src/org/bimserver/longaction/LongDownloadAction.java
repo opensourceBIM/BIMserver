@@ -8,10 +8,10 @@ import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
+import org.bimserver.interfaces.objects.LongActionState;
+import org.bimserver.interfaces.objects.LongActionState.ActionState;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.objects.LongActionState;
-import org.bimserver.shared.objects.LongActionState.ActionState;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
