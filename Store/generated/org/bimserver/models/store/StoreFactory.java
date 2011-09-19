@@ -260,6 +260,24 @@ public interface StoreFactory extends EFactory {
 	SimpleDataValue createSimpleDataValue();
 
 	/**
+	 * Returns a new object of class '<em>Database Information Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Database Information Item</em>'.
+	 * @generated
+	 */
+	DatabaseInformationItem createDatabaseInformationItem();
+
+	/**
+	 * Returns a new object of class '<em>Database Information Category</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Database Information Category</em>'.
+	 * @generated
+	 */
+	DatabaseInformationCategory createDatabaseInformationCategory();
+
+	/**
 	 * Returns a new object of class '<em>Database Information</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

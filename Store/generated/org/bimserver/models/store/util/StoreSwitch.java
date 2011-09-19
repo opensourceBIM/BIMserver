@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -268,6 +269,18 @@ public class StoreSwitch<T> extends Switch<T> {
 				SimpleDataValue simpleDataValue = (SimpleDataValue)theEObject;
 				T result = caseSimpleDataValue(simpleDataValue);
 				if (result == null) result = caseDataValue(simpleDataValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.DATABASE_INFORMATION_ITEM: {
+				DatabaseInformationItem databaseInformationItem = (DatabaseInformationItem)theEObject;
+				T result = caseDatabaseInformationItem(databaseInformationItem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.DATABASE_INFORMATION_CATEGORY: {
+				DatabaseInformationCategory databaseInformationCategory = (DatabaseInformationCategory)theEObject;
+				T result = caseDatabaseInformationCategory(databaseInformationCategory);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -755,6 +768,36 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSimpleDataValue(SimpleDataValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Database Information Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Database Information Item</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDatabaseInformationItem(DatabaseInformationItem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Database Information Category</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Database Information Category</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDatabaseInformationCategory(DatabaseInformationCategory object) {
 		return null;
 	}
 

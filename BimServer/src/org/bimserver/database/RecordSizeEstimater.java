@@ -73,7 +73,7 @@ public class RecordSizeEstimater {
 			return AVERAGE_STRING_SIZE;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble()) {
 			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray() || eDataType.getName().equals("DataHandler")) {
 			return AVERAGE_BYTE_ARRAY_SIZE;
 		} else if (eDataType instanceof EEnum) {
 			return 4;

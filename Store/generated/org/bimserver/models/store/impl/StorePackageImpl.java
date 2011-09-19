@@ -28,6 +28,8 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DataValue;
 import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.EidClash;
@@ -259,6 +261,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EClass simpleDataValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass databaseInformationItemEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass databaseInformationCategoryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2135,6 +2151,60 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDatabaseInformationItem() {
+		return databaseInformationItemEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformationItem_Key() {
+		return (EAttribute)databaseInformationItemEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformationItem_Value() {
+		return (EAttribute)databaseInformationItemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDatabaseInformationCategory() {
+		return databaseInformationCategoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformationCategory_Title() {
+		return (EAttribute)databaseInformationCategoryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDatabaseInformationCategory_Items() {
+		return (EReference)databaseInformationCategoryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDatabaseInformation() {
 		return databaseInformationEClass;
 	}
@@ -2225,8 +2295,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseInformation_GenericLines() {
-		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(9);
+	public EReference getDatabaseInformation_Categories() {
+		return (EReference)databaseInformationEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -2923,6 +2993,14 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		simpleDataValueEClass = createEClass(SIMPLE_DATA_VALUE);
 		createEAttribute(simpleDataValueEClass, SIMPLE_DATA_VALUE__STRING_VALUE);
 
+		databaseInformationItemEClass = createEClass(DATABASE_INFORMATION_ITEM);
+		createEAttribute(databaseInformationItemEClass, DATABASE_INFORMATION_ITEM__KEY);
+		createEAttribute(databaseInformationItemEClass, DATABASE_INFORMATION_ITEM__VALUE);
+
+		databaseInformationCategoryEClass = createEClass(DATABASE_INFORMATION_CATEGORY);
+		createEAttribute(databaseInformationCategoryEClass, DATABASE_INFORMATION_CATEGORY__TITLE);
+		createEReference(databaseInformationCategoryEClass, DATABASE_INFORMATION_CATEGORY__ITEMS);
+
 		databaseInformationEClass = createEClass(DATABASE_INFORMATION);
 		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__NUMBER_OF_PROJECTS);
 		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__NUMBER_OF_USERS);
@@ -2933,7 +3011,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__CREATED);
 		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__LOCATION);
 		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__SCHEMA_VERSION);
-		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__GENERIC_LINES);
+		createEReference(databaseInformationEClass, DATABASE_INFORMATION__CATEGORIES);
 
 		serializerPluginDescriptorEClass = createEClass(SERIALIZER_PLUGIN_DESCRIPTOR);
 		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME);
@@ -3254,6 +3332,14 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEClass(simpleDataValueEClass, SimpleDataValue.class, "SimpleDataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSimpleDataValue_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, SimpleDataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(databaseInformationItemEClass, DatabaseInformationItem.class, "DatabaseInformationItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDatabaseInformationItem_Key(), ecorePackage.getEString(), "key", null, 0, 1, DatabaseInformationItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformationItem_Value(), ecorePackage.getEString(), "value", null, 0, 1, DatabaseInformationItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(databaseInformationCategoryEClass, DatabaseInformationCategory.class, "DatabaseInformationCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDatabaseInformationCategory_Title(), ecorePackage.getEString(), "title", null, 0, 1, DatabaseInformationCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDatabaseInformationCategory_Items(), this.getDatabaseInformationItem(), null, "items", null, 0, -1, DatabaseInformationCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(databaseInformationEClass, DatabaseInformation.class, "DatabaseInformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDatabaseInformation_NumberOfProjects(), ecorePackage.getEInt(), "numberOfProjects", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDatabaseInformation_NumberOfUsers(), ecorePackage.getEInt(), "numberOfUsers", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3264,7 +3350,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getDatabaseInformation_Created(), ecorePackage.getEDate(), "created", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDatabaseInformation_Location(), ecorePackage.getEString(), "location", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDatabaseInformation_SchemaVersion(), ecorePackage.getEInt(), "schemaVersion", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDatabaseInformation_GenericLines(), ecorePackage.getEString(), "genericLines", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDatabaseInformation_Categories(), this.getDatabaseInformationCategory(), null, "categories", null, 0, -1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serializerPluginDescriptorEClass, SerializerPluginDescriptor.class, "SerializerPluginDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSerializerPluginDescriptor_PluginClassName(), ecorePackage.getEString(), "pluginClassName", null, 0, 1, SerializerPluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3406,6 +3492,16 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		   });		
 		addAnnotation
 		  (getListDataValue_Values(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getDatabaseInformationCategory_Items(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getDatabaseInformation_Categories(), 
 		   source, 
 		   new String[] {
 		   });		

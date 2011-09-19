@@ -1,9 +1,9 @@
+<%@page import="org.bimserver.shared.comparators.SUserNameComparator"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
-<%@page import="org.bimserver.shared.SUserNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@page import="org.bimserver.web.JspHelper"%>

@@ -3314,6 +3314,121 @@ public class SConverter {
 		return result;
 	}
 
+	public Set<SDatabaseInformationItem> convertToSSetDatabaseInformationItem(Collection<DatabaseInformationItem> input) {
+		Set<SDatabaseInformationItem> result = new HashSet<SDatabaseInformationItem>();
+		for (DatabaseInformationItem o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DatabaseInformationItem> convertFromSSetDatabaseInformationItem(Collection<SDatabaseInformationItem> input, BimDatabaseSession session) {
+		Set<DatabaseInformationItem> result = new HashSet<DatabaseInformationItem>();
+		for (SDatabaseInformationItem o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDatabaseInformationItem> convertToSListDatabaseInformationItem(Collection<DatabaseInformationItem> input) {
+		List<SDatabaseInformationItem> result = new ArrayList<SDatabaseInformationItem>();
+		for (DatabaseInformationItem o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DatabaseInformationItem> convertFromSListDatabaseInformationItem(Collection<SDatabaseInformationItem> input, BimDatabaseSession session) {
+		List<DatabaseInformationItem> result = new ArrayList<DatabaseInformationItem>();
+		for (SDatabaseInformationItem o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDatabaseInformationItem convertToSObject(DatabaseInformationItem input) {
+		if (input == null) {
+			return null;
+		}
+		SDatabaseInformationItem result = new SDatabaseInformationItem();
+		result.setOid(input.getOid());
+		result.setKey(input.getKey());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public DatabaseInformationItem convertFromSObject(SDatabaseInformationItem input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		DatabaseInformationItem result = StoreFactory.eINSTANCE.createDatabaseInformationItem();
+		result.setOid(input.getOid());
+		result.setKey(input.getKey());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public Set<SDatabaseInformationCategory> convertToSSetDatabaseInformationCategory(Collection<DatabaseInformationCategory> input) {
+		Set<SDatabaseInformationCategory> result = new HashSet<SDatabaseInformationCategory>();
+		for (DatabaseInformationCategory o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DatabaseInformationCategory> convertFromSSetDatabaseInformationCategory(Collection<SDatabaseInformationCategory> input, BimDatabaseSession session) {
+		Set<DatabaseInformationCategory> result = new HashSet<DatabaseInformationCategory>();
+		for (SDatabaseInformationCategory o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDatabaseInformationCategory> convertToSListDatabaseInformationCategory(Collection<DatabaseInformationCategory> input) {
+		List<SDatabaseInformationCategory> result = new ArrayList<SDatabaseInformationCategory>();
+		for (DatabaseInformationCategory o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DatabaseInformationCategory> convertFromSListDatabaseInformationCategory(Collection<SDatabaseInformationCategory> input, BimDatabaseSession session) {
+		List<DatabaseInformationCategory> result = new ArrayList<DatabaseInformationCategory>();
+		for (SDatabaseInformationCategory o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDatabaseInformationCategory convertToSObject(DatabaseInformationCategory input) {
+		if (input == null) {
+			return null;
+		}
+		SDatabaseInformationCategory result = new SDatabaseInformationCategory();
+		result.setOid(input.getOid());
+		result.setTitle(input.getTitle());
+		List<SDatabaseInformationItem> listitems = new ArrayList<SDatabaseInformationItem>();
+		for (DatabaseInformationItem v : input.getItems()) {
+			listitems.add(convertToSObject(v));
+		}
+		result.setItems(listitems);
+		return result;
+	}
+
+	public DatabaseInformationCategory convertFromSObject(SDatabaseInformationCategory input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		DatabaseInformationCategory result = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
+		result.setOid(input.getOid());
+		result.setTitle(input.getTitle());
+		List<DatabaseInformationItem> listitems = result.getItems();
+		for (SDatabaseInformationItem v : input.getItems()) {
+			listitems.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
 	public Set<SDatabaseInformation> convertToSSetDatabaseInformation(Collection<DatabaseInformation> input) {
 		Set<SDatabaseInformation> result = new HashSet<SDatabaseInformation>();
 		for (DatabaseInformation o : input) {
@@ -3361,7 +3476,11 @@ public class SConverter {
 		result.setCreated(input.getCreated());
 		result.setLocation(input.getLocation());
 		result.setSchemaVersion(input.getSchemaVersion());
-		result.setGenericLines(input.getGenericLines());
+		List<SDatabaseInformationCategory> listcategories = new ArrayList<SDatabaseInformationCategory>();
+		for (DatabaseInformationCategory v : input.getCategories()) {
+			listcategories.add(convertToSObject(v));
+		}
+		result.setCategories(listcategories);
 		return result;
 	}
 
@@ -3380,7 +3499,10 @@ public class SConverter {
 		result.setCreated(input.getCreated());
 		result.setLocation(input.getLocation());
 		result.setSchemaVersion(input.getSchemaVersion());
-		result.setGenericLines(input.getGenericLines());
+		List<DatabaseInformationCategory> listcategories = result.getCategories();
+		for (SDatabaseInformationCategory v : input.getCategories()) {
+			listcategories.add(convertFromSObject(v, session));
+		}
 		return result;
 	}
 

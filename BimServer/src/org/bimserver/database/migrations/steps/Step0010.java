@@ -65,6 +65,14 @@ public class Step0010 extends Migration {
 		EClass simpleDataValue = schema.createEClass(schema.getEPackage("store"), "SimpleDataValue", dataValue);
 		schema.createEAttribute(simpleDataValue, "stringValue", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
+		EClass databaseInformationItem = schema.createEClass(schema.getEPackage("store"), "DatabaseInformationItem");
+		schema.createEAttribute(databaseInformationItem, "key", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseInformationItem, "value", ecorePackage.getEString(), Multiplicity.SINGLE);
+		
+		EClass databaseInformationCategoryClass = schema.createEClass(schema.getEPackage("store"), "DatabaseInformationCategory");
+		schema.createEAttribute(databaseInformationCategoryClass, "title", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEReference(databaseInformationCategoryClass, "items", databaseInformationItem, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		
 		EClass databaseInformationClass = schema.createEClass(schema.getEPackage("store"), "DatabaseInformation");
 		schema.createEAttribute(databaseInformationClass, "numberOfProjects", ecorePackage.getEInt(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "numberOfUsers", ecorePackage.getEInt(), Multiplicity.SINGLE);
@@ -75,7 +83,7 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(databaseInformationClass, "created", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "location", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "schemaVersion", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(databaseInformationClass, "genericLines", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEReference(databaseInformationClass, "categories", databaseInformationCategoryClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		
 		EClass serializerPluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "SerializerPluginDescriptor");
 		schema.createEAttribute(serializerPluginDescriptorClass, "pluginClassName", ecorePackage.getEString(), Multiplicity.SINGLE);

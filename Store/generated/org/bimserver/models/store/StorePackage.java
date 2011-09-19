@@ -2113,6 +2113,80 @@ public interface StorePackage extends EPackage {
 	int SIMPLE_DATA_VALUE_FEATURE_COUNT = DATA_VALUE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DatabaseInformationItemImpl <em>Database Information Item</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DatabaseInformationItemImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDatabaseInformationItem()
+	 * @generated
+	 */
+	int DATABASE_INFORMATION_ITEM = 26;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION_ITEM__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION_ITEM__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Database Information Item</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION_ITEM_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DatabaseInformationCategoryImpl <em>Database Information Category</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DatabaseInformationCategoryImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDatabaseInformationCategory()
+	 * @generated
+	 */
+	int DATABASE_INFORMATION_CATEGORY = 27;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION_CATEGORY__TITLE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION_CATEGORY__ITEMS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Database Information Category</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION_CATEGORY_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.DatabaseInformationImpl <em>Database Information</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2120,7 +2194,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDatabaseInformation()
 	 * @generated
 	 */
-	int DATABASE_INFORMATION = 26;
+	int DATABASE_INFORMATION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Number Of Projects</b></em>' attribute.
@@ -2204,13 +2278,13 @@ public interface StorePackage extends EPackage {
 	int DATABASE_INFORMATION__SCHEMA_VERSION = 8;
 
 	/**
-	 * The feature id for the '<em><b>Generic Lines</b></em>' attribute.
+	 * The feature id for the '<em><b>Categories</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_INFORMATION__GENERIC_LINES = 9;
+	int DATABASE_INFORMATION__CATEGORIES = 9;
 
 	/**
 	 * The number of structural features of the '<em>Database Information</em>' class.
@@ -2229,7 +2303,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializerPluginDescriptor()
 	 * @generated
 	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR = 27;
+	int SERIALIZER_PLUGIN_DESCRIPTOR = 29;
 
 	/**
 	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
@@ -2284,7 +2358,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryType()
 	 * @generated
 	 */
-	int REVISION_SUMMARY_TYPE = 28;
+	int REVISION_SUMMARY_TYPE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2321,7 +2395,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryContainer()
 	 * @generated
 	 */
-	int REVISION_SUMMARY_CONTAINER = 29;
+	int REVISION_SUMMARY_CONTAINER = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2358,7 +2432,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummary()
 	 * @generated
 	 */
-	int REVISION_SUMMARY = 30;
+	int REVISION_SUMMARY = 32;
 
 	/**
 	 * The feature id for the '<em><b>List</b></em>' reference list.
@@ -2386,7 +2460,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginDescriptor()
 	 * @generated
 	 */
-	int PLUGIN_DESCRIPTOR = 31;
+	int PLUGIN_DESCRIPTOR = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2441,7 +2515,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongAction()
 	 * @generated
 	 */
-	int LONG_ACTION = 32;
+	int LONG_ACTION = 34;
 
 	/**
 	 * The feature id for the '<em><b>Identification</b></em>' attribute.
@@ -2505,7 +2579,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProviderPluginDescriptor()
 	 * @generated
 	 */
-	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = 33;
+	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = 35;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -2533,7 +2607,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareItem()
 	 * @generated
 	 */
-	int COMPARE_ITEM = 34;
+	int COMPARE_ITEM = 36;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2561,7 +2635,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectAdded()
 	 * @generated
 	 */
-	int OBJECT_ADDED = 35;
+	int OBJECT_ADDED = 37;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2589,7 +2663,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectRemoved()
 	 * @generated
 	 */
-	int OBJECT_REMOVED = 36;
+	int OBJECT_REMOVED = 38;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2617,7 +2691,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectModified()
 	 * @generated
 	 */
-	int OBJECT_MODIFIED = 37;
+	int OBJECT_MODIFIED = 39;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2672,7 +2746,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareContainer()
 	 * @generated
 	 */
-	int COMPARE_CONTAINER = 38;
+	int COMPARE_CONTAINER = 40;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -2709,7 +2783,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareResult()
 	 * @generated
 	 */
-	int COMPARE_RESULT = 39;
+	int COMPARE_RESULT = 41;
 
 	/**
 	 * The feature id for the '<em><b>Items</b></em>' reference list.
@@ -2737,7 +2811,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongActionState()
 	 * @generated
 	 */
-	int LONG_ACTION_STATE = 40;
+	int LONG_ACTION_STATE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Progress</b></em>' attribute.
@@ -2774,7 +2848,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 41;
+	int USER_TYPE = 43;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -2784,7 +2858,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 42;
+	int CHECKIN_STATE = 44;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -2794,7 +2868,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 43;
+	int SI_PREFIX = 45;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -2804,7 +2878,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 44;
+	int OBJECT_STATE = 46;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -2814,7 +2888,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 45;
+	int MERGE_IDENTIFIER = 47;
 
 
 	/**
@@ -2825,7 +2899,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 46;
+	int COMPARE_IDENTIFIER = 48;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -2835,7 +2909,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 47;
+	int COMPARE_TYPE = 49;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -2845,7 +2919,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 48;
+	int ACTION_STATE = 50;
 
 
 	/**
@@ -2856,7 +2930,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 49;
+	int DATA_HANDLER = 51;
 
 
 	/**
@@ -4825,6 +4899,70 @@ public interface StorePackage extends EPackage {
 	EAttribute getSimpleDataValue_StringValue();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DatabaseInformationItem <em>Database Information Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Database Information Item</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformationItem
+	 * @generated
+	 */
+	EClass getDatabaseInformationItem();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformationItem#getKey <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformationItem#getKey()
+	 * @see #getDatabaseInformationItem()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformationItem_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformationItem#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformationItem#getValue()
+	 * @see #getDatabaseInformationItem()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformationItem_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DatabaseInformationCategory <em>Database Information Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Database Information Category</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformationCategory
+	 * @generated
+	 */
+	EClass getDatabaseInformationCategory();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformationCategory#getTitle <em>Title</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Title</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformationCategory#getTitle()
+	 * @see #getDatabaseInformationCategory()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformationCategory_Title();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.DatabaseInformationCategory#getItems <em>Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Items</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformationCategory#getItems()
+	 * @see #getDatabaseInformationCategory()
+	 * @generated
+	 */
+	EReference getDatabaseInformationCategory_Items();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.DatabaseInformation <em>Database Information</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4934,15 +5072,15 @@ public interface StorePackage extends EPackage {
 	EAttribute getDatabaseInformation_SchemaVersion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getGenericLines <em>Generic Lines</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.DatabaseInformation#getCategories <em>Categories</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Generic Lines</em>'.
-	 * @see org.bimserver.models.store.DatabaseInformation#getGenericLines()
+	 * @return the meta object for the reference list '<em>Categories</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getCategories()
 	 * @see #getDatabaseInformation()
 	 * @generated
 	 */
-	EAttribute getDatabaseInformation_GenericLines();
+	EReference getDatabaseInformation_Categories();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
@@ -7006,6 +7144,58 @@ public interface StorePackage extends EPackage {
 		EAttribute SIMPLE_DATA_VALUE__STRING_VALUE = eINSTANCE.getSimpleDataValue_StringValue();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DatabaseInformationItemImpl <em>Database Information Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DatabaseInformationItemImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDatabaseInformationItem()
+		 * @generated
+		 */
+		EClass DATABASE_INFORMATION_ITEM = eINSTANCE.getDatabaseInformationItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION_ITEM__KEY = eINSTANCE.getDatabaseInformationItem_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION_ITEM__VALUE = eINSTANCE.getDatabaseInformationItem_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DatabaseInformationCategoryImpl <em>Database Information Category</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DatabaseInformationCategoryImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDatabaseInformationCategory()
+		 * @generated
+		 */
+		EClass DATABASE_INFORMATION_CATEGORY = eINSTANCE.getDatabaseInformationCategory();
+
+		/**
+		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION_CATEGORY__TITLE = eINSTANCE.getDatabaseInformationCategory_Title();
+
+		/**
+		 * The meta object literal for the '<em><b>Items</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_INFORMATION_CATEGORY__ITEMS = eINSTANCE.getDatabaseInformationCategory_Items();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DatabaseInformationImpl <em>Database Information</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7088,12 +7278,12 @@ public interface StorePackage extends EPackage {
 		EAttribute DATABASE_INFORMATION__SCHEMA_VERSION = eINSTANCE.getDatabaseInformation_SchemaVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Generic Lines</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Categories</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATABASE_INFORMATION__GENERIC_LINES = eINSTANCE.getDatabaseInformation_GenericLines();
+		EReference DATABASE_INFORMATION__CATEGORIES = eINSTANCE.getDatabaseInformation_Categories();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.

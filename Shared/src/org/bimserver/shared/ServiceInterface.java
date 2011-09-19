@@ -57,6 +57,7 @@ import org.bimserver.interfaces.objects.SGuidanceProvider;
 import org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
@@ -68,7 +69,6 @@ import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.models.store.LongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 
@@ -161,7 +161,7 @@ public interface ServiceInterface {
 			throws ServiceException;
 
 	@WebMethod(action = "getDownloadState")
-	LongActionState getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") Integer actionId)
+	SLongActionState getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") Integer actionId)
 			throws ServiceException;
 
 	@WebMethod(action = "addUser")

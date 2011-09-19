@@ -1,5 +1,8 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.bimserver.shared.meta.SBase;
@@ -23,7 +26,7 @@ public class SDatabaseInformation implements SBase
 		sClass.addField(new SField("created", java.util.Date.class));
 		sClass.addField(new SField("location", java.lang.String.class));
 		sClass.addField(new SField("schemaVersion", int.class));
-		sClass.addField(new SField("genericLines", java.lang.String.class));
+		sClass.addField(new SField("categories", SDatabaseInformationCategory.class, true));
 	}
 	
 	public long getOid() {
@@ -46,7 +49,7 @@ public class SDatabaseInformation implements SBase
 	private java.util.Date created;
 	private java.lang.String location;
 	private int schemaVersion;
-	private java.lang.String genericLines;
+	private List<SDatabaseInformationCategory> categories = new ArrayList<SDatabaseInformationCategory>();
 	public int getNumberOfProjects() {
 		return numberOfProjects;
 	}
@@ -110,12 +113,12 @@ public class SDatabaseInformation implements SBase
 	public void setSchemaVersion(int schemaVersion) {
 		this.schemaVersion = schemaVersion;
 	}
-	public java.lang.String getGenericLines() {
-		return genericLines;
+	public List<SDatabaseInformationCategory> getCategories() {
+		return categories;
 	}
 
-	public void setGenericLines(java.lang.String genericLines) {
-		this.genericLines = genericLines;
+	public void setCategories(List<SDatabaseInformationCategory> categories) {
+		this.categories = categories;
 	}
 	@Override
 	public int hashCode() {

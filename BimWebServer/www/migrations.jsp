@@ -1,8 +1,8 @@
+<%@page import="org.bimserver.interfaces.objects.SMigration"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.BimServer"%>
 <%@page import="java.util.Set"%>
-<%@page import="org.bimserver.shared.SMigration"%>
-<%@page import="org.bimserver.shared.ServerException"%>
 <%@page import="org.bimserver.ServerInfo"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
@@ -18,7 +18,7 @@ if (!loginManager.getService().isLoggedIn()) {
 			loginManager.getService().migrateDatabase();
 			WebServerHelper.getBimServer().getServerInfo().update();
 			response.sendRedirect("main.jsp");
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 		}
 	}

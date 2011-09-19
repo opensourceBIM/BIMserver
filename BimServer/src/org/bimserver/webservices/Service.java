@@ -154,6 +154,7 @@ import org.bimserver.interfaces.objects.SGuidanceProvider;
 import org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
@@ -184,7 +185,6 @@ import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
-import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -676,10 +676,10 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public LongActionState getDownloadState(Integer actionId) throws UserException, ServerException {
+	public SLongActionState getDownloadState(Integer actionId) throws UserException, ServerException {
 		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
-			return longAction.getState();
+			return converter.convertToSObject(longAction.getState());
 		} else {
 			throw new UserException("No state found for laid " + actionId);
 		}
@@ -956,7 +956,8 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<RevisionSummary> action = new GetRevisionSummaryDatabaseAction(session, accessMethod, roid);
-			return converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
+			RevisionSummary revisionSummary = session.executeAction(action, DEADLOCK_RETRIES);
+			return converter.convertToSObject(revisionSummary);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1889,7 +1890,7 @@ public class Service implements ServiceInterface {
 	public Set<SMigration> getMigrations() throws UserException {
 		requireAuthentication();
 		Migrator migrator = bimServer.getDatabase().getMigrator();
-		return migrator.getMigrations();
+		return converter.convertToSSetMigration(migrator.getMigrations());
 	}
 
 	@Override

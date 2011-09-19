@@ -9,17 +9,17 @@
 package org.bimserver.querycompiler;
 
 import java.io.PrintWriter;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import java.util.*;
 import org.bimserver.ifc.emf.Ifc2x3.*;
 
 public class Query implements QueryInterface {
 
-	private IfcModel model;
+	private IfcModelInterface model;
 	private PrintWriter out;
 
 	@Override
-	public void query(IfcModel model, PrintWriter out) {
+	public void query(IfcModelInterface model, PrintWriter out) {
         List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
         Map<Float, IfcBuildingStorey> orderedStories = new TreeMap<Float, IfcBuildingStorey>();
         for (IfcBuildingStorey storey : stories) {

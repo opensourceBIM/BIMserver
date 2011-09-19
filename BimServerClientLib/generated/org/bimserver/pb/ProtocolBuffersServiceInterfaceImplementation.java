@@ -24,6 +24,22 @@ public void removeAttribute(
 java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Integer arg3) throws org.bimserver.shared.exceptions.ServerException {
 reflector.callMethod("removeAttribute", arg0, arg1, arg2, arg3);
 }
+public java.lang.Integer checkout(
+java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Integer) reflector.callMethod("checkout", arg0, arg1, arg2);
+}
+public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Boolean) reflector.callMethod("isSettingSendConfirmationEmailAfterRegistration");
+}
+public void setSettingSendConfirmationEmailAfterRegistration(
+java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
+reflector.callMethod("setSettingSendConfirmationEmailAfterRegistration", arg0);
+}
+public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (org.bimserver.interfaces.objects.SAccessMethod) reflector.callMethod("getAccessMethod");
+}
 public java.util.Set getMigrations(
 ) throws org.bimserver.shared.exceptions.ServerException {
 return (java.util.Set) reflector.callMethod("getMigrations");
@@ -120,9 +136,9 @@ public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(
 java.lang.Integer arg0) throws org.bimserver.shared.exceptions.ServerException {
 return (org.bimserver.interfaces.objects.SDownloadResult) reflector.callMethod("getDownloadData", arg0);
 }
-public org.bimserver.models.store.LongActionState getDownloadState(
+public org.bimserver.interfaces.objects.SLongActionState getDownloadState(
 java.lang.Integer arg0) throws org.bimserver.shared.exceptions.ServerException {
-return (org.bimserver.models.store.LongActionState) reflector.callMethod("getDownloadState", arg0);
+return (org.bimserver.interfaces.objects.SLongActionState) reflector.callMethod("getDownloadState", arg0);
 }
 public void changeUserType(
 java.lang.Long arg0, org.bimserver.interfaces.objects.SUserType arg1) throws org.bimserver.shared.exceptions.ServerException {
@@ -587,22 +603,6 @@ reflector.callMethod("registerNewRevisionListener");
 public void setHttpCallback(
 java.lang.Long arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServerException {
 reflector.callMethod("setHttpCallback", arg0, arg1);
-}
-public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Boolean) reflector.callMethod("isSettingSendConfirmationEmailAfterRegistration");
-}
-public void setSettingSendConfirmationEmailAfterRegistration(
-java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
-reflector.callMethod("setSettingSendConfirmationEmailAfterRegistration", arg0);
-}
-public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (org.bimserver.interfaces.objects.SAccessMethod) reflector.callMethod("getAccessMethod");
-}
-public java.lang.Integer checkout(
-java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Integer) reflector.callMethod("checkout", arg0, arg1, arg2);
 }
 public java.lang.Boolean autologin(
 java.lang.String arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServerException {

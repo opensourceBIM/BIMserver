@@ -9,6 +9,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.DatabaseInformation#getCreated <em>Created</em>}</li>
  *   <li>{@link org.bimserver.models.store.DatabaseInformation#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.DatabaseInformation#getSchemaVersion <em>Schema Version</em>}</li>
- *   <li>{@link org.bimserver.models.store.DatabaseInformation#getGenericLines <em>Generic Lines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.DatabaseInformation#getCategories <em>Categories</em>}</li>
  * </ul>
  * </p>
  *
@@ -272,29 +273,19 @@ public interface DatabaseInformation extends IdEObject {
 	void setSchemaVersion(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Generic Lines</b></em>' attribute.
+	 * Returns the value of the '<em><b>Categories</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.DatabaseInformationCategory}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Generic Lines</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Categories</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Generic Lines</em>' attribute.
-	 * @see #setGenericLines(String)
-	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_GenericLines()
+	 * @return the value of the '<em>Categories</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_Categories()
 	 * @model
 	 * @generated
 	 */
-	String getGenericLines();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.DatabaseInformation#getGenericLines <em>Generic Lines</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Generic Lines</em>' attribute.
-	 * @see #getGenericLines()
-	 * @generated
-	 */
-	void setGenericLines(String value);
+	EList<DatabaseInformationCategory> getCategories();
 
 } // DatabaseInformation

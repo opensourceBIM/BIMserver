@@ -15,6 +15,14 @@ service ServiceInterface {
 
 	rpc removeAttribute (RemoveAttributeRequest) returns (VoidResponse);
 
+	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
+
+	rpc isSettingSendConfirmationEmailAfterRegistration (IsSettingSendConfirmationEmailAfterRegistrationRequest) returns (IsSettingSendConfirmationEmailAfterRegistrationResponse);
+
+	rpc setSettingSendConfirmationEmailAfterRegistration (SetSettingSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
+
+	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
+
 	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
 
 	rpc getAllNonAuthorizedProjectsOfUser (GetAllNonAuthorizedProjectsOfUserRequest) returns (GetAllNonAuthorizedProjectsOfUserResponse);
@@ -297,14 +305,6 @@ service ServiceInterface {
 
 	rpc setHttpCallback (SetHttpCallbackRequest) returns (VoidResponse);
 
-	rpc isSettingSendConfirmationEmailAfterRegistration (IsSettingSendConfirmationEmailAfterRegistrationRequest) returns (IsSettingSendConfirmationEmailAfterRegistrationResponse);
-
-	rpc setSettingSendConfirmationEmailAfterRegistration (SetSettingSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
-
-	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
-
-	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
-
 	rpc autologin (AutologinRequest) returns (AutologinResponse);
 
 	rpc checkinAsync (CheckinAsyncRequest) returns (CheckinAsyncResponse);
@@ -392,9 +392,9 @@ message SDataObject {
 }
 
 message SCompareItem {
-	optional int64 oid = 1;
-	optional SClass sClass = 2;
-	optional SDataObject dataObject = 3;
+	optional SDataObject dataObject = 1;
+	optional int64 oid = 2;
+	optional SClass sClass = 3;
 }
 
 message SCompareContainer {
@@ -438,6 +438,45 @@ message RemoveAttributeRequest {
 	optional string className = 2;
 	optional string attributeName = 3;
 	optional int32 index = 4;
+}
+
+message CheckoutRequest {
+	optional int64 roid = 1;
+	optional string formatIdentifier = 2;
+	optional bool sync = 3;
+}
+
+message CheckoutResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
+message IsSettingSendConfirmationEmailAfterRegistrationRequest {
+}
+
+message IsSettingSendConfirmationEmailAfterRegistrationResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetSettingSendConfirmationEmailAfterRegistrationRequest {
+	optional bool sendConfirmationEmailAfterRegistration = 1;
+}
+
+message GetAccessMethodRequest {
+}
+
+enum SAccessMethod{
+	SOAP = 0;
+	WEB_INTERFACE = 1;
+	INTERNAL = 2;
+	REST = 3;
+	SYNDICATION = 4;
+}
+
+message GetAccessMethodResponse {
+	optional string errorMessage = 1;
+	optional SAccessMethod value = 2;
 }
 
 message GetMigrationsRequest {
@@ -752,23 +791,22 @@ message GetDownloadStateRequest {
 	optional int32 actionID = 1;
 }
 
-enum ActionState{
+enum SActionState{
 	UNKNOWN = 0;
 	STARTED = 1;
 	FINISHED = 2;
 }
 
-message LongActionState {
-	optional ActionState state = 1;
+message SLongActionState {
+	optional SActionState state = 1;
 	optional int32 progress = 2;
 	optional int64 oid = 3;
-	optional int32 rid = 4;
-	optional int32 pid = 5;
+	optional SClass sClass = 4;
 }
 
 message GetDownloadStateResponse {
 	optional string errorMessage = 1;
-	optional LongActionState value = 2;
+	optional SLongActionState value = 2;
 }
 
 message ChangeUserTypeRequest {
@@ -806,10 +844,10 @@ message SRevision {
 	optional int64 size = 3;
 	optional int64 date = 4;
 	optional string comment = 5;
-	repeated int64 lastClashes = 6;
-	repeated int64 concreteRevisions = 7;
-	optional int64 lastConcreteRevisionId = 8;
-	optional string tag = 9;
+	optional string tag = 6;
+	repeated int64 lastClashes = 7;
+	repeated int64 concreteRevisions = 8;
+	optional int64 lastConcreteRevisionId = 9;
 	optional int64 oid = 10;
 	optional SClass sClass = 11;
 	repeated int64 checkouts = 12;
@@ -935,6 +973,13 @@ message GetAvailableClassesResponse {
 message GetDatabaseInformationRequest {
 }
 
+message SDatabaseInformationCategory {
+	repeated string lines = 1;
+	optional string title = 2;
+	optional int64 oid = 3;
+	optional SClass sClass = 4;
+}
+
 message SDatabaseInformation {
 	optional string location = 1;
 	optional string type = 2;
@@ -944,7 +989,7 @@ message SDatabaseInformation {
 	optional int32 numberOfCheckouts = 6;
 	optional int64 databaseSizeInBytes = 7;
 	optional int32 schemaVersion = 8;
-	optional string genericLines = 9;
+	repeated SDatabaseInformationCategory categories = 9;
 	optional int64 oid = 10;
 	optional SClass sClass = 11;
 	optional int64 created = 12;
@@ -1088,8 +1133,8 @@ message GetDataObjectsByTypeResponse {
 }
 
 message SClashDetectionSettings {
-	repeated string ignoredClasses = 1;
-	repeated int64 projects = 2;
+	repeated int64 projects = 1;
+	repeated string ignoredClasses = 2;
 	optional int64 oid = 3;
 	optional SClass sClass = 4;
 	repeated int64 revisions = 5;
@@ -1105,12 +1150,12 @@ message SGuidClash {
 	optional SClass sClass = 2;
 	optional string guid1 = 3;
 	optional string guid2 = 4;
-	optional string name1 = 5;
-	optional string name2 = 6;
-	optional string type1 = 7;
-	optional string type2 = 8;
-	optional int64 revision1Id = 9;
-	optional int64 revision2Id = 10;
+	optional int64 revision1Id = 5;
+	optional int64 revision2Id = 6;
+	optional string name1 = 7;
+	optional string name2 = 8;
+	optional string type1 = 9;
+	optional string type2 = 10;
 }
 
 message FindClashesByGuidResponse {
@@ -1127,12 +1172,12 @@ message SEidClash {
 	optional SClass sClass = 2;
 	optional int64 eid1 = 3;
 	optional int64 eid2 = 4;
-	optional string name1 = 5;
-	optional string name2 = 6;
-	optional string type1 = 7;
-	optional string type2 = 8;
-	optional int64 revision1Id = 9;
-	optional int64 revision2Id = 10;
+	optional int64 revision1Id = 5;
+	optional int64 revision2Id = 6;
+	optional string name1 = 7;
+	optional string name2 = 8;
+	optional string type1 = 9;
+	optional string type2 = 10;
 }
 
 message FindClashesByEidResponse {
@@ -1145,14 +1190,14 @@ message GetLastClashesRequest {
 }
 
 message SClash {
-	optional int64 oid = 1;
-	optional SClass sClass = 2;
-	optional string name1 = 3;
-	optional string name2 = 4;
-	optional string type1 = 5;
-	optional string type2 = 6;
-	optional int64 revision1Id = 7;
-	optional int64 revision2Id = 8;
+	optional int64 revision1Id = 1;
+	optional int64 revision2Id = 2;
+	optional int64 oid = 3;
+	optional SClass sClass = 4;
+	optional string name1 = 5;
+	optional string name2 = 6;
+	optional string type1 = 7;
+	optional string type2 = 8;
 }
 
 message GetLastClashesResponse {
@@ -1170,8 +1215,8 @@ message SCheckinResult {
 	optional int64 revisionId = 1;
 	optional int64 oid = 2;
 	optional SClass sClass = 3;
-	optional int32 rid = 4;
-	optional int64 projectId = 5;
+	optional int64 projectId = 4;
+	optional int32 rid = 5;
 }
 
 message BranchToNewProjectResponse {
@@ -1455,20 +1500,12 @@ message SetSettingCacheOutputFilesRequest {
 message GetActiveUserSessionsRequest {
 }
 
-enum SAccessMethod{
-	SOAP = 0;
-	WEB_INTERFACE = 1;
-	INTERNAL = 2;
-	REST = 3;
-	SYNDICATION = 4;
-}
-
 message SUserSession {
 	optional string name = 1;
 	optional SUserType type = 2;
-	optional int64 activeSince = 3;
-	optional int64 lastActive = 4;
-	optional SAccessMethod accessMethod = 5;
+	optional SAccessMethod accessMethod = 3;
+	optional int64 activeSince = 4;
+	optional int64 lastActive = 5;
 	optional int64 oid = 6;
 	optional SClass sClass = 7;
 	optional int64 userId = 8;
@@ -1800,37 +1837,6 @@ message SetHttpCallbackRequest {
 	optional string address = 2;
 }
 
-message IsSettingSendConfirmationEmailAfterRegistrationRequest {
-}
-
-message IsSettingSendConfirmationEmailAfterRegistrationResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message SetSettingSendConfirmationEmailAfterRegistrationRequest {
-	optional bool sendConfirmationEmailAfterRegistration = 1;
-}
-
-message GetAccessMethodRequest {
-}
-
-message GetAccessMethodResponse {
-	optional string errorMessage = 1;
-	optional SAccessMethod value = 2;
-}
-
-message CheckoutRequest {
-	optional int64 roid = 1;
-	optional string formatIdentifier = 2;
-	optional bool sync = 3;
-}
-
-message CheckoutResponse {
-	optional string errorMessage = 1;
-	optional int32 value = 2;
-}
-
 message AutologinRequest {
 	optional string username = 1;
 	optional string hash = 2;
@@ -1963,8 +1969,8 @@ message GetGeoTagRequest {
 }
 
 message SGeoTag {
-	optional float directionAngle = 1;
-	repeated int64 projects = 2;
+	repeated int64 projects = 1;
+	optional float directionAngle = 2;
 	optional int64 oid = 3;
 	optional SClass sClass = 4;
 	optional float x = 5;
@@ -1996,9 +2002,9 @@ message GetLogsRequest {
 message SLogAction {
 	optional int64 date = 1;
 	optional SAccessMethod accessMethod = 2;
-	optional int64 oid = 3;
-	optional SClass sClass = 4;
-	optional int64 executorId = 5;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional SClass sClass = 5;
 }
 
 message GetLogsResponse {
