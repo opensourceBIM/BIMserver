@@ -47,6 +47,65 @@ public class SProject implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("id")) {
+			return getId();
+		}
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("hasAuthorizedUsers")) {
+			return getHasAuthorizedUsers();
+		}
+		if (sField.getName().equals("concreteRevisions")) {
+			return getConcreteRevisions();
+		}
+		if (sField.getName().equals("revisions")) {
+			return getRevisions();
+		}
+		if (sField.getName().equals("lastConcreteRevisionId")) {
+			return getLastConcreteRevisionId();
+		}
+		if (sField.getName().equals("lastRevisionId")) {
+			return getLastRevisionId();
+		}
+		if (sField.getName().equals("checkouts")) {
+			return getCheckouts();
+		}
+		if (sField.getName().equals("state")) {
+			return getState();
+		}
+		if (sField.getName().equals("createdDate")) {
+			return getCreatedDate();
+		}
+		if (sField.getName().equals("createdById")) {
+			return getCreatedById();
+		}
+		if (sField.getName().equals("geoTagId")) {
+			return getGeoTagId();
+		}
+		if (sField.getName().equals("subProjects")) {
+			return getSubProjects();
+		}
+		if (sField.getName().equals("parentId")) {
+			return getParentId();
+		}
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("clashDetectionSettingsId")) {
+			return getClashDetectionSettingsId();
+		}
+		if (sField.getName().equals("exportLengthMeasurePrefix")) {
+			return getExportLengthMeasurePrefix();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private int id;
 	private java.lang.String name;
 	private List<Long> hasAuthorizedUsers = new ArrayList<Long>();

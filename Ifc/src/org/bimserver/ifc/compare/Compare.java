@@ -60,11 +60,15 @@ public class Compare {
 					dataObject.getValues().add(listDataValue);
 				} else {
 					IdEObject ref = (IdEObject)val;
-					ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
-					referenceDataValue.setFieldName(eReference.getName());
-					referenceDataValue.setTypeName(eReference.getEType().getName());
-					referenceDataValue.setOid(ref.getOid());
-					dataObject.getValues().add(referenceDataValue);
+					if (ref == null) {
+						
+					} else {
+						ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
+						referenceDataValue.setFieldName(eReference.getName());
+						referenceDataValue.setTypeName(eReference.getEType().getName());
+						referenceDataValue.setOid(ref.getOid());
+						dataObject.getValues().add(referenceDataValue);
+					}
 				}
 			} else if (eStructuralFeature instanceof EAttribute) {
 				EAttribute eAttribute = (EAttribute)eStructuralFeature;
@@ -82,7 +86,7 @@ public class Compare {
 				} else {
 					SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
 					simpleDataValue.setFieldName(eAttribute.getName());
-					simpleDataValue.setStringValue(val.toString());
+					simpleDataValue.setStringValue(val == null ? "null" : val.toString());
 				}
 			}
 		}

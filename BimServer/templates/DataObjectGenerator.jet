@@ -1,4 +1,4 @@
-<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.tools.generators.GenerateUtils" class="ServiceInterfaceObjectGenerator" version="$Id: Class.javajet,v 1.75.2.1 2008/11/03 11:51:41 emerks Exp $" %>
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.tools.generators.GenerateUtils org.bimserver.utils.StringUtils" class="ServiceInterfaceObjectGenerator" version="$Id: Class.javajet,v 1.75.2.1 2008/11/03 11:51:41 emerks Exp $" %>
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
@@ -84,6 +84,23 @@ public class S<%=eClass.getName()%>
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+%>
+		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
+			return <%=eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>();
+		}
+<%
+	}
+%>
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 <%
 	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
 		if (eStructuralFeature.getEAnnotation("notinserviceinterface") == null) {

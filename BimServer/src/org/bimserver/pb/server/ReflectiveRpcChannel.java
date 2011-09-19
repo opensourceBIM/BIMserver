@@ -3,7 +3,6 @@ package org.bimserver.pb.server;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.activation.DataHandler;
@@ -13,6 +12,7 @@ import javax.mail.util.ByteArrayDataSource;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ProtocolBuffersConverter;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.meta.SBase;
 import org.bimserver.webservices.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,12 +87,12 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter implements Bl
 						List list = new ArrayList();
 						List originalList = (List) result;
 						for (Object object : originalList) {
-							list.add(convertSObjectToProtocolBuffersObject(new HashMap(), messageType, object));
+							list.add(convertSObjectToProtocolBuffersObject(messageType, (SBase) object));
 						}
 						builder.setField(valueField, list);
 					} else {
 						Descriptor messageType = valueField.getMessageType();
-						builder.setField(valueField, convertSObjectToProtocolBuffersObject(new HashMap<Object, Object>(), messageType, result));
+						builder.setField(valueField, convertSObjectToProtocolBuffersObject(messageType, (SBase) result));
 					}
 				}
 				builder.setField(errorMessageField, "OKE");

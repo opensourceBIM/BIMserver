@@ -33,6 +33,32 @@ public class SClash implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name1")) {
+			return getName1();
+		}
+		if (sField.getName().equals("name2")) {
+			return getName2();
+		}
+		if (sField.getName().equals("type1")) {
+			return getType1();
+		}
+		if (sField.getName().equals("type2")) {
+			return getType2();
+		}
+		if (sField.getName().equals("revision1Id")) {
+			return getRevision1Id();
+		}
+		if (sField.getName().equals("revision2Id")) {
+			return getRevision2Id();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String name1;
 	private java.lang.String name2;
 	private java.lang.String type1;

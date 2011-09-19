@@ -8,12 +8,13 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.activation.DataHandler;
+import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ import com.google.protobuf.Descriptors.EnumValueDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
 import com.google.protobuf.DynamicMessage;
+import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;
 
 public class ProtocolBuffersConverter {
@@ -41,7 +43,7 @@ public class ProtocolBuffersConverter {
 		return null;
 	}
 	
-	protected Object convertProtocolBuffersMessageToSObject(DynamicMessage message) {
+	protected SBase convertProtocolBuffersMessageToSObject(Message message) {
 		try {
 			Descriptor descriptor = message.getDescriptorForType();
 			SBase newInstance = (SBase) Class.forName("org.bimserver.interfaces.objects." + descriptor.getName()).newInstance();
@@ -69,9 +71,10 @@ public class ProtocolBuffersConverter {
 						setMethod.invoke(newInstance, val);
 					} else if (field.getType() == Date.class) {
 						setMethod.invoke(newInstance, new Date((Long)val));
+					} else if (field.getType() == DataHandler.class) {
+						ByteString byteString = (ByteString)val;
+						setMethod.invoke(newInstance, new DataHandler(new ByteArrayDataSource(byteString.toByteArray(), "data")));
 					} else {
-						System.out.println(setMethod);
-						System.out.println(val);
 						setMethod.invoke(newInstance, val);
 					}
 				}
@@ -92,15 +95,10 @@ public class ProtocolBuffersConverter {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected Object convertSObjectToProtocolBuffersObject(Map<Object, Object> convertedObjects, Descriptor descriptor, Object object) {
-		if (convertedObjects.containsKey(object)) {
-			return convertedObjects.get(object);
-		}
-		Class<? extends Object> clazz = object.getClass();
+	protected Message convertSObjectToProtocolBuffersObject(Descriptor descriptor, SBase object) {
 		Builder builder = null;
 		try {
 			builder = DynamicMessage.getDefaultInstance(descriptor).newBuilderForType();
-			convertedObjects.put(object, builder);
 		} catch (SecurityException e) {
 			LOGGER.error("", e);
 		} catch (IllegalArgumentException e) {
@@ -108,8 +106,9 @@ public class ProtocolBuffersConverter {
 		}
 		for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 			try {
-				Method getMethod = getMethod(clazz, "get" + StringUtils.firstUpperCase(fieldDescriptor.getName()));
-				Object value = getMethod.invoke(object);
+				SClass sClass = object.getSClass();
+				SField sField = sClass.getField(fieldDescriptor.getName());
+				Object value = object.sGet(sField);
 				if (value != null) {
 					if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Long.class || value.getClass() == Float.class
 							|| value.getClass() == Integer.class) {
@@ -133,7 +132,7 @@ public class ProtocolBuffersConverter {
 						List newList = new ArrayList();
 						for (Object o : list) {
 							if (fieldDescriptor.getJavaType() == JavaType.MESSAGE) {
-								newList.add(convertSObjectToProtocolBuffersObject(convertedObjects, fieldDescriptor.getMessageType(), o));
+								newList.add(convertSObjectToProtocolBuffersObject(fieldDescriptor.getMessageType(), (SBase) o));
 							} else {
 								newList.add(o);
 							}
@@ -146,10 +145,6 @@ public class ProtocolBuffersConverter {
 			} catch (SecurityException e) {
 				LOGGER.error("", e);
 			} catch (IllegalArgumentException e) {
-				LOGGER.error("", e);
-			} catch (IllegalAccessException e) {
-				LOGGER.error("", e);
-			} catch (InvocationTargetException e) {
 				LOGGER.error("", e);
 			} catch (IOException e) {
 				LOGGER.error("", e);

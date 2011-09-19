@@ -32,6 +32,20 @@ public class SListDataValue extends SDataValue implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("fieldName")) {
+			return getFieldName();
+		}
+		if (sField.getName().equals("values")) {
+			return getValues();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private List<SDataValue> values = new ArrayList<SDataValue>();
 	public List<SDataValue> getValues() {
 		return values;

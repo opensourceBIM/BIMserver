@@ -35,6 +35,38 @@ public class SEidClash extends SClash implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name1")) {
+			return getName1();
+		}
+		if (sField.getName().equals("name2")) {
+			return getName2();
+		}
+		if (sField.getName().equals("type1")) {
+			return getType1();
+		}
+		if (sField.getName().equals("type2")) {
+			return getType2();
+		}
+		if (sField.getName().equals("revision1Id")) {
+			return getRevision1Id();
+		}
+		if (sField.getName().equals("revision2Id")) {
+			return getRevision2Id();
+		}
+		if (sField.getName().equals("eid1")) {
+			return getEid1();
+		}
+		if (sField.getName().equals("eid2")) {
+			return getEid2();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private long eid1;
 	private long eid2;
 	public long getEid1() {

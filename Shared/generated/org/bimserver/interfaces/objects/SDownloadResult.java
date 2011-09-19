@@ -30,6 +30,23 @@ public class SDownloadResult implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("projectName")) {
+			return getProjectName();
+		}
+		if (sField.getName().equals("revisionNr")) {
+			return getRevisionNr();
+		}
+		if (sField.getName().equals("file")) {
+			return getFile();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String projectName;
 	private int revisionNr;
 	private javax.activation.DataHandler file;

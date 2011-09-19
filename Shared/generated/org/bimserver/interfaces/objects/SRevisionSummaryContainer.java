@@ -32,6 +32,20 @@ public class SRevisionSummaryContainer implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("types")) {
+			return getTypes();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String name;
 	private List<SRevisionSummaryType> types = new ArrayList<SRevisionSummaryType>();
 	public java.lang.String getName() {

@@ -53,6 +53,83 @@ public class SSettings implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("showVersionUpgradeAvailable")) {
+			return isShowVersionUpgradeAvailable();
+		}
+		if (sField.getName().equals("sendConfirmationEmailAfterRegistration")) {
+			return isSendConfirmationEmailAfterRegistration();
+		}
+		if (sField.getName().equals("useCaching")) {
+			return isUseCaching();
+		}
+		if (sField.getName().equals("allowSelfRegistration")) {
+			return isAllowSelfRegistration();
+		}
+		if (sField.getName().equals("autoTestClashes")) {
+			return isAutoTestClashes();
+		}
+		if (sField.getName().equals("intelligentMerging")) {
+			return isIntelligentMerging();
+		}
+		if (sField.getName().equals("allowUsersToCreateTopLevelProjects")) {
+			return isAllowUsersToCreateTopLevelProjects();
+		}
+		if (sField.getName().equals("checkinMergingEnabled")) {
+			return isCheckinMergingEnabled();
+		}
+		if (sField.getName().equals("registrationAddition")) {
+			return getRegistrationAddition();
+		}
+		if (sField.getName().equals("smtpServer")) {
+			return getSmtpServer();
+		}
+		if (sField.getName().equals("emailSenderAddress")) {
+			return getEmailSenderAddress();
+		}
+		if (sField.getName().equals("enabledExportTypes")) {
+			return getEnabledExportTypes();
+		}
+		if (sField.getName().equals("customLogoAddress")) {
+			return getCustomLogoAddress();
+		}
+		if (sField.getName().equals("siteAddress")) {
+			return getSiteAddress();
+		}
+		if (sField.getName().equals("serializers")) {
+			return getSerializers();
+		}
+		if (sField.getName().equals("guidanceProviders")) {
+			return getGuidanceProviders();
+		}
+		if (sField.getName().equals("headerAddition")) {
+			return getHeaderAddition();
+		}
+		if (sField.getName().equals("footerAddition")) {
+			return getFooterAddition();
+		}
+		if (sField.getName().equals("mergeIdentifier")) {
+			return getMergeIdentifier();
+		}
+		if (sField.getName().equals("cacheOutputFiles")) {
+			return isCacheOutputFiles();
+		}
+		if (sField.getName().equals("ifcEngines")) {
+			return getIfcEngines();
+		}
+		if (sField.getName().equals("plugins")) {
+			return getPlugins();
+		}
+		if (sField.getName().equals("deserializers")) {
+			return getDeserializers();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;
 	private boolean useCaching;

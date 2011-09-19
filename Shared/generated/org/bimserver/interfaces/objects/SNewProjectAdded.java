@@ -32,6 +32,29 @@ public class SNewProjectAdded extends SLogAction implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("date")) {
+			return getDate();
+		}
+		if (sField.getName().equals("executorId")) {
+			return getExecutorId();
+		}
+		if (sField.getName().equals("accessMethod")) {
+			return getAccessMethod();
+		}
+		if (sField.getName().equals("projectId")) {
+			return getProjectId();
+		}
+		if (sField.getName().equals("parentProjectId")) {
+			return getParentProjectId();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private long projectId;
 	private long parentProjectId;
 	public long getProjectId() {

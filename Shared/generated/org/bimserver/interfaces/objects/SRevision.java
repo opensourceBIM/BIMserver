@@ -46,6 +46,62 @@ public class SRevision implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("id")) {
+			return getId();
+		}
+		if (sField.getName().equals("userId")) {
+			return getUserId();
+		}
+		if (sField.getName().equals("date")) {
+			return getDate();
+		}
+		if (sField.getName().equals("comment")) {
+			return getComment();
+		}
+		if (sField.getName().equals("size")) {
+			return getSize();
+		}
+		if (sField.getName().equals("concreteRevisions")) {
+			return getConcreteRevisions();
+		}
+		if (sField.getName().equals("lastConcreteRevisionId")) {
+			return getLastConcreteRevisionId();
+		}
+		if (sField.getName().equals("checkouts")) {
+			return getCheckouts();
+		}
+		if (sField.getName().equals("projectId")) {
+			return getProjectId();
+		}
+		if (sField.getName().equals("state")) {
+			return getState();
+		}
+		if (sField.getName().equals("lastClashes")) {
+			return getLastClashes();
+		}
+		if (sField.getName().equals("tag")) {
+			return getTag();
+		}
+		if (sField.getName().equals("lastError")) {
+			return getLastError();
+		}
+		if (sField.getName().equals("bmi")) {
+			return getBmi();
+		}
+		if (sField.getName().equals("nrClashes")) {
+			return getNrClashes();
+		}
+		if (sField.getName().equals("laid")) {
+			return getLaid();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private int id;
 	private long userId;
 	private java.util.Date date;

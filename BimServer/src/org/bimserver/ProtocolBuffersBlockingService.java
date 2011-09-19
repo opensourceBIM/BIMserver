@@ -3,7 +3,6 @@ package org.bimserver;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
 
 import com.google.protobuf.BlockingService;
-import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
 import com.google.protobuf.Descriptors.FileDescriptor;
 import com.google.protobuf.Descriptors.MethodDescriptor;
 import com.google.protobuf.Descriptors.ServiceDescriptor;

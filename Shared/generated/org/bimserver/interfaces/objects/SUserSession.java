@@ -34,6 +34,35 @@ public class SUserSession implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("userId")) {
+			return getUserId();
+		}
+		if (sField.getName().equals("username")) {
+			return getUsername();
+		}
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("type")) {
+			return getType();
+		}
+		if (sField.getName().equals("activeSince")) {
+			return getActiveSince();
+		}
+		if (sField.getName().equals("lastActive")) {
+			return getLastActive();
+		}
+		if (sField.getName().equals("accessMethod")) {
+			return getAccessMethod();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private long userId;
 	private java.lang.String username;
 	private java.lang.String name;

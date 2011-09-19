@@ -24,94 +24,6 @@ public void removeAttribute(
 java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Integer arg3) throws org.bimserver.shared.exceptions.ServerException {
 reflector.callMethod("removeAttribute", arg0, arg1, arg2, arg3);
 }
-public java.lang.Integer checkout(
-java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Integer) reflector.callMethod("checkout", arg0, arg1, arg2);
-}
-public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Boolean) reflector.callMethod("isSettingSendConfirmationEmailAfterRegistration");
-}
-public void setSettingSendConfirmationEmailAfterRegistration(
-java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
-reflector.callMethod("setSettingSendConfirmationEmailAfterRegistration", arg0);
-}
-public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (org.bimserver.interfaces.objects.SAccessMethod) reflector.callMethod("getAccessMethod");
-}
-public java.util.Set getMigrations(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.util.Set) reflector.callMethod("getMigrations");
-}
-public java.util.List getAllNonAuthorizedProjectsOfUser(
-java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
-return (java.util.List) reflector.callMethod("getAllNonAuthorizedProjectsOfUser", arg0);
-}
-public java.util.List getAllNonAuthorizedUsersOfProject(
-java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
-return (java.util.List) reflector.callMethod("getAllNonAuthorizedUsersOfProject", arg0);
-}
-public java.util.List getAllAuthorizedUsersOfProject(
-java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
-return (java.util.List) reflector.callMethod("getAllAuthorizedUsersOfProject", arg0);
-}
-public java.util.List getAllCheckoutsOfProjectAndSubProjects(
-java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
-return (java.util.List) reflector.callMethod("getAllCheckoutsOfProjectAndSubProjects", arg0);
-}
-public java.lang.String getSettingRegistrationAddition(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.String) reflector.callMethod("getSettingRegistrationAddition");
-}
-public void setSettingRegistrationAddition(
-java.lang.String arg0) throws org.bimserver.shared.exceptions.ServerException {
-reflector.callMethod("setSettingRegistrationAddition", arg0);
-}
-public java.lang.Boolean isSettingAllowSelfRegistration(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Boolean) reflector.callMethod("isSettingAllowSelfRegistration");
-}
-public void setSettingAllowSelfRegistration(
-java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
-reflector.callMethod("setSettingAllowSelfRegistration", arg0);
-}
-public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Boolean) reflector.callMethod("isSettingAllowUsersToCreateTopLevelProjects");
-}
-public void setSettingAllowUsersToCreateTopLevelProjects(
-java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
-reflector.callMethod("setSettingAllowUsersToCreateTopLevelProjects", arg0);
-}
-public java.lang.Boolean isSettingCheckinMergingEnabled(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Boolean) reflector.callMethod("isSettingCheckinMergingEnabled");
-}
-public void setSettingCheckinMergingEnabled(
-java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
-reflector.callMethod("setSettingCheckinMergingEnabled", arg0);
-}
-public java.lang.Boolean isSettingShowVersionUpgradeAvailable(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Boolean) reflector.callMethod("isSettingShowVersionUpgradeAvailable");
-}
-public void setSettingShowVersionUpgradeAvailable(
-java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
-reflector.callMethod("setSettingShowVersionUpgradeAvailable", arg0);
-}
-public java.util.Set getAllSerializerPluginDescriptors(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.util.Set) reflector.callMethod("getAllSerializerPluginDescriptors");
-}
-public org.bimserver.interfaces.objects.SSerializerPluginDescriptor getSerializerPluginDescriptor(
-java.lang.String arg0) throws org.bimserver.shared.exceptions.ServerException {
-return (org.bimserver.interfaces.objects.SSerializerPluginDescriptor) reflector.callMethod("getSerializerPluginDescriptor", arg0);
-}
-public java.util.Set getAllGuidanceProviderPluginDescriptors(
-) throws org.bimserver.shared.exceptions.ServerException {
-return (java.util.Set) reflector.callMethod("getAllGuidanceProviderPluginDescriptors");
-}
 public java.lang.Integer checkoutLastRevision(
 java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServerException {
 return (java.lang.Integer) reflector.callMethod("checkoutLastRevision", arg0, arg1, arg2);
@@ -604,6 +516,30 @@ public void setHttpCallback(
 java.lang.Long arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServerException {
 reflector.callMethod("setHttpCallback", arg0, arg1);
 }
+public java.lang.Integer checkout(
+java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Integer) reflector.callMethod("checkout", arg0, arg1, arg2);
+}
+public java.util.Set getMigrations(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.util.Set) reflector.callMethod("getMigrations");
+}
+public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (org.bimserver.interfaces.objects.SAccessMethod) reflector.callMethod("getAccessMethod");
+}
+public java.lang.String ping(
+java.lang.String arg0) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.String) reflector.callMethod("ping", arg0);
+}
+public java.lang.Integer download(
+java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Integer) reflector.callMethod("download", arg0, arg1, arg2);
+}
+public org.bimserver.interfaces.objects.SCheckinResult checkinSync(
+java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Long arg3, javax.activation.DataHandler arg4, java.lang.Boolean arg5) throws org.bimserver.shared.exceptions.ServerException {
+return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("checkinSync", arg0, arg1, arg2, arg3, arg4, arg5);
+}
 public java.lang.Boolean autologin(
 java.lang.String arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServerException {
 return (java.lang.Boolean) reflector.callMethod("autologin", arg0, arg1);
@@ -612,21 +548,9 @@ public org.bimserver.interfaces.objects.SCheckinResult checkinAsync(
 java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Long arg3, javax.activation.DataHandler arg4, java.lang.Boolean arg5) throws org.bimserver.shared.exceptions.ServerException {
 return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("checkinAsync", arg0, arg1, arg2, arg3, arg4, arg5);
 }
-public java.lang.Integer download(
-java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.Integer) reflector.callMethod("download", arg0, arg1, arg2);
-}
 public java.lang.Boolean login(
 java.lang.String arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServerException {
 return (java.lang.Boolean) reflector.callMethod("login", arg0, arg1);
-}
-public java.lang.String ping(
-java.lang.String arg0) throws org.bimserver.shared.exceptions.ServerException {
-return (java.lang.String) reflector.callMethod("ping", arg0);
-}
-public org.bimserver.interfaces.objects.SCheckinResult checkinSync(
-java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Long arg3, javax.activation.DataHandler arg4, java.lang.Boolean arg5) throws org.bimserver.shared.exceptions.ServerException {
-return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("checkinSync", arg0, arg1, arg2, arg3, arg4, arg5);
 }
 public java.lang.Long addUser(
 java.lang.String arg0, java.lang.String arg1, org.bimserver.interfaces.objects.SUserType arg2, java.lang.Boolean arg3) throws org.bimserver.shared.exceptions.ServerException {
@@ -687,5 +611,81 @@ reflector.callMethod("setReference", arg0, arg1, arg2, arg3, arg4);
 public void addReference(
 java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Long arg3, java.lang.String arg4) throws org.bimserver.shared.exceptions.ServerException {
 reflector.callMethod("addReference", arg0, arg1, arg2, arg3, arg4);
+}
+public java.util.List getAllNonAuthorizedProjectsOfUser(
+java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
+return (java.util.List) reflector.callMethod("getAllNonAuthorizedProjectsOfUser", arg0);
+}
+public java.util.List getAllNonAuthorizedUsersOfProject(
+java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
+return (java.util.List) reflector.callMethod("getAllNonAuthorizedUsersOfProject", arg0);
+}
+public java.util.List getAllAuthorizedUsersOfProject(
+java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
+return (java.util.List) reflector.callMethod("getAllAuthorizedUsersOfProject", arg0);
+}
+public java.util.List getAllCheckoutsOfProjectAndSubProjects(
+java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServerException {
+return (java.util.List) reflector.callMethod("getAllCheckoutsOfProjectAndSubProjects", arg0);
+}
+public java.lang.String getSettingRegistrationAddition(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.String) reflector.callMethod("getSettingRegistrationAddition");
+}
+public void setSettingRegistrationAddition(
+java.lang.String arg0) throws org.bimserver.shared.exceptions.ServerException {
+reflector.callMethod("setSettingRegistrationAddition", arg0);
+}
+public java.lang.Boolean isSettingAllowSelfRegistration(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Boolean) reflector.callMethod("isSettingAllowSelfRegistration");
+}
+public void setSettingAllowSelfRegistration(
+java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
+reflector.callMethod("setSettingAllowSelfRegistration", arg0);
+}
+public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Boolean) reflector.callMethod("isSettingAllowUsersToCreateTopLevelProjects");
+}
+public void setSettingAllowUsersToCreateTopLevelProjects(
+java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
+reflector.callMethod("setSettingAllowUsersToCreateTopLevelProjects", arg0);
+}
+public java.lang.Boolean isSettingCheckinMergingEnabled(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Boolean) reflector.callMethod("isSettingCheckinMergingEnabled");
+}
+public void setSettingCheckinMergingEnabled(
+java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
+reflector.callMethod("setSettingCheckinMergingEnabled", arg0);
+}
+public java.lang.Boolean isSettingShowVersionUpgradeAvailable(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Boolean) reflector.callMethod("isSettingShowVersionUpgradeAvailable");
+}
+public void setSettingShowVersionUpgradeAvailable(
+java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
+reflector.callMethod("setSettingShowVersionUpgradeAvailable", arg0);
+}
+public java.util.Set getAllSerializerPluginDescriptors(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.util.Set) reflector.callMethod("getAllSerializerPluginDescriptors");
+}
+public org.bimserver.interfaces.objects.SSerializerPluginDescriptor getSerializerPluginDescriptor(
+java.lang.String arg0) throws org.bimserver.shared.exceptions.ServerException {
+return (org.bimserver.interfaces.objects.SSerializerPluginDescriptor) reflector.callMethod("getSerializerPluginDescriptor", arg0);
+}
+public java.util.Set getAllGuidanceProviderPluginDescriptors(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.util.Set) reflector.callMethod("getAllGuidanceProviderPluginDescriptors");
+}
+public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration(
+) throws org.bimserver.shared.exceptions.ServerException {
+return (java.lang.Boolean) reflector.callMethod("isSettingSendConfirmationEmailAfterRegistration");
+}
+public void setSettingSendConfirmationEmailAfterRegistration(
+java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServerException {
+reflector.callMethod("setSettingSendConfirmationEmailAfterRegistration", arg0);
 }
 }

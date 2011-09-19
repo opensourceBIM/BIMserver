@@ -32,6 +32,20 @@ public class SDatabaseInformationCategory implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("title")) {
+			return getTitle();
+		}
+		if (sField.getName().equals("items")) {
+			return getItems();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String title;
 	private List<SDatabaseInformationItem> items = new ArrayList<SDatabaseInformationItem>();
 	public java.lang.String getTitle() {

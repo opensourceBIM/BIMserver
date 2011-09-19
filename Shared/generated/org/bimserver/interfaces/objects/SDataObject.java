@@ -34,6 +34,26 @@ public class SDataObject implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("type")) {
+			return getType();
+		}
+		if (sField.getName().equals("guid")) {
+			return getGuid();
+		}
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("values")) {
+			return getValues();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String type;
 	private java.lang.String guid;
 	private java.lang.String name;
