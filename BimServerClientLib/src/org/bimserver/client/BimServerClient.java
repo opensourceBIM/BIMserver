@@ -34,7 +34,7 @@ public class BimServerClient {
 		BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory(address, port));
 		rpcController = new SocketRpcController();
 
-		Reflector reflector = new Reflector(rpcController, rpcChannel);
+		Reflector reflector = new Reflector(getClass().getClassLoader().getResource("service.desc"), rpcController, rpcChannel);
 		serviceInterface = new ServiceInterfaceReflectorImpl(reflector);
 	}
 	

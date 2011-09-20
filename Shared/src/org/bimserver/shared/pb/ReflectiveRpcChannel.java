@@ -9,6 +9,8 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.util.ByteArrayDataSource;
 
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.meta.SBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,17 +30,18 @@ import com.google.protobuf.ServiceException;
 public class ReflectiveRpcChannel extends ProtocolBuffersConverter implements BlockingRpcChannel {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
-	private Object service;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
+	private final ServiceFactory serviceFactory;
 
-	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData) {
-		this.service = service;
+	public ReflectiveRpcChannel(ServiceFactory serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData) {
+		this.serviceFactory = serviceFactory;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Message callBlockingMethod(MethodDescriptor methodDescriptor, RpcController controller, Message request, Message responsePrototype) throws ServiceException {
+		Object service = serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS);
 		FieldDescriptor errorMessageField = protocolBuffersMetaData.getMessageDescriptor(responsePrototype.getDescriptorForType().getName()).getField("errorMessage");
 		Class<?> clazz = service.getClass();
 		Descriptor inputType = methodDescriptor.getInputType();
@@ -94,6 +97,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter implements Bl
 			return builder.build();
 		} catch (InvocationTargetException e) {
 			Builder errorMessage = responsePrototype.newBuilderForType();
+			e.getTargetException().printStackTrace();
 			errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
 			return errorMessage.build();
 		} catch (Exception e) {
@@ -103,7 +107,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter implements Bl
 				errorMessage.setField(errorMessageField, e.getMessage());
 			} else {
 				LOGGER.error("", e);
-				errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(0), "Unknown error");
+				errorMessage.setField(errorMessageField, "Unknown error");
 			}
 			return errorMessage.build();
 		}
