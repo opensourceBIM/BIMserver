@@ -31,7 +31,7 @@ public class ProtocolBuffersMetaData {
 		public ServiceDescriptorContainer(ServiceDescriptor serviceDescriptor) {
 			this.serviceDescriptor = serviceDescriptor;
 			for (MethodDescriptor methodDescriptor : serviceDescriptor.getMethods()) {
-				this.methodDescriptors.put(methodDescriptor.getName(), new MethodDescriptorContainer(methodDescriptor));
+				this.methodDescriptors.put(methodDescriptor.getName(), new MethodDescriptorContainer(this, methodDescriptor));
 			}
 		}
 		
@@ -46,14 +46,20 @@ public class ProtocolBuffersMetaData {
 		public MethodDescriptorContainer getMethodDescriptor(String methodName) {
 			return methodDescriptors.get(methodName);
 		}
+
+		public String getName() {
+			return serviceDescriptor.getName();
+		}
 	}
 	
 	public static class MethodDescriptorContainer {
 		private final Map<String, FieldDescriptor> inputFields = new HashMap<String, Descriptors.FieldDescriptor>();
 		private final Map<String, FieldDescriptor> outputFields = new HashMap<String, Descriptors.FieldDescriptor>();
 		private final MethodDescriptor methodDescriptor;
+		private final ServiceDescriptorContainer serviceDescriptorContainer;
 		
-		public MethodDescriptorContainer(MethodDescriptor methodDescriptor) {
+		public MethodDescriptorContainer(ServiceDescriptorContainer serviceDescriptorContainer, MethodDescriptor methodDescriptor) {
+			this.serviceDescriptorContainer = serviceDescriptorContainer;
 			this.methodDescriptor = methodDescriptor;
 			for (FieldDescriptor fieldDescriptor : methodDescriptor.getInputType().getFields()) {
 				inputFields.put(fieldDescriptor.getName(), fieldDescriptor);
@@ -61,6 +67,10 @@ public class ProtocolBuffersMetaData {
 			for (FieldDescriptor fieldDescriptor : methodDescriptor.getOutputType().getFields()) {
 				outputFields.put(fieldDescriptor.getName(), fieldDescriptor);
 			}
+		}
+		
+		public ServiceDescriptorContainer getServiceDescriptorContainer() {
+			return serviceDescriptorContainer;
 		}
 		
 		public FieldDescriptor getInputField(String name) {
@@ -81,6 +91,10 @@ public class ProtocolBuffersMetaData {
 		
 		public MethodDescriptor getMethodDescriptor() {
 			return methodDescriptor;
+		}
+
+		public String getName() {
+			return methodDescriptor.getName();
 		}
 	}
 	

@@ -98,4 +98,9 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 			}});
 		return userSessions;
 	}
+
+	@Override
+	public String getName() {
+		return "ServiceInterface";
+	}
 }

@@ -32,7 +32,7 @@ import org.bimserver.BimServer;
 import org.bimserver.MetaDataManager;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.actions.AddUserDatabaseAction;
-import org.bimserver.database.actions.CreateBaseProject;
+import org.bimserver.database.actions.CreateBaseProjectDatabaseAction;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
@@ -100,7 +100,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 10;
+	public static final int APPLICATION_SCHEMA_VERSION = 11;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
 		this.bimServer = bimServer;
@@ -182,7 +182,7 @@ public class Database implements BimDatabase {
 				databaseCreated.setVersion(databaseSchemaVersion);
 				databaseSession.store(databaseCreated);
 
-				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL).execute();
+				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
 				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, -1, false);
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();

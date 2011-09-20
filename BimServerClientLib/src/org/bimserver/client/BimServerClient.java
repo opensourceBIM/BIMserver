@@ -1,5 +1,7 @@
 package org.bimserver.client;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,12 +14,9 @@ import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.pb.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.Reflector;
-
-import com.google.protobuf.BlockingRpcChannel;
-import com.googlecode.protobuf.socketrpc.RpcChannels;
-import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
-import com.googlecode.protobuf.socketrpc.SocketRpcController;
+import org.bimserver.shared.pb.SocketChannel;
 
 public class BimServerClient {
 	private ServiceInterface serviceInterface;
@@ -30,12 +29,15 @@ public class BimServerClient {
 	}
 	
 	public void connectProtocolBuffers(String address, int port) {
-		SocketRpcController rpcController;
-		BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory(address, port));
-		rpcController = new SocketRpcController();
-
-		Reflector reflector = new Reflector(getClass().getClassLoader().getResource("service.desc"), rpcController, rpcChannel);
-		serviceInterface = new ServiceInterfaceReflectorImpl(reflector);
+		SocketChannel channel = new SocketChannel(new InetSocketAddress(address, port));
+		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
+		try {
+			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
+			Reflector reflector = new Reflector(protocolBuffersMetaData, channel);
+			serviceInterface = new ServiceInterfaceReflectorImpl(reflector);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void connectSoap(final String address) {

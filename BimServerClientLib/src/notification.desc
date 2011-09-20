@@ -1,7 +1,18 @@
 
-ç
-notification.protoorg.bimserver.pbservice.proto"D
-NewLogActionRequest-
-unknown (2.org.bimserver.pb.SLogAction2n
-NotificationInterfaceU
-newLogAction%.org.bimserver.pb.NewLogActionRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHà
+µ
+notification.protoorg.bimserver.pbservice.proto";
+SNewRevisionNotification
+
+revisionId (
+oid ("Q
+NewRevisionRequest;
+unknown (2*.org.bimserver.pb.SNewRevisionNotification"9
+SNewProjectNotification
+oid (
+	projectId ("O
+NewProjectRequest:
+unknown (2).org.bimserver.pb.SNewProjectNotification2ø
+NotificationInterfaceS
+newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseQ
+
+newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHà

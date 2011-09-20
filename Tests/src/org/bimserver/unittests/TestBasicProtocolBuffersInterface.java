@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
@@ -50,6 +51,7 @@ import org.bimserver.pb.ServiceInterfaceImpl.SUserType;
 import org.bimserver.pb.ServiceInterfaceImpl.ServiceInterface.BlockingInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.pb.SocketChannel;
 import org.bimserver.tests.TestFile;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -58,9 +60,6 @@ import org.junit.Test;
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.ServiceException;
-import com.googlecode.protobuf.socketrpc.RpcChannels;
-import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
-import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
 public class TestBasicProtocolBuffersInterface {
 	private static String username = "test" + new Random().nextInt() + "@bimserver.org";
@@ -122,9 +121,8 @@ public class TestBasicProtocolBuffersInterface {
 	@Test
 	public void testCreateUser() {
 		try {
-			BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory("localhost", 8020));
-			SocketRpcController rpcController = new SocketRpcController();
-			BlockingInterface service = ServiceInterfaceImpl.ServiceInterface.newBlockingStub(rpcChannel);
+			SocketChannel socketChannel = new SocketChannel(new InetSocketAddress("localhost", 8020));
+			
 
 			LoginRequest.Builder loginRequestBuilder = LoginRequest.newBuilder();
 			loginRequestBuilder.setUsername("admin@bimserver.org");

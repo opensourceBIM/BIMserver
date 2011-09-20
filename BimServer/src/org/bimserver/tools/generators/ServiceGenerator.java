@@ -14,6 +14,7 @@ import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +42,7 @@ public class ServiceGenerator {
 		ServiceInterfaceObjectGenerator dataObjectGenerator = new ServiceInterfaceObjectGenerator();
 		for (EPackage ePackage : ePackages) {
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
+				if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
 					String generated = dataObjectGenerator.generate(eClassifier);
 					File file = new File(packageFolder, "S" + eClassifier.getName() + ".java");
 					try {

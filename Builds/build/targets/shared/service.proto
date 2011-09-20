@@ -13,89 +13,11 @@ service ServiceInterface {
 
 	rpc createObject (CreateObjectRequest) returns (CreateObjectResponse);
 
-	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
-
 	rpc removeAttribute (RemoveAttributeRequest) returns (VoidResponse);
 
+	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
+
 	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
-
-	rpc logout (LogoutRequest) returns (VoidResponse);
-
-	rpc undeleteUser (UndeleteUserRequest) returns (UndeleteUserResponse);
-
-	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
-
-	rpc updateGeoTag (UpdateGeoTagRequest) returns (VoidResponse);
-
-	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
-
-	rpc getLogs (GetLogsRequest) returns (GetLogsResponse);
-
-	rpc enablePlugin (EnablePluginRequest) returns (VoidResponse);
-
-	rpc removeObject (RemoveObjectRequest) returns (VoidResponse);
-
-	rpc setReference (SetReferenceRequest) returns (VoidResponse);
-
-	rpc addReference (AddReferenceRequest) returns (VoidResponse);
-
-	rpc getAllNonAuthorizedProjectsOfUser (GetAllNonAuthorizedProjectsOfUserRequest) returns (GetAllNonAuthorizedProjectsOfUserResponse);
-
-	rpc getAllNonAuthorizedUsersOfProject (GetAllNonAuthorizedUsersOfProjectRequest) returns (GetAllNonAuthorizedUsersOfProjectResponse);
-
-	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
-
-	rpc getAllCheckoutsOfProjectAndSubProjects (GetAllCheckoutsOfProjectAndSubProjectsRequest) returns (GetAllCheckoutsOfProjectAndSubProjectsResponse);
-
-	rpc getSettingRegistrationAddition (GetSettingRegistrationAdditionRequest) returns (GetSettingRegistrationAdditionResponse);
-
-	rpc setSettingRegistrationAddition (SetSettingRegistrationAdditionRequest) returns (VoidResponse);
-
-	rpc isSettingAllowSelfRegistration (IsSettingAllowSelfRegistrationRequest) returns (IsSettingAllowSelfRegistrationResponse);
-
-	rpc setSettingAllowSelfRegistration (SetSettingAllowSelfRegistrationRequest) returns (VoidResponse);
-
-	rpc isSettingAllowUsersToCreateTopLevelProjects (IsSettingAllowUsersToCreateTopLevelProjectsRequest) returns (IsSettingAllowUsersToCreateTopLevelProjectsResponse);
-
-	rpc setSettingAllowUsersToCreateTopLevelProjects (SetSettingAllowUsersToCreateTopLevelProjectsRequest) returns (VoidResponse);
-
-	rpc isSettingCheckinMergingEnabled (IsSettingCheckinMergingEnabledRequest) returns (IsSettingCheckinMergingEnabledResponse);
-
-	rpc setSettingCheckinMergingEnabled (SetSettingCheckinMergingEnabledRequest) returns (VoidResponse);
-
-	rpc isSettingShowVersionUpgradeAvailable (IsSettingShowVersionUpgradeAvailableRequest) returns (IsSettingShowVersionUpgradeAvailableResponse);
-
-	rpc setSettingShowVersionUpgradeAvailable (SetSettingShowVersionUpgradeAvailableRequest) returns (VoidResponse);
-
-	rpc getAllSerializerPluginDescriptors (GetAllSerializerPluginDescriptorsRequest) returns (GetAllSerializerPluginDescriptorsResponse);
-
-	rpc getSerializerPluginDescriptor (GetSerializerPluginDescriptorRequest) returns (GetSerializerPluginDescriptorResponse);
-
-	rpc getAllGuidanceProviderPluginDescriptors (GetAllGuidanceProviderPluginDescriptorsRequest) returns (GetAllGuidanceProviderPluginDescriptorsResponse);
-
-	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
-
-	rpc login (LoginRequest) returns (LoginResponse);
-
-	rpc download (DownloadRequest) returns (DownloadResponse);
-
-	rpc ping (PingRequest) returns (PingResponse);
-
-	rpc addUser (AddUserRequest) returns (AddUserResponse);
-
-	rpc autologin (AutologinRequest) returns (AutologinResponse);
-
-	rpc checkinAsync (CheckinAsyncRequest) returns (CheckinAsyncResponse);
-
-	rpc checkinSync (CheckinSyncRequest) returns (CheckinSyncResponse);
-
-	rpc addProject (AddProjectRequest) returns (AddProjectResponse);
-
-	rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
-
-	rpc getAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
-
-	rpc getRevision (GetRevisionRequest) returns (GetRevisionResponse);
 
 	rpc checkoutLastRevision (CheckoutLastRevisionRequest) returns (CheckoutLastRevisionResponse);
 
@@ -329,6 +251,46 @@ service ServiceInterface {
 
 	rpc addFloatAttribute (AddFloatAttributeRequest) returns (VoidResponse);
 
+	rpc isSettingSendConfirmationEmailAfterRegistration (IsSettingSendConfirmationEmailAfterRegistrationRequest) returns (IsSettingSendConfirmationEmailAfterRegistrationResponse);
+
+	rpc setSettingSendConfirmationEmailAfterRegistration (SetSettingSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
+
+	rpc getAllNonAuthorizedProjectsOfUser (GetAllNonAuthorizedProjectsOfUserRequest) returns (GetAllNonAuthorizedProjectsOfUserResponse);
+
+	rpc getAllNonAuthorizedUsersOfProject (GetAllNonAuthorizedUsersOfProjectRequest) returns (GetAllNonAuthorizedUsersOfProjectResponse);
+
+	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
+
+	rpc getAllCheckoutsOfProjectAndSubProjects (GetAllCheckoutsOfProjectAndSubProjectsRequest) returns (GetAllCheckoutsOfProjectAndSubProjectsResponse);
+
+	rpc getSettingRegistrationAddition (GetSettingRegistrationAdditionRequest) returns (GetSettingRegistrationAdditionResponse);
+
+	rpc setSettingRegistrationAddition (SetSettingRegistrationAdditionRequest) returns (VoidResponse);
+
+	rpc isSettingAllowSelfRegistration (IsSettingAllowSelfRegistrationRequest) returns (IsSettingAllowSelfRegistrationResponse);
+
+	rpc setSettingAllowSelfRegistration (SetSettingAllowSelfRegistrationRequest) returns (VoidResponse);
+
+	rpc isSettingAllowUsersToCreateTopLevelProjects (IsSettingAllowUsersToCreateTopLevelProjectsRequest) returns (IsSettingAllowUsersToCreateTopLevelProjectsResponse);
+
+	rpc setSettingAllowUsersToCreateTopLevelProjects (SetSettingAllowUsersToCreateTopLevelProjectsRequest) returns (VoidResponse);
+
+	rpc isSettingCheckinMergingEnabled (IsSettingCheckinMergingEnabledRequest) returns (IsSettingCheckinMergingEnabledResponse);
+
+	rpc setSettingCheckinMergingEnabled (SetSettingCheckinMergingEnabledRequest) returns (VoidResponse);
+
+	rpc isSettingShowVersionUpgradeAvailable (IsSettingShowVersionUpgradeAvailableRequest) returns (IsSettingShowVersionUpgradeAvailableResponse);
+
+	rpc setSettingShowVersionUpgradeAvailable (SetSettingShowVersionUpgradeAvailableRequest) returns (VoidResponse);
+
+	rpc getAllSerializerPluginDescriptors (GetAllSerializerPluginDescriptorsRequest) returns (GetAllSerializerPluginDescriptorsResponse);
+
+	rpc getSerializerPluginDescriptor (GetSerializerPluginDescriptorRequest) returns (GetSerializerPluginDescriptorResponse);
+
+	rpc getAllGuidanceProviderPluginDescriptors (GetAllGuidanceProviderPluginDescriptorsRequest) returns (GetAllGuidanceProviderPluginDescriptorsResponse);
+
+	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
+
 	rpc addIntegerAttribute (AddIntegerAttributeRequest) returns (VoidResponse);
 
 	rpc addBooleanAttribute (AddBooleanAttributeRequest) returns (VoidResponse);
@@ -343,9 +305,47 @@ service ServiceInterface {
 
 	rpc setHttpCallback (SetHttpCallbackRequest) returns (VoidResponse);
 
-	rpc isSettingSendConfirmationEmailAfterRegistration (IsSettingSendConfirmationEmailAfterRegistrationRequest) returns (IsSettingSendConfirmationEmailAfterRegistrationResponse);
+	rpc checkinSync (CheckinSyncRequest) returns (CheckinSyncResponse);
 
-	rpc setSettingSendConfirmationEmailAfterRegistration (SetSettingSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
+	rpc addUser (AddUserRequest) returns (AddUserResponse);
+
+	rpc download (DownloadRequest) returns (DownloadResponse);
+
+	rpc login (LoginRequest) returns (LoginResponse);
+
+	rpc autologin (AutologinRequest) returns (AutologinResponse);
+
+	rpc ping (PingRequest) returns (PingResponse);
+
+	rpc checkinAsync (CheckinAsyncRequest) returns (CheckinAsyncResponse);
+
+	rpc addProject (AddProjectRequest) returns (AddProjectResponse);
+
+	rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+
+	rpc getAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
+
+	rpc getRevision (GetRevisionRequest) returns (GetRevisionResponse);
+
+	rpc logout (LogoutRequest) returns (VoidResponse);
+
+	rpc undeleteUser (UndeleteUserRequest) returns (UndeleteUserResponse);
+
+	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
+
+	rpc updateGeoTag (UpdateGeoTagRequest) returns (VoidResponse);
+
+	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
+
+	rpc getLogs (GetLogsRequest) returns (GetLogsResponse);
+
+	rpc enablePlugin (EnablePluginRequest) returns (VoidResponse);
+
+	rpc removeObject (RemoveObjectRequest) returns (VoidResponse);
+
+	rpc setReference (SetReferenceRequest) returns (VoidResponse);
+
+	rpc addReference (AddReferenceRequest) returns (VoidResponse);
 
 }
 
@@ -381,14 +381,14 @@ message SDataValue {
 message SDataObject {
 	optional string name = 1;
 	optional string type = 2;
-	optional int64 oid = 3;
-	optional string guid = 4;
-	repeated SDataValue values = 5;
+	repeated SDataValue values = 3;
+	optional int64 oid = 4;
+	optional string guid = 5;
 }
 
 message SCompareItem {
-	optional int64 oid = 1;
-	optional SDataObject dataObject = 2;
+	optional SDataObject dataObject = 1;
+	optional int64 oid = 2;
 }
 
 message SCompareContainer {
@@ -425,6 +425,13 @@ message CreateObjectResponse {
 	optional int64 value = 2;
 }
 
+message RemoveAttributeRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+}
+
 message GetAccessMethodRequest {
 }
 
@@ -434,18 +441,12 @@ enum SAccessMethod{
 	INTERNAL = 2;
 	REST = 3;
 	SYNDICATION = 4;
+	PROTOCOL_BUFFERS = 5;
 }
 
 message GetAccessMethodResponse {
 	optional string errorMessage = 1;
 	optional SAccessMethod value = 2;
-}
-
-message RemoveAttributeRequest {
-	optional int64 oid = 1;
-	optional string className = 2;
-	optional string attributeName = 3;
-	optional int32 index = 4;
 }
 
 message GetMigrationsRequest {
@@ -460,465 +461,6 @@ message SMigration {
 message GetMigrationsResponse {
 	optional string errorMessage = 1;
 	repeated SMigration value = 2;
-}
-
-message LogoutRequest {
-}
-
-message UndeleteUserRequest {
-	optional int64 uoid = 1;
-}
-
-message UndeleteUserResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message GetGeoTagRequest {
-	optional int64 goid = 1;
-}
-
-message SGeoTag {
-	optional int64 oid = 1;
-	optional float x = 2;
-	optional float y = 3;
-	optional float z = 4;
-	optional int32 epsg = 5;
-	optional float directionAngle = 6;
-	repeated int64 projects = 7;
-}
-
-message GetGeoTagResponse {
-	optional string errorMessage = 1;
-	optional SGeoTag value = 2;
-}
-
-message UpdateGeoTagRequest {
-	optional SGeoTag sGeoTag = 1;
-}
-
-message IsLoggedInRequest {
-}
-
-message IsLoggedInResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message GetLogsRequest {
-}
-
-message SLogAction {
-	optional int64 date = 1;
-	optional SAccessMethod accessMethod = 2;
-	optional int64 oid = 3;
-	optional int64 executorId = 4;
-}
-
-message GetLogsResponse {
-	optional string errorMessage = 1;
-	repeated SLogAction value = 2;
-}
-
-message EnablePluginRequest {
-	optional string unknown = 1;
-}
-
-message RemoveObjectRequest {
-	optional string className = 1;
-	optional int64 oid = 2;
-}
-
-message SetReferenceRequest {
-	optional int64 oid = 1;
-	optional string className = 2;
-	optional string referenceName = 3;
-	optional int64 referenceOid = 4;
-	optional string referenceClassName = 5;
-}
-
-message AddReferenceRequest {
-	optional int64 oid = 1;
-	optional string className = 2;
-	optional string referenceName = 3;
-	optional int64 referenceOid = 4;
-	optional string referenceClassName = 5;
-}
-
-message GetAllNonAuthorizedProjectsOfUserRequest {
-	optional int64 uoid = 1;
-}
-
-enum SObjectState{
-	ACTIVE = 0;
-	DELETED = 1;
-}
-
-enum SSIPrefix{
-	meter = 0;
-	attometer = 1;
-	femtometer = 2;
-	picometer = 3;
-	nanometer = 4;
-	micrometer = 5;
-	millimeter = 6;
-	centimeter = 7;
-	decimeter = 8;
-	decameter = 9;
-	hectometer = 10;
-	kilometer = 11;
-	megameter = 12;
-	gigameter = 13;
-	terameter = 14;
-	petameter = 15;
-	exameter = 16;
-}
-
-message SProject {
-	optional string name = 1;
-	optional int32 id = 2;
-	optional SObjectState state = 3;
-	optional string description = 4;
-	optional int64 oid = 5;
-	repeated int64 revisions = 6;
-	repeated int64 checkouts = 7;
-	optional int64 geoTagId = 8;
-	optional int64 parentId = 9;
-	repeated int64 subProjects = 10;
-	repeated int64 hasAuthorizedUsers = 11;
-	repeated int64 concreteRevisions = 12;
-	optional int64 lastConcreteRevisionId = 13;
-	optional int64 lastRevisionId = 14;
-	optional int64 createdDate = 15;
-	optional int64 createdById = 16;
-	optional int64 clashDetectionSettingsId = 17;
-	optional SSIPrefix exportLengthMeasurePrefix = 18;
-}
-
-message GetAllNonAuthorizedProjectsOfUserResponse {
-	optional string errorMessage = 1;
-	repeated SProject value = 2;
-}
-
-message GetAllNonAuthorizedUsersOfProjectRequest {
-	optional int64 poid = 1;
-}
-
-enum SUserType{
-	SYSTEM = 0;
-	ADMIN = 1;
-	USER = 2;
-	ANONYMOUS = 3;
-}
-
-message SUser {
-	optional string name = 1;
-	optional SObjectState state = 2;
-	optional int64 oid = 3;
-	repeated int64 revisions = 4;
-	optional string password = 5;
-	optional int64 createdOn = 6;
-	optional SUserType userType = 7;
-	optional string username = 8;
-	optional int64 lastSeen = 9;
-	optional int64 createdById = 10;
-	repeated int64 hasRightsOn = 11;
-	optional string validationToken = 12;
-	optional int64 validationTokenCreated = 13;
-	optional string notificationUrl = 14;
-}
-
-message GetAllNonAuthorizedUsersOfProjectResponse {
-	optional string errorMessage = 1;
-	repeated SUser value = 2;
-}
-
-message GetAllAuthorizedUsersOfProjectRequest {
-	optional int64 poid = 1;
-}
-
-message GetAllAuthorizedUsersOfProjectResponse {
-	optional string errorMessage = 1;
-	repeated SUser value = 2;
-}
-
-message GetAllCheckoutsOfProjectAndSubProjectsRequest {
-	optional int64 poid = 1;
-}
-
-message SCheckout {
-	optional int64 date = 1;
-	optional int64 checkinId = 2;
-	optional int64 oid = 3;
-	optional int64 projectId = 4;
-	optional int64 userId = 5;
-	optional int64 revisionId = 6;
-}
-
-message GetAllCheckoutsOfProjectAndSubProjectsResponse {
-	optional string errorMessage = 1;
-	repeated SCheckout value = 2;
-}
-
-message GetSettingRegistrationAdditionRequest {
-}
-
-message GetSettingRegistrationAdditionResponse {
-	optional string errorMessage = 1;
-	optional string value = 2;
-}
-
-message SetSettingRegistrationAdditionRequest {
-	optional string registrationAddition = 1;
-}
-
-message IsSettingAllowSelfRegistrationRequest {
-}
-
-message IsSettingAllowSelfRegistrationResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message SetSettingAllowSelfRegistrationRequest {
-	optional bool allowSelfRegistration = 1;
-}
-
-message IsSettingAllowUsersToCreateTopLevelProjectsRequest {
-}
-
-message IsSettingAllowUsersToCreateTopLevelProjectsResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message SetSettingAllowUsersToCreateTopLevelProjectsRequest {
-	optional bool allowUsersToCreateTopLevelProjects = 1;
-}
-
-message IsSettingCheckinMergingEnabledRequest {
-}
-
-message IsSettingCheckinMergingEnabledResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message SetSettingCheckinMergingEnabledRequest {
-	optional bool checkinMergingEnabled = 1;
-}
-
-message IsSettingShowVersionUpgradeAvailableRequest {
-}
-
-message IsSettingShowVersionUpgradeAvailableResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message SetSettingShowVersionUpgradeAvailableRequest {
-	optional bool showVersionUpgradeAvailable = 1;
-}
-
-message GetAllSerializerPluginDescriptorsRequest {
-}
-
-message SSerializerPluginDescriptor {
-	optional int64 oid = 1;
-	optional string pluginClassName = 2;
-	optional string defaultName = 3;
-	optional string defaultExtension = 4;
-	optional string defaultContentType = 5;
-}
-
-message GetAllSerializerPluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SSerializerPluginDescriptor value = 2;
-}
-
-message GetSerializerPluginDescriptorRequest {
-	optional string type = 1;
-}
-
-message GetSerializerPluginDescriptorResponse {
-	optional string errorMessage = 1;
-	optional SSerializerPluginDescriptor value = 2;
-}
-
-message GetAllGuidanceProviderPluginDescriptorsRequest {
-}
-
-message SGuidanceProviderPluginDescriptor {
-	optional string className = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllGuidanceProviderPluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SGuidanceProviderPluginDescriptor value = 2;
-}
-
-message CheckoutRequest {
-	optional int64 roid = 1;
-	optional string formatIdentifier = 2;
-	optional bool sync = 3;
-}
-
-message CheckoutResponse {
-	optional string errorMessage = 1;
-	optional int32 value = 2;
-}
-
-message LoginRequest {
-	optional string username = 1;
-	optional string password = 2;
-}
-
-message LoginResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message DownloadRequest {
-	optional int64 roid = 1;
-	optional string formatIdentifier = 2;
-	optional bool sync = 3;
-}
-
-message DownloadResponse {
-	optional string errorMessage = 1;
-	optional int32 value = 2;
-}
-
-message PingRequest {
-	optional string in = 1;
-}
-
-message PingResponse {
-	optional string errorMessage = 1;
-	optional string value = 2;
-}
-
-message AddUserRequest {
-	optional string username = 1;
-	optional string name = 2;
-	optional SUserType type = 3;
-	optional bool selfRegistration = 4;
-}
-
-message AddUserResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message AutologinRequest {
-	optional string username = 1;
-	optional string hash = 2;
-}
-
-message AutologinResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message CheckinAsyncRequest {
-	optional int64 poid = 1;
-	optional string comment = 2;
-	optional string deserializerName = 3;
-	optional int64 fileSize = 4;
-	optional bytes ifcFile = 5;
-	optional bool merge = 6;
-}
-
-message SCheckinResult {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional int64 projectId = 3;
-	optional int64 revisionId = 4;
-}
-
-message CheckinAsyncResponse {
-	optional string errorMessage = 1;
-	optional SCheckinResult value = 2;
-}
-
-message CheckinSyncRequest {
-	optional int64 poid = 1;
-	optional string comment = 2;
-	optional string deserializerName = 3;
-	optional int64 fileSize = 4;
-	optional bytes ifcFile = 5;
-	optional bool merge = 6;
-}
-
-message CheckinSyncResponse {
-	optional string errorMessage = 1;
-	optional SCheckinResult value = 2;
-}
-
-message AddProjectRequest {
-	optional string projectName = 1;
-}
-
-message AddProjectResponse {
-	optional string errorMessage = 1;
-	optional SProject value = 2;
-}
-
-message DeleteUserRequest {
-	optional int64 uoid = 1;
-}
-
-message DeleteUserResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message GetAllUsersRequest {
-}
-
-message GetAllUsersResponse {
-	optional string errorMessage = 1;
-	repeated SUser value = 2;
-}
-
-message GetRevisionRequest {
-	optional int64 roid = 1;
-}
-
-enum SCheckinState{
-	UPLOADING = 0;
-	PARSING = 1;
-	STORING = 2;
-	SEARCHING_CLASHES = 3;
-	DONE = 4;
-	ERROR = 5;
-	CLASHES_ERROR = 6;
-}
-
-message SRevision {
-	optional int32 id = 1;
-	optional SCheckinState state = 2;
-	optional int64 size = 3;
-	optional int64 date = 4;
-	optional string comment = 5;
-	optional int64 oid = 6;
-	optional int64 projectId = 7;
-	repeated int64 checkouts = 8;
-	optional int64 userId = 9;
-	optional string lastError = 10;
-	optional int32 bmi = 11;
-	optional int32 nrClashes = 12;
-	optional int64 laid = 13;
-	repeated int64 lastClashes = 14;
-	repeated int64 concreteRevisions = 15;
-	optional int64 lastConcreteRevisionId = 16;
-	optional string tag = 17;
-}
-
-message GetRevisionResponse {
-	optional string errorMessage = 1;
-	optional SRevision value = 2;
 }
 
 message CheckoutLastRevisionRequest {
@@ -985,9 +527,9 @@ message GetDownloadDataRequest {
 
 message SDownloadResult {
 	optional bytes file = 1;
-	optional int64 oid = 2;
-	optional string projectName = 3;
-	optional int32 revisionNr = 4;
+	optional string projectName = 2;
+	optional int32 revisionNr = 3;
+	optional int64 oid = 4;
 }
 
 message GetDownloadDataResponse {
@@ -1016,6 +558,13 @@ message GetDownloadStateResponse {
 	optional SLongActionState value = 2;
 }
 
+enum SUserType{
+	SYSTEM = 0;
+	ADMIN = 1;
+	USER = 2;
+	ANONYMOUS = 3;
+}
+
 message ChangeUserTypeRequest {
 	optional int64 uoid = 1;
 	optional SUserType userType = 2;
@@ -1026,6 +575,52 @@ message AddProjectAsSubProjectRequest {
 	optional int64 parentPoid = 2;
 }
 
+enum SObjectState{
+	ACTIVE = 0;
+	DELETED = 1;
+}
+
+enum SSIPrefix{
+	meter = 0;
+	attometer = 1;
+	femtometer = 2;
+	picometer = 3;
+	nanometer = 4;
+	micrometer = 5;
+	millimeter = 6;
+	centimeter = 7;
+	decimeter = 8;
+	decameter = 9;
+	hectometer = 10;
+	kilometer = 11;
+	megameter = 12;
+	gigameter = 13;
+	terameter = 14;
+	petameter = 15;
+	exameter = 16;
+}
+
+message SProject {
+	optional string name = 1;
+	optional int32 id = 2;
+	optional SObjectState state = 3;
+	optional string description = 4;
+	repeated int64 subProjects = 5;
+	repeated int64 hasAuthorizedUsers = 6;
+	repeated int64 concreteRevisions = 7;
+	optional int64 lastConcreteRevisionId = 8;
+	optional int64 lastRevisionId = 9;
+	optional int64 createdDate = 10;
+	optional int64 createdById = 11;
+	optional int64 clashDetectionSettingsId = 12;
+	optional SSIPrefix exportLengthMeasurePrefix = 13;
+	optional int64 oid = 14;
+	repeated int64 revisions = 15;
+	repeated int64 checkouts = 16;
+	optional int64 geoTagId = 17;
+	optional int64 parentId = 18;
+}
+
 message AddProjectAsSubProjectResponse {
 	optional string errorMessage = 1;
 	optional SProject value = 2;
@@ -1033,6 +628,36 @@ message AddProjectAsSubProjectResponse {
 
 message UpdateProjectRequest {
 	optional SProject sProject = 1;
+}
+
+enum SCheckinState{
+	UPLOADING = 0;
+	PARSING = 1;
+	STORING = 2;
+	SEARCHING_CLASHES = 3;
+	DONE = 4;
+	ERROR = 5;
+	CLASHES_ERROR = 6;
+}
+
+message SRevision {
+	optional int32 id = 1;
+	optional SCheckinState state = 2;
+	optional int64 size = 3;
+	optional int64 date = 4;
+	optional string comment = 5;
+	repeated int64 lastClashes = 6;
+	optional string tag = 7;
+	repeated int64 concreteRevisions = 8;
+	optional int64 lastConcreteRevisionId = 9;
+	optional int64 oid = 10;
+	repeated int64 checkouts = 11;
+	optional int64 userId = 12;
+	optional int64 projectId = 13;
+	optional string lastError = 14;
+	optional int32 bmi = 15;
+	optional int32 nrClashes = 16;
+	optional int64 laid = 17;
 }
 
 message UpdateRevisionRequest {
@@ -1097,6 +722,15 @@ message GetAllCheckoutsOfProjectRequest {
 	optional int64 poid = 1;
 }
 
+message SCheckout {
+	optional int64 date = 1;
+	optional int64 revisionId = 2;
+	optional int64 oid = 3;
+	optional int64 userId = 4;
+	optional int64 projectId = 5;
+	optional int64 checkinId = 6;
+}
+
 message GetAllCheckoutsOfProjectResponse {
 	optional string errorMessage = 1;
 	repeated SCheckout value = 2;
@@ -1156,23 +790,23 @@ message SDatabaseInformationItem {
 }
 
 message SDatabaseInformationCategory {
-	optional string title = 1;
-	optional int64 oid = 2;
-	repeated SDatabaseInformationItem items = 3;
+	optional int64 oid = 1;
+	repeated SDatabaseInformationItem items = 2;
+	optional string title = 3;
 }
 
 message SDatabaseInformation {
 	optional string location = 1;
 	optional string type = 2;
-	optional int64 oid = 3;
-	optional int64 created = 4;
-	optional int32 numberOfProjects = 5;
-	optional int32 numberOfUsers = 6;
-	optional int32 numberOfRevisions = 7;
-	optional int32 numberOfCheckouts = 8;
-	optional int64 databaseSizeInBytes = 9;
-	optional int32 schemaVersion = 10;
-	repeated SDatabaseInformationCategory categories = 11;
+	optional int32 numberOfProjects = 3;
+	optional int32 numberOfUsers = 4;
+	optional int32 numberOfRevisions = 5;
+	optional int32 numberOfCheckouts = 6;
+	optional int64 databaseSizeInBytes = 7;
+	optional int32 schemaVersion = 8;
+	repeated SDatabaseInformationCategory categories = 9;
+	optional int64 oid = 10;
+	optional int64 created = 11;
 }
 
 message GetDatabaseInformationResponse {
@@ -1189,6 +823,23 @@ message GetLastDatabaseResetResponse {
 }
 
 message GetLoggedInUserRequest {
+}
+
+message SUser {
+	optional string name = 1;
+	optional SObjectState state = 2;
+	optional int64 createdById = 3;
+	repeated int64 hasRightsOn = 4;
+	optional string validationToken = 5;
+	optional int64 validationTokenCreated = 6;
+	optional string notificationUrl = 7;
+	optional int64 oid = 8;
+	repeated int64 revisions = 9;
+	optional string password = 10;
+	optional int64 createdOn = 11;
+	optional SUserType userType = 12;
+	optional string username = 13;
+	optional int64 lastSeen = 14;
 }
 
 message GetLoggedInUserResponse {
@@ -1231,14 +882,14 @@ message GetRevisionSummaryRequest {
 
 message SRevisionSummaryType {
 	optional string name = 1;
-	optional int32 count = 2;
-	optional int64 oid = 3;
+	optional int64 oid = 2;
+	optional int32 count = 3;
 }
 
 message SRevisionSummaryContainer {
 	optional string name = 1;
-	repeated SRevisionSummaryType types = 2;
-	optional int64 oid = 3;
+	optional int64 oid = 2;
+	repeated SRevisionSummaryType types = 3;
 }
 
 message SRevisionSummary {
@@ -1310,11 +961,11 @@ message GetDataObjectsByTypeResponse {
 }
 
 message SClashDetectionSettings {
-	optional int64 oid = 1;
-	repeated int64 revisions = 2;
-	optional float margin = 3;
-	repeated string ignoredClasses = 4;
-	repeated int64 projects = 5;
+	repeated int64 projects = 1;
+	repeated string ignoredClasses = 2;
+	optional int64 oid = 3;
+	repeated int64 revisions = 4;
+	optional float margin = 5;
 }
 
 message FindClashesByGuidRequest {
@@ -1325,8 +976,8 @@ message SGuidClash {
 	optional int64 oid = 1;
 	optional string guid1 = 2;
 	optional string guid2 = 3;
-	optional int64 revision1Id = 4;
-	optional int64 revision2Id = 5;
+	optional int64 revision2Id = 4;
+	optional int64 revision1Id = 5;
 	optional string name1 = 6;
 	optional string name2 = 7;
 	optional string type1 = 8;
@@ -1346,8 +997,8 @@ message SEidClash {
 	optional int64 oid = 1;
 	optional int64 eid2 = 2;
 	optional int64 eid1 = 3;
-	optional int64 revision1Id = 4;
-	optional int64 revision2Id = 5;
+	optional int64 revision2Id = 4;
+	optional int64 revision1Id = 5;
 	optional string name1 = 6;
 	optional string name2 = 7;
 	optional string type1 = 8;
@@ -1364,9 +1015,9 @@ message GetLastClashesRequest {
 }
 
 message SClash {
-	optional int64 oid = 1;
+	optional int64 revision2Id = 1;
 	optional int64 revision1Id = 2;
-	optional int64 revision2Id = 3;
+	optional int64 oid = 3;
 	optional string name1 = 4;
 	optional string name2 = 5;
 	optional string type1 = 6;
@@ -1382,6 +1033,13 @@ message BranchToNewProjectRequest {
 	optional int64 roid = 1;
 	optional string projectName = 2;
 	optional string comment = 3;
+}
+
+message SCheckinResult {
+	optional int64 revisionId = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+	optional int32 rid = 4;
 }
 
 message BranchToNewProjectResponse {
@@ -1498,9 +1156,9 @@ message GetCurrentTokenRequest {
 }
 
 message Token {
-	optional int64 expires = 1;
-	optional string tokenString = 2;
-	optional int64 expiresAsDate = 3;
+	optional string tokenString = 1;
+	optional int64 expiresAsDate = 2;
+	optional int64 expires = 3;
 }
 
 message GetCurrentTokenResponse {
@@ -1669,11 +1327,11 @@ message SUserSession {
 	optional string name = 1;
 	optional SUserType type = 2;
 	optional SAccessMethod accessMethod = 3;
-	optional int64 oid = 4;
-	optional int64 userId = 5;
-	optional string username = 6;
-	optional int64 activeSince = 7;
-	optional int64 lastActive = 8;
+	optional int64 activeSince = 4;
+	optional int64 lastActive = 5;
+	optional int64 oid = 6;
+	optional int64 userId = 7;
+	optional string username = 8;
 }
 
 message GetActiveUserSessionsResponse {
@@ -1686,10 +1344,10 @@ message GetActiveLongActionsRequest {
 
 message SLongAction {
 	optional string name = 1;
-	optional int64 oid = 2;
-	optional int64 userId = 3;
-	optional string username = 4;
-	optional string identification = 5;
+	optional string identification = 2;
+	optional int64 oid = 3;
+	optional int64 userId = 4;
+	optional string username = 5;
 	optional int64 start = 6;
 }
 
@@ -1711,9 +1369,9 @@ message SSerializer {
 	optional string extension = 3;
 	optional string contentType = 4;
 	optional string description = 5;
-	optional int64 oid = 6;
-	optional int64 guidanceProviderId = 7;
-	optional int64 settingsId = 8;
+	optional int64 guidanceProviderId = 6;
+	optional int64 settingsId = 7;
+	optional int64 oid = 8;
 }
 
 message GetAllSerializersResponse {
@@ -1736,8 +1394,8 @@ message SDeserializer {
 	optional string name = 1;
 	optional string className = 2;
 	optional string description = 3;
-	optional int64 oid = 4;
-	optional int64 settingsId = 5;
+	optional int64 settingsId = 4;
+	optional int64 oid = 5;
 }
 
 message GetEnabledDeserializersResponse {
@@ -1772,9 +1430,9 @@ message GetAllGuidanceProvidersRequest {
 message SGuidanceProvider {
 	optional string name = 1;
 	optional string className = 2;
-	optional int64 oid = 3;
-	optional int64 settingsId = 4;
-	repeated int64 serializers = 5;
+	optional int64 settingsId = 3;
+	repeated int64 serializers = 4;
+	optional int64 oid = 5;
 }
 
 message GetAllGuidanceProvidersResponse {
@@ -1950,6 +1608,163 @@ message AddFloatAttributeRequest {
 	optional float value = 4;
 }
 
+message IsSettingSendConfirmationEmailAfterRegistrationRequest {
+}
+
+message IsSettingSendConfirmationEmailAfterRegistrationResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetSettingSendConfirmationEmailAfterRegistrationRequest {
+	optional bool sendConfirmationEmailAfterRegistration = 1;
+}
+
+message GetAllNonAuthorizedProjectsOfUserRequest {
+	optional int64 uoid = 1;
+}
+
+message GetAllNonAuthorizedProjectsOfUserResponse {
+	optional string errorMessage = 1;
+	repeated SProject value = 2;
+}
+
+message GetAllNonAuthorizedUsersOfProjectRequest {
+	optional int64 poid = 1;
+}
+
+message GetAllNonAuthorizedUsersOfProjectResponse {
+	optional string errorMessage = 1;
+	repeated SUser value = 2;
+}
+
+message GetAllAuthorizedUsersOfProjectRequest {
+	optional int64 poid = 1;
+}
+
+message GetAllAuthorizedUsersOfProjectResponse {
+	optional string errorMessage = 1;
+	repeated SUser value = 2;
+}
+
+message GetAllCheckoutsOfProjectAndSubProjectsRequest {
+	optional int64 poid = 1;
+}
+
+message GetAllCheckoutsOfProjectAndSubProjectsResponse {
+	optional string errorMessage = 1;
+	repeated SCheckout value = 2;
+}
+
+message GetSettingRegistrationAdditionRequest {
+}
+
+message GetSettingRegistrationAdditionResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message SetSettingRegistrationAdditionRequest {
+	optional string registrationAddition = 1;
+}
+
+message IsSettingAllowSelfRegistrationRequest {
+}
+
+message IsSettingAllowSelfRegistrationResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetSettingAllowSelfRegistrationRequest {
+	optional bool allowSelfRegistration = 1;
+}
+
+message IsSettingAllowUsersToCreateTopLevelProjectsRequest {
+}
+
+message IsSettingAllowUsersToCreateTopLevelProjectsResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetSettingAllowUsersToCreateTopLevelProjectsRequest {
+	optional bool allowUsersToCreateTopLevelProjects = 1;
+}
+
+message IsSettingCheckinMergingEnabledRequest {
+}
+
+message IsSettingCheckinMergingEnabledResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetSettingCheckinMergingEnabledRequest {
+	optional bool checkinMergingEnabled = 1;
+}
+
+message IsSettingShowVersionUpgradeAvailableRequest {
+}
+
+message IsSettingShowVersionUpgradeAvailableResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetSettingShowVersionUpgradeAvailableRequest {
+	optional bool showVersionUpgradeAvailable = 1;
+}
+
+message GetAllSerializerPluginDescriptorsRequest {
+}
+
+message SSerializerPluginDescriptor {
+	optional string pluginClassName = 1;
+	optional string defaultName = 2;
+	optional string defaultExtension = 3;
+	optional string defaultContentType = 4;
+	optional int64 oid = 5;
+}
+
+message GetAllSerializerPluginDescriptorsResponse {
+	optional string errorMessage = 1;
+	repeated SSerializerPluginDescriptor value = 2;
+}
+
+message GetSerializerPluginDescriptorRequest {
+	optional string type = 1;
+}
+
+message GetSerializerPluginDescriptorResponse {
+	optional string errorMessage = 1;
+	optional SSerializerPluginDescriptor value = 2;
+}
+
+message GetAllGuidanceProviderPluginDescriptorsRequest {
+}
+
+message SGuidanceProviderPluginDescriptor {
+	optional string className = 1;
+	optional int64 oid = 2;
+}
+
+message GetAllGuidanceProviderPluginDescriptorsResponse {
+	optional string errorMessage = 1;
+	repeated SGuidanceProviderPluginDescriptor value = 2;
+}
+
+message CheckoutRequest {
+	optional int64 roid = 1;
+	optional string formatIdentifier = 2;
+	optional bool sync = 3;
+}
+
+message CheckoutResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
 message AddIntegerAttributeRequest {
 	optional int64 oid = 1;
 	optional string className = 2;
@@ -1996,15 +1811,201 @@ message SetHttpCallbackRequest {
 	optional string address = 2;
 }
 
-message IsSettingSendConfirmationEmailAfterRegistrationRequest {
+message CheckinSyncRequest {
+	optional int64 poid = 1;
+	optional string comment = 2;
+	optional string deserializerName = 3;
+	optional int64 fileSize = 4;
+	optional bytes ifcFile = 5;
+	optional bool merge = 6;
 }
 
-message IsSettingSendConfirmationEmailAfterRegistrationResponse {
+message CheckinSyncResponse {
+	optional string errorMessage = 1;
+	optional SCheckinResult value = 2;
+}
+
+message AddUserRequest {
+	optional string username = 1;
+	optional string name = 2;
+	optional SUserType type = 3;
+	optional bool selfRegistration = 4;
+}
+
+message AddUserResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message DownloadRequest {
+	optional int64 roid = 1;
+	optional string formatIdentifier = 2;
+	optional bool sync = 3;
+}
+
+message DownloadResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
+message LoginRequest {
+	optional string username = 1;
+	optional string password = 2;
+}
+
+message LoginResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
 }
 
-message SetSettingSendConfirmationEmailAfterRegistrationRequest {
-	optional bool sendConfirmationEmailAfterRegistration = 1;
+message AutologinRequest {
+	optional string username = 1;
+	optional string hash = 2;
+}
+
+message AutologinResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message PingRequest {
+	optional string in = 1;
+}
+
+message PingResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message CheckinAsyncRequest {
+	optional int64 poid = 1;
+	optional string comment = 2;
+	optional string deserializerName = 3;
+	optional int64 fileSize = 4;
+	optional bytes ifcFile = 5;
+	optional bool merge = 6;
+}
+
+message CheckinAsyncResponse {
+	optional string errorMessage = 1;
+	optional SCheckinResult value = 2;
+}
+
+message AddProjectRequest {
+	optional string projectName = 1;
+}
+
+message AddProjectResponse {
+	optional string errorMessage = 1;
+	optional SProject value = 2;
+}
+
+message DeleteUserRequest {
+	optional int64 uoid = 1;
+}
+
+message DeleteUserResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message GetAllUsersRequest {
+}
+
+message GetAllUsersResponse {
+	optional string errorMessage = 1;
+	repeated SUser value = 2;
+}
+
+message GetRevisionRequest {
+	optional int64 roid = 1;
+}
+
+message GetRevisionResponse {
+	optional string errorMessage = 1;
+	optional SRevision value = 2;
+}
+
+message LogoutRequest {
+}
+
+message UndeleteUserRequest {
+	optional int64 uoid = 1;
+}
+
+message UndeleteUserResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message GetGeoTagRequest {
+	optional int64 goid = 1;
+}
+
+message SGeoTag {
+	repeated int64 projects = 1;
+	optional float directionAngle = 2;
+	optional int64 oid = 3;
+	optional float y = 4;
+	optional float x = 5;
+	optional float z = 6;
+	optional int32 epsg = 7;
+}
+
+message GetGeoTagResponse {
+	optional string errorMessage = 1;
+	optional SGeoTag value = 2;
+}
+
+message UpdateGeoTagRequest {
+	optional SGeoTag sGeoTag = 1;
+}
+
+message IsLoggedInRequest {
+}
+
+message IsLoggedInResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message GetLogsRequest {
+}
+
+message SLogAction {
+	optional int64 date = 1;
+	optional SAccessMethod accessMethod = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+}
+
+message GetLogsResponse {
+	optional string errorMessage = 1;
+	repeated SLogAction value = 2;
+}
+
+message EnablePluginRequest {
+	optional string unknown = 1;
+}
+
+message RemoveObjectRequest {
+	optional string className = 1;
+	optional int64 oid = 2;
+}
+
+message SetReferenceRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string referenceName = 3;
+	optional int64 referenceOid = 4;
+	optional string referenceClassName = 5;
+}
+
+message AddReferenceRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string referenceName = 3;
+	optional int64 referenceOid = 4;
+	optional string referenceClassName = 5;
 }
 

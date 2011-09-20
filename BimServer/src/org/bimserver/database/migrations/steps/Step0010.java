@@ -5,7 +5,6 @@ import javax.activation.DataHandler;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
@@ -162,11 +161,6 @@ public class Step0010 extends Migration {
 		schema.createEEnumLiteral(accessMethodEnum, "PROTOCOL_BUFFERS");
 	}
 
-	private EAnnotation createEmbedsReference() {
-		EAnnotation embedsReferenceAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		embedsReferenceAnnotation.setSource("embedsreference");
-		return embedsReferenceAnnotation;
-	}
 
 	@Override
 	public String getDescription() {

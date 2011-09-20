@@ -75,7 +75,8 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				newRevisionAdded.setExecutor(user);
 				newRevisionAdded.setRevision(revision);
 				newRevisionAdded.setAccessMethod(createCheckinAction.getAccessMethod());
-				bimServer.getNotificationsManager().notify(newRevisionAdded);
+
+//				bimServer.getNotificationsManager().notify(newRevisionAdded);
 			}
 			startClashDetection(session);
 		} catch (OutOfMemoryError e) {

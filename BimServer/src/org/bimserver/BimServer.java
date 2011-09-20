@@ -1,17 +1,14 @@
 package org.bimserver;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Executors;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
@@ -46,6 +43,8 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.notifications.NotificationsManager;
+import org.bimserver.pb.server.ProtocolBuffersServer;
+import org.bimserver.pb.server.ServiceFactoryRegistry;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
@@ -60,7 +59,6 @@ import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.bimserver.templating.TemplateEngine;
@@ -70,13 +68,6 @@ import org.bimserver.webservices.Service;
 import org.bimserver.webservices.ServiceInterfaceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.protobuf.BlockingService;
-import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
-import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
-import com.google.protobuf.Descriptors.FileDescriptor;
-import com.googlecode.protobuf.socketrpc.RpcServer;
-import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 
 /*
  * Main class to start a BIMserver
@@ -106,8 +97,6 @@ public class BimServer {
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
 	private final String classPath;
-
-	private RpcServer protocolBuffersRpcServer;
 
 	public BimServer(File homeDir, ResourceFetcher resourceFetcher) {
 		this(homeDir, resourceFetcher, System.getProperty("java.class.path"));
@@ -232,7 +221,16 @@ public class BimServer {
 			serverInfo.setErrorMessage("Inconsistent models");
 		}
 
-		notificationsManager = new NotificationsManager(this);
+		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
+		try {
+			protocolBuffersMetaData.load(resourceFetcher.getResource("service.desc"));
+			protocolBuffersMetaData.load(resourceFetcher.getResource("notification.desc"));
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		
+		notificationsManager = new NotificationsManager(this, protocolBuffersMetaData);
+		notificationsManager.start();
 
 		settingsManager = new SettingsManager(bimDatabase);
 		serverInfo.init(this);
@@ -278,15 +276,12 @@ public class BimServer {
 		bimScheduler = new JobScheduler(this);
 		bimScheduler.start();
 
-		protocolBuffersRpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
-
 		try {
-			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
-			protocolBuffersMetaData.load(resourceFetcher.getFile("service.desc"));
-			final ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData);
-			BlockingService blockingService = new ProtocolBuffersBlockingService(protocolBuffersMetaData, reflectiveRpcChannel);
-			protocolBuffersRpcServer.registerBlockingService(blockingService);
-			protocolBuffersRpcServer.startServer();
+			ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
+			serviceFactoryRegistry.registerServiceFactory(serviceFactory);
+			ProtocolBuffersServer protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry);
+			protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData));
+			protocolBuffersServer.start();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
