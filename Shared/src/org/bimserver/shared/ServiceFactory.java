@@ -4,4 +4,5 @@ import org.bimserver.models.log.AccessMethod;
 
 public interface ServiceFactory {
 	Object newService(AccessMethod accessMethod);
+	String getName();
 }

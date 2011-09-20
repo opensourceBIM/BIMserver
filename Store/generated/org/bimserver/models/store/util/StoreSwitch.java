@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -375,6 +376,26 @@ public class StoreSwitch<T> extends Switch<T> {
 			case StorePackage.LONG_ACTION_STATE: {
 				LongActionState longActionState = (LongActionState)theEObject;
 				T result = caseLongActionState(longActionState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.NOTIFICATION: {
+				Notification notification = (Notification)theEObject;
+				T result = caseNotification(notification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.NEW_PROJECT_NOTIFICATION: {
+				NewProjectNotification newProjectNotification = (NewProjectNotification)theEObject;
+				T result = caseNewProjectNotification(newProjectNotification);
+				if (result == null) result = caseNotification(newProjectNotification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.NEW_REVISION_NOTIFICATION: {
+				NewRevisionNotification newRevisionNotification = (NewRevisionNotification)theEObject;
+				T result = caseNewRevisionNotification(newRevisionNotification);
+				if (result == null) result = caseNotification(newRevisionNotification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1024,6 +1045,51 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLongActionState(LongActionState object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Notification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNotification(Notification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>New Project Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>New Project Notification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNewProjectNotification(NewProjectNotification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>New Revision Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>New Revision Notification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNewRevisionNotification(NewRevisionNotification object) {
 		return null;
 	}
 

@@ -43,6 +43,9 @@ import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.NewProjectNotification;
+import org.bimserver.models.store.NewRevisionNotification;
+import org.bimserver.models.store.Notification;
 import org.bimserver.models.store.ObjectAdded;
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.ObjectRemoved;
@@ -380,6 +383,27 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EClass longActionStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass notificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass newProjectNotificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass newRevisionNotificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2682,6 +2706,51 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNotification() {
+		return notificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNewProjectNotification() {
+		return newProjectNotificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewProjectNotification_Project() {
+		return (EReference)newProjectNotificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNewRevisionNotification() {
+		return newRevisionNotificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewRevisionNotification_Revision() {
+		return (EReference)newRevisionNotificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUserType() {
 		return userTypeEEnum;
 	}
@@ -3069,6 +3138,14 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(longActionStateEClass, LONG_ACTION_STATE__PROGRESS);
 		createEAttribute(longActionStateEClass, LONG_ACTION_STATE__STATE);
 
+		notificationEClass = createEClass(NOTIFICATION);
+
+		newProjectNotificationEClass = createEClass(NEW_PROJECT_NOTIFICATION);
+		createEReference(newProjectNotificationEClass, NEW_PROJECT_NOTIFICATION__PROJECT);
+
+		newRevisionNotificationEClass = createEClass(NEW_REVISION_NOTIFICATION);
+		createEReference(newRevisionNotificationEClass, NEW_REVISION_NOTIFICATION__REVISION);
+
 		// Create enums
 		userTypeEEnum = createEEnum(USER_TYPE);
 		checkinStateEEnum = createEEnum(CHECKIN_STATE);
@@ -3123,6 +3200,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		objectAddedEClass.getESuperTypes().add(this.getCompareItem());
 		objectRemovedEClass.getESuperTypes().add(this.getCompareItem());
 		objectModifiedEClass.getESuperTypes().add(this.getCompareItem());
+		newProjectNotificationEClass.getESuperTypes().add(this.getNotification());
+		newRevisionNotificationEClass.getESuperTypes().add(this.getNotification());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3407,6 +3486,14 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEClass(longActionStateEClass, LongActionState.class, "LongActionState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLongActionState_Progress(), ecorePackage.getEInt(), "progress", null, 0, 1, LongActionState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLongActionState_State(), this.getActionState(), "state", null, 0, 1, LongActionState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(notificationEClass, Notification.class, "Notification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(newProjectNotificationEClass, NewProjectNotification.class, "NewProjectNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNewProjectNotification_Project(), this.getProject(), null, "project", null, 0, 1, NewProjectNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(newRevisionNotificationEClass, NewRevisionNotification.class, "NewRevisionNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNewRevisionNotification_Revision(), this.getRevision(), null, "revision", null, 0, 1, NewRevisionNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(userTypeEEnum, UserType.class, "UserType");

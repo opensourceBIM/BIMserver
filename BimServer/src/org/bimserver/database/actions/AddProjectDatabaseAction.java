@@ -6,11 +6,13 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.PostCommitAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewProjectAdded;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.NewProjectNotification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.StoreFactory;
@@ -84,7 +86,9 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
-				bimServer.getNotificationsManager().notify(newProjectAdded);
+				NewProjectNotification newProjectNotification = StoreFactory.eINSTANCE.createNewProjectNotification();
+				newProjectNotification.setProject(project);
+				bimServer.getNotificationsManager().notify(newProjectNotification);
 			}
 		});
 		project.setId(getDatabaseSession().newPid());

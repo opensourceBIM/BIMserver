@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.HttpNotificationsClient;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.web.LocalDevBimWebServerStarter;
 import org.junit.AfterClass;
@@ -46,13 +47,15 @@ public class TestNotifications {
 		bimServerClient.connectProtocolBuffers("localhost", 8020);
 		try {
 			bimServerClient.getServiceInterface().login("admin@bimserver.org", "admin");
-			bimServerClient.getServiceInterface().addProject("test12345");
+			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost");
+			SProject addProject = bimServerClient.getServiceInterface().addProject("test12345");
+			System.out.println(addProject.getName());
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		}
 		
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

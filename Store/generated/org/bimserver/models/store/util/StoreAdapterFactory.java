@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -282,6 +283,18 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLongActionState(LongActionState object) {
 				return createLongActionStateAdapter();
+			}
+			@Override
+			public Adapter caseNotification(Notification object) {
+				return createNotificationAdapter();
+			}
+			@Override
+			public Adapter caseNewProjectNotification(NewProjectNotification object) {
+				return createNewProjectNotificationAdapter();
+			}
+			@Override
+			public Adapter caseNewRevisionNotification(NewRevisionNotification object) {
+				return createNewRevisionNotificationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -902,6 +915,48 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLongActionStateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Notification <em>Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Notification
+	 * @generated
+	 */
+	public Adapter createNotificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.NewProjectNotification <em>New Project Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.NewProjectNotification
+	 * @generated
+	 */
+	public Adapter createNewProjectNotificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.NewRevisionNotification <em>New Revision Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.NewRevisionNotification
+	 * @generated
+	 */
+	public Adapter createNewRevisionNotificationAdapter() {
 		return null;
 	}
 

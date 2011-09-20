@@ -9,42 +9,38 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.util.ByteArrayDataSource;
 
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.EnumValueDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
-import com.google.protobuf.Descriptors.MethodDescriptor;
+import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;
-import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
 
-public class ReflectiveRpcChannel extends ProtocolBuffersConverter implements BlockingRpcChannel {
+public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final ServiceFactory serviceFactory;
+	private final Object service;
 
-	public ReflectiveRpcChannel(ServiceFactory serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData) {
-		this.serviceFactory = serviceFactory;
+	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData) {
+		this.service = service;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public Message callBlockingMethod(MethodDescriptor methodDescriptor, RpcController controller, Message request, Message responsePrototype) throws ServiceException {
-		Object service = serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS);
-		FieldDescriptor errorMessageField = protocolBuffersMetaData.getMessageDescriptor(responsePrototype.getDescriptorForType().getName()).getField("errorMessage");
+	public Message callBlockingMethod(MethodDescriptorContainer methodDescriptor, Message request) throws ServiceException {
+		FieldDescriptor errorMessageField = methodDescriptor.getOutputField("errorMessage");
+		DynamicMessage response = DynamicMessage.getDefaultInstance(methodDescriptor.getOutputDescriptor());
 		Class<?> clazz = service.getClass();
-		Descriptor inputType = methodDescriptor.getInputType();
+		Descriptor inputType = methodDescriptor.getInputDescriptor();
 		Class<?>[] parameterClasses = new Class[inputType.getFields().size()];
 		int ci = 0;
 		for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
@@ -71,11 +67,11 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter implements Bl
 				i++;
 			}
 			Object result = method.invoke(service, arguments);
-			Builder builder = responsePrototype.newBuilderForType();
-			if (methodDescriptor.getOutputType().getName().equals("VoidResponse")) {
+			Builder builder = response.newBuilderForType();
+			if (methodDescriptor.getOutputDescriptor().getName().equals("VoidResponse")) {
 				builder.setField(errorMessageField, "OKE");
 			} else {
-				FieldDescriptor valueField = protocolBuffersMetaData.getMessageDescriptor(responsePrototype.getDescriptorForType().getName()).getField("value");
+				FieldDescriptor valueField = protocolBuffersMetaData.getMessageDescriptor(response.getDescriptorForType().getName()).getField("value");
 				if (result != null) {
 					if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
 						builder.setField(valueField, result);
@@ -96,13 +92,13 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter implements Bl
 			}
 			return builder.build();
 		} catch (InvocationTargetException e) {
-			Builder errorMessage = responsePrototype.newBuilderForType();
+			Builder errorMessage = response.newBuilderForType();
 			e.getTargetException().printStackTrace();
 			errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
 			return errorMessage.build();
 		} catch (Exception e) {
 			LOGGER.error("", e);
-			Builder errorMessage = responsePrototype.newBuilderForType();
+			Builder errorMessage = response.newBuilderForType();
 			if (e.getMessage() != null) {
 				errorMessage.setField(errorMessageField, e.getMessage());
 			} else {

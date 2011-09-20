@@ -2841,6 +2841,81 @@ public interface StorePackage extends EPackage {
 	int LONG_ACTION_STATE_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.NotificationImpl <em>Notification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.NotificationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotification()
+	 * @generated
+	 */
+	int NOTIFICATION = 43;
+
+	/**
+	 * The number of structural features of the '<em>Notification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.NewProjectNotificationImpl <em>New Project Notification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.NewProjectNotificationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewProjectNotification()
+	 * @generated
+	 */
+	int NEW_PROJECT_NOTIFICATION = 44;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_PROJECT_NOTIFICATION__PROJECT = NOTIFICATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>New Project Notification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_PROJECT_NOTIFICATION_FEATURE_COUNT = NOTIFICATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.NewRevisionNotificationImpl <em>New Revision Notification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.NewRevisionNotificationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewRevisionNotification()
+	 * @generated
+	 */
+	int NEW_REVISION_NOTIFICATION = 45;
+
+	/**
+	 * The feature id for the '<em><b>Revision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_REVISION_NOTIFICATION__REVISION = NOTIFICATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>New Revision Notification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_REVISION_NOTIFICATION_FEATURE_COUNT = NOTIFICATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2848,7 +2923,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 43;
+	int USER_TYPE = 46;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -2858,7 +2933,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 44;
+	int CHECKIN_STATE = 47;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -2868,7 +2943,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 45;
+	int SI_PREFIX = 48;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -2878,7 +2953,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 46;
+	int OBJECT_STATE = 49;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -2888,7 +2963,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 47;
+	int MERGE_IDENTIFIER = 50;
 
 
 	/**
@@ -2899,7 +2974,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 48;
+	int COMPARE_IDENTIFIER = 51;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -2909,7 +2984,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 49;
+	int COMPARE_TYPE = 52;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -2919,7 +2994,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 50;
+	int ACTION_STATE = 53;
 
 
 	/**
@@ -2930,7 +3005,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 51;
+	int DATA_HANDLER = 54;
 
 
 	/**
@@ -5531,6 +5606,58 @@ public interface StorePackage extends EPackage {
 	EAttribute getLongActionState_State();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Notification <em>Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Notification</em>'.
+	 * @see org.bimserver.models.store.Notification
+	 * @generated
+	 */
+	EClass getNotification();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.NewProjectNotification <em>New Project Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>New Project Notification</em>'.
+	 * @see org.bimserver.models.store.NewProjectNotification
+	 * @generated
+	 */
+	EClass getNewProjectNotification();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewProjectNotification#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.store.NewProjectNotification#getProject()
+	 * @see #getNewProjectNotification()
+	 * @generated
+	 */
+	EReference getNewProjectNotification_Project();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.NewRevisionNotification <em>New Revision Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>New Revision Notification</em>'.
+	 * @see org.bimserver.models.store.NewRevisionNotification
+	 * @generated
+	 */
+	EClass getNewRevisionNotification();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewRevisionNotification#getRevision <em>Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Revision</em>'.
+	 * @see org.bimserver.models.store.NewRevisionNotification#getRevision()
+	 * @see #getNewRevisionNotification()
+	 * @generated
+	 */
+	EReference getNewRevisionNotification_Revision();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7648,6 +7775,52 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LONG_ACTION_STATE__STATE = eINSTANCE.getLongActionState_State();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NotificationImpl <em>Notification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.NotificationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotification()
+		 * @generated
+		 */
+		EClass NOTIFICATION = eINSTANCE.getNotification();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NewProjectNotificationImpl <em>New Project Notification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.NewProjectNotificationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewProjectNotification()
+		 * @generated
+		 */
+		EClass NEW_PROJECT_NOTIFICATION = eINSTANCE.getNewProjectNotification();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_PROJECT_NOTIFICATION__PROJECT = eINSTANCE.getNewProjectNotification_Project();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NewRevisionNotificationImpl <em>New Revision Notification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.NewRevisionNotificationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewRevisionNotification()
+		 * @generated
+		 */
+		EClass NEW_REVISION_NOTIFICATION = eINSTANCE.getNewRevisionNotification();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_REVISION_NOTIFICATION__REVISION = eINSTANCE.getNewRevisionNotification_Revision();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

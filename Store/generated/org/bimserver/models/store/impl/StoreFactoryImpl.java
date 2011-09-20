@@ -8,6 +8,7 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinState;
@@ -155,6 +156,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.COMPARE_CONTAINER: return (EObject)createCompareContainer();
 			case StorePackage.COMPARE_RESULT: return (EObject)createCompareResult();
 			case StorePackage.LONG_ACTION_STATE: return (EObject)createLongActionState();
+			case StorePackage.NOTIFICATION: return (EObject)createNotification();
+			case StorePackage.NEW_PROJECT_NOTIFICATION: return (EObject)createNewProjectNotification();
+			case StorePackage.NEW_REVISION_NOTIFICATION: return (EObject)createNewRevisionNotification();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -650,6 +654,36 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public LongActionState createLongActionState() {
 		LongActionStateImpl longActionState = new LongActionStateImpl();
 		return longActionState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Notification createNotification() {
+		NotificationImpl notification = new NotificationImpl();
+		return notification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NewProjectNotification createNewProjectNotification() {
+		NewProjectNotificationImpl newProjectNotification = new NewProjectNotificationImpl();
+		return newProjectNotification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NewRevisionNotification createNewRevisionNotification() {
+		NewRevisionNotificationImpl newRevisionNotification = new NewRevisionNotificationImpl();
+		return newRevisionNotification;
 	}
 
 	/**

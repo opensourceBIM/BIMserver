@@ -413,6 +413,33 @@ public interface StoreFactory extends EFactory {
 	LongActionState createLongActionState();
 
 	/**
+	 * Returns a new object of class '<em>Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Notification</em>'.
+	 * @generated
+	 */
+	Notification createNotification();
+
+	/**
+	 * Returns a new object of class '<em>New Project Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>New Project Notification</em>'.
+	 * @generated
+	 */
+	NewProjectNotification createNewProjectNotification();
+
+	/**
+	 * Returns a new object of class '<em>New Revision Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>New Revision Notification</em>'.
+	 * @generated
+	 */
+	NewRevisionNotification createNewRevisionNotification();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

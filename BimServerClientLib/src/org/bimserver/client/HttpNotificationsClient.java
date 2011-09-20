@@ -31,13 +31,19 @@ public class HttpNotificationsClient extends NotificationsClient {
 			HttpServer server = HttpServer.create();
 			HttpHandler handler = new HttpHandler() {
 				public void handle(HttpExchange exchange) throws IOException {
-					ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(new ServiceFactory() {
+					ServiceFactory service = new ServiceFactory() {
 						
 						@Override
 						public Object newService(AccessMethod accessMethod) {
 							return new NotifierImpl();
 						}
-					}, protocolBuffersMetaData);
+
+						@Override
+						public String getName() {
+							return "NotifierInterface";
+						}
+					};
+					ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(service, protocolBuffersMetaData);
 
 					InputStream inputStream = exchange.getRequestBody();
 					DataInputStream dis = new DataInputStream(inputStream);
@@ -47,8 +53,7 @@ public class HttpNotificationsClient extends NotificationsClient {
 
 					DynamicMessage request = DynamicMessage.parseFrom(methodDescriptorContainer.getInputDescriptor(), dis);
 					try {
-						Message response = reflectiveRpcChannel.callBlockingMethod(methodDescriptorContainer.getMethodDescriptor(), null, request,
-								DynamicMessage.getDefaultInstance(methodDescriptorContainer.getOutputDescriptor()));
+						Message response = reflectiveRpcChannel.callBlockingMethod(methodDescriptorContainer, request);
 						exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.getSerializedSize());
 						response.writeTo(exchange.getResponseBody());
 					} catch (ServiceException e) {

@@ -8,7 +8,6 @@ import java.util.Set;
 
 import org.bimserver.MetaDataManager;
 import org.bimserver.database.actions.BimDatabaseAction;
-import org.bimserver.database.actions.PostCommitAction;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;

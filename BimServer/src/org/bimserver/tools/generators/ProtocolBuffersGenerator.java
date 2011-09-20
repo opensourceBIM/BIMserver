@@ -75,9 +75,9 @@ public class ProtocolBuffersGenerator {
 				}
 				out.println(sb1.toString() + ") throws org.bimserver.shared.exceptions.ServiceException {");
 				if (method.getReturnType() == void.class) {
-					out.println("\t\treflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? ", " : "") + sb2.toString() + ");");
+					out.println("\t\treflector.callMethod(\"" + serviceInterfaceClass.getSimpleName() + "\", \"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? ", " : "") + sb2.toString() + ");");
 				} else {
-					out.println("\t\treturn (" + returnType + ") reflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? (", " + sb2.toString()) : "") + ");");
+					out.println("\t\treturn (" + returnType + ") reflector.callMethod(\"" + serviceInterfaceClass.getSimpleName() + "\", \"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? (", " + sb2.toString()) : "") + ");");
 				}
 				out.println("\t}");
 			}

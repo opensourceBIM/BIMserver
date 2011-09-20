@@ -186,12 +186,14 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -291,7 +293,10 @@ public class Service implements ServiceInterface {
 				newRevisionAdded.setExecutor(action.getUserByUoid(currentUoid));
 				newRevisionAdded.setRevision(revision);
 				newRevisionAdded.setAccessMethod(action.getAccessMethod());
-				bimServer.getNotificationsManager().notify(newRevisionAdded);
+
+				NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
+				newRevisionNotification.setRevision(revision);
+				bimServer.getNotificationsManager().notify(newRevisionNotification);
 			}
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(concreteRevision.getId());

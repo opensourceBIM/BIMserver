@@ -1,40 +1,27 @@
 package org.bimserver.shared.pb;
 
-import java.io.IOException;
-import java.net.URL;
-
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 
-import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.DynamicMessage.Builder;
 import com.google.protobuf.Message;
 import com.google.protobuf.ServiceException;
-import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
 public class Reflector extends ProtocolBuffersConverter {
 
-	private final BlockingRpcChannel rpcChannel;
-	private final SocketRpcController rpcController;
-	private ProtocolBuffersMetaData protocolBuffersMetaData;
-	private String interfaceName;
+	private final ProtocolBuffersMetaData protocolBuffersMetaData;
+	private final Channel channel;
 
-	public Reflector(URL desc, SocketRpcController rpcController, BlockingRpcChannel rpcChannel) {
-		this.rpcController = rpcController;
-		this.rpcChannel = rpcChannel;
-		try {
-			protocolBuffersMetaData = new ProtocolBuffersMetaData();
-			interfaceName = protocolBuffersMetaData.load(desc);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public Reflector(ProtocolBuffersMetaData protocolBuffersMetaData, Channel channel) {
+		this.protocolBuffersMetaData = protocolBuffersMetaData;
+		this.channel = channel;
 	}
 
-	public Object callMethod(String methodName, Object... args) throws org.bimserver.shared.exceptions.ServiceException {
+	public Object callMethod(String interfaceName, String methodName, Object... args) throws org.bimserver.shared.exceptions.ServiceException {
 		MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
 		Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
 		Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
@@ -44,7 +31,7 @@ public class Reflector extends ProtocolBuffersConverter {
 		}
 		DynamicMessage message = builder.build();
 		try {
-			Message result = rpcChannel.callBlockingMethod(methodDescriptorContainer.getMethodDescriptor(), rpcController, message, DynamicMessage.getDefaultInstance(methodDescriptorContainer.getOutputDescriptor()));
+			Message result = channel.callBlockingMethod(methodDescriptorContainer, message);
 			String errorMessage = (String) result.getField(methodDescriptorContainer.getOutputField("errorMessage"));
 			if (errorMessage.equals("OKE")) {
 				if (result.getDescriptorForType().getName().equals("VoidResponse")) {
