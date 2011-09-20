@@ -216,7 +216,7 @@ public class Service implements ServiceInterface {
 	private static final Integer DEFAULT_LOGIN_ERROR_TIMEOUT = 3000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
 	public static final Integer DEADLOCK_RETRIES = 10;
-	private final ServiceFactory serviceFactory;
+	private final ServiceInterfaceFactory serviceFactory;
 
 	private final BimServer bimServer;
 	private final AccessMethod accessMethod;
@@ -230,7 +230,7 @@ public class Service implements ServiceInterface {
 
 	private SConverter converter = new SConverter();
 
-	public Service(BimServer bimServer, AccessMethod accessMethod, ServiceFactory serviceFactory) {
+	public Service(BimServer bimServer, AccessMethod accessMethod, ServiceInterfaceFactory serviceFactory) {
 		this.accessMethod = accessMethod;
 		this.serviceFactory = serviceFactory;
 		this.bimServer = bimServer;

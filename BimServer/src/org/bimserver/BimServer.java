@@ -67,7 +67,7 @@ import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.Service;
-import org.bimserver.webservices.ServiceFactory;
+import org.bimserver.webservices.ServiceInterfaceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -99,7 +99,7 @@ public class BimServer {
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
 	private ServerInfo serverInfo = new ServerInfo();
-	private ServiceFactory serviceFactory;
+	private ServiceInterfaceFactory serviceFactory;
 	private VersionChecker versionChecker;
 	private TemplateEngine templateEngine;
 	private ClashDetectionCache clashDetectionCache;
@@ -263,7 +263,7 @@ public class BimServer {
 		diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
 
 		mergerFactory = new MergerFactory(settingsManager);
-		serviceFactory = new ServiceFactory(this);
+		serviceFactory = new ServiceInterfaceFactory(this);
 		setSystemService(serviceFactory.newService(AccessMethod.INTERNAL));
 		try {
 			if (!((Service) getSystemService()).loginAsSystem()) {
@@ -281,7 +281,8 @@ public class BimServer {
 		protocolBuffersRpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
 
 		try {
-			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData(resourceFetcher.getFile("service.desc"));
+			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
+			protocolBuffersMetaData.load(resourceFetcher.getFile("service.desc"));
 			final ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData);
 			BlockingService blockingService = new ProtocolBuffersBlockingService(protocolBuffersMetaData, reflectiveRpcChannel);
 			protocolBuffersRpcServer.registerBlockingService(blockingService);
@@ -524,7 +525,7 @@ public class BimServer {
 		return serverInfo;
 	}
 
-	public ServiceFactory getServiceFactory() {
+	public ServiceInterfaceFactory getServiceFactory() {
 		return serviceFactory;
 	}
 

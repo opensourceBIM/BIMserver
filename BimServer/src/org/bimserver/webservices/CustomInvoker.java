@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 public class CustomInvoker extends AbstractInvoker {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomInvoker.class);
-	private final ServiceFactory serviceFactory;
+	private final ServiceInterfaceFactory serviceFactory;
 
-	public CustomInvoker(ServiceFactory serviceFactory) {
+	public CustomInvoker(ServiceInterfaceFactory serviceFactory) {
 		this.serviceFactory = serviceFactory;
 	}
 

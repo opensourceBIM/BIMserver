@@ -1,8 +1,12 @@
 package org.bimserver.shared.pb;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -97,24 +101,39 @@ public class ProtocolBuffersMetaData {
 	
 	private final Map<String, ServiceDescriptorContainer> serviceDescriptors = new HashMap<String, ServiceDescriptorContainer>();
 	private final Map<String, MessageDescriptorContainer> messageDescriptors = new HashMap<String, MessageDescriptorContainer>();
+
+	private final List<FileDescriptor> loaded = new ArrayList<Descriptors.FileDescriptor>();
 	
-	public ProtocolBuffersMetaData(URL resource) {
+	public String load(InputStream inputStream) {
 		try {
-			FileDescriptorSet descriptorSet = FileDescriptorSet.parseFrom(resource.openStream());
+			FileDescriptorSet descriptorSet = FileDescriptorSet.parseFrom(inputStream);
 			List<FileDescriptorProto> fileList = descriptorSet.getFileList();
 			FileDescriptorProto fileDescriptorProto = fileList.get(0);
-			FileDescriptor fileDescriptor = FileDescriptor.buildFrom(fileDescriptorProto, new FileDescriptor[]{});
+			FileDescriptor[] ar = new FileDescriptor[loaded.size()];
+			loaded.toArray(ar);
+			FileDescriptor fileDescriptor = FileDescriptor.buildFrom(fileDescriptorProto, ar);
+			loaded.add(fileDescriptor);
+			for (Descriptor descriptor : fileDescriptor.getMessageTypes()) {
+				this.messageDescriptors.put(descriptor.getName(), new MessageDescriptorContainer(descriptor));
+			}
 			for (ServiceDescriptor serviceDescriptor : fileDescriptor.getServices()) {
 				this.serviceDescriptors.put(serviceDescriptor.getName(), new ServiceDescriptorContainer(serviceDescriptor));
+				return serviceDescriptor.getName();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (DescriptorValidationException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
-	public ProtocolBuffersMetaData(File file) {
+	public String load(URL url) throws IOException {
+		return load(url.openStream());
+	}
+	
+	public void load(File file) throws FileNotFoundException {
+		load(new FileInputStream(file));
 	}
 
 	public Collection<MethodDescriptorContainer> getMethods(String serviceName) {

@@ -1,13 +1,12 @@
 package org.bimserver.pb.server;
 
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
-import org.bimserver.webservices.ServiceFactory;
+import org.bimserver.webservices.ServiceInterfaceFactory;
 
 public abstract class ServiceReflectiveRpcChannel extends ReflectiveRpcChannel {
 
-	public ServiceReflectiveRpcChannel(ServiceFactory serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData) {
-		super(serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS), protocolBuffersMetaData);
+	public ServiceReflectiveRpcChannel(ServiceInterfaceFactory serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData) {
+		super(serviceFactory, protocolBuffersMetaData);
 	}
 }

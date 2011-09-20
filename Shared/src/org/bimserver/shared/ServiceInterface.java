@@ -69,7 +69,6 @@ import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 
 //TODO: Document the rest of the interface
@@ -86,7 +85,7 @@ public interface ServiceInterface {
 	@Path("/ping")
 	@Produces("application/text")
 	@WebMethod(action = "ping")
-	String ping(@QueryParam("in") @WebParam(name = "in", partName = "ping.in") String in) throws ServerException;
+	String ping(@QueryParam("in") @WebParam(name = "in", partName = "ping.in") String in) throws ServiceException;
 
 	@GET
 	@Path("/login")
@@ -775,7 +774,7 @@ public interface ServiceInterface {
 			@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServiceException;
 	
 	@WebMethod(action = "getServerStartTime")
-	Date getServerStartTime() throws ServerException;
+	Date getServerStartTime() throws ServiceException;
 	
 	@WebMethod(action = "getSerializerPluginDescriptor")
 	SSerializerPluginDescriptor getSerializerPluginDescriptor(@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws ServiceException;
