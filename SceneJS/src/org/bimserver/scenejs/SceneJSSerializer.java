@@ -18,6 +18,7 @@ import org.bimserver.models.ifc2x3.IfcColourRgb;
 import org.bimserver.models.ifc2x3.IfcColumn;
 import org.bimserver.models.ifc2x3.IfcCurtainWall;
 import org.bimserver.models.ifc2x3.IfcDoor;
+import org.bimserver.models.ifc2x3.IfcElement;
 import org.bimserver.models.ifc2x3.IfcFlowSegment;
 import org.bimserver.models.ifc2x3.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3.IfcMaterial;
@@ -38,6 +39,7 @@ import org.bimserver.models.ifc2x3.IfcRailing;
 import org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
+import org.bimserver.models.ifc2x3.IfcRepresentationContext;
 import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcRoof;
 import org.bimserver.models.ifc2x3.IfcSIUnit;
@@ -189,27 +191,10 @@ public class SceneJSSerializer extends BimModelSerializer {
 				writer.writeln("data: {");
 				writer.indent();
 				
-				/*writer.writeln("extents: [[" 
-						+ sceneExtents.max[0] + "," + sceneExtents.min[1] + "," + sceneExtents.min[2] + "],["
-						+ sceneExtents.max[0] + "," + sceneExtents.max[1] + "," + sceneExtents.max[2] + "]],");*/
-				
-				writer.writeln("bounds: [" 
-						+ (sceneExtents.max[0] - sceneExtents.min[0]) + "," 
-						+ (sceneExtents.max[1] - sceneExtents.min[1]) + ","
-						+ (sceneExtents.max[2] - sceneExtents.min[2]) + "],");
-				
-				SIPrefix lengthUnitPrefix = getLengthUnitPrefix(model);
-				if (lengthUnitPrefix == null) {
-					writer.writeln("unit: \'1 meter\',");
-				} else {
-					writer.writeln("unit: \'" + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase() + "\',");
-				}
-
-				writer.writetab("ifcTypes: [");
-				for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
-					writer.print("'" + ifcObjectType + "',");
-				}
-				writer.println("]");
+				writeBounds(writer);				
+				writeUnit(writer);
+				writeIfcTree(writer);
+				writeIfcTypes(writer);
 				
 				writer.unindent();
 				writer.writeln("},");
@@ -438,10 +423,10 @@ public class SceneJSSerializer extends BimModelSerializer {
 		String material = ifcObjectType;
 		if (ifcRootObject instanceof IfcProduct) {
 			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
-
+			
 			// If this product is composed of other objects, output each object separately
 			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
-			if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
+			if (isDecomposedBy != null && !isDecomposedBy.isEmpty()) {
 				for (IfcRelDecomposes dcmp : isDecomposedBy) {
 					EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
 					for (IfcObjectDefinition relatedObject : relatedObjects) {
@@ -749,6 +734,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.writeln("type: 'name',");
 					writer.writeln("id: '" + geometryId + "',");
 					
+					
 					writer.writeln("nodes: [");
 					writer.indent();					
 					writer.writeln("{");
@@ -789,6 +775,100 @@ public class SceneJSSerializer extends BimModelSerializer {
 		
 		writer.unindent();
 		writer.writeln("},"); // lookAt
+	}
+	
+	private void writeBounds(JsWriter writer) {
+		/*writer.writeln("extents: [[" 
+		+ sceneExtents.max[0] + "," + sceneExtents.min[1] + "," + sceneExtents.min[2] + "],["
+		+ sceneExtents.max[0] + "," + sceneExtents.max[1] + "," + sceneExtents.max[2] + "]],");*/
+		
+		writer.writeln("bounds: [" 
+				+ (sceneExtents.max[0] - sceneExtents.min[0]) + "," 
+				+ (sceneExtents.max[1] - sceneExtents.min[1]) + ","
+				+ (sceneExtents.max[2] - sceneExtents.min[2]) + "],");
+	}
+	
+	private void writeUnit(JsWriter writer) {
+		SIPrefix lengthUnitPrefix = getLengthUnitPrefix(model);
+		if (lengthUnitPrefix == null) {
+			writer.writeln("unit: '1 meter',");
+		} else {
+			writer.writeln("unit: '" + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase() + "',");
+		}
+	}
+	
+	private void writeIfcTree(JsWriter writer) {
+		
+		// Output the composition of object
+		// TODO: What about other relationships?
+		//       E.g. 
+		Map<Long, IdEObject> objects = model.getObjects();
+		for (IdEObject object : objects.values()) {
+			if (object instanceof IfcProject) {
+				IfcProject project = (IfcProject) object;				
+				writer.writeln("composition: {");
+				writer.indent();
+				writer.writeln("type: 'project',");
+				writer.writeln("name: '" + project.getLongName() + "',");
+				writer.writeln("attributes: {");
+				writer.indent();
+				writer.writeln("'Description': '" + project.getDescription() + "',");
+				writer.writeln("'Representation Contexts': [");
+				writer.indent();
+				for (IfcRepresentationContext context : project.getRepresentationContexts()) {
+					writer.writeln("'" + context.getContextIdentifier() + "',");
+				}				
+				writer.unindent();
+				writer.writeln("],"); // Representation Contexts
+				writer.writeln("'Global Id': '" + project.getGlobalId().getWrappedValue() + "',");
+				writer.writeln("'Phase': '" + project.getPhase() + "',");
+				writer.unindent();
+				writer.writeln("},"); // attributes
+				writeIfcTreeDecomposedBy(writer, project);				
+				writer.unindent();
+				writer.writeln("},"); // tree
+			}
+		}
+	}
+	
+	private void writeIfcTreeDecomposedBy(JsWriter writer, IfcObjectDefinition objectDefinition) {
+		EList<IfcRelDecomposes> decomposedBy = objectDefinition.getIsDecomposedBy();
+		if (decomposedBy != null && !decomposedBy.isEmpty()) {
+			writer.writeln("children: [");
+			writer.indent();					
+			for (IfcRelDecomposes decomposes : decomposedBy) {
+				EList<IfcObjectDefinition> relatedObjects = decomposes.getRelatedObjects();
+				for (IfcObjectDefinition relatedObject : relatedObjects) {
+					writeIfcTreeObjectDefinition(writer, relatedObject);
+				}
+			}
+			writer.unindent();
+			writer.writeln("],");
+		}
+	}
+	
+	private void writeIfcTreeObjectDefinition(JsWriter writer, IfcObjectDefinition objectDefinition) {
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: '" + objectDefinition.getClass().getName() + "',");
+		writer.writeln("name: '" + objectDefinition.getName() + "',");
+		writer.writeln("attributes: {");
+		writer.indent();
+		writer.writeln("'Description': '" + objectDefinition.getDescription() + "',");
+		writer.writeln("'Global Id': '" + objectDefinition.getGlobalId().getWrappedValue() + "',");
+		writer.unindent();
+		writer.writeln("},"); // attributes
+		writeIfcTreeDecomposedBy(writer, objectDefinition);
+		writer.unindent();
+		writer.writeln("},");
+	}
+	
+	private void writeIfcTypes(JsWriter writer) {
+		writer.writetab("ifcTypes: [");
+		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
+			writer.print("'" + ifcObjectType + "',");
+		}
+		writer.println("]");	
 	}
 
 	private String fitNameForQualifiedName(String name) {
