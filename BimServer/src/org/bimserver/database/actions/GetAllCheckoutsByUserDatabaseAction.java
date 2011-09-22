@@ -29,7 +29,7 @@ public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<Set<C
 		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_User(), user);
 //		condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getCheckout_Active(), new BooleanLiteral(true)));
-		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false);
+		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false, null);
 		return CollectionUtils.mapToSet(query);
 	}
 }

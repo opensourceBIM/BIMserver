@@ -28,6 +28,6 @@ public class GetAllRevisionsByUserDatabaseAction extends BimDatabaseAction<Set<R
 	public Set<Revision> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getRevision_User(), user);
-		return CollectionUtils.mapToSet((Map<Long, Revision>) getDatabaseSession().query(condition, Revision.class, false));
+		return CollectionUtils.mapToSet((Map<Long, Revision>) getDatabaseSession().query(condition, Revision.class, false, null));
 	}
 }

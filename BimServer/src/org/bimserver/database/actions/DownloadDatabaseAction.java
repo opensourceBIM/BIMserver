@@ -14,6 +14,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
@@ -24,12 +25,14 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	private final long actingUoid;
 	private int progress;
 	private final BimServer bimServer;
+	private final GuidanceProvider guidanceProvider;
 
-	public DownloadDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long actingUoid) {
+	public DownloadDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long actingUoid, GuidanceProvider guidanceProvider) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.actingUoid = actingUoid;
+		this.guidanceProvider = guidanceProvider;
 	}
 
 	@Override
@@ -63,7 +66,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 					}
 				}
 			});
-			getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true);
+			getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, guidanceProvider);
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

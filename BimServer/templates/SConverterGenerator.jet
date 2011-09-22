@@ -146,7 +146,7 @@ public class SConverter {
 %>
 		List<<%=eReference.getEType().getName()%>> list<%=eReference.getName()%> = result.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
 		for (long oid : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
-			list<%=eReference.getName()%>.add((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), oid, false));
+			list<%=eReference.getName()%>.add((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), oid, false, null));
 		}
 <%		
 			}
@@ -157,7 +157,7 @@ public class SConverter {
 <%
 			} else {
 %>
-		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), input.get<%=StringUtils.firstUpperCase(eReference.getName())%>Id(), false));
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), input.get<%=StringUtils.firstUpperCase(eReference.getName())%>Id(), false, null));
 <%
 			}
 		}

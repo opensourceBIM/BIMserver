@@ -399,4 +399,14 @@ public class PluginManager {
 		}
 		return schemaPlugin;
 	}
+
+	public GuidanceProviderPlugin getGuidanceProviderByName(String className) {
+		Collection<GuidanceProviderPlugin> allGuidanceProviders = getAllGuidanceProviders(true);
+		for (GuidanceProviderPlugin guidanceProviderPlugin : allGuidanceProviders) {
+			if (guidanceProviderPlugin.getClass().getName().equals(className)) {
+				return guidanceProviderPlugin;
+			}
+		}
+		return null;
+	}
 }

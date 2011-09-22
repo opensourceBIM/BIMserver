@@ -72,7 +72,7 @@ public class CompileServlet extends HttpServlet {
 		}
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, loginManager.getUoid());
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, loginManager.getUoid(), null);
 			IfcModelInterface IfcModel = session.executeAndCommitAction(action, 10);
 			StringWriter out = new StringWriter();
 			queryInterface.query(IfcModel, new PrintWriter(out));

@@ -25,7 +25,7 @@ public class SetReferenceChange implements Change {
 
 	@Override
 	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false);
+		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false, null);
 		if (idEObject == null) {
 			throw new UserException("No object of type " + className + " found in project with pid " + pid);
 		}
@@ -36,7 +36,7 @@ public class SetReferenceChange implements Change {
 		if (eReference.isMany()) {
 			throw new UserException("Reference is not of type 'single'");
 		}
-		IdEObject referencedObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(referencedClassName), referenceOid, false);
+		IdEObject referencedObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(referencedClassName), referenceOid, false, null);
 		if (referencedObject == null) {
 			throw new UserException("Referenced object of type " + referencedClassName + " with oid " + referenceOid + " not found");
 		}

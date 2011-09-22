@@ -44,7 +44,7 @@ public class ClashDetectionLongAction extends LongAction {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		long roid = -1;
 		try {
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			Revision revision = project.getLastRevision();
 			revision.setState(CheckinState.SEARCHING_CLASHES);
 			roid = revision.getOid();
@@ -59,7 +59,7 @@ public class ClashDetectionLongAction extends LongAction {
 		}
 		session = bimServer.getDatabase().createSession(true);
 		try {
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
@@ -97,7 +97,7 @@ public class ClashDetectionLongAction extends LongAction {
 					while (throwable.getCause() != null) {
 						throwable = throwable.getCause();
 					}
-					Revision revision = rollBackSession.get(StorePackage.eINSTANCE.getRevision(), roid, false);
+					Revision revision = rollBackSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 					revision.setState(CheckinState.CLASHES_ERROR);
 					revision.setLastError(throwable.getMessage());
 					rollBackSession.store(revision);

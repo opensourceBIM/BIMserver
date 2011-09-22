@@ -30,7 +30,7 @@ public class GetAllDeserializersDatabaseAction extends GetAllDatabaseAction<Dese
 	@Override
 	public List<Deserializer> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getDeserializer());
-		Map<Long, Deserializer> result = getDatabaseSession().query(condition, Deserializer.class, false);
+		Map<Long, Deserializer> result = getDatabaseSession().query(condition, Deserializer.class, false, null);
 		List<Deserializer> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
 			Iterator<Deserializer> iterator = mapToList.iterator();

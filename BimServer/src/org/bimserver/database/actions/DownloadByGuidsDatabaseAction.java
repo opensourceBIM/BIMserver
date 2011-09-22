@@ -20,6 +20,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
@@ -31,13 +32,15 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final Set<Long> roids;
 	private int progress;
 	private final BimServer bimServer;
+	private final GuidanceProvider guidanceProvider;
 
-	public DownloadByGuidsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid) {
+	public DownloadByGuidsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid, GuidanceProvider guidanceProvider) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.guids = guids;
 		this.actingUoid = actingUoid;
+		this.guidanceProvider = guidanceProvider;
 	}
 
 	@Override
@@ -83,7 +86,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 					}
 				});
 				Set<Long> oids = map.get(concreteRevision);
-				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true);
+				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, guidanceProvider);
 				subModel.setDate(concreteRevision.getDate());
 				ifcModelSet.add(subModel);
 			}

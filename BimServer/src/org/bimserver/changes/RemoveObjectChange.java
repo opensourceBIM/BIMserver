@@ -23,7 +23,7 @@ public class RemoveObjectChange implements Change {
 		if (eClass == null) {
 			throw new UserException("Unknown classname " + className);
 		}
-		IdEObject idEObject = bimDatabaseSession.get(eClass, pid, rid-1, oid, false);
+		IdEObject idEObject = bimDatabaseSession.get(eClass, pid, rid-1, oid, false, null);
 		if (idEObject == null) {
 			throw new UserException("Object with oid " + oid + " not found");
 		}

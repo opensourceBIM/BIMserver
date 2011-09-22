@@ -39,6 +39,6 @@ public class GetAllUsersDatabaseAction extends BimDatabaseAction<Set<User>> {
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
-		return CollectionUtils.mapToSet((Map<Long, User>) getDatabaseSession().query(condition, User.class, false));
+		return CollectionUtils.mapToSet((Map<Long, User>) getDatabaseSession().query(condition, User.class, false, null));
 	}
 }

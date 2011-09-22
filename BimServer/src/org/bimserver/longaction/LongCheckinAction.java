@@ -50,7 +50,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 			BimDatabaseSession extraSession = bimServer.getDatabase().createSession(true);
 			try {
-				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false);
+				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false, null);
 				for (Revision r : concreteRevision.getRevisions()) {
 					Revision latest = null;
 					for (Revision r2 : r.getProject().getRevisions()) {
@@ -92,7 +92,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 					while (throwable.getCause() != null) {
 						throwable = throwable.getCause();
 					}
-					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false);
+					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
 					concreteRevision.setState(CheckinState.ERROR);
 					concreteRevision.setLastError(throwable.getMessage());
 					for (Revision revision : concreteRevision.getRevisions()) {
@@ -116,7 +116,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	}
 
 	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
-		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false);
+		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false, null);
 		Project project = concreteRevision.getProject();
 		Project mainProject = project;
 		while (mainProject.getParent() != null) {

@@ -1,17 +1,26 @@
 package org.bimserver.longaction;
 
 import org.bimserver.BimServer;
+import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
+import org.bimserver.database.query.conditions.AttributeCondition;
+import org.bimserver.database.query.conditions.Condition;
+import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction {
@@ -41,22 +50,42 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}
+		org.bimserver.plugins.guidanceproviders.GuidanceProvider guidanceProvider = null;
+		session = getBimServer().getDatabase().createReadOnlySession();
+		try {
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
+			Serializer serializer = session.querySingle(condition, Serializer.class, false, null);
+			if (serializer != null) {
+				GuidanceProvider gp = serializer.getGuidanceProvider();
+				if (gp != null) {
+					GuidanceProviderPlugin guidanceProviderPlugin = getBimServer().getPluginManager().getGuidanceProviderByName(gp.getClassName());
+					guidanceProvider = guidanceProviderPlugin.getGuidanceProvider();
+				}
+			}
+		} catch (BimDatabaseException e) {
+			e.printStackTrace();
+		} catch (BimDeadlockException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
 		session = getBimServer().getDatabase().createReadOnlySession();
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_REVISION:
-			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), currentUoid);
+			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), currentUoid, guidanceProvider);
 			break;
 		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid);
+			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid, guidanceProvider);
 			break;
 		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid);
+			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid, guidanceProvider);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadOfTypeDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getClassName(), currentUoid);
+			action = new DownloadOfTypeDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getClassName(), currentUoid, guidanceProvider);
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid);
+			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid, guidanceProvider);
 			break;
 		}
 	}

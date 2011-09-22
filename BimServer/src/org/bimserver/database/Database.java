@@ -227,7 +227,7 @@ public class Database implements BimDatabase {
 	private void fixCheckinStates(DatabaseSession databaseSession) {
 		try {
 			int fixed = 0;
-			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false);
+			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false, null);
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof Revision) {
 					Revision revision = (Revision) idEObject;
@@ -495,11 +495,6 @@ public class Database implements BimDatabase {
 
 	public RecordSizeEstimater getRecordSizeEstimater() {
 		return recordSizeEstimater;
-	}
-
-	//TODO: Implement
-	public boolean shouldIgnoreField(EClass originalQueryClass, EClass eClass, EStructuralFeature feature) {
-		return false;
 	}
 
 	public MetaDataManager getMetaDataManager() {

@@ -30,7 +30,7 @@ public class GetAllSerializersDatabaseAction extends GetAllDatabaseAction<Serial
 	@Override
 	public List<Serializer> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getSerializer());
-		Map<Long, Serializer> result = getDatabaseSession().query(condition, Serializer.class, false);
+		Map<Long, Serializer> result = getDatabaseSession().query(condition, Serializer.class, false, null);
 		List<Serializer> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
 			Iterator<Serializer> iterator = mapToList.iterator();

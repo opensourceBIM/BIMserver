@@ -28,7 +28,7 @@ public class AddReferenceChange implements Change {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false);
+		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false, null);
 		if (idEObject == null) {
 			throw new UserException("No object of type " + className + " found in project with pid " + pid);
 		}
@@ -39,7 +39,7 @@ public class AddReferenceChange implements Change {
 		if (!eReference.isMany()) {
 			throw new UserException("Reference is not of type 'many'");
 		}
-		IdEObject referencedObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(referenceClassName), referenceOid, false);
+		IdEObject referencedObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(referenceClassName), referenceOid, false, null);
 		if (referencedObject == null) {
 			throw new UserException("Referenced object of type " + referenceClassName + " with oid " + referenceOid + " not found");
 		}

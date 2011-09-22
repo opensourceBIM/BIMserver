@@ -38,7 +38,7 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 			projects.add(project);
 		}
 		Condition condition = new HasReferenceToInCondition(StorePackage.eINSTANCE.getCheckout_Project(), projects);
-		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false);
+		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false, null);
 		return CollectionUtils.mapToSet(query);
 	}
 	

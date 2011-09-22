@@ -52,7 +52,7 @@ public class EmfSerializerFactory {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
-			Serializer found = session.querySingle(condition, Serializer.class, false);
+			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(found.getClassName(), true);
 				if (serializerPlugin != null) {
@@ -97,7 +97,7 @@ public class EmfSerializerFactory {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(serializerName));
-			Serializer found = session.querySingle(condition, Serializer.class, false);
+			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found != null) {
 				return found.getExtension();
 			}

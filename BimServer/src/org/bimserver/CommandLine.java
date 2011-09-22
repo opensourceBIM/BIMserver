@@ -56,7 +56,7 @@ public class CommandLine extends Thread {
 						long roid = Long.parseLong(line.substring(9).trim());
 						BimDatabaseSession bimDatabaseSession = bimServer.getDatabase().createReadOnlySession();	
 						try {
-							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, bimDatabaseSession, AccessMethod.INTERNAL, roid, bimServer.getSystemService().getCurrentUser().getOid());
+							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, bimDatabaseSession, AccessMethod.INTERNAL, roid, bimServer.getSystemService().getCurrentUser().getOid(), null);
 							IfcModelInterface model = downloadDatabaseAction.execute();
 							System.out.println("Model size: " + model.size());
 							
