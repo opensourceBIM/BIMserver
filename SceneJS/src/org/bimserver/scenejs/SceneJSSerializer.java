@@ -855,7 +855,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private void writeIfcTreeObjectDefinition(JsWriter writer, IfcObjectDefinition objectDefinition) {
 		writer.writeln("{");
 		writer.indent();
-		writer.writeln("type: '" + objectDefinition.getClass().getName() + "',");
+		writer.writeln("type: '" + objectDefinition.getClass().getSimpleName() + "',");
 		writer.writeln("name: '" + objectDefinition.getName() + "',");
 		writer.writeln("attributes: {");
 		writer.indent();
