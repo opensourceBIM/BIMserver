@@ -338,7 +338,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			return checkout(project.getLastRevision().getOid(), formatIdentifier, sync);
 		} catch (Exception e) {
 			handleException(e);
@@ -1105,16 +1105,16 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			Revision oldRevision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
+			Revision oldRevision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 			Project oldProject = oldRevision.getProject();
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			IfcModelSet ifcModelSet = new IfcModelSet();
 			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
 				IfcModel subModel = new IfcModel();
-				session.getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true);
+				session.getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
@@ -1156,16 +1156,16 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		final BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			Revision oldRevision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
+			Revision oldRevision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 			Project oldProject = oldRevision.getProject();
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			IfcModelSet ifcModelSet = new IfcModelSet();
 			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
 				IfcModel subModel = new IfcModel();
-				session.getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true);
+				session.getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
@@ -1353,7 +1353,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 			return new ArrayList<SProject>(converter.convertToSSetProject(user.getHasRightsOn()));
 		} finally {
 			session.close();
@@ -1448,7 +1448,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			if (user.getUserType() != UserType.ADMIN) {
 				throw new UserException("Only admin users can change enabled export types");
 			}
@@ -1472,7 +1472,7 @@ public class Service implements ServiceInterface {
 		}
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			return converter.convertToSObject(user);
 		} finally {
 			session.close();
@@ -1729,8 +1729,8 @@ public class Service implements ServiceInterface {
 		SUser currentUser = getCurrentUser();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			Revision revision1 = session.get(StorePackage.eINSTANCE.getRevision(), roid1, false);
-			Revision revision2 = session.get(StorePackage.eINSTANCE.getRevision(), roid2, false);
+			Revision revision1 = session.get(StorePackage.eINSTANCE.getRevision(), roid1, false, null);
+			Revision revision2 = session.get(StorePackage.eINSTANCE.getRevision(), roid2, false, null);
 			String senderName = currentUser.getName();
 			String senderAddress = currentUser.getUsername();
 			if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
@@ -1845,7 +1845,7 @@ public class Service implements ServiceInterface {
 	private void updateLastActive(Long uoid) throws ServiceException {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 			user.setLastSeen(new Date());
 			session.store(user);
 			session.commit();
@@ -2272,7 +2272,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(transactionPid));
-			Project project = session.querySingle(condition, Project.class, false);
+			Project project = session.querySingle(condition, Project.class, false, null);
 			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(session, accessMethod, null, project.getOid(), currentUoid, "comment");
 			checkinDatabaseAction.execute();
 			for (Change change : changes) {

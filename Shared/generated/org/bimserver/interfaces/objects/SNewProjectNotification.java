@@ -1,9 +1,10 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
 
 @XmlRootElement
 public class SNewProjectNotification extends SNotification implements SBase

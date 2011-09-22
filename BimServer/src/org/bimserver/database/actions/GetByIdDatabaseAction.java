@@ -21,6 +21,6 @@ public class GetByIdDatabaseAction<T> extends BimDatabaseAction<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		return (T) getDatabaseSession().get(eClass, oid, false);
+		return (T) getDatabaseSession().get(eClass, oid, false, null);
 	}
 }

@@ -19,6 +19,6 @@ public class GetUserByUoidDatabaseAction extends BimDatabaseAction<User> {
 
 	@Override
 	public User execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		return (User) getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), uoid, false);
+		return (User) getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 	}
 }

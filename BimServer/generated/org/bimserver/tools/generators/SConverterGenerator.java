@@ -116,7 +116,7 @@ public class SConverterGenerator
   protected final String TEXT_98 = ".add((";
   protected final String TEXT_99 = ")session.get(";
   protected final String TEXT_100 = "Package.eINSTANCE.get";
-  protected final String TEXT_101 = "(), oid, false));" + NL + "\t\t}";
+  protected final String TEXT_101 = "(), oid, false, null));" + NL + "\t\t}";
   protected final String TEXT_102 = NL + "\t\tresult.set";
   protected final String TEXT_103 = "(convertFromSObject(input.get";
   protected final String TEXT_104 = "(), session));";
@@ -125,7 +125,7 @@ public class SConverterGenerator
   protected final String TEXT_107 = ")session.get(";
   protected final String TEXT_108 = "Package.eINSTANCE.get";
   protected final String TEXT_109 = "(), input.get";
-  protected final String TEXT_110 = "Id(), false));";
+  protected final String TEXT_110 = "Id(), false, null));";
   protected final String TEXT_111 = NL + "\t\treturn result;" + NL + "\t}";
   protected final String TEXT_112 = NL + "\t\tpublic S";
   protected final String TEXT_113 = " convertToSObject(";

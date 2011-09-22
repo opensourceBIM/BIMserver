@@ -86,7 +86,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 				progress = Math.round(100L * total.get() / totalSize);
 			}
 		});
-		bimDatabaseSession.getMap(ifcModel, project.getId(), revision.getLastConcreteRevision().getId(), true);
+		bimDatabaseSession.getMap(ifcModel, project.getId(), revision.getLastConcreteRevision().getId(), true, null);
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());
 		ifcModel.setDate(new Date());

@@ -23,6 +23,6 @@ public class GetSerializerByNameDatabaseAction extends BimDatabaseAction<Seriali
 	@Override
 	public Serializer execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
-		return getDatabaseSession().querySingle(condition, Serializer.class, false);
+		return getDatabaseSession().querySingle(condition, Serializer.class, false, null);
 	}
 }

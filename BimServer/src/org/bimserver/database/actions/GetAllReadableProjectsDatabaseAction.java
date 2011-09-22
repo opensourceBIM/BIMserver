@@ -30,7 +30,7 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 	@Override
 	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = getUserByUoid(actingUoid);
-		IfcModel projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false);
+		IfcModel projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false, null);
 		Set<Project> result = new HashSet<Project>();
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {

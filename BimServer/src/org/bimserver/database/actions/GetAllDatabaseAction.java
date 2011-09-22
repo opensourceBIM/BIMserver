@@ -28,7 +28,7 @@ public class GetAllDatabaseAction<T extends IdEObject> extends BimDatabaseAction
 	@Override
 	public List<T> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new IsOfTypeCondition(eClass);
-		Map<Long, T> result = getDatabaseSession().query(condition, clazz, false);
+		Map<Long, T> result = getDatabaseSession().query(condition, clazz, false, null);
 		return CollectionUtils.mapToList(result);
 	}
 }

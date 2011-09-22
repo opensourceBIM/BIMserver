@@ -25,7 +25,7 @@ public class GetGeoTagDatabaseAction extends BimDatabaseAction<GeoTag> {
 	@Override
 	public GeoTag execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
-		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), goid, false);
+		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), goid, false, null);
 		boolean hasRights = false;
 		for (Project project : geoTag.getProjects()) {
 			if (RightsManager.hasRightsOnProject(actingUser, project)) {

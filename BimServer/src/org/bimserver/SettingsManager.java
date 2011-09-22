@@ -61,7 +61,7 @@ public class SettingsManager {
 		if (settings == null) {
 			BimDatabaseSession session = database.createReadOnlySession();
 			try {
-				IfcModel model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false);
+				IfcModel model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
 				if (model.size() == 1) {
 					IdEObject idEObject = model.getValues().iterator().next();
 					if (idEObject instanceof Settings) {

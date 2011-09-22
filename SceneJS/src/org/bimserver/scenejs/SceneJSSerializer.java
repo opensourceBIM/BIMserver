@@ -18,7 +18,6 @@ import org.bimserver.models.ifc2x3.IfcColourRgb;
 import org.bimserver.models.ifc2x3.IfcColumn;
 import org.bimserver.models.ifc2x3.IfcCurtainWall;
 import org.bimserver.models.ifc2x3.IfcDoor;
-import org.bimserver.models.ifc2x3.IfcElement;
 import org.bimserver.models.ifc2x3.IfcFlowSegment;
 import org.bimserver.models.ifc2x3.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3.IfcMaterial;

@@ -50,7 +50,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			IfcModel subModel = new IfcModel();
-			eObject = getDatabaseSession().get(cid, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel, false);
+			eObject = getDatabaseSession().get(cid, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel, false, null);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 			if (eObject != null) {

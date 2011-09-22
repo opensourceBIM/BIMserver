@@ -156,7 +156,7 @@ public class BimServer {
 								.getName()));
 						BimDatabaseSession session = bimDatabase.createSession(true);
 						try {
-							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
+							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
 							if (pluginsFound.size() == 0) {
 								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
@@ -321,7 +321,7 @@ public class BimServer {
 		for (GuidanceProviderPlugin guidanceProviderPlugin : pluginManager.getAllGuidanceProviders(true)) {
 			String name = guidanceProviderPlugin.getDefaultGuidanceProviderName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral(name));
-			GuidanceProvider found = session.querySingle(condition, GuidanceProvider.class, false);
+			GuidanceProvider found = session.querySingle(condition, GuidanceProvider.class, false, null);
 			if (found == null) {
 				GuidanceProvider guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();
 				guidanceProvider.setName(name);
@@ -335,7 +335,7 @@ public class BimServer {
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultSerializerName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
-			Serializer found = session.querySingle(condition, Serializer.class, false);
+			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found == null) {
 				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
 				serializer.setClassName(serializerPlugin.getClass().getName());
@@ -351,7 +351,7 @@ public class BimServer {
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
 			String name = deserializerPlugin.getDefaultDeserializerName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getDeserializer_Name(), new StringLiteral(name));
-			Deserializer found = session.querySingle(condition, Deserializer.class, false);
+			Deserializer found = session.querySingle(condition, Deserializer.class, false, null);
 			if (found == null) {
 				Deserializer deserializer = StoreFactory.eINSTANCE.createDeserializer();
 				deserializer.setClassName(deserializerPlugin.getClass().getName());
@@ -365,7 +365,7 @@ public class BimServer {
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getClass().getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
-			Serializer found = session.querySingle(condition, Serializer.class, false);
+			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found == null) {
 				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
 				ifcEngine.setName(name);
@@ -376,7 +376,7 @@ public class BimServer {
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getClass().getName()));
-			Map<Long, org.bimserver.models.store.Plugin> results = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
+			Map<Long, org.bimserver.models.store.Plugin> results = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
 			if (results.size() == 0) {
 				org.bimserver.models.store.Plugin pluginObject = StoreFactory.eINSTANCE.createPlugin();
 				pluginObject.setName(plugin.getClass().getName());

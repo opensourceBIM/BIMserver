@@ -11,6 +11,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
@@ -22,13 +23,15 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModelInte
 	private final long roid;
 	private int progress;
 	private final BimServer bimServer;
+	private final GuidanceProvider guidanceProvider;
 
-	public DownloadOfTypeDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String className, long actingUoid) {
+	public DownloadOfTypeDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String className, long actingUoid, GuidanceProvider guidanceProvider) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 		this.className = className;
+		this.guidanceProvider = guidanceProvider;
 	}
 
 	@Override
@@ -41,7 +44,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModelInte
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			IfcModel subModel = getDatabaseSession().getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId(), true);
+			IfcModel subModel = getDatabaseSession().getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId(), true, guidanceProvider);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

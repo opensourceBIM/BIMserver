@@ -28,6 +28,6 @@ public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<S
 	public Set<Checkout> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision revision = getVirtualRevision(roid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
-		return CollectionUtils.mapToSet((Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false));
+		return CollectionUtils.mapToSet((Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false, null));
 	}
 }

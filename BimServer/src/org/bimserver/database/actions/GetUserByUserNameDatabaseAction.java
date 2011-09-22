@@ -23,6 +23,6 @@ public class GetUserByUserNameDatabaseAction extends BimDatabaseAction<User> {
 	@Override
 	public User execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return getDatabaseSession().querySingle(condition, User.class, false);
+		return getDatabaseSession().querySingle(condition, User.class, false, null);
 	}
 }
