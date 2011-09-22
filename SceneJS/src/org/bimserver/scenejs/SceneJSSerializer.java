@@ -803,10 +803,13 @@ public class SceneJSSerializer extends BimModelSerializer {
 		// TODO: What about other relationships?
 		//       E.g. 
 		Map<Long, IdEObject> objects = model.getObjects();
+		writer.writeln("composition: [");
+		writer.indent();
+		
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcProject) {
-				IfcProject project = (IfcProject) object;				
-				writer.writeln("composition: {");
+				IfcProject project = (IfcProject) object;
+				writer.writeln("{");
 				writer.indent();
 				writer.writeln("type: 'project',");
 				writer.writeln("name: '" + project.getLongName() + "',");
@@ -824,11 +827,13 @@ public class SceneJSSerializer extends BimModelSerializer {
 				writer.writeln("'Phase': '" + project.getPhase() + "',");
 				writer.unindent();
 				writer.writeln("},"); // attributes
-				writeIfcTreeDecomposedBy(writer, project);				
+				writeIfcTreeDecomposedBy(writer, project);
 				writer.unindent();
-				writer.writeln("},"); // tree
+				writer.writeln("},");
 			}
 		}
+		writer.unindent();
+		writer.writeln("],"); // composition
 	}
 	
 	private void writeIfcTreeDecomposedBy(JsWriter writer, IfcObjectDefinition objectDefinition) {
