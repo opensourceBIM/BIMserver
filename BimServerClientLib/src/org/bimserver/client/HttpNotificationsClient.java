@@ -43,7 +43,7 @@ public class HttpNotificationsClient extends NotificationsClient {
 							return "NotifierInterface";
 						}
 					};
-					ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(service, protocolBuffersMetaData);
+					ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(service.newService(AccessMethod.PROTOCOL_BUFFERS), protocolBuffersMetaData);
 
 					InputStream inputStream = exchange.getRequestBody();
 					DataInputStream dis = new DataInputStream(inputStream);
