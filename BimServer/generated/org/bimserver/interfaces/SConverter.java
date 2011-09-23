@@ -7,6 +7,34 @@ import org.bimserver.models.store.*;
 import org.bimserver.database.BimDatabaseSession;
 
 public class SConverter {
+		public SUserType convertToSObject(UserType input) {
+			return SUserType.values()[input.ordinal()];
+		}
+		
+		public UserType convertFromSObject(SUserType input) {
+			return UserType.values()[input.ordinal()];
+		}
+		public SCheckinState convertToSObject(CheckinState input) {
+			return SCheckinState.values()[input.ordinal()];
+		}
+		
+		public CheckinState convertFromSObject(SCheckinState input) {
+			return CheckinState.values()[input.ordinal()];
+		}
+		public SSIPrefix convertToSObject(SIPrefix input) {
+			return SSIPrefix.values()[input.ordinal()];
+		}
+		
+		public SIPrefix convertFromSObject(SSIPrefix input) {
+			return SIPrefix.values()[input.ordinal()];
+		}
+		public SObjectState convertToSObject(ObjectState input) {
+			return SObjectState.values()[input.ordinal()];
+		}
+		
+		public ObjectState convertFromSObject(SObjectState input) {
+			return ObjectState.values()[input.ordinal()];
+		}
 
 	public Set<SProject> convertToSSetProject(Collection<Project> input) {
 		Set<SProject> result = new HashSet<SProject>();
@@ -1081,6 +1109,13 @@ public class SConverter {
 		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
 		return result;
 	}
+		public SMergeIdentifier convertToSObject(MergeIdentifier input) {
+			return SMergeIdentifier.values()[input.ordinal()];
+		}
+		
+		public MergeIdentifier convertFromSObject(SMergeIdentifier input) {
+			return MergeIdentifier.values()[input.ordinal()];
+		}
 
 	public Set<SIfcEngine> convertToSSetIfcEngine(Collection<IfcEngine> input) {
 		Set<SIfcEngine> result = new HashSet<SIfcEngine>();
@@ -2432,6 +2467,20 @@ public class SConverter {
 		result.setClassName(input.getClassName());
 		return result;
 	}
+		public SCompareIdentifier convertToSObject(CompareIdentifier input) {
+			return SCompareIdentifier.values()[input.ordinal()];
+		}
+		
+		public CompareIdentifier convertFromSObject(SCompareIdentifier input) {
+			return CompareIdentifier.values()[input.ordinal()];
+		}
+		public SCompareType convertToSObject(CompareType input) {
+			return SCompareType.values()[input.ordinal()];
+		}
+		
+		public CompareType convertFromSObject(SCompareType input) {
+			return CompareType.values()[input.ordinal()];
+		}
 
 	public Set<SCompareItem> convertToSSetCompareItem(Collection<CompareItem> input) {
 		Set<SCompareItem> result = new HashSet<SCompareItem>();
@@ -2770,6 +2819,13 @@ public class SConverter {
 		}
 		return result;
 	}
+		public SActionState convertToSObject(ActionState input) {
+			return SActionState.values()[input.ordinal()];
+		}
+		
+		public ActionState convertFromSObject(SActionState input) {
+			return ActionState.values()[input.ordinal()];
+		}
 
 	public Set<SLongActionState> convertToSSetLongActionState(Collection<LongActionState> input) {
 		Set<SLongActionState> result = new HashSet<SLongActionState>();
@@ -2980,61 +3036,12 @@ public class SConverter {
 		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), false, null));
 		return result;
 	}
-		public SUserType convertToSObject(UserType input) {
-			return SUserType.values()[input.ordinal()];
+		public SAccessMethod convertToSObject(AccessMethod input) {
+			return SAccessMethod.values()[input.ordinal()];
 		}
 		
-		public UserType convertFromSObject(SUserType input) {
-			return UserType.values()[input.ordinal()];
-		}
-		public SCheckinState convertToSObject(CheckinState input) {
-			return SCheckinState.values()[input.ordinal()];
-		}
-		
-		public CheckinState convertFromSObject(SCheckinState input) {
-			return CheckinState.values()[input.ordinal()];
-		}
-		public SSIPrefix convertToSObject(SIPrefix input) {
-			return SSIPrefix.values()[input.ordinal()];
-		}
-		
-		public SIPrefix convertFromSObject(SSIPrefix input) {
-			return SIPrefix.values()[input.ordinal()];
-		}
-		public SObjectState convertToSObject(ObjectState input) {
-			return SObjectState.values()[input.ordinal()];
-		}
-		
-		public ObjectState convertFromSObject(SObjectState input) {
-			return ObjectState.values()[input.ordinal()];
-		}
-		public SMergeIdentifier convertToSObject(MergeIdentifier input) {
-			return SMergeIdentifier.values()[input.ordinal()];
-		}
-		
-		public MergeIdentifier convertFromSObject(SMergeIdentifier input) {
-			return MergeIdentifier.values()[input.ordinal()];
-		}
-		public SCompareIdentifier convertToSObject(CompareIdentifier input) {
-			return SCompareIdentifier.values()[input.ordinal()];
-		}
-		
-		public CompareIdentifier convertFromSObject(SCompareIdentifier input) {
-			return CompareIdentifier.values()[input.ordinal()];
-		}
-		public SCompareType convertToSObject(CompareType input) {
-			return SCompareType.values()[input.ordinal()];
-		}
-		
-		public CompareType convertFromSObject(SCompareType input) {
-			return CompareType.values()[input.ordinal()];
-		}
-		public SActionState convertToSObject(ActionState input) {
-			return SActionState.values()[input.ordinal()];
-		}
-		
-		public ActionState convertFromSObject(SActionState input) {
-			return ActionState.values()[input.ordinal()];
+		public AccessMethod convertFromSObject(SAccessMethod input) {
+			return AccessMethod.values()[input.ordinal()];
 		}
 
 	public Set<SLogAction> convertToSSetLogAction(Collection<LogAction> input) {
@@ -4470,11 +4477,4 @@ public class SConverter {
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
 		return result;
 	}
-		public SAccessMethod convertToSObject(AccessMethod input) {
-			return SAccessMethod.values()[input.ordinal()];
-		}
-		
-		public AccessMethod convertFromSObject(SAccessMethod input) {
-			return AccessMethod.values()[input.ordinal()];
-		}
 }

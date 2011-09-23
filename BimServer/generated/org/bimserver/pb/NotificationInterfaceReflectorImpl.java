@@ -2,6 +2,7 @@ package org.bimserver.pb;
 
 import org.bimserver.shared.pb.Reflector;
 
+@SuppressWarnings("unchecked")
 public class NotificationInterfaceReflectorImpl implements org.bimserver.shared.NotificationInterface {
 
 private Reflector reflector;
