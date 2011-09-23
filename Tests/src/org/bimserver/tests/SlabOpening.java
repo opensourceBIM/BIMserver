@@ -1,33 +1,21 @@
 package org.bimserver.tests;
 
-/*
-
- Author:
- =======
- Name		: 	Yogesh Veeraraghavan 	( Contact: yogeshv.info@gmail.com 	; Ph: 352-222-1771)
- Name		: 	Simon Qi 				( Contact: airsimonqi@gmail.com 	; Ph: 352-870-4117)	
- Department	: 	Building Construction, University of Florida, USA
- Work		:	Design for Construction Worker Safety
-
-
- Query			: Locate the floor/roof opening which parameter larger than 8 feet (area larger than 4 square feet)”.
- Description		: Find all the query object of IfcOpeningElement which are attached to either a floor/ roof IfcSlab.
-
- Approach: 
- 1. Load the Building stories 
- 2. For every stories, get the IfcProduct and check the instance as IfcSlab. 
- 3. Using RelVoidsElement, get related IfcFeatureElementSubtraction for the IfcSlabs
- 4. Use the collection in step 3 and the IfcRelDefines, get the IfcPropertySetDefintion collection.
- 5. Check for the IfcElementQuantity instance in the collection at step 4.
- 6. Using the IfcElementQuantity in step 5, get the IfcPhysicalQuantity 
- 7. Typecast the IfcPhysicalQuantity to IfcQuanityArea to get the required Area Value for consideration.
-
- Problem: 
- 1. IFC file 4351 in IFC File Viewer displays the OpeningElement. Unable to proceed from step 5. 
- 2. Step 5 does not has any objects which is an instance of IfcElementQuanity for the loaded file.
-
- Assistance		: Need help analysing the IFC file for the code written here.
- */
+/******************************************************************************
+ * Copyright (C) 2011  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
 
 import java.io.File;
 import java.io.PrintWriter;
