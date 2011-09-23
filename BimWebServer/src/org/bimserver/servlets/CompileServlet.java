@@ -18,26 +18,17 @@ package org.bimserver.servlets;
  *****************************************************************************/
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.actions.BimDatabaseAction;
-import org.bimserver.database.actions.DownloadDatabaseAction;
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.querycompiler.CompileException;
-import org.bimserver.querycompiler.QueryCompiler;
-import org.bimserver.querycompiler.QueryInterface;
+import org.bimserver.interfaces.objects.SCompileResult;
+import org.bimserver.interfaces.objects.SRunResult;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.web.LoginManager;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -52,20 +43,51 @@ public class CompileServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		String code = request.getParameter("code");
+		LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
 		JSONObject root = new JSONObject();
+		JSONArray warnings = new JSONArray();
+		JSONArray errors = new JSONArray();
+		try {
+			root.put("compileErrors", errors);
+			root.put("compileWarnings", warnings);
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		}
 		try {
 			if (action.equals("compile")) {
-				compile(root, code);
+				try {
+					SCompileResult compileResult = loginManager.getService().compile(code);
+					if (compileResult.isCompileOke()) {
+						root.put("output", "Compilation successfull");
+					} else {
+						for (String warning : compileResult.getWarnings()) {
+							warnings.put(warning);
+						}
+						for (String error : compileResult.getErrors()) {
+							errors.put(error);
+						}
+					}
+				} catch (ServiceException e) {
+					root.put("output", e.getMessage());
+				}
 			} else if (action.equals("compileandrun")) {
 				long roid = Long.parseLong(request.getParameter("roid"));
-				QueryInterface compile = compile(root, code);
-				LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
-				if (compile != null) {
-					run(compile, loginManager, roid, root, (BimServer)request.getServletContext().getAttribute("bimserver"));
+				try {
+					SRunResult compileAndRun = loginManager.getService().compileAndRun(roid, code);
+					if (compileAndRun.isRunOke()) {
+						root.put("output", root.getString("output") + "\n" + "Executing...\n\n" + compileAndRun.getOutput() + "\n" + "Execution complete");
+					} else {
+						for (String warning : compileAndRun.getWarnings()) {
+							warnings.put(warning);
+						}
+						for (String error : compileAndRun.getErrors()) {
+							errors.put(error);
+						}
+					}
+				} catch (ServiceException e) {
+					root.put("output", e.getMessage());
 				}
 			}
-		} catch (CompileException e) {
-			LOGGER.info("", e);
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		}
@@ -74,44 +96,5 @@ public class CompileServlet extends HttpServlet {
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		}
-	}
-
-	private void run(QueryInterface queryInterface, LoginManager loginManager, long roid, JSONObject root, BimServer bimServer) {
-		if (loginManager == null) {
-			loginManager = new LoginManager();
-		}
-		try {
-			if (!loginManager.getService().isLoggedIn()) {
-				loginManager.getService().loginAnonymous();
-			}
-		} catch (ServiceException e) {
-			LOGGER.error("", e);
-		}
-		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
-		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, loginManager.getUoid(), null);
-			IfcModelInterface IfcModel = session.executeAndCommitAction(action, 10);
-			StringWriter out = new StringWriter();
-			queryInterface.query(IfcModel, new PrintWriter(out));
-			try {
-				root.put("output", root.getString("output") + "\n" + "Executing...\n\n" + out + "\n" + "Execution complete");
-			} catch (JSONException e) {
-				LOGGER.error("", e);
-			}
-		} catch (BimDatabaseException e) {
-		} catch (ServiceException e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
-		}
-	}
-
-	private QueryInterface compile(JSONObject root, String code) throws CompileException, JSONException {
-		QueryCompiler queryCompiler = new QueryCompiler();
-		QueryInterface compile = queryCompiler.compile(code, root);
-		if (compile != null) {
-			root.put("output", "Compilation successfull");
-		}
-		return compile;
 	}
 }

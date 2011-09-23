@@ -43,6 +43,7 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
+import org.bimserver.interfaces.objects.SCompileResult;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
@@ -61,6 +62,7 @@ import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
+import org.bimserver.interfaces.objects.SRunResult;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SUser;
@@ -793,4 +795,16 @@ public interface ServiceInterface {
 	void setHttpCallback(
 			@WebParam(name = "uoid", partName = "setHttpCallback.uoid") Long uoid, 
 			@WebParam(name = "address", partName = "setHttpCallback.address") String address) throws ServiceException;
+	
+	@WebMethod(action = "compile")
+	SCompileResult compile(@WebParam(name = "code", partName = "compile.code") String code) throws ServiceException;
+
+	@WebMethod(action = "compileAndRun")
+	SRunResult compileAndRun(@WebParam(name = "roid", partName = "compileAndRun.roid") long roid, @WebParam(name = "code", partName = "compileAndRun.code") String code) throws ServiceException;
+
+	@WebMethod(action = "compileAndDownload")
+	Integer compileAndDownload(@WebParam(name = "roid", partName = "compileAndDownload.roid") long roid, @WebParam(name = "code", partName = "compileAndDownload.code") String code) throws ServiceException;
+	
+	@WebMethod(action = "getProtocolBuffersFile")
+	String getProtocolBuffersFile() throws ServiceException;
 }

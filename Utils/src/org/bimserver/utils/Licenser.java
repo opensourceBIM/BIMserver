@@ -2,6 +2,7 @@ package org.bimserver.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 
@@ -13,11 +14,7 @@ public class Licenser {
 	}
 
 	private void start() {
-		try {
-			license = FileUtils.readFileToString(new File("license.txt"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		license = getCommentedLicenseText(new File("license.txt"));
 		File workspace = new File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserver");
 		for (File project : workspace.listFiles()) {
 			if (!project.getName().startsWith(".")) {
@@ -43,6 +40,24 @@ public class Licenser {
 		}
 	}
 
+	public static String getCommentedLicenseText(File file) {
+		try {
+			String content = FileUtils.readFileToString(file);
+			StringBuilder newContent = new StringBuilder();
+			Scanner scanner = new Scanner(content);
+			newContent.append("/******************************************************************************\n");
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				newContent.append(" * " + line + "\n");
+			}
+			newContent.append(" *****************************************************************************/");
+			return newContent.toString();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	private void processFile(File file) {
 		try {
 			String content = FileUtils.readFileToString(file);

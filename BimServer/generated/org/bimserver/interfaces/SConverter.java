@@ -1,5 +1,22 @@
 package org.bimserver.interfaces;
 
+/******************************************************************************
+ * Copyright (C) 2011  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import org.bimserver.interfaces.objects.*;
 import java.util.*;
 import org.bimserver.models.log.*;
@@ -3034,6 +3051,120 @@ public class SConverter {
 		NewRevisionNotification result = StoreFactory.eINSTANCE.createNewRevisionNotification();
 		result.setOid(input.getOid());
 		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), false, null));
+		return result;
+	}
+
+	public Set<SCompileResult> convertToSSetCompileResult(Collection<CompileResult> input) {
+		Set<SCompileResult> result = new HashSet<SCompileResult>();
+		for (CompileResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<CompileResult> convertFromSSetCompileResult(Collection<SCompileResult> input, BimDatabaseSession session) {
+		Set<CompileResult> result = new HashSet<CompileResult>();
+		for (SCompileResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SCompileResult> convertToSListCompileResult(Collection<CompileResult> input) {
+		List<SCompileResult> result = new ArrayList<SCompileResult>();
+		for (CompileResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<CompileResult> convertFromSListCompileResult(Collection<SCompileResult> input, BimDatabaseSession session) {
+		List<CompileResult> result = new ArrayList<CompileResult>();
+		for (SCompileResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SCompileResult convertToSObject(CompileResult input) {
+		if (input == null) {
+			return null;
+		}
+		SCompileResult result = new SCompileResult();
+		result.setOid(input.getOid());
+		result.setCompileOke(input.isCompileOke());
+		result.getWarnings().addAll(input.getWarnings());
+		result.getErrors().addAll(input.getErrors());
+		return result;
+	}
+
+	public CompileResult convertFromSObject(SCompileResult input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		CompileResult result = StoreFactory.eINSTANCE.createCompileResult();
+		result.setOid(input.getOid());
+		result.setCompileOke(input.isCompileOke());
+		result.getWarnings().addAll(input.getWarnings());
+		result.getErrors().addAll(input.getErrors());
+		return result;
+	}
+
+	public Set<SRunResult> convertToSSetRunResult(Collection<RunResult> input) {
+		Set<SRunResult> result = new HashSet<SRunResult>();
+		for (RunResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RunResult> convertFromSSetRunResult(Collection<SRunResult> input, BimDatabaseSession session) {
+		Set<RunResult> result = new HashSet<RunResult>();
+		for (SRunResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRunResult> convertToSListRunResult(Collection<RunResult> input) {
+		List<SRunResult> result = new ArrayList<SRunResult>();
+		for (RunResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RunResult> convertFromSListRunResult(Collection<SRunResult> input, BimDatabaseSession session) {
+		List<RunResult> result = new ArrayList<RunResult>();
+		for (SRunResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRunResult convertToSObject(RunResult input) {
+		if (input == null) {
+			return null;
+		}
+		SRunResult result = new SRunResult();
+		result.setOid(input.getOid());
+		result.setRunOke(input.isRunOke());
+		result.getWarnings().addAll(input.getWarnings());
+		result.getErrors().addAll(input.getErrors());
+		result.setOutput(input.getOutput());
+		return result;
+	}
+
+	public RunResult convertFromSObject(SRunResult input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		RunResult result = StoreFactory.eINSTANCE.createRunResult();
+		result.setOid(input.getOid());
+		result.setRunOke(input.isRunOke());
+		result.getWarnings().addAll(input.getWarnings());
+		result.getErrors().addAll(input.getErrors());
+		result.setOutput(input.getOutput());
 		return result;
 	}
 		public SAccessMethod convertToSObject(AccessMethod input) {

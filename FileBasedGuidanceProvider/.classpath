@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry kind="output" path="bin"/>

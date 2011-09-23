@@ -6,7 +6,6 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -17,6 +17,7 @@ package org.bimserver.webservices;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -38,6 +39,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.changes.AddAttributeChange;
@@ -141,6 +143,7 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
+import org.bimserver.interfaces.objects.SCompileResult;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
@@ -159,6 +162,7 @@ import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
+import org.bimserver.interfaces.objects.SRunResult;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SUser;
@@ -189,6 +193,7 @@ import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RunResult;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
@@ -202,6 +207,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
@@ -2473,6 +2479,35 @@ public class Service implements ServiceInterface {
 		} catch (BimDatabaseException e) {
 		} finally {
 			session.close();
+		}
+	}
+	
+	@Override
+	public SCompileResult compile(String code) throws ServiceException {
+		QueryCompiler queryCompiler = new QueryCompiler();
+		return converter.convertToSObject(queryCompiler.compile(code));
+	}
+	
+	@Override
+	public SRunResult compileAndRun(long roid, String code) throws ServiceException {
+		QueryCompiler queryCompiler = new QueryCompiler();
+		return converter.convertToSObject(queryCompiler.run(code, roid, currentUoid, bimServer));
+	}
+
+	@Override
+	public Integer compileAndDownload(long roid, String code) throws ServiceException {
+		QueryCompiler queryCompiler = new QueryCompiler();
+		RunResult runResult = queryCompiler.run(code, roid, currentUoid, bimServer);
+		return -1;
+	}
+	
+	@Override
+	public String getProtocolBuffersFile() throws ServiceException {
+		File file = bimServer.getResourceFetcher().getFile("service.proto");
+		try {
+			return FileUtils.readFileToString(file);
+		} catch (IOException e) {
+			throw new ServerException (e);
 		}
 	}
 }

@@ -12,7 +12,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
