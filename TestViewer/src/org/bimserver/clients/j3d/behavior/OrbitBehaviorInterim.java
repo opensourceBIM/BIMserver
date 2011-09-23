@@ -1,153 +1,21 @@
 package org.bimserver.clients.j3d.behavior;
-/*
- * $RCSfile: OrbitBehavior.java,v $
- *
- * Copyright (c) 2007 Sun Microsystems, Inc. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * - Redistribution of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * - Redistribution in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in
- *   the documentation and/or other materials provided with the
- *   distribution.
- *
- * Neither the name of Sun Microsystems, Inc. or the names of
- * contributors may be used to endorse or promote products derived
- * from this software without specific prior written permission.
- *
- * This software is provided "AS IS," without a warranty of any
- * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
- * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
- * EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL
- * NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF
- * USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
- * DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR
- * ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL,
- * CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND
- * REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR
- * INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGES.
- *
- * You acknowledge that this software is not designed, licensed or
- * intended for use in the design, construction, operation or
- * maintenance of any nuclear facility.
- *
- * $Revision: 1.5 $
- * $Date: 2007/02/09 17:20:15 $
- * $State: Exp $
- */
 
-/*
- * OrbitBehaviorInterim is based on "com.sun.j3d.utils.behaviors.vp.OrbitBehavior".
- * Redistribution and use are permitted according to the copyright notice above mentioned.
+/******************************************************************************
+ * Copyright (C) 2011  BIMserver.org
  * 
- * OrbitBehaviorInterim provides the mouse navigation capabilities of OrbitBehavior for
- * a standard VirtualUniverse inclusive SimpleUniverse (but not for ConfiguredUniverse) and for
- * any AWT Component inclusive Canvas3D and JCanvas3D. 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  * 
- * Since Version 2.0 navigation in parallel projection mode and clipping distances update are available.
- * Since Version 2.1 changes of the TransformGroup's transform component are no longer supported.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  * 
- * This implementation serves as an interim version until a Java 3D core utility is available.
- * 
- * Author: August Lammersdorf, www.InteractiveMesh.com/org
- * Version: 2.1
- * Date: 2007/10/19 
- * 
- */
-
-/*
- * Release notes.
- * --------------
- * 
- * Version 2.1 - 2007/10/19
- * -------------------------
- *  New features
- *  - OrbitBehaviorInterim behaves now as a single channel for synchronized manual navigation
- *    and programmed viewpoint setting. All viewing related properties which OrbitBehaviorInterim
- *    is operating on should be set only on its instance to avoid any varying state.
- *    OrbitBehaviorInterim no longer supports any changes of the TransformGroup's transform component.
- * 
- * 	New Methods
- *  - public void getViewingTransform(Transform3D transform)
- *  - public void setViewingTransform(Transform3D transform)
- *  - public void setViewingTransform(Transform3D transform, Point3d rotationCenter)
- *  - public void setViewingTransform(Point3d eye, Point3d viewCenter, Vector3d up, boolean rotateAtViewCenter)
- *  - public void setViewingTransform(Point3d eye, Point3d viewCenter, Vector3d up, Point3d rotationCenter)
- *
- * 
- * Version 2.0 - 2007/10/14
- * -------------------------
- *  New features
- *  - Navigation in parallel projection mode 
- *  - Clipping distances update
- * 
- * 	New Constructors
- *  - public OrbitBehaviorInterim(Component c, TransformGroup tg, View view)
- *  - public OrbitBehaviorInterim(Component c, TransformGroup tg, View view, int flags)
- * 
- * 	New Methods
- * 	- public View getVpView()
- * 	- public void setVpView(View view)
- * 
- * 	- public int getProjectionMode()
- * 	- public void setProjectionMode(int mode)
- * 	- public boolean isPureParallelEnabled()
- * 	- public void setPureParallelEnabled(boolean enable)
- * 	- public double getFieldOfView()
- * 	- public void setFieldOfView(double angle)
- * 
- * 	- public boolean isClippingEnabled()
- * 	- public void setClippingEnabled(boolean enable)
- * 	- public Bounds getClippingBounds()
- * 	- public void setClippingBounds(Bounds sceneBounds)
- * 	- protected void setClippingDistances()
- * 
- * 	- protected void resetViewParallelLookAtRotCenter()
- * 	- protected void resetViewPureParallelRotCenter() 
- *
- *
- * Version 1.1 - 2007/06/26
- * -------------------------
- * 	Bugs
- * 	- flags in constructor 'OrbitBehaviorInterim(int flags)' have no effect 
- * 
- * 	New Methods
- * 	- setRotationCenter(Point3d center, boolean lookAtRotCenter):
- * 	  sets the current center of rotation and if 'lookAtRotCenter' is true 
- *    the view will be moved to this center of rotation, otherwise it remains unchanged
- *    
- * 	- lookAtRotationCenter():
- *    view will be moved to current center of rotation
- *    
- * 	- get-/setHomeRotationCenter(Point3d homeCenter):
- *    beside the 'home' transform a 'home' center of rotation is now available, too
- *    
- * 	- goHome(boolean aroundHomeCenter):
- * 	  the 'home' transform is applied and if 'aroundHomeCenter' is true 
- * 	  the current roation center is set to 'home' center of rotation
- *  
- * 	+ some minor improvements
- * 
- * 
- * Version 1.0 - 2007/05/28
- * ------------------------
- * 	- Based only on javax.media.j3d.* and javax.vecmath.*, no utilities are used 
- * 	- Requires Java 3D 1.2.1+ 
- * 	- Single Component as source used to listen for MouseEvents.
- * 	- Source Component and target TransformGroup (of ViewPlatform) are explicitly to set. 
- * 	- Setting center of rotation updates internal state
- * 	- Never used key listening is removed
-
- */
-
-//package com.sun.j3d.utils.behaviors.vp;
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
 
 import java.awt.AWTEvent;
 import java.awt.Component;
