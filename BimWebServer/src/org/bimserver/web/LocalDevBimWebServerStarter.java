@@ -17,18 +17,10 @@ package org.bimserver.web;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
 import java.util.Random;
 
-import org.bimserver.BimServer;
-import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.ServerInfo.ServerState;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.DatabaseRestartRequiredException;
-import org.bimserver.database.berkeley.DatabaseInitException;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
 import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -38,7 +30,6 @@ import org.slf4j.LoggerFactory;
 public class LocalDevBimWebServerStarter {
 	private org.eclipse.jetty.server.Server server;
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimWebServerStarter.class);
-	private BimServer bimServer;
 
 	public static void main(String[] args) {
 		String address = "127.0.0.1";
@@ -70,26 +61,12 @@ public class LocalDevBimWebServerStarter {
 	public void start(String address, int port, String homedir, String resourceBase) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 
-		bimServer = new BimServer(new File(homedir), new LocalDevelopmentResourceFetcher());
-	 	try {
-	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
-	 		bimServer.start();
-			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
+	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
+			@Override
+			public BimServerClient create() {
+				return new BimServerClient();
 			}
-		} catch (PluginException e1) {
-			e1.printStackTrace();
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (DatabaseInitException e) {
-			e.printStackTrace();
-		} catch (BimDatabaseException e) {
-			e.printStackTrace();
-		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
-		}
-		
-	 	WebServerHelper.setBimServer(bimServer);
+		};
 	 	
 	 	LOGGER.info("Starting BIMWebServer");
 	 	
@@ -101,9 +78,14 @@ public class LocalDevBimWebServerStarter {
 		socketConnector.setHost(address);
 		server.addConnector(socketConnector);
 
+		LoginManager.bimServerClientFactory = new BimServerClientFactory() {
+			@Override
+			public BimServerClient create() {
+				return new BimServerClient();
+			}
+		};
+		
 		WebAppContext context = new WebAppContext(server, "", "/");
-		context.setAttribute("bimserver", bimServer);
-		context.getServletContext().setAttribute("bimserver", bimServer);
 		context.setResourceBase(resourceBase);
 
 		try {
@@ -112,9 +94,5 @@ public class LocalDevBimWebServerStarter {
 			LOGGER.error("", e);
 		}
 		LOGGER.info("BIMWebServer started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
-	}
-	
-	public BimServer getBimServer() {
-		return bimServer;
 	}
 }
