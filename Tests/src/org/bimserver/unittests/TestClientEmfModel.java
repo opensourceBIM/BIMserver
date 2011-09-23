@@ -78,7 +78,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.web.LocalDevBimWebServerStarter;
+import org.bimserver.web.LocalDevBimCombinedServerStarter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -99,7 +99,7 @@ public class TestClientEmfModel {
 				FileUtils.deleteDirectory(home);
 			}
 
-			LocalDevBimWebServerStarter localDevBimWebServerStarter = new LocalDevBimWebServerStarter();
+			LocalDevBimCombinedServerStarter localDevBimWebServerStarter = new LocalDevBimCombinedServerStarter();
 			localDevBimWebServerStarter.start("localhost", 8082, "home", "../BimWebServer/www");
 			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {
