@@ -7,34 +7,33 @@ import java.util.Scanner;
 import org.apache.commons.io.FileUtils;
 
 public class Licenser {
-	private String license;
 
 	public static void main(String[] args) {
 		new Licenser().start();
 	}
 
 	private void start() {
-		license = getCommentedLicenseText(new File("license.txt"));
 		File workspace = new File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserver");
 		for (File project : workspace.listFiles()) {
 			if (!project.getName().startsWith(".")) {
 				File srcFolder = new File(project, "src");
 				if (srcFolder.exists()) {
-					process(srcFolder);
+					String license = getCommentedLicenseText(new File(project, "license.txt"));
+					process(srcFolder, license);
 				}
 			}
 		}
 	}
 
-	private void process(File srcFolder) {
+	private void process(File srcFolder, String license) {
 		for (File file : srcFolder.listFiles()) {
 			if (file.isDirectory()) {
 				if (!file.getName().startsWith(".")) {
-					process(file);
+					process(file, license);
 				}
 			} else {
 				if (file.getName().endsWith(".java") && !file.getName().equals("Licenser.java")) {
-					processFile(file);
+					processFile(file, license);
 				}
 			}
 		}
@@ -58,7 +57,7 @@ public class Licenser {
 		return null;
 	}
 	
-	private void processFile(File file) {
+	private void processFile(File file, String license) {
 		try {
 			String content = FileUtils.readFileToString(file);
 			int indexOfPackageStart = content.indexOf("package ");
