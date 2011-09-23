@@ -31,11 +31,9 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../SceneJS"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
-		pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedGuidanceProvider"));
-		pluginManager.loadPluginsFromEclipseProject(new File("../Cobie2Serializer"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Report1Serializer"));
 		try {
 			pluginManager.loadPluginsFromEclipseProject(new File("C:\\Users\\Ruben de Laat\\git\\BIMserver\\DeserializerExample"));
