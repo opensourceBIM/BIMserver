@@ -18,6 +18,8 @@ package org.bimserver.querycompiler;
  *****************************************************************************/
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -30,9 +32,17 @@ import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.bimserver.BimServer;
+import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.actions.BimDatabaseAction;
+import org.bimserver.database.actions.DownloadDatabaseAction;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.CompileResult;
+import org.bimserver.models.store.RunResult;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,13 +73,36 @@ public class QueryCompiler {
 		}
 	}
 
-	public QueryInterface compile(String code, JSONObject root) throws CompileException, JSONException {
+	public RunResult run(String code, long roid, long uoid, BimServer bimServer) {
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		RunResult runResult = StoreFactory.eINSTANCE.createRunResult();
+		runResult.setRunOke(true);
+		try {
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, uoid, null);
+			IfcModelInterface IfcModel = session.executeAndCommitAction(action, 10);
+			StringWriter out = new StringWriter();
+			QueryInterface queryInterface = createQueryInterface(code);
+			queryInterface.query(IfcModel, new PrintWriter(out));
+			runResult.setOutput("Executing...\n\n" + out + "\n" + "Execution complete");
+			runResult.setRunOke(true);
+		} catch (BimDatabaseException e) {
+			runResult.setRunOke(false);
+			runResult.getErrors().add(e.getMessage());
+		} catch (ServiceException e) {
+			runResult.setRunOke(false);
+			runResult.getErrors().add(e.getMessage());
+		} catch (CompileException e) {
+			runResult.setRunOke(false);
+			runResult.getErrors().add(e.getMessage());
+		} finally {
+			session.close();
+		}
+		return runResult;
+	}
+
+	private QueryInterface createQueryInterface(String code) throws CompileException {
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-		JSONArray compileWarnings = new JSONArray();
-		JSONArray compileErrors = new JSONArray();
 		if (compiler == null) {
-			compileErrors.put("JDK needed for compile tasks");
-			root.put("compileErrors", compileErrors);
 			throw new CompileException("JDK needed for compile tasks");
 		}
 		JavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
@@ -93,14 +126,12 @@ public class QueryCompiler {
 		boolean success = true;
 		compiler.getTask(null, myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
 		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
-		root.put("compileWarnings", compileWarnings);
-		root.put("compileErrors", compileErrors);
 		for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
 			if (d.getKind() == Kind.ERROR) {
 				success = false;
-				compileErrors.put(d.getMessage(Locale.ENGLISH));
+				throw new CompileException(d.getMessage(Locale.ENGLISH));
 			} else if (d.getKind() == Kind.WARNING) {
-				compileWarnings.put(d.getMessage(Locale.ENGLISH));
+				throw new CompileException(d.getMessage(Locale.ENGLISH));
 			}
 		}
 		if (success) {
@@ -118,5 +149,44 @@ public class QueryCompiler {
 			}
 		}
 		return null;
+	}
+	
+	public CompileResult compile(String code) {
+		CompileResult compileResult = StoreFactory.eINSTANCE.createCompileResult();
+		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		if (compiler == null) {
+			compileResult.getErrors().add("JDK needed for compile tasks");
+			return compileResult;
+		}
+		JavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
+		ClassLoader classLoader = new ClassLoader(){};
+		VirtualFile baseDir = new VirtualFile(null, null);
+		VirtualFile file = baseDir.createFile("org" + File.separator + "bimserver" + File.separator + "querycompiler" + File.separator + "Query.java");
+		file.setStringContent(code);
+		VirtualFileManager myFileManager = new VirtualFileManager(fileManager, classLoader, baseDir);
+
+		List<VirtualFile> fileList = new ArrayList<VirtualFile>();
+		getJavaFiles(fileList, baseDir);
+		List<VirtualFile> compilationUnits = baseDir.getAllJavaFileObjects();
+
+		List<String> options = new ArrayList<String>();
+		options.add("-cp");
+		options.add(libPath);
+//		options.add("-target");
+//		options.add("7");
+
+		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
+		compiler.getTask(null, myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
+		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
+		compileResult.setCompileOke(true);
+		for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
+			if (d.getKind() == Kind.ERROR) {
+				compileResult.setCompileOke(false);
+				compileResult.getErrors().add(d.getMessage(Locale.ENGLISH));
+			} else if (d.getKind() == Kind.WARNING) {
+				compileResult.getErrors().add(d.getMessage(Locale.ENGLISH));
+			}
+		}
+		return compileResult;
 	}
 }

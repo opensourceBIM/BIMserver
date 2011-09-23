@@ -10,6 +10,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

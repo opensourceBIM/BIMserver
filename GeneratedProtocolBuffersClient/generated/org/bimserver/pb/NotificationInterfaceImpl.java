@@ -11,13 +11,13 @@ public final class NotificationInterfaceImpl {
   public interface SNewRevisionNotificationOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int64 oid = 1;
-    boolean hasOid();
-    long getOid();
-    
-    // optional int64 revisionId = 2;
+    // optional int64 revisionId = 1;
     boolean hasRevisionId();
     long getRevisionId();
+    
+    // optional int64 oid = 2;
+    boolean hasOid();
+    long getOid();
   }
   public static final class SNewRevisionNotification extends
       com.google.protobuf.GeneratedMessage
@@ -48,29 +48,29 @@ public final class NotificationInterfaceImpl {
     }
     
     private int bitField0_;
-    // optional int64 oid = 1;
-    public static final int OID_FIELD_NUMBER = 1;
-    private long oid_;
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public long getOid() {
-      return oid_;
-    }
-    
-    // optional int64 revisionId = 2;
-    public static final int REVISIONID_FIELD_NUMBER = 2;
+    // optional int64 revisionId = 1;
+    public static final int REVISIONID_FIELD_NUMBER = 1;
     private long revisionId_;
     public boolean hasRevisionId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public long getRevisionId() {
       return revisionId_;
     }
     
+    // optional int64 oid = 2;
+    public static final int OID_FIELD_NUMBER = 2;
+    private long oid_;
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public long getOid() {
+      return oid_;
+    }
+    
     private void initFields() {
-      oid_ = 0L;
       revisionId_ = 0L;
+      oid_ = 0L;
     }
     public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(
         com.google.protobuf.ByteString data)
@@ -184,9 +184,9 @@ public final class NotificationInterfaceImpl {
       
       public Builder clear() {
         super.clear();
-        oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000001);
         revisionId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        oid_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -229,11 +229,11 @@ public final class NotificationInterfaceImpl {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.oid_ = oid_;
+        result.revisionId_ = revisionId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.revisionId_ = revisionId_;
+        result.oid_ = oid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -241,44 +241,44 @@ public final class NotificationInterfaceImpl {
       
       private int bitField0_;
       
-      // optional int64 oid = 1;
-      private long oid_ ;
-      public boolean hasOid() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public long getOid() {
-        return oid_;
-      }
-      public Builder setOid(long value) {
-        bitField0_ |= 0x00000001;
-        oid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        oid_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional int64 revisionId = 2;
+      // optional int64 revisionId = 1;
       private long revisionId_ ;
       public boolean hasRevisionId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       public long getRevisionId() {
         return revisionId_;
       }
       public Builder setRevisionId(long value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         revisionId_ = value;
         onChanged();
         return this;
       }
       public Builder clearRevisionId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         revisionId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 oid = 2;
+      private long oid_ ;
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public long getOid() {
+        return oid_;
+      }
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00000002;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        oid_ = 0L;
         onChanged();
         return this;
       }
@@ -1549,7 +1549,7 @@ public final class NotificationInterfaceImpl {
     java.lang.String[] descriptorData = {
       "\n\022notification.proto\022\020org.bimserver.pb\032\r" +
       "service.proto\";\n\030SNewRevisionNotificatio" +
-      "n\022\013\n\003oid\030\001 \001(\003\022\022\n\nrevisionId\030\002 \001(\003\"Q\n\022Ne" +
+      "n\022\022\n\nrevisionId\030\001 \001(\003\022\013\n\003oid\030\002 \001(\003\"Q\n\022Ne" +
       "wRevisionRequest\022;\n\007unknown\030\001 \001(\0132*.org." +
       "bimserver.pb.SNewRevisionNotification\"9\n" +
       "\027SNewProjectNotification\022\013\n\003oid\030\001 \001(\003\022\021\n" +
@@ -1573,7 +1573,7 @@ public final class NotificationInterfaceImpl {
           internal_static_org_bimserver_pb_SNewRevisionNotification_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SNewRevisionNotification_descriptor,
-              new java.lang.String[] { "Oid", "RevisionId", },
+              new java.lang.String[] { "RevisionId", "Oid", },
               org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.class,
               org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder.class);
           internal_static_org_bimserver_pb_NewRevisionRequest_descriptor =

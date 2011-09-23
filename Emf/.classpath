@@ -10,5 +10,6 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.7.0.v20110520-1406.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.compare.diff_1.2.0.v20110607-2028.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.compare.match_1.2.0.v20110607-2028.jar"/>
+	<classpathentry kind="src" path="generated"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

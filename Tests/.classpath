@@ -64,12 +64,12 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/TestData"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry kind="lib" path="/BimServer/lib/junit-4.8.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServerClientLib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimWebServer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GeneratedProtocolBuffersClient"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BimCombined"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

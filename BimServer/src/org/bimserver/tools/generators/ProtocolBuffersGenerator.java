@@ -38,6 +38,7 @@ import javax.jws.WebParam;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.utils.Licenser;
 import org.bimserver.utils.StringUtils;
 
 public class ProtocolBuffersGenerator {
@@ -67,6 +68,7 @@ public class ProtocolBuffersGenerator {
 		try {
 			PrintWriter out = new PrintWriter(reflectorImplementationFile);
 			out.println("package org.bimserver.pb;\n");
+			out.println(Licenser.getCommentedLicenseText(new File("license.txt")));
 			out.println("import org.bimserver.shared.pb.Reflector;\n");
 			out.println("@SuppressWarnings(\"unchecked\")");
 			out.println("public class " + serviceInterfaceClass.getSimpleName() + "ReflectorImpl implements " + serviceInterfaceClass.getName() + " {\n");
@@ -165,6 +167,7 @@ public class ProtocolBuffersGenerator {
 		try {
 			PrintWriter out = new PrintWriter(file);
 			out.println("package org.bimserver.pb;\n");
+			out.println(Licenser.getCommentedLicenseText(new File("license.txt")));
 			out.println("import java.util.*;");
 			out.println("import com.google.protobuf.*;");
 			out.println("import org.bimserver.utils.*;");
@@ -426,6 +429,7 @@ public class ProtocolBuffersGenerator {
 		}
 		try {
 			out.println("package org.bimserver.pb;\n");
+			out.println(Licenser.getCommentedLicenseText(new File("license.txt")));
 			for (String importFile : imports) {
 				out.println("import \"" + importFile + ".proto\";");
 			}

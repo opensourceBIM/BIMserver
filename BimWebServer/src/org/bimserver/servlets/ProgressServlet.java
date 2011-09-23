@@ -24,12 +24,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.longaction.LongCheckinAction;
-import org.bimserver.longaction.LongCheckinActionKey;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.web.LoginManager;
@@ -67,11 +64,13 @@ public class ProgressServlet extends HttpServlet {
 								object.put("lastError", revision.getLastError());
 								object.put("clashes", revision.getNrClashes());
 								object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
-								BimServer bimServer = (BimServer) request.getServletContext().getAttribute("bimserver");
-								LongCheckinAction longCheckinAction = bimServer.getLongActionManager().getLongAction(LongCheckinAction.class, new LongCheckinActionKey(revision.getLastConcreteRevisionId()));
-								if (longCheckinAction != null) {
-									object.put("progress", longCheckinAction.getProgress());
-								}
+								// TODO
+//								loginManager.getService().getDownloadState(revision.getLastConcreteRevisionId());
+//								BimServer bimServer = (BimServer) request.getServletContext().getAttribute("bimserver");
+//								LongCheckinAction longCheckinAction = bimServer.getLongActionManager().getLongAction(LongCheckinAction.class, new LongCheckinActionKey(revision.getLastConcreteRevisionId()));
+//								if (longCheckinAction != null) {
+//									object.put("progress", longCheckinAction.getProgress());
+//								}
 								revisions.put(object);
 							} catch (UserException e) {
 								// This is probably a browser trying to load

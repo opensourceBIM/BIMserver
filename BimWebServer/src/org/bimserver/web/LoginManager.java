@@ -17,13 +17,20 @@ package org.bimserver.web;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class LoginManager {
+	public static BimServerClientFactory bimServerClientFactory;
+	
 	private ServiceInterface service;
+	private BimServerClient bimServerClient;
+
+	private ServiceInterface systemService;
+	private BimServerClient systemBimServerClient;
 
 	public long getUoid() throws ServiceException {
 		return service.getCurrentUser().getOid();
@@ -31,7 +38,11 @@ public class LoginManager {
 
 	public ServiceInterface getService() {
 		if (service == null) {
-			service = WebServerHelper.getBimServer().getServiceFactory().newService(AccessMethod.WEB_INTERFACE);
+			if (bimServerClient == null) {
+				bimServerClient = bimServerClientFactory.create();
+				bimServerClient.connectProtocolBuffers("localhost", 8020);
+			}
+			service = bimServerClient.getServiceInterface();
 		}
 		return service;
 	}
@@ -41,6 +52,13 @@ public class LoginManager {
 	}
 	
 	public ServiceInterface getSystemService() {
-		return WebServerHelper.getBimServer().getSystemService();
+		if (systemService == null) {
+			if (systemBimServerClient == null) {
+				systemBimServerClient = bimServerClientFactory.create();
+				systemBimServerClient.connectProtocolBuffers("localhost", 8020);
+			}
+			systemService = systemBimServerClient.getServiceInterface();
+		}
+		return systemService;
 	}
 }
