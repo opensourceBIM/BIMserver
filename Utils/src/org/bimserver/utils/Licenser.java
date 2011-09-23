@@ -89,7 +89,7 @@ public class Licenser {
 				if (indexOfFirstImport != -1) {
 					String first = content.substring(0, indexOfPackageEnd + 1);
 					String second = content.substring(indexOfFirstImport);
-					String total = first + license + second;
+					String total = first + "\n\n" + license + "\n\n" + second;
 					FileUtils.writeStringToFile(file, total);
 				} else {
 					System.out.println("Skipping " + file.getName());

@@ -17,7 +17,6 @@ package nl.tue.buildingsmart.express.population;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-@SuppressWarnings("all")
 public class ParseException extends Exception {
 
   /**
