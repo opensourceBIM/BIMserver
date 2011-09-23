@@ -50,6 +50,11 @@ public class Licenser {
 			if (indexOfPackageStart != -1) {
 				int indexOfPackageEnd = content.indexOf(";", indexOfPackageStart + 1);
 				int indexOfFirstImport = content.indexOf("import ", indexOfPackageEnd);
+				if (indexOfFirstImport != -1) {
+					if (content.substring(indexOfFirstImport - 2, indexOfFirstImport).equals("//")) {
+						indexOfFirstImport = indexOfFirstImport - 2;
+					}
+				}
 				if (indexOfFirstImport == -1) {
 					int indexOfFirstPublic = content.indexOf("public ", indexOfPackageEnd);
 					int indexOfFirstPrivate = content.indexOf("private ", indexOfPackageEnd);

@@ -76,7 +76,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 				GuidanceProvider gp = serializer.getGuidanceProvider();
 				if (gp != null) {
 					GuidanceProviderPlugin guidanceProviderPlugin = getBimServer().getPluginManager().getGuidanceProviderByName(gp.getClassName());
-					guidanceProvider = guidanceProviderPlugin.getGuidanceProvider();
+					if (guidanceProviderPlugin != null) {
+						guidanceProvider = guidanceProviderPlugin.getGuidanceProvider();
+					}
 				}
 			}
 		} catch (BimDatabaseException e) {
