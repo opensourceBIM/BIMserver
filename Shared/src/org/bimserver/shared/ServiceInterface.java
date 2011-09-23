@@ -625,7 +625,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "getSerializerByName")
 	SSerializer getSerializerByName(
 			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServiceException;
-	
+
+	@WebMethod(action = "getGuidanceProviderByName")
+	SGuidanceProvider getGuidanceProviderByName(
+			@WebParam(name = "guidanceProviderName", partName = "getGuidanceProviderByName.guidanceProviderName") String guidanceProviderName) throws ServiceException;
+
 	@WebMethod(action = "getDeserializerByName")
 	SDeserializer getDeserializerByName(
 			@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws ServiceException;

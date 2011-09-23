@@ -94,6 +94,7 @@ import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetGuidanceProviderByIdDatabaseAction;
+import org.bimserver.database.actions.GetGuidanceProviderByNameDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
@@ -2159,6 +2160,20 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
+	@Override
+	public SGuidanceProvider getGuidanceProviderByName(String guidanceProviderName) throws ServiceException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			return converter.convertToSObject(session.executeAction(new GetGuidanceProviderByNameDatabaseAction(session, accessMethod, guidanceProviderName), DEADLOCK_RETRIES));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
 	@Override
 	public SDeserializer getDeserializerByName(String deserializerName) throws ServiceException {
 		requireAuthenticationAndRunningServer();
