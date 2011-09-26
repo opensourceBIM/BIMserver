@@ -32,20 +32,8 @@ public class LocalDevBimWebServerStarter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimWebServerStarter.class);
 
 	public static void main(String[] args) {
-		String address = "127.0.0.1";
-		String port = "8082";
-		String homedir = "home";
-		for (String arg : args) {
-			if (arg.startsWith("address=")) {
-				address = arg.substring(8);
-			} else if (arg.startsWith("port=")) {
-				port = arg.substring(5);
-			} else if (arg.startsWith("homedir=")) {
-				homedir = arg.substring(8);
-			}
-		}
 		final LocalDevBimWebServerStarter server = new LocalDevBimWebServerStarter();
-		server.start(address, Integer.parseInt(port), homedir, "www");
+		server.start("localhost", 80, "www");
 	}
 
 	public void stop() {
@@ -58,7 +46,7 @@ public class LocalDevBimWebServerStarter {
 		LOGGER.info("Server stopped successfully");
 	}
 
-	public void start(String address, int port, String homedir, String resourceBase) {
+	public void start(String address, int port, String resourceBase) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {

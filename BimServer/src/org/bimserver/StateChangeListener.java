@@ -17,7 +17,7 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.models.store.ServerState;
 
 public interface StateChangeListener {
 

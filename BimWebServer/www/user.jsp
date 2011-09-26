@@ -1,9 +1,9 @@
+<%@page import="org.bimserver.web.Message"%>
 <%@page import="java.util.List" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="java.util.Collections"%>
-<%@page import="org.bimserver.Message"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>

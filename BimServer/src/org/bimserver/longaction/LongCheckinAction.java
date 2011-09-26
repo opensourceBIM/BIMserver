@@ -97,7 +97,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			}
 			startClashDetection(session);
 		} catch (OutOfMemoryError e) {
-			bimServer.getServerInfo().setOutOfMemory();
+			bimServer.getServerInfoManager().setOutOfMemory();
 			return;
 		} catch (Exception e) {
 			LOGGER.error("", e);

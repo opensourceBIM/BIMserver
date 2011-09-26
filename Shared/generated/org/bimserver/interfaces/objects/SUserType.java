@@ -17,6 +17,10 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.*;
+import javax.xml.bind.annotation.*;
+import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 public enum SUserType {
 	SYSTEM(0),
 	ADMIN(1),

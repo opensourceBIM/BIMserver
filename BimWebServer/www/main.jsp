@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.ServerInfo"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.web.LoginManager"%>
@@ -8,7 +7,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <%
-if (WebServerHelper.getBimServer().getServerInfo().isAvailable()) {
+if (loginManager.getService().getServerInfo().getServerState() == SServerState.RUNNING) {
 	if (loginManager.getService().isLoggedIn()) { %>
 <div class="sidebar">
  <ul>

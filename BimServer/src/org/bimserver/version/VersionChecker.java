@@ -28,6 +28,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.Version;
 import org.bimserver.plugins.ResourceFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,9 +62,11 @@ public class VersionChecker {
 				LOGGER.error("", e);
 			}
 			if (onlineVersion == null) {
-				onlineVersion = new Version();
+				onlineVersion = StoreFactory.eINSTANCE.createVersion();
 				onlineVersion.setDownloadUrl("unknown");
-				onlineVersion.setVersion("unknown");
+				onlineVersion.setMajor(-1);
+				onlineVersion.setMinor(-1);
+				onlineVersion.setRevision(-1);
 				onlineVersion.setSupportEmail("unknown");
 				onlineVersion.setSupportUrl("unknown");
 				onlineVersion.setDate(new Date(0));

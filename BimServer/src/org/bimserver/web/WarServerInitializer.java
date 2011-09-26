@@ -24,6 +24,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimServerConfig;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -52,7 +53,11 @@ public class WarServerInitializer implements ServletContextListener {
 			homeDir = baseDir;
 		}
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
-		bimServer = new BimServer(homeDir, resourceFetcher, makeClassPath(resourceFetcher.getFile("lib")));
+		BimServerConfig config = new BimServerConfig();
+		config.setHomeDir(homeDir);
+		config.setResourceFetcher(resourceFetcher);
+		config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
+		bimServer = new BimServer(config);
 		
 		File file = resourceFetcher.getFile("plugins");
 		try {

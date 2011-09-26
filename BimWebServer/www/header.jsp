@@ -1,24 +1,23 @@
-<%@page import="org.bimserver.web.WebServerHelper"%>
-<%@page import="org.bimserver.ServerInfo"%>
-<%@page import="org.bimserver.version.VersionChecker"%>
-<%@page import="org.bimserver.version.Version"%>
+<%@page import="org.bimserver.interfaces.objects.SVersion"%>
+<%@page import="org.bimserver.interfaces.objects.SServerState"%>
+<%@page import="org.bimserver.interfaces.objects.SServerInfo"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
-<%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.web.ErrorMessages" />
 <jsp:include page="htmlheader.jsp" />
 <body class="default">
 <%
-	if (WebServerHelper.getBimServer().getServerInfo().isAvailable()) {
+	SServerInfo serverInfo = loginManager.getService().getServerInfo();
+	if (serverInfo.getServerState() == SServerState.RUNNING) {
 %>
 <div class="sitewrapper">
 <div class="header"><a href="main.jsp"> <%
- 	Version version = WebServerHelper.getBimServer().getVersionChecker().getLocalVersion();
+	SVersion version = loginManager.getService().getVersion();
  %> <img class="headerimage"
-	src="<%=loginManager.getService().getSettingCustomLogoAddress() != null ? loginManager.getService().getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getVersion()%>" /></a> <%
+	src="<%=loginManager.getService().getSettingCustomLogoAddress() != null ? loginManager.getService().getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision()%>" /></a> <%
  	if (loginManager.getService().isLoggedIn()) {
  %>
 <div class="menubar">
@@ -62,11 +61,11 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  				}
  			}
  		}
- 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.NOT_SETUP) {
+ 	} else if (serverInfo.getServerState() == SServerState.NOT_SETUP) {
  		response.sendRedirect("setup.jsp");
- 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_IMPOSSIBLE) {
+ 	} else if (serverInfo.getServerState() == SServerState.MIGRATION_REQUIRED || serverInfo.getServerState() == SServerState.MIGRATION_IMPOSSIBLE) {
  		response.sendRedirect("migrations.jsp");
- 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.UNKNOWN) {
+ 	} else if (serverInfo.getServerState() == SServerState.FATAL_ERROR || serverInfo.getServerState() == SServerState.UNDEFINED) {
  		response.sendRedirect("error.jsp");
 	}
 %>

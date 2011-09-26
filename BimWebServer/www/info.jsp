@@ -6,11 +6,8 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
-<%@page import="org.bimserver.web.WarServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.database.Database"%>
 <%@page import="java.io.File"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SLogAction"%>
@@ -48,13 +45,14 @@
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		SDatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
-		VersionChecker checkVersion = WebServerHelper.getBimServer().getVersionChecker();
-		if (loginManager.getService().isSettingShowVersionUpgradeAvailable() && checkVersion.updateNeeded()) {
+		SVersion version = loginManager.getService().getVersion();
+		SVersion latestVersion = loginManager.getService().getLatestVersion();
+		if (loginManager.getService().isSettingShowVersionUpgradeAvailable() && loginManager.getService().upgradePossible()) {
 %>
 <div class="error">
 A newer version of the BIMserver is available online.<br/>
-<a href="<%= checkVersion.getOnlineVersion().getSupportUrl() %>">Support</a> | <a href="<%= checkVersion.getOnlineVersion().getDownloadUrl() %>">Download</a><br/>
-E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"><%= checkVersion.getOnlineVersion().getSupportEmail() %></a> for more info<br/>
+<a href="<%= latestVersion.getSupportUrl() %>">Support</a> | <a href="<%= latestVersion.getDownloadUrl() %>">Download</a><br/>
+E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion.getSupportEmail() %></a> for more info<br/>
 </div>
 <%
 	}
@@ -136,12 +134,12 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 	<div class="tabbertab" id="bimservertab" title="BIMserver">
 		<table class="formatted infotable">
 			<tr><td colspan="2" class="tabletitle">Version</td></tr>
-			<tr><td class="firstcolumn">Local Version</td><td><%=checkVersion.getLocalVersion().getVersion() %></td></tr>
-			<tr><td class="firstcolumn">Build date/time</td><td><%=dateFormat.format(checkVersion.getLocalVersion().getDate()) %></td></tr>
-			<tr><td class="firstcolumn">Schema Version</td><td><%=Database.APPLICATION_SCHEMA_VERSION %></td></tr>
+			<tr><td class="firstcolumn">Local Version</td><td><%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision() %></td></tr>
+			<tr><td class="firstcolumn">Build date/time</td><td><%=dateFormat.format(version.getDate()) %></td></tr>
+			<tr><td class="firstcolumn">Schema Version</td><td><%=loginManager.getService().getDatabaseInformation().getSchemaVersion() %></td></tr>
 			<tr><td colspan="2" class="tabletitle">Latest available version</td></tr>
-			<tr><td class="firstcolumn">Latest Version</td><td><%=checkVersion.getOnlineVersion().getVersion() %></td></tr>
-			<tr><td class="firstcolumn">Build date/time</td><td><%=dateFormat.format(checkVersion.getOnlineVersion().getDate()) %></td></tr>
+			<tr><td class="firstcolumn">Latest Version</td><td><%=latestVersion.getMajor() + "." + latestVersion.getMinor() + "." + latestVersion.getRevision() %></td></tr>
+			<tr><td class="firstcolumn">Build date/time</td><td><%=dateFormat.format(latestVersion.getDate()) %></td></tr>
 			<tr><td colspan="2" class="tabletitle">Counts</td></tr>
 			<tr><td class="firstcolumn">Projects</td><td><%=databaseInformation.getNumberOfProjects() %></td></tr>
 			<tr><td class="firstcolumn">Users</td><td><%=databaseInformation.getNumberOfUsers() %></td></tr>

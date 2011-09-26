@@ -168,6 +168,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createCompileResult();
 		case StorePackage.RUN_RESULT:
 			return (EObject) createRunResult();
+		case StorePackage.SERVER_INFO:
+			return (EObject) createServerInfo();
+		case StorePackage.VERSION:
+			return (EObject) createVersion();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -197,6 +201,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createCompareTypeFromString(eDataType, initialValue);
 		case StorePackage.ACTION_STATE:
 			return createActionStateFromString(eDataType, initialValue);
+		case StorePackage.SERVER_STATE:
+			return createServerStateFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -228,6 +234,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertCompareTypeToString(eDataType, instanceValue);
 		case StorePackage.ACTION_STATE:
 			return convertActionStateToString(eDataType, instanceValue);
+		case StorePackage.SERVER_STATE:
+			return convertServerStateToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -720,6 +728,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ServerInfo createServerInfo() {
+		ServerInfoImpl serverInfo = new ServerInfoImpl();
+		return serverInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Version createVersion() {
+		VersionImpl version = new VersionImpl();
+		return version;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null)
@@ -880,6 +908,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertActionStateToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServerState createServerStateFromString(EDataType eDataType, String initialValue) {
+		ServerState result = ServerState.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertServerStateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -41,7 +41,6 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
 import org.bimserver.changes.Change;
@@ -165,9 +164,11 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRunResult;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
+import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.longaction.LongCheckinAction;
@@ -195,6 +196,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RunResult;
 import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -209,6 +211,7 @@ import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.rights.RightsManager;
+import org.bimserver.shared.CompareWriter;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServerException;
@@ -1873,7 +1876,7 @@ public class Service implements ServiceInterface {
 			throw new UserException("Admin Password cannot be empty");
 		}
 
-		bimServer.getServerInfo().update();
+		bimServer.getServerInfoManager().update();
 
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1903,7 +1906,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		try {
 			bimServer.getDatabase().getMigrator().migrate();
-			bimServer.getServerInfo().update();
+			bimServer.getServerInfoManager().update();
 		} catch (MigrationException e) {
 			LOGGER.error("", e);
 			throw new ServerException(e);
@@ -2509,5 +2512,25 @@ public class Service implements ServiceInterface {
 		} catch (IOException e) {
 			throw new ServerException (e);
 		}
+	}
+	
+	@Override
+	public SServerInfo getServerInfo() {
+		return converter.convertToSObject(bimServer.getServerInfo());
+	}
+
+	@Override
+	public SVersion getVersion() throws ServiceException {
+		return null;
+	}
+	
+	@Override
+	public SVersion getLatestVersion() throws ServiceException {
+		return null;
+	}
+
+	@Override
+	public Boolean upgradePossible() {
+		return false;
 	}
 }

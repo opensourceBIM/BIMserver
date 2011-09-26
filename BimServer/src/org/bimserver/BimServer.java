@@ -25,11 +25,11 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
@@ -57,6 +57,8 @@ import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.notifications.NotificationsManager;
@@ -83,6 +85,10 @@ import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.Service;
 import org.bimserver.webservices.ServiceInterfaceFactory;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.bio.SocketConnector;
+import org.eclipse.jetty.server.session.HashSessionIdManager;
+import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -95,10 +101,8 @@ public class BimServer {
 	private GregorianCalendar serverStartTime;
 	private BimDatabase bimDatabase;
 	private JobScheduler bimScheduler;
-	private ResourceFetcher resourceFetcher;
 	private LongActionManager longActionManager;
 	private ServiceInterface systemService;
-	private File homeDir;
 	private SettingsManager settingsManager;
 	private EmfSerializerFactory emfSerializerFactory;
 	private EmfDeserializerFactory emfDeserializerFactory;
@@ -106,18 +110,15 @@ public class BimServer {
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
-	private ServerInfo serverInfo = new ServerInfo();
+	private ServerInfoManager serverInfoManager;
 	private ServiceInterfaceFactory serviceFactory;
 	private VersionChecker versionChecker;
 	private TemplateEngine templateEngine;
 	private ClashDetectionCache clashDetectionCache;
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
-	private final String classPath;
 
-	public BimServer(File homeDir, ResourceFetcher resourceFetcher) {
-		this(homeDir, resourceFetcher, System.getProperty("java.class.path"));
-	}
+	private final BimServerConfig config;
 
 	/**
 	 * Create a new BIMserver
@@ -128,32 +129,32 @@ public class BimServer {
 	 * @param resourceFetcher
 	 *            A resource fetcher
 	 */
-	public BimServer(File homeDir, ResourceFetcher resourceFetcher, String classPath) {
-		this.classPath = classPath;
+	public BimServer(BimServerConfig config) {
+		this.config = config;
 		try {
-			this.homeDir = homeDir;
-			this.resourceFetcher = resourceFetcher;
-			if (homeDir != null) {
+			if (config.getHomeDir() != null) {
 				initHomeDir();
 			}
 
 			fixLogging();
 
 			LOGGER.info("Starting BIMserver");
-			if (homeDir != null) {
-				LOGGER.info("Using \"" + homeDir.getAbsolutePath() + "\" as homedir");
+			if (config.getHomeDir() != null) {
+				LOGGER.info("Using \"" + config.getHomeDir().getAbsolutePath() + "\" as homedir");
 			} else {
 				LOGGER.info("Not using a homedir");
 			}
 
+			serverInfoManager = new ServerInfoManager();
+			
 			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
 					if (e instanceof OutOfMemoryError) {
-						serverInfo.setOutOfMemory();
+						serverInfoManager.setOutOfMemory();
 						LOGGER.error("", e);
 					} else if (e instanceof Error) {
-						serverInfo.setErrorMessage(e.getMessage());
+						serverInfoManager.setErrorMessage(e.getMessage());
 						LOGGER.error("", e);
 					}
 				}
@@ -161,10 +162,10 @@ public class BimServer {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
-			versionChecker = new VersionChecker(resourceFetcher);
+			versionChecker = new VersionChecker(config.getResourceFetcher());
 
 			try {
-				pluginManager = new PluginManager(resourceFetcher, homeDir, classPath);
+				pluginManager = new PluginManager(config.getResourceFetcher(), config.getHomeDir(), config.getClassPath());
 				pluginManager.addPluginChangeListener(new PluginChangeListener() {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
@@ -202,7 +203,7 @@ public class BimServer {
 			clashDetectionCache = new ClashDetectionCache();
 			compareCache = new CompareCache();
 		} catch (Throwable e) {
-			serverInfo.setErrorMessage(e.getMessage());
+			serverInfoManager.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
 		}
 	}
@@ -215,8 +216,8 @@ public class BimServer {
 
 		Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
 		templateEngine = new TemplateEngine();
-		templateEngine.init(resourceFetcher.getResource("templates/"));
-		File databaseDir = new File(homeDir, "database");
+		templateEngine.init(config.getResourceFetcher().getResource("templates/"));
+		File databaseDir = new File(config.getHomeDir(), "database");
 		BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
 		bimDatabase = new Database(this, packages, columnDatabase);
 		try {
@@ -229,19 +230,19 @@ public class BimServer {
 				bimDatabase.init();
 			} catch (InconsistentModelsException e1) {
 				LOGGER.error("", e);
-				serverInfo.setServerState(ServerState.FATAL_ERROR);
-				serverInfo.setErrorMessage("Inconsistent models");
+				serverInfoManager.setServerState(ServerState.FATAL_ERROR);
+				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
 		} catch (InconsistentModelsException e) {
 			LOGGER.error("", e);
-			serverInfo.setServerState(ServerState.FATAL_ERROR);
-			serverInfo.setErrorMessage("Inconsistent models");
+			serverInfoManager.setServerState(ServerState.FATAL_ERROR);
+			serverInfoManager.setErrorMessage("Inconsistent models");
 		}
 
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
-			protocolBuffersMetaData.load(resourceFetcher.getResource("service.desc"));
-			protocolBuffersMetaData.load(resourceFetcher.getResource("notification.desc"));
+			protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
+			protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
@@ -250,14 +251,14 @@ public class BimServer {
 		notificationsManager.start();
 
 		settingsManager = new SettingsManager(bimDatabase);
-		serverInfo.init(this);
-		serverInfo.update();
+		serverInfoManager.init(this);
+		serverInfoManager.update();
 
 		emfSerializerFactory = new EmfSerializerFactory();
 		emfDeserializerFactory = new EmfDeserializerFactory();
 
-		if (serverInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
-			serverInfo.registerStateChangeListener(new StateChangeListener() {
+		if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
+			serverInfoManager.registerStateChangeListener(new StateChangeListener() {
 				@Override
 				public void stateChanged(ServerState oldState, ServerState newState) {
 					if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
@@ -275,10 +276,28 @@ public class BimServer {
 
 		mailSystem = new MailSystem(settingsManager);
 
-		diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
+		serviceFactory = new ServiceInterfaceFactory(this);
+		if (config.isStartEmbeddedWebServer()) {
+			Server server = new Server();
+			HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
+			server.setSessionIdManager(hashSessionIdManager);
+			SocketConnector socketConnector = new SocketConnector();
+			socketConnector.setPort(8080);
+			socketConnector.setHost("localhost");
+			server.addConnector(socketConnector);
+			WebAppContext context = new WebAppContext(server, "", "/");
+			context.setResourceBase("www");
+			context.getServletContext().setAttribute("bimserver", this);
+			try {
+				server.start();
+			} catch (Exception e) {
+				LOGGER.error("", e);
+			}
+		}
+		
+		diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
 
 		mergerFactory = new MergerFactory(settingsManager);
-		serviceFactory = new ServiceInterfaceFactory(this);
 		setSystemService(serviceFactory.newService(AccessMethod.INTERNAL));
 		try {
 			if (!((Service) getSystemService()).loginAsSystem()) {
@@ -423,7 +442,7 @@ public class BimServer {
 	}
 
 	public File getHomeDir() {
-		return homeDir;
+		return config.getHomeDir();
 	}
 
 	public SettingsManager getSettingsManager() {
@@ -435,7 +454,7 @@ public class BimServer {
 	}
 
 	private void fixLogging() throws IOException {
-		File file = new File(homeDir, "logs/bimserver.log");
+		File file = new File(config.getHomeDir(), "logs/bimserver.log");
 		CustomFileAppender appender = new CustomFileAppender(file);
 		System.out.println("Logging to: " + file.getAbsolutePath());
 		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
@@ -447,14 +466,14 @@ public class BimServer {
 
 	private void initHomeDir() throws IOException {
 		String[] filesToCheck = new String[] { "logs", "tmp", "collada.xml", "ignore.xml", "ignoreexceptions", "log4j.xml", "templates" };
-		if (!homeDir.exists()) {
-			homeDir.mkdir();
+		if (!config.getHomeDir().exists()) {
+			config.getHomeDir().mkdir();
 		}
-		if (homeDir.exists() && homeDir.isDirectory()) {
+		if (config.getHomeDir().exists() && config.getHomeDir().isDirectory()) {
 			for (String fileToCheck : filesToCheck) {
-				File sourceFile = resourceFetcher.getFile(fileToCheck);
+				File sourceFile = config.getResourceFetcher().getFile(fileToCheck);
 				if (sourceFile != null && sourceFile.exists()) {
-					File destFile = new File(homeDir, fileToCheck);
+					File destFile = new File(config.getHomeDir(), fileToCheck);
 					if (!destFile.exists()) {
 						if (sourceFile.isDirectory()) {
 							destFile.mkdir();
@@ -477,7 +496,7 @@ public class BimServer {
 	}
 
 	public ResourceFetcher getResourceFetcher() {
-		return resourceFetcher;
+		return config.getResourceFetcher();
 	}
 
 	public GregorianCalendar getServerStartTime() {
@@ -530,11 +549,11 @@ public class BimServer {
 	}
 
 	public String getClassPath() {
-		return classPath;
+		return config.getClassPath();
 	}
 
 	public ServerInfo getServerInfo() {
-		return serverInfo;
+		return serverInfoManager.getServerInfo();
 	}
 
 	public ServiceInterfaceFactory getServiceFactory() {
@@ -559,5 +578,9 @@ public class BimServer {
 
 	public NotificationsManager getNotificationsManager() {
 		return notificationsManager;
+	}
+
+	public ServerInfoManager getServerInfoManager() {
+		return serverInfoManager;
 	}
 }

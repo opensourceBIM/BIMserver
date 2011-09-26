@@ -21,6 +21,7 @@ import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 
 public class Step0012 extends Migration {
 
@@ -36,6 +37,27 @@ public class Step0012 extends Migration {
 		schema.createEAttribute(runResultClass, "warnings", ecorePackage.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(runResultClass, "errors", ecorePackage.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(runResultClass, "output", ecorePackage.getEString(), Multiplicity.SINGLE);
+		
+		EEnum serverState = schema.createEEnum(schema.getEPackage("store"), "ServerState");
+		schema.createEEnumLiteral(serverState, "UNDEFINED");
+		schema.createEEnumLiteral(serverState, "NOT_SETUP");
+		schema.createEEnumLiteral(serverState, "MIGRATION_REQUIRED");
+		schema.createEEnumLiteral(serverState, "MIGRATION_IMPOSSIBLE");
+		schema.createEEnumLiteral(serverState, "FATAL_ERROR");
+		schema.createEEnumLiteral(serverState, "RUNNING");
+		
+		EClass serverInfoClass = schema.createEClass(schema.getEPackage("store"), "ServerInfo");
+		schema.createEAttribute(serverInfoClass, "serverState", serverState, Multiplicity.SINGLE);
+		schema.createEAttribute(serverInfoClass, "errorMessage", ecorePackage.getEString(), Multiplicity.SINGLE);
+		
+		EClass versionInfoClass = schema.createEClass(schema.getEPackage("store"), "Version");
+		schema.createEAttribute(versionInfoClass, "major", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "minor", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "revision", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "downloadUrl", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "supportUrl", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "supportEmail", ecorePackage.getEString(), Multiplicity.SINGLE);
 	}
 
 	@Override

@@ -19,17 +19,21 @@ package org.bimserver;
 
 import java.io.File;
 
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class LocalDevBimServerStarter {
 	public static void main(String[] args) {
-		BimServer bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
+		BimServerConfig config = new BimServerConfig();
+		config.setHomeDir(new File("home"));
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+		config.setStartEmbeddedWebServer(true);
+		BimServer bimServer = new BimServer(config);
 		try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 			bimServer.start();

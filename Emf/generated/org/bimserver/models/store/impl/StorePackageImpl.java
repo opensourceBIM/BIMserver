@@ -77,6 +77,8 @@ import org.bimserver.models.store.RunResult;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.SerializerPluginDescriptor;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.SimpleDataValue;
 import org.bimserver.models.store.StoreFactory;
@@ -85,6 +87,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSession;
 import org.bimserver.models.store.UserType;
 
+import org.bimserver.models.store.Version;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -442,6 +445,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass serverInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass versionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -492,6 +509,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EEnum actionStateEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum serverStateEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2867,6 +2891,105 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getServerInfo() {
+		return serverInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerInfo_ServerState() {
+		return (EAttribute) serverInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerInfo_ErrorMessage() {
+		return (EAttribute) serverInfoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVersion() {
+		return versionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_Major() {
+		return (EAttribute) versionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_Minor() {
+		return (EAttribute) versionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_Revision() {
+		return (EAttribute) versionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_Date() {
+		return (EAttribute) versionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_DownloadUrl() {
+		return (EAttribute) versionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_SupportUrl() {
+		return (EAttribute) versionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_SupportEmail() {
+		return (EAttribute) versionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUserType() {
 		return userTypeEEnum;
 	}
@@ -2932,6 +3055,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EEnum getActionState() {
 		return actionStateEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getServerState() {
+		return serverStateEEnum;
 	}
 
 	/**
@@ -3274,6 +3406,19 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(runResultEClass, RUN_RESULT__ERRORS);
 		createEAttribute(runResultEClass, RUN_RESULT__OUTPUT);
 
+		serverInfoEClass = createEClass(SERVER_INFO);
+		createEAttribute(serverInfoEClass, SERVER_INFO__SERVER_STATE);
+		createEAttribute(serverInfoEClass, SERVER_INFO__ERROR_MESSAGE);
+
+		versionEClass = createEClass(VERSION);
+		createEAttribute(versionEClass, VERSION__MAJOR);
+		createEAttribute(versionEClass, VERSION__MINOR);
+		createEAttribute(versionEClass, VERSION__REVISION);
+		createEAttribute(versionEClass, VERSION__DATE);
+		createEAttribute(versionEClass, VERSION__DOWNLOAD_URL);
+		createEAttribute(versionEClass, VERSION__SUPPORT_URL);
+		createEAttribute(versionEClass, VERSION__SUPPORT_EMAIL);
+
 		// Create enums
 		userTypeEEnum = createEEnum(USER_TYPE);
 		checkinStateEEnum = createEEnum(CHECKIN_STATE);
@@ -3283,6 +3428,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		compareIdentifierEEnum = createEEnum(COMPARE_IDENTIFIER);
 		compareTypeEEnum = createEEnum(COMPARE_TYPE);
 		actionStateEEnum = createEEnum(ACTION_STATE);
+		serverStateEEnum = createEEnum(SERVER_STATE);
 
 		// Create data types
 		dataHandlerEDataType = createEDataType(DATA_HANDLER);
@@ -3842,6 +3988,28 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getRunResult_Output(), ecorePackage.getEString(), "output", null, 0, 1, RunResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getServerInfo_ServerState(), this.getServerState(), "serverState", null, 0, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getServerInfo_ErrorMessage(), ecorePackage.getEString(), "errorMessage", null, 0, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(versionEClass, Version.class, "Version", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVersion_Major(), ecorePackage.getEInt(), "major", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_Minor(), ecorePackage.getEInt(), "minor", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_Revision(), ecorePackage.getEInt(), "revision", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_DownloadUrl(), ecorePackage.getEString(), "downloadUrl", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_SupportUrl(), ecorePackage.getEString(), "supportUrl", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_SupportEmail(), ecorePackage.getEString(), "supportEmail", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(userTypeEEnum, UserType.class, "UserType");
 		addEEnumLiteral(userTypeEEnum, UserType.SYSTEM);
@@ -3899,6 +4067,14 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		addEEnumLiteral(actionStateEEnum, ActionState.UNKNOWN);
 		addEEnumLiteral(actionStateEEnum, ActionState.STARTED);
 		addEEnumLiteral(actionStateEEnum, ActionState.FINISHED);
+
+		initEEnum(serverStateEEnum, ServerState.class, "ServerState");
+		addEEnumLiteral(serverStateEEnum, ServerState.UNDEFINED);
+		addEEnumLiteral(serverStateEEnum, ServerState.NOT_SETUP);
+		addEEnumLiteral(serverStateEEnum, ServerState.MIGRATION_REQUIRED);
+		addEEnumLiteral(serverStateEEnum, ServerState.MIGRATION_IMPOSSIBLE);
+		addEEnumLiteral(serverStateEEnum, ServerState.FATAL_ERROR);
+		addEEnumLiteral(serverStateEEnum, ServerState.RUNNING);
 
 		// Initialize data types
 		initEDataType(dataHandlerEDataType, DataHandler.class, "DataHandler", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

@@ -3027,6 +3027,125 @@ public interface StorePackage extends EPackage {
 	int RUN_RESULT_FEATURE_COUNT = 4;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ServerInfoImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerInfo()
+	 * @generated
+	 */
+	int SERVER_INFO = 48;
+
+	/**
+	 * The feature id for the '<em><b>Server State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO__SERVER_STATE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Error Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO__ERROR_MESSAGE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Server Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.VersionImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getVersion()
+	 * @generated
+	 */
+	int VERSION = 49;
+
+	/**
+	 * The feature id for the '<em><b>Major</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__MAJOR = 0;
+
+	/**
+	 * The feature id for the '<em><b>Minor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__MINOR = 1;
+
+	/**
+	 * The feature id for the '<em><b>Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__REVISION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__DATE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Download Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__DOWNLOAD_URL = 4;
+
+	/**
+	 * The feature id for the '<em><b>Support Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__SUPPORT_URL = 5;
+
+	/**
+	 * The feature id for the '<em><b>Support Email</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__SUPPORT_EMAIL = 6;
+
+	/**
+	 * The number of structural features of the '<em>Version</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_FEATURE_COUNT = 7;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3034,7 +3153,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 48;
+	int USER_TYPE = 50;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -3044,7 +3163,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 49;
+	int CHECKIN_STATE = 51;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -3054,7 +3173,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 50;
+	int SI_PREFIX = 52;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -3064,7 +3183,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 51;
+	int OBJECT_STATE = 53;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -3074,7 +3193,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 52;
+	int MERGE_IDENTIFIER = 54;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
@@ -3084,7 +3203,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 53;
+	int COMPARE_IDENTIFIER = 55;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -3094,7 +3213,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 54;
+	int COMPARE_TYPE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -3104,7 +3223,17 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 55;
+	int ACTION_STATE = 57;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.ServerState
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
+	 * @generated
+	 */
+	int SERVER_STATE = 58;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -3114,7 +3243,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 56;
+	int DATA_HANDLER = 59;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -5863,6 +5992,125 @@ public interface StorePackage extends EPackage {
 	EAttribute getRunResult_Output();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServerInfo <em>Server Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Server Info</em>'.
+	 * @see org.bimserver.models.store.ServerInfo
+	 * @generated
+	 */
+	EClass getServerInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerInfo#getServerState <em>Server State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Server State</em>'.
+	 * @see org.bimserver.models.store.ServerInfo#getServerState()
+	 * @see #getServerInfo()
+	 * @generated
+	 */
+	EAttribute getServerInfo_ServerState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerInfo#getErrorMessage <em>Error Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Error Message</em>'.
+	 * @see org.bimserver.models.store.ServerInfo#getErrorMessage()
+	 * @see #getServerInfo()
+	 * @generated
+	 */
+	EAttribute getServerInfo_ErrorMessage();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Version <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Version</em>'.
+	 * @see org.bimserver.models.store.Version
+	 * @generated
+	 */
+	EClass getVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getMajor <em>Major</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Major</em>'.
+	 * @see org.bimserver.models.store.Version#getMajor()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_Major();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getMinor <em>Minor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Minor</em>'.
+	 * @see org.bimserver.models.store.Version#getMinor()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_Minor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getRevision <em>Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Revision</em>'.
+	 * @see org.bimserver.models.store.Version#getRevision()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_Revision();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see org.bimserver.models.store.Version#getDate()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_Date();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getDownloadUrl <em>Download Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Download Url</em>'.
+	 * @see org.bimserver.models.store.Version#getDownloadUrl()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_DownloadUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getSupportUrl <em>Support Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Support Url</em>'.
+	 * @see org.bimserver.models.store.Version#getSupportUrl()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_SupportUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getSupportEmail <em>Support Email</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Support Email</em>'.
+	 * @see org.bimserver.models.store.Version#getSupportEmail()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_SupportEmail();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5941,6 +6189,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getActionState();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.ServerState <em>Server State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Server State</em>'.
+	 * @see org.bimserver.models.store.ServerState
+	 * @generated
+	 */
+	EEnum getServerState();
 
 	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
@@ -8104,6 +8362,98 @@ public interface StorePackage extends EPackage {
 		EAttribute RUN_RESULT__OUTPUT = eINSTANCE.getRunResult_Output();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServerInfoImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerInfo()
+		 * @generated
+		 */
+		EClass SERVER_INFO = eINSTANCE.getServerInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Server State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_INFO__SERVER_STATE = eINSTANCE.getServerInfo_ServerState();
+
+		/**
+		 * The meta object literal for the '<em><b>Error Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_INFO__ERROR_MESSAGE = eINSTANCE.getServerInfo_ErrorMessage();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.VersionImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getVersion()
+		 * @generated
+		 */
+		EClass VERSION = eINSTANCE.getVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Major</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__MAJOR = eINSTANCE.getVersion_Major();
+
+		/**
+		 * The meta object literal for the '<em><b>Minor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__MINOR = eINSTANCE.getVersion_Minor();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__REVISION = eINSTANCE.getVersion_Revision();
+
+		/**
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__DATE = eINSTANCE.getVersion_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Download Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__DOWNLOAD_URL = eINSTANCE.getVersion_DownloadUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Support Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__SUPPORT_URL = eINSTANCE.getVersion_SupportUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Support Email</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__SUPPORT_EMAIL = eINSTANCE.getVersion_SupportEmail();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8182,6 +8532,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ACTION_STATE = eINSTANCE.getActionState();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.ServerState
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
+		 * @generated
+		 */
+		EEnum SERVER_STATE = eINSTANCE.getServerState();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.
