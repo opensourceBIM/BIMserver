@@ -78,6 +78,7 @@ import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.bimserver.templating.TemplateEngine;
@@ -316,7 +317,7 @@ public class BimServer {
 			ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 			serviceFactoryRegistry.registerServiceFactory(serviceFactory);
 			ProtocolBuffersServer protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry);
-			protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData));
+			protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, new SService(ServiceInterface.class)));
 			protocolBuffersServer.start();
 		} catch (Exception e1) {
 			e1.printStackTrace();

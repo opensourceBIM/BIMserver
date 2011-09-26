@@ -140,7 +140,6 @@ public class SConverterGenerator
   protected final String TEXT_120 = " input) {" + NL + "\t\t\treturn ";
   protected final String TEXT_121 = ".values()[input.ordinal()];" + NL + "\t\t}";
   protected final String TEXT_122 = NL + "}";
-  protected final String TEXT_123 = NL;
 
   public String generate(Object argument)
   {
@@ -475,7 +474,6 @@ public class SConverterGenerator
 }
 
     stringBuffer.append(TEXT_122);
-    stringBuffer.append(TEXT_123);
     return stringBuffer.toString();
   }
 }

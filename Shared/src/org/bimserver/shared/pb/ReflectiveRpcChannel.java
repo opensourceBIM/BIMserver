@@ -20,13 +20,17 @@ package org.bimserver.shared.pb;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SMethod;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,40 +50,39 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final Object service;
+	private final SService sService;
 
-	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData) {
+	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData, SService sService) {
 		this.service = service;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
+		this.sService = sService;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Message callBlockingMethod(MethodDescriptorContainer methodDescriptor, Message request) throws ServiceException {
 		FieldDescriptor errorMessageField = methodDescriptor.getOutputField("errorMessage");
 		DynamicMessage response = DynamicMessage.getDefaultInstance(methodDescriptor.getOutputDescriptor());
-		Class<?> clazz = service.getClass();
 		Descriptor inputType = methodDescriptor.getInputDescriptor();
-		Class<?>[] parameterClasses = new Class[inputType.getFields().size()];
-		int ci = 0;
-		for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
-			parameterClasses[ci++] = getJavaType(fieldDescriptor);
-		}
+		SMethod sMethod = sService.getSMethod(methodDescriptor.getName());
 		try {
-			Method method = getMethod(clazz, methodDescriptor.getName(), parameterClasses);
+			Method method = sMethod.getMethod();
 			Object[] arguments = new Object[inputType.getFields().size()];
 			int i = 0;
 			for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
-				Object field = request.getField(fieldDescriptor);
-				if (field instanceof EnumValueDescriptor) {
-					EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)field;
+				Object value = request.getField(fieldDescriptor);
+				if (value instanceof EnumValueDescriptor) {
+					EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)value;
 					Class en = getJavaType(fieldDescriptor);
 					arguments[i] = en.getEnumConstants()[enumValueDescriptor.getIndex()];
-				} else if (field instanceof ByteString) {
-					ByteString byteString = (ByteString)field;
+				} else if (value instanceof ByteString) {
+					ByteString byteString = (ByteString)value;
 					DataSource dataSource = new ByteArrayDataSource(byteString.toByteArray(), "bytes");
 					DataHandler dataHandler = new DataHandler(dataSource);
 					arguments[i] = dataHandler;
+				} else if (value instanceof DynamicMessage) {
+					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value);
 				} else {
-					arguments[i] = field;
+					arguments[i] = value;
 				}
 				i++;
 			}
@@ -90,13 +93,31 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 			} else {
 				FieldDescriptor valueField = protocolBuffersMetaData.getMessageDescriptor(response.getDescriptorForType().getName()).getField("value");
 				if (result != null) {
-					if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
-						builder.setField(valueField, result);
+					if (valueField.getType().getJavaType() == JavaType.ENUM) {
+						builder.setField(valueField, valueField.getEnumType().findValueByName(result.toString()));
+					} else if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
+						if (result instanceof Date) {
+							builder.setField(valueField, ((Date)result).getTime());
+						} else {
+							if (valueField.isRepeated()) {
+								builder.setField(valueField, new ArrayList());
+							} else {
+								builder.setField(valueField, result);
+							}
+						}
 					} else if (result instanceof List) {
 						Descriptor messageType = valueField.getMessageType();
 						List list = new ArrayList();
 						List originalList = (List) result;
 						for (Object object : originalList) {
+							list.add(convertSObjectToProtocolBuffersObject(messageType, (SBase) object));
+						}
+						builder.setField(valueField, list);
+					} else if (result instanceof Set) {
+						Descriptor messageType = valueField.getMessageType();
+						List list = new ArrayList();
+						Set originalSet = (Set) result;
+						for (Object object : originalSet) {
 							list.add(convertSObjectToProtocolBuffersObject(messageType, (SBase) object));
 						}
 						builder.setField(valueField, list);

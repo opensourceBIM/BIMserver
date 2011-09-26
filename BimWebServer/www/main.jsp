@@ -7,8 +7,9 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <%
-if (loginManager.getService().getServerInfo().getServerState() == SServerState.RUNNING) {
-	if (loginManager.getService().isLoggedIn()) { %>
+try {
+	if (loginManager.getService().getServerInfo().getServerState() == SServerState.RUNNING) {
+		if (loginManager.getService().isLoggedIn()) { %>
 <div class="sidebar">
  <ul>
 <% if (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects()) { %>
@@ -58,4 +59,9 @@ No projects<br/><br/>
 }
 %>
 </div>
+<%
+} catch (Exception e) {
+	e.printStackTrace();
+}
+%>
 <%@ include file="footer.jsp" %>
