@@ -1,18 +1,18 @@
 
 µ
-notification.protoorg.bimserver.pbservice.proto"9
+notification.protoorg.bimserver.pbservice.proto";
+SNewRevisionNotification
+
+revisionId (
+oid ("Q
+NewRevisionRequest;
+unknown (2*.org.bimserver.pb.SNewRevisionNotification"9
 SNewProjectNotification
 oid (
 	projectId ("O
 NewProjectRequest:
-unknown (2).org.bimserver.pb.SNewProjectNotification";
-SNewRevisionNotification
-oid (
+unknown (2).org.bimserver.pb.SNewProjectNotification2¿
+NotificationInterfaceS
+newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseQ
 
-revisionId ("Q
-NewRevisionRequest;
-unknown (2*.org.bimserver.pb.SNewRevisionNotification2¿
-NotificationInterfaceQ
-
-newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseS
-newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
+newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
