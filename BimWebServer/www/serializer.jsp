@@ -4,11 +4,9 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
-<%@page import="org.bimserver.web.WarServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>

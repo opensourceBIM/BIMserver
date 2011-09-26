@@ -4,10 +4,8 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Properties"%>
-<%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.mail.MailSystem"%>
 <%@ include file="header.jsp" %>
 <div class="sidebar">
 </div>

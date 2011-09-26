@@ -1,5 +1,3 @@
-<%@page import="org.bimserver.interfaces.objects.LongActionState"%>
-<%@page import="org.bimserver.interfaces.objects.LongActionState.ActionState"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <jsp:useBean id="loginManager" scope="session"
 	class="org.bimserver.web.LoginManager" />

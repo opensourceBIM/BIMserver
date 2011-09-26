@@ -65,9 +65,11 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRunResult;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
+import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServiceException;
 
 //TODO: Document the rest of the interface
@@ -807,4 +809,16 @@ public interface ServiceInterface {
 	
 	@WebMethod(action = "getProtocolBuffersFile")
 	String getProtocolBuffersFile() throws ServiceException;
+	
+	@WebMethod(action = "getServerInfo")
+	SServerInfo getServerInfo() throws ServiceException;
+	
+	@WebMethod(action = "getVersion")
+	SVersion getVersion() throws ServiceException;
+	
+	@WebMethod(action = "getLatestVersion")
+	SVersion getLatestVersion() throws ServiceException;
+	
+	@WebMethod(action = "upgradePossible")
+	Boolean upgradePossible() throws ServiceException;
 }

@@ -1,10 +1,10 @@
+<%@page import="org.bimserver.web.Message"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.List" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.Message"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <div class="sidebar">

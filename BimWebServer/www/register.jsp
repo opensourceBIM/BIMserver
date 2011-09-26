@@ -1,19 +1,14 @@
-<%@page import="org.bimserver.web.WebServerHelper"%>
+<%@page import="org.bimserver.interfaces.objects.SVersion"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Properties"%>
-<%@page import="org.bimserver.version.Version"%>
-<%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="org.apache.velocity.app.VelocityEngine"%>
 <%@page import="org.apache.velocity.Template"%>
 <%@page import="org.apache.velocity.VelocityContext"%>
 <%@page import="java.io.StringWriter"%>
-<%@page import="org.bimserver.templating.TemplateEngine"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="org.bimserver.templating.TemplateIdentifier"%>
-<%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
@@ -22,23 +17,23 @@
 <%
 	if (loginManager.getService().isSettingAllowSelfRegistration()) {
 		List<String> errorMessages = new ArrayList<String>();
-		Version version = WebServerHelper.getBimServer().getVersionChecker().getLocalVersion();
+		SVersion version = loginManager.getService().getVersion();
 		boolean success = false;
 		if (request.getParameter("register") != null) {
-	String name = request.getParameter("register_name");
-	String username = request.getParameter("register_username");
-	try {
-		long uoid = loginManager.getSystemService().addUser(username, name, SUserType.USER, true);
-	} catch (ServiceException e) {
-		errorMessages.add(e.getUserMessage());
-	}
-	if (errorMessages.size() == 0) {
-		success = true;
-	}
+			String name = request.getParameter("register_name");
+			String username = request.getParameter("register_username");
+			try {
+				long uoid = loginManager.getSystemService().addUser(username, name, SUserType.USER, true);
+			} catch (ServiceException e) {
+				errorMessages.add(e.getUserMessage());
+			}
+			if (errorMessages.size() == 0) {
+				success = true;
+			}
 		}
 %>
 <div class="loginwrapper">
-<div class="header"><a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver <%=version.getVersion() %>"/></a></div>
+<div class="header"><a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision() %>"/></a></div>
 <div>
 <%
 	String addition = loginManager.getService().getSettingRegistrationAddition();

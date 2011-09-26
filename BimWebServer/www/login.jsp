@@ -1,70 +1,70 @@
+<%@page import="org.bimserver.interfaces.objects.SVersion"%>
+<%@page import="org.bimserver.interfaces.objects.SServerState"%>
+<%@page import="org.bimserver.interfaces.objects.SServerInfo"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.models.log.AccessMethod"%>
-<%@page import="org.bimserver.version.Version"%>
-<%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.utils.Hashers"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="org.bimserver.ServerInfo"%>
-<%@page import="org.bimserver.ServerInfo.ServerState"%><jsp:include page="htmlheader.jsp" />
+<jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.web.ErrorMessages" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <body>
 	<%
 	try {
-	if (WebServerHelper.getBimServer().getServerInfo().isAvailable() || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED) {
-		Version version = WebServerHelper.getBimServer().getVersionChecker().getLocalVersion();
-		boolean redirected = false;
-		if (request.getParameter("login") != null) {
-			try {
-				if (loginManager.getService().login(request.getParameter("username"), request.getParameter("password"))) {
-					if (request.getParameter("rememberme") != null) {
-						String rememberHash = Hashers.getSha256Hash(request.getParameter("username") + Hashers.getSha256Hash(request.getParameter("password")));
-						Cookie autologinCookie = new Cookie("autologin", rememberHash);
-						autologinCookie.setMaxAge(2592000); // 30 days
-						response.addCookie(autologinCookie);
-						Cookie usernameCookie = new Cookie("username", request.getParameter("username"));
-						usernameCookie.setMaxAge(2592000); // 30 days
-						response.addCookie(usernameCookie);
-					}
-					if (request.getParameter("origurl") != null && !request.getParameter("origurl").endsWith("?null")) {
-						response.sendRedirect(request.getParameter("origurl"));
+		SServerInfo serverInfo = loginManager.getService().getServerInfo();		
+		if (serverInfo.getServerState() != SServerState.MIGRATION_REQUIRED) {
+			SVersion version = loginManager.getService().getVersion();
+			boolean redirected = false;
+			if (request.getParameter("login") != null) {
+				try {
+					if (loginManager.getService().login(request.getParameter("username"), request.getParameter("password"))) {
+						if (request.getParameter("rememberme") != null) {
+							String rememberHash = Hashers.getSha256Hash(request.getParameter("username") + Hashers.getSha256Hash(request.getParameter("password")));
+							Cookie autologinCookie = new Cookie("autologin", rememberHash);
+							autologinCookie.setMaxAge(2592000); // 30 days
+							response.addCookie(autologinCookie);
+							Cookie usernameCookie = new Cookie("username", request.getParameter("username"));
+							usernameCookie.setMaxAge(2592000); // 30 days
+							response.addCookie(usernameCookie);
+						}
+						if (request.getParameter("origurl") != null && !request.getParameter("origurl").endsWith("?null")) {
+							response.sendRedirect(request.getParameter("origurl"));
+						} else {
+							response.sendRedirect("main.jsp");
+						}
+						redirected = true;
 					} else {
-						response.sendRedirect("main.jsp");
+						errorMessages.add("Login unsuccessful");
 					}
-					redirected = true;
-				} else {
-					errorMessages.add("Login unsuccessful");
+				} catch (ServiceException e) {
+					errorMessages.add(e.getUserMessage());
 				}
-			} catch (ServiceException e) {
-				errorMessages.add(e.getUserMessage());
-			}
-		} else {
-			Map<String, String> cookies = new HashMap<String, String>();
-			if (request.getCookies() != null) {
-				for (Cookie cookie : request.getCookies()) {
-					cookies.put(cookie.getName(), cookie.getValue());
-				}
-			}
-			if (request.getSession().getAttribute("loggingout") == null && cookies.containsKey("autologin") && cookies.containsKey("username")) {
-				if (loginManager.getService().autologin(cookies.get("username"), cookies.get("autologin"))) {
-					if (!loginManager.getService().isLoggedIn()) {
-						response.sendRedirect(request.getContextPath() + "/login.jsp?origurl=" + URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
-					} else {
-						response.sendRedirect(request.getContextPath() + "/main.jsp");
+			} else {
+				Map<String, String> cookies = new HashMap<String, String>();
+				if (request.getCookies() != null) {
+					for (Cookie cookie : request.getCookies()) {
+						cookies.put(cookie.getName(), cookie.getValue());
 					}
-					redirected = true;
+				}
+				if (request.getSession().getAttribute("loggingout") == null && cookies.containsKey("autologin") && cookies.containsKey("username")) {
+					if (loginManager.getService().autologin(cookies.get("username"), cookies.get("autologin"))) {
+						if (!loginManager.getService().isLoggedIn()) {
+							response.sendRedirect(request.getContextPath() + "/login.jsp?origurl=" + URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
+						} else {
+							response.sendRedirect(request.getContextPath() + "/main.jsp");
+						}
+						redirected = true;
+					}
 				}
 			}
-		}
-		if (!redirected) {
+			if (!redirected) {
 %>
 <div class="loginwrapper">
 <div class="header">
-<a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver <%=version.getVersion() %>"/></a>
+<a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision() %>"/></a>
 </div>
 <br/>
 <jsp:include page="loginExtra.jsp" />
@@ -107,13 +107,13 @@ if (loginManager.getService().isSettingAllowSelfRegistration()) {
 </script>
 <%
 		}
- 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.NOT_SETUP) {
+ 	} else if (serverInfo.getServerState() == SServerState.NOT_SETUP) {
  		response.sendRedirect("setup.jsp");
- 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_IMPOSSIBLE) {
+ 	} else if (serverInfo.getServerState() == SServerState.MIGRATION_REQUIRED || serverInfo.getServerState() == SServerState.MIGRATION_IMPOSSIBLE) {
  		response.sendRedirect("migrations.jsp");
- 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.UNKNOWN) {
+ 	} else if (serverInfo.getServerState() == SServerState.FATAL_ERROR || serverInfo.getServerState() == SServerState.UNDEFINED) {
  		response.sendRedirect("error.jsp");
- 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR) {
+ 	} else if (serverInfo.getServerState() == SServerState.FATAL_ERROR) {
  		response.sendRedirect("error.jsp");
  	}
 	} catch (Exception e) {

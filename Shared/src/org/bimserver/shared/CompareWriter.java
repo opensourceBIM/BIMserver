@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.shared;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org

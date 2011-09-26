@@ -24,6 +24,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
@@ -63,7 +64,10 @@ public class TestEmbeddedBimServer {
 	public static void initClass() {
 		try {
 			// Create a BIMserver
-			bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
+			BimServerConfig config = new BimServerConfig();
+			config.setHomeDir(new File("home"));
+			config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+			bimServer = new BimServer(config);
 
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());

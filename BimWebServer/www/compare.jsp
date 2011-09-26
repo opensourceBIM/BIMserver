@@ -1,7 +1,7 @@
+<%@page import="org.bimserver.shared.CompareWriter"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareIdentifier"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareType"%>
-<%@page import="org.bimserver.webservices.CompareWriter"%>
 <%@page import="java.util.List"%>
 <%@page import="org.eclipse.emf.ecore.EClass"%>
 <%@page import="java.util.Map"%>

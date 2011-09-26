@@ -52,7 +52,6 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/saaj-api-1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/saaj-impl-1.3.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/serializer-2.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/slf4j-api-1.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/spring-aop-3.0.5.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/spring-asm-3.0.5.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/spring-beans-3.0.5.RELEASE.jar"/>
