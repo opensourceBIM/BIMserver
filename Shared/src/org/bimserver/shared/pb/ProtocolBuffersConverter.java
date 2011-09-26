@@ -42,6 +42,7 @@ import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.EnumValueDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
+import com.google.protobuf.Descriptors.FieldDescriptor.Type;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;

@@ -17,6 +17,7 @@ package org.bimserver.version;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
@@ -25,11 +26,11 @@ import java.util.GregorianCalendar;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
-import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.Version;
+import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.plugins.ResourceFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,21 +38,40 @@ import org.slf4j.LoggerFactory;
 public class VersionChecker {
 	private static final Logger LOGGER = LoggerFactory.getLogger(VersionChecker.class);
 	private GregorianCalendar lastCheck;
-	private Version onlineVersion;
+	private SVersion onlineVersion;
 	private final ResourceFetcher resourceFetcher;
 
+	public static void main(String[] args) {
+		SVersion version = new SVersion();
+		version.setMajor(1);
+		version.setMinor(1);
+		version.setRevision(0);
+		version.setDate(new Date());
+		version.setSupportEmail("support@bimserver.org");
+		version.setDownloadUrl("http://download.bimserver.org");
+		version.setSupportUrl("http://support.bimserver.org");
+		
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
+			Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.marshal(version, new File("version.xml"));
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public VersionChecker(ResourceFetcher resourceFetcher) {
 		this.resourceFetcher = resourceFetcher;
 	}
 
-	public synchronized Version getOnlineVersion() {
+	public synchronized SVersion getOnlineVersion() {
 		if (lastCheck == null || lastCheck.before(getReferenceDate())) {
 			LOGGER.info("Fetching online version info");
 			try {
 				URL url = new URL("http://www.bimserver.org/version/latest.xml");
-				JAXBContext jaxbContext = JAXBContext.newInstance(Version.class);
+				JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-				onlineVersion = (Version) unmarshaller.unmarshal(url);
+				onlineVersion = (SVersion) unmarshaller.unmarshal(url);
 				lastCheck = new GregorianCalendar();
 				return onlineVersion;
 			} catch (UnmarshalException e) {
@@ -62,7 +82,7 @@ public class VersionChecker {
 				LOGGER.error("", e);
 			}
 			if (onlineVersion == null) {
-				onlineVersion = StoreFactory.eINSTANCE.createVersion();
+				onlineVersion = new SVersion();
 				onlineVersion.setDownloadUrl("unknown");
 				onlineVersion.setMajor(-1);
 				onlineVersion.setMinor(-1);
@@ -82,11 +102,11 @@ public class VersionChecker {
 		return gregorianCalendar;
 	}
 
-	public Version getLocalVersion() {
+	public SVersion getLocalVersion() {
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(Version.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Version version = (Version) unmarshaller.unmarshal(resourceFetcher.getResource("version.xml"));
+			SVersion version = (SVersion) unmarshaller.unmarshal(resourceFetcher.getResource("version.xml"));
 			return version;
 		} catch (JAXBException e) {
 			LOGGER.error("", e);
@@ -95,8 +115,8 @@ public class VersionChecker {
 	}
 
 	public boolean updateNeeded() {
-		Version localVersion = getLocalVersion();
-		Version onlineVersion = getOnlineVersion();
+		SVersion localVersion = getLocalVersion();
+		SVersion onlineVersion = getOnlineVersion();
 		if (localVersion.getMajor() < onlineVersion.getMajor()) {
 			return true;
 		} else if (localVersion.getMajor() == onlineVersion.getMajor()) {

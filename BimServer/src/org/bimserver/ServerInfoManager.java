@@ -6,6 +6,7 @@ import java.util.Set;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StoreFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,7 @@ public class ServerInfoManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInfoManager.class);
 	private BimServer bimServer;
 	private Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
-	private ServerInfo serverInfo;
+	private ServerInfo serverInfo = StoreFactory.eINSTANCE.createServerInfo();
 
 	public void registerStateChangeListener(StateChangeListener stateChangeListener) {
 		stateChangeListeners.add(stateChangeListener);

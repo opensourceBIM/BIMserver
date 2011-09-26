@@ -2521,16 +2521,16 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SVersion getVersion() throws ServiceException {
-		return null;
+		return bimServer.getVersionChecker().getLocalVersion();
 	}
 	
 	@Override
 	public SVersion getLatestVersion() throws ServiceException {
-		return null;
+		return bimServer.getVersionChecker().getOnlineVersion();
 	}
 
 	@Override
 	public Boolean upgradePossible() {
-		return false;
+		return bimServer.getVersionChecker().updateNeeded();
 	}
 }

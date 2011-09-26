@@ -17,12 +17,22 @@ package org.bimserver.shared.pb;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 
 import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.EnumDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.DynamicMessage.Builder;
 import com.google.protobuf.Message;
@@ -38,13 +48,23 @@ public class Reflector extends ProtocolBuffersConverter {
 		this.channel = channel;
 	}
 
-	public Object callMethod(String interfaceName, String methodName, Object... args) throws org.bimserver.shared.exceptions.ServiceException {
+	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, Object... args) throws org.bimserver.shared.exceptions.ServiceException {
 		MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
 		Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
 		Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
 		int i = 0;
 		for (FieldDescriptor field : inputDescriptor.getFields()) {
-			builder.setField(field, args[i++]);
+			Object arg = args[i++];
+			if (field.getJavaType() == JavaType.ENUM) {
+				EnumDescriptor enumType = field.getEnumType();
+				builder.setField(field, enumType.findValueByName(arg.toString()));
+			} else {
+				if (arg instanceof SBase) {
+					builder.setField(field, convertSObjectToProtocolBuffersObject(field.getMessageType(), (SBase)arg));
+				} else {
+					builder.setField(field, arg);
+				}
+			}
 		}
 		DynamicMessage message = builder.build();
 		try {
@@ -54,11 +74,39 @@ public class Reflector extends ProtocolBuffersConverter {
 				if (result.getDescriptorForType().getName().equals("VoidResponse")) {
 					return null;
 				} else {
-					Object value = result.getField(methodDescriptorContainer.getOutputField("value"));
-					if (value instanceof DynamicMessage) {
+					FieldDescriptor outputField = methodDescriptorContainer.getOutputField("value");
+					Object value = result.getField(outputField);
+					if (outputField.isRepeated()) {
+						if (value instanceof Collection) {
+							Collection collection = (Collection)value;
+							Collection x = null;
+							if (definedReturnType == List.class) {
+								x = new ArrayList();
+							} else if (definedReturnType == Set.class) {
+								x = new HashSet();
+							}
+							for (Object v : collection) {
+								if (v instanceof DynamicMessage) {
+									x.add(convertProtocolBuffersMessageToSObject((DynamicMessage) v));
+								} else {
+									x.add(v);
+								}
+							}
+							return x;
+						} else {
+							return new ArrayList();
+						}
+					} else if (outputField.getJavaType() == JavaType.ENUM) {
+						EnumDescriptor enumType = outputField.getEnumType();
+						return enumType.findValueByName(value.toString());
+					} else if (value instanceof DynamicMessage) {
 						return convertProtocolBuffersMessageToSObject((DynamicMessage) value);
+					} else {
+						if  (definedReturnType == Date.class) {
+							return new Date((Long)value);
+						}
+						return value;
 					}
-					return value;
 				}
 			} else {
 				throw new UserException(errorMessage);

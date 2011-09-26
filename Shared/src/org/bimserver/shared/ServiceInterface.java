@@ -579,7 +579,8 @@ public interface ServiceInterface {
 	void migrateDatabase() throws ServiceException;
 
 	@WebMethod(action = "getAllSerializers")
-	List<SSerializer> getAllSerializers(Boolean onlyEnabled) throws ServiceException;
+	List<SSerializer> getAllSerializers(
+			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServiceException;
 	
 	@WebMethod(action = "getEnabledSerializers")
 	List<SSerializer> getEnabledSerializers() throws ServiceException;
@@ -588,37 +589,47 @@ public interface ServiceInterface {
 	List<SDeserializer> getEnabledDeserializers() throws ServiceException;
 	
 	@WebMethod(action = "getSerializerById")
-	SSerializer getSerializerById(Long oid) throws ServiceException;
+	SSerializer getSerializerById(
+			@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServiceException;
 	
 	@WebMethod(action = "addSerializer")
-	void addSerializer(SSerializer serializer) throws ServiceException;
+	void addSerializer(
+			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializer serializer) throws ServiceException;
 	
 	@WebMethod(action = "updateSerializer")
-	void updateSerializer(SSerializer serializer) throws ServiceException;
+	void updateSerializer(
+			@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializer serializer) throws ServiceException;
 	
 	@WebMethod(action = "updateDeserializer")
-	void updateDeserializer(SDeserializer deserializer) throws ServiceException;
+	void updateDeserializer(
+			@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializer deserializer) throws ServiceException;
 
 	@WebMethod(action = "getAllGuidanceProviders")
 	List<SGuidanceProvider> getAllGuidanceProviders() throws ServiceException;
 	
 	@WebMethod(action = "getGuidanceProviderById")
-	SGuidanceProvider getGuidanceProviderById(Long oid) throws ServiceException;
+	SGuidanceProvider getGuidanceProviderById(
+			@WebParam(name = "oid", partName = "getGuidanceProviderById.oid") Long oid) throws ServiceException;
 	
 	@WebMethod(action = "addGuidanceProvider")
-	void addGuidanceProvider(SGuidanceProvider guidanceProvider) throws ServiceException;
+	void addGuidanceProvider(
+			@WebParam(name = "guidanceProvider", partName = "addGuidanceProvider.guidanceProvider") SGuidanceProvider guidanceProvider) throws ServiceException;
 	
 	@WebMethod(action = "updateGuidanceProvider")
-	void updateGuidanceProvider(SGuidanceProvider guidanceProvider) throws ServiceException;
+	void updateGuidanceProvider(
+			@WebParam(name = "guidanceProvider", partName = "updateGuidanceProvider.guidanceProvider") SGuidanceProvider guidanceProvider) throws ServiceException;
 	
 	@WebMethod(action = "deleteGuidanceProvider")
-	void deleteGuidanceProvider(Long ifid) throws ServiceException;
+	void deleteGuidanceProvider(
+			@WebParam(name = "ifid", partName = "deleteGuidanceProvider.ifid") Long ifid) throws ServiceException;
 
 	@WebMethod(action = "deleteSerializer")
-	void deleteSerializer(Long sid) throws ServiceException;
+	void deleteSerializer(
+			@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServiceException;
 	
 	@WebMethod(action = "deleteDeserializer")
-	void deleteDeserializer(Long sid) throws ServiceException;
+	void deleteDeserializer(
+			@WebParam(name = "sid", partName = "deleteDeserializer.sid") Long sid) throws ServiceException;
 
 	@WebMethod(action = "getAllSerializerClassNames")
 	Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServiceException;

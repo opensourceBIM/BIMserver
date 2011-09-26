@@ -84,10 +84,12 @@ public class LocalDevBimCombinedServerStarter {
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create() {
-				return new BimServerClient();
+				BimServerClient bimServerClient = new BimServerClient();
+				bimServerClient.connectProtocolBuffers("localhost", 8020);
+//				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
+				return bimServerClient;
 			}
 		};
-		LOGGER.info("BIMWebServer started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 	}
 	
 	public BimServer getBimServer() {

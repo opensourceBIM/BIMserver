@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
@@ -65,7 +67,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				if (!services.containsKey(serviceName)) {
 					services.put(serviceName, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newService(AccessMethod.PROTOCOL_BUFFERS));
 				}
-				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(services.get(serviceName), protocolBuffersMetaData);
+				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(services.get(serviceName), protocolBuffersMetaData, new SService(ServiceInterface.class));
 				MethodDescriptorContainer method = protocolBuffersMetaData.getMethod(serviceName, methodName);
 				Builder requestBuilder = DynamicMessage.getDefaultInstance(method.getInputDescriptor()).newBuilderForType();
 				requestBuilder.mergeDelimitedFrom(dataInputStream);

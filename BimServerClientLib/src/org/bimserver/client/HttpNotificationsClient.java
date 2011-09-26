@@ -26,6 +26,8 @@ import java.net.InetSocketAddress;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
@@ -60,7 +62,7 @@ public class HttpNotificationsClient extends NotificationsClient {
 							return "NotifierInterface";
 						}
 					};
-					ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(service.newService(AccessMethod.PROTOCOL_BUFFERS), protocolBuffersMetaData);
+					ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(service.newService(AccessMethod.PROTOCOL_BUFFERS), protocolBuffersMetaData, new SService(ServiceInterface.class));
 
 					InputStream inputStream = exchange.getRequestBody();
 					DataInputStream dis = new DataInputStream(inputStream);

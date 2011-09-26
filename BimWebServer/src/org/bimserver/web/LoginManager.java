@@ -40,7 +40,6 @@ public class LoginManager {
 		if (service == null) {
 			if (bimServerClient == null) {
 				bimServerClient = bimServerClientFactory.create();
-				bimServerClient.connectProtocolBuffers("localhost", 8020);
 			}
 			service = bimServerClient.getServiceInterface();
 		}
@@ -55,7 +54,6 @@ public class LoginManager {
 		if (systemService == null) {
 			if (systemBimServerClient == null) {
 				systemBimServerClient = bimServerClientFactory.create();
-				systemBimServerClient.connectProtocolBuffers("localhost", 8020);
 			}
 			systemService = systemBimServerClient.getServiceInterface();
 		}

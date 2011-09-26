@@ -17,6 +17,8 @@ package org.bimserver.pb.server;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.bimserver.webservices.ServiceInterfaceFactory;
@@ -24,6 +26,6 @@ import org.bimserver.webservices.ServiceInterfaceFactory;
 public abstract class ServiceReflectiveRpcChannel extends ReflectiveRpcChannel {
 
 	public ServiceReflectiveRpcChannel(ServiceInterfaceFactory serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData) {
-		super(serviceFactory, protocolBuffersMetaData);
+		super(serviceFactory, protocolBuffersMetaData, new SService(ServiceInterface.class));
 	}
 }

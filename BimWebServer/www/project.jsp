@@ -28,61 +28,56 @@
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
 <%
-	if (loginManager.getService().isLoggedIn()) {
-		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		long poid = Long.parseLong(request.getParameter("poid"));
-		try {
-			SProject project = loginManager.getService().getProjectByPoid(poid);
-
-			// Count the active subprojects
-			int subProjectCount = 0;
-			List<Long> subProjectIds = project.getSubProjects();
-			for (Long subpoid : subProjectIds) {
-				SProject subproject = loginManager.getService().getProjectByPoid(subpoid);
-				SObjectState state = subproject.getState();
-				if (subproject.getState() == SObjectState.ACTIVE) {
-					subProjectCount++;
-				}
-			}
-
-			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(project.getClashDetectionSettingsId());
-			List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
-			Collections.sort(revisions, new SRevisionIdComparator(false));
-			List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
-			Collections.sort(revisionsInc, new SRevisionIdComparator(false));
-			List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProjectAndSubProjects(poid);
-			Collections.sort(checkouts, new SCheckoutDateComparator(false));
-			List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
-			for (SCheckout checkout : checkouts) {
-				if (checkout.isActive()) {
-					activeCheckouts.add(checkout);
-				}
-			}
-			List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
-			Collections.sort(users, new SUserNameComparator());
-			List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
-			Collections.sort(nonAuthorizedUsers, new SUserNameComparator());
-			SRevision lastRevision = null;
-			if (project.getLastRevisionId() != -1) {
-				lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
-			}
-			SUser anonymousUser = null;
+		if (loginManager.getService().isLoggedIn()) {
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+			long poid = Long.parseLong(request.getParameter("poid"));
 			try {
-				anonymousUser = loginManager.getService().getAnonymousUser();
-			} catch (ServiceException e) {
-			}
-			boolean anonymousAccess = anonymousUser != null && project.getHasAuthorizedUsers().contains(anonymousUser.getOid());
-			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.ANONYMOUS;
-			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
-			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
-			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
-			boolean o3dEnabled = loginManager.getService().hasActiveSerializer("application/json");
-			boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
-			if (o3dEnabled && lastRevision != null) {
-%>
-<jsp:include page="o3d.jsp" />
-<%
-	}
+				SProject project = loginManager.getService().getProjectByPoid(poid);
+	
+				// Count the active subprojects
+				int subProjectCount = 0;
+				List<Long> subProjectIds = project.getSubProjects();
+				for (Long subpoid : subProjectIds) {
+					SProject subproject = loginManager.getService().getProjectByPoid(subpoid);
+					SObjectState state = subproject.getState();
+					if (subproject.getState() == SObjectState.ACTIVE) {
+						subProjectCount++;
+					}
+				}
+	
+				SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(project.getClashDetectionSettingsId());
+				List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
+				Collections.sort(revisions, new SRevisionIdComparator(false));
+				List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
+				Collections.sort(revisionsInc, new SRevisionIdComparator(false));
+				List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProjectAndSubProjects(poid);
+				Collections.sort(checkouts, new SCheckoutDateComparator(false));
+				List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
+				for (SCheckout checkout : checkouts) {
+					if (checkout.isActive()) {
+						activeCheckouts.add(checkout);
+					}
+				}
+				List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
+				Collections.sort(users, new SUserNameComparator());
+				List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
+				Collections.sort(nonAuthorizedUsers, new SUserNameComparator());
+				SRevision lastRevision = null;
+				if (project.getLastRevisionId() != -1) {
+					lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
+				}
+				SUser anonymousUser = null;
+				try {
+					anonymousUser = loginManager.getService().getAnonymousUser();
+				} catch (ServiceException e) {
+				}
+				boolean anonymousAccess = anonymousUser != null && project.getHasAuthorizedUsers().contains(anonymousUser.getOid());
+				boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.ANONYMOUS;
+				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
+				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
+				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
+				boolean o3dEnabled = loginManager.getService().hasActiveSerializer("application/json");
+				boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 %>
 <div class="sidebar">
 	<ul>
@@ -1109,5 +1104,4 @@
 		}
 	%>
 </div>
-
 <jsp:include page="footer.jsp" />
