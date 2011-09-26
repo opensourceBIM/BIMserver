@@ -62,6 +62,22 @@ public class SCheckoutResult extends SDownloadResult implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("projectName")) {
+			setProjectName((String)val);
+		}
+		if (sField.getName().equals("revisionNr")) {
+			setRevisionNr((Integer)val);
+		}
+		if (sField.getName().equals("file")) {
+			setFile((DataHandler)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	@Override
 	public int hashCode() {

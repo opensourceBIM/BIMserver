@@ -20,8 +20,6 @@ package org.bimserver.shared.pb;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +31,6 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
-import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +39,6 @@ import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.EnumValueDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
-import com.google.protobuf.Descriptors.FieldDescriptor.Type;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;
@@ -50,21 +46,10 @@ import com.google.protobuf.Message.Builder;
 public class ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConverter.class);
 
-	protected Method getMethod(Class<?> clazz, String methodName, Class<?>... parameterClasses) {
-		try {
-			return clazz.getMethod(methodName, parameterClasses);
-		} catch (SecurityException e) {
-			LOGGER.error("", e);
-		} catch (NoSuchMethodException e) {
-			LOGGER.error("", e);
-		}
-		return null;
-	}
-	
-	public SBase convertProtocolBuffersMessageToSObject(Message message) {
+	public SBase convertProtocolBuffersMessageToSObject(Message message, SClass targetType) {
 		try {
 			Descriptor descriptor = message.getDescriptorForType();
-			SBase newInstance = (SBase) Class.forName("org.bimserver.interfaces.objects." + descriptor.getName()).newInstance();
+			SBase newInstance = targetType.newInstance();
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				Object val = message.getField(fieldDescriptor);
 				SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
@@ -72,44 +57,49 @@ public class ProtocolBuffersConverter {
 					throw new RuntimeException("No field with name " + fieldDescriptor.getName());
 				}
 				if (fieldDescriptor.isRepeated()) {
-//					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{List.class});
-//					System.out.println(val);
-				} else {
-					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{field.getType()});
-					if (val instanceof EnumValueDescriptor) {
-						EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)val;
-						Class<?> enumClass = Class.forName("org.bimserver.interfaces.objects." + enumValueDescriptor.getType().getName());
-						for (Object v : enumClass.getEnumConstants()) {
-							Enum<?> e = (Enum<?>)v;
-							if (e.ordinal() == enumValueDescriptor.getNumber()) {
-								val = e;
-								break;
-							}
-						}
-						setMethod.invoke(newInstance, val);
-					} else if (field.getType() == Date.class) {
-						setMethod.invoke(newInstance, new Date((Long)val));
-					} else if (field.getType() == DataHandler.class) {
-						ByteString byteString = (ByteString)val;
-						setMethod.invoke(newInstance, new DataHandler(new ByteArrayDataSource(byteString.toByteArray(), "data")));
-					} else {
-						setMethod.invoke(newInstance, val);
+					List list = new ArrayList();
+					List oldList = (List)val;
+					for (Object x : oldList) {
+						list.add(convertFieldValue(field, x));
 					}
+					newInstance.sSet(field, list);
+				} else {
+					SField sField = targetType.getField(fieldDescriptor.getName());
+					newInstance.sSet(sField, convertFieldValue(sField, val));
 				}
 			}
 			return newInstance;
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private Object convertFieldValue(SField field, Object val) {
+		if (val instanceof EnumValueDescriptor) {
+			EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)val;
+			Class<?> enumClass;
+			try {
+				enumClass = Class.forName("org.bimserver.interfaces.objects." + enumValueDescriptor.getType().getName());
+				for (Object v : enumClass.getEnumConstants()) {
+					Enum<?> e = (Enum<?>)v;
+					if (e.ordinal() == enumValueDescriptor.getNumber()) {
+						val = e;
+						break;
+					}
+				}
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			return val;
+		} else if (field.getType() == Date.class) {
+			return new Date((Long)val);
+		} else if (field.getType() == DataHandler.class) {
+			ByteString byteString = (ByteString)val;
+			return new DataHandler(new ByteArrayDataSource(byteString.toByteArray(), "data"));
+		} else {
+			return val;
+		}
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

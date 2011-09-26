@@ -82,6 +82,37 @@ public class SConcreteRevision implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("id")) {
+			setId((Integer)val);
+		}
+		if (sField.getName().equals("projectId")) {
+			setProjectId((Long)val);
+		}
+		if (sField.getName().equals("state")) {
+			setState((SCheckinState)val);
+		}
+		if (sField.getName().equals("checksum")) {
+			setChecksum((byte[])val);
+		}
+		if (sField.getName().equals("revisions")) {
+			setRevisions((List<Long>)val);
+		}
+		if (sField.getName().equals("size")) {
+			setSize((Long)val);
+		}
+		if (sField.getName().equals("date")) {
+			setDate((Date)val);
+		}
+		if (sField.getName().equals("lastError")) {
+			setLastError((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private int id;
 	private long projectId;

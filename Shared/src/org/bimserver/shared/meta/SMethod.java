@@ -11,7 +11,7 @@ public class SMethod {
 	public SMethod(Method method) {
 		this.method = method;
 		for (Class<?> parameterType : method.getParameterTypes()) {
-			parameters.add(new SParameter(parameterType)); 
+			parameters.add(new SParameter(parameterType));
 		}
  	}
 	
@@ -21,5 +21,9 @@ public class SMethod {
 
 	public Method getMethod() {
 		return method;
+	}
+
+	public SClass getReturnType() {
+		return null;
 	}
 }

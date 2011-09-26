@@ -11,4 +11,8 @@ public class SParameter {
 	public Class<?> getType() {
 		return type;
 	}
+
+	public SClass getObjectType() {
+		return null;
+	}
 }

@@ -58,6 +58,19 @@ public class SLongActionState implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("progress")) {
+			setProgress((Integer)val);
+		}
+		if (sField.getName().equals("state")) {
+			setState((SActionState)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private int progress;
 	private SActionState state;

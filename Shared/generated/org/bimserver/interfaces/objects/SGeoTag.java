@@ -78,6 +78,34 @@ public class SGeoTag implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
+		}
+		if (sField.getName().equals("projects")) {
+			setProjects((List<Long>)val);
+		}
+		if (sField.getName().equals("x")) {
+			setX((Float)val);
+		}
+		if (sField.getName().equals("y")) {
+			setY((Float)val);
+		}
+		if (sField.getName().equals("z")) {
+			setZ((Float)val);
+		}
+		if (sField.getName().equals("epsg")) {
+			setEpsg((Integer)val);
+		}
+		if (sField.getName().equals("directionAngle")) {
+			setDirectionAngle((Float)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private boolean enabled;
 	private List<Long> projects = new ArrayList<Long>();

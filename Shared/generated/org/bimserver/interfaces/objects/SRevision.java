@@ -114,6 +114,61 @@ public class SRevision implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("id")) {
+			setId((Integer)val);
+		}
+		if (sField.getName().equals("userId")) {
+			setUserId((Long)val);
+		}
+		if (sField.getName().equals("date")) {
+			setDate((Date)val);
+		}
+		if (sField.getName().equals("comment")) {
+			setComment((String)val);
+		}
+		if (sField.getName().equals("size")) {
+			setSize((Long)val);
+		}
+		if (sField.getName().equals("concreteRevisions")) {
+			setConcreteRevisions((List<Long>)val);
+		}
+		if (sField.getName().equals("lastConcreteRevisionId")) {
+			setLastConcreteRevisionId((Long)val);
+		}
+		if (sField.getName().equals("checkouts")) {
+			setCheckouts((List<Long>)val);
+		}
+		if (sField.getName().equals("projectId")) {
+			setProjectId((Long)val);
+		}
+		if (sField.getName().equals("state")) {
+			setState((SCheckinState)val);
+		}
+		if (sField.getName().equals("lastClashes")) {
+			setLastClashes((List<Long>)val);
+		}
+		if (sField.getName().equals("tag")) {
+			setTag((String)val);
+		}
+		if (sField.getName().equals("lastError")) {
+			setLastError((String)val);
+		}
+		if (sField.getName().equals("bmi")) {
+			setBmi((Integer)val);
+		}
+		if (sField.getName().equals("nrClashes")) {
+			setNrClashes((Integer)val);
+		}
+		if (sField.getName().equals("laid")) {
+			setLaid((Long)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private int id;
 	private long userId;

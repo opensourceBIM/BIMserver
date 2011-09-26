@@ -17,6 +17,11 @@ package org.bimserver.tools.generators;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import javax.activation.DataHandler;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -43,6 +48,65 @@ public class GenerateUtils {
 			sb.append("Id");
 		}
 		return sb.toString();
+	}
+	
+	public static String getType(EStructuralFeature eStructuralFeature) {
+		boolean embedsReference = eStructuralFeature.getEAnnotation("embedsreference") != null;
+		EClassifier eType = eStructuralFeature.getEType();
+		if (eStructuralFeature.isMany()) {
+			if (eType instanceof EDataType) {
+				if (eType == EcorePackage.eINSTANCE.getEString()) {
+					return "List<String>";
+				} else if (eType == EcorePackage.eINSTANCE.getEInt()) {
+					return "List<Integer>";
+				} else if (eType == EcorePackage.eINSTANCE.getELong()) {
+					return "List<Long>";
+				} else if (eType == EcorePackage.eINSTANCE.getEDouble()) {
+					return "List<Double>";
+				} else if (eType == EcorePackage.eINSTANCE.getEBoolean()) {
+					return "List<Boolean>";
+				} else if (eType == EcorePackage.eINSTANCE.getEFloat()) {
+					return "List<Float>";
+				} else if (eType == EcorePackage.eINSTANCE.getEDate()) {
+					return "List<Date>";
+				}
+			} else if (eType instanceof EClass) {
+				if (embedsReference) {
+					return "List<S" + eType.getName() + ">";
+				} else {
+					return "List<Long>";
+				}
+			}
+		} else {
+			if (eType instanceof EDataType) {
+				if (eType == EcorePackage.eINSTANCE.getEString()) {
+					return "String";
+				} else if (eType == EcorePackage.eINSTANCE.getEInt()) {
+					return "Integer";
+				} else if (eType == EcorePackage.eINSTANCE.getELong()) {
+					return "Long";
+				} else if (eType == EcorePackage.eINSTANCE.getEDouble()) {
+					return "Double";
+				} else if (eType == EcorePackage.eINSTANCE.getEBoolean()) {
+					return "Boolean";
+				} else if (eType == EcorePackage.eINSTANCE.getEFloat()) {
+					return "Float";
+				} else if (eType == EcorePackage.eINSTANCE.getEDate()) {
+					return "Date";
+				} else if (eType == EcorePackage.eINSTANCE.getEByteArray()) {
+					return "byte[]";
+				} else if (eType.getInstanceClass() == DataHandler.class) {
+					return "DataHandler";
+				}
+			} else if (eType instanceof EClass) {
+				if (embedsReference) {
+					return "S" + eType.getName();
+				} else {
+					return "Long";
+				}
+			}
+		}
+		return "S" + eType.getName();
 	}
 
 	private static String firstLetterUpperCase(String in) {

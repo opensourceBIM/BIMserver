@@ -27,6 +27,8 @@ import java.util.Set;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SMethod;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 
 import com.google.protobuf.Descriptors.Descriptor;
@@ -42,9 +44,11 @@ public class Reflector extends ProtocolBuffersConverter {
 
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final Channel channel;
+	private final SService sService;
 
-	public Reflector(ProtocolBuffersMetaData protocolBuffersMetaData, Channel channel) {
+	public Reflector(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, Channel channel) {
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
+		this.sService = sService;
 		this.channel = channel;
 	}
 
@@ -66,6 +70,7 @@ public class Reflector extends ProtocolBuffersConverter {
 				}
 			}
 		}
+		SMethod sMethod = sService.getSMethod(methodName);
 		DynamicMessage message = builder.build();
 		try {
 			Message result = channel.callBlockingMethod(methodDescriptorContainer, message);
@@ -87,7 +92,7 @@ public class Reflector extends ProtocolBuffersConverter {
 							}
 							for (Object v : collection) {
 								if (v instanceof DynamicMessage) {
-									x.add(convertProtocolBuffersMessageToSObject((DynamicMessage) v));
+									x.add(convertProtocolBuffersMessageToSObject((DynamicMessage) v, sMethod.getReturnType()));
 								} else {
 									x.add(v);
 								}
@@ -100,7 +105,7 @@ public class Reflector extends ProtocolBuffersConverter {
 						EnumDescriptor enumType = outputField.getEnumType();
 						return enumType.findValueByName(value.toString());
 					} else if (value instanceof DynamicMessage) {
-						return convertProtocolBuffersMessageToSObject((DynamicMessage) value);
+						return convertProtocolBuffersMessageToSObject((DynamicMessage) value, sMethod.getReturnType());
 					} else {
 						if  (definedReturnType == Date.class) {
 							return new Date((Long)value);

@@ -30,6 +30,7 @@ import javax.mail.util.ByteArrayDataSource;
 
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
+import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.slf4j.Logger;
@@ -69,6 +70,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 			Object[] arguments = new Object[inputType.getFields().size()];
 			int i = 0;
 			for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
+				SParameter sParameter = sMethod.getParameter(i);
 				Object value = request.getField(fieldDescriptor);
 				if (value instanceof EnumValueDescriptor) {
 					EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)value;
@@ -80,7 +82,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 					DataHandler dataHandler = new DataHandler(dataSource);
 					arguments[i] = dataHandler;
 				} else if (value instanceof DynamicMessage) {
-					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value);
+					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value, sParameter.getObjectType());
 				} else {
 					arguments[i] = value;
 				}

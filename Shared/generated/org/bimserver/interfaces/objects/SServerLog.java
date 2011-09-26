@@ -54,6 +54,16 @@ public class SServerLog implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("actions")) {
+			setActions((List<Long>)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private List<Long> actions = new ArrayList<Long>();
 	public List<Long> getActions() {

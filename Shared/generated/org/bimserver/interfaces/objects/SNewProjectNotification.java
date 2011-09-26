@@ -54,6 +54,16 @@ public class SNewProjectNotification extends SNotification implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("projectId")) {
+			setProjectId((Long)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private long projectId;
 	public long getProjectId() {

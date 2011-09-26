@@ -90,6 +90,43 @@ public class SDatabaseInformation implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("numberOfProjects")) {
+			setNumberOfProjects((Integer)val);
+		}
+		if (sField.getName().equals("numberOfUsers")) {
+			setNumberOfUsers((Integer)val);
+		}
+		if (sField.getName().equals("numberOfRevisions")) {
+			setNumberOfRevisions((Integer)val);
+		}
+		if (sField.getName().equals("numberOfCheckouts")) {
+			setNumberOfCheckouts((Integer)val);
+		}
+		if (sField.getName().equals("databaseSizeInBytes")) {
+			setDatabaseSizeInBytes((Long)val);
+		}
+		if (sField.getName().equals("type")) {
+			setType((String)val);
+		}
+		if (sField.getName().equals("created")) {
+			setCreated((Date)val);
+		}
+		if (sField.getName().equals("location")) {
+			setLocation((String)val);
+		}
+		if (sField.getName().equals("schemaVersion")) {
+			setSchemaVersion((Integer)val);
+		}
+		if (sField.getName().equals("categories")) {
+			setCategories((List<SDatabaseInformationCategory>)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private int numberOfProjects;
 	private int numberOfUsers;

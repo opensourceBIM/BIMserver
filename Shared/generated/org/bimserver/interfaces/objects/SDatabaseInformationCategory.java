@@ -58,6 +58,19 @@ public class SDatabaseInformationCategory implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("title")) {
+			setTitle((String)val);
+		}
+		if (sField.getName().equals("items")) {
+			setItems((List<SDatabaseInformationItem>)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String title;
 	private List<SDatabaseInformationItem> items = new ArrayList<SDatabaseInformationItem>();

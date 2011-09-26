@@ -62,6 +62,22 @@ public class SCompileResult implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("compileOke")) {
+			setCompileOke((Boolean)val);
+		}
+		if (sField.getName().equals("warnings")) {
+			setWarnings((List<String>)val);
+		}
+		if (sField.getName().equals("errors")) {
+			setErrors((List<String>)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private boolean compileOke;
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();

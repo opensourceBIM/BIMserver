@@ -58,6 +58,19 @@ public class SDatabaseInformationItem implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("key")) {
+			setKey((String)val);
+		}
+		if (sField.getName().equals("value")) {
+			setValue((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String key;
 	private java.lang.String value;

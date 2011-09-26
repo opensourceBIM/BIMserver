@@ -58,6 +58,19 @@ public class SRevisionSummaryType implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("name")) {
+			setName((String)val);
+		}
+		if (sField.getName().equals("count")) {
+			setCount((Integer)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String name;
 	private int count;

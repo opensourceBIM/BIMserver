@@ -118,6 +118,64 @@ public class SProject implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("id")) {
+			setId((Integer)val);
+		}
+		if (sField.getName().equals("name")) {
+			setName((String)val);
+		}
+		if (sField.getName().equals("hasAuthorizedUsers")) {
+			setHasAuthorizedUsers((List<Long>)val);
+		}
+		if (sField.getName().equals("concreteRevisions")) {
+			setConcreteRevisions((List<Long>)val);
+		}
+		if (sField.getName().equals("revisions")) {
+			setRevisions((List<Long>)val);
+		}
+		if (sField.getName().equals("lastConcreteRevisionId")) {
+			setLastConcreteRevisionId((Long)val);
+		}
+		if (sField.getName().equals("lastRevisionId")) {
+			setLastRevisionId((Long)val);
+		}
+		if (sField.getName().equals("checkouts")) {
+			setCheckouts((List<Long>)val);
+		}
+		if (sField.getName().equals("state")) {
+			setState((SObjectState)val);
+		}
+		if (sField.getName().equals("createdDate")) {
+			setCreatedDate((Date)val);
+		}
+		if (sField.getName().equals("createdById")) {
+			setCreatedById((Long)val);
+		}
+		if (sField.getName().equals("geoTagId")) {
+			setGeoTagId((Long)val);
+		}
+		if (sField.getName().equals("subProjects")) {
+			setSubProjects((List<Long>)val);
+		}
+		if (sField.getName().equals("parentId")) {
+			setParentId((Long)val);
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+		}
+		if (sField.getName().equals("clashDetectionSettingsId")) {
+			setClashDetectionSettingsId((Long)val);
+		}
+		if (sField.getName().equals("exportLengthMeasurePrefix")) {
+			setExportLengthMeasurePrefix((SSIPrefix)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private int id;
 	private java.lang.String name;

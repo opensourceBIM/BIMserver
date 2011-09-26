@@ -66,6 +66,25 @@ public class SObjectModified extends SCompareItem implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("dataObject")) {
+			setDataObject((SDataObject)val);
+		}
+		if (sField.getName().equals("fieldName")) {
+			setFieldName((String)val);
+		}
+		if (sField.getName().equals("oldValue")) {
+			setOldValue((String)val);
+		}
+		if (sField.getName().equals("newValue")) {
+			setNewValue((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String fieldName;
 	private java.lang.String oldValue;
