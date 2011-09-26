@@ -120,6 +120,23 @@ public class S<%=eClass.getName()%>
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+		boolean useId = (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null);
+%>
+		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
+			set<%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=useId ? "Id" : "" %>((<%=GenerateUtils.getType(eStructuralFeature)%>)val);
+		}
+<%
+	}
+%>
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 <%
 	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {

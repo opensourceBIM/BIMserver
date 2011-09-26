@@ -39,4 +39,17 @@ public class SClass {
 	public SField getField(String name) {
 		return fields.get(name);
 	}
+
+	public SBase newInstance() {
+		try {
+			return (SBase) Class.forName("org.bimserver.interfaces.objects." + name).newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -54,6 +54,16 @@ public class SRevisionSummary implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("list")) {
+			setList((List<SRevisionSummaryContainer>)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private List<SRevisionSummaryContainer> list = new ArrayList<SRevisionSummaryContainer>();
 	public List<SRevisionSummaryContainer> getList() {

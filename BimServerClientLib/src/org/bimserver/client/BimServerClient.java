@@ -31,6 +31,7 @@ import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.pb.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.Reflector;
 import org.bimserver.shared.pb.SocketChannel;
@@ -50,7 +51,7 @@ public class BimServerClient {
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
 			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
-			Reflector reflector = new Reflector(protocolBuffersMetaData, channel);
+			Reflector reflector = new Reflector(protocolBuffersMetaData, new SService(ServiceInterface.class), channel);
 			serviceInterface = new ServiceInterfaceReflectorImpl(reflector);
 		} catch (IOException e) {
 			e.printStackTrace();

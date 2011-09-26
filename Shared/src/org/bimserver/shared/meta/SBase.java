@@ -22,4 +22,5 @@ public interface SBase {
 	long getOid();
 	void setOid(long oid);
 	Object sGet(SField sField);
+	void sSet(SField sField, Object val);
 }

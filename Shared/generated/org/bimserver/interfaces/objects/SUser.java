@@ -102,6 +102,52 @@ public class SUser implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("name")) {
+			setName((String)val);
+		}
+		if (sField.getName().equals("password")) {
+			setPassword((String)val);
+		}
+		if (sField.getName().equals("hasRightsOn")) {
+			setHasRightsOn((List<Long>)val);
+		}
+		if (sField.getName().equals("revisions")) {
+			setRevisions((List<Long>)val);
+		}
+		if (sField.getName().equals("state")) {
+			setState((SObjectState)val);
+		}
+		if (sField.getName().equals("createdOn")) {
+			setCreatedOn((Date)val);
+		}
+		if (sField.getName().equals("createdById")) {
+			setCreatedById((Long)val);
+		}
+		if (sField.getName().equals("userType")) {
+			setUserType((SUserType)val);
+		}
+		if (sField.getName().equals("username")) {
+			setUsername((String)val);
+		}
+		if (sField.getName().equals("lastSeen")) {
+			setLastSeen((Date)val);
+		}
+		if (sField.getName().equals("validationToken")) {
+			setValidationToken((String)val);
+		}
+		if (sField.getName().equals("validationTokenCreated")) {
+			setValidationTokenCreated((Date)val);
+		}
+		if (sField.getName().equals("notificationUrl")) {
+			setNotificationUrl((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String name;
 	private java.lang.String password;

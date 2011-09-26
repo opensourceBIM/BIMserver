@@ -78,6 +78,34 @@ public class SVersion implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("major")) {
+			setMajor((Integer)val);
+		}
+		if (sField.getName().equals("minor")) {
+			setMinor((Integer)val);
+		}
+		if (sField.getName().equals("revision")) {
+			setRevision((Integer)val);
+		}
+		if (sField.getName().equals("date")) {
+			setDate((Date)val);
+		}
+		if (sField.getName().equals("downloadUrl")) {
+			setDownloadUrl((String)val);
+		}
+		if (sField.getName().equals("supportUrl")) {
+			setSupportUrl((String)val);
+		}
+		if (sField.getName().equals("supportEmail")) {
+			setSupportEmail((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private int major;
 	private int minor;

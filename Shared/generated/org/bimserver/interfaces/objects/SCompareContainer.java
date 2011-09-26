@@ -58,6 +58,19 @@ public class SCompareContainer implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("type")) {
+			setType((String)val);
+		}
+		if (sField.getName().equals("items")) {
+			setItems((List<SCompareItem>)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String type;
 	private List<SCompareItem> items = new ArrayList<SCompareItem>();

@@ -86,6 +86,40 @@ public class SSerializer implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("name")) {
+			setName((String)val);
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+		}
+		if (sField.getName().equals("extension")) {
+			setExtension((String)val);
+		}
+		if (sField.getName().equals("contentType")) {
+			setContentType((String)val);
+		}
+		if (sField.getName().equals("className")) {
+			setClassName((String)val);
+		}
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
+		}
+		if (sField.getName().equals("defaultSerializer")) {
+			setDefaultSerializer((Boolean)val);
+		}
+		if (sField.getName().equals("guidanceProviderId")) {
+			setGuidanceProviderId((Long)val);
+		}
+		if (sField.getName().equals("settingsId")) {
+			setSettingsId((Long)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String name;
 	private java.lang.String description;

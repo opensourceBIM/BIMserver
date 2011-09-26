@@ -70,6 +70,28 @@ public class SLongAction implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("identification")) {
+			setIdentification((String)val);
+		}
+		if (sField.getName().equals("userId")) {
+			setUserId((Long)val);
+		}
+		if (sField.getName().equals("start")) {
+			setStart((Date)val);
+		}
+		if (sField.getName().equals("username")) {
+			setUsername((String)val);
+		}
+		if (sField.getName().equals("name")) {
+			setName((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String identification;
 	private long userId;

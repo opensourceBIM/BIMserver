@@ -70,6 +70,28 @@ public class SNewProjectAdded extends SLogAction implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("date")) {
+			setDate((Date)val);
+		}
+		if (sField.getName().equals("executorId")) {
+			setExecutorId((Long)val);
+		}
+		if (sField.getName().equals("accessMethod")) {
+			setAccessMethod((SAccessMethod)val);
+		}
+		if (sField.getName().equals("projectId")) {
+			setProjectId((Long)val);
+		}
+		if (sField.getName().equals("parentProjectId")) {
+			setParentProjectId((Long)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private long projectId;
 	private long parentProjectId;

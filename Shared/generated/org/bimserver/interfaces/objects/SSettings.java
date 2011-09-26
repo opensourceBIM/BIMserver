@@ -142,6 +142,82 @@ public class SSettings implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("showVersionUpgradeAvailable")) {
+			setShowVersionUpgradeAvailable((Boolean)val);
+		}
+		if (sField.getName().equals("sendConfirmationEmailAfterRegistration")) {
+			setSendConfirmationEmailAfterRegistration((Boolean)val);
+		}
+		if (sField.getName().equals("useCaching")) {
+			setUseCaching((Boolean)val);
+		}
+		if (sField.getName().equals("allowSelfRegistration")) {
+			setAllowSelfRegistration((Boolean)val);
+		}
+		if (sField.getName().equals("autoTestClashes")) {
+			setAutoTestClashes((Boolean)val);
+		}
+		if (sField.getName().equals("intelligentMerging")) {
+			setIntelligentMerging((Boolean)val);
+		}
+		if (sField.getName().equals("allowUsersToCreateTopLevelProjects")) {
+			setAllowUsersToCreateTopLevelProjects((Boolean)val);
+		}
+		if (sField.getName().equals("checkinMergingEnabled")) {
+			setCheckinMergingEnabled((Boolean)val);
+		}
+		if (sField.getName().equals("registrationAddition")) {
+			setRegistrationAddition((String)val);
+		}
+		if (sField.getName().equals("smtpServer")) {
+			setSmtpServer((String)val);
+		}
+		if (sField.getName().equals("emailSenderAddress")) {
+			setEmailSenderAddress((String)val);
+		}
+		if (sField.getName().equals("enabledExportTypes")) {
+			setEnabledExportTypes((String)val);
+		}
+		if (sField.getName().equals("customLogoAddress")) {
+			setCustomLogoAddress((String)val);
+		}
+		if (sField.getName().equals("siteAddress")) {
+			setSiteAddress((String)val);
+		}
+		if (sField.getName().equals("serializers")) {
+			setSerializers((List<Long>)val);
+		}
+		if (sField.getName().equals("guidanceProviders")) {
+			setGuidanceProviders((List<Long>)val);
+		}
+		if (sField.getName().equals("headerAddition")) {
+			setHeaderAddition((String)val);
+		}
+		if (sField.getName().equals("footerAddition")) {
+			setFooterAddition((String)val);
+		}
+		if (sField.getName().equals("mergeIdentifier")) {
+			setMergeIdentifier((SMergeIdentifier)val);
+		}
+		if (sField.getName().equals("cacheOutputFiles")) {
+			setCacheOutputFiles((Boolean)val);
+		}
+		if (sField.getName().equals("ifcEngines")) {
+			setIfcEngines((List<Long>)val);
+		}
+		if (sField.getName().equals("plugins")) {
+			setPlugins((List<Long>)val);
+		}
+		if (sField.getName().equals("deserializers")) {
+			setDeserializers((List<Long>)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;

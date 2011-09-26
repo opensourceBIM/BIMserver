@@ -54,6 +54,16 @@ public class SDataValue implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("fieldName")) {
+			setFieldName((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String fieldName;
 	public java.lang.String getFieldName() {

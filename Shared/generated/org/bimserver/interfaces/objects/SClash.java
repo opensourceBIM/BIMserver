@@ -74,6 +74,31 @@ public class SClash implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("name1")) {
+			setName1((String)val);
+		}
+		if (sField.getName().equals("name2")) {
+			setName2((String)val);
+		}
+		if (sField.getName().equals("type1")) {
+			setType1((String)val);
+		}
+		if (sField.getName().equals("type2")) {
+			setType2((String)val);
+		}
+		if (sField.getName().equals("revision1Id")) {
+			setRevision1Id((Long)val);
+		}
+		if (sField.getName().equals("revision2Id")) {
+			setRevision2Id((Long)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private java.lang.String name1;
 	private java.lang.String name2;

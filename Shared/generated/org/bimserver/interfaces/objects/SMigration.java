@@ -62,6 +62,22 @@ public class SMigration implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("number")) {
+			setNumber((Integer)val);
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+		}
+		if (sField.getName().equals("executed")) {
+			setExecuted((Boolean)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private int number;
 	private java.lang.String description;

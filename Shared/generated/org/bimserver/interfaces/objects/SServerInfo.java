@@ -58,6 +58,19 @@ public class SServerInfo implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
+	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("serverState")) {
+			setServerState((SServerState)val);
+		}
+		if (sField.getName().equals("errorMessage")) {
+			setErrorMessage((String)val);
+		}
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
 	
 	private SServerState serverState;
 	private java.lang.String errorMessage;
