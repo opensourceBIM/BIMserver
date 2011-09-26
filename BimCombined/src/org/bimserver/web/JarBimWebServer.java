@@ -21,6 +21,7 @@ import java.io.File;
 import java.util.Random;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimServerConfig;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.database.BimDatabaseException;
@@ -68,7 +69,10 @@ public class JarBimWebServer {
 
 	public void start(String address, int port, String homedir, String resourceBase) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
-		BimServer bimServer = new BimServer(new File(homedir), new JarResourceFetcher());
+		BimServerConfig bimServerConfig = new BimServerConfig();
+		bimServerConfig.setHomeDir(new File(homedir));
+		bimServerConfig.setResourceFetcher(new JarResourceFetcher());
+		BimServer bimServer = new BimServer(bimServerConfig);
 	 	try {
 			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			bimServer.start();
