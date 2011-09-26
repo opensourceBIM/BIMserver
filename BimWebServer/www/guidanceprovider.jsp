@@ -43,11 +43,10 @@
 		contentType = serializer.getContentType();
 		description = serializer.getDescription();
 		guidanceProviderId = serializer.getGuidanceProviderId();
-		type = serializer.getClassName();
 	}
 %>
 <form>
-<input type="hidden" name="type" value="<%=type%>"/>
+<input type="hidden" name="type" value="<%=name%>"/>
 <table>
 <tr>
 	<td><label for="name">Name</label></td>
@@ -67,7 +66,6 @@
 </tr>
 <tr>
 	<td><label for="type">Type</label></td>
-	<td><%=type %></td>
 </tr>
 <tr>
 	<td><label for="guidanceProvider">Guidance provider</label></td>
