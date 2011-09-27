@@ -1037,14 +1037,6 @@
 								checkRevisionsCheckoutButton);
 						}
 
-						$("#visualiselink")
-								.click(
-										function() {
-											showOverlay("Visualisation",
-													"visualize.jsp?roid=<%=project.getLastRevisionId()%>");
-											return false;
-										});
-
 						$("#browserlink")
 								.click(
 										function() {

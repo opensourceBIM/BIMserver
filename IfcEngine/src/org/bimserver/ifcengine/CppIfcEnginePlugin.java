@@ -64,9 +64,7 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 			String libraryName = "";
 			if (os.contains("windows")) {
 				libraryName = "IFCEngine.dll";
-			} else if (os.contains("osx")) {
-				libraryName = "libIFCEngine.dylib";
-			} else if (os.contains("os x")) {
+			} else if (os.contains("osx") || os.contains("os x")) {
 				libraryName = "libIFCEngine.dylib";
 			} else if (os.contains("linux")) {
 				libraryName = "libIFCEngine.so";

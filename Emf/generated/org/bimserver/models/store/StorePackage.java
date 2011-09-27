@@ -1462,13 +1462,22 @@ public interface StorePackage extends EPackage {
 	int GUIDANCE_PROVIDER__CLASS_NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUIDANCE_PROVIDER__ENABLED = 2;
+
+	/**
 	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__SERIALIZERS = 2;
+	int GUIDANCE_PROVIDER__SERIALIZERS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1477,7 +1486,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__SETTINGS = 3;
+	int GUIDANCE_PROVIDER__SETTINGS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Guidance Provider</em>' class.
@@ -1486,7 +1495,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER_FEATURE_COUNT = 4;
+	int GUIDANCE_PROVIDER_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEngineImpl <em>Ifc Engine</em>}' class.
@@ -2361,6 +2370,43 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 4;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl <em>Deserializer Plugin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDeserializerPluginDescriptor()
+	 * @generated
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR = 30;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Deserializer Plugin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl <em>Revision Summary Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2368,7 +2414,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryType()
 	 * @generated
 	 */
-	int REVISION_SUMMARY_TYPE = 30;
+	int REVISION_SUMMARY_TYPE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2405,7 +2451,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryContainer()
 	 * @generated
 	 */
-	int REVISION_SUMMARY_CONTAINER = 31;
+	int REVISION_SUMMARY_CONTAINER = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2442,7 +2488,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummary()
 	 * @generated
 	 */
-	int REVISION_SUMMARY = 32;
+	int REVISION_SUMMARY = 33;
 
 	/**
 	 * The feature id for the '<em><b>List</b></em>' reference list.
@@ -2470,7 +2516,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginDescriptor()
 	 * @generated
 	 */
-	int PLUGIN_DESCRIPTOR = 33;
+	int PLUGIN_DESCRIPTOR = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2525,7 +2571,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongAction()
 	 * @generated
 	 */
-	int LONG_ACTION = 34;
+	int LONG_ACTION = 35;
 
 	/**
 	 * The feature id for the '<em><b>Identification</b></em>' attribute.
@@ -2589,7 +2635,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProviderPluginDescriptor()
 	 * @generated
 	 */
-	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = 35;
+	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = 36;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -2617,7 +2663,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareItem()
 	 * @generated
 	 */
-	int COMPARE_ITEM = 36;
+	int COMPARE_ITEM = 37;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2645,7 +2691,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectAdded()
 	 * @generated
 	 */
-	int OBJECT_ADDED = 37;
+	int OBJECT_ADDED = 38;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2673,7 +2719,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectRemoved()
 	 * @generated
 	 */
-	int OBJECT_REMOVED = 38;
+	int OBJECT_REMOVED = 39;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2701,7 +2747,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectModified()
 	 * @generated
 	 */
-	int OBJECT_MODIFIED = 39;
+	int OBJECT_MODIFIED = 40;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2756,7 +2802,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareContainer()
 	 * @generated
 	 */
-	int COMPARE_CONTAINER = 40;
+	int COMPARE_CONTAINER = 41;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -2793,7 +2839,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareResult()
 	 * @generated
 	 */
-	int COMPARE_RESULT = 41;
+	int COMPARE_RESULT = 42;
 
 	/**
 	 * The feature id for the '<em><b>Items</b></em>' reference list.
@@ -2821,7 +2867,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongActionState()
 	 * @generated
 	 */
-	int LONG_ACTION_STATE = 42;
+	int LONG_ACTION_STATE = 43;
 
 	/**
 	 * The feature id for the '<em><b>Progress</b></em>' attribute.
@@ -2858,7 +2904,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotification()
 	 * @generated
 	 */
-	int NOTIFICATION = 43;
+	int NOTIFICATION = 44;
 
 	/**
 	 * The number of structural features of the '<em>Notification</em>' class.
@@ -2877,7 +2923,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewProjectNotification()
 	 * @generated
 	 */
-	int NEW_PROJECT_NOTIFICATION = 44;
+	int NEW_PROJECT_NOTIFICATION = 45;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -2905,7 +2951,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewRevisionNotification()
 	 * @generated
 	 */
-	int NEW_REVISION_NOTIFICATION = 45;
+	int NEW_REVISION_NOTIFICATION = 46;
 
 	/**
 	 * The feature id for the '<em><b>Revision</b></em>' reference.
@@ -2933,7 +2979,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompileResult()
 	 * @generated
 	 */
-	int COMPILE_RESULT = 46;
+	int COMPILE_RESULT = 47;
 
 	/**
 	 * The feature id for the '<em><b>Compile Oke</b></em>' attribute.
@@ -2979,7 +3025,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRunResult()
 	 * @generated
 	 */
-	int RUN_RESULT = 47;
+	int RUN_RESULT = 48;
 
 	/**
 	 * The feature id for the '<em><b>Run Oke</b></em>' attribute.
@@ -3034,7 +3080,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerInfo()
 	 * @generated
 	 */
-	int SERVER_INFO = 48;
+	int SERVER_INFO = 49;
 
 	/**
 	 * The feature id for the '<em><b>Server State</b></em>' attribute.
@@ -3071,7 +3117,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getVersion()
 	 * @generated
 	 */
-	int VERSION = 49;
+	int VERSION = 50;
 
 	/**
 	 * The feature id for the '<em><b>Major</b></em>' attribute.
@@ -3153,7 +3199,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 50;
+	int USER_TYPE = 51;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -3163,7 +3209,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 51;
+	int CHECKIN_STATE = 52;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -3173,7 +3219,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 52;
+	int SI_PREFIX = 53;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -3183,7 +3229,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 53;
+	int OBJECT_STATE = 54;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -3193,7 +3239,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 54;
+	int MERGE_IDENTIFIER = 55;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
@@ -3203,7 +3249,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 55;
+	int COMPARE_IDENTIFIER = 56;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -3213,7 +3259,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 56;
+	int COMPARE_TYPE = 57;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -3223,7 +3269,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 57;
+	int ACTION_STATE = 58;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -3233,7 +3279,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 58;
+	int SERVER_STATE = 59;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -3243,7 +3289,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 59;
+	int DATA_HANDLER = 60;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -4652,6 +4698,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getGuidanceProvider_ClassName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProvider#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.GuidanceProvider#isEnabled()
+	 * @see #getGuidanceProvider()
+	 * @generated
+	 */
+	EAttribute getGuidanceProvider_Enabled();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.GuidanceProvider#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5447,6 +5504,38 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSerializerPluginDescriptor_DefaultContentType();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DeserializerPluginDescriptor <em>Deserializer Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Deserializer Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.DeserializerPluginDescriptor
+	 * @generated
+	 */
+	EClass getDeserializerPluginDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DeserializerPluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Class Name</em>'.
+	 * @see org.bimserver.models.store.DeserializerPluginDescriptor#getPluginClassName()
+	 * @see #getDeserializerPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getDeserializerPluginDescriptor_PluginClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DeserializerPluginDescriptor#getDefaultName <em>Default Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Name</em>'.
+	 * @see org.bimserver.models.store.DeserializerPluginDescriptor#getDefaultName()
+	 * @see #getDeserializerPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getDeserializerPluginDescriptor_DefaultName();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.RevisionSummaryType <em>Revision Summary Type</em>}'.
@@ -7292,6 +7381,14 @@ public interface StorePackage extends EPackage {
 		EAttribute GUIDANCE_PROVIDER__CLASS_NAME = eINSTANCE.getGuidanceProvider_ClassName();
 
 		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GUIDANCE_PROVIDER__ENABLED = eINSTANCE.getGuidanceProvider_Enabled();
+
+		/**
 		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7916,6 +8013,32 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE = eINSTANCE.getSerializerPluginDescriptor_DefaultContentType();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl <em>Deserializer Plugin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDeserializerPluginDescriptor()
+		 * @generated
+		 */
+		EClass DESERIALIZER_PLUGIN_DESCRIPTOR = eINSTANCE.getDeserializerPluginDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = eINSTANCE.getDeserializerPluginDescriptor_PluginClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = eINSTANCE.getDeserializerPluginDescriptor_DefaultName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl <em>Revision Summary Type</em>}' class.

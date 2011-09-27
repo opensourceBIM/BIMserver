@@ -47,6 +47,7 @@ import org.bimserver.interfaces.objects.SCompileResult;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
+import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
@@ -573,7 +574,7 @@ public interface ServiceInterface {
 	List<SLongAction> getActiveLongActions() throws ServiceException;
 
 	@WebMethod(action = "getPendingMigrations")
-	Set<SMigration> getMigrations() throws ServiceException;
+	List<SMigration> getMigrations() throws ServiceException;
 
 	@WebMethod(action = "migrateDatabase")
 	void migrateDatabase() throws ServiceException;
@@ -592,10 +593,18 @@ public interface ServiceInterface {
 	SSerializer getSerializerById(
 			@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServiceException;
 	
+	@WebMethod(action = "getDeserializerById")
+	SDeserializer getDeserializerById(
+			@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServiceException;
+
 	@WebMethod(action = "addSerializer")
 	void addSerializer(
 			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializer serializer) throws ServiceException;
 	
+	@WebMethod(action = "addSerializer")
+	void addDeserializer(
+			@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializer deserializer) throws ServiceException;
+
 	@WebMethod(action = "updateSerializer")
 	void updateSerializer(
 			@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializer serializer) throws ServiceException;
@@ -632,7 +641,10 @@ public interface ServiceInterface {
 			@WebParam(name = "sid", partName = "deleteDeserializer.sid") Long sid) throws ServiceException;
 
 	@WebMethod(action = "getAllSerializerClassNames")
-	Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServiceException;
+	List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServiceException;
+
+	@WebMethod(action = "getAllDeserializerClassNames")
+	List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServiceException;
 
 	@WebMethod(action = "getSettingMergeIdentifier")
 	SMergeIdentifier getSettingMergeIdentifier() throws ServiceException;

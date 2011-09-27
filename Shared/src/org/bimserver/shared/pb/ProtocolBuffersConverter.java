@@ -46,6 +46,7 @@ import com.google.protobuf.Message.Builder;
 public class ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConverter.class);
 
+	@SuppressWarnings("rawtypes")
 	public SBase convertProtocolBuffersMessageToSObject(Message message, SClass targetType) {
 		try {
 			Descriptor descriptor = message.getDescriptorForType();

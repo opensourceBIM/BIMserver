@@ -29,14 +29,14 @@
 	ServiceInterface service = loginManager.getService();
 	
 	if (request.getParameter("update") != null) {
-		SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("name"));
+		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = request.getParameter("description");
 		deserializer.setName(name);
 		deserializer.setDescription(description);
 		deserializer.setClassName(className);
 		loginManager.getService().updateDeserializer(deserializer);
 	} else {
-		SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("name"));
+		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = deserializer.getDescription();
 		name = deserializer.getName();
 		className = deserializer.getClassName();

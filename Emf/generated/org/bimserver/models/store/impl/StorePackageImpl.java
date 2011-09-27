@@ -46,6 +46,7 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DeserializerPluginDescriptor;
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
@@ -313,6 +314,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EClass serializerPluginDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deserializerPluginDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1766,8 +1774,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGuidanceProvider_Enabled() {
+		return (EAttribute) guidanceProviderEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getGuidanceProvider_Serializers() {
-		return (EReference) guidanceProviderEClass.getEStructuralFeatures().get(2);
+		return (EReference) guidanceProviderEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1776,7 +1793,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getGuidanceProvider_Settings() {
-		return (EReference) guidanceProviderEClass.getEStructuralFeatures().get(3);
+		return (EReference) guidanceProviderEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2425,6 +2442,33 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getSerializerPluginDescriptor_DefaultContentType() {
 		return (EAttribute) serializerPluginDescriptorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeserializerPluginDescriptor() {
+		return deserializerPluginDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeserializerPluginDescriptor_PluginClassName() {
+		return (EAttribute) deserializerPluginDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeserializerPluginDescriptor_DefaultName() {
+		return (EAttribute) deserializerPluginDescriptorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3245,6 +3289,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		guidanceProviderEClass = createEClass(GUIDANCE_PROVIDER);
 		createEAttribute(guidanceProviderEClass, GUIDANCE_PROVIDER__NAME);
 		createEAttribute(guidanceProviderEClass, GUIDANCE_PROVIDER__CLASS_NAME);
+		createEAttribute(guidanceProviderEClass, GUIDANCE_PROVIDER__ENABLED);
 		createEReference(guidanceProviderEClass, GUIDANCE_PROVIDER__SERIALIZERS);
 		createEReference(guidanceProviderEClass, GUIDANCE_PROVIDER__SETTINGS);
 
@@ -3336,6 +3381,10 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME);
 		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION);
 		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE);
+
+		deserializerPluginDescriptorEClass = createEClass(DESERIALIZER_PLUGIN_DESCRIPTOR);
+		createEAttribute(deserializerPluginDescriptorEClass, DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME);
+		createEAttribute(deserializerPluginDescriptorEClass, DESERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME);
 
 		revisionSummaryTypeEClass = createEClass(REVISION_SUMMARY_TYPE);
 		createEAttribute(revisionSummaryTypeEClass, REVISION_SUMMARY_TYPE__NAME);
@@ -3736,6 +3785,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGuidanceProvider_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, GuidanceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGuidanceProvider_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, GuidanceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuidanceProvider_Serializers(), this.getSerializer(), this.getSerializer_GuidanceProvider(), "serializers", null, 0, -1, GuidanceProvider.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuidanceProvider_Settings(), this.getSettings(), this.getSettings_GuidanceProviders(), "settings", null, 0, 1, GuidanceProvider.class, !IS_TRANSIENT,
@@ -3884,6 +3935,12 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSerializerPluginDescriptor_DefaultContentType(), ecorePackage.getEString(), "defaultContentType", null, 0, 1, SerializerPluginDescriptor.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(deserializerPluginDescriptorEClass, DeserializerPluginDescriptor.class, "DeserializerPluginDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDeserializerPluginDescriptor_PluginClassName(), ecorePackage.getEString(), "pluginClassName", null, 0, 1, DeserializerPluginDescriptor.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeserializerPluginDescriptor_DefaultName(), ecorePackage.getEString(), "defaultName", null, 0, 1, DeserializerPluginDescriptor.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(revisionSummaryTypeEClass, RevisionSummaryType.class, "RevisionSummaryType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRevisionSummaryType_Name(), ecorePackage.getEString(), "name", null, 0, 1, RevisionSummaryType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,

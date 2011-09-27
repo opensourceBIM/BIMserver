@@ -29,7 +29,7 @@
 	<td><%=plugin.getName() %></td>
 	<td><%=plugin.getDescription() %></td>
 	<td><%=plugin.getLocation() %></td>
-	<td class="<%=plugin.isEnabled() ? "enabledPlugin" : "disabledPlugin" %>"><%=plugin.isEnabled() ? "Enabked" : "Disabled" %></td>
+	<td class="<%=plugin.isEnabled() ? "enabledPlugin" : "disabledPlugin" %>"><%=plugin.isEnabled() ? "Enabled" : "Disabled" %></td>
 	<td>
 <%
 	if (plugin.isEnabled()) {

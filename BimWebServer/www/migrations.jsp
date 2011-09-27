@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SMigration"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Set"%>
@@ -17,7 +18,7 @@ if (!loginManager.getService().isLoggedIn()) {
 			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 		}
 	}
-	Set<SMigration> migrations = loginManager.getService().getMigrations();
+	List<SMigration> migrations = loginManager.getService().getMigrations();
 %>
 <table class="formatted">
 <tr><th>Number</th><th>Description</th><th>Executed</th></tr>

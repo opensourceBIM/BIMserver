@@ -4,7 +4,7 @@
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		try {
-			long ifid = Integer.parseInt(request.getParameter("ifid"));
+			long ifid = Long.parseLong(request.getParameter("ifid"));
 			loginManager.getService().deleteGuidanceProvider(ifid);
 			response.sendRedirect("settings.jsp");
 		} catch (ServiceException e) {

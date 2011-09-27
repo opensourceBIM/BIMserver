@@ -21,20 +21,23 @@
 <h1>Edit serializer</h1>
 <fieldset>
 <%
-	String type = request.getParameter("type");
+	long id = Long.parseLong(request.getParameter("id"));
+	String type = "";
 	String contentType = "";
 	String extension = "";
 	String description = "";
-	String name = request.getParameter("name");
+	String name = "";
 	long guidanceProviderId = -1;
 	ServiceInterface service = loginManager.getService();
-	
 	if (request.getParameter("update") != null) {
-		SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("name"));
+		SSerializer serializer = loginManager.getService().getSerializerById(id);
+		name = request.getParameter("name");
+		type = request.getParameter("type");
 		contentType = request.getParameter("contentType");
 		extension = request.getParameter("extension");
 		description = request.getParameter("description");
-		guidanceProviderId = Long.parseLong(request.getParameter("guidanceProvider"));
+		guidanceProviderId = request.getParameter("guidanceProvider").equals("[none]") ? -1 : Long.parseLong(request.getParameter("guidanceProvider"));
+		serializer.setName(name);
 		serializer.setContentType(contentType);
 		serializer.setExtension(extension);
 		serializer.setDescription(description);
@@ -42,7 +45,8 @@
 		serializer.setGuidanceProviderId(guidanceProviderId);
 		loginManager.getService().updateSerializer(serializer);
 	} else {
-		SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("name"));
+		SSerializer serializer = loginManager.getService().getSerializerById(id);
+		name = serializer.getName();
 		extension = serializer.getExtension();
 		contentType = serializer.getContentType();
 		description = serializer.getDescription();
@@ -50,7 +54,8 @@
 		type = serializer.getClassName();
 	}
 %>
-<form>
+<form method="post">
+<input type="hidden" name="id" value="<%=id%>"/>
 <input type="hidden" name="type" value="<%=type%>"/>
 <table>
 <tr>

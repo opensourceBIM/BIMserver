@@ -17,8 +17,8 @@ package org.bimserver.database.migrations;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.bimserver.database.BimDatabaseException;
@@ -125,14 +125,15 @@ public class Migrator {
 		return schema;
 	}
 
-	public Set<org.bimserver.models.store.Migration> getMigrations() {
-		Set<org.bimserver.models.store.Migration> migrations = new LinkedHashSet<org.bimserver.models.store.Migration>();
+	public List<org.bimserver.models.store.Migration> getMigrations() {
+		List<org.bimserver.models.store.Migration> migrations = new ArrayList<org.bimserver.models.store.Migration>();
 		int applicationSchemaVersion = database.getApplicationSchemaVersion();
 		int databaseSchemaVersion = database.getDatabaseSchemaVersion();
 		for (int i = applicationSchemaVersion; i >= 0; i--) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
 				org.bimserver.models.store.Migration migrationObject = StoreFactory.eINSTANCE.createMigration();
+				migrationObject.setOid(i);
 				migrationObject.setNumber(i);
 				migrationObject.setExecuted(i <= databaseSchemaVersion);
 				migrationObject.setDescription(migration.getDescription());

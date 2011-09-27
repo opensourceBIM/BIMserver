@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.models.store.GuidanceProvider#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.GuidanceProvider#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.GuidanceProvider#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.GuidanceProvider#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.GuidanceProvider#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -92,6 +93,32 @@ public interface GuidanceProvider extends IdEObject {
 	 * @generated
 	 */
 	void setClassName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enabled</em>' attribute.
+	 * @see #setEnabled(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getGuidanceProvider_Enabled()
+	 * @model
+	 * @generated
+	 */
+	boolean isEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.GuidanceProvider#isEnabled <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enabled</em>' attribute.
+	 * @see #isEnabled()
+	 * @generated
+	 */
+	void setEnabled(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.

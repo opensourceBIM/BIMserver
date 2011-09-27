@@ -6,10 +6,10 @@
 	projectId ("O
 NewProjectRequest:
 unknown (2).org.bimserver.pb.SNewProjectNotification";
-SNewRevisionNotification
+SNewRevisionNotification
+oid (
 
-revisionId (
-oid ("Q
+revisionId ("Q
 NewRevisionRequest;
 unknown (2*.org.bimserver.pb.SNewRevisionNotification2¿
 NotificationInterfaceQ

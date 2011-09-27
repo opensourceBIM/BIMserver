@@ -306,6 +306,15 @@ public interface StoreFactory extends EFactory {
 	SerializerPluginDescriptor createSerializerPluginDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Deserializer Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Deserializer Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	DeserializerPluginDescriptor createDeserializerPluginDescriptor();
+
+	/**
 	 * Returns a new object of class '<em>Revision Summary Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

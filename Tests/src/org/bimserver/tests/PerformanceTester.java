@@ -74,7 +74,7 @@ package org.bimserver.tests;
 //			TokenManager tokenManager = new TokenManager();
 //			LongActionManager longActionManager = new LongActionManager();
 //			longActionManager.start();
-//			File nativeFolder = new File("../IFCEngine/lib");
+//			File nativeFolder = new File("../IfcEngine/lib");
 //			File schemaFile = new File("../BimServer/deploy/shared/IFC2X3_FINAL.exp");
 //			ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);
 //			schemaParser.parse();

@@ -235,11 +235,6 @@ if (userHasCheckinRights) { %>
 		if (!$.browser.msie) {
 			$("#downloadcheckoutselect").change(checkCheckoutButton);
 		}
-		$("#visualiselink").click(function(){
-			showOverlay("Visualisation", "visualize.jsp?roid=<%=revision.getOid() %>");
-			return false;
-		});
-
 		$("#browserlink").click(function(){
 			showOverlay("Browser", "browser.jsp?roid=<%=revision.getOid() %>");
 			return false;

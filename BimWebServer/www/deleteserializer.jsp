@@ -4,7 +4,7 @@
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		try {
-			long sid = Integer.parseInt(request.getParameter("sid"));
+			long sid = Long.parseLong(request.getParameter("sid"));
 			loginManager.getService().deleteSerializer(sid);
 			response.sendRedirect("settings.jsp");
 		} catch (ServiceException e) {

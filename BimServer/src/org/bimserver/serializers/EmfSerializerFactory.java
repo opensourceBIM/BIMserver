@@ -17,8 +17,8 @@ package org.bimserver.serializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
@@ -52,8 +52,8 @@ public class EmfSerializerFactory {
 		this.bimDatabase = bimDatabase;
 	}
 
-	public Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() {
-		Set<SSerializerPluginDescriptor> descriptors = new HashSet<SSerializerPluginDescriptor>();
+	public List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() {
+		List<SSerializerPluginDescriptor> descriptors = new ArrayList<SSerializerPluginDescriptor>();
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
 			descriptor.setDefaultContentType(serializerPlugin.getDefaultContentType());
