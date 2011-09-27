@@ -1,3 +1,5 @@
+<%@page import="org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor"%>
+<%@page import="org.bimserver.models.store.GuidanceProviderPluginDescriptor"%>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
@@ -22,59 +24,38 @@
 <fieldset>
 <%
 	String name = request.getParameter("name");
-	String contentType = "";
-	String extension = "";
-	String description = "";
-	long guidanceProviderId = -1;
-	ServiceInterface service = loginManager.getService();
-	
+	String className = request.getParameter("className");
+	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SGuidanceProvider guidanceProvider = loginManager.getService().getGuidanceProviderByName(request.getParameter("name"));
-		contentType = request.getParameter("contentType");
-		extension = request.getParameter("extension");
-		description = request.getParameter("description");
-		guidanceProviderId = Long.parseLong(request.getParameter("guidanceProvider"));
-		guidanceProvider.setName(request.getParameter("name"));
-		guidanceProvider.setClassName(request.getParameter("className"));
+		SGuidanceProvider guidanceProvider = loginManager.getService().getGuidanceProviderById(id);
+		guidanceProvider.setName(name);
+		guidanceProvider.setClassName(className);
 		loginManager.getService().updateGuidanceProvider(guidanceProvider);
 	} else {
-		SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("name"));
-		extension = serializer.getExtension();
-		contentType = serializer.getContentType();
-		description = serializer.getDescription();
-		guidanceProviderId = serializer.getGuidanceProviderId();
+		SGuidanceProvider guidanceProvider = loginManager.getService().getGuidanceProviderById(id);
+		if (name == null) {
+			name = guidanceProvider.getName();
+		}
+		if (className == null) {
+			className = guidanceProvider.getClassName();
+		}
 	}
 %>
 <form>
-<input type="hidden" name="type" value="<%=name%>"/>
+<input type="hidden" name="id" value="<%=id%>"/>
 <table>
 <tr>
 	<td><label for="name">Name</label></td>
 	<td><input name="name" id="name" value="<%=name%>"></input></td>
 </tr>
 <tr>
-	<td><label for="description">Description</label></td>
-	<td><input name="description" id="description" value="<%=description%>"></input></td>
-</tr>
-<tr>
-	<td><label for="contentType">Content Type</label></td>
-	<td><input name="contentType" id="contentType" value="<%=contentType%>"></input></td>
-</tr>
-<tr>
-	<td><label for="extension">Extension</label></td>
-	<td><input name="extension" id="extension" value="<%=extension%>"></input></td>
-</tr>
-<tr>
-	<td><label for="type">Type</label></td>
-</tr>
-<tr>
-	<td><label for="guidanceProvider">Guidance provider</label></td>
-	<td><select name="guidanceProvider" id="guidanceProvider">
+	<td><label for="className">Guidance provider</label></td>
+	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%
-	for (SGuidanceProvider guidanceProvider : service.getAllGuidanceProviders()) {
+	for (SGuidanceProviderPluginDescriptor guidanceProviderPluginDescriptor : loginManager.getService().getAllGuidanceProviderPluginDescriptors()) {
 %>
-	<option value="<%=guidanceProvider.getOid()%>"<%=(guidanceProviderId == guidanceProvider.getOid() ? " selected=\"selected\"" : "") %>><%=guidanceProvider.getName()%></option>
+	<option value="<%=guidanceProviderPluginDescriptor.getClassName()%>"<%=(guidanceProviderPluginDescriptor.getClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=guidanceProviderPluginDescriptor.getClassName()%></option>
 <%
 	}
 %>

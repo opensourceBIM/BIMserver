@@ -4,7 +4,7 @@
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		try {
-			long uoid = Integer.parseInt(request.getParameter("uoid"));
+			long uoid = Long.parseLong(request.getParameter("uoid"));
 			if (loginManager.getService().deleteUser(uoid)) {
 				response.sendRedirect("users.jsp");
 			} else {

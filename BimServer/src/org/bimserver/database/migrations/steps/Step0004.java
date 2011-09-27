@@ -47,6 +47,7 @@ public class Step0004 extends Migration {
 		
 		schema.createEAttribute(guidanceProviderClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(guidanceProviderClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(guidanceProviderClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		EReference guidanceProviderSerializers = schema.createEReference(guidanceProviderClass, "serializers", serializerClass, Multiplicity.MANY);
 		EReference guidanceProviderSettingsReference = schema.createEReference(guidanceProviderClass, "settings", settingsClass, Multiplicity.SINGLE);
 		

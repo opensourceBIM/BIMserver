@@ -107,6 +107,10 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(serializerPluginDescriptorClass, "defaultExtension", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerPluginDescriptorClass, "defaultContentType", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
+		EClass deserializerPluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "DeserializerPluginDescriptor");
+		schema.createEAttribute(deserializerPluginDescriptorClass, "pluginClassName", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(deserializerPluginDescriptorClass, "defaultName", ecorePackage.getEString(), Multiplicity.SINGLE);
+
 		EClass revisionSummaryTypeClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummaryType");
 		schema.createEAttribute(revisionSummaryTypeClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionSummaryTypeClass, "count", ecorePackage.getEInt(), Multiplicity.SINGLE);

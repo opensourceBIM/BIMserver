@@ -17,10 +17,15 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.SPackage;
 
 @XmlRootElement
 public class SGuidanceProvider implements SBase
@@ -32,6 +37,7 @@ public class SGuidanceProvider implements SBase
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("name", java.lang.String.class));
 		sClass.addField(new SField("className", java.lang.String.class));
+		sClass.addField(new SField("enabled", boolean.class));
 		sClass.addField(new SField("serializers", Long.class, true));
 		sClass.addField(new SField("settingsId", long.class));
 		SPackage.getInstance().addSClass(sClass);
@@ -57,6 +63,9 @@ public class SGuidanceProvider implements SBase
 		if (sField.getName().equals("className")) {
 			return getClassName();
 		}
+		if (sField.getName().equals("enabled")) {
+			return isEnabled();
+		}
 		if (sField.getName().equals("serializers")) {
 			return getSerializers();
 		}
@@ -78,6 +87,10 @@ public class SGuidanceProvider implements SBase
 			setClassName((String)val);
 			return;
 		}
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
+			return;
+		}
 		if (sField.getName().equals("serializers")) {
 			setSerializers((List<Long>)val);
 			return;
@@ -95,6 +108,7 @@ public class SGuidanceProvider implements SBase
 	
 	private java.lang.String name;
 	private java.lang.String className;
+	private boolean enabled;
 	private List<Long> serializers = new ArrayList<Long>();
 	private long settingsId;
 	public java.lang.String getName() {
@@ -110,6 +124,13 @@ public class SGuidanceProvider implements SBase
 
 	public void setClassName(java.lang.String className) {
 		this.className = className;
+	}
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 	public List<Long> getSerializers() {
 		return serializers;

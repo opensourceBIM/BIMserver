@@ -66,12 +66,6 @@ for (SRevision sRevision : revisionsInc) {
 	if (loginManager.getService().hasActiveSerializer("application/json")) {
 %>
 	<br/>
-	<div id="browservisualizeloader">
-		  Retrieving visualization... <img src="images/ajax-loader.gif"/>
-  	</div>
-  	<div id="browservisualizediv" style="background-color:white">
-	  	<a href="#" id="browservisualizelink">Load visualization</a>
-  	</div>
 <%
 	}
 	  		} else if (request.getParameter("className") != null) { 
@@ -129,18 +123,6 @@ $(document).ready(function(){
 			}
 		%>
 		showOverlay("Browser", "browser.jsp?roid=" + $("#roidchanger").val()<%=urlAdd %>);
-	});
-	$("#browservisualizeloader").hide();
-	$("#browservisualizelink").click(function(){
-		$("#browservisualizelink").hide();
-		$("#browservisualizeloader").show();
-		var o3dId = "o3d" + (o3dcounter++);
-		$("<div id='" + o3dId + "' style='width: 500px; height: 300px'></div>").appendTo("#browservisualizediv");
-		g_idOfLoader = "browservisualizeloader";
-		createClient(document.getElementById(o3dId), function(){
-			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&oids=<%=request.getParameter("oid")%>&serializerName=O3DJSON', "browservisualizeloader");
-		});
-		return false;
 	});
 	instrumentBrowserLinks();
 });

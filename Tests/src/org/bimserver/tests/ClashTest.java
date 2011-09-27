@@ -28,7 +28,7 @@ package org.bimserver.tests;
 //	}
 //
 //	private void start() {
-//		IfcEngine ifcEngine = new IfcEngine(new File("../IFCEngine/lib"));
+//		IfcEngine ifcEngine = new IfcEngine(new File("../IfcEngine/lib"));
 //		try {
 //			int modelId = ifcEngine.sdaiOpenModelBN(0, TestFile.AC11.getFile().getAbsolutePath(), "../BimServer/deploy/shared/IFC2X3_FINAL.exp");
 //			int nrClashes = ifcEngine.initializeClashes(modelId, 0.0);

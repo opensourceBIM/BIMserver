@@ -500,10 +500,10 @@ p.explain {
 	height: 14px;
 }
 
-.enabledPlugin, .enabledSerializer, .enabledDeserializer {
+.enabledPlugin, .enabledSerializer, .enabledDeserializer, .enabledGuidanceProvider {
 	background-color: #AAFFAA;
 }
 
-.disabledPlugin, .disabledSerializer, .disabledDeserializer {
+.disabledPlugin, .disabledSerializer, .disabledDeserializer, .disabledGuidanceProvider {
 	background-color: #FFAAAA;
 }

@@ -53,6 +53,7 @@ import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.actions.AddDeserializerDatabaseAction;
 import org.bimserver.database.actions.AddGuidanceProviderDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddSerializerDatabaseAction;
@@ -92,6 +93,7 @@ import org.bimserver.database.actions.GetDataObjectByGuidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectsByTypeDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
+import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetGuidanceProviderByIdDatabaseAction;
@@ -146,6 +148,7 @@ import org.bimserver.interfaces.objects.SCompileResult;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
+import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
@@ -206,6 +209,7 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -308,7 +312,7 @@ public class Service implements ServiceInterface {
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(concreteRevision.getId());
 			result.setProjectId(concreteRevision.getProject().getOid());
-//			result.setProjectName(concreteRevision.getProject().getName());
+			// result.setProjectName(concreteRevision.getProject().getName());
 			return result;
 		} catch (Exception e) {
 			handleException(e);
@@ -328,7 +332,7 @@ public class Service implements ServiceInterface {
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
 			result.setProjectId(revision.getProject().getOid());
-//			result.setProjectName(revision.getProject().getName());
+			// result.setProjectName(revision.getProject().getName());
 			bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, userByUoid, createCheckinAction));
 			return result;
 		} catch (UserException e) {
@@ -950,7 +954,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, currentUoid, roid1, roid2, converter.convertFromSObject(sCompareType), converter.convertFromSObject(sCompareIdentifier));
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, currentUoid, roid1, roid2,
+					converter.convertFromSObject(sCompareType), converter.convertFromSObject(sCompareIdentifier));
 			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
@@ -1140,7 +1145,7 @@ public class Service implements ServiceInterface {
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setProjectId(revision.getProject().getOid());
-//				result.setProjectName(revision.getProject().getName());
+				// result.setProjectName(revision.getProject().getName());
 				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
 				return result;
 			} catch (UserException e) {
@@ -1187,7 +1192,7 @@ public class Service implements ServiceInterface {
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setProjectId(revision.getProject().getOid());
-//				result.setProjectName(revision.getProject().getName());
+				// result.setProjectName(revision.getProject().getName());
 				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
 				return result;
 			} catch (UserException e) {
@@ -1895,10 +1900,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<SMigration> getMigrations() throws UserException {
+	public List<SMigration> getMigrations() throws UserException {
 		requireAuthentication();
 		Migrator migrator = bimServer.getDatabase().getMigrator();
-		return converter.convertToSSetMigration(migrator.getMigrations());
+		List<SMigration> list = new ArrayList<SMigration>(converter.convertToSSetMigration(migrator.getMigrations()));
+		Collections.sort(list, new SMigrationComparator());
+		return list;
 	}
 
 	@Override
@@ -1964,6 +1971,20 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	@Override
+	public void addDeserializer(SDeserializer deserializer) throws ServiceException {
+		requireAdminAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			Deserializer convert = converter.convertFromSObject(deserializer, session);
+			session.executeAndCommitAction(new AddDeserializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void updateSerializer(SSerializer serializer) throws ServiceException {
 		requireAdminAuthenticationAndRunningServer();
@@ -2051,6 +2072,20 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public SDeserializer getDeserializerById(Long oid) throws ServiceException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			return converter.convertToSObject(session.executeAction(new GetDeserializerByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
 	public SGuidanceProvider getGuidanceProviderById(Long oid) throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
@@ -2065,7 +2100,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
+	public List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
 		requireAuthenticationAndRunningServer();
 		return bimServer.getEmfSerializerFactory().getAllSerializerPluginDescriptors();
 	}
@@ -2182,7 +2217,7 @@ public class Service implements ServiceInterface {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public SDeserializer getDeserializerByName(String deserializerName) throws ServiceException {
 		requireAuthenticationAndRunningServer();
@@ -2484,13 +2519,13 @@ public class Service implements ServiceInterface {
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public SCompileResult compile(String code) throws ServiceException {
 		QueryCompiler queryCompiler = new QueryCompiler();
 		return converter.convertToSObject(queryCompiler.compile(code));
 	}
-	
+
 	@Override
 	public SRunResult compileAndRun(long roid, String code) throws ServiceException {
 		QueryCompiler queryCompiler = new QueryCompiler();
@@ -2503,17 +2538,17 @@ public class Service implements ServiceInterface {
 		RunResult runResult = queryCompiler.run(code, roid, currentUoid, bimServer);
 		return -1;
 	}
-	
+
 	@Override
 	public String getProtocolBuffersFile() throws ServiceException {
 		File file = bimServer.getResourceFetcher().getFile("service.proto");
 		try {
 			return FileUtils.readFileToString(file);
 		} catch (IOException e) {
-			throw new ServerException (e);
+			throw new ServerException(e);
 		}
 	}
-	
+
 	@Override
 	public SServerInfo getServerInfo() {
 		return converter.convertToSObject(bimServer.getServerInfo());
@@ -2523,7 +2558,7 @@ public class Service implements ServiceInterface {
 	public SVersion getVersion() throws ServiceException {
 		return bimServer.getVersionChecker().getLocalVersion();
 	}
-	
+
 	@Override
 	public SVersion getLatestVersion() throws ServiceException {
 		return bimServer.getVersionChecker().getOnlineVersion();
@@ -2532,5 +2567,18 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean upgradePossible() {
 		return bimServer.getVersionChecker().updateNeeded();
+	}
+
+	@Override
+	public List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServiceException {
+		requireAuthenticationAndRunningServer();
+		List<SDeserializerPluginDescriptor> descriptors = new ArrayList<SDeserializerPluginDescriptor>();
+		for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
+			SDeserializerPluginDescriptor descriptor = new SDeserializerPluginDescriptor();
+			descriptor.setDefaultName(deserializerPlugin.getDefaultDeserializerName());
+			descriptor.setPluginClassName(deserializerPlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
 	}
 }

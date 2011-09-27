@@ -132,6 +132,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createDatabaseInformation();
 		case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR:
 			return (EObject) createSerializerPluginDescriptor();
+		case StorePackage.DESERIALIZER_PLUGIN_DESCRIPTOR:
+			return (EObject) createDeserializerPluginDescriptor();
 		case StorePackage.REVISION_SUMMARY_TYPE:
 			return (EObject) createRevisionSummaryType();
 		case StorePackage.REVISION_SUMMARY_CONTAINER:
@@ -541,6 +543,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public SerializerPluginDescriptor createSerializerPluginDescriptor() {
 		SerializerPluginDescriptorImpl serializerPluginDescriptor = new SerializerPluginDescriptorImpl();
 		return serializerPluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeserializerPluginDescriptor createDeserializerPluginDescriptor() {
+		DeserializerPluginDescriptorImpl deserializerPluginDescriptor = new DeserializerPluginDescriptorImpl();
+		return deserializerPluginDescriptor;
 	}
 
 	/**

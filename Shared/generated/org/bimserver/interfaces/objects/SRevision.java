@@ -17,10 +17,16 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.SPackage;
 
 @XmlRootElement
 public class SRevision implements SBase

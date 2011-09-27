@@ -31,7 +31,6 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.tools.generators.DataObjectGenerator;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
-import org.bimserver.tools.generators.SPackageGenerator;
 import org.bimserver.tools.generators.SPackageGeneratorWrapper;
 import org.bimserver.tools.generators.ServiceGenerator;
 import org.eclipse.emf.ecore.EPackage;

@@ -41,6 +41,14 @@
 			SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
 			deserializer.setEnabled(true);
 			loginManager.getService().updateDeserializer(deserializer);
+		} else if (action.equals("disableGuidanceProvider")) {
+			SGuidanceProvider guidanceProvider = loginManager.getService().getGuidanceProviderByName(request.getParameter("guidanceProvider"));
+			guidanceProvider.setEnabled(false);
+			loginManager.getService().updateGuidanceProvider(guidanceProvider);
+		} else if (action.equals("enableGuidanceProvider")) {
+			SGuidanceProvider guidanceProvider = loginManager.getService().getGuidanceProviderByName(request.getParameter("guidanceProvider"));
+			guidanceProvider.setEnabled(true);
+			loginManager.getService().updateGuidanceProvider(guidanceProvider);
 		}
 	}
 %>
@@ -48,15 +56,30 @@
 <div class="tabbertab" id="ignorefilestab" title="Guidance Providers">
 <a href="addguidanceprovider.jsp">Add Guidance Provider</a>
 <table class="formatted">
-<tr><th>Name</th><th>Serializers</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SGuidanceProvider> guidanceProviders = service.getAllGuidanceProviders();
 	for (SGuidanceProvider guidanceProvider : guidanceProviders) {
 %>
 	<tr>
-		<td><%=guidanceProvider.getName() %></td>
+		<td><a href="guidanceprovider.jsp?id=<%=guidanceProvider.getOid()%>"><%=guidanceProvider.getName() %></a></td>
 		<td><%=guidanceProvider.getSerializers().size() %></td>
-		<td><a href="editguidanceprovider.jsp?ifid=<%=guidanceProvider.getOid()%>">Edit</a> <a href="deleteguidanceprovider.jsp?ifid=<%=guidanceProvider.getOid()%>">Delete</a></td></tr>
+		<td class="<%=guidanceProvider.isEnabled() ? "enabledGuidanceProvider" : "disabledGuidanceProvider" %>"> <%=guidanceProvider.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td>
+		<%
+	if (guidanceProvider.isEnabled()) {
+%>
+<a href="settings.jsp?action=disableGuidanceProvider&guidanceProvider=<%=guidanceProvider.getName() %>">Disable</a>
+<%
+	} else {
+%>
+<a href="settings.jsp?action=enableGuidanceProvider&guidanceProvider=<%=guidanceProvider.getName() %>">Enable</a>
+<%
+	}
+%>
+			<a href="deleteguidanceprovider.jsp?ifid=<%=guidanceProvider.getOid()%>">Delete</a>
+		</td>
+	</tr>
 <%
 	}
 %>
@@ -75,7 +98,7 @@
 		}
 %>
 	<tr>
-		<td><a href="serializer.jsp?name=<%=serializer.getName()%>"><%=serializer.getName() %></a></td>
+		<td><a href="serializer.jsp?id=<%=serializer.getOid()%>"><%=serializer.getName() %></a></td>
 		<td><%=serializer.getDescription() %></td>
 		<td><%=serializer.getClassName() %></td>
 		<td><%=serializer.getContentType() %></td>
@@ -110,7 +133,7 @@
 	for (SDeserializer deserializer : deserializers) {
 %>
 	<tr>
-		<td><a href="deserializer.jsp?name=<%=deserializer.getName()%>"><%=deserializer.getName() %></a></td>
+		<td><a href="deserializer.jsp?id=<%=deserializer.getOid()%>"><%=deserializer.getName() %></a></td>
 		<td><%=deserializer.getDescription() %></td>
 		<td><%=deserializer.getClassName() %></td>
 		<td class="<%=deserializer.isEnabled() ? "enabledDeserializer" : "disabledDeserializer" %>"> <%=deserializer.isEnabled() ? "Enabled" : "Disabled" %></td>

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -107,6 +108,24 @@ public class GuidanceProviderImpl extends IdEObjectImpl implements GuidanceProvi
 	 */
 	public void setClassName(String newClassName) {
 		eSet(StorePackage.Literals.GUIDANCE_PROVIDER__CLASS_NAME, newClassName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEnabled() {
+		return (Boolean) eGet(StorePackage.Literals.GUIDANCE_PROVIDER__ENABLED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnabled(boolean newEnabled) {
+		eSet(StorePackage.Literals.GUIDANCE_PROVIDER__ENABLED, newEnabled);
 	}
 
 	/**
