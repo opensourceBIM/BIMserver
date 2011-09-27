@@ -24,19 +24,10 @@ option java_outer_classname = "NotificationInterfaceImpl";
 option optimize_for = CODE_SIZE;
 
 service NotificationInterface {
-	rpc newProject (NewProjectRequest) returns (VoidResponse);
-
 	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
 
-}
+	rpc newProject (NewProjectRequest) returns (VoidResponse);
 
-message SNewProjectNotification {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-}
-
-message NewProjectRequest {
-	optional SNewProjectNotification unknown = 1;
 }
 
 message SNewRevisionNotification {
@@ -46,5 +37,14 @@ message SNewRevisionNotification {
 
 message NewRevisionRequest {
 	optional SNewRevisionNotification unknown = 1;
+}
+
+message SNewProjectNotification {
+	optional int64 oid = 1;
+	optional int64 projectId = 2;
+}
+
+message NewProjectRequest {
+	optional SNewProjectNotification unknown = 1;
 }
 

@@ -19,20 +19,24 @@
 </ul>
 </div>
 <div class="content">
+<h1>Add guidance provider</h1>
+<fieldset>
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("add") != null) {
 		SGuidanceProvider guidanceProvider = new SGuidanceProvider();
 		guidanceProvider.setName(request.getParameter("name"));
 		guidanceProvider.setClassName(request.getParameter("className"));
+		guidanceProvider.setEnabled(true);
 		loginManager.getService().addGuidanceProvider(guidanceProvider);
+		response.sendRedirect("settings.jsp");
 	}
 %>
 <form>
 <table>
 <tr>
 	<td><label for="name">Name</label></td>
-	<td><input name="name" id="name"></input></td>
+	<td><input name="name" id="name" class="focusme"></input></td>
 </tr>
 <tr>
 	<td><label for="className">Class</label></td>
@@ -50,5 +54,6 @@
 </tr>
 </table>
 </form>
+</fieldset>
 </div>
 <%@ include file="footer.jsp"%>

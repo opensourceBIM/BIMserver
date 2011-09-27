@@ -808,7 +808,7 @@ public interface ServiceInterface {
 	SSerializerPluginDescriptor getSerializerPluginDescriptor(@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws ServiceException;
 	
 	@WebMethod(action = "getAllGuidanceProviderPluginDescriptors")
-	Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws ServiceException;
+	List<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws ServiceException;
 
 	@WebMethod(action = "getAllDeserializers")
 	List<SDeserializer> getAllDeserializers(@WebParam(name = "oid", partName = "removeReference.oid") Boolean onlyEnabled) throws ServiceException;

@@ -32,7 +32,7 @@ import org.bimserver.tools.generators.DataObjectGenerator;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
 import org.bimserver.tools.generators.SPackageGeneratorWrapper;
-import org.bimserver.tools.generators.ServiceGenerator;
+import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +85,7 @@ public class CodeMigrator {
 		}
 		
 		LOGGER.info("Generating ServiceInterface objects...");
-		ServiceGenerator serviceGenerator = new ServiceGenerator();
+		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper();
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		for (EPackage ePackage : schema.getEPackages()) {
 			if (!ePackage.getName().equals("ifc2x3")) {

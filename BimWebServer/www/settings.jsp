@@ -56,13 +56,14 @@
 <div class="tabbertab" id="ignorefilestab" title="Guidance Providers">
 <a href="addguidanceprovider.jsp">Add Guidance Provider</a>
 <table class="formatted">
-<tr><th>Name</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Classname</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SGuidanceProvider> guidanceProviders = service.getAllGuidanceProviders();
 	for (SGuidanceProvider guidanceProvider : guidanceProviders) {
 %>
 	<tr>
 		<td><a href="guidanceprovider.jsp?id=<%=guidanceProvider.getOid()%>"><%=guidanceProvider.getName() %></a></td>
+		<td><%=guidanceProvider.getClassName() %></td>
 		<td><%=guidanceProvider.getSerializers().size() %></td>
 		<td class="<%=guidanceProvider.isEnabled() ? "enabledGuidanceProvider" : "disabledGuidanceProvider" %>"> <%=guidanceProvider.isEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>

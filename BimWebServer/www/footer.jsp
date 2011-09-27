@@ -10,6 +10,7 @@
 </div>
 <script>
 $(document).ready(function(){
+	$(".focusme").focus();
 	instrumentBrowserLinks();
 
 	$(".errorLink").click(function(event){

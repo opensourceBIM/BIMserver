@@ -16,18 +16,14 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-
+import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.bimserver.shared.meta.SBase;
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SField;
-import org.bimserver.shared.meta.SPackage;
 
 @XmlRootElement
 public class SDeserializer implements SBase
 {
-	private long oid;
+	private long oid = -1;
 	private static final SClass sClass = new SClass("SDeserializer");
 	
 	static {
@@ -78,7 +74,6 @@ public class SDeserializer implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);

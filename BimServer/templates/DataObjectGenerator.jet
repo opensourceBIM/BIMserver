@@ -21,13 +21,16 @@ package org.bimserver.interfaces.objects;
 
 <%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
 <%
-	if (argument instanceof EClass) {
-		EClass eClass = (EClass)argument;
+	Object[] arguments = (Object[])argument;
+	EClassifier eClassifier = (EClassifier)arguments[0];
+	ImportManager importManager = (ImportManager)arguments[1];
+	importManager.mark(stringBuffer);
+	boolean hasLists = false;
+	if (eClassifier instanceof EClass) {
+		importManager.getImport("javax.xml.bind.annotation.XmlRootElement");
+		importManager.getImport("org.bimserver.shared.meta.*");
+		EClass eClass = (EClass)eClassifier;
 %>
 
 @XmlRootElement
@@ -41,7 +44,7 @@ public class S<%=eClass.getName()%>
 	}
 %> implements SBase
 {
-	private long oid;
+	private long oid = -1;
 	private static final SClass sClass = new SClass("S<%=eClass.getName()%>");
 	
 	static {
@@ -56,6 +59,7 @@ public class S<%=eClass.getName()%>
 <%
 			} else {
 				if (eAttribute.isMany()) {
+					hasLists = true;
 %>
 		sClass.addField(new SField("<%=eStructuralFeature.getName()%>", <%=eAttribute.getEType().getInstanceClassName()%>.class, true));
 <%
@@ -68,6 +72,7 @@ public class S<%=eClass.getName()%>
 		} else if (eStructuralFeature instanceof EReference) {
 			EReference eReference = (EReference)eStructuralFeature;
 			if (eReference.isMany()) {
+				hasLists = true;
 				if (eReference.getEAnnotation("embedsreference") != null) {
 %>
 		sClass.addField(new SField("<%=eStructuralFeature.getName()%>", S<%=eReference.getEType().getName()%>.class, true));
@@ -122,10 +127,18 @@ public class S<%=eClass.getName()%>
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-
+<% if (hasLists) { %>
+	@SuppressWarnings("unchecked")
+<% } %>
 	public void sSet(SField sField, Object val) {
 <%
 	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
+			importManager.getImport("java.util.Date");
+		} else if (eStructuralFeature.getEType().getName().equals("DataHandler")) {
+			importManager.getImport("javax.activation.DataHandler");
+		
+		}
 		boolean useId = (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null);
 %>
 		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
@@ -153,11 +166,14 @@ public class S<%=eClass.getName()%>
 <%
 				} else {
 					if (eAttribute.isMany()) {
+						importManager.getImport("java.util.List");
+						importManager.getImport("java.util.ArrayList");
 %>
 	private List<<%=eAttribute.getEType().getInstanceClassName()%>> <%=eAttribute.getName()%> = new ArrayList<<%=eAttribute.getEType().getInstanceClassName()%>>();
 <%
 					} else {
 						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
+							importManager.getImport("javax.activation.DataHandler");
 %>
 	@XmlMimeType("application/octet-stream")
 	private DataHandler <%=eAttribute.getName()%>;
@@ -172,6 +188,8 @@ public class S<%=eClass.getName()%>
 			} else if (eStructuralFeature instanceof EReference) {
 				EReference eReference = (EReference)eStructuralFeature;
 				if (eReference.isMany()) {
+					importManager.getImport("java.util.List");
+					importManager.getImport("java.util.ArrayList");
 					if (eReference.getEAnnotation("embedsreference") != null) {
 %>
 	private List<S<%=eReference.getEType().getName()%>> <%=eReference.getName()%> = new ArrayList<S<%=eReference.getEType().getName()%>>();
@@ -320,8 +338,8 @@ public class S<%=eClass.getName()%>
 		return true;
 	}
 <%
-	} else if (argument instanceof EEnum) {
-		EEnum eEnum = (EEnum)argument;
+	} else if (eClassifier instanceof EEnum) {
+		EEnum eEnum = (EEnum)eClassifier;
 %>
 public enum S<%=eEnum.getName()%> {
 <%
@@ -341,4 +359,7 @@ public enum S<%=eEnum.getName()%> {
 		return ordinal;
 	}
 <%	} %>
+<%
+	importManager.writeImports(stringBuffer);
+%>
 }
