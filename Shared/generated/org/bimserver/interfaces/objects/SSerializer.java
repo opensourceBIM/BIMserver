@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SSerializer implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Serializer");
+	private static final SClass sClass = new SClass("SSerializer");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -39,6 +39,8 @@ public class SSerializer implements SBase
 		sClass.addField(new SField("defaultSerializer", boolean.class));
 		sClass.addField(new SField("guidanceProviderId", long.class));
 		sClass.addField(new SField("settingsId", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -90,33 +92,43 @@ public class SSerializer implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
 		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
+			return;
 		}
 		if (sField.getName().equals("extension")) {
 			setExtension((String)val);
+			return;
 		}
 		if (sField.getName().equals("contentType")) {
 			setContentType((String)val);
+			return;
 		}
 		if (sField.getName().equals("className")) {
 			setClassName((String)val);
+			return;
 		}
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("defaultSerializer")) {
 			setDefaultSerializer((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("guidanceProviderId")) {
 			setGuidanceProviderId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("settingsId")) {
 			setSettingsId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

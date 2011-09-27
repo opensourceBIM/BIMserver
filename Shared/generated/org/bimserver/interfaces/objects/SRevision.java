@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SRevision implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Revision");
+	private static final SClass sClass = new SClass("SRevision");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -46,6 +46,8 @@ public class SRevision implements SBase
 		sClass.addField(new SField("bmi", int.class));
 		sClass.addField(new SField("nrClashes", int.class));
 		sClass.addField(new SField("laid", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -118,54 +120,71 @@ public class SRevision implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("id")) {
 			setId((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("userId")) {
 			setUserId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("comment")) {
 			setComment((String)val);
+			return;
 		}
 		if (sField.getName().equals("size")) {
 			setSize((Long)val);
+			return;
 		}
 		if (sField.getName().equals("concreteRevisions")) {
 			setConcreteRevisions((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("lastConcreteRevisionId")) {
 			setLastConcreteRevisionId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("checkouts")) {
 			setCheckouts((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("state")) {
 			setState((SCheckinState)val);
+			return;
 		}
 		if (sField.getName().equals("lastClashes")) {
 			setLastClashes((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("tag")) {
 			setTag((String)val);
+			return;
 		}
 		if (sField.getName().equals("lastError")) {
 			setLastError((String)val);
+			return;
 		}
 		if (sField.getName().equals("bmi")) {
 			setBmi((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("nrClashes")) {
 			setNrClashes((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("laid")) {
 			setLaid((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

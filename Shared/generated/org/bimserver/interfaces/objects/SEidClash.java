@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SEidClash extends SClash implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("EidClash");
+	private static final SClass sClass = new SClass("SEidClash");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -38,6 +38,8 @@ public class SEidClash extends SClash implements SBase
 		sClass.addField(new SField("revision2Id", long.class));
 		sClass.addField(new SField("eid1", long.class));
 		sClass.addField(new SField("eid2", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -86,30 +88,39 @@ public class SEidClash extends SClash implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name1")) {
 			setName1((String)val);
+			return;
 		}
 		if (sField.getName().equals("name2")) {
 			setName2((String)val);
+			return;
 		}
 		if (sField.getName().equals("type1")) {
 			setType1((String)val);
+			return;
 		}
 		if (sField.getName().equals("type2")) {
 			setType2((String)val);
+			return;
 		}
 		if (sField.getName().equals("revision1Id")) {
 			setRevision1Id((Long)val);
+			return;
 		}
 		if (sField.getName().equals("revision2Id")) {
 			setRevision2Id((Long)val);
+			return;
 		}
 		if (sField.getName().equals("eid1")) {
 			setEid1((Long)val);
+			return;
 		}
 		if (sField.getName().equals("eid2")) {
 			setEid2((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

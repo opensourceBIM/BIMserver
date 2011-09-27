@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SGeoTag implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("GeoTag");
+	private static final SClass sClass = new SClass("SGeoTag");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -37,6 +37,8 @@ public class SGeoTag implements SBase
 		sClass.addField(new SField("z", float.class));
 		sClass.addField(new SField("epsg", int.class));
 		sClass.addField(new SField("directionAngle", float.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -82,27 +84,35 @@ public class SGeoTag implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("projects")) {
 			setProjects((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("x")) {
 			setX((Float)val);
+			return;
 		}
 		if (sField.getName().equals("y")) {
 			setY((Float)val);
+			return;
 		}
 		if (sField.getName().equals("z")) {
 			setZ((Float)val);
+			return;
 		}
 		if (sField.getName().equals("epsg")) {
 			setEpsg((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("directionAngle")) {
 			setDirectionAngle((Float)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

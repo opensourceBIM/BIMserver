@@ -1,0 +1,69 @@
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* java.io.File java.util.Set org.bimserver.utils.StringUtils" class="SPackageGenerator" %>
+package org.bimserver.shared.meta;
+<%
+/******************************************************************************
+ * Copyright (C) 2011  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+%>
+
+<%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
+
+import java.util.*;
+import org.bimserver.shared.meta.SClass;
+
+public class SPackage {
+<%
+	Set<EPackage> ePackages = (Set<EPackage>)argument;
+%>
+
+	private static final SPackage sPackage = new SPackage();
+	private final Map<String, SClass> sClasses = new HashMap<String, SClass>();
+
+	static {
+		getInstance().init();
+	}
+
+	private void init() {
+			try {
+	
+<%
+	for (EPackage ePackage : ePackages) {
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
+%>
+		Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>");
+<%
+			}
+		}
+	}
+%>
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static SPackage getInstance() {
+		return sPackage;
+	}
+
+	public void addSClass(SClass sClass) {
+		sClasses.put(sClass.getName(), sClass);
+	}
+
+	public SClass getSClass(String name) {
+		return sClasses.get(name);
+	}
+}

@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SGuidanceProvider implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("GuidanceProvider");
+	private static final SClass sClass = new SClass("SGuidanceProvider");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -34,6 +34,8 @@ public class SGuidanceProvider implements SBase
 		sClass.addField(new SField("className", java.lang.String.class));
 		sClass.addField(new SField("serializers", Long.class, true));
 		sClass.addField(new SField("settingsId", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -70,18 +72,23 @@ public class SGuidanceProvider implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
 		}
 		if (sField.getName().equals("className")) {
 			setClassName((String)val);
+			return;
 		}
 		if (sField.getName().equals("serializers")) {
 			setSerializers((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("settingsId")) {
 			setSettingsId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

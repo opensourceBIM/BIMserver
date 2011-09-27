@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SDatabaseInformation implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("DatabaseInformation");
+	private static final SClass sClass = new SClass("SDatabaseInformation");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -40,6 +40,8 @@ public class SDatabaseInformation implements SBase
 		sClass.addField(new SField("location", java.lang.String.class));
 		sClass.addField(new SField("schemaVersion", int.class));
 		sClass.addField(new SField("categories", SDatabaseInformationCategory.class, true));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -94,36 +96,47 @@ public class SDatabaseInformation implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("numberOfProjects")) {
 			setNumberOfProjects((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("numberOfUsers")) {
 			setNumberOfUsers((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("numberOfRevisions")) {
 			setNumberOfRevisions((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("numberOfCheckouts")) {
 			setNumberOfCheckouts((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("databaseSizeInBytes")) {
 			setDatabaseSizeInBytes((Long)val);
+			return;
 		}
 		if (sField.getName().equals("type")) {
 			setType((String)val);
+			return;
 		}
 		if (sField.getName().equals("created")) {
 			setCreated((Date)val);
+			return;
 		}
 		if (sField.getName().equals("location")) {
 			setLocation((String)val);
+			return;
 		}
 		if (sField.getName().equals("schemaVersion")) {
 			setSchemaVersion((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("categories")) {
 			setCategories((List<SDatabaseInformationCategory>)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

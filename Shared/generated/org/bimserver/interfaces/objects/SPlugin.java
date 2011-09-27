@@ -26,13 +26,15 @@ import javax.activation.DataHandler;
 public class SPlugin implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Plugin");
+	private static final SClass sClass = new SClass("SPlugin");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("name", java.lang.String.class));
 		sClass.addField(new SField("enabled", boolean.class));
 		sClass.addField(new SField("settingsId", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -66,15 +68,19 @@ public class SPlugin implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
 		}
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("settingsId")) {
 			setSettingsId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

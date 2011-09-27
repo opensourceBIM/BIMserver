@@ -26,12 +26,14 @@ import javax.activation.DataHandler;
 public class SDatabaseInformationItem implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("DatabaseInformationItem");
+	private static final SClass sClass = new SClass("SDatabaseInformationItem");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("key", java.lang.String.class));
 		sClass.addField(new SField("value", java.lang.String.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -62,12 +64,15 @@ public class SDatabaseInformationItem implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("key")) {
 			setKey((String)val);
+			return;
 		}
 		if (sField.getName().equals("value")) {
 			setValue((String)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

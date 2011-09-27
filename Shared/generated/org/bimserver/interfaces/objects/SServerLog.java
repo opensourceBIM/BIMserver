@@ -26,11 +26,13 @@ import javax.activation.DataHandler;
 public class SServerLog implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("ServerLog");
+	private static final SClass sClass = new SClass("SServerLog");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("actions", Long.class, true));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -58,9 +60,11 @@ public class SServerLog implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("actions")) {
 			setActions((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

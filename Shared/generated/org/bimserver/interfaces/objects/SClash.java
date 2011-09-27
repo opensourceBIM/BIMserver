@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SClash implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Clash");
+	private static final SClass sClass = new SClass("SClash");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -36,6 +36,8 @@ public class SClash implements SBase
 		sClass.addField(new SField("type2", java.lang.String.class));
 		sClass.addField(new SField("revision1Id", long.class));
 		sClass.addField(new SField("revision2Id", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -78,24 +80,31 @@ public class SClash implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name1")) {
 			setName1((String)val);
+			return;
 		}
 		if (sField.getName().equals("name2")) {
 			setName2((String)val);
+			return;
 		}
 		if (sField.getName().equals("type1")) {
 			setType1((String)val);
+			return;
 		}
 		if (sField.getName().equals("type2")) {
 			setType2((String)val);
+			return;
 		}
 		if (sField.getName().equals("revision1Id")) {
 			setRevision1Id((Long)val);
+			return;
 		}
 		if (sField.getName().equals("revision2Id")) {
 			setRevision2Id((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

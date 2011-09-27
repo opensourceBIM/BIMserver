@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SProject implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Project");
+	private static final SClass sClass = new SClass("SProject");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -47,6 +47,8 @@ public class SProject implements SBase
 		sClass.addField(new SField("description", java.lang.String.class));
 		sClass.addField(new SField("clashDetectionSettingsId", long.class));
 		sClass.addField(new SField("exportLengthMeasurePrefix", SSIPrefix.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -122,57 +124,75 @@ public class SProject implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("id")) {
 			setId((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
 		}
 		if (sField.getName().equals("hasAuthorizedUsers")) {
 			setHasAuthorizedUsers((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("concreteRevisions")) {
 			setConcreteRevisions((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("revisions")) {
 			setRevisions((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("lastConcreteRevisionId")) {
 			setLastConcreteRevisionId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("lastRevisionId")) {
 			setLastRevisionId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("checkouts")) {
 			setCheckouts((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("state")) {
 			setState((SObjectState)val);
+			return;
 		}
 		if (sField.getName().equals("createdDate")) {
 			setCreatedDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("createdById")) {
 			setCreatedById((Long)val);
+			return;
 		}
 		if (sField.getName().equals("geoTagId")) {
 			setGeoTagId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("subProjects")) {
 			setSubProjects((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("parentId")) {
 			setParentId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
+			return;
 		}
 		if (sField.getName().equals("clashDetectionSettingsId")) {
 			setClashDetectionSettingsId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("exportLengthMeasurePrefix")) {
 			setExportLengthMeasurePrefix((SSIPrefix)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

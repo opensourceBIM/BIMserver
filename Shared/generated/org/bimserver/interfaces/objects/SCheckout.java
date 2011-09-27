@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SCheckout implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Checkout");
+	private static final SClass sClass = new SClass("SCheckout");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -36,6 +36,8 @@ public class SCheckout implements SBase
 		sClass.addField(new SField("date", java.util.Date.class));
 		sClass.addField(new SField("checkinId", long.class));
 		sClass.addField(new SField("active", boolean.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -78,24 +80,31 @@ public class SCheckout implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("userId")) {
 			setUserId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("revisionId")) {
 			setRevisionId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("checkinId")) {
 			setCheckinId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("active")) {
 			setActive((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

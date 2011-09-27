@@ -26,12 +26,14 @@ import javax.activation.DataHandler;
 public class SLongActionState implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("LongActionState");
+	private static final SClass sClass = new SClass("SLongActionState");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("progress", int.class));
 		sClass.addField(new SField("state", SActionState.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -62,12 +64,15 @@ public class SLongActionState implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("progress")) {
 			setProgress((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("state")) {
 			setState((SActionState)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

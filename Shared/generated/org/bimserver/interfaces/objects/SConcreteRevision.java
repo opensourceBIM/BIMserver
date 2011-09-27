@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SConcreteRevision implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("ConcreteRevision");
+	private static final SClass sClass = new SClass("SConcreteRevision");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -38,6 +38,8 @@ public class SConcreteRevision implements SBase
 		sClass.addField(new SField("size", long.class));
 		sClass.addField(new SField("date", java.util.Date.class));
 		sClass.addField(new SField("lastError", java.lang.String.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -86,30 +88,39 @@ public class SConcreteRevision implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("id")) {
 			setId((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("state")) {
 			setState((SCheckinState)val);
+			return;
 		}
 		if (sField.getName().equals("checksum")) {
 			setChecksum((byte[])val);
+			return;
 		}
 		if (sField.getName().equals("revisions")) {
 			setRevisions((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("size")) {
 			setSize((Long)val);
+			return;
 		}
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("lastError")) {
 			setLastError((String)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
