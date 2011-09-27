@@ -8,12 +8,16 @@ import org.apache.commons.io.FileUtils;
 
 public class Licenser {
 
+	private int same;
+	private int changed;
+	private int skipped;
+	
 	public static void main(String[] args) {
 		new Licenser().start();
 	}
 
 	private void start() {
-		File workspace = new File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserver");
+		File workspace = new File("S:\\Workspaces\\BIMserver");
 		for (File project : workspace.listFiles()) {
 			if (!project.getName().startsWith(".")) {
 				File srcFolder = new File(project, "src");
@@ -23,6 +27,9 @@ public class Licenser {
 				}
 			}
 		}
+		System.out.println("Unchanged: " + same);
+		System.out.println("Changed: " + changed);
+		System.out.println("Skipped: " + skipped);
 	}
 
 	private void process(File srcFolder, String license) {
@@ -90,9 +97,14 @@ public class Licenser {
 					String first = content.substring(0, indexOfPackageEnd + 1);
 					String second = content.substring(indexOfFirstImport);
 					String total = first + "\n\n" + license + "\n\n" + second;
+					if (total.equals(content)) {
+						same++;
+					} else {
+						changed++;
+					}
 					FileUtils.writeStringToFile(file, total);
 				} else {
-					System.out.println("Skipping " + file.getName());
+					skipped++;
 				}
 			}
 		} catch (IOException e) {
