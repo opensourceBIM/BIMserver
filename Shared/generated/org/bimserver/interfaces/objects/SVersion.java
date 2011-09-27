@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SVersion implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Version");
+	private static final SClass sClass = new SClass("SVersion");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -37,6 +37,8 @@ public class SVersion implements SBase
 		sClass.addField(new SField("downloadUrl", java.lang.String.class));
 		sClass.addField(new SField("supportUrl", java.lang.String.class));
 		sClass.addField(new SField("supportEmail", java.lang.String.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -82,27 +84,35 @@ public class SVersion implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("major")) {
 			setMajor((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("minor")) {
 			setMinor((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("revision")) {
 			setRevision((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("downloadUrl")) {
 			setDownloadUrl((String)val);
+			return;
 		}
 		if (sField.getName().equals("supportUrl")) {
 			setSupportUrl((String)val);
+			return;
 		}
 		if (sField.getName().equals("supportEmail")) {
 			setSupportEmail((String)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

@@ -42,7 +42,7 @@ public class S<%=eClass.getName()%>
 %> implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("<%=eClass.getName()%>");
+	private static final SClass sClass = new SClass("S<%=eClass.getName()%>");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -91,6 +91,8 @@ public class S<%=eClass.getName()%>
 		}
 	}
 %>
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -128,12 +130,14 @@ public class S<%=eClass.getName()%>
 %>
 		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
 			set<%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=useId ? "Id" : "" %>((<%=GenerateUtils.getType(eStructuralFeature)%>)val);
+			return;
 		}
 <%
 	}
 %>
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

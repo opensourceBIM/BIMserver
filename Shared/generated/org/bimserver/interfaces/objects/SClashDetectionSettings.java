@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SClashDetectionSettings implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("ClashDetectionSettings");
+	private static final SClass sClass = new SClass("SClashDetectionSettings");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -35,6 +35,8 @@ public class SClashDetectionSettings implements SBase
 		sClass.addField(new SField("margin", float.class));
 		sClass.addField(new SField("revisions", Long.class, true));
 		sClass.addField(new SField("ignoredClasses", java.lang.String.class, true));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -74,21 +76,27 @@ public class SClashDetectionSettings implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("projects")) {
 			setProjects((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("margin")) {
 			setMargin((Float)val);
+			return;
 		}
 		if (sField.getName().equals("revisions")) {
 			setRevisions((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("ignoredClasses")) {
 			setIgnoredClasses((List<String>)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

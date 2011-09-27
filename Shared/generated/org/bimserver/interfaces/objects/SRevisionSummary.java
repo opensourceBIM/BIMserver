@@ -26,11 +26,13 @@ import javax.activation.DataHandler;
 public class SRevisionSummary implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("RevisionSummary");
+	private static final SClass sClass = new SClass("SRevisionSummary");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("list", SRevisionSummaryContainer.class, true));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -58,9 +60,11 @@ public class SRevisionSummary implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("list")) {
 			setList((List<SRevisionSummaryContainer>)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

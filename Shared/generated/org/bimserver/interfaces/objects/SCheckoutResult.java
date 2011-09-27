@@ -26,13 +26,15 @@ import javax.activation.DataHandler;
 public class SCheckoutResult extends SDownloadResult implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("CheckoutResult");
+	private static final SClass sClass = new SClass("SCheckoutResult");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("projectName", java.lang.String.class));
 		sClass.addField(new SField("revisionNr", int.class));
 		sClass.addField(new SField("file", javax.activation.DataHandler.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -66,15 +68,19 @@ public class SCheckoutResult extends SDownloadResult implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("projectName")) {
 			setProjectName((String)val);
+			return;
 		}
 		if (sField.getName().equals("revisionNr")) {
 			setRevisionNr((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("file")) {
 			setFile((DataHandler)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

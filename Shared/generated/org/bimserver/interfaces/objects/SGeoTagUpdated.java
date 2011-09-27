@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SGeoTagUpdated extends SLogAction implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("GeoTagUpdated");
+	private static final SClass sClass = new SClass("SGeoTagUpdated");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -34,6 +34,8 @@ public class SGeoTagUpdated extends SLogAction implements SBase
 		sClass.addField(new SField("executorId", long.class));
 		sClass.addField(new SField("accessMethod", SAccessMethod.class));
 		sClass.addField(new SField("geoTagId", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -70,18 +72,23 @@ public class SGeoTagUpdated extends SLogAction implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("executorId")) {
 			setExecutorId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("accessMethod")) {
 			setAccessMethod((SAccessMethod)val);
+			return;
 		}
 		if (sField.getName().equals("geoTagId")) {
 			setGeoTagId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

@@ -27,6 +27,7 @@ import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -85,8 +86,8 @@ public class LocalDevBimCombinedServerStarter {
 			@Override
 			public BimServerClient create() {
 				BimServerClient bimServerClient = new BimServerClient();
-				bimServerClient.connectProtocolBuffers("localhost", 8020);
-//				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
+//				bimServerClient.connectProtocolBuffers("localhost", 8020);
+				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
 				return bimServerClient;
 			}
 		};

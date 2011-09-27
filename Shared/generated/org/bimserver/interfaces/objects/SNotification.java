@@ -26,10 +26,12 @@ import javax.activation.DataHandler;
 public class SNotification implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Notification");
+	private static final SClass sClass = new SClass("SNotification");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -54,6 +56,7 @@ public class SNotification implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

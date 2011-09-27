@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SDatabaseCreated extends SLogAction implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("DatabaseCreated");
+	private static final SClass sClass = new SClass("SDatabaseCreated");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -35,6 +35,8 @@ public class SDatabaseCreated extends SLogAction implements SBase
 		sClass.addField(new SField("accessMethod", SAccessMethod.class));
 		sClass.addField(new SField("path", java.lang.String.class));
 		sClass.addField(new SField("version", int.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -74,21 +76,27 @@ public class SDatabaseCreated extends SLogAction implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("executorId")) {
 			setExecutorId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("accessMethod")) {
 			setAccessMethod((SAccessMethod)val);
+			return;
 		}
 		if (sField.getName().equals("path")) {
 			setPath((String)val);
+			return;
 		}
 		if (sField.getName().equals("version")) {
 			setVersion((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

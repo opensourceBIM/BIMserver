@@ -31,6 +31,8 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.tools.generators.DataObjectGenerator;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
+import org.bimserver.tools.generators.SPackageGenerator;
+import org.bimserver.tools.generators.SPackageGeneratorWrapper;
 import org.bimserver.tools.generators.ServiceGenerator;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
@@ -102,6 +104,9 @@ public class CodeMigrator {
 
 		generateProtocolBuffersServiceInterface(protocolBuffersGenerator);
 		generateNotificationInterfaceImplementation(protocolBuffersGenerator);
+		
+		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
+		sPackageGeneratorWrapper.generate(ePackages);
 		
 //		protocolBuffersGenerator.generateServiceInterfaceImplementation("ProtocolBuffersServiceInterfaceImplementation", new File("../BimServerClientLib/generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java"));
 

@@ -26,13 +26,15 @@ import javax.activation.DataHandler;
 public class SCheckinResult implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("CheckinResult");
+	private static final SClass sClass = new SClass("SCheckinResult");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("revisionId", long.class));
 		sClass.addField(new SField("rid", int.class));
 		sClass.addField(new SField("projectId", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -66,15 +68,19 @@ public class SCheckinResult implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("revisionId")) {
 			setRevisionId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("rid")) {
 			setRid((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

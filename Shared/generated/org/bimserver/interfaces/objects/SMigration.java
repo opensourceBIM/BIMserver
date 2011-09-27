@@ -26,13 +26,15 @@ import javax.activation.DataHandler;
 public class SMigration implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Migration");
+	private static final SClass sClass = new SClass("SMigration");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("number", int.class));
 		sClass.addField(new SField("description", java.lang.String.class));
 		sClass.addField(new SField("executed", boolean.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -66,15 +68,19 @@ public class SMigration implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("number")) {
 			setNumber((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
+			return;
 		}
 		if (sField.getName().equals("executed")) {
 			setExecuted((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

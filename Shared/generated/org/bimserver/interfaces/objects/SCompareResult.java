@@ -26,11 +26,13 @@ import javax.activation.DataHandler;
 public class SCompareResult implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("CompareResult");
+	private static final SClass sClass = new SClass("SCompareResult");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("items", SCompareContainer.class, true));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -58,9 +60,11 @@ public class SCompareResult implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("items")) {
 			setItems((List<SCompareContainer>)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

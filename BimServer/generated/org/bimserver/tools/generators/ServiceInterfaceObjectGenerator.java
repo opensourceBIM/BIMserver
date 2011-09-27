@@ -25,7 +25,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_5 = NL + NL + "@XmlRootElement" + NL + "public class S";
   protected final String TEXT_6 = " extends ";
   protected final String TEXT_7 = "S";
-  protected final String TEXT_8 = " implements SBase" + NL + "{" + NL + "\tprivate long oid;" + NL + "\tprivate static final SClass sClass = new SClass(\"";
+  protected final String TEXT_8 = " implements SBase" + NL + "{" + NL + "\tprivate long oid;" + NL + "\tprivate static final SClass sClass = new SClass(\"S";
   protected final String TEXT_9 = "\");" + NL + "\t" + NL + "\tstatic {" + NL + "\t\tsClass.addField(new SField(\"oid\", long.class));";
   protected final String TEXT_10 = NL + "\t\tsClass.addField(new SField(\"";
   protected final String TEXT_11 = "\", S";
@@ -46,7 +46,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_26 = ".class));";
   protected final String TEXT_27 = NL + "\t\tsClass.addField(new SField(\"";
   protected final String TEXT_28 = "Id\", long.class));";
-  protected final String TEXT_29 = NL + "\t}" + NL + "\t" + NL + "\tpublic long getOid() {" + NL + "\t\treturn oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic SClass getSClass() {" + NL + "\t\treturn sClass;" + NL + "\t}" + NL + "\t" + NL + "\tpublic Object sGet(SField sField) {";
+  protected final String TEXT_29 = NL + "\t\tSPackage.getInstance().addSClass(sClass);" + NL + "" + NL + "\t}" + NL + "\t" + NL + "\tpublic long getOid() {" + NL + "\t\treturn oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic SClass getSClass() {" + NL + "\t\treturn sClass;" + NL + "\t}" + NL + "\t" + NL + "\tpublic Object sGet(SField sField) {";
   protected final String TEXT_30 = NL + "\t\tif (sField.getName().equals(\"";
   protected final String TEXT_31 = "\")) {" + NL + "\t\t\treturn ";
   protected final String TEXT_32 = "();" + NL + "\t\t}";
@@ -54,8 +54,8 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_34 = NL + "\t\tif (sField.getName().equals(\"";
   protected final String TEXT_35 = "\")) {" + NL + "\t\t\tset";
   protected final String TEXT_36 = "((";
-  protected final String TEXT_37 = ")val);" + NL + "\t\t}";
-  protected final String TEXT_38 = NL + "\t\tif (sField.getName().equals(\"oid\")) {" + NL + "\t\t\tsetOid((Long)val);" + NL + "\t\t}" + NL + "\t\tthrow new RuntimeException(\"Field \" + sField.getName() + \" not found\");" + NL + "\t}" + NL + "\t";
+  protected final String TEXT_37 = ")val);" + NL + "\t\t\treturn;" + NL + "\t\t}";
+  protected final String TEXT_38 = NL + "\t\tif (sField.getName().equals(\"oid\")) {" + NL + "\t\t\tsetOid((Long)val);" + NL + "\t\t\treturn;" + NL + "\t\t}" + NL + "\t\tthrow new RuntimeException(\"Field \" + sField.getName() + \" not found\");" + NL + "\t}" + NL + "\t";
   protected final String TEXT_39 = NL + "\tprivate S";
   protected final String TEXT_40 = " ";
   protected final String TEXT_41 = ";";

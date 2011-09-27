@@ -26,12 +26,14 @@ import javax.activation.DataHandler;
 public class SRevisionSummaryType implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("RevisionSummaryType");
+	private static final SClass sClass = new SClass("SRevisionSummaryType");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("name", java.lang.String.class));
 		sClass.addField(new SField("count", int.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -62,12 +64,15 @@ public class SRevisionSummaryType implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
 		}
 		if (sField.getName().equals("count")) {
 			setCount((Integer)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

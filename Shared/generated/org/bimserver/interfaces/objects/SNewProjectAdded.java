@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SNewProjectAdded extends SLogAction implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("NewProjectAdded");
+	private static final SClass sClass = new SClass("SNewProjectAdded");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -35,6 +35,8 @@ public class SNewProjectAdded extends SLogAction implements SBase
 		sClass.addField(new SField("accessMethod", SAccessMethod.class));
 		sClass.addField(new SField("projectId", long.class));
 		sClass.addField(new SField("parentProjectId", long.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -74,21 +76,27 @@ public class SNewProjectAdded extends SLogAction implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("executorId")) {
 			setExecutorId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("accessMethod")) {
 			setAccessMethod((SAccessMethod)val);
+			return;
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("parentProjectId")) {
 			setParentProjectId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

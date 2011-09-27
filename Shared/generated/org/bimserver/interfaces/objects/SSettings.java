@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SSettings implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("Settings");
+	private static final SClass sClass = new SClass("SSettings");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -53,6 +53,8 @@ public class SSettings implements SBase
 		sClass.addField(new SField("ifcEngines", Long.class, true));
 		sClass.addField(new SField("plugins", Long.class, true));
 		sClass.addField(new SField("deserializers", Long.class, true));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -146,75 +148,99 @@ public class SSettings implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("showVersionUpgradeAvailable")) {
 			setShowVersionUpgradeAvailable((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("sendConfirmationEmailAfterRegistration")) {
 			setSendConfirmationEmailAfterRegistration((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("useCaching")) {
 			setUseCaching((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("allowSelfRegistration")) {
 			setAllowSelfRegistration((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("autoTestClashes")) {
 			setAutoTestClashes((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("intelligentMerging")) {
 			setIntelligentMerging((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("allowUsersToCreateTopLevelProjects")) {
 			setAllowUsersToCreateTopLevelProjects((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("checkinMergingEnabled")) {
 			setCheckinMergingEnabled((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("registrationAddition")) {
 			setRegistrationAddition((String)val);
+			return;
 		}
 		if (sField.getName().equals("smtpServer")) {
 			setSmtpServer((String)val);
+			return;
 		}
 		if (sField.getName().equals("emailSenderAddress")) {
 			setEmailSenderAddress((String)val);
+			return;
 		}
 		if (sField.getName().equals("enabledExportTypes")) {
 			setEnabledExportTypes((String)val);
+			return;
 		}
 		if (sField.getName().equals("customLogoAddress")) {
 			setCustomLogoAddress((String)val);
+			return;
 		}
 		if (sField.getName().equals("siteAddress")) {
 			setSiteAddress((String)val);
+			return;
 		}
 		if (sField.getName().equals("serializers")) {
 			setSerializers((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("guidanceProviders")) {
 			setGuidanceProviders((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("headerAddition")) {
 			setHeaderAddition((String)val);
+			return;
 		}
 		if (sField.getName().equals("footerAddition")) {
 			setFooterAddition((String)val);
+			return;
 		}
 		if (sField.getName().equals("mergeIdentifier")) {
 			setMergeIdentifier((SMergeIdentifier)val);
+			return;
 		}
 		if (sField.getName().equals("cacheOutputFiles")) {
 			setCacheOutputFiles((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("ifcEngines")) {
 			setIfcEngines((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("plugins")) {
 			setPlugins((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("deserializers")) {
 			setDeserializers((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

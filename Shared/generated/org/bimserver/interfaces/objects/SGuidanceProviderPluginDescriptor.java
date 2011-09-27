@@ -26,11 +26,13 @@ import javax.activation.DataHandler;
 public class SGuidanceProviderPluginDescriptor implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("GuidanceProviderPluginDescriptor");
+	private static final SClass sClass = new SClass("SGuidanceProviderPluginDescriptor");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("className", java.lang.String.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -58,9 +60,11 @@ public class SGuidanceProviderPluginDescriptor implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("className")) {
 			setClassName((String)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

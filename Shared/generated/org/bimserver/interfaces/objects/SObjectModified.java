@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SObjectModified extends SCompareItem implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("ObjectModified");
+	private static final SClass sClass = new SClass("SObjectModified");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -34,6 +34,8 @@ public class SObjectModified extends SCompareItem implements SBase
 		sClass.addField(new SField("fieldName", java.lang.String.class));
 		sClass.addField(new SField("oldValue", java.lang.String.class));
 		sClass.addField(new SField("newValue", java.lang.String.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -70,18 +72,23 @@ public class SObjectModified extends SCompareItem implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("dataObject")) {
 			setDataObject((SDataObject)val);
+			return;
 		}
 		if (sField.getName().equals("fieldName")) {
 			setFieldName((String)val);
+			return;
 		}
 		if (sField.getName().equals("oldValue")) {
 			setOldValue((String)val);
+			return;
 		}
 		if (sField.getName().equals("newValue")) {
 			setNewValue((String)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

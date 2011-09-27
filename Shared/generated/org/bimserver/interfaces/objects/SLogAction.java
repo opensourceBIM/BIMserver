@@ -26,13 +26,15 @@ import javax.activation.DataHandler;
 public class SLogAction implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("LogAction");
+	private static final SClass sClass = new SClass("SLogAction");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("date", java.util.Date.class));
 		sClass.addField(new SField("executorId", long.class));
 		sClass.addField(new SField("accessMethod", SAccessMethod.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -66,15 +68,19 @@ public class SLogAction implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
+			return;
 		}
 		if (sField.getName().equals("executorId")) {
 			setExecutorId((Long)val);
+			return;
 		}
 		if (sField.getName().equals("accessMethod")) {
 			setAccessMethod((SAccessMethod)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

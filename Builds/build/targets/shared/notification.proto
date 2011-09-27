@@ -40,8 +40,8 @@ message NewProjectRequest {
 }
 
 message SNewRevisionNotification {
-	optional int64 oid = 1;
-	optional int64 revisionId = 2;
+	optional int64 revisionId = 1;
+	optional int64 oid = 2;
 }
 
 message NewRevisionRequest {

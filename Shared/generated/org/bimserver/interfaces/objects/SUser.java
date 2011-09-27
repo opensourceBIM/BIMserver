@@ -26,7 +26,7 @@ import javax.activation.DataHandler;
 public class SUser implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("User");
+	private static final SClass sClass = new SClass("SUser");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
@@ -43,6 +43,8 @@ public class SUser implements SBase
 		sClass.addField(new SField("validationToken", java.lang.String.class));
 		sClass.addField(new SField("validationTokenCreated", java.util.Date.class));
 		sClass.addField(new SField("notificationUrl", java.lang.String.class));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -106,45 +108,59 @@ public class SUser implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
 		}
 		if (sField.getName().equals("password")) {
 			setPassword((String)val);
+			return;
 		}
 		if (sField.getName().equals("hasRightsOn")) {
 			setHasRightsOn((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("revisions")) {
 			setRevisions((List<Long>)val);
+			return;
 		}
 		if (sField.getName().equals("state")) {
 			setState((SObjectState)val);
+			return;
 		}
 		if (sField.getName().equals("createdOn")) {
 			setCreatedOn((Date)val);
+			return;
 		}
 		if (sField.getName().equals("createdById")) {
 			setCreatedById((Long)val);
+			return;
 		}
 		if (sField.getName().equals("userType")) {
 			setUserType((SUserType)val);
+			return;
 		}
 		if (sField.getName().equals("username")) {
 			setUsername((String)val);
+			return;
 		}
 		if (sField.getName().equals("lastSeen")) {
 			setLastSeen((Date)val);
+			return;
 		}
 		if (sField.getName().equals("validationToken")) {
 			setValidationToken((String)val);
+			return;
 		}
 		if (sField.getName().equals("validationTokenCreated")) {
 			setValidationTokenCreated((Date)val);
+			return;
 		}
 		if (sField.getName().equals("notificationUrl")) {
 			setNotificationUrl((String)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}

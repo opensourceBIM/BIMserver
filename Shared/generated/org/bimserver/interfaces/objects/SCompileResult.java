@@ -26,13 +26,15 @@ import javax.activation.DataHandler;
 public class SCompileResult implements SBase
 {
 	private long oid;
-	private static final SClass sClass = new SClass("CompileResult");
+	private static final SClass sClass = new SClass("SCompileResult");
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("compileOke", boolean.class));
 		sClass.addField(new SField("warnings", java.lang.String.class, true));
 		sClass.addField(new SField("errors", java.lang.String.class, true));
+		SPackage.getInstance().addSClass(sClass);
+
 	}
 	
 	public long getOid() {
@@ -66,15 +68,19 @@ public class SCompileResult implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("compileOke")) {
 			setCompileOke((Boolean)val);
+			return;
 		}
 		if (sField.getName().equals("warnings")) {
 			setWarnings((List<String>)val);
+			return;
 		}
 		if (sField.getName().equals("errors")) {
 			setErrors((List<String>)val);
+			return;
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
