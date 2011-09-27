@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -2491,10 +2490,10 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws UserException {
+	public List<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws UserException {
 		requireAuthenticationAndRunningServer();
 		Collection<GuidanceProviderPlugin> allGuidanceProviders = bimServer.getPluginManager().getAllGuidanceProviders(true);
-		Set<SGuidanceProviderPluginDescriptor> descriptors = new HashSet<SGuidanceProviderPluginDescriptor>();
+		List<SGuidanceProviderPluginDescriptor> descriptors = new ArrayList<SGuidanceProviderPluginDescriptor>();
 		for (GuidanceProviderPlugin guidanceProviderPlugin : allGuidanceProviders) {
 			SGuidanceProviderPluginDescriptor descriptor = new SGuidanceProviderPluginDescriptor();
 			descriptor.setClassName(guidanceProviderPlugin.getClass().getName());

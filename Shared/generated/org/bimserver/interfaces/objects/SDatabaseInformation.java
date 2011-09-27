@@ -16,22 +16,17 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
+import java.util.Date;
+import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.bimserver.shared.meta.SBase;
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SField;
-import org.bimserver.shared.meta.SPackage;
 
 @XmlRootElement
 public class SDatabaseInformation implements SBase
 {
-	private long oid;
+	private long oid = -1;
 	private static final SClass sClass = new SClass("SDatabaseInformation");
 	
 	static {
@@ -98,7 +93,7 @@ public class SDatabaseInformation implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-
+	@SuppressWarnings("unchecked")
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("numberOfProjects")) {
 			setNumberOfProjects((Integer)val);

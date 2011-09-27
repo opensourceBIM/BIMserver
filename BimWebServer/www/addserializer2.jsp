@@ -64,7 +64,7 @@
 <table>
 <tr>
 	<td><label for="name">Name</label></td>
-	<td><input name="name" id="name" value="<%=name%>"></input></td>
+	<td><input name="name" id="name" value="<%=name%>" class="focusme"></input></td>
 </tr>
 <tr>
 	<td><label for="description">Description</label></td>
@@ -102,10 +102,5 @@
 </table>
 </form>
 </div>
-<script>
-$(function(){
-	$("#name").focus();
-});
-</script>
 </fieldset>
 <%@ include file="footer.jsp"%>
