@@ -23,7 +23,7 @@
         </filter>
 	</appender>
 	<root>
-		<priority value="INFO" />
+		<priority value="DEBUG" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</root>
