@@ -17,7 +17,12 @@ package org.bimserver.webservices;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import javax.xml.namespace.QName;
+
+import org.apache.cxf.binding.soap.SoapMessage;
+import org.apache.cxf.headers.Header;
 import org.apache.cxf.message.Exchange;
+import org.apache.cxf.message.Message;
 import org.apache.cxf.service.invoker.AbstractInvoker;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
@@ -38,6 +43,15 @@ public class CustomInvoker extends AbstractInvoker {
 
 	@Override
 	public Object getServiceObject(Exchange context) {
+		Message inMessage = context.getInMessage();
+		SoapMessage soapMessage = (SoapMessage)inMessage;
+		for (Header h : soapMessage.getHeaders()) {
+			System.out.println(h.getName());
+		}
+		Header header = soapMessage.getHeader(new QName("uri:org.bimserver", "token"));
+		if (header != null) {
+			System.out.println(header.getObject());
+		}
 		if (context.getSession().get("token") != null) {
 			try {
 				return serviceFactory.getService((Token) context.getSession().get("token"));
@@ -46,7 +60,7 @@ public class CustomInvoker extends AbstractInvoker {
 				return null;
 			}
 		} else {
-			ServiceInterface newService = serviceFactory.newService(AccessMethod.WEB_INTERFACE);
+			ServiceInterface newService = serviceFactory.newService(AccessMethod.SOAP);
 			try {
 				context.getSession().put("token", newService.getCurrentToken());
 			} catch (ServiceException e) {

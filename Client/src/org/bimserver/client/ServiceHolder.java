@@ -17,19 +17,26 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.soap.SOAPFaultException;
 
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
+import org.apache.cxf.headers.Header;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
+import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +44,9 @@ import org.slf4j.LoggerFactory;
 public class ServiceHolder {
 	private ServiceInterface service;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceHolder.class);
-	private String username = "anonymous";
-	private String password = "anonymous";
-	private String address = "http://localhost:8082/soap";
+	private String username = "admin@bimserver.org";
+	private String password = "admin";
+	private String address = "http://localhost:8080/soap";
 
 	public ServiceInterface getService() {
 		return service;
@@ -50,7 +57,7 @@ public class ServiceHolder {
 		this.username = username;
 		this.password = password;
 		LOGGER.info("Connecting to " + address);
-		createClient(address);
+		createClient(address, true);
 
 		boolean connected = false;
 		try {
@@ -85,7 +92,7 @@ public class ServiceHolder {
 		}
 	}
 
-	private void createClient(final String address) {
+	private void createClient(final String address, boolean useSoapHeaderForSession) {
 		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		cpfb.setServiceClass(ServiceInterface.class);
 		cpfb.setAddress(address);
@@ -99,10 +106,28 @@ public class ServiceHolder {
 		client.getInInterceptors().add(new LoggingInInterceptor(ConsoleAppender.getPrintWriter()));
 		client.getOutInterceptors().add(new LoggingOutInterceptor(ConsoleAppender.getPrintWriter()));
 		HTTPConduit http = (HTTPConduit) client.getConduit();
-		((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
+		if (!useSoapHeaderForSession) {
+			((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
+		}
 		http.getClient().setConnectionTimeout(360000);
 		http.getClient().setAllowChunking(false);
 		http.getClient().setReceiveTimeout(320000);
+		
+		if (useSoapHeaderForSession) {
+			try {
+				Token token = service.getCurrentToken();
+				List<Header> headers = new ArrayList<Header>();
+				try {
+					Header sessionHeader = new Header(new QName("uri:org.bimserver", "token"), token, new JAXBDataBinding(Token.class));
+					headers.add(sessionHeader);
+				} catch (JAXBException e) {
+					e.printStackTrace();
+				}
+				((BindingProvider) service).getRequestContext().put(Header.HEADER_LIST, headers);
+			} catch (ServiceException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	public String getUsername() {
