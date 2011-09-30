@@ -1007,7 +1007,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private static String stripClassName(Class classObject) {
 		String name = classObject.getName();
 		int ifcIndex = name.lastIndexOf("Ifc");
-		return name.substring(Math.max(name.lastIndexOf('.', ifcIndex) +1, ifcIndex+3), name.lastIndexOf("Impl"));
+		int implIndex = name.lastIndexOf("Impl");
+		return name.substring(Math.max(name.lastIndexOf('.', ifcIndex < 0? 0 : ifcIndex)+1, ifcIndex < 0? 0 : ifcIndex+3), implIndex < 0? name.length() : implIndex);
 	}
 	
 	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
