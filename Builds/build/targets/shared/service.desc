@@ -1,5 +1,5 @@
 
-Žó
+•÷
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -10,19 +10,19 @@
 sCompareType (2.org.bimserver.pb.SCompareType@
 sCompareIdentifier (2$.org.bimserver.pb.SCompareIdentifier",
 
-SDataValue
-oid (
-	fieldName (	"r
+SDataValue
+	fieldName (	
+oid ("r
 SDataObject
 name (	
-type (	
-oid (
-guid (	,
-values (2.org.bimserver.pb.SDataValue"N
-SCompareItem
-oid (1
+type (	,
+values (2.org.bimserver.pb.SDataValue
+oid (
+guid (	"N
+SCompareItem1
 
-dataObject (2.org.bimserver.pb.SDataObject"]
+dataObject (2.org.bimserver.pb.SDataObject
+oid ("]
 SCompareContainer
 type (	
 oid (-
@@ -32,7 +32,16 @@ dataObject (2.org.bimserver.pb.SDataObject"]
 items (2#.org.bimserver.pb.SCompareContainer"X
 CompareResponse
 errorMessage (	/
-value (2 .org.bimserver.pb.SCompareResult"•
+value (2 .org.bimserver.pb.SCompareResult"
+CompileRequest
+code (	"?
+SCompileResult
+errors (	
+warnings (	
+oid ("X
+CompileResponse
+errorMessage (	/
+value (2 .org.bimserver.pb.SCompileResult"•
 SetupRequest
 siteAddress (	
 
@@ -40,16 +49,7 @@ smtpServer (	
 	adminName (	
 adminUsername (	
 adminPassword (	
-createAnonymousUser ("
-CompileRequest
-code (	"?
-SCompileResult
-oid (
-errors (	
-warnings (	"X
-CompileResponse
-errorMessage (	/
-value (2 .org.bimserver.pb.SCompileResult"(
+createAnonymousUser ("(
 CreateObjectRequest
 	className (	";
 CreateObjectResponse
@@ -57,329 +57,27 @@ smtpServer (	
 value ("
 GetLatestVersionRequest"”
 SVersion
-date (
-revision (
-oid (
-major (
-minor (
-downloadUrl (	
+date (
+downloadUrl (	
 
-supportUrl (	
-supportEmail (	"[
+supportUrl (	
+supportEmail (	
+revision (
+oid (
+major (
+minor ("[
 GetLatestVersionResponse
+errorMessage (	)
+value (2.org.bimserver.pb.SVersion"
+GetVersionRequest"U
+GetVersionResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SVersion"^
 RemoveAttributeRequest
 oid (
 	className (	
 attributeName (	
-index ("2
-LoginRequest
-username (	
-password (	"4
-LoginResponse
-errorMessage (	
-value ("2
-AutologinRequest
-username (	
-hash (	"8
-AutologinResponse
-errorMessage (	
-value ("G
-DownloadRequest
-roid (
-formatIdentifier (	
-sync ("7
-DownloadResponse
-errorMessage (	
-value ("€
-CheckinAsyncRequest
-poid (
-comment (	
-deserializerName (	
-fileSize (
-ifcFile (
-merge ("Q
-SCheckinResult
-oid (
-rid (
-	projectId (
-
-revisionId ("]
-CheckinAsyncResponse
-errorMessage (	/
-value (2 .org.bimserver.pb.SCheckinResult"u
-AddUserRequest
-username (	
-name (	)
-type (2.org.bimserver.pb.SUserType
-selfRegistration ("6
-AddUserResponse
-errorMessage (	
-value ("
-PingRequest
-
-in (	"3
-PingResponse
-errorMessage (	
-value (	"
-CheckinSyncRequest
-poid (
-comment (	
-deserializerName (	
-fileSize (
-ifcFile (
-merge ("\
-CheckinSyncResponse
-errorMessage (	/
-value (2 .org.bimserver.pb.SCheckinResult"(
-AddProjectRequest
-projectName (	"Ï
-SProject
-name (	
-
-id (-
-state (2.org.bimserver.pb.SObjectState
-oid (
-	revisions (
-	checkouts (
-geoTagId (
-parentId (
-description	 (	
-subProjects
- (
-hasAuthorizedUsers (
-concreteRevisions (
-lastConcreteRevisionId (
-lastRevisionId (
-createdDate (
-createdById ( 
-clashDetectionSettingsId (>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix"U
-AddProjectResponse
-errorMessage (	)
-value (2.org.bimserver.pb.SProject"!
-DeleteUserRequest
-uoid ("9
-DeleteUserResponse
-errorMessage (	
-value ("
-GetAllUsersRequest"Ø
-SUser
-name (	-
-state (2.org.bimserver.pb.SObjectState
-oid (
-	revisions (
-password (	
-	createdOn (-
-userType (2.org.bimserver.pb.SUserType
-username (	
-lastSeen	 (
-createdById
- (
-hasRightsOn (
-validationToken (	
-validationTokenCreated (
-notificationUrl (	"S
-GetAllUsersResponse
-errorMessage (	&
-value (2.org.bimserver.pb.SUser""
-GetRevisionRequest
-roid ("Õ
-	SRevision
-
-id (.
-state (2.org.bimserver.pb.SCheckinState
-size (
-date (
-comment (	
-oid (
-	projectId (
-	checkouts (
-userId	 (
-	lastError
- (	
-bmi (
-	nrClashes (
-laid (
-tag (	
-lastClashes (
-concreteRevisions (
-lastConcreteRevisionId ("W
-GetRevisionResponse
-errorMessage (	*
-value (2.org.bimserver.pb.SRevision"
-LogoutRequest"#
-UndeleteUserRequest
-uoid (";
-UndeleteUserResponse
-errorMessage (	
-value (" 
-GetGeoTagRequest
-goid ("o
-SGeoTag
-oid (	
-y (	
-x (	
-z (
-epsg (
-projects (
-directionAngle ("S
-GetGeoTagResponse
-errorMessage (	(
-value (2.org.bimserver.pb.SGeoTag"A
-UpdateGeoTagRequest*
-sGeoTag (2.org.bimserver.pb.SGeoTag"
-IsLoggedInRequest"9
-IsLoggedInResponse
-errorMessage (	
-value ("
-GetLogsRequest"r
-
-SLogAction
-date (
-oid (5
-accessMethod (2.org.bimserver.pb.SAccessMethod
-
-executorId ("T
-GetLogsResponse
-errorMessage (	+
-value (2.org.bimserver.pb.SLogAction"&
-EnablePluginRequest
-unknown (	"5
-RemoveObjectRequest
-	className (	
-oid ("~
-SetReferenceRequest
-oid (
-	className (	
-referenceName (	
-referenceOid (
-referenceClassName (	"~
-AddReferenceRequest
-oid (
-	className (	
-referenceName (	
-referenceOid (
-referenceClassName (	"
-GetVersionRequest"U
-GetVersionResponse
-errorMessage (	)
-value (2.org.bimserver.pb.SVersion"
-GetAccessMethodRequest"_
-GetAccessMethodResponse
-errorMessage (	.
-value (2.org.bimserver.pb.SAccessMethod"
-GetMigrationsRequest">
-
-SMigration
-number (
-oid (
-description (	"Z
-GetMigrationsResponse
-errorMessage (	+
-value (2.org.bimserver.pb.SMigration"8
-6IsSettingSendConfirmationEmailAfterRegistrationRequest"^
-7IsSettingSendConfirmationEmailAfterRegistrationResponse
-errorMessage (	
-value ("i
-7SetSettingSendConfirmationEmailAfterRegistrationRequest.
-&sendConfirmationEmailAfterRegistration ("G
-CheckoutRequest
-roid (
-formatIdentifier (	
-sync ("7
-CheckoutResponse
-errorMessage (	
-value ("8
-(GetAllNonAuthorizedProjectsOfUserRequest
-uoid ("l
-)GetAllNonAuthorizedProjectsOfUserResponse
-errorMessage (	)
-value (2.org.bimserver.pb.SProject"8
-(GetAllNonAuthorizedUsersOfProjectRequest
-poid ("i
-)GetAllNonAuthorizedUsersOfProjectResponse
-errorMessage (	&
-value (2.org.bimserver.pb.SUser"5
-%GetAllAuthorizedUsersOfProjectRequest
-poid ("f
-&GetAllAuthorizedUsersOfProjectResponse
-errorMessage (	&
-value (2.org.bimserver.pb.SUser"=
--GetAllCheckoutsOfProjectAndSubProjectsRequest
-poid ("p
-	SCheckout
-date (
-oid (
-	projectId (
-userId (
-	checkinId (
-
-revisionId ("r
-.GetAllCheckoutsOfProjectAndSubProjectsResponse
-errorMessage (	*
-value (2.org.bimserver.pb.SCheckout"'
-%GetSettingRegistrationAdditionRequest"M
-&GetSettingRegistrationAdditionResponse
-errorMessage (	
-value (	"E
-%SetSettingRegistrationAdditionRequest
-registrationAddition (	"'
-%IsSettingAllowSelfRegistrationRequest"M
-&IsSettingAllowSelfRegistrationResponse
-errorMessage (	
-value ("G
-&SetSettingAllowSelfRegistrationRequest
-allowSelfRegistration ("4
-2IsSettingAllowUsersToCreateTopLevelProjectsRequest"Z
-3IsSettingAllowUsersToCreateTopLevelProjectsResponse
-errorMessage (	
-value ("a
-3SetSettingAllowUsersToCreateTopLevelProjectsRequest*
-"allowUsersToCreateTopLevelProjects ("'
-%IsSettingCheckinMergingEnabledRequest"M
-&IsSettingCheckinMergingEnabledResponse
-errorMessage (	
-value ("G
-&SetSettingCheckinMergingEnabledRequest
-checkinMergingEnabled ("-
-+IsSettingShowVersionUpgradeAvailableRequest"S
-,IsSettingShowVersionUpgradeAvailableResponse
-errorMessage (	
-value ("S
-,SetSettingShowVersionUpgradeAvailableRequest#
-showVersionUpgradeAvailable ("*
-(GetAllSerializerPluginDescriptorsRequest"Ž
-SSerializerPluginDescriptor
-oid (
-pluginClassName (	
-defaultName (	
-defaultExtension (	
-defaultContentType (	"
-)GetAllSerializerPluginDescriptorsResponse
-errorMessage (	<
-value (2-.org.bimserver.pb.SSerializerPluginDescriptor",
-*GetAllDeserializerPluginDescriptorsRequest"Z
-SDeserializerPluginDescriptor
-oid (
-pluginClassName (	
-defaultName (	"ƒ
-+GetAllDeserializerPluginDescriptorsResponse
-errorMessage (	>
-value (2/.org.bimserver.pb.SDeserializerPluginDescriptor"4
-$GetSerializerPluginDescriptorRequest
-type (	"{
-%GetSerializerPluginDescriptorResponse
-errorMessage (	<
-value (2-.org.bimserver.pb.SSerializerPluginDescriptor"0
-.GetAllGuidanceProviderPluginDescriptorsRequest"C
-!SGuidanceProviderPluginDescriptor
-	className (	
-oid ("‹
-/GetAllGuidanceProviderPluginDescriptorsResponse
-errorMessage (	B
-value (23.org.bimserver.pb.SGuidanceProviderPluginDescriptor"S
+index ("S
 CheckoutLastRevisionRequest
 poid (
 formatIdentifier (	
@@ -421,11 +119,11 @@ $GetSerializerPluginDescriptorRequest
 GetDownloadDataRequest
 actionID ("U
 SDownloadResult
-file (
-oid (
-projectName (	
+file (
+projectName (	
 
-revisionNr ("a
+revisionNr (
+oid ("a
 GetDownloadDataResponse
 errorMessage (	0
 value (2!.org.bimserver.pb.SDownloadResult"+
@@ -444,12 +142,53 @@ revisionNr ("a
 AddProjectAsSubProjectRequest
 projectName (	
 
-parentPoid ("a
+parentPoid ("Ï
+SProject
+name (	
+
+id (-
+state (2.org.bimserver.pb.SObjectState
+subProjects (
+hasAuthorizedUsers (
+concreteRevisions (
+lastConcreteRevisionId (
+lastRevisionId (
+createdDate	 (
+createdById
+ ( 
+clashDetectionSettingsId (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+description (	
+oid (
+	revisions (
+	checkouts (
+geoTagId (
+parentId ("a
 AddProjectAsSubProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"D
 UpdateProjectRequest,
-sProject (2.org.bimserver.pb.SProject"G
+sProject (2.org.bimserver.pb.SProject"Õ
+	SRevision
+
+id (.
+state (2.org.bimserver.pb.SCheckinState
+size (
+date (
+comment (	
+lastClashes (
+concreteRevisions (
+lastConcreteRevisionId (
+tag	 (	
+oid
+ (
+	checkouts (
+userId (
+	projectId (
+	lastError (	
+bmi (
+	nrClashes (
+laid ("G
 UpdateRevisionRequest.
 	sRevision (2.org.bimserver.pb.SRevision"5
 AddUserToProjectRequest
@@ -483,7 +222,15 @@ parentPoid ("a
 errorMessage (	*
 value (2.org.bimserver.pb.SRevision"/
 GetAllCheckoutsOfProjectRequest
-poid ("d
+poid ("p
+	SCheckout
+date (
+
+revisionId (
+oid (
+userId (
+	projectId (
+	checkinId ("d
  GetAllCheckoutsOfProjectResponse
 errorMessage (	*
 value (2.org.bimserver.pb.SCheckout",
@@ -512,9 +259,9 @@ parentPoid ("a
 errorMessage (	
 value (	"
 GetDatabaseInformationRequest"C
-SDatabaseInformationItem
-key (	
-value (	
+SDatabaseInformationItem
+value (	
+key (	
 oid ("u
 SDatabaseInformationCategory
 oid (9
@@ -522,18 +269,18 @@ parentPoid ("a
 title (	"³
 SDatabaseInformation
 location (	
-type (	
-oid (
-created (
-numberOfProjects (
-numberOfUsers (
-numberOfRevisions (
-numberOfCheckouts (
-databaseSizeInBytes	 (
-schemaVersion
- (B
+type (	
+numberOfProjects (
+numberOfUsers (
+numberOfRevisions (
+numberOfCheckouts (
+databaseSizeInBytes (
+schemaVersion (B
 
-categories (2..org.bimserver.pb.SDatabaseInformationCategory"m
+categories	 (2..org.bimserver.pb.SDatabaseInformationCategory
+oid
+ (
+created ("m
 GetDatabaseInformationResponse
 errorMessage (	5
 value (2&.org.bimserver.pb.SDatabaseInformation"
@@ -541,7 +288,23 @@ categories (2..org.bimserver.pb.SDatabaseInformationCategory"m
 GetLastDatabaseResetResponse
 errorMessage (	
 value ("
-GetLoggedInUserRequest"W
+GetLoggedInUserRequest"Ø
+SUser
+name (	-
+state (2.org.bimserver.pb.SObjectState
+createdById (
+hasRightsOn (
+validationToken (	
+validationTokenCreated (
+notificationUrl (	
+oid (
+	revisions	 (
+password
+ (	
+	createdOn (-
+userType (2.org.bimserver.pb.SUserType
+username (	
+lastSeen ("W
 GetLoggedInUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"O
@@ -611,26 +374,31 @@ categories (2..org.bimserver.pb.SDatabaseInformationCategory"m
 	className (	"b
 GetDataObjectsByTypeResponse
 errorMessage (	,
+value (2.org.bimserver.pb.SDataObject"(
+GetDataObjectsRequest
+unknown ("\
+GetDataObjectsResponse
+errorMessage (	,
 value (2.org.bimserver.pb.SDataObject"s
-SClashDetectionSettings
-oid (
-	revisions (
-margin (
-projects (
-ignoredClasses (	"f
+SClashDetectionSettings
+ignoredClasses (	
+projects (
+oid (
+	revisions (
+margin ("f
 FindClashesByGuidRequestJ
 sClashDetectionSettings (2).org.bimserver.pb.SClashDetectionSettings"
 
 SGuidClash
 oid (
 guid1 (	
-guid2 (	
-name1 (	
-name2 (	
-type1 (	
-type2 (	
-revision1Id (
-revision2Id	 ("^
+guid2 (	
+revision1Id (
+revision2Id (
+name1 (	
+name2 (	
+type1 (	
+type2	 (	"^
 FindClashesByGuidResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SGuidClash"e
@@ -639,33 +407,39 @@ SGuidClash
 	SEidClash
 oid (
 eid1 (
-eid2 (
-name1 (	
-name2 (	
-type1 (	
-type2 (	
-revision1Id (
-revision2Id	 ("\
+eid2 (
+revision1Id (
+revision2Id (
+name1 (	
+name2 (	
+type1 (	
+type2	 (	"\
 FindClashesByEidResponse
 errorMessage (	*
 value (2.org.bimserver.pb.SEidClash"%
 GetLastClashesRequest
 roid ("{
-SClash
-oid (
-name1 (	
-name2 (	
-type1 (	
-type2 (	
-revision1Id (
-revision2Id ("W
+SClash
+revision1Id (
+revision2Id (
+oid (
+name1 (	
+name2 (	
+type1 (	
+type2 (	"W
 GetLastClashesResponse
 errorMessage (	'
 value (2.org.bimserver.pb.SClash"O
 BranchToNewProjectRequest
 roid (
 projectName (	
-comment (	"c
+comment (	"Q
+SCheckinResult
+
+revisionId (
+oid (
+	projectId (
+rid ("c
 BranchToNewProjectResponse
 errorMessage (	/
 value (2 .org.bimserver.pb.SCheckinResult"Q
@@ -727,10 +501,10 @@ SGuidClash
 errorMessage (	
 value ("
 GetCurrentTokenRequest"D
-Token
-expires (
-tokenString (	
-expiresAsDate ("W
+Token
+tokenString (	
+expiresAsDate (
+expires ("W
 GetCurrentTokenResponse
 errorMessage (	&
 value (2.org.bimserver.pb.Token",
@@ -817,25 +591,25 @@ smtpServer (	"!
 GetActiveUserSessionsRequest"Ö
 SUserSession
 name (	)
-type (2.org.bimserver.pb.SUserType
-oid (
-userId (
-username (	5
-accessMethod (2.org.bimserver.pb.SAccessMethod
-activeSince (
+type (2.org.bimserver.pb.SUserType
+activeSince (
 
-lastActive ("d
+lastActive (5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+oid (
+userId (
+username (	"d
 GetActiveUserSessionsResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SUserSession"
 GetActiveLongActionsRequest"q
 SLongAction
-name (	
-oid (
-userId (
-username (	
-start (
-identification (	"b
+name (	
+identification (	
+oid (
+userId (
+username (	
+start ("b
 GetActiveLongActionsResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SLongAction"
@@ -846,12 +620,12 @@ lastActive ("d
 name (	
 	className (	
 	extension (	
-contentType (	
-oid (
-description (	
-guidanceProviderId (
+contentType (	
+guidanceProviderId (
 
-settingsId ("_
+settingsId (
+description (	
+oid ("_
 GetAllSerializersResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SSerializer"
@@ -862,11 +636,11 @@ settingsId ("_
 GetEnabledDeserializersRequest"f
 SDeserializer
 name (	
-	className (	
-oid (
-description (	
+	className (	
 
-settingsId ("g
+settingsId (
+description (	
+oid ("g
 GetEnabledDeserializersResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SDeserializer"'
@@ -893,11 +667,11 @@ serializer (2.org.bimserver.pb.SSerializer"R
 GetAllGuidanceProvidersRequest"j
 SGuidanceProvider
 name (	
-	className (	
-oid (
+	className (	
 
-settingsId (
-serializers ("k
+settingsId (
+serializers (
+oid ("k
 GetAllGuidanceProvidersResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SGuidanceProvider"-
@@ -943,9 +717,9 @@ settingsId (
 GetAllPluginsRequest"U
 SPluginDescriptor
 name (	
-location (	
-oid (
-description (	"a
+location (	
+description (	
+oid ("a
 GetAllPluginsResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SPluginDescriptor"'
@@ -1038,11 +812,11 @@ settingsId (
 roid (
 code (	"K
 
-SRunResult
-oid (
-output (	
-errors (	
-warnings (	"Z
+SRunResult
+errors (	
+warnings (	
+oid (
+output (	"Z
 CompileAndRunResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SRunResult"7
@@ -1057,17 +831,253 @@ SRunResult
 errorMessage (	
 value (	"
 GetServerInfoRequest"e
-SServerInfo
-oid (3
-serverState (2.org.bimserver.pb.SServerState
-errorMessage (	"[
+SServerInfo3
+serverState (2.org.bimserver.pb.SServerState
+errorMessage (	
+oid ("[
 GetServerInfoResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SServerInfo"
 UpgradePossibleRequest">
 UpgradePossibleResponse
 errorMessage (	
-value (*8
+value ("
+GetAccessMethodRequest"_
+GetAccessMethodResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SAccessMethod"G
+CheckoutRequest
+roid (
+formatIdentifier (	
+sync ("7
+CheckoutResponse
+errorMessage (	
+value ("
+GetMigrationsRequest">
+
+SMigration
+number (
+description (	
+oid ("Z
+GetMigrationsResponse
+errorMessage (	+
+value (2.org.bimserver.pb.SMigration"7
+$GetAvailableClassesInRevisionRequest
+unknown ("L
+%GetAvailableClassesInRevisionResponse
+errorMessage (	
+value (	"8
+(GetAllNonAuthorizedProjectsOfUserRequest
+uoid ("l
+)GetAllNonAuthorizedProjectsOfUserResponse
+errorMessage (	)
+value (2.org.bimserver.pb.SProject"8
+(GetAllNonAuthorizedUsersOfProjectRequest
+poid ("i
+)GetAllNonAuthorizedUsersOfProjectResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser"5
+%GetAllAuthorizedUsersOfProjectRequest
+poid ("f
+&GetAllAuthorizedUsersOfProjectResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser"=
+-GetAllCheckoutsOfProjectAndSubProjectsRequest
+poid ("r
+.GetAllCheckoutsOfProjectAndSubProjectsResponse
+errorMessage (	*
+value (2.org.bimserver.pb.SCheckout"'
+%GetSettingRegistrationAdditionRequest"M
+&GetSettingRegistrationAdditionResponse
+errorMessage (	
+value (	"E
+%SetSettingRegistrationAdditionRequest
+registrationAddition (	"'
+%IsSettingAllowSelfRegistrationRequest"M
+&IsSettingAllowSelfRegistrationResponse
+errorMessage (	
+value ("G
+&SetSettingAllowSelfRegistrationRequest
+allowSelfRegistration ("4
+2IsSettingAllowUsersToCreateTopLevelProjectsRequest"Z
+3IsSettingAllowUsersToCreateTopLevelProjectsResponse
+errorMessage (	
+value ("a
+3SetSettingAllowUsersToCreateTopLevelProjectsRequest*
+"allowUsersToCreateTopLevelProjects ("'
+%IsSettingCheckinMergingEnabledRequest"M
+&IsSettingCheckinMergingEnabledResponse
+errorMessage (	
+value ("G
+&SetSettingCheckinMergingEnabledRequest
+checkinMergingEnabled ("-
++IsSettingShowVersionUpgradeAvailableRequest"S
+,IsSettingShowVersionUpgradeAvailableResponse
+errorMessage (	
+value ("S
+,SetSettingShowVersionUpgradeAvailableRequest#
+showVersionUpgradeAvailable ("*
+(GetAllSerializerPluginDescriptorsRequest"Ž
+SSerializerPluginDescriptor
+pluginClassName (	
+defaultName (	
+defaultExtension (	
+defaultContentType (	
+oid ("
+)GetAllSerializerPluginDescriptorsResponse
+errorMessage (	<
+value (2-.org.bimserver.pb.SSerializerPluginDescriptor",
+*GetAllDeserializerPluginDescriptorsRequest"Z
+SDeserializerPluginDescriptor
+pluginClassName (	
+defaultName (	
+oid ("ƒ
++GetAllDeserializerPluginDescriptorsResponse
+errorMessage (	>
+value (2/.org.bimserver.pb.SDeserializerPluginDescriptor"4
+$GetSerializerPluginDescriptorRequest
+type (	"{
+%GetSerializerPluginDescriptorResponse
+errorMessage (	<
+value (2-.org.bimserver.pb.SSerializerPluginDescriptor"0
+.GetAllGuidanceProviderPluginDescriptorsRequest"C
+!SGuidanceProviderPluginDescriptor
+	className (	
+oid ("‹
+/GetAllGuidanceProviderPluginDescriptorsResponse
+errorMessage (	B
+value (23.org.bimserver.pb.SGuidanceProviderPluginDescriptor"8
+6IsSettingSendConfirmationEmailAfterRegistrationRequest"^
+7IsSettingSendConfirmationEmailAfterRegistrationResponse
+errorMessage (	
+value ("i
+7SetSettingSendConfirmationEmailAfterRegistrationRequest.
+&sendConfirmationEmailAfterRegistration ("2
+LoginRequest
+username (	
+password (	"4
+LoginResponse
+errorMessage (	
+value ("2
+AutologinRequest
+username (	
+hash (	"8
+AutologinResponse
+errorMessage (	
+value ("G
+DownloadRequest
+roid (
+formatIdentifier (	
+sync ("7
+DownloadResponse
+errorMessage (	
+value ("€
+CheckinAsyncRequest
+poid (
+comment (	
+deserializerName (	
+fileSize (
+ifcFile (
+merge ("]
+CheckinAsyncResponse
+errorMessage (	/
+value (2 .org.bimserver.pb.SCheckinResult"u
+AddUserRequest
+username (	
+name (	)
+type (2.org.bimserver.pb.SUserType
+selfRegistration ("6
+AddUserResponse
+errorMessage (	
+value ("
+PingRequest
+
+in (	"3
+PingResponse
+errorMessage (	
+value (	"
+CheckinSyncRequest
+poid (
+comment (	
+deserializerName (	
+fileSize (
+ifcFile (
+merge ("\
+CheckinSyncResponse
+errorMessage (	/
+value (2 .org.bimserver.pb.SCheckinResult"(
+AddProjectRequest
+projectName (	"U
+AddProjectResponse
+errorMessage (	)
+value (2.org.bimserver.pb.SProject"!
+DeleteUserRequest
+uoid ("9
+DeleteUserResponse
+errorMessage (	
+value ("
+GetAllUsersRequest"S
+GetAllUsersResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser""
+GetRevisionRequest
+roid ("W
+GetRevisionResponse
+errorMessage (	*
+value (2.org.bimserver.pb.SRevision"
+LogoutRequest"#
+UndeleteUserRequest
+uoid (";
+UndeleteUserResponse
+errorMessage (	
+value (" 
+GetGeoTagRequest
+goid ("o
+SGeoTag
+projects (
+directionAngle (
+oid (	
+x (	
+y (	
+z (
+epsg ("S
+GetGeoTagResponse
+errorMessage (	(
+value (2.org.bimserver.pb.SGeoTag"A
+UpdateGeoTagRequest*
+sGeoTag (2.org.bimserver.pb.SGeoTag"
+IsLoggedInRequest"9
+IsLoggedInResponse
+errorMessage (	
+value ("
+GetLogsRequest"r
+
+SLogAction
+date (5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+
+executorId (
+oid ("T
+GetLogsResponse
+errorMessage (	+
+value (2.org.bimserver.pb.SLogAction"&
+EnablePluginRequest
+unknown (	"5
+RemoveObjectRequest
+	className (	
+oid ("~
+SetReferenceRequest
+oid (
+	className (	
+referenceName (	
+referenceOid (
+referenceClassName (	"~
+AddReferenceRequest
+oid (
+	className (	
+referenceName (	
+referenceOid (
+referenceClassName (	*8
 SCompareType
 ALL 
 ADD
@@ -1077,7 +1087,11 @@ SRunResult
 DELETE*.
 SCompareIdentifier
 NAME_ID 
-GUID_ID*;
+GUID_ID*6
+SActionState
+UNKNOWN 
+STARTED
+FINISHED*;
 	SUserType
 
 SYSTEM 	
@@ -1119,84 +1133,33 @@ hectometer
 SEARCHING_CLASHES
 DONE	
 ERROR
-CLASHES_ERROR*k
+CLASHES_ERROR*&
+SMergeIdentifier
+NAME 
+GUID*k
 SAccessMethod
 SOAP 
 WEB_INTERFACE
 INTERNAL
 REST
 SYNDICATION
-PROTOCOL_BUFFERS*6
-SActionState
-UNKNOWN 
-STARTED
-FINISHED*&
-SMergeIdentifier
-NAME 
-GUID*|
+PROTOCOL_BUFFERS*|
 SServerState
 	UNDEFINED 
 	NOT_SETUP
 MIGRATION_REQUIRED
 MIGRATION_IMPOSSIBLE
 FATAL_ERROR
-RUNNING2Øž
+RUNNING2Ð 
 ServiceInterfaceN
-compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponseG
-setup.org.bimserver.pb.SetupRequest.org.bimserver.pb.VoidResponseN
-compile .org.bimserver.pb.CompileRequest!.org.bimserver.pb.CompileResponse]
+compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponseN
+compile .org.bimserver.pb.CompileRequest!.org.bimserver.pb.CompileResponseG
+setup.org.bimserver.pb.SetupRequest.org.bimserver.pb.VoidResponse]
 createObject%.org.bimserver.pb.CreateObjectRequest&.org.bimserver.pb.CreateObjectResponsei
-getLatestVersion).org.bimserver.pb.GetLatestVersionRequest*.org.bimserver.pb.GetLatestVersionResponse[
-removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseH
-login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseT
-	autologin".org.bimserver.pb.AutologinRequest#.org.bimserver.pb.AutologinResponseQ
-download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponse]
-checkinAsync%.org.bimserver.pb.CheckinAsyncRequest&.org.bimserver.pb.CheckinAsyncResponseN
-addUser .org.bimserver.pb.AddUserRequest!.org.bimserver.pb.AddUserResponseE
-ping.org.bimserver.pb.PingRequest.org.bimserver.pb.PingResponseZ
-checkinSync$.org.bimserver.pb.CheckinSyncRequest%.org.bimserver.pb.CheckinSyncResponseW
+getLatestVersion).org.bimserver.pb.GetLatestVersionRequest*.org.bimserver.pb.GetLatestVersionResponseW
 
-addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectResponseW
-
-deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponseZ
-getAllUsers$.org.bimserver.pb.GetAllUsersRequest%.org.bimserver.pb.GetAllUsersResponseZ
-getRevision$.org.bimserver.pb.GetRevisionRequest%.org.bimserver.pb.GetRevisionResponseI
-logout.org.bimserver.pb.LogoutRequest.org.bimserver.pb.VoidResponse]
-undeleteUser%.org.bimserver.pb.UndeleteUserRequest&.org.bimserver.pb.UndeleteUserResponseT
-	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponseU
-updateGeoTag%.org.bimserver.pb.UpdateGeoTagRequest.org.bimserver.pb.VoidResponseW
-
-isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponseN
-getLogs .org.bimserver.pb.GetLogsRequest!.org.bimserver.pb.GetLogsResponseU
-enablePlugin%.org.bimserver.pb.EnablePluginRequest.org.bimserver.pb.VoidResponseU
-removeObject%.org.bimserver.pb.RemoveObjectRequest.org.bimserver.pb.VoidResponseU
-setReference%.org.bimserver.pb.SetReferenceRequest.org.bimserver.pb.VoidResponseU
-addReference%.org.bimserver.pb.AddReferenceRequest.org.bimserver.pb.VoidResponseW
-
-getVersion#.org.bimserver.pb.GetVersionRequest$.org.bimserver.pb.GetVersionResponsef
-getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponse`
-getMigrations&.org.bimserver.pb.GetMigrationsRequest'.org.bimserver.pb.GetMigrationsResponseÆ
-/isSettingSendConfirmationEmailAfterRegistrationH.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationRequestI.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationResponse
-0setSettingSendConfirmationEmailAfterRegistrationI.org.bimserver.pb.SetSettingSendConfirmationEmailAfterRegistrationRequest.org.bimserver.pb.VoidResponseQ
-checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponseœ
-!getAllNonAuthorizedProjectsOfUser:.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserRequest;.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserResponseœ
-!getAllNonAuthorizedUsersOfProject:.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectRequest;.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectResponse“
-getAllAuthorizedUsersOfProject7.org.bimserver.pb.GetAllAuthorizedUsersOfProjectRequest8.org.bimserver.pb.GetAllAuthorizedUsersOfProjectResponse«
-&getAllCheckoutsOfProjectAndSubProjects?.org.bimserver.pb.GetAllCheckoutsOfProjectAndSubProjectsRequest@.org.bimserver.pb.GetAllCheckoutsOfProjectAndSubProjectsResponse“
-getSettingRegistrationAddition7.org.bimserver.pb.GetSettingRegistrationAdditionRequest8.org.bimserver.pb.GetSettingRegistrationAdditionResponsey
-setSettingRegistrationAddition7.org.bimserver.pb.SetSettingRegistrationAdditionRequest.org.bimserver.pb.VoidResponse“
-isSettingAllowSelfRegistration7.org.bimserver.pb.IsSettingAllowSelfRegistrationRequest8.org.bimserver.pb.IsSettingAllowSelfRegistrationResponse{
-setSettingAllowSelfRegistration8.org.bimserver.pb.SetSettingAllowSelfRegistrationRequest.org.bimserver.pb.VoidResponseº
-+isSettingAllowUsersToCreateTopLevelProjectsD.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsRequestE.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsResponse•
-,setSettingAllowUsersToCreateTopLevelProjectsE.org.bimserver.pb.SetSettingAllowUsersToCreateTopLevelProjectsRequest.org.bimserver.pb.VoidResponse“
-isSettingCheckinMergingEnabled7.org.bimserver.pb.IsSettingCheckinMergingEnabledRequest8.org.bimserver.pb.IsSettingCheckinMergingEnabledResponse{
-setSettingCheckinMergingEnabled8.org.bimserver.pb.SetSettingCheckinMergingEnabledRequest.org.bimserver.pb.VoidResponse¥
-$isSettingShowVersionUpgradeAvailable=.org.bimserver.pb.IsSettingShowVersionUpgradeAvailableRequest>.org.bimserver.pb.IsSettingShowVersionUpgradeAvailableResponse‡
-%setSettingShowVersionUpgradeAvailable>.org.bimserver.pb.SetSettingShowVersionUpgradeAvailableRequest.org.bimserver.pb.VoidResponseœ
-!getAllSerializerPluginDescriptors:.org.bimserver.pb.GetAllSerializerPluginDescriptorsRequest;.org.bimserver.pb.GetAllSerializerPluginDescriptorsResponse¢
-#getAllDeserializerPluginDescriptors<.org.bimserver.pb.GetAllDeserializerPluginDescriptorsRequest=.org.bimserver.pb.GetAllDeserializerPluginDescriptorsResponse
-getSerializerPluginDescriptor6.org.bimserver.pb.GetSerializerPluginDescriptorRequest7.org.bimserver.pb.GetSerializerPluginDescriptorResponse®
-'getAllGuidanceProviderPluginDescriptors@.org.bimserver.pb.GetAllGuidanceProviderPluginDescriptorsRequestA.org.bimserver.pb.GetAllGuidanceProviderPluginDescriptorsResponseu
+getVersion#.org.bimserver.pb.GetVersionRequest$.org.bimserver.pb.GetVersionResponse[
+removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseu
 checkoutLastRevision-.org.bimserver.pb.CheckoutLastRevisionRequest..org.bimserver.pb.CheckoutLastRevisionResponsec
 downloadByOids'.org.bimserver.pb.DownloadByOidsRequest(.org.bimserver.pb.DownloadByOidsResponsec
 downloadOfType'.org.bimserver.pb.DownloadOfTypeRequest(.org.bimserver.pb.DownloadOfTypeResponsef
@@ -1232,7 +1195,8 @@ $isSettingShowVersionUpgradeAvailable=.org.bimserver.pb.IsSettingShowVersionUpg
 userHasRights&.org.bimserver.pb.UserHasRightsRequest'.org.bimserver.pb.UserHasRightsResponseo
 getDataObjectByOid+.org.bimserver.pb.GetDataObjectByOidRequest,.org.bimserver.pb.GetDataObjectByOidResponser
 getDataObjectByGuid,.org.bimserver.pb.GetDataObjectByGuidRequest-.org.bimserver.pb.GetDataObjectByGuidResponseu
-getDataObjectsByType-.org.bimserver.pb.GetDataObjectsByTypeRequest..org.bimserver.pb.GetDataObjectsByTypeResponsel
+getDataObjectsByType-.org.bimserver.pb.GetDataObjectsByTypeRequest..org.bimserver.pb.GetDataObjectsByTypeResponsec
+getDataObjects'.org.bimserver.pb.GetDataObjectsRequest(.org.bimserver.pb.GetDataObjectsResponsel
 findClashesByGuid*.org.bimserver.pb.FindClashesByGuidRequest+.org.bimserver.pb.FindClashesByGuidResponsei
 findClashesByEid).org.bimserver.pb.FindClashesByEidRequest*.org.bimserver.pb.FindClashesByEidResponsec
 getLastClashes'.org.bimserver.pb.GetLastClashesRequest(.org.bimserver.pb.GetLastClashesResponseo
@@ -1327,4 +1291,52 @@ $isSettingShowVersionUpgradeAvailable=.org.bimserver.pb.IsSettingShowVersionUpg
 compileAndDownload+.org.bimserver.pb.CompileAndDownloadRequest,.org.bimserver.pb.CompileAndDownloadResponse{
 getProtocolBuffersFile/.org.bimserver.pb.GetProtocolBuffersFileRequest0.org.bimserver.pb.GetProtocolBuffersFileResponse`
 getServerInfo&.org.bimserver.pb.GetServerInfoRequest'.org.bimserver.pb.GetServerInfoResponsef
-upgradePossible(.org.bimserver.pb.UpgradePossibleRequest).org.bimserver.pb.UpgradePossibleResponseBBServiceInterfaceImplHˆ
+upgradePossible(.org.bimserver.pb.UpgradePossibleRequest).org.bimserver.pb.UpgradePossibleResponsef
+getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponseQ
+checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponse`
+getMigrations&.org.bimserver.pb.GetMigrationsRequest'.org.bimserver.pb.GetMigrationsResponse
+getAvailableClassesInRevision6.org.bimserver.pb.GetAvailableClassesInRevisionRequest7.org.bimserver.pb.GetAvailableClassesInRevisionResponseœ
+!getAllNonAuthorizedProjectsOfUser:.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserRequest;.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserResponseœ
+!getAllNonAuthorizedUsersOfProject:.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectRequest;.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectResponse“
+getAllAuthorizedUsersOfProject7.org.bimserver.pb.GetAllAuthorizedUsersOfProjectRequest8.org.bimserver.pb.GetAllAuthorizedUsersOfProjectResponse«
+&getAllCheckoutsOfProjectAndSubProjects?.org.bimserver.pb.GetAllCheckoutsOfProjectAndSubProjectsRequest@.org.bimserver.pb.GetAllCheckoutsOfProjectAndSubProjectsResponse“
+getSettingRegistrationAddition7.org.bimserver.pb.GetSettingRegistrationAdditionRequest8.org.bimserver.pb.GetSettingRegistrationAdditionResponsey
+setSettingRegistrationAddition7.org.bimserver.pb.SetSettingRegistrationAdditionRequest.org.bimserver.pb.VoidResponse“
+isSettingAllowSelfRegistration7.org.bimserver.pb.IsSettingAllowSelfRegistrationRequest8.org.bimserver.pb.IsSettingAllowSelfRegistrationResponse{
+setSettingAllowSelfRegistration8.org.bimserver.pb.SetSettingAllowSelfRegistrationRequest.org.bimserver.pb.VoidResponseº
++isSettingAllowUsersToCreateTopLevelProjectsD.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsRequestE.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsResponse•
+,setSettingAllowUsersToCreateTopLevelProjectsE.org.bimserver.pb.SetSettingAllowUsersToCreateTopLevelProjectsRequest.org.bimserver.pb.VoidResponse“
+isSettingCheckinMergingEnabled7.org.bimserver.pb.IsSettingCheckinMergingEnabledRequest8.org.bimserver.pb.IsSettingCheckinMergingEnabledResponse{
+setSettingCheckinMergingEnabled8.org.bimserver.pb.SetSettingCheckinMergingEnabledRequest.org.bimserver.pb.VoidResponse¥
+$isSettingShowVersionUpgradeAvailable=.org.bimserver.pb.IsSettingShowVersionUpgradeAvailableRequest>.org.bimserver.pb.IsSettingShowVersionUpgradeAvailableResponse‡
+%setSettingShowVersionUpgradeAvailable>.org.bimserver.pb.SetSettingShowVersionUpgradeAvailableRequest.org.bimserver.pb.VoidResponseœ
+!getAllSerializerPluginDescriptors:.org.bimserver.pb.GetAllSerializerPluginDescriptorsRequest;.org.bimserver.pb.GetAllSerializerPluginDescriptorsResponse¢
+#getAllDeserializerPluginDescriptors<.org.bimserver.pb.GetAllDeserializerPluginDescriptorsRequest=.org.bimserver.pb.GetAllDeserializerPluginDescriptorsResponse
+getSerializerPluginDescriptor6.org.bimserver.pb.GetSerializerPluginDescriptorRequest7.org.bimserver.pb.GetSerializerPluginDescriptorResponse®
+'getAllGuidanceProviderPluginDescriptors@.org.bimserver.pb.GetAllGuidanceProviderPluginDescriptorsRequestA.org.bimserver.pb.GetAllGuidanceProviderPluginDescriptorsResponseÆ
+/isSettingSendConfirmationEmailAfterRegistrationH.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationRequestI.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationResponse
+0setSettingSendConfirmationEmailAfterRegistrationI.org.bimserver.pb.SetSettingSendConfirmationEmailAfterRegistrationRequest.org.bimserver.pb.VoidResponseH
+login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseT
+	autologin".org.bimserver.pb.AutologinRequest#.org.bimserver.pb.AutologinResponseQ
+download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponse]
+checkinAsync%.org.bimserver.pb.CheckinAsyncRequest&.org.bimserver.pb.CheckinAsyncResponseN
+addUser .org.bimserver.pb.AddUserRequest!.org.bimserver.pb.AddUserResponseE
+ping.org.bimserver.pb.PingRequest.org.bimserver.pb.PingResponseZ
+checkinSync$.org.bimserver.pb.CheckinSyncRequest%.org.bimserver.pb.CheckinSyncResponseW
+
+addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectResponseW
+
+deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponseZ
+getAllUsers$.org.bimserver.pb.GetAllUsersRequest%.org.bimserver.pb.GetAllUsersResponseZ
+getRevision$.org.bimserver.pb.GetRevisionRequest%.org.bimserver.pb.GetRevisionResponseI
+logout.org.bimserver.pb.LogoutRequest.org.bimserver.pb.VoidResponse]
+undeleteUser%.org.bimserver.pb.UndeleteUserRequest&.org.bimserver.pb.UndeleteUserResponseT
+	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponseU
+updateGeoTag%.org.bimserver.pb.UpdateGeoTagRequest.org.bimserver.pb.VoidResponseW
+
+isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponseN
+getLogs .org.bimserver.pb.GetLogsRequest!.org.bimserver.pb.GetLogsResponseU
+enablePlugin%.org.bimserver.pb.EnablePluginRequest.org.bimserver.pb.VoidResponseU
+removeObject%.org.bimserver.pb.RemoveObjectRequest.org.bimserver.pb.VoidResponseU
+setReference%.org.bimserver.pb.SetReferenceRequest.org.bimserver.pb.VoidResponseU
+addReference%.org.bimserver.pb.AddReferenceRequest.org.bimserver.pb.VoidResponseBBServiceInterfaceImplHˆ

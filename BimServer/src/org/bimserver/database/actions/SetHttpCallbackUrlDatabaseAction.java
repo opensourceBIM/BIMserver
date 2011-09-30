@@ -17,6 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -25,7 +28,10 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
+import org.bimserver.pb.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.pb.Reflector;
+import org.bimserver.shared.pb.SocketChannel;
 
 public class SetHttpCallbackUrlDatabaseAction extends BimDatabaseAction<Void> {
 
@@ -56,7 +62,12 @@ public class SetHttpCallbackUrlDatabaseAction extends BimDatabaseAction<Void> {
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
-//				bimServer.getNotificationsManager().register(user, );
+				InetSocketAddress address = new InetSocketAddress(url.substring(0, url.indexOf(":")), Integer.parseInt(url.substring(url.indexOf(":") + 1)));
+				try {
+					bimServer.getNotificationsManager().register(user, new NotificationInterfaceReflectorImpl(new Reflector(bimServer.getProtocolBuffersMetaData(), bimServer.getSService(), new SocketChannel(address))));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		return null;

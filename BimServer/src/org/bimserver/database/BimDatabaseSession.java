@@ -130,4 +130,6 @@ public interface BimDatabaseSession extends OidProvider {
 	long store(IdEObject eObject) throws BimDeadlockException, BimDatabaseException;
 
 	long store(IdEObject eObject, int pid, int rid) throws BimDeadlockException, BimDatabaseException;
+
+	List<String> getAvailableClassesInRevision(int pid, int rid);
 }

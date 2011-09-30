@@ -22,13 +22,13 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ObjectIdentifier;
-import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
 
-public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<SDataObject>{
+public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObject>{
 
 	private final String guid;
 	private final long roid;
@@ -42,7 +42,7 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<SDataOb
 	}
 	
 	@Override
-	public SDataObject execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public DataObject execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		ObjectIdentifier objectIdentifier = null;
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {

@@ -17,6 +17,5 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class NotificationsClient {
-	
+public abstract class NotificationsClient extends Thread {
 }

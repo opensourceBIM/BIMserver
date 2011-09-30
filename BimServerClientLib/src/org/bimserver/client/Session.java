@@ -22,6 +22,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.interfaces.objects.SDataObject;
+import org.bimserver.interfaces.objects.SDataValue;
+import org.bimserver.interfaces.objects.SListDataValue;
+import org.bimserver.interfaces.objects.SReferenceDataValue;
+import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.shared.ServiceInterface;
@@ -29,6 +35,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -121,5 +128,34 @@ public class Session {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+
+	public void loadModel(SRevision revision) {
+		try {
+			List<SDataObject> dataObjects = serviceInterface.getDataObjects(revision.getOid());
+			for (SDataObject dataObject : dataObjects) {
+				EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(dataObject.getType());
+				EObject eObject = Ifc2x3Factory.eINSTANCE.create(eClass);
+				for (SDataValue dataValue : dataObject.getValues()) {
+					EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(dataValue.getFieldName());
+					if (dataValue instanceof SSimpleDataValue) {
+						SSimpleDataValue simpleDataValue = (SSimpleDataValue)dataValue;
+						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+							eObject.eSet(eStructuralFeature, simpleDataValue.getStringValue());
+						} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
+							eObject.eSet(eStructuralFeature, Integer.parseInt(simpleDataValue.getStringValue()));
+						} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+							eObject.eSet(eStructuralFeature, Float.parseFloat(simpleDataValue.getStringValue()));
+						} 
+					} else if (dataValue instanceof SReferenceDataValue) {
+						SReferenceDataValue referenceDataValue = (SReferenceDataValue)dataValue;
+					} else if (dataValue instanceof SListDataValue) {
+						SListDataValue listDataValue = (SListDataValue)dataValue;
+					}
+				}
+			}
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 	}
 }

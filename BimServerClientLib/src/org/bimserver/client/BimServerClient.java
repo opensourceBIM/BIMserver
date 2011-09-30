@@ -46,16 +46,12 @@ public class BimServerClient {
 		this.serviceInterface = serviceInterface;
 	}
 	
-	public void connectProtocolBuffers(String address, int port) {
+	public void connectProtocolBuffers(String address, int port) throws IOException {
 		SocketChannel channel = new SocketChannel(new InetSocketAddress(address, port));
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
-		try {
-			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
-			Reflector reflector = new Reflector(protocolBuffersMetaData, new SService(ServiceInterface.class), channel);
-			serviceInterface = new ServiceInterfaceReflectorImpl(reflector);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
+		Reflector reflector = new Reflector(protocolBuffersMetaData, new SService(ServiceInterface.class), channel);
+		serviceInterface = new ServiceInterfaceReflectorImpl(reflector);
 	}
 	
 	public void connectSoap(final String address) {

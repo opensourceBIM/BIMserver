@@ -72,6 +72,7 @@ import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 
 //TODO: Document the rest of the interface
 /**
@@ -249,6 +250,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAvailableClasses")
 	List<String> getAvailableClasses() throws ServiceException;
 
+	@WebMethod(action = "getAvailableClassesInRevision")
+	List<String> getAvailableClassesInRevision(long roid) throws ServiceException;
+	
 	@WebMethod(action = "getDatabaseInformation")
 	SDatabaseInformation getDatabaseInformation() throws ServiceException;
 
@@ -308,6 +312,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "getDataObjectsByType")
 	List<SDataObject> getDataObjectsByType(@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
 			@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws ServiceException;
+
+	@WebMethod(action = "getDataObjects")
+	List<SDataObject> getDataObjects(long roid) throws ServiceException;
 
 	@WebMethod(action = "findClashesByGuid")
 	List<SGuidClash> findClashesByGuid(
