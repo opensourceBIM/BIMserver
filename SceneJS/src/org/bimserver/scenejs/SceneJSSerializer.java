@@ -43,6 +43,7 @@ import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
 import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
 import org.bimserver.models.ifc2x3.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3.IfcMember;
+import org.bimserver.models.ifc2x3.IfcObject;
 import org.bimserver.models.ifc2x3.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3.IfcPlate;
 import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
@@ -54,6 +55,7 @@ import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRailing;
 import org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3.IfcRelDecomposes;
+import org.bimserver.models.ifc2x3.IfcRelDefines;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentationContext;
 import org.bimserver.models.ifc2x3.IfcRepresentationItem;
@@ -209,8 +211,9 @@ public class SceneJSSerializer extends BimModelSerializer {
 				
 				writeBounds(writer);				
 				writeUnit(writer);
-				writeIfcTree(writer);
 				writeIfcTypes(writer);
+				writeIfcTree(writer);
+				writeIfcAttributes(writer);
 				
 				writer.unindent();
 				writer.writeln("},");
@@ -339,7 +342,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 	
-	private void calculateExtents(String id, IdEObject ifcRootObject) throws IfcEngineException, SerializerException {
+	private void calculateExtents(String id, IdEObject ifcObject) throws IfcEngineException, SerializerException {
 		// Get the extents object related to this geometric object 
 		if (!geometryExtents.containsKey(id)) {
 			geometryExtents.put(id, new Extents());
@@ -348,7 +351,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		
 		// Create a geometric model to for calculating the extents of the object 
 		IfcModelInterface ifcModel = new IfcModel();
-		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		convertToSubset(ifcObject.eClass(), ifcObject, ifcModel, new HashMap<EObject, EObject>());
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
 		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
 		try {
@@ -431,8 +434,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 
-	private void setGeometry(JsWriter writer, IdEObject ifcRootObject, String id, String ifcObjectType) throws IfcEngineException, SerializerException {
-		id = id.replace('$', '-'); // Remove the $ character from geometry id's.
+	private void setGeometry(JsWriter writer, IfcObjectDefinition ifcRootObject, String id, String ifcObjectType) throws IfcEngineException, SerializerException {
+		//id = id.replace('$', '-'); // Remove the $ character from geometry id's.
 		//id = "_" + id; // Ensure that the id does not start with a digit
 		
 		boolean materialFound = false;
@@ -546,7 +549,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writeGeometry(writer, ifcRootObject, id);
 	}
 	
-	private void writeGeometry(JsWriter writer, IdEObject ifcRootObject, String id) throws IfcEngineException, SerializerException {
+	private void writeGeometry(JsWriter writer, IfcObjectDefinition ifcObject, String id) throws IfcEngineException, SerializerException {
 		// Calculate an offset for the model to find its relative coordinates inside the bounding box (in order to center the scene) 
 		// TODO: In future use the geometry's bounding box to calculate a transformation matrix for the node along with relative coordinates
 		float[] modelOffset = new float[]{ 
@@ -556,7 +559,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 			};
 		
 		IfcModelInterface ifcModel = new IfcModel();
-		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		convertToSubset(ifcObject.eClass(), ifcObject, ifcModel, new HashMap<EObject, EObject>());
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
 		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
 		try {
@@ -569,7 +572,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.writeln("{");
 					writer.indent();
 					writer.writeln("type: 'geometry',");
-					writer.writeln("coreId: '" + id + "',");
+					//writer.writeln("coreId: '" + id + "',");
+					writer.writeln("coreId: '" + ifcObject.getGlobalId().getWrappedValue() + "',");
 					writer.writeln("primitive: 'triangles',");
 					writer.writetab("positions: [");
 					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
@@ -585,7 +589,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.println("],");
 	
 					// TODO: Create subgeometries if there are multiple index buffers
-					List<? extends IfcEngineInstance> instances = model.getInstances(ifcRootObject.eClass().getName().toUpperCase());
+					List<? extends IfcEngineInstance> instances = model.getInstances(ifcObject.eClass().getName().toUpperCase());
 					if (instances.size() > 1)
 						writer.writeln("// TODO: Create subgeometries");
 					for (IfcEngineInstance instance : instances) {
@@ -815,11 +819,9 @@ public class SceneJSSerializer extends BimModelSerializer {
 	
 	private void writeIfcTree(JsWriter writer) {
 		
-		// Output the composition of object
-		// TODO: What about other relationships?
-		//       E.g. 
+		// Output the object relationships
 		Map<Long, IdEObject> objects = model.getObjects();
-		writer.writeln("composition: [");
+		writer.writeln("relationships: [");
 		writer.indent();
 		
 		for (IdEObject object : objects.values()) {
@@ -827,22 +829,10 @@ public class SceneJSSerializer extends BimModelSerializer {
 				IfcProject project = (IfcProject) object;
 				writer.writeln("{");
 				writer.indent();
-				writer.writeln("type: 'project',");
+				writer.writeln("type: 'Project',");
 				writer.writeln("name: '" + project.getLongName() + "',");
-				writer.writeln("attributes: {");
-				writer.indent();
-				writer.writeln("'Description': '" + project.getDescription() + "',");
-				writer.writeln("'Representation Contexts': [");
-				writer.indent();
-				for (IfcRepresentationContext context : project.getRepresentationContexts()) {
-					writer.writeln("'" + context.getContextIdentifier() + "',");
-				}				
-				writer.unindent();
-				writer.writeln("],"); // Representation Contexts
-				writer.writeln("'Global Id': '" + project.getGlobalId().getWrappedValue() + "',");
-				writer.writeln("'Phase': '" + project.getPhase() + "',");
-				writer.unindent();
-				writer.writeln("},"); // attributes
+				//writer.writeln("id: '" + project.getOid() + "',");
+				writer.writeln("id: '" + project.getGlobalId().getWrappedValue() + "',");
 				writeIfcTreeDecomposedBy(writer, project);
 				writer.unindent();
 				writer.writeln("},");
@@ -855,12 +845,23 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private void writeIfcTreeDecomposedBy(JsWriter writer, IfcObjectDefinition objectDefinition) {
 		EList<IfcRelDecomposes> decomposedBy = objectDefinition.getIsDecomposedBy();
 		if (decomposedBy != null && !decomposedBy.isEmpty()) {
-			writer.writeln("children: [");
+			writer.writeln("rel: [");
 			writer.indent();					
 			for (IfcRelDecomposes decomposes : decomposedBy) {
 				EList<IfcObjectDefinition> relatedObjects = decomposes.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
-					writeIfcTreeObjectDefinition(writer, relatedObject);
+					if (relatedObject instanceof IfcObject) {
+						IfcObject object = (IfcObject) relatedObject;
+						writer.writeln("{");
+						writer.indent();
+						writer.writeln("type: '" + object.getObjectType() + "',");
+						writer.writeln("name: '" + object.getName() + "',");
+						writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
+						writeIfcTreeDecomposedBy(writer, object);
+						writeIfcTreeDefinedBy(writer, object);
+						writer.unindent();
+						writer.writeln("},");
+					}
 				}
 			}
 			writer.unindent();
@@ -868,20 +869,69 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 	
-	private void writeIfcTreeObjectDefinition(JsWriter writer, IfcObjectDefinition objectDefinition) {
-		writer.writeln("{");
+	private void writeIfcTreeDefinedBy(JsWriter writer, IfcObject object) {
+		EList<IfcRelDefines> definedBy = object.getIsDefinedBy();
+		if (definedBy != null && !definedBy.isEmpty()) {
+			writer.writeln("rel: [");
+			writer.indent();					
+			for (IfcRelDefines defines : definedBy) {
+				EList<IfcObject> relatedObjects = defines.getRelatedObjects();
+				for (IfcObject relatedObject : relatedObjects) {
+					writer.writeln("{");
+					writer.indent();
+					writer.writeln("type: '" + relatedObject.getObjectType() + "',");
+					writer.writeln("name: '" + relatedObject.getName() + "',");
+					writer.writeln("id: '" + relatedObject.getGlobalId().getWrappedValue() + "',");
+					writeIfcTreeDecomposedBy(writer, relatedObject);
+					writeIfcTreeDefinedBy(writer, (IfcObject) relatedObject);
+					writer.unindent();
+					writer.writeln("},");
+				}
+			}
+			writer.unindent();
+			writer.writeln("],");
+		}
+	}
+	
+	private void writeIfcAttributes(JsWriter writer) {
+		writer.writeln("properties: {");
 		writer.indent();
-		writer.writeln("type: '" + objectDefinition.getClass().getSimpleName() + "',");
-		writer.writeln("name: '" + objectDefinition.getName() + "',");
-		writer.writeln("attributes: {");
-		writer.indent();
-		writer.writeln("'Description': '" + objectDefinition.getDescription() + "',");
-		writer.writeln("'Global Id': '" + objectDefinition.getGlobalId().getWrappedValue() + "',");
+
+		Map<Long, IdEObject> objects = model.getObjects();
+		for (IdEObject object : objects.values()) {
+			if (object instanceof IfcProduct) {
+				IfcProduct ifcProduct = (IfcProduct) object;
+				//writer.writeln("'" + object.getOid() + "': {");
+				writer.writeln("'" + ifcProduct.getGlobalId().getWrappedValue() + "': {");
+				writer.indent();
+				if (object instanceof IfcProject) {
+					writeIfcProjectAttributes(writer,(IfcProject) object);
+				}
+				else {
+					writeIfcObjectAttributes(writer,(IfcObjectDefinition) object);
+				}
+				writer.unindent();
+				writer.writeln("},"); // object id
+			}
+		}
 		writer.unindent();
 		writer.writeln("},"); // attributes
-		writeIfcTreeDecomposedBy(writer, objectDefinition);
+	}
+	
+	private void writeIfcProjectAttributes(JsWriter writer, IfcProject project) {
+		writeIfcObjectAttributes(writer, project);
+		writer.writeln("'Representation Contexts': [");
+		writer.indent();
+		for (IfcRepresentationContext context : project.getRepresentationContexts()) {
+			writer.writeln("'" + context.getContextIdentifier() + "',");
+		}				
 		writer.unindent();
-		writer.writeln("},");
+		writer.writeln("],"); // Representation Contexts
+		writer.writeln("'Phase': '" + project.getPhase() + "',");
+	}
+	
+	private void writeIfcObjectAttributes(JsWriter writer, IfcObjectDefinition object) {
+		writer.writeln("'Description': '" + object.getDescription() + "',");
 	}
 	
 	private void writeIfcTypes(JsWriter writer) {
@@ -889,7 +939,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
 			writer.print("'" + ifcObjectType + "',");
 		}
-		writer.println("]");	
+		writer.println("],"); // ifcTypes	
 	}
 
 	private String fitNameForQualifiedName(String name) {
