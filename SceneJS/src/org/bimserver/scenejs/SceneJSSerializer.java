@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
@@ -76,6 +77,8 @@ import org.bimserver.models.ifc2x3.IfcUnitEnum;
 import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
+import org.bimserver.models.ifc2x3.IfcSpatialStructureElement;
+import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -817,79 +820,96 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 	
+	private void writeIfcTreeRelatedObject(JsWriter writer, IfcObject object) {
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: '" + (object.getObjectType() != null && object.getObjectType() != "null"? object.getObjectType() : stripClassName(object.getClass())) + "',");
+		writer.writeln("name: '" + object.getName() + "',");
+		writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
+		writeIfcTreeDecomposedBy(writer, object);
+		writeIfcTreeDefinedBy(writer, (IfcObject) object);
+		if (object instanceof IfcSpatialStructureElement) {
+			writeIfcTreeContainsElements(writer, (IfcSpatialStructureElement) object);
+		}
+		writer.unindent();
+		writer.writeln("},");
+	}
+	
 	private void writeIfcTree(JsWriter writer) {
-		
 		// Output the object relationships
 		Map<Long, IdEObject> objects = model.getObjects();
 		writer.writeln("relationships: [");
 		writer.indent();
-		
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcProject) {
-				IfcProject project = (IfcProject) object;
-				writer.writeln("{");
-				writer.indent();
-				writer.writeln("type: 'Project',");
-				writer.writeln("name: '" + project.getLongName() + "',");
-				//writer.writeln("id: '" + project.getOid() + "',");
-				writer.writeln("id: '" + project.getGlobalId().getWrappedValue() + "',");
-				writeIfcTreeDecomposedBy(writer, project);
-				writer.unindent();
-				writer.writeln("},");
+				writeIfcTreeRelatedObject(writer, (IfcProject) object);
 			}
 		}
 		writer.unindent();
-		writer.writeln("],"); // composition
+		writer.writeln("],"); // relationships
 	}
 	
 	private void writeIfcTreeDecomposedBy(JsWriter writer, IfcObjectDefinition objectDefinition) {
-		EList<IfcRelDecomposes> decomposedBy = objectDefinition.getIsDecomposedBy();
-		if (decomposedBy != null && !decomposedBy.isEmpty()) {
-			writer.writeln("rel: [");
-			writer.indent();					
-			for (IfcRelDecomposes decomposes : decomposedBy) {
-				EList<IfcObjectDefinition> relatedObjects = decomposes.getRelatedObjects();
+		EList<IfcRelDecomposes> relList = objectDefinition.getIsDecomposedBy();
+		if (relList != null && !relList.isEmpty()) {
+			writer.writeln("decomposedBy: [");
+			writer.indent();
+			for (IfcRelDecomposes rel : relList) {
+				EList<IfcObjectDefinition> relatedObjects = rel.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
 					if (relatedObject instanceof IfcObject) {
-						IfcObject object = (IfcObject) relatedObject;
-						writer.writeln("{");
-						writer.indent();
-						writer.writeln("type: '" + object.getObjectType() + "',");
-						writer.writeln("name: '" + object.getName() + "',");
-						writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
-						writeIfcTreeDecomposedBy(writer, object);
-						writeIfcTreeDefinedBy(writer, object);
-						writer.unindent();
-						writer.writeln("},");
+						writeIfcTreeRelatedObject(writer, (IfcObject) relatedObject);
 					}
 				}
 			}
 			writer.unindent();
-			writer.writeln("],");
+			writer.writeln("],"); // decomposedBy
 		}
 	}
 	
 	private void writeIfcTreeDefinedBy(JsWriter writer, IfcObject object) {
-		EList<IfcRelDefines> definedBy = object.getIsDefinedBy();
-		if (definedBy != null && !definedBy.isEmpty()) {
-			writer.writeln("rel: [");
-			writer.indent();					
-			for (IfcRelDefines defines : definedBy) {
-				EList<IfcObject> relatedObjects = defines.getRelatedObjects();
+		EList<IfcRelDefines> relList = object.getIsDefinedBy();
+		if (relList != null && !relList.isEmpty()) {
+			writer.writeln("definedBy: [");
+			writer.indent();
+			for (IfcRelDefines rel : relList) {
+				EList<IfcObject> relatedObjects = rel.getRelatedObjects();
 				for (IfcObject relatedObject : relatedObjects) {
-					writer.writeln("{");
-					writer.indent();
-					writer.writeln("type: '" + relatedObject.getObjectType() + "',");
-					writer.writeln("name: '" + relatedObject.getName() + "',");
-					writer.writeln("id: '" + relatedObject.getGlobalId().getWrappedValue() + "',");
-					writeIfcTreeDecomposedBy(writer, relatedObject);
-					writeIfcTreeDefinedBy(writer, (IfcObject) relatedObject);
-					writer.unindent();
-					writer.writeln("},");
+					writeIfcTreeRelatedObject(writer, relatedObject);
 				}
 			}
 			writer.unindent();
-			writer.writeln("],");
+			writer.writeln("],"); // definedBy
+		}
+	}
+	
+	private void writeIfcTreeProduct(JsWriter writer, IfcProduct object) {
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: '" + (object.getObjectType() != null && object.getObjectType() != "null"? object.getObjectType() : stripClassName(object.getClass())) + "',");
+		writer.writeln("name: '" + object.getName() + "',");
+		writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
+		//writeIfcTreeDecomposedBy(writer, object);
+		//writeIfcTreeDefinedBy(writer, (IfcObject) object);
+		//if (object instanceof IfcSpatialStructureElement) {
+		//    writeIfcTreeContainsElements(writer, (IfcSpatialStructureElement) object);
+		//}
+		writer.unindent();
+		writer.writeln("},");
+	}
+	
+	private void writeIfcTreeContainsElements(JsWriter writer, IfcSpatialStructureElement spatialStructureElement) {
+		EList<IfcRelContainedInSpatialStructure> relList = spatialStructureElement.getContainsElements();
+		if (relList != null && !relList.isEmpty()) {
+			writer.writeln("contains: [");
+			writer.indent();
+			for (IfcRelContainedInSpatialStructure rel : relList) {
+	        	for (IfcProduct relatedObject : rel.getRelatedElements()) {
+	        		writeIfcTreeProduct(writer, relatedObject);
+	        	}
+	        }
+			writer.unindent();
+			writer.writeln("],"); // contains
 		}
 	}
 	
@@ -982,6 +1002,12 @@ public class SceneJSSerializer extends BimModelSerializer {
 		extents.max[0] = Math.max(vertex[0], extents.max[0]);
 		extents.max[1] = Math.max(vertex[1], extents.max[1]);
 		extents.max[2] = Math.max(vertex[2], extents.max[2]);
+	}
+	
+	private static String stripClassName(Class classObject) {
+		String name = classObject.getName();
+		int ifcIndex = name.lastIndexOf("Ifc");
+		return name.substring(Math.max(name.lastIndexOf('.', ifcIndex) +1, ifcIndex+3), name.lastIndexOf("Impl"));
 	}
 	
 	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
