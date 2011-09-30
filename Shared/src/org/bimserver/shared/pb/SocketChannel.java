@@ -38,15 +38,11 @@ public class SocketChannel implements Channel {
 	private OutputStream outputStream;
 	private DataOutputStream dataOutputStream;
 
-	public SocketChannel(InetSocketAddress address) {
-		try {
-			socket = new Socket(address.getAddress(), address.getPort());
-			inputStream = socket.getInputStream();
-			outputStream = socket.getOutputStream();
-			dataOutputStream = new DataOutputStream(outputStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public SocketChannel(InetSocketAddress address) throws IOException {
+		socket = new Socket(address.getAddress(), address.getPort());
+		inputStream = socket.getInputStream();
+		outputStream = socket.getOutputStream();
+		dataOutputStream = new DataOutputStream(outputStream);
 	}
 	
 	@Override

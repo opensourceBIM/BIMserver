@@ -50,9 +50,9 @@ public class NotificationsManager extends Thread {
 	
 	@Override
 	public void run() {
+		SConverter sConverter = new SConverter();
 		while (true) {
 			try {
-				SConverter sConverter = new SConverter();
 				Notification notification = queue.take();
 				for (NotificationContainer notificationContainer : listeners) {
 					NotificationInterface notificationInterface = notificationContainer.getNotificationInterface();

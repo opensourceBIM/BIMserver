@@ -1283,4 +1283,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			}
 		}
 	}
+
+	@Override
+	public List<String> getAvailableClassesInRevision(int pid, int rid) {
+		return null;
+	}
 }

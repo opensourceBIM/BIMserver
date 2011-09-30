@@ -118,8 +118,9 @@ public class BimServer {
 	private ClashDetectionCache clashDetectionCache;
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
-
 	private final BimServerConfig config;
+	private ProtocolBuffersMetaData protocolBuffersMetaData;
+	private SService sService;
 
 	/**
 	 * Create a new BIMserver
@@ -240,7 +241,7 @@ public class BimServer {
 			serverInfoManager.setErrorMessage("Inconsistent models");
 		}
 
-		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
+		protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
 			protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
 			protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
@@ -255,6 +256,8 @@ public class BimServer {
 		serverInfoManager.init(this);
 		serverInfoManager.update();
 
+		sService = new SService(ServiceInterface.class);
+		
 		emfSerializerFactory = new EmfSerializerFactory();
 		emfDeserializerFactory = new EmfDeserializerFactory();
 
@@ -583,5 +586,13 @@ public class BimServer {
 
 	public ServerInfoManager getServerInfoManager() {
 		return serverInfoManager;
+	}
+
+	public SService getSService() {
+		return sService;
+	}
+
+	public ProtocolBuffersMetaData getProtocolBuffersMetaData() {
+		return protocolBuffersMetaData;
 	}
 }

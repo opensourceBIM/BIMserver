@@ -29,6 +29,7 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.Session;
+import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
@@ -78,7 +79,6 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.web.LocalDevBimCombinedServerStarter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -126,7 +126,11 @@ public class TestClientEmfModel {
 	public void test() {
 		bimServerClient = new BimServerClient();
 //		bimServerClient.connectSoap("http://localhost:8082/soap");
-		bimServerClient.connectProtocolBuffers("localhost", 8020);
+		try {
+			bimServerClient.connectProtocolBuffers("localhost", 8020);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 //		bimServerClient.connectDirect(bimServer.getSystemService());
 		try {
 			bimServerClient.login("admin@bimserver.org", "admin");

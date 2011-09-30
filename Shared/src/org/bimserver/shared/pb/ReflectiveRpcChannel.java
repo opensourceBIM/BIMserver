@@ -65,6 +65,9 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 		DynamicMessage response = DynamicMessage.getDefaultInstance(methodDescriptor.getOutputDescriptor());
 		Descriptor inputType = methodDescriptor.getInputDescriptor();
 		SMethod sMethod = sService.getSMethod(methodDescriptor.getName());
+		if (sMethod == null) {
+			System.out.println("Method " + methodDescriptor.getName() + " not found");
+		}
 		try {
 			Method method = sMethod.getMethod();
 			Object[] arguments = new Object[inputType.getFields().size()];

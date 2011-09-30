@@ -23,18 +23,19 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.interfaces.objects.SDataObject;
-import org.bimserver.interfaces.objects.SDataValue;
-import org.bimserver.interfaces.objects.SListDataValue;
-import org.bimserver.interfaces.objects.SReferenceDataValue;
-import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.ReferenceDataValue;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.EList;
@@ -45,7 +46,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.google.common.collect.BiMap;
 
-public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObject> {
+public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObject> {
 
 	private final long oid;
 	private final short cid;
@@ -61,7 +62,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 	}
 
 	@Override
-	public SDataObject execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public DataObject execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
@@ -78,18 +79,18 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 		if (eObject == null) {
 			throw new UserException("Object not found in this project/revision");
 		}
-		SDataObject dataObject = null;
+		DataObject dataObject = null;
 		if (eObject instanceof IfcRoot) {
 			IfcRoot ifcRoot = (IfcRoot) eObject;
 			String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId().getWrappedValue() : "";
 			String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
-			dataObject = new SDataObject();
+			dataObject = StoreFactory.eINSTANCE.createDataObject();
 			dataObject.setType(eObject.eClass().getName());
 			dataObject.setOid(oid);
 			dataObject.setGuid(guid);
 			dataObject.setName(name);
 		} else {
-			dataObject = new SDataObject();
+			dataObject = StoreFactory.eINSTANCE.createDataObject();
 			dataObject.setType(eObject.eClass().getName());
 			dataObject.setOid(oid);
 			dataObject.setName("");
@@ -100,12 +101,12 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void fillDataObject(BiMap<? extends Long, ? extends EObject> mapResult, EObject eObject, SDataObject dataObject) {
+	public static void fillDataObject(BiMap<? extends Long, ? extends EObject> mapResult, EObject eObject, DataObject dataObject) {
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 			Object eGet = eObject.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EAttribute) {
 				if (!eStructuralFeature.getName().endsWith("AsString")) {
-					SSimpleDataValue dataValue = new SSimpleDataValue();
+					SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
 					if (eGet instanceof String) {
 						dataValue.setStringValue((String) eGet);
 					} else if (eGet != null) {
@@ -122,7 +123,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 					if (eObject2 != null) {
 						if (eObject2 instanceof WrappedValue || eObject2 instanceof IfcGloballyUniqueId) {
 							EObject referenceEObject = (EObject) eGet;
-							SSimpleDataValue e = new SSimpleDataValue();
+							SimpleDataValue e = StoreFactory.eINSTANCE.createSimpleDataValue();
 							Object eGet2 = referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue"));
 							if (eGet2 instanceof String) {
 								e.setStringValue((String) eGet2);
@@ -136,7 +137,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 						} else {
 							Long oid = mapResult.inverse().get(eObject2);
 							String guid = getGuid(eObject2);
-							SReferenceDataValue reference = new SReferenceDataValue();
+							ReferenceDataValue reference = StoreFactory.eINSTANCE.createReferenceDataValue();
 							reference.setTypeName(eObject2.eClass().getName());
 							reference.setOid(oid);
 							reference.setGuid(guid);
@@ -144,25 +145,25 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 							dataObject.getValues().add(reference);
 						}
 					} else {
-						SDataValue empty = new SDataValue();
+						DataValue empty = StoreFactory.eINSTANCE.createDataValue();
 						empty.setFieldName(eStructuralFeature.getName());
 						dataObject.getValues().add(empty);
 					}
 				} else {
 					EList<? extends EObject> list = (EList<EObject>) eGet;
 					for (EObject item : list) {
-						SListDataValue dataValue = new SListDataValue();
+						ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
 						dataValue.setFieldName(eStructuralFeature.getName());
 						dataObject.getValues().add(dataValue);
 						if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
 							EObject referenceEObject = (EObject) item;
-							SSimpleDataValue simpleDataValue = new SSimpleDataValue();
+							SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
 							simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
 							dataValue.getValues().add(simpleDataValue);
 						} else {
 							Long oid = mapResult.inverse().get(item);
 							String guid = getGuid(item);
-							SReferenceDataValue referenceDataValue = new SReferenceDataValue();
+							ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
 							referenceDataValue.setTypeName(item.eClass().getName());
 							referenceDataValue.setOid(oid);
 							referenceDataValue.setGuid(guid);

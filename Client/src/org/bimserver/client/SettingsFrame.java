@@ -33,6 +33,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SpringLayout;
 import javax.swing.WindowConstants;
 
+import org.bimserver.utils.AutoSelectTextField;
 import org.bimserver.utils.SpringUtilities;
 
 public class SettingsFrame extends JDialog {

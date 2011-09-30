@@ -86,11 +86,13 @@ import org.bimserver.database.actions.GetAllRevisionsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllSerializersDatabaseAction;
 import org.bimserver.database.actions.GetAllUsersDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
+import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetClashDetectionSettingsDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByGuidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectsByTypeDatabaseAction;
+import org.bimserver.database.actions.GetDataObjectsDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
@@ -185,6 +187,7 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.EidClash;
@@ -1036,8 +1039,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByOidDatabaseAction(bimServer, session, accessMethod, roid, oid, session.getCidForClassName(className));
-			SDataObject dataObject = session.executeAction(action, DEADLOCK_RETRIES);
+			BimDatabaseAction<DataObject> action = new GetDataObjectByOidDatabaseAction(bimServer, session, accessMethod, roid, oid, session.getCidForClassName(className));
+			SDataObject dataObject = converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
 			return dataObject;
 		} catch (Exception e) {
 			handleException(e);
@@ -1052,8 +1055,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(bimServer, session, accessMethod, roid, guid);
-			SDataObject dataObject = session.executeAction(action, DEADLOCK_RETRIES);
+			BimDatabaseAction<DataObject> action = new GetDataObjectByGuidDatabaseAction(bimServer, session, accessMethod, roid, guid);
+			SDataObject dataObject = converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
 			return dataObject;
 		} catch (Exception e) {
 			handleException(e);
@@ -1067,10 +1070,10 @@ public class Service implements ServiceInterface {
 	public List<SDataObject> getDataObjectsByType(Long roid, String className) throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
-		BimDatabaseAction<List<SDataObject>> action = new GetDataObjectsByTypeDatabaseAction(bimServer, session, accessMethod, roid, className);
+		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(bimServer, session, accessMethod, roid, className);
 		try {
-			List<SDataObject> dataObjects = session.executeAction(action, DEADLOCK_RETRIES);
-			return dataObjects;
+			List<DataObject> dataObjects = session.executeAction(action, DEADLOCK_RETRIES);
+			return converter.convertToSListDataObject(dataObjects);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1983,7 +1986,7 @@ public class Service implements ServiceInterface {
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void updateSerializer(SSerializer serializer) throws ServiceException {
 		requireAdminAuthenticationAndRunningServer();
@@ -2579,5 +2582,35 @@ public class Service implements ServiceInterface {
 			descriptors.add(descriptor);
 		}
 		return descriptors;
+	}
+
+	@Override
+	public List<String> getAvailableClassesInRevision(long roid) throws ServiceException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			BimDatabaseAction<List<String>> action = new GetAvailableClassesInRevisionDatabaseAction(session, accessMethod, roid);
+			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+		} catch (BimDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<SDataObject> getDataObjects(long roid) throws ServiceException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			BimDatabaseAction<List<DataObject>> action = new GetDataObjectsDatabaseAction(session, accessMethod, bimServer, roid);
+			return converter.convertToSListDataObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
+		} catch (BimDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 }
