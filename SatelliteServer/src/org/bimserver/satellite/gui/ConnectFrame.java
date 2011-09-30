@@ -30,26 +30,22 @@ public class ConnectFrame extends JDialog {
 		getContentPane().setLayout(new SpringLayout());
 		JLabel usernameLabel = new JLabel("Username");
 		getContentPane().add(usernameLabel);
-		final AutoSelectTextField usernameField = new AutoSelectTextField(20);
-		usernameField.setText("");
+		final AutoSelectTextField usernameField = new AutoSelectTextField("admin@bimserver.org", 20);
 		getContentPane().add(usernameField);
 		
 		JLabel passwordLabel = new JLabel("Password");
 		getContentPane().add(passwordLabel);
-		final AutoSelectTextField passwordField = new AutoSelectTextField(20);
-		passwordField.setText("");
+		final AutoSelectTextField passwordField = new AutoSelectTextField("admin", 20);
 		getContentPane().add(passwordField);
 		
 		JLabel serverLabel = new JLabel("Server address");
 		getContentPane().add(serverLabel);
-		final AutoSelectTextField serverField = new AutoSelectTextField(25);
-		serverField.setText("");
+		final AutoSelectTextField serverField = new AutoSelectTextField("localhost", 25);
 		getContentPane().add(serverField);
 
 		JLabel portLabel = new JLabel("Port");
 		getContentPane().add(portLabel);
-		final AutoSelectTextField portField = new AutoSelectTextField(5);
-		portField.setText("");
+		final AutoSelectTextField portField = new AutoSelectTextField("8020", 5);
 		getContentPane().add(portField);
 
 		JButton cancel = new JButton("Cancel");
