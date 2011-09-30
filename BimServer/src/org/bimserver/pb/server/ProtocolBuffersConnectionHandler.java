@@ -56,11 +56,11 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void run() {
-		while (true) {
-			try {
+		try {
+			while (true) {
 				String serviceName = dataInputStream.readUTF();
 				String methodName = dataInputStream.readUTF();
 				ProtocolBuffersMetaData protocolBuffersMetaData = protocolBuffersServer.getProtocolBuffersMetaData();
@@ -74,11 +74,11 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				Message response = reflectiveRpcChannel.callBlockingMethod(method, requestBuilder.build());
 				response.writeDelimitedTo(outputStream);
 				outputStream.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ServiceException e) {
-				e.printStackTrace();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		}
 	}
 }

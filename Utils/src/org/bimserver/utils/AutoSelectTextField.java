@@ -39,6 +39,10 @@ public class AutoSelectTextField extends JTextField implements FocusListener {
 		addFocusListener(this);
 	}
 
+	public AutoSelectTextField(String string, int i) {
+		super(string, i);
+	}
+
 	public void focusLost(FocusEvent fe) {
 	}
 
