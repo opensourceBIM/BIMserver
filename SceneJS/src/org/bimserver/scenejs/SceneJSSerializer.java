@@ -744,6 +744,16 @@ public class SceneJSSerializer extends BimModelSerializer {
 			
 			HashMap<String, HashSet<String>> materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
 			for (String materialId : materialGeometryRel.keySet()) {
+				if (materialId == "Window") {
+					writer.writeln("{");
+					writer.indent();
+					writer.writeln("type: 'flags',");
+					writer.writeln("flags: { transparent: true },");
+					
+					writer.writeln("nodes: [");
+					writer.indent();
+				}
+				
 				writer.writeln("{");
 				writer.indent();
 				
@@ -759,7 +769,6 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.indent();					
 					writer.writeln("type: 'name',");
 					writer.writeln("id: '" + geometryId + "',");
-					
 					
 					writer.writeln("nodes: [");
 					writer.indent();					
@@ -780,6 +789,14 @@ public class SceneJSSerializer extends BimModelSerializer {
 				
 				writer.unindent();
 				writer.writeln("},"); // material
+				
+				if (materialId == "Window") {
+					writer.unindent();
+					writer.writeln("],");
+					
+					writer.unindent();
+					writer.writeln("},"); // flags
+				}
 			}
 			writer.unindent();
 			writer.writeln("],");
