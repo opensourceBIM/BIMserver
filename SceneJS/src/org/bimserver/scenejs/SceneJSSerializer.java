@@ -30,6 +30,8 @@ import java.util.TreeMap;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.ifc2x3.IfcLayeredItem;
+import org.bimserver.models.ifc2x3.IfcObject;
 import org.bimserver.models.ifc2x3.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3.IfcColourOrFactor;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
@@ -44,7 +46,6 @@ import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
 import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
 import org.bimserver.models.ifc2x3.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3.IfcMember;
-import org.bimserver.models.ifc2x3.IfcObject;
 import org.bimserver.models.ifc2x3.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3.IfcPlate;
 import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
@@ -63,6 +64,7 @@ import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcRoof;
 import org.bimserver.models.ifc2x3.IfcSIUnit;
 import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
+import org.bimserver.models.ifc2x3.IfcSite;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3.IfcStair;
@@ -216,7 +218,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 				writeUnit(writer);
 				writeIfcTypes(writer);
 				writeIfcTree(writer);
-				writeIfcAttributes(writer);
+				writeIfcProperties(writer);
 				
 				writer.unindent();
 				writer.writeln("},");
@@ -243,6 +245,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writeMaterial(writer, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
 		writeMaterial(writer, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
 		writeMaterial(writer, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
+		writeMaterial(writer, "WallStandardCase", new float[] { 1.0f, 1.0f, 1.0f }, 1.0f);
 		writeMaterial(writer, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
 		writeMaterial(writer, "Window", new float[] { 0.2f, 0.2f, 0.8f }, 0.2f);
 		writeMaterial(writer, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
@@ -269,7 +272,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 						surfaceStyleIds.add(name);
 						writeMaterial(writer, name, new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
 						break;
-					}					
+					}
 				}
 			}
 		}
@@ -823,8 +826,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private void writeIfcTreeRelatedObject(JsWriter writer, IfcObject object) {
 		writer.writeln("{");
 		writer.indent();
-		writer.writeln("type: '" + (object.getObjectType() != null && object.getObjectType() != "null"? object.getObjectType() : stripClassName(object.getClass())) + "',");
-		writer.writeln("name: '" + object.getName() + "',");
+		writer.writeln("type: '" + (object.isSetObjectType()? object.getObjectType() : stripClassName(object.getClass())) + "',");
+		writer.writeln("name: '" + (object.isSetName()? object.getName() : "unknown") + "',");
 		writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
 		writeIfcTreeDecomposedBy(writer, object);
 		writeIfcTreeDefinedBy(writer, (IfcObject) object);
@@ -886,8 +889,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private void writeIfcTreeProduct(JsWriter writer, IfcProduct object) {
 		writer.writeln("{");
 		writer.indent();
-		writer.writeln("type: '" + (object.getObjectType() != null && object.getObjectType() != "null"? object.getObjectType() : stripClassName(object.getClass())) + "',");
-		writer.writeln("name: '" + object.getName() + "',");
+		writer.writeln("type: '" + (object.isSetObjectType()? object.getObjectType() : stripClassName(object.getClass())) + "',");
+		writer.writeln("name: '" + (object.isSetName()? object.getName() : "unknown") + "',");
 		writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
 		//writeIfcTreeDecomposedBy(writer, object);
 		//writeIfcTreeDefinedBy(writer, (IfcObject) object);
@@ -913,44 +916,78 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 	
-	private void writeIfcAttributes(JsWriter writer) {
+	private void writeIfcProperties(JsWriter writer) {
 		writer.writeln("properties: {");
 		writer.indent();
 
 		Map<Long, IdEObject> objects = model.getObjects();
 		for (IdEObject object : objects.values()) {
-			if (object instanceof IfcProduct) {
-				IfcProduct ifcProduct = (IfcProduct) object;
-				//writer.writeln("'" + object.getOid() + "': {");
-				writer.writeln("'" + ifcProduct.getGlobalId().getWrappedValue() + "': {");
+			if (object instanceof IfcObject) {
+				IfcObject ifcObject = (IfcObject) object;
+				writer.writeln("'" + ifcObject.getGlobalId().getWrappedValue() + "': {");
 				writer.indent();
+				writeIfcPropertiesObject(writer, ifcObject);
 				if (object instanceof IfcProject) {
-					writeIfcProjectAttributes(writer,(IfcProject) object);
+					writeIfcPropertiesProject(writer,(IfcProject) object);
 				}
-				else {
-					writeIfcObjectAttributes(writer,(IfcObjectDefinition) object);
+				else if (object instanceof IfcSite) {
+					writeIfcPropertiesSite(writer,(IfcSite) object);
 				}
+				else if (object instanceof IfcProduct) {
+					writeIfcPropertiesProduct(writer,(IfcProduct) object);
+				}
+				
 				writer.unindent();
 				writer.writeln("},"); // object id
 			}
 		}
 		writer.unindent();
-		writer.writeln("},"); // attributes
+		writer.writeln("},"); // properties
 	}
 	
-	private void writeIfcProjectAttributes(JsWriter writer, IfcProject project) {
-		writeIfcObjectAttributes(writer, project);
+	private void writeIfcPropertiesProject(JsWriter writer, IfcProject object) {
 		writer.writeln("'Representation Contexts': [");
 		writer.indent();
-		for (IfcRepresentationContext context : project.getRepresentationContexts()) {
+		for (IfcRepresentationContext context : object.getRepresentationContexts()) {
 			writer.writeln("'" + context.getContextIdentifier() + "',");
 		}				
 		writer.unindent();
 		writer.writeln("],"); // Representation Contexts
-		writer.writeln("'Phase': '" + project.getPhase() + "',");
+		writer.writeln("'Phase': '" + object.getPhase() + "',");
 	}
 	
-	private void writeIfcObjectAttributes(JsWriter writer, IfcObjectDefinition object) {
+	private static void writeIfcPropertiesSite(JsWriter writer, IfcProduct object) {
+		writeIfcPropertiesProduct(writer,(IfcProduct) object);
+		object.getHasAssignments();
+	}
+	
+	private static void writeIfcPropertiesProduct(JsWriter writer, IfcProduct object) {
+		//if (object.isSetObjectPlacement()) {
+		//	object.getObjectPlacement().getPlacesObject();
+		//}
+		//object.getHasAssignments();
+		//object.getHasAssociations();
+		//object.getReferencedBy();
+		//object.getRepresentation().getRepresentations().get(0).getRepresentationIdentifier();
+		
+		/* DEBUGGING:
+		// Write material info
+		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
+			writer.writeln("{");
+			writer.indent();
+			IfcRoof.class.cast(obj);
+			writer.writeln("type: 'tag',");
+			writer.writeln("tag: '" + ifcObjectType.toLowerCase() + "',");
+			
+			writer.writeln("nodes: [");
+			writer.indent();
+			
+			HashMap<String, HashSet<String>> materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
+		}
+		//*/
+	}
+	
+	private static void writeIfcPropertiesObject(JsWriter writer, IfcObjectDefinition object) {
 		writer.writeln("'Description': '" + object.getDescription() + "',");
 	}
 	
