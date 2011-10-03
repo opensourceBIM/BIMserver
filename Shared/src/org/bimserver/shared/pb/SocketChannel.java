@@ -23,8 +23,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.DynamicMessage.Builder;
@@ -33,18 +38,21 @@ import com.google.protobuf.ServiceException;
 
 public class SocketChannel implements Channel {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SocketChannel.class);
 	private Socket socket;
 	private InputStream inputStream;
 	private OutputStream outputStream;
 	private DataOutputStream dataOutputStream;
+	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 
-	public SocketChannel(InetSocketAddress address) throws IOException {
+	public void connect(InetSocketAddress address) throws IOException {
 		socket = new Socket(address.getAddress(), address.getPort());
 		inputStream = socket.getInputStream();
 		outputStream = socket.getOutputStream();
 		dataOutputStream = new DataOutputStream(outputStream);
+		notifyOfConnect();
 	}
-	
+
 	@Override
 	public Message callBlockingMethod(MethodDescriptorContainer methodDescriptor, Message request) throws ServiceException {
 		try {
@@ -57,8 +65,33 @@ public class SocketChannel implements Channel {
 			responseBuilder.mergeDelimitedFrom(inputStream);
 			return responseBuilder.build();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
+	}
+
+	public void notifyOfConnect() {
+		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
+			connectDisconnectListener.connected();
+		}
+	}
+	
+	public void notifyOfDisconnect() {
+		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
+			connectDisconnectListener.disconnected();
+		}
+	}
+
+	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
+		connectDisconnectListeners.add(connectDisconnectListener);
+	}
+
+	public void disconnect() {
+		try {
+			socket.close();
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+		notifyOfDisconnect();
 	}
 }

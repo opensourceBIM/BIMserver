@@ -126,11 +126,7 @@ public class TestClientEmfModel {
 	public void test() {
 		bimServerClient = new BimServerClient();
 //		bimServerClient.connectSoap("http://localhost:8082/soap");
-		try {
-			bimServerClient.connectProtocolBuffers("localhost", 8020);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		bimServerClient.connectProtocolBuffers("localhost", 8020);
 //		bimServerClient.connectDirect(bimServer.getSystemService());
 		try {
 			bimServerClient.login("admin@bimserver.org", "admin");

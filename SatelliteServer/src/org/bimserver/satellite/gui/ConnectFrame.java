@@ -16,13 +16,14 @@ import javax.swing.KeyStroke;
 import javax.swing.SpringLayout;
 import javax.swing.WindowConstants;
 
+import org.bimserver.satellite.SatelliteSettings;
 import org.bimserver.utils.AutoSelectTextField;
 import org.bimserver.utils.SpringUtilities;
 
 public class ConnectFrame extends JDialog {
 	private static final long serialVersionUID = -3385875607460570310L;
 
-	public ConnectFrame(final SatelliteGui satelliteGui) {
+	public ConnectFrame(final SatelliteGui satelliteGui, SatelliteSettings settings) {
 		setIconImage(satelliteGui.getIconImage());
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setModal(true);
@@ -30,22 +31,22 @@ public class ConnectFrame extends JDialog {
 		getContentPane().setLayout(new SpringLayout());
 		JLabel usernameLabel = new JLabel("Username");
 		getContentPane().add(usernameLabel);
-		final AutoSelectTextField usernameField = new AutoSelectTextField("admin@bimserver.org", 20);
+		final AutoSelectTextField usernameField = new AutoSelectTextField(settings.getUsername(), 20);
 		getContentPane().add(usernameField);
 		
 		JLabel passwordLabel = new JLabel("Password");
 		getContentPane().add(passwordLabel);
-		final AutoSelectTextField passwordField = new AutoSelectTextField("admin", 20);
+		final AutoSelectTextField passwordField = new AutoSelectTextField(settings.getPassword(), 20);
 		getContentPane().add(passwordField);
 		
 		JLabel serverLabel = new JLabel("Server address");
 		getContentPane().add(serverLabel);
-		final AutoSelectTextField serverField = new AutoSelectTextField("localhost", 25);
+		final AutoSelectTextField serverField = new AutoSelectTextField(settings.getAddress(), 25);
 		getContentPane().add(serverField);
 
 		JLabel portLabel = new JLabel("Port");
 		getContentPane().add(portLabel);
-		final AutoSelectTextField portField = new AutoSelectTextField("8020", 5);
+		final AutoSelectTextField portField = new AutoSelectTextField("" + settings.getPort(), 5);
 		getContentPane().add(portField);
 
 		JButton cancel = new JButton("Cancel");
@@ -62,10 +63,16 @@ public class ConnectFrame extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(new Cursor(Cursor.WAIT_CURSOR));
 				try {
-					satelliteGui.getSatelliteServer().connect(serverField.getText(), Integer.parseInt(portField.getText()), usernameField.getText(), passwordField.getText());
+					SatelliteSettings settings = new SatelliteSettings();
+					settings.setAddress(serverField.getText());
+					settings.setPort(Integer.parseInt(portField.getText()));
+					settings.setUsername(usernameField.getText());
+					settings.setPassword(passwordField.getText());
+					satelliteGui.connect(settings);
 					setVisible(false);
-					satelliteGui.setTitle(SatelliteGui.APP_NAME + " - Connected to " + usernameField.getText() + "@" + serverField.getText());
+					satelliteGui.setTitle(SatelliteGui.APP_NAME + " - Connected to " + serverField.getText() + " as " + usernameField.getText());
 				} catch (Exception exception) {
+					exception.printStackTrace();
 					JOptionPane.showMessageDialog(satelliteGui, exception.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
 				}
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));

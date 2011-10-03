@@ -28,8 +28,8 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.NotificationInterfaceAdapter;
-import org.bimserver.client.SocketNotificationsClient;
+import org.bimserver.client.notifications.NotificationInterfaceAdapter;
+import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SProject;
@@ -78,7 +78,8 @@ public class TestNotifications {
 
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		
-		SocketNotificationsClient socketNotificationsClient = new SocketNotificationsClient(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055), new NotificationInterfaceAdapter() {
+		SocketNotificationsClient socketNotificationsClient = new SocketNotificationsClient();
+		socketNotificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055), new NotificationInterfaceAdapter() {
 			@Override
 			public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
 				countDownLatch.countDown();
@@ -87,11 +88,7 @@ public class TestNotifications {
 		socketNotificationsClient.start();
 		
 		BimServerClient bimServerClient = new BimServerClient();
-		try {
-			bimServerClient.connectProtocolBuffers("localhost", 8020);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		bimServerClient.connectProtocolBuffers("localhost", 8020);
 		try {
 			bimServerClient.getServiceInterface().login("admin@bimserver.org", "admin");
 			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost:8055");

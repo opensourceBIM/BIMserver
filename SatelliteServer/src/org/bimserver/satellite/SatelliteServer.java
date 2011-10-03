@@ -5,36 +5,28 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.NotificationInterfaceAdapter;
 import org.bimserver.client.Session;
-import org.bimserver.client.SocketNotificationsClient;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
-import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.client.notifications.MultiCastNotificationImpl;
+import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 
 public class SatelliteServer {
-
-	public void connect(String address, int port, String username, String password) throws IOException {
-		final BimServerClient bimServerClient = new BimServerClient();
-		bimServerClient.connectProtocolBuffers(address, port);
+	private BimServerClient bimServerClient = new BimServerClient();
+	private SocketNotificationsClient notificationsClient = new SocketNotificationsClient();
+	
+	public void connect(SatelliteSettings settings, NotificationInterface... notificationInterfaces) throws IOException {
+		bimServerClient.connectProtocolBuffers(settings.getAddress(), settings.getPort());
 		try {
-			bimServerClient.getServiceInterface().login(username, password);
+			bimServerClient.getServiceInterface().login(settings.getUsername(), settings.getPassword());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		final Session session = bimServerClient.createSession();
-		NotificationInterfaceAdapter notificationInterface = new NotificationInterfaceAdapter(){
-			@Override
-			public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
-				long roid = newRevisionNotification.getRevisionId();
-				SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
-				session.loadModel(revision);
-			}
-		};
-		
+		MultiCastNotificationImpl multiCast = new MultiCastNotificationImpl(notificationInterfaces);
+
 		final ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
 			protocolBuffersMetaData.load(new File("../BimServerClientLib/src/service.desc"));
@@ -43,7 +35,20 @@ public class SatelliteServer {
 			e1.printStackTrace();
 		}
 
-		SocketNotificationsClient notificationsClient = new SocketNotificationsClient(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055), notificationInterface);
+		notificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055), multiCast);
 		notificationsClient.start();
+	}
+
+	public BimServerClient getBimServerClient() {
+		return bimServerClient;
+	}
+	
+	public SocketNotificationsClient getNotificationsClient() {
+		return notificationsClient;
+	}
+
+	public void disconnect() {
+		notificationsClient.disconnect();
+		bimServerClient.disconnect();
 	}
 }

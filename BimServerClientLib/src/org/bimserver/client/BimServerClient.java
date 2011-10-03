@@ -17,74 +17,88 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.xml.ws.BindingProvider;
-
-import org.apache.cxf.endpoint.Client;
-import org.apache.cxf.frontend.ClientProxy;
-import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
-import org.apache.cxf.transport.http.HTTPConduit;
-import org.bimserver.pb.ServiceInterfaceReflectorImpl;
+import org.bimserver.client.channels.Channel;
+import org.bimserver.client.channels.DirectChannel;
+import org.bimserver.client.channels.ProtocolBuffersChannel;
+import org.bimserver.client.channels.SoapChannel;
+import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.pb.Reflector;
-import org.bimserver.shared.pb.SocketChannel;
 
-public class BimServerClient {
-	private ServiceInterface serviceInterface;
+public class BimServerClient implements ConnectDisconnectListener {
+	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
+	private Channel channel;
 
 	public BimServerClient() {
 	}
 
 	public void connectDirect(ServiceInterface serviceInterface) {
-		this.serviceInterface = serviceInterface;
+		DirectChannel directChannel = new DirectChannel();
+		this.channel = directChannel;
+		directChannel.registerConnectDisconnectListener(this);
+		directChannel.connect(serviceInterface);
 	}
 	
-	public void connectProtocolBuffers(String address, int port) throws IOException {
-		SocketChannel channel = new SocketChannel(new InetSocketAddress(address, port));
-		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
-		protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
-		Reflector reflector = new Reflector(protocolBuffersMetaData, new SService(ServiceInterface.class), channel);
-		serviceInterface = new ServiceInterfaceReflectorImpl(reflector);
+	public void connectProtocolBuffers(String address, int port) {
+		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel();
+		this.channel = protocolBuffersChannel;
+		protocolBuffersChannel.registerConnectDisconnectListener(this);
+		protocolBuffersChannel.connect(address, port);
 	}
 	
 	public void connectSoap(final String address) {
-		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
-		cpfb.setServiceClass(ServiceInterface.class);
-		cpfb.setAddress(address);
-		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("mtom-enabled", Boolean.TRUE);
-		cpfb.setProperties(properties);
-
-		serviceInterface = (ServiceInterface) cpfb.create();
-
-		Client client = ClientProxy.getClient(serviceInterface);
-		HTTPConduit http = (HTTPConduit) client.getConduit();
-		((BindingProvider) serviceInterface).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
-		http.getClient().setConnectionTimeout(360000);
-		http.getClient().setAllowChunking(false);
-		http.getClient().setReceiveTimeout(320000);
+		SoapChannel soapChannel = new SoapChannel();
+		this.channel = soapChannel;
+		soapChannel.registerConnectDisconnectListener(this);
+		soapChannel.connect(address);
 	}
 
 	public void login(String username, String password) throws ServiceException {
-		serviceInterface.login(username, password);
+		channel.getServiceInterface().login(username, password);
+	}
+	
+	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
+		connectDisconnectListeners.add(connectDisconnectListener);
+	}
+	
+	public void notifyOfConnect() {
+		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
+			connectDisconnectListener.connected();
+		}
+	}
+	
+	public void notifyOfDisconnect() {
+		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
+			connectDisconnectListener.disconnected();
+		}
 	}
 	
 	public ServiceInterface getServiceInterface() {
-		return serviceInterface;
+		return channel.getServiceInterface();
 	}
 	
 	public Session createSession() {
-		if (serviceInterface == null) {
+		if (channel.getServiceInterface() == null) {
 			throw new RuntimeException("Connect first");
 		}
-		Session session = new Session(serviceInterface);
+		Session session = new Session(channel.getServiceInterface());
 		return session;
+	}
+
+	public void disconnect() {
+		channel.disconnect();
+	}
+
+	@Override
+	public void connected() {
+		notifyOfConnect();
+	}
+
+	@Override
+	public void disconnected() {
+		notifyOfDisconnect();
 	}
 }
