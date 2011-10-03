@@ -72,7 +72,6 @@ import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.exceptions.UserException;
 
 //TODO: Document the rest of the interface
 /**

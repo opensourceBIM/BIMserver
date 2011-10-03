@@ -148,7 +148,7 @@ public class BimServer {
 			}
 
 			serverInfoManager = new ServerInfoManager();
-			
+
 			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
@@ -211,143 +211,148 @@ public class BimServer {
 	}
 
 	public void start() throws DatabaseInitException, BimDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
-		pluginManager.initAllLoadedPlugins();
-		serverStartTime = new GregorianCalendar();
-
-		longActionManager = new LongActionManager();
-
-		Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
-		templateEngine = new TemplateEngine();
-		templateEngine.init(config.getResourceFetcher().getResource("templates/"));
-		File databaseDir = new File(config.getHomeDir(), "database");
-		BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
-		bimDatabase = new Database(this, packages, columnDatabase);
 		try {
-			bimDatabase.init();
-		} catch (DatabaseRestartRequiredException e) {
-			bimDatabase.close();
-			columnDatabase = new BerkeleyColumnDatabase(databaseDir);
+			pluginManager.initAllLoadedPlugins();
+			serverStartTime = new GregorianCalendar();
+
+			longActionManager = new LongActionManager();
+
+			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
+			templateEngine = new TemplateEngine();
+			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
+			File databaseDir = new File(config.getHomeDir(), "database");
+			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
 			bimDatabase = new Database(this, packages, columnDatabase);
 			try {
 				bimDatabase.init();
-			} catch (InconsistentModelsException e1) {
+			} catch (DatabaseRestartRequiredException e) {
+				bimDatabase.close();
+				columnDatabase = new BerkeleyColumnDatabase(databaseDir);
+				bimDatabase = new Database(this, packages, columnDatabase);
+				try {
+					bimDatabase.init();
+				} catch (InconsistentModelsException e1) {
+					LOGGER.error("", e);
+					serverInfoManager.setServerState(ServerState.FATAL_ERROR);
+					serverInfoManager.setErrorMessage("Inconsistent models");
+				}
+			} catch (InconsistentModelsException e) {
 				LOGGER.error("", e);
 				serverInfoManager.setServerState(ServerState.FATAL_ERROR);
 				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
-		} catch (InconsistentModelsException e) {
-			LOGGER.error("", e);
-			serverInfoManager.setServerState(ServerState.FATAL_ERROR);
-			serverInfoManager.setErrorMessage("Inconsistent models");
-		}
 
-		protocolBuffersMetaData = new ProtocolBuffersMetaData();
-		try {
-			protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
-			protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
-		
-		notificationsManager = new NotificationsManager(this, protocolBuffersMetaData);
-		notificationsManager.start();
+			protocolBuffersMetaData = new ProtocolBuffersMetaData();
+			try {
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
 
-		settingsManager = new SettingsManager(bimDatabase);
-		serverInfoManager.init(this);
-		serverInfoManager.update();
+			notificationsManager = new NotificationsManager(this, protocolBuffersMetaData);
+			notificationsManager.start();
 
-		sService = new SService(ServiceInterface.class);
-		
-		emfSerializerFactory = new EmfSerializerFactory();
-		emfDeserializerFactory = new EmfDeserializerFactory();
+			settingsManager = new SettingsManager(bimDatabase);
+			serverInfoManager.init(this);
+			serverInfoManager.update();
 
-		if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
-			serverInfoManager.registerStateChangeListener(new StateChangeListener() {
-				@Override
-				public void stateChanged(ServerState oldState, ServerState newState) {
-					if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
-						try {
-							initDatabaseDependantItems();
-						} catch (BimDatabaseException e) {
-							LOGGER.error("", e);
+			sService = new SService(ServiceInterface.class);
+
+			emfSerializerFactory = new EmfSerializerFactory();
+			emfDeserializerFactory = new EmfDeserializerFactory();
+
+			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
+				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
+					@Override
+					public void stateChanged(ServerState oldState, ServerState newState) {
+						if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
+							try {
+								initDatabaseDependantItems();
+							} catch (BimDatabaseException e) {
+								LOGGER.error("", e);
+							}
 						}
 					}
+				});
+			} else {
+				initDatabaseDependantItems();
+			}
+
+			mailSystem = new MailSystem(settingsManager);
+
+			serviceFactory = new ServiceInterfaceFactory(this);
+			if (config.isStartEmbeddedWebServer()) {
+				Server server = new Server();
+				HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
+				server.setSessionIdManager(hashSessionIdManager);
+				SocketConnector socketConnector = new SocketConnector();
+				socketConnector.setPort(8080);
+				socketConnector.setHost("localhost");
+				server.addConnector(socketConnector);
+				WebAppContext context = new WebAppContext(server, "", "/");
+				context.setResourceBase("www");
+				context.getServletContext().setAttribute("bimserver", this);
+				try {
+					server.start();
+				} catch (Exception e) {
+					LOGGER.error("", e);
 				}
-			});
-		} else {
-			initDatabaseDependantItems();
-		}
+			}
 
-		mailSystem = new MailSystem(settingsManager);
+			diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
 
-		serviceFactory = new ServiceInterfaceFactory(this);
-		if (config.isStartEmbeddedWebServer()) {
-			Server server = new Server();
-			HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
-			server.setSessionIdManager(hashSessionIdManager);
-			SocketConnector socketConnector = new SocketConnector();
-			socketConnector.setPort(8080);
-			socketConnector.setHost("localhost");
-			server.addConnector(socketConnector);
-			WebAppContext context = new WebAppContext(server, "", "/");
-			context.setResourceBase("www");
-			context.getServletContext().setAttribute("bimserver", this);
+			mergerFactory = new MergerFactory(settingsManager);
+			setSystemService(serviceFactory.newService(AccessMethod.INTERNAL));
 			try {
-				server.start();
-			} catch (Exception e) {
-				LOGGER.error("", e);
+				if (!((Service) getSystemService()).loginAsSystem()) {
+					throw new RuntimeException("System user not found");
+				}
+			} catch (ServiceException e) {
+				e.printStackTrace();
 			}
-		}
-		
-		diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
 
-		mergerFactory = new MergerFactory(settingsManager);
-		setSystemService(serviceFactory.newService(AccessMethod.INTERNAL));
-		try {
-			if (!((Service) getSystemService()).loginAsSystem()) {
-				throw new RuntimeException("System user not found");
+			// RestApplication.setServiceFactory(serviceFactory);
+
+			bimScheduler = new JobScheduler(this);
+			bimScheduler.start();
+
+			try {
+				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
+				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
+				ProtocolBuffersServer protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry);
+				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, new SService(ServiceInterface.class)));
+				protocolBuffersServer.start();
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
-		} catch (ServiceException e) {
-			e.printStackTrace();
+
+			// if (serverType == ServerType.DEPLOYED_WAR) {
+			// File libDir = new File(classPath);
+			// LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
+			// QueryCompiler.addJarFolder(libDir);
+			// }
+
+			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
+			serverStarted.setDate(new Date());
+			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
+			serverStarted.setExecutor(null);
+			BimDatabaseSession session = bimDatabase.createSession(true);
+			try {
+				session.store(serverStarted);
+				session.commit();
+			} catch (BimDeadlockException e) {
+				throw new BimDatabaseException(e);
+			} finally {
+				session.close();
+			}
+			CommandLine commandLine = new CommandLine(this);
+			commandLine.start();
+			LOGGER.info("Done starting BIMserver");
+		} catch (Throwable e) {
+			serverInfoManager.setErrorMessage(e.getMessage());
+			LOGGER.error("", e);
 		}
-
-		// RestApplication.setServiceFactory(serviceFactory);
-
-		bimScheduler = new JobScheduler(this);
-		bimScheduler.start();
-
-		try {
-			ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
-			serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-			ProtocolBuffersServer protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry);
-			protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, new SService(ServiceInterface.class)));
-			protocolBuffersServer.start();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
-		// if (serverType == ServerType.DEPLOYED_WAR) {
-		// File libDir = new File(classPath);
-		// LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
-		// QueryCompiler.addJarFolder(libDir);
-		// }
-
-		ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
-		serverStarted.setDate(new Date());
-		serverStarted.setAccessMethod(AccessMethod.INTERNAL);
-		serverStarted.setExecutor(null);
-		BimDatabaseSession session = bimDatabase.createSession(true);
-		try {
-			session.store(serverStarted);
-			session.commit();
-		} catch (BimDeadlockException e) {
-			throw new BimDatabaseException(e);
-		} finally {
-			session.close();
-		}
-		CommandLine commandLine = new CommandLine(this);
-		commandLine.start();
-		LOGGER.info("Done starting BIMserver");
 	}
 
 	/*

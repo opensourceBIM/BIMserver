@@ -64,7 +64,9 @@ public class SetHttpCallbackUrlDatabaseAction extends BimDatabaseAction<Void> {
 			public void execute() throws UserException {
 				InetSocketAddress address = new InetSocketAddress(url.substring(0, url.indexOf(":")), Integer.parseInt(url.substring(url.indexOf(":") + 1)));
 				try {
-					bimServer.getNotificationsManager().register(user, new NotificationInterfaceReflectorImpl(new Reflector(bimServer.getProtocolBuffersMetaData(), bimServer.getSService(), new SocketChannel(address))));
+					SocketChannel channel = new SocketChannel();
+					channel.connect(address);
+					bimServer.getNotificationsManager().register(user, new NotificationInterfaceReflectorImpl(new Reflector(bimServer.getProtocolBuffersMetaData(), bimServer.getSService(), channel)));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

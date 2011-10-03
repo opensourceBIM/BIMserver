@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class SatelliteSettings {
+	private boolean autoConnect;
 	private String address;
 	private int port;
 	private String username;
@@ -39,5 +40,13 @@ public class SatelliteSettings {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isAutoConnect() {
+		return autoConnect;
+	}
+
+	public void setAutoConnect(boolean autoConnect) {
+		this.autoConnect = autoConnect;
 	}
 }

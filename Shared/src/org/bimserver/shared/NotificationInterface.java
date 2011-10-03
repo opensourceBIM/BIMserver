@@ -22,6 +22,8 @@ import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface NotificationInterface {
+	void serverHasStarted() throws ServiceException;
+	void serverWillBeShutdown() throws ServiceException;
 	void newProject(SNewProjectNotification newProjectNotification) throws ServiceException;
 	void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException;
 }
