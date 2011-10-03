@@ -23,13 +23,10 @@ public class InverseAttribute extends
 
 	private EntityDefinition domain = null;
 	private ExplicitAttribute inverted_attr = null;
-	private InverseAttribute redeclaring = null;
 	private Bound min_cardinality, max_cardinality;
-	private boolean duplicates;
 
 	public InverseAttribute(String name, EntityDefinition parent_entity) {
 		super(name, parent_entity);
-		// TODO Auto-generated constructor stub
 	}
 
 	public EntityDefinition getDomain() {
@@ -63,5 +60,4 @@ public class InverseAttribute extends
 	public void setMin_cardinality(Bound min_cardinality) {
 		this.min_cardinality = min_cardinality;
 	}
-
 }
