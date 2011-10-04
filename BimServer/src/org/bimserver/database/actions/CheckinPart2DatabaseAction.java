@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
@@ -31,8 +32,10 @@ import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -95,9 +98,17 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
 			getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
-			for (Revision revision : concreteRevision.getRevisions()) {
+			for (final Revision revision : concreteRevision.getRevisions()) {
 				revision.setState(CheckinState.DONE);
 				getDatabaseSession().store(revision);
+				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+					@Override
+					public void execute() throws UserException {
+						NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
+						newRevisionNotification.setRevision(revision);
+						bimServer.getNotificationsManager().notify(newRevisionNotification);
+					}
+				});
 			}
 			concreteRevision.setState(CheckinState.DONE);
 			getDatabaseSession().store(concreteRevision);

@@ -79,12 +79,13 @@ public class TestNotifications {
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		
 		SocketNotificationsClient socketNotificationsClient = new SocketNotificationsClient();
-		socketNotificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055), new NotificationInterfaceAdapter() {
+		NotificationInterfaceAdapter notificationInterfaceAdapter = new NotificationInterfaceAdapter() {
 			@Override
 			public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
 				countDownLatch.countDown();
 			}
-		});
+		};
+		socketNotificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055));
 		socketNotificationsClient.start();
 		
 		BimServerClient bimServerClient = new BimServerClient();

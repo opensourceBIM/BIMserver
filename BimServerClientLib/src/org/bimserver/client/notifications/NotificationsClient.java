@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.NotificationInterface;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -24,6 +25,7 @@ import org.bimserver.shared.ConnectDisconnectListener;
 
 public abstract class NotificationsClient extends Thread {
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
+	protected MultiCastNotificationImpl multiCastNotificationImpl = new MultiCastNotificationImpl();
 	
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
 		connectDisconnectListeners.add(connectDisconnectListener);
@@ -41,5 +43,7 @@ public abstract class NotificationsClient extends Thread {
 		}
 	}
 	
-	
+	public void registerNotifictionListener(NotificationInterface notificationInterface) {
+		multiCastNotificationImpl.add(notificationInterface);
+	}
 }

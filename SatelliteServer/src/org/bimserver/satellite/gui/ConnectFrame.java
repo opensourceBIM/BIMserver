@@ -4,10 +4,12 @@ import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -15,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SpringLayout;
 import javax.swing.WindowConstants;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 
 import org.bimserver.satellite.SatelliteSettings;
 import org.bimserver.utils.AutoSelectTextField;
@@ -48,6 +52,12 @@ public class ConnectFrame extends JDialog {
 		getContentPane().add(portLabel);
 		final AutoSelectTextField portField = new AutoSelectTextField("" + settings.getPort(), 5);
 		getContentPane().add(portField);
+		
+		JLabel autoConnectLabel = new JLabel("Auto connect");
+		getContentPane().add(autoConnectLabel);
+		final JCheckBox autoConnectBox = new JCheckBox();
+		autoConnectBox.setSelected(settings.isAutoConnect());
+		getContentPane().add(autoConnectBox);
 
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener(){
@@ -68,9 +78,12 @@ public class ConnectFrame extends JDialog {
 					settings.setPort(Integer.parseInt(portField.getText()));
 					settings.setUsername(usernameField.getText());
 					settings.setPassword(passwordField.getText());
+					settings.setAutoConnect(autoConnectBox.isSelected());
 					satelliteGui.connect(settings);
+					JAXBContext jaxbContext = JAXBContext.newInstance(SatelliteSettings.class);
+					Marshaller marshaller = jaxbContext.createMarshaller();
+					marshaller.marshal(settings, new File("settings.xml"));
 					setVisible(false);
-					satelliteGui.setTitle(SatelliteGui.APP_NAME + " - Connected to " + serverField.getText() + " as " + usernameField.getText());
 				} catch (Exception exception) {
 					exception.printStackTrace();
 					JOptionPane.showMessageDialog(satelliteGui, exception.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
@@ -92,7 +105,7 @@ public class ConnectFrame extends JDialog {
 		getRootPane().getActionMap().put("ESCAPE", escapeAction);
 		
 		SpringUtilities.makeCompactGrid(getContentPane(),
-                5, 2, //rows, cols
+                6, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
 		pack();

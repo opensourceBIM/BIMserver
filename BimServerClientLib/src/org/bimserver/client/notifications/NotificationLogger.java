@@ -35,20 +35,24 @@ public class NotificationLogger implements NotificationInterface {
 	@Override
 	public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
 		out.println("New project " + newProjectNotification.getProjectId());
+		out.flush();
 	}
 
 	@Override
 	public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
 		out.println("New revision " + newRevisionNotification.getRevisionId());
+		out.flush();
 	}
 
 	@Override
 	public void serverHasStarted() {
 		out.println("BIMserver started");
+		out.flush();
 	}
 
 	@Override
 	public void serverWillBeShutdown() {
 		out.println("BIMserver will be shut down");
+		out.flush();
 	}
 }

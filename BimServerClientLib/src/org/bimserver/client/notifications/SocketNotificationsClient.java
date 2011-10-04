@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.slf4j.Logger;
@@ -18,7 +17,6 @@ public class SocketNotificationsClient extends NotificationsClient {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SocketNotificationsClient.class);
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private InetSocketAddress address;
-	private NotificationInterface notificationInterface;
 	private SService sService;
 	private boolean running;
 	private ServerSocket serverSocket;
@@ -33,7 +31,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 			while (running) {
 				Socket socket = serverSocket.accept();
 				notifyConnect();
-				Handler handler = new Handler(this, socket, notificationInterface, protocolBuffersMetaData, sService);
+				Handler handler = new Handler(this, socket, multiCastNotificationImpl, protocolBuffersMetaData, sService);
 				handlers.add(handler);
 				handler.start();
 			}
@@ -43,19 +41,18 @@ public class SocketNotificationsClient extends NotificationsClient {
 		notifyDisconnect();
 	}
 
-	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, InetSocketAddress address, NotificationInterface notificationInterface) {
+	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, InetSocketAddress address) {
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.sService = sService;
 		this.address = address;
-		this.notificationInterface = notificationInterface;
 	}
 
 	public void disconnect() {
 		running = false;
+		interrupt();
 		for (Handler handler : handlers) {
 			handler.close();
 		}
-		interrupt();
 		try {
 			serverSocket.close();
 		} catch (IOException e) {
