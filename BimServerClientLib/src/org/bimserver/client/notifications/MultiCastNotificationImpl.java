@@ -1,15 +1,20 @@
 package org.bimserver.client.notifications;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class MultiCastNotificationImpl implements NotificationInterface {
-	private final NotificationInterface[] notificationInterfaces;
+	private final Set<NotificationInterface> notificationInterfaces = new HashSet<NotificationInterface>();
 
 	public MultiCastNotificationImpl(NotificationInterface... notificationInterfaces) {
-		this.notificationInterfaces = notificationInterfaces;
+		for (NotificationInterface notificationInterface : notificationInterfaces) {
+			this.notificationInterfaces.add(notificationInterface);
+		}
 	}
 
 	@Override
@@ -38,5 +43,9 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 		for (NotificationInterface notificationInterface : notificationInterfaces) {
 			notificationInterface.newRevision(newRevisionNotification);
 		}
+	}
+
+	public void add(NotificationInterface notificationInterface) {
+		notificationInterfaces.add(notificationInterface);
 	}
 }

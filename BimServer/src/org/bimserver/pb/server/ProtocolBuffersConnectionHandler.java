@@ -18,10 +18,12 @@ package org.bimserver.pb.server;
  *****************************************************************************/
 
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,6 +77,8 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				response.writeDelimitedTo(outputStream);
 				outputStream.flush();
 			}
+		} catch (SocketException e) {
+		} catch (EOFException e) {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ServiceException e) {

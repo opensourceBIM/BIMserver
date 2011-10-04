@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -20,14 +21,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import org.bimserver.client.notifications.NotificationInterfaceAdapter;
 import org.bimserver.client.notifications.NotificationLogger;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
-import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.satellite.SatelliteServer;
 import org.bimserver.satellite.SatelliteSettings;
+import org.bimserver.satellite.activities.SpaceOutActivity;
 import org.bimserver.shared.ConnectDisconnectListener;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.SwingUtil;
 
 public class SatelliteGui extends JFrame {
@@ -97,6 +95,14 @@ public class SatelliteGui extends JFrame {
 
 		logTextArea = new JTextArea();
 		tabber.addTab("Log", new JScrollPane(logTextArea));
+		
+		if (settings.isAutoConnect()) {
+			try {
+				connect(settings);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(this, e1.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 	public SatelliteServer getSatelliteServer() {
@@ -110,39 +116,22 @@ public class SatelliteGui extends JFrame {
 			public void connected() {
 				connectDisconnectButton.setText("Disconnect");
 				logTextArea.append("Connected\n");
+				setTitle(SatelliteGui.APP_NAME + " - Connected");
 			}
 
 			@Override
 			public void disconnected() {
 				connectDisconnectButton.setText("Connect");
 				logTextArea.append("Disconnected\n");
+				setTitle(SatelliteGui.APP_NAME);
 			}
 		});
-		satelliteServer.getNotificationsClient().registerConnectDisconnectListener(new ConnectDisconnectListener() {
-			@Override
-			public void disconnected() {
-				notificationsTextArea.append("Connected\n");
-			}
-			
-			@Override
-			public void connected() {
-				notificationsTextArea.append("Disconnected\n");
-			}
-		});
-//		NotificationInterfaceAdapter notificationInterface = new NotificationInterfaceAdapter(){
-//			@Override
-//			public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
-//				long roid = newRevisionNotification.getRevisionId();
-//				SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
-//				session.loadModel(revision);
-//			}
-//		};
 		satelliteServer.connect(settings, new NotificationLogger(new PrintWriter(new OutputStream() {
-			
 			@Override
 			public void write(int b) throws IOException {
 				notificationsTextArea.append(new String(new char[]{(char)b}));
 			}
 		})));
+		satelliteServer.registerActivity(new SpaceOutActivity());
 	}
 }

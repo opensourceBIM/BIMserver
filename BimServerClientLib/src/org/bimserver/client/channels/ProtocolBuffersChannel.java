@@ -14,16 +14,16 @@ import org.bimserver.shared.pb.SocketChannel;
 public class ProtocolBuffersChannel extends Channel implements ConnectDisconnectListener {
 
 	private SocketChannel channel;
+	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersChannel() {
+	public ProtocolBuffersChannel(ProtocolBuffersMetaData protocolBuffersMetaData) {
+		this.protocolBuffersMetaData = protocolBuffersMetaData;
 	}
 	
 	public void connect(String address, int port) {
 		try {
 			channel = new SocketChannel();
 			channel.registerConnectDisconnectListener(this);
-			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
-			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
 			Reflector reflector = new Reflector(protocolBuffersMetaData, new SService(ServiceInterface.class), channel);
 			setServiceInterface(new ServiceInterfaceReflectorImpl(reflector));
 			channel.connect(new InetSocketAddress(address, port));
