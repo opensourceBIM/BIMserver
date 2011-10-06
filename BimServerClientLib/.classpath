@@ -78,6 +78,5 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/IfcPlugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

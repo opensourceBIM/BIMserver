@@ -21,8 +21,6 @@ import java.io.File;
 
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ResourceFetcher;
-import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 
 public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager) throws PluginException {
@@ -43,8 +41,7 @@ public class LocalDevPluginLoader {
 	}
 	
 	public static PluginManager createPluginManager() throws PluginException {
-		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-		PluginManager pluginManager = new PluginManager(resourceFetcher, new File("home"), null);
+		PluginManager pluginManager = new PluginManager(new File("home"), null);
 		loadPlugins(pluginManager);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;

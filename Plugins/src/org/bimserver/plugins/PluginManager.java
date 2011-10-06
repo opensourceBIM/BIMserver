@@ -52,13 +52,11 @@ public class PluginManager {
 	private final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new HashMap<Class<? extends Plugin>, Set<PluginContext>>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
-	private final ResourceFetcher resourceFetcher;
-	private File homeDir;
+	private File tempDir;
 	private final String baseClassPath;
 
-	public PluginManager(ResourceFetcher resourceFetcher, File homeDir, String baseClassPath) {
-		this.resourceFetcher = resourceFetcher;
-		this.homeDir = homeDir;
+	public PluginManager(File tempDir, String baseClassPath) {
+		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
 	}
 
@@ -340,12 +338,8 @@ public class PluginManager {
 		return plugins.iterator().next().getGuidanceProvider();
 	}
 
-	public ResourceFetcher getResourceFetcher() {
-		return resourceFetcher;
-	}
-
-	public File getHomeDir() {
-		return homeDir;
+	public File getTempDir() {
+		return tempDir;
 	}
 
 	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin) throws PluginException {

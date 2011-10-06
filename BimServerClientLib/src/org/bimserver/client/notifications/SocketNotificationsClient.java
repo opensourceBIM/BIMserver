@@ -21,24 +21,31 @@ public class SocketNotificationsClient extends NotificationsClient {
 	private boolean running;
 	private ServerSocket serverSocket;
 	private final Set<Handler> handlers = new HashSet<Handler>();
+	private Thread thread;
 
-	@Override
-	public void run() {
-		running = true;
-		try {
-			serverSocket = new ServerSocket();
-			serverSocket.bind(address);
-			while (running) {
-				Socket socket = serverSocket.accept();
-				notifyConnect();
-				Handler handler = new Handler(this, socket, multiCastNotificationImpl, protocolBuffersMetaData, sService);
-				handlers.add(handler);
-				handler.start();
-			}
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}		
-		notifyDisconnect();
+	public void start() {
+		if (!running) {
+			thread = new Thread(new Runnable(){
+				@Override
+				public void run() {
+					running = true;
+					try {
+						serverSocket = new ServerSocket();
+						serverSocket.bind(address);
+						while (running) {
+							Socket socket = serverSocket.accept();
+							notifyConnect();
+							Handler handler = new Handler(SocketNotificationsClient.this, socket, multiCastNotificationImpl, protocolBuffersMetaData, sService);
+							handlers.add(handler);
+							handler.start();
+						}
+					} catch (IOException e) {
+						LOGGER.error("", e);
+					}		
+					notifyDisconnect();
+				}
+			});
+		}
 	}
 
 	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, InetSocketAddress address) {
@@ -49,7 +56,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 
 	public void disconnect() {
 		running = false;
-		interrupt();
+		thread.interrupt();
 		for (Handler handler : handlers) {
 			handler.close();
 		}
