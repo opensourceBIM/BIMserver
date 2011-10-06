@@ -71,7 +71,7 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 			}
 			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
 			if (inputStream != null) {
-				File tmpFolder = new File(pluginManager.getHomeDir().getAbsolutePath(), "tmp");
+				File tmpFolder = new File(pluginManager.getTempDir(), "tmp");
 				nativeFolder = new File(tmpFolder, "ifcengine");
 				try {
 					if (nativeFolder.exists()) {
@@ -96,7 +96,7 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 
 	@Override
 	public IfcEngine createIfcEngine() throws IfcEngineException {
-		return new FailSafeIfcEngine(schemaFile, nativeFolder, new File(pluginManager.getHomeDir(), "tmp"), pluginManager.getCompleteClassPath());
+		return new FailSafeIfcEngine(schemaFile, nativeFolder, new File(pluginManager.getTempDir(), "tmp"), pluginManager.getCompleteClassPath());
 	}
 
 	@Override

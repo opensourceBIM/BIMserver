@@ -18,16 +18,12 @@ package org.bimserver.client;
  *****************************************************************************/
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.activation.DataHandler;
-
-import nl.tue.buildingsmart.emf.DerivedReader;
-import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.client.channels.Channel;
 import org.bimserver.client.channels.DirectChannel;
@@ -37,8 +33,11 @@ import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.ifc.EmfSerializerDataSource;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
+import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -56,8 +55,11 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private SocketNotificationsClient notificationsClient;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private SchemaDefinition schema;
+	private final PluginManager pluginManager;
+	private boolean connected = false;
 
-	public BimServerClient() {
+	public BimServerClient(PluginManager pluginManager) {
+		this.pluginManager = pluginManager;
 		protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
 			protocolBuffersMetaData.load(new File("../BimServerClientLib/src/service.desc"));
@@ -65,13 +67,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		File schemaFile = new File("../Builds/build/targets/shared/IFC2X3_FINAL.exp");
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);
-		schemaParser.parse();
-		schema = schemaParser.getSchema();
+		notificationsClient = new SocketNotificationsClient();
 		try {
-			new DerivedReader(schemaFile, schema);
-		} catch (FileNotFoundException e) {
+			schema = pluginManager.requireSchemaDefinition();
+		} catch (PluginException e) {
 			e.printStackTrace();
 		}
 	}
@@ -83,11 +82,15 @@ public class BimServerClient implements ConnectDisconnectListener {
 		directChannel.connect(serviceInterface);
 	}
 	
-	public void connectProtocolBuffers(String address, int port) {
+	public void connectProtocolBuffers(String address, int port) throws ConnectionException {
 		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData);
 		this.channel = protocolBuffersChannel;
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
-		protocolBuffersChannel.connect(address, port);
+		try {
+			protocolBuffersChannel.connect(address, port);
+		} catch (IOException e) {
+			throw new ConnectionException(e);
+		}
 	}
 	
 	public void connectSoap(final String address) {
@@ -135,6 +138,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	@Override
 	public void connected() {
+		connected = true;
 		notifyOfConnect();
 	}
 
@@ -150,10 +154,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 	
 	public void setNotificationsEnabled(boolean enabled) {
 		if (enabled) {
-			if (notificationsClient == null) {
-				notificationsClient = new SocketNotificationsClient();
-				notificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055));
-				notificationsClient.start();
+			notificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055));
+			notificationsClient.start();
+			if (connected) {
 				try {
 					getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
 				} catch (ServiceException e) {
@@ -164,9 +167,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	public IfcModelInterface getModel(long roid) {
-		SSerializer serializer;
 		try {
-			serializer = getServiceInterface().getSerializerByContentType("application/ifc");
+			SSerializer serializer = getServiceInterface().getSerializerByContentType("application/ifc");
 			Integer downloadId = getServiceInterface().download(roid, serializer.getName(), true);
 			SDownloadResult downloadData = getServiceInterface().getDownloadData(downloadId);
 			DataHandler file = downloadData.getFile();
@@ -184,15 +186,17 @@ public class BimServerClient implements ConnectDisconnectListener {
 		return null;
 	}
 
-	public void uploadModel(long poid, String comment, IfcModelInterface model) {
+	public long uploadModel(long poid, String comment, IfcModelInterface model) {
 		try {
 			IfcStepSerializer serializer = new IfcStepSerializer();
-			serializer.init(model, null, null);
-			getServiceInterface().checkinSync(poid, comment, "Ifc2x3", 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false);
+			serializer.init(model, null, pluginManager);
+			SCheckinResult checkinSync = getServiceInterface().checkinSync(poid, comment, "IfcStepDeserializer", 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false);
+			return checkinSync.getRevisionId();
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		}
+		return -1;
 	}
 }

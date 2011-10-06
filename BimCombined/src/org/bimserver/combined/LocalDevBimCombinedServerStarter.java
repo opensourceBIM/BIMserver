@@ -87,7 +87,7 @@ public class LocalDevBimCombinedServerStarter {
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create() {
-				BimServerClient bimServerClient = new BimServerClient();
+				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
 //				bimServerClient.connectProtocolBuffers("localhost", 8020);
 				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
 				return bimServerClient;

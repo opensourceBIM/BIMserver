@@ -73,7 +73,7 @@ public class JarBimWebServer {
 		BimServerConfig bimServerConfig = new BimServerConfig();
 		bimServerConfig.setHomeDir(new File(homedir));
 		bimServerConfig.setResourceFetcher(new JarResourceFetcher());
-		BimServer bimServer = new BimServer(bimServerConfig);
+		final BimServer bimServer = new BimServer(bimServerConfig);
 	 	try {
 			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			bimServer.start();
@@ -92,7 +92,7 @@ public class JarBimWebServer {
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create() {
-				return new BimServerClient();
+				return new BimServerClient(bimServer.getPluginManager());
 			}
 		};
 	 	

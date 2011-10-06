@@ -23,7 +23,7 @@ import org.bimserver.shared.NotificationInterface;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public abstract class NotificationsClient extends Thread {
+public abstract class NotificationsClient {
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	protected MultiCastNotificationImpl multiCastNotificationImpl = new MultiCastNotificationImpl();
 	

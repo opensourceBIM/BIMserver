@@ -17,10 +17,12 @@ package org.bimserver.web;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.plugins.PluginManager;
 import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -49,13 +51,6 @@ public class LocalDevBimWebServerStarter {
 	public void start(String address, int port, String resourceBase) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 
-	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
-			@Override
-			public BimServerClient create() {
-				return new BimServerClient();
-			}
-		};
-	 	
 	 	LOGGER.info("Starting BIMWebServer");
 	 	
 		server = new org.eclipse.jetty.server.Server();
@@ -66,10 +61,12 @@ public class LocalDevBimWebServerStarter {
 		socketConnector.setHost(address);
 		server.addConnector(socketConnector);
 
+		final PluginManager pluginManager = new PluginManager(new File(""), null);
+		
 		LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create() {
-				return new BimServerClient();
+				return new BimServerClient(pluginManager);
 			}
 		};
 		

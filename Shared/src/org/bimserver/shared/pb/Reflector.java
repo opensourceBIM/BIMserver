@@ -17,6 +17,8 @@ package org.bimserver.shared.pb;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -24,6 +26,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.activation.DataHandler;
+
+import org.apache.cxf.helpers.IOUtils;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SBase;
@@ -37,6 +42,7 @@ import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.DynamicMessage.Builder;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.Message;
 import com.google.protobuf.ServiceException;
 
@@ -66,6 +72,15 @@ public class Reflector extends ProtocolBuffersConverter {
 			} else {
 				if (arg instanceof SBase) {
 					builder.setField(field, convertSObjectToProtocolBuffersObject(field.getMessageType(), (SBase)arg));
+				} else if (arg instanceof DataHandler) {
+					DataHandler dataHandler = (DataHandler)arg;
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					try {
+						IOUtils.copy(dataHandler.getInputStream(), baos);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					builder.setField(field, ByteString.copyFrom(baos.toByteArray()));
 				} else {
 					builder.setField(field, arg);
 				}

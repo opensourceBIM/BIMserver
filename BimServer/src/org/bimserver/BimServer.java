@@ -167,7 +167,7 @@ public class BimServer {
 			versionChecker = new VersionChecker(config.getResourceFetcher());
 
 			try {
-				pluginManager = new PluginManager(config.getResourceFetcher(), config.getHomeDir(), config.getClassPath());
+				pluginManager = new PluginManager(config.getHomeDir(), config.getClassPath());
 				pluginManager.addPluginChangeListener(new PluginChangeListener() {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
@@ -250,14 +250,14 @@ public class BimServer {
 				e2.printStackTrace();
 			}
 
-			notificationsManager = new NotificationsManager(this, protocolBuffersMetaData);
-			notificationsManager.start();
+			sService = new SService(ServiceInterface.class);
 
+			notificationsManager = new NotificationsManager(this);
+			notificationsManager.start();
+			
 			settingsManager = new SettingsManager(bimDatabase);
 			serverInfoManager.init(this);
 			serverInfoManager.update();
-
-			sService = new SService(ServiceInterface.class);
 
 			emfSerializerFactory = new EmfSerializerFactory();
 			emfDeserializerFactory = new EmfDeserializerFactory();

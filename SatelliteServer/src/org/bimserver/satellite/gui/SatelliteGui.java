@@ -21,10 +21,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.bimserver.client.ConnectionException;
 import org.bimserver.client.notifications.NotificationLogger;
 import org.bimserver.satellite.SatelliteServer;
 import org.bimserver.satellite.SatelliteSettings;
-import org.bimserver.satellite.activities.SpaceOutActivity;
+import org.bimserver.satellite.activities.Activity;
+import org.bimserver.satellite.activities.ExploderActivity;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.utils.SwingUtil;
 
@@ -32,7 +34,7 @@ public class SatelliteGui extends JFrame {
 
 	private static final long serialVersionUID = -5428454520760923784L;
 	protected static final String APP_NAME = "BIMserver Satellite";
-	private SatelliteServer satelliteServer;
+	private SatelliteServer satelliteServer = new SatelliteServer();
 	private JButton connectDisconnectButton;
 	private JTextArea logTextArea;
 	private JTextArea notificationsTextArea;
@@ -59,7 +61,7 @@ public class SatelliteGui extends JFrame {
 			try {
 				JAXBContext jaxbContext = JAXBContext.newInstance(SatelliteSettings.class);
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-				settings = (SatelliteSettings)unmarshaller.unmarshal(settingsFile);
+				settings = (SatelliteSettings) unmarshaller.unmarshal(settingsFile);
 			} catch (JAXBException e) {
 				e.printStackTrace();
 			}
@@ -67,7 +69,7 @@ public class SatelliteGui extends JFrame {
 		if (settings == null) {
 			settings = new SatelliteSettings();
 		}
-		
+
 		JPanel top = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
 		connectDisconnectButton = new JButton("Connect");
@@ -95,22 +97,7 @@ public class SatelliteGui extends JFrame {
 
 		logTextArea = new JTextArea();
 		tabber.addTab("Log", new JScrollPane(logTextArea));
-		
-		if (settings.isAutoConnect()) {
-			try {
-				connect(settings);
-			} catch (Exception e1) {
-				JOptionPane.showMessageDialog(this, e1.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
-			}
-		}
-	}
 
-	public SatelliteServer getSatelliteServer() {
-		return satelliteServer;
-	}
-
-	public void connect(SatelliteSettings settings) throws IOException {
-		satelliteServer = new SatelliteServer();
 		satelliteServer.getBimServerClient().registerConnectDisconnectListener(new ConnectDisconnectListener() {
 			@Override
 			public void connected() {
@@ -126,12 +113,40 @@ public class SatelliteGui extends JFrame {
 				setTitle(SatelliteGui.APP_NAME);
 			}
 		});
+		satelliteServer.registerActivity(new ExploderActivity());
+
+		for (Activity activity : satelliteServer.getActivities()) {
+			final JTextArea activityTextArea = new JTextArea();
+			JScrollPane activityScroll = new JScrollPane(activityTextArea);
+			tabber.addTab(activity.getName(), activityScroll);
+			activity.registerLogger(new ActivityLogger() {
+				@Override
+				public void log(String message) {
+					activityTextArea.append(message + "\n");
+				}
+			});
+		}
+
+		if (settings.isAutoConnect()) {
+			try {
+				connect(settings);
+			} catch (ConnectionException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	public SatelliteServer getSatelliteServer() {
+		return satelliteServer;
+	}
+
+	public void connect(SatelliteSettings settings) throws ConnectionException {
 		satelliteServer.connect(settings, new NotificationLogger(new PrintWriter(new OutputStream() {
 			@Override
 			public void write(int b) throws IOException {
-				notificationsTextArea.append(new String(new char[]{(char)b}));
+				notificationsTextArea.append(new String(new char[] { (char) b }));
 			}
 		})));
-		satelliteServer.registerActivity(new SpaceOutActivity());
 	}
 }
