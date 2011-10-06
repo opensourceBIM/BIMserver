@@ -27,9 +27,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.text.DecimalFormat;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.ifc2x3.IfcElement;
+import org.bimserver.models.ifc2x3.IfcBuilding;
+import org.bimserver.models.ifc2x3.IfcBuildingStorey;
+import org.bimserver.models.ifc2x3.IfcElementCompositionEnum;
+import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcLayeredItem;
 import org.bimserver.models.ifc2x3.IfcObject;
 import org.bimserver.models.ifc2x3.IfcBuildingElementProxy;
@@ -47,7 +53,20 @@ import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
 import org.bimserver.models.ifc2x3.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3.IfcMember;
 import org.bimserver.models.ifc2x3.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3.IfcRelConnectsElements;
+import org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement;
+import org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement;
+import org.bimserver.models.ifc2x3.IfcRelConnectsWithRealizingElements;
+import org.bimserver.models.ifc2x3.IfcRelCoversBldgElements;
+import org.bimserver.models.ifc2x3.IfcRelFillsElement;
+import org.bimserver.models.ifc2x3.IfcRelProjectsElement;
+import org.bimserver.models.ifc2x3.IfcRelSpaceBoundary;
+import org.bimserver.models.ifc2x3.IfcRelVoidsElement;
+import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3.IfcObjectPlacement;
+import org.bimserver.models.ifc2x3.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3.IfcPlate;
+import org.bimserver.models.ifc2x3.IfcPostalAddress;
 import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
 import org.bimserver.models.ifc2x3.IfcProduct;
@@ -55,9 +74,14 @@ import org.bimserver.models.ifc2x3.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRailing;
+import org.bimserver.models.ifc2x3.IfcRelAssigns;
+import org.bimserver.models.ifc2x3.IfcRelAssignsToProduct;
+import org.bimserver.models.ifc2x3.IfcRelAssociates;
 import org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3.IfcRelDefines;
+import org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure;
+import org.bimserver.models.ifc2x3.IfcRelServicesBuildings;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentationContext;
 import org.bimserver.models.ifc2x3.IfcRepresentationItem;
@@ -594,7 +618,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 					}
 					writer.println("],");
 	
-					// TODO: Create subgeometries if there are multiple index buffers
+					// TODO: Create sub-geometries if there are multiple index buffers
 					List<? extends IfcEngineInstance> instances = model.getInstances(ifcObject.eClass().getName().toUpperCase());
 					if (instances.size() > 1)
 						writer.writeln("// TODO: Create subgeometries");
@@ -950,6 +974,18 @@ public class SceneJSSerializer extends BimModelSerializer {
 				else if (object instanceof IfcSite) {
 					writeIfcPropertiesSite(writer,(IfcSite) object);
 				}
+				else if (object instanceof IfcBuilding) {
+					writeIfcPropertiesBuilding(writer,(IfcBuilding) object);
+				}
+				else if (object instanceof IfcBuildingStorey) {
+					writeIfcPropertiesBuildingStorey(writer,(IfcBuildingStorey) object);
+				}
+				else if (object instanceof IfcElement) {
+					writeIfcPropertiesElement(writer,(IfcElement) object);
+				}
+				else if (object instanceof IfcSpatialStructureElement) {
+					writeIfcPropertiesSpatialStructureElement(writer,(IfcSpatialStructureElement) object);
+				}
 				else if (object instanceof IfcProduct) {
 					writeIfcPropertiesProduct(writer,(IfcProduct) object);
 				}
@@ -963,49 +999,250 @@ public class SceneJSSerializer extends BimModelSerializer {
 	}
 	
 	private void writeIfcPropertiesProject(JsWriter writer, IfcProject object) {
-		writer.writeln("'Representation Contexts': [");
-		writer.indent();
-		for (IfcRepresentationContext context : object.getRepresentationContexts()) {
-			writer.writeln("'" + context.getContextIdentifier() + "',");
-		}				
-		writer.unindent();
-		writer.writeln("],"); // Representation Contexts
-		writer.writeln("'Phase': '" + object.getPhase() + "',");
+		if (object.isSetLongName()) {
+			writer.writeln("'LongName': '" + object.getLongName() + "',");
+		}
+		if (object.isSetPhase()) {
+			writer.writeln("'Phase': '" + object.getPhase() + "',");
+		}
+		if (object.getRepresentationContexts() != null && !object.getRepresentationContexts().isEmpty()) {
+			writer.writeln("'Representation Contexts': [");
+			writer.indent();
+			for (IfcRepresentationContext context : object.getRepresentationContexts()) {
+				writer.writeln("'" + context.getContextIdentifier() + "',");
+			}
+			writer.unindent();
+			writer.writeln("],");
+		}
+		if (object.getUnitsInContext() != null) {
+			EList<IfcUnit> units = object.getUnitsInContext().getUnits();
+			if (units != null && !units.isEmpty()) {
+				writer.writeln("'Units in Context': [");
+				writer.indent();
+				for (IfcUnit unit : units) {
+					writer.writeln("'" + unit.toString() + "',");
+				}
+				writer.unindent();
+				writer.writeln("],");
+			}
+		}
 	}
 	
-	private static void writeIfcPropertiesSite(JsWriter writer, IfcProduct object) {
-		writeIfcPropertiesProduct(writer,(IfcProduct) object);
-		object.getHasAssignments();
+	private static void writeIfcPropertiesSite(JsWriter writer, IfcSite object) {
+		writeIfcPropertiesSpatialStructureElement(writer, object);
+		if (object.isSetRefLatitude()) {
+			writer.writetab("'Ref Latitude': [");
+			for (Integer val : object.getRefLatitude()) {
+				writer.write(val.toString() + ",");
+			}
+			writer.writeln("],");
+		}
+		if (object.isSetRefLongitude()) {
+			writer.writetab("'Ref Longtitude': [");
+			for (Integer val : object.getRefLongitude()) {
+				writer.write(val.toString() + ",");
+			}
+			writer.writeln("],");
+
+		}
+		if (object.isSetRefElevationAsString()) {
+			writer.writeln("'Ref Elevation': '" + object.getRefElevationAsString() + "',");
+		}
+		else if (object.isSetRefElevation()) {
+			writer.writeln("'Ref Elevation': " + new DecimalFormat("#.##").format(object.getRefElevation()) + ",");
+		}
+		if (object.isSetLandTitleNumber()) {
+			writer.writeln("'Land Title Number': '" + object.getLandTitleNumber() + "',");
+		}
+		if (object.isSetSiteAddress()) {
+			// TODO: Format address
+			//writer.writeln("'Site Address': '" + object.getSiteAddress().toString() + "',");
+		}
+	}
+	
+	private static void writeIfcPropertiesBuilding(JsWriter writer, IfcBuilding object) {
+		writeIfcPropertiesSpatialStructureElement(writer, object);
+		if (object.isSetElevationOfRefHeightAsString()) {
+			writer.writeln("'Elevation of Ref Height': '" + object.getElevationOfRefHeightAsString() + "',");	
+		}
+		else if (object.isSetElevationOfRefHeight()) {
+			writer.writeln("'Elevation of Ref Height': " + new DecimalFormat("#.##").format(object.getElevationOfRefHeight()) + ",");			
+		}	
+		if (object.isSetElevationOfTerrainAsString()) {
+			writer.writeln("'Elevation of Terrain': '" + object.getElevationOfTerrainAsString() + "',");
+		}
+		else if (object.isSetElevationOfTerrain()) {
+			writer.writeln("'Elevation of Terrain': '" + object.getElevationOfTerrain() + "',");
+		}
+		if (object.isSetBuildingAddress()) {
+			// TODO: Format address
+			//IfcPostalAddress getBuildingAddress();
+		}
+	}
+	private static void writeIfcPropertiesBuildingStorey(JsWriter writer, IfcBuildingStorey object) {
+		writeIfcPropertiesSpatialStructureElement(writer, object);
+		if (object.isSetElevationAsString()) {
+			writer.writeln("'Elevation': '" + object.getElevationAsString() + "',");
+		}
+		if (object.isSetElevation()) {
+			writer.writeln("'Elevation': " + new DecimalFormat("#.##").format(object.getElevation()) + ",");
+		}
+	}
+	private static void writeIfcPropertiesElement(JsWriter writer, IfcElement object) {
+		writeIfcPropertiesProduct(writer, object);
+		if (object.isSetTag()) {
+			writer.writeln("'Tag': " + object.getTag() + "',");
+		}		
+		if (object.getFillsVoids() != null && !object.getFillsVoids().isEmpty()) {
+			for (IfcRelFillsElement rel : object.getFillsVoids()) {
+				// todo
+			}
+		}
+		if (object.getConnectedTo() != null && !object.getConnectedTo().isEmpty()) {
+			for (IfcRelConnectsElements rel : object.getConnectedTo()) {
+				// todo
+			}
+		}
+		if (object.getHasCoverings() != null && !object.getHasCoverings().isEmpty()) {
+			for (IfcRelCoversBldgElements rel : object.getHasCoverings()) {
+				// todo
+			}
+		}
+		if (object.getHasProjections() != null && !object.getHasProjections().isEmpty()) {
+			for (IfcRelProjectsElement rel : object.getHasProjections()) {
+				// todo
+			}
+		}
+		if (object.getHasStructuralMember() != null && !object.getHasStructuralMember().isEmpty()) {
+			for (IfcRelConnectsStructuralElement rel : object.getHasStructuralMember()) {
+				// todo
+			}
+		}
+		if (object.getReferencedInStructures() != null && !object.getReferencedInStructures().isEmpty()) {
+			for (IfcRelReferencedInSpatialStructure rel : object.getReferencedInStructures()) {
+				// todo
+			}
+		}
+		if (object.getHasPorts() != null && !object.getHasPorts().isEmpty()) {
+			for (IfcRelConnectsPortToElement rel : object.getHasPorts()) {
+				// todo
+			}
+		}
+		if (object.getHasOpenings() != null && !object.getHasOpenings().isEmpty()) {
+			for (IfcRelVoidsElement rel : object.getHasOpenings()) {
+				// todo
+			}
+		}		
+		if (object.getIsConnectionRealization() != null && !object.getIsConnectionRealization().isEmpty()) {
+			for (IfcRelConnectsWithRealizingElements rel : object.getIsConnectionRealization()) {
+				// todo
+			}
+		}
+		if (object.getProvidesBoundaries() != null && !object.getProvidesBoundaries().isEmpty()) {
+			for (IfcRelSpaceBoundary rel : object.getProvidesBoundaries()) {
+				// todo
+			}
+		}
+		if (object.getConnectedFrom() != null && !object.getConnectedFrom().isEmpty()) {
+			for (IfcRelConnectsElements rel : object.getConnectedFrom()) {
+				// todo
+			}
+		}
+		if (object.getContainedInStructure() != null && !object.getContainedInStructure().isEmpty()) {
+			for (IfcRelContainedInSpatialStructure rel : object.getContainedInStructure()) {
+				// todo
+			}
+		}
+	}
+	
+	private static void writeIfcPropertiesSpatialStructureElement(JsWriter writer, IfcSpatialStructureElement object) {
+		writeIfcPropertiesProduct(writer, object);
+		if (object.isSetLongName()) {
+			writer.writeln("'Long Name': '" + object.getLongName() + "',");
+		}
+		if (object.getCompositionType() != null) {
+			writer.writeln("'Composition Type': '" + object.getCompositionType().toString() + "',"); 
+		}
+		if (object.getReferencesElements() != null && !object.getReferencesElements().isEmpty()) {
+			for (IfcRelReferencedInSpatialStructure rel : object.getReferencesElements()) {
+				// todo
+			}
+		}
+		if (object.getServicedBySystems() != null && !object.getServicedBySystems().isEmpty()) {
+			for (IfcRelServicesBuildings rel : object.getServicedBySystems()) {
+				// todo
+			}
+		}
+		if (object.getContainsElements() != null && !object.getContainsElements().isEmpty()) {
+			for (IfcRelContainedInSpatialStructure rel : object.getContainsElements()) {
+				// todo
+			}
+		}
 	}
 	
 	private static void writeIfcPropertiesProduct(JsWriter writer, IfcProduct object) {
-		//if (object.isSetObjectPlacement()) {
-		//	object.getObjectPlacement().getPlacesObject();
-		//}
-		//object.getHasAssignments();
-		//object.getHasAssociations();
-		//object.getReferencedBy();
-		//object.getRepresentation().getRepresentations().get(0).getRepresentationIdentifier();
-		
-		/* DEBUGGING:
-		// Write material info
-		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
-			writer.writeln("{");
-			writer.indent();
-			IfcRoof.class.cast(obj);
-			writer.writeln("type: 'tag',");
-			writer.writeln("tag: '" + ifcObjectType.toLowerCase() + "',");
-			
-			writer.writeln("nodes: [");
-			writer.indent();
-			
-			HashMap<String, HashSet<String>> materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
+		writeIfcPropertiesObject(writer, object);
+		if (object.isSetObjectPlacement()) {
+			object.getObjectPlacement().getPlacesObject();
 		}
-		//*/
+		if (object.isSetRepresentation()) {
+			object.getRepresentation();
+		}
+		if (object.getReferencedBy() != null && !object.getReferencedBy().isEmpty()) {
+			for (IfcRelAssignsToProduct rel : object.getReferencedBy()) {
+				// todo
+			}
+		}
 	}
 	
-	private static void writeIfcPropertiesObject(JsWriter writer, IfcObjectDefinition object) {
-		writer.writeln("'Description': '" + object.getDescription() + "',");
+	private static void writeIfcPropertiesObject(JsWriter writer, IfcObject object) {
+		writeIfcPropertiesObjectDefinition(writer, object);
+		if (object.isSetObjectType()) {
+			object.getObjectType();
+		}
+		if (object.getIsDefinedBy() != null && !object.getIsDefinedBy().isEmpty()) {
+			for (IfcRelDefines rel : object.getIsDefinedBy()) {
+				// todo
+			}
+		}
+	}
+	
+	private static void writeIfcPropertiesObjectDefinition(JsWriter writer, IfcObjectDefinition object) {
+		writeIfcPropertiesRoot(writer, object);
+		
+		if (object.getHasAssignments() != null && !object.getHasAssignments().isEmpty()) {
+			for (IfcRelAssigns rel : object.getHasAssignments()) {
+				// todo
+			}
+		}
+		if (object.getIsDecomposedBy() != null && !object.getIsDecomposedBy().isEmpty()) {
+			for (IfcRelDecomposes rel : object.getIsDecomposedBy()) {
+				// todo
+			}
+		}
+		if (object.getDecomposes() != null && !object.getDecomposes().isEmpty()) {
+			for (IfcRelDecomposes rel : object.getDecomposes()) {
+				// todo
+			}
+		}
+		if (object.getHasAssociations() != null && !object.getHasAssociations().isEmpty()) {
+			for (IfcRelAssociates rel : object.getHasAssociations()) {
+				// todo
+			}
+		}
+	}
+	
+	private static void writeIfcPropertiesRoot(JsWriter writer, IfcRoot object) {
+		// IfcGloballyUniqueId getGlobalId(); (Not needed)	
+		if (object.getOwnerHistory() != null) {
+			object.getOwnerHistory();
+		}	
+		if (object.isSetName()) {
+			object.getName();
+		}
+		if (object.getDescription() != null) {
+			writer.writeln("'Description': '" + object.getDescription() + "',");
+		}
 	}
 	
 	private void writeIfcTypes(JsWriter writer) {
