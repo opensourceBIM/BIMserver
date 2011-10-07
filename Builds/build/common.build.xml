@@ -13,28 +13,42 @@
 		<mkdir dir="builds/pluginlibs" />
 		<antcall target="Utils" />
 		<antcall target="Emf" />
-		<antcall target="Store" />
 		<antcall target="Plugins" />
 		<antcall target="Shared" />
+		<antcall target="BimServerClientLib" />
 		<antcall target="Ifc" />
 		<antcall target="XsltSerializer" />
 		<antcall target="BimServer" />
 		<antcall target="BimWebServer" />
+		<antcall target="BimCombinedServer" />
 		<antcall target="CityGML" />
 		<antcall target="Collada" />
 		<antcall target="SceneJS" />
-		<antcall target="O3d" />
-		<antcall target="IFCEngine" />
+		<antcall target="IfcEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
 		<antcall target="buildingSMARTLibrary" />
 		<antcall target="FileBasedGuidanceProvider" />
-		<antcall target="Cobie2Serializer" />
 		<antcall target="Report1Serializer" />
+	</target>
+	<target name="BimCombinedServer">
+		<mkdir dir="builds/bimcombined" />
+		<javac destdir="builds/bimcombined" debug="on" includeantruntime="false">
+			<src path="../../BimCombined/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/lib/bimserver-${version}-combined.jar">
+			<fileset dir="builds/bimcombined"/>
+		</jar>
 	</target>
 	<target name="BimWebServer">
 		<mkdir dir="builds/bimwebserver" />
-		<javac destdir="builds/bimwebserver" debug="on">
+		<javac destdir="builds/bimwebserver" debug="on" includeantruntime="false">
 			<src path="../../BimWebServer/src" />
 			<classpath>
 				<path>
@@ -46,15 +60,14 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimwebserver-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-webserver.jar">
 			<fileset dir="builds/bimwebserver"/>
 		</jar>
 	</target>
 	<target name="BimServer">
 		<mkdir dir="builds/bimserver" />
-		<javac destdir="builds/bimserver" debug="on">
+		<javac destdir="builds/bimserver" debug="on" includeantruntime="false">
 			<src path="../../BimServer/src" />
-			<src path="../../BimServer/imported" />
 			<src path="../../BimServer/generated" />
 			<classpath>
 				<path>
@@ -68,9 +81,31 @@
 			<fileset dir="builds/bimserver"/>
 		</jar>
 	</target>
+	<target name="BimServerClientLib">
+		<mkdir dir="builds/bimserverclientlib" />
+		<javac destdir="builds/bimserverclientlib" debug="on" fork="false" includeantruntime="false">
+			<src path="../../BimServerClientLib/src" />
+			<src path="../../BimServerClientLib/generated" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<copy todir="builds/bimserverclientlib">
+			<fileset file="${buildtargets}/shared/service.proto" />
+			<fileset file="${buildtargets}/shared/notification.proto" />
+			<fileset file="${buildtargets}/shared/service.desc" />
+			<fileset file="${buildtargets}/shared/notification.desc" />
+		</copy>
+		<jar destfile="builds/lib/bimserver-${version}-client-lib.jar">
+			<fileset dir="builds/bimserverclientlib"/>
+		</jar>
+	</target>
 	<target name="Utils">
 		<mkdir dir="builds/utils" />
-		<javac destdir="builds/utils" debug="on" fork="false">
+		<javac destdir="builds/utils" debug="on" fork="false" includeantruntime="false">
 			<src path="../../Utils/src" />
 			<classpath>
 				<path>
@@ -79,13 +114,13 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-utils-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-utils.jar">
 			<fileset dir="builds/utils"/>
 		</jar>
 	</target>
 	<target name="FileBasedGuidanceProvider">
 		<mkdir dir="builds/filebasedguidanceprovider" />
-		<javac destdir="builds/filebasedguidanceprovider" debug="on" fork="false">
+		<javac destdir="builds/filebasedguidanceprovider" debug="on" fork="false" includeantruntime="false">
 			<src path="../../FileBasedGuidanceProvider/src" />
 			<classpath>
 				<path>
@@ -99,19 +134,17 @@
 			<fileset dir="../../FileBasedGuidanceProvider/plugin"></fileset>
 		</copy>
 		<copy todir="builds/filebasedguidanceprovider">
-			<fileset file="../../FileBasedGuidanceProvider/ignore.xml"/>
+			<fileset dir="../../FileBasedGuidanceProvider">
+				<include name="*.xml" />
+			</fileset>
 		</copy>
-		<mkdir dir="builds/filebasedguidanceprovider/ignoreexceptions"/>
-		<copy todir="builds/filebasedguidanceprovider/ignoreexceptions">
-			<fileset dir="../../FileBasedGuidanceProvider/ignoreexceptions"/>
-		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-filebasedguidanceprovider-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-filebasedguidanceprovider.jar">
 			<fileset dir="builds/filebasedguidanceprovider"/>
 		</jar>
 	</target>
 	<target name="buildingSMARTLibrary">
 		<mkdir dir="builds/buildingSMARTLibrary" />
-		<javac destdir="builds/buildingSMARTLibrary" debug="on">
+		<javac destdir="builds/buildingSMARTLibrary" debug="on" includeantruntime="false">
 			<src path="../../buildingSMARTLibrary/src" />
 			<classpath>
 				<path>
@@ -128,29 +161,14 @@
 		<copy todir="builds/buildingSMARTLibrary/plugin">
 			<fileset dir="../../buildingSMARTLibrary/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-buildingSMARTLibrary-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-buildingSMARTLibrary.jar">
 			<fileset dir="builds/buildingSMARTLibrary"/>
 		</jar>
 	</target>
-	<target name="Store">
-		<mkdir dir="builds/store" />
-		<javac destdir="builds/store" debug="on">
-			<src path="../../Store/generated" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/lib/bimserver-store-${version}.jar">
-			<fileset dir="builds/store"/>
-		</jar>
-	</target>
-	<target name="IFCEngine">
+	<target name="IfcEngine">
 		<mkdir dir="builds/ifcengine" />
-		<javac destdir="builds/ifcengine" debug="on">
-			<src path="../../IFCEngine/src" />
+		<javac destdir="builds/ifcengine" debug="on" includeantruntime="false">
+			<src path="../../IfcEngine/src" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
@@ -160,18 +178,18 @@
 		</javac>
 		<mkdir dir="builds/ifcengine/plugin"/>
 		<copy todir="builds/ifcengine/lib">
-			<fileset dir="../../IFCEngine/lib"/>
+			<fileset dir="../../IfcEngine/lib"/>
 		</copy>
 		<copy todir="builds/ifcengine/plugin">
-			<fileset dir="../../IFCEngine/plugin"></fileset>
+			<fileset dir="../../IfcEngine/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-ifcengine-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-ifcengine.jar">
 			<fileset dir="builds/ifcengine"/>
 		</jar>
 	</target>
 	<target name="IfcPlugins">
 		<mkdir dir="builds/ifcplugins" />
-		<javac destdir="builds/ifcplugins" debug="on">
+		<javac destdir="builds/ifcplugins" debug="on" includeantruntime="false">
 			<src path="../../IfcPlugins/src" />
 			<classpath>
 				<path>
@@ -184,13 +202,13 @@
 		<copy todir="builds/ifcplugins/plugin">
 			<fileset dir="../../IfcPlugins/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-ifcplugins-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-ifcplugins.jar">
 			<fileset dir="builds/ifcplugins"/>
 		</jar>
 	</target>
 	<target name="MiscSerializers">
 		<mkdir dir="builds/miscserializers" />
-		<javac destdir="builds/miscserializers" debug="on">
+		<javac destdir="builds/miscserializers" debug="on" includeantruntime="false">
 			<src path="../../MiscSerializers/src" />
 			<classpath>
 				<path>
@@ -203,13 +221,13 @@
 		<copy todir="builds/miscserializers/plugin">
 			<fileset dir="../../MiscSerializers/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-miscserializers-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-miscserializers.jar">
 			<fileset dir="builds/miscserializers"/>
 		</jar>
 	</target>
 	<target name="XsltSerializer">
 		<mkdir dir="builds/xsltserializer" />
-		<javac destdir="builds/xsltserializer" debug="on">
+		<javac destdir="builds/xsltserializer" debug="on" includeantruntime="false">
 			<src path="../../XsltSerializer/src" />
 			<classpath>
 				<path>
@@ -218,12 +236,12 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-xsltserializer-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-xsltserializer.jar">
 			<fileset dir="builds/xsltserializer"/>
 		</jar>
 	</target>	<target name="Cobie2Serializer">
 		<mkdir dir="builds/cobie2serializer" />
-		<javac destdir="builds/cobie2serializer" debug="on">
+		<javac destdir="builds/cobie2serializer" debug="on" includeantruntime="false">
 			<src path="../../Cobie2Serializer/src" />
 			<classpath>
 				<path>
@@ -238,13 +256,13 @@
 		<copy todir="builds/cobie2serializer/plugin">
 			<fileset dir="../../Cobie2Serializer/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-cobie2serializer-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-cobie2serializer.jar">
 			<fileset dir="builds/cobie2serializer"/>
 		</jar>
 	</target>
 	<target name="Report1Serializer">
 		<mkdir dir="builds/report1serializer" />
-		<javac destdir="builds/report1serializer" debug="on">
+		<javac destdir="builds/report1serializer" debug="on" includeantruntime="false">
 			<src path="../../Report1Serializer/src" />
 			<classpath>
 				<path>
@@ -260,13 +278,13 @@
 		<copy todir="builds/report1serializer/plugin">
 			<fileset dir="../../Report1Serializer/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-report1serializer-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-report1serializer.jar">
 			<fileset dir="builds/report1serializer"/>
 		</jar>
 	</target>
 	<target name="Collada">
 		<mkdir dir="builds/collada" />
-		<javac destdir="builds/collada" debug="on">
+		<javac destdir="builds/collada" debug="on" includeantruntime="false">
 			<src path="../../Collada/src" />
 			<classpath>
 				<path>
@@ -279,13 +297,13 @@
 		<copy todir="builds/collada/plugin">
 			<fileset dir="../../Collada/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-collada-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-collada.jar">
 			<fileset dir="builds/collada"/>
 		</jar>
 	</target>
 	<target name="SceneJS">
 		<mkdir dir="builds/scenejs" />
-		<javac destdir="builds/scenejs" debug="on">
+		<javac destdir="builds/scenejs" debug="on" includeantruntime="false">
 			<src path="../../SceneJS/src" />
 			<classpath>
 				<path>
@@ -298,32 +316,13 @@
 		<copy todir="builds/scenejs/plugin">
 			<fileset dir="../../SceneJS/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-scenejs-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-scenejs.jar">
 			<fileset dir="builds/scenejs"/>
-		</jar>
-	</target>
-	<target name="O3d">
-		<mkdir dir="builds/o3d" />
-		<javac destdir="builds/o3d" debug="on">
-			<src path="../../O3d/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<mkdir dir="builds/o3d/plugin"/>
-		<copy todir="builds/o3d/plugin">
-			<fileset dir="../../O3d/plugin"></fileset>
-		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-o3d-${version}.jar">
-			<fileset dir="builds/o3d"/>
 		</jar>
 	</target>
 	<target name="CityGML">
 		<mkdir dir="builds/citygml" />
-		<javac destdir="builds/citygml" debug="on">
+		<javac destdir="builds/citygml" debug="on" includeantruntime="false">
 			<src path="../../CityGML/src" />
 			<src path="../../CityGML/generated" />
 			<classpath>
@@ -344,13 +343,13 @@
 		<copy todir="builds/citygml/plugin">
 			<fileset dir="../../CityGML/plugin"></fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-citygml-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-${version}-citygml.jar">
 			<fileset dir="builds/citygml"/>
 		</jar>
 	</target>
 	<target name="Ifc">
 		<mkdir dir="builds/ifc" />
-		<javac destdir="builds/ifc" debug="on">
+		<javac destdir="builds/ifc" debug="on" includeantruntime="false">
 			<src path="../../Ifc/src" />
 			<classpath>
 				<path>
@@ -359,14 +358,15 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-ifc-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-ifc.jar">
 			<fileset dir="builds/ifc"/>
 		</jar>
 	</target>
 	<target name="Emf">
 		<mkdir dir="builds/emf" />
-		<javac destdir="builds/emf" debug="on">
+		<javac destdir="builds/emf" debug="on" includeantruntime="false">
 			<src path="../../Emf/src" />
+			<src path="../../Emf/generated" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
@@ -374,13 +374,13 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-emf-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-emf.jar">
 			<fileset dir="builds/emf"/>
 		</jar>
 	</target>
 	<target name="Client">
 		<mkdir dir="builds/client" />
-		<javac destdir="builds/client" debug="on">
+		<javac destdir="builds/client" debug="on" includeantruntime="false">
 			<src path="../../Client/src" />
 			<classpath>
 				<path>
@@ -390,15 +390,16 @@
 			</classpath>
 		</javac>
 		<copy file="../../Client/src/org/bimserver/client/logo_small.png" todir="builds/client/org/bimserver/client" />
-		<jar destfile="builds/lib/bimserver-client-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-client.jar">
 			<fileset dir="builds/client"/>
 		</jar>
 	</target>
 	<target name="Shared">
 		<mkdir dir="builds/shared" />
-		<javac destdir="builds/shared" debug="on">
+		<javac destdir="builds/shared" debug="on" includeantruntime="false">
 			<src path="../../Shared/src" />
 			<src path="../../Shared/generated" />
+			<src path="../../Shared/imported" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
@@ -406,13 +407,13 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-shared-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-shared.jar">
 			<fileset dir="builds/shared"/>
 		</jar>
 	</target>
 	<target name="Plugins">
 		<mkdir dir="builds/plugins" />
-		<javac destdir="builds/plugins" debug="on">
+		<javac destdir="builds/plugins" debug="on" includeantruntime="false">
 			<src path="../../Plugins/src" />
 			<classpath>
 				<path>
@@ -421,7 +422,7 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-plugins-${version}.jar">
+		<jar destfile="builds/lib/bimserver-${version}-plugins.jar">
 			<fileset dir="builds/plugins"/>
 		</jar>
 	</target>
@@ -441,6 +442,9 @@
 			<fileset file="${buildtargets}/shared/version.xml" />
 			<fileset file="${buildtargets}/shared/web.xml" />
 			<fileset file="${buildtargets}/shared/service.proto" />
+			<fileset file="${buildtargets}/shared/notification.proto" />
+			<fileset file="${buildtargets}/shared/service.desc" />
+			<fileset file="${buildtargets}/shared/notification.desc" />
 		</copy>
 		<copy todir="builds/BuildJar/home" overwrite="true">
 			<fileset file="${defaultsettings}/shared/settings.xml" />
@@ -487,12 +491,12 @@
 			<fileset dir="builds/pluginlibs" />
 		</copy>
 		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildJar/classes/org/bimserver/database/migrations/steps" />
-		<copy file="../../Store/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildJar/classes/org/bimserver/models/ifc2x3/impl" />
+		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildJar/classes/org/bimserver/models/ifc2x3/impl" />
 		<jar jarfile="builds/BuildJar/lib/bimserver.jar" manifest="${buildtargets}/${target}/MAIN-MANIFEST.MF">
 			<fileset dir="builds/BuildJar/classes" />
 		</jar>
 		<delete dir="builds/BuildJar/classes" />
-		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander" />
+		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander"  includeantruntime="false"/>
 		<copy todir="builds/BuildJar/org/bimserver">
 			<fileset dir="../../BimWebServer/expander/org/bimserver">
 				<include name="*.png" />
@@ -549,7 +553,7 @@
 		<copy file="${buildtargets}/${target}/web.xml" todir="builds/BuildWar/WEB-INF" overwrite="true"/>
 		
 		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/database/migrations/steps" />
-		<copy file="../../Store/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/models/ifc2x3/impl" />
+		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/models/ifc2x3/impl" />
 
 		<copy todir="builds/BuildWar" overwrite="true">
 			<fileset dir="${buildtargets}/${target}/jsp" />
@@ -601,7 +605,6 @@
 		<mkdir dir="builds/lib" />
 		<antcall target="Utils" />
 		<antcall target="Emf" />
-		<antcall target="Store" />
 		<antcall target="Plugins" />
 		<antcall target="Shared" />
 		<antcall target="Client"/>
@@ -669,9 +672,6 @@
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Shared">
 			<fileset dir="../../Shared" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Store">
-			<fileset dir="../../Store" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Tests">
 			<fileset dir="../../Tests" />

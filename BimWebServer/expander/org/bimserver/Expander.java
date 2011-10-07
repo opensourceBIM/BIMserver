@@ -64,6 +64,15 @@ public class Expander extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
 	private JarSettings jarSettings = JarSettings.readFromFile();
+	private JTextField addressField;
+	private JTextField portField;
+	private JTextField heapSizeField;
+	private JTextField permSizeField;
+	private JTextField stackSizeField;
+	private JButton browserHomeDir;
+	private JButton browserJvm;
+	private JTextField jvmField;
+	private JTextField homeDirField;
 
 	public static void main(String[] args) {
 		new Expander().start();
@@ -106,8 +115,8 @@ public class Expander extends JFrame {
 		JLabel jvmLabel = new JLabel("JVM");
 		fields.add(jvmLabel);
 
-		final JTextField jvmField = new JTextField(jarSettings.getJvm());
-		JButton browserJvm = new JButton("Browse...");
+		jvmField = new JTextField(jarSettings.getJvm());
+		browserJvm = new JButton("Browse...");
 		browserJvm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -129,8 +138,8 @@ public class Expander extends JFrame {
 		JLabel homeDirLabel = new JLabel("Home directory");
 		fields.add(homeDirLabel);
 
-		final JTextField homeDirField = new JTextField(jarSettings.getHomedir());
-		JButton browserHomeDir = new JButton("Browse...");
+		homeDirField = new JTextField(jarSettings.getHomedir());
+		browserHomeDir = new JButton("Browse...");
 		browserHomeDir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -152,31 +161,31 @@ public class Expander extends JFrame {
 		JLabel addressLabel = new JLabel("Address");
 		fields.add(addressLabel);
 
-		final JTextField addressField = new JTextField(jarSettings.getAddress());
+		addressField = new JTextField(jarSettings.getAddress());
 		fields.add(addressField);
 
 		JLabel portLabel = new JLabel("Port");
 		fields.add(portLabel);
 
-		final JTextField portField = new JTextField(jarSettings.getPort() + "");
+		portField = new JTextField(jarSettings.getPort() + "");
 		fields.add(portField);
 
 		JLabel heapSizeLabel = new JLabel("Max Heap Size");
 		fields.add(heapSizeLabel);
 
-		final JTextField heapSizeField = new JTextField(jarSettings.getHeapsize());
+		heapSizeField = new JTextField(jarSettings.getHeapsize());
 		fields.add(heapSizeField);
 
 		JLabel permSizeLabel = new JLabel("Max Perm Size");
 		fields.add(permSizeLabel);
 
-		final JTextField permSizeField = new JTextField(jarSettings.getPermsize());
+		permSizeField = new JTextField(jarSettings.getPermsize());
 		fields.add(permSizeField);
 
 		JLabel stackSizeLabel = new JLabel("Stack Size");
 		fields.add(stackSizeLabel);
 
-		final JTextField stackSizeField = new JTextField(jarSettings.getStacksize());
+		stackSizeField = new JTextField(jarSettings.getStacksize());
 		fields.add(stackSizeField);
 
 		SpringUtilities.makeCompactGrid(fields, 7, 2, // rows, cols
@@ -194,6 +203,7 @@ public class Expander extends JFrame {
 						@Override
 						public void run() {
 							if (jvmField.getText().equalsIgnoreCase("default") || new File(jvmField.getText()).exists()) {
+								setComponentsEnabled(false);
 								File file = expand();
 								startStopButton.setText("Stop");
 								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), permSizeField.getText(), jvmField.getText(), homeDirField.getText());
@@ -208,6 +218,7 @@ public class Expander extends JFrame {
 						System.out.println("Server has been shut down");
 						exec = null;
 						startStopButton.setText("Start");
+						setComponentsEnabled(true);
 					}
 				}
 			}
@@ -299,6 +310,18 @@ public class Expander extends JFrame {
 		setVisible(true);
 	}
 
+	private void setComponentsEnabled(boolean enabled) {
+		addressField.setEditable(enabled);
+		portField.setEditable(enabled);
+		heapSizeField.setEditable(enabled);
+		stackSizeField.setEditable(enabled);
+		permSizeField.setEditable(enabled);
+		jvmField.setEditable(enabled);
+		homeDirField.setEditable(enabled);
+		browserHomeDir.setEnabled(enabled);
+		browserJvm.setEnabled(enabled);
+	}
+	
 	private void start(File destDir, String address, String port, String heapsize, String stacksize, String permsize, String jvmPath, String homedir) {
 		try {
 			String command = "";
@@ -339,7 +362,7 @@ public class Expander extends JFrame {
 			if (command.endsWith(File.pathSeparator)) {
 				command = command.substring(0, command.length()-1);
 			}
-			command += " org.bimserver.web.JarBimWebServer";
+			command += " org.bimserver.combined.JarBimWebServer";
 			command += " address=" + address;
 			command += " port=" + port;
 			command += " homedir=\"" + homedir + "\"";

@@ -77,6 +77,5 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/IfcPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -17,7 +17,6 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
@@ -30,18 +29,20 @@ import org.bimserver.client.channels.DirectChannel;
 import org.bimserver.client.channels.ProtocolBuffersChannel;
 import org.bimserver.client.channels.SoapChannel;
 import org.bimserver.client.notifications.SocketNotificationsClient;
-import org.bimserver.ifc.EmfSerializerDataSource;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
@@ -62,8 +63,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 		this.pluginManager = pluginManager;
 		protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
-			protocolBuffersMetaData.load(new File("../BimServerClientLib/src/service.desc"));
-			protocolBuffersMetaData.load(new File("../BimServerClientLib/src/notification.desc"));
+			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
+			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("notification.desc"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -172,7 +173,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 			Integer downloadId = getServiceInterface().download(roid, serializer.getName(), true);
 			SDownloadResult downloadData = getServiceInterface().getDownloadData(downloadId);
 			DataHandler file = downloadData.getFile();
-			IfcStepDeserializer deserializer = new IfcStepDeserializer();
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("application/ifc", true);
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(schema);
 			IfcModelInterface model = deserializer.read(file.getInputStream(), "", true, 0);
 			return model;
@@ -182,19 +184,24 @@ public class BimServerClient implements ConnectDisconnectListener {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (PluginException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
 
 	public long uploadModel(long poid, String comment, IfcModelInterface model) {
 		try {
-			IfcStepSerializer serializer = new IfcStepSerializer();
+			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("ifc", true);
+			EmfSerializer serializer = serializerPlugin.createSerializer();
 			serializer.init(model, null, pluginManager);
 			SCheckinResult checkinSync = getServiceInterface().checkinSync(poid, comment, "IfcStepDeserializer", 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false);
 			return checkinSync.getRevisionId();
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (PluginException e) {
 			e.printStackTrace();
 		}
 		return -1;

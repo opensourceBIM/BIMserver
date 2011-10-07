@@ -31,7 +31,7 @@ public class FileBasedGuidanceProviderPlugin implements GuidanceProviderPlugin {
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		fileBasedGuidanceProvider = new FileBasedGuidanceProvider(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE));
+		fileBasedGuidanceProvider = new FileBasedGuidanceProvider(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), pluginManager.getPluginContext(this));
 		initialized = true;
 	}
 
