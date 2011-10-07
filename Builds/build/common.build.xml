@@ -524,8 +524,12 @@
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
-			<fileset file="${buildtargets}/shared/service.proto" />
 
+			<fileset file="${buildtargets}/shared/service.proto" />
+			<fileset file="${buildtargets}/shared/notification.proto" />
+			<fileset file="${buildtargets}/shared/service.desc" />
+			<fileset file="${buildtargets}/shared/notification.desc" />
+			
 			<fileset file="${defaultsettings}/shared/settings.xml" />
 			<fileset file="${defaultsettings}/${target}/settings.xml" />
 
@@ -571,7 +575,7 @@
 				<include name="**/*.jar" />
 				<exclude name="ant-1.6.5.jar" />
 				<exclude name="core-3.1.1.jar" />
-				<exclude name="cxf/geronimo-servlet_3.0_spec-1.0.jar" />
+				<exclude name="*servlet*.jar" />
 			</fileset>
 		</copy>
 		<antcall target="Build"/>
