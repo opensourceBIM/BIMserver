@@ -27,6 +27,7 @@ import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
@@ -92,7 +93,10 @@ public class JarBimWebServer {
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create() {
-				return new BimServerClient(bimServer.getPluginManager());
+				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+//				bimServerClient.connectProtocolBuffers("localhost", 8020);
+				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
+				return bimServerClient;
 			}
 		};
 	 	

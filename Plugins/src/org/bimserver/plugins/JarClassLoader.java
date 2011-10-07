@@ -82,7 +82,7 @@ public class JarClassLoader extends ClassLoader {
 	protected URL findResource(final String name) {
 		if (map.containsKey(name)) {
 			try {
-				return new URL(new URL("jar:" + new File(jarFile.getName()).toURI().toURL() + "!/" + name), name, new URLStreamHandler() {
+				return new URL(new URL("jar:" + jarFile.toURI().toURL() + "!/" + name), name, new URLStreamHandler() {
 					@Override
 					protected URLConnection openConnection(URL u) throws IOException {
 						return new URLConnection(u) {

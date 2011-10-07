@@ -26,6 +26,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.guidanceproviders.FieldIgnoreMap;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.ecore.EClass;
@@ -38,9 +39,9 @@ public class FileBasedGuidanceProvider extends FieldIgnoreMap {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileBasedGuidanceProvider.class);
 	private JAXBContext jaxbContext;
 
-	public FileBasedGuidanceProvider(Set<Ifc2x3Package> set) {
+	public FileBasedGuidanceProvider(Set<Ifc2x3Package> set, PluginContext pluginContext) {
 		super(set);
-		URL ignoreFile = getClass().getClassLoader().getResource("ignore.xml");
+		URL ignoreFile = pluginContext.getResourceAsUrl("ignore.xml");
 		LOGGER.info("Reading general ignore list from \"" + StringUtils.getPrettyFileUrl(ignoreFile) + "\"");
 		try {
 			jaxbContext = JAXBContext.newInstance(PackageDefinition.class);
@@ -54,7 +55,7 @@ public class FileBasedGuidanceProvider extends FieldIgnoreMap {
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass) eClassifier;
-					URL resource = getClass().getClassLoader().getResource("ignoreexceptions/" + eClass.getName() + ".xml");
+					URL resource = pluginContext.getResourceAsUrl(eClass.getName() + ".xml");
 					if (resource != null) {
 						processResource(eClass, resource);
 					}
@@ -66,11 +67,11 @@ public class FileBasedGuidanceProvider extends FieldIgnoreMap {
 	}
 	
 	private void processResource(EClass eClass, URL resource) throws JAXBException {
+		LOGGER.info("Reading specific non-ignore list for " + eClass.getName() + " from \"" + StringUtils.getPrettyFileUrl(resource) + "\"");
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 		PackageDefinition packageDefinition = (PackageDefinition) unmarshaller.unmarshal(resource);
 		HashSet<StructuralFeatureIdentifier> hashSet = new HashSet<StructuralFeatureIdentifier>();
 		specificMap.put(eClass, hashSet);
-		LOGGER.info("Reading specific non-ignore list for " + eClass.getName() + " from \"" + StringUtils.getPrettyFileUrl(resource) + "\"");
 		for (ClassDefinition classDefinition : packageDefinition.getClassDefinitions()) {
 			for (FieldDefinition fieldDefinition : classDefinition.getFieldDefinitions()) {
 				hashSet.add(new StructuralFeatureIdentifier(classDefinition.getName(), fieldDefinition.getName()));

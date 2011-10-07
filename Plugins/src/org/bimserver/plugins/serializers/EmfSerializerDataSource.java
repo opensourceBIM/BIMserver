@@ -1,4 +1,4 @@
-package org.bimserver.ifc;
+package org.bimserver.plugins.serializers;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -23,7 +23,6 @@ import java.io.OutputStream;
 
 import javax.activation.DataSource;
 
-import org.bimserver.plugins.serializers.EmfSerializer;
 
 public class EmfSerializerDataSource implements DataSource {
 
