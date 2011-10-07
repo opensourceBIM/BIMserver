@@ -576,7 +576,7 @@
 				<exclude name="ant-1.6.5.jar" />
 				<exclude name="core-3.1.1.jar" />
 				<exclude name="**/*servlet*" />
-				<exclude name="**/*jetty*" />
+				<exclude name="**/jetty/**" />
 			</fileset>
 		</copy>
 		<antcall target="Build"/>
