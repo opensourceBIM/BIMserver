@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
@@ -86,10 +85,6 @@ import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.Service;
 import org.bimserver.webservices.ServiceInterfaceFactory;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.bio.SocketConnector;
-import org.eclipse.jetty.server.session.HashSessionIdManager;
-import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -283,21 +278,7 @@ public class BimServer {
 
 			serviceFactory = new ServiceInterfaceFactory(this);
 			if (config.isStartEmbeddedWebServer()) {
-				Server server = new Server();
-				HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
-				server.setSessionIdManager(hashSessionIdManager);
-				SocketConnector socketConnector = new SocketConnector();
-				socketConnector.setPort(8080);
-				socketConnector.setHost("localhost");
-				server.addConnector(socketConnector);
-				WebAppContext context = new WebAppContext(server, "", "/");
-				context.setResourceBase("www");
-				context.getServletContext().setAttribute("bimserver", this);
-				try {
-					server.start();
-				} catch (Exception e) {
-					LOGGER.error("", e);
-				}
+				new EmbeddedWebServer().start();
 			}
 
 			diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);

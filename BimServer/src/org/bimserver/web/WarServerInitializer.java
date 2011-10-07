@@ -57,6 +57,7 @@ public class WarServerInitializer implements ServletContextListener {
 		config.setHomeDir(homeDir);
 		config.setResourceFetcher(resourceFetcher);
 		config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
+		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
 		
 		File file = resourceFetcher.getFile("plugins");
