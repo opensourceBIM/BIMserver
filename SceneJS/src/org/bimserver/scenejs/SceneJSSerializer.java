@@ -761,7 +761,9 @@ public class SceneJSSerializer extends BimModelSerializer {
 			writer.indent();
 			
 			writer.writeln("type: 'tag',");
-			writer.writeln("tag: '" + ifcObjectType.toLowerCase() + "',");
+			String tagName = ifcObjectType.toLowerCase();
+			writer.writeln("tag: '" + tagName + "',");
+			writer.writeln("id: '" + tagName + "',");
 			
 			writer.writeln("nodes: [");
 			writer.indent();
