@@ -441,7 +441,7 @@
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
-		<zip destfile="builds/bimserver-client-lib-${version}.jar">
+		<zip destfile="builds/bimserver-client-lib-${version}.zip">
 			<fileset dir="builds/BuildLib">
 				<exclude name="*.svn" />
 			</fileset>

@@ -18,7 +18,7 @@
 			<property name="target" value="jar" description="Create the BIMserver client library" />
 		</ant>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${version}">
-			<fileset file="builds/bimserverclientlib-${version}.jar" />
+			<fileset file="builds/bimserver-client-lib-${version}.zip" />
 		</ftp>
 		<ant antfile="common.build.xml" target="buildclient"></ant>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${version}">
