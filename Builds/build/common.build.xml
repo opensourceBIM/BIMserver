@@ -762,11 +762,8 @@
 		<copy todir="builds/BuildSource/BIMserver/Ifc">
 			<fileset dir="../../Ifc" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/IFCEngine">
-			<fileset dir="../../IFCEngine" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/O3d">
-			<fileset dir="../../O3d" />
+		<copy todir="builds/BuildSource/BIMserver/IfcEngine">
+			<fileset dir="../../IfcEngine" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Shared">
 			<fileset dir="../../Shared" />
