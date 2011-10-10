@@ -26,7 +26,7 @@ import javax.servlet.ServletContextListener;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;

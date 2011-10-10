@@ -173,7 +173,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 			Integer downloadId = getServiceInterface().download(roid, serializer.getName(), true);
 			SDownloadResult downloadData = getServiceInterface().getDownloadData(downloadId);
 			DataHandler file = downloadData.getFile();
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("application/ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(schema);
 			IfcModelInterface model = deserializer.read(file.getInputStream(), "", true, 0);
