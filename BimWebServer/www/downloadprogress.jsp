@@ -1,3 +1,5 @@
+<%@page import="org.bimserver.interfaces.objects.SLongActionState"%>
+<%@page import="org.bimserver.interfaces.objects.SActionState"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <jsp:useBean id="loginManager" scope="session"
 	class="org.bimserver.web.LoginManager" />
@@ -8,14 +10,14 @@
 %>
 <div id="downloadStateSpan">
 <%
-	LongActionState dls = loginManager.getService().getDownloadState(longActionId);
+	SLongActionState dls = loginManager.getService().getDownloadState(longActionId);
 %>
 	<div id="progressbar" style="width: 100px; position: relative; border: 1px solid black;">
 		<div style="width: <%=dls.getProgress()%>px; background-color: #0000ff; position: absolute; top: 0; left: 0; height: 100%;"></div>
 		<div style="width: 100px; text-align: center; position: relative;"><%=dls.getProgress()%>%</div>
 	</div>
 <%
-	if (dls.getState() == ActionState.FINISHED) {
+	if (dls.getState() == SActionState.FINISHED) {
 %> 
 <a id="downloadlink" href="/download?longActionId=<%=longActionId%>&zip=<%=zip%>"><label id="downloadlinkclick" for="downloadlink">Download</label></a>
 
