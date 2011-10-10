@@ -55,9 +55,6 @@
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
-				<path>
-					<fileset dir="../../BimWebServer/lib" />
-				</path>
 			</classpath>
 		</javac>
 		<jar destfile="builds/lib/bimserver-${version}-webserver.jar">
@@ -428,6 +425,27 @@
 	</target>
 	<property name="buildtargets" value="../build/targets" />
 	<property name="defaultsettings" value="../defaultsettings" />
+	<target name="buildbimserverclientlib">
+		<delete dir="builds"/>
+		<mkdir dir="builds"/>
+		<copy todir="BuildLib/lib">
+			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-shared.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-plugins.jar"/>
+		</copy>
+		<copy todir="builds/BuildLib/dep" flatten="true">
+			<fileset dir="../../BimServer/lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<zip destfile="builds/bimserverclientlib-${version}.jar">
+			<fileset dir="builds/BuildLib">
+				<exclude name="*.svn" />
+			</fileset>
+		</zip>
+	</target>
 	<target name="buildjar">
 		<delete dir="builds"/>
 		<mkdir dir="builds" />
@@ -476,9 +494,6 @@
 		</copy>
 		<copy todir="builds/BuildJar/lib" flatten="true">
 			<fileset dir="../../BimServer/lib">
-				<include name="**/*.jar" />
-			</fileset>
-			<fileset dir="../../BimWebServer/lib">
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
