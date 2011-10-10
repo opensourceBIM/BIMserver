@@ -753,8 +753,11 @@
 		<copy todir="builds/BuildSource/BIMserver/Emf">
 			<fileset dir="../../Emf" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/GeneratedClient">
-			<fileset dir="../../GeneratedClient" />
+		<copy todir="builds/BuildSource/BIMserver/GeneratedSoapClient">
+			<fileset dir="../../GeneratedSoapClient" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/GeneratedProtocolBuffersClient">
+			<fileset dir="../../GeneratedProtocolBuffersClient" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Ifc">
 			<fileset dir="../../Ifc" />
