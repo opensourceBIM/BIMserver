@@ -200,8 +200,8 @@ public class BimServer {
 			clashDetectionCache = new ClashDetectionCache();
 			compareCache = new CompareCache();
 		} catch (Throwable e) {
-			serverInfoManager.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
+			serverInfoManager.setErrorMessage(e.getMessage());
 		}
 	}
 
