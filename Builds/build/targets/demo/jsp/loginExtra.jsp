@@ -9,10 +9,9 @@
 	Date lastReset = null;
 	try {
 		lastReset = loginManager.getSystemService().getLastDatabaseReset();
-	} catch (UserException e) {
+	} catch (ServiceException e) {
 		// Ignore		
 	}
 %>
-
 <div class="info">Last database reset: <%=lastReset == null ? "Unknown" : dateFormat.format(lastReset) %><br/>
-Version: <%=checkVersion.getLocalVersion().getVersion() + " (" + dateFormat.format(checkVersion.getLocalVersion().getDate()) + ")"%></div>
+Version: <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision() + " (" + dateFormat.format(version.getDate()) + ")"%></div>
