@@ -1,4 +1,4 @@
-package org.bimserver.web;
+package org.bimserver.combined;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -25,13 +25,17 @@ import javax.servlet.ServletContextListener;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.web.LoginManager;
 
 public class WarServerInitializer implements ServletContextListener {
 
@@ -59,6 +63,15 @@ public class WarServerInitializer implements ServletContextListener {
 		config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
+		
+	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
+			@Override
+			public BimServerClient create() {
+				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
+				return bimServerClient;
+			}
+		};
 		
 		File file = resourceFetcher.getFile("plugins");
 		try {
