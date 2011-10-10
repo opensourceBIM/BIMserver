@@ -429,7 +429,7 @@
 		<delete dir="builds"/>
 		<mkdir dir="builds"/>
 		<antcall target="Build"/>
-		<copy todir="BuildLib/lib">
+		<copy todir="builds/BuildLib/lib">
 			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
 			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
 			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
@@ -442,6 +442,28 @@
 			</fileset>
 		</copy>
 		<zip destfile="builds/bimserver-client-lib-${version}.zip">
+			<fileset dir="builds/BuildLib">
+				<exclude name="*.svn" />
+			</fileset>
+		</zip>
+	</target>
+	<target name="buildbimserverlib">
+		<delete dir="builds"/>
+		<mkdir dir="builds"/>
+		<antcall target="Build"/>
+		<copy todir="builds/BuildLib/lib">
+			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-shared.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-plugins.jar"/>
+		</copy>
+		<copy todir="builds/BuildLib/dep" flatten="true">
+			<fileset dir="../../BimServer/lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<zip destfile="builds/bimserver-lib-${version}.zip">
 			<fileset dir="builds/BuildLib">
 				<exclude name="*.svn" />
 			</fileset>
