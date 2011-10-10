@@ -14,6 +14,12 @@
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${version}">
 			<fileset file="builds/bimserver-${version}.jar"/>
 		</ftp>
+		<ant antfile="common.build.xml" target="buildbimserverclientlib">
+			<property name="target" value="jar" description="Create the BIMserver client library" />
+		</ant>
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${version}">
+			<fileset file="builds/bimserver-client-lib-${version}.jar" />
+		</ftp>
 		<ant antfile="common.build.xml" target="buildclient"></ant>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${version}">
 			<fileset file="builds/bimserver-client-${version}.jar"/>
