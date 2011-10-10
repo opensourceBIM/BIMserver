@@ -836,8 +836,8 @@
 		<copy todir="builds/BuildSource/BIMserver/Tests">
 			<fileset dir="../../Tests" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/TestsViewer">
-			<fileset dir="../../TestsViewer" />
+		<copy todir="builds/BuildSource/BIMserver/TestViewer">
+			<fileset dir="../../TestViewer" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Utils">
 			<fileset dir="../../Utils" />
