@@ -428,6 +428,7 @@
 	<target name="buildbimserverclientlib">
 		<delete dir="builds"/>
 		<mkdir dir="builds"/>
+		<antcall target="Build"/>
 		<copy todir="BuildLib/lib">
 			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
 			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
