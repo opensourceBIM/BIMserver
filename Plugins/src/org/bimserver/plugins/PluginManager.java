@@ -225,7 +225,7 @@ public class PluginManager {
 
 	public void loadPluginsFromCurrentClassloader() {
 		try {
-			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugins/plugin.xml");
+			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
 			while (resources.hasMoreElements()) {
 				URL url = resources.nextElement();
 				LOGGER.info("Loading " + url);
