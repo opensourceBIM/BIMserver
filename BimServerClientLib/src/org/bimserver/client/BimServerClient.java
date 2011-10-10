@@ -192,7 +192,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public long uploadModel(long poid, String comment, IfcModelInterface model) {
 		try {
-			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("ifc", true);
+			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();
 			serializer.init(model, null, pluginManager);
 			SCheckinResult checkinSync = getServiceInterface().checkinSync(poid, comment, "IfcStepDeserializer", 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false);

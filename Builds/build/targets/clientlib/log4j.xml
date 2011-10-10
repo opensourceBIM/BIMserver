@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<appender name="ErrorConsole" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p %-80m (%c.java:%L) %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+        	<param name="LevelToMatch" value="ERROR" />
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter" />
+    </appender>
+	<appender name="OutConsole" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p %-80m (%c.java:%L) %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+        	<param name="LevelToMatch" value="ERROR" />
+            <param name="AcceptOnMatch" value="false"/>
+        </filter>
+	</appender>
+	<root>
+		<priority value="info" />
+		<appender-ref ref="ErrorConsole" />
+		<appender-ref ref="OutConsole" />
+	</root>
+</log4j:configuration>

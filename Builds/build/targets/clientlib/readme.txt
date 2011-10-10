@@ -1,0 +1,1 @@
+Copy all jar files from the lib and dep directories to your project and link them
