@@ -20,9 +20,12 @@ package org.bimserver.plugins;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -220,6 +223,24 @@ public class PluginManager {
 		return null;
 	}
 
+	public void loadPluginsFromCurrentClassloader() {
+		try {
+			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugins/plugin.xml");
+			while (resources.hasMoreElements()) {
+				URL url = resources.nextElement();
+				LOGGER.info("Loading " + url);
+				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
+				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor);
+			}
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		} catch (JAXBException e) {
+			LOGGER.error("", e);
+		} catch (PluginException e) {
+			LOGGER.error("", e);
+		}
+	}
+	
 	public void enablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
