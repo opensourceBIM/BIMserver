@@ -12,6 +12,10 @@
 		<property name="target" value="war" description="Create a war file" />
 		<ant antfile="common.build.xml" target="buildbimserverclientlib"></ant>
 	</target>
+	<target name="serverlib">
+		<property name="target" value="war" description="Create a war file" />
+		<ant antfile="common.build.xml" target="buildbimserverlib"></ant>
+	</target>
 	<target name="source" description="Create an eclipse workspace zipfile">
 		<ant antfile="common.build.xml" target="buildsource"></ant>
 	</target>

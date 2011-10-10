@@ -331,6 +331,7 @@ public class BimServer {
 			commandLine.start();
 			LOGGER.info("Done starting BIMserver");
 		} catch (Throwable e) {
+			e.printStackTrace();
 			serverInfoManager.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
 		}
