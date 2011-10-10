@@ -25,12 +25,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.activation.DataHandler;
-import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
+import org.bimserver.utils.ByteArrayDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +97,7 @@ public class ProtocolBuffersConverter {
 			return new Date((Long)val);
 		} else if (field.getType() == DataHandler.class) {
 			ByteString byteString = (ByteString)val;
-			return new DataHandler(new ByteArrayDataSource(byteString.toByteArray(), "data"));
+			return new DataHandler(new ByteArrayDataSource(byteString.toByteArray()));
 		} else {
 			return val;
 		}

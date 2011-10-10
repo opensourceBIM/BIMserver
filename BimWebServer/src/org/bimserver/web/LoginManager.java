@@ -18,7 +18,8 @@ package org.bimserver.web;
  *****************************************************************************/
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.client.ConnectionException;
+import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -39,7 +40,13 @@ public class LoginManager {
 	public ServiceInterface getService() {
 		if (service == null) {
 			if (bimServerClient == null) {
-				bimServerClient = bimServerClientFactory.create();
+				try {
+					bimServerClient = bimServerClientFactory.create();
+				} catch (ServiceException e) {
+					e.printStackTrace();
+				} catch (ConnectionException e) {
+					e.printStackTrace();
+				}
 			}
 			service = bimServerClient.getServiceInterface();
 		}
@@ -53,7 +60,13 @@ public class LoginManager {
 	public ServiceInterface getSystemService() {
 		if (systemService == null) {
 			if (systemBimServerClient == null) {
-				systemBimServerClient = bimServerClientFactory.create();
+				try {
+					systemBimServerClient = bimServerClientFactory.create();
+				} catch (ServiceException e) {
+					e.printStackTrace();
+				} catch (ConnectionException e) {
+					e.printStackTrace();
+				}
 			}
 			systemService = systemBimServerClient.getServiceInterface();
 		}

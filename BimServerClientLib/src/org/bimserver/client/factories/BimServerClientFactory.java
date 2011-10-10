@@ -1,4 +1,8 @@
-package org.bimserver.client;
+package org.bimserver.client.factories;
+
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.ConnectionException;
+import org.bimserver.shared.exceptions.ServiceException;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -18,5 +22,5 @@ package org.bimserver.client;
  *****************************************************************************/
 
 public interface BimServerClientFactory {
-	BimServerClient create();
+	BimServerClient create() throws ServiceException, ConnectionException;
 }

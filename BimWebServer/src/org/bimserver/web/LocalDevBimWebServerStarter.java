@@ -21,7 +21,7 @@ import java.io.File;
 import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.plugins.PluginManager;
 import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
