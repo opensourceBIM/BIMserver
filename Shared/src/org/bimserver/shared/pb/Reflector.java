@@ -28,7 +28,7 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 
-import org.apache.cxf.helpers.IOUtils;
+import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SBase;
@@ -36,13 +36,13 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 
+import com.google.protobuf.ByteString;
 import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.EnumDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.DynamicMessage.Builder;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.Message;
 import com.google.protobuf.ServiceException;
 

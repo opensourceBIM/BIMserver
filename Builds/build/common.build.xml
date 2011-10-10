@@ -236,26 +236,6 @@
 		<jar destfile="builds/lib/bimserver-${version}-xsltserializer.jar">
 			<fileset dir="builds/xsltserializer"/>
 		</jar>
-	</target>	<target name="Cobie2Serializer">
-		<mkdir dir="builds/cobie2serializer" />
-		<javac destdir="builds/cobie2serializer" debug="on" includeantruntime="false">
-			<src path="../../Cobie2Serializer/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<copy todir="builds/cobie2serializer">
-			<fileset file="../../Cobie2Serializer/_asCOBie2.xml.xsl"></fileset>
-		</copy>
-		<copy todir="builds/cobie2serializer/plugin">
-			<fileset dir="../../Cobie2Serializer/plugin"></fileset>
-		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-cobie2serializer.jar">
-			<fileset dir="builds/cobie2serializer"/>
-		</jar>
 	</target>
 	<target name="Report1Serializer">
 		<mkdir dir="builds/report1serializer" />
@@ -371,6 +351,7 @@
 				</path>
 			</classpath>
 		</javac>
+		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/emf/org/bimserver/models/ifc2x3/impl" />
 		<jar destfile="builds/lib/bimserver-${version}-emf.jar">
 			<fileset dir="builds/emf"/>
 		</jar>
@@ -429,6 +410,11 @@
 		<delete dir="builds"/>
 		<mkdir dir="builds"/>
 		<antcall target="Build"/>
+		<copy todir="builds/BuildLib">
+			<fileset file="targets/clientlib/log4j.xml"/>
+			<fileset file="targets/clientlib/readme.txt"/>
+			<fileset file="targets/clientlib/license.txt"/>
+		</copy>
 		<copy todir="builds/BuildLib/lib">
 			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
 			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
@@ -440,9 +426,17 @@
 			<fileset file="builds/pluginlibs/bimserver-${version}-ifcplugins.jar"/>
 		</copy>
 		<copy todir="builds/BuildLib/dep" flatten="true">
-			<fileset dir="../../BimServer/lib">
-				<include name="**/*.jar" />
-			</fileset>
+			<fileset file="../../BimServer/lib/logging/log4j-1.2.16.jar"/>
+			<fileset file="../../BimServer/lib/logging/slf4j-api-1.6.2.jar"/>
+			<fileset file="../../BimServer/lib/logging/slf4j-log4j12-1.6.2.jar"/>
+			<fileset file="../../BimServer/lib/commons/commons-io-1.4.jar"/>
+			<fileset file="../../BimServer/lib/antlr-3.1.1-runtime.jar"/>
+			<fileset file="../../BimServer/lib/antlr-3.1.1.jar"/>
+			<fileset file="../../BimServer/lib/guava-10.0.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf_2.6.0.v20110606-0949.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.common_2.7.0.v20110605-0747.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore_2.7.0.v20110605-0747.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.7.0.v20110520-1406.jar"/>
 		</copy>
 		<zip destfile="builds/bimserver-client-lib-${version}.zip">
 			<fileset dir="builds/BuildLib">
@@ -773,8 +767,17 @@
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildSource" />
 		<mkdir dir="builds/BuildSource/BIMserver" />
-		<copy todir="builds/BuildSource/BIMserver/Bimserver">
+		<copy todir="builds/BuildSource/BIMserver/BimCombined">
+			<fileset dir="../../BimCombined" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/BimServer">
 			<fileset dir="../../BimServer" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/BimServerClientLib">
+			<fileset dir="../../BimServerClientLib" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/BimWebServer">
+			<fileset dir="../../BimWebServer" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/buildingSMARTLibrary">
 			<fileset dir="../../buildingSMARTLibrary" />
@@ -788,11 +791,11 @@
 		<copy todir="builds/BuildSource/BIMserver/Collada">
 			<fileset dir="../../Collada" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/SceneJS">
-			<fileset dir="../../SceneJS" />
-		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Emf">
 			<fileset dir="../../Emf" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/FileBasedGuidanceProvider">
+			<fileset dir="../../FileBasedGuidanceProvider" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/GeneratedSoapClient">
 			<fileset dir="../../GeneratedSoapClient" />
@@ -806,17 +809,41 @@
 		<copy todir="builds/BuildSource/BIMserver/IfcEngine">
 			<fileset dir="../../IfcEngine" />
 		</copy>
+		<copy todir="builds/BuildSource/BIMserver/IfcPlugins">
+			<fileset dir="../../IfcPlugins" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/MiscSerializers">
+			<fileset dir="../../MiscSerializers" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/Plugins">
+			<fileset dir="../../Plugins" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/Report1Serializer">
+			<fileset dir="../../Report1Serializer" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/SatelliteServer">
+			<fileset dir="../../SatelliteServer" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/SceneJS">
+			<fileset dir="../../SceneJS" />
+		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Shared">
 			<fileset dir="../../Shared" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/TestData">
+			<fileset dir="../../TestData" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Tests">
 			<fileset dir="../../Tests" />
 		</copy>
+		<copy todir="builds/BuildSource/BIMserver/TestsViewer">
+			<fileset dir="../../TestsViewer" />
+		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Utils">
 			<fileset dir="../../Utils" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/TestData">
-			<fileset dir="../../TestData" />
+		<copy todir="builds/BuildSource/BIMserver/XsltSerializer">
+			<fileset dir="../../XsltSerializer" />
 		</copy>
 		<zip file="builds/bimserver-source-${version}.zip" basedir="builds/BuildSource" />
 		<delete dir="builds/BuildSource" />

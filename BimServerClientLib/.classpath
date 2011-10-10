@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="generated"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/antlr-2.7.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/aopalliance-1.0.jar"/>
@@ -77,5 +76,6 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-10.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
