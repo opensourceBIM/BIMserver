@@ -429,7 +429,7 @@
 		<delete dir="builds"/>
 		<mkdir dir="builds"/>
 		<antcall target="Build"/>
-		<copy todir="builds/BuildLib/lib">,
+		<copy todir="builds/BuildLib/lib">
 			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
 			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
 			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
