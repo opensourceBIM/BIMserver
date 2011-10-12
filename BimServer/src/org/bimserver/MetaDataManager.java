@@ -18,7 +18,9 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.LogPackage;
@@ -32,6 +34,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class MetaDataManager {
 	private final Map<String, EPackage> ePackages = new HashMap<String, EPackage>();
+	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
+	
+	public MetaDataManager(Set<EPackage> ePackages) {
+		for (EPackage ePackage : ePackages) {
+			addEPackage(ePackage);
+		}
+	}
 	
 	public MetaDataManager() {
 		addEPackage(Ifc2x3Package.eINSTANCE);
@@ -41,8 +50,26 @@ public class MetaDataManager {
 
 	private void addEPackage(EPackage ePackage) {
 		ePackages.put(ePackage.getName(), ePackage);
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				if (!directSubClasses.containsKey(eClass)) {
+					directSubClasses.put(eClass, new HashSet<EClass>());
+				}
+				for (EClass superClass : eClass.getESuperTypes()) {
+					if (!directSubClasses.containsKey(superClass)) {
+						directSubClasses.put(superClass, new HashSet<EClass>());
+					}
+					directSubClasses.get(superClass).add(eClass);
+				}
+			}
+		}
 	}
 
+	public Set<EClass> getSubClasses(EClass superClass) {
+		return directSubClasses.get(superClass);
+	}
+	
 	public EClass getEClass(String type) {
 		for (EPackage ePackage : ePackages.values()) {
 			EClassifier eClassifier = ePackage.getEClassifier(type);

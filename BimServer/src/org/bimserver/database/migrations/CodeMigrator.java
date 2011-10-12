@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.MetaDataManager;
 import org.bimserver.querycompiler.VirtualFile;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
@@ -95,7 +96,9 @@ public class CodeMigrator {
 		serviceGenerator.generateDataObjects(ePackages);
 		LOGGER.info("ServiceInterface objects successfully generated");
 		
-		SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper();
+		MetaDataManager metaDataManager = new MetaDataManager(ePackages);
+		
+		SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper(metaDataManager);
 		sConverterGenerator.generate(ePackages);
 		
 		LOGGER.info("Generating protocol buffers file and classes...");

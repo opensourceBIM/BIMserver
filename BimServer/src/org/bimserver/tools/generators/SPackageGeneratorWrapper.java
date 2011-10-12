@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.MetaDataManager;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EPackage;
@@ -44,7 +45,7 @@ public class SPackageGeneratorWrapper {
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		ePackages.add(StorePackage.eINSTANCE);
 		ePackages.add(LogPackage.eINSTANCE);
-		new SConverterGeneratorWrapper().generate(ePackages);
+		new SConverterGeneratorWrapper(new MetaDataManager()).generate(ePackages);
 	}
 
 	public void generate(Set<EPackage> ePackages) {
