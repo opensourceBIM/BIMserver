@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.MetaDataManager;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EPackage;
@@ -39,12 +40,17 @@ public class SConverterGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SConverterGeneratorWrapper.class);
 	private File sourceFolder = new File("../BimServer/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "interfaces");
+	private final MetaDataManager metaDataManager;
+
+	public SConverterGeneratorWrapper(MetaDataManager metaDataManager) {
+		this.metaDataManager = metaDataManager;
+	}
 
 	public static void main(String[] args) {
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		ePackages.add(StorePackage.eINSTANCE);
 		ePackages.add(LogPackage.eINSTANCE);
-		new SConverterGeneratorWrapper().generate(ePackages);
+		new SConverterGeneratorWrapper(new MetaDataManager()).generate(ePackages);
 	}
 
 	public void generate(Set<EPackage> ePackages) {
@@ -54,7 +60,11 @@ public class SConverterGeneratorWrapper {
 			LOGGER.error("", e);
 		}
 		SConverterGenerator converterGenerator = new SConverterGenerator();
-		String generated = converterGenerator.generate(ePackages);
+		Object[] arguments = new Object[]{
+			metaDataManager,
+			ePackages
+		};
+		String generated = converterGenerator.generate(arguments);
 		File file = new File(packageFolder, "SConverter.java");
 		try {
 			OutputStream fileOutputStream = new FileOutputStream(file);

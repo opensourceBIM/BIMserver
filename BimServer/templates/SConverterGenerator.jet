@@ -1,4 +1,4 @@
-<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* java.io.File java.util.Set org.bimserver.utils.StringUtils" class="SConverterGenerator" %>
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* org.bimserver.MetaDataManager java.io.File java.util.Set org.bimserver.utils.StringUtils" class="SConverterGenerator" %>
 package org.bimserver.interfaces;
 <%
 /******************************************************************************
@@ -29,7 +29,9 @@ import org.bimserver.database.BimDatabaseSession;
 
 public class SConverter {
 <%
-	Set<EPackage> ePackages = (Set<EPackage>)argument;
+	Object[] argumentsArray = (Object[])argument;
+	MetaDataManager metaDataManager = (MetaDataManager)argumentsArray[0];
+	Set<EPackage> ePackages = (Set<EPackage>)argumentsArray[1];
 	for (EPackage ePackage : ePackages) {
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
@@ -39,7 +41,24 @@ public class SConverter {
 	public Set<S<%=eClass.getName()%>> convertToSSet<%=eClass.getName()%>(Collection<<%=eClass.getName()%>> input) {
 		Set<S<%=eClass.getName()%>> result = new HashSet<S<%=eClass.getName()%>>();
 		for (<%=eClass.getName()%> o : input) {
-			result.add(convertToSObject(o));
+<% if (!metaDataManager.getSubClasses(eClass).isEmpty()) { %>
+		if (1==0) {
+		}
+<%
+	for (EClass subClass : metaDataManager.getSubClasses(eClass)) {
+%>
+		else if (o instanceof <%=subClass.getName()%>) {
+			result.add(convertToSObject((<%=subClass.getName()%>)o));		
+		}
+<%
+	}
+%>
+	else {
+		result.add(convertToSObject(o));
+	}
+<% }  else {%>
+		result.add(convertToSObject(o));
+<% } %>
 		}
 		return result;
 	}
@@ -55,7 +74,24 @@ public class SConverter {
 	public List<S<%=eClass.getName()%>> convertToSList<%=eClass.getName()%>(Collection<<%=eClass.getName()%>> input) {
 		List<S<%=eClass.getName()%>> result = new ArrayList<S<%=eClass.getName()%>>();
 		for (<%=eClass.getName()%> o : input) {
-			result.add(convertToSObject(o));
+<% if (!metaDataManager.getSubClasses(eClass).isEmpty()) { %>
+		if (1==0) {
+		}
+<%
+	for (EClass subClass : metaDataManager.getSubClasses(eClass)) {
+%>
+		else if (o instanceof <%=subClass.getName()%>) {
+			result.add(convertToSObject((<%=subClass.getName()%>)o));		
+		}
+<%
+	}
+%>
+	else {
+		result.add(convertToSObject(o));
+	}
+<% }  else {%>
+		result.add(convertToSObject(o));
+<% } %>
 		}
 		return result;
 	}

@@ -35,7 +35,77 @@ public class SConverter {
 	public Set<SLogAction> convertToSSetLogAction(Collection<LogAction> input) {
 		Set<SLogAction> result = new HashSet<SLogAction>();
 		for (LogAction o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof NewCheckoutAdded) {
+			result.add(convertToSObject((NewCheckoutAdded)o));		
+		}
+		else if (o instanceof ProjectUndeleted) {
+			result.add(convertToSObject((ProjectUndeleted)o));		
+		}
+		else if (o instanceof ProjectUpdated) {
+			result.add(convertToSObject((ProjectUpdated)o));		
+		}
+		else if (o instanceof NewProjectAdded) {
+			result.add(convertToSObject((NewProjectAdded)o));		
+		}
+		else if (o instanceof NewUserAdded) {
+			result.add(convertToSObject((NewUserAdded)o));		
+		}
+		else if (o instanceof SettingsSaved) {
+			result.add(convertToSObject((SettingsSaved)o));		
+		}
+		else if (o instanceof UserDeleted) {
+			result.add(convertToSObject((UserDeleted)o));		
+		}
+		else if (o instanceof GeoTagUpdated) {
+			result.add(convertToSObject((GeoTagUpdated)o));		
+		}
+		else if (o instanceof UserUndeleted) {
+			result.add(convertToSObject((UserUndeleted)o));		
+		}
+		else if (o instanceof PasswordChanged) {
+			result.add(convertToSObject((PasswordChanged)o));		
+		}
+		else if (o instanceof DatabaseCreated) {
+			result.add(convertToSObject((DatabaseCreated)o));		
+		}
+		else if (o instanceof UserAddedToProject) {
+			result.add(convertToSObject((UserAddedToProject)o));		
+		}
+		else if (o instanceof UserRemovedFromProject) {
+			result.add(convertToSObject((UserRemovedFromProject)o));		
+		}
+		else if (o instanceof NewRevisionAdded) {
+			result.add(convertToSObject((NewRevisionAdded)o));		
+		}
+		else if (o instanceof Download) {
+			result.add(convertToSObject((Download)o));		
+		}
+		else if (o instanceof ProjectDeleted) {
+			result.add(convertToSObject((ProjectDeleted)o));		
+		}
+		else if (o instanceof RevisionUpdated) {
+			result.add(convertToSObject((RevisionUpdated)o));		
+		}
+		else if (o instanceof UserChanged) {
+			result.add(convertToSObject((UserChanged)o));		
+		}
+		else if (o instanceof ClashDetectionSettingsUpdated) {
+			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
+		}
+		else if (o instanceof PasswordReset) {
+			result.add(convertToSObject((PasswordReset)o));		
+		}
+		else if (o instanceof ServerStarted) {
+			result.add(convertToSObject((ServerStarted)o));		
+		}
+		else if (o instanceof NewGuidanceProviderUploaded) {
+			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -51,7 +121,77 @@ public class SConverter {
 	public List<SLogAction> convertToSListLogAction(Collection<LogAction> input) {
 		List<SLogAction> result = new ArrayList<SLogAction>();
 		for (LogAction o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof NewCheckoutAdded) {
+			result.add(convertToSObject((NewCheckoutAdded)o));		
+		}
+		else if (o instanceof ProjectUndeleted) {
+			result.add(convertToSObject((ProjectUndeleted)o));		
+		}
+		else if (o instanceof ProjectUpdated) {
+			result.add(convertToSObject((ProjectUpdated)o));		
+		}
+		else if (o instanceof NewProjectAdded) {
+			result.add(convertToSObject((NewProjectAdded)o));		
+		}
+		else if (o instanceof NewUserAdded) {
+			result.add(convertToSObject((NewUserAdded)o));		
+		}
+		else if (o instanceof SettingsSaved) {
+			result.add(convertToSObject((SettingsSaved)o));		
+		}
+		else if (o instanceof UserDeleted) {
+			result.add(convertToSObject((UserDeleted)o));		
+		}
+		else if (o instanceof GeoTagUpdated) {
+			result.add(convertToSObject((GeoTagUpdated)o));		
+		}
+		else if (o instanceof UserUndeleted) {
+			result.add(convertToSObject((UserUndeleted)o));		
+		}
+		else if (o instanceof PasswordChanged) {
+			result.add(convertToSObject((PasswordChanged)o));		
+		}
+		else if (o instanceof DatabaseCreated) {
+			result.add(convertToSObject((DatabaseCreated)o));		
+		}
+		else if (o instanceof UserAddedToProject) {
+			result.add(convertToSObject((UserAddedToProject)o));		
+		}
+		else if (o instanceof UserRemovedFromProject) {
+			result.add(convertToSObject((UserRemovedFromProject)o));		
+		}
+		else if (o instanceof NewRevisionAdded) {
+			result.add(convertToSObject((NewRevisionAdded)o));		
+		}
+		else if (o instanceof Download) {
+			result.add(convertToSObject((Download)o));		
+		}
+		else if (o instanceof ProjectDeleted) {
+			result.add(convertToSObject((ProjectDeleted)o));		
+		}
+		else if (o instanceof RevisionUpdated) {
+			result.add(convertToSObject((RevisionUpdated)o));		
+		}
+		else if (o instanceof UserChanged) {
+			result.add(convertToSObject((UserChanged)o));		
+		}
+		else if (o instanceof ClashDetectionSettingsUpdated) {
+			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
+		}
+		else if (o instanceof PasswordReset) {
+			result.add(convertToSObject((PasswordReset)o));		
+		}
+		else if (o instanceof ServerStarted) {
+			result.add(convertToSObject((ServerStarted)o));		
+		}
+		else if (o instanceof NewGuidanceProviderUploaded) {
+			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -92,7 +232,7 @@ public class SConverter {
 	public Set<SServerLog> convertToSSetServerLog(Collection<ServerLog> input) {
 		Set<SServerLog> result = new HashSet<SServerLog>();
 		for (ServerLog o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -108,7 +248,7 @@ public class SConverter {
 	public List<SServerLog> convertToSListServerLog(Collection<ServerLog> input) {
 		List<SServerLog> result = new ArrayList<SServerLog>();
 		for (ServerLog o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -151,7 +291,7 @@ public class SConverter {
 	public Set<SNewUserAdded> convertToSSetNewUserAdded(Collection<NewUserAdded> input) {
 		Set<SNewUserAdded> result = new HashSet<SNewUserAdded>();
 		for (NewUserAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -167,7 +307,7 @@ public class SConverter {
 	public List<SNewUserAdded> convertToSListNewUserAdded(Collection<NewUserAdded> input) {
 		List<SNewUserAdded> result = new ArrayList<SNewUserAdded>();
 		for (NewUserAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -211,7 +351,7 @@ public class SConverter {
 	public Set<SNewProjectAdded> convertToSSetNewProjectAdded(Collection<NewProjectAdded> input) {
 		Set<SNewProjectAdded> result = new HashSet<SNewProjectAdded>();
 		for (NewProjectAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -227,7 +367,7 @@ public class SConverter {
 	public List<SNewProjectAdded> convertToSListNewProjectAdded(Collection<NewProjectAdded> input) {
 		List<SNewProjectAdded> result = new ArrayList<SNewProjectAdded>();
 		for (NewProjectAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -274,7 +414,7 @@ public class SConverter {
 	public Set<SNewRevisionAdded> convertToSSetNewRevisionAdded(Collection<NewRevisionAdded> input) {
 		Set<SNewRevisionAdded> result = new HashSet<SNewRevisionAdded>();
 		for (NewRevisionAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -290,7 +430,7 @@ public class SConverter {
 	public List<SNewRevisionAdded> convertToSListNewRevisionAdded(Collection<NewRevisionAdded> input) {
 		List<SNewRevisionAdded> result = new ArrayList<SNewRevisionAdded>();
 		for (NewRevisionAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -334,7 +474,7 @@ public class SConverter {
 	public Set<SNewCheckoutAdded> convertToSSetNewCheckoutAdded(Collection<NewCheckoutAdded> input) {
 		Set<SNewCheckoutAdded> result = new HashSet<SNewCheckoutAdded>();
 		for (NewCheckoutAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -350,7 +490,7 @@ public class SConverter {
 	public List<SNewCheckoutAdded> convertToSListNewCheckoutAdded(Collection<NewCheckoutAdded> input) {
 		List<SNewCheckoutAdded> result = new ArrayList<SNewCheckoutAdded>();
 		for (NewCheckoutAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -394,7 +534,7 @@ public class SConverter {
 	public Set<SSettingsSaved> convertToSSetSettingsSaved(Collection<SettingsSaved> input) {
 		Set<SSettingsSaved> result = new HashSet<SSettingsSaved>();
 		for (SettingsSaved o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -410,7 +550,7 @@ public class SConverter {
 	public List<SSettingsSaved> convertToSListSettingsSaved(Collection<SettingsSaved> input) {
 		List<SSettingsSaved> result = new ArrayList<SSettingsSaved>();
 		for (SettingsSaved o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -451,7 +591,7 @@ public class SConverter {
 	public Set<SUserAddedToProject> convertToSSetUserAddedToProject(Collection<UserAddedToProject> input) {
 		Set<SUserAddedToProject> result = new HashSet<SUserAddedToProject>();
 		for (UserAddedToProject o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -467,7 +607,7 @@ public class SConverter {
 	public List<SUserAddedToProject> convertToSListUserAddedToProject(Collection<UserAddedToProject> input) {
 		List<SUserAddedToProject> result = new ArrayList<SUserAddedToProject>();
 		for (UserAddedToProject o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -514,7 +654,7 @@ public class SConverter {
 	public Set<SNewGuidanceProviderUploaded> convertToSSetNewGuidanceProviderUploaded(Collection<NewGuidanceProviderUploaded> input) {
 		Set<SNewGuidanceProviderUploaded> result = new HashSet<SNewGuidanceProviderUploaded>();
 		for (NewGuidanceProviderUploaded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -530,7 +670,7 @@ public class SConverter {
 	public List<SNewGuidanceProviderUploaded> convertToSListNewGuidanceProviderUploaded(Collection<NewGuidanceProviderUploaded> input) {
 		List<SNewGuidanceProviderUploaded> result = new ArrayList<SNewGuidanceProviderUploaded>();
 		for (NewGuidanceProviderUploaded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -571,7 +711,7 @@ public class SConverter {
 	public Set<SDownload> convertToSSetDownload(Collection<Download> input) {
 		Set<SDownload> result = new HashSet<SDownload>();
 		for (Download o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -587,7 +727,7 @@ public class SConverter {
 	public List<SDownload> convertToSListDownload(Collection<Download> input) {
 		List<SDownload> result = new ArrayList<SDownload>();
 		for (Download o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -628,7 +768,7 @@ public class SConverter {
 	public Set<SUserRemovedFromProject> convertToSSetUserRemovedFromProject(Collection<UserRemovedFromProject> input) {
 		Set<SUserRemovedFromProject> result = new HashSet<SUserRemovedFromProject>();
 		for (UserRemovedFromProject o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -644,7 +784,7 @@ public class SConverter {
 	public List<SUserRemovedFromProject> convertToSListUserRemovedFromProject(Collection<UserRemovedFromProject> input) {
 		List<SUserRemovedFromProject> result = new ArrayList<SUserRemovedFromProject>();
 		for (UserRemovedFromProject o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -691,7 +831,7 @@ public class SConverter {
 	public Set<SProjectDeleted> convertToSSetProjectDeleted(Collection<ProjectDeleted> input) {
 		Set<SProjectDeleted> result = new HashSet<SProjectDeleted>();
 		for (ProjectDeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -707,7 +847,7 @@ public class SConverter {
 	public List<SProjectDeleted> convertToSListProjectDeleted(Collection<ProjectDeleted> input) {
 		List<SProjectDeleted> result = new ArrayList<SProjectDeleted>();
 		for (ProjectDeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -751,7 +891,7 @@ public class SConverter {
 	public Set<SUserDeleted> convertToSSetUserDeleted(Collection<UserDeleted> input) {
 		Set<SUserDeleted> result = new HashSet<SUserDeleted>();
 		for (UserDeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -767,7 +907,7 @@ public class SConverter {
 	public List<SUserDeleted> convertToSListUserDeleted(Collection<UserDeleted> input) {
 		List<SUserDeleted> result = new ArrayList<SUserDeleted>();
 		for (UserDeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -811,7 +951,7 @@ public class SConverter {
 	public Set<SPasswordReset> convertToSSetPasswordReset(Collection<PasswordReset> input) {
 		Set<SPasswordReset> result = new HashSet<SPasswordReset>();
 		for (PasswordReset o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -827,7 +967,7 @@ public class SConverter {
 	public List<SPasswordReset> convertToSListPasswordReset(Collection<PasswordReset> input) {
 		List<SPasswordReset> result = new ArrayList<SPasswordReset>();
 		for (PasswordReset o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -871,7 +1011,7 @@ public class SConverter {
 	public Set<SDatabaseCreated> convertToSSetDatabaseCreated(Collection<DatabaseCreated> input) {
 		Set<SDatabaseCreated> result = new HashSet<SDatabaseCreated>();
 		for (DatabaseCreated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -887,7 +1027,7 @@ public class SConverter {
 	public List<SDatabaseCreated> convertToSListDatabaseCreated(Collection<DatabaseCreated> input) {
 		List<SDatabaseCreated> result = new ArrayList<SDatabaseCreated>();
 		for (DatabaseCreated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -932,7 +1072,7 @@ public class SConverter {
 	public Set<SServerStarted> convertToSSetServerStarted(Collection<ServerStarted> input) {
 		Set<SServerStarted> result = new HashSet<SServerStarted>();
 		for (ServerStarted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -948,7 +1088,7 @@ public class SConverter {
 	public List<SServerStarted> convertToSListServerStarted(Collection<ServerStarted> input) {
 		List<SServerStarted> result = new ArrayList<SServerStarted>();
 		for (ServerStarted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -989,7 +1129,7 @@ public class SConverter {
 	public Set<SProjectUpdated> convertToSSetProjectUpdated(Collection<ProjectUpdated> input) {
 		Set<SProjectUpdated> result = new HashSet<SProjectUpdated>();
 		for (ProjectUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1005,7 +1145,7 @@ public class SConverter {
 	public List<SProjectUpdated> convertToSListProjectUpdated(Collection<ProjectUpdated> input) {
 		List<SProjectUpdated> result = new ArrayList<SProjectUpdated>();
 		for (ProjectUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1049,7 +1189,7 @@ public class SConverter {
 	public Set<SUserUndeleted> convertToSSetUserUndeleted(Collection<UserUndeleted> input) {
 		Set<SUserUndeleted> result = new HashSet<SUserUndeleted>();
 		for (UserUndeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1065,7 +1205,7 @@ public class SConverter {
 	public List<SUserUndeleted> convertToSListUserUndeleted(Collection<UserUndeleted> input) {
 		List<SUserUndeleted> result = new ArrayList<SUserUndeleted>();
 		for (UserUndeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1109,7 +1249,7 @@ public class SConverter {
 	public Set<SProjectUndeleted> convertToSSetProjectUndeleted(Collection<ProjectUndeleted> input) {
 		Set<SProjectUndeleted> result = new HashSet<SProjectUndeleted>();
 		for (ProjectUndeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1125,7 +1265,7 @@ public class SConverter {
 	public List<SProjectUndeleted> convertToSListProjectUndeleted(Collection<ProjectUndeleted> input) {
 		List<SProjectUndeleted> result = new ArrayList<SProjectUndeleted>();
 		for (ProjectUndeleted o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1169,7 +1309,7 @@ public class SConverter {
 	public Set<SRevisionUpdated> convertToSSetRevisionUpdated(Collection<RevisionUpdated> input) {
 		Set<SRevisionUpdated> result = new HashSet<SRevisionUpdated>();
 		for (RevisionUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1185,7 +1325,7 @@ public class SConverter {
 	public List<SRevisionUpdated> convertToSListRevisionUpdated(Collection<RevisionUpdated> input) {
 		List<SRevisionUpdated> result = new ArrayList<SRevisionUpdated>();
 		for (RevisionUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1229,7 +1369,7 @@ public class SConverter {
 	public Set<SGeoTagUpdated> convertToSSetGeoTagUpdated(Collection<GeoTagUpdated> input) {
 		Set<SGeoTagUpdated> result = new HashSet<SGeoTagUpdated>();
 		for (GeoTagUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1245,7 +1385,7 @@ public class SConverter {
 	public List<SGeoTagUpdated> convertToSListGeoTagUpdated(Collection<GeoTagUpdated> input) {
 		List<SGeoTagUpdated> result = new ArrayList<SGeoTagUpdated>();
 		for (GeoTagUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1289,7 +1429,7 @@ public class SConverter {
 	public Set<SClashDetectionSettingsUpdated> convertToSSetClashDetectionSettingsUpdated(Collection<ClashDetectionSettingsUpdated> input) {
 		Set<SClashDetectionSettingsUpdated> result = new HashSet<SClashDetectionSettingsUpdated>();
 		for (ClashDetectionSettingsUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1305,7 +1445,7 @@ public class SConverter {
 	public List<SClashDetectionSettingsUpdated> convertToSListClashDetectionSettingsUpdated(Collection<ClashDetectionSettingsUpdated> input) {
 		List<SClashDetectionSettingsUpdated> result = new ArrayList<SClashDetectionSettingsUpdated>();
 		for (ClashDetectionSettingsUpdated o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1349,7 +1489,7 @@ public class SConverter {
 	public Set<SPasswordChanged> convertToSSetPasswordChanged(Collection<PasswordChanged> input) {
 		Set<SPasswordChanged> result = new HashSet<SPasswordChanged>();
 		for (PasswordChanged o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1365,7 +1505,7 @@ public class SConverter {
 	public List<SPasswordChanged> convertToSListPasswordChanged(Collection<PasswordChanged> input) {
 		List<SPasswordChanged> result = new ArrayList<SPasswordChanged>();
 		for (PasswordChanged o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1409,7 +1549,7 @@ public class SConverter {
 	public Set<SUserChanged> convertToSSetUserChanged(Collection<UserChanged> input) {
 		Set<SUserChanged> result = new HashSet<SUserChanged>();
 		for (UserChanged o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1425,7 +1565,7 @@ public class SConverter {
 	public List<SUserChanged> convertToSListUserChanged(Collection<UserChanged> input) {
 		List<SUserChanged> result = new ArrayList<SUserChanged>();
 		for (UserChanged o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1497,7 +1637,7 @@ public class SConverter {
 	public Set<SProject> convertToSSetProject(Collection<Project> input) {
 		Set<SProject> result = new HashSet<SProject>();
 		for (Project o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1513,7 +1653,7 @@ public class SConverter {
 	public List<SProject> convertToSListProject(Collection<Project> input) {
 		List<SProject> result = new ArrayList<SProject>();
 		for (Project o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1622,7 +1762,7 @@ public class SConverter {
 	public Set<SUser> convertToSSetUser(Collection<User> input) {
 		Set<SUser> result = new HashSet<SUser>();
 		for (User o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1638,7 +1778,7 @@ public class SConverter {
 	public List<SUser> convertToSListUser(Collection<User> input) {
 		List<SUser> result = new ArrayList<SUser>();
 		for (User o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1713,7 +1853,17 @@ public class SConverter {
 	public Set<SClash> convertToSSetClash(Collection<Clash> input) {
 		Set<SClash> result = new HashSet<SClash>();
 		for (Clash o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof EidClash) {
+			result.add(convertToSObject((EidClash)o));		
+		}
+		else if (o instanceof GuidClash) {
+			result.add(convertToSObject((GuidClash)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -1729,7 +1879,17 @@ public class SConverter {
 	public List<SClash> convertToSListClash(Collection<Clash> input) {
 		List<SClash> result = new ArrayList<SClash>();
 		for (Clash o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof EidClash) {
+			result.add(convertToSObject((EidClash)o));		
+		}
+		else if (o instanceof GuidClash) {
+			result.add(convertToSObject((GuidClash)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -1777,7 +1937,7 @@ public class SConverter {
 	public Set<SEidClash> convertToSSetEidClash(Collection<EidClash> input) {
 		Set<SEidClash> result = new HashSet<SEidClash>();
 		for (EidClash o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1793,7 +1953,7 @@ public class SConverter {
 	public List<SEidClash> convertToSListEidClash(Collection<EidClash> input) {
 		List<SEidClash> result = new ArrayList<SEidClash>();
 		for (EidClash o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1845,7 +2005,7 @@ public class SConverter {
 	public Set<SGuidClash> convertToSSetGuidClash(Collection<GuidClash> input) {
 		Set<SGuidClash> result = new HashSet<SGuidClash>();
 		for (GuidClash o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1861,7 +2021,7 @@ public class SConverter {
 	public List<SGuidClash> convertToSListGuidClash(Collection<GuidClash> input) {
 		List<SGuidClash> result = new ArrayList<SGuidClash>();
 		for (GuidClash o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1913,7 +2073,7 @@ public class SConverter {
 	public Set<SClashDetectionSettings> convertToSSetClashDetectionSettings(Collection<ClashDetectionSettings> input) {
 		Set<SClashDetectionSettings> result = new HashSet<SClashDetectionSettings>();
 		for (ClashDetectionSettings o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1929,7 +2089,7 @@ public class SConverter {
 	public List<SClashDetectionSettings> convertToSListClashDetectionSettings(Collection<ClashDetectionSettings> input) {
 		List<SClashDetectionSettings> result = new ArrayList<SClashDetectionSettings>();
 		for (ClashDetectionSettings o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -1987,7 +2147,7 @@ public class SConverter {
 	public Set<SRevision> convertToSSetRevision(Collection<Revision> input) {
 		Set<SRevision> result = new HashSet<SRevision>();
 		for (Revision o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2003,7 +2163,7 @@ public class SConverter {
 	public List<SRevision> convertToSListRevision(Collection<Revision> input) {
 		List<SRevision> result = new ArrayList<SRevision>();
 		for (Revision o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2093,7 +2253,7 @@ public class SConverter {
 	public Set<SConcreteRevision> convertToSSetConcreteRevision(Collection<ConcreteRevision> input) {
 		Set<SConcreteRevision> result = new HashSet<SConcreteRevision>();
 		for (ConcreteRevision o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2109,7 +2269,7 @@ public class SConverter {
 	public List<SConcreteRevision> convertToSListConcreteRevision(Collection<ConcreteRevision> input) {
 		List<SConcreteRevision> result = new ArrayList<SConcreteRevision>();
 		for (ConcreteRevision o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2167,7 +2327,7 @@ public class SConverter {
 	public Set<SGeoTag> convertToSSetGeoTag(Collection<GeoTag> input) {
 		Set<SGeoTag> result = new HashSet<SGeoTag>();
 		for (GeoTag o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2183,7 +2343,7 @@ public class SConverter {
 	public List<SGeoTag> convertToSListGeoTag(Collection<GeoTag> input) {
 		List<SGeoTag> result = new ArrayList<SGeoTag>();
 		for (GeoTag o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2238,7 +2398,7 @@ public class SConverter {
 	public Set<SCheckout> convertToSSetCheckout(Collection<Checkout> input) {
 		Set<SCheckout> result = new HashSet<SCheckout>();
 		for (Checkout o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2254,7 +2414,7 @@ public class SConverter {
 	public List<SCheckout> convertToSListCheckout(Collection<Checkout> input) {
 		List<SCheckout> result = new ArrayList<SCheckout>();
 		for (Checkout o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2304,7 +2464,7 @@ public class SConverter {
 	public Set<SSettings> convertToSSetSettings(Collection<Settings> input) {
 		Set<SSettings> result = new HashSet<SSettings>();
 		for (Settings o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2320,7 +2480,7 @@ public class SConverter {
 	public List<SSettings> convertToSListSettings(Collection<Settings> input) {
 		List<SSettings> result = new ArrayList<SSettings>();
 		for (Settings o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2435,7 +2595,7 @@ public class SConverter {
 	public Set<SSerializer> convertToSSetSerializer(Collection<Serializer> input) {
 		Set<SSerializer> result = new HashSet<SSerializer>();
 		for (Serializer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2451,7 +2611,7 @@ public class SConverter {
 	public List<SSerializer> convertToSListSerializer(Collection<Serializer> input) {
 		List<SSerializer> result = new ArrayList<SSerializer>();
 		for (Serializer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2505,7 +2665,7 @@ public class SConverter {
 	public Set<SGuidanceProvider> convertToSSetGuidanceProvider(Collection<GuidanceProvider> input) {
 		Set<SGuidanceProvider> result = new HashSet<SGuidanceProvider>();
 		for (GuidanceProvider o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2521,7 +2681,7 @@ public class SConverter {
 	public List<SGuidanceProvider> convertToSListGuidanceProvider(Collection<GuidanceProvider> input) {
 		List<SGuidanceProvider> result = new ArrayList<SGuidanceProvider>();
 		for (GuidanceProvider o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2580,7 +2740,7 @@ public class SConverter {
 	public Set<SIfcEngine> convertToSSetIfcEngine(Collection<IfcEngine> input) {
 		Set<SIfcEngine> result = new HashSet<SIfcEngine>();
 		for (IfcEngine o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2596,7 +2756,7 @@ public class SConverter {
 	public List<SIfcEngine> convertToSListIfcEngine(Collection<IfcEngine> input) {
 		List<SIfcEngine> result = new ArrayList<SIfcEngine>();
 		for (IfcEngine o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2637,7 +2797,7 @@ public class SConverter {
 	public Set<SPlugin> convertToSSetPlugin(Collection<Plugin> input) {
 		Set<SPlugin> result = new HashSet<SPlugin>();
 		for (Plugin o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2653,7 +2813,7 @@ public class SConverter {
 	public List<SPlugin> convertToSListPlugin(Collection<Plugin> input) {
 		List<SPlugin> result = new ArrayList<SPlugin>();
 		for (Plugin o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2694,7 +2854,7 @@ public class SConverter {
 	public Set<SDeserializer> convertToSSetDeserializer(Collection<Deserializer> input) {
 		Set<SDeserializer> result = new HashSet<SDeserializer>();
 		for (Deserializer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2710,7 +2870,7 @@ public class SConverter {
 	public List<SDeserializer> convertToSListDeserializer(Collection<Deserializer> input) {
 		List<SDeserializer> result = new ArrayList<SDeserializer>();
 		for (Deserializer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2757,7 +2917,7 @@ public class SConverter {
 	public Set<SCheckinResult> convertToSSetCheckinResult(Collection<CheckinResult> input) {
 		Set<SCheckinResult> result = new HashSet<SCheckinResult>();
 		for (CheckinResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2773,7 +2933,7 @@ public class SConverter {
 	public List<SCheckinResult> convertToSListCheckinResult(Collection<CheckinResult> input) {
 		List<SCheckinResult> result = new ArrayList<SCheckinResult>();
 		for (CheckinResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2815,7 +2975,14 @@ public class SConverter {
 	public Set<SDownloadResult> convertToSSetDownloadResult(Collection<DownloadResult> input) {
 		Set<SDownloadResult> result = new HashSet<SDownloadResult>();
 		for (DownloadResult o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof CheckoutResult) {
+			result.add(convertToSObject((CheckoutResult)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -2831,7 +2998,14 @@ public class SConverter {
 	public List<SDownloadResult> convertToSListDownloadResult(Collection<DownloadResult> input) {
 		List<SDownloadResult> result = new ArrayList<SDownloadResult>();
 		for (DownloadResult o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof CheckoutResult) {
+			result.add(convertToSObject((CheckoutResult)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -2871,7 +3045,7 @@ public class SConverter {
 	public Set<SCheckoutResult> convertToSSetCheckoutResult(Collection<CheckoutResult> input) {
 		Set<SCheckoutResult> result = new HashSet<SCheckoutResult>();
 		for (CheckoutResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2887,7 +3061,7 @@ public class SConverter {
 	public List<SCheckoutResult> convertToSListCheckoutResult(Collection<CheckoutResult> input) {
 		List<SCheckoutResult> result = new ArrayList<SCheckoutResult>();
 		for (CheckoutResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2927,7 +3101,20 @@ public class SConverter {
 	public Set<SDataValue> convertToSSetDataValue(Collection<DataValue> input) {
 		Set<SDataValue> result = new HashSet<SDataValue>();
 		for (DataValue o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof ReferenceDataValue) {
+			result.add(convertToSObject((ReferenceDataValue)o));		
+		}
+		else if (o instanceof SimpleDataValue) {
+			result.add(convertToSObject((SimpleDataValue)o));		
+		}
+		else if (o instanceof ListDataValue) {
+			result.add(convertToSObject((ListDataValue)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -2943,7 +3130,20 @@ public class SConverter {
 	public List<SDataValue> convertToSListDataValue(Collection<DataValue> input) {
 		List<SDataValue> result = new ArrayList<SDataValue>();
 		for (DataValue o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof ReferenceDataValue) {
+			result.add(convertToSObject((ReferenceDataValue)o));		
+		}
+		else if (o instanceof SimpleDataValue) {
+			result.add(convertToSObject((SimpleDataValue)o));		
+		}
+		else if (o instanceof ListDataValue) {
+			result.add(convertToSObject((ListDataValue)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -2979,7 +3179,7 @@ public class SConverter {
 	public Set<SDataObject> convertToSSetDataObject(Collection<DataObject> input) {
 		Set<SDataObject> result = new HashSet<SDataObject>();
 		for (DataObject o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -2995,7 +3195,7 @@ public class SConverter {
 	public List<SDataObject> convertToSListDataObject(Collection<DataObject> input) {
 		List<SDataObject> result = new ArrayList<SDataObject>();
 		for (DataObject o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3044,7 +3244,7 @@ public class SConverter {
 	public Set<SUserSession> convertToSSetUserSession(Collection<UserSession> input) {
 		Set<SUserSession> result = new HashSet<SUserSession>();
 		for (UserSession o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3060,7 +3260,7 @@ public class SConverter {
 	public List<SUserSession> convertToSListUserSession(Collection<UserSession> input) {
 		List<SUserSession> result = new ArrayList<SUserSession>();
 		for (UserSession o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3109,7 +3309,7 @@ public class SConverter {
 	public Set<SMigration> convertToSSetMigration(Collection<Migration> input) {
 		Set<SMigration> result = new HashSet<SMigration>();
 		for (Migration o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3125,7 +3325,7 @@ public class SConverter {
 	public List<SMigration> convertToSListMigration(Collection<Migration> input) {
 		List<SMigration> result = new ArrayList<SMigration>();
 		for (Migration o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3165,7 +3365,7 @@ public class SConverter {
 	public Set<SReferenceDataValue> convertToSSetReferenceDataValue(Collection<ReferenceDataValue> input) {
 		Set<SReferenceDataValue> result = new HashSet<SReferenceDataValue>();
 		for (ReferenceDataValue o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3181,7 +3381,7 @@ public class SConverter {
 	public List<SReferenceDataValue> convertToSListReferenceDataValue(Collection<ReferenceDataValue> input) {
 		List<SReferenceDataValue> result = new ArrayList<SReferenceDataValue>();
 		for (ReferenceDataValue o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3221,7 +3421,7 @@ public class SConverter {
 	public Set<SListDataValue> convertToSSetListDataValue(Collection<ListDataValue> input) {
 		Set<SListDataValue> result = new HashSet<SListDataValue>();
 		for (ListDataValue o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3237,7 +3437,7 @@ public class SConverter {
 	public List<SListDataValue> convertToSListListDataValue(Collection<ListDataValue> input) {
 		List<SListDataValue> result = new ArrayList<SListDataValue>();
 		for (ListDataValue o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3282,7 +3482,7 @@ public class SConverter {
 	public Set<SSimpleDataValue> convertToSSetSimpleDataValue(Collection<SimpleDataValue> input) {
 		Set<SSimpleDataValue> result = new HashSet<SSimpleDataValue>();
 		for (SimpleDataValue o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3298,7 +3498,7 @@ public class SConverter {
 	public List<SSimpleDataValue> convertToSListSimpleDataValue(Collection<SimpleDataValue> input) {
 		List<SSimpleDataValue> result = new ArrayList<SSimpleDataValue>();
 		for (SimpleDataValue o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3336,7 +3536,7 @@ public class SConverter {
 	public Set<SDatabaseInformationItem> convertToSSetDatabaseInformationItem(Collection<DatabaseInformationItem> input) {
 		Set<SDatabaseInformationItem> result = new HashSet<SDatabaseInformationItem>();
 		for (DatabaseInformationItem o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3352,7 +3552,7 @@ public class SConverter {
 	public List<SDatabaseInformationItem> convertToSListDatabaseInformationItem(Collection<DatabaseInformationItem> input) {
 		List<SDatabaseInformationItem> result = new ArrayList<SDatabaseInformationItem>();
 		for (DatabaseInformationItem o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3390,7 +3590,7 @@ public class SConverter {
 	public Set<SDatabaseInformationCategory> convertToSSetDatabaseInformationCategory(Collection<DatabaseInformationCategory> input) {
 		Set<SDatabaseInformationCategory> result = new HashSet<SDatabaseInformationCategory>();
 		for (DatabaseInformationCategory o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3406,7 +3606,7 @@ public class SConverter {
 	public List<SDatabaseInformationCategory> convertToSListDatabaseInformationCategory(Collection<DatabaseInformationCategory> input) {
 		List<SDatabaseInformationCategory> result = new ArrayList<SDatabaseInformationCategory>();
 		for (DatabaseInformationCategory o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3451,7 +3651,7 @@ public class SConverter {
 	public Set<SDatabaseInformation> convertToSSetDatabaseInformation(Collection<DatabaseInformation> input) {
 		Set<SDatabaseInformation> result = new HashSet<SDatabaseInformation>();
 		for (DatabaseInformation o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3467,7 +3667,7 @@ public class SConverter {
 	public List<SDatabaseInformation> convertToSListDatabaseInformation(Collection<DatabaseInformation> input) {
 		List<SDatabaseInformation> result = new ArrayList<SDatabaseInformation>();
 		for (DatabaseInformation o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3528,7 +3728,7 @@ public class SConverter {
 	public Set<SSerializerPluginDescriptor> convertToSSetSerializerPluginDescriptor(Collection<SerializerPluginDescriptor> input) {
 		Set<SSerializerPluginDescriptor> result = new HashSet<SSerializerPluginDescriptor>();
 		for (SerializerPluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3544,7 +3744,7 @@ public class SConverter {
 	public List<SSerializerPluginDescriptor> convertToSListSerializerPluginDescriptor(Collection<SerializerPluginDescriptor> input) {
 		List<SSerializerPluginDescriptor> result = new ArrayList<SSerializerPluginDescriptor>();
 		for (SerializerPluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3586,7 +3786,7 @@ public class SConverter {
 	public Set<SDeserializerPluginDescriptor> convertToSSetDeserializerPluginDescriptor(Collection<DeserializerPluginDescriptor> input) {
 		Set<SDeserializerPluginDescriptor> result = new HashSet<SDeserializerPluginDescriptor>();
 		for (DeserializerPluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3602,7 +3802,7 @@ public class SConverter {
 	public List<SDeserializerPluginDescriptor> convertToSListDeserializerPluginDescriptor(Collection<DeserializerPluginDescriptor> input) {
 		List<SDeserializerPluginDescriptor> result = new ArrayList<SDeserializerPluginDescriptor>();
 		for (DeserializerPluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3640,7 +3840,7 @@ public class SConverter {
 	public Set<SRevisionSummaryType> convertToSSetRevisionSummaryType(Collection<RevisionSummaryType> input) {
 		Set<SRevisionSummaryType> result = new HashSet<SRevisionSummaryType>();
 		for (RevisionSummaryType o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3656,7 +3856,7 @@ public class SConverter {
 	public List<SRevisionSummaryType> convertToSListRevisionSummaryType(Collection<RevisionSummaryType> input) {
 		List<SRevisionSummaryType> result = new ArrayList<SRevisionSummaryType>();
 		for (RevisionSummaryType o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3694,7 +3894,7 @@ public class SConverter {
 	public Set<SRevisionSummaryContainer> convertToSSetRevisionSummaryContainer(Collection<RevisionSummaryContainer> input) {
 		Set<SRevisionSummaryContainer> result = new HashSet<SRevisionSummaryContainer>();
 		for (RevisionSummaryContainer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3710,7 +3910,7 @@ public class SConverter {
 	public List<SRevisionSummaryContainer> convertToSListRevisionSummaryContainer(Collection<RevisionSummaryContainer> input) {
 		List<SRevisionSummaryContainer> result = new ArrayList<SRevisionSummaryContainer>();
 		for (RevisionSummaryContainer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3755,7 +3955,7 @@ public class SConverter {
 	public Set<SRevisionSummary> convertToSSetRevisionSummary(Collection<RevisionSummary> input) {
 		Set<SRevisionSummary> result = new HashSet<SRevisionSummary>();
 		for (RevisionSummary o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3771,7 +3971,7 @@ public class SConverter {
 	public List<SRevisionSummary> convertToSListRevisionSummary(Collection<RevisionSummary> input) {
 		List<SRevisionSummary> result = new ArrayList<SRevisionSummary>();
 		for (RevisionSummary o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3814,7 +4014,7 @@ public class SConverter {
 	public Set<SPluginDescriptor> convertToSSetPluginDescriptor(Collection<PluginDescriptor> input) {
 		Set<SPluginDescriptor> result = new HashSet<SPluginDescriptor>();
 		for (PluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3830,7 +4030,7 @@ public class SConverter {
 	public List<SPluginDescriptor> convertToSListPluginDescriptor(Collection<PluginDescriptor> input) {
 		List<SPluginDescriptor> result = new ArrayList<SPluginDescriptor>();
 		for (PluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3872,7 +4072,7 @@ public class SConverter {
 	public Set<SLongAction> convertToSSetLongAction(Collection<LongAction> input) {
 		Set<SLongAction> result = new HashSet<SLongAction>();
 		for (LongAction o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3888,7 +4088,7 @@ public class SConverter {
 	public List<SLongAction> convertToSListLongAction(Collection<LongAction> input) {
 		List<SLongAction> result = new ArrayList<SLongAction>();
 		for (LongAction o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3933,7 +4133,7 @@ public class SConverter {
 	public Set<SGuidanceProviderPluginDescriptor> convertToSSetGuidanceProviderPluginDescriptor(Collection<GuidanceProviderPluginDescriptor> input) {
 		Set<SGuidanceProviderPluginDescriptor> result = new HashSet<SGuidanceProviderPluginDescriptor>();
 		for (GuidanceProviderPluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3949,7 +4149,7 @@ public class SConverter {
 	public List<SGuidanceProviderPluginDescriptor> convertToSListGuidanceProviderPluginDescriptor(Collection<GuidanceProviderPluginDescriptor> input) {
 		List<SGuidanceProviderPluginDescriptor> result = new ArrayList<SGuidanceProviderPluginDescriptor>();
 		for (GuidanceProviderPluginDescriptor o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -3999,7 +4199,20 @@ public class SConverter {
 	public Set<SCompareItem> convertToSSetCompareItem(Collection<CompareItem> input) {
 		Set<SCompareItem> result = new HashSet<SCompareItem>();
 		for (CompareItem o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof ObjectAdded) {
+			result.add(convertToSObject((ObjectAdded)o));		
+		}
+		else if (o instanceof ObjectRemoved) {
+			result.add(convertToSObject((ObjectRemoved)o));		
+		}
+		else if (o instanceof ObjectModified) {
+			result.add(convertToSObject((ObjectModified)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -4015,7 +4228,20 @@ public class SConverter {
 	public List<SCompareItem> convertToSListCompareItem(Collection<CompareItem> input) {
 		List<SCompareItem> result = new ArrayList<SCompareItem>();
 		for (CompareItem o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof ObjectAdded) {
+			result.add(convertToSObject((ObjectAdded)o));		
+		}
+		else if (o instanceof ObjectRemoved) {
+			result.add(convertToSObject((ObjectRemoved)o));		
+		}
+		else if (o instanceof ObjectModified) {
+			result.add(convertToSObject((ObjectModified)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -4052,7 +4278,7 @@ public class SConverter {
 	public Set<SObjectAdded> convertToSSetObjectAdded(Collection<ObjectAdded> input) {
 		Set<SObjectAdded> result = new HashSet<SObjectAdded>();
 		for (ObjectAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4068,7 +4294,7 @@ public class SConverter {
 	public List<SObjectAdded> convertToSListObjectAdded(Collection<ObjectAdded> input) {
 		List<SObjectAdded> result = new ArrayList<SObjectAdded>();
 		for (ObjectAdded o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4105,7 +4331,7 @@ public class SConverter {
 	public Set<SObjectRemoved> convertToSSetObjectRemoved(Collection<ObjectRemoved> input) {
 		Set<SObjectRemoved> result = new HashSet<SObjectRemoved>();
 		for (ObjectRemoved o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4121,7 +4347,7 @@ public class SConverter {
 	public List<SObjectRemoved> convertToSListObjectRemoved(Collection<ObjectRemoved> input) {
 		List<SObjectRemoved> result = new ArrayList<SObjectRemoved>();
 		for (ObjectRemoved o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4158,7 +4384,7 @@ public class SConverter {
 	public Set<SObjectModified> convertToSSetObjectModified(Collection<ObjectModified> input) {
 		Set<SObjectModified> result = new HashSet<SObjectModified>();
 		for (ObjectModified o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4174,7 +4400,7 @@ public class SConverter {
 	public List<SObjectModified> convertToSListObjectModified(Collection<ObjectModified> input) {
 		List<SObjectModified> result = new ArrayList<SObjectModified>();
 		for (ObjectModified o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4217,7 +4443,7 @@ public class SConverter {
 	public Set<SCompareContainer> convertToSSetCompareContainer(Collection<CompareContainer> input) {
 		Set<SCompareContainer> result = new HashSet<SCompareContainer>();
 		for (CompareContainer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4233,7 +4459,7 @@ public class SConverter {
 	public List<SCompareContainer> convertToSListCompareContainer(Collection<CompareContainer> input) {
 		List<SCompareContainer> result = new ArrayList<SCompareContainer>();
 		for (CompareContainer o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4278,7 +4504,7 @@ public class SConverter {
 	public Set<SCompareResult> convertToSSetCompareResult(Collection<CompareResult> input) {
 		Set<SCompareResult> result = new HashSet<SCompareResult>();
 		for (CompareResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4294,7 +4520,7 @@ public class SConverter {
 	public List<SCompareResult> convertToSListCompareResult(Collection<CompareResult> input) {
 		List<SCompareResult> result = new ArrayList<SCompareResult>();
 		for (CompareResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4344,7 +4570,7 @@ public class SConverter {
 	public Set<SLongActionState> convertToSSetLongActionState(Collection<LongActionState> input) {
 		Set<SLongActionState> result = new HashSet<SLongActionState>();
 		for (LongActionState o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4360,7 +4586,7 @@ public class SConverter {
 	public List<SLongActionState> convertToSListLongActionState(Collection<LongActionState> input) {
 		List<SLongActionState> result = new ArrayList<SLongActionState>();
 		for (LongActionState o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4398,7 +4624,17 @@ public class SConverter {
 	public Set<SNotification> convertToSSetNotification(Collection<Notification> input) {
 		Set<SNotification> result = new HashSet<SNotification>();
 		for (Notification o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof NewProjectNotification) {
+			result.add(convertToSObject((NewProjectNotification)o));		
+		}
+		else if (o instanceof NewRevisionNotification) {
+			result.add(convertToSObject((NewRevisionNotification)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -4414,7 +4650,17 @@ public class SConverter {
 	public List<SNotification> convertToSListNotification(Collection<Notification> input) {
 		List<SNotification> result = new ArrayList<SNotification>();
 		for (Notification o : input) {
-			result.add(convertToSObject(o));
+		if (1==0) {
+		}
+		else if (o instanceof NewProjectNotification) {
+			result.add(convertToSObject((NewProjectNotification)o));		
+		}
+		else if (o instanceof NewRevisionNotification) {
+			result.add(convertToSObject((NewRevisionNotification)o));		
+		}
+	else {
+		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -4448,7 +4694,7 @@ public class SConverter {
 	public Set<SNewProjectNotification> convertToSSetNewProjectNotification(Collection<NewProjectNotification> input) {
 		Set<SNewProjectNotification> result = new HashSet<SNewProjectNotification>();
 		for (NewProjectNotification o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4464,7 +4710,7 @@ public class SConverter {
 	public List<SNewProjectNotification> convertToSListNewProjectNotification(Collection<NewProjectNotification> input) {
 		List<SNewProjectNotification> result = new ArrayList<SNewProjectNotification>();
 		for (NewProjectNotification o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4501,7 +4747,7 @@ public class SConverter {
 	public Set<SNewRevisionNotification> convertToSSetNewRevisionNotification(Collection<NewRevisionNotification> input) {
 		Set<SNewRevisionNotification> result = new HashSet<SNewRevisionNotification>();
 		for (NewRevisionNotification o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4517,7 +4763,7 @@ public class SConverter {
 	public List<SNewRevisionNotification> convertToSListNewRevisionNotification(Collection<NewRevisionNotification> input) {
 		List<SNewRevisionNotification> result = new ArrayList<SNewRevisionNotification>();
 		for (NewRevisionNotification o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4554,7 +4800,7 @@ public class SConverter {
 	public Set<SCompileResult> convertToSSetCompileResult(Collection<CompileResult> input) {
 		Set<SCompileResult> result = new HashSet<SCompileResult>();
 		for (CompileResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4570,7 +4816,7 @@ public class SConverter {
 	public List<SCompileResult> convertToSListCompileResult(Collection<CompileResult> input) {
 		List<SCompileResult> result = new ArrayList<SCompileResult>();
 		for (CompileResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4610,7 +4856,7 @@ public class SConverter {
 	public Set<SRunResult> convertToSSetRunResult(Collection<RunResult> input) {
 		Set<SRunResult> result = new HashSet<SRunResult>();
 		for (RunResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4626,7 +4872,7 @@ public class SConverter {
 	public List<SRunResult> convertToSListRunResult(Collection<RunResult> input) {
 		List<SRunResult> result = new ArrayList<SRunResult>();
 		for (RunResult o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4675,7 +4921,7 @@ public class SConverter {
 	public Set<SServerInfo> convertToSSetServerInfo(Collection<ServerInfo> input) {
 		Set<SServerInfo> result = new HashSet<SServerInfo>();
 		for (ServerInfo o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4691,7 +4937,7 @@ public class SConverter {
 	public List<SServerInfo> convertToSListServerInfo(Collection<ServerInfo> input) {
 		List<SServerInfo> result = new ArrayList<SServerInfo>();
 		for (ServerInfo o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4729,7 +4975,7 @@ public class SConverter {
 	public Set<SVersion> convertToSSetVersion(Collection<Version> input) {
 		Set<SVersion> result = new HashSet<SVersion>();
 		for (Version o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -4745,7 +4991,7 @@ public class SConverter {
 	public List<SVersion> convertToSListVersion(Collection<Version> input) {
 		List<SVersion> result = new ArrayList<SVersion>();
 		for (Version o : input) {
-			result.add(convertToSObject(o));
+		result.add(convertToSObject(o));
 		}
 		return result;
 	}
