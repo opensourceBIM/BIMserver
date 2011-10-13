@@ -18,6 +18,7 @@ package org.bimserver.database;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -1286,6 +1287,19 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	@Override
 	public List<String> getAvailableClassesInRevision(int pid, int rid) {
+		IfcModel ifcModel = new IfcModel();
+		try {
+			getMap(ifcModel, pid, rid, true, null);
+			List<String> classes = new ArrayList<String>();
+			for (IdEObject idEObject : ifcModel.getValues()) {
+				classes.add(idEObject.eClass().getName());
+			}
+			return classes;
+		} catch (BimDatabaseException e) {
+			e.printStackTrace();
+		} catch (BimDeadlockException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
