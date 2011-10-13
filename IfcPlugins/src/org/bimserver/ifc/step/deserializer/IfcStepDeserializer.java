@@ -409,7 +409,14 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						CharBuffer decode = Charsets.ISO_8859_1.decode(b);
 						result = result.substring(0, index) + decode.get() + result.substring(index + 4);
 					}
-					if (result.contains("\\X\\") || result.contains("\\X0\\") || result.contains("\\X2\\") || result.contains("\\X4\\")) {
+					while (result.contains("\\X\\")) {
+						int index = result.indexOf("\\X\\");
+						int code = Integer.parseInt(result.substring(index + 3, index + 5), 16);
+						ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (code)});
+						CharBuffer decode = Charsets.ISO_8859_1.decode(b);
+						result = result.substring(0, index) + decode.get() + result.substring(index + 5);
+					}
+					if (result.contains("\\X0\\") || result.contains("\\X2\\") || result.contains("\\X4\\")) {
 						throw new DeserializeException("Unsupported string encoding: ISO 10646");
 					}
 					return result;
