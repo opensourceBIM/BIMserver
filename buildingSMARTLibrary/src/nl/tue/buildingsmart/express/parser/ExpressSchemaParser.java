@@ -111,7 +111,6 @@ public class ExpressSchemaParser {
 			walker.syntax_pass2(t);
 			System.setErr(stdErrOld);
 			System.setOut(stdOutOld);
-			// myErr.close();
 			walker.schema.constructHirarchyMap();
 		} catch (Exception e) {
 			LOGGER.error("", e);
@@ -127,20 +126,6 @@ public class ExpressSchemaParser {
 	}
 
 	public static void main(String[] argv) {
-		// TODO Auto-generated method stub
-		// EntityDefinition Entities = new EntityDefinition("test");
-		// for (int i=0;i<100000;i++){
-		// InverseAttribute a = new InverseAttribute(new
-		// String("test"+i),Entities);
-		// Entities.addAttribute(a);
-		// }
-		// for (int j=0;j<100;j++){
-		// java.util.Random r = new java.util.Random();
-		// Attribute d = Entities.getAttributes().get(r.nextInt(100000));
-		// }
-		// System.out.print("ready");
-
-		String usage = "lasdfasdfasdf";
 		EasyParser parser;
 		Express2DictWalker walker;
 
@@ -162,7 +147,7 @@ public class ExpressSchemaParser {
 				commonSchemaFile = g.getOptarg();
 				break;
 			case '?':
-				System.err.println(usage);
+				System.err.println("exiting");
 				System.exit(1);
 				break;
 			default:
@@ -172,7 +157,6 @@ public class ExpressSchemaParser {
 			fileIn = argv[g.getOptind()];
 		} catch (Exception e) {
 			System.err.println("E2OWL: Input file not specified");
-			System.err.println(usage);
 			System.exit(1);
 		}
 		file = new File(fileIn);
@@ -181,16 +165,8 @@ public class ExpressSchemaParser {
 			System.exit(1);
 		}
 		try {
-			// PrintStream stdErrOld= System.err;
-			// PrintStream stdOutOld= System.out;
-			// FileOutputStream log = new FileOutputStream("parser.log");
-			// PrintStream myErr = new PrintStream(log);
-			// System.setErr(myErr);
-			// System.setOut(myErr);
-
 			parser = new EasyParser(fileIn);
 			walker = new Express2DictWalker();
-			// walker.methods.setModel(owlModel);
 
 			/* result = */
 			CommonAST t = parser.parse();
@@ -202,9 +178,7 @@ public class ExpressSchemaParser {
 			walker.syntax_pass2(t);
 			walker.setPass(3);
 			walker.syntax_pass2(t);
-			// System.setErr(stdErrOld);
-			// System.setOut(stdOutOld);
-			// myErr.close();
+
 			SchemaDefinition schema = walker.getSchema();
 			Iterator iter = schema.getEntities().iterator();
 			while (iter.hasNext()) {
@@ -248,35 +222,13 @@ public class ExpressSchemaParser {
 				} else if (type instanceof EnumerationType) {
 					LOGGER.info(type.getName() + ((EnumerationType) type).getElements().toString());
 				}
-
-				// else if (type instanceof SimpleType){
-				// LOGGER.info(type.getName()+":"+type.getClass());
-				// }
 				else if (ut == null && !(type instanceof SelectType))
-
 					LOGGER.error(type.getName() + " has no underlying_type");
-
 			}
-
-			// Print the resulting tree out in LISP notation
-			// LOGGER.info(t.toStringTree());
-
-			// AST t = walker.getAST();
-			// LOGGER.info(t.toStringTree());
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 		LOGGER.info("execution time: " + getStringTime(System.currentTimeMillis() - startTime));
-		// String fileName = "ifc2_2.owl";
-		// try{ Collection errors = new ArrayList();
-		// owlModel.save(new FileOutputStream(fileName),
-		// FileUtils.langXMLAbbrev,errors);
-		// LOGGER.info("File saved with " + errors.size() + " errors.");
-		// LOGGER.info("execution time: "+getStringTime(System.currentTimeMillis()-startTime));
-		// } catch (java.io.IOException e) {
-		//	LOGGER.error("", e);
-		// }
-
 	}
 
 	private static final String getStringTime(long millis) {

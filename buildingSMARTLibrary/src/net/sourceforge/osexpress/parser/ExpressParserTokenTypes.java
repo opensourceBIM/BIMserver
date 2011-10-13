@@ -1,396 +1,399 @@
-// $ANTLR : "express.g" -> "ExpressParser.java"$
- 
   package net.sourceforge.osexpress.parser;
 
-/******************************************************************************
- * Copyright (C) 2011  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-public interface ExpressParserTokenTypes {
-	int EOF = 1;
-	int NULL_TREE_LOOKAHEAD = 3;
-	int CONSTANT_IDENT = 4;
-	int ENTITY_IDENT = 5;
-	int FUNCTION_IDENT = 6;
-	int PROCEDURE_IDENT = 7;
-	int PARAMETER_IDENT = 8;
-	int SCHEMA_IDENT = 9;
-	int TYPE_IDENT = 10;
-	int VARIABLE_IDENT = 11;
-	int ENUMERATION_IDENT = 12;
-	int ATTRIBUTE_IDENT = 13;
-	int ENTITY_ATTR_IDENT = 14;
-	int TYPE_ATTR_IDENT = 15;
-	int ENTITY_VAR_IDENT = 16;
-	int TYPE_VAR_IDENT = 17;
-	int ENTITY_PARAM_IDENT = 18;
-	int TYPE_PARAM_IDENT = 19;
-	int SUBTYPE_CONSTRAINT_ID = 20;
-	int ACTUAL_PARAMETER_LIST = 21;
-	int ADD_LIKE_OP = 22;
-	int AGGREGATE_INITIALIZER = 23;
-	int AGGREGATE_SOURCE = 24;
-	int AGGREGATE_TYPE = 25;
-	int AGGREGATION_TYPES = 26;
-	int ALGORITHM_HEAD = 27;
-	int ALIAS_STMT = 28;
-	int ARRAY_TYPE = 29;
-	int ASSIGNMENT_STMT = 30;
-	int BAG_TYPE = 31;
-	int BASE_TYPE = 32;
-	int BINARY_TYPE = 33;
-	int BOOLEAN_TYPE = 34;
-	int BOUND_1 = 35;
-	int BOUND_2 = 36;
-	int BOUND_SPEC = 37;
-	int BUILT_IN_CONSTANT = 38;
-	int BUILT_IN_FUNCTION = 39;
-	int BUILT_IN_PROCEDURE = 40;
-	int CASE_ACTION = 41;
-	int CASE_LABEL = 42;
-	int CASE_STMT = 43;
-	int COMPOUND_STMT = 44;
-	int CONSTANT_BODY = 45;
-	int CONSTANT_DECL = 46;
-	int CONSTANT_FACTOR = 47;
-	int CONSTANT_ID = 48;
-	int DECLARATION = 49;
-	int DOMAIN_RULE = 50;
-	int ELEMENT = 51;
-	int ENTITY_HEAD = 52;
-	int ENTITY_DECL = 53;
-	int ENTITY_BODY = 54;
-	int SUBSUPER = 55;
-	int SUPERTYPE_CONSTRAINT = 56;
-	int ABSTRACT_SUPERTYPE_DECLARATION = 57;
-	int SUBTYPE_DECLARATION = 58;
-	int EXPLICIT_ATTR = 59;
-	int ATTRIBUTE_DECL = 60;
-	int ATTRIBUTE_ID = 61;
-	int QUALIFIED_ATTRIBUTE = 62;
-	int DERIVE_CLAUSE = 63;
-	int DERIVED_ATTR = 64;
-	int INVERSE_CLAUSE = 65;
-	int INVERSE_ATTR = 66;
-	int UNIQUE_CLAUSE = 67;
-	int UNIQUE_RULE = 68;
-	int REFERENCED_ATTRIBUTE = 69;
-	int ENTITY_CONSTRUCTOR = 70;
-	int ENTITY_ID = 71;
-	int ENUMERATION_REFERENCE = 72;
-	int ESCAPE_STMT = 73;
-	int EXPRESSION = 74;
-	int FACTOR = 75;
-	int FORMAL_PARAMETER = 76;
-	int ATTRIBUTE_QUALIFIER = 77;
-	int FUNCTION_CALL = 78;
-	int FUNCTION_DECL = 79;
-	int FUNCTION_HEAD = 80;
-	int FUNCTION_ID = 81;
-	int GENERALIZED_TYPES = 82;
-	int GENERAL_AGGREGATION_TYPES = 83;
-	int GENERAL_ARRAY_TYPE = 84;
-	int GENERAL_BAG_TYPE = 85;
-	int GENERAL_LIST_TYPE = 86;
-	int GENERAL_REF = 87;
-	int GENERAL_SET_TYPE = 88;
-	int GENERIC_TYPE = 89;
-	int GROUP_QUALIFIER = 90;
-	int IF_STMT = 91;
-	int INCREMENT = 92;
-	int INCREMENT_CONTROL = 93;
-	int INDEX = 94;
-	int INDEX_1 = 95;
-	int INDEX_2 = 96;
-	int INDEX_QUALIFIER = 97;
-	int INTEGER_TYPE = 98;
-	int INTERVAL = 99;
-	int INTERVAL_HIGH = 100;
-	int INTERVAL_ITEM = 101;
-	int INTERVAL_LOW = 102;
-	int INTERVAL_OP = 103;
-	int LABEL = 104;
-	int LIST_TYPE = 105;
-	int LITERAL = 106;
-	int REAL = 107;
-	int INTEGER = 108;
-	int STRING_LITERAL = 109;
-	int LOCAL_DECL = 110;
-	int LOCAL_VARIABLE = 111;
-	int LOGICAL_EXPRESSION = 112;
-	int LOGICAL = 113;
-	int LOGICAL_TYPE = 114;
-	int MULTIPLICATION_LIKE_OP = 115;
-	int NAMED_TYPES = 116;
-	int NULL_STMT = 117;
-	int NUMBER_TYPE = 118;
-	int NUMERIC_EXPRESSION = 119;
-	int ONE_OF = 120;
-	int PARAMETER = 121;
-	int PARAMETER_ID = 122;
-	int PARAMETER_TYPE = 123;
-	int POPULATION = 124;
-	int PRECISION_SPEC = 125;
-	int PRIMARY = 126;
-	int PROCEDURE_CALL_STMT = 127;
-	int PROCEDURE_DECL = 128;
-	int PROCEDURE_HEAD = 129;
-	int PROCEDURE_ID = 130;
-	int QUALIFIABLE_FACTOR = 131;
-	int QUALIFIER = 132;
-	int QUERY_EXPRESSION = 133;
-	int REAL_TYPE = 134;
-	int REFERENCE_CLAUSE = 135;
-	int REL_OP = 136;
-	int REL_OP_EXTENDED = 137;
-	int REPEAT_CONTROL = 138;
-	int REPEAT_STMT = 139;
-	int REPETITION = 140;
-	int RESOURCE_OR_RENAME = 141;
-	int RESOURCE_REF = 142;
-	int RETURN_STMT = 143;
-	int RULE_DECL = 144;
-	int RULE_HEAD = 145;
-	int RULE_ID = 146;
-	int SCHEMA_ID = 147;
-	int SCHEMA_BODY = 148;
-	int SCHEMA_DECL = 149;
-	int INTERFACE_SPECIFICATION = 150;
-	int USE_CLAUSE = 151;
-	int NAMED_TYPE_OR_RENAME = 152;
-	int SELECTOR = 153;
-	int SET_TYPE = 154;
-	int SIMPLE_EXPRESSION = 155;
-	int SIMPLE_FACTOR = 156;
-	int SIMPLE_TYPES = 157;
-	int SKIP_STMT = 158;
-	int STMT = 159;
-	int STRING_TYPE = 160;
-	int SUBTYPE_CONSTRAINT = 161;
-	int SUPERTYPE_EXPRESSION = 162;
-	int SUPERTYPE_FACTOR = 163;
-	int SUPERTYPE_RULE = 164;
-	int SUPERTYPE_TERM = 165;
-	int SYNTAX = 166;
-	int TERM = 167;
-	int TYPE_DECL = 168;
-	int UNDERLYING_TYPE = 169;
-	int CONSTRUCTED_TYPES = 170;
-	int ENUMERATION_TYPE = 171;
-	int ENUMERATION_ID = 172;
-	int SELECT_TYPE = 173;
-	int TYPE_ID = 174;
-	int TYPE_LABEL = 175;
-	int TYPE_LABEL_ID = 176;
-	int UNARY_OP = 177;
-	int UNTIL_CONTROL = 178;
-	int VARIABLE_ID = 179;
-	int WHERE_CLAUSE = 180;
-	int WHILE_CONTROL = 181;
-	int WIDTH = 182;
-	int WIDTH_SPEC = 183;
-	int ENTITY_REF = 184;
-	int TYPE_REF = 185;
-	int ENUMERATION_REF = 186;
-	int ATTRIBUTE_REF = 187;
-	int CONSTANT_REF = 188;
-	int FUNCTION_REF = 189;
-	int PARAMETER_REF = 190;
-	int VARIABLE_REF = 191;
-	int SCHEMA_REF = 192;
-	int TYPE_LABEL_REF = 193;
-	int PROCEDURE_REF = 194;
-	int SIMPLE_ID = 195;
-	int ELSE_CLAUSE = 196;
-	int RENAME_ID = 197;
-	int ENUMERATION_ITEMS = 198;
-	int ENUMERATION_EXTENSION = 199;
-	int SELECT_LIST = 200;
-	int SELECT_EXTENSION = 201;
-	int REDECLARED_ATTRIBUTE = 202;
-	int SUBTYPE_CONSTRAINT_DECL = 203;
-	int SUBTYPE_CONSTRAINT_HEAD = 204;
-	int SUBTYPE_CONSTRAINT_BODY = 205;
-	int ABSTRACT_SUPERTYPE = 206;
-	int TOTAL_OVER = 207;
-	int CONCRETE_TYPES = 208;
-	int GENERIC_ENTITY_TYPE = 209;
-	int SCHEMA_VERSION_ID = 210;
-	int LANGUAGE_VERSION_ID = 211;
-	int LPAREN = 212;
-	int COMMA = 213;
-	int RPAREN = 214;
-	int PLUS = 215;
-	int MINUS = 216;
-	int LITERAL_or = 217;
-	int LITERAL_xor = 218;
-	int LBRACK = 219;
-	int RBRACK = 220;
-	int LITERAL_aggregate = 221;
-	int COLON = 222;
-	int LITERAL_of = 223;
-	int LITERAL_alias = 224;
-	int LITERAL_for = 225;
-	int IDENT = 226;
-	int SEMI = 227;
-	int LITERAL_end_alias = 228;
-	int LITERAL_array = 229;
-	int LITERAL_optional = 230;
-	int LITERAL_unique = 231;
-	int COLEQ = 232;
-	int LITERAL_bag = 233;
-	int LITERAL_binary = 234;
-	int LITERAL_boolean = 235;
-	int LITERAL_const_e = 236;
-	int LITERAL_pi = 237;
-	int LITERAL_self = 238;
-	int QUESTION = 239;
-	int STAR = 240;
-	int LITERAL_abs = 241;
-	int LITERAL_acos = 242;
-	int LITERAL_asin = 243;
-	int LITERAL_atan = 244;
-	int LITERAL_blength = 245;
-	int LITERAL_cos = 246;
-	int LITERAL_exists = 247;
-	int LITERAL_exp = 248;
-	int LITERAL_format = 249;
-	int LITERAL_hibound = 250;
-	int LITERAL_hiindex = 251;
-	int LITERAL_length = 252;
-	int LITERAL_lobound = 253;
-	int LITERAL_loindex = 254;
-	int LITERAL_log = 255;
-	// "log2" = 256
-	// "log10" = 257
-	int LITERAL_nvl = 258;
-	int LITERAL_odd = 259;
-	int LITERAL_rolesof = 260;
-	int LITERAL_sin = 261;
-	int LITERAL_sizeof = 262;
-	int LITERAL_sqrt = 263;
-	int LITERAL_tan = 264;
-	int LITERAL_typeof = 265;
-	int LITERAL_usedin = 266;
-	int LITERAL_value = 267;
-	int LITERAL_value_in = 268;
-	int LITERAL_value_unique = 269;
-	int LITERAL_insert = 270;
-	int LITERAL_remove = 271;
-	int LITERAL_case = 272;
-	int LITERAL_otherwise = 273;
-	int LITERAL_end_case = 274;
-	int LITERAL_begin = 275;
-	int LITERAL_end = 276;
-	int LITERAL_constant = 277;
-	int LITERAL_end_constant = 278;
-	int LITERAL_entity = 279;
-	int LITERAL_abstract = 280;
-	int LITERAL_end_entity = 281;
-	int LITERAL_supertype = 282;
-	int LITERAL_subtype = 283;
-	int LITERAL_end_subtype_constraint = 284;
-	int LITERAL_subtype_constraint = 285;
-	int LITERAL_total_over = 286;
-	int LITERAL_renamed = 287;
-	int LITERAL_derive = 288;
-	int LITERAL_inverse = 289;
-	int LITERAL_set = 290;
-	int DOT = 291;
-	int LITERAL_escape = 292;
-	int DOUBLESTAR = 293;
-	int LITERAL_end_function = 294;
-	int LITERAL_function = 295;
-	int LITERAL_list = 296;
-	int LITERAL_generic = 297;
-	int LITERAL_generic_entity = 298;
-	int BACKSLASH = 299;
-	int LITERAL_if = 300;
-	int LITERAL_then = 301;
-	int LITERAL_end_if = 302;
-	int LITERAL_else = 303;
-	int LITERAL_to = 304;
-	int LITERAL_by = 305;
-	int LITERAL_integer = 306;
-	int LCURLY = 307;
-	int RCURLY = 308;
-	int LT = 309;
-	int LE = 310;
-	int INT = 311;
-	int FLOAT = 312;
-	int STRING = 313;
-	int LITERAL_local = 314;
-	int LITERAL_end_local = 315;
-	int LITERAL_false = 316;
-	int LITERAL_true = 317;
-	int LITERAL_unknown = 318;
-	int LITERAL_logical = 319;
-	int DIVSIGN = 320;
-	int LITERAL_div = 321;
-	int LITERAL_mod = 322;
-	int LITERAL_and = 323;
-	int DOUBLEBAR = 324;
-	int LITERAL_number = 325;
-	int LITERAL_oneof = 326;
-	int LITERAL_end_procedure = 327;
-	int LITERAL_procedure = 328;
-	int LITERAL_var = 329;
-	int LITERAL_query = 330;
-	int LTSTAR = 331;
-	int BAR = 332;
-	int LITERAL_real = 333;
-	int LITERAL_reference = 334;
-	int LITERAL_from = 335;
-	int GT = 336;
-	int GE = 337;
-	int LTGT = 338;
-	int ASSIGN = 339;
-	int COLLTGT = 340;
-	int COLEQCOL = 341;
-	int LITERAL_in = 342;
-	int LITERAL_like = 343;
-	int LITERAL_repeat = 344;
-	int LITERAL_end_repeat = 345;
-	int LITERAL_as = 346;
-	int LITERAL_return = 347;
-	int LITERAL_end_rule = 348;
-	int LITERAL_rule = 349;
-	int LITERAL_schema = 350;
-	int LITERAL_end_schema = 351;
-	int LITERAL_use = 352;
-	int LITERAL_skip = 353;
-	int LITERAL_string = 354;
-	int LITERAL_andor = 355;
-	int LANG_VERSION = 356;
-	int LITERAL_type = 357;
-	int LITERAL_end_type = 358;
-	int LITERAL_extensible = 359;
-	int LITERAL_enumeration = 360;
-	int LITERAL_based_on = 361;
-	int LITERAL_with = 362;
-	int LITERAL_select = 363;
-	int LITERAL_not = 364;
-	int LITERAL_until = 365;
-	int LITERAL_where = 366;
-	int LITERAL_while = 367;
-	int LITERAL_fixed = 368;
-	int COMMENT = 369;
-	int LINECOMMENT = 370;
-	int AMPERSAND = 371;
-	int AT = 372;
-	int WS = 373;
-	int DIGIT = 374;
+   
+public enum ExpressParserTokenTypes {
+	/**
+	 * SKIP was originally in antlr.Token
+	 */
+	SKIP(-1),
+	
+	EOF(1),
+	NULL_TREE_LOOKAHEAD(3),
+	CONSTANT_IDENT(4),
+	ENTITY_IDENT(5),
+	FUNCTION_IDENT(6),
+	PROCEDURE_IDENT(7),
+	PARAMETER_IDENT(8),
+	SCHEMA_IDENT(9),
+	TYPE_IDENT(10),
+	VARIABLE_IDENT(11),
+	ENUMERATION_IDENT(12),
+	ATTRIBUTE_IDENT(13),
+	ENTITY_ATTR_IDENT(14),
+	TYPE_ATTR_IDENT(15),
+	ENTITY_VAR_IDENT(16),
+	TYPE_VAR_IDENT(17),
+	ENTITY_PARAM_IDENT(18),
+	TYPE_PARAM_IDENT(19),
+	SUBTYPE_CONSTRAINT_ID(20),
+	ACTUAL_PARAMETER_LIST(21),
+	ADD_LIKE_OP(22),
+	AGGREGATE_INITIALIZER(23),
+	AGGREGATE_SOURCE(24),
+	AGGREGATE_TYPE(25),
+	AGGREGATION_TYPES(26),
+	ALGORITHM_HEAD(27),
+	ALIAS_STMT(28),
+	ARRAY_TYPE(29),
+	ASSIGNMENT_STMT(30),
+	BAG_TYPE(31),
+	BASE_TYPE(32),
+	BINARY_TYPE(33),
+	BOOLEAN_TYPE(34),
+	BOUND_1(35),
+	BOUND_2(36),
+	BOUND_SPEC(37),
+	BUILT_IN_CONSTANT(38),
+	BUILT_IN_FUNCTION(39),
+	BUILT_IN_PROCEDURE(40),
+	CASE_ACTION(41),
+	CASE_LABEL(42),
+	CASE_STMT(43),
+	COMPOUND_STMT(44),
+	CONSTANT_BODY(45),
+	CONSTANT_DECL(46),
+	CONSTANT_FACTOR(47),
+	CONSTANT_ID(48),
+	DECLARATION(49),
+	DOMAIN_RULE(50),
+	ELEMENT(51),
+	ENTITY_HEAD(52),
+	ENTITY_DECL(53),
+	ENTITY_BODY(54),
+	SUBSUPER(55),
+	SUPERTYPE_CONSTRAINT(56),
+	ABSTRACT_SUPERTYPE_DECLARATION(57),
+	SUBTYPE_DECLARATION(58),
+	EXPLICIT_ATTR(59),
+	ATTRIBUTE_DECL(60),
+	ATTRIBUTE_ID(61),
+	QUALIFIED_ATTRIBUTE(62),
+	DERIVE_CLAUSE(63),
+	DERIVED_ATTR(64),
+	INVERSE_CLAUSE(65),
+	INVERSE_ATTR(66),
+	UNIQUE_CLAUSE(67),
+	UNIQUE_RULE(68),
+	REFERENCED_ATTRIBUTE(69),
+	ENTITY_CONSTRUCTOR(70),
+	ENTITY_ID(71),
+	ENUMERATION_REFERENCE(72),
+	ESCAPE_STMT(73),
+	EXPRESSION(74),
+	FACTOR(75),
+	FORMAL_PARAMETER(76),
+	ATTRIBUTE_QUALIFIER(77),
+	FUNCTION_CALL(78),
+	FUNCTION_DECL(79),
+	FUNCTION_HEAD(80),
+	FUNCTION_ID(81),
+	GENERALIZED_TYPES(82),
+	GENERAL_AGGREGATION_TYPES(83),
+	GENERAL_ARRAY_TYPE(84),
+	GENERAL_BAG_TYPE(85),
+	GENERAL_LIST_TYPE(86),
+	GENERAL_REF(87),
+	GENERAL_SET_TYPE(88),
+	GENERIC_TYPE(89),
+	GROUP_QUALIFIER(90),
+	IF_STMT(91),
+	INCREMENT(92),
+	INCREMENT_CONTROL(93),
+	INDEX(94),
+	INDEX_1(95),
+	INDEX_2(96),
+	INDEX_QUALIFIER(97),
+	INTEGER_TYPE(98),
+	INTERVAL(99),
+	INTERVAL_HIGH(100),
+	INTERVAL_ITEM(101),
+	INTERVAL_LOW(102),
+	INTERVAL_OP(103),
+	LABEL(104),
+	LIST_TYPE(105),
+	LITERAL(106),
+	REAL(107),
+	INTEGER(108),
+	STRING_LITERAL(109),
+	LOCAL_DECL(110),
+	LOCAL_VARIABLE(111),
+	LOGICAL_EXPRESSION(112),
+	LOGICAL(113),
+	LOGICAL_TYPE(114),
+	MULTIPLICATION_LIKE_OP(115),
+	NAMED_TYPES(116),
+	NULL_STMT(117),
+	NUMBER_TYPE(118),
+	NUMERIC_EXPRESSION(119),
+	ONE_OF(120),
+	PARAMETER(121),
+	PARAMETER_ID(122),
+	PARAMETER_TYPE(123),
+	POPULATION(124),
+	PRECISION_SPEC(125),
+	PRIMARY(126),
+	PROCEDURE_CALL_STMT(127),
+	PROCEDURE_DECL(128),
+	PROCEDURE_HEAD(129),
+	PROCEDURE_ID(130),
+	QUALIFIABLE_FACTOR(131),
+	QUALIFIER(132),
+	QUERY_EXPRESSION(133),
+	REAL_TYPE(134),
+	REFERENCE_CLAUSE(135),
+	REL_OP(136),
+	REL_OP_EXTENDED(137),
+	REPEAT_CONTROL(138),
+	REPEAT_STMT(139),
+	REPETITION(140),
+	RESOURCE_OR_RENAME(141),
+	RESOURCE_REF(142),
+	RETURN_STMT(143),
+	RULE_DECL(144),
+	RULE_HEAD(145),
+	RULE_ID(146),
+	SCHEMA_ID(147),
+	SCHEMA_BODY(148),
+	SCHEMA_DECL(149),
+	INTERFACE_SPECIFICATION(150),
+	USE_CLAUSE(151),
+	NAMED_TYPE_OR_RENAME(152),
+	SELECTOR(153),
+	SET_TYPE(154),
+	SIMPLE_EXPRESSION(155),
+	SIMPLE_FACTOR(156),
+	SIMPLE_TYPES(157),
+	SKIP_STMT(158),
+	STMT(159),
+	STRING_TYPE(160),
+	SUBTYPE_CONSTRAINT(161),
+	SUPERTYPE_EXPRESSION(162),
+	SUPERTYPE_FACTOR(163),
+	SUPERTYPE_RULE(164),
+	SUPERTYPE_TERM(165),
+	SYNTAX(166),
+	TERM(167),
+	TYPE_DECL(168),
+	UNDERLYING_TYPE(169),
+	CONSTRUCTED_TYPES(170),
+	ENUMERATION_TYPE(171),
+	ENUMERATION_ID(172),
+	SELECT_TYPE(173),
+	TYPE_ID(174),
+	TYPE_LABEL(175),
+	TYPE_LABEL_ID(176),
+	UNARY_OP(177),
+	UNTIL_CONTROL(178),
+	VARIABLE_ID(179),
+	WHERE_CLAUSE(180),
+	WHILE_CONTROL(181),
+	WIDTH(182),
+	WIDTH_SPEC(183),
+	ENTITY_REF(184),
+	TYPE_REF(185),
+	ENUMERATION_REF(186),
+	ATTRIBUTE_REF(187),
+	CONSTANT_REF(188),
+	FUNCTION_REF(189),
+	PARAMETER_REF(190),
+	VARIABLE_REF(191),
+	SCHEMA_REF(192),
+	TYPE_LABEL_REF(193),
+	PROCEDURE_REF(194),
+	SIMPLE_ID(195),
+	ELSE_CLAUSE(196),
+	RENAME_ID(197),
+	ENUMERATION_ITEMS(198),
+	ENUMERATION_EXTENSION(199),
+	SELECT_LIST(200),
+	SELECT_EXTENSION(201),
+	REDECLARED_ATTRIBUTE(202),
+	SUBTYPE_CONSTRAINT_DECL(203),
+	SUBTYPE_CONSTRAINT_HEAD(204),
+	SUBTYPE_CONSTRAINT_BODY(205),
+	ABSTRACT_SUPERTYPE(206),
+	TOTAL_OVER(207),
+	CONCRETE_TYPES(208),
+	GENERIC_ENTITY_TYPE(209),
+	SCHEMA_VERSION_ID(210),
+	LANGUAGE_VERSION_ID(211),
+	LPAREN(212),
+	COMMA(213),
+	RPAREN(214),
+	PLUS(215),
+	MINUS(216),
+	LITERAL_or(217),
+	LITERAL_xor(218),
+	LBRACK(219),
+	RBRACK(220),
+	LITERAL_aggregate(221),
+	COLON(222),
+	LITERAL_of(223),
+	LITERAL_alias(224),
+	LITERAL_for(225),
+	IDENT(226),
+	SEMI(227),
+	LITERAL_end_alias(228),
+	LITERAL_array(229),
+	LITERAL_optional(230),
+	LITERAL_unique(231),
+	COLEQ(232),
+	LITERAL_bag(233),
+	LITERAL_binary(234),
+	LITERAL_boolean(235),
+	LITERAL_const_e(236),
+	LITERAL_pi(237),
+	LITERAL_self(238),
+	QUESTION(239),
+	STAR(240),
+	LITERAL_abs(241),
+	LITERAL_acos(242),
+	LITERAL_asin(243),
+	LITERAL_atan(244),
+	LITERAL_blength(245),
+	LITERAL_cos(246),
+	LITERAL_exists(247),
+	LITERAL_exp(248),
+	LITERAL_format(249),
+	LITERAL_hibound(250),
+	LITERAL_hiindex(251),
+	LITERAL_length(252),
+	LITERAL_lobound(253),
+	LITERAL_loindex(254),
+	LITERAL_log(255),
+	LOG2(256),
+	LOG10(257),
+	LITERAL_nvl(258),
+	LITERAL_odd(259),
+	LITERAL_rolesof(260),
+	LITERAL_sin(261),
+	LITERAL_sizeof(262),
+	LITERAL_sqrt(263),
+	LITERAL_tan(264),
+	LITERAL_typeof(265),
+	LITERAL_usedin(266),
+	LITERAL_value(267),
+	LITERAL_value_in(268),
+	LITERAL_value_unique(269),
+	LITERAL_insert(270),
+	LITERAL_remove(271),
+	LITERAL_case(272),
+	LITERAL_otherwise(273),
+	LITERAL_end_case(274),
+	LITERAL_begin(275),
+	LITERAL_end(276),
+	LITERAL_constant(277),
+	LITERAL_end_constant(278),
+	LITERAL_entity(279),
+	LITERAL_abstract(280),
+	LITERAL_end_entity(281),
+	LITERAL_supertype(282),
+	LITERAL_subtype(283),
+	LITERAL_end_subtype_constraint(284),
+	LITERAL_subtype_constraint(285),
+	LITERAL_total_over(286),
+	LITERAL_renamed(287),
+	LITERAL_derive(288),
+	LITERAL_inverse(289),
+	LITERAL_set(290),
+	DOT(291),
+	LITERAL_escape(292),
+	DOUBLESTAR(293),
+	LITERAL_end_function(294),
+	LITERAL_function(295),
+	LITERAL_list(296),
+	LITERAL_generic(297),
+	LITERAL_generic_entity(298),
+	BACKSLASH(299),
+	LITERAL_if(300),
+	LITERAL_then(301),
+	LITERAL_end_if(302),
+	LITERAL_else(303),
+	LITERAL_to(304),
+	LITERAL_by(305),
+	LITERAL_integer(306),
+	LCURLY(307),
+	RCURLY(308),
+	LT(309),
+	LE(310),
+	INT(311),
+	FLOAT(312),
+	STRING(313),
+	LITERAL_local(314),
+	LITERAL_end_local(315),
+	LITERAL_false(316),
+	LITERAL_true(317),
+	LITERAL_unknown(318),
+	LITERAL_logical(319),
+	DIVSIGN(320),
+	LITERAL_div(321),
+	LITERAL_mod(322),
+	LITERAL_and(323),
+	DOUBLEBAR(324),
+	LITERAL_number(325),
+	LITERAL_oneof(326),
+	LITERAL_end_procedure(327),
+	LITERAL_procedure(328),
+	LITERAL_var(329),
+	LITERAL_query(330),
+	LTSTAR(331),
+	BAR(332),
+	LITERAL_real(333),
+	LITERAL_reference(334),
+	LITERAL_from(335),
+	GT(336),
+	GE(337),
+	LTGT(338),
+	ASSIGN(339),
+	COLLTGT(340),
+	COLEQCOL(341),
+	LITERAL_in(342),
+	LITERAL_like(343),
+	LITERAL_repeat(344),
+	LITERAL_end_repeat(345),
+	LITERAL_as(346),
+	LITERAL_return(347),
+	LITERAL_end_rule(348),
+	LITERAL_rule(349),
+	LITERAL_schema(350),
+	LITERAL_end_schema(351),
+	LITERAL_use(352),
+	LITERAL_skip(353),
+	LITERAL_string(354),
+	LITERAL_andor(355),
+	LANG_VERSION(356),
+	LITERAL_type(357),
+	LITERAL_end_type(358),
+	LITERAL_extensible(359),
+	LITERAL_enumeration(360),
+	LITERAL_based_on(361),
+	LITERAL_with(362),
+	LITERAL_select(363),
+	LITERAL_not(364),
+	LITERAL_until(365),
+	LITERAL_where(366),
+	LITERAL_while(367),
+	LITERAL_fixed(368),
+	COMMENT(369),
+	LINECOMMENT(370),
+	AMPERSAND(371),
+	AT(372),
+	WS(373),
+	DIGIT(374);
+	
+	private int index;
+	private ExpressParserTokenTypes(int index){
+		this.index = index;
+	}
+	
+	public int getIndex(){
+		return this.index;
+	}
+	public static ExpressParserTokenTypes getToken(int tokenIndex){
+		for(ExpressParserTokenTypes t : ExpressParserTokenTypes.values()){
+			if(t.getIndex() == tokenIndex)
+				return t;
+		}
+		throw new IllegalArgumentException(String.format("ExpressParserTokenTypes does not have a Token with an index of %s", tokenIndex));
+	}
 }
