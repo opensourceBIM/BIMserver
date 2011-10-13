@@ -30,7 +30,6 @@
 	 * http://www.gnu.org/licenses/gpl-3.0.txt
 	 * For more information mail to license@bimserver.org
 	 ***********************************************************/
-	 var o3dcounter = 0;
 	var tabberOptions = {
 		'cookie' :"tabber",
 		'onLoad' : function(argsObj) {
