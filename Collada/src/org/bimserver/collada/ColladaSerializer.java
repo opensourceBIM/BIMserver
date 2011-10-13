@@ -57,6 +57,7 @@ import org.bimserver.models.ifc2x3.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcRoof;
+import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.IfcSIUnit;
 import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3.IfcSlab;
@@ -171,10 +172,14 @@ public class ColladaSerializer extends BimModelSerializer {
 	private void writeGeometries(PrintWriter out) throws IfcEngineException, SerializerException {
 		out.println("	<library_geometries>");
 
+		Set<IfcRoot> convertedObjects = new HashSet<IfcRoot>();
+		
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
+			convertedObjects.add(ifcRoof);
 			setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
 		}
 		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
+			convertedObjects.add(ifcSlab);
 			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
 				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
 			} else {
@@ -182,46 +187,67 @@ public class ColladaSerializer extends BimModelSerializer {
 			}
 		}
 		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
+			convertedObjects.add(ifcWindow);
 			setGeometry(out, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
 		}
 		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
+			convertedObjects.add(ifcDoor);
 			setGeometry(out, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
 		}
 		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
+			convertedObjects.add(ifcWall);
 			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
 		}
 		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
+			convertedObjects.add(ifcStair);
 			setGeometry(out, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
 		}
 		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
+			convertedObjects.add(ifcStairFlight);
 			setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
 		}
 		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
+			convertedObjects.add(ifcFlowSegment);
 			setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
 		}
 		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
+			convertedObjects.add(ifcFurnishingElement);
 			setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
 		}
 		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
+			convertedObjects.add(ifcPlate);
 			setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
 		}
 		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
+			convertedObjects.add(ifcMember);
 			setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
 		}
 		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
+			convertedObjects.add(ifcWall);
 			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
 		}
 		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
+			convertedObjects.add(ifcCurtainWall);
 			setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
 		}
 		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
+			convertedObjects.add(ifcRailing);
 			setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
 		}
 		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
+			convertedObjects.add(ifcColumn);
 			setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
 		}
 		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
+			convertedObjects.add(ifcBuildingElementProxy);
 			setGeometry(out, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
+		}
+		for (IfcRoot ifcRoot : model.getAll(IfcRoot.class)) {
+			if (!convertedObjects.contains(ifcRoot)) {
+				System.out.println("Converted as other: " + ifcRoot);
+				convertedObjects.add(ifcRoot);
+				setGeometry(out, ifcRoot, ifcRoot.getGlobalId().getWrappedValue(), "Other");
+			}
 		}
 		out.println("	</library_geometries>");
 	}
@@ -469,6 +495,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		writeEffect(out, "Stair", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
 		writeEffect(out, "BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 1.0f);
 		writeEffect(out, "FlowSegment", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f);
+		writeEffect(out, "Other", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f);
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
 			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
@@ -658,6 +685,9 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("		</material>");
 		out.println("		<material id=\"BuildingElementProxyMaterial\" name=\"BuildingElementProxyMaterial\">");
 		out.println("			<instance_effect url=\"#BuildingElementProxy-fx\"/>");
+		out.println("		</material>");
+		out.println("		<material id=\"OtherMaterial\" name=\"OtherMaterial\">");
+		out.println("			<instance_effect url=\"#Other-fx\"/>");
 		out.println("		</material>");
 
 		for (String surfaceStyleId : surfaceStyleIds) {

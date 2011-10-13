@@ -352,7 +352,7 @@ public class BimServer {
 			if (found == null) {
 				GuidanceProvider guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();
 				guidanceProvider.setName(name);
-				guidanceProvider.setClassName(guidanceProvider.getClass().getName());
+				guidanceProvider.setClassName(guidanceProviderPlugin.getClass().getName());
 				guidanceProvider.setEnabled(true);
 				defaultGuidanceProvider = guidanceProvider;
 				session.store(guidanceProvider);

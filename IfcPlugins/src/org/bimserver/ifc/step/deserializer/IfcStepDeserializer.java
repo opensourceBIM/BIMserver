@@ -24,6 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -399,7 +401,18 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
-					return value.substring(1, value.length() - 1);
+					String result = value.substring(1, value.length() - 1);
+					while (result.contains("\\S\\")) {
+						int index = result.indexOf("\\S\\");
+						char x = result.charAt(index + 3);
+						ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (x + 128)});
+						CharBuffer decode = Charsets.ISO_8859_1.decode(b);
+						result = result.substring(0, index) + decode.get() + result.substring(index + 4);
+					}
+					if (result.contains("\\X\\") || result.contains("\\X0\\") || result.contains("\\X2\\") || result.contains("\\X4\\")) {
+						throw new DeserializeException("Unsupported string encoding: ISO 10646");
+					}
+					return result;
 				} else {
 					return value;
 				}

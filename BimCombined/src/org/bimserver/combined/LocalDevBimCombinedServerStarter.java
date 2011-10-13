@@ -62,6 +62,7 @@ public class LocalDevBimCombinedServerStarter {
 		config.setHomeDir(new File("home"));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 		config.setStartEmbeddedWebServer(true);
+		config.setClassPath(System.getProperty("java.class.path"));
 		bimServer = new BimServer(config);
 	 	try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
@@ -88,7 +89,6 @@ public class LocalDevBimCombinedServerStarter {
 			@Override
 			public BimServerClient create() {
 				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
-//				bimServerClient.connectProtocolBuffers("localhost", 8020);
 				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
 				return bimServerClient;
 			}
