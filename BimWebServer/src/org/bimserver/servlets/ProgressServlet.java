@@ -65,12 +65,7 @@ public class ProgressServlet extends HttpServlet {
 								object.put("clashes", revision.getNrClashes());
 								object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
 								// TODO
-//								loginManager.getService().getDownloadState(revision.getLastConcreteRevisionId());
-//								BimServer bimServer = (BimServer) request.getServletContext().getAttribute("bimserver");
-//								LongCheckinAction longCheckinAction = bimServer.getLongActionManager().getLongAction(LongCheckinAction.class, new LongCheckinActionKey(revision.getLastConcreteRevisionId()));
-//								if (longCheckinAction != null) {
-//									object.put("progress", longCheckinAction.getProgress());
-//								}
+								//								object.put("progress", revision.getProgress());
 								revisions.put(object);
 							} catch (UserException e) {
 								// This is probably a browser trying to load
