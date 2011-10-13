@@ -19,6 +19,7 @@ package org.bimserver.ifc.step.serializer;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -46,6 +47,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+
+import com.google.common.base.Charsets;
 
 public class IfcStepSerializer extends IfcSerializer {
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
@@ -203,7 +206,20 @@ public class IfcStepSerializer extends IfcSerializer {
 			}
 		} else if (val instanceof String) {
 			out.print(SINGLE_QUOTE);
-			out.print(val.toString());
+			String stringVal = (String)val;
+			StringBuilder sb = new StringBuilder();
+			for (int i=0; i<stringVal.length(); i++) {
+				char c = stringVal.charAt(i);
+				if (c <= 126) {
+					sb.append(c);
+					// ISO 8859-1
+				} else {
+					// ISO 8859-1 with -128 offset
+					ByteBuffer encode = Charsets.ISO_8859_1.encode(new String(new char[]{(char) (c - 128)}));
+					sb.append("\\S\\" + (char)encode.get());
+				}
+			}
+			out.print(sb.toString());
 			out.print(SINGLE_QUOTE);
 		} else {
 			out.print(val == null ? "$" : val.toString());
