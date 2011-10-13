@@ -76,7 +76,6 @@
 				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
-				boolean o3dEnabled = loginManager.getService().hasActiveSerializer("application/json");
 				boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 %>
 <div class="sidebar">
@@ -86,13 +85,6 @@
 		%>
 		<li><a class="link" href="editproject.jsp?poid=<%=poid%>">Edit</a>
 		</li>
-		<%
-			}
-		%>
-		<%
-			if (o3dEnabled && lastRevision != null) {
-		%>
-		<li><a id="visualiselink" class="link">Visualise</a></li>
 		<%
 			}
 		%>
