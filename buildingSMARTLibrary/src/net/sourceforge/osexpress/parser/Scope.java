@@ -42,14 +42,14 @@ import java.util.Vector;
 */
 
 @SuppressWarnings("all")
-public class Scope implements ExpressParserTokenTypes, Cloneable {
+public class Scope implements Cloneable {
 
     /* scope id */
     public int scopeId; /* for debugging purpose */
     private static int globalId = 1;
 
     /* id recording */
-    private Hashtable idtable; /* ids */
+    private Hashtable<String,ExpressParserTokenTypes> idtable; /* ids */
 
     /* entities management */
     private boolean entity; /* if we are in a scope defined by an entity */
@@ -72,21 +72,21 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
     public Scope next; /* next Scope beeing created during the pass */
 
 
-    public void addId(String id, int type) {
-	Integer i;
+    public void addId(String id, ExpressParserTokenTypes type) {
+    ExpressParserTokenTypes i;
 
 	/* records an id with its tokentype
 	   drops an error when already defined. 
 	   Enumeration ids are recorded in the parent scope
 	   for visibility reasons (it should be visible out of the TYPE
 	   in which it is defined */
-	i=(Integer)idtable.get(id.toLowerCase());
-	if (i==null) idtable.put(id.toLowerCase(),new Integer(type));
+	i= idtable.get(id.toLowerCase());
+	if (i==null) idtable.put(id.toLowerCase(), type);
 	else System.err.println("Warning: id \""+id+"\" already defined");
     }
 
     public void addEnumerationType(EnumerationType et) {
-	Integer ii;
+    	ExpressParserTokenTypes ii;
 	int sz,i;
 	String id;
 
@@ -97,9 +97,9 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 	sz=et.getCount();
 	for (i=0;i<sz;i++) {
 	    id=et.getEnumerationId(i);
-	    ii=(Integer)idtable.get(id.toLowerCase());
-	    if (ii==null) idtable.put(id.toLowerCase(),new Integer(ENUMERATION_IDENT));
-	    else if (ii.intValue()!=ENUMERATION_IDENT) System.err.println("Warning: id \""+id+"\" already defined");
+	    ii= idtable.get(id.toLowerCase());
+	    if (ii==null) idtable.put(id.toLowerCase(),ExpressParserTokenTypes.ENUMERATION_IDENT);
+	    else if (ii != ExpressParserTokenTypes.ENUMERATION_IDENT) System.err.println("Warning: id \""+id+"\" already defined");
 	}
 	if (enumerationTypes==null) enumerationTypes = new Vector();
 	enumerationTypes.add(et);
@@ -133,9 +133,9 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
     }
 	
 
-    public int searchId(String id) {
-	Integer i;
-	int it;
+    public ExpressParserTokenTypes searchId(String id) {
+    	ExpressParserTokenTypes i;
+    	ExpressParserTokenTypes it;
 
 	/* search the given id in this scope's table, in the entity 
 	   inheritance tree and in all the scopes
@@ -151,72 +151,72 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
       i = null;
       }
    else {
-	   i=(Integer)idtable.get(id.toLowerCase());
+	   i= idtable.get(id.toLowerCase());
       }
 	if (i==null) {
 	    if (entity) {
-		i=searchInheritanceTree(id);
+		i= searchInheritanceTree(id);
 		if (i!=null) {
-		    if (i.intValue()==ATTRIBUTE_IDENT) {
+		    if (i == ExpressParserTokenTypes.ATTRIBUTE_IDENT) {
 			if (parent!=null) {
 			    it=parent.searchId(id);
-			    if (it==ENTITY_IDENT) return ENTITY_ATTR_IDENT;
-			    else if (it==TYPE_IDENT) return TYPE_ATTR_IDENT;
+			    if (it== ExpressParserTokenTypes.ENTITY_IDENT) return ExpressParserTokenTypes.ENTITY_ATTR_IDENT;
+			    else if (it==ExpressParserTokenTypes.TYPE_IDENT) return ExpressParserTokenTypes.TYPE_ATTR_IDENT;
 			}
 		    }
-		    else if (i.intValue()==VARIABLE_IDENT) {
+		    else if (i==ExpressParserTokenTypes.VARIABLE_IDENT) {
 			if (parent!=null) {
 			    it=parent.searchId(id);
-			    if (it==ENTITY_IDENT) return ENTITY_VAR_IDENT;
-			    else if (it==TYPE_IDENT) return TYPE_VAR_IDENT;
+			    if (it==ExpressParserTokenTypes.ENTITY_IDENT) return ExpressParserTokenTypes.ENTITY_VAR_IDENT;
+			    else if (it==ExpressParserTokenTypes.TYPE_IDENT) return ExpressParserTokenTypes.TYPE_VAR_IDENT;
 			}
 		    }
-		    else if (i.intValue()==PARAMETER_IDENT) {
+		    else if (i==ExpressParserTokenTypes.PARAMETER_IDENT) {
 			if (parent!=null) {
 			    it=parent.searchId(id);
-			    if (it==ENTITY_IDENT) return ENTITY_PARAM_IDENT;
-			    else if (it==TYPE_IDENT) return TYPE_PARAM_IDENT;
+			    if (it==ExpressParserTokenTypes.ENTITY_IDENT) return ExpressParserTokenTypes.ENTITY_PARAM_IDENT;
+			    else if (it==ExpressParserTokenTypes.TYPE_IDENT) return ExpressParserTokenTypes.TYPE_PARAM_IDENT;
 			}
 		    }
-		    return i.intValue();
+		    return i;
 		}
 	    }
 	    if (parent!=null) return parent.searchId(id);
-	    else return IDENT;
+	    else return ExpressParserTokenTypes.IDENT;
 	}
 	else {
-	    if (i.intValue()==ATTRIBUTE_IDENT) {
+	    if (i == ExpressParserTokenTypes.ATTRIBUTE_IDENT) {
 		if (parent!=null) {
 		    it=parent.searchId(id);
-		    if (it==ENTITY_IDENT) return ENTITY_ATTR_IDENT;
-		    else if (it==TYPE_IDENT) return TYPE_ATTR_IDENT;
+		    if (it==ExpressParserTokenTypes.ENTITY_IDENT) return ExpressParserTokenTypes.ENTITY_ATTR_IDENT;
+		    else if (it==ExpressParserTokenTypes.TYPE_IDENT) return ExpressParserTokenTypes.TYPE_ATTR_IDENT;
 		}
 	    }
-	    else if (i.intValue()==VARIABLE_IDENT) {
+	    else if (i==ExpressParserTokenTypes.VARIABLE_IDENT) {
 		if (parent!=null) {
 		    it=parent.searchId(id);
-		    if (it==ENTITY_IDENT) return ENTITY_VAR_IDENT;
-		    else if (it==TYPE_IDENT) return TYPE_VAR_IDENT;
+		    if (it==ExpressParserTokenTypes.ENTITY_IDENT) return ExpressParserTokenTypes.ENTITY_VAR_IDENT;
+		    else if (it==ExpressParserTokenTypes.TYPE_IDENT) return ExpressParserTokenTypes.TYPE_VAR_IDENT;
 		}
 	    }
-	    else if (i.intValue()==PARAMETER_IDENT) {
+	    else if (i==ExpressParserTokenTypes.PARAMETER_IDENT) {
 		if (parent!=null) {
 		    it=parent.searchId(id);
-		    if (it==ENTITY_IDENT) return ENTITY_PARAM_IDENT;
-		    else if (it==TYPE_IDENT) return TYPE_PARAM_IDENT;
+		    if (it==ExpressParserTokenTypes.ENTITY_IDENT) return ExpressParserTokenTypes.ENTITY_PARAM_IDENT;
+		    else if (it==ExpressParserTokenTypes.TYPE_IDENT) return ExpressParserTokenTypes.TYPE_PARAM_IDENT;
 		}
 	    }
-	    return i.intValue();
+	    return i;
 	}
     }
 
-    public Integer searchInheritanceTree(String id) {
-	Integer i;
+    public ExpressParserTokenTypes searchInheritanceTree(String id) {
+    	ExpressParserTokenTypes i;
 	int sz,j;
 	String name;
 	Scope ent;
 
-	i=(Integer)idtable.get(id.toLowerCase());
+	i= idtable.get(id.toLowerCase());
 	if (i!=null) return i;
 	else {
 	    sz=superentities.size();
@@ -255,15 +255,15 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 	   i.e. constant, entity, function, procedure, type */
 	Enumeration e;
 	String id;
-	int type;
+	ExpressParserTokenTypes type;
 	Vector res=null;
 	ExternalId ei;
 
 	e=idtable.keys();
 	while (e.hasMoreElements()) {
 	    id=(String)e.nextElement();
-	    type=((Integer)idtable.get(id.toLowerCase())).intValue();
-	    if (type==CONSTANT_IDENT||type==ENTITY_IDENT||type==FUNCTION_IDENT||type==PROCEDURE_IDENT||type==TYPE_IDENT) {
+	    type=idtable.get(id.toLowerCase());
+	    if (type==ExpressParserTokenTypes.CONSTANT_IDENT||type==ExpressParserTokenTypes.ENTITY_IDENT||type==ExpressParserTokenTypes.FUNCTION_IDENT||type==ExpressParserTokenTypes.PROCEDURE_IDENT||type==ExpressParserTokenTypes.TYPE_IDENT) {
 		if (res==null) res = new Vector();
 		ei = new ExternalId(id,type);
 		res.add(ei);
@@ -277,15 +277,15 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 	   i.e. entity, type */
 	Enumeration e;
 	String id;
-	int type;
+	ExpressParserTokenTypes type;
 	Vector res=null;
 	ExternalId ei;
 	
 	e=idtable.keys();
 	while (e.hasMoreElements()) {
 	    id=(String)e.nextElement();
-	    type=((Integer)idtable.get(id.toLowerCase())).intValue();
-	    if (type==ENTITY_IDENT||type==TYPE_IDENT) {
+	    type=idtable.get(id.toLowerCase());
+	    if (type==ExpressParserTokenTypes.ENTITY_IDENT||type==ExpressParserTokenTypes.TYPE_IDENT) {
 		if (res==null) res = new Vector();
 		ei = new ExternalId(id,type);
 		res.add(ei);
@@ -309,7 +309,8 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
     public void processExternals(Hashtable schemas) {
 	/* add ids of used and referenced elements of other schemas
 	   to this schema's scope */
-	int sz,i,sz2,j,eid;
+	int sz,i,sz2,j;
+	ExpressParserTokenTypes eid;
 	ExternalId ei;
 	Scope s,es=null;
 	String rn=null;
@@ -330,17 +331,17 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 		       that the schema USEs itself */
 			s.processExternals(schemas);
 			eid=s.searchId(ei.id);
-			if (eid==IDENT) System.err.println("Warning: external id \""+ei.id+"\" not found in schema \""+ei.schema+"\"");
+			if (eid==ExpressParserTokenTypes.IDENT) System.err.println("Warning: external id \""+ei.id+"\" not found in schema \""+ei.schema+"\"");
 			else {
 			    rn=ei.rename;
 			/* idtable.put is used instead of addId because some
 			   externals ids may be imported twice or more, so
 			   it would throw double definition errors */
-			    if (rn!=null) idtable.put(rn.toLowerCase(),new Integer(eid));
-			    else idtable.put(ei.id.toLowerCase(),new Integer(eid));
+			    if (rn!=null) idtable.put(rn.toLowerCase(),eid);
+			    else idtable.put(ei.id.toLowerCase(),eid);
 
 			    /* Entity information (Scope) management */
-			    if (eid==ENTITY_IDENT) {
+			    if (eid==ExpressParserTokenTypes.ENTITY_IDENT) {
 				try {
 				    es=(Scope)s.searchEntity(ei.id).clone();
 				    /* we clone the Scope because we have to assign a new parent to it (this), but the original Scope should keep its parent attribute safe */
@@ -350,7 +351,7 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 				entities.put(ei.id.toLowerCase(),es);
 			    }
 			    /* Extensible enumerations management */
-			    else if (eid==TYPE_IDENT) {
+			    else if (eid==ExpressParserTokenTypes.TYPE_IDENT) {
 				et=s.searchEnumerationType(ei.id);
 				if (et!=null) {
 				    if (rn!=null) et.setTypeName(rn);
@@ -381,10 +382,10 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 			    sz2=eids.size();
 			    for (j=0;j<sz2;j++) {
 				ei=(ExternalId)eids.elementAt(j);
-				idtable.put(ei.id.toLowerCase(),new Integer(ei.type));
+				idtable.put(ei.id.toLowerCase(),ei.type);
 
 				/* Entity information (Scope) management */
-				if (ei.type==ENTITY_IDENT) {
+				if (ei.type==ExpressParserTokenTypes.ENTITY_IDENT) {
 				    try {
 					es=(Scope)s.searchEntity(ei.id).clone();
 				    }
@@ -393,7 +394,7 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 				    entities.put(ei.id.toLowerCase(),es);
 				}
 				/* extensible enumerations management */
-				else if (ei.type==TYPE_IDENT) {
+				else if (ei.type==ExpressParserTokenTypes.TYPE_IDENT) {
 				    et=s.searchEnumerationType(ei.id);
 				    if (et!=null) {
 					if (rn!=null) et.setTypeName(rn);
@@ -425,10 +426,10 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 			    sz2=eids.size();
 			    for (j=0;j<sz2;j++) {
 				ei=(ExternalId)eids.elementAt(j);
-				idtable.put(ei.id.toLowerCase(),new Integer(ei.type));
+				idtable.put(ei.id.toLowerCase(), ei.type);
 				
 				/* Entity information (Scope) management */
-				if (ei.type==ENTITY_IDENT) {
+				if (ei.type==ExpressParserTokenTypes.ENTITY_IDENT) {
 				    try {
 					es=(Scope)s.searchEntity(ei.id).clone();
 				    }
@@ -437,7 +438,7 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 				    entities.put(ei.id.toLowerCase(),es);
 				}
 				/* extensible enumerations management */
-				else if (ei.type==TYPE_IDENT) {
+				else if (ei.type==ExpressParserTokenTypes.TYPE_IDENT) {
 				    et=s.searchEnumerationType(ei.id);
 				    if (et!=null) {
 					if (rn!=null) et.setTypeName(rn);
