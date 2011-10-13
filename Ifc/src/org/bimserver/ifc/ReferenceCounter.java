@@ -28,7 +28,7 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EReference;
 
 public class ReferenceCounter {
-	
+
 	public static abstract class Reference {
 		private final IdEObject idEObject;
 		private final EReference eReference;
@@ -91,9 +91,9 @@ public class ReferenceCounter {
 			return true;
 		}
 	}
-	
+
 	public static class SingleReference extends Reference {
-		
+
 		public SingleReference(IdEObject idEObject, IdEObject referredObject, EReference eReference) {
 			super(idEObject, referredObject, eReference);
 		}
@@ -104,7 +104,7 @@ public class ReferenceCounter {
 			return new SingleReference(getIdEObject(), mainObject, geteReference());
 		}
 	}
-	
+
 	public static class MultiReference extends Reference {
 
 		public MultiReference(IdEObject idEObject, IdEObject referredObject, EReference eReference) {
@@ -114,13 +114,13 @@ public class ReferenceCounter {
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public Reference reAttach(IdEObject mainObject) {
-			List list = (List)getIdEObject().eGet(geteReference());
+			List list = (List) getIdEObject().eGet(geteReference());
 			list.remove(getReferredObject());
 			list.add(mainObject);
 			return new SingleReference(getIdEObject(), mainObject, geteReference());
 		}
 	}
-	
+
 	private final Map<IdEObject, Set<Reference>> references = new HashMap<IdEObject, Set<Reference>>();
 	private final IfcModelInterface ifcModel;
 
@@ -134,7 +134,7 @@ public class ReferenceCounter {
 		for (IdEObject idEObject : ifcModel.getValues()) {
 			for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 				if (eReference.isMany()) {
-					List list = (List)idEObject.eGet(eReference);
+					List list = (List) idEObject.eGet(eReference);
 					for (Object o : list) {
 						if (!references.containsKey(o)) {
 							references.put((IdEObject) o, new HashSet<Reference>());
@@ -151,20 +151,20 @@ public class ReferenceCounter {
 			}
 		}
 	}
-	
+
 	public void remove(IdEObject idEObject) {
 		int totalRemoved = removeInternal(idEObject);
 		System.out.println("Removing " + idEObject + " (" + totalRemoved + ")");
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public int removeInternal(IdEObject idEObject) {
 		int totalRemoved = 1;
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			if (eReference.isMany()) {
-				List list = (List)idEObject.eGet(eReference);
+				List list = (List) idEObject.eGet(eReference);
 				for (Object o : list) {
-					IdEObject refObject = (IdEObject)o;
+					IdEObject refObject = (IdEObject) o;
 					references.get(refObject).remove(idEObject);
 					if (references.get(refObject).size() == 0) {
 						totalRemoved += removeInternal(refObject);
@@ -188,14 +188,32 @@ public class ReferenceCounter {
 	}
 
 	public void addReference(Reference reference) {
-		references.get(reference.getReferredObject()).add(reference);
+		if (references.containsKey(reference.getReferredObject()))
+			references.get(reference.getReferredObject()).add(reference);
+		else {
+			Set<Reference> rSet = new HashSet<Reference>();
+			rSet.add(reference);
+			references.put(reference.getReferredObject(), rSet);
+		}
 		if (reference.geteReference().getEOpposite() != null) {
 			if (reference.geteReference().getEOpposite().isMany()) {
 				MultiReference backReference = new MultiReference(reference.getReferredObject(), reference.getIdEObject(), reference.geteReference().getEOpposite());
-				references.get(reference.getIdEObject()).add(backReference);
+				if (references.containsKey(reference.getIdEObject()))
+					references.get(reference.getIdEObject()).add(backReference);
+				else {
+					Set<Reference> rSet = new HashSet<Reference>();
+					rSet.add(backReference);
+					references.put(reference.getIdEObject(), rSet);
+				}
 			} else {
 				SingleReference backReference = new SingleReference(reference.getReferredObject(), reference.getIdEObject(), reference.geteReference().getEOpposite());
-				references.get(reference.getIdEObject()).add(backReference);
+				if (references.containsKey(reference.getIdEObject()))
+					references.get(reference.getIdEObject()).add(backReference);
+				else {
+					Set<Reference> rSet = new HashSet<Reference>();
+					rSet.add(backReference);
+					references.put(reference.getIdEObject(), rSet);
+				}
 			}
 		}
 	}
