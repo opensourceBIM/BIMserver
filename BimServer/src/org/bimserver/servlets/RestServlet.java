@@ -18,18 +18,28 @@ package org.bimserver.servlets;
  *****************************************************************************/
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.apache.cxf.jaxrs.lifecycle.ResourceProvider;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
+import org.apache.cxf.message.Message;
 import org.bimserver.BimServer;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.webservices.CustomInvoker;
+import org.bimserver.shared.Token;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.RestAuthentication;
+import org.bimserver.webservices.Service;
 
 public class RestServlet extends CXFNonSpringJaxrsServlet {
 	private static final long serialVersionUID = 6288864278630843847L;
+	
+	@Override
+	protected void createServerFromApplication(String cName, ServletConfig servletConfig) throws ServletException {
+		
+	}
 	
 	@Override
 	public void loadBus(ServletConfig servletConfig) {
@@ -40,7 +50,33 @@ public class RestServlet extends CXFNonSpringJaxrsServlet {
 		BusFactory.setDefaultBus(bus);
 		JAXRSServerFactoryBean serverFactoryBean = new JAXRSServerFactoryBean();
 		serverFactoryBean.setServiceClass(ServiceInterface.class);
-		serverFactoryBean.setInvoker(new CustomInvoker(bimServer.getServiceFactory()));
+		serverFactoryBean.setResourceProvider(new ResourceProvider() {
+			@Override
+			public void releaseInstance(Message m, Object o) {
+				((Service)o).close();
+			}
+			
+			@Override
+			public boolean isSingleton() {
+				return false;
+			}
+			
+			@Override
+			public Class<?> getResourceClass() {
+				return ServiceInterface.class;
+			}
+			
+			@Override
+			public Object getInstance(Message message) {
+				Token token = (Token)message.getExchange().getService().get("token");
+				try {
+					return bimServer.getServiceFactory().getService(token);
+				} catch (UserException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}
+		});
 		serverFactoryBean.setAddress("/");
 		serverFactoryBean.create();
 		

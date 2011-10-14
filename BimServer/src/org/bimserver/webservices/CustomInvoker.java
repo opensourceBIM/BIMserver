@@ -44,28 +44,33 @@ public class CustomInvoker extends AbstractInvoker {
 	@Override
 	public Object getServiceObject(Exchange context) {
 		Message inMessage = context.getInMessage();
-		SoapMessage soapMessage = (SoapMessage)inMessage;
-		for (Header h : soapMessage.getHeaders()) {
-			System.out.println(h.getName());
-		}
-		Header header = soapMessage.getHeader(new QName("uri:org.bimserver", "token"));
-		if (header != null) {
-			System.out.println(header.getObject());
-		}
-		if (context.getSession().get("token") != null) {
-			try {
-				return serviceFactory.getService((Token) context.getSession().get("token"));
-			} catch (UserException e) {
-				LOGGER.error("", e);
-				return null;
+		if (inMessage instanceof SoapMessage) {
+			SoapMessage soapMessage = (SoapMessage)inMessage;
+			for (Header h : soapMessage.getHeaders()) {
+				System.out.println(h.getName());
+			}
+			Header header = soapMessage.getHeader(new QName("uri:org.bimserver", "token"));
+			if (header != null) {
+				System.out.println(header.getObject());
+			}
+			if (context.getSession().get("token") != null) {
+				try {
+					return serviceFactory.getService((Token) context.getSession().get("token"));
+				} catch (UserException e) {
+					LOGGER.error("", e);
+					return null;
+				}
+			} else {
+				ServiceInterface newService = serviceFactory.newService(AccessMethod.SOAP);
+				try {
+					context.getSession().put("token", newService.getCurrentToken());
+				} catch (ServiceException e) {
+					LOGGER.error("", e);
+				}
+				return newService;
 			}
 		} else {
-			ServiceInterface newService = serviceFactory.newService(AccessMethod.SOAP);
-			try {
-				context.getSession().put("token", newService.getCurrentToken());
-			} catch (ServiceException e) {
-				LOGGER.error("", e);
-			}
+			ServiceInterface newService = serviceFactory.newService(AccessMethod.REST);
 			return newService;
 		}
 	}
