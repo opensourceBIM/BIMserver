@@ -23,7 +23,7 @@ public class EmbeddedWebServer {
 		server.setSessionIdManager(hashSessionIdManager);
 		SocketConnector socketConnector = new SocketConnector();
 		socketConnector.setPort(8080);
-		socketConnector.setHost("localhost");
+		socketConnector.setHost("192.168.1.105");
 		server.addConnector(socketConnector);
 		WebAppContext context = new WebAppContext(server, "", "/");
 		context.setResourceBase("../BimServer/www");

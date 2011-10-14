@@ -94,11 +94,11 @@ public class BimServerClient implements ConnectDisconnectListener {
 		}
 	}
 	
-	public void connectSoap(final String address) {
+	public void connectSoap(final String address, boolean useSoapHeaderSessions) {
 		SoapChannel soapChannel = new SoapChannel();
 		this.channel = soapChannel;
 		soapChannel.registerConnectDisconnectListener(this);
-		soapChannel.connect(address);
+		soapChannel.connect(address, useSoapHeaderSessions);
 	}
 
 	public void login(String username, String password) throws ServiceException {
@@ -205,5 +205,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+
+	public boolean isConnected() {
+		return connected;
 	}
 }

@@ -17,51 +17,36 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.namespace.QName;
-import javax.xml.ws.BindingProvider;
 import javax.xml.ws.soap.SOAPFaultException;
 
-import org.apache.cxf.endpoint.Client;
-import org.apache.cxf.frontend.ClientProxy;
-import org.apache.cxf.headers.Header;
-import org.apache.cxf.interceptor.LoggingInInterceptor;
-import org.apache.cxf.interceptor.LoggingOutInterceptor;
-import org.apache.cxf.jaxb.JAXBDataBinding;
-import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
-import org.apache.cxf.transport.http.HTTPConduit;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ServiceHolder {
-	private ServiceInterface service;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceHolder.class);
 	private String username = "admin@bimserver.org";
 	private String password = "admin";
 	private String address = "http://localhost:8080/soap";
+	private BimServerClient bimServerClient;
 
 	public ServiceInterface getService() {
-		return service;
+		return bimServerClient.getServiceInterface();
 	}
 
 	public boolean connect(final String address, final String username, final String password) {
+		bimServerClient = new BimServerClient(new PluginManager());
 		this.address = address;
 		this.username = username;
 		this.password = password;
 		LOGGER.info("Connecting to " + address);
-		createClient(address, true);
+		bimServerClient.connectSoap(address, true);
 
 		boolean connected = false;
 		try {
-			if (service.ping("test").equals("test")) {
+			if (bimServerClient.getServiceInterface().ping("test").equals("test")) {
 				connected = true;
 			}
 		} catch (Exception e) {
@@ -71,16 +56,14 @@ public class ServiceHolder {
 		if (connected) {
 			try {
 				LOGGER.info("Logging in as " + username);
-				if (service.login(username, password)) {
+				if (bimServerClient.getServiceInterface().login(username, password)) {
 					LOGGER.info("Successfully logged on as " + username);
 					return true;
 				} else {
-					this.service = null;
 					LOGGER.info("Error logging in as " + username);
 					return false;
 				}
 			} catch (SOAPFaultException e) {
-				this.service = null;
 				LOGGER.info("Error connecting to " + address);
 				return false;
 			} catch (ServiceException e) {
@@ -92,43 +75,43 @@ public class ServiceHolder {
 		}
 	}
 
-	private void createClient(final String address, boolean useSoapHeaderForSession) {
-		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
-		cpfb.setServiceClass(ServiceInterface.class);
-		cpfb.setAddress(address);
-		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("mtom-enabled", Boolean.TRUE);
-		cpfb.setProperties(properties);
-
-		service = (ServiceInterface) cpfb.create();
-
-		Client client = ClientProxy.getClient(service);
-		client.getInInterceptors().add(new LoggingInInterceptor(ConsoleAppender.getPrintWriter()));
-		client.getOutInterceptors().add(new LoggingOutInterceptor(ConsoleAppender.getPrintWriter()));
-		HTTPConduit http = (HTTPConduit) client.getConduit();
-		if (!useSoapHeaderForSession) {
-			((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
-		}
-		http.getClient().setConnectionTimeout(360000);
-		http.getClient().setAllowChunking(false);
-		http.getClient().setReceiveTimeout(320000);
-		
-		if (useSoapHeaderForSession) {
-			try {
-				Token token = service.getCurrentToken();
-				List<Header> headers = new ArrayList<Header>();
-				try {
-					Header sessionHeader = new Header(new QName("uri:org.bimserver", "token"), token, new JAXBDataBinding(Token.class));
-					headers.add(sessionHeader);
-				} catch (JAXBException e) {
-					e.printStackTrace();
-				}
-				((BindingProvider) service).getRequestContext().put(Header.HEADER_LIST, headers);
-			} catch (ServiceException e1) {
-				e1.printStackTrace();
-			}
-		}
-	}
+//	private void createClient(final String address, boolean useSoapHeaderForSession) {
+//		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
+//		cpfb.setServiceClass(ServiceInterface.class);
+//		cpfb.setAddress(address);
+//		Map<String, Object> properties = new HashMap<String, Object>();
+//		properties.put("mtom-enabled", Boolean.TRUE);
+//		cpfb.setProperties(properties);
+//
+//		service = (ServiceInterface) cpfb.create();
+//
+//		Client client = ClientProxy.getClient(service);
+//		client.getInInterceptors().add(new LoggingInInterceptor(ConsoleAppender.getPrintWriter()));
+//		client.getOutInterceptors().add(new LoggingOutInterceptor(ConsoleAppender.getPrintWriter()));
+//		HTTPConduit http = (HTTPConduit) client.getConduit();
+//		if (!useSoapHeaderForSession) {
+//			((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
+//		}
+//		http.getClient().setConnectionTimeout(360000);
+//		http.getClient().setAllowChunking(false);
+//		http.getClient().setReceiveTimeout(320000);
+//		
+//		if (useSoapHeaderForSession) {
+//			try {
+//				Token token = service.getCurrentToken();
+//				List<Header> headers = new ArrayList<Header>();
+//				try {
+//					Header sessionHeader = new Header(new QName("uri:org.bimserver", "token"), token, new JAXBDataBinding(Token.class));
+//					headers.add(sessionHeader);
+//				} catch (JAXBException e) {
+//					e.printStackTrace();
+//				}
+//				((BindingProvider) service).getRequestContext().put(Header.HEADER_LIST, headers);
+//			} catch (ServiceException e1) {
+//				e1.printStackTrace();
+//			}
+//		}
+//	}
 
 	public String getUsername() {
 		return username;
@@ -143,10 +126,10 @@ public class ServiceHolder {
 	}
 
 	public void disconnect() {
-		service = null;
+		bimServerClient.disconnect();
 	}
 
 	public boolean isConnected() {
-		return service != null;
+		return bimServerClient.isConnected();
 	}
 }

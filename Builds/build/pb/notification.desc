@@ -1,15 +1,15 @@
 
 µ
 notification.protoorg.bimserver.pbservice.proto";
-SNewRevisionNotification
-oid (
+SNewRevisionNotification
 
-revisionId ("Q
+revisionId (
+oid ("Q
 NewRevisionRequest;
 unknown (2*.org.bimserver.pb.SNewRevisionNotification"9
-SNewProjectNotification
-oid (
-	projectId ("O
+SNewProjectNotification
+	projectId (
+oid ("O
 NewProjectRequest:
 unknown (2).org.bimserver.pb.SNewProjectNotification"
 ServerWillBeShutdownRequest"
@@ -19,4 +19,4 @@ revisionId ("Q
 
 newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponsee
 serverWillBeShutdown-.org.bimserver.pb.ServerWillBeShutdownRequest.org.bimserver.pb.VoidResponse]
-serverHasStarted).org.bimserver.pb.ServerHasStartedRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
+serverHasStarted).org.bimserver.pb.ServerHasStartedRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
