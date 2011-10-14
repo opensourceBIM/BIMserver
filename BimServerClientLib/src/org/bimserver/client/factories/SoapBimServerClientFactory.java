@@ -29,7 +29,7 @@ public class SoapBimServerClientFactory implements BimServerClientFactory {
 	@Override
 	public BimServerClient create() throws ServiceException {
 		BimServerClient bimServerClient = new BimServerClient(pluginManager);
-		bimServerClient.connectSoap(address);
+		bimServerClient.connectSoap(address, false);
 		bimServerClient.login(username, password);
 		return bimServerClient;
 	}
