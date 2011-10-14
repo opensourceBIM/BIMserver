@@ -9,19 +9,12 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-pool-1.5.5.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-manifest.jar" sourcepath="C:/Software/JavaLibs/apache-cxf-2.3.0-src"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-xjc-boolean-2.3.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-xjc-bug671-2.3.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-xjc-dv-2.3.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-xjc-ts-2.3.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/FastInfoset-1.2.9.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-activation_1.1_spec-1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-annotation_1.0_spec-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-javamail_1.4_spec-1.7.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-jaxws_2.2_spec-1.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-servlet_3.0_spec-1.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-ws-metadata_2.0_spec-1.1.3.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/isorelax-20030108.jar"/>
@@ -30,35 +23,14 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/jra-1.0-alpha-4.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/js-1.7R2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/jsr311-api-1.1.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/msv-core-2010.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/neethi-3.0.0.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/opensaml-2.4.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/openws-1.4.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/relaxngDatatype-20020414.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/saaj-api-1.3.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/saaj-impl-1.3.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/serializer-2.7.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-aop-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-asm-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-beans-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-context-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-core-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-expression-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-jms-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-tx-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/spring-web-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/stax2-api-3.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/woodstox-core-asl-4.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/wsdl4j-1.6.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/wss4j-1.6.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xalan-2.7.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmlbeans-2.4.0.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmlschema-core-2.0.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmlsec-1.4.4.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmltooling-1.3.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-2.4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
