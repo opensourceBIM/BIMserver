@@ -11,7 +11,12 @@ import org.slf4j.LoggerFactory;
 
 public class EmbeddedWebServer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedWebServer.class);
+	private final BimServer bimServer;
 
+	public EmbeddedWebServer(BimServer bimServer) {
+		this.bimServer = bimServer;
+	}
+	
 	public void start() {
 		Server server = new Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
@@ -21,8 +26,8 @@ public class EmbeddedWebServer {
 		socketConnector.setHost("localhost");
 		server.addConnector(socketConnector);
 		WebAppContext context = new WebAppContext(server, "", "/");
-		context.setResourceBase("www");
-		context.getServletContext().setAttribute("bimserver", this);
+		context.setResourceBase("../BimServer/www");
+		context.getServletContext().setAttribute("bimserver", bimServer);
 		try {
 			server.start();
 		} catch (Exception e) {

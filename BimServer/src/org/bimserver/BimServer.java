@@ -278,7 +278,7 @@ public class BimServer {
 
 			serviceFactory = new ServiceInterfaceFactory(this);
 			if (config.isStartEmbeddedWebServer()) {
-				new EmbeddedWebServer().start();
+				new EmbeddedWebServer(this).start();
 			}
 
 			diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
@@ -292,8 +292,6 @@ public class BimServer {
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			}
-
-			// RestApplication.setServiceFactory(serviceFactory);
 
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
