@@ -52,6 +52,7 @@ public class NotificationsManager extends Thread {
 	private final BimServer bimServer;
 
 	public NotificationsManager(BimServer bimServer) {
+		setName("NotificationsManager");
 		this.bimServer = bimServer;
 	}
 

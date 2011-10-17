@@ -42,6 +42,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 				notifyDisconnect();
 			}
 		});
+		thread.start();
 	}
 
 	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, InetSocketAddress address) {
