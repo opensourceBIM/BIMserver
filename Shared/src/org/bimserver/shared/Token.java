@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-@XmlRootElement
+@XmlRootElement(namespace="uri:org.bimserver", name="token")
 public class Token {
 	private String tokenString;
 	private long expires;

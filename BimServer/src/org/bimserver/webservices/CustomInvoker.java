@@ -46,16 +46,17 @@ public class CustomInvoker extends AbstractInvoker {
 		Message inMessage = context.getInMessage();
 		if (inMessage instanceof SoapMessage) {
 			SoapMessage soapMessage = (SoapMessage)inMessage;
-			for (Header h : soapMessage.getHeaders()) {
-				System.out.println(h.getName());
-			}
 			Header header = soapMessage.getHeader(new QName("uri:org.bimserver", "token"));
+			Token token = null;
 			if (header != null) {
-				System.out.println(header.getObject());
+				token = (Token) header.getObject();
 			}
-			if (context.getSession().get("token") != null) {
+			if (token == null) {
+				token = (Token) context.getSession().get("token");
+			}
+			if (token != null) {
 				try {
-					return serviceFactory.getService((Token) context.getSession().get("token"));
+					return serviceFactory.getService(token);
 				} catch (UserException e) {
 					LOGGER.error("", e);
 					return null;

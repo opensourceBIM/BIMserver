@@ -21,13 +21,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletConfig;
+import javax.xml.bind.JAXBException;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
+import org.apache.cxf.databinding.DataBinding;
+import org.apache.cxf.headers.HeaderManager;
+import org.apache.cxf.headers.HeaderProcessor;
+import org.apache.cxf.interceptor.InterceptorProvider;
+import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 import org.bimserver.BimServer;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.Token;
 import org.bimserver.webservices.CustomInvoker;
 
 public class WebServiceServlet extends CXFNonSpringServlet {
@@ -39,6 +46,28 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		super.loadBus(servletConfig);
 		BimServer bimServer = (BimServer) servletConfig.getServletContext().getAttribute("bimserver");
 		Bus bus = getBus();
+		HeaderManager headerManager = bus.getExtension(HeaderManager.class);
+		headerManager.registerHeaderProcessor(new HeaderProcessor() {
+			@Override
+			public String getNamespace() {
+				return "uri:org.bimserver";
+			}
+			
+			@Override
+			public InterceptorProvider getInterceptorProvider() {
+				return null;
+			}
+			
+			@Override
+			public DataBinding getDataBinding() {
+				try {
+					return new JAXBDataBinding(Token.class);
+				} catch (JAXBException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}
+		});
 		BusFactory.setDefaultBus(bus);
 		JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
 		Map<String,Object> properties = new HashMap<String, Object>();
