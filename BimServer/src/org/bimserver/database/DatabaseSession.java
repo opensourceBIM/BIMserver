@@ -608,6 +608,14 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return model;
 	}
 
+	public IfcModel getAllOfTypes(Set<EClass> eClasses, int pid, int rid, boolean deep, GuidanceProvider guidanceProvider) throws BimDatabaseException, BimDeadlockException {
+		IfcModel model = new IfcModel();
+		for (EClass eClass : eClasses) {
+			getMap(eClass, pid, rid, model, deep, guidanceProvider);
+		}
+		return model;
+	}
+
 	@Override
 	public IfcModel getAllOfType(String className, int pid, int rid, boolean deep, GuidanceProvider guidanceProvider) throws BimDatabaseException, BimDeadlockException {
 		return getAllOfType(getEClassForName(className), pid, rid, deep, guidanceProvider);

@@ -129,8 +129,14 @@ public class DownloadServlet extends HttpServlet {
 				if (request.getParameter("checkout") != null) {
 					downloadId = loginManager.getService().checkout(roid, serializerName, true);
 				} else {
-					if (request.getParameter("class") != null) {
-						downloadId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), serializerName, true);
+					if (request.getParameter("classses") != null) {
+						Set<String> classes = new HashSet<String>();
+						for (String className : request.getParameter("classses").split(";")) {
+							classes.add(className);
+						}
+						Set<Long> roids = new HashSet<Long>();
+						roids.add(roid);
+						downloadId = loginManager.getService().downloadByTypes(roids, classes, serializerName, true);
 					} else if (request.getParameter("oids") != null) {
 						Set<Long> oids = new HashSet<Long>();
 						for (String oidString : request.getParameter("oids").split(";")) {

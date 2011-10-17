@@ -3467,47 +3467,23 @@ public class SConverter {
 		for (LogAction o : input) {
 		if (1==0) {
 		}
-		else if (o instanceof NewRevisionAdded) {
-			result.add(convertToSObject((NewRevisionAdded)o));		
-		}
-		else if (o instanceof PasswordChanged) {
-			result.add(convertToSObject((PasswordChanged)o));		
-		}
-		else if (o instanceof PasswordReset) {
-			result.add(convertToSObject((PasswordReset)o));		
-		}
-		else if (o instanceof GeoTagUpdated) {
-			result.add(convertToSObject((GeoTagUpdated)o));		
-		}
-		else if (o instanceof NewProjectAdded) {
-			result.add(convertToSObject((NewProjectAdded)o));		
-		}
-		else if (o instanceof RevisionUpdated) {
-			result.add(convertToSObject((RevisionUpdated)o));		
-		}
-		else if (o instanceof DatabaseCreated) {
-			result.add(convertToSObject((DatabaseCreated)o));		
-		}
-		else if (o instanceof UserDeleted) {
-			result.add(convertToSObject((UserDeleted)o));		
-		}
-		else if (o instanceof ProjectUndeleted) {
-			result.add(convertToSObject((ProjectUndeleted)o));		
+		else if (o instanceof ClashDetectionSettingsUpdated) {
+			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
 		}
 		else if (o instanceof UserUndeleted) {
 			result.add(convertToSObject((UserUndeleted)o));		
 		}
+		else if (o instanceof GeoTagUpdated) {
+			result.add(convertToSObject((GeoTagUpdated)o));		
+		}
+		else if (o instanceof UserAddedToProject) {
+			result.add(convertToSObject((UserAddedToProject)o));		
+		}
+		else if (o instanceof ServerStarted) {
+			result.add(convertToSObject((ServerStarted)o));		
+		}
 		else if (o instanceof UserRemovedFromProject) {
 			result.add(convertToSObject((UserRemovedFromProject)o));		
-		}
-		else if (o instanceof ClashDetectionSettingsUpdated) {
-			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
-		}
-		else if (o instanceof NewCheckoutAdded) {
-			result.add(convertToSObject((NewCheckoutAdded)o));		
-		}
-		else if (o instanceof NewUserAdded) {
-			result.add(convertToSObject((NewUserAdded)o));		
 		}
 		else if (o instanceof ProjectUpdated) {
 			result.add(convertToSObject((ProjectUpdated)o));		
@@ -3515,23 +3491,47 @@ public class SConverter {
 		else if (o instanceof NewGuidanceProviderUploaded) {
 			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
 		}
-		else if (o instanceof SettingsSaved) {
-			result.add(convertToSObject((SettingsSaved)o));		
+		else if (o instanceof NewCheckoutAdded) {
+			result.add(convertToSObject((NewCheckoutAdded)o));		
+		}
+		else if (o instanceof DatabaseCreated) {
+			result.add(convertToSObject((DatabaseCreated)o));		
+		}
+		else if (o instanceof NewProjectAdded) {
+			result.add(convertToSObject((NewProjectAdded)o));		
+		}
+		else if (o instanceof NewRevisionAdded) {
+			result.add(convertToSObject((NewRevisionAdded)o));		
+		}
+		else if (o instanceof UserDeleted) {
+			result.add(convertToSObject((UserDeleted)o));		
+		}
+		else if (o instanceof PasswordReset) {
+			result.add(convertToSObject((PasswordReset)o));		
+		}
+		else if (o instanceof NewUserAdded) {
+			result.add(convertToSObject((NewUserAdded)o));		
 		}
 		else if (o instanceof Download) {
 			result.add(convertToSObject((Download)o));		
 		}
+		else if (o instanceof PasswordChanged) {
+			result.add(convertToSObject((PasswordChanged)o));		
+		}
+		else if (o instanceof SettingsSaved) {
+			result.add(convertToSObject((SettingsSaved)o));		
+		}
 		else if (o instanceof UserChanged) {
 			result.add(convertToSObject((UserChanged)o));		
+		}
+		else if (o instanceof ProjectUndeleted) {
+			result.add(convertToSObject((ProjectUndeleted)o));		
 		}
 		else if (o instanceof ProjectDeleted) {
 			result.add(convertToSObject((ProjectDeleted)o));		
 		}
-		else if (o instanceof UserAddedToProject) {
-			result.add(convertToSObject((UserAddedToProject)o));		
-		}
-		else if (o instanceof ServerStarted) {
-			result.add(convertToSObject((ServerStarted)o));		
+		else if (o instanceof RevisionUpdated) {
+			result.add(convertToSObject((RevisionUpdated)o));		
 		}
 	else {
 		result.add(convertToSObject(o));
@@ -3553,47 +3553,23 @@ public class SConverter {
 		for (LogAction o : input) {
 		if (1==0) {
 		}
-		else if (o instanceof NewRevisionAdded) {
-			result.add(convertToSObject((NewRevisionAdded)o));		
-		}
-		else if (o instanceof PasswordChanged) {
-			result.add(convertToSObject((PasswordChanged)o));		
-		}
-		else if (o instanceof PasswordReset) {
-			result.add(convertToSObject((PasswordReset)o));		
-		}
-		else if (o instanceof GeoTagUpdated) {
-			result.add(convertToSObject((GeoTagUpdated)o));		
-		}
-		else if (o instanceof NewProjectAdded) {
-			result.add(convertToSObject((NewProjectAdded)o));		
-		}
-		else if (o instanceof RevisionUpdated) {
-			result.add(convertToSObject((RevisionUpdated)o));		
-		}
-		else if (o instanceof DatabaseCreated) {
-			result.add(convertToSObject((DatabaseCreated)o));		
-		}
-		else if (o instanceof UserDeleted) {
-			result.add(convertToSObject((UserDeleted)o));		
-		}
-		else if (o instanceof ProjectUndeleted) {
-			result.add(convertToSObject((ProjectUndeleted)o));		
+		else if (o instanceof ClashDetectionSettingsUpdated) {
+			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
 		}
 		else if (o instanceof UserUndeleted) {
 			result.add(convertToSObject((UserUndeleted)o));		
 		}
+		else if (o instanceof GeoTagUpdated) {
+			result.add(convertToSObject((GeoTagUpdated)o));		
+		}
+		else if (o instanceof UserAddedToProject) {
+			result.add(convertToSObject((UserAddedToProject)o));		
+		}
+		else if (o instanceof ServerStarted) {
+			result.add(convertToSObject((ServerStarted)o));		
+		}
 		else if (o instanceof UserRemovedFromProject) {
 			result.add(convertToSObject((UserRemovedFromProject)o));		
-		}
-		else if (o instanceof ClashDetectionSettingsUpdated) {
-			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
-		}
-		else if (o instanceof NewCheckoutAdded) {
-			result.add(convertToSObject((NewCheckoutAdded)o));		
-		}
-		else if (o instanceof NewUserAdded) {
-			result.add(convertToSObject((NewUserAdded)o));		
 		}
 		else if (o instanceof ProjectUpdated) {
 			result.add(convertToSObject((ProjectUpdated)o));		
@@ -3601,23 +3577,47 @@ public class SConverter {
 		else if (o instanceof NewGuidanceProviderUploaded) {
 			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
 		}
-		else if (o instanceof SettingsSaved) {
-			result.add(convertToSObject((SettingsSaved)o));		
+		else if (o instanceof NewCheckoutAdded) {
+			result.add(convertToSObject((NewCheckoutAdded)o));		
+		}
+		else if (o instanceof DatabaseCreated) {
+			result.add(convertToSObject((DatabaseCreated)o));		
+		}
+		else if (o instanceof NewProjectAdded) {
+			result.add(convertToSObject((NewProjectAdded)o));		
+		}
+		else if (o instanceof NewRevisionAdded) {
+			result.add(convertToSObject((NewRevisionAdded)o));		
+		}
+		else if (o instanceof UserDeleted) {
+			result.add(convertToSObject((UserDeleted)o));		
+		}
+		else if (o instanceof PasswordReset) {
+			result.add(convertToSObject((PasswordReset)o));		
+		}
+		else if (o instanceof NewUserAdded) {
+			result.add(convertToSObject((NewUserAdded)o));		
 		}
 		else if (o instanceof Download) {
 			result.add(convertToSObject((Download)o));		
 		}
+		else if (o instanceof PasswordChanged) {
+			result.add(convertToSObject((PasswordChanged)o));		
+		}
+		else if (o instanceof SettingsSaved) {
+			result.add(convertToSObject((SettingsSaved)o));		
+		}
 		else if (o instanceof UserChanged) {
 			result.add(convertToSObject((UserChanged)o));		
+		}
+		else if (o instanceof ProjectUndeleted) {
+			result.add(convertToSObject((ProjectUndeleted)o));		
 		}
 		else if (o instanceof ProjectDeleted) {
 			result.add(convertToSObject((ProjectDeleted)o));		
 		}
-		else if (o instanceof UserAddedToProject) {
-			result.add(convertToSObject((UserAddedToProject)o));		
-		}
-		else if (o instanceof ServerStarted) {
-			result.add(convertToSObject((ServerStarted)o));		
+		else if (o instanceof RevisionUpdated) {
+			result.add(convertToSObject((RevisionUpdated)o));		
 		}
 	else {
 		result.add(convertToSObject(o));

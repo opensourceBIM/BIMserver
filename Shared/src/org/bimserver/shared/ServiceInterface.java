@@ -140,9 +140,9 @@ public interface ServiceInterface {
 			@WebParam(name = "formatIdentifier", partName = "downloadByOids.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
-	@WebMethod(action = "downloadOfType")
-	Integer downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") Long roid,
-			@WebParam(name = "className", partName = "downloadOfType.className") String className,
+	@WebMethod(action = "downloadByTypes")
+	Integer downloadByTypes(@WebParam(name = "roids", partName = "downloadOfType.roids") Set<Long> roids,
+			@WebParam(name = "classNames", partName = "downloadOfType.classNames") Set<String> classNames,
 			@WebParam(name = "formatIdentifier", partName = "downloadOfType.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
