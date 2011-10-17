@@ -26,6 +26,7 @@ import javax.servlet.ServletContextListener;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -34,6 +35,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
+import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.web.LoginManager;
 
@@ -66,9 +68,10 @@ public class WarServerInitializer implements ServletContextListener {
 		
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
-			public BimServerClient create() {
+			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
-				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
+				ServiceInterface newService = bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress);
+				bimServerClient.connectDirect(newService);
 				return bimServerClient;
 			}
 		};

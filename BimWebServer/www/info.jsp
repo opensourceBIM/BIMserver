@@ -42,7 +42,7 @@
 <div class="content">
 <h1>Info</h1>
 <%
-	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		SDatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
 		SVersion version = loginManager.getService().getVersion();
@@ -188,6 +188,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 				<th>Name</th>
 				<th>Type</th>
 				<th>Access method</th>
+				<th>Remote address</th>
 				<th>Active since</th>
 				<th>Last active</th>
 			</tr>
@@ -200,6 +201,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 		<td><%=userSession.getName() %></td>
 		<td><%=JspHelper.getNiceUserTypeName(userSession.getType()) %></td>
 		<td><%=JspHelper.getNiceAccessMethodName(userSession.getAccessMethod()) %></td>
+		<td><%=userSession.getRemoteAddress() %></td>
 		<td><%=dateFormat.format(userSession.getActiveSince()) %></td>
 		<td><%=dateFormat.format(userSession.getLastActive()) %></td>
 	</tr>

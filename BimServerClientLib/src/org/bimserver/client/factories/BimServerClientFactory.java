@@ -22,5 +22,5 @@ import org.bimserver.shared.exceptions.ServiceException;
  *****************************************************************************/
 
 public interface BimServerClientFactory {
-	BimServerClient create() throws ServiceException, ConnectionException;
+	BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ConnectionException;
 }

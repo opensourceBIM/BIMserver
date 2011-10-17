@@ -21,7 +21,7 @@
 <div class="content">
 <h1>Settings</h1>
 <%
-	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");

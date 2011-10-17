@@ -62,6 +62,7 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(userSessionClass, "username", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(userSessionClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(userSessionClass, "type", schema.getEEnum("store", "UserType"), Multiplicity.SINGLE);
+		schema.createEAttribute(userSessionClass, "remoteAddress", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(userSessionClass, "activeSince", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(userSessionClass, "lastActive", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(userSessionClass, "accessMethod", schema.getEEnum("log", "AccessMethod"), Multiplicity.SINGLE);

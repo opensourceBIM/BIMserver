@@ -11,7 +11,7 @@
 </div>
 <div class="content">
 <%
-	if (loginManager.getService().isLoggedIn()) {
+	if (loginManager.isLoggedIn()) {
 		if (request.getParameter("save") != null) {
 			try {
 				long uoid = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))], false);

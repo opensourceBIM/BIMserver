@@ -21,6 +21,7 @@ import java.io.File;
 import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.plugins.PluginManager;
 import org.eclipse.jetty.server.bio.SocketConnector;
@@ -65,7 +66,7 @@ public class LocalDevBimWebServerStarter {
 		
 		LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
-			public BimServerClient create() {
+			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 				return new BimServerClient(pluginManager);
 			}
 		};

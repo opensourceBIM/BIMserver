@@ -235,6 +235,7 @@ public class Service implements ServiceInterface {
 
 	private final BimServer bimServer;
 	private final AccessMethod accessMethod;
+	private final String remoteAddress;
 	private Set<Change> changes = null;
 
 	private Long currentUoid = -1L;
@@ -245,8 +246,9 @@ public class Service implements ServiceInterface {
 
 	private SConverter converter = new SConverter();
 
-	public Service(BimServer bimServer, AccessMethod accessMethod, ServiceInterfaceFactory serviceFactory) {
+	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, ServiceInterfaceFactory serviceFactory) {
 		this.accessMethod = accessMethod;
+		this.remoteAddress = remoteAddress;
 		this.serviceFactory = serviceFactory;
 		this.bimServer = bimServer;
 		activeSince = new Date();
@@ -1493,7 +1495,9 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	@Override
 	public void close() {
+		serviceFactory.remove(token);
 	}
 
 	@Override
@@ -2612,5 +2616,10 @@ public class Service implements ServiceInterface {
 			session.close();
 		}
 		return null;
+	}
+	
+	@Override
+	public String getRemoteAddress() throws ServiceException {
+		return remoteAddress;
 	}
 }

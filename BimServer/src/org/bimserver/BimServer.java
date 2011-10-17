@@ -284,7 +284,7 @@ public class BimServer {
 			diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
 
 			mergerFactory = new MergerFactory(settingsManager);
-			setSystemService(serviceFactory.newService(AccessMethod.INTERNAL));
+			setSystemService(serviceFactory.newService(AccessMethod.INTERNAL, "internal"));
 			try {
 				if (!((Service) getSystemService()).loginAsSystem()) {
 					throw new RuntimeException("System user not found");

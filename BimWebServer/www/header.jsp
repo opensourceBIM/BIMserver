@@ -18,7 +18,7 @@
 	SVersion version = loginManager.getService().getVersion();
  %> <img class="headerimage"
 	src="<%=loginManager.getService().getSettingCustomLogoAddress() != null ? loginManager.getService().getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision()%>" /></a> <%
- 	if (loginManager.getService().isLoggedIn()) {
+ 	if (loginManager.isLoggedIn()) {
  %>
 <div class="menubar">
 You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLoggedInUser().getOid()%>"><%=loginManager.getService().getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -49,7 +49,7 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  				}
  				}
  			}
- 			if (!loginManager.getService().isLoggedIn()) {
+ 			if (!loginManager.isLoggedIn()) {
  				if (!request.getServletPath().equals("/login.jsp")) {
  					if (request.getQueryString() == null || request.getQueryString().trim().isEmpty()) {
 	 					response.sendRedirect(request.getContextPath() + "/login.jsp?origurl="

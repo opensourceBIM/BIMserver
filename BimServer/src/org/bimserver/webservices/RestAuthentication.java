@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.cxf.binding.soap.interceptor.SoapHeaderInterceptor;
 import org.apache.cxf.configuration.security.AuthorizationPolicy;
 import org.apache.cxf.endpoint.Endpoint;
@@ -31,6 +33,7 @@ import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.transport.Conduit;
+import org.apache.cxf.transport.http.AbstractHTTPDestination;
 import org.apache.cxf.ws.addressing.EndpointReferenceType;
 import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
@@ -52,9 +55,10 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 	@Override
 	public void handleMessage(Message message) throws Fault {
 		Token token = (Token)message.getExchange().getService().get("token");
+		HttpServletRequest httpRequest = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
 		ServiceInterface newService = null;
 		if (token == null) {
-			newService = bimServer.getServiceFactory().newService(AccessMethod.REST);
+			newService = bimServer.getServiceFactory().newService(AccessMethod.REST, httpRequest.getRemoteAddr());
 			message.getExchange().getService().put("token", ((Service)newService).getCurrentToken());
 		} else {
 			try {

@@ -15,7 +15,7 @@
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
 <%
-	if (loginManager.getService().isLoggedIn()) {
+	if (loginManager.isLoggedIn()) {
 		try {
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	long roid = Long.parseLong(request.getParameter("roid"));

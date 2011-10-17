@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SocketNotificationsClient extends NotificationsClient {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(SocketNotificationsClient.class);
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private InetSocketAddress address;
@@ -24,28 +24,24 @@ public class SocketNotificationsClient extends NotificationsClient {
 	private Thread thread;
 
 	public void start() {
-		if (!running) {
-			thread = new Thread(new Runnable(){
-				@Override
-				public void run() {
-					running = true;
-					try {
-						serverSocket = new ServerSocket();
-						serverSocket.bind(address);
-						while (running) {
-							Socket socket = serverSocket.accept();
-							notifyConnect();
-							Handler handler = new Handler(SocketNotificationsClient.this, socket, multiCastNotificationImpl, protocolBuffersMetaData, sService);
-							handlers.add(handler);
-							handler.start();
-						}
-					} catch (IOException e) {
-						LOGGER.error("", e);
-					}		
-					notifyDisconnect();
+		thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				running = true;
+				try {
+					while (running) {
+						Socket socket = serverSocket.accept();
+						notifyConnect();
+						Handler handler = new Handler(SocketNotificationsClient.this, socket, multiCastNotificationImpl, protocolBuffersMetaData, sService);
+						handlers.add(handler);
+						handler.start();
+					}
+				} catch (IOException e) {
+					LOGGER.error("", e);
 				}
-			});
-		}
+				notifyDisconnect();
+			}
+		});
 	}
 
 	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, InetSocketAddress address) {
@@ -64,6 +60,21 @@ public class SocketNotificationsClient extends NotificationsClient {
 			serverSocket.close();
 		} catch (IOException e) {
 			LOGGER.error("", e);
+		}
+	}
+
+	public boolean isRunning() {
+		return running;
+	}
+
+	public void startAndWaitForInit() {
+		try {
+			running = true;
+			serverSocket = new ServerSocket();
+			serverSocket.bind(address);
+			start();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

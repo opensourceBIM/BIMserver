@@ -35,7 +35,7 @@ public class Handler extends Thread {
 		this.sService = sService;
 		serviceFactory = new ServiceFactory() {
 			@Override
-			public Object newService(AccessMethod accessMethod) {
+			public Object newService(AccessMethod accessMethod, String remoteAddress) {
 				return notificationInterface;
 			}
 			
@@ -49,7 +49,7 @@ public class Handler extends Thread {
 	@Override
 	public void run() {
 		running = true;
-		ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS), protocolBuffersMetaData, sService);
+		ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()), protocolBuffersMetaData, sService);
 		try {
 			while (running) {
 				DataInputStream dis = new DataInputStream(socket.getInputStream());

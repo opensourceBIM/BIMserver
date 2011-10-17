@@ -36,7 +36,7 @@
 </div>
 <div class="content">
 <%
-	if (loginManager.getService().isLoggedIn()) {
+	if (loginManager.isLoggedIn()) {
 		try {
 	if (request.getParameter("mid") != null) {
 		out.println("<div class=\"success\">" + Message.get(Integer.parseInt(request.getParameter("mid"))) + "</div>");

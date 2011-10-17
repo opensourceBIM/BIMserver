@@ -19,7 +19,7 @@
 <h1>Server Settings</h1>
 <%
 	ServiceInterface service = loginManager.getService();
-	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		if (request.getParameter("save") != null) {
 			try {
 				service.setSettingAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);

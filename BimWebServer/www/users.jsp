@@ -8,7 +8,7 @@
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@ include file="header.jsp" %>
-<% if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+<% if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 %>
 <div class="sidebar">

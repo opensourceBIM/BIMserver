@@ -28,6 +28,10 @@ import org.bimserver.client.channels.Channel;
 import org.bimserver.client.channels.DirectChannel;
 import org.bimserver.client.channels.ProtocolBuffersChannel;
 import org.bimserver.client.channels.SoapChannel;
+import org.bimserver.client.factories.AnonymousAuthenticationInfo;
+import org.bimserver.client.factories.AuthenticationInfo;
+import org.bimserver.client.factories.AutologinAuthenticationInfo;
+import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -58,6 +62,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private SchemaDefinition schema;
 	private final PluginManager pluginManager;
 	private boolean connected = false;
+	private AuthenticationInfo authenticationInfo;
 
 	public BimServerClient(PluginManager pluginManager) {
 		this.pluginManager = pluginManager;
@@ -76,6 +81,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 		}
 	}
 
+	public void setAuthentication(AuthenticationInfo authenticationInfo) {
+		this.authenticationInfo = authenticationInfo;
+	}
+	
 	public void connectDirect(ServiceInterface serviceInterface) {
 		DirectChannel directChannel = new DirectChannel();
 		this.channel = directChannel;
@@ -101,10 +110,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 		soapChannel.connect(address, useSoapHeaderSessions);
 	}
 
-	public void login(String username, String password) throws ServiceException {
-		channel.getServiceInterface().login(username, password);
-	}
-	
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
 		connectDisconnectListeners.add(connectDisconnectListener);
 	}
@@ -134,12 +139,30 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	public void disconnect() {
+		try {
+			getServiceInterface().close();
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 		channel.disconnect();
 	}
 
 	@Override
 	public void connected() {
 		connected = true;
+		try {
+			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
+				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo)authenticationInfo;
+				channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword());
+			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
+				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo)authenticationInfo;
+				channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode());
+			} else if (authenticationInfo instanceof AnonymousAuthenticationInfo) {
+				channel.getServiceInterface().loginAnonymous();
+			}
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 		notifyOfConnect();
 	}
 
@@ -154,15 +177,30 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 	
 	public void setNotificationsEnabled(boolean enabled) {
-		if (enabled) {
+		if (enabled && !notificationsClient.isRunning()) {
 			notificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055));
-			notificationsClient.start();
+			notificationsClient.startAndWaitForInit();
 			if (connected) {
 				try {
 					getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
 				} catch (ServiceException e) {
 					e.printStackTrace();
 				}
+			} else {
+				registerConnectDisconnectListener(new ConnectDisconnectListener() {
+					@Override
+					public void disconnected() {
+					}
+					
+					@Override
+					public void connected() {
+						try {
+							getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
+						} catch (ServiceException e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		}
 	}

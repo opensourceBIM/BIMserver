@@ -8,7 +8,7 @@
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	Date lastReset = null;
 	try {
-		lastReset = loginManager.getSystemService().getLastDatabaseReset();
+		lastReset = loginManager.getService().getLastDatabaseReset();
 	} catch (ServiceException e) {
 		// Ignore		
 	}

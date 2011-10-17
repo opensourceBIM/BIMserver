@@ -8,33 +8,27 @@ import org.bimserver.shared.exceptions.ServiceException;
 public class ProtocolBuffersBimServerClientFactory implements BimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private final String username;
-	private final String password;
 	private final String address;
 	private final int port;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, String username, String password) {
+	public ProtocolBuffersBimServerClientFactory(String address, int port) {
 		this.address = address;
 		this.port = port;
-		this.username = username;
-		this.password = password;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, String username, String password, PluginManager pluginManager) {
+	public ProtocolBuffersBimServerClientFactory(String address, int port, PluginManager pluginManager) {
 		this.address = address;
 		this.port = port;
-		this.username = username;
-		this.password = password;
 		this.pluginManager = pluginManager;
 	}
 
 	@Override
-	public BimServerClient create() throws ServiceException, ConnectionException {
+	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ConnectionException {
 		BimServerClient bimServerClient = new BimServerClient(pluginManager);
+		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectProtocolBuffers(address, port);
-		bimServerClient.login(username, password);
 		return bimServerClient;
 	}
 }

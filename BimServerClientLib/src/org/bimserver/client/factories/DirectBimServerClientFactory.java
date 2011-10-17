@@ -8,30 +8,24 @@ import org.bimserver.shared.exceptions.ServiceException;
 public class DirectBimServerClientFactory implements BimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private final String username;
-	private final String password;
 	private final ServiceInterface serviceInterface;
 
-	public DirectBimServerClientFactory(ServiceInterface serviceInterface, String username, String password) {
+	public DirectBimServerClientFactory(ServiceInterface serviceInterface) {
 		this.serviceInterface = serviceInterface;
-		this.username = username;
-		this.password = password;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
-	public DirectBimServerClientFactory(ServiceInterface serviceInterface, String username, String password, PluginManager pluginManager) {
+	public DirectBimServerClientFactory(ServiceInterface serviceInterface, PluginManager pluginManager) {
 		this.serviceInterface = serviceInterface;
-		this.username = username;
-		this.password = password;
 		this.pluginManager = pluginManager;
 	}
 
 	@Override
-	public BimServerClient create() throws ServiceException {
+	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
 		BimServerClient bimServerClient = new BimServerClient(pluginManager);
+		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectDirect(serviceInterface);
-		bimServerClient.login(username, password);
 		return bimServerClient;
 	}
 }

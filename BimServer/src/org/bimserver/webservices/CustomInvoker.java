@@ -17,6 +17,7 @@ package org.bimserver.webservices;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.namespace.QName;
 
 import org.apache.cxf.binding.soap.SoapMessage;
@@ -24,6 +25,7 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.service.invoker.AbstractInvoker;
+import org.apache.cxf.transport.http.AbstractHTTPDestination;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
@@ -44,8 +46,9 @@ public class CustomInvoker extends AbstractInvoker {
 	@Override
 	public Object getServiceObject(Exchange context) {
 		Message inMessage = context.getInMessage();
+		HttpServletRequest httpRequest = (HttpServletRequest) inMessage.get(AbstractHTTPDestination.HTTP_REQUEST);
 		if (inMessage instanceof SoapMessage) {
-			SoapMessage soapMessage = (SoapMessage)inMessage;
+			SoapMessage soapMessage = (SoapMessage) inMessage;
 			Header header = soapMessage.getHeader(new QName("uri:org.bimserver", "token"));
 			Token token = null;
 			if (header != null) {
@@ -62,7 +65,7 @@ public class CustomInvoker extends AbstractInvoker {
 					return null;
 				}
 			} else {
-				ServiceInterface newService = serviceFactory.newService(AccessMethod.SOAP);
+				ServiceInterface newService = serviceFactory.newService(AccessMethod.SOAP, httpRequest.getRemoteAddr());
 				try {
 					context.getSession().put("token", newService.getCurrentToken());
 				} catch (ServiceException e) {
@@ -71,7 +74,7 @@ public class CustomInvoker extends AbstractInvoker {
 				return newService;
 			}
 		} else {
-			ServiceInterface newService = serviceFactory.newService(AccessMethod.REST);
+			ServiceInterface newService = serviceFactory.newService(AccessMethod.REST, httpRequest.getRemoteAddr());
 			return newService;
 		}
 	}

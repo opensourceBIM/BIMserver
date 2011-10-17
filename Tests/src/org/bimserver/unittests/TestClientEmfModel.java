@@ -30,6 +30,7 @@ import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
+import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -128,13 +129,14 @@ public class TestClientEmfModel {
 		bimServerClient = new BimServerClient(bimServer.getPluginManager());
 //		bimServerClient.connectSoap("http://localhost:8082/soap");
 		try {
+			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
+			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 		} catch (ConnectionException e1) {
 			e1.printStackTrace();
 		}
 //		bimServerClient.connectDirect(bimServer.getSystemService());
 		try {
-			bimServerClient.login("admin@bimserver.org", "admin");
 			session = bimServerClient.createSession();
 			int pid = createProject();
 			session.startTransaction(pid);

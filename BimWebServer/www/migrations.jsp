@@ -4,7 +4,7 @@
 <%@page import="java.util.Set"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
-if (!loginManager.getService().isLoggedIn()) {
+if (!loginManager.isLoggedIn()) {
 	response.sendRedirect("login.jsp");
 } else {
 %>

@@ -6,11 +6,12 @@ import java.util.Set;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
+import org.bimserver.client.factories.AuthenticationInfo;
+import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.satellite.activities.Activity;
 import org.bimserver.shared.NotificationInterface;
-import org.bimserver.shared.exceptions.ServiceException;
 
 public class SatelliteServer {
 	private PluginManager pluginManager;
@@ -28,14 +29,11 @@ public class SatelliteServer {
 	}
 
 	public void connect(SatelliteSettings settings, NotificationInterface... notificationInterfaces) throws ConnectionException {
+		AuthenticationInfo authenticationInfo = new UsernamePasswordAuthenticationInfo(settings.getUsername(), settings.getPassword());
+		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectProtocolBuffers(settings.getAddress(), settings.getPort());
-		try {
-			bimServerClient.getServiceInterface().login(settings.getUsername(), settings.getPassword());
-			for (NotificationInterface notificationInterface : notificationInterfaces) {
-				bimServerClient.registerNotificationListener(notificationInterface);
-			}
-		} catch (ServiceException e) {
-			e.printStackTrace();
+		for (NotificationInterface notificationInterface : notificationInterfaces) {
+			bimServerClient.registerNotificationListener(notificationInterface);
 		}
 	}
 

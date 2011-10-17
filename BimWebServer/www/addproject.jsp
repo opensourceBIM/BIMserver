@@ -23,7 +23,7 @@
 </div>
 <div class="content">
 <%
-	if (loginManager.getService().isLoggedIn()) {
+	if (loginManager.isLoggedIn()) {
 		SProject superProject = null;
 		if (request.getParameter("parentoid") != null) {
 			superProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));

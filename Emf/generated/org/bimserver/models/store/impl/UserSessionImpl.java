@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getRemoteAddress <em>Remote Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getActiveSince <em>Active Since</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getLastActive <em>Last Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getAccessMethod <em>Access Method</em>}</li>
@@ -148,6 +149,24 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 */
 	public void setType(UserType newType) {
 		eSet(StorePackage.Literals.USER_SESSION__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRemoteAddress() {
+		return (String) eGet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRemoteAddress(String newRemoteAddress) {
+		eSet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, newRemoteAddress);
 	}
 
 	/**
