@@ -125,7 +125,7 @@ public class TestEmbeddedBimServer {
 	@Test
 	public void testUpload() {
 		try {
-			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL);
+			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL, "internal");
 			service.login(username, password);
 			SProject project = service.addProject("test " + new Random().nextInt());
 			File sourceFile = TestFile.AC11.getFile();
@@ -143,7 +143,7 @@ public class TestEmbeddedBimServer {
 	@Test
 	public void testDump() {
 		try {
-			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL);
+			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL, "internal");
 			service.login(username, password);
 			BimDatabase database = bimServer.getDatabase();
 			BimDatabaseSession session = database.createReadOnlySession();

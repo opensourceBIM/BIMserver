@@ -49,8 +49,8 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 		this.bimServer = bimServer;
 	}
 	
-	public ServiceInterface newService(AccessMethod accessMethod) {
-		Service service = new Service(bimServer, accessMethod, this);
+	public ServiceInterface newService(AccessMethod accessMethod, String remoteAddress) {
+		Service service = new Service(bimServer, accessMethod, remoteAddress, this);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
 		Token token = new Token(GeneratorUtils.generateToken(), expires);
 		tokens.put(token, service);
@@ -100,6 +100,7 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 					userSession.setUsername(user.getUsername());
 					userSession.setType(user.getUserType());
 					userSession.setName(user.getName());
+					userSession.setRemoteAddress(serviceInterface.getRemoteAddress());
 					userSession.setUserId(user.getOid());
 					userSession.setAccessMethod(serviceInterface.getAccessMethod());
 					userSession.setActiveSince(serviceInterface.getActiveSince());

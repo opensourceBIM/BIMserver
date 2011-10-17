@@ -33,6 +33,7 @@ public class SUserSession implements SBase
 		sClass.addField(new SField("username", java.lang.String.class));
 		sClass.addField(new SField("name", java.lang.String.class));
 		sClass.addField(new SField("type", SUserType.class));
+		sClass.addField(new SField("remoteAddress", java.lang.String.class));
 		sClass.addField(new SField("activeSince", java.util.Date.class));
 		sClass.addField(new SField("lastActive", java.util.Date.class));
 		sClass.addField(new SField("accessMethod", SAccessMethod.class));
@@ -65,6 +66,9 @@ public class SUserSession implements SBase
 		if (sField.getName().equals("type")) {
 			return getType();
 		}
+		if (sField.getName().equals("remoteAddress")) {
+			return getRemoteAddress();
+		}
 		if (sField.getName().equals("activeSince")) {
 			return getActiveSince();
 		}
@@ -96,6 +100,10 @@ public class SUserSession implements SBase
 			setType((SUserType)val);
 			return;
 		}
+		if (sField.getName().equals("remoteAddress")) {
+			setRemoteAddress((String)val);
+			return;
+		}
 		if (sField.getName().equals("activeSince")) {
 			setActiveSince((Date)val);
 			return;
@@ -119,6 +127,7 @@ public class SUserSession implements SBase
 	private java.lang.String username;
 	private java.lang.String name;
 	private SUserType type;
+	private java.lang.String remoteAddress;
 	private java.util.Date activeSince;
 	private java.util.Date lastActive;
 	private SAccessMethod accessMethod;
@@ -150,6 +159,13 @@ public class SUserSession implements SBase
 
 	public void setType(SUserType type) {
 		this.type = type;
+	}
+	public java.lang.String getRemoteAddress() {
+		return remoteAddress;
+	}
+
+	public void setRemoteAddress(java.lang.String remoteAddress) {
+		this.remoteAddress = remoteAddress;
 	}
 	public java.util.Date getActiveSince() {
 		return activeSince;

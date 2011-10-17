@@ -25,7 +25,7 @@
 <div class="sidebar"></div>
 <div class="content">
 <%
-	if (loginManager.getService().isLoggedIn()) {
+	if (loginManager.isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		long poid = Long.parseLong(request.getParameter("poid"));
 		SProject sProject = loginManager.getService().getProjectByPoid(poid);

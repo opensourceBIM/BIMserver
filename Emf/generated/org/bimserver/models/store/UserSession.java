@@ -34,6 +34,7 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.UserSession#getUsername <em>Username</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSession#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSession#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.store.UserSession#getRemoteAddress <em>Remote Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSession#getActiveSince <em>Active Since</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSession#getLastActive <em>Last Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSession#getAccessMethod <em>Access Method</em>}</li>
@@ -152,6 +153,32 @@ public interface UserSession extends IdEObject {
 	 * @generated
 	 */
 	void setType(UserType value);
+
+	/**
+	 * Returns the value of the '<em><b>Remote Address</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Remote Address</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Remote Address</em>' attribute.
+	 * @see #setRemoteAddress(String)
+	 * @see org.bimserver.models.store.StorePackage#getUserSession_RemoteAddress()
+	 * @model
+	 * @generated
+	 */
+	String getRemoteAddress();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.UserSession#getRemoteAddress <em>Remote Address</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Remote Address</em>' attribute.
+	 * @see #getRemoteAddress()
+	 * @generated
+	 */
+	void setRemoteAddress(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Active Since</b></em>' attribute.

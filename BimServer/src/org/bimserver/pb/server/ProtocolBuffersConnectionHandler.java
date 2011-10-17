@@ -67,7 +67,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				String methodName = dataInputStream.readUTF();
 				ProtocolBuffersMetaData protocolBuffersMetaData = protocolBuffersServer.getProtocolBuffersMetaData();
 				if (!services.containsKey(serviceName)) {
-					services.put(serviceName, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newService(AccessMethod.PROTOCOL_BUFFERS));
+					services.put(serviceName, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newService(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()));
 				}
 				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(services.get(serviceName), protocolBuffersMetaData, new SService(ServiceInterface.class));
 				MethodDescriptorContainer method = protocolBuffersMetaData.getMethod(serviceName, methodName);

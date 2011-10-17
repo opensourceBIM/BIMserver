@@ -7,30 +7,24 @@ import org.bimserver.shared.exceptions.ServiceException;
 public class SoapBimServerClientFactory implements BimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private final String username;
-	private final String password;
 	private final String address;
 
-	public SoapBimServerClientFactory(String address, String username, String password) {
+	public SoapBimServerClientFactory(String address) {
 		this.address = address;
-		this.username = username;
-		this.password = password;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
-	public SoapBimServerClientFactory(String address, String username, String password, PluginManager pluginManager) {
+	public SoapBimServerClientFactory(String address, PluginManager pluginManager) {
 		this.address = address;
-		this.username = username;
-		this.password = password;
 		this.pluginManager = pluginManager;
 	}
 
 	@Override
-	public BimServerClient create() throws ServiceException {
+	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
 		BimServerClient bimServerClient = new BimServerClient(pluginManager);
+		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectSoap(address, false);
-		bimServerClient.login(username, password);
 		return bimServerClient;
 	}
 }

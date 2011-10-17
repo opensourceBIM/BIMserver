@@ -237,6 +237,8 @@ public class JspHelper {
 			return "Web interface";
 		case SYNDICATION:
 			return "Syndication";
+		case PROTOCOL_BUFFERS:
+			return "Protocol Buffers";
 		}
 		return "unknown";
 	}

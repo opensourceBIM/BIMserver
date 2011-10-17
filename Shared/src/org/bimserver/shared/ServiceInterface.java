@@ -268,6 +268,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "logout")
 	void logout() throws ServiceException;
 
+	@WebMethod(action = "close")
+	void close() throws ServiceException;
+	
 	@WebMethod(action = "changePassword")
 	Boolean changePassword(@WebParam(name = "uoid", partName = "changePassword.uoid") Long uoid,
 			@WebParam(name = "oldPassword", partName = "changePassword.oldPassword") String oldPassword,
@@ -850,4 +853,7 @@ public interface ServiceInterface {
 	
 	@WebMethod(action = "upgradePossible")
 	Boolean upgradePossible() throws ServiceException;
+
+	@WebMethod(action = "getRemoteAddress")
+	String getRemoteAddress() throws ServiceException;
 }

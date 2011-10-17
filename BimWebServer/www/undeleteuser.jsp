@@ -2,7 +2,7 @@
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@ include file="header.jsp" %>
 <%
-	if (loginManager.getService().isLoggedIn()) {
+	if (loginManager.isLoggedIn()) {
 		try {
 			long uoid = Integer.parseInt(request.getParameter("uoid"));
 			if (loginManager.getService().undeleteUser(uoid)) {

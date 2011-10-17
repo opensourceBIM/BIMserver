@@ -9,10 +9,10 @@
 <%
 	boolean showForm = true;
 	long uoid = Long.parseLong(request.getParameter("uoid"));
-	SUser sUser = loginManager.getSystemService().getUserByUoid(uoid);
+	SUser sUser = loginManager.getService().getUserByUoid(uoid);
 	if (request.getParameter("password") != null) {
 		try {
-			loginManager.getSystemService().validateAccount(uoid, request.getParameter("token"), request.getParameter("password"));
+			loginManager.getService().validateAccount(uoid, request.getParameter("token"), request.getParameter("password"));
 			out.println("<div class=\"success\">Account successfully validated, you can now <a href=\"/?username=" + sUser.getUsername() + "\">login</a></div>");
 			showForm = false;
 		} catch (ServiceException e) {

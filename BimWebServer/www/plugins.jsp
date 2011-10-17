@@ -7,7 +7,7 @@
 <div class="content">
 <h1>Plugins</h1>
 <%
-	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		if (request.getParameter("action") != null) {
 			String action = request.getParameter("action");
 			if (action.equals("enable")) {

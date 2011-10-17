@@ -19,6 +19,8 @@ package org.bimserver.web;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
+import org.bimserver.client.factories.AnonymousAuthenticationInfo;
+import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ServiceInterface;
@@ -27,49 +29,56 @@ import org.bimserver.shared.exceptions.ServiceException;
 public class LoginManager {
 	public static BimServerClientFactory bimServerClientFactory;
 	
-	private ServiceInterface service;
 	private BimServerClient bimServerClient;
 
-	private ServiceInterface systemService;
-	private BimServerClient systemBimServerClient;
+	private boolean loggedIn;
 
 	public long getUoid() throws ServiceException {
-		return service.getCurrentUser().getOid();
+		return getService().getCurrentUser().getOid();
 	}
 
-	public ServiceInterface getService() {
-		if (service == null) {
-			if (bimServerClient == null) {
-				try {
-					bimServerClient = bimServerClientFactory.create();
-				} catch (ServiceException e) {
-					e.printStackTrace();
-				} catch (ConnectionException e) {
-					e.printStackTrace();
-				}
+	public boolean login(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
+		try {
+			if (bimServerClient != null) {
+				bimServerClient.disconnect();
 			}
-			service = bimServerClient.getServiceInterface();
+			bimServerClient = bimServerClientFactory.create(authenticationInfo, remoteAddress);
+			loggedIn = true;
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (ConnectionException e) {
+			e.printStackTrace();
 		}
-		return service;
+		return loggedIn;
+	}
+	
+	public void logout() {
+		try {
+			bimServerClient.getServiceInterface().logout();
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		loggedIn = false;
+	}
+	
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+	
+	public ServiceInterface getService() {
+		if (bimServerClient == null) {
+			try {
+				bimServerClient = bimServerClientFactory.create(new AnonymousAuthenticationInfo(), "unknown");
+			} catch (ServiceException e) {
+				e.printStackTrace();
+			} catch (ConnectionException e) {
+				e.printStackTrace();
+			}
+		}
+		return bimServerClient.getServiceInterface();
 	}
 
 	public SUserType getUserType() throws ServiceException {
 		return getService().getCurrentUser().getUserType();
-	}
-	
-	public ServiceInterface getSystemService() {
-		if (systemService == null) {
-			if (systemBimServerClient == null) {
-				try {
-					systemBimServerClient = bimServerClientFactory.create();
-				} catch (ServiceException e) {
-					e.printStackTrace();
-				} catch (ConnectionException e) {
-					e.printStackTrace();
-				}
-			}
-			systemService = systemBimServerClient.getServiceInterface();
-		}
-		return systemService;
 	}
 }

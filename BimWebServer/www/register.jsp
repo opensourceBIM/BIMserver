@@ -23,7 +23,7 @@
 			String name = request.getParameter("register_name");
 			String username = request.getParameter("register_username");
 			try {
-				long uoid = loginManager.getSystemService().addUser(username, name, SUserType.USER, true);
+				long uoid = loginManager.getService().addUser(username, name, SUserType.USER, true);
 			} catch (ServiceException e) {
 				errorMessages.add(e.getUserMessage());
 			}

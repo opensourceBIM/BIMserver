@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -87,9 +88,10 @@ public class LocalDevBimCombinedServerStarter {
 		
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
-			public BimServerClient create() {
+			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
-				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
+				bimServerClient.setAuthentication(authenticationInfo);
+				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
 				return bimServerClient;
 			}
 		};

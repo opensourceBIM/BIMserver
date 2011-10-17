@@ -1,11 +1,7 @@
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
-	try {
-		loginManager.getService().logout();
-	} catch (ServiceException e) {
-		// Probably a session timeout
-	}
+	loginManager.logout();
 	request.getSession().setAttribute("loggingout", "true");
 	Cookie autologinCookie = new Cookie("autologin", "");
 	autologinCookie.setMaxAge(0);

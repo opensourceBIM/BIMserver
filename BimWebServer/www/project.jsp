@@ -28,7 +28,7 @@
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
 <%
-		if (loginManager.getService().isLoggedIn()) {
+		if (loginManager.isLoggedIn()) {
 			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 			long poid = Long.parseLong(request.getParameter("poid"));
 			try {

@@ -8,8 +8,8 @@
 <%@ include file="header.jsp" %>
 <%
 try {
-	if (loginManager.getService().getServerInfo().getServerState() == SServerState.RUNNING) {
-		if (loginManager.getService().isLoggedIn()) { %>
+	if (loginManager.isLoggedIn()) {
+		if (loginManager.getService().getServerInfo().getServerState() == SServerState.RUNNING) { %>
 <div class="sidebar">
  <ul>
 <% if (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects()) { %>

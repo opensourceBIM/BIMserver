@@ -14,7 +14,7 @@ $(document).ready(function(){
 	instrumentBrowserLinks();
 
 	$(".errorLink").click(function(event){
-		$(event.target).parent().find(".errorBody").show();
+		$(event.target).parent().find(".errorBody").toggle();
 	});
 	
 	var showDeleted = getCookie("showdeleted") == "true";

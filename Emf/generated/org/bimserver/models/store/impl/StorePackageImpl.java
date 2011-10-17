@@ -2125,7 +2125,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUserSession_ActiveSince() {
+	public EAttribute getUserSession_RemoteAddress() {
 		return (EAttribute) userSessionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2134,7 +2134,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUserSession_LastActive() {
+	public EAttribute getUserSession_ActiveSince() {
 		return (EAttribute) userSessionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2143,8 +2143,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUserSession_AccessMethod() {
+	public EAttribute getUserSession_LastActive() {
 		return (EAttribute) userSessionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserSession_AccessMethod() {
+		return (EAttribute) userSessionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -3337,6 +3346,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(userSessionEClass, USER_SESSION__USERNAME);
 		createEAttribute(userSessionEClass, USER_SESSION__NAME);
 		createEAttribute(userSessionEClass, USER_SESSION__TYPE);
+		createEAttribute(userSessionEClass, USER_SESSION__REMOTE_ADDRESS);
 		createEAttribute(userSessionEClass, USER_SESSION__ACTIVE_SINCE);
 		createEAttribute(userSessionEClass, USER_SESSION__LAST_ACTIVE);
 		createEAttribute(userSessionEClass, USER_SESSION__ACCESS_METHOD);
@@ -3863,6 +3873,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUserSession_Type(), this.getUserType(), "type", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserSession_RemoteAddress(), ecorePackage.getEString(), "remoteAddress", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUserSession_ActiveSince(), ecorePackage.getEDate(), "activeSince", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUserSession_LastActive(), ecorePackage.getEDate(), "lastActive", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,

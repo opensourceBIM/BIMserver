@@ -1930,13 +1930,22 @@ public interface StorePackage extends EPackage {
 	int USER_SESSION__TYPE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Remote Address</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__REMOTE_ADDRESS = 4;
+
+	/**
 	 * The feature id for the '<em><b>Active Since</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SESSION__ACTIVE_SINCE = 4;
+	int USER_SESSION__ACTIVE_SINCE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Last Active</b></em>' attribute.
@@ -1945,7 +1954,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SESSION__LAST_ACTIVE = 5;
+	int USER_SESSION__LAST_ACTIVE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1954,7 +1963,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SESSION__ACCESS_METHOD = 6;
+	int USER_SESSION__ACCESS_METHOD = 7;
 
 	/**
 	 * The number of structural features of the '<em>User Session</em>' class.
@@ -1963,7 +1972,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SESSION_FEATURE_COUNT = 7;
+	int USER_SESSION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.MigrationImpl <em>Migration</em>}' class.
@@ -5118,6 +5127,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getUserSession_Type();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getRemoteAddress <em>Remote Address</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Remote Address</em>'.
+	 * @see org.bimserver.models.store.UserSession#getRemoteAddress()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EAttribute getUserSession_RemoteAddress();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getActiveSince <em>Active Since</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7709,6 +7729,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute USER_SESSION__TYPE = eINSTANCE.getUserSession_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Remote Address</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_SESSION__REMOTE_ADDRESS = eINSTANCE.getUserSession_RemoteAddress();
 
 		/**
 		 * The meta object literal for the '<em><b>Active Since</b></em>' attribute feature.
