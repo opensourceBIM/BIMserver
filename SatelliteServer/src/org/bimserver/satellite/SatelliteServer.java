@@ -22,6 +22,7 @@ public class SatelliteServer {
 		pluginManager = new PluginManager(new File("tmp"), null);
 		try {
 			pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+			pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
 		} catch (PluginException e) {
 			e.printStackTrace();
 		}

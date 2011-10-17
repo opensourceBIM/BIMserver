@@ -38,5 +38,6 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-10.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
