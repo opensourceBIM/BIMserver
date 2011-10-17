@@ -749,13 +749,13 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer downloadByOids(Set<Long> roids, Set<Long> oids, String resultTypeName, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(bimServer, resultTypeName, roids, oids), sync);
+		return download(DownloadParameters.fromOids(bimServer, resultTypeName, roids, oids), sync);
 	}
 
 	@Override
-	public Integer downloadOfType(Long roid, String className, String resultTypeName, Boolean sync) throws ServiceException {
+	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, String resultTypeName, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(bimServer, roid, className, resultTypeName), sync);
+		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, resultTypeName), sync);
 	}
 
 	@Override
@@ -791,7 +791,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer downloadByGuids(Set<Long> roids, Set<String> guids, String resultTypeName, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(bimServer, roids, guids, resultTypeName), sync);
+		return download(DownloadParameters.fromGuids(bimServer, roids, guids, resultTypeName), sync);
 	}
 
 	@Override
@@ -1031,7 +1031,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer downloadProjects(Set<Long> roids, String resultTypeName, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(bimServer, roids, resultTypeName), sync);
+		return download(DownloadParameters.fromRoids(bimServer, roids, resultTypeName), sync);
 	}
 
 	@Override

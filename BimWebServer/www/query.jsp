@@ -37,7 +37,7 @@
 		<button id="queryoidsbutton" type="button" value="Query">Query</button>
 	</td>
 	<td>
-		<div class="downloadResult"></div>
+		<div class="downloadResult" style="display: none"></div>
 	</td>
 </tr>
 </table>
@@ -68,7 +68,7 @@
 		<button id="queryguidsbutton" type="button" value="Query">Query</button>
 	</td>
 	<td>
-		<div class="downloadResult"></div>
+		<div class="downloadResult" style="display: none"></div>
 	</td>
 </tr>
 </table>
@@ -102,13 +102,13 @@
 		</select>
 	</td>
 	<td>
+		<input type="hidden" name="roid" value="<%=roid %>"/>
 		<label for="querycidzip_<%=roid %>">Zip </label>
 		<input type="checkbox" name="zip" id="querycidzip_<%=roid %>"/>
-		<input type="hidden" name="roid" value="<%=roid %>"/>
 		<button id="queryclassbutton" type="button" value="Query">Query</button>
 	</td>
-		<td>
-		<div class="downloadResult"></div>
+	<td>
+		<div class="downloadResult" style="display: none"></div>
 	</td>
 </tr>
 </table>
@@ -298,10 +298,8 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 	$(document).ready(function(){
 		$("#queryoidsbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
-			$(this).hide();
 			var roid = downloadframe.find('input[name="roid"]');
 			var oids = downloadframe.find('input[name="oids"]');
-			console.log(oids);
 			var resultType = downloadframe.find('select[name="resultType"]');
 			var zipbox = downloadframe.find('input[name="zip"]');
 			var zip = "";
@@ -309,14 +307,13 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 				zip = "&zip=on";
 			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&oids=" + oids.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
+			resultDiv.show();
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&oids=" + oids.val() + "&serializerName=" + resultType.val() + zip + "&download=Download");
 		});
 		$("#queryguidsbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
-			$(this).hide();
 			var roid = downloadframe.find('input[name="roid"]');
 			var guids = downloadframe.find('input[name="guids"]');
-			console.log(guids);
 			var resultType = downloadframe.find('select[name="resultType"]');
 			var zipbox = downloadframe.find('input[name="zip"]');
 			var zip = "";
@@ -324,14 +321,13 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 				zip = "&zip=on";
 			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&guids=" + guids.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
+			resultDiv.show();
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&guids=" + guids.val() + "&serializerName=" + resultType.val() + zip + "&download=Download");
 		});
 		$("#queryclassbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
-			$(this).hide();
 			var roid = downloadframe.find('input[name="roid"]');
 			var ifcClass = downloadframe.find("#cid");
-			console.log(ifcClass);
 			var resultType = downloadframe.find('select[name="resultType"]');
 			var zipbox = downloadframe.find('input[name="zip"]');
 			var zip = "";
@@ -339,7 +335,8 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 				zip = "&zip=on";
 			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&class=" + ifcClass.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
+			resultDiv.show();
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&classes=" + ifcClass.val() + "&serializerName=" + resultType.val() + zip + "&download=Download");
 		});
 	});
 </script>

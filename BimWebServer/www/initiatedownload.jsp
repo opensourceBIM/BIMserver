@@ -31,8 +31,14 @@
 				Set<Long> roids = new HashSet<Long>();
 				roids.add(roid);
 				longActionId = loginManager.getService().downloadByOids(roids, oids, serializerName, false);
-			} else if (request.getParameter("class") != null){
-				longActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), serializerName, false);
+			} else if (request.getParameter("classes") != null){
+				Set<String> classes = new HashSet<String>();
+				for (String className : request.getParameter("classes").split(";")) {
+					classes.add(className);
+				}
+				Set<Long> roids = new HashSet<Long>();
+				roids.add(roid);
+				longActionId = loginManager.getService().downloadByTypes(roids, classes, serializerName, false);
 			} else if (request.getParameter("multiple") != null){
 				Set<Long> roids = new HashSet<Long>();
 				for (Object key : request.getParameterMap().keySet()) {
@@ -74,6 +80,7 @@
 						clearInterval(downloadUpdateFunctionHandle);
 						$("#progressBar<%=longActionId%>").hide();
 						$("#statusfield<%=longActionId%>").hide();
+						$(".downloadResult").hide();
 						window.location = 'download?longActionId=<%=longActionId%><%=(zip == null ? "" : ("&zip=" + zip))%>&serializerName=<%=serializerName%>';
 					}
 				},

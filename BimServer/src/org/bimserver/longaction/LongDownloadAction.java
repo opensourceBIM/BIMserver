@@ -25,7 +25,7 @@ import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
-import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
+import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -101,7 +101,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid, guidanceProvider);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadOfTypeDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getClassName(), currentUoid, guidanceProvider);
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), currentUoid, guidanceProvider);
 			break;
 		case DOWNLOAD_PROJECTS:
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid, guidanceProvider);
@@ -128,7 +128,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			ds.setProgress(((DownloadByGuidsDatabaseAction) action).getProgress());
 			break;
 		case DOWNLOAD_OF_TYPE:
-			ds.setProgress(((DownloadOfTypeDatabaseAction) action).getProgress());
+			ds.setProgress(((DownloadByTypesDatabaseAction) action).getProgress());
 			break;
 		case DOWNLOAD_PROJECTS:
 			ds.setProgress(((DownloadProjectsDatabaseAction) action).getProgress());
