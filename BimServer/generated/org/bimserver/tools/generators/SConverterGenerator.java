@@ -30,8 +30,8 @@ public class SConverterGenerator
   protected final String TEXT_9 = "> result = new HashSet<S";
   protected final String TEXT_10 = ">();" + NL + "\t\tfor (";
   protected final String TEXT_11 = " o : input) {";
-  protected final String TEXT_12 = NL + "\t\tif (1==0) {" + NL + "\t\t}";
-  protected final String TEXT_13 = NL + "\t\telse if (o instanceof ";
+  protected final String TEXT_12 = NL + "\t\t";
+  protected final String TEXT_13 = "if (o instanceof ";
   protected final String TEXT_14 = ") {" + NL + "\t\t\tresult.add(convertToSObject((";
   protected final String TEXT_15 = ")o));\t\t" + NL + "\t\t}";
   protected final String TEXT_16 = NL + "\telse {" + NL + "\t\tresult.add(convertToSObject(o));" + NL + "\t}";
@@ -49,8 +49,8 @@ public class SConverterGenerator
   protected final String TEXT_28 = "> result = new ArrayList<S";
   protected final String TEXT_29 = ">();" + NL + "\t\tfor (";
   protected final String TEXT_30 = " o : input) {";
-  protected final String TEXT_31 = NL + "\t\tif (1==0) {" + NL + "\t\t}";
-  protected final String TEXT_32 = NL + "\t\telse if (o instanceof ";
+  protected final String TEXT_31 = NL + "\t\t";
+  protected final String TEXT_32 = "if (o instanceof ";
   protected final String TEXT_33 = ") {" + NL + "\t\t\tresult.add(convertToSObject((";
   protected final String TEXT_34 = ")o));\t\t" + NL + "\t\t}";
   protected final String TEXT_35 = NL + "\telse {" + NL + "\t\tresult.add(convertToSObject(o));" + NL + "\t}";
@@ -204,11 +204,11 @@ public class SConverterGenerator
     stringBuffer.append(TEXT_10);
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_11);
-     if (!metaDataManager.getSubClasses(eClass).isEmpty()) { 
-    stringBuffer.append(TEXT_12);
-    
+     if (!metaDataManager.getSubClasses(eClass).isEmpty()) {
 	for (EClass subClass : metaDataManager.getSubClasses(eClass)) {
 
+    stringBuffer.append(TEXT_12);
+    stringBuffer.append(metaDataManager.getSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
     stringBuffer.append(TEXT_13);
     stringBuffer.append(subClass.getName());
     stringBuffer.append(TEXT_14);
@@ -246,11 +246,11 @@ public class SConverterGenerator
     stringBuffer.append(TEXT_29);
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_30);
-     if (!metaDataManager.getSubClasses(eClass).isEmpty()) { 
-    stringBuffer.append(TEXT_31);
-    
+     if (!metaDataManager.getSubClasses(eClass).isEmpty()) {
 	for (EClass subClass : metaDataManager.getSubClasses(eClass)) {
 
+    stringBuffer.append(TEXT_31);
+    stringBuffer.append(metaDataManager.getSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
     stringBuffer.append(TEXT_32);
     stringBuffer.append(subClass.getName());
     stringBuffer.append(TEXT_33);

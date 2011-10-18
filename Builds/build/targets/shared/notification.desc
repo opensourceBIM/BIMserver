@@ -1,9 +1,9 @@
 
 µ
 notification.protoorg.bimserver.pbservice.proto"9
-SNewProjectNotification
-	projectId (
-oid ("O
+SNewProjectNotification
+oid (
+	projectId ("O
 NewProjectRequest:
 unknown (2).org.bimserver.pb.SNewProjectNotification";
 SNewRevisionNotification
