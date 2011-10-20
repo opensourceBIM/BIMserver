@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.interfaces.objects.SCheckinResult;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -67,6 +68,10 @@ public class ProgressServlet extends HttpServlet {
 						// This is probably a browser trying to load
 						// stuff that is not there anymore
 					}
+				} else if (request.getParameter("laid") != null) {
+					SLongActionState downloadState = loginManager.getService().getDownloadState(Integer.parseInt(request.getParameter("laid")));
+					result.put("state", downloadState.getState());
+					result.put("progress", downloadState.getProgress());
 				}
 			}
 			result.put("revisions", revisions);
