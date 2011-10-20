@@ -1,0 +1,68 @@
+<project name="Client">
+	<import file="common.build.xml"/>
+	<target name="Build ClientLib">
+		<delete dir="builds"/>
+		<mkdir dir="builds"/>
+		<antcall target="Build"/>
+		<copy todir="builds/BuildLib/lib">
+			<fileset file="builds/lib/bimserver-${version}.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-shared.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-plugins.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-ifc.jar"/>
+			<fileset file="builds/pluginlibs/bimserver-${version}-buildingSMARTLibrary.jar"/>
+			<fileset file="builds/pluginlibs/bimserver-${version}-ifcplugins.jar"/>
+		</copy>
+		<copy todir="builds/BuildLib/dep" flatten="true">
+			<fileset dir="../../BimServer/lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<zip destfile="builds/bimserver-lib-${version}.zip">
+			<fileset dir="builds/BuildLib">
+				<exclude name="*.svn" />
+			</fileset>
+		</zip>
+	</target>
+	<target name="buildbimserverclientlib">
+		<delete dir="builds"/>
+		<mkdir dir="builds"/>
+		<antcall target="Build"/>
+		<copy todir="builds/BuildLib">
+			<fileset file="targets/clientlib/log4j.xml"/>
+			<fileset file="targets/clientlib/readme.txt"/>
+			<fileset file="targets/clientlib/license.txt"/>
+		</copy>
+		<copy todir="builds/BuildLib/lib">
+			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-shared.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-plugins.jar"/>
+			<fileset file="builds/lib/bimserver-${version}-ifc.jar"/>
+			<fileset file="builds/pluginlibs/bimserver-${version}-buildingSMARTLibrary.jar"/>
+			<fileset file="builds/pluginlibs/bimserver-${version}-ifcplugins.jar"/>
+		</copy>
+		<copy todir="builds/BuildLib/dep" flatten="true">
+			<fileset file="../../BimServer/lib/logging/log4j-1.2.16.jar"/>
+			<fileset file="../../BimServer/lib/logging/slf4j-api-1.6.2.jar"/>
+			<fileset file="../../BimServer/lib/logging/slf4j-log4j12-1.6.2.jar"/>
+			<fileset file="../../BimServer/lib/commons/commons-io-1.4.jar"/>
+			<fileset file="../../BimServer/lib/antlr-3.1.1-runtime.jar"/>
+			<fileset file="../../BimServer/lib/antlr-3.1.1.jar"/>
+			<fileset file="../../BimServer/lib/guava-10.0.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf_2.6.0.v20110606-0949.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.common_2.7.0.v20110605-0747.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore_2.7.0.v20110605-0747.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.7.0.v20110520-1406.jar"/>
+		</copy>
+		<zip destfile="builds/bimserver-client-lib-${version}.zip">
+			<fileset dir="builds/BuildLib">
+				<exclude name="*.svn" />
+			</fileset>
+		</zip>
+	</target>
+
+</project>

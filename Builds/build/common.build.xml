@@ -61,6 +61,22 @@
 			<fileset dir="builds/bimwebserver"/>
 		</jar>
 	</target>
+	<target name="SatelliteServer">
+		<mkdir dir="builds/satelliteserver" />
+		<javac destdir="builds/satelliteserver" debug="on" includeantruntime="false">
+			<src path="../../SatelliteServer/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<copy file="../../SatelliteServer/src/org/bimserver/satellite/gui/logo_small.png" todir="builds/satelliteserver/org/bimserver/satellite/gui" />
+		<jar destfile="builds/lib/bimserver-${version}-satellite.jar">
+			<fileset dir="builds/satelliteserver"/>
+		</jar>
+	</target>
 	<target name="BimServer">
 		<mkdir dir="builds/bimserver" />
 		<javac destdir="builds/bimserver" debug="on" includeantruntime="false">
@@ -73,9 +89,27 @@
 				</path>
 			</classpath>
 		</javac>
+		<copy todir="builds/bimserver/org/bimserver/database/migrations/steps">
+			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore"></fileset>
+		</copy>
 		<mkdir dir="builds/bimserver/plugin"/>
 		<jar destfile="builds/lib/bimserver-${version}.jar">
 			<fileset dir="builds/bimserver"/>
+		</jar>
+	</target>
+	<target name="Plugins">
+		<mkdir dir="builds/plugins" />
+		<javac destdir="builds/plugins" debug="on" includeantruntime="false">
+			<src path="../../Plugins/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/lib/bimserver-${version}-plugins.jar">
+			<fileset dir="builds/plugins"/>
 		</jar>
 	</target>
 	<target name="BimServerClientLib">
@@ -389,467 +423,10 @@
 			<fileset dir="builds/shared"/>
 		</jar>
 	</target>
-	<target name="Plugins">
-		<mkdir dir="builds/plugins" />
-		<javac destdir="builds/plugins" debug="on" includeantruntime="false">
-			<src path="../../Plugins/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/lib/bimserver-${version}-plugins.jar">
-			<fileset dir="builds/plugins"/>
-		</jar>
-	</target>
+
 	<property name="buildtargets" value="../build/targets" />
 	<property name="defaultsettings" value="../defaultsettings" />
-	<target name="buildbimserverclientlib">
-		<delete dir="builds"/>
-		<mkdir dir="builds"/>
-		<antcall target="Build"/>
-		<copy todir="builds/BuildLib">
-			<fileset file="targets/clientlib/log4j.xml"/>
-			<fileset file="targets/clientlib/readme.txt"/>
-			<fileset file="targets/clientlib/license.txt"/>
-		</copy>
-		<copy todir="builds/BuildLib/lib">
-			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-shared.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-plugins.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-ifc.jar"/>
-			<fileset file="builds/pluginlibs/bimserver-${version}-buildingSMARTLibrary.jar"/>
-			<fileset file="builds/pluginlibs/bimserver-${version}-ifcplugins.jar"/>
-		</copy>
-		<copy todir="builds/BuildLib/dep" flatten="true">
-			<fileset file="../../BimServer/lib/logging/log4j-1.2.16.jar"/>
-			<fileset file="../../BimServer/lib/logging/slf4j-api-1.6.2.jar"/>
-			<fileset file="../../BimServer/lib/logging/slf4j-log4j12-1.6.2.jar"/>
-			<fileset file="../../BimServer/lib/commons/commons-io-1.4.jar"/>
-			<fileset file="../../BimServer/lib/antlr-3.1.1-runtime.jar"/>
-			<fileset file="../../BimServer/lib/antlr-3.1.1.jar"/>
-			<fileset file="../../BimServer/lib/guava-10.0.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf_2.6.0.v20110606-0949.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.common_2.7.0.v20110605-0747.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore_2.7.0.v20110605-0747.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.7.0.v20110520-1406.jar"/>
-		</copy>
-		<zip destfile="builds/bimserver-client-lib-${version}.zip">
-			<fileset dir="builds/BuildLib">
-				<exclude name="*.svn" />
-			</fileset>
-		</zip>
-	</target>
-	<target name="buildbimserverlib">
-		<delete dir="builds"/>
-		<mkdir dir="builds"/>
-		<antcall target="Build"/>
-		<copy todir="builds/BuildLib/lib">
-			<fileset file="builds/lib/bimserver-${version}.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-client-lib.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-utils.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-emf.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-shared.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-plugins.jar"/>
-			<fileset file="builds/lib/bimserver-${version}-ifc.jar"/>
-			<fileset file="builds/pluginlibs/bimserver-${version}-buildingSMARTLibrary.jar"/>
-			<fileset file="builds/pluginlibs/bimserver-${version}-ifcplugins.jar"/>
-		</copy>
-		<copy todir="builds/BuildLib/dep" flatten="true">
-			<fileset dir="../../BimServer/lib">
-				<include name="**/*.jar" />
-			</fileset>
-		</copy>
-		<zip destfile="builds/bimserver-lib-${version}.zip">
-			<fileset dir="builds/BuildLib">
-				<exclude name="*.svn" />
-			</fileset>
-		</zip>
-	</target>
-	<target name="buildjar">
-		<delete dir="builds"/>
-		<mkdir dir="builds" />
-		<copy todir="builds/BuildJar">
-			<fileset file="${buildtargets}/shared/gpl.txt" />
-		</copy>
-		<copy todir="builds/BuildJar/www">
-			<fileset dir="../../BimWebServer/www" />
-		</copy>
-		<copy todir="builds/BuildJar/config" overwrite="true">
-			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
-			<fileset file="${buildtargets}/shared/version.xml" />
-			<fileset file="${buildtargets}/shared/web.xml" />
-			<fileset file="${buildtargets}/shared/service.proto" />
-			<fileset file="${buildtargets}/shared/notification.proto" />
-			<fileset file="${buildtargets}/shared/service.desc" />
-			<fileset file="${buildtargets}/shared/notification.desc" />
-		</copy>
-		<copy todir="builds/BuildJar/home" overwrite="true">
-			<fileset file="${defaultsettings}/shared/settings.xml" />
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
 
-			<fileset file="${defaultsettings}/shared/ignore.xml" />
-			<fileset file="${defaultsettings}/${target}/ignore.xml" />
-		</copy>
-		<copy file="${buildtargets}/${target}/servertype.txt" todir="builds/BuildJar/www" overwrite="true" />
-		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
-			<fileset file="${buildtargets}/shared/context.xml" />
-		</copy>
-		<mkdir dir="builds/BuildJar/home/logs" />
-		<mkdir dir="builds/BuildJar/home/tmp" />
-		<copy todir="builds/BuildJar/home/templates" overwrite="true" failonerror="false">
-			<fileset dir="${defaultsettings}/${target}/templates" />
-		</copy>
-		<copy todir="builds/BuildJar/www" overwrite="true" failonerror="false">
-			<fileset dir="${buildtargets}/${target}/jsp" />
-		</copy>
-		<copy todir="builds/BuildJar/www/images" overwrite="true" failonerror="false">
-			<fileset dir="${buildtargets}/${target}/images" />
-		</copy>
-		<replace file="builds/BuildJar/config/version.xml" token="@VERSION@" value="${version}" />
-		<replace file="builds/BuildJar/config/version.xml" token="@DATE@" value="${touch.time}" />
-		<replace file="builds/BuildJar/config/web.xml" token="@VERSION@" value="${version}" />
-		<copy todir="builds/BuildJar/lib">
-			<fileset file="${defaultsettings}/${target}/log4j.xml" />
-		</copy>
-		<copy todir="builds/BuildJar/lib" flatten="true">
-			<fileset dir="../../BimServer/lib">
-				<include name="**/*.jar" />
-			</fileset>
-		</copy>
-		<mkdir dir="builds/BuildJar/classes" />
-		<antcall target="Build"/>
-		<copy todir="builds/BuildJar/lib">
-			<fileset dir="builds/lib" />
-		</copy>
-		<copy todir="builds/BuildJar/plugins">
-			<fileset dir="builds/pluginlibs" />
-		</copy>
-		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildJar/classes/org/bimserver/database/migrations/steps" />
-		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildJar/classes/org/bimserver/models/ifc2x3/impl" />
-		<jar jarfile="builds/BuildJar/lib/bimserver.jar" manifest="${buildtargets}/${target}/MAIN-MANIFEST.MF">
-			<fileset dir="builds/BuildJar/classes" />
-		</jar>
-		<delete dir="builds/BuildJar/classes" />
-		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander"  includeantruntime="false"/>
-		<copy todir="builds/BuildJar/org/bimserver">
-			<fileset dir="../../BimWebServer/expander/org/bimserver">
-				<include name="*.png" />
-			</fileset>
-		</copy>
-		<mkdir dir="builds/BuildJar/tmp" />
-		<jar jarfile="builds/bimserver-${version}.jar" manifest="${buildtargets}/${target}/MANIFEST.MF">
-			<fileset dir="builds/BuildJar">
-				<exclude name="*.svn" />
-			</fileset>
-		</jar>
-		<delete dir="builds/BuildJar" failonerror="false" />
-	</target>
-	<target name="buildcombinedwar">
-		<delete dir="builds" />
-		<mkdir dir="builds" />
-		<mkdir dir="builds/BuildWar" />
-		<copy todir="builds/BuildWar">
-			<fileset file="${buildtargets}/shared/gpl.txt" />
-		</copy>
-		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
-		<copy todir="builds/BuildWar/">
-			<fileset dir="../../BimWebServer/www" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
-			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
-			<fileset file="${buildtargets}/shared/version.xml" />
 
-			<fileset file="${buildtargets}/shared/service.proto" />
-			<fileset file="${buildtargets}/shared/notification.proto" />
-			<fileset file="${buildtargets}/shared/service.desc" />
-			<fileset file="${buildtargets}/shared/notification.desc" />
-			
-			<fileset file="${defaultsettings}/shared/settings.xml" />
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-
-			<fileset file="${defaultsettings}/shared/ignore.xml" />
-			<fileset file="${defaultsettings}/${target}/ignore.xml" />
-		</copy>
-
-		<mkdir dir="builds/BuildWar/WEB-INF/logs" />
-		<mkdir dir="builds/BuildWar/WEB-INF/tmp" />
-
-		<copy file="pb/service.proto" tofile="builds/BuildWar/WEB-INF/service.proto" />
-
-		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" overwrite="true" />
-		<copy todir="builds/BuildWar/META-INF" overwrite="true">
-			<fileset file="${buildtargets}/shared/context.xml" />
-		</copy>
-		<copy todir="builds/BuildWar/META-INF" overwrite="true">
-			<fileset file="${buildtargets}/${target}/MANIFEST.MF" />
-		</copy>
-		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@VERSION@" value="${version}" />
-		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
-
-		<copy file="${buildtargets}/${target}/web.xml" todir="builds/BuildWar/WEB-INF" overwrite="true"/>
-		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
-		
-		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/database/migrations/steps" />
-		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/models/ifc2x3/impl" />
-
-		<copy todir="builds/BuildWar" overwrite="true">
-			<fileset dir="${buildtargets}/${target}/jsp" />
-		</copy>
-		<copy todir="builds/BuildWar/images" overwrite="true">
-			<fileset dir="${buildtargets}/${target}/images" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/templates" overwrite="true">
-			<fileset dir="${defaultsettings}/${target}/templates" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/lib" flatten="true">
-			<fileset dir="../../BimServer/lib">
-				<include name="**/*.jar" />
-				<exclude name="ant-1.6.5.jar" />
-				<exclude name="core-3.1.1.jar" />
-				<exclude name="jetty/**" />
-				<exclude name="**/*servlet*" />
-			</fileset>
-		</copy>
-		<antcall target="Build"/>
-		<copy todir="builds/BuildWar/WEB-INF/lib">
-			<fileset dir="builds/lib" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/plugins">
-			<fileset dir="builds/pluginlibs" />
-		</copy>
-		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
-			<fileset dir="builds/BuildWar/WEB-INF/classes" />
-		</jar>
-		<delete dir="builds/BuildWar/WEB-INF/classes" />
-		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
-		<copy todir="builds/BuildWar/WEB-INF/classes">
-			<fileset file="${defaultsettings}/${target}/log4j.xml" />
-		</copy>
-		<jar destfile="builds/bimserver-${version}.war" manifest="../../BimWebServer/www/META-INF/MANIFEST.MF">
-			<fileset dir="builds/BuildWar">
-				<exclude name="*.svn" />
-			</fileset>
-		</jar>
-		<delete dir="builds/BuildWar" failonerror="false" />
-	</target>
-	<target name="buildwar">
-		<delete dir="builds" />
-		<mkdir dir="builds" />
-		<mkdir dir="builds/BuildWar" />
-		<copy todir="builds/BuildWar">
-			<fileset file="${buildtargets}/shared/gpl.txt" />
-		</copy>
-		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
-		<copy todir="builds/BuildWar/">
-			<fileset dir="../../BimWebServer/www" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
-			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
-			<fileset file="${buildtargets}/shared/version.xml" />
-
-			<fileset file="${buildtargets}/shared/service.proto" />
-			<fileset file="${buildtargets}/shared/notification.proto" />
-			<fileset file="${buildtargets}/shared/service.desc" />
-			<fileset file="${buildtargets}/shared/notification.desc" />
-			
-			<fileset file="${defaultsettings}/shared/settings.xml" />
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-
-			<fileset file="${defaultsettings}/shared/ignore.xml" />
-			<fileset file="${defaultsettings}/${target}/ignore.xml" />
-		</copy>
-
-		<mkdir dir="builds/BuildWar/WEB-INF/logs" />
-		<mkdir dir="builds/BuildWar/WEB-INF/tmp" />
-
-		<copy file="pb/service.proto" tofile="builds/BuildWar/WEB-INF/service.proto" />
-
-		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" overwrite="true" />
-		<copy todir="builds/BuildWar/META-INF" overwrite="true">
-			<fileset file="${buildtargets}/shared/context.xml" />
-		</copy>
-		<copy todir="builds/BuildWar/META-INF" overwrite="true">
-			<fileset file="${buildtargets}/${target}/MANIFEST.MF" />
-		</copy>
-		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@VERSION@" value="${version}" />
-		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
-
-		<copy file="${buildtargets}/${target}/web.xml" todir="builds/BuildWar/WEB-INF" overwrite="true"/>
-		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
-		
-		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/database/migrations/steps" />
-		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/models/ifc2x3/impl" />
-
-		<copy todir="builds/BuildWar" overwrite="true">
-			<fileset dir="${buildtargets}/${target}/jsp" />
-		</copy>
-		<copy todir="builds/BuildWar/images" overwrite="true">
-			<fileset dir="${buildtargets}/${target}/images" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/templates" overwrite="true">
-			<fileset dir="${defaultsettings}/${target}/templates" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/lib" flatten="true">
-			<fileset dir="../../BimServer/lib">
-				<include name="**/*.jar" />
-				<exclude name="ant-1.6.5.jar" />
-				<exclude name="core-3.1.1.jar" />
-				<exclude name="jetty/**" />
-				<exclude name="**/*servlet*" />
-			</fileset>
-		</copy>
-		<antcall target="Build"/>
-		<copy todir="builds/BuildWar/WEB-INF/lib">
-			<fileset dir="builds/lib" />
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/plugins">
-			<fileset dir="builds/pluginlibs" />
-		</copy>
-		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
-			<fileset dir="builds/BuildWar/WEB-INF/classes" />
-		</jar>
-		<delete dir="builds/BuildWar/WEB-INF/classes" />
-		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
-		<copy todir="builds/BuildWar/WEB-INF/classes">
-			<fileset file="${defaultsettings}/${target}/log4j.xml" />
-		</copy>
-		<jar destfile="builds/bimserver-${version}.war" manifest="../../BimWebServer/www/META-INF/MANIFEST.MF">
-			<fileset dir="builds/BuildWar">
-				<exclude name="*.svn" />
-			</fileset>
-		</jar>
-		<delete dir="builds/BuildWar" failonerror="false" />
-	</target>
 	<import file="one-jar-ant-task.xml" />
-	<target name="buildclient">
-		<delete dir="builds" />
-		<mkdir dir="builds" />
-		<mkdir dir="builds/BuildClient" />
-		<mkdir dir="builds/lib" />
-		<antcall target="Utils" />
-		<antcall target="Emf" />
-		<antcall target="Plugins" />
-		<antcall target="Shared" />
-		<antcall target="Client"/>
-		<copy todir="builds/BuildClient/lib">
-			<fileset dir="builds/lib"></fileset>
-		</copy>
-		<one-jar destfile="builds/bimserver-client-${version}.jar" manifest="../../Builds/build/targets/client/MANIFEST.MF">
-			<main>
-				<fileset dir="builds/BuildClient" />
-			</main>
-			<lib>
-				<fileset file="../../BimServer/lib/cxf/cxf-2.3.2.jar" />
-				<fileset file="../../BimServer/lib/cxf/jsr311-api-1.1.1.jar" />
-				<fileset file="../../BimServer/lib/cxf/XmlSchema-1.4.5.jar" />
-				<fileset file="../../BimServer/lib/cxf/jaxb-impl-2.2.1.1.jar" />
-				<fileset file="../../BimServer/lib/cxf/wsdl4j-1.6.2.jar" />
-				<fileset file="../../BimServer/lib/cxf/xml-resolver-1.2.jar" />
-				<fileset file="../../BimServer/lib/commons/commons-io-1.4.jar" />
-				<fileset file="../../BimServer/lib/commons/commons-codec-1.3.jar" />
-				<fileset file="../../BimServer/lib/mail.jar" />
-				<fileset file="../../BimServer/lib/joda-time-1.6.jar" />
-				<fileset file="../../BimServer/lib/logging/*.jar" />
-				<fileset file="../../BimServer/lib/guava-r07.jar" />
-			</lib>
-		</one-jar>
-		<delete dir="builds/BuildClient" />
-	</target>
-	<target name="buildsource">
-		<delete dir="builds" />
-		<mkdir dir="builds" />
-		<mkdir dir="builds/BuildSource" />
-		<mkdir dir="builds/BuildSource/BIMserver" />
-		<copy todir="builds/BuildSource/BIMserver/BimCombined">
-			<fileset dir="../../BimCombined" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/BimServer">
-			<fileset dir="../../BimServer" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/BimServerClientLib">
-			<fileset dir="../../BimServerClientLib" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/BimWebServer">
-			<fileset dir="../../BimWebServer" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/buildingSMARTLibrary">
-			<fileset dir="../../buildingSMARTLibrary" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/CityGML">
-			<fileset dir="../../CityGML" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Client">
-			<fileset dir="../../Client" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Collada">
-			<fileset dir="../../Collada" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Emf">
-			<fileset dir="../../Emf" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/FileBasedGuidanceProvider">
-			<fileset dir="../../FileBasedGuidanceProvider" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/GeneratedSoapClient">
-			<fileset dir="../../GeneratedSoapClient" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/GeneratedProtocolBuffersClient">
-			<fileset dir="../../GeneratedProtocolBuffersClient" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Ifc">
-			<fileset dir="../../Ifc" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/IfcEngine">
-			<fileset dir="../../IfcEngine" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/IfcPlugins">
-			<fileset dir="../../IfcPlugins" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/MiscSerializers">
-			<fileset dir="../../MiscSerializers" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Plugins">
-			<fileset dir="../../Plugins" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Report1Serializer">
-			<fileset dir="../../Report1Serializer" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/SatelliteServer">
-			<fileset dir="../../SatelliteServer" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/SceneJS">
-			<fileset dir="../../SceneJS" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Shared">
-			<fileset dir="../../Shared" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/TestData">
-			<fileset dir="../../TestData" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Tests">
-			<fileset dir="../../Tests" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/TestViewer">
-			<fileset dir="../../TestViewer" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Utils">
-			<fileset dir="../../Utils" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/XsltSerializer">
-			<fileset dir="../../XsltSerializer" />
-		</copy>
-		<zip file="builds/bimserver-source-${version}.zip" basedir="builds/BuildSource" />
-		<delete dir="builds/BuildSource" />
-	</target>
 </project>
