@@ -167,7 +167,6 @@ public class Step0000 extends Migration {
 		schema.createEEnumLiteral(userTypeEnum, "SYSTEM");
 		schema.createEEnumLiteral(userTypeEnum, "ADMIN");
 		schema.createEEnumLiteral(userTypeEnum, "USER");
-		schema.createEEnumLiteral(userTypeEnum, "ANONYMOUS");
 	}
 
 	private void createObjectStateEnum() {

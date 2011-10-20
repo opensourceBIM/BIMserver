@@ -215,8 +215,6 @@ public class JspHelper {
 		switch (userType) {
 		case ADMIN:
 			return "Admin";
-		case ANONYMOUS:
-			return "Anonymous";
 		case USER:
 			return "User";
 		case SYSTEM:

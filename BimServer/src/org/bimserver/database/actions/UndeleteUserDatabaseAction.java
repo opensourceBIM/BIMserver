@@ -48,9 +48,6 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 			throw new UserException("Only administrators can undelete users");
 		}
 		final User user = getUserByUoid(uoid);
-		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.ANONYMOUS) {
-			throw new UserException("Cannot undelete this user");
-		}
 		UserUndeleted userUndeleted = LogFactory.eINSTANCE.createUserUndeleted();
 		userUndeleted.setAccessMethod(getAccessMethod());
 		userUndeleted.setDate(new Date());

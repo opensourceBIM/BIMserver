@@ -52,9 +52,6 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 			throw new UserException("Revision with pid " + sRevision.getOid() + " not found");
 		}
 		Project project = revision.getProject();
-		if (actingUser.getUserType() == UserType.ANONYMOUS) {
-			throw new UserException("User anonymous cannot update revision properties");
-		}
 		if (!RightsManager.hasRightsOnProjectOrSuperProjects(actingUser, project)) {
 			throw new UserException("User has no rights to update project properties");
 		}

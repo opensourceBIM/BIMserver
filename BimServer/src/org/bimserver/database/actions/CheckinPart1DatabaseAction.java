@@ -58,9 +58,6 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 			if (project == null) {
 				throw new UserException("Project with poid " + poid + " not found");
 			}
-			if (user.getUserType() == UserType.ANONYMOUS) {
-				throw new UserException("User anonymous cannot create new revisions");
-			}
 			if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
 				throw new UserException("User has no rights to checkin models to this project");
 			}

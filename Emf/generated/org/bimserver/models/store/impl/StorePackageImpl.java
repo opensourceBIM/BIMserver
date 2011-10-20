@@ -4118,7 +4118,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		addEEnumLiteral(userTypeEEnum, UserType.SYSTEM);
 		addEEnumLiteral(userTypeEEnum, UserType.ADMIN);
 		addEEnumLiteral(userTypeEEnum, UserType.USER);
-		addEEnumLiteral(userTypeEEnum, UserType.ANONYMOUS);
 
 		initEEnum(checkinStateEEnum, CheckinState.class, "CheckinState");
 		addEEnumLiteral(checkinStateEEnum, CheckinState.UPLOADING);

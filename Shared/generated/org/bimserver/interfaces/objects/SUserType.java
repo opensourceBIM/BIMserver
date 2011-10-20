@@ -20,8 +20,7 @@ package org.bimserver.interfaces.objects;
 public enum SUserType {
 	SYSTEM(0),
 	ADMIN(1),
-	USER(2),
-	ANONYMOUS(3);
+	USER(2);
 	int ordinal;
 
 	SUserType(int ordinal) {

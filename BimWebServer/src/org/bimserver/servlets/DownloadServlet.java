@@ -62,9 +62,6 @@ public class DownloadServlet extends HttpServlet {
 			if (loginManager == null) {
 				loginManager = new LoginManager();
 			}
-			if (!loginManager.getService().isLoggedIn()) {
-				loginManager.getService().loginAnonymous();
-			}
 			String serializerName = "Ifc2x3";
 			if (request.getParameter("serializerName") != null) {
 				serializerName = request.getParameter("serializerName");
