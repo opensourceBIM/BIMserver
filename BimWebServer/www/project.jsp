@@ -906,6 +906,7 @@
 			    }
 				if (allDone && timeoutId != null) {
 					window.clearTimeout(timeoutId);
+					window.location = "project.jsp?poid=" + <%=project.getOid()%>;
 				}
 			}});
 		};
