@@ -255,8 +255,8 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CheckinResult">
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="rid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="progress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="DataHandler" instanceClassName="javax.activation.DataHandler"/>
     <eClassifiers xsi:type="ecore:EClass" name="DownloadResult">
@@ -371,6 +371,10 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LongCheckinAction" eSuperTypes="#/0/LongAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
+          eType="#/0/Revision"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GuidanceProviderPluginDescriptor">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

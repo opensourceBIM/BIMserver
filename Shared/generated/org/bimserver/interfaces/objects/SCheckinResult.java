@@ -29,8 +29,8 @@ public class SCheckinResult implements SBase
 	static {
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("revisionId", long.class));
-		sClass.addField(new SField("rid", int.class));
 		sClass.addField(new SField("projectId", long.class));
+		sClass.addField(new SField("progress", int.class));
 		SPackage.getInstance().addSClass(sClass);
 
 	}
@@ -51,11 +51,11 @@ public class SCheckinResult implements SBase
 		if (sField.getName().equals("revisionId")) {
 			return getRevisionId();
 		}
-		if (sField.getName().equals("rid")) {
-			return getRid();
-		}
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
+		}
+		if (sField.getName().equals("progress")) {
+			return getProgress();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -67,12 +67,12 @@ public class SCheckinResult implements SBase
 			setRevisionId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("rid")) {
-			setRid((Integer)val);
-			return;
-		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("progress")) {
+			setProgress((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -83,8 +83,8 @@ public class SCheckinResult implements SBase
 	}
 	
 	private long revisionId;
-	private int rid;
 	private long projectId;
+	private int progress;
 	public long getRevisionId() {
 		return revisionId;
 	}
@@ -93,13 +93,6 @@ public class SCheckinResult implements SBase
 		this.revisionId = revisionId;
 	}
 	
-	public int getRid() {
-		return rid;
-	}
-
-	public void setRid(int rid) {
-		this.rid = rid;
-	}
 	public long getProjectId() {
 		return projectId;
 	}
@@ -108,6 +101,13 @@ public class SCheckinResult implements SBase
 		this.projectId = projectId;
 	}
 	
+	public int getProgress() {
+		return progress;
+	}
+
+	public void setProgress(int progress) {
+		this.progress = progress;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

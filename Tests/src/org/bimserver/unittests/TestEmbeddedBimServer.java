@@ -129,7 +129,7 @@ public class TestEmbeddedBimServer {
 			service.login(username, password);
 			SProject project = service.addProject("test " + new Random().nextInt());
 			File sourceFile = TestFile.AC11.getFile();
-			service.checkinSync(project.getOid(), "test", "TODO", sourceFile.length(), new DataHandler(new FileDataSource(sourceFile)), false);
+			service.checkin(project.getOid(), "test", "TODO", sourceFile.length(), new DataHandler(new FileDataSource(sourceFile)), false, true);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

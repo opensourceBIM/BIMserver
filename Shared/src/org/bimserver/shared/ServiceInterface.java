@@ -100,31 +100,28 @@ public interface ServiceInterface {
 	Boolean autologin(@WebParam(name = "username", partName = "autologin.username") String username,
 			@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServiceException;
 
-	@WebMethod(action = "checkinSync")
-	SCheckinResult checkinSync(@WebParam(name = "poid", partName = "checkinSync.poid") Long poid,
+	@WebMethod(action = "checkin")
+	Integer checkin(@WebParam(name = "poid", partName = "checkinSync.poid") Long poid,
 			@WebParam(name = "comment", partName = "checkinSync.comment") String comment,
 			@WebParam(name = "deserializerName", partName = "checkinSync.deserializerName") String deserializerName,
 			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
 			@WebParam(name = "ifcFile", partName = "checkinSync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
-			@WebParam(name = "merge", partName = "checkinSync.merge") Boolean merge) throws ServiceException;
+			@WebParam(name = "merge", partName = "checkinSync.merge") Boolean merge,
+			@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServiceException;
 
-	@WebMethod(action = "checkinAsync")
-	SCheckinResult checkinAsync(@WebParam(name = "poid", partName = "checlinAsync.poid") Long poid,
-			@WebParam(name = "comment", partName = "checkinAsync.comment") String comment,
-			@WebParam(name = "deserializerName", partName = "checkinSync.deserializerName") String deserializerName,
-			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
-			@WebParam(name = "ifcFile", partName = "checkinAsync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
-			@WebParam(name = "merge", partName = "checkinAsync.merge") Boolean merge) throws ServiceException;
-
+	@WebMethod(action = "getCheckinState")
+	SCheckinResult getCheckinState(@WebParam(name = "actionID", partName = "getCheckinState.actionID") Integer actionId)
+			throws ServiceException;
+	
 	@WebMethod(action = "checkout")
 	Integer checkout(@WebParam(name = "roid", partName = "checkout.roid") Long roid,
-			@WebParam(name = "formatIdentifier", partName = "checkout.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
+			@WebParam(name = "serializerName", partName = "checkout.serializerName") String serializerName,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "checkout.sync") Boolean sync) throws ServiceException;
 
 	@WebMethod(action = "checkoutLastRevision")
 	Integer checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
-			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "checkoutLastRevision.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
+			@QueryParam("serializerName") @WebParam(name = "serializerName", partName = "checkoutLastRevision.serializerName") String serializerName,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "checkoutLastRevision.sync") Boolean sync) throws ServiceException;
 
 	@GET
 	@Path("/download")
@@ -137,24 +134,24 @@ public interface ServiceInterface {
 	@WebMethod(action = "downloadByOids")
 	Integer downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
 			@WebParam(name = "oids", partName = "downloadByOids.oids") Set<Long> oids,
-			@WebParam(name = "formatIdentifier", partName = "downloadByOids.formatIdentifier") String formatIdentifier,
+			@WebParam(name = "serializerName", partName = "downloadByOids.serializerName") String serializerName,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
 	@WebMethod(action = "downloadByTypes")
 	Integer downloadByTypes(@WebParam(name = "roids", partName = "downloadOfType.roids") Set<Long> roids,
 			@WebParam(name = "classNames", partName = "downloadOfType.classNames") Set<String> classNames,
-			@WebParam(name = "formatIdentifier", partName = "downloadOfType.formatIdentifier") String formatIdentifier,
+			@WebParam(name = "serializerName", partName = "downloadOfType.serializerName") String serializerName,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
 	@WebMethod(action = "downloadByGuids")
 	Integer downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-			@WebParam(name = "formatIdentifier", partName = "downloadByGuids.formatIdentifier") String formatIdentifier,
+			@WebParam(name = "serializerName", partName = "downloadByGuids.serializerName") String serializerName,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
 	@WebMethod(action = "downloadProjects")
 	Integer downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
-			@WebParam(name = "formatIdentifier", partName = "downloadProjects.formatIdentifier") String formatIdentifier,
+			@WebParam(name = "serializerName", partName = "downloadProjects.serializerName") String serializerName,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
 	@WebMethod(action = "getDownloadData")
@@ -691,7 +688,7 @@ public interface ServiceInterface {
 			@WebParam(name = "pid", partName = "startTransaction.pid") Integer pid) throws ServiceException;
 
 	@WebMethod(action = "commitTransaction")
-	Long commitTransaction() throws ServiceException;
+	Long commitTransaction(@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServiceException;
 	
 	@WebMethod(action = "abortTransaction")
 	void abortTransaction() throws ServiceException;

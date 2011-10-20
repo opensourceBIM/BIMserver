@@ -123,7 +123,7 @@ public class Session {
 					}
 				}
 			}
-			return serviceInterface.commitTransaction();
+			return serviceInterface.commitTransaction("test");
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

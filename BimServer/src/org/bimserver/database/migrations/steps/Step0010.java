@@ -34,8 +34,8 @@ public class Step0010 extends Migration {
 	public void migrate(Schema schema) {
 		EClass checkinResultClass = schema.createEClass(schema.getEPackage("store"), "CheckinResult");
 		schema.createEReference(checkinResultClass, "revision", schema.getEClass("store", "Revision"), Multiplicity.SINGLE);
-		schema.createEAttribute(checkinResultClass, "rid", EcorePackage.eINSTANCE.getEInt(), Multiplicity.SINGLE);
 		schema.createEReference(checkinResultClass, "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
+		schema.createEAttribute(checkinResultClass, "progress", ecorePackage.getEInt(), Multiplicity.SINGLE);
 		
 		EDataType dataHandler = schema.createEDataType(schema.getEPackage("store"), EcoreFactory.eINSTANCE.createEDataType());
 		dataHandler.setName("DataHandler");
@@ -135,6 +135,9 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(longActionClass, "start", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(longActionClass, "username", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(longActionClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
+		
+		EClass longCheckinActionClass = schema.createEClass(schema.getEPackage("store"), "LongCheckinAction", longActionClass);
+		schema.createEReference(longCheckinActionClass, "revisions", schema.getEClass("store", "Revision"), Multiplicity.MANY);
 		
 		EClass guidanceProviderPluginDescriptor = schema.createEClass(schema.getEPackage("store"), "GuidanceProviderPluginDescriptor");
 		schema.createEAttribute(guidanceProviderPluginDescriptor, "className", ecorePackage.getEString(), Multiplicity.SINGLE);

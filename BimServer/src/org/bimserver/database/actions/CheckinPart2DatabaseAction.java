@@ -46,6 +46,8 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	private final long croid;
 	private final boolean merge;
 	private final BimServer bimServer;
+	private Project project;
+	private ConcreteRevision concreteRevision;
 
 	public CheckinPart2DatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface ifcModel, long actingUoid, long croid, boolean merge) {
 		super(bimDatabaseSession, accessMethod);
@@ -58,9 +60,9 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 
 	@Override
 	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		ConcreteRevision concreteRevision = getConcreteRevision(croid);
+		concreteRevision = getConcreteRevision(croid);
 		try {
-			Project project = concreteRevision.getProject();
+			project = concreteRevision.getProject();
 			Revision lastRevision = project.getLastRevision();
 			IfcModelInterface ifcModel = null;
 			if (merge) {
@@ -126,6 +128,14 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 		return null;
 	}
 
+	public ConcreteRevision getConcreteRevision() {
+		return concreteRevision;
+	}
+	
+	public Project getProject() {
+		return project;
+	}
+	
 	public IfcModelInterface getIfcModel() {
 		return ifcModel;
 	}

@@ -33,8 +33,8 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getRevision <em>Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getRid <em>Rid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getProgress <em>Progress</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,24 +93,6 @@ public class CheckinResultImpl extends IdEObjectImpl implements CheckinResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getRid() {
-		return (Integer) eGet(StorePackage.Literals.CHECKIN_RESULT__RID, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRid(int newRid) {
-		eSet(StorePackage.Literals.CHECKIN_RESULT__RID, newRid);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Project getProject() {
 		return (Project) eGet(StorePackage.Literals.CHECKIN_RESULT__PROJECT, true);
 	}
@@ -122,6 +104,24 @@ public class CheckinResultImpl extends IdEObjectImpl implements CheckinResult {
 	 */
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.CHECKIN_RESULT__PROJECT, newProject);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getProgress() {
+		return (Integer) eGet(StorePackage.Literals.CHECKIN_RESULT__PROGRESS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProgress(int newProgress) {
+		eSet(StorePackage.Literals.CHECKIN_RESULT__PROGRESS, newProgress);
 	}
 
 } //CheckinResultImpl

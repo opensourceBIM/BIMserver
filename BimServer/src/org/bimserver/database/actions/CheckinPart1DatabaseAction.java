@@ -29,6 +29,7 @@ import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -40,6 +41,7 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 	private final long actingUid;
 	private final String comment;
 	private final long poid;
+	private ConcreteRevision concreteRevision;
 
 	public CheckinPart1DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long actingUid, IfcModelInterface model, String comment) {
 		super(bimDatabaseSession, accessMethod, model);
@@ -69,7 +71,7 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 			if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size() - 1).getState() == CheckinState.STORING) {
 				throw new UserException("Another checkin on this project is currently running, please wait and try again");
 			}
-			ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), getModel().getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
+			concreteRevision = createNewConcreteRevision(getDatabaseSession(), getModel().getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
 			concreteRevision.setChecksum(getModel().getChecksum());
 			NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 			newRevisionAdded.setDate(new Date());
@@ -83,5 +85,13 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 		} catch (Exception e) {
 			throw new UserException(e);
 		}
+	}
+
+	public ConcreteRevision getConcreteRevision() {
+		return concreteRevision;
+	}
+
+	public Revision getRevision() {
+		return concreteRevision.getRevisions().get(0);
 	}
 }

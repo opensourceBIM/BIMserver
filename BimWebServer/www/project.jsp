@@ -818,6 +818,9 @@
 	<script>
 	var poid = <%=poid%>;
 	var lastRevisionOid = <%=lastRevision == null ? -1 : lastRevision.getOid()%>;
+	
+	var timeoutId;
+	
 	$(document).ready(function(){
 		$("#revisiontablink").click(function (){
 			document.getElementById("projecttabber").tabber.tabShow(2);	
@@ -850,69 +853,65 @@
 			$("#showinactivecheckouts").change(updateInactiveCheckouts);
 		}
 		updateInactiveCheckouts();
+		<%="var checkinId = " + request.getParameter("checkinId") + ";"%>
 		var refreshFunction = function() {
-			$.ajax({ url: "progress", cache: false, context: document.body, data: {poid: poid}, success: function(data){
-				if (data.lastRevision != lastRevisionOid) {
-					location.reload();
-				} else {
-					revisions = data.revisions;
-					for (result in revisions) {
-						var item = revisions[result];
-						var state = item.state;
-						if (state == "DONE") {
-							$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
-							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
-							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
-							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
-							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
-							$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text(item.clashes);
-						} else if (state == "ERROR") {
-							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
-							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
-							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Error: " + item.lastError);
-							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
-						} else if (state == "SEARCHING_CLASHES") {
-							$("#rev" + item.roid).children(".clashesfield").children("img").show();
-							$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text("Searching clashes...");
-							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
-							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
-							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
-						} else if (state == "CLASHES_ERROR") {
-							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
-							$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text("Error: " + item.lastError);
-							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
-							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
-							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+			$.ajax({ url: "progress", cache: false, context: document.body, data: {checkinId: checkinId}, success: function(data){
+				revisions = data.revisions;
+				var allDone = true;
+				for (result in revisions) {
+					var item = revisions[result];
+					var state = item.state;
+					if (state == "DONE") {
+						$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
+						$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+						$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
+						$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
+						$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+						$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text(item.clashes);
+					} else if (state == "ERROR") {
+						$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+						$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
+						$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Error: " + item.lastError);
+						$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+					} else if (state == "SEARCHING_CLASHES") {
+						allDone = false;
+						$("#rev" + item.roid).children(".clashesfield").children("img").show();
+						$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text("Searching clashes...");
+						$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
+						$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
+						$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+					} else if (state == "CLASHES_ERROR") {
+						$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+						$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text("Error: " + item.lastError);
+						$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
+						$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
+						$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+					} else {
+						$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+						$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
+						if (state == "STORING") {
+							allDone = false;
+							$("#uploadProgressBar" + item.roid).progressbar({"value": item.progress});
+							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Storing (" + item.progress + "%)");
 						} else {
-							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
-							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
-							if (state == "STORING") {
-								$("#uploadProgressBar" + item.roid).progressbar({"value": item.progress});
-								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Storing (" + item.progress + "%)");
-							} else {
-								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
-							}
-							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
-						} 
-						if (item.islast) {
-							$("#rev" + item.roid).addClass("lastrevision");
-						} else {
-							$("#rev" + item.roid).removeClass("lastrevision");
+							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
 						}
+						$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+					} 
+					if (item.islast) {
+						$("#rev" + item.roid).addClass("lastrevision");
+					} else {
+						$("#rev" + item.roid).removeClass("lastrevision");
 					}
 			    }
+				if (allDone && timeoutId != null) {
+					window.clearTimeout(timeoutId);
+				}
 			}});
 		};
-<%boolean shouldRefresh = false;
-					for (long roid : project.getRevisions()) {
-						if (loginManager.getService().getRevision(roid).getState() != SCheckinState.DONE) {
-							shouldRefresh = true;
-						}
-					}
-					if (shouldRefresh) {%>
-		refreshFunction();
-		window.setInterval(refreshFunction, 1000);
-<%}%>
+		if (checkinId != null) {
+			timeoutId = window.setInterval(refreshFunction, 1000);
+		}
 	});
 </script>
 	<%

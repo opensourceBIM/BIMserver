@@ -344,6 +344,15 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.LONG_CHECKIN_ACTION: {
+			LongCheckinAction longCheckinAction = (LongCheckinAction) theEObject;
+			T result = caseLongCheckinAction(longCheckinAction);
+			if (result == null)
+				result = caseLongAction(longCheckinAction);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case StorePackage.GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR: {
 			GuidanceProviderPluginDescriptor guidanceProviderPluginDescriptor = (GuidanceProviderPluginDescriptor) theEObject;
 			T result = caseGuidanceProviderPluginDescriptor(guidanceProviderPluginDescriptor);
@@ -1001,6 +1010,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLongAction(LongAction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Long Checkin Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Long Checkin Action</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLongCheckinAction(LongCheckinAction object) {
 		return null;
 	}
 

@@ -1367,7 +1367,7 @@ public class SConverter {
 		}
 		SCheckinResult result = new SCheckinResult();
 		result.setOid(input.getOid());
-		result.setRid(input.getRid());
+		result.setProgress(input.getProgress());
 		Revision revisionVal = input.getRevision();
 		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
 		Project projectVal = input.getProject();
@@ -1381,7 +1381,7 @@ public class SConverter {
 		}
 		CheckinResult result = StoreFactory.eINSTANCE.createCheckinResult();
 		result.setOid(input.getOid());
-		result.setRid(input.getRid());
+		result.setProgress(input.getProgress());
 		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), false, null));
 		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), false, null));
 		return result;
@@ -1512,14 +1512,14 @@ public class SConverter {
 	public Set<SDataValue> convertToSSetDataValue(Collection<DataValue> input) {
 		Set<SDataValue> result = new HashSet<SDataValue>();
 		for (DataValue o : input) {
-		if (o instanceof ListDataValue) {
-			result.add(convertToSObject((ListDataValue)o));		
-		}
-		else if (o instanceof ReferenceDataValue) {
+		if (o instanceof ReferenceDataValue) {
 			result.add(convertToSObject((ReferenceDataValue)o));		
 		}
 		else if (o instanceof SimpleDataValue) {
 			result.add(convertToSObject((SimpleDataValue)o));		
+		}
+		else if (o instanceof ListDataValue) {
+			result.add(convertToSObject((ListDataValue)o));		
 		}
 	else {
 		result.add(convertToSObject(o));
@@ -1539,14 +1539,14 @@ public class SConverter {
 	public List<SDataValue> convertToSListDataValue(Collection<DataValue> input) {
 		List<SDataValue> result = new ArrayList<SDataValue>();
 		for (DataValue o : input) {
-		if (o instanceof ListDataValue) {
-			result.add(convertToSObject((ListDataValue)o));		
-		}
-		else if (o instanceof ReferenceDataValue) {
+		if (o instanceof ReferenceDataValue) {
 			result.add(convertToSObject((ReferenceDataValue)o));		
 		}
 		else if (o instanceof SimpleDataValue) {
 			result.add(convertToSObject((SimpleDataValue)o));		
+		}
+		else if (o instanceof ListDataValue) {
+			result.add(convertToSObject((ListDataValue)o));		
 		}
 	else {
 		result.add(convertToSObject(o));
@@ -2481,7 +2481,12 @@ public class SConverter {
 	public Set<SLongAction> convertToSSetLongAction(Collection<LongAction> input) {
 		Set<SLongAction> result = new HashSet<SLongAction>();
 		for (LongAction o : input) {
+		if (o instanceof LongCheckinAction) {
+			result.add(convertToSObject((LongCheckinAction)o));		
+		}
+	else {
 		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -2497,7 +2502,12 @@ public class SConverter {
 	public List<SLongAction> convertToSListLongAction(Collection<LongAction> input) {
 		List<SLongAction> result = new ArrayList<SLongAction>();
 		for (LongAction o : input) {
+		if (o instanceof LongCheckinAction) {
+			result.add(convertToSObject((LongCheckinAction)o));		
+		}
+	else {
 		result.add(convertToSObject(o));
+	}
 		}
 		return result;
 	}
@@ -2536,6 +2546,76 @@ public class SConverter {
 		result.setUsername(input.getUsername());
 		result.setName(input.getName());
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
+		return result;
+	}
+
+	public Set<SLongCheckinAction> convertToSSetLongCheckinAction(Collection<LongCheckinAction> input) {
+		Set<SLongCheckinAction> result = new HashSet<SLongCheckinAction>();
+		for (LongCheckinAction o : input) {
+		result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<LongCheckinAction> convertFromSSetLongCheckinAction(Collection<SLongCheckinAction> input, BimDatabaseSession session) {
+		Set<LongCheckinAction> result = new HashSet<LongCheckinAction>();
+		for (SLongCheckinAction o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SLongCheckinAction> convertToSListLongCheckinAction(Collection<LongCheckinAction> input) {
+		List<SLongCheckinAction> result = new ArrayList<SLongCheckinAction>();
+		for (LongCheckinAction o : input) {
+		result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<LongCheckinAction> convertFromSListLongCheckinAction(Collection<SLongCheckinAction> input, BimDatabaseSession session) {
+		List<LongCheckinAction> result = new ArrayList<LongCheckinAction>();
+		for (SLongCheckinAction o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SLongCheckinAction convertToSObject(LongCheckinAction input) {
+		if (input == null) {
+			return null;
+		}
+		SLongCheckinAction result = new SLongCheckinAction();
+		result.setOid(input.getOid());
+		result.setIdentification(input.getIdentification());
+		result.setStart(input.getStart());
+		result.setUsername(input.getUsername());
+		result.setName(input.getName());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		List<Long> listrevisions = new ArrayList<Long>();
+		for (Revision v : input.getRevisions()) {
+			listrevisions.add(v.getOid());
+		}
+		result.setRevisions(listrevisions);
+		return result;
+	}
+
+	public LongCheckinAction convertFromSObject(SLongCheckinAction input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		LongCheckinAction result = StoreFactory.eINSTANCE.createLongCheckinAction();
+		result.setOid(input.getOid());
+		result.setIdentification(input.getIdentification());
+		result.setStart(input.getStart());
+		result.setUsername(input.getUsername());
+		result.setName(input.getName());
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
+		List<Revision> listrevisions = result.getRevisions();
+		for (long oid : input.getRevisions()) {
+			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, false, null));
+		}
 		return result;
 	}
 
@@ -2608,14 +2688,14 @@ public class SConverter {
 	public Set<SCompareItem> convertToSSetCompareItem(Collection<CompareItem> input) {
 		Set<SCompareItem> result = new HashSet<SCompareItem>();
 		for (CompareItem o : input) {
-		if (o instanceof ObjectAdded) {
-			result.add(convertToSObject((ObjectAdded)o));		
-		}
-		else if (o instanceof ObjectRemoved) {
+		if (o instanceof ObjectRemoved) {
 			result.add(convertToSObject((ObjectRemoved)o));		
 		}
 		else if (o instanceof ObjectModified) {
 			result.add(convertToSObject((ObjectModified)o));		
+		}
+		else if (o instanceof ObjectAdded) {
+			result.add(convertToSObject((ObjectAdded)o));		
 		}
 	else {
 		result.add(convertToSObject(o));
@@ -2635,14 +2715,14 @@ public class SConverter {
 	public List<SCompareItem> convertToSListCompareItem(Collection<CompareItem> input) {
 		List<SCompareItem> result = new ArrayList<SCompareItem>();
 		for (CompareItem o : input) {
-		if (o instanceof ObjectAdded) {
-			result.add(convertToSObject((ObjectAdded)o));		
-		}
-		else if (o instanceof ObjectRemoved) {
+		if (o instanceof ObjectRemoved) {
 			result.add(convertToSObject((ObjectRemoved)o));		
 		}
 		else if (o instanceof ObjectModified) {
 			result.add(convertToSObject((ObjectModified)o));		
+		}
+		else if (o instanceof ObjectAdded) {
+			result.add(convertToSObject((ObjectAdded)o));		
 		}
 	else {
 		result.add(convertToSObject(o));
@@ -3447,71 +3527,71 @@ public class SConverter {
 	public Set<SLogAction> convertToSSetLogAction(Collection<LogAction> input) {
 		Set<SLogAction> result = new HashSet<SLogAction>();
 		for (LogAction o : input) {
-		if (o instanceof NewProjectAdded) {
-			result.add(convertToSObject((NewProjectAdded)o));		
-		}
-		else if (o instanceof ClashDetectionSettingsUpdated) {
-			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
-		}
-		else if (o instanceof UserDeleted) {
-			result.add(convertToSObject((UserDeleted)o));		
-		}
-		else if (o instanceof RevisionUpdated) {
-			result.add(convertToSObject((RevisionUpdated)o));		
-		}
-		else if (o instanceof NewUserAdded) {
-			result.add(convertToSObject((NewUserAdded)o));		
-		}
-		else if (o instanceof ProjectUndeleted) {
-			result.add(convertToSObject((ProjectUndeleted)o));		
-		}
-		else if (o instanceof PasswordReset) {
-			result.add(convertToSObject((PasswordReset)o));		
-		}
-		else if (o instanceof ProjectDeleted) {
-			result.add(convertToSObject((ProjectDeleted)o));		
-		}
-		else if (o instanceof UserUndeleted) {
-			result.add(convertToSObject((UserUndeleted)o));		
-		}
-		else if (o instanceof ProjectUpdated) {
-			result.add(convertToSObject((ProjectUpdated)o));		
-		}
-		else if (o instanceof Download) {
-			result.add(convertToSObject((Download)o));		
-		}
-		else if (o instanceof GeoTagUpdated) {
-			result.add(convertToSObject((GeoTagUpdated)o));		
-		}
-		else if (o instanceof NewRevisionAdded) {
-			result.add(convertToSObject((NewRevisionAdded)o));		
-		}
-		else if (o instanceof ServerStarted) {
-			result.add(convertToSObject((ServerStarted)o));		
-		}
-		else if (o instanceof UserAddedToProject) {
-			result.add(convertToSObject((UserAddedToProject)o));		
-		}
-		else if (o instanceof NewCheckoutAdded) {
+		if (o instanceof NewCheckoutAdded) {
 			result.add(convertToSObject((NewCheckoutAdded)o));		
-		}
-		else if (o instanceof NewGuidanceProviderUploaded) {
-			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
-		}
-		else if (o instanceof PasswordChanged) {
-			result.add(convertToSObject((PasswordChanged)o));		
-		}
-		else if (o instanceof UserRemovedFromProject) {
-			result.add(convertToSObject((UserRemovedFromProject)o));		
 		}
 		else if (o instanceof UserChanged) {
 			result.add(convertToSObject((UserChanged)o));		
 		}
+		else if (o instanceof DatabaseCreated) {
+			result.add(convertToSObject((DatabaseCreated)o));		
+		}
+		else if (o instanceof ClashDetectionSettingsUpdated) {
+			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
+		}
+		else if (o instanceof NewRevisionAdded) {
+			result.add(convertToSObject((NewRevisionAdded)o));		
+		}
+		else if (o instanceof GeoTagUpdated) {
+			result.add(convertToSObject((GeoTagUpdated)o));		
+		}
+		else if (o instanceof ServerStarted) {
+			result.add(convertToSObject((ServerStarted)o));		
+		}
+		else if (o instanceof PasswordReset) {
+			result.add(convertToSObject((PasswordReset)o));		
+		}
+		else if (o instanceof RevisionUpdated) {
+			result.add(convertToSObject((RevisionUpdated)o));		
+		}
+		else if (o instanceof ProjectUndeleted) {
+			result.add(convertToSObject((ProjectUndeleted)o));		
+		}
+		else if (o instanceof NewUserAdded) {
+			result.add(convertToSObject((NewUserAdded)o));		
+		}
+		else if (o instanceof ProjectDeleted) {
+			result.add(convertToSObject((ProjectDeleted)o));		
+		}
+		else if (o instanceof PasswordChanged) {
+			result.add(convertToSObject((PasswordChanged)o));		
+		}
 		else if (o instanceof SettingsSaved) {
 			result.add(convertToSObject((SettingsSaved)o));		
 		}
-		else if (o instanceof DatabaseCreated) {
-			result.add(convertToSObject((DatabaseCreated)o));		
+		else if (o instanceof NewProjectAdded) {
+			result.add(convertToSObject((NewProjectAdded)o));		
+		}
+		else if (o instanceof UserUndeleted) {
+			result.add(convertToSObject((UserUndeleted)o));		
+		}
+		else if (o instanceof Download) {
+			result.add(convertToSObject((Download)o));		
+		}
+		else if (o instanceof UserAddedToProject) {
+			result.add(convertToSObject((UserAddedToProject)o));		
+		}
+		else if (o instanceof UserRemovedFromProject) {
+			result.add(convertToSObject((UserRemovedFromProject)o));		
+		}
+		else if (o instanceof UserDeleted) {
+			result.add(convertToSObject((UserDeleted)o));		
+		}
+		else if (o instanceof NewGuidanceProviderUploaded) {
+			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
+		}
+		else if (o instanceof ProjectUpdated) {
+			result.add(convertToSObject((ProjectUpdated)o));		
 		}
 	else {
 		result.add(convertToSObject(o));
@@ -3531,71 +3611,71 @@ public class SConverter {
 	public List<SLogAction> convertToSListLogAction(Collection<LogAction> input) {
 		List<SLogAction> result = new ArrayList<SLogAction>();
 		for (LogAction o : input) {
-		if (o instanceof NewProjectAdded) {
-			result.add(convertToSObject((NewProjectAdded)o));		
-		}
-		else if (o instanceof ClashDetectionSettingsUpdated) {
-			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
-		}
-		else if (o instanceof UserDeleted) {
-			result.add(convertToSObject((UserDeleted)o));		
-		}
-		else if (o instanceof RevisionUpdated) {
-			result.add(convertToSObject((RevisionUpdated)o));		
-		}
-		else if (o instanceof NewUserAdded) {
-			result.add(convertToSObject((NewUserAdded)o));		
-		}
-		else if (o instanceof ProjectUndeleted) {
-			result.add(convertToSObject((ProjectUndeleted)o));		
-		}
-		else if (o instanceof PasswordReset) {
-			result.add(convertToSObject((PasswordReset)o));		
-		}
-		else if (o instanceof ProjectDeleted) {
-			result.add(convertToSObject((ProjectDeleted)o));		
-		}
-		else if (o instanceof UserUndeleted) {
-			result.add(convertToSObject((UserUndeleted)o));		
-		}
-		else if (o instanceof ProjectUpdated) {
-			result.add(convertToSObject((ProjectUpdated)o));		
-		}
-		else if (o instanceof Download) {
-			result.add(convertToSObject((Download)o));		
-		}
-		else if (o instanceof GeoTagUpdated) {
-			result.add(convertToSObject((GeoTagUpdated)o));		
-		}
-		else if (o instanceof NewRevisionAdded) {
-			result.add(convertToSObject((NewRevisionAdded)o));		
-		}
-		else if (o instanceof ServerStarted) {
-			result.add(convertToSObject((ServerStarted)o));		
-		}
-		else if (o instanceof UserAddedToProject) {
-			result.add(convertToSObject((UserAddedToProject)o));		
-		}
-		else if (o instanceof NewCheckoutAdded) {
+		if (o instanceof NewCheckoutAdded) {
 			result.add(convertToSObject((NewCheckoutAdded)o));		
-		}
-		else if (o instanceof NewGuidanceProviderUploaded) {
-			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
-		}
-		else if (o instanceof PasswordChanged) {
-			result.add(convertToSObject((PasswordChanged)o));		
-		}
-		else if (o instanceof UserRemovedFromProject) {
-			result.add(convertToSObject((UserRemovedFromProject)o));		
 		}
 		else if (o instanceof UserChanged) {
 			result.add(convertToSObject((UserChanged)o));		
 		}
+		else if (o instanceof DatabaseCreated) {
+			result.add(convertToSObject((DatabaseCreated)o));		
+		}
+		else if (o instanceof ClashDetectionSettingsUpdated) {
+			result.add(convertToSObject((ClashDetectionSettingsUpdated)o));		
+		}
+		else if (o instanceof NewRevisionAdded) {
+			result.add(convertToSObject((NewRevisionAdded)o));		
+		}
+		else if (o instanceof GeoTagUpdated) {
+			result.add(convertToSObject((GeoTagUpdated)o));		
+		}
+		else if (o instanceof ServerStarted) {
+			result.add(convertToSObject((ServerStarted)o));		
+		}
+		else if (o instanceof PasswordReset) {
+			result.add(convertToSObject((PasswordReset)o));		
+		}
+		else if (o instanceof RevisionUpdated) {
+			result.add(convertToSObject((RevisionUpdated)o));		
+		}
+		else if (o instanceof ProjectUndeleted) {
+			result.add(convertToSObject((ProjectUndeleted)o));		
+		}
+		else if (o instanceof NewUserAdded) {
+			result.add(convertToSObject((NewUserAdded)o));		
+		}
+		else if (o instanceof ProjectDeleted) {
+			result.add(convertToSObject((ProjectDeleted)o));		
+		}
+		else if (o instanceof PasswordChanged) {
+			result.add(convertToSObject((PasswordChanged)o));		
+		}
 		else if (o instanceof SettingsSaved) {
 			result.add(convertToSObject((SettingsSaved)o));		
 		}
-		else if (o instanceof DatabaseCreated) {
-			result.add(convertToSObject((DatabaseCreated)o));		
+		else if (o instanceof NewProjectAdded) {
+			result.add(convertToSObject((NewProjectAdded)o));		
+		}
+		else if (o instanceof UserUndeleted) {
+			result.add(convertToSObject((UserUndeleted)o));		
+		}
+		else if (o instanceof Download) {
+			result.add(convertToSObject((Download)o));		
+		}
+		else if (o instanceof UserAddedToProject) {
+			result.add(convertToSObject((UserAddedToProject)o));		
+		}
+		else if (o instanceof UserRemovedFromProject) {
+			result.add(convertToSObject((UserRemovedFromProject)o));		
+		}
+		else if (o instanceof UserDeleted) {
+			result.add(convertToSObject((UserDeleted)o));		
+		}
+		else if (o instanceof NewGuidanceProviderUploaded) {
+			result.add(convertToSObject((NewGuidanceProviderUploaded)o));		
+		}
+		else if (o instanceof ProjectUpdated) {
+			result.add(convertToSObject((ProjectUpdated)o));		
 		}
 	else {
 		result.add(convertToSObject(o));

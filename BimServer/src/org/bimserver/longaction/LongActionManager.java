@@ -25,7 +25,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
-import org.bimserver.interfaces.objects.SLongAction;
+import org.bimserver.models.store.StoreFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -61,20 +61,27 @@ public class LongActionManager {
 		running = false;
 	}
 
-	public synchronized List<SLongAction> getActiveLongActions() {
-		List<SLongAction> result = new ArrayList<SLongAction>();
+	public synchronized List<org.bimserver.models.store.LongAction> getActiveLongActions() {
+		List<org.bimserver.models.store.LongAction> result = new ArrayList<org.bimserver.models.store.LongAction>();
 		for (LongAction<?> longAction : actions.values()) {
-			SLongAction sLongAction = new SLongAction();
-			sLongAction.setIdentification(longAction.getDescription());
-			sLongAction.setUserId(longAction.getUser().getOid());
-			sLongAction.setStart(longAction.getStart());
-			sLongAction.setUsername(longAction.getUser().getUsername());
-			sLongAction.setName(longAction.getUser().getName());
-			result.add(sLongAction);
+			org.bimserver.models.store.LongAction storeLongAction = null;
+//			if (longAction instanceof LongCheckinAction) {
+//				LongCheckinAction longCheckinAction = (LongCheckinAction)longAction;
+//				org.bimserver.models.store.LongCheckinAction storeLongCheckinAction = StoreFactory.eINSTANCE.createLongCheckinAction();
+//				storeLongCheckinAction.getRevisions().addAll(longCheckinAction.getCreateCheckinAction().getCroid());
+//			} else {
+				storeLongAction = StoreFactory.eINSTANCE.createLongAction();
+//			}
+			storeLongAction.setIdentification(longAction.getDescription());
+			storeLongAction.setUser(longAction.getUser());
+			storeLongAction.setStart(longAction.getStart());
+			storeLongAction.setUsername(longAction.getUser().getUsername());
+			storeLongAction.setName(longAction.getUser().getName());
+			result.add(storeLongAction);
 		}
-		Collections.sort(result, new Comparator<SLongAction>() {
+		Collections.sort(result, new Comparator<org.bimserver.models.store.LongAction>() {
 			@Override
-			public int compare(SLongAction o1, SLongAction o2) {
+			public int compare(org.bimserver.models.store.LongAction o1, org.bimserver.models.store.LongAction o2) {
 				return o1.getStart().compareTo(o2.getStart());
 			}
 		});
