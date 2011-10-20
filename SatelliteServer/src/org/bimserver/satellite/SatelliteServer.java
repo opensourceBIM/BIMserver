@@ -21,10 +21,15 @@ public class SatelliteServer {
 	public SatelliteServer() {
 		pluginManager = new PluginManager(new File("tmp"), null);
 		try {
+			pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
+		} catch (PluginException e) {
+			// Ignore exceptions
+		}
+		try {
 			pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 			pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
 		} catch (PluginException e) {
-			e.printStackTrace();
+			// Ignore exceptions
 		}
 		bimServerClient = new BimServerClient(pluginManager);
 	}

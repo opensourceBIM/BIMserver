@@ -1,22 +1,33 @@
 <project name="BIMserver">
 	<property name="version" value="trunk" />
 	<target name="jar">
-		<property name="target" value="jar" description="Create a standalone jar file" />
-		<ant antfile="common.build.xml" target="buildjar"></ant>
+		<ant antfile="bimserver.build.xml" target="Jar"></ant>
 	</target>
 	<target name="war">
-		<property name="target" value="war" description="Create a war file" />
-		<ant antfile="common.build.xml" target="buildwar"></ant>
+		<ant antfile="bimserver.build.xml" target="War"></ant>
+	</target>
+	<target name="client">
+		<ant antfile="client.build.xml" target="Build Client"></ant>
 	</target>
 	<target name="clientlib">
-		<property name="target" value="war" description="Create a war file" />
-		<ant antfile="common.build.xml" target="buildbimserverclientlib"></ant>
+		<ant antfile="clientlib.build.xml" target="Build ClientLib"></ant>
+	</target>
+	<target name="combinedjar">
+		<ant antfile="combined.build.xml" target="CombinedJar"></ant>
+	</target>
+	<target name="combinedwar">
+		<ant antfile="combined.build.xml" target="CombinedWar"></ant>
+	</target>
+	<target name="satellitejar">
+		<ant antfile="satellite.build.xml" target="Jar"></ant>
+	</target>
+	<target name="satellitewar">
+		<ant antfile="satellite.build.xml" target="War"></ant>
 	</target>
 	<target name="serverlib">
-		<property name="target" value="war" description="Create a war file" />
 		<ant antfile="common.build.xml" target="buildbimserverlib"></ant>
 	</target>
 	<target name="source" description="Create an eclipse workspace zipfile">
-		<ant antfile="common.build.xml" target="buildsource"></ant>
+		<ant antfile="source.build.xml" target="Build Source"></ant>
 	</target>
 </project>

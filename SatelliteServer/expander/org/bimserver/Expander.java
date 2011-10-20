@@ -21,7 +21,6 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.awt.BorderLayout;
-import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -36,8 +35,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
@@ -64,15 +61,11 @@ public class Expander extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
 	private JarSettings jarSettings = JarSettings.readFromFile();
-	private JTextField addressField;
-	private JTextField portField;
 	private JTextField heapSizeField;
 	private JTextField permSizeField;
 	private JTextField stackSizeField;
-	private JButton browserHomeDir;
 	private JButton browserJvm;
 	private JTextField jvmField;
-	private JTextField homeDirField;
 
 	public static void main(String[] args) {
 		new Expander().start();
@@ -80,7 +73,7 @@ public class Expander extends JFrame {
 
 	private void start() {
 		final JTextArea logField = new JTextArea();
-
+		
 		final PrintStream systemOut = System.out;
 		
 		PrintStream out = new PrintStream(new OutputStream() {
@@ -107,7 +100,7 @@ public class Expander extends JFrame {
 			e.printStackTrace();
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("BIMserver Starter");
+		setTitle("BIMserver Satellite Starter");
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("logo_small.png")));
 		} catch (IOException e2) {
@@ -140,41 +133,6 @@ public class Expander extends JFrame {
 		jvmPanel.add(browserJvm, BorderLayout.EAST);
 		fields.add(jvmPanel);
 
-		JLabel homeDirLabel = new JLabel("Home directory");
-		fields.add(homeDirLabel);
-
-		homeDirField = new JTextField(jarSettings.getHomedir());
-		browserHomeDir = new JButton("Browse...");
-		browserHomeDir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				File currentFile = new File(homeDirField.getText());
-				JFileChooser chooser = new JFileChooser(currentFile.exists() ? currentFile : new File("."));
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int showOpenDialog = chooser.showOpenDialog(Expander.this);
-				if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
-					homeDirField.setText(chooser.getSelectedFile().getAbsolutePath());
-				}
-			}
-		});
-		JPanel homeDirPanel = new JPanel();
-		homeDirPanel.setLayout(new BorderLayout());
-		homeDirPanel.add(homeDirField, BorderLayout.CENTER);
-		homeDirPanel.add(browserHomeDir, BorderLayout.EAST);
-		fields.add(homeDirPanel);
-		
-		JLabel addressLabel = new JLabel("Address");
-		fields.add(addressLabel);
-
-		addressField = new JTextField(jarSettings.getAddress());
-		fields.add(addressField);
-
-		JLabel portLabel = new JLabel("Port");
-		fields.add(portLabel);
-
-		portField = new JTextField(jarSettings.getPort() + "");
-		fields.add(portField);
-
 		JLabel heapSizeLabel = new JLabel("Max Heap Size");
 		fields.add(heapSizeLabel);
 
@@ -193,7 +151,7 @@ public class Expander extends JFrame {
 		stackSizeField = new JTextField(jarSettings.getStacksize());
 		fields.add(stackSizeField);
 
-		SpringUtilities.makeCompactGrid(fields, 7, 2, // rows, cols
+		SpringUtilities.makeCompactGrid(fields, 4, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -211,7 +169,7 @@ public class Expander extends JFrame {
 								setComponentsEnabled(false);
 								File file = expand();
 								startStopButton.setText("Stop");
-								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), permSizeField.getText(), jvmField.getText(), homeDirField.getText());
+								start(file, heapSizeField.getText(), stackSizeField.getText(), permSizeField.getText(), jvmField.getText());
 							} else {
 								JOptionPane.showMessageDialog(Expander.this, "JVM field should contain a valid JVM directory, or 'default' for the default JVM");
 							}
@@ -247,13 +205,10 @@ public class Expander extends JFrame {
 
 			private void save() {
 				try {
-					jarSettings.setAddress(addressField.getText());
-					jarSettings.setPort(Integer.parseInt(portField.getText()));
 					jarSettings.setJvm(jvmField.getText());
 					jarSettings.setStacksize(stackSizeField.getText());
 					jarSettings.setHeapsize(heapSizeField.getText());
 					jarSettings.setPermsize(permSizeField.getText());
-					jarSettings.setHomedir(homeDirField.getText());
 					jarSettings.save();
 				} catch (Exception e) {
 					// ignore
@@ -262,27 +217,10 @@ public class Expander extends JFrame {
 		};
 
 		jvmField.getDocument().addDocumentListener(documentChangeListener);
-		addressField.getDocument().addDocumentListener(documentChangeListener);
-		portField.getDocument().addDocumentListener(documentChangeListener);
 		heapSizeField.getDocument().addDocumentListener(documentChangeListener);
 		stackSizeField.getDocument().addDocumentListener(documentChangeListener);
 		
 		buttons.add(startStopButton);
-
-		JButton launchWebBrowser = new JButton("Launch Webbrowser");
-		launchWebBrowser.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					Desktop.getDesktop().browse(new URI("http://" + addressField.getText() + ":" + portField.getText()));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		buttons.add(launchWebBrowser);
 
 		logField.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		logField.setEditable(true);
@@ -316,18 +254,14 @@ public class Expander extends JFrame {
 	}
 
 	private void setComponentsEnabled(boolean enabled) {
-		addressField.setEditable(enabled);
-		portField.setEditable(enabled);
 		heapSizeField.setEditable(enabled);
 		stackSizeField.setEditable(enabled);
 		permSizeField.setEditable(enabled);
 		jvmField.setEditable(enabled);
-		homeDirField.setEditable(enabled);
-		browserHomeDir.setEnabled(enabled);
 		browserJvm.setEnabled(enabled);
 	}
 	
-	private void start(File destDir, String address, String port, String heapsize, String stacksize, String permsize, String jvmPath, String homedir) {
+	private void start(File destDir, String heapsize, String stacksize, String permsize, String jvmPath) {
 		try {
 			String command = "";
 			if (jvmPath.equalsIgnoreCase("default")) {
@@ -367,10 +301,7 @@ public class Expander extends JFrame {
 			if (command.endsWith(File.pathSeparator)) {
 				command = command.substring(0, command.length()-1);
 			}
-			command += " org.bimserver.combined.JarBimWebServer";
-			command += " address=" + address;
-			command += " port=" + port;
-			command += " homedir=\"" + homedir + "\"";
+			command += " org.bimserver.satellite.gui.SatelliteGui";
 			System.out.println("Running: " + command);
 			exec = Runtime.getRuntime().exec(command, null, destDir);
 
