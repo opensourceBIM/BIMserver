@@ -350,16 +350,16 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.print(OPEN_CLOSE);
 		EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
 		if (structuralFeature != null) {
-			Object get = eObject.eGet(structuralFeature);
+			Object realVal = eObject.eGet(structuralFeature);
 			if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat() || structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
-				Object realVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
-				if (realVal != null) {
-					out.print(realVal);					
+				Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
+				if (stringVal != null) {
+					out.print(stringVal);
 				} else {
-					out.print(get);
+					out.print(realVal);
 				}
 			} else {
-				writePrimitive(out, get);
+				writePrimitive(out, realVal);
 			}
 		}
 		out.print(CLOSE_PAREN);
@@ -412,7 +412,7 @@ public class IfcStepSerializer extends IfcSerializer {
 								if (realVal instanceof Float || realVal instanceof Double) {
 									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
 									if (stringVal != null) {
-										out.print(stringVal);										
+										out.print(stringVal);
 									} else {
 										out.print(realVal);
 									}
