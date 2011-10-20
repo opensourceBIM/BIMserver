@@ -27,8 +27,8 @@ import org.bimserver.emf.IdEObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.CheckinResult#getRevision <em>Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.CheckinResult#getRid <em>Rid</em>}</li>
  *   <li>{@link org.bimserver.models.store.CheckinResult#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.models.store.CheckinResult#getProgress <em>Progress</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,32 +65,6 @@ public interface CheckinResult extends IdEObject {
 	void setRevision(Revision value);
 
 	/**
-	 * Returns the value of the '<em><b>Rid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Rid</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rid</em>' attribute.
-	 * @see #setRid(int)
-	 * @see org.bimserver.models.store.StorePackage#getCheckinResult_Rid()
-	 * @model
-	 * @generated
-	 */
-	int getRid();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.CheckinResult#getRid <em>Rid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rid</em>' attribute.
-	 * @see #getRid()
-	 * @generated
-	 */
-	void setRid(int value);
-
-	/**
 	 * Returns the value of the '<em><b>Project</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -115,5 +89,31 @@ public interface CheckinResult extends IdEObject {
 	 * @generated
 	 */
 	void setProject(Project value);
+
+	/**
+	 * Returns the value of the '<em><b>Progress</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Progress</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Progress</em>' attribute.
+	 * @see #setProgress(int)
+	 * @see org.bimserver.models.store.StorePackage#getCheckinResult_Progress()
+	 * @model
+	 * @generated
+	 */
+	int getProgress();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.CheckinResult#getProgress <em>Progress</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Progress</em>' attribute.
+	 * @see #getProgress()
+	 * @generated
+	 */
+	void setProgress(int value);
 
 } // CheckinResult

@@ -27,10 +27,12 @@ import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
+import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -129,7 +131,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		} finally {
 			session.close();
 		}
-		bimServer.getLongActionManager().remove(this);
+//		bimServer.getLongActionManager().remove(this);
 	}
 
 	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
@@ -162,6 +164,14 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		return progress;
 	}
 
+	public CheckinResult getCheckinResult() {
+		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
+		checkinResult.setProject(createCheckinAction.getProject());
+		checkinResult.setRevision(createCheckinAction.getConcreteRevision().getRevisions().get(0));
+		checkinResult.setProgress(progress);
+		return checkinResult;
+	}
+	
 	@Override
 	public void init() {
 	}
@@ -169,5 +179,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	@Override
 	public LongCheckinActionKey getKey() {
 		return new LongCheckinActionKey(createCheckinAction.getCroid());
+	}
+	
+	public CheckinPart2DatabaseAction getCreateCheckinAction() {
+		return createCheckinAction;
 	}
 }

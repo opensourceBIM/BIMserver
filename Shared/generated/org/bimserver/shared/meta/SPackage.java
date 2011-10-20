@@ -73,6 +73,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SRevisionSummary");
 		Class.forName("org.bimserver.interfaces.objects.SPluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SLongAction");
+		Class.forName("org.bimserver.interfaces.objects.SLongCheckinAction");
 		Class.forName("org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SCompareIdentifier");
 		Class.forName("org.bimserver.interfaces.objects.SCompareType");

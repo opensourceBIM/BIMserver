@@ -57,6 +57,7 @@ import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongCheckinAction;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Migration;
 import org.bimserver.models.store.NewProjectNotification;
@@ -356,6 +357,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EClass longActionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass longCheckinActionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1954,8 +1962,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCheckinResult_Rid() {
-		return (EAttribute) checkinResultEClass.getEStructuralFeatures().get(1);
+	public EReference getCheckinResult_Project() {
+		return (EReference) checkinResultEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1963,8 +1971,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCheckinResult_Project() {
-		return (EReference) checkinResultEClass.getEStructuralFeatures().get(2);
+	public EAttribute getCheckinResult_Progress() {
+		return (EAttribute) checkinResultEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2656,6 +2664,24 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLongCheckinAction() {
+		return longCheckinActionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLongCheckinAction_Revisions() {
+		return (EReference) longCheckinActionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGuidanceProviderPluginDescriptor() {
 		return guidanceProviderPluginDescriptorEClass;
 	}
@@ -3322,8 +3348,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 
 		checkinResultEClass = createEClass(CHECKIN_RESULT);
 		createEReference(checkinResultEClass, CHECKIN_RESULT__REVISION);
-		createEAttribute(checkinResultEClass, CHECKIN_RESULT__RID);
 		createEReference(checkinResultEClass, CHECKIN_RESULT__PROJECT);
+		createEAttribute(checkinResultEClass, CHECKIN_RESULT__PROGRESS);
 
 		downloadResultEClass = createEClass(DOWNLOAD_RESULT);
 		createEAttribute(downloadResultEClass, DOWNLOAD_RESULT__PROJECT_NAME);
@@ -3419,6 +3445,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(longActionEClass, LONG_ACTION__START);
 		createEAttribute(longActionEClass, LONG_ACTION__USERNAME);
 		createEAttribute(longActionEClass, LONG_ACTION__NAME);
+
+		longCheckinActionEClass = createEClass(LONG_CHECKIN_ACTION);
+		createEReference(longCheckinActionEClass, LONG_CHECKIN_ACTION__REVISIONS);
 
 		guidanceProviderPluginDescriptorEClass = createEClass(GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR);
 		createEAttribute(guidanceProviderPluginDescriptorEClass, GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME);
@@ -3531,6 +3560,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		referenceDataValueEClass.getESuperTypes().add(this.getDataValue());
 		listDataValueEClass.getESuperTypes().add(this.getDataValue());
 		simpleDataValueEClass.getESuperTypes().add(this.getDataValue());
+		longCheckinActionEClass.getESuperTypes().add(this.getLongAction());
 		objectAddedEClass.getESuperTypes().add(this.getCompareItem());
 		objectRemovedEClass.getESuperTypes().add(this.getCompareItem());
 		objectModifiedEClass.getESuperTypes().add(this.getCompareItem());
@@ -3835,10 +3865,10 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEClass(checkinResultEClass, CheckinResult.class, "CheckinResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCheckinResult_Revision(), this.getRevision(), null, "revision", null, 0, 1, CheckinResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCheckinResult_Rid(), ecorePackage.getEInt(), "rid", null, 0, 1, CheckinResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheckinResult_Project(), this.getProject(), null, "project", null, 0, 1, CheckinResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCheckinResult_Progress(), ecorePackage.getEInt(), "progress", null, 0, 1, CheckinResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(downloadResultEClass, DownloadResult.class, "DownloadResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDownloadResult_ProjectName(), ecorePackage.getEString(), "projectName", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
@@ -3991,6 +4021,10 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLongAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, LongAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(longCheckinActionEClass, LongCheckinAction.class, "LongCheckinAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLongCheckinAction_Revisions(), this.getRevision(), null, "revisions", null, 0, -1, LongCheckinAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(guidanceProviderPluginDescriptorEClass, GuidanceProviderPluginDescriptor.class, "GuidanceProviderPluginDescriptor", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

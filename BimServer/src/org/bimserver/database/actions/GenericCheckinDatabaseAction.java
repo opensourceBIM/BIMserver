@@ -43,9 +43,27 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		this.model = model;
 	}
 
+	private ConcreteRevision getLastConcreteRevision(Project project) {
+		Date lastDate = new Date();
+		ConcreteRevision lastRevision = null;
+		for (ConcreteRevision concreteRevision : project.getConcreteRevisions()) {
+			if (concreteRevision.getDate().after(lastDate) || lastRevision == null) {
+				lastDate = concreteRevision.getDate();
+				lastRevision = concreteRevision;
+			}
+		}
+		return lastRevision; 
+	}
+	
 	protected void checkCheckSum(Project project) throws UserException {
 		if (!project.getConcreteRevisions().isEmpty()) {
-			ConcreteRevision concreteRevision = project.getConcreteRevisions().get(project.getConcreteRevisions().size()-1);
+			ConcreteRevision concreteRevision = getLastConcreteRevision(project);
+			int revisionId = -1;
+			for (Revision revision : concreteRevision.getRevisions()) {
+				if (revision.getProject() == project) {
+					revisionId = revision.getId();
+				}
+			}
 			if (concreteRevision.getState() == CheckinState.ERROR) {
 				// When in error state, user usually tries the same file again, this should not give the 'duplicate model' error
 				return;
@@ -53,7 +71,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 			byte[] revisionChecksum = concreteRevision.getChecksum();
 			if (revisionChecksum != null && getModel().getChecksum() != null) {
 				if (Arrays.equals(revisionChecksum, getModel().getChecksum())) {
-					throw new UserException("Uploaded model is the same as last revision (" + (1+project.getConcreteRevisions().indexOf(concreteRevision)) + ") duplicate model not stored");
+					throw new UserException("Uploaded model is the same as last revision (" + revisionId + "), duplicate model not stored");
 				}
 			}
 		}

@@ -144,6 +144,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createPluginDescriptor();
 		case StorePackage.LONG_ACTION:
 			return (EObject) createLongAction();
+		case StorePackage.LONG_CHECKIN_ACTION:
+			return (EObject) createLongCheckinAction();
 		case StorePackage.GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR:
 			return (EObject) createGuidanceProviderPluginDescriptor();
 		case StorePackage.COMPARE_ITEM:
@@ -603,6 +605,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public LongAction createLongAction() {
 		LongActionImpl longAction = new LongActionImpl();
 		return longAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LongCheckinAction createLongCheckinAction() {
+		LongCheckinActionImpl longCheckinAction = new LongCheckinActionImpl();
+		return longCheckinAction;
 	}
 
 	/**

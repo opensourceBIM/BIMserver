@@ -360,6 +360,15 @@ public interface StoreFactory extends EFactory {
 	LongAction createLongAction();
 
 	/**
+	 * Returns a new object of class '<em>Long Checkin Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Long Checkin Action</em>'.
+	 * @generated
+	 */
+	LongCheckinAction createLongCheckinAction();
+
+	/**
 	 * Returns a new object of class '<em>Guidance Provider Plugin Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

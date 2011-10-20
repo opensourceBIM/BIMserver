@@ -91,8 +91,8 @@ public abstract class BimDatabaseAction<T> {
 		return (Revision) bimDatabaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 	}
 
-	public ConcreteRevision getConcreteRevision(long roid) throws BimDeadlockException, BimDatabaseException {
-		return (ConcreteRevision) bimDatabaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), roid, false, null);
+	public ConcreteRevision getConcreteRevision(long croid) throws BimDeadlockException, BimDatabaseException {
+		return (ConcreteRevision) bimDatabaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
 	}
 
 	public User getAnonymousUser() throws BimDatabaseException, BimDeadlockException {

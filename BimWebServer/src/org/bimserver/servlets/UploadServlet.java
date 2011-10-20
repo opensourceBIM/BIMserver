@@ -100,8 +100,8 @@ public class UploadServlet extends HttpServlet {
 							InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
 							inputStreamDataSource.setName(name);
 							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
-							loginManager.getService().checkinAsync(poid, comment, deserializerName, size, ifcFile, merge);
-							response.sendRedirect("project.jsp?poid=" + poid);
+							int checkinId = loginManager.getService().checkin(poid, comment, deserializerName, size, ifcFile, merge, false);
+							response.sendRedirect("project.jsp?poid=" + poid + "&checkinId=" + checkinId);
 						} catch (ServiceException e) {
 							if (e.getCause() != null) {
 								response.sendRedirect("project.jsp?poid=" + poid + "&message=" + e.getCause().getMessage());

@@ -61,7 +61,6 @@ import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
-import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
@@ -256,19 +255,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckinResult checkinSync(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler ifcFile, Boolean merge) throws ServiceException {
+	public Integer checkin(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
-		return checkinInternal(poid, comment, deserializerName, fileSize, ifcFile, true, merge);
-	}
-
-	@Override
-	public SCheckinResult checkinAsync(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler ifcFile, Boolean merge) throws ServiceException {
-		requireAuthenticationAndRunningServer();
-		return checkinInternal(poid, comment, deserializerName, fileSize, ifcFile, false, merge);
-	}
-
-	private SCheckinResult checkinInternal(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean sync, Boolean merge)
-			throws ServiceException {
 		final BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			InputStream inputStream = dataHandler.getInputStream();
@@ -279,14 +267,30 @@ public class Service implements ServiceInterface {
 				throw new UserException(e);
 			}
 			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), dataHandler.getName(), false, fileSize);
-			SCheckinResult checkinResult = null;
-			if (sync) {
-				checkinResult = processCheckinSync(poid, comment, fileSize, session, model, merge);
-			} else {
-				checkinResult = processCheckinAsync(poid, comment, fileSize, session, model, merge);
+			try {
+				BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, poid, currentUoid, model, comment);
+				GetUserByUoidDatabaseAction getUserByUoidDatabaseAction = new GetUserByUoidDatabaseAction(session, accessMethod, currentUoid);
+				User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
+				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+				session.close();
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, null, accessMethod, model, currentUoid, revision.getOid(), merge);
+				SCheckinResult result = new SCheckinResult();
+				result.setProjectId(revision.getProject().getOid());
+				// result.setProjectName(revision.getProject().getName());
+				LongCheckinAction longAction = new LongCheckinAction(bimServer, userByUoid, createCheckinAction);
+				bimServer.getLongActionManager().start(longAction);
+				if (sync) {
+					longAction.waitForCompletion();
+				}
+				return longAction.getId();
+			} catch (UserException e) {
+				throw e;
+			} catch (Exception e) {
+				LOGGER.error("", e);
+				new ServerException("Unknown error", e);
 			}
+			
 			inputStream.close();
-			return checkinResult;
 		} catch (IOException e) {
 			LOGGER.error("", e);
 			throw new UserException("IOException", e);
@@ -295,59 +299,19 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+		return -1;
 	}
 
-	private SCheckinResult processCheckinSync(final Long poid, final String comment, Long fileSize, final BimDatabaseSession session, IfcModelInterface model, Boolean merge)
-			throws ServiceException {
-		BimDatabaseAction<ConcreteRevision> action = new CheckinDatabaseAction(session, accessMethod, model, poid, currentUoid, comment);
-		try {
-			ConcreteRevision concreteRevision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-			for (Revision revision : concreteRevision.getRevisions()) {
-				NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
-				newRevisionAdded.setDate(new Date());
-				newRevisionAdded.setExecutor(action.getUserByUoid(currentUoid));
-				newRevisionAdded.setRevision(revision);
-				newRevisionAdded.setAccessMethod(action.getAccessMethod());
-
-				NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
-				newRevisionNotification.setRevision(revision);
-				bimServer.getNotificationsManager().notify(newRevisionNotification);
-			}
-			SCheckinResult result = new SCheckinResult();
-			result.setRid(concreteRevision.getId());
-			result.setProjectId(concreteRevision.getProject().getOid());
-			// result.setProjectName(concreteRevision.getProject().getName());
-			return result;
-		} catch (Exception e) {
-			handleException(e);
-			return null;
+	@Override
+	public SCheckinResult getCheckinState(Integer actionId) throws ServiceException {
+		LongCheckinAction longAction = (LongCheckinAction) bimServer.getLongActionManager().getLongAction(actionId);
+		if (longAction != null) {
+			return converter.convertToSObject(longAction.getCheckinResult());
+		} else {
+			throw new UserException("No state found for laid " + actionId);
 		}
 	}
-
-	private SCheckinResult processCheckinAsync(final Long poid, final String comment, Long fileSize, final BimDatabaseSession session, IfcModelInterface model, Boolean merge)
-			throws UserException {
-		try {
-			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, poid, currentUoid, model, comment);
-			GetUserByUoidDatabaseAction getUserByUoidDatabaseAction = new GetUserByUoidDatabaseAction(session, accessMethod, currentUoid);
-			User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
-			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-			session.close();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, null, accessMethod, model, currentUoid, revision.getOid(), merge);
-			SCheckinResult result = new SCheckinResult();
-			result.setRid(revision.getId());
-			result.setProjectId(revision.getProject().getOid());
-			// result.setProjectName(revision.getProject().getName());
-			bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, userByUoid, createCheckinAction));
-			return result;
-		} catch (UserException e) {
-			throw e;
-		} catch (Exception e) {
-			LOGGER.error("", e);
-			new ServerException("Unknown error", e);
-		}
-		return null;
-	}
-
+	
 	@Override
 	public Integer checkoutLastRevision(Long poid, String formatIdentifier, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
@@ -364,7 +328,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkout(Long roid, String resultTypeName, Boolean sync) throws ServiceException {
+	public Integer checkout(Long roid, String serializerName, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		// TODO
 		// ResultType serializerDescriptor =
@@ -375,7 +339,7 @@ public class Service implements ServiceInterface {
 		// throw new
 		// UserException("Only IFC or IFCXML allowed when checking out");
 		// }
-		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, resultTypeName);
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerName);
 		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
@@ -1147,7 +1111,6 @@ public class Service implements ServiceInterface {
 				session.close();
 				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, model, currentUoid, revision.getOid(), false);
 				SCheckinResult result = new SCheckinResult();
-				result.setRid(revision.getId());
 				result.setProjectId(revision.getProject().getOid());
 				// result.setProjectName(revision.getProject().getName());
 				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
@@ -1194,7 +1157,6 @@ public class Service implements ServiceInterface {
 				session.close();
 				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, model, currentUoid, revision.getOid(), false);
 				SCheckinResult result = new SCheckinResult();
-				result.setRid(revision.getId());
 				result.setProjectId(revision.getProject().getOid());
 				// result.setProjectName(revision.getProject().getName());
 				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
@@ -1828,7 +1790,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SLongAction> getActiveLongActions() throws ServerException, ServiceException {
 		requireAdminAuthenticationAndRunningServer();
-		return bimServer.getLongActionManager().getActiveLongActions();
+		return converter.convertToSListLongAction(bimServer.getLongActionManager().getActiveLongActions());
 	}
 
 	@Override
@@ -2328,20 +2290,20 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long commitTransaction() throws UserException {
+	public Long commitTransaction(String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		requireOpenStransaction();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(transactionPid));
 			Project project = session.querySingle(condition, Project.class, false, null);
-			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(session, accessMethod, null, project.getOid(), currentUoid, "comment");
-			checkinDatabaseAction.execute();
+			CheckinPart1DatabaseAction checkinPart1DatabaseAction = new CheckinPart1DatabaseAction(session, accessMethod, project.getOid(), currentUoid, null, comment);
+			checkinPart1DatabaseAction.execute();
 			for (Change change : changes) {
-				change.execute(transactionPid, checkinDatabaseAction.getConcreteRevision().getId(), session);
+				change.execute(transactionPid, checkinPart1DatabaseAction.getConcreteRevision().getId(), session);
 			}
 			session.commit();
-			return checkinDatabaseAction.getRevision().getOid();
+			return checkinPart1DatabaseAction.getRevision().getOid();
 		} catch (BimDeadlockException e) {
 		} catch (BimDatabaseException e) {
 		} finally {

@@ -232,6 +232,7 @@ public class Database implements BimDatabase {
 						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR.getName() + " for revision " + revision.getOid());
 						revision.setState(CheckinState.ERROR);
 						if (revision.getLastConcreteRevision() != null) {
+							revision.getLastConcreteRevision().setState(CheckinState.ERROR);
 							revision.getLastConcreteRevision().setChecksum(null);
 						}
 						revision.setLastError("Server crash while uploading");
