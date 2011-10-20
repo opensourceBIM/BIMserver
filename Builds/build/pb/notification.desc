@@ -1,10 +1,10 @@
 
 µ
 notification.protoorg.bimserver.pbservice.proto";
-SNewRevisionNotification
-oid (
+SNewRevisionNotification
 
-revisionId ("Q
+revisionId (
+oid ("Q
 NewRevisionRequest;
 unknown (2*.org.bimserver.pb.SNewRevisionNotification"9
 SNewProjectNotification

@@ -7,7 +7,6 @@
       <eLiterals name="SYSTEM"/>
       <eLiterals name="ADMIN" value="1"/>
       <eLiterals name="USER" value="2"/>
-      <eLiterals name="ANONYMOUS" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CheckinState">
       <eLiterals name="UPLOADING"/>

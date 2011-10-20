@@ -66,13 +66,7 @@
 				if (project.getLastRevisionId() != -1) {
 					lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 				}
-				SUser anonymousUser = null;
-				try {
-					anonymousUser = loginManager.getService().getAnonymousUser();
-				} catch (ServiceException e) {
-				}
-				boolean anonymousAccess = anonymousUser != null && project.getHasAuthorizedUsers().contains(anonymousUser.getOid());
-				boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.ANONYMOUS;
+				boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid());
 				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
@@ -184,10 +178,6 @@
 				<tr>
 					<td class="first">State</td>
 					<td><%=project.getState().name().toLowerCase()%></td>
-				</tr>
-				<tr>
-					<td class="first">Anonymous access</td>
-					<td><%=anonymousAccess%></td>
 				</tr>
 				<tr>
 					<td class="first">Description</td>

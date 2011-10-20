@@ -95,10 +95,6 @@ public abstract class BimDatabaseAction<T> {
 		return (ConcreteRevision) bimDatabaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
 	}
 
-	public User getAnonymousUser() throws BimDatabaseException, BimDeadlockException {
-		return getUserByUserName("anonymous");
-	}
-	
 	public void setDatabaseSession(BimDatabaseSession session) {
 		this.bimDatabaseSession = session;
 	}

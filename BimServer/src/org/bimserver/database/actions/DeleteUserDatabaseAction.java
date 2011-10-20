@@ -47,9 +47,6 @@ public class DeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (user.getUserType() == UserType.SYSTEM) {
 			throw new UserException("System user cannot be deleted");
 		}
-		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.ANONYMOUS) {
-			throw new UserException("Cannot delete this user");
-		}
 		user.setState(ObjectState.DELETED);
 		getDatabaseSession().store(user);
 		return true;

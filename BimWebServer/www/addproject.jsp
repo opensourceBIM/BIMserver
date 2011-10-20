@@ -41,9 +41,6 @@
 					} else {
 						sProject = loginManager.getService().addProject(request.getParameter("name"));
 					}
-					if (request.getParameter("anonymous") != null) {
-						loginManager.getService().addUserToProject(loginManager.getService().getAnonymousUser().getOid(), sProject.getOid());
-					}
 					if (request.getParameter("parentoid") == null) {
 						SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
 						sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
@@ -81,10 +78,6 @@
 <tr>
 	<td class="first">Name</td>
 	<td><input type="text" name="name" value="<%= request.getParameter("name") != null ? request.getParameter("name") : "" %>"/></td>
-</tr>
-<tr>
-	<td><label for="anonymous" class="checkbox">Anonymous access</label></td>
-	<td><input id="anonymous" name="anonymous" type="checkbox" class="checkbox" <%=request.getParameter("anonymous") == null ? "" : "checked=\"checked\"" %>/></td>
 </tr>
 <% if (request.getParameter("parentoid") == null) { %>
 <tr>

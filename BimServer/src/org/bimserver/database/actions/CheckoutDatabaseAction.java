@@ -52,9 +52,6 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	public IfcModel execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		User user = getUserByUoid(uoid);
-		if (user.getUserType() == UserType.ANONYMOUS) {
-			throw new UserException("Anonymous user is never allowed to checkout revisions");
-		}
 		Revision revision = getVirtualRevision(roid);
 		Project project = revision.getProject();
 		if (user.getHasRightsOn().contains(project)) {

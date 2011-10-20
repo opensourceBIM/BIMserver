@@ -28,7 +28,6 @@ import org.bimserver.client.channels.Channel;
 import org.bimserver.client.channels.DirectChannel;
 import org.bimserver.client.channels.ProtocolBuffersChannel;
 import org.bimserver.client.channels.SoapChannel;
-import org.bimserver.client.factories.AnonymousAuthenticationInfo;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.AutologinAuthenticationInfo;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
@@ -157,8 +156,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo)authenticationInfo;
 				channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode());
-			} else if (authenticationInfo instanceof AnonymousAuthenticationInfo) {
-				channel.getServiceInterface().loginAnonymous();
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();

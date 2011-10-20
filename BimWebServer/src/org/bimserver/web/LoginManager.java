@@ -19,7 +19,6 @@ package org.bimserver.web;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
-import org.bimserver.client.factories.AnonymousAuthenticationInfo;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.objects.SUserType;
@@ -68,7 +67,7 @@ public class LoginManager {
 	public ServiceInterface getService() {
 		if (bimServerClient == null) {
 			try {
-				bimServerClient = bimServerClientFactory.create(new AnonymousAuthenticationInfo(), "unknown");
+				bimServerClient = bimServerClientFactory.create(null, "unknown");
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			} catch (ConnectionException e) {

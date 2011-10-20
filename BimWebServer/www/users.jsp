@@ -43,7 +43,7 @@
 	<td><%=user.getLastSeen() == null ? "never" : dateFormat.format(user.getLastSeen()) %></td>
 	<td>
 <%
-	if (user.getUserType() != SUserType.ADMIN && user.getUserType() != SUserType.ANONYMOUS && user.getUserType() != SUserType.SYSTEM) {
+	if (user.getUserType() != SUserType.ADMIN && user.getUserType() != SUserType.SYSTEM) {
 		if (user.getState() == SObjectState.ACTIVE) {
 			%>
 			<a href="deleteuser.jsp?uoid=<%=user.getOid() %>">delete</a>

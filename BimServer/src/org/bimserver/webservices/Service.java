@@ -1291,12 +1291,6 @@ public class Service implements ServiceInterface {
 		return in;
 	}
 
-	@Override
-	public SUser getAnonymousUser() throws ServiceException {
-		requireAuthenticationAndRunningServer();
-		return getUserByUserName("anonymous");
-	}
-
 	public List<SUser> getAllNonAuthorizedUsersOfProject(Long poid) throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
@@ -1661,20 +1655,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void loginAnonymous() throws ServiceException {
-		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
-		try {
-			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, "anonymous");
-			User user = session.executeAction(action, DEADLOCK_RETRIES);
-			currentUoid = user.getOid();
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public List<SUserSession> getActiveUserSessions() throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		return serviceFactory.getActiveUserSessions();
@@ -1837,7 +1817,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword, Boolean createAnonymousUser) throws ServiceException {
+	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword) throws ServiceException {
 		setSettingSmtpServer(smtpServer);
 		setSettingSiteAddress(siteAddress);
 
@@ -1854,9 +1834,6 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			new AddUserDatabaseAction(bimServer, session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
-			if (createAnonymousUser) {
-				new AddUserDatabaseAction(bimServer, session, AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
-			}
 			session.commit();
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);

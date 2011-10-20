@@ -356,9 +356,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "getUserByUoid")
 	SUser getUserByUoid(@WebParam(name = "uoid", partName = "getUserByUoid.uoid") Long uoid) throws ServiceException;
 
-	@WebMethod(action = "getAnonymousUser")
-	SUser getAnonymousUser() throws ServiceException;
-
 	@WebMethod(action = "getAllNonAuthorizedUsersOfProject")
 	List<SUser> getAllNonAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllNonAuthorizedUsersOfProject.poid") Long poid)
 			throws ServiceException;
@@ -389,9 +386,6 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "isLoggedIn")
 	Boolean isLoggedIn() throws ServiceException;
-
-	@WebMethod(action = "loginAnonymous")
-	void loginAnonymous() throws ServiceException;
 
 	@WebMethod(action = "getActiveSince")
 	Date getActiveSince() throws ServiceException;
@@ -437,8 +431,7 @@ public interface ServiceInterface {
 			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
 			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
 			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
-			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword,
-			@WebParam(name = "createAnonymousUser", partName = "setup.createAnonymousUser") Boolean createAnonymousUser) throws ServiceException;
+			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServiceException;
 
 	@WebMethod(action = "getSettingsCustomLogoAddress")
 	String getSettingCustomLogoAddress() throws ServiceException;

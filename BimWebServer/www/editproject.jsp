@@ -29,12 +29,6 @@
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		long poid = Long.parseLong(request.getParameter("poid"));
 		SProject sProject = loginManager.getService().getProjectByPoid(poid);
-		SUser anonymousUser = null;
-		try {
-			anonymousUser = loginManager.getService().getAnonymousUser();
-		} catch (ServiceException e) {
-		}
-		boolean anonymousAccess = anonymousUser != null && sProject.getHasAuthorizedUsers().contains(anonymousUser.getOid());
 		try {
 			SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
 			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(
@@ -57,13 +51,6 @@
 					sProject.setDescription(request.getParameter("description"));
 					sProject.setExportLengthMeasurePrefix(SSIPrefix.values()[Integer.parseInt(request.getParameter("exportLengthMeasurePrefix"))]);
 					loginManager.getService().updateProject(sProject);
-					if (request.getParameter("anonymous") == null) {
-						if (anonymousAccess) {
-							loginManager.getService().removeUserFromProject(anonymousUser.getOid(), poid);
-						}
-					} else {
-						loginManager.getService().addUserToProject(anonymousUser.getOid(), poid);
-					}
 					response.sendRedirect("project.jsp?poid=" + poid);
 				} catch (ServiceException e) {
 					JspHelper.showException(out, e);
@@ -97,15 +84,7 @@
 		<td class="first"><label for="description">Description</label></td>
 		<td><textarea id="description" name="description" cols="70" rows="5"><%=request.getParameter("description") != null ? request.getParameter("description") : sProject.getDescription()%></textarea></td>
 	</tr>
-<% if (anonymousUser != null) { %>
-	<tr>
-		<td class="first"><label for="anonymous" class="checkbox">Anonymous
-		access</label></td>
-		<td><input id="anonymous" name="anonymous" type="checkbox"
-			class="checkbox" <%=anonymousAccess ? "checked=\"checked\"" : ""%> /></td>
-	</tr>
 	<%
-}
 		if (sProject.getParentId() == -1) {
 	%>
 	<tr>

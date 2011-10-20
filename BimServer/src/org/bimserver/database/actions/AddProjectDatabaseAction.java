@@ -60,9 +60,6 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	public Project execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		User actingUser = getUserByUoid(owningUoid);
 		String trimmedName = name.trim();
-		if (actingUser.getUserType() == UserType.ANONYMOUS) {
-			throw new UserException("Anonymous user cannot create new projects");
-		}
 		if (trimmedName.equals("")) {
 			throw new UserException("Invalid project name");
 		}

@@ -11,10 +11,9 @@
 	String adminName = request.getParameter("adminName") != null ? request.getParameter("adminName") : "Administrator";
 	String adminUsername = request.getParameter("adminUsername") != null ? request.getParameter("adminUsername") : "";
 	String adminPassword = request.getParameter("adminPassword") != null ? request.getParameter("adminPassword") : "";
-	boolean createAnonymousUser = request.getParameter("createAnonymousUser") != null;
 	if (request.getParameter("setup") != null) {
 		try {
-			loginManager.getService().setup(siteAddress, smtpServer, adminName, adminUsername, adminPassword, createAnonymousUser);
+			loginManager.getService().setup(siteAddress, smtpServer, adminName, adminUsername, adminPassword);
 			response.sendRedirect("login.jsp?username=" + adminUsername);
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
@@ -79,16 +78,6 @@
 		<p class="explain">Password of the first admin user</p>
 	</td>
 	<td><input type="password" id="adminPassword" name="adminPassword" value="<%=adminPassword %>"/></td>
-</tr>
-<tr>
-	<td colspan="2" class="tabletitle">Anonymous user</td>
-</tr>
-<tr>
-	<td>
-		<label for="createAnonymousUser">Create anonymous user</label>
-		<p class="explain">Whether to create an anonymous user</p>
-	</td>
-	<td><input type="checkbox" id="createAnonymousUser" name="createAnonymousUser"<%=(createAnonymousUser ? "CHECKED=\"CHECKED\"" : "") %>/></td>
 </tr>
 </table>
 <input type="submit" name="setup" value="Setup"/>
