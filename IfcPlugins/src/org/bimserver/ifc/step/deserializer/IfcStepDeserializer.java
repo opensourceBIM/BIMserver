@@ -358,7 +358,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					}
 					if (convert != null) {
 						if (floatStringList != null) {
-							floatStringList.addUnique(stringValue);
+							floatStringList.setUnique(index, stringValue);
 						}
 						list.setUnique(index, convert);
 					}
