@@ -28,6 +28,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.text.DecimalFormat;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
@@ -127,7 +130,7 @@ import org.slf4j.LoggerFactory;
 public class SceneJSSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJSSerializer.class);
 	private IfcEngine ifcEngine;
-	
+
 	/**
 	 * Extents provides an axis-aligned bounding cuboid for geometric data, 
 	 * represented as a pair of 3 dimensional vectors for the two opposing corners of the cuboid.
@@ -139,33 +142,36 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private Extents sceneExtents = new Extents();
 	private HashMap<String, Extents> geometryExtents = new HashMap<String, Extents>();
 	private HashMap<String, HashMap<String, HashSet<String>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<String>>>();
-	//private  materialGeometryRel = new HashMap<String, Set<String>>();
+	// private materialGeometryRel = new HashMap<String, Set<String>>();
 	private List<String> surfaceStyleIds;
 	
-	/** 
-	 * JsWriter adds automatic indentation to the PrintWriter 
-	 */ 
+	/**
+	 * JsWriter adds automatic indentation to the PrintWriter
+	 */
 	private class JsWriter extends PrintWriter {
 		private int indentation = 0;
+
 		public JsWriter(OutputStream out) {
 			super(out);
 		}
+
 		public void indent() {
 			indentation += 1;
 		}
+
 		public void unindent() {
 			indentation = Math.max(0, indentation - 1);
 		}
-		
-		public void writeln(String s){
-			for (int i = 0; i < indentation; ++i){
+
+		public void writeln(String s) {
+			for (int i = 0; i < indentation; ++i) {
 				super.print("  ");
 			}
 			super.println(s);
 		}
-		
-		public void writetab(String s){
-			for (int i = 0; i < indentation; ++i){
+
+		public void writetab(String s) {
+			for (int i = 0; i < indentation; ++i) {
 				super.print("  ");
 			}
 			super.print(s);
@@ -182,7 +188,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 	protected void reset() {
 		setMode(Mode.BODY);
 	}
-	
+
 	@Override
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
@@ -191,64 +197,37 @@ public class SceneJSSerializer extends BimModelSerializer {
 			} catch (PluginException e) {
 				throw new SerializerException(e);
 			}
-			JsWriter writer = new JsWriter(out);
+			PrintWriter writer = new PrintWriter(out);
 			try {
 				// Pre-calculate information for use during the export
 				calculateGeometryExtents();
 				
-				// Write data to stream
-				writer.writeln("/* Author:      " + getProjectInfo().getAuthorName());
+				/* Write data to stream
+				writer.writeln("\/* Author:      " + getProjectInfo().getAuthorName());
 				writer.writeln("   Description: " + getProjectInfo().getDescription());
-				writer.writeln("*/");
+				writer.writeln("*\/");*/
 				
-				writer.writeln("SceneJS.createScene({");
-				writer.indent();
-				writer.writeln("type: 'scene',");
-				writer.writeln("id: 'Scene',");
-				writer.writeln("canvasId: 'scenejsCanvas',");
-				writer.writeln("loggingElementId: 'scenejsLog',");
-				writer.writeln("flags: {");
-				writer.indent();
-				writer.writeln("backfaces: false,");
-				writer.unindent();
-				writer.writeln("},"); // flags
-				
-				writer.writeln("nodes: [");
-				writer.indent();
+				JSONObject jsonObj = new JSONObject()
+					.put("type", "scene")
+					.put("id", "Scene")
+					.put("canvasId", "scenejsCanvas")
+					.put("loggingElementId", "scenejsLog")
+					.put("flags", new JSONObject().put("backfaces", false))
+					.put("nodes", writeVisualScenes(new JSONArray()
+						.put(new JSONObject()
+							.put("type", "library")
+							.put("nodes", writeGeometries(writeMaterials(new JSONArray())))))); // (Unfortunately JSONArray doesn't provide a concat method)
+					
 
-				writer.writeln("{");
-				writer.indent();
-				writer.writeln("type: 'library',");
-				writer.writeln("nodes: [");
-				writer.indent();
-				writeMaterials(writer);
-				writeGeometries(writer);
-				writer.unindent();
-				writer.writeln("],");
-
-				writer.unindent();
-				writer.writeln("},"); // library
-
-				writeVisualScenes(writer);
-
-				writer.unindent();
-				writer.writeln("],");
-				
 				// Append additional custom data to the scene node
-				writer.writeln("data: {");
-				writer.indent();
-				
-				writeBounds(writer);				
-				writeUnit(writer);
-				writeIfcTypes(writer);
-				writeIfcTree(writer);
-				writeIfcProperties(writer);
-				
-				writer.unindent();
-				writer.writeln("},");
+				jsonObj.put("data", new JSONObject()
+					.put("bounds", writeBounds())
+					.put("unit", writeUnit())
+					.put("ifcTypes", writeIfcTypes())
+					.put("relationships", writeIfcTree())
+					.put("properties", writeIfcProperties()));
 
-				writer.unindent();
-				writer.writeln("});");
+				jsonObj.write(writer);
 				writer.flush();
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -263,22 +242,21 @@ public class SceneJSSerializer extends BimModelSerializer {
 		return false;
 	}
 
-	private void writeMaterials(JsWriter writer) {
-		
-		writeMaterial(writer, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
-		writeMaterial(writer, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
-		writeMaterial(writer, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(writer, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
-		writeMaterial(writer, "WallStandardCase", new float[] { 1.0f, 1.0f, 1.0f }, 1.0f);
-		writeMaterial(writer, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(writer, "Window", new float[] { 0.2f, 0.2f, 0.8f }, 0.2f);
-		writeMaterial(writer, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
-		writeMaterial(writer, "Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
-		writeMaterial(writer, "FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
-		writeMaterial(writer, "CurtainWall", new float[] { 0.5f, 0.5f, 0.5f }, 0.5f);
-		writeMaterial(writer, "Stair", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(writer, "BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 1.0f);
-		writeMaterial(writer, "FlowSegment", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f);
+	private JSONArray writeMaterials(JSONArray array) throws JSONException {
+		array.put(writeMaterial("Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f))
+			.put(writeMaterial("Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f))
+			.put(writeMaterial("Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
+			.put(writeMaterial("Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f))
+			.put(writeMaterial("WallStandardCase", new float[] { 1.0f, 1.0f, 1.0f }, 1.0f))
+			.put(writeMaterial("Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
+			.put(writeMaterial("Window", new float[] { 0.2f, 0.2f, 0.8f }, 0.2f))
+			.put(writeMaterial("Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f))
+			.put(writeMaterial("Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f))
+			.put(writeMaterial("FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f))
+			.put(writeMaterial("CurtainWall", new float[] { 0.5f, 0.5f, 0.5f }, 0.5f))
+			.put(writeMaterial("Stair", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
+			.put(writeMaterial("BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 1.0f))
+			.put(writeMaterial("FlowSegment", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f));
 
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
@@ -292,32 +270,29 @@ public class SceneJSSerializer extends BimModelSerializer {
 						colour = (IfcColourRgb) surfaceColour;
 					}
 					String name = fitNameForQualifiedName(ss.getName());
-					if(!surfaceStyleIds.contains(name)) {
+					if (!surfaceStyleIds.contains(name)) {
 						surfaceStyleIds.add(name);
-						writeMaterial(writer, name, new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
+						array.put(writeMaterial(name, 
+								new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
+								ssr.isSetTransparency() ? ssr.getTransparency() : 1.0f));
 						break;
 					}
 				}
 			}
 		}
+		return array;
 	}
-	
-	private void writeMaterial(JsWriter writer, String name, float[] colors, float opacity) {
-		writer.writeln("{");
-		writer.indent();
-		writer.writeln("type: 'material',");
-		writer.writeln("coreId: '" + name + "Material',");
-		writer.writeln("baseColor: {");
-		writer.indent();
-		writer.writeln("r: " + colors[0] + ",");
-		writer.writeln("g: " + colors[1] + ",");
-		writer.writeln("b: " + colors[2] + ",");
-		writer.unindent();
-		writer.writeln("},");
-        writer.writeln("alpha: " + opacity + ",");
-        writer.writeln("emit: 0.0,");
-		writer.unindent();
-		writer.writeln("},");
+
+	private JSONObject writeMaterial(String name, float[] colors, float opacity) throws JSONException {
+		return new JSONObject()
+			.put("type", "material")
+			.put("coreId", name + "Material")
+			.put("baseColor", new JSONObject()
+				.put("r", colors[0])
+				.put("g", colors[1])
+				.put("b", colors[2]))
+			.put("alpha", opacity)
+			.put("emit", 0.0);
 	}
 
 	private void calculateGeometryExtents() throws IfcEngineException, SerializerException {
@@ -378,8 +353,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 			geometryExtents.put(id, new Extents());
 		}
 		Extents extents = geometryExtents.get(id);
-		
-		// Create a geometric model to for calculating the extents of the object 
+
+		// Create a geometric model to for calculating the extents of the object
 		IfcModelInterface ifcModel = new IfcModel();
 		convertToSubset(ifcObject.eClass(), ifcObject, ifcModel, new HashMap<EObject, EObject>());
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
@@ -401,73 +376,74 @@ public class SceneJSSerializer extends BimModelSerializer {
 			}
 		} catch (IfcEngineException e) {
 			throw e;
-		} //catch (Exception e) {
-		//}
-		
+		} // catch (Exception e) {
+		// }
+
 		// Add the object's extents to the scene's total extents
 		addToExtents(sceneExtents, extents.min);
 		addToExtents(sceneExtents, extents.max);
 	}
-	
-	private void writeGeometries(JsWriter writer) throws IfcEngineException, SerializerException {
+
+	private JSONArray writeGeometries(JSONArray array) throws IfcEngineException, JSONException, SerializerException {
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
-			setGeometry(writer, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
+			writeGeometricObject(array, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
 		}
 		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
 			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-				setGeometry(writer, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
+				writeGeometricObject(array, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
 			} else {
-				setGeometry(writer, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
+				writeGeometricObject(array, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
 			}
 		}
 		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
-			setGeometry(writer, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
+			writeGeometricObject(array, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
 		}
 		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
-			setGeometry(writer, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
+			writeGeometricObject(array, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
 		}
 		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
-			setGeometry(writer, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+			writeGeometricObject(array, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
 		}
 		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
-			setGeometry(writer, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
+			writeGeometricObject(array, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
 		}
 		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
-			setGeometry(writer, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
+			writeGeometricObject(array, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
 		}
 		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
-			setGeometry(writer, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
+			writeGeometricObject(array, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
 		}
 		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			setGeometry(writer, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
+			writeGeometricObject(array, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
 		}
 		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
-			setGeometry(writer, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
+			writeGeometricObject(array, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
 		}
 		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
-			setGeometry(writer, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
+			writeGeometricObject(array, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
 		}
 		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
-			setGeometry(writer, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
+			writeGeometricObject(array, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
 		}
 		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
-			setGeometry(writer, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
+			writeGeometricObject(array, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
 		}
 		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
-			setGeometry(writer, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
+			writeGeometricObject(array, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
 		}
 		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
-			setGeometry(writer, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
+			writeGeometricObject(array, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
 		}
 		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
-			setGeometry(writer, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
+			writeGeometricObject(array, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
 		}
+		return array;
 	}
 
-	private void setGeometry(JsWriter writer, IfcObjectDefinition ifcRootObject, String id, String ifcObjectType) throws IfcEngineException, SerializerException {
+	private JSONArray writeGeometricObject(JSONArray array, IfcObjectDefinition ifcRootObject, String id, String ifcObjectType) throws IfcEngineException, JSONException, SerializerException {
 		//id = id.replace('$', '-'); // Remove the $ character from geometry id's.
 		//id = "_" + id; // Ensure that the id does not start with a digit
-		
+
 		boolean materialFound = false;
 		String material = ifcObjectType;
 		if (ifcRootObject instanceof IfcProduct) {
@@ -479,10 +455,10 @@ public class SceneJSSerializer extends BimModelSerializer {
 				for (IfcRelDecomposes dcmp : isDecomposedBy) {
 					EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
 					for (IfcObjectDefinition relatedObject : relatedObjects) {
-						setGeometry(writer, relatedObject, relatedObject.getGlobalId().getWrappedValue(), ifcObjectType);
+						writeGeometricObject(array, relatedObject, relatedObject.getGlobalId().getWrappedValue(), ifcObjectType);
 					}
 				}
-				return;
+				return array;
 			}
 
 			// Get the relating material for this model 
@@ -496,7 +472,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 					relatingMaterial = ram.getRelatingMaterial();
 				}
 			}
-			
+
 			// Try to find the IFC material name
 			if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
 				IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
@@ -562,31 +538,33 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 
 		// Add the object id to the related ifc type & material in the hash map
-		HashMap<String, HashSet<String>> materialGeometryRel = null; 
+		HashMap<String, HashSet<String>> materialGeometryRel = null;
 		if (!typeMaterialGeometryRel.containsKey(ifcObjectType)) {
 			materialGeometryRel = new HashMap<String, HashSet<String>>();
 			typeMaterialGeometryRel.put(ifcObjectType, materialGeometryRel);
 		} else {
 			materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
 		}
-		
+
 		if (!materialGeometryRel.containsKey(material)) {
 			materialGeometryRel.put(material, new HashSet<String>());
 		}
 		materialGeometryRel.get(material).add(id);
-		
+
 		// Serialize the geometric data itself
-		writeGeometry(writer, ifcRootObject, id);
+		array.put(writeGeometry(ifcRootObject, id));
+		return array;
 	}
-	
-	private void writeGeometry(JsWriter writer, IfcObjectDefinition ifcObject, String id) throws IfcEngineException, SerializerException {
+
+	private JSONObject writeGeometry(IfcObjectDefinition ifcObject, String id) throws IfcEngineException, JSONException, SerializerException {
 		// Calculate an offset for the model to find its relative coordinates inside the bounding box (in order to center the scene) 
 		// TODO: In future use the geometry's bounding box to calculate a transformation matrix for the node along with relative coordinates
-		float[] modelOffset = new float[]{ 
-				-(sceneExtents.min[0] + sceneExtents.max[0]) * 0.5f, 
-				-(sceneExtents.min[1] + sceneExtents.max[1]) * 0.5f, 
-				-(sceneExtents.min[2] + sceneExtents.max[2]) * 0.5f 
-			};
+		float[] modelOffset = new float[] {
+			-(sceneExtents.min[0] + sceneExtents.max[0]) * 0.5f,
+			-(sceneExtents.min[1] + sceneExtents.max[1]) * 0.5f,
+			-(sceneExtents.min[2] + sceneExtents.max[2]) * 0.5f };
+
+		JSONObject jsonObj = new JSONObject();
 		
 		IfcModelInterface ifcModel = new IfcModel();
 		convertToSubset(ifcObject.eClass(), ifcObject, ifcModel, new HashMap<EObject, EObject>());
@@ -598,44 +576,42 @@ public class SceneJSSerializer extends BimModelSerializer {
 				model.setPostProcessing(true);
 				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
 				if (geometry != null) {
+					JSONArray verticesArray = new JSONArray();
+					jsonObj.put("type", "geometry")
+						.put("coreId", ifcObject.getGlobalId().getWrappedValue())
+						.put("primitive", "triangles")
+						.put("positions", verticesArray);
 					
-					writer.writeln("{");
-					writer.indent();
-					writer.writeln("type: 'geometry',");
-					//writer.writeln("coreId: '" + id + "',");
-					writer.writeln("coreId: '" + ifcObject.getGlobalId().getWrappedValue() + "',");
-					writer.writeln("primitive: 'triangles',");
-					writer.writetab("positions: [");
 					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
-						writer.print((geometry.getVertex(i + 0) + modelOffset[0]) + "," 
-								+ (geometry.getVertex(i + 1) + modelOffset[1]) + "," 
-								+ (geometry.getVertex(i + 2) + modelOffset[2]) + ",");
+						verticesArray.put(geometry.getVertex(i + 0) + modelOffset[0])
+							.put(geometry.getVertex(i + 1) + modelOffset[1])
+							.put(geometry.getVertex(i + 2) + modelOffset[2]);
 					}
-					writer.println("],");
-					writer.writetab("normals: [");
+					
+					JSONArray normalsArray = new JSONArray();
+					jsonObj.put("normals", normalsArray);
 					for (int i = 0; i < geometry.getNrNormals(); i++) {
-						writer.print(geometry.getNormal(i) + ",");
+						normalsArray.put(geometry.getNormal(i));
 					}
-					writer.println("],");
-	
+
 					// TODO: Create sub-geometries if there are multiple index buffers
 					List<? extends IfcEngineInstance> instances = model.getInstances(ifcObject.eClass().getName().toUpperCase());
-					if (instances.size() > 1)
-						writer.writeln("// TODO: Create subgeometries");
+					if (instances.size() > 1) {
+						// TODO: Create sub-geometries
+						LOGGER.error("Need to create sub-geometries for this model.");
+					}
 					for (IfcEngineInstance instance : instances) {
 						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
 						//out.writeln("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
-						writer.writetab("indices: [");
-						for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
-							writer.print(geometry.getIndex(i) + ",");
-							writer.print(geometry.getIndex(i + 2) + ",");
-							writer.print(geometry.getIndex(i + 1) + ",");
+						JSONArray indicesArray = new JSONArray(); 
+						jsonObj.put("indices", indicesArray);
+						int endIndex = instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex();
+						for (int i = instanceInModelling.getStartIndex(); i < endIndex; i += 3) {
+							indicesArray.put(geometry.getIndex(i))
+								.put(geometry.getIndex(i + 2))
+								.put(geometry.getIndex(i + 1));
 						}
-						writer.println("],");
 					}
-	
-					writer.unindent();
-					writer.writeln("},");
 				}
 			} finally {
 				model.close();
@@ -645,462 +621,334 @@ public class SceneJSSerializer extends BimModelSerializer {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
+		return jsonObj;
 	}
 
-	private void writeVisualScenes(JsWriter writer) {
+	private JSONArray writeVisualScenes(JSONArray array) throws JSONException {
 		// Calculate the maximum ray length through the scene (using the two extreme points of the scene's bounding box)
 		float[] extentsDiff = new float[]{ sceneExtents.max[0] - sceneExtents.min[0], sceneExtents.max[1] - sceneExtents.min[1], sceneExtents.max[2] - sceneExtents.min[2] };
 		float extentsDiffLength = (float) Math.sqrt((double)(extentsDiff[0]*extentsDiff[0] + extentsDiff[1]*extentsDiff[1] + extentsDiff[2]*extentsDiff[2]));
-		
-		// Write the nodes to the stream
-		writer.writeln("{");
-		writer.indent();
-		writer.writeln("type: 'lookAt',");
-		writer.writeln("id: 'main-lookAt',");
-		
-		writer.writeln("eye: {");
-		writer.indent();
-		writer.writeln("x: " + (extentsDiff[0] * 1.5f) + ",");
-		writer.writeln("y: " + (extentsDiff[1] * 1.5f) + ",");
-		writer.writeln("z: " + (extentsDiff[2] * 1.5f) + ",");
-		writer.unindent();
-		writer.writeln("},"); // eye
-		
-		writer.writeln("look: {");
-		writer.indent();
-		writer.writeln("x: 0.0,");
-		writer.writeln("y: 0.0,");
-		writer.writeln("z: 0.0,");
-		writer.unindent();
-		writer.writeln("},"); // look
-		
-		writer.writeln("up: {");
-		writer.indent();
-		writer.writeln("x: 0.0,");
-		writer.writeln("y: 0.0,");
-		writer.writeln("z: 1.0,");
-		writer.unindent();
-		writer.writeln("},"); // up
-		
-		writer.writeln("nodes: [");
-		writer.indent();
-		writer.writeln("{");
-		writer.indent();
-		
-		writer.writeln("type: 'camera',");
-		writer.writeln("id: 'main-camera',");
-		
-		writer.writeln("optics: {");
-		writer.indent();
-		writer.writeln("type: 'perspective',");
-		writer.writeln("far: " + (extentsDiffLength * 6) + ",");
-		writer.writeln("near: " + (extentsDiffLength * 0.001f) + ",");
-		writer.writeln("aspect: 1.0,");
-		writer.writeln("fovy: 37.8493,");
-        writer.unindent();
-		writer.writeln("},"); // optics
 
-		writer.writeln("nodes: [");
-		writer.indent();
-		writer.writeln("{");
-		writer.indent();
-		
-		writer.writeln("type: 'renderer',");
-		writer.writeln("id: 'main-renderer',");
-		
-		writer.writeln("clear: {");
-		writer.indent();
-		writer.writeln("color: true,"); 
-		writer.writeln("depth: true,"); 
-		writer.writeln("stencil: false,");
-        writer.unindent();
-		writer.writeln("},"); // clear
-        
-        writer.writeln("clearColor: {");
-		writer.indent();
-		writer.writeln("r: 0.2,"); 
-		writer.writeln("g: 0.2,"); 
-		writer.writeln("b: 0.2,");
-		writer.writeln("a: 0.0,");
-        writer.unindent();
-		writer.writeln("},"); // clearColor 
-        
-		writer.writeln("nodes: [");
-		writer.indent();
-		
-		// Add a simple light to the scene 
-		writer.writeln("{");
-		writer.indent();
-		writer.writeln("type: 'light',");
-		writer.writeln("id: 'sun-light',");
-		writer.writeln("mode: 'dir',");
-		
-		writer.writeln("color: {");
-		writer.indent();
-		writer.writeln("r: 0.8,"); 
-		writer.writeln("g: 0.8,"); 
-		writer.writeln("b: 0.8,");
-		writer.unindent();
-        writer.writeln("},"); // color
-        
-        writer.writeln("dir: {");
-		writer.indent();
-		writer.writeln("x:-0.5,"); 
-		writer.writeln("y:-0.5,"); 
-		writer.writeln("z:-1.0,");
-        writer.unindent();
-		writer.writeln("},"); // dir
-		writer.writeln("diffuse: true,");
-		writer.writeln("specular: true,");
-        writer.unindent();
-		writer.writeln("},"); // light
-	
+		// Write the nodes to the stream
+		JSONArray rendererNodes = new JSONArray();
+		array.put(new JSONObject()	
+			.put("type", "lookAt")
+			.put("id", "main-lookAt")	
+			.put("eye", new JSONObject()
+				.put("x", extentsDiff[0] * 1.5f)
+				.put("y", extentsDiff[1] * 1.5f)
+				.put("z", extentsDiff[2] * 1.5f))
+			.put("look", new JSONObject()
+				.put("x", 0.0)
+				.put("y", 0.0)
+				.put("z", 0.0))
+			.put("up", new JSONObject()
+				.put("x", 0.0)
+				.put("y", 0.0)
+				.put("z", 1.0))
+			.put("nodes", new JSONArray().put(new JSONObject()
+					.put("type", "camera")
+					.put("id", "main-camera")
+					.put("optics", new JSONObject()
+						.put("type", "perspective")
+						.put("far", extentsDiffLength * 6)
+						.put("near", extentsDiffLength * 0.001f)
+						.put("aspect", 1.0)
+						.put("fovy", 37.8493))
+					.put("nodes", new JSONArray().put(new JSONObject()
+						.put("type", "renderer")
+						.put("id", "main-renderer")
+						.put("clear", new JSONObject()
+							.put("color", true)
+							.put("depth", true)
+							.put("stencil", false))
+						.put("clearColor", new JSONObject()
+							.put("r", 0.2)
+							.put("g", 0.2)
+							.put("b", 0.2)
+							.put("a", 0.0))
+						.put("nodes", rendererNodes.put(new JSONObject()
+							// Add a simple light to the scene
+							.put("type", "light")
+							.put("id", "sun-light")
+							.put("mode", "dir")
+							.put("color", new JSONObject()
+								.put("r", 0.8)
+								.put("g", 0.8)
+								.put("b", 0.8))
+							.put("dir", new JSONObject()
+								.put("x",-0.5)
+								.put("y",-0.5)
+								.put("z",-1.0))
+							.put("diffuse", true)
+							.put("specular", true))))))));
+
 		// Output each geometry instance grouped by material
 		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
-			writer.writeln("{");
-			writer.indent();
-			
-			writer.writeln("type: 'tag',");
 			String tagName = ifcObjectType.toLowerCase();
-			writer.writeln("tag: '" + tagName + "',");
-			writer.writeln("id: '" + tagName + "',");
-			
-			writer.writeln("nodes: [");
-			writer.indent();
-			
+			JSONArray tagNodes = new JSONArray();
+			rendererNodes.put(new JSONObject()
+				.put("type", "tag")
+				.put("tag", tagName)
+				.put("id", tagName)
+				.put("nodes", tagNodes));
+
 			HashMap<String, HashSet<String>> materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
 			for (String materialId : materialGeometryRel.keySet()) {
+				JSONObject materialNode = new JSONObject();
 				if (materialId == "Window") {
-					writer.writeln("{");
-					writer.indent();
-					writer.writeln("type: 'flags',");
-					writer.writeln("flags: { transparent: true },");
-					
-					writer.writeln("nodes: [");
-					writer.indent();
+					tagNodes.put(new JSONObject()
+						.put("type", "flags")
+						.put("flags", new JSONObject().put("transparent", true))
+						.put("nodes", new JSONArray().put(materialNode)));
 				}
-				
-				writer.writeln("{");
-				writer.indent();
-				
-				writer.writeln("type: 'material',");
-				writer.writeln("coreId: '" + materialId + "Material',");
-				
+				else {
+					tagNodes.put(materialNode);
+				}
+				materialNode
+					.put("type", "material")
+					.put("coreId", materialId + "Material");
+
 				Set<String> geometryIds = materialGeometryRel.get(materialId);
-				
-				writer.writeln("nodes: [");
-				writer.indent();
+
+				JSONArray materialNodes = new JSONArray();
+				materialNode.put("nodes", materialNodes);
 				for (String geometryId : geometryIds) {
-					writer.writeln("{");
-					writer.indent();					
-					writer.writeln("type: 'name',");
-					writer.writeln("id: '" + geometryId + "',");
-					
-					writer.writeln("nodes: [");
-					writer.indent();					
-					writer.writeln("{");
-					writer.indent();					
-					writer.writeln("type: 'geometry',");
-					writer.writeln("coreId: '" + geometryId + "',");
-					writer.unindent();
-					writer.writeln("},"); // geometry					
-					writer.unindent();
-					writer.writeln("],");
-					
-					writer.unindent();
-					writer.writeln("},"); // name
-				}
-				writer.unindent();
-				writer.writeln("],");
-				
-				writer.unindent();
-				writer.writeln("},"); // material
-				
-				if (materialId == "Window") {
-					writer.unindent();
-					writer.writeln("],");
-					
-					writer.unindent();
-					writer.writeln("},"); // flags
+					materialNodes.put(new JSONObject()
+						.put("type", "name")
+						.put("id", geometryId)
+						.put("nodes", new JSONArray().put(new JSONObject() 
+							.put("type", "geometry")
+							.put("coreId", geometryId))));
 				}
 			}
-			writer.unindent();
-			writer.writeln("],");
-			writer.unindent();
-			writer.writeln("},"); // tag
 		}
-		writer.unindent();
-		writer.writeln("],");
-		
-		writer.unindent();
-		writer.writeln("},"); // renderer
-		writer.unindent();
-		writer.writeln("],");
-		
-		writer.unindent();
-		writer.writeln("},"); // camera
-		writer.unindent();
-		writer.writeln("],");
-		
-		writer.unindent();
-		writer.writeln("},"); // lookAt
+		return array;
 	}
-	
-	private void writeBounds(JsWriter writer) {
-		/*writer.writeln("extents: [[" 
-		+ sceneExtents.max[0] + "," + sceneExtents.min[1] + "," + sceneExtents.min[2] + "],["
-		+ sceneExtents.max[0] + "," + sceneExtents.max[1] + "," + sceneExtents.max[2] + "]],");*/
-		
-		writer.writeln("bounds: [" 
-				+ (sceneExtents.max[0] - sceneExtents.min[0]) + "," 
-				+ (sceneExtents.max[1] - sceneExtents.min[1]) + ","
-				+ (sceneExtents.max[2] - sceneExtents.min[2]) + "],");
+
+	private JSONArray writeBounds() throws JSONException {
+		return new JSONArray()
+			.put(sceneExtents.max[0] - sceneExtents.min[0])
+			.put(sceneExtents.max[1] - sceneExtents.min[1])
+			.put(sceneExtents.max[2] - sceneExtents.min[2]);
 	}
-	
-	private void writeUnit(JsWriter writer) {
+
+	private String writeUnit() {
 		SIPrefix lengthUnitPrefix = getLengthUnitPrefix(model);
-		if (lengthUnitPrefix == null) {
-			writer.writeln("unit: '1 meter',");
-		} else {
-			writer.writeln("unit: '" + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase() + "',");
-		}
+		return lengthUnitPrefix == null? "1 meter" : Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase();
 	}
-	
-	private void writeIfcTreeRelatedObject(JsWriter writer, IfcObject object) {
-		writer.writeln("{");
-		writer.indent();
-		writer.writeln("type: '" + (object.isSetObjectType()? object.getObjectType() : stripClassName(object.getClass())) + "',");
-		writer.writeln("name: '" + (object.isSetName()? object.getName() : "unknown") + "',");
-		writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
-		writeIfcTreeDecomposedBy(writer, object);
-		writeIfcTreeDefinedBy(writer, (IfcObject) object);
+
+	private JSONObject writeIfcTreeRelatedObject(IfcObject object) throws JSONException {
+		JSONObject jsonObj = new JSONObject()
+			.put("type", object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()))
+			.put("name", object.isSetName() ? object.getName() : "unknown")
+			.put("id", object.getGlobalId().getWrappedValue())
+			.put("decomposedBy", writeIfcTreeDecomposedBy(object))
+			.put("definedBy", writeIfcTreeDefinedBy((IfcObject) object));
+		
 		if (object instanceof IfcSpatialStructureElement) {
-			writeIfcTreeContainsElements(writer, (IfcSpatialStructureElement) object);
+			jsonObj.put("contains", writeIfcTreeContainsElements((IfcSpatialStructureElement) object));
 		}
-		writer.unindent();
-		writer.writeln("},");
+		return jsonObj;
 	}
-	
-	private void writeIfcTree(JsWriter writer) {
+
+	private JSONArray writeIfcTree() throws JSONException {
+		// HashSet<String> visitedGUIDs;
+
 		// Output the object relationships
+		JSONArray jsonArray = new JSONArray();
 		Map<Long, IdEObject> objects = model.getObjects();
-		writer.writeln("relationships: [");
-		writer.indent();
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcProject) {
-				writeIfcTreeRelatedObject(writer, (IfcProject) object);
+				jsonArray.put(writeIfcTreeRelatedObject((IfcProject) object));
 			}
 		}
-		writer.unindent();
-		writer.writeln("],"); // relationships
+		return jsonArray;
 	}
-	
-	private void writeIfcTreeDecomposedBy(JsWriter writer, IfcObjectDefinition objectDefinition) {
+
+	private JSONArray writeIfcTreeDecomposedBy(IfcObjectDefinition objectDefinition) throws JSONException {
+		JSONArray jsonArray = new JSONArray();
 		EList<IfcRelDecomposes> relList = objectDefinition.getIsDecomposedBy();
 		if (relList != null && !relList.isEmpty()) {
-			writer.writeln("decomposedBy: [");
-			writer.indent();
 			for (IfcRelDecomposes rel : relList) {
 				EList<IfcObjectDefinition> relatedObjects = rel.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
 					if (relatedObject instanceof IfcObject) {
-						writeIfcTreeRelatedObject(writer, (IfcObject) relatedObject);
+						jsonArray.put(writeIfcTreeRelatedObject((IfcObject) relatedObject));
 					}
 				}
 			}
-			writer.unindent();
-			writer.writeln("],"); // decomposedBy
 		}
+		return jsonArray;
 	}
-	
-	private void writeIfcTreeDefinedBy(JsWriter writer, IfcObject object) {
+
+	private JSONArray writeIfcTreeDefinedBy(IfcObject object) throws JSONException {
+		JSONArray jsonArray = new JSONArray();
 		EList<IfcRelDefines> relList = object.getIsDefinedBy();
 		if (relList != null && !relList.isEmpty()) {
-			writer.writeln("definedBy: [");
-			writer.indent();
 			for (IfcRelDefines rel : relList) {
 				EList<IfcObject> relatedObjects = rel.getRelatedObjects();
 				for (IfcObject relatedObject : relatedObjects) {
-					writeIfcTreeRelatedObject(writer, relatedObject);
+					jsonArray.put(writeIfcTreeRelatedObject(relatedObject));
 				}
 			}
-			writer.unindent();
-			writer.writeln("],"); // definedBy
 		}
+		return jsonArray;
 	}
-	
-	private void writeIfcTreeProduct(JsWriter writer, IfcProduct object) {
-		writer.writeln("{");
-		writer.indent();
-		writer.writeln("type: '" + (object.isSetObjectType()? object.getObjectType() : stripClassName(object.getClass())) + "',");
-		writer.writeln("name: '" + (object.isSetName()? object.getName() : "unknown") + "',");
-		writer.writeln("id: '" + object.getGlobalId().getWrappedValue() + "',");
-		//writeIfcTreeDecomposedBy(writer, object);
-		//writeIfcTreeDefinedBy(writer, (IfcObject) object);
-		//if (object instanceof IfcSpatialStructureElement) {
-		//    writeIfcTreeContainsElements(writer, (IfcSpatialStructureElement) object);
-		//}
-		writer.unindent();
-		writer.writeln("},");
+
+	private JSONObject writeIfcTreeProduct(IfcProduct object) throws JSONException {
+		return new JSONObject()
+			.put("type", object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()))
+			.put("name", object.isSetName() ? object.getName() : "unknown")
+			.put("id", object.getGlobalId().getWrappedValue());
+		// writeIfcTreeDecomposedBy(object);
+		// writeIfcTreeDefinedBy((IfcObject) object);
+		// if (object instanceof IfcSpatialStructureElement) {
+		// 		writeIfcTreeContainsElements((IfcSpatialStructureElement) object);
+		// }
 	}
-	
-	private void writeIfcTreeContainsElements(JsWriter writer, IfcSpatialStructureElement spatialStructureElement) {
+
+	private JSONArray writeIfcTreeContainsElements(IfcSpatialStructureElement spatialStructureElement) throws JSONException {
+		JSONArray jsonArray = new JSONArray(); 
 		EList<IfcRelContainedInSpatialStructure> relList = spatialStructureElement.getContainsElements();
 		if (relList != null && !relList.isEmpty()) {
-			writer.writeln("contains: [");
-			writer.indent();
 			for (IfcRelContainedInSpatialStructure rel : relList) {
-	        	for (IfcProduct relatedObject : rel.getRelatedElements()) {
-	        		writeIfcTreeProduct(writer, relatedObject);
-	        	}
-	        }
-			writer.unindent();
-			writer.writeln("],"); // contains
+				for (IfcProduct relatedObject : rel.getRelatedElements()) {
+					jsonArray.put(writeIfcTreeProduct(relatedObject));
+				}
+			}
 		}
+		return jsonArray;
 	}
-	
-	private void writeIfcProperties(JsWriter writer) {
-		writer.writeln("properties: {");
-		writer.indent();
 
+	private JSONObject writeIfcProperties() throws JSONException {
+		JSONObject jsonObj = new JSONObject(); 
 		Map<Long, IdEObject> objects = model.getObjects();
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcObject) {
 				IfcObject ifcObject = (IfcObject) object;
-				writer.writeln("'" + ifcObject.getGlobalId().getWrappedValue() + "': {");
-				writer.indent();
-				writeIfcPropertiesObject(writer, ifcObject);
+				JSONObject wrappedJsonObj = new JSONObject();
+				jsonObj.put(ifcObject.getGlobalId().getWrappedValue(), new JSONObject());
+
+				writeIfcPropertiesObject(jsonObj, ifcObject);
 				if (object instanceof IfcProject) {
-					writeIfcPropertiesProject(writer,(IfcProject) object);
+					writeIfcPropertiesProject(jsonObj, (IfcProject) object);
+				} else if (object instanceof IfcSite) {
+					writeIfcPropertiesSite(jsonObj, (IfcSite) object);
+				} else if (object instanceof IfcBuilding) {
+					writeIfcPropertiesBuilding(jsonObj, (IfcBuilding) object);
+				} else if (object instanceof IfcBuildingStorey) {
+					writeIfcPropertiesBuildingStorey(jsonObj, (IfcBuildingStorey) object);
+				} else if (object instanceof IfcElement) {
+					writeIfcPropertiesElement(jsonObj, (IfcElement) object);
+				} else if (object instanceof IfcSpatialStructureElement) {
+					writeIfcPropertiesSpatialStructureElement(jsonObj, (IfcSpatialStructureElement) object);
+				} else if (object instanceof IfcProduct) {
+					writeIfcPropertiesProduct(jsonObj, (IfcProduct) object);
 				}
-				else if (object instanceof IfcSite) {
-					writeIfcPropertiesSite(writer,(IfcSite) object);
-				}
-				else if (object instanceof IfcBuilding) {
-					writeIfcPropertiesBuilding(writer,(IfcBuilding) object);
-				}
-				else if (object instanceof IfcBuildingStorey) {
-					writeIfcPropertiesBuildingStorey(writer,(IfcBuildingStorey) object);
-				}
-				else if (object instanceof IfcElement) {
-					writeIfcPropertiesElement(writer,(IfcElement) object);
-				}
-				else if (object instanceof IfcSpatialStructureElement) {
-					writeIfcPropertiesSpatialStructureElement(writer,(IfcSpatialStructureElement) object);
-				}
-				else if (object instanceof IfcProduct) {
-					writeIfcPropertiesProduct(writer,(IfcProduct) object);
-				}
-				
-				writer.unindent();
-				writer.writeln("},"); // object id
 			}
 		}
-		writer.unindent();
-		writer.writeln("},"); // properties
+		return jsonObj;
 	}
-	
-	private void writeIfcPropertiesProject(JsWriter writer, IfcProject object) {
+
+	private JSONObject writeIfcPropertiesProject(JSONObject jsonObj, IfcProject object) throws JSONException {
 		if (object.isSetLongName()) {
-			writer.writeln("'LongName': '" + object.getLongName() + "',");
+			jsonObj.put("LongName", object.getLongName());
 		}
 		if (object.isSetPhase()) {
-			writer.writeln("'Phase': '" + object.getPhase() + "',");
+			jsonObj.put("Phase", object.getPhase());
 		}
 		if (object.getRepresentationContexts() != null && !object.getRepresentationContexts().isEmpty()) {
-			writer.writeln("'Representation Contexts': [");
-			writer.indent();
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Representation Contexts", jsonArray);
 			for (IfcRepresentationContext context : object.getRepresentationContexts()) {
-				writer.writeln("'" + context.getContextIdentifier() + "',");
+				jsonArray.put(context.getContextIdentifier());
 			}
-			writer.unindent();
-			writer.writeln("],");
 		}
 		if (object.getUnitsInContext() != null) {
 			EList<IfcUnit> units = object.getUnitsInContext().getUnits();
 			if (units != null && !units.isEmpty()) {
-				writer.writeln("'Units in Context': [");
-				writer.indent();
+				JSONArray jsonArray = new JSONArray();
+				jsonObj.put("Units in Context", jsonArray);
 				for (IfcUnit unit : units) {
-					writer.writeln("'" + unit.toString() + "',");
+					jsonArray.put(unit.toString());
 				}
-				writer.unindent();
-				writer.writeln("],");
 			}
 		}
+		return jsonObj;
 	}
-	
-	private static void writeIfcPropertiesSite(JsWriter writer, IfcSite object) {
-		writeIfcPropertiesSpatialStructureElement(writer, object);
+
+	private static JSONObject writeIfcPropertiesSite(JSONObject jsonObj, IfcSite object) throws JSONException {
+		writeIfcPropertiesSpatialStructureElement(jsonObj, object);
 		if (object.isSetRefLatitude()) {
-			writer.writetab("'Ref Latitude': [");
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Ref Latitude", jsonArray);
 			for (Integer val : object.getRefLatitude()) {
-				writer.write(val.toString() + ",");
+				jsonArray.put(val.toString());
 			}
-			writer.writeln("],");
 		}
 		if (object.isSetRefLongitude()) {
-			writer.writetab("'Ref Longtitude': [");
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Ref Longtitude", jsonArray);
 			for (Integer val : object.getRefLongitude()) {
-				writer.write(val.toString() + ",");
+				jsonArray.put(val.toString());
 			}
-			writer.writeln("],");
-
 		}
 		if (object.isSetRefElevationAsString()) {
-			writer.writeln("'Ref Elevation': '" + object.getRefElevationAsString() + "',");
-		}
-		else if (object.isSetRefElevation()) {
-			writer.writeln("'Ref Elevation': " + new DecimalFormat("#.##").format(object.getRefElevation()) + ",");
+			jsonObj.put("Ref Elevation", object.getRefElevationAsString() );
+		} else if (object.isSetRefElevation()) {
+			jsonObj.put("Ref Elevation", new DecimalFormat("#.##").format(object.getRefElevation()));
 		}
 		if (object.isSetLandTitleNumber()) {
-			writer.writeln("'Land Title Number': '" + object.getLandTitleNumber() + "',");
+			jsonObj.put("Land Title Number", object.getLandTitleNumber());
 		}
 		if (object.isSetSiteAddress()) {
 			// TODO: Format address
-			//writer.writeln("'Site Address': '" + object.getSiteAddress().toString() + "',");
+			// writer.writeln("Site Address", " +
+			// object.getSiteAddress().toString() + ",");
 		}
+		return jsonObj;
 	}
-	
-	private static void writeIfcPropertiesBuilding(JsWriter writer, IfcBuilding object) {
-		writeIfcPropertiesSpatialStructureElement(writer, object);
+
+	private static JSONObject writeIfcPropertiesBuilding(JSONObject jsonObj, IfcBuilding object) throws JSONException {
+		writeIfcPropertiesSpatialStructureElement(jsonObj, object);
 		if (object.isSetElevationOfRefHeightAsString()) {
-			writer.writeln("'Elevation of Ref Height': '" + object.getElevationOfRefHeightAsString() + "',");	
+			jsonObj.put("Elevation of Ref Height", object.getElevationOfRefHeightAsString());
+		} else if (object.isSetElevationOfRefHeight()) {
+			jsonObj.put("Elevation of Ref Height", new DecimalFormat("#.##").format(object.getElevationOfRefHeight()) + ",");
 		}
-		else if (object.isSetElevationOfRefHeight()) {
-			writer.writeln("'Elevation of Ref Height': " + new DecimalFormat("#.##").format(object.getElevationOfRefHeight()) + ",");			
-		}	
 		if (object.isSetElevationOfTerrainAsString()) {
-			writer.writeln("'Elevation of Terrain': '" + object.getElevationOfTerrainAsString() + "',");
-		}
-		else if (object.isSetElevationOfTerrain()) {
-			writer.writeln("'Elevation of Terrain': '" + object.getElevationOfTerrain() + "',");
+			jsonObj.put("Elevation of Terrain", object.getElevationOfTerrainAsString());
+		} else if (object.isSetElevationOfTerrain()) {
+			jsonObj.put("Elevation of Terrain", object.getElevationOfTerrain());
 		}
 		if (object.isSetBuildingAddress()) {
 			// TODO: Format address
-			//IfcPostalAddress getBuildingAddress();
+			// IfcPostalAddress getBuildingAddress();
 		}
+		return jsonObj;
 	}
-	private static void writeIfcPropertiesBuildingStorey(JsWriter writer, IfcBuildingStorey object) {
-		writeIfcPropertiesSpatialStructureElement(writer, object);
+	private static JSONObject writeIfcPropertiesBuildingStorey(JSONObject jsonObj, IfcBuildingStorey object) throws JSONException {
+		writeIfcPropertiesSpatialStructureElement(jsonObj, object);
 		if (object.isSetElevationAsString()) {
-			writer.writeln("'Elevation': '" + object.getElevationAsString() + "',");
+			jsonObj.put("Elevation", object.getElevationAsString());
 		}
 		if (object.isSetElevation()) {
-			writer.writeln("'Elevation': " + new DecimalFormat("#.##").format(object.getElevation()) + ",");
+			jsonObj.put("Elevation", new DecimalFormat("#.##").format(object.getElevation()));
 		}
+		return jsonObj;
 	}
-	private static void writeIfcPropertiesElement(JsWriter writer, IfcElement object) {
-		writeIfcPropertiesProduct(writer, object);
+	private static JSONObject writeIfcPropertiesElement(JSONObject jsonObj, IfcElement object) throws JSONException {
+		writeIfcPropertiesProduct(jsonObj, object);
 		if (object.isSetTag()) {
-			writer.writeln("'Tag': " + object.getTag() + "',");
-		}		
+			jsonObj.put("Tag", object.getTag());
+		}
 		if (object.getFillsVoids() != null && !object.getFillsVoids().isEmpty()) {
 			for (IfcRelFillsElement rel : object.getFillsVoids()) {
 				// todo
 			}
 		}
-		if (object.getConnectedTo() != null && !object.getConnectedTo().isEmpty()) {
+		if (object.getConnectedTo() != null	&& !object.getConnectedTo().isEmpty()) {
 			for (IfcRelConnectsElements rel : object.getConnectedTo()) {
 				// todo
 			}
@@ -1121,7 +969,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 			}
 		}
 		if (object.getReferencedInStructures() != null && !object.getReferencedInStructures().isEmpty()) {
-			for (IfcRelReferencedInSpatialStructure rel : object.getReferencedInStructures()) {
+			for (IfcRelReferencedInSpatialStructure rel : object
+					.getReferencedInStructures()) {
 				// todo
 			}
 		}
@@ -1134,7 +983,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 			for (IfcRelVoidsElement rel : object.getHasOpenings()) {
 				// todo
 			}
-		}		
+		}
 		if (object.getIsConnectionRealization() != null && !object.getIsConnectionRealization().isEmpty()) {
 			for (IfcRelConnectsWithRealizingElements rel : object.getIsConnectionRealization()) {
 				// todo
@@ -1155,15 +1004,16 @@ public class SceneJSSerializer extends BimModelSerializer {
 				// todo
 			}
 		}
+		return jsonObj;
 	}
-	
-	private static void writeIfcPropertiesSpatialStructureElement(JsWriter writer, IfcSpatialStructureElement object) {
-		writeIfcPropertiesProduct(writer, object);
+
+	private static JSONObject writeIfcPropertiesSpatialStructureElement(JSONObject jsonObj, IfcSpatialStructureElement object) throws JSONException {
+		writeIfcPropertiesProduct(jsonObj, object);
 		if (object.isSetLongName()) {
-			writer.writeln("'Long Name': '" + object.getLongName() + "',");
+			jsonObj.put("Long Name", object.getLongName());
 		}
 		if (object.getCompositionType() != null) {
-			writer.writeln("'Composition Type': '" + object.getCompositionType().toString() + "',"); 
+			jsonObj.put("Composition Type", object.getCompositionType().toString());
 		}
 		if (object.getReferencesElements() != null && !object.getReferencesElements().isEmpty()) {
 			for (IfcRelReferencedInSpatialStructure rel : object.getReferencesElements()) {
@@ -1180,10 +1030,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 				// todo
 			}
 		}
+		return jsonObj;
 	}
-	
-	private static void writeIfcPropertiesProduct(JsWriter writer, IfcProduct object) {
-		writeIfcPropertiesObject(writer, object);
+
+	private static JSONObject writeIfcPropertiesProduct(JSONObject jsonObj, IfcProduct object) throws JSONException {
+		writeIfcPropertiesObject(jsonObj, object);
 		if (object.isSetObjectPlacement()) {
 			object.getObjectPlacement().getPlacesObject();
 		}
@@ -1195,10 +1046,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 				// todo
 			}
 		}
+		return jsonObj;
 	}
 	
-	private static void writeIfcPropertiesObject(JsWriter writer, IfcObject object) {
-		writeIfcPropertiesObjectDefinition(writer, object);
+	private static JSONObject writeIfcPropertiesObject(JSONObject jsonObj, IfcObject object) throws JSONException {
+		writeIfcPropertiesObjectDefinition(jsonObj, object);
 		if (object.isSetObjectType()) {
 			object.getObjectType();
 		}
@@ -1207,11 +1059,12 @@ public class SceneJSSerializer extends BimModelSerializer {
 				// todo
 			}
 		}
+		return jsonObj;
 	}
-	
-	private static void writeIfcPropertiesObjectDefinition(JsWriter writer, IfcObjectDefinition object) {
-		writeIfcPropertiesRoot(writer, object);
-		
+
+	private static JSONObject writeIfcPropertiesObjectDefinition(JSONObject jsonObj, IfcObjectDefinition object) throws JSONException {
+		writeIfcPropertiesRoot(jsonObj, object);
+
 		if (object.getHasAssignments() != null && !object.getHasAssignments().isEmpty()) {
 			for (IfcRelAssigns rel : object.getHasAssignments()) {
 				// todo
@@ -1232,27 +1085,29 @@ public class SceneJSSerializer extends BimModelSerializer {
 				// todo
 			}
 		}
+		return jsonObj;
 	}
-	
-	private static void writeIfcPropertiesRoot(JsWriter writer, IfcRoot object) {
-		// IfcGloballyUniqueId getGlobalId(); (Not needed)	
+
+	private static JSONObject writeIfcPropertiesRoot(JSONObject jsonObj, IfcRoot object) throws JSONException {
+		// IfcGloballyUniqueId getGlobalId(); (Not needed)
 		if (object.getOwnerHistory() != null) {
 			object.getOwnerHistory();
-		}	
+		}
 		if (object.isSetName()) {
 			object.getName();
 		}
 		if (object.getDescription() != null) {
-			writer.writeln("'Description': '" + object.getDescription() + "',");
+			jsonObj.put("Description", object.getDescription());
 		}
+		return jsonObj;
 	}
-	
-	private void writeIfcTypes(JsWriter writer) {
-		writer.writetab("ifcTypes: [");
+
+	private JSONArray writeIfcTypes() throws JSONException {
+		JSONArray jsonArray = new JSONArray();
 		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
-			writer.print("'" + ifcObjectType + "',");
+			jsonArray.put(ifcObjectType);
 		}
-		writer.println("],"); // ifcTypes	
+		return jsonArray;
 	}
 
 	private String fitNameForQualifiedName(String name) {
@@ -1282,12 +1137,12 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 		return builder.toString();
 	}
-	
+
 	private void addToExtents(Extents extents, float[] vertex) {
-		//if (!materialGeometryRel.containsKey(material)) {
-		//	materialGeometryRel.put(material, new Extents);
-		//}
-		//materialGeometryRel.get(material).add(id);
+		// if (!materialGeometryRel.containsKey(material)) {
+		// materialGeometryRel.put(material, new Extents);
+		// }
+		// materialGeometryRel.get(material).add(id);
 		// geometryExtents.
 		extents.min[0] = Math.min(vertex[0], extents.min[0]);
 		extents.min[1] = Math.min(vertex[1], extents.min[1]);
@@ -1296,14 +1151,14 @@ public class SceneJSSerializer extends BimModelSerializer {
 		extents.max[1] = Math.max(vertex[1], extents.max[1]);
 		extents.max[2] = Math.max(vertex[2], extents.max[2]);
 	}
-	
+
 	private static String stripClassName(Class classObject) {
 		String name = classObject.getName();
 		int ifcIndex = name.lastIndexOf("Ifc");
 		int implIndex = name.lastIndexOf("Impl");
 		return name.substring(Math.max(name.lastIndexOf('.', ifcIndex < 0? 0 : ifcIndex)+1, ifcIndex < 0? 0 : ifcIndex+3), implIndex < 0? name.length() : implIndex);
 	}
-	
+
 	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
 		SIPrefix lengthUnitPrefix = null;
 		boolean prefixFound = false;
