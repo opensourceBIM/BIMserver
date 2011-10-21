@@ -3758,6 +3758,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcDirection" eSuperTypes="#/2/IfcGeometricRepresentationItem #/2/IfcOrientationSelect #/2/IfcVectorOrDirection">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="DirectionRatios" unique="false"
           upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="DirectionRatiosAsString"
+          unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           derived="true"/>
     </eClassifiers>
@@ -5506,6 +5508,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcRationalBezierCurve" eSuperTypes="#/2/IfcBezierCurve">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="WeightsData" unique="false"
           upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="WeightsDataAsString"
+          unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRectangleHollowProfileDef" eSuperTypes="#/2/IfcRectangleProfileDef">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="WallThickness" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>

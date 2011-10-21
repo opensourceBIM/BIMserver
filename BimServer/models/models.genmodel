@@ -10,12 +10,11 @@
     complianceLevel="6.0" copyrightFields="false" language="">
   <foreignModel>models.ecore</foreignModel>
   <genPackages prefix="Store" basePackage="org.bimserver.models" disposableProviderFactory="true"
-      ecorePackage="models.ecore#/0">
+      loadInitialization="true" ecorePackage="models.ecore#/0">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/UserType">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/UserType/SYSTEM"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/UserType/ADMIN"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/UserType/USER"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/UserType/ANONYMOUS"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/CheckinState">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CheckinState/UPLOADING"/>
@@ -67,6 +66,14 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ActionState/UNKNOWN"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ActionState/STARTED"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ActionState/FINISHED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/ServerState">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/UNDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/NOT_SETUP"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/MIGRATION_REQUIRED"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/MIGRATION_IMPOSSIBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/FATAL_ERROR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/RUNNING"/>
     </genEnums>
     <genDataTypes ecoreDataType="models.ecore#/0/DataHandler"/>
     <genClasses ecoreClass="models.ecore#/0/Project">
@@ -210,6 +217,7 @@
     <genClasses ecoreClass="models.ecore#/0/GuidanceProvider">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidanceProvider/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidanceProvider/className"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidanceProvider/enabled"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GuidanceProvider/serializers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GuidanceProvider/settings"/>
     </genClasses>
@@ -233,8 +241,8 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/CheckinResult">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/CheckinResult/revision"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CheckinResult/rid"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/CheckinResult/project"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CheckinResult/progress"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/DownloadResult">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DownloadResult/projectName"/>
@@ -256,6 +264,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/UserSession/username"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/UserSession/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/UserSession/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/UserSession/remoteAddress"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/UserSession/activeSince"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/UserSession/lastActive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/UserSession/accessMethod"/>
@@ -301,6 +310,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginDescriptor/defaultExtension"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginDescriptor/defaultContentType"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/DeserializerPluginDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DeserializerPluginDescriptor/pluginClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DeserializerPluginDescriptor/defaultName"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/0/RevisionSummaryType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RevisionSummaryType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RevisionSummaryType/count"/>
@@ -324,6 +337,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongAction/start"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongAction/username"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongAction/name"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/LongCheckinAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/LongCheckinAction/revisions"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/GuidanceProviderPluginDescriptor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidanceProviderPluginDescriptor/className"/>
@@ -356,9 +372,33 @@
     <genClasses ecoreClass="models.ecore#/0/NewRevisionNotification">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/NewRevisionNotification/revision"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/CompileResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CompileResult/compileOke"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CompileResult/warnings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CompileResult/errors"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/RunResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/runOke"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/warnings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/errors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/output"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServerInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerInfo/serverState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerInfo/errorMessage"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Version">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/major"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/minor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/revision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/downloadUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/supportUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/supportEmail"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Log" basePackage="org.bimserver.models" disposableProviderFactory="true"
-      ecorePackage="models.ecore#/1">
+      loadInitialization="true" ecorePackage="models.ecore#/1">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/1/AccessMethod">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/1/AccessMethod/SOAP"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/1/AccessMethod/WEB_INTERFACE"/>
@@ -439,7 +479,7 @@
     </genClasses>
   </genPackages>
   <genPackages prefix="Ifc2x3" basePackage="org.bimserver.models" disposableProviderFactory="true"
-      loadInitialization="true" literalsInterface="false" ecorePackage="models.ecore#/2">
+      loadInitialization="true" ecorePackage="models.ecore#/2">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/Tristate">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/Tristate/TRUE"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/Tristate/FALSE"/>
@@ -3300,6 +3340,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcDirection">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcDirection/DirectionRatios"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcDirection/DirectionRatiosAsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcDirection/Dim"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcDiscreteAccessory"/>
@@ -4464,6 +4505,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcRationalBezierCurve">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBezierCurve/WeightsData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBezierCurve/WeightsDataAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcRectangleHollowProfileDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRectangleHollowProfileDef/WallThickness"/>

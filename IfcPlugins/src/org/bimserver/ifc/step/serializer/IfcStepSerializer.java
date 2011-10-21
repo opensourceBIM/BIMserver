@@ -47,10 +47,13 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
+import com.sun.istack.logging.Logger;
 
 public class IfcStepSerializer extends IfcSerializer {
+	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepSerializer.class);
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
 	private static final String NULL = "NULL";
 	private static final String OPEN_CLOSE_PAREN = "()";
@@ -190,12 +193,17 @@ public class IfcStepSerializer extends IfcSerializer {
 			} else if (bool == Tristate.UNDEFINED) {
 				out.print(BOOLEAN_UNDEFINED);
 			}
-		} else if (val instanceof Float || val instanceof Double) {
-			String string = val.toString();
-			if (string.endsWith(DOT_0)) {
-				out.print(string.substring(0, string.length() - 1));
+		} else if (val instanceof Float) {
+			if (((Float)val).isInfinite() || (((Float)val).isNaN())) {
+				LOGGER.info("Serializing infinite or NaN float as 0.0");
+				out.print("0.0");
 			} else {
-				out.print(string);
+				String string = val.toString();
+				if (string.endsWith(DOT_0)) {
+					out.print(string.substring(0, string.length() - 1));
+				} else {
+					out.print(string);
+				}
 			}
 		} else if (val instanceof Boolean) {
 			Boolean bool = (Boolean)val;
@@ -331,7 +339,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else {
 			if (ref instanceof EObject) {
 				writeEmbedded(out, (EObject) ref);
-			} else if (feature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat() || feature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
+			} else if (feature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat()) {
 				Object eGet = object.eGet(object.eClass().getEStructuralFeature(feature.getName() + "AsString"));
 				if (eGet != null) {
 					out.print(eGet);
@@ -351,12 +359,17 @@ public class IfcStepSerializer extends IfcSerializer {
 		EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
 		if (structuralFeature != null) {
 			Object realVal = eObject.eGet(structuralFeature);
-			if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat() || structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
+			if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat()) {
 				Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
 				if (stringVal != null) {
 					out.print(stringVal);
 				} else {
-					out.print(realVal);
+					if (((Float)realVal).isInfinite() || (((Float)realVal).isNaN())) {
+						LOGGER.info("Serializing infinite or NaN float as 0.0");
+						out.print("0.0");
+					} else {
+						out.print(realVal);
+					}
 				}
 			} else {
 				writePrimitive(out, realVal);
@@ -365,8 +378,16 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.print(CLOSE_PAREN);
 	}
 
-	private void writeList(PrintWriter out, EObject object, EStructuralFeature feature) {
+	private void writeList(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		List<?> list = (List<?>) object.eGet(feature);
+		List<?> floatStingList = null;
+		if (feature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+			EStructuralFeature floatStringFeature = feature.getEContainingClass().getEStructuralFeature(feature.getName() + "AsString");
+			if (floatStringFeature == null) {
+				throw new SerializerException("Field " + feature.getName() + "AsString" + " not found");
+			}
+			floatStingList = (List<?>) object.eGet(floatStringFeature);
+		}
 		if (list.size() == 0) {
 			if (feature.isUnsettable()) {
 				out.print(DOLLAR);
@@ -376,6 +397,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else {
 			out.print(OPEN_CLOSE);
 			boolean first = true;
+			int index = 0;
 			for (Object listObject : list) {
 				if (!first) {
 					out.print(COMMA);
@@ -391,7 +413,7 @@ public class IfcStepSerializer extends IfcSerializer {
 						if (listObject instanceof WrappedValue && Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType())) {
 							IdEObject eObject = (IdEObject) listObject;
 							Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
-							if (realVal instanceof Float || realVal instanceof Double) {
+							if (realVal instanceof Float) {
 								Object stringVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValueAsString"));
 								if (stringVal != null) {
 									out.print(stringVal);									
@@ -409,7 +431,7 @@ public class IfcStepSerializer extends IfcSerializer {
 								Object realVal = eObject.eGet(structuralFeature);
 								out.print(upperCases.get(class1));
 								out.print(OPEN_CLOSE);
-								if (realVal instanceof Float || realVal instanceof Double) {
+								if (realVal instanceof Float) {
 									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
 									if (stringVal != null) {
 										out.print(stringVal);
@@ -422,11 +444,21 @@ public class IfcStepSerializer extends IfcSerializer {
 								out.print(CLOSE_PAREN);
 							}
 						} else {
-							writePrimitive(out, listObject);
+							if (floatStingList != null) {
+								String val = (String)floatStingList.get(index);
+								if (val == null) {
+									writePrimitive(out, listObject);
+								} else {
+									out.write(val);
+								}
+							} else {
+								writePrimitive(out, listObject);
+							}
 						}
 					}
 				}
 				first = false;
+				index++;
 			}
 			out.print(CLOSE_PAREN);
 		}
