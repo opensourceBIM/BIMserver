@@ -77,8 +77,8 @@ public class Express2EMF {
 
 	public static void main(String[] args) {
 		Express2EMF express2EMF = new Express2EMF(
-				".." + File.separator + "BimServer" + File.separator + "deploy" + File.separator + "shared" + File.separator + "IFC2X3_FINAL.exp", "Ifc2x3");
-		express2EMF.writeEMF(".." + File.separator + "Ifc" + File.separator + "model" + File.separator + "IFC2X3.ecore");
+				".." + File.separator + "Builds" + File.separator + "build" + File.separator + "targets" + File.separator + "shared" + File.separator + "IFC2X3_FINAL.exp", "ifc2x3");
+		express2EMF.writeEMF("../BimServer/src/org/bimserver/database/migrations/steps/" + "IFC2X3.ecore");
 	}
 
 	public Express2EMF(String schemaFileName, String modelName) {
@@ -399,6 +399,7 @@ public class Express2EMF {
 						EAttribute floatStringAttribute = eFactory.createEAttribute();
 						floatStringAttribute.setName(attrib.getName() + "AsString");
 						floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+						floatStringAttribute.setUpperBound(-1);
 						floatStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
 						floatStringAttribute.setUpperBound(eAttribute.getUpperBound());
 						floatStringAttribute.setUnique(false);
@@ -410,6 +411,15 @@ public class Express2EMF {
 					eAttribute.setUnique(false);
 					eAttribute.setEType(EcorePackage.eINSTANCE.getEAttribute());
 					cls.getEStructuralFeatures().add(eAttribute);
+					
+					EAttribute floatStringAttribute = eFactory.createEAttribute();
+					floatStringAttribute.setName(attrib.getName() + "AsString");
+					floatStringAttribute.setUpperBound(-1);
+					floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+					floatStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+					floatStringAttribute.setUpperBound(eAttribute.getUpperBound());
+					floatStringAttribute.setUnique(false);
+					cls.getEStructuralFeatures().add(floatStringAttribute);
 				} else {
 					EReference eRef = eFactory.createEReference();
 					eRef.setUpperBound(-1);
@@ -435,6 +445,15 @@ public class Express2EMF {
 				eAttribute.setUnique(false);
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEFloat());
 				cls.getEStructuralFeatures().add(eAttribute);
+
+				EAttribute floatStringAttribute = eFactory.createEAttribute();
+				floatStringAttribute.setName(attrib.getName() + "AsString");
+				floatStringAttribute.setUpperBound(-1);
+				floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+				floatStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+				floatStringAttribute.setUpperBound(eAttribute.getUpperBound());
+				floatStringAttribute.setUnique(false);
+				cls.getEStructuralFeatures().add(floatStringAttribute);
 			} else if (bt instanceof IntegerType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
 				eAttribute.setName(attrib.getName());

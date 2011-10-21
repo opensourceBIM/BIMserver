@@ -218,6 +218,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			}
 			break;
 		case FOOTER:
+			System.out.println(model.size());
 			if (line.equals("ENDSEC;")) {
 				mode = Mode.DONE;
 			}
@@ -280,7 +281,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						} else {
 							if (!structuralFeature.isMany()) {
 								object.eSet(structuralFeature, convert(structuralFeature.getEType(), val));
-								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat() || structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
 									EStructuralFeature floatStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
 									object.eSet(floatStringFeature, val);
 								}
@@ -307,15 +308,23 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			throw new DeserializeException("Field " + structuralFeature.getName() + " of " + structuralFeature.getEContainingClass().getName() + " is no aggregation");
 		}
 		BasicEList list = (BasicEList) object.eGet(structuralFeature);
+		BasicEList floatStringList = null;
+		if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+			EStructuralFeature floatStringFeature = structuralFeature.getEContainingClass().getEStructuralFeature(structuralFeature.getName() + "AsString");
+			if (floatStringFeature == null) {
+				throw new DeserializeException("Field not found: " + structuralFeature.getName() + "AsString");
+			}
+			floatStringList = (BasicEList)object.eGet(floatStringFeature);
+		}
 		String realData = val.substring(1, val.length() - 1);
 		int lastIndex = 0;
 		while (lastIndex != realData.length() + 1) {
 			int nextIndex = StringUtils.nextString(realData, lastIndex);
-			String a = realData.substring(lastIndex, nextIndex - 1).trim();
+			String stringValue = realData.substring(lastIndex, nextIndex - 1).trim();
 			lastIndex = nextIndex;
-			if (a.length() > 0) {
-				if (a.charAt(0) == '#') {
-					Long referenceId = Long.parseLong(a.substring(1));
+			if (stringValue.length() > 0) {
+				if (stringValue.charAt(0) == '#') {
+					Long referenceId = Long.parseLong(stringValue.substring(1));
 					if (model.contains(referenceId)) {
 						EObject referencedObject = model.get(referenceId);
 						if (referencedObject != null) {
@@ -340,11 +349,17 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						waitingList.add(new WaitingObject(object, structuralFeature, index));
 					}
 				} else {
-					Object convert = convert(structuralFeature.getEType(), a);
+					Object convert = convert(structuralFeature.getEType(), stringValue);
 					while (list.size() <= index) {
+						if (floatStringList != null) {
+							floatStringList.addUnique(stringValue);
+						}
 						list.addUnique(convert);
 					}
 					if (convert != null) {
+						if (floatStringList != null) {
+							floatStringList.addUnique(stringValue);
+						}
 						list.setUnique(index, convert);
 					}
 				}
@@ -385,9 +400,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 
 	private Object convertSimpleValue(Class<?> instanceClass, String value) throws DeserializeException {
 		if (!value.equals("")) {
-			if (instanceClass == Double.class || instanceClass == double.class) {
-				return Double.parseDouble(value);
-			} else if (instanceClass == Integer.class || instanceClass == int.class) {
+			if (instanceClass == Integer.class || instanceClass == int.class) {
 				return Integer.parseInt(value);
 			} else if (instanceClass == Long.class || instanceClass == long.class) {
 				return Long.parseLong(value);
