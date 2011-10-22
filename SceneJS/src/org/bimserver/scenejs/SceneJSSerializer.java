@@ -274,7 +274,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 						surfaceStyleIds.add(name);
 						array.put(writeMaterial(name, 
 								new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
-								ssr.isSetTransparency() ? ssr.getTransparency() : 1.0f));
+								ssr.isSetTransparency() && ssr.getTransparency() < 1.0f ? 1.0f - ssr.getTransparency() : 1.0f));
 						break;
 					}
 				}
