@@ -627,6 +627,12 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private JSONArray writeVisualScenes(JSONArray array) throws JSONException {
 		// Calculate the maximum ray length through the scene (using the two extreme points of the scene's bounding box)
 		float[] extentsDiff = new float[]{ sceneExtents.max[0] - sceneExtents.min[0], sceneExtents.max[1] - sceneExtents.min[1], sceneExtents.max[2] - sceneExtents.min[2] };
+		if (Float.isInfinite(extentsDiff[0]))
+			extentsDiff[0] = 10.0f;
+		if (Float.isInfinite(extentsDiff[1]))
+			extentsDiff[1] = 10.0f;
+		if (Float.isInfinite(extentsDiff[2]))
+			extentsDiff[2] = 10.0f;
 		float extentsDiffLength = (float) Math.sqrt((double)(extentsDiff[0]*extentsDiff[0] + extentsDiff[1]*extentsDiff[1] + extentsDiff[2]*extentsDiff[2]));
 
 		// Write the nodes to the stream
@@ -738,35 +744,35 @@ public class SceneJSSerializer extends BimModelSerializer {
 		return lengthUnitPrefix == null? "1 meter" : Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase();
 	}
 
-	private JSONObject writeIfcTreeRelatedObject(IfcObject object) throws JSONException {
+	private JSONObject writeIfcTreeRelatedObject(HashSet<String> visitedIds, IfcObject object) throws JSONException {
 		JSONObject jsonObj = new JSONObject()
 			.put("type", object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()))
 			.put("name", object.isSetName() ? object.getName() : "unknown")
 			.put("id", object.getGlobalId().getWrappedValue())
-			.put("decomposedBy", writeIfcTreeDecomposedBy(object))
-			.put("definedBy", writeIfcTreeDefinedBy((IfcObject) object));
+			.put("decomposedBy", writeIfcTreeDecomposedBy(visitedIds, object))
+			.put("definedBy", writeIfcTreeDefinedBy(visitedIds, (IfcObject) object));
 		
 		if (object instanceof IfcSpatialStructureElement) {
-			jsonObj.put("contains", writeIfcTreeContainsElements((IfcSpatialStructureElement) object));
+			jsonObj.put("contains", writeIfcTreeContainsElements(visitedIds, (IfcSpatialStructureElement) object));
 		}
 		return jsonObj;
 	}
 
 	private JSONArray writeIfcTree() throws JSONException {
-		// HashSet<String> visitedGUIDs;
+		HashSet<String> visitedIds = new HashSet<String>();
 
 		// Output the object relationships
 		JSONArray jsonArray = new JSONArray();
 		Map<Long, IdEObject> objects = model.getObjects();
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcProject) {
-				jsonArray.put(writeIfcTreeRelatedObject((IfcProject) object));
+				jsonArray.put(writeIfcTreeRelatedObject(visitedIds, (IfcProject) object));
 			}
 		}
 		return jsonArray;
 	}
 
-	private JSONArray writeIfcTreeDecomposedBy(IfcObjectDefinition objectDefinition) throws JSONException {
+	private JSONArray writeIfcTreeDecomposedBy(HashSet<String> visitedIds, IfcObjectDefinition objectDefinition) throws JSONException {
 		JSONArray jsonArray = new JSONArray();
 		EList<IfcRelDecomposes> relList = objectDefinition.getIsDecomposedBy();
 		if (relList != null && !relList.isEmpty()) {
@@ -774,7 +780,10 @@ public class SceneJSSerializer extends BimModelSerializer {
 				EList<IfcObjectDefinition> relatedObjects = rel.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
 					if (relatedObject instanceof IfcObject) {
-						jsonArray.put(writeIfcTreeRelatedObject((IfcObject) relatedObject));
+						if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
+							visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+							jsonArray.put(writeIfcTreeRelatedObject(visitedIds, (IfcObject) relatedObject));
+						}
 					}
 				}
 			}
@@ -782,14 +791,17 @@ public class SceneJSSerializer extends BimModelSerializer {
 		return jsonArray;
 	}
 
-	private JSONArray writeIfcTreeDefinedBy(IfcObject object) throws JSONException {
+	private JSONArray writeIfcTreeDefinedBy(HashSet<String> visitedIds, IfcObject object) throws JSONException {
 		JSONArray jsonArray = new JSONArray();
 		EList<IfcRelDefines> relList = object.getIsDefinedBy();
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelDefines rel : relList) {
 				EList<IfcObject> relatedObjects = rel.getRelatedObjects();
 				for (IfcObject relatedObject : relatedObjects) {
-					jsonArray.put(writeIfcTreeRelatedObject(relatedObject));
+					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
+						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+						jsonArray.put(writeIfcTreeRelatedObject(visitedIds, relatedObject));
+					}
 				}
 			}
 		}
@@ -808,13 +820,16 @@ public class SceneJSSerializer extends BimModelSerializer {
 		// }
 	}
 
-	private JSONArray writeIfcTreeContainsElements(IfcSpatialStructureElement spatialStructureElement) throws JSONException {
+	private JSONArray writeIfcTreeContainsElements(HashSet<String> visitedIds, IfcSpatialStructureElement spatialStructureElement) throws JSONException {
 		JSONArray jsonArray = new JSONArray(); 
 		EList<IfcRelContainedInSpatialStructure> relList = spatialStructureElement.getContainsElements();
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelContainedInSpatialStructure rel : relList) {
 				for (IfcProduct relatedObject : rel.getRelatedElements()) {
-					jsonArray.put(writeIfcTreeProduct(relatedObject));
+					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())){
+						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+						jsonArray.put(writeIfcTreeProduct(relatedObject));
+					}
 				}
 			}
 		}
