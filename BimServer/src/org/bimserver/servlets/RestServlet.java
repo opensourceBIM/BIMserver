@@ -53,7 +53,6 @@ public class RestServlet extends CXFNonSpringJaxrsServlet {
 		serverFactoryBean.setResourceProvider(new ResourceProvider() {
 			@Override
 			public void releaseInstance(Message m, Object o) {
-				((Service)o).close();
 			}
 			
 			@Override
@@ -68,7 +67,7 @@ public class RestServlet extends CXFNonSpringJaxrsServlet {
 			
 			@Override
 			public Object getInstance(Message message) {
-				Token token = (Token)message.getExchange().getService().get("token");
+				Token token = (Token)message.getExchange().getSession().get("token");
 				try {
 					return bimServer.getServiceFactory().getService(token);
 				} catch (UserException e) {
