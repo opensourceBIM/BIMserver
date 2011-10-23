@@ -54,15 +54,15 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 
 	@Override
 	public void handleMessage(Message message) throws Fault {
-		Token token = (Token)message.getExchange().getService().get("token");
+		Token token = (Token)message.getExchange().getSession().get("token");
 		HttpServletRequest httpRequest = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
 		ServiceInterface newService = null;
 		if (token == null) {
 			newService = bimServer.getServiceFactory().newService(AccessMethod.REST, httpRequest.getRemoteAddr());
-			message.getExchange().getService().put("token", ((Service)newService).getCurrentToken());
+			message.getExchange().getSession().put("token", ((Service)newService).getCurrentToken());
 		} else {
 			try {
-				newService = bimServer.getServiceFactory().getService((Token)message.getExchange().getService().get("token"));
+				newService = bimServer.getServiceFactory().getService(token);
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}
@@ -88,6 +88,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
+			sendErrorResponse(message, HttpURLConnection.HTTP_FORBIDDEN);
 		}
 	}
 
