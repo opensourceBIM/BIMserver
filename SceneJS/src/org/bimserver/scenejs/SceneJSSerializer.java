@@ -34,10 +34,18 @@ import org.codehaus.jettison.json.JSONObject;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.ifc2x3.IfcActorRole;
+import org.bimserver.models.ifc2x3.IfcAddress;
+import org.bimserver.models.ifc2x3.IfcApplication;
+import org.bimserver.models.ifc2x3.IfcChangeActionEnum;
+import org.bimserver.models.ifc2x3.IfcConnectionGeometry;
+import org.bimserver.models.ifc2x3.IfcCovering;
 import org.bimserver.models.ifc2x3.IfcElement;
 import org.bimserver.models.ifc2x3.IfcBuilding;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcElementCompositionEnum;
+import org.bimserver.models.ifc2x3.IfcFeatureElementAddition;
+import org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcLayeredItem;
 import org.bimserver.models.ifc2x3.IfcObject;
@@ -56,6 +64,11 @@ import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
 import org.bimserver.models.ifc2x3.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3.IfcMember;
 import org.bimserver.models.ifc2x3.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3.IfcOpeningElement;
+import org.bimserver.models.ifc2x3.IfcOrganization;
+import org.bimserver.models.ifc2x3.IfcPerson;
+import org.bimserver.models.ifc2x3.IfcPersonAndOrganization;
+import org.bimserver.models.ifc2x3.IfcPort;
 import org.bimserver.models.ifc2x3.IfcRelConnectsElements;
 import org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement;
 import org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement;
@@ -96,6 +109,8 @@ import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3.IfcStair;
 import org.bimserver.models.ifc2x3.IfcStairFlight;
+import org.bimserver.models.ifc2x3.IfcStateEnum;
+import org.bimserver.models.ifc2x3.IfcStructuralMember;
 import org.bimserver.models.ifc2x3.IfcStyledItem;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
@@ -628,11 +643,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 		// Calculate the maximum ray length through the scene (using the two extreme points of the scene's bounding box)
 		float[] extentsDiff = new float[]{ sceneExtents.max[0] - sceneExtents.min[0], sceneExtents.max[1] - sceneExtents.min[1], sceneExtents.max[2] - sceneExtents.min[2] };
 		if (Float.isInfinite(extentsDiff[0]))
-			extentsDiff[0] = 10.0f;
+			extentsDiff[0] = 50.0f;
 		if (Float.isInfinite(extentsDiff[1]))
-			extentsDiff[1] = 10.0f;
+			extentsDiff[1] = 50.0f;
 		if (Float.isInfinite(extentsDiff[2]))
-			extentsDiff[2] = 10.0f;
+			extentsDiff[2] = 50.0f;
 		float extentsDiffLength = (float) Math.sqrt((double)(extentsDiff[0]*extentsDiff[0] + extentsDiff[1]*extentsDiff[1] + extentsDiff[2]*extentsDiff[2]));
 
 		// Write the nodes to the stream
@@ -733,10 +748,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 	}
 
 	private JSONArray writeBounds() throws JSONException {
+		float[] bounds = {sceneExtents.max[0] - sceneExtents.min[0], sceneExtents.max[1] - sceneExtents.min[1], sceneExtents.max[2] - sceneExtents.min[2]};
 		return new JSONArray()
-			.put(sceneExtents.max[0] - sceneExtents.min[0])
-			.put(sceneExtents.max[1] - sceneExtents.min[1])
-			.put(sceneExtents.max[2] - sceneExtents.min[2]);
+			.put(Float.isInfinite(bounds[0])? 50.0f : bounds[0])
+			.put(Float.isInfinite(bounds[1])? 50.0f : bounds[1])
+			.put(Float.isInfinite(bounds[2])? 50.0f : bounds[2]);
 	}
 
 	private String writeUnit() {
@@ -918,13 +934,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 			jsonObj.put("Land Title Number", object.getLandTitleNumber());
 		}
 		if (object.isSetSiteAddress()) {
-			// TODO: Format address
-			// writer.writeln("Site Address", " +
-			// object.getSiteAddress().toString() + ",");
+			jsonObj.put("Site Address", addressToString(object.getSiteAddress()));
 		}
 		return jsonObj;
 	}
-
+	
 	private static JSONObject writeIfcPropertiesBuilding(JSONObject jsonObj, IfcBuilding object) throws JSONException {
 		writeIfcPropertiesSpatialStructureElement(jsonObj, object);
 		if (object.isSetElevationOfRefHeightAsString()) {
@@ -938,8 +952,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 			jsonObj.put("Elevation of Terrain", object.getElevationOfTerrain());
 		}
 		if (object.isSetBuildingAddress()) {
-			// TODO: Format address
-			// IfcPostalAddress getBuildingAddress();
+			jsonObj.put("Building Address", addressToString(object.getBuildingAddress()));
 		}
 		return jsonObj;
 	}
@@ -959,64 +972,133 @@ public class SceneJSSerializer extends BimModelSerializer {
 			jsonObj.put("Tag", object.getTag());
 		}
 		if (object.getFillsVoids() != null && !object.getFillsVoids().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Fills Voids", jsonArray);
 			for (IfcRelFillsElement rel : object.getFillsVoids()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				/* TODO
+				new JSONObject()
+					.put("Relating Opening Element", writeLink(rel.getRelatingOpeningElement()))
+					.put("Related Building Element", writeLink(rel.getRelatedBuildingElement())));//*/
 			}
 		}
 		if (object.getConnectedTo() != null	&& !object.getConnectedTo().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Connected To", jsonArray);
 			for (IfcRelConnectsElements rel : object.getConnectedTo()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				/* TODO: 
+				JSONObject jsonConectedTo = new JSONObject();
+				jsonArray.put(jsonConectedTo);
+				/* TODO: Nothing to write for connection geometry...?
+				if (rel.isSetConnectionGeometry()) {
+					jsonConectedTo.put("Connection Geometry", writeConnectionGeometry(rel.getConnectionGeometry()));
+				}//*/
+				/* TODO:
+				boolean isSetConnectionGeometry();
+				IfcElement getRelatingElement();
+				void setRelatingElement(IfcElement value);
+				IfcElement getRelatedElement(); //*/
 			}
 		}
 		if (object.getHasCoverings() != null && !object.getHasCoverings().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Has Coverings", jsonArray);
 			for (IfcRelCoversBldgElements rel : object.getHasCoverings()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				/* TODO:
+				getRelatingBuildingElement();
+				EList<IfcCovering> getRelatedCoverings();
+				//*/
 			}
 		}
 		if (object.getHasProjections() != null && !object.getHasProjections().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Has Projections", jsonArray);
 			for (IfcRelProjectsElement rel : object.getHasProjections()) {
-				// todo
+				/* TODO:
+				jsonArray.put(new JSONObject());
+				IfcElement getRelatingElement();
+				IfcFeatureElementAddition getRelatedFeatureElement();//*/				
 			}
 		}
 		if (object.getHasStructuralMember() != null && !object.getHasStructuralMember().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Has Structural Member", jsonArray); // TODO: Shouldn't this be "Has Structural Member(s)"?
 			for (IfcRelConnectsStructuralElement rel : object.getHasStructuralMember()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				/* TODO:
+				IfcElement getRelatingElement();
+				IfcStructuralMember getRelatedStructuralMember();
+				//*/
 			}
 		}
 		if (object.getReferencedInStructures() != null && !object.getReferencedInStructures().isEmpty()) {
-			for (IfcRelReferencedInSpatialStructure rel : object
-					.getReferencedInStructures()) {
-				// todo
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Referenced In Structures", jsonArray); // TODO: Shouldn't this be "Has Structural Member(s)"?
+			for (IfcRelReferencedInSpatialStructure rel : object.getReferencedInStructures()) {
+				jsonArray.put(writeLink(rel));
+				/* TODO:
+				EList<IfcProduct> getRelatedElements();
+				IfcSpatialStructureElement getRelatingStructure();//*/
 			}
 		}
 		if (object.getHasPorts() != null && !object.getHasPorts().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Has Ports", jsonArray);
 			for (IfcRelConnectsPortToElement rel : object.getHasPorts()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				/* TODO:
+				getRelatingPort();
+				IfcElement getRelatedElement();//*/
 			}
 		}
 		if (object.getHasOpenings() != null && !object.getHasOpenings().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Has Openings", jsonArray);
 			for (IfcRelVoidsElement rel : object.getHasOpenings()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				/* TODO:
+				getRelatingBuildingElement();
+				IfcFeatureElementSubtraction getRelatedOpeningElement();
+				//*/
 			}
 		}
 		if (object.getIsConnectionRealization() != null && !object.getIsConnectionRealization().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Is Connection Realization", jsonArray); // TODO: Should this rather be something like "Realizing Elements"? 
 			for (IfcRelConnectsWithRealizingElements rel : object.getIsConnectionRealization()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				/* TODO:
+				getRealizingElements();
+				String getConnectionType();
+				void setConnectionType(String value);
+				void unsetConnectionType();
+				boolean isSetConnectionType();
+				//*/
 			}
 		}
 		if (object.getProvidesBoundaries() != null && !object.getProvidesBoundaries().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Provides Boundaries", jsonArray); 
 			for (IfcRelSpaceBoundary rel : object.getProvidesBoundaries()) {
-				// todo
+				jsonArray.put(writeLink(rel));
 			}
 		}
 		if (object.getConnectedFrom() != null && !object.getConnectedFrom().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Connected From", jsonArray); 
 			for (IfcRelConnectsElements rel : object.getConnectedFrom()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		if (object.getContainedInStructure() != null && !object.getContainedInStructure().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Contained In Structure", jsonArray); 
 			for (IfcRelContainedInSpatialStructure rel : object.getContainedInStructure()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		return jsonObj;
@@ -1031,18 +1113,27 @@ public class SceneJSSerializer extends BimModelSerializer {
 			jsonObj.put("Composition Type", object.getCompositionType().toString());
 		}
 		if (object.getReferencesElements() != null && !object.getReferencesElements().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("References Elements", jsonArray); 
 			for (IfcRelReferencedInSpatialStructure rel : object.getReferencesElements()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		if (object.getServicedBySystems() != null && !object.getServicedBySystems().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Serviced By Systems", jsonArray); 
 			for (IfcRelServicesBuildings rel : object.getServicedBySystems()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		if (object.getContainsElements() != null && !object.getContainsElements().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Contains Elements", jsonArray); 
 			for (IfcRelContainedInSpatialStructure rel : object.getContainsElements()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		return jsonObj;
@@ -1057,8 +1148,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 			object.getRepresentation();
 		}
 		if (object.getReferencedBy() != null && !object.getReferencedBy().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Referenced By", jsonArray); 
 			for (IfcRelAssignsToProduct rel : object.getReferencedBy()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		return jsonObj;
@@ -1070,8 +1164,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 			object.getObjectType();
 		}
 		if (object.getIsDefinedBy() != null && !object.getIsDefinedBy().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Is Defined By", jsonArray); 
 			for (IfcRelDefines rel : object.getIsDefinedBy()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		return jsonObj;
@@ -1081,32 +1178,72 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writeIfcPropertiesRoot(jsonObj, object);
 
 		if (object.getHasAssignments() != null && !object.getHasAssignments().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Is Defined By", jsonArray); 
 			for (IfcRelAssigns rel : object.getHasAssignments()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		if (object.getIsDecomposedBy() != null && !object.getIsDecomposedBy().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Is Defined By", jsonArray); 
 			for (IfcRelDecomposes rel : object.getIsDecomposedBy()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		if (object.getDecomposes() != null && !object.getDecomposes().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Is Defined By", jsonArray); 
 			for (IfcRelDecomposes rel : object.getDecomposes()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		if (object.getHasAssociations() != null && !object.getHasAssociations().isEmpty()) {
+			JSONArray jsonArray = new JSONArray();
+			jsonObj.put("Has Associations", jsonArray); 
 			for (IfcRelAssociates rel : object.getHasAssociations()) {
-				// todo
+				jsonArray.put(writeLink(rel));
+				//TODO
 			}
 		}
 		return jsonObj;
 	}
 
 	private static JSONObject writeIfcPropertiesRoot(JSONObject jsonObj, IfcRoot object) throws JSONException {
-		// IfcGloballyUniqueId getGlobalId(); (Not needed)
+		/* NOT NEEDED:
+		if (object.getGlobalId() != null) {			
+			jsonObj.put("Global Id", object.getGlobalId().getWrappedValue());
+		}//*/
 		if (object.getOwnerHistory() != null) {
-			object.getOwnerHistory();
+			IfcOwnerHistory history = object.getOwnerHistory();
+			JSONObject jsonOwningUser = new JSONObject();
+			jsonObj.put("Owner History", new JSONObject()
+				.put("Owning User", jsonOwningUser)
+				.put("Owning Application", writeApplication(history.getOwningApplication()))
+				.put("State", history.getState().getName())
+				.put("Change Action", history.getChangeAction().getName())
+				.put("Creation Date", history.getCreationDate()));
+
+			jsonOwningUser.put("The Person", writePerson(history.getOwningUser().getThePerson()));
+			jsonOwningUser.put("The Organization", writeOrganization(history.getOwningUser().getTheOrganization()));
+			if (history.getOwningUser().isSetRoles()) {
+				jsonOwningUser.put("Roles", writeActorRoles(history.getOwningUser().getRoles()));
+			}
+			
+			if (history.isSetLastModifiedDate()) {
+				jsonObj.put("Last Modified Date", history.getLastModifiedDate()); // TODO: Format as date?
+			}
+			
+			if (history.isSetLastModifyingUser()) {
+				// TODO IfcPersonAndOrganization getLastModifyingUser();
+			}
+			
+			if (history.isSetLastModifyingApplication()) {
+				// TODO IfcApplication getLastModifyingApplication();
+			}
 		}
 		if (object.isSetName()) {
 			object.getName();
@@ -1114,6 +1251,64 @@ public class SceneJSSerializer extends BimModelSerializer {
 		if (object.getDescription() != null) {
 			jsonObj.put("Description", object.getDescription());
 		}
+		return jsonObj;
+	}
+	
+	private static JSONObject writePerson(IfcPerson person) {
+		JSONObject jsonObj = new JSONObject();
+		/* TODO
+		String getId();
+		boolean isSetId();
+		
+		String getFamilyName();
+		void setFamilyName(String value);
+		boolean isSetFamilyName();
+
+		String getGivenName();
+		void setGivenName(String value);
+		boolean isSetGivenName();
+
+		EList<String> getMiddleNames();
+		boolean isSetMiddleNames();
+
+		EList<String> getPrefixTitles();
+		boolean isSetPrefixTitles();
+
+		EList<String> getSuffixTitles();
+		boolean isSetSuffixTitles();
+
+		EList<IfcActorRole> getRoles();
+		boolean isSetRoles();
+
+		EList<IfcAddress> getAddresses();
+		void unsetAddresses();
+		boolean isSetAddresses();
+		
+		EList<IfcPersonAndOrganization> getEngagedIn();//*/
+		return jsonObj;
+	}
+	
+	private static JSONObject writeOrganization(IfcOrganization organization) {
+		JSONObject jsonObj = new JSONObject();
+		// TODO
+		return jsonObj;
+	}
+	
+	private static JSONObject writeActorRoles(EList<IfcActorRole> actorRoles) {
+		JSONObject jsonObj = new JSONObject();
+		// TODO
+		return jsonObj;
+	}
+	
+	private static JSONObject writeApplication(IfcApplication application) {
+		JSONObject jsonObj = new JSONObject();
+		/* TODO
+		IfcOrganization getApplicationDeveloper();
+		void setApplicationDeveloper(IfcOrganization value);
+		String getVersion();
+		void setVersion(String value);
+		String getApplicationFullName();
+		String getApplicationIdentifier(); //*/
 		return jsonObj;
 	}
 
@@ -1124,8 +1319,13 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 		return jsonArray;
 	}
+	
+	private static String writeLink(IfcRoot root) {
+		// TODO: Might return a JSONObject later (with link name & global id)
+		return root.getGlobalId().getWrappedValue();
+	}
 
-	private String fitNameForQualifiedName(String name) {
+	private static String fitNameForQualifiedName(String name) {
 		if (name == null) {
 			return "Null";
 		}
@@ -1172,6 +1372,51 @@ public class SceneJSSerializer extends BimModelSerializer {
 		int ifcIndex = name.lastIndexOf("Ifc");
 		int implIndex = name.lastIndexOf("Impl");
 		return name.substring(Math.max(name.lastIndexOf('.', ifcIndex < 0? 0 : ifcIndex)+1, ifcIndex < 0? 0 : ifcIndex+3), implIndex < 0? name.length() : implIndex);
+	}
+	
+	private static String addressToString(IfcPostalAddress address) {
+		// TODO: is this formatting correct?
+		String str = new String();
+		boolean firstLine = true;
+		if (address.isSetAddressLines()) {
+			for (String line : address.getAddressLines()) {
+				str += firstLine ? "" : "\n";
+				firstLine = false;
+				str += line;
+			}
+		}
+		//* TODO: Are these perhaps captured by address lines?
+		else if (address.isSetInternalLocation()) {
+			str += firstLine ? "" : "\n";
+			firstLine = false;
+			str = address.getInternalLocation();
+		}
+		if (address.isSetPostalBox()) {
+			str += firstLine ? "" : "\n";
+			firstLine = false;
+			str += "\n" + address.getPostalBox();
+		}
+		if (address.isSetTown()) {
+			str += firstLine ? "" : "\n";
+			firstLine = false;
+			str += address.getTown();
+		}
+		if (address.isSetRegion()) {
+			str += firstLine ? "" : "\n";
+			firstLine = false;
+			str += address.getRegion();
+		}
+		if (address.isSetPostalCode()) {
+			str += firstLine ? "" : "\n";
+			firstLine = false;
+			str += address.getPostalCode();
+		}
+		if (address.isSetCountry()) {
+			str += firstLine ? "" : "\n";
+			firstLine = false;
+			str += address.getCountry();
+		}//*/
+		return str;
 	}
 
 	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
