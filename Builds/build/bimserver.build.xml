@@ -1,6 +1,6 @@
 <project name="BIMserver">
 	<import file="common.build.xml"/>
-	<target name="Jar">
+	<target name="Build Jar">
 		<property name="target" value="jar"/>
 		<delete dir="builds"/>
 		<mkdir dir="builds" />
@@ -77,7 +77,7 @@
 		</jar>
 		<delete dir="builds/BuildJar" failonerror="false" />
 	</target>
-	<target name="War">
+	<target name="Build War">
 		<property name="target" value="war"/>
 		<delete dir="builds" />
 		<mkdir dir="builds" />
