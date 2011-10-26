@@ -578,6 +578,10 @@ public class SceneJSSerializer extends BimModelSerializer {
 			-(sceneExtents.min[0] + sceneExtents.max[0]) * 0.5f,
 			-(sceneExtents.min[1] + sceneExtents.max[1]) * 0.5f,
 			-(sceneExtents.min[2] + sceneExtents.max[2]) * 0.5f };
+		
+		modelOffset[0] = Float.isInfinite(modelOffset[0]) || Float.isNaN(modelOffset[0])? 0.0f : modelOffset[0];
+		modelOffset[1] = Float.isInfinite(modelOffset[1]) || Float.isNaN(modelOffset[1])? 0.0f : modelOffset[1];
+		modelOffset[2] = Float.isInfinite(modelOffset[2]) || Float.isNaN(modelOffset[2])? 0.0f : modelOffset[2];
 
 		JSONObject jsonObj = new JSONObject();
 		
@@ -598,9 +602,12 @@ public class SceneJSSerializer extends BimModelSerializer {
 						.put("positions", verticesArray);
 					
 					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
-						verticesArray.put(geometry.getVertex(i + 0) + modelOffset[0])
-							.put(geometry.getVertex(i + 1) + modelOffset[1])
-							.put(geometry.getVertex(i + 2) + modelOffset[2]);
+						float[] v = { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) };
+						 
+						verticesArray
+							.put((Float.isInfinite(v[0]) || Float.isNaN(v[0])? 0.0f : v[0]) + modelOffset[0])
+							.put((Float.isInfinite(v[1]) || Float.isNaN(v[1])? 0.0f : v[1]) + modelOffset[1])
+							.put((Float.isInfinite(v[2]) || Float.isNaN(v[2])? 0.0f : v[2]) + modelOffset[2]);
 					}
 					
 					JSONArray normalsArray = new JSONArray();
