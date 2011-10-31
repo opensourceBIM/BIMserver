@@ -80,7 +80,7 @@
 	<td><input type="password" id="adminPassword" name="adminPassword" value="<%=adminPassword %>"/></td>
 </tr>
 <tr>
-	<td>
+	<td colspan="2">
 		<p class="explain">By clicking the 'setup' button, you agree that the JSP pages of this BIMserver will have a generic
 		Google Analytics code. This data is send anonymous to the BIMserver.org team to evaluate the use of the GUI. 
 		This is done to improve the usability of BIMserver.<br/>

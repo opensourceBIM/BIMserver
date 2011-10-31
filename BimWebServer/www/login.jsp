@@ -18,7 +18,7 @@
 	<%
 	try {
 		SServerInfo serverInfo = loginManager.getService().getServerInfo();		
-		if (serverInfo.getServerState() != SServerState.MIGRATION_REQUIRED) {
+		if (serverInfo.getServerState() == SServerState.RUNNING) {
 			SVersion version = loginManager.getService().getVersion();
 			boolean redirected = false;
 			if (request.getParameter("login") != null) {

@@ -28,7 +28,7 @@
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
 		<antcall target="buildingSMARTLibrary" />
-		<antcall target="FileBasedGuidanceProvider" />
+		<antcall target="FileBasedObjectIDM" />
 		<antcall target="Report1Serializer" />
 	</target>
 	<target name="BimCombinedServer">
@@ -90,7 +90,7 @@
 			</classpath>
 		</javac>
 		<copy todir="builds/bimserver/org/bimserver/database/migrations/steps">
-			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore"></fileset>
+			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3_TC1.ecore"></fileset>
 		</copy>
 		<mkdir dir="builds/bimserver/plugin"/>
 		<jar destfile="builds/lib/bimserver-${version}.jar">
@@ -160,9 +160,9 @@
 				</path>
 			</classpath>
 		</javac>
-		<mkdir dir="builds/buildingSMARTLibrary/plugin"/>
+		<mkdir dir="builds/filebasedobjectidm/plugin"/>
 		<copy todir="builds/filebasedobjectidm/plugin">
-			<fileset dir="../../FileBasedGuidanceProvider/plugin"></fileset>
+			<fileset dir="../../FileBasedObjectIDM/plugin"></fileset>
 		</copy>
 		<copy todir="builds/filebasedobjectidm">
 			<fileset dir="../../FileBasedObjectIDM">

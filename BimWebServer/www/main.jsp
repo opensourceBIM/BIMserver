@@ -1,3 +1,4 @@
+<%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.web.LoginManager"%>
@@ -54,12 +55,21 @@ try {
 No projects<br/><br/>
 <%
 		}
+	} else {
+		response.sendRedirect("setup.jsp");
+		return;
+	}
+} else {
+	if (loginManager.getService().getServerInfo().getServerState() == SServerState.NOT_SETUP) {
+		response.sendRedirect("setup.jsp");
+		return;
 	}
 }
 %>
 </div>
 <%
 } catch (Exception e) {
+	LoggerFactory.getLogger(JspHelper.class).error("", e);
 	e.printStackTrace();
 }
 %>
