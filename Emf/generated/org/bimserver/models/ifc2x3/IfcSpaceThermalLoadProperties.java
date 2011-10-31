@@ -56,12 +56,12 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * @return the value of the '<em>Applicable Value Ratio</em>' attribute.
 	 * @see #isSetApplicableValueRatio()
 	 * @see #unsetApplicableValueRatio()
-	 * @see #setApplicableValueRatio(float)
+	 * @see #setApplicableValueRatio(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_ApplicableValueRatio()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getApplicableValueRatio();
+	double getApplicableValueRatio();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getApplicableValueRatio <em>Applicable Value Ratio</em>}' attribute.
@@ -73,7 +73,7 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * @see #getApplicableValueRatio()
 	 * @generated
 	 */
-	void setApplicableValueRatio(float value);
+	void setApplicableValueRatio(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getApplicableValueRatio <em>Applicable Value Ratio</em>}' attribute.
@@ -81,7 +81,7 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @see #isSetApplicableValueRatio()
 	 * @see #getApplicableValueRatio()
-	 * @see #setApplicableValueRatio(float)
+	 * @see #setApplicableValueRatio(double)
 	 * @generated
 	 */
 	void unsetApplicableValueRatio();
@@ -93,7 +93,7 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * @return whether the value of the '<em>Applicable Value Ratio</em>' attribute is set.
 	 * @see #unsetApplicableValueRatio()
 	 * @see #getApplicableValueRatio()
-	 * @see #setApplicableValueRatio(float)
+	 * @see #setApplicableValueRatio(double)
 	 * @generated
 	 */
 	boolean isSetApplicableValueRatio();
@@ -271,12 +271,12 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Maximum Value</em>' attribute.
-	 * @see #setMaximumValue(float)
+	 * @see #setMaximumValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_MaximumValue()
 	 * @model
 	 * @generated
 	 */
-	float getMaximumValue();
+	double getMaximumValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getMaximumValue <em>Maximum Value</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * @see #getMaximumValue()
 	 * @generated
 	 */
-	void setMaximumValue(float value);
+	void setMaximumValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Maximum Value As String</b></em>' attribute.
@@ -325,12 +325,12 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * @return the value of the '<em>Minimum Value</em>' attribute.
 	 * @see #isSetMinimumValue()
 	 * @see #unsetMinimumValue()
-	 * @see #setMinimumValue(float)
+	 * @see #setMinimumValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_MinimumValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMinimumValue();
+	double getMinimumValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getMinimumValue <em>Minimum Value</em>}' attribute.
@@ -342,7 +342,7 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * @see #getMinimumValue()
 	 * @generated
 	 */
-	void setMinimumValue(float value);
+	void setMinimumValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getMinimumValue <em>Minimum Value</em>}' attribute.
@@ -350,7 +350,7 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinimumValue()
 	 * @see #getMinimumValue()
-	 * @see #setMinimumValue(float)
+	 * @see #setMinimumValue(double)
 	 * @generated
 	 */
 	void unsetMinimumValue();
@@ -362,7 +362,7 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * @return whether the value of the '<em>Minimum Value</em>' attribute is set.
 	 * @see #unsetMinimumValue()
 	 * @see #getMinimumValue()
-	 * @see #setMinimumValue(float)
+	 * @see #setMinimumValue(double)
 	 * @generated
 	 */
 	boolean isSetMinimumValue();

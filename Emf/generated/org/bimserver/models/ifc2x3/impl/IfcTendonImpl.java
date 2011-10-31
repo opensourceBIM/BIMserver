@@ -92,8 +92,8 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getNominalDiameter() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER, true);
+	public double getNominalDiameter() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER, true);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNominalDiameter(float newNominalDiameter) {
+	public void setNominalDiameter(double newNominalDiameter) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER, newNominalDiameter);
 	}
 
@@ -128,8 +128,8 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCrossSectionArea() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA, true);
+	public double getCrossSectionArea() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA, true);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCrossSectionArea(float newCrossSectionArea) {
+	public void setCrossSectionArea(double newCrossSectionArea) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA, newCrossSectionArea);
 	}
 
@@ -164,8 +164,8 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTensionForce() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE, true);
+	public double getTensionForce() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE, true);
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTensionForce(float newTensionForce) {
+	public void setTensionForce(double newTensionForce) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE, newTensionForce);
 	}
 
@@ -236,8 +236,8 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPreStress() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS, true);
+	public double getPreStress() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS, true);
 	}
 
 	/**
@@ -245,7 +245,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPreStress(float newPreStress) {
+	public void setPreStress(double newPreStress) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS, newPreStress);
 	}
 
@@ -308,8 +308,8 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFrictionCoefficient() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT, true);
+	public double getFrictionCoefficient() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT, true);
 	}
 
 	/**
@@ -317,7 +317,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrictionCoefficient(float newFrictionCoefficient) {
+	public void setFrictionCoefficient(double newFrictionCoefficient) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT, newFrictionCoefficient);
 	}
 
@@ -380,8 +380,8 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAnchorageSlip() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP, true);
+	public double getAnchorageSlip() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP, true);
 	}
 
 	/**
@@ -389,7 +389,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAnchorageSlip(float newAnchorageSlip) {
+	public void setAnchorageSlip(double newAnchorageSlip) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP, newAnchorageSlip);
 	}
 
@@ -452,8 +452,8 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMinCurvatureRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS, true);
+	public double getMinCurvatureRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS, true);
 	}
 
 	/**
@@ -461,7 +461,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinCurvatureRadius(float newMinCurvatureRadius) {
+	public void setMinCurvatureRadius(double newMinCurvatureRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS, newMinCurvatureRadius);
 	}
 

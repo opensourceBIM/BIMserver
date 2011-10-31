@@ -43,12 +43,12 @@ public interface IfcQuantityWeight extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Weight Value</em>' attribute.
-	 * @see #setWeightValue(float)
+	 * @see #setWeightValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityWeight_WeightValue()
 	 * @model
 	 * @generated
 	 */
-	float getWeightValue();
+	double getWeightValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityWeight#getWeightValue <em>Weight Value</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcQuantityWeight extends IfcPhysicalSimpleQuantity {
 	 * @see #getWeightValue()
 	 * @generated
 	 */
-	void setWeightValue(float value);
+	void setWeightValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Weight Value As String</b></em>' attribute.

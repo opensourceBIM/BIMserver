@@ -87,12 +87,12 @@ public interface IfcConstructionMaterialResource extends IfcConstructionResource
 	 * @return the value of the '<em>Usage Ratio</em>' attribute.
 	 * @see #isSetUsageRatio()
 	 * @see #unsetUsageRatio()
-	 * @see #setUsageRatio(float)
+	 * @see #setUsageRatio(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstructionMaterialResource_UsageRatio()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getUsageRatio();
+	double getUsageRatio();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstructionMaterialResource#getUsageRatio <em>Usage Ratio</em>}' attribute.
@@ -104,7 +104,7 @@ public interface IfcConstructionMaterialResource extends IfcConstructionResource
 	 * @see #getUsageRatio()
 	 * @generated
 	 */
-	void setUsageRatio(float value);
+	void setUsageRatio(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstructionMaterialResource#getUsageRatio <em>Usage Ratio</em>}' attribute.
@@ -112,7 +112,7 @@ public interface IfcConstructionMaterialResource extends IfcConstructionResource
 	 * <!-- end-user-doc -->
 	 * @see #isSetUsageRatio()
 	 * @see #getUsageRatio()
-	 * @see #setUsageRatio(float)
+	 * @see #setUsageRatio(double)
 	 * @generated
 	 */
 	void unsetUsageRatio();
@@ -124,7 +124,7 @@ public interface IfcConstructionMaterialResource extends IfcConstructionResource
 	 * @return whether the value of the '<em>Usage Ratio</em>' attribute is set.
 	 * @see #unsetUsageRatio()
 	 * @see #getUsageRatio()
-	 * @see #setUsageRatio(float)
+	 * @see #setUsageRatio(double)
 	 * @generated
 	 */
 	boolean isSetUsageRatio();

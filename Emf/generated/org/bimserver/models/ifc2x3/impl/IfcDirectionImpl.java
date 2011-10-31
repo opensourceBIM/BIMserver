@@ -64,8 +64,8 @@ public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Float> getDirectionRatios() {
-		return (EList<Float>) eGet(Ifc2x3Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS, true);
+	public EList<Double> getDirectionRatios() {
+		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS, true);
 	}
 
 	/**

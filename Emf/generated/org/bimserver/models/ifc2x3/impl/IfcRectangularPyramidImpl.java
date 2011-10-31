@@ -64,8 +64,8 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getXLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH, true);
+	public double getXLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setXLength(float newXLength) {
+	public void setXLength(double newXLength) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH, newXLength);
 	}
 
@@ -100,8 +100,8 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getYLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH, true);
+	public double getYLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH, true);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setYLength(float newYLength) {
+	public void setYLength(double newYLength) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH, newYLength);
 	}
 
@@ -136,8 +136,8 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getHeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT, true);
+	public double getHeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHeight(float newHeight) {
+	public void setHeight(double newHeight) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT, newHeight);
 	}
 

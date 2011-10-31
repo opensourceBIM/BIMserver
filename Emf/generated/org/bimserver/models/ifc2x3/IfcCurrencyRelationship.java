@@ -102,12 +102,12 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Exchange Rate</em>' attribute.
-	 * @see #setExchangeRate(float)
+	 * @see #setExchangeRate(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurrencyRelationship_ExchangeRate()
 	 * @model
 	 * @generated
 	 */
-	float getExchangeRate();
+	double getExchangeRate();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getExchangeRate <em>Exchange Rate</em>}' attribute.
@@ -117,7 +117,7 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * @see #getExchangeRate()
 	 * @generated
 	 */
-	void setExchangeRate(float value);
+	void setExchangeRate(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Exchange Rate As String</b></em>' attribute.

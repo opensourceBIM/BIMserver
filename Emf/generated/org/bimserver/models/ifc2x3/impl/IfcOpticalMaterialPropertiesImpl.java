@@ -76,8 +76,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getVisibleTransmittance() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_TRANSMITTANCE, true);
+	public double getVisibleTransmittance() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_TRANSMITTANCE, true);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibleTransmittance(float newVisibleTransmittance) {
+	public void setVisibleTransmittance(double newVisibleTransmittance) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_TRANSMITTANCE, newVisibleTransmittance);
 	}
 
@@ -148,8 +148,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSolarTransmittance() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_TRANSMITTANCE, true);
+	public double getSolarTransmittance() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_TRANSMITTANCE, true);
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSolarTransmittance(float newSolarTransmittance) {
+	public void setSolarTransmittance(double newSolarTransmittance) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_TRANSMITTANCE, newSolarTransmittance);
 	}
 
@@ -220,8 +220,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThermalIrTransmittance() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_TRANSMITTANCE, true);
+	public double getThermalIrTransmittance() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_TRANSMITTANCE, true);
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThermalIrTransmittance(float newThermalIrTransmittance) {
+	public void setThermalIrTransmittance(double newThermalIrTransmittance) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_TRANSMITTANCE, newThermalIrTransmittance);
 	}
 
@@ -292,8 +292,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThermalIrEmissivityBack() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_EMISSIVITY_BACK, true);
+	public double getThermalIrEmissivityBack() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_EMISSIVITY_BACK, true);
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThermalIrEmissivityBack(float newThermalIrEmissivityBack) {
+	public void setThermalIrEmissivityBack(double newThermalIrEmissivityBack) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_EMISSIVITY_BACK, newThermalIrEmissivityBack);
 	}
 
@@ -364,8 +364,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThermalIrEmissivityFront() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_EMISSIVITY_FRONT, true);
+	public double getThermalIrEmissivityFront() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_EMISSIVITY_FRONT, true);
 	}
 
 	/**
@@ -373,7 +373,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThermalIrEmissivityFront(float newThermalIrEmissivityFront) {
+	public void setThermalIrEmissivityFront(double newThermalIrEmissivityFront) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__THERMAL_IR_EMISSIVITY_FRONT, newThermalIrEmissivityFront);
 	}
 
@@ -436,8 +436,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getVisibleReflectanceBack() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_REFLECTANCE_BACK, true);
+	public double getVisibleReflectanceBack() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_REFLECTANCE_BACK, true);
 	}
 
 	/**
@@ -445,7 +445,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibleReflectanceBack(float newVisibleReflectanceBack) {
+	public void setVisibleReflectanceBack(double newVisibleReflectanceBack) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_REFLECTANCE_BACK, newVisibleReflectanceBack);
 	}
 
@@ -508,8 +508,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getVisibleReflectanceFront() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_REFLECTANCE_FRONT, true);
+	public double getVisibleReflectanceFront() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_REFLECTANCE_FRONT, true);
 	}
 
 	/**
@@ -517,7 +517,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibleReflectanceFront(float newVisibleReflectanceFront) {
+	public void setVisibleReflectanceFront(double newVisibleReflectanceFront) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__VISIBLE_REFLECTANCE_FRONT, newVisibleReflectanceFront);
 	}
 
@@ -580,8 +580,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSolarReflectanceFront() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_REFLECTANCE_FRONT, true);
+	public double getSolarReflectanceFront() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_REFLECTANCE_FRONT, true);
 	}
 
 	/**
@@ -589,7 +589,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSolarReflectanceFront(float newSolarReflectanceFront) {
+	public void setSolarReflectanceFront(double newSolarReflectanceFront) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_REFLECTANCE_FRONT, newSolarReflectanceFront);
 	}
 
@@ -652,8 +652,8 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSolarReflectanceBack() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_REFLECTANCE_BACK, true);
+	public double getSolarReflectanceBack() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_REFLECTANCE_BACK, true);
 	}
 
 	/**
@@ -661,7 +661,7 @@ public class IfcOpticalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSolarReflectanceBack(float newSolarReflectanceBack) {
+	public void setSolarReflectanceBack(double newSolarReflectanceBack) {
 		eSet(Ifc2x3Package.Literals.IFC_OPTICAL_MATERIAL_PROPERTIES__SOLAR_REFLECTANCE_BACK, newSolarReflectanceBack);
 	}
 

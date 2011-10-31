@@ -212,12 +212,12 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * @return the value of the '<em>Supported Length</em>' attribute.
 	 * @see #isSetSupportedLength()
 	 * @see #unsetSupportedLength()
-	 * @see #setSupportedLength(float)
+	 * @see #setSupportedLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsStructuralMember_SupportedLength()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSupportedLength();
+	double getSupportedLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember#getSupportedLength <em>Supported Length</em>}' attribute.
@@ -229,7 +229,7 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * @see #getSupportedLength()
 	 * @generated
 	 */
-	void setSupportedLength(float value);
+	void setSupportedLength(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember#getSupportedLength <em>Supported Length</em>}' attribute.
@@ -237,7 +237,7 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSupportedLength()
 	 * @see #getSupportedLength()
-	 * @see #setSupportedLength(float)
+	 * @see #setSupportedLength(double)
 	 * @generated
 	 */
 	void unsetSupportedLength();
@@ -249,7 +249,7 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * @return whether the value of the '<em>Supported Length</em>' attribute is set.
 	 * @see #unsetSupportedLength()
 	 * @see #getSupportedLength()
-	 * @see #setSupportedLength(float)
+	 * @see #setSupportedLength(double)
 	 * @generated
 	 */
 	boolean isSetSupportedLength();

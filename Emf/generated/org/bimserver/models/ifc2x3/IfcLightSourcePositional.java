@@ -76,12 +76,12 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourcePositional_Radius()
 	 * @model
 	 * @generated
 	 */
-	float getRadius();
+	double getRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourcePositional#getRadius <em>Radius</em>}' attribute.
@@ -91,7 +91,7 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @see #getRadius()
 	 * @generated
 	 */
-	void setRadius(float value);
+	void setRadius(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.
@@ -128,12 +128,12 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constant Attenuation</em>' attribute.
-	 * @see #setConstantAttenuation(float)
+	 * @see #setConstantAttenuation(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourcePositional_ConstantAttenuation()
 	 * @model
 	 * @generated
 	 */
-	float getConstantAttenuation();
+	double getConstantAttenuation();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourcePositional#getConstantAttenuation <em>Constant Attenuation</em>}' attribute.
@@ -143,7 +143,7 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @see #getConstantAttenuation()
 	 * @generated
 	 */
-	void setConstantAttenuation(float value);
+	void setConstantAttenuation(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Constant Attenuation As String</b></em>' attribute.
@@ -180,12 +180,12 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distance Attenuation</em>' attribute.
-	 * @see #setDistanceAttenuation(float)
+	 * @see #setDistanceAttenuation(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourcePositional_DistanceAttenuation()
 	 * @model
 	 * @generated
 	 */
-	float getDistanceAttenuation();
+	double getDistanceAttenuation();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourcePositional#getDistanceAttenuation <em>Distance Attenuation</em>}' attribute.
@@ -195,7 +195,7 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @see #getDistanceAttenuation()
 	 * @generated
 	 */
-	void setDistanceAttenuation(float value);
+	void setDistanceAttenuation(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Distance Attenuation As String</b></em>' attribute.
@@ -232,12 +232,12 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Quadric Attenuation</em>' attribute.
-	 * @see #setQuadricAttenuation(float)
+	 * @see #setQuadricAttenuation(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourcePositional_QuadricAttenuation()
 	 * @model
 	 * @generated
 	 */
-	float getQuadricAttenuation();
+	double getQuadricAttenuation();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourcePositional#getQuadricAttenuation <em>Quadric Attenuation</em>}' attribute.
@@ -247,7 +247,7 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @see #getQuadricAttenuation()
 	 * @generated
 	 */
-	void setQuadricAttenuation(float value);
+	void setQuadricAttenuation(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Quadric Attenuation As String</b></em>' attribute.

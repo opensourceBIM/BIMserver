@@ -79,12 +79,12 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * @return the value of the '<em>Elevation With Flooring</em>' attribute.
 	 * @see #isSetElevationWithFlooring()
 	 * @see #unsetElevationWithFlooring()
-	 * @see #setElevationWithFlooring(float)
+	 * @see #setElevationWithFlooring(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpace_ElevationWithFlooring()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getElevationWithFlooring();
+	double getElevationWithFlooring();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getElevationWithFlooring <em>Elevation With Flooring</em>}' attribute.
@@ -96,7 +96,7 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * @see #getElevationWithFlooring()
 	 * @generated
 	 */
-	void setElevationWithFlooring(float value);
+	void setElevationWithFlooring(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getElevationWithFlooring <em>Elevation With Flooring</em>}' attribute.
@@ -104,7 +104,7 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetElevationWithFlooring()
 	 * @see #getElevationWithFlooring()
-	 * @see #setElevationWithFlooring(float)
+	 * @see #setElevationWithFlooring(double)
 	 * @generated
 	 */
 	void unsetElevationWithFlooring();
@@ -116,7 +116,7 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * @return whether the value of the '<em>Elevation With Flooring</em>' attribute is set.
 	 * @see #unsetElevationWithFlooring()
 	 * @see #getElevationWithFlooring()
-	 * @see #setElevationWithFlooring(float)
+	 * @see #setElevationWithFlooring(double)
 	 * @generated
 	 */
 	boolean isSetElevationWithFlooring();

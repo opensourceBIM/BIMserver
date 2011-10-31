@@ -75,12 +75,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Torsional Constant X</em>' attribute.
 	 * @see #isSetTorsionalConstantX()
 	 * @see #unsetTorsionalConstantX()
-	 * @see #setTorsionalConstantX(float)
+	 * @see #setTorsionalConstantX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_TorsionalConstantX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTorsionalConstantX();
+	double getTorsionalConstantX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getTorsionalConstantX <em>Torsional Constant X</em>}' attribute.
@@ -92,7 +92,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getTorsionalConstantX()
 	 * @generated
 	 */
-	void setTorsionalConstantX(float value);
+	void setTorsionalConstantX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getTorsionalConstantX <em>Torsional Constant X</em>}' attribute.
@@ -100,7 +100,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetTorsionalConstantX()
 	 * @see #getTorsionalConstantX()
-	 * @see #setTorsionalConstantX(float)
+	 * @see #setTorsionalConstantX(double)
 	 * @generated
 	 */
 	void unsetTorsionalConstantX();
@@ -112,7 +112,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Torsional Constant X</em>' attribute is set.
 	 * @see #unsetTorsionalConstantX()
 	 * @see #getTorsionalConstantX()
-	 * @see #setTorsionalConstantX(float)
+	 * @see #setTorsionalConstantX(double)
 	 * @generated
 	 */
 	boolean isSetTorsionalConstantX();
@@ -181,12 +181,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Moment Of Inertia YZ</em>' attribute.
 	 * @see #isSetMomentOfInertiaYZ()
 	 * @see #unsetMomentOfInertiaYZ()
-	 * @see #setMomentOfInertiaYZ(float)
+	 * @see #setMomentOfInertiaYZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_MomentOfInertiaYZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMomentOfInertiaYZ();
+	double getMomentOfInertiaYZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMomentOfInertiaYZ <em>Moment Of Inertia YZ</em>}' attribute.
@@ -198,7 +198,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getMomentOfInertiaYZ()
 	 * @generated
 	 */
-	void setMomentOfInertiaYZ(float value);
+	void setMomentOfInertiaYZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMomentOfInertiaYZ <em>Moment Of Inertia YZ</em>}' attribute.
@@ -206,7 +206,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetMomentOfInertiaYZ()
 	 * @see #getMomentOfInertiaYZ()
-	 * @see #setMomentOfInertiaYZ(float)
+	 * @see #setMomentOfInertiaYZ(double)
 	 * @generated
 	 */
 	void unsetMomentOfInertiaYZ();
@@ -218,7 +218,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Moment Of Inertia YZ</em>' attribute is set.
 	 * @see #unsetMomentOfInertiaYZ()
 	 * @see #getMomentOfInertiaYZ()
-	 * @see #setMomentOfInertiaYZ(float)
+	 * @see #setMomentOfInertiaYZ(double)
 	 * @generated
 	 */
 	boolean isSetMomentOfInertiaYZ();
@@ -287,12 +287,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Moment Of Inertia Y</em>' attribute.
 	 * @see #isSetMomentOfInertiaY()
 	 * @see #unsetMomentOfInertiaY()
-	 * @see #setMomentOfInertiaY(float)
+	 * @see #setMomentOfInertiaY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_MomentOfInertiaY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMomentOfInertiaY();
+	double getMomentOfInertiaY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMomentOfInertiaY <em>Moment Of Inertia Y</em>}' attribute.
@@ -304,7 +304,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getMomentOfInertiaY()
 	 * @generated
 	 */
-	void setMomentOfInertiaY(float value);
+	void setMomentOfInertiaY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMomentOfInertiaY <em>Moment Of Inertia Y</em>}' attribute.
@@ -312,7 +312,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetMomentOfInertiaY()
 	 * @see #getMomentOfInertiaY()
-	 * @see #setMomentOfInertiaY(float)
+	 * @see #setMomentOfInertiaY(double)
 	 * @generated
 	 */
 	void unsetMomentOfInertiaY();
@@ -324,7 +324,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Moment Of Inertia Y</em>' attribute is set.
 	 * @see #unsetMomentOfInertiaY()
 	 * @see #getMomentOfInertiaY()
-	 * @see #setMomentOfInertiaY(float)
+	 * @see #setMomentOfInertiaY(double)
 	 * @generated
 	 */
 	boolean isSetMomentOfInertiaY();
@@ -393,12 +393,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Moment Of Inertia Z</em>' attribute.
 	 * @see #isSetMomentOfInertiaZ()
 	 * @see #unsetMomentOfInertiaZ()
-	 * @see #setMomentOfInertiaZ(float)
+	 * @see #setMomentOfInertiaZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_MomentOfInertiaZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMomentOfInertiaZ();
+	double getMomentOfInertiaZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMomentOfInertiaZ <em>Moment Of Inertia Z</em>}' attribute.
@@ -410,7 +410,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getMomentOfInertiaZ()
 	 * @generated
 	 */
-	void setMomentOfInertiaZ(float value);
+	void setMomentOfInertiaZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMomentOfInertiaZ <em>Moment Of Inertia Z</em>}' attribute.
@@ -418,7 +418,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetMomentOfInertiaZ()
 	 * @see #getMomentOfInertiaZ()
-	 * @see #setMomentOfInertiaZ(float)
+	 * @see #setMomentOfInertiaZ(double)
 	 * @generated
 	 */
 	void unsetMomentOfInertiaZ();
@@ -430,7 +430,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Moment Of Inertia Z</em>' attribute is set.
 	 * @see #unsetMomentOfInertiaZ()
 	 * @see #getMomentOfInertiaZ()
-	 * @see #setMomentOfInertiaZ(float)
+	 * @see #setMomentOfInertiaZ(double)
 	 * @generated
 	 */
 	boolean isSetMomentOfInertiaZ();
@@ -499,12 +499,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Warping Constant</em>' attribute.
 	 * @see #isSetWarpingConstant()
 	 * @see #unsetWarpingConstant()
-	 * @see #setWarpingConstant(float)
+	 * @see #setWarpingConstant(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_WarpingConstant()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getWarpingConstant();
+	double getWarpingConstant();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getWarpingConstant <em>Warping Constant</em>}' attribute.
@@ -516,7 +516,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getWarpingConstant()
 	 * @generated
 	 */
-	void setWarpingConstant(float value);
+	void setWarpingConstant(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getWarpingConstant <em>Warping Constant</em>}' attribute.
@@ -524,7 +524,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetWarpingConstant()
 	 * @see #getWarpingConstant()
-	 * @see #setWarpingConstant(float)
+	 * @see #setWarpingConstant(double)
 	 * @generated
 	 */
 	void unsetWarpingConstant();
@@ -536,7 +536,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Warping Constant</em>' attribute is set.
 	 * @see #unsetWarpingConstant()
 	 * @see #getWarpingConstant()
-	 * @see #setWarpingConstant(float)
+	 * @see #setWarpingConstant(double)
 	 * @generated
 	 */
 	boolean isSetWarpingConstant();
@@ -605,12 +605,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Shear Centre Z</em>' attribute.
 	 * @see #isSetShearCentreZ()
 	 * @see #unsetShearCentreZ()
-	 * @see #setShearCentreZ(float)
+	 * @see #setShearCentreZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_ShearCentreZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getShearCentreZ();
+	double getShearCentreZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearCentreZ <em>Shear Centre Z</em>}' attribute.
@@ -622,7 +622,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getShearCentreZ()
 	 * @generated
 	 */
-	void setShearCentreZ(float value);
+	void setShearCentreZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearCentreZ <em>Shear Centre Z</em>}' attribute.
@@ -630,7 +630,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetShearCentreZ()
 	 * @see #getShearCentreZ()
-	 * @see #setShearCentreZ(float)
+	 * @see #setShearCentreZ(double)
 	 * @generated
 	 */
 	void unsetShearCentreZ();
@@ -642,7 +642,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Shear Centre Z</em>' attribute is set.
 	 * @see #unsetShearCentreZ()
 	 * @see #getShearCentreZ()
-	 * @see #setShearCentreZ(float)
+	 * @see #setShearCentreZ(double)
 	 * @generated
 	 */
 	boolean isSetShearCentreZ();
@@ -711,12 +711,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Shear Centre Y</em>' attribute.
 	 * @see #isSetShearCentreY()
 	 * @see #unsetShearCentreY()
-	 * @see #setShearCentreY(float)
+	 * @see #setShearCentreY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_ShearCentreY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getShearCentreY();
+	double getShearCentreY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearCentreY <em>Shear Centre Y</em>}' attribute.
@@ -728,7 +728,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getShearCentreY()
 	 * @generated
 	 */
-	void setShearCentreY(float value);
+	void setShearCentreY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearCentreY <em>Shear Centre Y</em>}' attribute.
@@ -736,7 +736,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetShearCentreY()
 	 * @see #getShearCentreY()
-	 * @see #setShearCentreY(float)
+	 * @see #setShearCentreY(double)
 	 * @generated
 	 */
 	void unsetShearCentreY();
@@ -748,7 +748,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Shear Centre Y</em>' attribute is set.
 	 * @see #unsetShearCentreY()
 	 * @see #getShearCentreY()
-	 * @see #setShearCentreY(float)
+	 * @see #setShearCentreY(double)
 	 * @generated
 	 */
 	boolean isSetShearCentreY();
@@ -817,12 +817,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Shear Deformation Area Z</em>' attribute.
 	 * @see #isSetShearDeformationAreaZ()
 	 * @see #unsetShearDeformationAreaZ()
-	 * @see #setShearDeformationAreaZ(float)
+	 * @see #setShearDeformationAreaZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_ShearDeformationAreaZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getShearDeformationAreaZ();
+	double getShearDeformationAreaZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearDeformationAreaZ <em>Shear Deformation Area Z</em>}' attribute.
@@ -834,7 +834,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getShearDeformationAreaZ()
 	 * @generated
 	 */
-	void setShearDeformationAreaZ(float value);
+	void setShearDeformationAreaZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearDeformationAreaZ <em>Shear Deformation Area Z</em>}' attribute.
@@ -842,7 +842,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetShearDeformationAreaZ()
 	 * @see #getShearDeformationAreaZ()
-	 * @see #setShearDeformationAreaZ(float)
+	 * @see #setShearDeformationAreaZ(double)
 	 * @generated
 	 */
 	void unsetShearDeformationAreaZ();
@@ -854,7 +854,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Shear Deformation Area Z</em>' attribute is set.
 	 * @see #unsetShearDeformationAreaZ()
 	 * @see #getShearDeformationAreaZ()
-	 * @see #setShearDeformationAreaZ(float)
+	 * @see #setShearDeformationAreaZ(double)
 	 * @generated
 	 */
 	boolean isSetShearDeformationAreaZ();
@@ -923,12 +923,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Shear Deformation Area Y</em>' attribute.
 	 * @see #isSetShearDeformationAreaY()
 	 * @see #unsetShearDeformationAreaY()
-	 * @see #setShearDeformationAreaY(float)
+	 * @see #setShearDeformationAreaY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_ShearDeformationAreaY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getShearDeformationAreaY();
+	double getShearDeformationAreaY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearDeformationAreaY <em>Shear Deformation Area Y</em>}' attribute.
@@ -940,7 +940,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getShearDeformationAreaY()
 	 * @generated
 	 */
-	void setShearDeformationAreaY(float value);
+	void setShearDeformationAreaY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getShearDeformationAreaY <em>Shear Deformation Area Y</em>}' attribute.
@@ -948,7 +948,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetShearDeformationAreaY()
 	 * @see #getShearDeformationAreaY()
-	 * @see #setShearDeformationAreaY(float)
+	 * @see #setShearDeformationAreaY(double)
 	 * @generated
 	 */
 	void unsetShearDeformationAreaY();
@@ -960,7 +960,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Shear Deformation Area Y</em>' attribute is set.
 	 * @see #unsetShearDeformationAreaY()
 	 * @see #getShearDeformationAreaY()
-	 * @see #setShearDeformationAreaY(float)
+	 * @see #setShearDeformationAreaY(double)
 	 * @generated
 	 */
 	boolean isSetShearDeformationAreaY();
@@ -1029,12 +1029,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Maximum Section Modulus Y</em>' attribute.
 	 * @see #isSetMaximumSectionModulusY()
 	 * @see #unsetMaximumSectionModulusY()
-	 * @see #setMaximumSectionModulusY(float)
+	 * @see #setMaximumSectionModulusY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_MaximumSectionModulusY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMaximumSectionModulusY();
+	double getMaximumSectionModulusY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMaximumSectionModulusY <em>Maximum Section Modulus Y</em>}' attribute.
@@ -1046,7 +1046,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getMaximumSectionModulusY()
 	 * @generated
 	 */
-	void setMaximumSectionModulusY(float value);
+	void setMaximumSectionModulusY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMaximumSectionModulusY <em>Maximum Section Modulus Y</em>}' attribute.
@@ -1054,7 +1054,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetMaximumSectionModulusY()
 	 * @see #getMaximumSectionModulusY()
-	 * @see #setMaximumSectionModulusY(float)
+	 * @see #setMaximumSectionModulusY(double)
 	 * @generated
 	 */
 	void unsetMaximumSectionModulusY();
@@ -1066,7 +1066,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Maximum Section Modulus Y</em>' attribute is set.
 	 * @see #unsetMaximumSectionModulusY()
 	 * @see #getMaximumSectionModulusY()
-	 * @see #setMaximumSectionModulusY(float)
+	 * @see #setMaximumSectionModulusY(double)
 	 * @generated
 	 */
 	boolean isSetMaximumSectionModulusY();
@@ -1135,12 +1135,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Minimum Section Modulus Y</em>' attribute.
 	 * @see #isSetMinimumSectionModulusY()
 	 * @see #unsetMinimumSectionModulusY()
-	 * @see #setMinimumSectionModulusY(float)
+	 * @see #setMinimumSectionModulusY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_MinimumSectionModulusY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMinimumSectionModulusY();
+	double getMinimumSectionModulusY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMinimumSectionModulusY <em>Minimum Section Modulus Y</em>}' attribute.
@@ -1152,7 +1152,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getMinimumSectionModulusY()
 	 * @generated
 	 */
-	void setMinimumSectionModulusY(float value);
+	void setMinimumSectionModulusY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMinimumSectionModulusY <em>Minimum Section Modulus Y</em>}' attribute.
@@ -1160,7 +1160,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinimumSectionModulusY()
 	 * @see #getMinimumSectionModulusY()
-	 * @see #setMinimumSectionModulusY(float)
+	 * @see #setMinimumSectionModulusY(double)
 	 * @generated
 	 */
 	void unsetMinimumSectionModulusY();
@@ -1172,7 +1172,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Minimum Section Modulus Y</em>' attribute is set.
 	 * @see #unsetMinimumSectionModulusY()
 	 * @see #getMinimumSectionModulusY()
-	 * @see #setMinimumSectionModulusY(float)
+	 * @see #setMinimumSectionModulusY(double)
 	 * @generated
 	 */
 	boolean isSetMinimumSectionModulusY();
@@ -1241,12 +1241,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Maximum Section Modulus Z</em>' attribute.
 	 * @see #isSetMaximumSectionModulusZ()
 	 * @see #unsetMaximumSectionModulusZ()
-	 * @see #setMaximumSectionModulusZ(float)
+	 * @see #setMaximumSectionModulusZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_MaximumSectionModulusZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMaximumSectionModulusZ();
+	double getMaximumSectionModulusZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMaximumSectionModulusZ <em>Maximum Section Modulus Z</em>}' attribute.
@@ -1258,7 +1258,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getMaximumSectionModulusZ()
 	 * @generated
 	 */
-	void setMaximumSectionModulusZ(float value);
+	void setMaximumSectionModulusZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMaximumSectionModulusZ <em>Maximum Section Modulus Z</em>}' attribute.
@@ -1266,7 +1266,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetMaximumSectionModulusZ()
 	 * @see #getMaximumSectionModulusZ()
-	 * @see #setMaximumSectionModulusZ(float)
+	 * @see #setMaximumSectionModulusZ(double)
 	 * @generated
 	 */
 	void unsetMaximumSectionModulusZ();
@@ -1278,7 +1278,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Maximum Section Modulus Z</em>' attribute is set.
 	 * @see #unsetMaximumSectionModulusZ()
 	 * @see #getMaximumSectionModulusZ()
-	 * @see #setMaximumSectionModulusZ(float)
+	 * @see #setMaximumSectionModulusZ(double)
 	 * @generated
 	 */
 	boolean isSetMaximumSectionModulusZ();
@@ -1347,12 +1347,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Minimum Section Modulus Z</em>' attribute.
 	 * @see #isSetMinimumSectionModulusZ()
 	 * @see #unsetMinimumSectionModulusZ()
-	 * @see #setMinimumSectionModulusZ(float)
+	 * @see #setMinimumSectionModulusZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_MinimumSectionModulusZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMinimumSectionModulusZ();
+	double getMinimumSectionModulusZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMinimumSectionModulusZ <em>Minimum Section Modulus Z</em>}' attribute.
@@ -1364,7 +1364,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getMinimumSectionModulusZ()
 	 * @generated
 	 */
-	void setMinimumSectionModulusZ(float value);
+	void setMinimumSectionModulusZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getMinimumSectionModulusZ <em>Minimum Section Modulus Z</em>}' attribute.
@@ -1372,7 +1372,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinimumSectionModulusZ()
 	 * @see #getMinimumSectionModulusZ()
-	 * @see #setMinimumSectionModulusZ(float)
+	 * @see #setMinimumSectionModulusZ(double)
 	 * @generated
 	 */
 	void unsetMinimumSectionModulusZ();
@@ -1384,7 +1384,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Minimum Section Modulus Z</em>' attribute is set.
 	 * @see #unsetMinimumSectionModulusZ()
 	 * @see #getMinimumSectionModulusZ()
-	 * @see #setMinimumSectionModulusZ(float)
+	 * @see #setMinimumSectionModulusZ(double)
 	 * @generated
 	 */
 	boolean isSetMinimumSectionModulusZ();
@@ -1453,12 +1453,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Torsional Section Modulus</em>' attribute.
 	 * @see #isSetTorsionalSectionModulus()
 	 * @see #unsetTorsionalSectionModulus()
-	 * @see #setTorsionalSectionModulus(float)
+	 * @see #setTorsionalSectionModulus(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_TorsionalSectionModulus()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTorsionalSectionModulus();
+	double getTorsionalSectionModulus();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getTorsionalSectionModulus <em>Torsional Section Modulus</em>}' attribute.
@@ -1470,7 +1470,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getTorsionalSectionModulus()
 	 * @generated
 	 */
-	void setTorsionalSectionModulus(float value);
+	void setTorsionalSectionModulus(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getTorsionalSectionModulus <em>Torsional Section Modulus</em>}' attribute.
@@ -1478,7 +1478,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetTorsionalSectionModulus()
 	 * @see #getTorsionalSectionModulus()
-	 * @see #setTorsionalSectionModulus(float)
+	 * @see #setTorsionalSectionModulus(double)
 	 * @generated
 	 */
 	void unsetTorsionalSectionModulus();
@@ -1490,7 +1490,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Torsional Section Modulus</em>' attribute is set.
 	 * @see #unsetTorsionalSectionModulus()
 	 * @see #getTorsionalSectionModulus()
-	 * @see #setTorsionalSectionModulus(float)
+	 * @see #setTorsionalSectionModulus(double)
 	 * @generated
 	 */
 	boolean isSetTorsionalSectionModulus();
@@ -1559,12 +1559,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Centre Of Gravity In X</em>' attribute.
 	 * @see #isSetCentreOfGravityInX()
 	 * @see #unsetCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_CentreOfGravityInX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCentreOfGravityInX();
+	double getCentreOfGravityInX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}' attribute.
@@ -1576,7 +1576,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getCentreOfGravityInX()
 	 * @generated
 	 */
-	void setCentreOfGravityInX(float value);
+	void setCentreOfGravityInX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}' attribute.
@@ -1584,7 +1584,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetCentreOfGravityInX()
 	 * @see #getCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @generated
 	 */
 	void unsetCentreOfGravityInX();
@@ -1596,7 +1596,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Centre Of Gravity In X</em>' attribute is set.
 	 * @see #unsetCentreOfGravityInX()
 	 * @see #getCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @generated
 	 */
 	boolean isSetCentreOfGravityInX();
@@ -1665,12 +1665,12 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return the value of the '<em>Centre Of Gravity In Y</em>' attribute.
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #unsetCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralProfileProperties_CentreOfGravityInY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCentreOfGravityInY();
+	double getCentreOfGravityInY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -1682,7 +1682,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @see #getCentreOfGravityInY()
 	 * @generated
 	 */
-	void setCentreOfGravityInY(float value);
+	void setCentreOfGravityInY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralProfileProperties#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -1690,7 +1690,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	void unsetCentreOfGravityInY();
@@ -1702,7 +1702,7 @@ public interface IfcStructuralProfileProperties extends IfcGeneralProfilePropert
 	 * @return whether the value of the '<em>Centre Of Gravity In Y</em>' attribute is set.
 	 * @see #unsetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	boolean isSetCentreOfGravityInY();

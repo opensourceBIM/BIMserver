@@ -64,8 +64,8 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTimeStep() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP, true);
+	public double getTimeStep() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeStep(float newTimeStep) {
+	public void setTimeStep(double newTimeStep) {
 		eSet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP, newTimeStep);
 	}
 

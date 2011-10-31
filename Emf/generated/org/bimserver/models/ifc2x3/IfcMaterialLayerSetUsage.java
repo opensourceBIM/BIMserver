@@ -130,12 +130,12 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset From Reference Line</em>' attribute.
-	 * @see #setOffsetFromReferenceLine(float)
+	 * @see #setOffsetFromReferenceLine(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSetUsage_OffsetFromReferenceLine()
 	 * @model
 	 * @generated
 	 */
-	float getOffsetFromReferenceLine();
+	double getOffsetFromReferenceLine();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getOffsetFromReferenceLine <em>Offset From Reference Line</em>}' attribute.
@@ -145,7 +145,7 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * @see #getOffsetFromReferenceLine()
 	 * @generated
 	 */
-	void setOffsetFromReferenceLine(float value);
+	void setOffsetFromReferenceLine(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Offset From Reference Line As String</b></em>' attribute.

@@ -258,20 +258,20 @@ public class SceneJSSerializer extends BimModelSerializer {
 	}
 
 	private JSONArray writeMaterials(JSONArray array) throws JSONException {
-		array.put(writeMaterial("Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f))
-			.put(writeMaterial("Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f))
-			.put(writeMaterial("Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
-			.put(writeMaterial("Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f))
-			.put(writeMaterial("WallStandardCase", new float[] { 1.0f, 1.0f, 1.0f }, 1.0f))
-			.put(writeMaterial("Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
-			.put(writeMaterial("Window", new float[] { 0.2f, 0.2f, 0.8f }, 0.2f))
-			.put(writeMaterial("Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f))
-			.put(writeMaterial("Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f))
-			.put(writeMaterial("FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f))
-			.put(writeMaterial("CurtainWall", new float[] { 0.5f, 0.5f, 0.5f }, 0.5f))
-			.put(writeMaterial("Stair", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
-			.put(writeMaterial("BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 1.0f))
-			.put(writeMaterial("FlowSegment", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f));
+		array.put(writeMaterial("Space", new double[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f))
+			.put(writeMaterial("Roof", new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f))
+			.put(writeMaterial("Slab", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
+			.put(writeMaterial("Wall", new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f))
+			.put(writeMaterial("WallStandardCase", new double[] { 1.0f, 1.0f, 1.0f }, 1.0f))
+			.put(writeMaterial("Door", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
+			.put(writeMaterial("Window", new double[] { 0.2f, 0.2f, 0.8f }, 0.2f))
+			.put(writeMaterial("Railing", new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f))
+			.put(writeMaterial("Column", new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f))
+			.put(writeMaterial("FurnishingElement", new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f))
+			.put(writeMaterial("CurtainWall", new double[] { 0.5f, 0.5f, 0.5f }, 0.5f))
+			.put(writeMaterial("Stair", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f))
+			.put(writeMaterial("BuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f))
+			.put(writeMaterial("FlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f));
 
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
@@ -288,7 +288,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 					if (!surfaceStyleIds.contains(name)) {
 						surfaceStyleIds.add(name);
 						array.put(writeMaterial(name, 
-								new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
+								new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
 								ssr.isSetTransparency() && ssr.getTransparency() < 1.0f ? 1.0f - ssr.getTransparency() : 1.0f));
 						break;
 					}
@@ -298,7 +298,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		return array;
 	}
 
-	private JSONObject writeMaterial(String name, float[] colors, float opacity) throws JSONException {
+	private JSONObject writeMaterial(String name, double[] colors, double opacity) throws JSONException {
 		return new JSONObject()
 			.put("type", "material")
 			.put("coreId", name + "Material")

@@ -127,8 +127,8 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCoefficient() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT, true);
+	public double getCoefficient() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT, true);
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCoefficient(float newCoefficient) {
+	public void setCoefficient(double newCoefficient) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT, newCoefficient);
 	}
 

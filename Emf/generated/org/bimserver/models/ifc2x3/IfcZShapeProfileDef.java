@@ -53,12 +53,12 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
-	 * @see #setDepth(float)
+	 * @see #setDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcZShapeProfileDef_Depth()
 	 * @model
 	 * @generated
 	 */
-	float getDepth();
+	double getDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getDepth <em>Depth</em>}' attribute.
@@ -68,7 +68,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getDepth()
 	 * @generated
 	 */
-	void setDepth(float value);
+	void setDepth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Depth As String</b></em>' attribute.
@@ -105,12 +105,12 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flange Width</em>' attribute.
-	 * @see #setFlangeWidth(float)
+	 * @see #setFlangeWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcZShapeProfileDef_FlangeWidth()
 	 * @model
 	 * @generated
 	 */
-	float getFlangeWidth();
+	double getFlangeWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getFlangeWidth <em>Flange Width</em>}' attribute.
@@ -120,7 +120,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeWidth()
 	 * @generated
 	 */
-	void setFlangeWidth(float value);
+	void setFlangeWidth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Flange Width As String</b></em>' attribute.
@@ -157,12 +157,12 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Web Thickness</em>' attribute.
-	 * @see #setWebThickness(float)
+	 * @see #setWebThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcZShapeProfileDef_WebThickness()
 	 * @model
 	 * @generated
 	 */
-	float getWebThickness();
+	double getWebThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getWebThickness <em>Web Thickness</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getWebThickness()
 	 * @generated
 	 */
-	void setWebThickness(float value);
+	void setWebThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Web Thickness As String</b></em>' attribute.
@@ -209,12 +209,12 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flange Thickness</em>' attribute.
-	 * @see #setFlangeThickness(float)
+	 * @see #setFlangeThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcZShapeProfileDef_FlangeThickness()
 	 * @model
 	 * @generated
 	 */
-	float getFlangeThickness();
+	double getFlangeThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getFlangeThickness <em>Flange Thickness</em>}' attribute.
@@ -224,7 +224,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeThickness()
 	 * @generated
 	 */
-	void setFlangeThickness(float value);
+	void setFlangeThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Flange Thickness As String</b></em>' attribute.
@@ -263,12 +263,12 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Fillet Radius</em>' attribute.
 	 * @see #isSetFilletRadius()
 	 * @see #unsetFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcZShapeProfileDef_FilletRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFilletRadius();
+	double getFilletRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}' attribute.
@@ -280,7 +280,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFilletRadius()
 	 * @generated
 	 */
-	void setFilletRadius(float value);
+	void setFilletRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}' attribute.
@@ -288,7 +288,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFilletRadius()
 	 * @see #getFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @generated
 	 */
 	void unsetFilletRadius();
@@ -300,7 +300,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Fillet Radius</em>' attribute is set.
 	 * @see #unsetFilletRadius()
 	 * @see #getFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @generated
 	 */
 	boolean isSetFilletRadius();
@@ -369,12 +369,12 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Edge Radius</em>' attribute.
 	 * @see #isSetEdgeRadius()
 	 * @see #unsetEdgeRadius()
-	 * @see #setEdgeRadius(float)
+	 * @see #setEdgeRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcZShapeProfileDef_EdgeRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getEdgeRadius();
+	double getEdgeRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getEdgeRadius <em>Edge Radius</em>}' attribute.
@@ -386,7 +386,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getEdgeRadius()
 	 * @generated
 	 */
-	void setEdgeRadius(float value);
+	void setEdgeRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcZShapeProfileDef#getEdgeRadius <em>Edge Radius</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetEdgeRadius()
 	 * @see #getEdgeRadius()
-	 * @see #setEdgeRadius(float)
+	 * @see #setEdgeRadius(double)
 	 * @generated
 	 */
 	void unsetEdgeRadius();
@@ -406,7 +406,7 @@ public interface IfcZShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Edge Radius</em>' attribute is set.
 	 * @see #unsetEdgeRadius()
 	 * @see #getEdgeRadius()
-	 * @see #setEdgeRadius(float)
+	 * @see #setEdgeRadius(double)
 	 * @generated
 	 */
 	boolean isSetEdgeRadius();

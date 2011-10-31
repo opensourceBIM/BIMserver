@@ -49,12 +49,12 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Delta TConstant</em>' attribute.
 	 * @see #isSetDeltaT_Constant()
 	 * @see #unsetDeltaT_Constant()
-	 * @see #setDeltaT_Constant(float)
+	 * @see #setDeltaT_Constant(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadTemperature_DeltaT_Constant()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDeltaT_Constant();
+	double getDeltaT_Constant();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadTemperature#getDeltaT_Constant <em>Delta TConstant</em>}' attribute.
@@ -66,7 +66,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @see #getDeltaT_Constant()
 	 * @generated
 	 */
-	void setDeltaT_Constant(float value);
+	void setDeltaT_Constant(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadTemperature#getDeltaT_Constant <em>Delta TConstant</em>}' attribute.
@@ -74,7 +74,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDeltaT_Constant()
 	 * @see #getDeltaT_Constant()
-	 * @see #setDeltaT_Constant(float)
+	 * @see #setDeltaT_Constant(double)
 	 * @generated
 	 */
 	void unsetDeltaT_Constant();
@@ -86,7 +86,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Delta TConstant</em>' attribute is set.
 	 * @see #unsetDeltaT_Constant()
 	 * @see #getDeltaT_Constant()
-	 * @see #setDeltaT_Constant(float)
+	 * @see #setDeltaT_Constant(double)
 	 * @generated
 	 */
 	boolean isSetDeltaT_Constant();
@@ -155,12 +155,12 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Delta TY</em>' attribute.
 	 * @see #isSetDeltaT_Y()
 	 * @see #unsetDeltaT_Y()
-	 * @see #setDeltaT_Y(float)
+	 * @see #setDeltaT_Y(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadTemperature_DeltaT_Y()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDeltaT_Y();
+	double getDeltaT_Y();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadTemperature#getDeltaT_Y <em>Delta TY</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @see #getDeltaT_Y()
 	 * @generated
 	 */
-	void setDeltaT_Y(float value);
+	void setDeltaT_Y(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadTemperature#getDeltaT_Y <em>Delta TY</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDeltaT_Y()
 	 * @see #getDeltaT_Y()
-	 * @see #setDeltaT_Y(float)
+	 * @see #setDeltaT_Y(double)
 	 * @generated
 	 */
 	void unsetDeltaT_Y();
@@ -192,7 +192,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Delta TY</em>' attribute is set.
 	 * @see #unsetDeltaT_Y()
 	 * @see #getDeltaT_Y()
-	 * @see #setDeltaT_Y(float)
+	 * @see #setDeltaT_Y(double)
 	 * @generated
 	 */
 	boolean isSetDeltaT_Y();
@@ -261,12 +261,12 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Delta TZ</em>' attribute.
 	 * @see #isSetDeltaT_Z()
 	 * @see #unsetDeltaT_Z()
-	 * @see #setDeltaT_Z(float)
+	 * @see #setDeltaT_Z(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadTemperature_DeltaT_Z()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDeltaT_Z();
+	double getDeltaT_Z();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadTemperature#getDeltaT_Z <em>Delta TZ</em>}' attribute.
@@ -278,7 +278,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @see #getDeltaT_Z()
 	 * @generated
 	 */
-	void setDeltaT_Z(float value);
+	void setDeltaT_Z(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadTemperature#getDeltaT_Z <em>Delta TZ</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDeltaT_Z()
 	 * @see #getDeltaT_Z()
-	 * @see #setDeltaT_Z(float)
+	 * @see #setDeltaT_Z(double)
 	 * @generated
 	 */
 	void unsetDeltaT_Z();
@@ -298,7 +298,7 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Delta TZ</em>' attribute is set.
 	 * @see #unsetDeltaT_Z()
 	 * @see #getDeltaT_Z()
-	 * @see #setDeltaT_Z(float)
+	 * @see #setDeltaT_Z(double)
 	 * @generated
 	 */
 	boolean isSetDeltaT_Z();

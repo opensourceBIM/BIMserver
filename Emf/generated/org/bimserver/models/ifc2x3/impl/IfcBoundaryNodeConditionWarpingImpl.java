@@ -60,8 +60,8 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWarpingStiffness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, true);
+	public double getWarpingStiffness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWarpingStiffness(float newWarpingStiffness) {
+	public void setWarpingStiffness(double newWarpingStiffness) {
 		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, newWarpingStiffness);
 	}
 

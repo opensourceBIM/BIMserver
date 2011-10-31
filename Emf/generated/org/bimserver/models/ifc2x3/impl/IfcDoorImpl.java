@@ -62,8 +62,8 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getOverallHeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR__OVERALL_HEIGHT, true);
+	public double getOverallHeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR__OVERALL_HEIGHT, true);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOverallHeight(float newOverallHeight) {
+	public void setOverallHeight(double newOverallHeight) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR__OVERALL_HEIGHT, newOverallHeight);
 	}
 
@@ -134,8 +134,8 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getOverallWidth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR__OVERALL_WIDTH, true);
+	public double getOverallWidth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR__OVERALL_WIDTH, true);
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOverallWidth(float newOverallWidth) {
+	public void setOverallWidth(double newOverallWidth) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR__OVERALL_WIDTH, newOverallWidth);
 	}
 

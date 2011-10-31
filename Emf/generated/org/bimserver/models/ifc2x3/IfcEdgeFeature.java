@@ -45,12 +45,12 @@ public interface IfcEdgeFeature extends IfcFeatureElementSubtraction {
 	 * @return the value of the '<em>Feature Length</em>' attribute.
 	 * @see #isSetFeatureLength()
 	 * @see #unsetFeatureLength()
-	 * @see #setFeatureLength(float)
+	 * @see #setFeatureLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEdgeFeature_FeatureLength()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFeatureLength();
+	double getFeatureLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeFeature#getFeatureLength <em>Feature Length</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcEdgeFeature extends IfcFeatureElementSubtraction {
 	 * @see #getFeatureLength()
 	 * @generated
 	 */
-	void setFeatureLength(float value);
+	void setFeatureLength(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeFeature#getFeatureLength <em>Feature Length</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcEdgeFeature extends IfcFeatureElementSubtraction {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFeatureLength()
 	 * @see #getFeatureLength()
-	 * @see #setFeatureLength(float)
+	 * @see #setFeatureLength(double)
 	 * @generated
 	 */
 	void unsetFeatureLength();
@@ -82,7 +82,7 @@ public interface IfcEdgeFeature extends IfcFeatureElementSubtraction {
 	 * @return whether the value of the '<em>Feature Length</em>' attribute is set.
 	 * @see #unsetFeatureLength()
 	 * @see #getFeatureLength()
-	 * @see #setFeatureLength(float)
+	 * @see #setFeatureLength(double)
 	 * @generated
 	 */
 	boolean isSetFeatureLength();

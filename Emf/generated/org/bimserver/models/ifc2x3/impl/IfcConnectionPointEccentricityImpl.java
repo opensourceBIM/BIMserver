@@ -64,8 +64,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getEccentricityInX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_X, true);
+	public double getEccentricityInX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_X, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEccentricityInX(float newEccentricityInX) {
+	public void setEccentricityInX(double newEccentricityInX) {
 		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_X, newEccentricityInX);
 	}
 
@@ -136,8 +136,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getEccentricityInY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_Y, true);
+	public double getEccentricityInY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_Y, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEccentricityInY(float newEccentricityInY) {
+	public void setEccentricityInY(double newEccentricityInY) {
 		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_Y, newEccentricityInY);
 	}
 
@@ -208,8 +208,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getEccentricityInZ() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_Z, true);
+	public double getEccentricityInZ() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_Z, true);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEccentricityInZ(float newEccentricityInZ) {
+	public void setEccentricityInZ(double newEccentricityInZ) {
 		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_Z, newEccentricityInZ);
 	}
 

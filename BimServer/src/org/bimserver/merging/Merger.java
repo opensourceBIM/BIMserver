@@ -562,7 +562,7 @@ public class Merger {
 
 	private void setIfcCartesianPoint(IdEObject idEObject, float scale) {
 		IfcCartesianPoint ifcCartesianPoint = (IfcCartesianPoint) idEObject;
-		EList<Float> coordinates = ifcCartesianPoint.getCoordinates();
+		EList<Double> coordinates = ifcCartesianPoint.getCoordinates();
 		for (int index = 0; index < coordinates.size(); index++) {
 			coordinates.set(index, coordinates.get(index) * scale);
 		}
@@ -1219,7 +1219,7 @@ public class Merger {
 			float scale) {
 		setIfcStructuralSurfaceMember(idEObject, scale);
 		IfcStructuralSurfaceMemberVarying ifcStructuralSurfaceMemberVarying = (IfcStructuralSurfaceMemberVarying) idEObject;
-		EList<Float> subsequentThickness = ifcStructuralSurfaceMemberVarying
+		EList<Double> subsequentThickness = ifcStructuralSurfaceMemberVarying
 				.getSubsequentThickness();
 		for (int index = 0; index < subsequentThickness.size(); index++) {
 			subsequentThickness.set(index, subsequentThickness.get(index)
@@ -1336,9 +1336,9 @@ public class Merger {
 
 	private void setIfcVirtualGridIntersection(IdEObject idEObject, float scale) {
 		IfcVirtualGridIntersection ifcVirtualGridIntersection = (IfcVirtualGridIntersection) idEObject;
-		EList<Float> offsetDistances = ifcVirtualGridIntersection
+		EList<Double> offsetDistances = ifcVirtualGridIntersection
 				.getOffsetDistances();
-		for (Float offsetDistance : offsetDistances) {
+		for (Double offsetDistance : offsetDistances) {
 			offsetDistance *= scale;
 		}
 	}

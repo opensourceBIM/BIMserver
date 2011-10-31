@@ -90,8 +90,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getHardness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__HARDNESS, true);
+	public double getHardness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__HARDNESS, true);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHardness(float newHardness) {
+	public void setHardness(double newHardness) {
 		eSet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__HARDNESS, newHardness);
 	}
 
@@ -162,8 +162,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAlkalinityConcentration() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION, true);
+	public double getAlkalinityConcentration() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION, true);
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAlkalinityConcentration(float newAlkalinityConcentration) {
+	public void setAlkalinityConcentration(double newAlkalinityConcentration) {
 		eSet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION, newAlkalinityConcentration);
 	}
 
@@ -234,8 +234,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAcidityConcentration() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION, true);
+	public double getAcidityConcentration() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION, true);
 	}
 
 	/**
@@ -243,7 +243,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAcidityConcentration(float newAcidityConcentration) {
+	public void setAcidityConcentration(double newAcidityConcentration) {
 		eSet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION, newAcidityConcentration);
 	}
 
@@ -306,8 +306,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getImpuritiesContent() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT, true);
+	public double getImpuritiesContent() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT, true);
 	}
 
 	/**
@@ -315,7 +315,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImpuritiesContent(float newImpuritiesContent) {
+	public void setImpuritiesContent(double newImpuritiesContent) {
 		eSet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT, newImpuritiesContent);
 	}
 
@@ -378,8 +378,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPHLevel() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL, true);
+	public double getPHLevel() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL, true);
 	}
 
 	/**
@@ -387,7 +387,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPHLevel(float newPHLevel) {
+	public void setPHLevel(double newPHLevel) {
 		eSet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL, newPHLevel);
 	}
 
@@ -450,8 +450,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDissolvedSolidsContent() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT, true);
+	public double getDissolvedSolidsContent() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT, true);
 	}
 
 	/**
@@ -459,7 +459,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDissolvedSolidsContent(float newDissolvedSolidsContent) {
+	public void setDissolvedSolidsContent(double newDissolvedSolidsContent) {
 		eSet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT, newDissolvedSolidsContent);
 	}
 

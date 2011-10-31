@@ -45,12 +45,12 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size In X</em>' attribute.
-	 * @see #setSizeInX(float)
+	 * @see #setSizeInX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlanarExtent_SizeInX()
 	 * @model
 	 * @generated
 	 */
-	float getSizeInX();
+	double getSizeInX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInX <em>Size In X</em>}' attribute.
@@ -60,7 +60,7 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * @see #getSizeInX()
 	 * @generated
 	 */
-	void setSizeInX(float value);
+	void setSizeInX(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Size In XAs String</b></em>' attribute.
@@ -97,12 +97,12 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size In Y</em>' attribute.
-	 * @see #setSizeInY(float)
+	 * @see #setSizeInY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlanarExtent_SizeInY()
 	 * @model
 	 * @generated
 	 */
-	float getSizeInY();
+	double getSizeInY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInY <em>Size In Y</em>}' attribute.
@@ -112,7 +112,7 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * @see #getSizeInY()
 	 * @generated
 	 */
-	void setSizeInY(float value);
+	void setSizeInY(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Size In YAs String</b></em>' attribute.

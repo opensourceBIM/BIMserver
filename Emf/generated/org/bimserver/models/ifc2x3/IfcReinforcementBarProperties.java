@@ -54,12 +54,12 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Cross Section Area</em>' attribute.
-	 * @see #setTotalCrossSectionArea(float)
+	 * @see #setTotalCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_TotalCrossSectionArea()
 	 * @model
 	 * @generated
 	 */
-	float getTotalCrossSectionArea();
+	double getTotalCrossSectionArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getTotalCrossSectionArea <em>Total Cross Section Area</em>}' attribute.
@@ -69,7 +69,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @see #getTotalCrossSectionArea()
 	 * @generated
 	 */
-	void setTotalCrossSectionArea(float value);
+	void setTotalCrossSectionArea(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Total Cross Section Area As String</b></em>' attribute.
@@ -163,12 +163,12 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @return the value of the '<em>Effective Depth</em>' attribute.
 	 * @see #isSetEffectiveDepth()
 	 * @see #unsetEffectiveDepth()
-	 * @see #setEffectiveDepth(float)
+	 * @see #setEffectiveDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_EffectiveDepth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getEffectiveDepth();
+	double getEffectiveDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getEffectiveDepth <em>Effective Depth</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @see #getEffectiveDepth()
 	 * @generated
 	 */
-	void setEffectiveDepth(float value);
+	void setEffectiveDepth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getEffectiveDepth <em>Effective Depth</em>}' attribute.
@@ -188,7 +188,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetEffectiveDepth()
 	 * @see #getEffectiveDepth()
-	 * @see #setEffectiveDepth(float)
+	 * @see #setEffectiveDepth(double)
 	 * @generated
 	 */
 	void unsetEffectiveDepth();
@@ -200,7 +200,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @return whether the value of the '<em>Effective Depth</em>' attribute is set.
 	 * @see #unsetEffectiveDepth()
 	 * @see #getEffectiveDepth()
-	 * @see #setEffectiveDepth(float)
+	 * @see #setEffectiveDepth(double)
 	 * @generated
 	 */
 	boolean isSetEffectiveDepth();
@@ -269,12 +269,12 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @return the value of the '<em>Nominal Bar Diameter</em>' attribute.
 	 * @see #isSetNominalBarDiameter()
 	 * @see #unsetNominalBarDiameter()
-	 * @see #setNominalBarDiameter(float)
+	 * @see #setNominalBarDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_NominalBarDiameter()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getNominalBarDiameter();
+	double getNominalBarDiameter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getNominalBarDiameter <em>Nominal Bar Diameter</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @see #getNominalBarDiameter()
 	 * @generated
 	 */
-	void setNominalBarDiameter(float value);
+	void setNominalBarDiameter(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getNominalBarDiameter <em>Nominal Bar Diameter</em>}' attribute.
@@ -294,7 +294,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetNominalBarDiameter()
 	 * @see #getNominalBarDiameter()
-	 * @see #setNominalBarDiameter(float)
+	 * @see #setNominalBarDiameter(double)
 	 * @generated
 	 */
 	void unsetNominalBarDiameter();
@@ -306,7 +306,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @return whether the value of the '<em>Nominal Bar Diameter</em>' attribute is set.
 	 * @see #unsetNominalBarDiameter()
 	 * @see #getNominalBarDiameter()
-	 * @see #setNominalBarDiameter(float)
+	 * @see #setNominalBarDiameter(double)
 	 * @generated
 	 */
 	boolean isSetNominalBarDiameter();
@@ -375,12 +375,12 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @return the value of the '<em>Bar Count</em>' attribute.
 	 * @see #isSetBarCount()
 	 * @see #unsetBarCount()
-	 * @see #setBarCount(float)
+	 * @see #setBarCount(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_BarCount()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getBarCount();
+	double getBarCount();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getBarCount <em>Bar Count</em>}' attribute.
@@ -392,7 +392,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @see #getBarCount()
 	 * @generated
 	 */
-	void setBarCount(float value);
+	void setBarCount(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getBarCount <em>Bar Count</em>}' attribute.
@@ -400,7 +400,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetBarCount()
 	 * @see #getBarCount()
-	 * @see #setBarCount(float)
+	 * @see #setBarCount(double)
 	 * @generated
 	 */
 	void unsetBarCount();
@@ -412,7 +412,7 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * @return whether the value of the '<em>Bar Count</em>' attribute is set.
 	 * @see #unsetBarCount()
 	 * @see #getBarCount()
-	 * @see #setBarCount(float)
+	 * @see #setBarCount(double)
 	 * @generated
 	 */
 	boolean isSetBarCount();

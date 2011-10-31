@@ -43,12 +43,12 @@ public interface IfcCircle extends IfcConic {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCircle_Radius()
 	 * @model
 	 * @generated
 	 */
-	float getRadius();
+	double getRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCircle#getRadius <em>Radius</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcCircle extends IfcConic {
 	 * @see #getRadius()
 	 * @generated
 	 */
-	void setRadius(float value);
+	void setRadius(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.

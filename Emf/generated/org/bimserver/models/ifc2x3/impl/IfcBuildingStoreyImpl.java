@@ -60,8 +60,8 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getElevation() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_BUILDING_STOREY__ELEVATION, true);
+	public double getElevation() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_BUILDING_STOREY__ELEVATION, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElevation(float newElevation) {
+	public void setElevation(double newElevation) {
 		eSet(Ifc2x3Package.Literals.IFC_BUILDING_STOREY__ELEVATION, newElevation);
 	}
 

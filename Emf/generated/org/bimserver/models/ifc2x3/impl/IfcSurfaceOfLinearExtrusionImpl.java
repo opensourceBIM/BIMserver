@@ -80,8 +80,8 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDepth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, true);
+	public double getDepth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDepth(float newDepth) {
+	public void setDepth(double newDepth) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, newDepth);
 	}
 

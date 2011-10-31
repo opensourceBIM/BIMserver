@@ -48,12 +48,12 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Visible Segment Length</em>' attribute.
-	 * @see #setVisibleSegmentLength(float)
+	 * @see #setVisibleSegmentLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontPattern_VisibleSegmentLength()
 	 * @model
 	 * @generated
 	 */
-	float getVisibleSegmentLength();
+	double getVisibleSegmentLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getVisibleSegmentLength <em>Visible Segment Length</em>}' attribute.
@@ -63,7 +63,7 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * @see #getVisibleSegmentLength()
 	 * @generated
 	 */
-	void setVisibleSegmentLength(float value);
+	void setVisibleSegmentLength(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Visible Segment Length As String</b></em>' attribute.
@@ -100,12 +100,12 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Invisible Segment Length</em>' attribute.
-	 * @see #setInvisibleSegmentLength(float)
+	 * @see #setInvisibleSegmentLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontPattern_InvisibleSegmentLength()
 	 * @model
 	 * @generated
 	 */
-	float getInvisibleSegmentLength();
+	double getInvisibleSegmentLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getInvisibleSegmentLength <em>Invisible Segment Length</em>}' attribute.
@@ -115,7 +115,7 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * @see #getInvisibleSegmentLength()
 	 * @generated
 	 */
-	void setInvisibleSegmentLength(float value);
+	void setInvisibleSegmentLength(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Invisible Segment Length As String</b></em>' attribute.

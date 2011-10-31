@@ -50,7 +50,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
-import com.sun.istack.logging.Logger;
 
 public class IfcStepSerializer extends IfcSerializer {
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepSerializer.class);
@@ -193,9 +192,9 @@ public class IfcStepSerializer extends IfcSerializer {
 			} else if (bool == Tristate.UNDEFINED) {
 				out.print(BOOLEAN_UNDEFINED);
 			}
-		} else if (val instanceof Float) {
-			if (((Float)val).isInfinite() || (((Float)val).isNaN())) {
-				LOGGER.info("Serializing infinite or NaN float as 0.0");
+		} else if (val instanceof Double) {
+			if (((Double)val).isInfinite() || (((Double)val).isNaN())) {
+				LOGGER.info("Serializing infinite or NaN double as 0.0");
 				out.print("0.0");
 			} else {
 				String string = val.toString();
@@ -339,10 +338,10 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else {
 			if (ref instanceof EObject) {
 				writeEmbedded(out, (EObject) ref);
-			} else if (feature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat()) {
-				Object eGet = object.eGet(object.eClass().getEStructuralFeature(feature.getName() + "AsString"));
-				if (eGet != null) {
-					out.print(eGet);
+			} else if (feature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
+				Object stringValue = object.eGet(object.eClass().getEStructuralFeature(feature.getName() + "AsString"));
+				if (stringValue != null) {
+					out.print(stringValue);
 				} else {
 					out.print(DOLLAR);
 				}
@@ -359,13 +358,13 @@ public class IfcStepSerializer extends IfcSerializer {
 		EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
 		if (structuralFeature != null) {
 			Object realVal = eObject.eGet(structuralFeature);
-			if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat()) {
+			if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
 				Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
 				if (stringVal != null) {
 					out.print(stringVal);
 				} else {
-					if (((Float)realVal).isInfinite() || (((Float)realVal).isNaN())) {
-						LOGGER.info("Serializing infinite or NaN float as 0.0");
+					if (((Double)realVal).isInfinite() || (((Double)realVal).isNaN())) {
+						LOGGER.info("Serializing infinite or NaN double as 0.0");
 						out.print("0.0");
 					} else {
 						out.print(realVal);
@@ -380,13 +379,13 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeList(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		List<?> list = (List<?>) object.eGet(feature);
-		List<?> floatStingList = null;
-		if (feature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-			EStructuralFeature floatStringFeature = feature.getEContainingClass().getEStructuralFeature(feature.getName() + "AsString");
-			if (floatStringFeature == null) {
+		List<?> doubleStingList = null;
+		if (feature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+			EStructuralFeature doubleStringFeature = feature.getEContainingClass().getEStructuralFeature(feature.getName() + "AsString");
+			if (doubleStringFeature == null) {
 				throw new SerializerException("Field " + feature.getName() + "AsString" + " not found");
 			}
-			floatStingList = (List<?>) object.eGet(floatStringFeature);
+			doubleStingList = (List<?>) object.eGet(doubleStringFeature);
 		}
 		if (list.size() == 0) {
 			if (feature.isUnsettable()) {
@@ -413,7 +412,7 @@ public class IfcStepSerializer extends IfcSerializer {
 						if (listObject instanceof WrappedValue && Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType())) {
 							IdEObject eObject = (IdEObject) listObject;
 							Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
-							if (realVal instanceof Float) {
+							if (realVal instanceof Double) {
 								Object stringVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValueAsString"));
 								if (stringVal != null) {
 									out.print(stringVal);									
@@ -431,7 +430,7 @@ public class IfcStepSerializer extends IfcSerializer {
 								Object realVal = eObject.eGet(structuralFeature);
 								out.print(upperCases.get(class1));
 								out.print(OPEN_CLOSE);
-								if (realVal instanceof Float) {
+								if (realVal instanceof Double) {
 									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
 									if (stringVal != null) {
 										out.print(stringVal);
@@ -444,8 +443,8 @@ public class IfcStepSerializer extends IfcSerializer {
 								out.print(CLOSE_PAREN);
 							}
 						} else {
-							if (floatStingList != null) {
-								String val = (String)floatStingList.get(index);
+							if (doubleStingList != null) {
+								String val = (String)doubleStingList.get(index);
 								if (val == null) {
 									writePrimitive(out, listObject);
 								} else {
@@ -477,7 +476,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					String name = structuralFeature.getEType().getName();
 					if ((name.equals(IFC_BOOLEAN) || name.equals(IFC_LOGICAL)) && val == null) {
 						out.print(BOOLEAN_UNDEFINED);
-					} else if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat()) {
+					} else if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
 						Object stringVal = betweenObject.eGet(betweenObject.eClass().getEStructuralFeature("wrappedValueAsString"));
 						if (stringVal != null) {
 							out.print(stringVal);							
@@ -508,7 +507,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					}
 					EObject object2 = (EObject) o;
 					Object val = object2.eGet(structuralFeature);
-					if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat()) {
+					if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
 						out.print(object2.eGet(object2.eClass().getEStructuralFeature("stringValue" + structuralFeature.getName())));
 					} else {
 						writePrimitive(out, val);

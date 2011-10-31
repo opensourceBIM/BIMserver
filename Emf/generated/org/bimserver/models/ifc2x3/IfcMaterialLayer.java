@@ -99,12 +99,12 @@ public interface IfcMaterialLayer extends IfcMaterialSelect, IfcObjectReferenceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Thickness</em>' attribute.
-	 * @see #setLayerThickness(float)
+	 * @see #setLayerThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayer_LayerThickness()
 	 * @model
 	 * @generated
 	 */
-	float getLayerThickness();
+	double getLayerThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayer#getLayerThickness <em>Layer Thickness</em>}' attribute.
@@ -114,7 +114,7 @@ public interface IfcMaterialLayer extends IfcMaterialSelect, IfcObjectReferenceS
 	 * @see #getLayerThickness()
 	 * @generated
 	 */
-	void setLayerThickness(float value);
+	void setLayerThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Layer Thickness As String</b></em>' attribute.

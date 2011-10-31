@@ -98,12 +98,12 @@ public interface IfcSoundValue extends IfcPropertySetDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Frequency</em>' attribute.
-	 * @see #setFrequency(float)
+	 * @see #setFrequency(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSoundValue_Frequency()
 	 * @model
 	 * @generated
 	 */
-	float getFrequency();
+	double getFrequency();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundValue#getFrequency <em>Frequency</em>}' attribute.
@@ -113,7 +113,7 @@ public interface IfcSoundValue extends IfcPropertySetDefinition {
 	 * @see #getFrequency()
 	 * @generated
 	 */
-	void setFrequency(float value);
+	void setFrequency(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Frequency As String</b></em>' attribute.

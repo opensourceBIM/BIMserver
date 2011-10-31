@@ -60,8 +60,8 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCountValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE, true);
+	public double getCountValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCountValue(float newCountValue) {
+	public void setCountValue(double newCountValue) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE, newCountValue);
 	}
 

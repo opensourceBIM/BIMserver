@@ -81,12 +81,12 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * @return the value of the '<em>Max Required Area</em>' attribute.
 	 * @see #isSetMaxRequiredArea()
 	 * @see #unsetMaxRequiredArea()
-	 * @see #setMaxRequiredArea(float)
+	 * @see #setMaxRequiredArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceProgram_MaxRequiredArea()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMaxRequiredArea();
+	double getMaxRequiredArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getMaxRequiredArea <em>Max Required Area</em>}' attribute.
@@ -98,7 +98,7 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * @see #getMaxRequiredArea()
 	 * @generated
 	 */
-	void setMaxRequiredArea(float value);
+	void setMaxRequiredArea(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getMaxRequiredArea <em>Max Required Area</em>}' attribute.
@@ -106,7 +106,7 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMaxRequiredArea()
 	 * @see #getMaxRequiredArea()
-	 * @see #setMaxRequiredArea(float)
+	 * @see #setMaxRequiredArea(double)
 	 * @generated
 	 */
 	void unsetMaxRequiredArea();
@@ -118,7 +118,7 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * @return whether the value of the '<em>Max Required Area</em>' attribute is set.
 	 * @see #unsetMaxRequiredArea()
 	 * @see #getMaxRequiredArea()
-	 * @see #setMaxRequiredArea(float)
+	 * @see #setMaxRequiredArea(double)
 	 * @generated
 	 */
 	boolean isSetMaxRequiredArea();
@@ -187,12 +187,12 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * @return the value of the '<em>Min Required Area</em>' attribute.
 	 * @see #isSetMinRequiredArea()
 	 * @see #unsetMinRequiredArea()
-	 * @see #setMinRequiredArea(float)
+	 * @see #setMinRequiredArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceProgram_MinRequiredArea()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMinRequiredArea();
+	double getMinRequiredArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getMinRequiredArea <em>Min Required Area</em>}' attribute.
@@ -204,7 +204,7 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * @see #getMinRequiredArea()
 	 * @generated
 	 */
-	void setMinRequiredArea(float value);
+	void setMinRequiredArea(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getMinRequiredArea <em>Min Required Area</em>}' attribute.
@@ -212,7 +212,7 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinRequiredArea()
 	 * @see #getMinRequiredArea()
-	 * @see #setMinRequiredArea(float)
+	 * @see #setMinRequiredArea(double)
 	 * @generated
 	 */
 	void unsetMinRequiredArea();
@@ -224,7 +224,7 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * @return whether the value of the '<em>Min Required Area</em>' attribute is set.
 	 * @see #unsetMinRequiredArea()
 	 * @see #getMinRequiredArea()
-	 * @see #setMinRequiredArea(float)
+	 * @see #setMinRequiredArea(double)
 	 * @generated
 	 */
 	boolean isSetMinRequiredArea();
@@ -344,12 +344,12 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Standard Required Area</em>' attribute.
-	 * @see #setStandardRequiredArea(float)
+	 * @see #setStandardRequiredArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceProgram_StandardRequiredArea()
 	 * @model
 	 * @generated
 	 */
-	float getStandardRequiredArea();
+	double getStandardRequiredArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getStandardRequiredArea <em>Standard Required Area</em>}' attribute.
@@ -359,7 +359,7 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * @see #getStandardRequiredArea()
 	 * @generated
 	 */
-	void setStandardRequiredArea(float value);
+	void setStandardRequiredArea(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Standard Required Area As String</b></em>' attribute.

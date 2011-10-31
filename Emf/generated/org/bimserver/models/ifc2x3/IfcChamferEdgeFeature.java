@@ -47,12 +47,12 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * @return the value of the '<em>Width</em>' attribute.
 	 * @see #isSetWidth()
 	 * @see #unsetWidth()
-	 * @see #setWidth(float)
+	 * @see #setWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcChamferEdgeFeature_Width()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getWidth();
+	double getWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcChamferEdgeFeature#getWidth <em>Width</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * @see #getWidth()
 	 * @generated
 	 */
-	void setWidth(float value);
+	void setWidth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcChamferEdgeFeature#getWidth <em>Width</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * <!-- end-user-doc -->
 	 * @see #isSetWidth()
 	 * @see #getWidth()
-	 * @see #setWidth(float)
+	 * @see #setWidth(double)
 	 * @generated
 	 */
 	void unsetWidth();
@@ -84,7 +84,7 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * @return whether the value of the '<em>Width</em>' attribute is set.
 	 * @see #unsetWidth()
 	 * @see #getWidth()
-	 * @see #setWidth(float)
+	 * @see #setWidth(double)
 	 * @generated
 	 */
 	boolean isSetWidth();
@@ -153,12 +153,12 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #isSetHeight()
 	 * @see #unsetHeight()
-	 * @see #setHeight(float)
+	 * @see #setHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcChamferEdgeFeature_Height()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getHeight();
+	double getHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcChamferEdgeFeature#getHeight <em>Height</em>}' attribute.
@@ -170,7 +170,7 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * @see #getHeight()
 	 * @generated
 	 */
-	void setHeight(float value);
+	void setHeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcChamferEdgeFeature#getHeight <em>Height</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * <!-- end-user-doc -->
 	 * @see #isSetHeight()
 	 * @see #getHeight()
-	 * @see #setHeight(float)
+	 * @see #setHeight(double)
 	 * @generated
 	 */
 	void unsetHeight();
@@ -190,7 +190,7 @@ public interface IfcChamferEdgeFeature extends IfcEdgeFeature {
 	 * @return whether the value of the '<em>Height</em>' attribute is set.
 	 * @see #unsetHeight()
 	 * @see #getHeight()
-	 * @see #setHeight(float)
+	 * @see #setHeight(double)
 	 * @generated
 	 */
 	boolean isSetHeight();

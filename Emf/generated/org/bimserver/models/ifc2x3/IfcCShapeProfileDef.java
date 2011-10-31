@@ -53,12 +53,12 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
-	 * @see #setDepth(float)
+	 * @see #setDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_Depth()
 	 * @model
 	 * @generated
 	 */
-	float getDepth();
+	double getDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getDepth <em>Depth</em>}' attribute.
@@ -68,7 +68,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getDepth()
 	 * @generated
 	 */
-	void setDepth(float value);
+	void setDepth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Depth As String</b></em>' attribute.
@@ -105,12 +105,12 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
-	 * @see #setWidth(float)
+	 * @see #setWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_Width()
 	 * @model
 	 * @generated
 	 */
-	float getWidth();
+	double getWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWidth <em>Width</em>}' attribute.
@@ -120,7 +120,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getWidth()
 	 * @generated
 	 */
-	void setWidth(float value);
+	void setWidth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Width As String</b></em>' attribute.
@@ -157,12 +157,12 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wall Thickness</em>' attribute.
-	 * @see #setWallThickness(float)
+	 * @see #setWallThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_WallThickness()
 	 * @model
 	 * @generated
 	 */
-	float getWallThickness();
+	double getWallThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWallThickness <em>Wall Thickness</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getWallThickness()
 	 * @generated
 	 */
-	void setWallThickness(float value);
+	void setWallThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Wall Thickness As String</b></em>' attribute.
@@ -209,12 +209,12 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Girth</em>' attribute.
-	 * @see #setGirth(float)
+	 * @see #setGirth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_Girth()
 	 * @model
 	 * @generated
 	 */
-	float getGirth();
+	double getGirth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getGirth <em>Girth</em>}' attribute.
@@ -224,7 +224,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getGirth()
 	 * @generated
 	 */
-	void setGirth(float value);
+	void setGirth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Girth As String</b></em>' attribute.
@@ -263,12 +263,12 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Internal Fillet Radius</em>' attribute.
 	 * @see #isSetInternalFilletRadius()
 	 * @see #unsetInternalFilletRadius()
-	 * @see #setInternalFilletRadius(float)
+	 * @see #setInternalFilletRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_InternalFilletRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getInternalFilletRadius();
+	double getInternalFilletRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getInternalFilletRadius <em>Internal Fillet Radius</em>}' attribute.
@@ -280,7 +280,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getInternalFilletRadius()
 	 * @generated
 	 */
-	void setInternalFilletRadius(float value);
+	void setInternalFilletRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getInternalFilletRadius <em>Internal Fillet Radius</em>}' attribute.
@@ -288,7 +288,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetInternalFilletRadius()
 	 * @see #getInternalFilletRadius()
-	 * @see #setInternalFilletRadius(float)
+	 * @see #setInternalFilletRadius(double)
 	 * @generated
 	 */
 	void unsetInternalFilletRadius();
@@ -300,7 +300,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Internal Fillet Radius</em>' attribute is set.
 	 * @see #unsetInternalFilletRadius()
 	 * @see #getInternalFilletRadius()
-	 * @see #setInternalFilletRadius(float)
+	 * @see #setInternalFilletRadius(double)
 	 * @generated
 	 */
 	boolean isSetInternalFilletRadius();
@@ -369,12 +369,12 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Centre Of Gravity In X</em>' attribute.
 	 * @see #isSetCentreOfGravityInX()
 	 * @see #unsetCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_CentreOfGravityInX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCentreOfGravityInX();
+	double getCentreOfGravityInX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}' attribute.
@@ -386,7 +386,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getCentreOfGravityInX()
 	 * @generated
 	 */
-	void setCentreOfGravityInX(float value);
+	void setCentreOfGravityInX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCentreOfGravityInX()
 	 * @see #getCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @generated
 	 */
 	void unsetCentreOfGravityInX();
@@ -406,7 +406,7 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Centre Of Gravity In X</em>' attribute is set.
 	 * @see #unsetCentreOfGravityInX()
 	 * @see #getCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @generated
 	 */
 	boolean isSetCentreOfGravityInX();

@@ -55,12 +55,12 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Linear Force X</em>' attribute.
 	 * @see #isSetLinearForceX()
 	 * @see #unsetLinearForceX()
-	 * @see #setLinearForceX(float)
+	 * @see #setLinearForceX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadLinearForce_LinearForceX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearForceX();
+	double getLinearForceX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearForceX <em>Linear Force X</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #getLinearForceX()
 	 * @generated
 	 */
-	void setLinearForceX(float value);
+	void setLinearForceX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearForceX <em>Linear Force X</em>}' attribute.
@@ -80,7 +80,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearForceX()
 	 * @see #getLinearForceX()
-	 * @see #setLinearForceX(float)
+	 * @see #setLinearForceX(double)
 	 * @generated
 	 */
 	void unsetLinearForceX();
@@ -92,7 +92,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Linear Force X</em>' attribute is set.
 	 * @see #unsetLinearForceX()
 	 * @see #getLinearForceX()
-	 * @see #setLinearForceX(float)
+	 * @see #setLinearForceX(double)
 	 * @generated
 	 */
 	boolean isSetLinearForceX();
@@ -161,12 +161,12 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Linear Force Y</em>' attribute.
 	 * @see #isSetLinearForceY()
 	 * @see #unsetLinearForceY()
-	 * @see #setLinearForceY(float)
+	 * @see #setLinearForceY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadLinearForce_LinearForceY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearForceY();
+	double getLinearForceY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearForceY <em>Linear Force Y</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #getLinearForceY()
 	 * @generated
 	 */
-	void setLinearForceY(float value);
+	void setLinearForceY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearForceY <em>Linear Force Y</em>}' attribute.
@@ -186,7 +186,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearForceY()
 	 * @see #getLinearForceY()
-	 * @see #setLinearForceY(float)
+	 * @see #setLinearForceY(double)
 	 * @generated
 	 */
 	void unsetLinearForceY();
@@ -198,7 +198,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Linear Force Y</em>' attribute is set.
 	 * @see #unsetLinearForceY()
 	 * @see #getLinearForceY()
-	 * @see #setLinearForceY(float)
+	 * @see #setLinearForceY(double)
 	 * @generated
 	 */
 	boolean isSetLinearForceY();
@@ -267,12 +267,12 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Linear Force Z</em>' attribute.
 	 * @see #isSetLinearForceZ()
 	 * @see #unsetLinearForceZ()
-	 * @see #setLinearForceZ(float)
+	 * @see #setLinearForceZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadLinearForce_LinearForceZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearForceZ();
+	double getLinearForceZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearForceZ <em>Linear Force Z</em>}' attribute.
@@ -284,7 +284,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #getLinearForceZ()
 	 * @generated
 	 */
-	void setLinearForceZ(float value);
+	void setLinearForceZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearForceZ <em>Linear Force Z</em>}' attribute.
@@ -292,7 +292,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearForceZ()
 	 * @see #getLinearForceZ()
-	 * @see #setLinearForceZ(float)
+	 * @see #setLinearForceZ(double)
 	 * @generated
 	 */
 	void unsetLinearForceZ();
@@ -304,7 +304,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Linear Force Z</em>' attribute is set.
 	 * @see #unsetLinearForceZ()
 	 * @see #getLinearForceZ()
-	 * @see #setLinearForceZ(float)
+	 * @see #setLinearForceZ(double)
 	 * @generated
 	 */
 	boolean isSetLinearForceZ();
@@ -373,12 +373,12 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Linear Moment X</em>' attribute.
 	 * @see #isSetLinearMomentX()
 	 * @see #unsetLinearMomentX()
-	 * @see #setLinearMomentX(float)
+	 * @see #setLinearMomentX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadLinearForce_LinearMomentX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearMomentX();
+	double getLinearMomentX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearMomentX <em>Linear Moment X</em>}' attribute.
@@ -390,7 +390,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #getLinearMomentX()
 	 * @generated
 	 */
-	void setLinearMomentX(float value);
+	void setLinearMomentX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearMomentX <em>Linear Moment X</em>}' attribute.
@@ -398,7 +398,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearMomentX()
 	 * @see #getLinearMomentX()
-	 * @see #setLinearMomentX(float)
+	 * @see #setLinearMomentX(double)
 	 * @generated
 	 */
 	void unsetLinearMomentX();
@@ -410,7 +410,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Linear Moment X</em>' attribute is set.
 	 * @see #unsetLinearMomentX()
 	 * @see #getLinearMomentX()
-	 * @see #setLinearMomentX(float)
+	 * @see #setLinearMomentX(double)
 	 * @generated
 	 */
 	boolean isSetLinearMomentX();
@@ -479,12 +479,12 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Linear Moment Y</em>' attribute.
 	 * @see #isSetLinearMomentY()
 	 * @see #unsetLinearMomentY()
-	 * @see #setLinearMomentY(float)
+	 * @see #setLinearMomentY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadLinearForce_LinearMomentY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearMomentY();
+	double getLinearMomentY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearMomentY <em>Linear Moment Y</em>}' attribute.
@@ -496,7 +496,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #getLinearMomentY()
 	 * @generated
 	 */
-	void setLinearMomentY(float value);
+	void setLinearMomentY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearMomentY <em>Linear Moment Y</em>}' attribute.
@@ -504,7 +504,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearMomentY()
 	 * @see #getLinearMomentY()
-	 * @see #setLinearMomentY(float)
+	 * @see #setLinearMomentY(double)
 	 * @generated
 	 */
 	void unsetLinearMomentY();
@@ -516,7 +516,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Linear Moment Y</em>' attribute is set.
 	 * @see #unsetLinearMomentY()
 	 * @see #getLinearMomentY()
-	 * @see #setLinearMomentY(float)
+	 * @see #setLinearMomentY(double)
 	 * @generated
 	 */
 	boolean isSetLinearMomentY();
@@ -585,12 +585,12 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Linear Moment Z</em>' attribute.
 	 * @see #isSetLinearMomentZ()
 	 * @see #unsetLinearMomentZ()
-	 * @see #setLinearMomentZ(float)
+	 * @see #setLinearMomentZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadLinearForce_LinearMomentZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearMomentZ();
+	double getLinearMomentZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearMomentZ <em>Linear Moment Z</em>}' attribute.
@@ -602,7 +602,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #getLinearMomentZ()
 	 * @generated
 	 */
-	void setLinearMomentZ(float value);
+	void setLinearMomentZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce#getLinearMomentZ <em>Linear Moment Z</em>}' attribute.
@@ -610,7 +610,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearMomentZ()
 	 * @see #getLinearMomentZ()
-	 * @see #setLinearMomentZ(float)
+	 * @see #setLinearMomentZ(double)
 	 * @generated
 	 */
 	void unsetLinearMomentZ();
@@ -622,7 +622,7 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Linear Moment Z</em>' attribute is set.
 	 * @see #unsetLinearMomentZ()
 	 * @see #getLinearMomentZ()
-	 * @see #setLinearMomentZ(float)
+	 * @see #setLinearMomentZ(double)
 	 * @generated
 	 */
 	boolean isSetLinearMomentZ();

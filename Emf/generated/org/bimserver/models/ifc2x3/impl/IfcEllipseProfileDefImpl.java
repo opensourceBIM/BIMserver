@@ -62,8 +62,8 @@ public class IfcEllipseProfileDefImpl extends IfcParameterizedProfileDefImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSemiAxis1() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_ELLIPSE_PROFILE_DEF__SEMI_AXIS1, true);
+	public double getSemiAxis1() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_ELLIPSE_PROFILE_DEF__SEMI_AXIS1, true);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class IfcEllipseProfileDefImpl extends IfcParameterizedProfileDefImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSemiAxis1(float newSemiAxis1) {
+	public void setSemiAxis1(double newSemiAxis1) {
 		eSet(Ifc2x3Package.Literals.IFC_ELLIPSE_PROFILE_DEF__SEMI_AXIS1, newSemiAxis1);
 	}
 
@@ -98,8 +98,8 @@ public class IfcEllipseProfileDefImpl extends IfcParameterizedProfileDefImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSemiAxis2() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_ELLIPSE_PROFILE_DEF__SEMI_AXIS2, true);
+	public double getSemiAxis2() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_ELLIPSE_PROFILE_DEF__SEMI_AXIS2, true);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class IfcEllipseProfileDefImpl extends IfcParameterizedProfileDefImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSemiAxis2(float newSemiAxis2) {
+	public void setSemiAxis2(double newSemiAxis2) {
 		eSet(Ifc2x3Package.Literals.IFC_ELLIPSE_PROFILE_DEF__SEMI_AXIS2, newSemiAxis2);
 	}
 

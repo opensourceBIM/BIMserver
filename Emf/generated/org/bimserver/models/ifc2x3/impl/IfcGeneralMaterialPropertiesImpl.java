@@ -64,8 +64,8 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMolecularWeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT, true);
+	public double getMolecularWeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMolecularWeight(float newMolecularWeight) {
+	public void setMolecularWeight(double newMolecularWeight) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT, newMolecularWeight);
 	}
 
@@ -136,8 +136,8 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPorosity() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY, true);
+	public double getPorosity() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPorosity(float newPorosity) {
+	public void setPorosity(double newPorosity) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY, newPorosity);
 	}
 
@@ -208,8 +208,8 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMassDensity() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY, true);
+	public double getMassDensity() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY, true);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMassDensity(float newMassDensity) {
+	public void setMassDensity(double newMassDensity) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY, newMassDensity);
 	}
 

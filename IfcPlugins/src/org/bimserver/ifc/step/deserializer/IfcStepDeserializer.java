@@ -281,9 +281,9 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						} else {
 							if (!structuralFeature.isMany()) {
 								object.eSet(structuralFeature, convert(structuralFeature.getEType(), val));
-								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-									EStructuralFeature floatStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
-									object.eSet(floatStringFeature, val);
+								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+									EStructuralFeature doubleStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
+									object.eSet(doubleStringFeature, val);
 								}
 							}
 						}
@@ -308,13 +308,13 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			throw new DeserializeException("Field " + structuralFeature.getName() + " of " + structuralFeature.getEContainingClass().getName() + " is no aggregation");
 		}
 		BasicEList list = (BasicEList) object.eGet(structuralFeature);
-		BasicEList floatStringList = null;
-		if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-			EStructuralFeature floatStringFeature = structuralFeature.getEContainingClass().getEStructuralFeature(structuralFeature.getName() + "AsString");
-			if (floatStringFeature == null) {
+		BasicEList doubleStringList = null;
+		if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+			EStructuralFeature doubleStringFeature = structuralFeature.getEContainingClass().getEStructuralFeature(structuralFeature.getName() + "AsString");
+			if (doubleStringFeature == null) {
 				throw new DeserializeException("Field not found: " + structuralFeature.getName() + "AsString");
 			}
-			floatStringList = (BasicEList)object.eGet(floatStringFeature);
+			doubleStringList = (BasicEList)object.eGet(doubleStringFeature);
 		}
 		String realData = val.substring(1, val.length() - 1);
 		int lastIndex = 0;
@@ -351,14 +351,14 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				} else {
 					Object convert = convert(structuralFeature.getEType(), stringValue);
 					while (list.size() <= index) {
-						if (floatStringList != null) {
-							floatStringList.addUnique(stringValue);
+						if (doubleStringList != null) {
+							doubleStringList.addUnique(stringValue);
 						}
 						list.addUnique(convert);
 					}
 					if (convert != null) {
-						if (floatStringList != null) {
-							floatStringList.setUnique(index, stringValue);
+						if (doubleStringList != null) {
+							doubleStringList.setUnique(index, stringValue);
 						}
 						list.setUnique(index, convert);
 					}
@@ -406,11 +406,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				return Long.parseLong(value);
 			} else if (instanceClass == Boolean.class || instanceClass == boolean.class) {
 				return Boolean.parseBoolean(value);
-			} else if (instanceClass == Float.class || instanceClass == float.class) {
+			} else if (instanceClass == Double.class || instanceClass == double.class) {
 				try {
-					return Float.parseFloat(value);
+					return Double.parseDouble(value);
 				} catch (NumberFormatException e) {
-					throw new DeserializeException("Incorrent floating point value", e);
+					throw new DeserializeException("Incorrent double floating point value", e);
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
@@ -460,11 +460,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
 						} else if (instanceClass == Boolean.class || instanceClass == boolean.class) {
 							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), value.equals(".T."));
-						} else if (instanceClass == Float.class || instanceClass == float.class) {
+						} else if (instanceClass == Double.class || instanceClass == double.class) {
 							try {
-								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Float.parseFloat(value));
+								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Double.parseDouble(value));
 							} catch (NumberFormatException e) {
-								throw new DeserializeException(value + " is not a valid floating point number");
+								throw new DeserializeException(value + " is not a valid double floating point number");
 							}
 							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
 						} else if (instanceClass == String.class) {
@@ -514,7 +514,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private Object convertSimpleValue(UnderlyingType domain, String value) {
 		if (!value.equals("")) {
 			if (domain instanceof RealType) {
-				return Float.parseFloat(value);
+				return Double.parseDouble(value);
 			} else if (domain instanceof IntegerType) {
 				return Integer.parseInt(value);
 			} else if (domain instanceof BooleanType) {

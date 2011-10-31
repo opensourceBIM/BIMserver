@@ -55,12 +55,12 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Linear Stiffness X</em>' attribute.
 	 * @see #isSetLinearStiffnessX()
 	 * @see #unsetLinearStiffnessX()
-	 * @see #setLinearStiffnessX(float)
+	 * @see #setLinearStiffnessX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryNodeCondition_LinearStiffnessX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearStiffnessX();
+	double getLinearStiffnessX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getLinearStiffnessX <em>Linear Stiffness X</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @see #getLinearStiffnessX()
 	 * @generated
 	 */
-	void setLinearStiffnessX(float value);
+	void setLinearStiffnessX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getLinearStiffnessX <em>Linear Stiffness X</em>}' attribute.
@@ -80,7 +80,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearStiffnessX()
 	 * @see #getLinearStiffnessX()
-	 * @see #setLinearStiffnessX(float)
+	 * @see #setLinearStiffnessX(double)
 	 * @generated
 	 */
 	void unsetLinearStiffnessX();
@@ -92,7 +92,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Linear Stiffness X</em>' attribute is set.
 	 * @see #unsetLinearStiffnessX()
 	 * @see #getLinearStiffnessX()
-	 * @see #setLinearStiffnessX(float)
+	 * @see #setLinearStiffnessX(double)
 	 * @generated
 	 */
 	boolean isSetLinearStiffnessX();
@@ -161,12 +161,12 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Linear Stiffness Y</em>' attribute.
 	 * @see #isSetLinearStiffnessY()
 	 * @see #unsetLinearStiffnessY()
-	 * @see #setLinearStiffnessY(float)
+	 * @see #setLinearStiffnessY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryNodeCondition_LinearStiffnessY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearStiffnessY();
+	double getLinearStiffnessY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getLinearStiffnessY <em>Linear Stiffness Y</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @see #getLinearStiffnessY()
 	 * @generated
 	 */
-	void setLinearStiffnessY(float value);
+	void setLinearStiffnessY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getLinearStiffnessY <em>Linear Stiffness Y</em>}' attribute.
@@ -186,7 +186,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearStiffnessY()
 	 * @see #getLinearStiffnessY()
-	 * @see #setLinearStiffnessY(float)
+	 * @see #setLinearStiffnessY(double)
 	 * @generated
 	 */
 	void unsetLinearStiffnessY();
@@ -198,7 +198,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Linear Stiffness Y</em>' attribute is set.
 	 * @see #unsetLinearStiffnessY()
 	 * @see #getLinearStiffnessY()
-	 * @see #setLinearStiffnessY(float)
+	 * @see #setLinearStiffnessY(double)
 	 * @generated
 	 */
 	boolean isSetLinearStiffnessY();
@@ -267,12 +267,12 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Linear Stiffness Z</em>' attribute.
 	 * @see #isSetLinearStiffnessZ()
 	 * @see #unsetLinearStiffnessZ()
-	 * @see #setLinearStiffnessZ(float)
+	 * @see #setLinearStiffnessZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryNodeCondition_LinearStiffnessZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearStiffnessZ();
+	double getLinearStiffnessZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getLinearStiffnessZ <em>Linear Stiffness Z</em>}' attribute.
@@ -284,7 +284,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @see #getLinearStiffnessZ()
 	 * @generated
 	 */
-	void setLinearStiffnessZ(float value);
+	void setLinearStiffnessZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getLinearStiffnessZ <em>Linear Stiffness Z</em>}' attribute.
@@ -292,7 +292,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearStiffnessZ()
 	 * @see #getLinearStiffnessZ()
-	 * @see #setLinearStiffnessZ(float)
+	 * @see #setLinearStiffnessZ(double)
 	 * @generated
 	 */
 	void unsetLinearStiffnessZ();
@@ -304,7 +304,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Linear Stiffness Z</em>' attribute is set.
 	 * @see #unsetLinearStiffnessZ()
 	 * @see #getLinearStiffnessZ()
-	 * @see #setLinearStiffnessZ(float)
+	 * @see #setLinearStiffnessZ(double)
 	 * @generated
 	 */
 	boolean isSetLinearStiffnessZ();
@@ -373,12 +373,12 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Rotational Stiffness X</em>' attribute.
 	 * @see #isSetRotationalStiffnessX()
 	 * @see #unsetRotationalStiffnessX()
-	 * @see #setRotationalStiffnessX(float)
+	 * @see #setRotationalStiffnessX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryNodeCondition_RotationalStiffnessX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRotationalStiffnessX();
+	double getRotationalStiffnessX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getRotationalStiffnessX <em>Rotational Stiffness X</em>}' attribute.
@@ -390,7 +390,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @see #getRotationalStiffnessX()
 	 * @generated
 	 */
-	void setRotationalStiffnessX(float value);
+	void setRotationalStiffnessX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getRotationalStiffnessX <em>Rotational Stiffness X</em>}' attribute.
@@ -398,7 +398,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRotationalStiffnessX()
 	 * @see #getRotationalStiffnessX()
-	 * @see #setRotationalStiffnessX(float)
+	 * @see #setRotationalStiffnessX(double)
 	 * @generated
 	 */
 	void unsetRotationalStiffnessX();
@@ -410,7 +410,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Rotational Stiffness X</em>' attribute is set.
 	 * @see #unsetRotationalStiffnessX()
 	 * @see #getRotationalStiffnessX()
-	 * @see #setRotationalStiffnessX(float)
+	 * @see #setRotationalStiffnessX(double)
 	 * @generated
 	 */
 	boolean isSetRotationalStiffnessX();
@@ -479,12 +479,12 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Rotational Stiffness Y</em>' attribute.
 	 * @see #isSetRotationalStiffnessY()
 	 * @see #unsetRotationalStiffnessY()
-	 * @see #setRotationalStiffnessY(float)
+	 * @see #setRotationalStiffnessY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryNodeCondition_RotationalStiffnessY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRotationalStiffnessY();
+	double getRotationalStiffnessY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getRotationalStiffnessY <em>Rotational Stiffness Y</em>}' attribute.
@@ -496,7 +496,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @see #getRotationalStiffnessY()
 	 * @generated
 	 */
-	void setRotationalStiffnessY(float value);
+	void setRotationalStiffnessY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getRotationalStiffnessY <em>Rotational Stiffness Y</em>}' attribute.
@@ -504,7 +504,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRotationalStiffnessY()
 	 * @see #getRotationalStiffnessY()
-	 * @see #setRotationalStiffnessY(float)
+	 * @see #setRotationalStiffnessY(double)
 	 * @generated
 	 */
 	void unsetRotationalStiffnessY();
@@ -516,7 +516,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Rotational Stiffness Y</em>' attribute is set.
 	 * @see #unsetRotationalStiffnessY()
 	 * @see #getRotationalStiffnessY()
-	 * @see #setRotationalStiffnessY(float)
+	 * @see #setRotationalStiffnessY(double)
 	 * @generated
 	 */
 	boolean isSetRotationalStiffnessY();
@@ -585,12 +585,12 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Rotational Stiffness Z</em>' attribute.
 	 * @see #isSetRotationalStiffnessZ()
 	 * @see #unsetRotationalStiffnessZ()
-	 * @see #setRotationalStiffnessZ(float)
+	 * @see #setRotationalStiffnessZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryNodeCondition_RotationalStiffnessZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRotationalStiffnessZ();
+	double getRotationalStiffnessZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getRotationalStiffnessZ <em>Rotational Stiffness Z</em>}' attribute.
@@ -602,7 +602,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @see #getRotationalStiffnessZ()
 	 * @generated
 	 */
-	void setRotationalStiffnessZ(float value);
+	void setRotationalStiffnessZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition#getRotationalStiffnessZ <em>Rotational Stiffness Z</em>}' attribute.
@@ -610,7 +610,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRotationalStiffnessZ()
 	 * @see #getRotationalStiffnessZ()
-	 * @see #setRotationalStiffnessZ(float)
+	 * @see #setRotationalStiffnessZ(double)
 	 * @generated
 	 */
 	void unsetRotationalStiffnessZ();
@@ -622,7 +622,7 @@ public interface IfcBoundaryNodeCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Rotational Stiffness Z</em>' attribute is set.
 	 * @see #unsetRotationalStiffnessZ()
 	 * @see #getRotationalStiffnessZ()
-	 * @see #setRotationalStiffnessZ(float)
+	 * @see #setRotationalStiffnessZ(double)
 	 * @generated
 	 */
 	boolean isSetRotationalStiffnessZ();

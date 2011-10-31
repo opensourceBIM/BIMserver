@@ -60,8 +60,8 @@ public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFeatureLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH, true);
+	public double getFeatureLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFeatureLength(float newFeatureLength) {
+	public void setFeatureLength(double newFeatureLength) {
 		eSet(Ifc2x3Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH, newFeatureLength);
 	}
 

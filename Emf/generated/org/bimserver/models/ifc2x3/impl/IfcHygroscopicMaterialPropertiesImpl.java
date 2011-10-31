@@ -68,8 +68,8 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getUpperVaporResistanceFactor() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__UPPER_VAPOR_RESISTANCE_FACTOR, true);
+	public double getUpperVaporResistanceFactor() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__UPPER_VAPOR_RESISTANCE_FACTOR, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUpperVaporResistanceFactor(float newUpperVaporResistanceFactor) {
+	public void setUpperVaporResistanceFactor(double newUpperVaporResistanceFactor) {
 		eSet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__UPPER_VAPOR_RESISTANCE_FACTOR, newUpperVaporResistanceFactor);
 	}
 
@@ -140,8 +140,8 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLowerVaporResistanceFactor() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__LOWER_VAPOR_RESISTANCE_FACTOR, true);
+	public double getLowerVaporResistanceFactor() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__LOWER_VAPOR_RESISTANCE_FACTOR, true);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLowerVaporResistanceFactor(float newLowerVaporResistanceFactor) {
+	public void setLowerVaporResistanceFactor(double newLowerVaporResistanceFactor) {
 		eSet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__LOWER_VAPOR_RESISTANCE_FACTOR, newLowerVaporResistanceFactor);
 	}
 
@@ -212,8 +212,8 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getIsothermalMoistureCapacity() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__ISOTHERMAL_MOISTURE_CAPACITY, true);
+	public double getIsothermalMoistureCapacity() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__ISOTHERMAL_MOISTURE_CAPACITY, true);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsothermalMoistureCapacity(float newIsothermalMoistureCapacity) {
+	public void setIsothermalMoistureCapacity(double newIsothermalMoistureCapacity) {
 		eSet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__ISOTHERMAL_MOISTURE_CAPACITY, newIsothermalMoistureCapacity);
 	}
 
@@ -284,8 +284,8 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getVaporPermeability() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__VAPOR_PERMEABILITY, true);
+	public double getVaporPermeability() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__VAPOR_PERMEABILITY, true);
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVaporPermeability(float newVaporPermeability) {
+	public void setVaporPermeability(double newVaporPermeability) {
 		eSet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__VAPOR_PERMEABILITY, newVaporPermeability);
 	}
 
@@ -356,8 +356,8 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMoistureDiffusivity() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__MOISTURE_DIFFUSIVITY, true);
+	public double getMoistureDiffusivity() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__MOISTURE_DIFFUSIVITY, true);
 	}
 
 	/**
@@ -365,7 +365,7 @@ public class IfcHygroscopicMaterialPropertiesImpl extends IfcMaterialPropertiesI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMoistureDiffusivity(float newMoistureDiffusivity) {
+	public void setMoistureDiffusivity(double newMoistureDiffusivity) {
 		eSet(Ifc2x3Package.Literals.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES__MOISTURE_DIFFUSIVITY, newMoistureDiffusivity);
 	}
 

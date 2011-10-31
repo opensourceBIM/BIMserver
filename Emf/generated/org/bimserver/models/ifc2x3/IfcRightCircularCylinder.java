@@ -45,12 +45,12 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
-	 * @see #setHeight(float)
+	 * @see #setHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCylinder_Height()
 	 * @model
 	 * @generated
 	 */
-	float getHeight();
+	double getHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getHeight <em>Height</em>}' attribute.
@@ -60,7 +60,7 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * @see #getHeight()
 	 * @generated
 	 */
-	void setHeight(float value);
+	void setHeight(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Height As String</b></em>' attribute.
@@ -97,12 +97,12 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCylinder_Radius()
 	 * @model
 	 * @generated
 	 */
-	float getRadius();
+	double getRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getRadius <em>Radius</em>}' attribute.
@@ -112,7 +112,7 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * @see #getRadius()
 	 * @generated
 	 */
-	void setRadius(float value);
+	void setRadius(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.

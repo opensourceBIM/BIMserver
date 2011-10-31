@@ -79,12 +79,12 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>U1</em>' attribute.
-	 * @see #setU1(float)
+	 * @see #setU1(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularTrimmedSurface_U1()
 	 * @model
 	 * @generated
 	 */
-	float getU1();
+	double getU1();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularTrimmedSurface#getU1 <em>U1</em>}' attribute.
@@ -94,7 +94,7 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * @see #getU1()
 	 * @generated
 	 */
-	void setU1(float value);
+	void setU1(double value);
 
 	/**
 	 * Returns the value of the '<em><b>U1 As String</b></em>' attribute.
@@ -131,12 +131,12 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>V1</em>' attribute.
-	 * @see #setV1(float)
+	 * @see #setV1(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularTrimmedSurface_V1()
 	 * @model
 	 * @generated
 	 */
-	float getV1();
+	double getV1();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularTrimmedSurface#getV1 <em>V1</em>}' attribute.
@@ -146,7 +146,7 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * @see #getV1()
 	 * @generated
 	 */
-	void setV1(float value);
+	void setV1(double value);
 
 	/**
 	 * Returns the value of the '<em><b>V1 As String</b></em>' attribute.
@@ -183,12 +183,12 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>U2</em>' attribute.
-	 * @see #setU2(float)
+	 * @see #setU2(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularTrimmedSurface_U2()
 	 * @model
 	 * @generated
 	 */
-	float getU2();
+	double getU2();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularTrimmedSurface#getU2 <em>U2</em>}' attribute.
@@ -198,7 +198,7 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * @see #getU2()
 	 * @generated
 	 */
-	void setU2(float value);
+	void setU2(double value);
 
 	/**
 	 * Returns the value of the '<em><b>U2 As String</b></em>' attribute.
@@ -235,12 +235,12 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>V2</em>' attribute.
-	 * @see #setV2(float)
+	 * @see #setV2(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularTrimmedSurface_V2()
 	 * @model
 	 * @generated
 	 */
-	float getV2();
+	double getV2();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularTrimmedSurface#getV2 <em>V2</em>}' attribute.
@@ -250,7 +250,7 @@ public interface IfcRectangularTrimmedSurface extends IfcBoundedSurface {
 	 * @see #getV2()
 	 * @generated
 	 */
-	void setV2(float value);
+	void setV2(double value);
 
 	/**
 	 * Returns the value of the '<em><b>V2 As String</b></em>' attribute.

@@ -43,12 +43,12 @@ public interface IfcQuantityLength extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Length Value</em>' attribute.
-	 * @see #setLengthValue(float)
+	 * @see #setLengthValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityLength_LengthValue()
 	 * @model
 	 * @generated
 	 */
-	float getLengthValue();
+	double getLengthValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityLength#getLengthValue <em>Length Value</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcQuantityLength extends IfcPhysicalSimpleQuantity {
 	 * @see #getLengthValue()
 	 * @generated
 	 */
-	void setLengthValue(float value);
+	void setLengthValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Length Value As String</b></em>' attribute.

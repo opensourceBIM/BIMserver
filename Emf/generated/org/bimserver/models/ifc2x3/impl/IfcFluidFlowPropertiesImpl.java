@@ -298,8 +298,8 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTemperatureSingleValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__TEMPERATURE_SINGLE_VALUE, true);
+	public double getTemperatureSingleValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__TEMPERATURE_SINGLE_VALUE, true);
 	}
 
 	/**
@@ -307,7 +307,7 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemperatureSingleValue(float newTemperatureSingleValue) {
+	public void setTemperatureSingleValue(double newTemperatureSingleValue) {
 		eSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__TEMPERATURE_SINGLE_VALUE, newTemperatureSingleValue);
 	}
 
@@ -370,8 +370,8 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWetBulbTemperatureSingleValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__WET_BULB_TEMPERATURE_SINGLE_VALUE, true);
+	public double getWetBulbTemperatureSingleValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__WET_BULB_TEMPERATURE_SINGLE_VALUE, true);
 	}
 
 	/**
@@ -379,7 +379,7 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWetBulbTemperatureSingleValue(float newWetBulbTemperatureSingleValue) {
+	public void setWetBulbTemperatureSingleValue(double newWetBulbTemperatureSingleValue) {
 		eSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__WET_BULB_TEMPERATURE_SINGLE_VALUE, newWetBulbTemperatureSingleValue);
 	}
 
@@ -550,8 +550,8 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFlowConditionSingleValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__FLOW_CONDITION_SINGLE_VALUE, true);
+	public double getFlowConditionSingleValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__FLOW_CONDITION_SINGLE_VALUE, true);
 	}
 
 	/**
@@ -559,7 +559,7 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFlowConditionSingleValue(float newFlowConditionSingleValue) {
+	public void setFlowConditionSingleValue(double newFlowConditionSingleValue) {
 		eSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__FLOW_CONDITION_SINGLE_VALUE, newFlowConditionSingleValue);
 	}
 
@@ -622,8 +622,8 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getVelocitySingleValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__VELOCITY_SINGLE_VALUE, true);
+	public double getVelocitySingleValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__VELOCITY_SINGLE_VALUE, true);
 	}
 
 	/**
@@ -631,7 +631,7 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVelocitySingleValue(float newVelocitySingleValue) {
+	public void setVelocitySingleValue(double newVelocitySingleValue) {
 		eSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__VELOCITY_SINGLE_VALUE, newVelocitySingleValue);
 	}
 
@@ -694,8 +694,8 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPressureSingleValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__PRESSURE_SINGLE_VALUE, true);
+	public double getPressureSingleValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__PRESSURE_SINGLE_VALUE, true);
 	}
 
 	/**
@@ -703,7 +703,7 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPressureSingleValue(float newPressureSingleValue) {
+	public void setPressureSingleValue(double newPressureSingleValue) {
 		eSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__PRESSURE_SINGLE_VALUE, newPressureSingleValue);
 	}
 

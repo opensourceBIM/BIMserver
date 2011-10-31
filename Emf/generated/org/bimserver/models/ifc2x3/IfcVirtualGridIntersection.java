@@ -60,7 +60,7 @@ public interface IfcVirtualGridIntersection extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Offset Distances</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Double}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Offset Distances</em>' attribute list isn't clear,
@@ -72,7 +72,7 @@ public interface IfcVirtualGridIntersection extends IdEObject {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Float> getOffsetDistances();
+	EList<Double> getOffsetDistances();
 
 	/**
 	 * Returns the value of the '<em><b>Offset Distances As String</b></em>' attribute list.

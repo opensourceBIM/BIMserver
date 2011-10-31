@@ -73,12 +73,12 @@ public interface IfcSurfaceCurveSweptAreaSolid extends IfcSweptAreaSolid {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Param</em>' attribute.
-	 * @see #setStartParam(float)
+	 * @see #setStartParam(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceCurveSweptAreaSolid_StartParam()
 	 * @model
 	 * @generated
 	 */
-	float getStartParam();
+	double getStartParam();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceCurveSweptAreaSolid#getStartParam <em>Start Param</em>}' attribute.
@@ -88,7 +88,7 @@ public interface IfcSurfaceCurveSweptAreaSolid extends IfcSweptAreaSolid {
 	 * @see #getStartParam()
 	 * @generated
 	 */
-	void setStartParam(float value);
+	void setStartParam(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Start Param As String</b></em>' attribute.
@@ -125,12 +125,12 @@ public interface IfcSurfaceCurveSweptAreaSolid extends IfcSweptAreaSolid {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Param</em>' attribute.
-	 * @see #setEndParam(float)
+	 * @see #setEndParam(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceCurveSweptAreaSolid_EndParam()
 	 * @model
 	 * @generated
 	 */
-	float getEndParam();
+	double getEndParam();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceCurveSweptAreaSolid#getEndParam <em>End Param</em>}' attribute.
@@ -140,7 +140,7 @@ public interface IfcSurfaceCurveSweptAreaSolid extends IfcSweptAreaSolid {
 	 * @see #getEndParam()
 	 * @generated
 	 */
-	void setEndParam(float value);
+	void setEndParam(double value);
 
 	/**
 	 * Returns the value of the '<em><b>End Param As String</b></em>' attribute.

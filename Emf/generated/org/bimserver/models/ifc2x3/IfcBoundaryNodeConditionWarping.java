@@ -45,12 +45,12 @@ public interface IfcBoundaryNodeConditionWarping extends IfcBoundaryNodeConditio
 	 * @return the value of the '<em>Warping Stiffness</em>' attribute.
 	 * @see #isSetWarpingStiffness()
 	 * @see #unsetWarpingStiffness()
-	 * @see #setWarpingStiffness(float)
+	 * @see #setWarpingStiffness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryNodeConditionWarping_WarpingStiffness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getWarpingStiffness();
+	double getWarpingStiffness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeConditionWarping#getWarpingStiffness <em>Warping Stiffness</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcBoundaryNodeConditionWarping extends IfcBoundaryNodeConditio
 	 * @see #getWarpingStiffness()
 	 * @generated
 	 */
-	void setWarpingStiffness(float value);
+	void setWarpingStiffness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryNodeConditionWarping#getWarpingStiffness <em>Warping Stiffness</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcBoundaryNodeConditionWarping extends IfcBoundaryNodeConditio
 	 * <!-- end-user-doc -->
 	 * @see #isSetWarpingStiffness()
 	 * @see #getWarpingStiffness()
-	 * @see #setWarpingStiffness(float)
+	 * @see #setWarpingStiffness(double)
 	 * @generated
 	 */
 	void unsetWarpingStiffness();
@@ -82,7 +82,7 @@ public interface IfcBoundaryNodeConditionWarping extends IfcBoundaryNodeConditio
 	 * @return whether the value of the '<em>Warping Stiffness</em>' attribute is set.
 	 * @see #unsetWarpingStiffness()
 	 * @see #getWarpingStiffness()
-	 * @see #setWarpingStiffness(float)
+	 * @see #setWarpingStiffness(double)
 	 * @generated
 	 */
 	boolean isSetWarpingStiffness();

@@ -132,8 +132,8 @@ public class IfcMaterialLayerSetUsageImpl extends IdEObjectImpl implements IfcMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getOffsetFromReferenceLine() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE, true);
+	public double getOffsetFromReferenceLine() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE, true);
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class IfcMaterialLayerSetUsageImpl extends IdEObjectImpl implements IfcMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOffsetFromReferenceLine(float newOffsetFromReferenceLine) {
+	public void setOffsetFromReferenceLine(double newOffsetFromReferenceLine) {
 		eSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE, newOffsetFromReferenceLine);
 	}
 

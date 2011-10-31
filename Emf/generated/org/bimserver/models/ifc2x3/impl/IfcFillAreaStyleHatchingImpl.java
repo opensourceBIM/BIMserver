@@ -175,8 +175,8 @@ public class IfcFillAreaStyleHatchingImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getHatchLineAngle() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__HATCH_LINE_ANGLE, true);
+	public double getHatchLineAngle() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__HATCH_LINE_ANGLE, true);
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class IfcFillAreaStyleHatchingImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHatchLineAngle(float newHatchLineAngle) {
+	public void setHatchLineAngle(double newHatchLineAngle) {
 		eSet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__HATCH_LINE_ANGLE, newHatchLineAngle);
 	}
 

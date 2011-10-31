@@ -74,8 +74,8 @@ public class IfcRelaxationImpl extends IdEObjectImpl implements IfcRelaxation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRelaxationValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RELAXATION__RELAXATION_VALUE, true);
+	public double getRelaxationValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RELAXATION__RELAXATION_VALUE, true);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class IfcRelaxationImpl extends IdEObjectImpl implements IfcRelaxation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelaxationValue(float newRelaxationValue) {
+	public void setRelaxationValue(double newRelaxationValue) {
 		eSet(Ifc2x3Package.Literals.IFC_RELAXATION__RELAXATION_VALUE, newRelaxationValue);
 	}
 
@@ -110,8 +110,8 @@ public class IfcRelaxationImpl extends IdEObjectImpl implements IfcRelaxation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getInitialStress() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RELAXATION__INITIAL_STRESS, true);
+	public double getInitialStress() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RELAXATION__INITIAL_STRESS, true);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class IfcRelaxationImpl extends IdEObjectImpl implements IfcRelaxation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitialStress(float newInitialStress) {
+	public void setInitialStress(double newInitialStress) {
 		eSet(Ifc2x3Package.Literals.IFC_RELAXATION__INITIAL_STRESS, newInitialStress);
 	}
 

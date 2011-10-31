@@ -50,12 +50,12 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Panel Depth</em>' attribute.
 	 * @see #isSetPanelDepth()
 	 * @see #unsetPanelDepth()
-	 * @see #setPanelDepth(float)
+	 * @see #setPanelDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorPanelProperties_PanelDepth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPanelDepth();
+	double getPanelDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelDepth <em>Panel Depth</em>}' attribute.
@@ -67,7 +67,7 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * @see #getPanelDepth()
 	 * @generated
 	 */
-	void setPanelDepth(float value);
+	void setPanelDepth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelDepth <em>Panel Depth</em>}' attribute.
@@ -75,7 +75,7 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPanelDepth()
 	 * @see #getPanelDepth()
-	 * @see #setPanelDepth(float)
+	 * @see #setPanelDepth(double)
 	 * @generated
 	 */
 	void unsetPanelDepth();
@@ -87,7 +87,7 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Panel Depth</em>' attribute is set.
 	 * @see #unsetPanelDepth()
 	 * @see #getPanelDepth()
-	 * @see #setPanelDepth(float)
+	 * @see #setPanelDepth(double)
 	 * @generated
 	 */
 	boolean isSetPanelDepth();
@@ -185,12 +185,12 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Panel Width</em>' attribute.
 	 * @see #isSetPanelWidth()
 	 * @see #unsetPanelWidth()
-	 * @see #setPanelWidth(float)
+	 * @see #setPanelWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorPanelProperties_PanelWidth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPanelWidth();
+	double getPanelWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelWidth <em>Panel Width</em>}' attribute.
@@ -202,7 +202,7 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * @see #getPanelWidth()
 	 * @generated
 	 */
-	void setPanelWidth(float value);
+	void setPanelWidth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelWidth <em>Panel Width</em>}' attribute.
@@ -210,7 +210,7 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPanelWidth()
 	 * @see #getPanelWidth()
-	 * @see #setPanelWidth(float)
+	 * @see #setPanelWidth(double)
 	 * @generated
 	 */
 	void unsetPanelWidth();
@@ -222,7 +222,7 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Panel Width</em>' attribute is set.
 	 * @see #unsetPanelWidth()
 	 * @see #getPanelWidth()
-	 * @see #setPanelWidth(float)
+	 * @see #setPanelWidth(double)
 	 * @generated
 	 */
 	boolean isSetPanelWidth();

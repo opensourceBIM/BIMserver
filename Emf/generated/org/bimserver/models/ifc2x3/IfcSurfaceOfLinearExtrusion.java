@@ -70,12 +70,12 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
-	 * @see #setDepth(float)
+	 * @see #setDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceOfLinearExtrusion_Depth()
 	 * @model
 	 * @generated
 	 */
-	float getDepth();
+	double getDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion#getDepth <em>Depth</em>}' attribute.
@@ -85,7 +85,7 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * @see #getDepth()
 	 * @generated
 	 */
-	void setDepth(float value);
+	void setDepth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Depth As String</b></em>' attribute.

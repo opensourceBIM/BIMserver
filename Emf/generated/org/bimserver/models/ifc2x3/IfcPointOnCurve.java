@@ -71,12 +71,12 @@ public interface IfcPointOnCurve extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point Parameter</em>' attribute.
-	 * @see #setPointParameter(float)
+	 * @see #setPointParameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnCurve_PointParameter()
 	 * @model
 	 * @generated
 	 */
-	float getPointParameter();
+	double getPointParameter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnCurve#getPointParameter <em>Point Parameter</em>}' attribute.
@@ -86,7 +86,7 @@ public interface IfcPointOnCurve extends IfcPoint {
 	 * @see #getPointParameter()
 	 * @generated
 	 */
-	void setPointParameter(float value);
+	void setPointParameter(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Point Parameter As String</b></em>' attribute.

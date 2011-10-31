@@ -27,11 +27,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getTag <em>Tag</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getHasStructuralMember <em>Has Structural Member</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getFillsVoids <em>Fills Voids</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getConnectedTo <em>Connected To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getHasCoverings <em>Has Coverings</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getHasProjections <em>Has Projections</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getHasStructuralMember <em>Has Structural Member</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getReferencedInStructures <em>Referenced In Structures</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getHasPorts <em>Has Ports</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcElement#getHasOpenings <em>Has Openings</em>}</li>

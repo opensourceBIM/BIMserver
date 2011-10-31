@@ -60,8 +60,8 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTimeValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE, true);
+	public double getTimeValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeValue(float newTimeValue) {
+	public void setTimeValue(double newTimeValue) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE, newTimeValue);
 	}
 

@@ -80,8 +80,8 @@ public class IfcServiceLifeImpl extends IfcControlImpl implements IfcServiceLife
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getServiceLifeDuration() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION, true);
+	public double getServiceLifeDuration() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class IfcServiceLifeImpl extends IfcControlImpl implements IfcServiceLife
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setServiceLifeDuration(float newServiceLifeDuration) {
+	public void setServiceLifeDuration(double newServiceLifeDuration) {
 		eSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION, newServiceLifeDuration);
 	}
 

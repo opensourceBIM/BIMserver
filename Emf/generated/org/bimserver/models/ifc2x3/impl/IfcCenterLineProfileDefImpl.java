@@ -60,8 +60,8 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS, true);
+	public double getThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThickness(float newThickness) {
+	public void setThickness(double newThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS, newThickness);
 	}
 

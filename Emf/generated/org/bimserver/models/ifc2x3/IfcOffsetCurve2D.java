@@ -71,12 +71,12 @@ public interface IfcOffsetCurve2D extends IfcCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distance</em>' attribute.
-	 * @see #setDistance(float)
+	 * @see #setDistance(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOffsetCurve2D_Distance()
 	 * @model
 	 * @generated
 	 */
-	float getDistance();
+	double getDistance();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOffsetCurve2D#getDistance <em>Distance</em>}' attribute.
@@ -86,7 +86,7 @@ public interface IfcOffsetCurve2D extends IfcCurve {
 	 * @see #getDistance()
 	 * @generated
 	 */
-	void setDistance(float value);
+	void setDistance(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Distance As String</b></em>' attribute.

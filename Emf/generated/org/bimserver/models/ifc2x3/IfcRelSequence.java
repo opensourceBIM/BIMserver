@@ -102,12 +102,12 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Lag</em>' attribute.
-	 * @see #setTimeLag(float)
+	 * @see #setTimeLag(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSequence_TimeLag()
 	 * @model
 	 * @generated
 	 */
-	float getTimeLag();
+	double getTimeLag();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getTimeLag <em>Time Lag</em>}' attribute.
@@ -117,7 +117,7 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * @see #getTimeLag()
 	 * @generated
 	 */
-	void setTimeLag(float value);
+	void setTimeLag(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Time Lag As String</b></em>' attribute.

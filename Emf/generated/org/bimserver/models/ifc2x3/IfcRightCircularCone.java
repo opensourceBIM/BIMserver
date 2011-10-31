@@ -45,12 +45,12 @@ public interface IfcRightCircularCone extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
-	 * @see #setHeight(float)
+	 * @see #setHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCone_Height()
 	 * @model
 	 * @generated
 	 */
-	float getHeight();
+	double getHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCone#getHeight <em>Height</em>}' attribute.
@@ -60,7 +60,7 @@ public interface IfcRightCircularCone extends IfcCsgPrimitive3D {
 	 * @see #getHeight()
 	 * @generated
 	 */
-	void setHeight(float value);
+	void setHeight(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Height As String</b></em>' attribute.
@@ -97,12 +97,12 @@ public interface IfcRightCircularCone extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bottom Radius</em>' attribute.
-	 * @see #setBottomRadius(float)
+	 * @see #setBottomRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCone_BottomRadius()
 	 * @model
 	 * @generated
 	 */
-	float getBottomRadius();
+	double getBottomRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCone#getBottomRadius <em>Bottom Radius</em>}' attribute.
@@ -112,7 +112,7 @@ public interface IfcRightCircularCone extends IfcCsgPrimitive3D {
 	 * @see #getBottomRadius()
 	 * @generated
 	 */
-	void setBottomRadius(float value);
+	void setBottomRadius(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Bottom Radius As String</b></em>' attribute.

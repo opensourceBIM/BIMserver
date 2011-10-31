@@ -115,8 +115,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getExchangeRate() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE, true);
+	public double getExchangeRate() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE, true);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExchangeRate(float newExchangeRate) {
+	public void setExchangeRate(double newExchangeRate) {
 		eSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE, newExchangeRate);
 	}
 

@@ -80,8 +80,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLiningDepth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_DEPTH, true);
+	public double getLiningDepth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_DEPTH, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLiningDepth(float newLiningDepth) {
+	public void setLiningDepth(double newLiningDepth) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_DEPTH, newLiningDepth);
 	}
 
@@ -152,8 +152,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLiningThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_THICKNESS, true);
+	public double getLiningThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_THICKNESS, true);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLiningThickness(float newLiningThickness) {
+	public void setLiningThickness(double newLiningThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_THICKNESS, newLiningThickness);
 	}
 
@@ -224,8 +224,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThresholdDepth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_DEPTH, true);
+	public double getThresholdDepth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_DEPTH, true);
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThresholdDepth(float newThresholdDepth) {
+	public void setThresholdDepth(double newThresholdDepth) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_DEPTH, newThresholdDepth);
 	}
 
@@ -296,8 +296,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThresholdThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS, true);
+	public double getThresholdThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS, true);
 	}
 
 	/**
@@ -305,7 +305,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThresholdThickness(float newThresholdThickness) {
+	public void setThresholdThickness(double newThresholdThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS, newThresholdThickness);
 	}
 
@@ -368,8 +368,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTransomThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_THICKNESS, true);
+	public double getTransomThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_THICKNESS, true);
 	}
 
 	/**
@@ -377,7 +377,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTransomThickness(float newTransomThickness) {
+	public void setTransomThickness(double newTransomThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_THICKNESS, newTransomThickness);
 	}
 
@@ -440,8 +440,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTransomOffset() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_OFFSET, true);
+	public double getTransomOffset() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_OFFSET, true);
 	}
 
 	/**
@@ -449,7 +449,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTransomOffset(float newTransomOffset) {
+	public void setTransomOffset(double newTransomOffset) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_OFFSET, newTransomOffset);
 	}
 
@@ -512,8 +512,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLiningOffset() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_OFFSET, true);
+	public double getLiningOffset() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_OFFSET, true);
 	}
 
 	/**
@@ -521,7 +521,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLiningOffset(float newLiningOffset) {
+	public void setLiningOffset(double newLiningOffset) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_OFFSET, newLiningOffset);
 	}
 
@@ -584,8 +584,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThresholdOffset() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_OFFSET, true);
+	public double getThresholdOffset() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_OFFSET, true);
 	}
 
 	/**
@@ -593,7 +593,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThresholdOffset(float newThresholdOffset) {
+	public void setThresholdOffset(double newThresholdOffset) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_OFFSET, newThresholdOffset);
 	}
 
@@ -656,8 +656,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCasingThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_THICKNESS, true);
+	public double getCasingThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_THICKNESS, true);
 	}
 
 	/**
@@ -665,7 +665,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCasingThickness(float newCasingThickness) {
+	public void setCasingThickness(double newCasingThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_THICKNESS, newCasingThickness);
 	}
 
@@ -728,8 +728,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCasingDepth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_DEPTH, true);
+	public double getCasingDepth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_DEPTH, true);
 	}
 
 	/**
@@ -737,7 +737,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCasingDepth(float newCasingDepth) {
+	public void setCasingDepth(double newCasingDepth) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_DEPTH, newCasingDepth);
 	}
 

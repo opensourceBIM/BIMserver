@@ -68,8 +68,8 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPanelDepth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH, true);
+	public double getPanelDepth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPanelDepth(float newPanelDepth) {
+	public void setPanelDepth(double newPanelDepth) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH, newPanelDepth);
 	}
 
@@ -158,8 +158,8 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPanelWidth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH, true);
+	public double getPanelWidth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH, true);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPanelWidth(float newPanelWidth) {
+	public void setPanelWidth(double newPanelWidth) {
 		eSet(Ifc2x3Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH, newPanelWidth);
 	}
 

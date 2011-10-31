@@ -76,12 +76,12 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_Radius()
 	 * @model
 	 * @generated
 	 */
-	float getRadius();
+	double getRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getRadius <em>Radius</em>}' attribute.
@@ -91,7 +91,7 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * @see #getRadius()
 	 * @generated
 	 */
-	void setRadius(float value);
+	void setRadius(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.
@@ -130,12 +130,12 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * @return the value of the '<em>Inner Radius</em>' attribute.
 	 * @see #isSetInnerRadius()
 	 * @see #unsetInnerRadius()
-	 * @see #setInnerRadius(float)
+	 * @see #setInnerRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_InnerRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getInnerRadius();
+	double getInnerRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getInnerRadius <em>Inner Radius</em>}' attribute.
@@ -147,7 +147,7 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * @see #getInnerRadius()
 	 * @generated
 	 */
-	void setInnerRadius(float value);
+	void setInnerRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getInnerRadius <em>Inner Radius</em>}' attribute.
@@ -155,7 +155,7 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- end-user-doc -->
 	 * @see #isSetInnerRadius()
 	 * @see #getInnerRadius()
-	 * @see #setInnerRadius(float)
+	 * @see #setInnerRadius(double)
 	 * @generated
 	 */
 	void unsetInnerRadius();
@@ -167,7 +167,7 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * @return whether the value of the '<em>Inner Radius</em>' attribute is set.
 	 * @see #unsetInnerRadius()
 	 * @see #getInnerRadius()
-	 * @see #setInnerRadius(float)
+	 * @see #setInnerRadius(double)
 	 * @generated
 	 */
 	boolean isSetInnerRadius();
@@ -234,12 +234,12 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Param</em>' attribute.
-	 * @see #setStartParam(float)
+	 * @see #setStartParam(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_StartParam()
 	 * @model
 	 * @generated
 	 */
-	float getStartParam();
+	double getStartParam();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getStartParam <em>Start Param</em>}' attribute.
@@ -249,7 +249,7 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * @see #getStartParam()
 	 * @generated
 	 */
-	void setStartParam(float value);
+	void setStartParam(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Start Param As String</b></em>' attribute.
@@ -286,12 +286,12 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Param</em>' attribute.
-	 * @see #setEndParam(float)
+	 * @see #setEndParam(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_EndParam()
 	 * @model
 	 * @generated
 	 */
-	float getEndParam();
+	double getEndParam();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getEndParam <em>End Param</em>}' attribute.
@@ -301,7 +301,7 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * @see #getEndParam()
 	 * @generated
 	 */
-	void setEndParam(float value);
+	void setEndParam(double value);
 
 	/**
 	 * Returns the value of the '<em><b>End Param As String</b></em>' attribute.

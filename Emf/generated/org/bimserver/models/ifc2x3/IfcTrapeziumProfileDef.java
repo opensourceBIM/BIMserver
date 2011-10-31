@@ -49,12 +49,12 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bottom XDim</em>' attribute.
-	 * @see #setBottomXDim(float)
+	 * @see #setBottomXDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrapeziumProfileDef_BottomXDim()
 	 * @model
 	 * @generated
 	 */
-	float getBottomXDim();
+	double getBottomXDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrapeziumProfileDef#getBottomXDim <em>Bottom XDim</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getBottomXDim()
 	 * @generated
 	 */
-	void setBottomXDim(float value);
+	void setBottomXDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Bottom XDim As String</b></em>' attribute.
@@ -101,12 +101,12 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Top XDim</em>' attribute.
-	 * @see #setTopXDim(float)
+	 * @see #setTopXDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrapeziumProfileDef_TopXDim()
 	 * @model
 	 * @generated
 	 */
-	float getTopXDim();
+	double getTopXDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrapeziumProfileDef#getTopXDim <em>Top XDim</em>}' attribute.
@@ -116,7 +116,7 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getTopXDim()
 	 * @generated
 	 */
-	void setTopXDim(float value);
+	void setTopXDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Top XDim As String</b></em>' attribute.
@@ -153,12 +153,12 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YDim</em>' attribute.
-	 * @see #setYDim(float)
+	 * @see #setYDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrapeziumProfileDef_YDim()
 	 * @model
 	 * @generated
 	 */
-	float getYDim();
+	double getYDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrapeziumProfileDef#getYDim <em>YDim</em>}' attribute.
@@ -168,7 +168,7 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getYDim()
 	 * @generated
 	 */
-	void setYDim(float value);
+	void setYDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>YDim As String</b></em>' attribute.
@@ -205,12 +205,12 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Top XOffset</em>' attribute.
-	 * @see #setTopXOffset(float)
+	 * @see #setTopXOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrapeziumProfileDef_TopXOffset()
 	 * @model
 	 * @generated
 	 */
-	float getTopXOffset();
+	double getTopXOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrapeziumProfileDef#getTopXOffset <em>Top XOffset</em>}' attribute.
@@ -220,7 +220,7 @@ public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getTopXOffset()
 	 * @generated
 	 */
-	void setTopXOffset(float value);
+	void setTopXOffset(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Top XOffset As String</b></em>' attribute.

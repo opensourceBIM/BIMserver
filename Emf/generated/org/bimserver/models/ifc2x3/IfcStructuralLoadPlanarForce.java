@@ -49,12 +49,12 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Planar Force X</em>' attribute.
 	 * @see #isSetPlanarForceX()
 	 * @see #unsetPlanarForceX()
-	 * @see #setPlanarForceX(float)
+	 * @see #setPlanarForceX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadPlanarForce_PlanarForceX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPlanarForceX();
+	double getPlanarForceX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadPlanarForce#getPlanarForceX <em>Planar Force X</em>}' attribute.
@@ -66,7 +66,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @see #getPlanarForceX()
 	 * @generated
 	 */
-	void setPlanarForceX(float value);
+	void setPlanarForceX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadPlanarForce#getPlanarForceX <em>Planar Force X</em>}' attribute.
@@ -74,7 +74,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPlanarForceX()
 	 * @see #getPlanarForceX()
-	 * @see #setPlanarForceX(float)
+	 * @see #setPlanarForceX(double)
 	 * @generated
 	 */
 	void unsetPlanarForceX();
@@ -86,7 +86,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Planar Force X</em>' attribute is set.
 	 * @see #unsetPlanarForceX()
 	 * @see #getPlanarForceX()
-	 * @see #setPlanarForceX(float)
+	 * @see #setPlanarForceX(double)
 	 * @generated
 	 */
 	boolean isSetPlanarForceX();
@@ -155,12 +155,12 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Planar Force Y</em>' attribute.
 	 * @see #isSetPlanarForceY()
 	 * @see #unsetPlanarForceY()
-	 * @see #setPlanarForceY(float)
+	 * @see #setPlanarForceY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadPlanarForce_PlanarForceY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPlanarForceY();
+	double getPlanarForceY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadPlanarForce#getPlanarForceY <em>Planar Force Y</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @see #getPlanarForceY()
 	 * @generated
 	 */
-	void setPlanarForceY(float value);
+	void setPlanarForceY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadPlanarForce#getPlanarForceY <em>Planar Force Y</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPlanarForceY()
 	 * @see #getPlanarForceY()
-	 * @see #setPlanarForceY(float)
+	 * @see #setPlanarForceY(double)
 	 * @generated
 	 */
 	void unsetPlanarForceY();
@@ -192,7 +192,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Planar Force Y</em>' attribute is set.
 	 * @see #unsetPlanarForceY()
 	 * @see #getPlanarForceY()
-	 * @see #setPlanarForceY(float)
+	 * @see #setPlanarForceY(double)
 	 * @generated
 	 */
 	boolean isSetPlanarForceY();
@@ -261,12 +261,12 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Planar Force Z</em>' attribute.
 	 * @see #isSetPlanarForceZ()
 	 * @see #unsetPlanarForceZ()
-	 * @see #setPlanarForceZ(float)
+	 * @see #setPlanarForceZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadPlanarForce_PlanarForceZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPlanarForceZ();
+	double getPlanarForceZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadPlanarForce#getPlanarForceZ <em>Planar Force Z</em>}' attribute.
@@ -278,7 +278,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @see #getPlanarForceZ()
 	 * @generated
 	 */
-	void setPlanarForceZ(float value);
+	void setPlanarForceZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadPlanarForce#getPlanarForceZ <em>Planar Force Z</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPlanarForceZ()
 	 * @see #getPlanarForceZ()
-	 * @see #setPlanarForceZ(float)
+	 * @see #setPlanarForceZ(double)
 	 * @generated
 	 */
 	void unsetPlanarForceZ();
@@ -298,7 +298,7 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Planar Force Z</em>' attribute is set.
 	 * @see #unsetPlanarForceZ()
 	 * @see #getPlanarForceZ()
-	 * @see #setPlanarForceZ(float)
+	 * @see #setPlanarForceZ(double)
 	 * @generated
 	 */
 	boolean isSetPlanarForceZ();

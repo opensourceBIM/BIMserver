@@ -16655,15 +16655,6 @@ public class Ifc2x3PackageImpl extends EPackageImpl implements Ifc2x3Package {
 	 * @generated
 	 */
 	public EReference getIfcElement_FillsVoids() {
-		return (EReference) getIfcElement().getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIfcElement_ConnectedTo() {
 		return (EReference) getIfcElement().getEStructuralFeatures().get(2);
 	}
 
@@ -16672,7 +16663,7 @@ public class Ifc2x3PackageImpl extends EPackageImpl implements Ifc2x3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcElement_HasCoverings() {
+	public EReference getIfcElement_ConnectedTo() {
 		return (EReference) getIfcElement().getEStructuralFeatures().get(3);
 	}
 
@@ -16681,7 +16672,7 @@ public class Ifc2x3PackageImpl extends EPackageImpl implements Ifc2x3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcElement_HasProjections() {
+	public EReference getIfcElement_HasCoverings() {
 		return (EReference) getIfcElement().getEStructuralFeatures().get(4);
 	}
 
@@ -16690,8 +16681,17 @@ public class Ifc2x3PackageImpl extends EPackageImpl implements Ifc2x3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcElement_HasStructuralMember() {
+	public EReference getIfcElement_HasProjections() {
 		return (EReference) getIfcElement().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfcElement_HasStructuralMember() {
+		return (EReference) getIfcElement().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -26926,8 +26926,17 @@ public class Ifc2x3PackageImpl extends EPackageImpl implements Ifc2x3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcRepresentation_OfProductRepresentation() {
+	public EReference getIfcRepresentation_LayerAssignments() {
 		return (EReference) getIfcRepresentation().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfcRepresentation_OfProductRepresentation() {
+		return (EReference) getIfcRepresentation().getEStructuralFeatures().get(6);
 	}
 
 	/**

@@ -49,12 +49,12 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @return the value of the '<em>Slippage X</em>' attribute.
 	 * @see #isSetSlippageX()
 	 * @see #unsetSlippageX()
-	 * @see #setSlippageX(float)
+	 * @see #setSlippageX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSlippageConnectionCondition_SlippageX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSlippageX();
+	double getSlippageX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSlippageConnectionCondition#getSlippageX <em>Slippage X</em>}' attribute.
@@ -66,7 +66,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @see #getSlippageX()
 	 * @generated
 	 */
-	void setSlippageX(float value);
+	void setSlippageX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSlippageConnectionCondition#getSlippageX <em>Slippage X</em>}' attribute.
@@ -74,7 +74,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @see #isSetSlippageX()
 	 * @see #getSlippageX()
-	 * @see #setSlippageX(float)
+	 * @see #setSlippageX(double)
 	 * @generated
 	 */
 	void unsetSlippageX();
@@ -86,7 +86,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @return whether the value of the '<em>Slippage X</em>' attribute is set.
 	 * @see #unsetSlippageX()
 	 * @see #getSlippageX()
-	 * @see #setSlippageX(float)
+	 * @see #setSlippageX(double)
 	 * @generated
 	 */
 	boolean isSetSlippageX();
@@ -155,12 +155,12 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @return the value of the '<em>Slippage Y</em>' attribute.
 	 * @see #isSetSlippageY()
 	 * @see #unsetSlippageY()
-	 * @see #setSlippageY(float)
+	 * @see #setSlippageY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSlippageConnectionCondition_SlippageY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSlippageY();
+	double getSlippageY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSlippageConnectionCondition#getSlippageY <em>Slippage Y</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @see #getSlippageY()
 	 * @generated
 	 */
-	void setSlippageY(float value);
+	void setSlippageY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSlippageConnectionCondition#getSlippageY <em>Slippage Y</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @see #isSetSlippageY()
 	 * @see #getSlippageY()
-	 * @see #setSlippageY(float)
+	 * @see #setSlippageY(double)
 	 * @generated
 	 */
 	void unsetSlippageY();
@@ -192,7 +192,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @return whether the value of the '<em>Slippage Y</em>' attribute is set.
 	 * @see #unsetSlippageY()
 	 * @see #getSlippageY()
-	 * @see #setSlippageY(float)
+	 * @see #setSlippageY(double)
 	 * @generated
 	 */
 	boolean isSetSlippageY();
@@ -261,12 +261,12 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @return the value of the '<em>Slippage Z</em>' attribute.
 	 * @see #isSetSlippageZ()
 	 * @see #unsetSlippageZ()
-	 * @see #setSlippageZ(float)
+	 * @see #setSlippageZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSlippageConnectionCondition_SlippageZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSlippageZ();
+	double getSlippageZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSlippageConnectionCondition#getSlippageZ <em>Slippage Z</em>}' attribute.
@@ -278,7 +278,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @see #getSlippageZ()
 	 * @generated
 	 */
-	void setSlippageZ(float value);
+	void setSlippageZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSlippageConnectionCondition#getSlippageZ <em>Slippage Z</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @see #isSetSlippageZ()
 	 * @see #getSlippageZ()
-	 * @see #setSlippageZ(float)
+	 * @see #setSlippageZ(double)
 	 * @generated
 	 */
 	void unsetSlippageZ();
@@ -298,7 +298,7 @@ public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionC
 	 * @return whether the value of the '<em>Slippage Z</em>' attribute is set.
 	 * @see #unsetSlippageZ()
 	 * @see #getSlippageZ()
-	 * @see #setSlippageZ(float)
+	 * @see #setSlippageZ(double)
 	 * @generated
 	 */
 	boolean isSetSlippageZ();

@@ -45,12 +45,12 @@ public interface IfcStructuralLoadSingleDisplacementDistortion extends IfcStruct
 	 * @return the value of the '<em>Distortion</em>' attribute.
 	 * @see #isSetDistortion()
 	 * @see #unsetDistortion()
-	 * @see #setDistortion(float)
+	 * @see #setDistortion(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleDisplacementDistortion_Distortion()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDistortion();
+	double getDistortion();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacementDistortion#getDistortion <em>Distortion</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcStructuralLoadSingleDisplacementDistortion extends IfcStruct
 	 * @see #getDistortion()
 	 * @generated
 	 */
-	void setDistortion(float value);
+	void setDistortion(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacementDistortion#getDistortion <em>Distortion</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcStructuralLoadSingleDisplacementDistortion extends IfcStruct
 	 * <!-- end-user-doc -->
 	 * @see #isSetDistortion()
 	 * @see #getDistortion()
-	 * @see #setDistortion(float)
+	 * @see #setDistortion(double)
 	 * @generated
 	 */
 	void unsetDistortion();
@@ -82,7 +82,7 @@ public interface IfcStructuralLoadSingleDisplacementDistortion extends IfcStruct
 	 * @return whether the value of the '<em>Distortion</em>' attribute is set.
 	 * @see #unsetDistortion()
 	 * @see #getDistortion()
-	 * @see #setDistortion(float)
+	 * @see #setDistortion(double)
 	 * @generated
 	 */
 	boolean isSetDistortion();

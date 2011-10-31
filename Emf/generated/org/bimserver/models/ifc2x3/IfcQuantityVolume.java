@@ -43,12 +43,12 @@ public interface IfcQuantityVolume extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Volume Value</em>' attribute.
-	 * @see #setVolumeValue(float)
+	 * @see #setVolumeValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityVolume_VolumeValue()
 	 * @model
 	 * @generated
 	 */
-	float getVolumeValue();
+	double getVolumeValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityVolume#getVolumeValue <em>Volume Value</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcQuantityVolume extends IfcPhysicalSimpleQuantity {
 	 * @see #getVolumeValue()
 	 * @generated
 	 */
-	void setVolumeValue(float value);
+	void setVolumeValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Volume Value As String</b></em>' attribute.

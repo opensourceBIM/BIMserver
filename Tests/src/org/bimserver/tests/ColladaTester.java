@@ -42,7 +42,7 @@ package org.bimserver.tests;
 //	}
 //
 //	private void start() {
-//		File ifcSchemaFile = new File("C:\\Users\\Ruben\\Workspaces\\BIMserver\\BimServer\\deploy\\shared\\IFC2X3_FINAL.exp");
+//		File ifcSchemaFile = new File("C:\\Users\\Ruben\\Workspaces\\BIMserver\\BimServer\\deploy\\shared\\IFC2X3_TC1.exp");
 //		ExpressSchemaParser schemaParser = new ExpressSchemaParser(ifcSchemaFile);
 //		schemaParser.parse();
 //		SchemaDefinition schema = schemaParser.getSchema();

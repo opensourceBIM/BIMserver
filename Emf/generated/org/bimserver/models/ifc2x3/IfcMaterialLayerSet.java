@@ -118,12 +118,12 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Thickness</em>' attribute.
-	 * @see #setTotalThickness(float)
+	 * @see #setTotalThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSet_TotalThickness()
 	 * @model derived="true"
 	 * @generated
 	 */
-	float getTotalThickness();
+	double getTotalThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getTotalThickness <em>Total Thickness</em>}' attribute.
@@ -133,7 +133,7 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * @see #getTotalThickness()
 	 * @generated
 	 */
-	void setTotalThickness(float value);
+	void setTotalThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Total Thickness As String</b></em>' attribute.

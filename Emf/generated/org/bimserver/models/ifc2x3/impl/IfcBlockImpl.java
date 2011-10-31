@@ -64,8 +64,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getXLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_BLOCK__XLENGTH, true);
+	public double getXLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_BLOCK__XLENGTH, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setXLength(float newXLength) {
+	public void setXLength(double newXLength) {
 		eSet(Ifc2x3Package.Literals.IFC_BLOCK__XLENGTH, newXLength);
 	}
 
@@ -100,8 +100,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getYLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_BLOCK__YLENGTH, true);
+	public double getYLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_BLOCK__YLENGTH, true);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setYLength(float newYLength) {
+	public void setYLength(double newYLength) {
 		eSet(Ifc2x3Package.Literals.IFC_BLOCK__YLENGTH, newYLength);
 	}
 
@@ -136,8 +136,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getZLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_BLOCK__ZLENGTH, true);
+	public double getZLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_BLOCK__ZLENGTH, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setZLength(float newZLength) {
+	public void setZLength(double newZLength) {
 		eSet(Ifc2x3Package.Literals.IFC_BLOCK__ZLENGTH, newZLength);
 	}
 

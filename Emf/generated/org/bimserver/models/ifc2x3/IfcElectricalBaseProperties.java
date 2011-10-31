@@ -84,12 +84,12 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Voltage</em>' attribute.
-	 * @see #setInputVoltage(float)
+	 * @see #setInputVoltage(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_InputVoltage()
 	 * @model
 	 * @generated
 	 */
-	float getInputVoltage();
+	double getInputVoltage();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputVoltage <em>Input Voltage</em>}' attribute.
@@ -99,7 +99,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @see #getInputVoltage()
 	 * @generated
 	 */
-	void setInputVoltage(float value);
+	void setInputVoltage(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Input Voltage As String</b></em>' attribute.
@@ -136,12 +136,12 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Frequency</em>' attribute.
-	 * @see #setInputFrequency(float)
+	 * @see #setInputFrequency(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_InputFrequency()
 	 * @model
 	 * @generated
 	 */
-	float getInputFrequency();
+	double getInputFrequency();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputFrequency <em>Input Frequency</em>}' attribute.
@@ -151,7 +151,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @see #getInputFrequency()
 	 * @generated
 	 */
-	void setInputFrequency(float value);
+	void setInputFrequency(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Input Frequency As String</b></em>' attribute.
@@ -190,12 +190,12 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return the value of the '<em>Full Load Current</em>' attribute.
 	 * @see #isSetFullLoadCurrent()
 	 * @see #unsetFullLoadCurrent()
-	 * @see #setFullLoadCurrent(float)
+	 * @see #setFullLoadCurrent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_FullLoadCurrent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFullLoadCurrent();
+	double getFullLoadCurrent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getFullLoadCurrent <em>Full Load Current</em>}' attribute.
@@ -207,7 +207,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @see #getFullLoadCurrent()
 	 * @generated
 	 */
-	void setFullLoadCurrent(float value);
+	void setFullLoadCurrent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getFullLoadCurrent <em>Full Load Current</em>}' attribute.
@@ -215,7 +215,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFullLoadCurrent()
 	 * @see #getFullLoadCurrent()
-	 * @see #setFullLoadCurrent(float)
+	 * @see #setFullLoadCurrent(double)
 	 * @generated
 	 */
 	void unsetFullLoadCurrent();
@@ -227,7 +227,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return whether the value of the '<em>Full Load Current</em>' attribute is set.
 	 * @see #unsetFullLoadCurrent()
 	 * @see #getFullLoadCurrent()
-	 * @see #setFullLoadCurrent(float)
+	 * @see #setFullLoadCurrent(double)
 	 * @generated
 	 */
 	boolean isSetFullLoadCurrent();
@@ -296,12 +296,12 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return the value of the '<em>Minimum Circuit Current</em>' attribute.
 	 * @see #isSetMinimumCircuitCurrent()
 	 * @see #unsetMinimumCircuitCurrent()
-	 * @see #setMinimumCircuitCurrent(float)
+	 * @see #setMinimumCircuitCurrent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_MinimumCircuitCurrent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMinimumCircuitCurrent();
+	double getMinimumCircuitCurrent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getMinimumCircuitCurrent <em>Minimum Circuit Current</em>}' attribute.
@@ -313,7 +313,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @see #getMinimumCircuitCurrent()
 	 * @generated
 	 */
-	void setMinimumCircuitCurrent(float value);
+	void setMinimumCircuitCurrent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getMinimumCircuitCurrent <em>Minimum Circuit Current</em>}' attribute.
@@ -321,7 +321,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinimumCircuitCurrent()
 	 * @see #getMinimumCircuitCurrent()
-	 * @see #setMinimumCircuitCurrent(float)
+	 * @see #setMinimumCircuitCurrent(double)
 	 * @generated
 	 */
 	void unsetMinimumCircuitCurrent();
@@ -333,7 +333,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return whether the value of the '<em>Minimum Circuit Current</em>' attribute is set.
 	 * @see #unsetMinimumCircuitCurrent()
 	 * @see #getMinimumCircuitCurrent()
-	 * @see #setMinimumCircuitCurrent(float)
+	 * @see #setMinimumCircuitCurrent(double)
 	 * @generated
 	 */
 	boolean isSetMinimumCircuitCurrent();
@@ -402,12 +402,12 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return the value of the '<em>Maximum Power Input</em>' attribute.
 	 * @see #isSetMaximumPowerInput()
 	 * @see #unsetMaximumPowerInput()
-	 * @see #setMaximumPowerInput(float)
+	 * @see #setMaximumPowerInput(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_MaximumPowerInput()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMaximumPowerInput();
+	double getMaximumPowerInput();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getMaximumPowerInput <em>Maximum Power Input</em>}' attribute.
@@ -419,7 +419,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @see #getMaximumPowerInput()
 	 * @generated
 	 */
-	void setMaximumPowerInput(float value);
+	void setMaximumPowerInput(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getMaximumPowerInput <em>Maximum Power Input</em>}' attribute.
@@ -427,7 +427,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMaximumPowerInput()
 	 * @see #getMaximumPowerInput()
-	 * @see #setMaximumPowerInput(float)
+	 * @see #setMaximumPowerInput(double)
 	 * @generated
 	 */
 	void unsetMaximumPowerInput();
@@ -439,7 +439,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return whether the value of the '<em>Maximum Power Input</em>' attribute is set.
 	 * @see #unsetMaximumPowerInput()
 	 * @see #getMaximumPowerInput()
-	 * @see #setMaximumPowerInput(float)
+	 * @see #setMaximumPowerInput(double)
 	 * @generated
 	 */
 	boolean isSetMaximumPowerInput();
@@ -508,12 +508,12 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return the value of the '<em>Rated Power Input</em>' attribute.
 	 * @see #isSetRatedPowerInput()
 	 * @see #unsetRatedPowerInput()
-	 * @see #setRatedPowerInput(float)
+	 * @see #setRatedPowerInput(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_RatedPowerInput()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRatedPowerInput();
+	double getRatedPowerInput();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getRatedPowerInput <em>Rated Power Input</em>}' attribute.
@@ -525,7 +525,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @see #getRatedPowerInput()
 	 * @generated
 	 */
-	void setRatedPowerInput(float value);
+	void setRatedPowerInput(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getRatedPowerInput <em>Rated Power Input</em>}' attribute.
@@ -533,7 +533,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRatedPowerInput()
 	 * @see #getRatedPowerInput()
-	 * @see #setRatedPowerInput(float)
+	 * @see #setRatedPowerInput(double)
 	 * @generated
 	 */
 	void unsetRatedPowerInput();
@@ -545,7 +545,7 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @return whether the value of the '<em>Rated Power Input</em>' attribute is set.
 	 * @see #unsetRatedPowerInput()
 	 * @see #getRatedPowerInput()
-	 * @see #setRatedPowerInput(float)
+	 * @see #setRatedPowerInput(double)
 	 * @generated
 	 */
 	boolean isSetRatedPowerInput();

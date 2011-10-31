@@ -92,8 +92,8 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getUsageRatio() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO, true);
+	public double getUsageRatio() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO, true);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUsageRatio(float newUsageRatio) {
+	public void setUsageRatio(double newUsageRatio) {
 		eSet(Ifc2x3Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO, newUsageRatio);
 	}
 

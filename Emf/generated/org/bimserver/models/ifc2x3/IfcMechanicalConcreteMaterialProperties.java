@@ -52,12 +52,12 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @return the value of the '<em>Compressive Strength</em>' attribute.
 	 * @see #isSetCompressiveStrength()
 	 * @see #unsetCompressiveStrength()
-	 * @see #setCompressiveStrength(float)
+	 * @see #setCompressiveStrength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalConcreteMaterialProperties_CompressiveStrength()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCompressiveStrength();
+	double getCompressiveStrength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalConcreteMaterialProperties#getCompressiveStrength <em>Compressive Strength</em>}' attribute.
@@ -69,7 +69,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @see #getCompressiveStrength()
 	 * @generated
 	 */
-	void setCompressiveStrength(float value);
+	void setCompressiveStrength(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalConcreteMaterialProperties#getCompressiveStrength <em>Compressive Strength</em>}' attribute.
@@ -77,7 +77,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * <!-- end-user-doc -->
 	 * @see #isSetCompressiveStrength()
 	 * @see #getCompressiveStrength()
-	 * @see #setCompressiveStrength(float)
+	 * @see #setCompressiveStrength(double)
 	 * @generated
 	 */
 	void unsetCompressiveStrength();
@@ -89,7 +89,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @return whether the value of the '<em>Compressive Strength</em>' attribute is set.
 	 * @see #unsetCompressiveStrength()
 	 * @see #getCompressiveStrength()
-	 * @see #setCompressiveStrength(float)
+	 * @see #setCompressiveStrength(double)
 	 * @generated
 	 */
 	boolean isSetCompressiveStrength();
@@ -158,12 +158,12 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @return the value of the '<em>Max Aggregate Size</em>' attribute.
 	 * @see #isSetMaxAggregateSize()
 	 * @see #unsetMaxAggregateSize()
-	 * @see #setMaxAggregateSize(float)
+	 * @see #setMaxAggregateSize(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalConcreteMaterialProperties_MaxAggregateSize()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMaxAggregateSize();
+	double getMaxAggregateSize();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalConcreteMaterialProperties#getMaxAggregateSize <em>Max Aggregate Size</em>}' attribute.
@@ -175,7 +175,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @see #getMaxAggregateSize()
 	 * @generated
 	 */
-	void setMaxAggregateSize(float value);
+	void setMaxAggregateSize(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalConcreteMaterialProperties#getMaxAggregateSize <em>Max Aggregate Size</em>}' attribute.
@@ -183,7 +183,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * <!-- end-user-doc -->
 	 * @see #isSetMaxAggregateSize()
 	 * @see #getMaxAggregateSize()
-	 * @see #setMaxAggregateSize(float)
+	 * @see #setMaxAggregateSize(double)
 	 * @generated
 	 */
 	void unsetMaxAggregateSize();
@@ -195,7 +195,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @return whether the value of the '<em>Max Aggregate Size</em>' attribute is set.
 	 * @see #unsetMaxAggregateSize()
 	 * @see #getMaxAggregateSize()
-	 * @see #setMaxAggregateSize(float)
+	 * @see #setMaxAggregateSize(double)
 	 * @generated
 	 */
 	boolean isSetMaxAggregateSize();
@@ -370,12 +370,12 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @return the value of the '<em>Protective Pore Ratio</em>' attribute.
 	 * @see #isSetProtectivePoreRatio()
 	 * @see #unsetProtectivePoreRatio()
-	 * @see #setProtectivePoreRatio(float)
+	 * @see #setProtectivePoreRatio(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalConcreteMaterialProperties_ProtectivePoreRatio()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getProtectivePoreRatio();
+	double getProtectivePoreRatio();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalConcreteMaterialProperties#getProtectivePoreRatio <em>Protective Pore Ratio</em>}' attribute.
@@ -387,7 +387,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @see #getProtectivePoreRatio()
 	 * @generated
 	 */
-	void setProtectivePoreRatio(float value);
+	void setProtectivePoreRatio(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalConcreteMaterialProperties#getProtectivePoreRatio <em>Protective Pore Ratio</em>}' attribute.
@@ -395,7 +395,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * <!-- end-user-doc -->
 	 * @see #isSetProtectivePoreRatio()
 	 * @see #getProtectivePoreRatio()
-	 * @see #setProtectivePoreRatio(float)
+	 * @see #setProtectivePoreRatio(double)
 	 * @generated
 	 */
 	void unsetProtectivePoreRatio();
@@ -407,7 +407,7 @@ public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMa
 	 * @return whether the value of the '<em>Protective Pore Ratio</em>' attribute is set.
 	 * @see #unsetProtectivePoreRatio()
 	 * @see #getProtectivePoreRatio()
-	 * @see #setProtectivePoreRatio(float)
+	 * @see #setProtectivePoreRatio(double)
 	 * @generated
 	 */
 	boolean isSetProtectivePoreRatio();

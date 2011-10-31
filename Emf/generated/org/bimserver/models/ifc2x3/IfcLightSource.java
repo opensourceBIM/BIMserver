@@ -128,12 +128,12 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @return the value of the '<em>Ambient Intensity</em>' attribute.
 	 * @see #isSetAmbientIntensity()
 	 * @see #unsetAmbientIntensity()
-	 * @see #setAmbientIntensity(float)
+	 * @see #setAmbientIntensity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSource_AmbientIntensity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getAmbientIntensity();
+	double getAmbientIntensity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSource#getAmbientIntensity <em>Ambient Intensity</em>}' attribute.
@@ -145,7 +145,7 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @see #getAmbientIntensity()
 	 * @generated
 	 */
-	void setAmbientIntensity(float value);
+	void setAmbientIntensity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSource#getAmbientIntensity <em>Ambient Intensity</em>}' attribute.
@@ -153,7 +153,7 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * <!-- end-user-doc -->
 	 * @see #isSetAmbientIntensity()
 	 * @see #getAmbientIntensity()
-	 * @see #setAmbientIntensity(float)
+	 * @see #setAmbientIntensity(double)
 	 * @generated
 	 */
 	void unsetAmbientIntensity();
@@ -165,7 +165,7 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @return whether the value of the '<em>Ambient Intensity</em>' attribute is set.
 	 * @see #unsetAmbientIntensity()
 	 * @see #getAmbientIntensity()
-	 * @see #setAmbientIntensity(float)
+	 * @see #setAmbientIntensity(double)
 	 * @generated
 	 */
 	boolean isSetAmbientIntensity();
@@ -234,12 +234,12 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @return the value of the '<em>Intensity</em>' attribute.
 	 * @see #isSetIntensity()
 	 * @see #unsetIntensity()
-	 * @see #setIntensity(float)
+	 * @see #setIntensity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSource_Intensity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getIntensity();
+	double getIntensity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSource#getIntensity <em>Intensity</em>}' attribute.
@@ -251,7 +251,7 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @see #getIntensity()
 	 * @generated
 	 */
-	void setIntensity(float value);
+	void setIntensity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSource#getIntensity <em>Intensity</em>}' attribute.
@@ -259,7 +259,7 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * <!-- end-user-doc -->
 	 * @see #isSetIntensity()
 	 * @see #getIntensity()
-	 * @see #setIntensity(float)
+	 * @see #setIntensity(double)
 	 * @generated
 	 */
 	void unsetIntensity();
@@ -271,7 +271,7 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @return whether the value of the '<em>Intensity</em>' attribute is set.
 	 * @see #unsetIntensity()
 	 * @see #getIntensity()
-	 * @see #setIntensity(float)
+	 * @see #setIntensity(double)
 	 * @generated
 	 */
 	boolean isSetIntensity();

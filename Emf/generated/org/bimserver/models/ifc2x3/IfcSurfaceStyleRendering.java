@@ -52,12 +52,12 @@ public interface IfcSurfaceStyleRendering extends IfcSurfaceStyleShading {
 	 * @return the value of the '<em>Transparency</em>' attribute.
 	 * @see #isSetTransparency()
 	 * @see #unsetTransparency()
-	 * @see #setTransparency(float)
+	 * @see #setTransparency(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleRendering_Transparency()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTransparency();
+	double getTransparency();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering#getTransparency <em>Transparency</em>}' attribute.
@@ -69,7 +69,7 @@ public interface IfcSurfaceStyleRendering extends IfcSurfaceStyleShading {
 	 * @see #getTransparency()
 	 * @generated
 	 */
-	void setTransparency(float value);
+	void setTransparency(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering#getTransparency <em>Transparency</em>}' attribute.
@@ -77,7 +77,7 @@ public interface IfcSurfaceStyleRendering extends IfcSurfaceStyleShading {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTransparency()
 	 * @see #getTransparency()
-	 * @see #setTransparency(float)
+	 * @see #setTransparency(double)
 	 * @generated
 	 */
 	void unsetTransparency();
@@ -89,7 +89,7 @@ public interface IfcSurfaceStyleRendering extends IfcSurfaceStyleShading {
 	 * @return whether the value of the '<em>Transparency</em>' attribute is set.
 	 * @see #unsetTransparency()
 	 * @see #getTransparency()
-	 * @see #setTransparency(float)
+	 * @see #setTransparency(double)
 	 * @generated
 	 */
 	boolean isSetTransparency();

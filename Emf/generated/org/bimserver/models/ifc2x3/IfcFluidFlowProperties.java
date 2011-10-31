@@ -383,12 +383,12 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Temperature Single Value</em>' attribute.
 	 * @see #isSetTemperatureSingleValue()
 	 * @see #unsetTemperatureSingleValue()
-	 * @see #setTemperatureSingleValue(float)
+	 * @see #setTemperatureSingleValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFluidFlowProperties_TemperatureSingleValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTemperatureSingleValue();
+	double getTemperatureSingleValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getTemperatureSingleValue <em>Temperature Single Value</em>}' attribute.
@@ -400,7 +400,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @see #getTemperatureSingleValue()
 	 * @generated
 	 */
-	void setTemperatureSingleValue(float value);
+	void setTemperatureSingleValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getTemperatureSingleValue <em>Temperature Single Value</em>}' attribute.
@@ -408,7 +408,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTemperatureSingleValue()
 	 * @see #getTemperatureSingleValue()
-	 * @see #setTemperatureSingleValue(float)
+	 * @see #setTemperatureSingleValue(double)
 	 * @generated
 	 */
 	void unsetTemperatureSingleValue();
@@ -420,7 +420,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Temperature Single Value</em>' attribute is set.
 	 * @see #unsetTemperatureSingleValue()
 	 * @see #getTemperatureSingleValue()
-	 * @see #setTemperatureSingleValue(float)
+	 * @see #setTemperatureSingleValue(double)
 	 * @generated
 	 */
 	boolean isSetTemperatureSingleValue();
@@ -489,12 +489,12 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Wet Bulb Temperature Single Value</em>' attribute.
 	 * @see #isSetWetBulbTemperatureSingleValue()
 	 * @see #unsetWetBulbTemperatureSingleValue()
-	 * @see #setWetBulbTemperatureSingleValue(float)
+	 * @see #setWetBulbTemperatureSingleValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFluidFlowProperties_WetBulbTemperatureSingleValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getWetBulbTemperatureSingleValue();
+	double getWetBulbTemperatureSingleValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getWetBulbTemperatureSingleValue <em>Wet Bulb Temperature Single Value</em>}' attribute.
@@ -506,7 +506,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @see #getWetBulbTemperatureSingleValue()
 	 * @generated
 	 */
-	void setWetBulbTemperatureSingleValue(float value);
+	void setWetBulbTemperatureSingleValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getWetBulbTemperatureSingleValue <em>Wet Bulb Temperature Single Value</em>}' attribute.
@@ -514,7 +514,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetWetBulbTemperatureSingleValue()
 	 * @see #getWetBulbTemperatureSingleValue()
-	 * @see #setWetBulbTemperatureSingleValue(float)
+	 * @see #setWetBulbTemperatureSingleValue(double)
 	 * @generated
 	 */
 	void unsetWetBulbTemperatureSingleValue();
@@ -526,7 +526,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Wet Bulb Temperature Single Value</em>' attribute is set.
 	 * @see #unsetWetBulbTemperatureSingleValue()
 	 * @see #getWetBulbTemperatureSingleValue()
-	 * @see #setWetBulbTemperatureSingleValue(float)
+	 * @see #setWetBulbTemperatureSingleValue(double)
 	 * @generated
 	 */
 	boolean isSetWetBulbTemperatureSingleValue();
@@ -754,12 +754,12 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Flow Condition Single Value</em>' attribute.
 	 * @see #isSetFlowConditionSingleValue()
 	 * @see #unsetFlowConditionSingleValue()
-	 * @see #setFlowConditionSingleValue(float)
+	 * @see #setFlowConditionSingleValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFluidFlowProperties_FlowConditionSingleValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFlowConditionSingleValue();
+	double getFlowConditionSingleValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getFlowConditionSingleValue <em>Flow Condition Single Value</em>}' attribute.
@@ -771,7 +771,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @see #getFlowConditionSingleValue()
 	 * @generated
 	 */
-	void setFlowConditionSingleValue(float value);
+	void setFlowConditionSingleValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getFlowConditionSingleValue <em>Flow Condition Single Value</em>}' attribute.
@@ -779,7 +779,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFlowConditionSingleValue()
 	 * @see #getFlowConditionSingleValue()
-	 * @see #setFlowConditionSingleValue(float)
+	 * @see #setFlowConditionSingleValue(double)
 	 * @generated
 	 */
 	void unsetFlowConditionSingleValue();
@@ -791,7 +791,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Flow Condition Single Value</em>' attribute is set.
 	 * @see #unsetFlowConditionSingleValue()
 	 * @see #getFlowConditionSingleValue()
-	 * @see #setFlowConditionSingleValue(float)
+	 * @see #setFlowConditionSingleValue(double)
 	 * @generated
 	 */
 	boolean isSetFlowConditionSingleValue();
@@ -860,12 +860,12 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Velocity Single Value</em>' attribute.
 	 * @see #isSetVelocitySingleValue()
 	 * @see #unsetVelocitySingleValue()
-	 * @see #setVelocitySingleValue(float)
+	 * @see #setVelocitySingleValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFluidFlowProperties_VelocitySingleValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getVelocitySingleValue();
+	double getVelocitySingleValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getVelocitySingleValue <em>Velocity Single Value</em>}' attribute.
@@ -877,7 +877,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @see #getVelocitySingleValue()
 	 * @generated
 	 */
-	void setVelocitySingleValue(float value);
+	void setVelocitySingleValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getVelocitySingleValue <em>Velocity Single Value</em>}' attribute.
@@ -885,7 +885,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetVelocitySingleValue()
 	 * @see #getVelocitySingleValue()
-	 * @see #setVelocitySingleValue(float)
+	 * @see #setVelocitySingleValue(double)
 	 * @generated
 	 */
 	void unsetVelocitySingleValue();
@@ -897,7 +897,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Velocity Single Value</em>' attribute is set.
 	 * @see #unsetVelocitySingleValue()
 	 * @see #getVelocitySingleValue()
-	 * @see #setVelocitySingleValue(float)
+	 * @see #setVelocitySingleValue(double)
 	 * @generated
 	 */
 	boolean isSetVelocitySingleValue();
@@ -966,12 +966,12 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Pressure Single Value</em>' attribute.
 	 * @see #isSetPressureSingleValue()
 	 * @see #unsetPressureSingleValue()
-	 * @see #setPressureSingleValue(float)
+	 * @see #setPressureSingleValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFluidFlowProperties_PressureSingleValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPressureSingleValue();
+	double getPressureSingleValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getPressureSingleValue <em>Pressure Single Value</em>}' attribute.
@@ -983,7 +983,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @see #getPressureSingleValue()
 	 * @generated
 	 */
-	void setPressureSingleValue(float value);
+	void setPressureSingleValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getPressureSingleValue <em>Pressure Single Value</em>}' attribute.
@@ -991,7 +991,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPressureSingleValue()
 	 * @see #getPressureSingleValue()
-	 * @see #setPressureSingleValue(float)
+	 * @see #setPressureSingleValue(double)
 	 * @generated
 	 */
 	void unsetPressureSingleValue();
@@ -1003,7 +1003,7 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Pressure Single Value</em>' attribute is set.
 	 * @see #unsetPressureSingleValue()
 	 * @see #getPressureSingleValue()
-	 * @see #setPressureSingleValue(float)
+	 * @see #setPressureSingleValue(double)
 	 * @generated
 	 */
 	boolean isSetPressureSingleValue();

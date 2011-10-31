@@ -129,12 +129,12 @@ public interface IfcSite extends IfcSpatialStructureElement {
 	 * @return the value of the '<em>Ref Elevation</em>' attribute.
 	 * @see #isSetRefElevation()
 	 * @see #unsetRefElevation()
-	 * @see #setRefElevation(float)
+	 * @see #setRefElevation(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSite_RefElevation()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRefElevation();
+	double getRefElevation();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSite#getRefElevation <em>Ref Elevation</em>}' attribute.
@@ -146,7 +146,7 @@ public interface IfcSite extends IfcSpatialStructureElement {
 	 * @see #getRefElevation()
 	 * @generated
 	 */
-	void setRefElevation(float value);
+	void setRefElevation(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSite#getRefElevation <em>Ref Elevation</em>}' attribute.
@@ -154,7 +154,7 @@ public interface IfcSite extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRefElevation()
 	 * @see #getRefElevation()
-	 * @see #setRefElevation(float)
+	 * @see #setRefElevation(double)
 	 * @generated
 	 */
 	void unsetRefElevation();
@@ -166,7 +166,7 @@ public interface IfcSite extends IfcSpatialStructureElement {
 	 * @return whether the value of the '<em>Ref Elevation</em>' attribute is set.
 	 * @see #unsetRefElevation()
 	 * @see #getRefElevation()
-	 * @see #setRefElevation(float)
+	 * @see #setRefElevation(double)
 	 * @generated
 	 */
 	boolean isSetRefElevation();

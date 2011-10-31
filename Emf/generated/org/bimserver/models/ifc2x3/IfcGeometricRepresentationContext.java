@@ -75,12 +75,12 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Precision</em>' attribute.
-	 * @see #setPrecision(float)
+	 * @see #setPrecision(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_Precision()
 	 * @model
 	 * @generated
 	 */
-	float getPrecision();
+	double getPrecision();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getPrecision <em>Precision</em>}' attribute.
@@ -90,7 +90,7 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * @see #getPrecision()
 	 * @generated
 	 */
-	void setPrecision(float value);
+	void setPrecision(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Precision As String</b></em>' attribute.

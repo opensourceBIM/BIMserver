@@ -55,12 +55,12 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Start Position</em>' attribute.
-	 * @see #setLongitudinalStartPosition(float)
+	 * @see #setLongitudinalStartPosition(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_LongitudinalStartPosition()
 	 * @model
 	 * @generated
 	 */
-	float getLongitudinalStartPosition();
+	double getLongitudinalStartPosition();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalStartPosition <em>Longitudinal Start Position</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * @see #getLongitudinalStartPosition()
 	 * @generated
 	 */
-	void setLongitudinalStartPosition(float value);
+	void setLongitudinalStartPosition(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Start Position As String</b></em>' attribute.
@@ -107,12 +107,12 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal End Position</em>' attribute.
-	 * @see #setLongitudinalEndPosition(float)
+	 * @see #setLongitudinalEndPosition(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_LongitudinalEndPosition()
 	 * @model
 	 * @generated
 	 */
-	float getLongitudinalEndPosition();
+	double getLongitudinalEndPosition();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalEndPosition <em>Longitudinal End Position</em>}' attribute.
@@ -122,7 +122,7 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * @see #getLongitudinalEndPosition()
 	 * @generated
 	 */
-	void setLongitudinalEndPosition(float value);
+	void setLongitudinalEndPosition(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal End Position As String</b></em>' attribute.
@@ -161,12 +161,12 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * @return the value of the '<em>Transverse Position</em>' attribute.
 	 * @see #isSetTransversePosition()
 	 * @see #unsetTransversePosition()
-	 * @see #setTransversePosition(float)
+	 * @see #setTransversePosition(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_TransversePosition()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTransversePosition();
+	double getTransversePosition();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getTransversePosition <em>Transverse Position</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * @see #getTransversePosition()
 	 * @generated
 	 */
-	void setTransversePosition(float value);
+	void setTransversePosition(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getTransversePosition <em>Transverse Position</em>}' attribute.
@@ -186,7 +186,7 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTransversePosition()
 	 * @see #getTransversePosition()
-	 * @see #setTransversePosition(float)
+	 * @see #setTransversePosition(double)
 	 * @generated
 	 */
 	void unsetTransversePosition();
@@ -198,7 +198,7 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * @return whether the value of the '<em>Transverse Position</em>' attribute is set.
 	 * @see #unsetTransversePosition()
 	 * @see #getTransversePosition()
-	 * @see #setTransversePosition(float)
+	 * @see #setTransversePosition(double)
 	 * @generated
 	 */
 	boolean isSetTransversePosition();

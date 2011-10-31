@@ -60,8 +60,8 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCarte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getScale2() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2, true);
+	public double getScale2() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCarte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setScale2(float newScale2) {
+	public void setScale2(double newScale2) {
 		eSet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2, newScale2);
 	}
 

@@ -43,12 +43,12 @@ public interface IfcRoundedRectangleProfileDef extends IfcRectangleProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rounding Radius</em>' attribute.
-	 * @see #setRoundingRadius(float)
+	 * @see #setRoundingRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRoundedRectangleProfileDef_RoundingRadius()
 	 * @model
 	 * @generated
 	 */
-	float getRoundingRadius();
+	double getRoundingRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRoundedRectangleProfileDef#getRoundingRadius <em>Rounding Radius</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcRoundedRectangleProfileDef extends IfcRectangleProfileDef {
 	 * @see #getRoundingRadius()
 	 * @generated
 	 */
-	void setRoundingRadius(float value);
+	void setRoundingRadius(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Rounding Radius As String</b></em>' attribute.

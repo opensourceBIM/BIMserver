@@ -108,12 +108,12 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * @return the value of the '<em>Frame Depth</em>' attribute.
 	 * @see #isSetFrameDepth()
 	 * @see #unsetFrameDepth()
-	 * @see #setFrameDepth(float)
+	 * @see #setFrameDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPermeableCoveringProperties_FrameDepth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFrameDepth();
+	double getFrameDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcPermeableCoveringProperties#getFrameDepth <em>Frame Depth</em>}' attribute.
@@ -125,7 +125,7 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * @see #getFrameDepth()
 	 * @generated
 	 */
-	void setFrameDepth(float value);
+	void setFrameDepth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPermeableCoveringProperties#getFrameDepth <em>Frame Depth</em>}' attribute.
@@ -133,7 +133,7 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * <!-- end-user-doc -->
 	 * @see #isSetFrameDepth()
 	 * @see #getFrameDepth()
-	 * @see #setFrameDepth(float)
+	 * @see #setFrameDepth(double)
 	 * @generated
 	 */
 	void unsetFrameDepth();
@@ -145,7 +145,7 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * @return whether the value of the '<em>Frame Depth</em>' attribute is set.
 	 * @see #unsetFrameDepth()
 	 * @see #getFrameDepth()
-	 * @see #setFrameDepth(float)
+	 * @see #setFrameDepth(double)
 	 * @generated
 	 */
 	boolean isSetFrameDepth();
@@ -214,12 +214,12 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * @return the value of the '<em>Frame Thickness</em>' attribute.
 	 * @see #isSetFrameThickness()
 	 * @see #unsetFrameThickness()
-	 * @see #setFrameThickness(float)
+	 * @see #setFrameThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPermeableCoveringProperties_FrameThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFrameThickness();
+	double getFrameThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcPermeableCoveringProperties#getFrameThickness <em>Frame Thickness</em>}' attribute.
@@ -231,7 +231,7 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * @see #getFrameThickness()
 	 * @generated
 	 */
-	void setFrameThickness(float value);
+	void setFrameThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPermeableCoveringProperties#getFrameThickness <em>Frame Thickness</em>}' attribute.
@@ -239,7 +239,7 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * <!-- end-user-doc -->
 	 * @see #isSetFrameThickness()
 	 * @see #getFrameThickness()
-	 * @see #setFrameThickness(float)
+	 * @see #setFrameThickness(double)
 	 * @generated
 	 */
 	void unsetFrameThickness();
@@ -251,7 +251,7 @@ public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition
 	 * @return whether the value of the '<em>Frame Thickness</em>' attribute is set.
 	 * @see #unsetFrameThickness()
 	 * @see #getFrameThickness()
-	 * @see #setFrameThickness(float)
+	 * @see #setFrameThickness(double)
 	 * @generated
 	 */
 	boolean isSetFrameThickness();

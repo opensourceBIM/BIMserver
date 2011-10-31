@@ -73,12 +73,12 @@ public interface IfcServiceLife extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Service Life Duration</em>' attribute.
-	 * @see #setServiceLifeDuration(float)
+	 * @see #setServiceLifeDuration(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcServiceLife_ServiceLifeDuration()
 	 * @model
 	 * @generated
 	 */
-	float getServiceLifeDuration();
+	double getServiceLifeDuration();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcServiceLife#getServiceLifeDuration <em>Service Life Duration</em>}' attribute.
@@ -88,7 +88,7 @@ public interface IfcServiceLife extends IfcControl {
 	 * @see #getServiceLifeDuration()
 	 * @generated
 	 */
-	void setServiceLifeDuration(float value);
+	void setServiceLifeDuration(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Service Life Duration As String</b></em>' attribute.

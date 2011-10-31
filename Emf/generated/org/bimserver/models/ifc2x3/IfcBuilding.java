@@ -48,12 +48,12 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * @return the value of the '<em>Elevation Of Ref Height</em>' attribute.
 	 * @see #isSetElevationOfRefHeight()
 	 * @see #unsetElevationOfRefHeight()
-	 * @see #setElevationOfRefHeight(float)
+	 * @see #setElevationOfRefHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBuilding_ElevationOfRefHeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getElevationOfRefHeight();
+	double getElevationOfRefHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBuilding#getElevationOfRefHeight <em>Elevation Of Ref Height</em>}' attribute.
@@ -65,7 +65,7 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * @see #getElevationOfRefHeight()
 	 * @generated
 	 */
-	void setElevationOfRefHeight(float value);
+	void setElevationOfRefHeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBuilding#getElevationOfRefHeight <em>Elevation Of Ref Height</em>}' attribute.
@@ -73,7 +73,7 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetElevationOfRefHeight()
 	 * @see #getElevationOfRefHeight()
-	 * @see #setElevationOfRefHeight(float)
+	 * @see #setElevationOfRefHeight(double)
 	 * @generated
 	 */
 	void unsetElevationOfRefHeight();
@@ -85,7 +85,7 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * @return whether the value of the '<em>Elevation Of Ref Height</em>' attribute is set.
 	 * @see #unsetElevationOfRefHeight()
 	 * @see #getElevationOfRefHeight()
-	 * @see #setElevationOfRefHeight(float)
+	 * @see #setElevationOfRefHeight(double)
 	 * @generated
 	 */
 	boolean isSetElevationOfRefHeight();
@@ -154,12 +154,12 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * @return the value of the '<em>Elevation Of Terrain</em>' attribute.
 	 * @see #isSetElevationOfTerrain()
 	 * @see #unsetElevationOfTerrain()
-	 * @see #setElevationOfTerrain(float)
+	 * @see #setElevationOfTerrain(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBuilding_ElevationOfTerrain()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getElevationOfTerrain();
+	double getElevationOfTerrain();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBuilding#getElevationOfTerrain <em>Elevation Of Terrain</em>}' attribute.
@@ -171,7 +171,7 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * @see #getElevationOfTerrain()
 	 * @generated
 	 */
-	void setElevationOfTerrain(float value);
+	void setElevationOfTerrain(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBuilding#getElevationOfTerrain <em>Elevation Of Terrain</em>}' attribute.
@@ -179,7 +179,7 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetElevationOfTerrain()
 	 * @see #getElevationOfTerrain()
-	 * @see #setElevationOfTerrain(float)
+	 * @see #setElevationOfTerrain(double)
 	 * @generated
 	 */
 	void unsetElevationOfTerrain();
@@ -191,7 +191,7 @@ public interface IfcBuilding extends IfcSpatialStructureElement {
 	 * @return whether the value of the '<em>Elevation Of Terrain</em>' attribute is set.
 	 * @see #unsetElevationOfTerrain()
 	 * @see #getElevationOfTerrain()
-	 * @see #setElevationOfTerrain(float)
+	 * @see #setElevationOfTerrain(double)
 	 * @generated
 	 */
 	boolean isSetElevationOfTerrain();

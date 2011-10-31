@@ -61,12 +61,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Visible Transmittance</em>' attribute.
 	 * @see #isSetVisibleTransmittance()
 	 * @see #unsetVisibleTransmittance()
-	 * @see #setVisibleTransmittance(float)
+	 * @see #setVisibleTransmittance(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_VisibleTransmittance()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getVisibleTransmittance();
+	double getVisibleTransmittance();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getVisibleTransmittance <em>Visible Transmittance</em>}' attribute.
@@ -78,7 +78,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getVisibleTransmittance()
 	 * @generated
 	 */
-	void setVisibleTransmittance(float value);
+	void setVisibleTransmittance(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getVisibleTransmittance <em>Visible Transmittance</em>}' attribute.
@@ -86,7 +86,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetVisibleTransmittance()
 	 * @see #getVisibleTransmittance()
-	 * @see #setVisibleTransmittance(float)
+	 * @see #setVisibleTransmittance(double)
 	 * @generated
 	 */
 	void unsetVisibleTransmittance();
@@ -98,7 +98,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Visible Transmittance</em>' attribute is set.
 	 * @see #unsetVisibleTransmittance()
 	 * @see #getVisibleTransmittance()
-	 * @see #setVisibleTransmittance(float)
+	 * @see #setVisibleTransmittance(double)
 	 * @generated
 	 */
 	boolean isSetVisibleTransmittance();
@@ -167,12 +167,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Solar Transmittance</em>' attribute.
 	 * @see #isSetSolarTransmittance()
 	 * @see #unsetSolarTransmittance()
-	 * @see #setSolarTransmittance(float)
+	 * @see #setSolarTransmittance(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_SolarTransmittance()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSolarTransmittance();
+	double getSolarTransmittance();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getSolarTransmittance <em>Solar Transmittance</em>}' attribute.
@@ -184,7 +184,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getSolarTransmittance()
 	 * @generated
 	 */
-	void setSolarTransmittance(float value);
+	void setSolarTransmittance(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getSolarTransmittance <em>Solar Transmittance</em>}' attribute.
@@ -192,7 +192,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSolarTransmittance()
 	 * @see #getSolarTransmittance()
-	 * @see #setSolarTransmittance(float)
+	 * @see #setSolarTransmittance(double)
 	 * @generated
 	 */
 	void unsetSolarTransmittance();
@@ -204,7 +204,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Solar Transmittance</em>' attribute is set.
 	 * @see #unsetSolarTransmittance()
 	 * @see #getSolarTransmittance()
-	 * @see #setSolarTransmittance(float)
+	 * @see #setSolarTransmittance(double)
 	 * @generated
 	 */
 	boolean isSetSolarTransmittance();
@@ -273,12 +273,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Thermal Ir Transmittance</em>' attribute.
 	 * @see #isSetThermalIrTransmittance()
 	 * @see #unsetThermalIrTransmittance()
-	 * @see #setThermalIrTransmittance(float)
+	 * @see #setThermalIrTransmittance(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_ThermalIrTransmittance()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThermalIrTransmittance();
+	double getThermalIrTransmittance();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getThermalIrTransmittance <em>Thermal Ir Transmittance</em>}' attribute.
@@ -290,7 +290,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getThermalIrTransmittance()
 	 * @generated
 	 */
-	void setThermalIrTransmittance(float value);
+	void setThermalIrTransmittance(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getThermalIrTransmittance <em>Thermal Ir Transmittance</em>}' attribute.
@@ -298,7 +298,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThermalIrTransmittance()
 	 * @see #getThermalIrTransmittance()
-	 * @see #setThermalIrTransmittance(float)
+	 * @see #setThermalIrTransmittance(double)
 	 * @generated
 	 */
 	void unsetThermalIrTransmittance();
@@ -310,7 +310,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Thermal Ir Transmittance</em>' attribute is set.
 	 * @see #unsetThermalIrTransmittance()
 	 * @see #getThermalIrTransmittance()
-	 * @see #setThermalIrTransmittance(float)
+	 * @see #setThermalIrTransmittance(double)
 	 * @generated
 	 */
 	boolean isSetThermalIrTransmittance();
@@ -379,12 +379,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Thermal Ir Emissivity Back</em>' attribute.
 	 * @see #isSetThermalIrEmissivityBack()
 	 * @see #unsetThermalIrEmissivityBack()
-	 * @see #setThermalIrEmissivityBack(float)
+	 * @see #setThermalIrEmissivityBack(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_ThermalIrEmissivityBack()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThermalIrEmissivityBack();
+	double getThermalIrEmissivityBack();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getThermalIrEmissivityBack <em>Thermal Ir Emissivity Back</em>}' attribute.
@@ -396,7 +396,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getThermalIrEmissivityBack()
 	 * @generated
 	 */
-	void setThermalIrEmissivityBack(float value);
+	void setThermalIrEmissivityBack(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getThermalIrEmissivityBack <em>Thermal Ir Emissivity Back</em>}' attribute.
@@ -404,7 +404,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThermalIrEmissivityBack()
 	 * @see #getThermalIrEmissivityBack()
-	 * @see #setThermalIrEmissivityBack(float)
+	 * @see #setThermalIrEmissivityBack(double)
 	 * @generated
 	 */
 	void unsetThermalIrEmissivityBack();
@@ -416,7 +416,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Thermal Ir Emissivity Back</em>' attribute is set.
 	 * @see #unsetThermalIrEmissivityBack()
 	 * @see #getThermalIrEmissivityBack()
-	 * @see #setThermalIrEmissivityBack(float)
+	 * @see #setThermalIrEmissivityBack(double)
 	 * @generated
 	 */
 	boolean isSetThermalIrEmissivityBack();
@@ -485,12 +485,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Thermal Ir Emissivity Front</em>' attribute.
 	 * @see #isSetThermalIrEmissivityFront()
 	 * @see #unsetThermalIrEmissivityFront()
-	 * @see #setThermalIrEmissivityFront(float)
+	 * @see #setThermalIrEmissivityFront(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_ThermalIrEmissivityFront()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThermalIrEmissivityFront();
+	double getThermalIrEmissivityFront();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getThermalIrEmissivityFront <em>Thermal Ir Emissivity Front</em>}' attribute.
@@ -502,7 +502,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getThermalIrEmissivityFront()
 	 * @generated
 	 */
-	void setThermalIrEmissivityFront(float value);
+	void setThermalIrEmissivityFront(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getThermalIrEmissivityFront <em>Thermal Ir Emissivity Front</em>}' attribute.
@@ -510,7 +510,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThermalIrEmissivityFront()
 	 * @see #getThermalIrEmissivityFront()
-	 * @see #setThermalIrEmissivityFront(float)
+	 * @see #setThermalIrEmissivityFront(double)
 	 * @generated
 	 */
 	void unsetThermalIrEmissivityFront();
@@ -522,7 +522,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Thermal Ir Emissivity Front</em>' attribute is set.
 	 * @see #unsetThermalIrEmissivityFront()
 	 * @see #getThermalIrEmissivityFront()
-	 * @see #setThermalIrEmissivityFront(float)
+	 * @see #setThermalIrEmissivityFront(double)
 	 * @generated
 	 */
 	boolean isSetThermalIrEmissivityFront();
@@ -591,12 +591,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Visible Reflectance Back</em>' attribute.
 	 * @see #isSetVisibleReflectanceBack()
 	 * @see #unsetVisibleReflectanceBack()
-	 * @see #setVisibleReflectanceBack(float)
+	 * @see #setVisibleReflectanceBack(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_VisibleReflectanceBack()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getVisibleReflectanceBack();
+	double getVisibleReflectanceBack();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getVisibleReflectanceBack <em>Visible Reflectance Back</em>}' attribute.
@@ -608,7 +608,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getVisibleReflectanceBack()
 	 * @generated
 	 */
-	void setVisibleReflectanceBack(float value);
+	void setVisibleReflectanceBack(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getVisibleReflectanceBack <em>Visible Reflectance Back</em>}' attribute.
@@ -616,7 +616,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetVisibleReflectanceBack()
 	 * @see #getVisibleReflectanceBack()
-	 * @see #setVisibleReflectanceBack(float)
+	 * @see #setVisibleReflectanceBack(double)
 	 * @generated
 	 */
 	void unsetVisibleReflectanceBack();
@@ -628,7 +628,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Visible Reflectance Back</em>' attribute is set.
 	 * @see #unsetVisibleReflectanceBack()
 	 * @see #getVisibleReflectanceBack()
-	 * @see #setVisibleReflectanceBack(float)
+	 * @see #setVisibleReflectanceBack(double)
 	 * @generated
 	 */
 	boolean isSetVisibleReflectanceBack();
@@ -697,12 +697,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Visible Reflectance Front</em>' attribute.
 	 * @see #isSetVisibleReflectanceFront()
 	 * @see #unsetVisibleReflectanceFront()
-	 * @see #setVisibleReflectanceFront(float)
+	 * @see #setVisibleReflectanceFront(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_VisibleReflectanceFront()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getVisibleReflectanceFront();
+	double getVisibleReflectanceFront();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getVisibleReflectanceFront <em>Visible Reflectance Front</em>}' attribute.
@@ -714,7 +714,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getVisibleReflectanceFront()
 	 * @generated
 	 */
-	void setVisibleReflectanceFront(float value);
+	void setVisibleReflectanceFront(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getVisibleReflectanceFront <em>Visible Reflectance Front</em>}' attribute.
@@ -722,7 +722,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetVisibleReflectanceFront()
 	 * @see #getVisibleReflectanceFront()
-	 * @see #setVisibleReflectanceFront(float)
+	 * @see #setVisibleReflectanceFront(double)
 	 * @generated
 	 */
 	void unsetVisibleReflectanceFront();
@@ -734,7 +734,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Visible Reflectance Front</em>' attribute is set.
 	 * @see #unsetVisibleReflectanceFront()
 	 * @see #getVisibleReflectanceFront()
-	 * @see #setVisibleReflectanceFront(float)
+	 * @see #setVisibleReflectanceFront(double)
 	 * @generated
 	 */
 	boolean isSetVisibleReflectanceFront();
@@ -803,12 +803,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Solar Reflectance Front</em>' attribute.
 	 * @see #isSetSolarReflectanceFront()
 	 * @see #unsetSolarReflectanceFront()
-	 * @see #setSolarReflectanceFront(float)
+	 * @see #setSolarReflectanceFront(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_SolarReflectanceFront()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSolarReflectanceFront();
+	double getSolarReflectanceFront();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getSolarReflectanceFront <em>Solar Reflectance Front</em>}' attribute.
@@ -820,7 +820,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getSolarReflectanceFront()
 	 * @generated
 	 */
-	void setSolarReflectanceFront(float value);
+	void setSolarReflectanceFront(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getSolarReflectanceFront <em>Solar Reflectance Front</em>}' attribute.
@@ -828,7 +828,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSolarReflectanceFront()
 	 * @see #getSolarReflectanceFront()
-	 * @see #setSolarReflectanceFront(float)
+	 * @see #setSolarReflectanceFront(double)
 	 * @generated
 	 */
 	void unsetSolarReflectanceFront();
@@ -840,7 +840,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Solar Reflectance Front</em>' attribute is set.
 	 * @see #unsetSolarReflectanceFront()
 	 * @see #getSolarReflectanceFront()
-	 * @see #setSolarReflectanceFront(float)
+	 * @see #setSolarReflectanceFront(double)
 	 * @generated
 	 */
 	boolean isSetSolarReflectanceFront();
@@ -909,12 +909,12 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Solar Reflectance Back</em>' attribute.
 	 * @see #isSetSolarReflectanceBack()
 	 * @see #unsetSolarReflectanceBack()
-	 * @see #setSolarReflectanceBack(float)
+	 * @see #setSolarReflectanceBack(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpticalMaterialProperties_SolarReflectanceBack()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSolarReflectanceBack();
+	double getSolarReflectanceBack();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getSolarReflectanceBack <em>Solar Reflectance Back</em>}' attribute.
@@ -926,7 +926,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getSolarReflectanceBack()
 	 * @generated
 	 */
-	void setSolarReflectanceBack(float value);
+	void setSolarReflectanceBack(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties#getSolarReflectanceBack <em>Solar Reflectance Back</em>}' attribute.
@@ -934,7 +934,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSolarReflectanceBack()
 	 * @see #getSolarReflectanceBack()
-	 * @see #setSolarReflectanceBack(float)
+	 * @see #setSolarReflectanceBack(double)
 	 * @generated
 	 */
 	void unsetSolarReflectanceBack();
@@ -946,7 +946,7 @@ public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Solar Reflectance Back</em>' attribute is set.
 	 * @see #unsetSolarReflectanceBack()
 	 * @see #getSolarReflectanceBack()
-	 * @see #setSolarReflectanceBack(float)
+	 * @see #setSolarReflectanceBack(double)
 	 * @generated
 	 */
 	boolean isSetSolarReflectanceBack();

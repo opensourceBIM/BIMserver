@@ -100,8 +100,8 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFrequency() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY, true);
+	public double getFrequency() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY, true);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrequency(float newFrequency) {
+	public void setFrequency(double newFrequency) {
 		eSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY, newFrequency);
 	}
 

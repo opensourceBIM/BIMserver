@@ -68,8 +68,8 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getNominalDiameter() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER, true);
+	public double getNominalDiameter() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNominalDiameter(float newNominalDiameter) {
+	public void setNominalDiameter(double newNominalDiameter) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER, newNominalDiameter);
 	}
 
@@ -104,8 +104,8 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCrossSectionArea() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA, true);
+	public double getCrossSectionArea() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA, true);
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCrossSectionArea(float newCrossSectionArea) {
+	public void setCrossSectionArea(double newCrossSectionArea) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA, newCrossSectionArea);
 	}
 
@@ -140,8 +140,8 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getBarLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, true);
+	public double getBarLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, true);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBarLength(float newBarLength) {
+	public void setBarLength(double newBarLength) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, newBarLength);
 	}
 

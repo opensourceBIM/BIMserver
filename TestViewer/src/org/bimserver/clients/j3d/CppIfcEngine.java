@@ -53,7 +53,7 @@ package org.bimserver.clients.j3d;
 //		this.appearances = appearances;
 //		LocalDevelopmentResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 //		try {
-//			ifcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IfcEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null);
+//			ifcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_TC1.exp").getAbsoluteFile(), new File("../IfcEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null);
 //		} catch (IfcEngineException e) {
 //			e.printStackTrace();
 //		}

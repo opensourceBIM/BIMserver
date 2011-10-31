@@ -175,8 +175,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDuration() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__DURATION, true);
+	public double getDuration() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__DURATION, true);
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDuration(float newDuration) {
+	public void setDuration(double newDuration) {
 		eSet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__DURATION, newDuration);
 	}
 
@@ -247,8 +247,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTotalFloat() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, true);
+	public double getTotalFloat() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, true);
 	}
 
 	/**
@@ -256,7 +256,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTotalFloat(float newTotalFloat) {
+	public void setTotalFloat(double newTotalFloat) {
 		eSet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, newTotalFloat);
 	}
 

@@ -55,12 +55,12 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return the value of the '<em>Displacement X</em>' attribute.
 	 * @see #isSetDisplacementX()
 	 * @see #unsetDisplacementX()
-	 * @see #setDisplacementX(float)
+	 * @see #setDisplacementX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleDisplacement_DisplacementX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDisplacementX();
+	double getDisplacementX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getDisplacementX <em>Displacement X</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @see #getDisplacementX()
 	 * @generated
 	 */
-	void setDisplacementX(float value);
+	void setDisplacementX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getDisplacementX <em>Displacement X</em>}' attribute.
@@ -80,7 +80,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * <!-- end-user-doc -->
 	 * @see #isSetDisplacementX()
 	 * @see #getDisplacementX()
-	 * @see #setDisplacementX(float)
+	 * @see #setDisplacementX(double)
 	 * @generated
 	 */
 	void unsetDisplacementX();
@@ -92,7 +92,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return whether the value of the '<em>Displacement X</em>' attribute is set.
 	 * @see #unsetDisplacementX()
 	 * @see #getDisplacementX()
-	 * @see #setDisplacementX(float)
+	 * @see #setDisplacementX(double)
 	 * @generated
 	 */
 	boolean isSetDisplacementX();
@@ -161,12 +161,12 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return the value of the '<em>Displacement Y</em>' attribute.
 	 * @see #isSetDisplacementY()
 	 * @see #unsetDisplacementY()
-	 * @see #setDisplacementY(float)
+	 * @see #setDisplacementY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleDisplacement_DisplacementY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDisplacementY();
+	double getDisplacementY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getDisplacementY <em>Displacement Y</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @see #getDisplacementY()
 	 * @generated
 	 */
-	void setDisplacementY(float value);
+	void setDisplacementY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getDisplacementY <em>Displacement Y</em>}' attribute.
@@ -186,7 +186,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * <!-- end-user-doc -->
 	 * @see #isSetDisplacementY()
 	 * @see #getDisplacementY()
-	 * @see #setDisplacementY(float)
+	 * @see #setDisplacementY(double)
 	 * @generated
 	 */
 	void unsetDisplacementY();
@@ -198,7 +198,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return whether the value of the '<em>Displacement Y</em>' attribute is set.
 	 * @see #unsetDisplacementY()
 	 * @see #getDisplacementY()
-	 * @see #setDisplacementY(float)
+	 * @see #setDisplacementY(double)
 	 * @generated
 	 */
 	boolean isSetDisplacementY();
@@ -267,12 +267,12 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return the value of the '<em>Displacement Z</em>' attribute.
 	 * @see #isSetDisplacementZ()
 	 * @see #unsetDisplacementZ()
-	 * @see #setDisplacementZ(float)
+	 * @see #setDisplacementZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleDisplacement_DisplacementZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDisplacementZ();
+	double getDisplacementZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getDisplacementZ <em>Displacement Z</em>}' attribute.
@@ -284,7 +284,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @see #getDisplacementZ()
 	 * @generated
 	 */
-	void setDisplacementZ(float value);
+	void setDisplacementZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getDisplacementZ <em>Displacement Z</em>}' attribute.
@@ -292,7 +292,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * <!-- end-user-doc -->
 	 * @see #isSetDisplacementZ()
 	 * @see #getDisplacementZ()
-	 * @see #setDisplacementZ(float)
+	 * @see #setDisplacementZ(double)
 	 * @generated
 	 */
 	void unsetDisplacementZ();
@@ -304,7 +304,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return whether the value of the '<em>Displacement Z</em>' attribute is set.
 	 * @see #unsetDisplacementZ()
 	 * @see #getDisplacementZ()
-	 * @see #setDisplacementZ(float)
+	 * @see #setDisplacementZ(double)
 	 * @generated
 	 */
 	boolean isSetDisplacementZ();
@@ -373,12 +373,12 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return the value of the '<em>Rotational Displacement RX</em>' attribute.
 	 * @see #isSetRotationalDisplacementRX()
 	 * @see #unsetRotationalDisplacementRX()
-	 * @see #setRotationalDisplacementRX(float)
+	 * @see #setRotationalDisplacementRX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleDisplacement_RotationalDisplacementRX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRotationalDisplacementRX();
+	double getRotationalDisplacementRX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRX <em>Rotational Displacement RX</em>}' attribute.
@@ -390,7 +390,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @see #getRotationalDisplacementRX()
 	 * @generated
 	 */
-	void setRotationalDisplacementRX(float value);
+	void setRotationalDisplacementRX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRX <em>Rotational Displacement RX</em>}' attribute.
@@ -398,7 +398,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * <!-- end-user-doc -->
 	 * @see #isSetRotationalDisplacementRX()
 	 * @see #getRotationalDisplacementRX()
-	 * @see #setRotationalDisplacementRX(float)
+	 * @see #setRotationalDisplacementRX(double)
 	 * @generated
 	 */
 	void unsetRotationalDisplacementRX();
@@ -410,7 +410,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return whether the value of the '<em>Rotational Displacement RX</em>' attribute is set.
 	 * @see #unsetRotationalDisplacementRX()
 	 * @see #getRotationalDisplacementRX()
-	 * @see #setRotationalDisplacementRX(float)
+	 * @see #setRotationalDisplacementRX(double)
 	 * @generated
 	 */
 	boolean isSetRotationalDisplacementRX();
@@ -479,12 +479,12 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return the value of the '<em>Rotational Displacement RY</em>' attribute.
 	 * @see #isSetRotationalDisplacementRY()
 	 * @see #unsetRotationalDisplacementRY()
-	 * @see #setRotationalDisplacementRY(float)
+	 * @see #setRotationalDisplacementRY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleDisplacement_RotationalDisplacementRY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRotationalDisplacementRY();
+	double getRotationalDisplacementRY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRY <em>Rotational Displacement RY</em>}' attribute.
@@ -496,7 +496,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @see #getRotationalDisplacementRY()
 	 * @generated
 	 */
-	void setRotationalDisplacementRY(float value);
+	void setRotationalDisplacementRY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRY <em>Rotational Displacement RY</em>}' attribute.
@@ -504,7 +504,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * <!-- end-user-doc -->
 	 * @see #isSetRotationalDisplacementRY()
 	 * @see #getRotationalDisplacementRY()
-	 * @see #setRotationalDisplacementRY(float)
+	 * @see #setRotationalDisplacementRY(double)
 	 * @generated
 	 */
 	void unsetRotationalDisplacementRY();
@@ -516,7 +516,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return whether the value of the '<em>Rotational Displacement RY</em>' attribute is set.
 	 * @see #unsetRotationalDisplacementRY()
 	 * @see #getRotationalDisplacementRY()
-	 * @see #setRotationalDisplacementRY(float)
+	 * @see #setRotationalDisplacementRY(double)
 	 * @generated
 	 */
 	boolean isSetRotationalDisplacementRY();
@@ -585,12 +585,12 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return the value of the '<em>Rotational Displacement RZ</em>' attribute.
 	 * @see #isSetRotationalDisplacementRZ()
 	 * @see #unsetRotationalDisplacementRZ()
-	 * @see #setRotationalDisplacementRZ(float)
+	 * @see #setRotationalDisplacementRZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleDisplacement_RotationalDisplacementRZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRotationalDisplacementRZ();
+	double getRotationalDisplacementRZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRZ <em>Rotational Displacement RZ</em>}' attribute.
@@ -602,7 +602,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @see #getRotationalDisplacementRZ()
 	 * @generated
 	 */
-	void setRotationalDisplacementRZ(float value);
+	void setRotationalDisplacementRZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRZ <em>Rotational Displacement RZ</em>}' attribute.
@@ -610,7 +610,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * <!-- end-user-doc -->
 	 * @see #isSetRotationalDisplacementRZ()
 	 * @see #getRotationalDisplacementRZ()
-	 * @see #setRotationalDisplacementRZ(float)
+	 * @see #setRotationalDisplacementRZ(double)
 	 * @generated
 	 */
 	void unsetRotationalDisplacementRZ();
@@ -622,7 +622,7 @@ public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadSt
 	 * @return whether the value of the '<em>Rotational Displacement RZ</em>' attribute is set.
 	 * @see #unsetRotationalDisplacementRZ()
 	 * @see #getRotationalDisplacementRZ()
-	 * @see #setRotationalDisplacementRZ(float)
+	 * @see #setRotationalDisplacementRZ(double)
 	 * @generated
 	 */
 	boolean isSetRotationalDisplacementRZ();

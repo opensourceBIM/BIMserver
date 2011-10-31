@@ -42,11 +42,11 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getTag <em>Tag</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getHasStructuralMember <em>Has Structural Member</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getFillsVoids <em>Fills Voids</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getConnectedTo <em>Connected To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getHasCoverings <em>Has Coverings</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getHasProjections <em>Has Projections</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getHasStructuralMember <em>Has Structural Member</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getReferencedInStructures <em>Referenced In Structures</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getHasPorts <em>Has Ports</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcElementImpl#getHasOpenings <em>Has Openings</em>}</li>

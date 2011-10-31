@@ -80,8 +80,8 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS, true);
+	public double getThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThickness(float newThickness) {
+	public void setThickness(double newThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS, newThickness);
 	}
 

@@ -62,8 +62,8 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSizeInX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_X, true);
+	public double getSizeInX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_X, true);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSizeInX(float newSizeInX) {
+	public void setSizeInX(double newSizeInX) {
 		eSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_X, newSizeInX);
 	}
 
@@ -98,8 +98,8 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSizeInY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_Y, true);
+	public double getSizeInY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_Y, true);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSizeInY(float newSizeInY) {
+	public void setSizeInY(double newSizeInY) {
 		eSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_Y, newSizeInY);
 	}
 

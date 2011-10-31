@@ -60,8 +60,8 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRoundingRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS, true);
+	public double getRoundingRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRoundingRadius(float newRoundingRadius) {
+	public void setRoundingRadius(double newRoundingRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS, newRoundingRadius);
 	}
 

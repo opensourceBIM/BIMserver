@@ -49,12 +49,12 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Molecular Weight</em>' attribute.
 	 * @see #isSetMolecularWeight()
 	 * @see #unsetMolecularWeight()
-	 * @see #setMolecularWeight(float)
+	 * @see #setMolecularWeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralMaterialProperties_MolecularWeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMolecularWeight();
+	double getMolecularWeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralMaterialProperties#getMolecularWeight <em>Molecular Weight</em>}' attribute.
@@ -66,7 +66,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @see #getMolecularWeight()
 	 * @generated
 	 */
-	void setMolecularWeight(float value);
+	void setMolecularWeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralMaterialProperties#getMolecularWeight <em>Molecular Weight</em>}' attribute.
@@ -74,7 +74,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMolecularWeight()
 	 * @see #getMolecularWeight()
-	 * @see #setMolecularWeight(float)
+	 * @see #setMolecularWeight(double)
 	 * @generated
 	 */
 	void unsetMolecularWeight();
@@ -86,7 +86,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Molecular Weight</em>' attribute is set.
 	 * @see #unsetMolecularWeight()
 	 * @see #getMolecularWeight()
-	 * @see #setMolecularWeight(float)
+	 * @see #setMolecularWeight(double)
 	 * @generated
 	 */
 	boolean isSetMolecularWeight();
@@ -155,12 +155,12 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Porosity</em>' attribute.
 	 * @see #isSetPorosity()
 	 * @see #unsetPorosity()
-	 * @see #setPorosity(float)
+	 * @see #setPorosity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralMaterialProperties_Porosity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPorosity();
+	double getPorosity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralMaterialProperties#getPorosity <em>Porosity</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @see #getPorosity()
 	 * @generated
 	 */
-	void setPorosity(float value);
+	void setPorosity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralMaterialProperties#getPorosity <em>Porosity</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPorosity()
 	 * @see #getPorosity()
-	 * @see #setPorosity(float)
+	 * @see #setPorosity(double)
 	 * @generated
 	 */
 	void unsetPorosity();
@@ -192,7 +192,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Porosity</em>' attribute is set.
 	 * @see #unsetPorosity()
 	 * @see #getPorosity()
-	 * @see #setPorosity(float)
+	 * @see #setPorosity(double)
 	 * @generated
 	 */
 	boolean isSetPorosity();
@@ -261,12 +261,12 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Mass Density</em>' attribute.
 	 * @see #isSetMassDensity()
 	 * @see #unsetMassDensity()
-	 * @see #setMassDensity(float)
+	 * @see #setMassDensity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralMaterialProperties_MassDensity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMassDensity();
+	double getMassDensity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralMaterialProperties#getMassDensity <em>Mass Density</em>}' attribute.
@@ -278,7 +278,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @see #getMassDensity()
 	 * @generated
 	 */
-	void setMassDensity(float value);
+	void setMassDensity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralMaterialProperties#getMassDensity <em>Mass Density</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMassDensity()
 	 * @see #getMassDensity()
-	 * @see #setMassDensity(float)
+	 * @see #setMassDensity(double)
 	 * @generated
 	 */
 	void unsetMassDensity();
@@ -298,7 +298,7 @@ public interface IfcGeneralMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Mass Density</em>' attribute is set.
 	 * @see #unsetMassDensity()
 	 * @see #getMassDensity()
-	 * @see #setMassDensity(float)
+	 * @see #setMassDensity(double)
 	 * @generated
 	 */
 	boolean isSetMassDensity();

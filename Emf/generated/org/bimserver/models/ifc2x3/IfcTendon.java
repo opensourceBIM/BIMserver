@@ -85,12 +85,12 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nominal Diameter</em>' attribute.
-	 * @see #setNominalDiameter(float)
+	 * @see #setNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_NominalDiameter()
 	 * @model
 	 * @generated
 	 */
-	float getNominalDiameter();
+	double getNominalDiameter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getNominalDiameter <em>Nominal Diameter</em>}' attribute.
@@ -100,7 +100,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @see #getNominalDiameter()
 	 * @generated
 	 */
-	void setNominalDiameter(float value);
+	void setNominalDiameter(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Nominal Diameter As String</b></em>' attribute.
@@ -137,12 +137,12 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Area</em>' attribute.
-	 * @see #setCrossSectionArea(float)
+	 * @see #setCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_CrossSectionArea()
 	 * @model
 	 * @generated
 	 */
-	float getCrossSectionArea();
+	double getCrossSectionArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getCrossSectionArea <em>Cross Section Area</em>}' attribute.
@@ -152,7 +152,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @see #getCrossSectionArea()
 	 * @generated
 	 */
-	void setCrossSectionArea(float value);
+	void setCrossSectionArea(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Area As String</b></em>' attribute.
@@ -191,12 +191,12 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return the value of the '<em>Tension Force</em>' attribute.
 	 * @see #isSetTensionForce()
 	 * @see #unsetTensionForce()
-	 * @see #setTensionForce(float)
+	 * @see #setTensionForce(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_TensionForce()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTensionForce();
+	double getTensionForce();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getTensionForce <em>Tension Force</em>}' attribute.
@@ -208,7 +208,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @see #getTensionForce()
 	 * @generated
 	 */
-	void setTensionForce(float value);
+	void setTensionForce(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getTensionForce <em>Tension Force</em>}' attribute.
@@ -216,7 +216,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTensionForce()
 	 * @see #getTensionForce()
-	 * @see #setTensionForce(float)
+	 * @see #setTensionForce(double)
 	 * @generated
 	 */
 	void unsetTensionForce();
@@ -228,7 +228,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Tension Force</em>' attribute is set.
 	 * @see #unsetTensionForce()
 	 * @see #getTensionForce()
-	 * @see #setTensionForce(float)
+	 * @see #setTensionForce(double)
 	 * @generated
 	 */
 	boolean isSetTensionForce();
@@ -297,12 +297,12 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return the value of the '<em>Pre Stress</em>' attribute.
 	 * @see #isSetPreStress()
 	 * @see #unsetPreStress()
-	 * @see #setPreStress(float)
+	 * @see #setPreStress(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_PreStress()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPreStress();
+	double getPreStress();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getPreStress <em>Pre Stress</em>}' attribute.
@@ -314,7 +314,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @see #getPreStress()
 	 * @generated
 	 */
-	void setPreStress(float value);
+	void setPreStress(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getPreStress <em>Pre Stress</em>}' attribute.
@@ -322,7 +322,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPreStress()
 	 * @see #getPreStress()
-	 * @see #setPreStress(float)
+	 * @see #setPreStress(double)
 	 * @generated
 	 */
 	void unsetPreStress();
@@ -334,7 +334,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Pre Stress</em>' attribute is set.
 	 * @see #unsetPreStress()
 	 * @see #getPreStress()
-	 * @see #setPreStress(float)
+	 * @see #setPreStress(double)
 	 * @generated
 	 */
 	boolean isSetPreStress();
@@ -403,12 +403,12 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return the value of the '<em>Friction Coefficient</em>' attribute.
 	 * @see #isSetFrictionCoefficient()
 	 * @see #unsetFrictionCoefficient()
-	 * @see #setFrictionCoefficient(float)
+	 * @see #setFrictionCoefficient(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_FrictionCoefficient()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFrictionCoefficient();
+	double getFrictionCoefficient();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getFrictionCoefficient <em>Friction Coefficient</em>}' attribute.
@@ -420,7 +420,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @see #getFrictionCoefficient()
 	 * @generated
 	 */
-	void setFrictionCoefficient(float value);
+	void setFrictionCoefficient(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getFrictionCoefficient <em>Friction Coefficient</em>}' attribute.
@@ -428,7 +428,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFrictionCoefficient()
 	 * @see #getFrictionCoefficient()
-	 * @see #setFrictionCoefficient(float)
+	 * @see #setFrictionCoefficient(double)
 	 * @generated
 	 */
 	void unsetFrictionCoefficient();
@@ -440,7 +440,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Friction Coefficient</em>' attribute is set.
 	 * @see #unsetFrictionCoefficient()
 	 * @see #getFrictionCoefficient()
-	 * @see #setFrictionCoefficient(float)
+	 * @see #setFrictionCoefficient(double)
 	 * @generated
 	 */
 	boolean isSetFrictionCoefficient();
@@ -509,12 +509,12 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return the value of the '<em>Anchorage Slip</em>' attribute.
 	 * @see #isSetAnchorageSlip()
 	 * @see #unsetAnchorageSlip()
-	 * @see #setAnchorageSlip(float)
+	 * @see #setAnchorageSlip(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_AnchorageSlip()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getAnchorageSlip();
+	double getAnchorageSlip();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getAnchorageSlip <em>Anchorage Slip</em>}' attribute.
@@ -526,7 +526,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @see #getAnchorageSlip()
 	 * @generated
 	 */
-	void setAnchorageSlip(float value);
+	void setAnchorageSlip(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getAnchorageSlip <em>Anchorage Slip</em>}' attribute.
@@ -534,7 +534,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetAnchorageSlip()
 	 * @see #getAnchorageSlip()
-	 * @see #setAnchorageSlip(float)
+	 * @see #setAnchorageSlip(double)
 	 * @generated
 	 */
 	void unsetAnchorageSlip();
@@ -546,7 +546,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Anchorage Slip</em>' attribute is set.
 	 * @see #unsetAnchorageSlip()
 	 * @see #getAnchorageSlip()
-	 * @see #setAnchorageSlip(float)
+	 * @see #setAnchorageSlip(double)
 	 * @generated
 	 */
 	boolean isSetAnchorageSlip();
@@ -615,12 +615,12 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return the value of the '<em>Min Curvature Radius</em>' attribute.
 	 * @see #isSetMinCurvatureRadius()
 	 * @see #unsetMinCurvatureRadius()
-	 * @see #setMinCurvatureRadius(float)
+	 * @see #setMinCurvatureRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_MinCurvatureRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMinCurvatureRadius();
+	double getMinCurvatureRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getMinCurvatureRadius <em>Min Curvature Radius</em>}' attribute.
@@ -632,7 +632,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @see #getMinCurvatureRadius()
 	 * @generated
 	 */
-	void setMinCurvatureRadius(float value);
+	void setMinCurvatureRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getMinCurvatureRadius <em>Min Curvature Radius</em>}' attribute.
@@ -640,7 +640,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinCurvatureRadius()
 	 * @see #getMinCurvatureRadius()
-	 * @see #setMinCurvatureRadius(float)
+	 * @see #setMinCurvatureRadius(double)
 	 * @generated
 	 */
 	void unsetMinCurvatureRadius();
@@ -652,7 +652,7 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Min Curvature Radius</em>' attribute is set.
 	 * @see #unsetMinCurvatureRadius()
 	 * @see #getMinCurvatureRadius()
-	 * @see #setMinCurvatureRadius(float)
+	 * @see #setMinCurvatureRadius(double)
 	 * @generated
 	 */
 	boolean isSetMinCurvatureRadius();

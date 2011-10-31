@@ -87,8 +87,8 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPrecision() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION, true);
+	public double getPrecision() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION, true);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPrecision(float newPrecision) {
+	public void setPrecision(double newPrecision) {
 		eSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION, newPrecision);
 	}
 

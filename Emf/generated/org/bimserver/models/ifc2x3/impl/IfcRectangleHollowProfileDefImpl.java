@@ -64,8 +64,8 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWallThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS, true);
+	public double getWallThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWallThickness(float newWallThickness) {
+	public void setWallThickness(double newWallThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS, newWallThickness);
 	}
 
@@ -100,8 +100,8 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getInnerFilletRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__INNER_FILLET_RADIUS, true);
+	public double getInnerFilletRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__INNER_FILLET_RADIUS, true);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInnerFilletRadius(float newInnerFilletRadius) {
+	public void setInnerFilletRadius(double newInnerFilletRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__INNER_FILLET_RADIUS, newInnerFilletRadius);
 	}
 
@@ -172,8 +172,8 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getOuterFilletRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__OUTER_FILLET_RADIUS, true);
+	public double getOuterFilletRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__OUTER_FILLET_RADIUS, true);
 	}
 
 	/**
@@ -181,7 +181,7 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOuterFilletRadius(float newOuterFilletRadius) {
+	public void setOuterFilletRadius(double newOuterFilletRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__OUTER_FILLET_RADIUS, newOuterFilletRadius);
 	}
 

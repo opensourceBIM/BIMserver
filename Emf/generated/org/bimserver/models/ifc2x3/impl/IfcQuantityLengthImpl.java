@@ -60,8 +60,8 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLengthValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE, true);
+	public double getLengthValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLengthValue(float newLengthValue) {
+	public void setLengthValue(double newLengthValue) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE, newLengthValue);
 	}
 

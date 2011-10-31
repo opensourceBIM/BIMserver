@@ -55,12 +55,12 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return the value of the '<em>Tension Failure X</em>' attribute.
 	 * @see #isSetTensionFailureX()
 	 * @see #unsetTensionFailureX()
-	 * @see #setTensionFailureX(float)
+	 * @see #setTensionFailureX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFailureConnectionCondition_TensionFailureX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTensionFailureX();
+	double getTensionFailureX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getTensionFailureX <em>Tension Failure X</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #getTensionFailureX()
 	 * @generated
 	 */
-	void setTensionFailureX(float value);
+	void setTensionFailureX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getTensionFailureX <em>Tension Failure X</em>}' attribute.
@@ -80,7 +80,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @see #isSetTensionFailureX()
 	 * @see #getTensionFailureX()
-	 * @see #setTensionFailureX(float)
+	 * @see #setTensionFailureX(double)
 	 * @generated
 	 */
 	void unsetTensionFailureX();
@@ -92,7 +92,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return whether the value of the '<em>Tension Failure X</em>' attribute is set.
 	 * @see #unsetTensionFailureX()
 	 * @see #getTensionFailureX()
-	 * @see #setTensionFailureX(float)
+	 * @see #setTensionFailureX(double)
 	 * @generated
 	 */
 	boolean isSetTensionFailureX();
@@ -161,12 +161,12 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return the value of the '<em>Tension Failure Y</em>' attribute.
 	 * @see #isSetTensionFailureY()
 	 * @see #unsetTensionFailureY()
-	 * @see #setTensionFailureY(float)
+	 * @see #setTensionFailureY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFailureConnectionCondition_TensionFailureY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTensionFailureY();
+	double getTensionFailureY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getTensionFailureY <em>Tension Failure Y</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #getTensionFailureY()
 	 * @generated
 	 */
-	void setTensionFailureY(float value);
+	void setTensionFailureY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getTensionFailureY <em>Tension Failure Y</em>}' attribute.
@@ -186,7 +186,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @see #isSetTensionFailureY()
 	 * @see #getTensionFailureY()
-	 * @see #setTensionFailureY(float)
+	 * @see #setTensionFailureY(double)
 	 * @generated
 	 */
 	void unsetTensionFailureY();
@@ -198,7 +198,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return whether the value of the '<em>Tension Failure Y</em>' attribute is set.
 	 * @see #unsetTensionFailureY()
 	 * @see #getTensionFailureY()
-	 * @see #setTensionFailureY(float)
+	 * @see #setTensionFailureY(double)
 	 * @generated
 	 */
 	boolean isSetTensionFailureY();
@@ -267,12 +267,12 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return the value of the '<em>Tension Failure Z</em>' attribute.
 	 * @see #isSetTensionFailureZ()
 	 * @see #unsetTensionFailureZ()
-	 * @see #setTensionFailureZ(float)
+	 * @see #setTensionFailureZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFailureConnectionCondition_TensionFailureZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTensionFailureZ();
+	double getTensionFailureZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getTensionFailureZ <em>Tension Failure Z</em>}' attribute.
@@ -284,7 +284,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #getTensionFailureZ()
 	 * @generated
 	 */
-	void setTensionFailureZ(float value);
+	void setTensionFailureZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getTensionFailureZ <em>Tension Failure Z</em>}' attribute.
@@ -292,7 +292,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @see #isSetTensionFailureZ()
 	 * @see #getTensionFailureZ()
-	 * @see #setTensionFailureZ(float)
+	 * @see #setTensionFailureZ(double)
 	 * @generated
 	 */
 	void unsetTensionFailureZ();
@@ -304,7 +304,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return whether the value of the '<em>Tension Failure Z</em>' attribute is set.
 	 * @see #unsetTensionFailureZ()
 	 * @see #getTensionFailureZ()
-	 * @see #setTensionFailureZ(float)
+	 * @see #setTensionFailureZ(double)
 	 * @generated
 	 */
 	boolean isSetTensionFailureZ();
@@ -373,12 +373,12 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return the value of the '<em>Compression Failure X</em>' attribute.
 	 * @see #isSetCompressionFailureX()
 	 * @see #unsetCompressionFailureX()
-	 * @see #setCompressionFailureX(float)
+	 * @see #setCompressionFailureX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFailureConnectionCondition_CompressionFailureX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCompressionFailureX();
+	double getCompressionFailureX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getCompressionFailureX <em>Compression Failure X</em>}' attribute.
@@ -390,7 +390,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #getCompressionFailureX()
 	 * @generated
 	 */
-	void setCompressionFailureX(float value);
+	void setCompressionFailureX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getCompressionFailureX <em>Compression Failure X</em>}' attribute.
@@ -398,7 +398,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @see #isSetCompressionFailureX()
 	 * @see #getCompressionFailureX()
-	 * @see #setCompressionFailureX(float)
+	 * @see #setCompressionFailureX(double)
 	 * @generated
 	 */
 	void unsetCompressionFailureX();
@@ -410,7 +410,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return whether the value of the '<em>Compression Failure X</em>' attribute is set.
 	 * @see #unsetCompressionFailureX()
 	 * @see #getCompressionFailureX()
-	 * @see #setCompressionFailureX(float)
+	 * @see #setCompressionFailureX(double)
 	 * @generated
 	 */
 	boolean isSetCompressionFailureX();
@@ -479,12 +479,12 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return the value of the '<em>Compression Failure Y</em>' attribute.
 	 * @see #isSetCompressionFailureY()
 	 * @see #unsetCompressionFailureY()
-	 * @see #setCompressionFailureY(float)
+	 * @see #setCompressionFailureY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFailureConnectionCondition_CompressionFailureY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCompressionFailureY();
+	double getCompressionFailureY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getCompressionFailureY <em>Compression Failure Y</em>}' attribute.
@@ -496,7 +496,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #getCompressionFailureY()
 	 * @generated
 	 */
-	void setCompressionFailureY(float value);
+	void setCompressionFailureY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getCompressionFailureY <em>Compression Failure Y</em>}' attribute.
@@ -504,7 +504,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @see #isSetCompressionFailureY()
 	 * @see #getCompressionFailureY()
-	 * @see #setCompressionFailureY(float)
+	 * @see #setCompressionFailureY(double)
 	 * @generated
 	 */
 	void unsetCompressionFailureY();
@@ -516,7 +516,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return whether the value of the '<em>Compression Failure Y</em>' attribute is set.
 	 * @see #unsetCompressionFailureY()
 	 * @see #getCompressionFailureY()
-	 * @see #setCompressionFailureY(float)
+	 * @see #setCompressionFailureY(double)
 	 * @generated
 	 */
 	boolean isSetCompressionFailureY();
@@ -585,12 +585,12 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return the value of the '<em>Compression Failure Z</em>' attribute.
 	 * @see #isSetCompressionFailureZ()
 	 * @see #unsetCompressionFailureZ()
-	 * @see #setCompressionFailureZ(float)
+	 * @see #setCompressionFailureZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFailureConnectionCondition_CompressionFailureZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCompressionFailureZ();
+	double getCompressionFailureZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getCompressionFailureZ <em>Compression Failure Z</em>}' attribute.
@@ -602,7 +602,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #getCompressionFailureZ()
 	 * @generated
 	 */
-	void setCompressionFailureZ(float value);
+	void setCompressionFailureZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFailureConnectionCondition#getCompressionFailureZ <em>Compression Failure Z</em>}' attribute.
@@ -610,7 +610,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @see #isSetCompressionFailureZ()
 	 * @see #getCompressionFailureZ()
-	 * @see #setCompressionFailureZ(float)
+	 * @see #setCompressionFailureZ(double)
 	 * @generated
 	 */
 	void unsetCompressionFailureZ();
@@ -622,7 +622,7 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @return whether the value of the '<em>Compression Failure Z</em>' attribute is set.
 	 * @see #unsetCompressionFailureZ()
 	 * @see #getCompressionFailureZ()
-	 * @see #setCompressionFailureZ(float)
+	 * @see #setCompressionFailureZ(double)
 	 * @generated
 	 */
 	boolean isSetCompressionFailureZ();

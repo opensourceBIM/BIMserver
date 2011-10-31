@@ -350,7 +350,7 @@ public class TestClientEmfModel {
 		buildingBuildingStorey.getRelatedObjects().add(createSite());
 	}
 
-	private IfcCartesianPoint makeCartesianPoint(float x, float y, float z) {
+	private IfcCartesianPoint makeCartesianPoint(double x, double y, double z) {
 		IfcCartesianPoint point = session.create(IfcCartesianPoint.class);
 		point.getCoordinates().add(x);
 		point.getCoordinates().add(y);
@@ -358,7 +358,7 @@ public class TestClientEmfModel {
 		return point;
 	}
 
-	private IfcDirection makeDirection(float x, float y, float z) {
+	private IfcDirection makeDirection(double x, double y, double z) {
 		IfcDirection direction = session.create(IfcDirection.class);
 		direction.getDirectionRatios().add(x);
 		direction.getDirectionRatios().add(y);

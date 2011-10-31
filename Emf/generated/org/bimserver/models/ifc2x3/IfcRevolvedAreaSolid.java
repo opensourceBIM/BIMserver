@@ -70,12 +70,12 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Angle</em>' attribute.
-	 * @see #setAngle(float)
+	 * @see #setAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRevolvedAreaSolid_Angle()
 	 * @model
 	 * @generated
 	 */
-	float getAngle();
+	double getAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid#getAngle <em>Angle</em>}' attribute.
@@ -85,7 +85,7 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * @see #getAngle()
 	 * @generated
 	 */
-	void setAngle(float value);
+	void setAngle(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Angle As String</b></em>' attribute.

@@ -45,12 +45,12 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XDim</em>' attribute.
-	 * @see #setXDim(float)
+	 * @see #setXDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleProfileDef_XDim()
 	 * @model
 	 * @generated
 	 */
-	float getXDim();
+	double getXDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getXDim <em>XDim</em>}' attribute.
@@ -60,7 +60,7 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getXDim()
 	 * @generated
 	 */
-	void setXDim(float value);
+	void setXDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>XDim As String</b></em>' attribute.
@@ -97,12 +97,12 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YDim</em>' attribute.
-	 * @see #setYDim(float)
+	 * @see #setYDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleProfileDef_YDim()
 	 * @model
 	 * @generated
 	 */
-	float getYDim();
+	double getYDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getYDim <em>YDim</em>}' attribute.
@@ -112,7 +112,7 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getYDim()
 	 * @generated
 	 */
-	void setYDim(float value);
+	void setYDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>YDim As String</b></em>' attribute.

@@ -89,12 +89,12 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tiling Scale</em>' attribute.
-	 * @see #setTilingScale(float)
+	 * @see #setTilingScale(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleTiles_TilingScale()
 	 * @model
 	 * @generated
 	 */
-	float getTilingScale();
+	double getTilingScale();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTilingScale <em>Tiling Scale</em>}' attribute.
@@ -104,7 +104,7 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * @see #getTilingScale()
 	 * @generated
 	 */
-	void setTilingScale(float value);
+	void setTilingScale(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Tiling Scale As String</b></em>' attribute.

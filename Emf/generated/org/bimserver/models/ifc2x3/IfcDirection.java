@@ -39,7 +39,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcDirection extends IfcGeometricRepresentationItem, IfcOrientationSelect, IfcVectorOrDirection {
 	/**
 	 * Returns the value of the '<em><b>Direction Ratios</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Double}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Direction Ratios</em>' attribute list isn't clear,
@@ -51,7 +51,7 @@ public interface IfcDirection extends IfcGeometricRepresentationItem, IfcOrienta
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Float> getDirectionRatios();
+	EList<Double> getDirectionRatios();
 
 	/**
 	 * Returns the value of the '<em><b>Direction Ratios As String</b></em>' attribute list.

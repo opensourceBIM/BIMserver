@@ -84,8 +84,8 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getConcentrationExponent() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__CONCENTRATION_EXPONENT, true);
+	public double getConcentrationExponent() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__CONCENTRATION_EXPONENT, true);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConcentrationExponent(float newConcentrationExponent) {
+	public void setConcentrationExponent(double newConcentrationExponent) {
 		eSet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__CONCENTRATION_EXPONENT, newConcentrationExponent);
 	}
 
@@ -156,8 +156,8 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSpreadAngle() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__SPREAD_ANGLE, true);
+	public double getSpreadAngle() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__SPREAD_ANGLE, true);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpreadAngle(float newSpreadAngle) {
+	public void setSpreadAngle(double newSpreadAngle) {
 		eSet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__SPREAD_ANGLE, newSpreadAngle);
 	}
 
@@ -192,8 +192,8 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getBeamWidthAngle() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__BEAM_WIDTH_ANGLE, true);
+	public double getBeamWidthAngle() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__BEAM_WIDTH_ANGLE, true);
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBeamWidthAngle(float newBeamWidthAngle) {
+	public void setBeamWidthAngle(double newBeamWidthAngle) {
 		eSet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_SPOT__BEAM_WIDTH_ANGLE, newBeamWidthAngle);
 	}
 

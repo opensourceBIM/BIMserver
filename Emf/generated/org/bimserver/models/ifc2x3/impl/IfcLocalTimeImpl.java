@@ -131,8 +131,8 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSecondComponent() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT, true);
+	public double getSecondComponent() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT, true);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSecondComponent(float newSecondComponent) {
+	public void setSecondComponent(double newSecondComponent) {
 		eSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT, newSecondComponent);
 	}
 

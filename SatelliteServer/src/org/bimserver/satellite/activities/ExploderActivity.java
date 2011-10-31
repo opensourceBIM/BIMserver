@@ -40,8 +40,8 @@ public class ExploderActivity extends Activity {
 									IfcCartesianPoint ifcCartesianPoint = ifcAxis2Placement3D.getLocation();
 									if (!changed.contains(ifcCartesianPoint)) {
 										int i=0;
-										for (float val : ifcCartesianPoint.getCoordinates()) {
-											ifcCartesianPoint.getCoordinates().set(i, val * 1.5f);
+										for (double val : ifcCartesianPoint.getCoordinates()) {
+											ifcCartesianPoint.getCoordinates().set(i, val * 1.5d);
 										}
 										changed.add(ifcCartesianPoint);
 									}

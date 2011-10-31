@@ -201,12 +201,12 @@ public interface IfcWorkControl extends IfcControl {
 	 * @return the value of the '<em>Duration</em>' attribute.
 	 * @see #isSetDuration()
 	 * @see #unsetDuration()
-	 * @see #setDuration(float)
+	 * @see #setDuration(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWorkControl_Duration()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDuration();
+	double getDuration();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getDuration <em>Duration</em>}' attribute.
@@ -218,7 +218,7 @@ public interface IfcWorkControl extends IfcControl {
 	 * @see #getDuration()
 	 * @generated
 	 */
-	void setDuration(float value);
+	void setDuration(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getDuration <em>Duration</em>}' attribute.
@@ -226,7 +226,7 @@ public interface IfcWorkControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDuration()
 	 * @see #getDuration()
-	 * @see #setDuration(float)
+	 * @see #setDuration(double)
 	 * @generated
 	 */
 	void unsetDuration();
@@ -238,7 +238,7 @@ public interface IfcWorkControl extends IfcControl {
 	 * @return whether the value of the '<em>Duration</em>' attribute is set.
 	 * @see #unsetDuration()
 	 * @see #getDuration()
-	 * @see #setDuration(float)
+	 * @see #setDuration(double)
 	 * @generated
 	 */
 	boolean isSetDuration();
@@ -307,12 +307,12 @@ public interface IfcWorkControl extends IfcControl {
 	 * @return the value of the '<em>Total Float</em>' attribute.
 	 * @see #isSetTotalFloat()
 	 * @see #unsetTotalFloat()
-	 * @see #setTotalFloat(float)
+	 * @see #setTotalFloat(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWorkControl_TotalFloat()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTotalFloat();
+	double getTotalFloat();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getTotalFloat <em>Total Float</em>}' attribute.
@@ -324,7 +324,7 @@ public interface IfcWorkControl extends IfcControl {
 	 * @see #getTotalFloat()
 	 * @generated
 	 */
-	void setTotalFloat(float value);
+	void setTotalFloat(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getTotalFloat <em>Total Float</em>}' attribute.
@@ -332,7 +332,7 @@ public interface IfcWorkControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTotalFloat()
 	 * @see #getTotalFloat()
-	 * @see #setTotalFloat(float)
+	 * @see #setTotalFloat(double)
 	 * @generated
 	 */
 	void unsetTotalFloat();
@@ -344,7 +344,7 @@ public interface IfcWorkControl extends IfcControl {
 	 * @return whether the value of the '<em>Total Float</em>' attribute is set.
 	 * @see #unsetTotalFloat()
 	 * @see #getTotalFloat()
-	 * @see #setTotalFloat(float)
+	 * @see #setTotalFloat(double)
 	 * @generated
 	 */
 	boolean isSetTotalFloat();

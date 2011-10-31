@@ -62,8 +62,8 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWidth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH, true);
+	public double getWidth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH, true);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(float newWidth) {
+	public void setWidth(double newWidth) {
 		eSet(Ifc2x3Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH, newWidth);
 	}
 
@@ -134,8 +134,8 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getHeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT, true);
+	public double getHeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT, true);
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHeight(float newHeight) {
+	public void setHeight(double newHeight) {
 		eSet(Ifc2x3Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT, newHeight);
 	}
 

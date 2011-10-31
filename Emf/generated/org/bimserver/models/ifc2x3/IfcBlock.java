@@ -47,12 +47,12 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XLength</em>' attribute.
-	 * @see #setXLength(float)
+	 * @see #setXLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_XLength()
 	 * @model
 	 * @generated
 	 */
-	float getXLength();
+	double getXLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getXLength <em>XLength</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * @see #getXLength()
 	 * @generated
 	 */
-	void setXLength(float value);
+	void setXLength(double value);
 
 	/**
 	 * Returns the value of the '<em><b>XLength As String</b></em>' attribute.
@@ -99,12 +99,12 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YLength</em>' attribute.
-	 * @see #setYLength(float)
+	 * @see #setYLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_YLength()
 	 * @model
 	 * @generated
 	 */
-	float getYLength();
+	double getYLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getYLength <em>YLength</em>}' attribute.
@@ -114,7 +114,7 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * @see #getYLength()
 	 * @generated
 	 */
-	void setYLength(float value);
+	void setYLength(double value);
 
 	/**
 	 * Returns the value of the '<em><b>YLength As String</b></em>' attribute.
@@ -151,12 +151,12 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ZLength</em>' attribute.
-	 * @see #setZLength(float)
+	 * @see #setZLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_ZLength()
 	 * @model
 	 * @generated
 	 */
-	float getZLength();
+	double getZLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getZLength <em>ZLength</em>}' attribute.
@@ -166,7 +166,7 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * @see #getZLength()
 	 * @generated
 	 */
-	void setZLength(float value);
+	void setZLength(double value);
 
 	/**
 	 * Returns the value of the '<em><b>ZLength As String</b></em>' attribute.

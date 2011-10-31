@@ -128,12 +128,12 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Colour Temperature</em>' attribute.
-	 * @see #setColourTemperature(float)
+	 * @see #setColourTemperature(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_ColourTemperature()
 	 * @model
 	 * @generated
 	 */
-	float getColourTemperature();
+	double getColourTemperature();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getColourTemperature <em>Colour Temperature</em>}' attribute.
@@ -143,7 +143,7 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * @see #getColourTemperature()
 	 * @generated
 	 */
-	void setColourTemperature(float value);
+	void setColourTemperature(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Colour Temperature As String</b></em>' attribute.
@@ -180,12 +180,12 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Luminous Flux</em>' attribute.
-	 * @see #setLuminousFlux(float)
+	 * @see #setLuminousFlux(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_LuminousFlux()
 	 * @model
 	 * @generated
 	 */
-	float getLuminousFlux();
+	double getLuminousFlux();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLuminousFlux <em>Luminous Flux</em>}' attribute.
@@ -195,7 +195,7 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * @see #getLuminousFlux()
 	 * @generated
 	 */
-	void setLuminousFlux(float value);
+	void setLuminousFlux(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Flux As String</b></em>' attribute.

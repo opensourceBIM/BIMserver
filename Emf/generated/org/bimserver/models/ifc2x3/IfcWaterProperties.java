@@ -85,12 +85,12 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Hardness</em>' attribute.
 	 * @see #isSetHardness()
 	 * @see #unsetHardness()
-	 * @see #setHardness(float)
+	 * @see #setHardness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWaterProperties_Hardness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getHardness();
+	double getHardness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getHardness <em>Hardness</em>}' attribute.
@@ -102,7 +102,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @see #getHardness()
 	 * @generated
 	 */
-	void setHardness(float value);
+	void setHardness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getHardness <em>Hardness</em>}' attribute.
@@ -110,7 +110,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetHardness()
 	 * @see #getHardness()
-	 * @see #setHardness(float)
+	 * @see #setHardness(double)
 	 * @generated
 	 */
 	void unsetHardness();
@@ -122,7 +122,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Hardness</em>' attribute is set.
 	 * @see #unsetHardness()
 	 * @see #getHardness()
-	 * @see #setHardness(float)
+	 * @see #setHardness(double)
 	 * @generated
 	 */
 	boolean isSetHardness();
@@ -191,12 +191,12 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Alkalinity Concentration</em>' attribute.
 	 * @see #isSetAlkalinityConcentration()
 	 * @see #unsetAlkalinityConcentration()
-	 * @see #setAlkalinityConcentration(float)
+	 * @see #setAlkalinityConcentration(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWaterProperties_AlkalinityConcentration()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getAlkalinityConcentration();
+	double getAlkalinityConcentration();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getAlkalinityConcentration <em>Alkalinity Concentration</em>}' attribute.
@@ -208,7 +208,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @see #getAlkalinityConcentration()
 	 * @generated
 	 */
-	void setAlkalinityConcentration(float value);
+	void setAlkalinityConcentration(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getAlkalinityConcentration <em>Alkalinity Concentration</em>}' attribute.
@@ -216,7 +216,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetAlkalinityConcentration()
 	 * @see #getAlkalinityConcentration()
-	 * @see #setAlkalinityConcentration(float)
+	 * @see #setAlkalinityConcentration(double)
 	 * @generated
 	 */
 	void unsetAlkalinityConcentration();
@@ -228,7 +228,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Alkalinity Concentration</em>' attribute is set.
 	 * @see #unsetAlkalinityConcentration()
 	 * @see #getAlkalinityConcentration()
-	 * @see #setAlkalinityConcentration(float)
+	 * @see #setAlkalinityConcentration(double)
 	 * @generated
 	 */
 	boolean isSetAlkalinityConcentration();
@@ -297,12 +297,12 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Acidity Concentration</em>' attribute.
 	 * @see #isSetAcidityConcentration()
 	 * @see #unsetAcidityConcentration()
-	 * @see #setAcidityConcentration(float)
+	 * @see #setAcidityConcentration(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWaterProperties_AcidityConcentration()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getAcidityConcentration();
+	double getAcidityConcentration();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getAcidityConcentration <em>Acidity Concentration</em>}' attribute.
@@ -314,7 +314,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @see #getAcidityConcentration()
 	 * @generated
 	 */
-	void setAcidityConcentration(float value);
+	void setAcidityConcentration(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getAcidityConcentration <em>Acidity Concentration</em>}' attribute.
@@ -322,7 +322,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetAcidityConcentration()
 	 * @see #getAcidityConcentration()
-	 * @see #setAcidityConcentration(float)
+	 * @see #setAcidityConcentration(double)
 	 * @generated
 	 */
 	void unsetAcidityConcentration();
@@ -334,7 +334,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Acidity Concentration</em>' attribute is set.
 	 * @see #unsetAcidityConcentration()
 	 * @see #getAcidityConcentration()
-	 * @see #setAcidityConcentration(float)
+	 * @see #setAcidityConcentration(double)
 	 * @generated
 	 */
 	boolean isSetAcidityConcentration();
@@ -403,12 +403,12 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Impurities Content</em>' attribute.
 	 * @see #isSetImpuritiesContent()
 	 * @see #unsetImpuritiesContent()
-	 * @see #setImpuritiesContent(float)
+	 * @see #setImpuritiesContent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWaterProperties_ImpuritiesContent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getImpuritiesContent();
+	double getImpuritiesContent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getImpuritiesContent <em>Impurities Content</em>}' attribute.
@@ -420,7 +420,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @see #getImpuritiesContent()
 	 * @generated
 	 */
-	void setImpuritiesContent(float value);
+	void setImpuritiesContent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getImpuritiesContent <em>Impurities Content</em>}' attribute.
@@ -428,7 +428,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetImpuritiesContent()
 	 * @see #getImpuritiesContent()
-	 * @see #setImpuritiesContent(float)
+	 * @see #setImpuritiesContent(double)
 	 * @generated
 	 */
 	void unsetImpuritiesContent();
@@ -440,7 +440,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Impurities Content</em>' attribute is set.
 	 * @see #unsetImpuritiesContent()
 	 * @see #getImpuritiesContent()
-	 * @see #setImpuritiesContent(float)
+	 * @see #setImpuritiesContent(double)
 	 * @generated
 	 */
 	boolean isSetImpuritiesContent();
@@ -509,12 +509,12 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>PH Level</em>' attribute.
 	 * @see #isSetPHLevel()
 	 * @see #unsetPHLevel()
-	 * @see #setPHLevel(float)
+	 * @see #setPHLevel(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWaterProperties_PHLevel()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPHLevel();
+	double getPHLevel();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getPHLevel <em>PH Level</em>}' attribute.
@@ -526,7 +526,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @see #getPHLevel()
 	 * @generated
 	 */
-	void setPHLevel(float value);
+	void setPHLevel(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getPHLevel <em>PH Level</em>}' attribute.
@@ -534,7 +534,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPHLevel()
 	 * @see #getPHLevel()
-	 * @see #setPHLevel(float)
+	 * @see #setPHLevel(double)
 	 * @generated
 	 */
 	void unsetPHLevel();
@@ -546,7 +546,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>PH Level</em>' attribute is set.
 	 * @see #unsetPHLevel()
 	 * @see #getPHLevel()
-	 * @see #setPHLevel(float)
+	 * @see #setPHLevel(double)
 	 * @generated
 	 */
 	boolean isSetPHLevel();
@@ -615,12 +615,12 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Dissolved Solids Content</em>' attribute.
 	 * @see #isSetDissolvedSolidsContent()
 	 * @see #unsetDissolvedSolidsContent()
-	 * @see #setDissolvedSolidsContent(float)
+	 * @see #setDissolvedSolidsContent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWaterProperties_DissolvedSolidsContent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDissolvedSolidsContent();
+	double getDissolvedSolidsContent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getDissolvedSolidsContent <em>Dissolved Solids Content</em>}' attribute.
@@ -632,7 +632,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @see #getDissolvedSolidsContent()
 	 * @generated
 	 */
-	void setDissolvedSolidsContent(float value);
+	void setDissolvedSolidsContent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getDissolvedSolidsContent <em>Dissolved Solids Content</em>}' attribute.
@@ -640,7 +640,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDissolvedSolidsContent()
 	 * @see #getDissolvedSolidsContent()
-	 * @see #setDissolvedSolidsContent(float)
+	 * @see #setDissolvedSolidsContent(double)
 	 * @generated
 	 */
 	void unsetDissolvedSolidsContent();
@@ -652,7 +652,7 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Dissolved Solids Content</em>' attribute is set.
 	 * @see #unsetDissolvedSolidsContent()
 	 * @see #getDissolvedSolidsContent()
-	 * @see #setDissolvedSolidsContent(float)
+	 * @see #setDissolvedSolidsContent(double)
 	 * @generated
 	 */
 	boolean isSetDissolvedSolidsContent();
