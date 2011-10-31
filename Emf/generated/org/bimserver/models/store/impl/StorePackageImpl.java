@@ -1567,8 +1567,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_Serializers() {
-		return (EReference) getSettings().getEStructuralFeatures().get(14);
+	public EAttribute getSettings_HideUserListForNonAdmin() {
+		return (EAttribute) getSettings().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -1576,7 +1576,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_GuidanceProviders() {
+	public EReference getSettings_Serializers() {
 		return (EReference) getSettings().getEStructuralFeatures().get(15);
 	}
 
@@ -1585,8 +1585,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_HeaderAddition() {
-		return (EAttribute) getSettings().getEStructuralFeatures().get(16);
+	public EReference getSettings_GuidanceProviders() {
+		return (EReference) getSettings().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -1594,7 +1594,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_FooterAddition() {
+	public EAttribute getSettings_HeaderAddition() {
 		return (EAttribute) getSettings().getEStructuralFeatures().get(17);
 	}
 
@@ -1603,7 +1603,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_MergeIdentifier() {
+	public EAttribute getSettings_FooterAddition() {
 		return (EAttribute) getSettings().getEStructuralFeatures().get(18);
 	}
 
@@ -1612,7 +1612,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_CacheOutputFiles() {
+	public EAttribute getSettings_MergeIdentifier() {
 		return (EAttribute) getSettings().getEStructuralFeatures().get(19);
 	}
 
@@ -1621,8 +1621,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_IfcEngines() {
-		return (EReference) getSettings().getEStructuralFeatures().get(20);
+	public EAttribute getSettings_CacheOutputFiles() {
+		return (EAttribute) getSettings().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -1630,7 +1630,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_Plugins() {
+	public EReference getSettings_IfcEngines() {
 		return (EReference) getSettings().getEStructuralFeatures().get(21);
 	}
 
@@ -1639,8 +1639,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_Deserializers() {
+	public EReference getSettings_Plugins() {
 		return (EReference) getSettings().getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSettings_Deserializers() {
+		return (EReference) getSettings().getEStructuralFeatures().get(23);
 	}
 
 	/**

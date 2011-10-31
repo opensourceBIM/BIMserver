@@ -167,6 +167,7 @@ public class Step0000 extends Migration {
 		schema.createEEnumLiteral(userTypeEnum, "SYSTEM");
 		schema.createEEnumLiteral(userTypeEnum, "ADMIN");
 		schema.createEEnumLiteral(userTypeEnum, "USER");
+		schema.createEEnumLiteral(userTypeEnum, "READ_ONLY");
 	}
 
 	private void createObjectStateEnum() {
@@ -280,6 +281,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(settingsClass, "enabledExportTypes", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "customLogoAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "siteAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "hideUserListForNonAdmin", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
 	}
 	
 	private void createProjectClass() {

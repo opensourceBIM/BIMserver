@@ -148,19 +148,20 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	@Override
 	public void connected() {
-		connected = true;
 		try {
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo)authenticationInfo;
-				channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword());
+				connected = channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword());
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo)authenticationInfo;
-				channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode());
+				connected = channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode());
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		notifyOfConnect();
+		if (connected) {
+			notifyOfConnect();
+		}
 	}
 
 	@Override

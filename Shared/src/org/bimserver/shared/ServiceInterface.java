@@ -508,6 +508,14 @@ public interface ServiceInterface {
 			@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)
 			throws ServiceException;
 
+	@WebMethod(action = "isSettingHideUserListForNonAdmin")
+	Boolean isSettingHideUserListForNonAdmin() throws ServiceException;
+
+	@WebMethod(action = "setSettingHideUserListForNonAdmin")
+	void setSettingHideUserListForNonAdmin(
+			@WebParam(name = "hideUserListForNonAdmin", partName = "setSettingHideUserListForNonAdmin.hideUserListForNonAdmin") Boolean hideUserListForNonAdmin)
+			throws ServiceException;
+
 	@WebMethod(action = "isSettingAllowUsersToCreateTopLevelProjects")
 	Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServiceException;
 

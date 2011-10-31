@@ -717,7 +717,7 @@
 		<div class="tabbertab" id="authorizeduserstab"
 			title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size() + ")"%>">
 			<%
-				if (nonAuthorizedUsers.size() > 0 && hasUserManagementRights) {
+				if (nonAuthorizedUsers.size() > 0 && !loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights) {
 			%>
 			<form method="post" action="addusertoproject.jsp">
 				<select name="uoid">
@@ -734,7 +734,7 @@
 			</form>
 
 			<%
-				if (loginManager.getService().isSettingAllowSelfRegistration()) {
+				if (nonAuthorizedUsers.size() > 0 && loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights) {
 			%>
 			<form method="post" action="addusertoproject.jsp">
 				<input type="hidden" name="poid" value="<%=poid%>" /> <input

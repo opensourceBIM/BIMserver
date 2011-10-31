@@ -1551,6 +1551,19 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public Boolean isSettingHideUserListForNonAdmin() throws ServiceException {
+		return bimServer.getSettingsManager().getSettings().isHideUserListForNonAdmin();
+	}
+	
+	@Override
+	public void setSettingHideUserListForNonAdmin(Boolean hideUserListForNonAdmin) throws ServiceException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
+		bimServer.getSettingsManager().saveSettings();
+	}
+	
+	@Override
 	public void setSettingAllowSelfRegistration(Boolean allowSelfRegistration) throws ServiceException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();

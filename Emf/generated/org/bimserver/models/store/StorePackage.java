@@ -1244,13 +1244,22 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__SITE_ADDRESS = 13;
 
 	/**
+	 * The feature id for the '<em><b>Hide User List For Non Admin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 14;
+
+	/**
 	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__SERIALIZERS = 14;
+	int SETTINGS__SERIALIZERS = 15;
 
 	/**
 	 * The feature id for the '<em><b>Guidance Providers</b></em>' reference list.
@@ -1259,7 +1268,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__GUIDANCE_PROVIDERS = 15;
+	int SETTINGS__GUIDANCE_PROVIDERS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Header Addition</b></em>' attribute.
@@ -1268,7 +1277,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__HEADER_ADDITION = 16;
+	int SETTINGS__HEADER_ADDITION = 17;
 
 	/**
 	 * The feature id for the '<em><b>Footer Addition</b></em>' attribute.
@@ -1277,7 +1286,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__FOOTER_ADDITION = 17;
+	int SETTINGS__FOOTER_ADDITION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Merge Identifier</b></em>' attribute.
@@ -1286,7 +1295,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__MERGE_IDENTIFIER = 18;
+	int SETTINGS__MERGE_IDENTIFIER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Cache Output Files</b></em>' attribute.
@@ -1295,7 +1304,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__CACHE_OUTPUT_FILES = 19;
+	int SETTINGS__CACHE_OUTPUT_FILES = 20;
 
 	/**
 	 * The feature id for the '<em><b>Ifc Engines</b></em>' reference list.
@@ -1304,7 +1313,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__IFC_ENGINES = 20;
+	int SETTINGS__IFC_ENGINES = 21;
 
 	/**
 	 * The feature id for the '<em><b>Plugins</b></em>' reference list.
@@ -1313,7 +1322,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__PLUGINS = 21;
+	int SETTINGS__PLUGINS = 22;
 
 	/**
 	 * The feature id for the '<em><b>Deserializers</b></em>' reference list.
@@ -1322,7 +1331,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__DESERIALIZERS = 22;
+	int SETTINGS__DESERIALIZERS = 23;
 
 	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
@@ -1331,7 +1340,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 23;
+	int SETTINGS_FEATURE_COUNT = 24;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -4540,6 +4549,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_SiteAddress();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hide User List For Non Admin</em>'.
+	 * @see org.bimserver.models.store.Settings#isHideUserListForNonAdmin()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_HideUserListForNonAdmin();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7313,6 +7333,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SETTINGS__SITE_ADDRESS = eINSTANCE.getSettings_SiteAddress();
+
+		/**
+		 * The meta object literal for the '<em><b>Hide User List For Non Admin</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = eINSTANCE.getSettings_HideUserListForNonAdmin();
 
 		/**
 		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.
