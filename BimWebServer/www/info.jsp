@@ -77,6 +77,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 	</div>
 	<div class="tabbertab" id="systemtab" title="System">
 		<table class="formatted infotable">
+			<tr><td><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog">Download server Logfile</a></td></tr>
 			<tr><td colspan="2" class="tabletitle">System</td></tr>
 			<tr><td class="firstcolumn">CPU Cores</td><td><%=Runtime.getRuntime().availableProcessors() %></td></tr>
 			<tr><td class="firstcolumn">Date/Time</td><td><%=new GregorianCalendar().getTime() %></td></tr>
