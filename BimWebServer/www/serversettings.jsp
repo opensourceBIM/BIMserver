@@ -146,7 +146,7 @@
 			<%=(request.getParameter("save") == null ? service.isSettingShowVersionUpgradeAvailable() : request.getParameter("showVersionUpgradeAvailable") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="intelligentMerging">Intelligent merging</label></td>
+		<td><label for="intelligentMerging">Intelligent modelfusion (tip!)</label></td>
 		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
 			<%=(request.getParameter("save") == null ? service.isSettingIntelligentMerging() : request.getParameter("intelligentMerging") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
