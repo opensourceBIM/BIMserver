@@ -148,11 +148,11 @@ public class LogSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LogPackage.NEW_GUIDANCE_PROVIDER_UPLOADED: {
-			NewGuidanceProviderUploaded newGuidanceProviderUploaded = (NewGuidanceProviderUploaded) theEObject;
-			T result = caseNewGuidanceProviderUploaded(newGuidanceProviderUploaded);
+		case LogPackage.NEW_OBJECT_IDM_UPLOADED: {
+			NewObjectIDMUploaded newObjectIDMUploaded = (NewObjectIDMUploaded) theEObject;
+			T result = caseNewObjectIDMUploaded(newObjectIDMUploaded);
 			if (result == null)
-				result = caseLogAction(newGuidanceProviderUploaded);
+				result = caseLogAction(newObjectIDMUploaded);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -418,17 +418,17 @@ public class LogSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>New Guidance Provider Uploaded</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>New Object IDM Uploaded</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>New Guidance Provider Uploaded</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>New Object IDM Uploaded</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNewGuidanceProviderUploaded(NewGuidanceProviderUploaded object) {
+	public T caseNewObjectIDMUploaded(NewObjectIDMUploaded object) {
 		return null;
 	}
 

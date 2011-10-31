@@ -46,7 +46,7 @@ public class SSettings implements SBase
 		sClass.addField(new SField("siteAddress", java.lang.String.class));
 		sClass.addField(new SField("hideUserListForNonAdmin", boolean.class));
 		sClass.addField(new SField("serializers", Long.class, true));
-		sClass.addField(new SField("guidanceProviders", Long.class, true));
+		sClass.addField(new SField("objectIDMs", Long.class, true));
 		sClass.addField(new SField("headerAddition", java.lang.String.class));
 		sClass.addField(new SField("footerAddition", java.lang.String.class));
 		sClass.addField(new SField("mergeIdentifier", SMergeIdentifier.class));
@@ -119,8 +119,8 @@ public class SSettings implements SBase
 		if (sField.getName().equals("serializers")) {
 			return getSerializers();
 		}
-		if (sField.getName().equals("guidanceProviders")) {
-			return getGuidanceProviders();
+		if (sField.getName().equals("objectIDMs")) {
+			return getObjectIDMs();
 		}
 		if (sField.getName().equals("headerAddition")) {
 			return getHeaderAddition();
@@ -214,8 +214,8 @@ public class SSettings implements SBase
 			setSerializers((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("guidanceProviders")) {
-			setGuidanceProviders((List<Long>)val);
+		if (sField.getName().equals("objectIDMs")) {
+			setObjectIDMs((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("headerAddition")) {
@@ -269,7 +269,7 @@ public class SSettings implements SBase
 	private java.lang.String siteAddress;
 	private boolean hideUserListForNonAdmin;
 	private List<Long> serializers = new ArrayList<Long>();
-	private List<Long> guidanceProviders = new ArrayList<Long>();
+	private List<Long> objectIDMs = new ArrayList<Long>();
 	private java.lang.String headerAddition;
 	private java.lang.String footerAddition;
 	private SMergeIdentifier mergeIdentifier;
@@ -389,12 +389,12 @@ public class SSettings implements SBase
 	public void setSerializers(List<Long> serializers) {
 		this.serializers = serializers;
 	}
-	public List<Long> getGuidanceProviders() {
-		return guidanceProviders;
+	public List<Long> getObjectIDMs() {
+		return objectIDMs;
 	}
 
-	public void setGuidanceProviders(List<Long> guidanceProviders) {
-		this.guidanceProviders = guidanceProviders;
+	public void setObjectIDMs(List<Long> objectIDMs) {
+		this.objectIDMs = objectIDMs;
 	}
 	public java.lang.String getHeaderAddition() {
 		return headerAddition;

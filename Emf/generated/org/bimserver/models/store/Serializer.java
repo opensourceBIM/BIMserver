@@ -33,7 +33,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#getGuidanceProvider <em>Guidance Provider</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -227,32 +227,32 @@ public interface Serializer extends IdEObject {
 	void setDefaultSerializer(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Guidance Provider</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.GuidanceProvider#getSerializers <em>Serializers</em>}'.
+	 * Returns the value of the '<em><b>Object IDM</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ObjectIDM#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Guidance Provider</em>' reference isn't clear,
+	 * If the meaning of the '<em>Object IDM</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Guidance Provider</em>' reference.
-	 * @see #setGuidanceProvider(GuidanceProvider)
-	 * @see org.bimserver.models.store.StorePackage#getSerializer_GuidanceProvider()
-	 * @see org.bimserver.models.store.GuidanceProvider#getSerializers
+	 * @return the value of the '<em>Object IDM</em>' reference.
+	 * @see #setObjectIDM(ObjectIDM)
+	 * @see org.bimserver.models.store.StorePackage#getSerializer_ObjectIDM()
+	 * @see org.bimserver.models.store.ObjectIDM#getSerializers
 	 * @model opposite="serializers"
 	 * @generated
 	 */
-	GuidanceProvider getGuidanceProvider();
+	ObjectIDM getObjectIDM();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getGuidanceProvider <em>Guidance Provider</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getObjectIDM <em>Object IDM</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Guidance Provider</em>' reference.
-	 * @see #getGuidanceProvider()
+	 * @param value the new value of the '<em>Object IDM</em>' reference.
+	 * @see #getObjectIDM()
 	 * @generated
 	 */
-	void setGuidanceProvider(GuidanceProvider value);
+	void setObjectIDM(ObjectIDM value);
 
 	/**
 	 * Returns the value of the '<em><b>Settings</b></em>' reference.

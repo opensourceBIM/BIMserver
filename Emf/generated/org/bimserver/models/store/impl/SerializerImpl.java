@@ -17,12 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
-import org.bimserver.models.store.GuidanceProvider;
+import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -39,7 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isDefaultSerializer <em>Default Serializer</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getGuidanceProvider <em>Guidance Provider</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -207,8 +205,8 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GuidanceProvider getGuidanceProvider() {
-		return (GuidanceProvider) eGet(StorePackage.Literals.SERIALIZER__GUIDANCE_PROVIDER, true);
+	public ObjectIDM getObjectIDM() {
+		return (ObjectIDM) eGet(StorePackage.Literals.SERIALIZER__OBJECT_IDM, true);
 	}
 
 	/**
@@ -216,8 +214,8 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGuidanceProvider(GuidanceProvider newGuidanceProvider) {
-		eSet(StorePackage.Literals.SERIALIZER__GUIDANCE_PROVIDER, newGuidanceProvider);
+	public void setObjectIDM(ObjectIDM newObjectIDM) {
+		eSet(StorePackage.Literals.SERIALIZER__OBJECT_IDM, newObjectIDM);
 	}
 
 	/**

@@ -121,8 +121,8 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseNewGuidanceProviderUploaded(NewGuidanceProviderUploaded object) {
-			return createNewGuidanceProviderUploadedAdapter();
+		public Adapter caseNewObjectIDMUploaded(NewObjectIDMUploaded object) {
+			return createNewObjectIDMUploadedAdapter();
 		}
 
 		@Override
@@ -332,16 +332,16 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.NewGuidanceProviderUploaded <em>New Guidance Provider Uploaded</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.NewObjectIDMUploaded <em>New Object IDM Uploaded</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.log.NewGuidanceProviderUploaded
+	 * @see org.bimserver.models.log.NewObjectIDMUploaded
 	 * @generated
 	 */
-	public Adapter createNewGuidanceProviderUploadedAdapter() {
+	public Adapter createNewObjectIDMUploadedAdapter() {
 		return null;
 	}
 

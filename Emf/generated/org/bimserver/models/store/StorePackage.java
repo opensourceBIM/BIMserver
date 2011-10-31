@@ -1262,13 +1262,13 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__SERIALIZERS = 15;
 
 	/**
-	 * The feature id for the '<em><b>Guidance Providers</b></em>' reference list.
+	 * The feature id for the '<em><b>Object ID Ms</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__GUIDANCE_PROVIDERS = 16;
+	int SETTINGS__OBJECT_ID_MS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Header Addition</b></em>' attribute.
@@ -1416,13 +1416,13 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER__DEFAULT_SERIALIZER = 6;
 
 	/**
-	 * The feature id for the '<em><b>Guidance Provider</b></em>' reference.
+	 * The feature id for the '<em><b>Object IDM</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__GUIDANCE_PROVIDER = 7;
+	int SERIALIZER__OBJECT_IDM = 7;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1443,14 +1443,14 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_FEATURE_COUNT = 9;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.GuidanceProviderImpl <em>Guidance Provider</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectIDMImpl <em>Object IDM</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.GuidanceProviderImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProvider()
+	 * @see org.bimserver.models.store.impl.ObjectIDMImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectIDM()
 	 * @generated
 	 */
-	int GUIDANCE_PROVIDER = 12;
+	int OBJECT_IDM = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1459,7 +1459,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__NAME = 0;
+	int OBJECT_IDM__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -1468,7 +1468,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__CLASS_NAME = 1;
+	int OBJECT_IDM__CLASS_NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1477,7 +1477,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__ENABLED = 2;
+	int OBJECT_IDM__ENABLED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
@@ -1486,7 +1486,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__SERIALIZERS = 3;
+	int OBJECT_IDM__SERIALIZERS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1495,16 +1495,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__SETTINGS = 4;
+	int OBJECT_IDM__SETTINGS = 4;
 
 	/**
-	 * The number of structural features of the '<em>Guidance Provider</em>' class.
+	 * The number of structural features of the '<em>Object IDM</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER_FEATURE_COUNT = 5;
+	int OBJECT_IDM_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEngineImpl <em>Ifc Engine</em>}' class.
@@ -2719,14 +2719,14 @@ public interface StorePackage extends EPackage {
 	int LONG_CHECKIN_ACTION_FEATURE_COUNT = LONG_ACTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl <em>Guidance Provider Plugin Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectIDMPluginDescriptorImpl <em>Object IDM Plugin Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProviderPluginDescriptor()
+	 * @see org.bimserver.models.store.impl.ObjectIDMPluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectIDMPluginDescriptor()
 	 * @generated
 	 */
-	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = 37;
+	int OBJECT_IDM_PLUGIN_DESCRIPTOR = 37;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -2735,16 +2735,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME = 0;
+	int OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME = 0;
 
 	/**
-	 * The number of structural features of the '<em>Guidance Provider Plugin Descriptor</em>' class.
+	 * The number of structural features of the '<em>Object IDM Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 1;
+	int OBJECT_IDM_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.CompareItemImpl <em>Compare Item</em>}' class.
@@ -4571,15 +4571,15 @@ public interface StorePackage extends EPackage {
 	EReference getSettings_Serializers();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getGuidanceProviders <em>Guidance Providers</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getObjectIDMs <em>Object ID Ms</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Guidance Providers</em>'.
-	 * @see org.bimserver.models.store.Settings#getGuidanceProviders()
+	 * @return the meta object for the reference list '<em>Object ID Ms</em>'.
+	 * @see org.bimserver.models.store.Settings#getObjectIDMs()
 	 * @see #getSettings()
 	 * @generated
 	 */
-	EReference getSettings_GuidanceProviders();
+	EReference getSettings_ObjectIDMs();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}'.
@@ -4746,15 +4746,15 @@ public interface StorePackage extends EPackage {
 	EAttribute getSerializer_DefaultSerializer();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Serializer#getGuidanceProvider <em>Guidance Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Serializer#getObjectIDM <em>Object IDM</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Guidance Provider</em>'.
-	 * @see org.bimserver.models.store.Serializer#getGuidanceProvider()
+	 * @return the meta object for the reference '<em>Object IDM</em>'.
+	 * @see org.bimserver.models.store.Serializer#getObjectIDM()
 	 * @see #getSerializer()
 	 * @generated
 	 */
-	EReference getSerializer_GuidanceProvider();
+	EReference getSerializer_ObjectIDM();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}'.
@@ -4768,69 +4768,69 @@ public interface StorePackage extends EPackage {
 	EReference getSerializer_Settings();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.GuidanceProvider <em>Guidance Provider</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectIDM <em>Object IDM</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Guidance Provider</em>'.
-	 * @see org.bimserver.models.store.GuidanceProvider
+	 * @return the meta object for class '<em>Object IDM</em>'.
+	 * @see org.bimserver.models.store.ObjectIDM
 	 * @generated
 	 */
-	EClass getGuidanceProvider();
+	EClass getObjectIDM();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProvider#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectIDM#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.bimserver.models.store.GuidanceProvider#getName()
-	 * @see #getGuidanceProvider()
+	 * @see org.bimserver.models.store.ObjectIDM#getName()
+	 * @see #getObjectIDM()
 	 * @generated
 	 */
-	EAttribute getGuidanceProvider_Name();
+	EAttribute getObjectIDM_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProvider#getClassName <em>Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectIDM#getClassName <em>Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Class Name</em>'.
-	 * @see org.bimserver.models.store.GuidanceProvider#getClassName()
-	 * @see #getGuidanceProvider()
+	 * @see org.bimserver.models.store.ObjectIDM#getClassName()
+	 * @see #getObjectIDM()
 	 * @generated
 	 */
-	EAttribute getGuidanceProvider_ClassName();
+	EAttribute getObjectIDM_ClassName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProvider#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectIDM#isEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.GuidanceProvider#isEnabled()
-	 * @see #getGuidanceProvider()
+	 * @see org.bimserver.models.store.ObjectIDM#isEnabled()
+	 * @see #getObjectIDM()
 	 * @generated
 	 */
-	EAttribute getGuidanceProvider_Enabled();
+	EAttribute getObjectIDM_Enabled();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.GuidanceProvider#getSerializers <em>Serializers</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ObjectIDM#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Serializers</em>'.
-	 * @see org.bimserver.models.store.GuidanceProvider#getSerializers()
-	 * @see #getGuidanceProvider()
+	 * @see org.bimserver.models.store.ObjectIDM#getSerializers()
+	 * @see #getObjectIDM()
 	 * @generated
 	 */
-	EReference getGuidanceProvider_Serializers();
+	EReference getObjectIDM_Serializers();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.GuidanceProvider#getSettings <em>Settings</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ObjectIDM#getSettings <em>Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Settings</em>'.
-	 * @see org.bimserver.models.store.GuidanceProvider#getSettings()
-	 * @see #getGuidanceProvider()
+	 * @see org.bimserver.models.store.ObjectIDM#getSettings()
+	 * @see #getObjectIDM()
 	 * @generated
 	 */
-	EReference getGuidanceProvider_Settings();
+	EReference getObjectIDM_Settings();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.IfcEngine <em>Ifc Engine</em>}'.
@@ -5876,25 +5876,25 @@ public interface StorePackage extends EPackage {
 	EReference getLongCheckinAction_Revisions();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.GuidanceProviderPluginDescriptor <em>Guidance Provider Plugin Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectIDMPluginDescriptor <em>Object IDM Plugin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Guidance Provider Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.GuidanceProviderPluginDescriptor
+	 * @return the meta object for class '<em>Object IDM Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.ObjectIDMPluginDescriptor
 	 * @generated
 	 */
-	EClass getGuidanceProviderPluginDescriptor();
+	EClass getObjectIDMPluginDescriptor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProviderPluginDescriptor#getClassName <em>Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectIDMPluginDescriptor#getClassName <em>Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Class Name</em>'.
-	 * @see org.bimserver.models.store.GuidanceProviderPluginDescriptor#getClassName()
-	 * @see #getGuidanceProviderPluginDescriptor()
+	 * @see org.bimserver.models.store.ObjectIDMPluginDescriptor#getClassName()
+	 * @see #getObjectIDMPluginDescriptor()
 	 * @generated
 	 */
-	EAttribute getGuidanceProviderPluginDescriptor_ClassName();
+	EAttribute getObjectIDMPluginDescriptor_ClassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.CompareItem <em>Compare Item</em>}'.
@@ -7351,12 +7351,12 @@ public interface StorePackage extends EPackage {
 		EReference SETTINGS__SERIALIZERS = eINSTANCE.getSettings_Serializers();
 
 		/**
-		 * The meta object literal for the '<em><b>Guidance Providers</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Object ID Ms</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SETTINGS__GUIDANCE_PROVIDERS = eINSTANCE.getSettings_GuidanceProviders();
+		EReference SETTINGS__OBJECT_ID_MS = eINSTANCE.getSettings_ObjectIDMs();
 
 		/**
 		 * The meta object literal for the '<em><b>Header Addition</b></em>' attribute feature.
@@ -7481,12 +7481,12 @@ public interface StorePackage extends EPackage {
 		EAttribute SERIALIZER__DEFAULT_SERIALIZER = eINSTANCE.getSerializer_DefaultSerializer();
 
 		/**
-		 * The meta object literal for the '<em><b>Guidance Provider</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Object IDM</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERIALIZER__GUIDANCE_PROVIDER = eINSTANCE.getSerializer_GuidanceProvider();
+		EReference SERIALIZER__OBJECT_IDM = eINSTANCE.getSerializer_ObjectIDM();
 
 		/**
 		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
@@ -7497,14 +7497,14 @@ public interface StorePackage extends EPackage {
 		EReference SERIALIZER__SETTINGS = eINSTANCE.getSerializer_Settings();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GuidanceProviderImpl <em>Guidance Provider</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectIDMImpl <em>Object IDM</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.GuidanceProviderImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProvider()
+		 * @see org.bimserver.models.store.impl.ObjectIDMImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectIDM()
 		 * @generated
 		 */
-		EClass GUIDANCE_PROVIDER = eINSTANCE.getGuidanceProvider();
+		EClass OBJECT_IDM = eINSTANCE.getObjectIDM();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -7512,7 +7512,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GUIDANCE_PROVIDER__NAME = eINSTANCE.getGuidanceProvider_Name();
+		EAttribute OBJECT_IDM__NAME = eINSTANCE.getObjectIDM_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
@@ -7520,7 +7520,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GUIDANCE_PROVIDER__CLASS_NAME = eINSTANCE.getGuidanceProvider_ClassName();
+		EAttribute OBJECT_IDM__CLASS_NAME = eINSTANCE.getObjectIDM_ClassName();
 
 		/**
 		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
@@ -7528,7 +7528,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GUIDANCE_PROVIDER__ENABLED = eINSTANCE.getGuidanceProvider_Enabled();
+		EAttribute OBJECT_IDM__ENABLED = eINSTANCE.getObjectIDM_Enabled();
 
 		/**
 		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.
@@ -7536,7 +7536,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GUIDANCE_PROVIDER__SERIALIZERS = eINSTANCE.getGuidanceProvider_Serializers();
+		EReference OBJECT_IDM__SERIALIZERS = eINSTANCE.getObjectIDM_Serializers();
 
 		/**
 		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
@@ -7544,7 +7544,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GUIDANCE_PROVIDER__SETTINGS = eINSTANCE.getGuidanceProvider_Settings();
+		EReference OBJECT_IDM__SETTINGS = eINSTANCE.getObjectIDM_Settings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IfcEngineImpl <em>Ifc Engine</em>}' class.
@@ -8371,14 +8371,14 @@ public interface StorePackage extends EPackage {
 		EReference LONG_CHECKIN_ACTION__REVISIONS = eINSTANCE.getLongCheckinAction_Revisions();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl <em>Guidance Provider Plugin Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectIDMPluginDescriptorImpl <em>Object IDM Plugin Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProviderPluginDescriptor()
+		 * @see org.bimserver.models.store.impl.ObjectIDMPluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectIDMPluginDescriptor()
 		 * @generated
 		 */
-		EClass GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = eINSTANCE.getGuidanceProviderPluginDescriptor();
+		EClass OBJECT_IDM_PLUGIN_DESCRIPTOR = eINSTANCE.getObjectIDMPluginDescriptor();
 
 		/**
 		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
@@ -8386,7 +8386,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME = eINSTANCE.getGuidanceProviderPluginDescriptor_ClassName();
+		EAttribute OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME = eINSTANCE.getObjectIDMPluginDescriptor_ClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CompareItemImpl <em>Compare Item</em>}' class.

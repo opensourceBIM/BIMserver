@@ -53,8 +53,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.Deserializer;
-import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerState;
@@ -70,8 +70,8 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.ServiceInterface;
@@ -191,7 +191,7 @@ public class BimServer {
 						}
 					}
 				});
-				pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", "Internal", new SchemaFieldGuidanceProviderPlugin());
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin());
 			} catch (Exception e) {
 				e.printStackTrace();
 				LOGGER.error("", e);
@@ -342,20 +342,20 @@ public class BimServer {
 	 */
 	private void createDatabaseObjects() throws BimDeadlockException, BimDatabaseException, PluginException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
-		GuidanceProvider defaultGuidanceProvider = null;
-		for (GuidanceProviderPlugin guidanceProviderPlugin : pluginManager.getAllGuidanceProviders(true)) {
-			String name = guidanceProviderPlugin.getDefaultGuidanceProviderName();
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral(name));
-			GuidanceProvider found = session.querySingle(condition, GuidanceProvider.class, false, null);
+		ObjectIDM defaultObjectIDM = null;
+		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
+			String name = objectIDMPlugin.getDefaultObjectIDMName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getObjectIDM_Name(), new StringLiteral(name));
+			ObjectIDM found = session.querySingle(condition, ObjectIDM.class, false, null);
 			if (found == null) {
-				GuidanceProvider guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();
-				guidanceProvider.setName(name);
-				guidanceProvider.setClassName(guidanceProviderPlugin.getClass().getName());
-				guidanceProvider.setEnabled(true);
-				defaultGuidanceProvider = guidanceProvider;
-				session.store(guidanceProvider);
+				ObjectIDM ObjectIDM = StoreFactory.eINSTANCE.createObjectIDM();
+				ObjectIDM.setName(name);
+				ObjectIDM.setClassName(objectIDMPlugin.getClass().getName());
+				ObjectIDM.setEnabled(true);
+				defaultObjectIDM = ObjectIDM;
+				session.store(ObjectIDM);
 			} else {
-				defaultGuidanceProvider = found;
+				defaultObjectIDM = found;
 			}
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
@@ -370,7 +370,7 @@ public class BimServer {
 				serializer.setDescription(serializerPlugin.getDescription());
 				serializer.setContentType(serializerPlugin.getDefaultContentType());
 				serializer.setExtension(serializerPlugin.getDefaultExtension());
-				serializer.setGuidanceProvider(defaultGuidanceProvider);
+				serializer.setObjectIDM(defaultObjectIDM);
 				session.store(serializer);
 			}
 		}
@@ -387,7 +387,7 @@ public class BimServer {
 				session.store(deserializer);
 			}
 		}
-		session.store(defaultGuidanceProvider);
+		session.store(defaultObjectIDM);
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getClass().getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));

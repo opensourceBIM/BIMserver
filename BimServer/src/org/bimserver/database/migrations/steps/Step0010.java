@@ -139,8 +139,8 @@ public class Step0010 extends Migration {
 		EClass longCheckinActionClass = schema.createEClass(schema.getEPackage("store"), "LongCheckinAction", longActionClass);
 		schema.createEReference(longCheckinActionClass, "revisions", schema.getEClass("store", "Revision"), Multiplicity.MANY);
 		
-		EClass guidanceProviderPluginDescriptor = schema.createEClass(schema.getEPackage("store"), "GuidanceProviderPluginDescriptor");
-		schema.createEAttribute(guidanceProviderPluginDescriptor, "className", ecorePackage.getEString(), Multiplicity.SINGLE);
+		EClass objectIDMPluginDescriptor = schema.createEClass(schema.getEPackage("store"), "ObjectIDMPluginDescriptor");
+		schema.createEAttribute(objectIDMPluginDescriptor, "className", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
 		EEnum compareIdentifier = schema.createEEnum(schema.getEPackage("store"), "CompareIdentifier");
 		

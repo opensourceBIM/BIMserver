@@ -108,13 +108,13 @@ public interface LogFactory extends EFactory {
 	UserAddedToProject createUserAddedToProject();
 
 	/**
-	 * Returns a new object of class '<em>New Guidance Provider Uploaded</em>'.
+	 * Returns a new object of class '<em>New Object IDM Uploaded</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>New Guidance Provider Uploaded</em>'.
+	 * @return a new object of class '<em>New Object IDM Uploaded</em>'.
 	 * @generated
 	 */
-	NewGuidanceProviderUploaded createNewGuidanceProviderUploaded();
+	NewObjectIDMUploaded createNewObjectIDMUploaded();
 
 	/**
 	 * Returns a new object of class '<em>Download</em>'.

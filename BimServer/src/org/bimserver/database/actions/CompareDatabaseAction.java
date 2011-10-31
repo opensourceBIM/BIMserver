@@ -26,8 +26,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareIdentifier;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
-import org.bimserver.plugins.GuidanceProviderException;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.ObjectIDMException;
+import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -52,13 +52,13 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
 	@Override
 	public CompareResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		GuidanceProvider guidanceProvider;
+		ObjectIDM objectIDM;
 		try {
-			guidanceProvider = bimServer.getPluginManager().requireGuidanceProvider();
-		} catch (GuidanceProviderException e) {
+			objectIDM = bimServer.getPluginManager().requireObjectIDM();
+		} catch (ObjectIDMException e) {
 			throw new UserException(e);
 		}
-		Compare compare = new Compare(guidanceProvider);
+		Compare compare = new Compare(objectIDM);
 		CompareResult compareResults = bimServer.getCompareCache().getCompareResults(roid1, roid2, sCompareType, sCompareIdentifier);
 		if (compareResults == null) {
 			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, actingUoid, null).execute();

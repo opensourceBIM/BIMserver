@@ -35,7 +35,7 @@ import org.bimserver.models.store.ObjectRemoved;
 import org.bimserver.models.store.ReferenceDataValue;
 import org.bimserver.models.store.SimpleDataValue;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -50,11 +50,11 @@ import org.slf4j.LoggerFactory;
 
 public class Compare {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Compare.class);
-	private final GuidanceProvider guidanceProvider;
+	private final ObjectIDM objectIDM;
 	private final Map<EClass, CompareContainer> map = new HashMap<EClass, CompareContainer>();
 
-	public Compare(GuidanceProvider guidanceProvider) {
-		this.guidanceProvider = guidanceProvider;
+	public Compare(ObjectIDM objectIDM) {
+		this.objectIDM = objectIDM;
 	}
 
 	private DataObject makeDataObject(IdEObject eObject) {
@@ -203,7 +203,7 @@ public class Compare {
 		EClass eClass = eObject1.eClass();
 		if (sCompareType == CompareType.ALL || sCompareType == CompareType.MODIFY) {
 			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-				if (!guidanceProvider.shouldIgnoreField(originalQueryClass, eClass, eStructuralFeature)) {
+				if (!objectIDM.shouldIgnoreField(originalQueryClass, eClass, eStructuralFeature)) {
 					if (eStructuralFeature.getName().endsWith("AsString")) {
 						continue;
 					}

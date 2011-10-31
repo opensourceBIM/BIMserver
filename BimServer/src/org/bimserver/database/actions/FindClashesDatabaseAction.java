@@ -40,12 +40,12 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.plugins.GuidanceProviderException;
+import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -168,14 +168,14 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject);
 		}
-		GuidanceProvider guidanceProvider;
+		ObjectIDM ObjectIDM;
 		try {
-			guidanceProvider = bimServer.getPluginManager().requireGuidanceProvider();
-		} catch (GuidanceProviderException e) {
+			ObjectIDM = bimServer.getPluginManager().requireObjectIDM();
+		} catch (ObjectIDMException e) {
 			throw new UserException(e);
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			if (!guidanceProvider.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
+			if (!ObjectIDM.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {

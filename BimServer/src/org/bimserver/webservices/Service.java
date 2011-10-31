@@ -53,7 +53,7 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
-import org.bimserver.database.actions.AddGuidanceProviderDatabaseAction;
+import org.bimserver.database.actions.AddObjectIDMDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddSerializerDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
@@ -65,7 +65,7 @@ import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteDeserializerDatabaseAction;
-import org.bimserver.database.actions.DeleteGuidanceProviderDatabaseAction;
+import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
@@ -75,9 +75,9 @@ import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
 import org.bimserver.database.actions.GetAllDeserializersDatabaseAction;
-import org.bimserver.database.actions.GetAllGuidanceProvidersDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
+import org.bimserver.database.actions.GetAllObjectIDMsDatabaseAction;
 import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAllReadableProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
@@ -96,9 +96,9 @@ import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
-import org.bimserver.database.actions.GetGuidanceProviderByIdDatabaseAction;
-import org.bimserver.database.actions.GetGuidanceProviderByNameDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
+import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
+import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
@@ -119,7 +119,7 @@ import org.bimserver.database.actions.UndeleteUserDatabaseAction;
 import org.bimserver.database.actions.UpdateClashDetectionSettingsDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
-import org.bimserver.database.actions.UpdateGuidanceProviderDatabaseAction;
+import org.bimserver.database.actions.UpdateObjectIDMDatabaseAction;
 import org.bimserver.database.actions.UpdateProjectDatabaseAction;
 import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
 import org.bimserver.database.actions.UpdateSerializerDatabaseAction;
@@ -153,13 +153,13 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
-import org.bimserver.interfaces.objects.SGuidanceProvider;
-import org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
+import org.bimserver.interfaces.objects.SObjectIDM;
+import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -207,7 +207,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
+import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.rights.RightsManager;
@@ -1944,8 +1944,8 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			Serializer convert = converter.convertFromSObject(serializer, session);
-			if (convert.getGuidanceProvider() != null) {
-				session.store(convert.getGuidanceProvider());
+			if (convert.getObjectIDM() != null) {
+				session.store(convert.getObjectIDM());
 			}
 			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
 		} catch (Exception e) {
@@ -1970,11 +1970,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SGuidanceProvider> getAllGuidanceProviders() throws ServiceException {
+	public List<SObjectIDM> getAllObjectIDMs() throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			return converter.convertToSListGuidanceProvider(session.executeAction(new GetAllGuidanceProvidersDatabaseAction(session, accessMethod), DEADLOCK_RETRIES));
+			return converter.convertToSListObjectIDM(session.executeAction(new GetAllObjectIDMsDatabaseAction(session, accessMethod), DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1984,11 +1984,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addGuidanceProvider(SGuidanceProvider guidanceProvider) throws ServiceException {
+	public void addObjectIDM(SObjectIDM ObjectIDM) throws ServiceException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			session.executeAndCommitAction(new AddGuidanceProviderDatabaseAction(session, accessMethod, converter.convertFromSObject(guidanceProvider, session)), DEADLOCK_RETRIES);
+			session.executeAndCommitAction(new AddObjectIDMDatabaseAction(session, accessMethod, converter.convertFromSObject(ObjectIDM, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1997,11 +1997,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateGuidanceProvider(SGuidanceProvider guidanceProvider) throws ServiceException {
+	public void updateObjectIDM(SObjectIDM ObjectIDM) throws ServiceException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			session.executeAndCommitAction(new UpdateGuidanceProviderDatabaseAction(session, accessMethod, converter.convertFromSObject(guidanceProvider, session)),
+			session.executeAndCommitAction(new UpdateObjectIDMDatabaseAction(session, accessMethod, converter.convertFromSObject(ObjectIDM, session)),
 					DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -2039,11 +2039,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SGuidanceProvider getGuidanceProviderById(Long oid) throws ServiceException {
+	public SObjectIDM getObjectIDMById(Long oid) throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			return converter.convertToSObject(session.executeAction(new GetGuidanceProviderByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
+			return converter.convertToSObject(session.executeAction(new GetObjectIDMByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2059,11 +2059,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void deleteGuidanceProvider(Long ifid) throws ServiceException {
+	public void deleteObjectIDM(Long ifid) throws ServiceException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<Void> action = new DeleteGuidanceProviderDatabaseAction(session, accessMethod, ifid);
+			BimDatabaseAction<Void> action = new DeleteObjectIDMDatabaseAction(session, accessMethod, ifid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -2158,11 +2158,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SGuidanceProvider getGuidanceProviderByName(String guidanceProviderName) throws ServiceException {
+	public SObjectIDM getObjectIDMByName(String ObjectIDMName) throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			return converter.convertToSObject(session.executeAction(new GetGuidanceProviderByNameDatabaseAction(session, accessMethod, guidanceProviderName), DEADLOCK_RETRIES));
+			return converter.convertToSObject(session.executeAction(new GetObjectIDMByNameDatabaseAction(session, accessMethod, ObjectIDMName), DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2444,13 +2444,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws UserException {
+	public List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws UserException {
 		requireAuthenticationAndRunningServer();
-		Collection<GuidanceProviderPlugin> allGuidanceProviders = bimServer.getPluginManager().getAllGuidanceProviders(true);
-		List<SGuidanceProviderPluginDescriptor> descriptors = new ArrayList<SGuidanceProviderPluginDescriptor>();
-		for (GuidanceProviderPlugin guidanceProviderPlugin : allGuidanceProviders) {
-			SGuidanceProviderPluginDescriptor descriptor = new SGuidanceProviderPluginDescriptor();
-			descriptor.setClassName(guidanceProviderPlugin.getClass().getName());
+		Collection<ObjectIDMPlugin> allObjectIDMs = bimServer.getPluginManager().getAllObjectIDMPlugins(true);
+		List<SObjectIDMPluginDescriptor> descriptors = new ArrayList<SObjectIDMPluginDescriptor>();
+		for (ObjectIDMPlugin ObjectIDMPlugin : allObjectIDMs) {
+			SObjectIDMPluginDescriptor descriptor = new SObjectIDMPluginDescriptor();
+			descriptor.setClassName(ObjectIDMPlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
 		return descriptors;

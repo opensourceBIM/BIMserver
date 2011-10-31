@@ -12,7 +12,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -27,7 +27,7 @@
 	String extension = "";
 	String description = "";
 	String name = "";
-	long guidanceProviderId = -1;
+	long objectIDMId = -1;
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("update") != null) {
 		SSerializer serializer = loginManager.getService().getSerializerById(id);
@@ -36,13 +36,13 @@
 		contentType = request.getParameter("contentType");
 		extension = request.getParameter("extension");
 		description = request.getParameter("description");
-		guidanceProviderId = request.getParameter("guidanceProvider").equals("[none]") ? -1 : Long.parseLong(request.getParameter("guidanceProvider"));
+		objectIDMId = request.getParameter("objectIDM").equals("[none]") ? -1 : Long.parseLong(request.getParameter("objectIDM"));
 		serializer.setName(name);
 		serializer.setContentType(contentType);
 		serializer.setExtension(extension);
 		serializer.setDescription(description);
 		serializer.setName(request.getParameter("name"));
-		serializer.setGuidanceProviderId(guidanceProviderId);
+		serializer.setObjectIDMId(objectIDMId);
 		loginManager.getService().updateSerializer(serializer);
 	} else {
 		SSerializer serializer = loginManager.getService().getSerializerById(id);
@@ -50,7 +50,7 @@
 		extension = serializer.getExtension();
 		contentType = serializer.getContentType();
 		description = serializer.getDescription();
-		guidanceProviderId = serializer.getGuidanceProviderId();
+		objectIDMId = serializer.getObjectIDMId();
 		type = serializer.getClassName();
 	}
 %>
@@ -79,13 +79,13 @@
 	<td><%=type %></td>
 </tr>
 <tr>
-	<td><label for="guidanceProvider">Guidance provider</label></td>
-	<td><select name="guidanceProvider" id="guidanceProvider">
+	<td><label for="objectIDM">Object IDM</label></td>
+	<td><select name="objectIDM" id="objectIDM">
 		<option value="[none]">[None]</option>
 <%
-	for (SGuidanceProvider guidanceProvider : service.getAllGuidanceProviders()) {
+	for (SObjectIDM objectIDM : service.getAllObjectIDMs()) {
 %>
-	<option value="<%=guidanceProvider.getOid()%>"<%=(guidanceProviderId == guidanceProvider.getOid() ? " selected=\"selected\"" : "") %>><%=guidanceProvider.getName()%></option>
+	<option value="<%=objectIDM.getOid()%>"<%=(objectIDMId == objectIDM.getOid() ? " selected=\"selected\"" : "") %>><%=objectIDM.getName()%></option>
 <%
 	}
 %>

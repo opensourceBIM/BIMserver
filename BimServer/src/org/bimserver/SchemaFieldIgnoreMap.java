@@ -20,7 +20,7 @@ package org.bimserver;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.bimserver.plugins.guidanceproviders.FieldIgnoreMap;
+import org.bimserver.plugins.objectidms.FieldIgnoreMap;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;

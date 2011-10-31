@@ -484,14 +484,14 @@ public interface LogPackage extends EPackage {
 	int USER_ADDED_TO_PROJECT_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewGuidanceProviderUploadedImpl <em>New Guidance Provider Uploaded</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewObjectIDMUploadedImpl <em>New Object IDM Uploaded</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.log.impl.NewGuidanceProviderUploadedImpl
-	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewGuidanceProviderUploaded()
+	 * @see org.bimserver.models.log.impl.NewObjectIDMUploadedImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewObjectIDMUploaded()
 	 * @generated
 	 */
-	int NEW_GUIDANCE_PROVIDER_UPLOADED = 8;
+	int NEW_OBJECT_IDM_UPLOADED = 8;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -500,7 +500,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_GUIDANCE_PROVIDER_UPLOADED__DATE = LOG_ACTION__DATE;
+	int NEW_OBJECT_IDM_UPLOADED__DATE = LOG_ACTION__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -509,7 +509,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_GUIDANCE_PROVIDER_UPLOADED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int NEW_OBJECT_IDM_UPLOADED__EXECUTOR = LOG_ACTION__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -518,16 +518,16 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_GUIDANCE_PROVIDER_UPLOADED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int NEW_OBJECT_IDM_UPLOADED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
 
 	/**
-	 * The number of structural features of the '<em>New Guidance Provider Uploaded</em>' class.
+	 * The number of structural features of the '<em>New Object IDM Uploaded</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_GUIDANCE_PROVIDER_UPLOADED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 0;
+	int NEW_OBJECT_IDM_UPLOADED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.DownloadImpl <em>Download</em>}' class.
@@ -1566,14 +1566,14 @@ public interface LogPackage extends EPackage {
 	EReference getUserAddedToProject_Project();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.log.NewGuidanceProviderUploaded <em>New Guidance Provider Uploaded</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.log.NewObjectIDMUploaded <em>New Object IDM Uploaded</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>New Guidance Provider Uploaded</em>'.
-	 * @see org.bimserver.models.log.NewGuidanceProviderUploaded
+	 * @return the meta object for class '<em>New Object IDM Uploaded</em>'.
+	 * @see org.bimserver.models.log.NewObjectIDMUploaded
 	 * @generated
 	 */
-	EClass getNewGuidanceProviderUploaded();
+	EClass getNewObjectIDMUploaded();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.Download <em>Download</em>}'.
@@ -2091,14 +2091,14 @@ public interface LogPackage extends EPackage {
 		EReference USER_ADDED_TO_PROJECT__PROJECT = eINSTANCE.getUserAddedToProject_Project();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewGuidanceProviderUploadedImpl <em>New Guidance Provider Uploaded</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewObjectIDMUploadedImpl <em>New Object IDM Uploaded</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.log.impl.NewGuidanceProviderUploadedImpl
-		 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewGuidanceProviderUploaded()
+		 * @see org.bimserver.models.log.impl.NewObjectIDMUploadedImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewObjectIDMUploaded()
 		 * @generated
 		 */
-		EClass NEW_GUIDANCE_PROVIDER_UPLOADED = eINSTANCE.getNewGuidanceProviderUploaded();
+		EClass NEW_OBJECT_IDM_UPLOADED = eINSTANCE.getNewObjectIDMUploaded();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.DownloadImpl <em>Download</em>}' class.

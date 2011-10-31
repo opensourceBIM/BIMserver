@@ -14,7 +14,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -41,9 +41,9 @@
 		serializer.setExtension(extension);
 		serializer.setEnabled(true);
 		try {
-			serializer.setGuidanceProviderId(Long.parseLong(request.getParameter("guidanceProvider")));
+			serializer.setObjectIDMId(Long.parseLong(request.getParameter("objectIDM")));
 		} catch (NumberFormatException e) {
-			serializer.setGuidanceProviderId(-1);			
+			serializer.setObjectIDMId(-1);			
 		}
 		serializer.setClassName(request.getParameter("type"));
 		try {
@@ -83,13 +83,13 @@
 	<td><%=type %></td>
 </tr>
 <tr>
-	<td><label for="guidanceProvider">Guidance provider</label></td>
-	<td><select name="guidanceProvider" id="guidanceProvider">
+	<td><label for="objectIDM">Guidance provider</label></td>
+	<td><select name="objectIDM" id="objectIDM">
 		<option value="[none]">[None]</option>
 <%
-	for (SGuidanceProvider guidanceProvider : service.getAllGuidanceProviders()) {
+	for (SObjectIDM objectIDM : service.getAllObjectIDMs()) {
 %>
-	<option value="<%=guidanceProvider.getOid()%>"<%=(request.getParameter("guidanceProvider") != null && request.getParameter("guidanceProvider").equals("" + guidanceProvider.getOid())) ? " selected=\"selected\"" : "" %>><%=guidanceProvider.getName()%></option>
+	<option value="<%=objectIDM.getOid()%>"<%=(request.getParameter("objectIDM") != null && request.getParameter("objectIDM").equals("" + objectIDM.getOid())) ? " selected=\"selected\"" : "" %>><%=objectIDM.getName()%></option>
 <%
 	}
 %>
