@@ -29,7 +29,6 @@ import org.bimserver.models.log.RevisionUpdated;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 

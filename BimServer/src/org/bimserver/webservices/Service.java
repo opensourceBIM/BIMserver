@@ -195,7 +195,6 @@ import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
-import org.bimserver.models.store.RunResult;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.Settings;
@@ -2475,8 +2474,8 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Integer compileAndDownload(long roid, String code) throws ServiceException {
-		QueryCompiler queryCompiler = new QueryCompiler();
-		RunResult runResult = queryCompiler.run(code, roid, currentUoid, bimServer);
+//		QueryCompiler queryCompiler = new QueryCompiler();
+//		RunResult runResult = queryCompiler.run(code, roid, currentUoid, bimServer);
 		return -1;
 	}
 

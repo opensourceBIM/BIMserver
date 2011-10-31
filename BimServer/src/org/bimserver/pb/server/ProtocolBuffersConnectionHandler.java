@@ -20,7 +20,6 @@ package org.bimserver.pb.server;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketException;
@@ -41,7 +40,6 @@ import com.google.protobuf.ServiceException;
 
 public class ProtocolBuffersConnectionHandler extends Thread {
 	private final Socket socket;
-	private InputStream inputStream;
 	private OutputStream outputStream;
 	private DataInputStream dataInputStream;
 	private final ProtocolBuffersServer protocolBuffersServer;
@@ -52,7 +50,6 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 		this.protocolBuffersServer = protocolBuffersServer;
 		try {
 			dataInputStream = new DataInputStream(socket.getInputStream());
-			inputStream = socket.getInputStream();
 			outputStream = socket.getOutputStream();
 		} catch (IOException e) {
 			e.printStackTrace();
