@@ -7,9 +7,9 @@ revisionId (
 oid ("Q
 NewRevisionRequest;
 unknown (2*.org.bimserver.pb.SNewRevisionNotification"9
-SNewProjectNotification
-oid (
-	projectId ("O
+SNewProjectNotification
+	projectId (
+oid ("O
 NewProjectRequest:
 unknown (2).org.bimserver.pb.SNewProjectNotification"
 ServerHasStartedRequest"

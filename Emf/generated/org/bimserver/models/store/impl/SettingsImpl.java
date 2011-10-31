@@ -52,6 +52,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getEnabledExportTypes <em>Enabled Export Types</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getGuidanceProviders <em>Guidance Providers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
@@ -346,6 +347,24 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 */
 	public void setSiteAddress(String newSiteAddress) {
 		eSet(StorePackage.Literals.SETTINGS__SITE_ADDRESS, newSiteAddress);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isHideUserListForNonAdmin() {
+		return (Boolean) eGet(StorePackage.Literals.SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHideUserListForNonAdmin(boolean newHideUserListForNonAdmin) {
+		eSet(StorePackage.Literals.SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, newHideUserListForNonAdmin);
 	}
 
 	/**

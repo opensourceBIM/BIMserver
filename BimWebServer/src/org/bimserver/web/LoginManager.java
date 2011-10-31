@@ -42,7 +42,7 @@ public class LoginManager {
 				bimServerClient.disconnect();
 			}
 			bimServerClient = bimServerClientFactory.create(authenticationInfo, remoteAddress);
-			loggedIn = true;
+			loggedIn = bimServerClient.isConnected();
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (ConnectionException e) {

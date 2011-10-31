@@ -44,6 +44,7 @@ public class SSettings implements SBase
 		sClass.addField(new SField("enabledExportTypes", java.lang.String.class));
 		sClass.addField(new SField("customLogoAddress", java.lang.String.class));
 		sClass.addField(new SField("siteAddress", java.lang.String.class));
+		sClass.addField(new SField("hideUserListForNonAdmin", boolean.class));
 		sClass.addField(new SField("serializers", Long.class, true));
 		sClass.addField(new SField("guidanceProviders", Long.class, true));
 		sClass.addField(new SField("headerAddition", java.lang.String.class));
@@ -111,6 +112,9 @@ public class SSettings implements SBase
 		}
 		if (sField.getName().equals("siteAddress")) {
 			return getSiteAddress();
+		}
+		if (sField.getName().equals("hideUserListForNonAdmin")) {
+			return isHideUserListForNonAdmin();
 		}
 		if (sField.getName().equals("serializers")) {
 			return getSerializers();
@@ -202,6 +206,10 @@ public class SSettings implements SBase
 			setSiteAddress((String)val);
 			return;
 		}
+		if (sField.getName().equals("hideUserListForNonAdmin")) {
+			setHideUserListForNonAdmin((Boolean)val);
+			return;
+		}
 		if (sField.getName().equals("serializers")) {
 			setSerializers((List<Long>)val);
 			return;
@@ -259,6 +267,7 @@ public class SSettings implements SBase
 	private java.lang.String enabledExportTypes;
 	private java.lang.String customLogoAddress;
 	private java.lang.String siteAddress;
+	private boolean hideUserListForNonAdmin;
 	private List<Long> serializers = new ArrayList<Long>();
 	private List<Long> guidanceProviders = new ArrayList<Long>();
 	private java.lang.String headerAddition;
@@ -365,6 +374,13 @@ public class SSettings implements SBase
 
 	public void setSiteAddress(java.lang.String siteAddress) {
 		this.siteAddress = siteAddress;
+	}
+	public boolean isHideUserListForNonAdmin() {
+		return hideUserListForNonAdmin;
+	}
+
+	public void setHideUserListForNonAdmin(boolean hideUserListForNonAdmin) {
+		this.hideUserListForNonAdmin = hideUserListForNonAdmin;
 	}
 	public List<Long> getSerializers() {
 		return serializers;

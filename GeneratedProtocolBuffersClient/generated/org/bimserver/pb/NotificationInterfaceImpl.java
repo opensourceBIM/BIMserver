@@ -826,13 +826,13 @@ public final class NotificationInterfaceImpl {
   public interface SNewProjectNotificationOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int64 oid = 1;
-    boolean hasOid();
-    long getOid();
-    
-    // optional int64 projectId = 2;
+    // optional int64 projectId = 1;
     boolean hasProjectId();
     long getProjectId();
+    
+    // optional int64 oid = 2;
+    boolean hasOid();
+    long getOid();
   }
   public static final class SNewProjectNotification extends
       com.google.protobuf.GeneratedMessage
@@ -863,29 +863,29 @@ public final class NotificationInterfaceImpl {
     }
     
     private int bitField0_;
-    // optional int64 oid = 1;
-    public static final int OID_FIELD_NUMBER = 1;
-    private long oid_;
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public long getOid() {
-      return oid_;
-    }
-    
-    // optional int64 projectId = 2;
-    public static final int PROJECTID_FIELD_NUMBER = 2;
+    // optional int64 projectId = 1;
+    public static final int PROJECTID_FIELD_NUMBER = 1;
     private long projectId_;
     public boolean hasProjectId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public long getProjectId() {
       return projectId_;
     }
     
+    // optional int64 oid = 2;
+    public static final int OID_FIELD_NUMBER = 2;
+    private long oid_;
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public long getOid() {
+      return oid_;
+    }
+    
     private void initFields() {
-      oid_ = 0L;
       projectId_ = 0L;
+      oid_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -900,10 +900,10 @@ public final class NotificationInterfaceImpl {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt64(1, oid_);
+        output.writeInt64(1, projectId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(2, projectId_);
+        output.writeInt64(2, oid_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -916,11 +916,11 @@ public final class NotificationInterfaceImpl {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, oid_);
+          .computeInt64Size(1, projectId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, projectId_);
+          .computeInt64Size(2, oid_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1044,9 +1044,9 @@ public final class NotificationInterfaceImpl {
       
       public Builder clear() {
         super.clear();
-        oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000001);
         projectId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        oid_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -1089,11 +1089,11 @@ public final class NotificationInterfaceImpl {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.oid_ = oid_;
+        result.projectId_ = projectId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.projectId_ = projectId_;
+        result.oid_ = oid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1110,11 +1110,11 @@ public final class NotificationInterfaceImpl {
       
       public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification other) {
         if (other == org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance()) return this;
-        if (other.hasOid()) {
-          setOid(other.getOid());
-        }
         if (other.hasProjectId()) {
           setProjectId(other.getProjectId());
+        }
+        if (other.hasOid()) {
+          setOid(other.getOid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1149,12 +1149,12 @@ public final class NotificationInterfaceImpl {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              oid_ = input.readInt64();
+              projectId_ = input.readInt64();
               break;
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              projectId_ = input.readInt64();
+              oid_ = input.readInt64();
               break;
             }
           }
@@ -1163,44 +1163,44 @@ public final class NotificationInterfaceImpl {
       
       private int bitField0_;
       
-      // optional int64 oid = 1;
-      private long oid_ ;
-      public boolean hasOid() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public long getOid() {
-        return oid_;
-      }
-      public Builder setOid(long value) {
-        bitField0_ |= 0x00000001;
-        oid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        oid_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional int64 projectId = 2;
+      // optional int64 projectId = 1;
       private long projectId_ ;
       public boolean hasProjectId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       public long getProjectId() {
         return projectId_;
       }
       public Builder setProjectId(long value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         projectId_ = value;
         onChanged();
         return this;
       }
       public Builder clearProjectId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         projectId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 oid = 2;
+      private long oid_ ;
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public long getOid() {
+        return oid_;
+      }
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00000002;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        oid_ = 0L;
         onChanged();
         return this;
       }
@@ -2646,8 +2646,8 @@ public final class NotificationInterfaceImpl {
       "n\022\022\n\nrevisionId\030\001 \001(\003\022\013\n\003oid\030\002 \001(\003\"Q\n\022Ne" +
       "wRevisionRequest\022;\n\007unknown\030\001 \001(\0132*.org." +
       "bimserver.pb.SNewRevisionNotification\"9\n" +
-      "\027SNewProjectNotification\022\013\n\003oid\030\001 \001(\003\022\021\n" +
-      "\tprojectId\030\002 \001(\003\"O\n\021NewProjectRequest\022:\n" +
+      "\027SNewProjectNotification\022\021\n\tprojectId\030\001 " +
+      "\001(\003\022\013\n\003oid\030\002 \001(\003\"O\n\021NewProjectRequest\022:\n" +
       "\007unknown\030\001 \001(\0132).org.bimserver.pb.SNewPr" +
       "ojectNotification\"\031\n\027ServerHasStartedReq" +
       "uest\"\035\n\033ServerWillBeShutdownRequest2\205\003\n\025",
@@ -2689,7 +2689,7 @@ public final class NotificationInterfaceImpl {
           internal_static_org_bimserver_pb_SNewProjectNotification_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SNewProjectNotification_descriptor,
-              new java.lang.String[] { "Oid", "ProjectId", },
+              new java.lang.String[] { "ProjectId", "Oid", },
               org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.class,
               org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder.class);
           internal_static_org_bimserver_pb_NewProjectRequest_descriptor =

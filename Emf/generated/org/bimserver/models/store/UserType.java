@@ -60,7 +60,15 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USER(2, "USER", "USER");
+	USER(2, "USER", "USER"), /**
+								 * The '<em><b>READ ONLY</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #READ_ONLY_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	READ_ONLY(3, "READ_ONLY", "READ_ONLY");
 
 	/**
 	 * The '<em><b>SYSTEM</b></em>' literal value.
@@ -108,12 +116,27 @@ public enum UserType implements Enumerator {
 	public static final int USER_VALUE = 2;
 
 	/**
+	 * The '<em><b>READ ONLY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>READ ONLY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #READ_ONLY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int READ_ONLY_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>User Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final UserType[] VALUES_ARRAY = new UserType[] { SYSTEM, ADMIN, USER, };
+	private static final UserType[] VALUES_ARRAY = new UserType[] { SYSTEM, ADMIN, USER, READ_ONLY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>User Type</b></em>' enumerators.
@@ -169,6 +192,8 @@ public enum UserType implements Enumerator {
 			return ADMIN;
 		case USER_VALUE:
 			return USER;
+		case READ_ONLY_VALUE:
+			return READ_ONLY;
 		}
 		return null;
 	}

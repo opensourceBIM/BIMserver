@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.client.factories.AutologinAuthenticationInfo"%>
 <%@page import="org.bimserver.interfaces.objects.SVersion"%>
 <%@page import="org.bimserver.interfaces.objects.SServerState"%>
 <%@page import="org.bimserver.interfaces.objects.SServerInfo"%>
@@ -19,23 +20,24 @@
  %> <img class="headerimage"
 	src="<%=loginManager.getService().getSettingCustomLogoAddress() != null ? loginManager.getService().getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision()%>" /></a> <%
  	if (loginManager.isLoggedIn()) {
+ 		SUser loggedInUser = loginManager.getService().getLoggedInUser();
  %>
 <div class="menubar">
-You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLoggedInUser().getOid()%>"><%=loginManager.getService().getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+You are logged in as: <a href="user.jsp?uoid=<%=loggedInUser.getOid()%>"><%=loggedInUser.getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <br/>
 <jsp:include page="mainmenu.jsp" />
 </div>
 <jsp:include page="extra.jsp" /> <%
  	} else {
  			if (request.getSession().getAttribute("loggingout") == null) {
- 				request.getSession().removeAttribute("loggingout");
  				Map<String, String> cookies = new HashMap<String, String>();
  				if (request.getCookies() != null) {
  				for (Cookie cookie : request.getCookies()) {
  					cookies.put(cookie.getName(), cookie.getValue());
  				}
  				if (cookies.containsKey("autologin") && cookies.containsKey("username")) {
- 					if (loginManager.getService().autologin(cookies.get("username"), cookies.get("autologin"))) {
+ 					AutologinAuthenticationInfo auth = new AutologinAuthenticationInfo(cookies.get("username"), cookies.get("autologin"));
+ 					if (loginManager.login(auth, request.getRemoteAddr())) {
  %>
 <div class="menubar">
 You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLoggedInUser().getOid()%>"><%=loginManager.getService().getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>

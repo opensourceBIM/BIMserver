@@ -7,6 +7,7 @@
       <eLiterals name="SYSTEM"/>
       <eLiterals name="ADMIN" value="1"/>
       <eLiterals name="USER" value="2"/>
+      <eLiterals name="READ_ONLY" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CheckinState">
       <eLiterals name="UPLOADING"/>
@@ -189,6 +190,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabledExportTypes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="customLogoAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="siteAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideUserListForNonAdmin"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
           eType="#/0/Serializer" eOpposite="#/0/Serializer/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="guidanceProviders" upperBound="-1"
