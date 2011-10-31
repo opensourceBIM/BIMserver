@@ -71,6 +71,7 @@
 				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
 				boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
+				boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
 %>
 <div class="sidebar">
 	<ul>
@@ -717,8 +718,9 @@
 		<div class="tabbertab" id="authorizeduserstab"
 			title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size() + ")"%>">
 			<%
-				if (nonAuthorizedUsers.size() > 0 && !loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights) {
+				if (nonAuthorizedUsers.size() > 0 && (isAdmin || (!loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights))) {
 			%>
+			Add an existing user<br/>
 			<form method="post" action="addusertoproject.jsp">
 				<select name="uoid">
 					<%
@@ -731,23 +733,30 @@
 				</select> <input type="hidden" name="poid" value="<%=poid%>" /> <input
 					type="hidden" name="type" value="project" /> <input type="submit"
 					value="Add" />
-			</form>
+			</form><br/>
 
 			<%
-				if (nonAuthorizedUsers.size() > 0 && loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights) {
+				}
+				if (loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights) {
 			%>
+			Invite more people<br/>
 			<form method="post" action="addusertoproject.jsp">
-				<input type="hidden" name="poid" value="<%=poid%>" /> <input
-					type="hidden" name="type" value="invitedUser" /> Invite a new user
-				to join this project:<br> <label for="usernamefield">User
-					name (= e-mail address):</label><input id="usernamefield" type="email"
-					name="username" /> <label for="namefield">Name:</label><input
-					id="namefield" type="text" name="name" /> <input type="submit"
-					value="Invite" />
+				<input type="hidden" name="poid" value="<%=poid%>" />
+				<input type="hidden" name="type" value="invitedUser" />
+				<table>
+					<tr>
+						<td><label for="usernamefield">E-mail address</label></td>
+						<td><input id="usernamefield" type="email" name="username" /></td>
+					</tr>
+					<tr>
+						<td><label for="namefield">Name</label></td>
+						<td><input id="namefield" type="text" name="name" /></td>
+					</tr>
+				</table>
+				<input id="inviteButton" type="button" value="Invite" />
 			</form>
 			<%
 				}
-						}
 			%>
 			<%
 				if (users.size() > 0) {
@@ -812,6 +821,19 @@
 	var timeoutId;
 	
 	$(document).ready(function(){
+		$("#inviteButton").click(function(){
+			call({
+				action: "inviteuser",
+				username: $("#usernamefield").val(),
+				name: $("#namefield").val(),
+				type: "USER"
+			}, function(data){
+				if (data.error == null) {
+					document.location = "addusertoproject.jsp?uoid=" + data.uoid + "&poid=<%=project.getOid()%>&type=project";
+				}
+			});
+		});
+
 		$("#revisiontablink").click(function (){
 			document.getElementById("projecttabber").tabber.tabShow(2);	
 			return false;

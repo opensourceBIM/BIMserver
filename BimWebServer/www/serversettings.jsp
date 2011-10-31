@@ -30,6 +30,7 @@
 				service.setSettingAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
 				service.setSettingSmtpServer(request.getParameter("smtpServer"));
 				service.setSettingCacheOutputFiles(request.getParameter("cacheOutputFiles") != null);
+				service.setSettingHideUserListForNonAdmin(request.getParameter("hideUserListForNonAdmin") != null);
 				service.setSettingIntelligentMerging(request.getParameter("intelligentMerging") != null);
 				service.setSettingAutoTestClashes(request.getParameter("autoTestClashes") != null);
 				service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
@@ -102,6 +103,12 @@
 		<td><input id="allowSelfRegistration" type="checkbox"
 			name="allowSelfRegistration"
 			<%=(request.getParameter("save") == null ? service.isSettingAllowSelfRegistration() : request.getParameter("allowSelfRegistration") != null) ? " checked=\"checked\"" : ""%>></input></td>
+	</tr>
+	<tr>
+		<td><label for="hideUserListForNonAdmin">Hide userlists for non-admin users</label></td>
+		<td><input id="hideUserListForNonAdmin" type="checkbox"
+			name="hideUserListForNonAdmin"
+			<%=(request.getParameter("save") == null ? service.isSettingHideUserListForNonAdmin() : request.getParameter("hideUserListForNonAdmin") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">E-mail</td>

@@ -219,6 +219,8 @@ public class JspHelper {
 			return "User";
 		case SYSTEM:
 			return "System";
+		case READ_ONLY:
+			return "ReadOnly";
 		}
 		return "unknown";
 	}

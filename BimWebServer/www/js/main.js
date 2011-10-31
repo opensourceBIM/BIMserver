@@ -38,3 +38,15 @@ function trim(s)
 	{	r-=1;	}
 	return s.substring(l, r+1);
 }
+
+function call(request, callback) {
+	$.ajax({
+		type: 'POST',
+		url: "/json",
+		data: JSON.stringify(request),
+		success: function(data){
+			callback(data);
+		},
+		dataType: "json"
+	});
+}
