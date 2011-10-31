@@ -18,7 +18,6 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinState;
