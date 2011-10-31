@@ -26,8 +26,11 @@ import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaFieldIgnoreMap.class);
 	
 	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema) {
 		super(packages);
@@ -35,7 +38,12 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 		for (EntityDefinition entity : entities) {
 			for (Attribute attribute : entity.getAttributes(true)) {
 				if (attribute instanceof InverseAttribute) {
-					generalSet.add(new StructuralFeatureIdentifier(entity.getName(), attribute.getName()));
+					if ((entity.getName().equals("IfcWall") || entity.getName().equals("IfcWallStandardCase")) && attribute.getName().equals("HasOpenings")) {
+						LOGGER.info("Not excluding HasOpening for " + entity.getName());
+						// Exception: http://code.google.com/p/bimserver/issues/detail?id=303
+					} else {
+						generalSet.add(new StructuralFeatureIdentifier(entity.getName(), attribute.getName()));
+					}
 				}
 			}
 		}
