@@ -80,8 +80,8 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAngle() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, true);
+	public double getAngle() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAngle(float newAngle) {
+	public void setAngle(double newAngle) {
 		eSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, newAngle);
 	}
 

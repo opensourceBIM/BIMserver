@@ -81,8 +81,8 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDistance() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, true);
+	public double getDistance() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, true);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDistance(float newDistance) {
+	public void setDistance(double newDistance) {
 		eSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, newDistance);
 	}
 

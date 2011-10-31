@@ -51,12 +51,12 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Combustion Temperature</em>' attribute.
 	 * @see #isSetCombustionTemperature()
 	 * @see #unsetCombustionTemperature()
-	 * @see #setCombustionTemperature(float)
+	 * @see #setCombustionTemperature(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFuelProperties_CombustionTemperature()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCombustionTemperature();
+	double getCombustionTemperature();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getCombustionTemperature <em>Combustion Temperature</em>}' attribute.
@@ -68,7 +68,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @see #getCombustionTemperature()
 	 * @generated
 	 */
-	void setCombustionTemperature(float value);
+	void setCombustionTemperature(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getCombustionTemperature <em>Combustion Temperature</em>}' attribute.
@@ -76,7 +76,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCombustionTemperature()
 	 * @see #getCombustionTemperature()
-	 * @see #setCombustionTemperature(float)
+	 * @see #setCombustionTemperature(double)
 	 * @generated
 	 */
 	void unsetCombustionTemperature();
@@ -88,7 +88,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Combustion Temperature</em>' attribute is set.
 	 * @see #unsetCombustionTemperature()
 	 * @see #getCombustionTemperature()
-	 * @see #setCombustionTemperature(float)
+	 * @see #setCombustionTemperature(double)
 	 * @generated
 	 */
 	boolean isSetCombustionTemperature();
@@ -157,12 +157,12 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Carbon Content</em>' attribute.
 	 * @see #isSetCarbonContent()
 	 * @see #unsetCarbonContent()
-	 * @see #setCarbonContent(float)
+	 * @see #setCarbonContent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFuelProperties_CarbonContent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCarbonContent();
+	double getCarbonContent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getCarbonContent <em>Carbon Content</em>}' attribute.
@@ -174,7 +174,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @see #getCarbonContent()
 	 * @generated
 	 */
-	void setCarbonContent(float value);
+	void setCarbonContent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getCarbonContent <em>Carbon Content</em>}' attribute.
@@ -182,7 +182,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCarbonContent()
 	 * @see #getCarbonContent()
-	 * @see #setCarbonContent(float)
+	 * @see #setCarbonContent(double)
 	 * @generated
 	 */
 	void unsetCarbonContent();
@@ -194,7 +194,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Carbon Content</em>' attribute is set.
 	 * @see #unsetCarbonContent()
 	 * @see #getCarbonContent()
-	 * @see #setCarbonContent(float)
+	 * @see #setCarbonContent(double)
 	 * @generated
 	 */
 	boolean isSetCarbonContent();
@@ -263,12 +263,12 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Lower Heating Value</em>' attribute.
 	 * @see #isSetLowerHeatingValue()
 	 * @see #unsetLowerHeatingValue()
-	 * @see #setLowerHeatingValue(float)
+	 * @see #setLowerHeatingValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFuelProperties_LowerHeatingValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLowerHeatingValue();
+	double getLowerHeatingValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getLowerHeatingValue <em>Lower Heating Value</em>}' attribute.
@@ -280,7 +280,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @see #getLowerHeatingValue()
 	 * @generated
 	 */
-	void setLowerHeatingValue(float value);
+	void setLowerHeatingValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getLowerHeatingValue <em>Lower Heating Value</em>}' attribute.
@@ -288,7 +288,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLowerHeatingValue()
 	 * @see #getLowerHeatingValue()
-	 * @see #setLowerHeatingValue(float)
+	 * @see #setLowerHeatingValue(double)
 	 * @generated
 	 */
 	void unsetLowerHeatingValue();
@@ -300,7 +300,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Lower Heating Value</em>' attribute is set.
 	 * @see #unsetLowerHeatingValue()
 	 * @see #getLowerHeatingValue()
-	 * @see #setLowerHeatingValue(float)
+	 * @see #setLowerHeatingValue(double)
 	 * @generated
 	 */
 	boolean isSetLowerHeatingValue();
@@ -369,12 +369,12 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Higher Heating Value</em>' attribute.
 	 * @see #isSetHigherHeatingValue()
 	 * @see #unsetHigherHeatingValue()
-	 * @see #setHigherHeatingValue(float)
+	 * @see #setHigherHeatingValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFuelProperties_HigherHeatingValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getHigherHeatingValue();
+	double getHigherHeatingValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getHigherHeatingValue <em>Higher Heating Value</em>}' attribute.
@@ -386,7 +386,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @see #getHigherHeatingValue()
 	 * @generated
 	 */
-	void setHigherHeatingValue(float value);
+	void setHigherHeatingValue(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFuelProperties#getHigherHeatingValue <em>Higher Heating Value</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetHigherHeatingValue()
 	 * @see #getHigherHeatingValue()
-	 * @see #setHigherHeatingValue(float)
+	 * @see #setHigherHeatingValue(double)
 	 * @generated
 	 */
 	void unsetHigherHeatingValue();
@@ -406,7 +406,7 @@ public interface IfcFuelProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Higher Heating Value</em>' attribute is set.
 	 * @see #unsetHigherHeatingValue()
 	 * @see #getHigherHeatingValue()
-	 * @see #setHigherHeatingValue(float)
+	 * @see #setHigherHeatingValue(double)
 	 * @generated
 	 */
 	boolean isSetHigherHeatingValue();

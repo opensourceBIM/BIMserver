@@ -75,12 +75,12 @@ public interface IfcStructuralSurfaceMember extends IfcStructuralMember {
 	 * @return the value of the '<em>Thickness</em>' attribute.
 	 * @see #isSetThickness()
 	 * @see #unsetThickness()
-	 * @see #setThickness(float)
+	 * @see #setThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSurfaceMember_Thickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThickness();
+	double getThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMember#getThickness <em>Thickness</em>}' attribute.
@@ -92,7 +92,7 @@ public interface IfcStructuralSurfaceMember extends IfcStructuralMember {
 	 * @see #getThickness()
 	 * @generated
 	 */
-	void setThickness(float value);
+	void setThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMember#getThickness <em>Thickness</em>}' attribute.
@@ -100,7 +100,7 @@ public interface IfcStructuralSurfaceMember extends IfcStructuralMember {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThickness()
 	 * @see #getThickness()
-	 * @see #setThickness(float)
+	 * @see #setThickness(double)
 	 * @generated
 	 */
 	void unsetThickness();
@@ -112,7 +112,7 @@ public interface IfcStructuralSurfaceMember extends IfcStructuralMember {
 	 * @return whether the value of the '<em>Thickness</em>' attribute is set.
 	 * @see #unsetThickness()
 	 * @see #getThickness()
-	 * @see #setThickness(float)
+	 * @see #setThickness(double)
 	 * @generated
 	 */
 	boolean isSetThickness();

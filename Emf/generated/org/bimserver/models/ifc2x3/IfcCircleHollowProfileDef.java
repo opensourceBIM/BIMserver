@@ -43,12 +43,12 @@ public interface IfcCircleHollowProfileDef extends IfcCircleProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wall Thickness</em>' attribute.
-	 * @see #setWallThickness(float)
+	 * @see #setWallThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCircleHollowProfileDef_WallThickness()
 	 * @model
 	 * @generated
 	 */
-	float getWallThickness();
+	double getWallThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCircleHollowProfileDef#getWallThickness <em>Wall Thickness</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcCircleHollowProfileDef extends IfcCircleProfileDef {
 	 * @see #getWallThickness()
 	 * @generated
 	 */
-	void setWallThickness(float value);
+	void setWallThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Wall Thickness As String</b></em>' attribute.

@@ -60,8 +60,8 @@ public class IfcSpecularRoughnessImpl extends WrappedValueImpl implements IfcSpe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWrappedValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPECULAR_ROUGHNESS__WRAPPED_VALUE, true);
+	public double getWrappedValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPECULAR_ROUGHNESS__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcSpecularRoughnessImpl extends WrappedValueImpl implements IfcSpe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWrappedValue(float newWrappedValue) {
+	public void setWrappedValue(double newWrappedValue) {
 		eSet(Ifc2x3Package.Literals.IFC_SPECULAR_ROUGHNESS__WRAPPED_VALUE, newWrappedValue);
 	}
 

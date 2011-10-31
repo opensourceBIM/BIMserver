@@ -45,12 +45,12 @@ public interface IfcBuildingStorey extends IfcSpatialStructureElement {
 	 * @return the value of the '<em>Elevation</em>' attribute.
 	 * @see #isSetElevation()
 	 * @see #unsetElevation()
-	 * @see #setElevation(float)
+	 * @see #setElevation(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBuildingStorey_Elevation()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getElevation();
+	double getElevation();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBuildingStorey#getElevation <em>Elevation</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcBuildingStorey extends IfcSpatialStructureElement {
 	 * @see #getElevation()
 	 * @generated
 	 */
-	void setElevation(float value);
+	void setElevation(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBuildingStorey#getElevation <em>Elevation</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcBuildingStorey extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetElevation()
 	 * @see #getElevation()
-	 * @see #setElevation(float)
+	 * @see #setElevation(double)
 	 * @generated
 	 */
 	void unsetElevation();
@@ -82,7 +82,7 @@ public interface IfcBuildingStorey extends IfcSpatialStructureElement {
 	 * @return whether the value of the '<em>Elevation</em>' attribute is set.
 	 * @see #unsetElevation()
 	 * @see #getElevation()
-	 * @see #setElevation(float)
+	 * @see #setElevation(double)
 	 * @generated
 	 */
 	boolean isSetElevation();

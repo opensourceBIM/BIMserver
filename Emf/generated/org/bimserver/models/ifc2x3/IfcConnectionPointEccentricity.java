@@ -49,12 +49,12 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @return the value of the '<em>Eccentricity In X</em>' attribute.
 	 * @see #isSetEccentricityInX()
 	 * @see #unsetEccentricityInX()
-	 * @see #setEccentricityInX(float)
+	 * @see #setEccentricityInX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionPointEccentricity_EccentricityInX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getEccentricityInX();
+	double getEccentricityInX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointEccentricity#getEccentricityInX <em>Eccentricity In X</em>}' attribute.
@@ -66,7 +66,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @see #getEccentricityInX()
 	 * @generated
 	 */
-	void setEccentricityInX(float value);
+	void setEccentricityInX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointEccentricity#getEccentricityInX <em>Eccentricity In X</em>}' attribute.
@@ -74,7 +74,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @see #isSetEccentricityInX()
 	 * @see #getEccentricityInX()
-	 * @see #setEccentricityInX(float)
+	 * @see #setEccentricityInX(double)
 	 * @generated
 	 */
 	void unsetEccentricityInX();
@@ -86,7 +86,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @return whether the value of the '<em>Eccentricity In X</em>' attribute is set.
 	 * @see #unsetEccentricityInX()
 	 * @see #getEccentricityInX()
-	 * @see #setEccentricityInX(float)
+	 * @see #setEccentricityInX(double)
 	 * @generated
 	 */
 	boolean isSetEccentricityInX();
@@ -155,12 +155,12 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @return the value of the '<em>Eccentricity In Y</em>' attribute.
 	 * @see #isSetEccentricityInY()
 	 * @see #unsetEccentricityInY()
-	 * @see #setEccentricityInY(float)
+	 * @see #setEccentricityInY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionPointEccentricity_EccentricityInY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getEccentricityInY();
+	double getEccentricityInY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointEccentricity#getEccentricityInY <em>Eccentricity In Y</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @see #getEccentricityInY()
 	 * @generated
 	 */
-	void setEccentricityInY(float value);
+	void setEccentricityInY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointEccentricity#getEccentricityInY <em>Eccentricity In Y</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @see #isSetEccentricityInY()
 	 * @see #getEccentricityInY()
-	 * @see #setEccentricityInY(float)
+	 * @see #setEccentricityInY(double)
 	 * @generated
 	 */
 	void unsetEccentricityInY();
@@ -192,7 +192,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @return whether the value of the '<em>Eccentricity In Y</em>' attribute is set.
 	 * @see #unsetEccentricityInY()
 	 * @see #getEccentricityInY()
-	 * @see #setEccentricityInY(float)
+	 * @see #setEccentricityInY(double)
 	 * @generated
 	 */
 	boolean isSetEccentricityInY();
@@ -261,12 +261,12 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @return the value of the '<em>Eccentricity In Z</em>' attribute.
 	 * @see #isSetEccentricityInZ()
 	 * @see #unsetEccentricityInZ()
-	 * @see #setEccentricityInZ(float)
+	 * @see #setEccentricityInZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionPointEccentricity_EccentricityInZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getEccentricityInZ();
+	double getEccentricityInZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointEccentricity#getEccentricityInZ <em>Eccentricity In Z</em>}' attribute.
@@ -278,7 +278,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @see #getEccentricityInZ()
 	 * @generated
 	 */
-	void setEccentricityInZ(float value);
+	void setEccentricityInZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointEccentricity#getEccentricityInZ <em>Eccentricity In Z</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * <!-- end-user-doc -->
 	 * @see #isSetEccentricityInZ()
 	 * @see #getEccentricityInZ()
-	 * @see #setEccentricityInZ(float)
+	 * @see #setEccentricityInZ(double)
 	 * @generated
 	 */
 	void unsetEccentricityInZ();
@@ -298,7 +298,7 @@ public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeomet
 	 * @return whether the value of the '<em>Eccentricity In Z</em>' attribute is set.
 	 * @see #unsetEccentricityInZ()
 	 * @see #getEccentricityInZ()
-	 * @see #setEccentricityInZ(float)
+	 * @see #setEccentricityInZ(double)
 	 * @generated
 	 */
 	boolean isSetEccentricityInZ();

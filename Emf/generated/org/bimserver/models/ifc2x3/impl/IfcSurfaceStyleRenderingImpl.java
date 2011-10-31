@@ -70,8 +70,8 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTransparency() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY, true);
+	public double getTransparency() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY, true);
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTransparency(float newTransparency) {
+	public void setTransparency(double newTransparency) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY, newTransparency);
 	}
 

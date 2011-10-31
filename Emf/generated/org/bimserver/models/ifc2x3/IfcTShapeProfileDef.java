@@ -61,12 +61,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
-	 * @see #setDepth(float)
+	 * @see #setDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_Depth()
 	 * @model
 	 * @generated
 	 */
-	float getDepth();
+	double getDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getDepth <em>Depth</em>}' attribute.
@@ -76,7 +76,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getDepth()
 	 * @generated
 	 */
-	void setDepth(float value);
+	void setDepth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Depth As String</b></em>' attribute.
@@ -113,12 +113,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flange Width</em>' attribute.
-	 * @see #setFlangeWidth(float)
+	 * @see #setFlangeWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_FlangeWidth()
 	 * @model
 	 * @generated
 	 */
-	float getFlangeWidth();
+	double getFlangeWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFlangeWidth <em>Flange Width</em>}' attribute.
@@ -128,7 +128,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeWidth()
 	 * @generated
 	 */
-	void setFlangeWidth(float value);
+	void setFlangeWidth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Flange Width As String</b></em>' attribute.
@@ -165,12 +165,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Web Thickness</em>' attribute.
-	 * @see #setWebThickness(float)
+	 * @see #setWebThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_WebThickness()
 	 * @model
 	 * @generated
 	 */
-	float getWebThickness();
+	double getWebThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getWebThickness <em>Web Thickness</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getWebThickness()
 	 * @generated
 	 */
-	void setWebThickness(float value);
+	void setWebThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Web Thickness As String</b></em>' attribute.
@@ -217,12 +217,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flange Thickness</em>' attribute.
-	 * @see #setFlangeThickness(float)
+	 * @see #setFlangeThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_FlangeThickness()
 	 * @model
 	 * @generated
 	 */
-	float getFlangeThickness();
+	double getFlangeThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFlangeThickness <em>Flange Thickness</em>}' attribute.
@@ -232,7 +232,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeThickness()
 	 * @generated
 	 */
-	void setFlangeThickness(float value);
+	void setFlangeThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Flange Thickness As String</b></em>' attribute.
@@ -271,12 +271,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Fillet Radius</em>' attribute.
 	 * @see #isSetFilletRadius()
 	 * @see #unsetFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_FilletRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFilletRadius();
+	double getFilletRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}' attribute.
@@ -288,7 +288,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFilletRadius()
 	 * @generated
 	 */
-	void setFilletRadius(float value);
+	void setFilletRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}' attribute.
@@ -296,7 +296,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFilletRadius()
 	 * @see #getFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @generated
 	 */
 	void unsetFilletRadius();
@@ -308,7 +308,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Fillet Radius</em>' attribute is set.
 	 * @see #unsetFilletRadius()
 	 * @see #getFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @generated
 	 */
 	boolean isSetFilletRadius();
@@ -377,12 +377,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Flange Edge Radius</em>' attribute.
 	 * @see #isSetFlangeEdgeRadius()
 	 * @see #unsetFlangeEdgeRadius()
-	 * @see #setFlangeEdgeRadius(float)
+	 * @see #setFlangeEdgeRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_FlangeEdgeRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFlangeEdgeRadius();
+	double getFlangeEdgeRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFlangeEdgeRadius <em>Flange Edge Radius</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeEdgeRadius()
 	 * @generated
 	 */
-	void setFlangeEdgeRadius(float value);
+	void setFlangeEdgeRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFlangeEdgeRadius <em>Flange Edge Radius</em>}' attribute.
@@ -402,7 +402,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFlangeEdgeRadius()
 	 * @see #getFlangeEdgeRadius()
-	 * @see #setFlangeEdgeRadius(float)
+	 * @see #setFlangeEdgeRadius(double)
 	 * @generated
 	 */
 	void unsetFlangeEdgeRadius();
@@ -414,7 +414,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Flange Edge Radius</em>' attribute is set.
 	 * @see #unsetFlangeEdgeRadius()
 	 * @see #getFlangeEdgeRadius()
-	 * @see #setFlangeEdgeRadius(float)
+	 * @see #setFlangeEdgeRadius(double)
 	 * @generated
 	 */
 	boolean isSetFlangeEdgeRadius();
@@ -483,12 +483,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Web Edge Radius</em>' attribute.
 	 * @see #isSetWebEdgeRadius()
 	 * @see #unsetWebEdgeRadius()
-	 * @see #setWebEdgeRadius(float)
+	 * @see #setWebEdgeRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_WebEdgeRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getWebEdgeRadius();
+	double getWebEdgeRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getWebEdgeRadius <em>Web Edge Radius</em>}' attribute.
@@ -500,7 +500,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getWebEdgeRadius()
 	 * @generated
 	 */
-	void setWebEdgeRadius(float value);
+	void setWebEdgeRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getWebEdgeRadius <em>Web Edge Radius</em>}' attribute.
@@ -508,7 +508,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetWebEdgeRadius()
 	 * @see #getWebEdgeRadius()
-	 * @see #setWebEdgeRadius(float)
+	 * @see #setWebEdgeRadius(double)
 	 * @generated
 	 */
 	void unsetWebEdgeRadius();
@@ -520,7 +520,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Web Edge Radius</em>' attribute is set.
 	 * @see #unsetWebEdgeRadius()
 	 * @see #getWebEdgeRadius()
-	 * @see #setWebEdgeRadius(float)
+	 * @see #setWebEdgeRadius(double)
 	 * @generated
 	 */
 	boolean isSetWebEdgeRadius();
@@ -589,12 +589,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Web Slope</em>' attribute.
 	 * @see #isSetWebSlope()
 	 * @see #unsetWebSlope()
-	 * @see #setWebSlope(float)
+	 * @see #setWebSlope(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_WebSlope()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getWebSlope();
+	double getWebSlope();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getWebSlope <em>Web Slope</em>}' attribute.
@@ -606,7 +606,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getWebSlope()
 	 * @generated
 	 */
-	void setWebSlope(float value);
+	void setWebSlope(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getWebSlope <em>Web Slope</em>}' attribute.
@@ -614,7 +614,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetWebSlope()
 	 * @see #getWebSlope()
-	 * @see #setWebSlope(float)
+	 * @see #setWebSlope(double)
 	 * @generated
 	 */
 	void unsetWebSlope();
@@ -626,7 +626,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Web Slope</em>' attribute is set.
 	 * @see #unsetWebSlope()
 	 * @see #getWebSlope()
-	 * @see #setWebSlope(float)
+	 * @see #setWebSlope(double)
 	 * @generated
 	 */
 	boolean isSetWebSlope();
@@ -695,12 +695,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Flange Slope</em>' attribute.
 	 * @see #isSetFlangeSlope()
 	 * @see #unsetFlangeSlope()
-	 * @see #setFlangeSlope(float)
+	 * @see #setFlangeSlope(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_FlangeSlope()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFlangeSlope();
+	double getFlangeSlope();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFlangeSlope <em>Flange Slope</em>}' attribute.
@@ -712,7 +712,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeSlope()
 	 * @generated
 	 */
-	void setFlangeSlope(float value);
+	void setFlangeSlope(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getFlangeSlope <em>Flange Slope</em>}' attribute.
@@ -720,7 +720,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFlangeSlope()
 	 * @see #getFlangeSlope()
-	 * @see #setFlangeSlope(float)
+	 * @see #setFlangeSlope(double)
 	 * @generated
 	 */
 	void unsetFlangeSlope();
@@ -732,7 +732,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Flange Slope</em>' attribute is set.
 	 * @see #unsetFlangeSlope()
 	 * @see #getFlangeSlope()
-	 * @see #setFlangeSlope(float)
+	 * @see #setFlangeSlope(double)
 	 * @generated
 	 */
 	boolean isSetFlangeSlope();
@@ -801,12 +801,12 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Centre Of Gravity In Y</em>' attribute.
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #unsetCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTShapeProfileDef_CentreOfGravityInY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCentreOfGravityInY();
+	double getCentreOfGravityInY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -818,7 +818,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getCentreOfGravityInY()
 	 * @generated
 	 */
-	void setCentreOfGravityInY(float value);
+	void setCentreOfGravityInY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -826,7 +826,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	void unsetCentreOfGravityInY();
@@ -838,7 +838,7 @@ public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Centre Of Gravity In Y</em>' attribute is set.
 	 * @see #unsetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	boolean isSetCentreOfGravityInY();

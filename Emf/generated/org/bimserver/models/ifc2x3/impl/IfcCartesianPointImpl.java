@@ -64,8 +64,8 @@ public class IfcCartesianPointImpl extends IfcPointImpl implements IfcCartesianP
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Float> getCoordinates() {
-		return (EList<Float>) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_POINT__COORDINATES, true);
+	public EList<Double> getCoordinates() {
+		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_POINT__COORDINATES, true);
 	}
 
 	/**

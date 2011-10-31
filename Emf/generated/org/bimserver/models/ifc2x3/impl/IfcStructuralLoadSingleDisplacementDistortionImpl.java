@@ -60,8 +60,8 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDistortion() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION, true);
+	public double getDistortion() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDistortion(float newDistortion) {
+	public void setDistortion(double newDistortion) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION, newDistortion);
 	}
 

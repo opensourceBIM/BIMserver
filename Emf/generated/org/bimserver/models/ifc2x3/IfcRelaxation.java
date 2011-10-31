@@ -48,12 +48,12 @@ public interface IfcRelaxation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relaxation Value</em>' attribute.
-	 * @see #setRelaxationValue(float)
+	 * @see #setRelaxationValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelaxation_RelaxationValue()
 	 * @model
 	 * @generated
 	 */
-	float getRelaxationValue();
+	double getRelaxationValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getRelaxationValue <em>Relaxation Value</em>}' attribute.
@@ -63,7 +63,7 @@ public interface IfcRelaxation extends IdEObject {
 	 * @see #getRelaxationValue()
 	 * @generated
 	 */
-	void setRelaxationValue(float value);
+	void setRelaxationValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Relaxation Value As String</b></em>' attribute.
@@ -100,12 +100,12 @@ public interface IfcRelaxation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Stress</em>' attribute.
-	 * @see #setInitialStress(float)
+	 * @see #setInitialStress(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelaxation_InitialStress()
 	 * @model
 	 * @generated
 	 */
-	float getInitialStress();
+	double getInitialStress();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getInitialStress <em>Initial Stress</em>}' attribute.
@@ -115,7 +115,7 @@ public interface IfcRelaxation extends IdEObject {
 	 * @see #getInitialStress()
 	 * @generated
 	 */
-	void setInitialStress(float value);
+	void setInitialStress(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Initial Stress As String</b></em>' attribute.

@@ -178,8 +178,8 @@ public class IfcRelConnectsStructuralMemberImpl extends IfcRelConnectsImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSupportedLength() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__SUPPORTED_LENGTH, true);
+	public double getSupportedLength() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__SUPPORTED_LENGTH, true);
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class IfcRelConnectsStructuralMemberImpl extends IfcRelConnectsImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSupportedLength(float newSupportedLength) {
+	public void setSupportedLength(double newSupportedLength) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__SUPPORTED_LENGTH, newSupportedLength);
 	}
 

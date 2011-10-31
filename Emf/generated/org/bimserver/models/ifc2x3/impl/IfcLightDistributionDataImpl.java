@@ -78,8 +78,8 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMainPlaneAngle() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE, true);
+	public double getMainPlaneAngle() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE, true);
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMainPlaneAngle(float newMainPlaneAngle) {
+	public void setMainPlaneAngle(double newMainPlaneAngle) {
 		eSet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE, newMainPlaneAngle);
 	}
 
@@ -115,8 +115,8 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Float> getSecondaryPlaneAngle() {
-		return (EList<Float>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE, true);
+	public EList<Double> getSecondaryPlaneAngle() {
+		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE, true);
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Float> getLuminousIntensity() {
-		return (EList<Float>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY, true);
+	public EList<Double> getLuminousIntensity() {
+		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY, true);
 	}
 
 	/**

@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3.IfcRepresentation#getRepresentationType <em>Representation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcRepresentation#getItems <em>Items</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcRepresentation#getRepresentationMap <em>Representation Map</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3.IfcRepresentation#getLayerAssignments <em>Layer Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.IfcRepresentation#getOfProductRepresentation <em>Of Product Representation</em>}</li>
  * </ul>
  * </p>
@@ -207,6 +208,22 @@ public interface IfcRepresentation extends IfcLayeredItem {
 	 * @generated
 	 */
 	EList<IfcRepresentationMap> getRepresentationMap();
+
+	/**
+	 * Returns the value of the '<em><b>Layer Assignments</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc2x3.IfcPresentationLayerAssignment}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Layer Assignments</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Layer Assignments</em>' reference list.
+	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentation_LayerAssignments()
+	 * @model
+	 * @generated
+	 */
+	EList<IfcPresentationLayerAssignment> getLayerAssignments();
 
 	/**
 	 * Returns the value of the '<em><b>Of Product Representation</b></em>' reference list.

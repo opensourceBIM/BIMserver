@@ -114,8 +114,8 @@ public class IfcMaterialLayerImpl extends IdEObjectImpl implements IfcMaterialLa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLayerThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS, true);
+	public double getLayerThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS, true);
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class IfcMaterialLayerImpl extends IdEObjectImpl implements IfcMaterialLa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLayerThickness(float newLayerThickness) {
+	public void setLayerThickness(double newLayerThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS, newLayerThickness);
 	}
 

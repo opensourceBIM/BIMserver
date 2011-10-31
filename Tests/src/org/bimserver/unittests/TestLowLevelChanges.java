@@ -271,7 +271,7 @@ public class TestLowLevelChanges {
 				fail("There should have been 1 IfcCartesianPoint, not " + cartesianPoints.size());
 			}
 			IfcCartesianPoint ifcCartesianPoint = cartesianPoints.iterator().next();
-			EList<Float> coordinates = ifcCartesianPoint.getCoordinates();
+			EList<Double> coordinates = ifcCartesianPoint.getCoordinates();
 			if (coordinates.size() != 3) {
 				fail("There should have been 3 coordinates, not " + coordinates.size());
 			}

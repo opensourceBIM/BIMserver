@@ -27,11 +27,11 @@ public class Step0002 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		schema.loadEcore(getClass().getResourceAsStream("IFC2X3.ecore"));
+		schema.loadEcore(getClass().getResourceAsStream("IFC2X3_TC1.ecore"));
 	}
 
 	@Override
 	public String getDescription() {
-		return "Initial Ifc2x3 model";
+		return "Initial IFC2X3 TC1 model";
 	}
 }

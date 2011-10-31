@@ -53,12 +53,12 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return the value of the '<em>Upper Vapor Resistance Factor</em>' attribute.
 	 * @see #isSetUpperVaporResistanceFactor()
 	 * @see #unsetUpperVaporResistanceFactor()
-	 * @see #setUpperVaporResistanceFactor(float)
+	 * @see #setUpperVaporResistanceFactor(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHygroscopicMaterialProperties_UpperVaporResistanceFactor()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getUpperVaporResistanceFactor();
+	double getUpperVaporResistanceFactor();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getUpperVaporResistanceFactor <em>Upper Vapor Resistance Factor</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @see #getUpperVaporResistanceFactor()
 	 * @generated
 	 */
-	void setUpperVaporResistanceFactor(float value);
+	void setUpperVaporResistanceFactor(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getUpperVaporResistanceFactor <em>Upper Vapor Resistance Factor</em>}' attribute.
@@ -78,7 +78,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * <!-- end-user-doc -->
 	 * @see #isSetUpperVaporResistanceFactor()
 	 * @see #getUpperVaporResistanceFactor()
-	 * @see #setUpperVaporResistanceFactor(float)
+	 * @see #setUpperVaporResistanceFactor(double)
 	 * @generated
 	 */
 	void unsetUpperVaporResistanceFactor();
@@ -90,7 +90,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return whether the value of the '<em>Upper Vapor Resistance Factor</em>' attribute is set.
 	 * @see #unsetUpperVaporResistanceFactor()
 	 * @see #getUpperVaporResistanceFactor()
-	 * @see #setUpperVaporResistanceFactor(float)
+	 * @see #setUpperVaporResistanceFactor(double)
 	 * @generated
 	 */
 	boolean isSetUpperVaporResistanceFactor();
@@ -159,12 +159,12 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return the value of the '<em>Lower Vapor Resistance Factor</em>' attribute.
 	 * @see #isSetLowerVaporResistanceFactor()
 	 * @see #unsetLowerVaporResistanceFactor()
-	 * @see #setLowerVaporResistanceFactor(float)
+	 * @see #setLowerVaporResistanceFactor(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHygroscopicMaterialProperties_LowerVaporResistanceFactor()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLowerVaporResistanceFactor();
+	double getLowerVaporResistanceFactor();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getLowerVaporResistanceFactor <em>Lower Vapor Resistance Factor</em>}' attribute.
@@ -176,7 +176,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @see #getLowerVaporResistanceFactor()
 	 * @generated
 	 */
-	void setLowerVaporResistanceFactor(float value);
+	void setLowerVaporResistanceFactor(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getLowerVaporResistanceFactor <em>Lower Vapor Resistance Factor</em>}' attribute.
@@ -184,7 +184,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * <!-- end-user-doc -->
 	 * @see #isSetLowerVaporResistanceFactor()
 	 * @see #getLowerVaporResistanceFactor()
-	 * @see #setLowerVaporResistanceFactor(float)
+	 * @see #setLowerVaporResistanceFactor(double)
 	 * @generated
 	 */
 	void unsetLowerVaporResistanceFactor();
@@ -196,7 +196,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return whether the value of the '<em>Lower Vapor Resistance Factor</em>' attribute is set.
 	 * @see #unsetLowerVaporResistanceFactor()
 	 * @see #getLowerVaporResistanceFactor()
-	 * @see #setLowerVaporResistanceFactor(float)
+	 * @see #setLowerVaporResistanceFactor(double)
 	 * @generated
 	 */
 	boolean isSetLowerVaporResistanceFactor();
@@ -265,12 +265,12 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return the value of the '<em>Isothermal Moisture Capacity</em>' attribute.
 	 * @see #isSetIsothermalMoistureCapacity()
 	 * @see #unsetIsothermalMoistureCapacity()
-	 * @see #setIsothermalMoistureCapacity(float)
+	 * @see #setIsothermalMoistureCapacity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHygroscopicMaterialProperties_IsothermalMoistureCapacity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getIsothermalMoistureCapacity();
+	double getIsothermalMoistureCapacity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getIsothermalMoistureCapacity <em>Isothermal Moisture Capacity</em>}' attribute.
@@ -282,7 +282,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @see #getIsothermalMoistureCapacity()
 	 * @generated
 	 */
-	void setIsothermalMoistureCapacity(float value);
+	void setIsothermalMoistureCapacity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getIsothermalMoistureCapacity <em>Isothermal Moisture Capacity</em>}' attribute.
@@ -290,7 +290,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * <!-- end-user-doc -->
 	 * @see #isSetIsothermalMoistureCapacity()
 	 * @see #getIsothermalMoistureCapacity()
-	 * @see #setIsothermalMoistureCapacity(float)
+	 * @see #setIsothermalMoistureCapacity(double)
 	 * @generated
 	 */
 	void unsetIsothermalMoistureCapacity();
@@ -302,7 +302,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return whether the value of the '<em>Isothermal Moisture Capacity</em>' attribute is set.
 	 * @see #unsetIsothermalMoistureCapacity()
 	 * @see #getIsothermalMoistureCapacity()
-	 * @see #setIsothermalMoistureCapacity(float)
+	 * @see #setIsothermalMoistureCapacity(double)
 	 * @generated
 	 */
 	boolean isSetIsothermalMoistureCapacity();
@@ -371,12 +371,12 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return the value of the '<em>Vapor Permeability</em>' attribute.
 	 * @see #isSetVaporPermeability()
 	 * @see #unsetVaporPermeability()
-	 * @see #setVaporPermeability(float)
+	 * @see #setVaporPermeability(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHygroscopicMaterialProperties_VaporPermeability()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getVaporPermeability();
+	double getVaporPermeability();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getVaporPermeability <em>Vapor Permeability</em>}' attribute.
@@ -388,7 +388,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @see #getVaporPermeability()
 	 * @generated
 	 */
-	void setVaporPermeability(float value);
+	void setVaporPermeability(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getVaporPermeability <em>Vapor Permeability</em>}' attribute.
@@ -396,7 +396,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * <!-- end-user-doc -->
 	 * @see #isSetVaporPermeability()
 	 * @see #getVaporPermeability()
-	 * @see #setVaporPermeability(float)
+	 * @see #setVaporPermeability(double)
 	 * @generated
 	 */
 	void unsetVaporPermeability();
@@ -408,7 +408,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return whether the value of the '<em>Vapor Permeability</em>' attribute is set.
 	 * @see #unsetVaporPermeability()
 	 * @see #getVaporPermeability()
-	 * @see #setVaporPermeability(float)
+	 * @see #setVaporPermeability(double)
 	 * @generated
 	 */
 	boolean isSetVaporPermeability();
@@ -477,12 +477,12 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return the value of the '<em>Moisture Diffusivity</em>' attribute.
 	 * @see #isSetMoistureDiffusivity()
 	 * @see #unsetMoistureDiffusivity()
-	 * @see #setMoistureDiffusivity(float)
+	 * @see #setMoistureDiffusivity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHygroscopicMaterialProperties_MoistureDiffusivity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMoistureDiffusivity();
+	double getMoistureDiffusivity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getMoistureDiffusivity <em>Moisture Diffusivity</em>}' attribute.
@@ -494,7 +494,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @see #getMoistureDiffusivity()
 	 * @generated
 	 */
-	void setMoistureDiffusivity(float value);
+	void setMoistureDiffusivity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties#getMoistureDiffusivity <em>Moisture Diffusivity</em>}' attribute.
@@ -502,7 +502,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * <!-- end-user-doc -->
 	 * @see #isSetMoistureDiffusivity()
 	 * @see #getMoistureDiffusivity()
-	 * @see #setMoistureDiffusivity(float)
+	 * @see #setMoistureDiffusivity(double)
 	 * @generated
 	 */
 	void unsetMoistureDiffusivity();
@@ -514,7 +514,7 @@ public interface IfcHygroscopicMaterialProperties extends IfcMaterialProperties 
 	 * @return whether the value of the '<em>Moisture Diffusivity</em>' attribute is set.
 	 * @see #unsetMoistureDiffusivity()
 	 * @see #getMoistureDiffusivity()
-	 * @see #setMoistureDiffusivity(float)
+	 * @see #setMoistureDiffusivity(double)
 	 * @generated
 	 */
 	boolean isSetMoistureDiffusivity();

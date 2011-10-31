@@ -124,12 +124,12 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Curve Font Scaling</em>' attribute.
-	 * @see #setCurveFontScaling(float)
+	 * @see #setCurveFontScaling(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontAndScaling_CurveFontScaling()
 	 * @model
 	 * @generated
 	 */
-	float getCurveFontScaling();
+	double getCurveFontScaling();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling#getCurveFontScaling <em>Curve Font Scaling</em>}' attribute.
@@ -139,7 +139,7 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * @see #getCurveFontScaling()
 	 * @generated
 	 */
-	void setCurveFontScaling(float value);
+	void setCurveFontScaling(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Curve Font Scaling As String</b></em>' attribute.

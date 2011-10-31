@@ -58,12 +58,12 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return the value of the '<em>Yield Stress</em>' attribute.
 	 * @see #isSetYieldStress()
 	 * @see #unsetYieldStress()
-	 * @see #setYieldStress(float)
+	 * @see #setYieldStress(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalSteelMaterialProperties_YieldStress()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getYieldStress();
+	double getYieldStress();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getYieldStress <em>Yield Stress</em>}' attribute.
@@ -75,7 +75,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @see #getYieldStress()
 	 * @generated
 	 */
-	void setYieldStress(float value);
+	void setYieldStress(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getYieldStress <em>Yield Stress</em>}' attribute.
@@ -83,7 +83,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * <!-- end-user-doc -->
 	 * @see #isSetYieldStress()
 	 * @see #getYieldStress()
-	 * @see #setYieldStress(float)
+	 * @see #setYieldStress(double)
 	 * @generated
 	 */
 	void unsetYieldStress();
@@ -95,7 +95,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return whether the value of the '<em>Yield Stress</em>' attribute is set.
 	 * @see #unsetYieldStress()
 	 * @see #getYieldStress()
-	 * @see #setYieldStress(float)
+	 * @see #setYieldStress(double)
 	 * @generated
 	 */
 	boolean isSetYieldStress();
@@ -164,12 +164,12 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return the value of the '<em>Ultimate Stress</em>' attribute.
 	 * @see #isSetUltimateStress()
 	 * @see #unsetUltimateStress()
-	 * @see #setUltimateStress(float)
+	 * @see #setUltimateStress(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalSteelMaterialProperties_UltimateStress()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getUltimateStress();
+	double getUltimateStress();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getUltimateStress <em>Ultimate Stress</em>}' attribute.
@@ -181,7 +181,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @see #getUltimateStress()
 	 * @generated
 	 */
-	void setUltimateStress(float value);
+	void setUltimateStress(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getUltimateStress <em>Ultimate Stress</em>}' attribute.
@@ -189,7 +189,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * <!-- end-user-doc -->
 	 * @see #isSetUltimateStress()
 	 * @see #getUltimateStress()
-	 * @see #setUltimateStress(float)
+	 * @see #setUltimateStress(double)
 	 * @generated
 	 */
 	void unsetUltimateStress();
@@ -201,7 +201,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return whether the value of the '<em>Ultimate Stress</em>' attribute is set.
 	 * @see #unsetUltimateStress()
 	 * @see #getUltimateStress()
-	 * @see #setUltimateStress(float)
+	 * @see #setUltimateStress(double)
 	 * @generated
 	 */
 	boolean isSetUltimateStress();
@@ -270,12 +270,12 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return the value of the '<em>Ultimate Strain</em>' attribute.
 	 * @see #isSetUltimateStrain()
 	 * @see #unsetUltimateStrain()
-	 * @see #setUltimateStrain(float)
+	 * @see #setUltimateStrain(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalSteelMaterialProperties_UltimateStrain()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getUltimateStrain();
+	double getUltimateStrain();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getUltimateStrain <em>Ultimate Strain</em>}' attribute.
@@ -287,7 +287,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @see #getUltimateStrain()
 	 * @generated
 	 */
-	void setUltimateStrain(float value);
+	void setUltimateStrain(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getUltimateStrain <em>Ultimate Strain</em>}' attribute.
@@ -295,7 +295,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * <!-- end-user-doc -->
 	 * @see #isSetUltimateStrain()
 	 * @see #getUltimateStrain()
-	 * @see #setUltimateStrain(float)
+	 * @see #setUltimateStrain(double)
 	 * @generated
 	 */
 	void unsetUltimateStrain();
@@ -307,7 +307,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return whether the value of the '<em>Ultimate Strain</em>' attribute is set.
 	 * @see #unsetUltimateStrain()
 	 * @see #getUltimateStrain()
-	 * @see #setUltimateStrain(float)
+	 * @see #setUltimateStrain(double)
 	 * @generated
 	 */
 	boolean isSetUltimateStrain();
@@ -376,12 +376,12 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return the value of the '<em>Hardening Module</em>' attribute.
 	 * @see #isSetHardeningModule()
 	 * @see #unsetHardeningModule()
-	 * @see #setHardeningModule(float)
+	 * @see #setHardeningModule(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalSteelMaterialProperties_HardeningModule()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getHardeningModule();
+	double getHardeningModule();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getHardeningModule <em>Hardening Module</em>}' attribute.
@@ -393,7 +393,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @see #getHardeningModule()
 	 * @generated
 	 */
-	void setHardeningModule(float value);
+	void setHardeningModule(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getHardeningModule <em>Hardening Module</em>}' attribute.
@@ -401,7 +401,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * <!-- end-user-doc -->
 	 * @see #isSetHardeningModule()
 	 * @see #getHardeningModule()
-	 * @see #setHardeningModule(float)
+	 * @see #setHardeningModule(double)
 	 * @generated
 	 */
 	void unsetHardeningModule();
@@ -413,7 +413,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return whether the value of the '<em>Hardening Module</em>' attribute is set.
 	 * @see #unsetHardeningModule()
 	 * @see #getHardeningModule()
-	 * @see #setHardeningModule(float)
+	 * @see #setHardeningModule(double)
 	 * @generated
 	 */
 	boolean isSetHardeningModule();
@@ -482,12 +482,12 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return the value of the '<em>Proportional Stress</em>' attribute.
 	 * @see #isSetProportionalStress()
 	 * @see #unsetProportionalStress()
-	 * @see #setProportionalStress(float)
+	 * @see #setProportionalStress(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalSteelMaterialProperties_ProportionalStress()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getProportionalStress();
+	double getProportionalStress();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getProportionalStress <em>Proportional Stress</em>}' attribute.
@@ -499,7 +499,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @see #getProportionalStress()
 	 * @generated
 	 */
-	void setProportionalStress(float value);
+	void setProportionalStress(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getProportionalStress <em>Proportional Stress</em>}' attribute.
@@ -507,7 +507,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * <!-- end-user-doc -->
 	 * @see #isSetProportionalStress()
 	 * @see #getProportionalStress()
-	 * @see #setProportionalStress(float)
+	 * @see #setProportionalStress(double)
 	 * @generated
 	 */
 	void unsetProportionalStress();
@@ -519,7 +519,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return whether the value of the '<em>Proportional Stress</em>' attribute is set.
 	 * @see #unsetProportionalStress()
 	 * @see #getProportionalStress()
-	 * @see #setProportionalStress(float)
+	 * @see #setProportionalStress(double)
 	 * @generated
 	 */
 	boolean isSetProportionalStress();
@@ -588,12 +588,12 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return the value of the '<em>Plastic Strain</em>' attribute.
 	 * @see #isSetPlasticStrain()
 	 * @see #unsetPlasticStrain()
-	 * @see #setPlasticStrain(float)
+	 * @see #setPlasticStrain(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalSteelMaterialProperties_PlasticStrain()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPlasticStrain();
+	double getPlasticStrain();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getPlasticStrain <em>Plastic Strain</em>}' attribute.
@@ -605,7 +605,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @see #getPlasticStrain()
 	 * @generated
 	 */
-	void setPlasticStrain(float value);
+	void setPlasticStrain(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties#getPlasticStrain <em>Plastic Strain</em>}' attribute.
@@ -613,7 +613,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * <!-- end-user-doc -->
 	 * @see #isSetPlasticStrain()
 	 * @see #getPlasticStrain()
-	 * @see #setPlasticStrain(float)
+	 * @see #setPlasticStrain(double)
 	 * @generated
 	 */
 	void unsetPlasticStrain();
@@ -625,7 +625,7 @@ public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMater
 	 * @return whether the value of the '<em>Plastic Strain</em>' attribute is set.
 	 * @see #unsetPlasticStrain()
 	 * @see #getPlasticStrain()
-	 * @see #setPlasticStrain(float)
+	 * @see #setPlasticStrain(double)
 	 * @generated
 	 */
 	boolean isSetPlasticStrain();

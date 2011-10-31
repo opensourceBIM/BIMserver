@@ -52,12 +52,12 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Thickness</em>' attribute.
 	 * @see #isSetThickness()
 	 * @see #unsetThickness()
-	 * @see #setThickness(float)
+	 * @see #setThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRibPlateProfileProperties_Thickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThickness();
+	double getThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getThickness <em>Thickness</em>}' attribute.
@@ -69,7 +69,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @see #getThickness()
 	 * @generated
 	 */
-	void setThickness(float value);
+	void setThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getThickness <em>Thickness</em>}' attribute.
@@ -77,7 +77,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThickness()
 	 * @see #getThickness()
-	 * @see #setThickness(float)
+	 * @see #setThickness(double)
 	 * @generated
 	 */
 	void unsetThickness();
@@ -89,7 +89,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Thickness</em>' attribute is set.
 	 * @see #unsetThickness()
 	 * @see #getThickness()
-	 * @see #setThickness(float)
+	 * @see #setThickness(double)
 	 * @generated
 	 */
 	boolean isSetThickness();
@@ -158,12 +158,12 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Rib Height</em>' attribute.
 	 * @see #isSetRibHeight()
 	 * @see #unsetRibHeight()
-	 * @see #setRibHeight(float)
+	 * @see #setRibHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRibPlateProfileProperties_RibHeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRibHeight();
+	double getRibHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getRibHeight <em>Rib Height</em>}' attribute.
@@ -175,7 +175,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @see #getRibHeight()
 	 * @generated
 	 */
-	void setRibHeight(float value);
+	void setRibHeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getRibHeight <em>Rib Height</em>}' attribute.
@@ -183,7 +183,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRibHeight()
 	 * @see #getRibHeight()
-	 * @see #setRibHeight(float)
+	 * @see #setRibHeight(double)
 	 * @generated
 	 */
 	void unsetRibHeight();
@@ -195,7 +195,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Rib Height</em>' attribute is set.
 	 * @see #unsetRibHeight()
 	 * @see #getRibHeight()
-	 * @see #setRibHeight(float)
+	 * @see #setRibHeight(double)
 	 * @generated
 	 */
 	boolean isSetRibHeight();
@@ -264,12 +264,12 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Rib Width</em>' attribute.
 	 * @see #isSetRibWidth()
 	 * @see #unsetRibWidth()
-	 * @see #setRibWidth(float)
+	 * @see #setRibWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRibPlateProfileProperties_RibWidth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRibWidth();
+	double getRibWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getRibWidth <em>Rib Width</em>}' attribute.
@@ -281,7 +281,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @see #getRibWidth()
 	 * @generated
 	 */
-	void setRibWidth(float value);
+	void setRibWidth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getRibWidth <em>Rib Width</em>}' attribute.
@@ -289,7 +289,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRibWidth()
 	 * @see #getRibWidth()
-	 * @see #setRibWidth(float)
+	 * @see #setRibWidth(double)
 	 * @generated
 	 */
 	void unsetRibWidth();
@@ -301,7 +301,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Rib Width</em>' attribute is set.
 	 * @see #unsetRibWidth()
 	 * @see #getRibWidth()
-	 * @see #setRibWidth(float)
+	 * @see #setRibWidth(double)
 	 * @generated
 	 */
 	boolean isSetRibWidth();
@@ -370,12 +370,12 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Rib Spacing</em>' attribute.
 	 * @see #isSetRibSpacing()
 	 * @see #unsetRibSpacing()
-	 * @see #setRibSpacing(float)
+	 * @see #setRibSpacing(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRibPlateProfileProperties_RibSpacing()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRibSpacing();
+	double getRibSpacing();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getRibSpacing <em>Rib Spacing</em>}' attribute.
@@ -387,7 +387,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @see #getRibSpacing()
 	 * @generated
 	 */
-	void setRibSpacing(float value);
+	void setRibSpacing(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getRibSpacing <em>Rib Spacing</em>}' attribute.
@@ -395,7 +395,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRibSpacing()
 	 * @see #getRibSpacing()
-	 * @see #setRibSpacing(float)
+	 * @see #setRibSpacing(double)
 	 * @generated
 	 */
 	void unsetRibSpacing();
@@ -407,7 +407,7 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Rib Spacing</em>' attribute is set.
 	 * @see #unsetRibSpacing()
 	 * @see #getRibSpacing()
-	 * @see #setRibSpacing(float)
+	 * @see #setRibSpacing(double)
 	 * @generated
 	 */
 	boolean isSetRibSpacing();

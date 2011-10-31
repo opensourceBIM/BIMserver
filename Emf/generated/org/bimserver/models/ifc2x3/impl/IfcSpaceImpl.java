@@ -86,8 +86,8 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getElevationWithFlooring() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, true);
+	public double getElevationWithFlooring() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, true);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElevationWithFlooring(float newElevationWithFlooring) {
+	public void setElevationWithFlooring(double newElevationWithFlooring) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, newElevationWithFlooring);
 	}
 

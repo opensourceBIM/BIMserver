@@ -60,8 +60,8 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAreaValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, true);
+	public double getAreaValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAreaValue(float newAreaValue) {
+	public void setAreaValue(double newAreaValue) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, newAreaValue);
 	}
 

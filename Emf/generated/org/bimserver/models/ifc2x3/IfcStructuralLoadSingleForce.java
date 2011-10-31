@@ -55,12 +55,12 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Force X</em>' attribute.
 	 * @see #isSetForceX()
 	 * @see #unsetForceX()
-	 * @see #setForceX(float)
+	 * @see #setForceX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleForce_ForceX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getForceX();
+	double getForceX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getForceX <em>Force X</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #getForceX()
 	 * @generated
 	 */
-	void setForceX(float value);
+	void setForceX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getForceX <em>Force X</em>}' attribute.
@@ -80,7 +80,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetForceX()
 	 * @see #getForceX()
-	 * @see #setForceX(float)
+	 * @see #setForceX(double)
 	 * @generated
 	 */
 	void unsetForceX();
@@ -92,7 +92,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Force X</em>' attribute is set.
 	 * @see #unsetForceX()
 	 * @see #getForceX()
-	 * @see #setForceX(float)
+	 * @see #setForceX(double)
 	 * @generated
 	 */
 	boolean isSetForceX();
@@ -161,12 +161,12 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Force Y</em>' attribute.
 	 * @see #isSetForceY()
 	 * @see #unsetForceY()
-	 * @see #setForceY(float)
+	 * @see #setForceY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleForce_ForceY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getForceY();
+	double getForceY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getForceY <em>Force Y</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #getForceY()
 	 * @generated
 	 */
-	void setForceY(float value);
+	void setForceY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getForceY <em>Force Y</em>}' attribute.
@@ -186,7 +186,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetForceY()
 	 * @see #getForceY()
-	 * @see #setForceY(float)
+	 * @see #setForceY(double)
 	 * @generated
 	 */
 	void unsetForceY();
@@ -198,7 +198,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Force Y</em>' attribute is set.
 	 * @see #unsetForceY()
 	 * @see #getForceY()
-	 * @see #setForceY(float)
+	 * @see #setForceY(double)
 	 * @generated
 	 */
 	boolean isSetForceY();
@@ -267,12 +267,12 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Force Z</em>' attribute.
 	 * @see #isSetForceZ()
 	 * @see #unsetForceZ()
-	 * @see #setForceZ(float)
+	 * @see #setForceZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleForce_ForceZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getForceZ();
+	double getForceZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getForceZ <em>Force Z</em>}' attribute.
@@ -284,7 +284,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #getForceZ()
 	 * @generated
 	 */
-	void setForceZ(float value);
+	void setForceZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getForceZ <em>Force Z</em>}' attribute.
@@ -292,7 +292,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetForceZ()
 	 * @see #getForceZ()
-	 * @see #setForceZ(float)
+	 * @see #setForceZ(double)
 	 * @generated
 	 */
 	void unsetForceZ();
@@ -304,7 +304,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Force Z</em>' attribute is set.
 	 * @see #unsetForceZ()
 	 * @see #getForceZ()
-	 * @see #setForceZ(float)
+	 * @see #setForceZ(double)
 	 * @generated
 	 */
 	boolean isSetForceZ();
@@ -373,12 +373,12 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Moment X</em>' attribute.
 	 * @see #isSetMomentX()
 	 * @see #unsetMomentX()
-	 * @see #setMomentX(float)
+	 * @see #setMomentX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleForce_MomentX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMomentX();
+	double getMomentX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getMomentX <em>Moment X</em>}' attribute.
@@ -390,7 +390,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #getMomentX()
 	 * @generated
 	 */
-	void setMomentX(float value);
+	void setMomentX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getMomentX <em>Moment X</em>}' attribute.
@@ -398,7 +398,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMomentX()
 	 * @see #getMomentX()
-	 * @see #setMomentX(float)
+	 * @see #setMomentX(double)
 	 * @generated
 	 */
 	void unsetMomentX();
@@ -410,7 +410,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Moment X</em>' attribute is set.
 	 * @see #unsetMomentX()
 	 * @see #getMomentX()
-	 * @see #setMomentX(float)
+	 * @see #setMomentX(double)
 	 * @generated
 	 */
 	boolean isSetMomentX();
@@ -479,12 +479,12 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Moment Y</em>' attribute.
 	 * @see #isSetMomentY()
 	 * @see #unsetMomentY()
-	 * @see #setMomentY(float)
+	 * @see #setMomentY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleForce_MomentY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMomentY();
+	double getMomentY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getMomentY <em>Moment Y</em>}' attribute.
@@ -496,7 +496,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #getMomentY()
 	 * @generated
 	 */
-	void setMomentY(float value);
+	void setMomentY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getMomentY <em>Moment Y</em>}' attribute.
@@ -504,7 +504,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMomentY()
 	 * @see #getMomentY()
-	 * @see #setMomentY(float)
+	 * @see #setMomentY(double)
 	 * @generated
 	 */
 	void unsetMomentY();
@@ -516,7 +516,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Moment Y</em>' attribute is set.
 	 * @see #unsetMomentY()
 	 * @see #getMomentY()
-	 * @see #setMomentY(float)
+	 * @see #setMomentY(double)
 	 * @generated
 	 */
 	boolean isSetMomentY();
@@ -585,12 +585,12 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return the value of the '<em>Moment Z</em>' attribute.
 	 * @see #isSetMomentZ()
 	 * @see #unsetMomentZ()
-	 * @see #setMomentZ(float)
+	 * @see #setMomentZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleForce_MomentZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMomentZ();
+	double getMomentZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getMomentZ <em>Moment Z</em>}' attribute.
@@ -602,7 +602,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #getMomentZ()
 	 * @generated
 	 */
-	void setMomentZ(float value);
+	void setMomentZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce#getMomentZ <em>Moment Z</em>}' attribute.
@@ -610,7 +610,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMomentZ()
 	 * @see #getMomentZ()
-	 * @see #setMomentZ(float)
+	 * @see #setMomentZ(double)
 	 * @generated
 	 */
 	void unsetMomentZ();
@@ -622,7 +622,7 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @return whether the value of the '<em>Moment Z</em>' attribute is set.
 	 * @see #unsetMomentZ()
 	 * @see #getMomentZ()
-	 * @see #setMomentZ(float)
+	 * @see #setMomentZ(double)
 	 * @generated
 	 */
 	boolean isSetMomentZ();

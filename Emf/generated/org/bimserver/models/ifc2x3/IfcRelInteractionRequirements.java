@@ -50,12 +50,12 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * @return the value of the '<em>Daily Interaction</em>' attribute.
 	 * @see #isSetDailyInteraction()
 	 * @see #unsetDailyInteraction()
-	 * @see #setDailyInteraction(float)
+	 * @see #setDailyInteraction(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelInteractionRequirements_DailyInteraction()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDailyInteraction();
+	double getDailyInteraction();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getDailyInteraction <em>Daily Interaction</em>}' attribute.
@@ -67,7 +67,7 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * @see #getDailyInteraction()
 	 * @generated
 	 */
-	void setDailyInteraction(float value);
+	void setDailyInteraction(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getDailyInteraction <em>Daily Interaction</em>}' attribute.
@@ -75,7 +75,7 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDailyInteraction()
 	 * @see #getDailyInteraction()
-	 * @see #setDailyInteraction(float)
+	 * @see #setDailyInteraction(double)
 	 * @generated
 	 */
 	void unsetDailyInteraction();
@@ -87,7 +87,7 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * @return whether the value of the '<em>Daily Interaction</em>' attribute is set.
 	 * @see #unsetDailyInteraction()
 	 * @see #getDailyInteraction()
-	 * @see #setDailyInteraction(float)
+	 * @see #setDailyInteraction(double)
 	 * @generated
 	 */
 	boolean isSetDailyInteraction();
@@ -156,12 +156,12 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * @return the value of the '<em>Importance Rating</em>' attribute.
 	 * @see #isSetImportanceRating()
 	 * @see #unsetImportanceRating()
-	 * @see #setImportanceRating(float)
+	 * @see #setImportanceRating(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelInteractionRequirements_ImportanceRating()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getImportanceRating();
+	double getImportanceRating();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getImportanceRating <em>Importance Rating</em>}' attribute.
@@ -173,7 +173,7 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * @see #getImportanceRating()
 	 * @generated
 	 */
-	void setImportanceRating(float value);
+	void setImportanceRating(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getImportanceRating <em>Importance Rating</em>}' attribute.
@@ -181,7 +181,7 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @see #isSetImportanceRating()
 	 * @see #getImportanceRating()
-	 * @see #setImportanceRating(float)
+	 * @see #setImportanceRating(double)
 	 * @generated
 	 */
 	void unsetImportanceRating();
@@ -193,7 +193,7 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * @return whether the value of the '<em>Importance Rating</em>' attribute is set.
 	 * @see #unsetImportanceRating()
 	 * @see #getImportanceRating()
-	 * @see #setImportanceRating(float)
+	 * @see #setImportanceRating(double)
 	 * @generated
 	 */
 	boolean isSetImportanceRating();

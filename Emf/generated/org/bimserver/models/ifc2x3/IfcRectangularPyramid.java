@@ -47,12 +47,12 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XLength</em>' attribute.
-	 * @see #setXLength(float)
+	 * @see #setXLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_XLength()
 	 * @model
 	 * @generated
 	 */
-	float getXLength();
+	double getXLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getXLength <em>XLength</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * @see #getXLength()
 	 * @generated
 	 */
-	void setXLength(float value);
+	void setXLength(double value);
 
 	/**
 	 * Returns the value of the '<em><b>XLength As String</b></em>' attribute.
@@ -99,12 +99,12 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YLength</em>' attribute.
-	 * @see #setYLength(float)
+	 * @see #setYLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_YLength()
 	 * @model
 	 * @generated
 	 */
-	float getYLength();
+	double getYLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getYLength <em>YLength</em>}' attribute.
@@ -114,7 +114,7 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * @see #getYLength()
 	 * @generated
 	 */
-	void setYLength(float value);
+	void setYLength(double value);
 
 	/**
 	 * Returns the value of the '<em><b>YLength As String</b></em>' attribute.
@@ -151,12 +151,12 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
-	 * @see #setHeight(float)
+	 * @see #setHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_Height()
 	 * @model
 	 * @generated
 	 */
-	float getHeight();
+	double getHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getHeight <em>Height</em>}' attribute.
@@ -166,7 +166,7 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * @see #getHeight()
 	 * @generated
 	 */
-	void setHeight(float value);
+	void setHeight(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Height As String</b></em>' attribute.

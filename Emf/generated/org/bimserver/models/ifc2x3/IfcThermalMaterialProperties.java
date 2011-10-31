@@ -51,12 +51,12 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Specific Heat Capacity</em>' attribute.
 	 * @see #isSetSpecificHeatCapacity()
 	 * @see #unsetSpecificHeatCapacity()
-	 * @see #setSpecificHeatCapacity(float)
+	 * @see #setSpecificHeatCapacity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcThermalMaterialProperties_SpecificHeatCapacity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSpecificHeatCapacity();
+	double getSpecificHeatCapacity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getSpecificHeatCapacity <em>Specific Heat Capacity</em>}' attribute.
@@ -68,7 +68,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getSpecificHeatCapacity()
 	 * @generated
 	 */
-	void setSpecificHeatCapacity(float value);
+	void setSpecificHeatCapacity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getSpecificHeatCapacity <em>Specific Heat Capacity</em>}' attribute.
@@ -76,7 +76,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSpecificHeatCapacity()
 	 * @see #getSpecificHeatCapacity()
-	 * @see #setSpecificHeatCapacity(float)
+	 * @see #setSpecificHeatCapacity(double)
 	 * @generated
 	 */
 	void unsetSpecificHeatCapacity();
@@ -88,7 +88,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Specific Heat Capacity</em>' attribute is set.
 	 * @see #unsetSpecificHeatCapacity()
 	 * @see #getSpecificHeatCapacity()
-	 * @see #setSpecificHeatCapacity(float)
+	 * @see #setSpecificHeatCapacity(double)
 	 * @generated
 	 */
 	boolean isSetSpecificHeatCapacity();
@@ -157,12 +157,12 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Boiling Point</em>' attribute.
 	 * @see #isSetBoilingPoint()
 	 * @see #unsetBoilingPoint()
-	 * @see #setBoilingPoint(float)
+	 * @see #setBoilingPoint(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcThermalMaterialProperties_BoilingPoint()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getBoilingPoint();
+	double getBoilingPoint();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getBoilingPoint <em>Boiling Point</em>}' attribute.
@@ -174,7 +174,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getBoilingPoint()
 	 * @generated
 	 */
-	void setBoilingPoint(float value);
+	void setBoilingPoint(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getBoilingPoint <em>Boiling Point</em>}' attribute.
@@ -182,7 +182,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetBoilingPoint()
 	 * @see #getBoilingPoint()
-	 * @see #setBoilingPoint(float)
+	 * @see #setBoilingPoint(double)
 	 * @generated
 	 */
 	void unsetBoilingPoint();
@@ -194,7 +194,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Boiling Point</em>' attribute is set.
 	 * @see #unsetBoilingPoint()
 	 * @see #getBoilingPoint()
-	 * @see #setBoilingPoint(float)
+	 * @see #setBoilingPoint(double)
 	 * @generated
 	 */
 	boolean isSetBoilingPoint();
@@ -263,12 +263,12 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Freezing Point</em>' attribute.
 	 * @see #isSetFreezingPoint()
 	 * @see #unsetFreezingPoint()
-	 * @see #setFreezingPoint(float)
+	 * @see #setFreezingPoint(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcThermalMaterialProperties_FreezingPoint()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFreezingPoint();
+	double getFreezingPoint();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getFreezingPoint <em>Freezing Point</em>}' attribute.
@@ -280,7 +280,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getFreezingPoint()
 	 * @generated
 	 */
-	void setFreezingPoint(float value);
+	void setFreezingPoint(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getFreezingPoint <em>Freezing Point</em>}' attribute.
@@ -288,7 +288,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFreezingPoint()
 	 * @see #getFreezingPoint()
-	 * @see #setFreezingPoint(float)
+	 * @see #setFreezingPoint(double)
 	 * @generated
 	 */
 	void unsetFreezingPoint();
@@ -300,7 +300,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Freezing Point</em>' attribute is set.
 	 * @see #unsetFreezingPoint()
 	 * @see #getFreezingPoint()
-	 * @see #setFreezingPoint(float)
+	 * @see #setFreezingPoint(double)
 	 * @generated
 	 */
 	boolean isSetFreezingPoint();
@@ -369,12 +369,12 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Thermal Conductivity</em>' attribute.
 	 * @see #isSetThermalConductivity()
 	 * @see #unsetThermalConductivity()
-	 * @see #setThermalConductivity(float)
+	 * @see #setThermalConductivity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcThermalMaterialProperties_ThermalConductivity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThermalConductivity();
+	double getThermalConductivity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getThermalConductivity <em>Thermal Conductivity</em>}' attribute.
@@ -386,7 +386,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getThermalConductivity()
 	 * @generated
 	 */
-	void setThermalConductivity(float value);
+	void setThermalConductivity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcThermalMaterialProperties#getThermalConductivity <em>Thermal Conductivity</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThermalConductivity()
 	 * @see #getThermalConductivity()
-	 * @see #setThermalConductivity(float)
+	 * @see #setThermalConductivity(double)
 	 * @generated
 	 */
 	void unsetThermalConductivity();
@@ -406,7 +406,7 @@ public interface IfcThermalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Thermal Conductivity</em>' attribute is set.
 	 * @see #unsetThermalConductivity()
 	 * @see #getThermalConductivity()
-	 * @see #setThermalConductivity(float)
+	 * @see #setThermalConductivity(double)
 	 * @generated
 	 */
 	boolean isSetThermalConductivity();

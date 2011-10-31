@@ -70,8 +70,8 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getForceX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_X, true);
+	public double getForceX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_X, true);
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setForceX(float newForceX) {
+	public void setForceX(double newForceX) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_X, newForceX);
 	}
 
@@ -142,8 +142,8 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getForceY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_Y, true);
+	public double getForceY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_Y, true);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setForceY(float newForceY) {
+	public void setForceY(double newForceY) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_Y, newForceY);
 	}
 
@@ -214,8 +214,8 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getForceZ() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_Z, true);
+	public double getForceZ() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_Z, true);
 	}
 
 	/**
@@ -223,7 +223,7 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setForceZ(float newForceZ) {
+	public void setForceZ(double newForceZ) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__FORCE_Z, newForceZ);
 	}
 
@@ -286,8 +286,8 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMomentX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_X, true);
+	public double getMomentX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_X, true);
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMomentX(float newMomentX) {
+	public void setMomentX(double newMomentX) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_X, newMomentX);
 	}
 
@@ -358,8 +358,8 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMomentY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_Y, true);
+	public double getMomentY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_Y, true);
 	}
 
 	/**
@@ -367,7 +367,7 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMomentY(float newMomentY) {
+	public void setMomentY(double newMomentY) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_Y, newMomentY);
 	}
 
@@ -430,8 +430,8 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMomentZ() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_Z, true);
+	public double getMomentZ() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_Z, true);
 	}
 
 	/**
@@ -439,7 +439,7 @@ public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMomentZ(float newMomentZ) {
+	public void setMomentZ(double newMomentZ) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE__MOMENT_Z, newMomentZ);
 	}
 

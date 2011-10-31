@@ -94,8 +94,8 @@ public class IfcFillAreaStyleTilesImpl extends IfcGeometricRepresentationItemImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTilingScale() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILING_SCALE, true);
+	public double getTilingScale() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILING_SCALE, true);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class IfcFillAreaStyleTilesImpl extends IfcGeometricRepresentationItemImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTilingScale(float newTilingScale) {
+	public void setTilingScale(double newTilingScale) {
 		eSet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILING_SCALE, newTilingScale);
 	}
 

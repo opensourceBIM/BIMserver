@@ -64,8 +64,8 @@ public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPlanarForceX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_X, true);
+	public double getPlanarForceX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_X, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlanarForceX(float newPlanarForceX) {
+	public void setPlanarForceX(double newPlanarForceX) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_X, newPlanarForceX);
 	}
 
@@ -136,8 +136,8 @@ public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPlanarForceY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_Y, true);
+	public double getPlanarForceY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_Y, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlanarForceY(float newPlanarForceY) {
+	public void setPlanarForceY(double newPlanarForceY) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_Y, newPlanarForceY);
 	}
 
@@ -208,8 +208,8 @@ public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPlanarForceZ() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_Z, true);
+	public double getPlanarForceZ() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_Z, true);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlanarForceZ(float newPlanarForceZ) {
+	public void setPlanarForceZ(double newPlanarForceZ) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_PLANAR_FORCE__PLANAR_FORCE_Z, newPlanarForceZ);
 	}
 

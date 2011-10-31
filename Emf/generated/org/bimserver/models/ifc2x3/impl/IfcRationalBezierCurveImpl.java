@@ -63,8 +63,8 @@ public class IfcRationalBezierCurveImpl extends IfcBezierCurveImpl implements If
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Float> getWeightsData() {
-		return (EList<Float>) eGet(Ifc2x3Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA, true);
+	public EList<Double> getWeightsData() {
+		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA, true);
 	}
 
 	/**

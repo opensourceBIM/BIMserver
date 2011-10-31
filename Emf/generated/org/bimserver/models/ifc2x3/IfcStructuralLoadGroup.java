@@ -140,12 +140,12 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * @return the value of the '<em>Coefficient</em>' attribute.
 	 * @see #isSetCoefficient()
 	 * @see #unsetCoefficient()
-	 * @see #setCoefficient(float)
+	 * @see #setCoefficient(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadGroup_Coefficient()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCoefficient();
+	double getCoefficient();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getCoefficient <em>Coefficient</em>}' attribute.
@@ -157,7 +157,7 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * @see #getCoefficient()
 	 * @generated
 	 */
-	void setCoefficient(float value);
+	void setCoefficient(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getCoefficient <em>Coefficient</em>}' attribute.
@@ -165,7 +165,7 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCoefficient()
 	 * @see #getCoefficient()
-	 * @see #setCoefficient(float)
+	 * @see #setCoefficient(double)
 	 * @generated
 	 */
 	void unsetCoefficient();
@@ -177,7 +177,7 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * @return whether the value of the '<em>Coefficient</em>' attribute is set.
 	 * @see #unsetCoefficient()
 	 * @see #getCoefficient()
-	 * @see #setCoefficient(float)
+	 * @see #setCoefficient(double)
 	 * @generated
 	 */
 	boolean isSetCoefficient();

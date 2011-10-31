@@ -178,11 +178,11 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 			if (!ObjectIDM.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
-					if (get instanceof Float || get instanceof Double) {
-						EStructuralFeature floatStringFeature = original.eClass().getEStructuralFeature("wrappedValueAsString");
-						if (floatStringFeature != null) {
-							Object floatString = original.eGet(floatStringFeature);
-							newObject.eSet(floatStringFeature, floatString);
+					if (get instanceof Double) {
+						EStructuralFeature doubleStringFeature = original.eClass().getEStructuralFeature("wrappedValueAsString");
+						if (doubleStringFeature != null) {
+							Object doubleString = original.eGet(doubleStringFeature);
+							newObject.eSet(doubleStringFeature, doubleString);
 						} else {
 							newObject.eSet(eStructuralFeature, get);
 						}

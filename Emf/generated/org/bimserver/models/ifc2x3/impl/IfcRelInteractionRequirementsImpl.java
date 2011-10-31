@@ -67,8 +67,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDailyInteraction() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION, true);
+	public double getDailyInteraction() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION, true);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDailyInteraction(float newDailyInteraction) {
+	public void setDailyInteraction(double newDailyInteraction) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION, newDailyInteraction);
 	}
 
@@ -139,8 +139,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getImportanceRating() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING, true);
+	public double getImportanceRating() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING, true);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImportanceRating(float newImportanceRating) {
+	public void setImportanceRating(double newImportanceRating) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING, newImportanceRating);
 	}
 

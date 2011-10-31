@@ -58,11 +58,11 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 	@Override
 	public void init(PluginManager pluginManager) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
-		InputStream inputStream = pluginContext.getResourceAsInputStream("schema/IFC2X3_FINAL.exp");
+		InputStream inputStream = pluginContext.getResourceAsInputStream("schema/IFC2X3_TC1.exp");
 		if (!pluginManager.getTempDir().exists()) {
 			pluginManager.getTempDir().mkdir();
 		}
-		schemaFile = new File(pluginManager.getTempDir(), "IFC2X3_FINAL.exp");
+		schemaFile = new File(pluginManager.getTempDir(), "IFC2X3_TC1.exp");
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(schemaFile);
 			IOUtils.copy(inputStream, fileOutputStream);

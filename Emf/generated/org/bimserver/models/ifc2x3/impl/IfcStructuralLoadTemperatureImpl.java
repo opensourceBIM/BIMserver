@@ -64,8 +64,8 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDeltaT_Constant() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT, true);
+	public double getDeltaT_Constant() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeltaT_Constant(float newDeltaT_Constant) {
+	public void setDeltaT_Constant(double newDeltaT_Constant) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT, newDeltaT_Constant);
 	}
 
@@ -136,8 +136,8 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDeltaT_Y() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TY, true);
+	public double getDeltaT_Y() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TY, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeltaT_Y(float newDeltaT_Y) {
+	public void setDeltaT_Y(double newDeltaT_Y) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TY, newDeltaT_Y);
 	}
 
@@ -208,8 +208,8 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDeltaT_Z() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TZ, true);
+	public double getDeltaT_Z() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TZ, true);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeltaT_Z(float newDeltaT_Z) {
+	public void setDeltaT_Z(double newDeltaT_Z) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TZ, newDeltaT_Z);
 	}
 

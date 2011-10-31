@@ -64,12 +64,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Lining Depth</em>' attribute.
 	 * @see #isSetLiningDepth()
 	 * @see #unsetLiningDepth()
-	 * @see #setLiningDepth(float)
+	 * @see #setLiningDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_LiningDepth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLiningDepth();
+	double getLiningDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getLiningDepth <em>Lining Depth</em>}' attribute.
@@ -81,7 +81,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getLiningDepth()
 	 * @generated
 	 */
-	void setLiningDepth(float value);
+	void setLiningDepth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getLiningDepth <em>Lining Depth</em>}' attribute.
@@ -89,7 +89,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLiningDepth()
 	 * @see #getLiningDepth()
-	 * @see #setLiningDepth(float)
+	 * @see #setLiningDepth(double)
 	 * @generated
 	 */
 	void unsetLiningDepth();
@@ -101,7 +101,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Lining Depth</em>' attribute is set.
 	 * @see #unsetLiningDepth()
 	 * @see #getLiningDepth()
-	 * @see #setLiningDepth(float)
+	 * @see #setLiningDepth(double)
 	 * @generated
 	 */
 	boolean isSetLiningDepth();
@@ -170,12 +170,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Lining Thickness</em>' attribute.
 	 * @see #isSetLiningThickness()
 	 * @see #unsetLiningThickness()
-	 * @see #setLiningThickness(float)
+	 * @see #setLiningThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_LiningThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLiningThickness();
+	double getLiningThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getLiningThickness <em>Lining Thickness</em>}' attribute.
@@ -187,7 +187,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getLiningThickness()
 	 * @generated
 	 */
-	void setLiningThickness(float value);
+	void setLiningThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getLiningThickness <em>Lining Thickness</em>}' attribute.
@@ -195,7 +195,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLiningThickness()
 	 * @see #getLiningThickness()
-	 * @see #setLiningThickness(float)
+	 * @see #setLiningThickness(double)
 	 * @generated
 	 */
 	void unsetLiningThickness();
@@ -207,7 +207,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Lining Thickness</em>' attribute is set.
 	 * @see #unsetLiningThickness()
 	 * @see #getLiningThickness()
-	 * @see #setLiningThickness(float)
+	 * @see #setLiningThickness(double)
 	 * @generated
 	 */
 	boolean isSetLiningThickness();
@@ -276,12 +276,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Threshold Depth</em>' attribute.
 	 * @see #isSetThresholdDepth()
 	 * @see #unsetThresholdDepth()
-	 * @see #setThresholdDepth(float)
+	 * @see #setThresholdDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_ThresholdDepth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThresholdDepth();
+	double getThresholdDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getThresholdDepth <em>Threshold Depth</em>}' attribute.
@@ -293,7 +293,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getThresholdDepth()
 	 * @generated
 	 */
-	void setThresholdDepth(float value);
+	void setThresholdDepth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getThresholdDepth <em>Threshold Depth</em>}' attribute.
@@ -301,7 +301,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThresholdDepth()
 	 * @see #getThresholdDepth()
-	 * @see #setThresholdDepth(float)
+	 * @see #setThresholdDepth(double)
 	 * @generated
 	 */
 	void unsetThresholdDepth();
@@ -313,7 +313,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Threshold Depth</em>' attribute is set.
 	 * @see #unsetThresholdDepth()
 	 * @see #getThresholdDepth()
-	 * @see #setThresholdDepth(float)
+	 * @see #setThresholdDepth(double)
 	 * @generated
 	 */
 	boolean isSetThresholdDepth();
@@ -382,12 +382,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Threshold Thickness</em>' attribute.
 	 * @see #isSetThresholdThickness()
 	 * @see #unsetThresholdThickness()
-	 * @see #setThresholdThickness(float)
+	 * @see #setThresholdThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_ThresholdThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThresholdThickness();
+	double getThresholdThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getThresholdThickness <em>Threshold Thickness</em>}' attribute.
@@ -399,7 +399,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getThresholdThickness()
 	 * @generated
 	 */
-	void setThresholdThickness(float value);
+	void setThresholdThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getThresholdThickness <em>Threshold Thickness</em>}' attribute.
@@ -407,7 +407,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThresholdThickness()
 	 * @see #getThresholdThickness()
-	 * @see #setThresholdThickness(float)
+	 * @see #setThresholdThickness(double)
 	 * @generated
 	 */
 	void unsetThresholdThickness();
@@ -419,7 +419,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Threshold Thickness</em>' attribute is set.
 	 * @see #unsetThresholdThickness()
 	 * @see #getThresholdThickness()
-	 * @see #setThresholdThickness(float)
+	 * @see #setThresholdThickness(double)
 	 * @generated
 	 */
 	boolean isSetThresholdThickness();
@@ -488,12 +488,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Transom Thickness</em>' attribute.
 	 * @see #isSetTransomThickness()
 	 * @see #unsetTransomThickness()
-	 * @see #setTransomThickness(float)
+	 * @see #setTransomThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_TransomThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTransomThickness();
+	double getTransomThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getTransomThickness <em>Transom Thickness</em>}' attribute.
@@ -505,7 +505,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getTransomThickness()
 	 * @generated
 	 */
-	void setTransomThickness(float value);
+	void setTransomThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getTransomThickness <em>Transom Thickness</em>}' attribute.
@@ -513,7 +513,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTransomThickness()
 	 * @see #getTransomThickness()
-	 * @see #setTransomThickness(float)
+	 * @see #setTransomThickness(double)
 	 * @generated
 	 */
 	void unsetTransomThickness();
@@ -525,7 +525,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Transom Thickness</em>' attribute is set.
 	 * @see #unsetTransomThickness()
 	 * @see #getTransomThickness()
-	 * @see #setTransomThickness(float)
+	 * @see #setTransomThickness(double)
 	 * @generated
 	 */
 	boolean isSetTransomThickness();
@@ -594,12 +594,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Transom Offset</em>' attribute.
 	 * @see #isSetTransomOffset()
 	 * @see #unsetTransomOffset()
-	 * @see #setTransomOffset(float)
+	 * @see #setTransomOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_TransomOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTransomOffset();
+	double getTransomOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getTransomOffset <em>Transom Offset</em>}' attribute.
@@ -611,7 +611,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getTransomOffset()
 	 * @generated
 	 */
-	void setTransomOffset(float value);
+	void setTransomOffset(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getTransomOffset <em>Transom Offset</em>}' attribute.
@@ -619,7 +619,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTransomOffset()
 	 * @see #getTransomOffset()
-	 * @see #setTransomOffset(float)
+	 * @see #setTransomOffset(double)
 	 * @generated
 	 */
 	void unsetTransomOffset();
@@ -631,7 +631,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Transom Offset</em>' attribute is set.
 	 * @see #unsetTransomOffset()
 	 * @see #getTransomOffset()
-	 * @see #setTransomOffset(float)
+	 * @see #setTransomOffset(double)
 	 * @generated
 	 */
 	boolean isSetTransomOffset();
@@ -700,12 +700,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Lining Offset</em>' attribute.
 	 * @see #isSetLiningOffset()
 	 * @see #unsetLiningOffset()
-	 * @see #setLiningOffset(float)
+	 * @see #setLiningOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_LiningOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLiningOffset();
+	double getLiningOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getLiningOffset <em>Lining Offset</em>}' attribute.
@@ -717,7 +717,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getLiningOffset()
 	 * @generated
 	 */
-	void setLiningOffset(float value);
+	void setLiningOffset(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getLiningOffset <em>Lining Offset</em>}' attribute.
@@ -725,7 +725,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLiningOffset()
 	 * @see #getLiningOffset()
-	 * @see #setLiningOffset(float)
+	 * @see #setLiningOffset(double)
 	 * @generated
 	 */
 	void unsetLiningOffset();
@@ -737,7 +737,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Lining Offset</em>' attribute is set.
 	 * @see #unsetLiningOffset()
 	 * @see #getLiningOffset()
-	 * @see #setLiningOffset(float)
+	 * @see #setLiningOffset(double)
 	 * @generated
 	 */
 	boolean isSetLiningOffset();
@@ -806,12 +806,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Threshold Offset</em>' attribute.
 	 * @see #isSetThresholdOffset()
 	 * @see #unsetThresholdOffset()
-	 * @see #setThresholdOffset(float)
+	 * @see #setThresholdOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_ThresholdOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThresholdOffset();
+	double getThresholdOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getThresholdOffset <em>Threshold Offset</em>}' attribute.
@@ -823,7 +823,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getThresholdOffset()
 	 * @generated
 	 */
-	void setThresholdOffset(float value);
+	void setThresholdOffset(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getThresholdOffset <em>Threshold Offset</em>}' attribute.
@@ -831,7 +831,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThresholdOffset()
 	 * @see #getThresholdOffset()
-	 * @see #setThresholdOffset(float)
+	 * @see #setThresholdOffset(double)
 	 * @generated
 	 */
 	void unsetThresholdOffset();
@@ -843,7 +843,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Threshold Offset</em>' attribute is set.
 	 * @see #unsetThresholdOffset()
 	 * @see #getThresholdOffset()
-	 * @see #setThresholdOffset(float)
+	 * @see #setThresholdOffset(double)
 	 * @generated
 	 */
 	boolean isSetThresholdOffset();
@@ -912,12 +912,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Casing Thickness</em>' attribute.
 	 * @see #isSetCasingThickness()
 	 * @see #unsetCasingThickness()
-	 * @see #setCasingThickness(float)
+	 * @see #setCasingThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_CasingThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCasingThickness();
+	double getCasingThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getCasingThickness <em>Casing Thickness</em>}' attribute.
@@ -929,7 +929,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getCasingThickness()
 	 * @generated
 	 */
-	void setCasingThickness(float value);
+	void setCasingThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getCasingThickness <em>Casing Thickness</em>}' attribute.
@@ -937,7 +937,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCasingThickness()
 	 * @see #getCasingThickness()
-	 * @see #setCasingThickness(float)
+	 * @see #setCasingThickness(double)
 	 * @generated
 	 */
 	void unsetCasingThickness();
@@ -949,7 +949,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Casing Thickness</em>' attribute is set.
 	 * @see #unsetCasingThickness()
 	 * @see #getCasingThickness()
-	 * @see #setCasingThickness(float)
+	 * @see #setCasingThickness(double)
 	 * @generated
 	 */
 	boolean isSetCasingThickness();
@@ -1018,12 +1018,12 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Casing Depth</em>' attribute.
 	 * @see #isSetCasingDepth()
 	 * @see #unsetCasingDepth()
-	 * @see #setCasingDepth(float)
+	 * @see #setCasingDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorLiningProperties_CasingDepth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCasingDepth();
+	double getCasingDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getCasingDepth <em>Casing Depth</em>}' attribute.
@@ -1035,7 +1035,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getCasingDepth()
 	 * @generated
 	 */
-	void setCasingDepth(float value);
+	void setCasingDepth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorLiningProperties#getCasingDepth <em>Casing Depth</em>}' attribute.
@@ -1043,7 +1043,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCasingDepth()
 	 * @see #getCasingDepth()
-	 * @see #setCasingDepth(float)
+	 * @see #setCasingDepth(double)
 	 * @generated
 	 */
 	void unsetCasingDepth();
@@ -1055,7 +1055,7 @@ public interface IfcDoorLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Casing Depth</em>' attribute is set.
 	 * @see #unsetCasingDepth()
 	 * @see #getCasingDepth()
-	 * @see #setCasingDepth(float)
+	 * @see #setCasingDepth(double)
 	 * @generated
 	 */
 	boolean isSetCasingDepth();

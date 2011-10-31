@@ -62,8 +62,8 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getHeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT, true);
+	public double getHeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT, true);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHeight(float newHeight) {
+	public void setHeight(double newHeight) {
 		eSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT, newHeight);
 	}
 
@@ -98,8 +98,8 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS, true);
+	public double getRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS, true);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRadius(float newRadius) {
+	public void setRadius(double newRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS, newRadius);
 	}
 

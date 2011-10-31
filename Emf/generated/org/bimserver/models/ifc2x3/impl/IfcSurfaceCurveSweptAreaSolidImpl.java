@@ -84,8 +84,8 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getStartParam() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM, true);
+	public double getStartParam() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM, true);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStartParam(float newStartParam) {
+	public void setStartParam(double newStartParam) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM, newStartParam);
 	}
 
@@ -120,8 +120,8 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getEndParam() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM, true);
+	public double getEndParam() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM, true);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEndParam(float newEndParam) {
+	public void setEndParam(double newEndParam) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM, newEndParam);
 	}
 

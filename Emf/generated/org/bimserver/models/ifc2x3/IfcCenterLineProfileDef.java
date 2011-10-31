@@ -43,12 +43,12 @@ public interface IfcCenterLineProfileDef extends IfcArbitraryOpenProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Thickness</em>' attribute.
-	 * @see #setThickness(float)
+	 * @see #setThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCenterLineProfileDef_Thickness()
 	 * @model
 	 * @generated
 	 */
-	float getThickness();
+	double getThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCenterLineProfileDef#getThickness <em>Thickness</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcCenterLineProfileDef extends IfcArbitraryOpenProfileDef {
 	 * @see #getThickness()
 	 * @generated
 	 */
-	void setThickness(float value);
+	void setThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Thickness As String</b></em>' attribute.

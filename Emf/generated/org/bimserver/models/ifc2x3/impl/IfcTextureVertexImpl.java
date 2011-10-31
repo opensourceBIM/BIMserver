@@ -75,8 +75,8 @@ public class IfcTextureVertexImpl extends IdEObjectImpl implements IfcTextureVer
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Float> getCoordinates() {
-		return (EList<Float>) eGet(Ifc2x3Package.Literals.IFC_TEXTURE_VERTEX__COORDINATES, true);
+	public EList<Double> getCoordinates() {
+		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_TEXTURE_VERTEX__COORDINATES, true);
 	}
 
 	/**

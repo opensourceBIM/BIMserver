@@ -45,12 +45,12 @@ public interface IfcRoundedEdgeFeature extends IfcEdgeFeature {
 	 * @return the value of the '<em>Radius</em>' attribute.
 	 * @see #isSetRadius()
 	 * @see #unsetRadius()
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRoundedEdgeFeature_Radius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRadius();
+	double getRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRoundedEdgeFeature#getRadius <em>Radius</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcRoundedEdgeFeature extends IfcEdgeFeature {
 	 * @see #getRadius()
 	 * @generated
 	 */
-	void setRadius(float value);
+	void setRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRoundedEdgeFeature#getRadius <em>Radius</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcRoundedEdgeFeature extends IfcEdgeFeature {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRadius()
 	 * @see #getRadius()
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @generated
 	 */
 	void unsetRadius();
@@ -82,7 +82,7 @@ public interface IfcRoundedEdgeFeature extends IfcEdgeFeature {
 	 * @return whether the value of the '<em>Radius</em>' attribute is set.
 	 * @see #unsetRadius()
 	 * @see #getRadius()
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @generated
 	 */
 	boolean isSetRadius();

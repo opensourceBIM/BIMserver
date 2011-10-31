@@ -23,7 +23,7 @@ public class TestFailSafeIfcEngine {
 	}
 
 	private void start() {
-//		FailSafeIfcEngine ifcEngine = new FailSafeIfcEngine(new File("C:\\Newer Workspaces\\BimServer\\BimServer\\deploy\\shared\\IFC2X3_FINAL.exp"), new File("C:\\Newer Workspaces\\BimServer\\IFCEngine\\lib"));
+//		FailSafeIfcEngine ifcEngine = new FailSafeIfcEngine(new File("C:\\Newer Workspaces\\BimServer\\BimServer\\deploy\\shared\\IFC2X3_TC1.exp"), new File("C:\\Newer Workspaces\\BimServer\\IFCEngine\\lib"));
 //		try {
 //			IfcEngineModel model = ifcEngine.openModel(new File("C:\\Newer Workspaces\\BimServer\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //			try {

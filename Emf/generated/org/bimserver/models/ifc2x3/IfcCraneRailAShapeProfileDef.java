@@ -65,12 +65,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Overall Height</em>' attribute.
-	 * @see #setOverallHeight(float)
+	 * @see #setOverallHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_OverallHeight()
 	 * @model
 	 * @generated
 	 */
-	float getOverallHeight();
+	double getOverallHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getOverallHeight <em>Overall Height</em>}' attribute.
@@ -80,7 +80,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getOverallHeight()
 	 * @generated
 	 */
-	void setOverallHeight(float value);
+	void setOverallHeight(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Overall Height As String</b></em>' attribute.
@@ -117,12 +117,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Width2</em>' attribute.
-	 * @see #setBaseWidth2(float)
+	 * @see #setBaseWidth2(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_BaseWidth2()
 	 * @model
 	 * @generated
 	 */
-	float getBaseWidth2();
+	double getBaseWidth2();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getBaseWidth2 <em>Base Width2</em>}' attribute.
@@ -132,7 +132,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getBaseWidth2()
 	 * @generated
 	 */
-	void setBaseWidth2(float value);
+	void setBaseWidth2(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Base Width2 As String</b></em>' attribute.
@@ -171,12 +171,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @return the value of the '<em>Radius</em>' attribute.
 	 * @see #isSetRadius()
 	 * @see #unsetRadius()
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_Radius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRadius();
+	double getRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getRadius <em>Radius</em>}' attribute.
@@ -188,7 +188,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getRadius()
 	 * @generated
 	 */
-	void setRadius(float value);
+	void setRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getRadius <em>Radius</em>}' attribute.
@@ -196,7 +196,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * <!-- end-user-doc -->
 	 * @see #isSetRadius()
 	 * @see #getRadius()
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @generated
 	 */
 	void unsetRadius();
@@ -208,7 +208,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @return whether the value of the '<em>Radius</em>' attribute is set.
 	 * @see #unsetRadius()
 	 * @see #getRadius()
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @generated
 	 */
 	boolean isSetRadius();
@@ -275,12 +275,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Head Width</em>' attribute.
-	 * @see #setHeadWidth(float)
+	 * @see #setHeadWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_HeadWidth()
 	 * @model
 	 * @generated
 	 */
-	float getHeadWidth();
+	double getHeadWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getHeadWidth <em>Head Width</em>}' attribute.
@@ -290,7 +290,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getHeadWidth()
 	 * @generated
 	 */
-	void setHeadWidth(float value);
+	void setHeadWidth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Head Width As String</b></em>' attribute.
@@ -327,12 +327,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Head Depth2</em>' attribute.
-	 * @see #setHeadDepth2(float)
+	 * @see #setHeadDepth2(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_HeadDepth2()
 	 * @model
 	 * @generated
 	 */
-	float getHeadDepth2();
+	double getHeadDepth2();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getHeadDepth2 <em>Head Depth2</em>}' attribute.
@@ -342,7 +342,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getHeadDepth2()
 	 * @generated
 	 */
-	void setHeadDepth2(float value);
+	void setHeadDepth2(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Head Depth2 As String</b></em>' attribute.
@@ -379,12 +379,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Head Depth3</em>' attribute.
-	 * @see #setHeadDepth3(float)
+	 * @see #setHeadDepth3(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_HeadDepth3()
 	 * @model
 	 * @generated
 	 */
-	float getHeadDepth3();
+	double getHeadDepth3();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getHeadDepth3 <em>Head Depth3</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getHeadDepth3()
 	 * @generated
 	 */
-	void setHeadDepth3(float value);
+	void setHeadDepth3(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Head Depth3 As String</b></em>' attribute.
@@ -431,12 +431,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Web Thickness</em>' attribute.
-	 * @see #setWebThickness(float)
+	 * @see #setWebThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_WebThickness()
 	 * @model
 	 * @generated
 	 */
-	float getWebThickness();
+	double getWebThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getWebThickness <em>Web Thickness</em>}' attribute.
@@ -446,7 +446,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getWebThickness()
 	 * @generated
 	 */
-	void setWebThickness(float value);
+	void setWebThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Web Thickness As String</b></em>' attribute.
@@ -483,12 +483,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Width4</em>' attribute.
-	 * @see #setBaseWidth4(float)
+	 * @see #setBaseWidth4(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_BaseWidth4()
 	 * @model
 	 * @generated
 	 */
-	float getBaseWidth4();
+	double getBaseWidth4();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getBaseWidth4 <em>Base Width4</em>}' attribute.
@@ -498,7 +498,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getBaseWidth4()
 	 * @generated
 	 */
-	void setBaseWidth4(float value);
+	void setBaseWidth4(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Base Width4 As String</b></em>' attribute.
@@ -535,12 +535,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Depth1</em>' attribute.
-	 * @see #setBaseDepth1(float)
+	 * @see #setBaseDepth1(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_BaseDepth1()
 	 * @model
 	 * @generated
 	 */
-	float getBaseDepth1();
+	double getBaseDepth1();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getBaseDepth1 <em>Base Depth1</em>}' attribute.
@@ -550,7 +550,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getBaseDepth1()
 	 * @generated
 	 */
-	void setBaseDepth1(float value);
+	void setBaseDepth1(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Base Depth1 As String</b></em>' attribute.
@@ -587,12 +587,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Depth2</em>' attribute.
-	 * @see #setBaseDepth2(float)
+	 * @see #setBaseDepth2(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_BaseDepth2()
 	 * @model
 	 * @generated
 	 */
-	float getBaseDepth2();
+	double getBaseDepth2();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getBaseDepth2 <em>Base Depth2</em>}' attribute.
@@ -602,7 +602,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getBaseDepth2()
 	 * @generated
 	 */
-	void setBaseDepth2(float value);
+	void setBaseDepth2(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Base Depth2 As String</b></em>' attribute.
@@ -639,12 +639,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Depth3</em>' attribute.
-	 * @see #setBaseDepth3(float)
+	 * @see #setBaseDepth3(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_BaseDepth3()
 	 * @model
 	 * @generated
 	 */
-	float getBaseDepth3();
+	double getBaseDepth3();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getBaseDepth3 <em>Base Depth3</em>}' attribute.
@@ -654,7 +654,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getBaseDepth3()
 	 * @generated
 	 */
-	void setBaseDepth3(float value);
+	void setBaseDepth3(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Base Depth3 As String</b></em>' attribute.
@@ -693,12 +693,12 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @return the value of the '<em>Centre Of Gravity In Y</em>' attribute.
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #unsetCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCraneRailAShapeProfileDef_CentreOfGravityInY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCentreOfGravityInY();
+	double getCentreOfGravityInY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -710,7 +710,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @see #getCentreOfGravityInY()
 	 * @generated
 	 */
-	void setCentreOfGravityInY(float value);
+	void setCentreOfGravityInY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -718,7 +718,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * <!-- end-user-doc -->
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	void unsetCentreOfGravityInY();
@@ -730,7 +730,7 @@ public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef
 	 * @return whether the value of the '<em>Centre Of Gravity In Y</em>' attribute is set.
 	 * @see #unsetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	boolean isSetCentreOfGravityInY();

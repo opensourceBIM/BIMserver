@@ -60,8 +60,8 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWarpingMoment() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT, true);
+	public double getWarpingMoment() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWarpingMoment(float newWarpingMoment) {
+	public void setWarpingMoment(double newWarpingMoment) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT, newWarpingMoment);
 	}
 

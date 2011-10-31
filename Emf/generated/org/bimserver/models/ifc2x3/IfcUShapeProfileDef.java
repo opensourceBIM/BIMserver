@@ -57,12 +57,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
-	 * @see #setDepth(float)
+	 * @see #setDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_Depth()
 	 * @model
 	 * @generated
 	 */
-	float getDepth();
+	double getDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getDepth <em>Depth</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getDepth()
 	 * @generated
 	 */
-	void setDepth(float value);
+	void setDepth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Depth As String</b></em>' attribute.
@@ -109,12 +109,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flange Width</em>' attribute.
-	 * @see #setFlangeWidth(float)
+	 * @see #setFlangeWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_FlangeWidth()
 	 * @model
 	 * @generated
 	 */
-	float getFlangeWidth();
+	double getFlangeWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getFlangeWidth <em>Flange Width</em>}' attribute.
@@ -124,7 +124,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeWidth()
 	 * @generated
 	 */
-	void setFlangeWidth(float value);
+	void setFlangeWidth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Flange Width As String</b></em>' attribute.
@@ -161,12 +161,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Web Thickness</em>' attribute.
-	 * @see #setWebThickness(float)
+	 * @see #setWebThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_WebThickness()
 	 * @model
 	 * @generated
 	 */
-	float getWebThickness();
+	double getWebThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getWebThickness <em>Web Thickness</em>}' attribute.
@@ -176,7 +176,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getWebThickness()
 	 * @generated
 	 */
-	void setWebThickness(float value);
+	void setWebThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Web Thickness As String</b></em>' attribute.
@@ -213,12 +213,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flange Thickness</em>' attribute.
-	 * @see #setFlangeThickness(float)
+	 * @see #setFlangeThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_FlangeThickness()
 	 * @model
 	 * @generated
 	 */
-	float getFlangeThickness();
+	double getFlangeThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getFlangeThickness <em>Flange Thickness</em>}' attribute.
@@ -228,7 +228,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeThickness()
 	 * @generated
 	 */
-	void setFlangeThickness(float value);
+	void setFlangeThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Flange Thickness As String</b></em>' attribute.
@@ -267,12 +267,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Fillet Radius</em>' attribute.
 	 * @see #isSetFilletRadius()
 	 * @see #unsetFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_FilletRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFilletRadius();
+	double getFilletRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}' attribute.
@@ -284,7 +284,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFilletRadius()
 	 * @generated
 	 */
-	void setFilletRadius(float value);
+	void setFilletRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}' attribute.
@@ -292,7 +292,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFilletRadius()
 	 * @see #getFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @generated
 	 */
 	void unsetFilletRadius();
@@ -304,7 +304,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Fillet Radius</em>' attribute is set.
 	 * @see #unsetFilletRadius()
 	 * @see #getFilletRadius()
-	 * @see #setFilletRadius(float)
+	 * @see #setFilletRadius(double)
 	 * @generated
 	 */
 	boolean isSetFilletRadius();
@@ -373,12 +373,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Edge Radius</em>' attribute.
 	 * @see #isSetEdgeRadius()
 	 * @see #unsetEdgeRadius()
-	 * @see #setEdgeRadius(float)
+	 * @see #setEdgeRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_EdgeRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getEdgeRadius();
+	double getEdgeRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getEdgeRadius <em>Edge Radius</em>}' attribute.
@@ -390,7 +390,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getEdgeRadius()
 	 * @generated
 	 */
-	void setEdgeRadius(float value);
+	void setEdgeRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getEdgeRadius <em>Edge Radius</em>}' attribute.
@@ -398,7 +398,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetEdgeRadius()
 	 * @see #getEdgeRadius()
-	 * @see #setEdgeRadius(float)
+	 * @see #setEdgeRadius(double)
 	 * @generated
 	 */
 	void unsetEdgeRadius();
@@ -410,7 +410,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Edge Radius</em>' attribute is set.
 	 * @see #unsetEdgeRadius()
 	 * @see #getEdgeRadius()
-	 * @see #setEdgeRadius(float)
+	 * @see #setEdgeRadius(double)
 	 * @generated
 	 */
 	boolean isSetEdgeRadius();
@@ -479,12 +479,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Flange Slope</em>' attribute.
 	 * @see #isSetFlangeSlope()
 	 * @see #unsetFlangeSlope()
-	 * @see #setFlangeSlope(float)
+	 * @see #setFlangeSlope(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_FlangeSlope()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFlangeSlope();
+	double getFlangeSlope();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getFlangeSlope <em>Flange Slope</em>}' attribute.
@@ -496,7 +496,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getFlangeSlope()
 	 * @generated
 	 */
-	void setFlangeSlope(float value);
+	void setFlangeSlope(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getFlangeSlope <em>Flange Slope</em>}' attribute.
@@ -504,7 +504,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFlangeSlope()
 	 * @see #getFlangeSlope()
-	 * @see #setFlangeSlope(float)
+	 * @see #setFlangeSlope(double)
 	 * @generated
 	 */
 	void unsetFlangeSlope();
@@ -516,7 +516,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Flange Slope</em>' attribute is set.
 	 * @see #unsetFlangeSlope()
 	 * @see #getFlangeSlope()
-	 * @see #setFlangeSlope(float)
+	 * @see #setFlangeSlope(double)
 	 * @generated
 	 */
 	boolean isSetFlangeSlope();
@@ -585,12 +585,12 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Centre Of Gravity In X</em>' attribute.
 	 * @see #isSetCentreOfGravityInX()
 	 * @see #unsetCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUShapeProfileDef_CentreOfGravityInX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCentreOfGravityInX();
+	double getCentreOfGravityInX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}' attribute.
@@ -602,7 +602,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #getCentreOfGravityInX()
 	 * @generated
 	 */
-	void setCentreOfGravityInX(float value);
+	void setCentreOfGravityInX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcUShapeProfileDef#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}' attribute.
@@ -610,7 +610,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCentreOfGravityInX()
 	 * @see #getCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @generated
 	 */
 	void unsetCentreOfGravityInX();
@@ -622,7 +622,7 @@ public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return whether the value of the '<em>Centre Of Gravity In X</em>' attribute is set.
 	 * @see #unsetCentreOfGravityInX()
 	 * @see #getCentreOfGravityInX()
-	 * @see #setCentreOfGravityInX(float)
+	 * @see #setCentreOfGravityInX(double)
 	 * @generated
 	 */
 	boolean isSetCentreOfGravityInX();

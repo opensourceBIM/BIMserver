@@ -81,8 +81,8 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPointParameter() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, true);
+	public double getPointParameter() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, true);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPointParameter(float newPointParameter) {
+	public void setPointParameter(double newPointParameter) {
 		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, newPointParameter);
 	}
 

@@ -41,7 +41,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceMember {
 	/**
 	 * Returns the value of the '<em><b>Subsequent Thickness</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Double}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subsequent Thickness</em>' attribute list isn't clear,
@@ -53,7 +53,7 @@ public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceM
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Float> getSubsequentThickness();
+	EList<Double> getSubsequentThickness();
 
 	/**
 	 * Returns the value of the '<em><b>Subsequent Thickness As String</b></em>' attribute list.
@@ -106,12 +106,12 @@ public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceM
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Varying Thickness</em>' attribute.
-	 * @see #setVaryingThickness(float)
+	 * @see #setVaryingThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSurfaceMemberVarying_VaryingThickness()
 	 * @model derived="true"
 	 * @generated
 	 */
-	float getVaryingThickness();
+	double getVaryingThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying#getVaryingThickness <em>Varying Thickness</em>}' attribute.
@@ -121,7 +121,7 @@ public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceM
 	 * @see #getVaryingThickness()
 	 * @generated
 	 */
-	void setVaryingThickness(float value);
+	void setVaryingThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Varying Thickness As String</b></em>' attribute.

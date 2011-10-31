@@ -104,8 +104,8 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFrameDepth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH, true);
+	public double getFrameDepth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH, true);
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrameDepth(float newFrameDepth) {
+	public void setFrameDepth(double newFrameDepth) {
 		eSet(Ifc2x3Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH, newFrameDepth);
 	}
 
@@ -176,8 +176,8 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFrameThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS, true);
+	public double getFrameThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS, true);
 	}
 
 	/**
@@ -185,7 +185,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrameThickness(float newFrameThickness) {
+	public void setFrameThickness(double newFrameThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS, newFrameThickness);
 	}
 

@@ -62,8 +62,8 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getXDim() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM, true);
+	public double getXDim() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM, true);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setXDim(float newXDim) {
+	public void setXDim(double newXDim) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM, newXDim);
 	}
 
@@ -98,8 +98,8 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getYDim() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM, true);
+	public double getYDim() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM, true);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setYDim(float newYDim) {
+	public void setYDim(double newYDim) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM, newYDim);
 	}
 

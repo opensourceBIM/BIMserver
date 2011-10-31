@@ -43,12 +43,12 @@ public interface IfcQuantityTime extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Value</em>' attribute.
-	 * @see #setTimeValue(float)
+	 * @see #setTimeValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityTime_TimeValue()
 	 * @model
 	 * @generated
 	 */
-	float getTimeValue();
+	double getTimeValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityTime#getTimeValue <em>Time Value</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcQuantityTime extends IfcPhysicalSimpleQuantity {
 	 * @see #getTimeValue()
 	 * @generated
 	 */
-	void setTimeValue(float value);
+	void setTimeValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Time Value As String</b></em>' attribute.

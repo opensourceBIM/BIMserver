@@ -123,7 +123,7 @@ public class SlabOpening implements QueryInterface {
 								IfcProfileDef sweptArea = extrudedAreaSolid.getSweptArea();
 								if (sweptArea instanceof IfcRectangleProfileDef) {
 									IfcRectangleProfileDef rectangleProfileDef = (IfcRectangleProfileDef)sweptArea;
-									float area = rectangleProfileDef.getXDim() * rectangleProfileDef.getYDim();
+									double area = rectangleProfileDef.getXDim() * rectangleProfileDef.getYDim();
 									System.out.println("Area calculated from geometry: " + area);
 								}
 							}

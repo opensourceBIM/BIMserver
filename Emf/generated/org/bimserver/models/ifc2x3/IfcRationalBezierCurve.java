@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcRationalBezierCurve extends IfcBezierCurve {
 	/**
 	 * Returns the value of the '<em><b>Weights Data</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Double}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Weights Data</em>' attribute list isn't clear,
@@ -50,7 +50,7 @@ public interface IfcRationalBezierCurve extends IfcBezierCurve {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Float> getWeightsData();
+	EList<Double> getWeightsData();
 
 	/**
 	 * Returns the value of the '<em><b>Weights Data As String</b></em>' attribute list.

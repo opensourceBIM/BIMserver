@@ -52,12 +52,12 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Main Plane Angle</em>' attribute.
-	 * @see #setMainPlaneAngle(float)
+	 * @see #setMainPlaneAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightDistributionData_MainPlaneAngle()
 	 * @model
 	 * @generated
 	 */
-	float getMainPlaneAngle();
+	double getMainPlaneAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getMainPlaneAngle <em>Main Plane Angle</em>}' attribute.
@@ -67,7 +67,7 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * @see #getMainPlaneAngle()
 	 * @generated
 	 */
-	void setMainPlaneAngle(float value);
+	void setMainPlaneAngle(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Main Plane Angle As String</b></em>' attribute.
@@ -97,7 +97,7 @@ public interface IfcLightDistributionData extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Secondary Plane Angle</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Double}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Secondary Plane Angle</em>' attribute list isn't clear,
@@ -109,7 +109,7 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Float> getSecondaryPlaneAngle();
+	EList<Double> getSecondaryPlaneAngle();
 
 	/**
 	 * Returns the value of the '<em><b>Secondary Plane Angle As String</b></em>' attribute list.
@@ -129,7 +129,7 @@ public interface IfcLightDistributionData extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Intensity</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Double}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Luminous Intensity</em>' attribute list isn't clear,
@@ -141,7 +141,7 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Float> getLuminousIntensity();
+	EList<Double> getLuminousIntensity();
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Intensity As String</b></em>' attribute list.

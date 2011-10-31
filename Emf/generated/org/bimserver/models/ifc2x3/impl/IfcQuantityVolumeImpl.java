@@ -60,8 +60,8 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getVolumeValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, true);
+	public double getVolumeValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVolumeValue(float newVolumeValue) {
+	public void setVolumeValue(double newVolumeValue) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, newVolumeValue);
 	}
 

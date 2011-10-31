@@ -83,8 +83,8 @@ public class IfcGeometricRepresentationSubContextImpl extends IfcGeometricRepres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTargetScale() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__TARGET_SCALE, true);
+	public double getTargetScale() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__TARGET_SCALE, true);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class IfcGeometricRepresentationSubContextImpl extends IfcGeometricRepres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetScale(float newTargetScale) {
+	public void setTargetScale(double newTargetScale) {
 		eSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__TARGET_SCALE, newTargetScale);
 	}
 

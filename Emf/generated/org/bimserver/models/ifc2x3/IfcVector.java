@@ -71,12 +71,12 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Magnitude</em>' attribute.
-	 * @see #setMagnitude(float)
+	 * @see #setMagnitude(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVector_Magnitude()
 	 * @model
 	 * @generated
 	 */
-	float getMagnitude();
+	double getMagnitude();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcVector#getMagnitude <em>Magnitude</em>}' attribute.
@@ -86,7 +86,7 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * @see #getMagnitude()
 	 * @generated
 	 */
-	void setMagnitude(float value);
+	void setMagnitude(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Magnitude As String</b></em>' attribute.

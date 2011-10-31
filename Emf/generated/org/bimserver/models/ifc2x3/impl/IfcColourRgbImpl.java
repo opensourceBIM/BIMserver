@@ -64,8 +64,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRed() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED, true);
+	public double getRed() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRed(float newRed) {
+	public void setRed(double newRed) {
 		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED, newRed);
 	}
 
@@ -100,8 +100,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getGreen() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN, true);
+	public double getGreen() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN, true);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGreen(float newGreen) {
+	public void setGreen(double newGreen) {
 		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN, newGreen);
 	}
 
@@ -136,8 +136,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getBlue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE, true);
+	public double getBlue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBlue(float newBlue) {
+	public void setBlue(double newBlue) {
 		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE, newBlue);
 	}
 

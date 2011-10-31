@@ -49,12 +49,12 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Linear Stiffness By Area X</em>' attribute.
 	 * @see #isSetLinearStiffnessByAreaX()
 	 * @see #unsetLinearStiffnessByAreaX()
-	 * @see #setLinearStiffnessByAreaX(float)
+	 * @see #setLinearStiffnessByAreaX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryFaceCondition_LinearStiffnessByAreaX()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearStiffnessByAreaX();
+	double getLinearStiffnessByAreaX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryFaceCondition#getLinearStiffnessByAreaX <em>Linear Stiffness By Area X</em>}' attribute.
@@ -66,7 +66,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @see #getLinearStiffnessByAreaX()
 	 * @generated
 	 */
-	void setLinearStiffnessByAreaX(float value);
+	void setLinearStiffnessByAreaX(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryFaceCondition#getLinearStiffnessByAreaX <em>Linear Stiffness By Area X</em>}' attribute.
@@ -74,7 +74,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearStiffnessByAreaX()
 	 * @see #getLinearStiffnessByAreaX()
-	 * @see #setLinearStiffnessByAreaX(float)
+	 * @see #setLinearStiffnessByAreaX(double)
 	 * @generated
 	 */
 	void unsetLinearStiffnessByAreaX();
@@ -86,7 +86,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Linear Stiffness By Area X</em>' attribute is set.
 	 * @see #unsetLinearStiffnessByAreaX()
 	 * @see #getLinearStiffnessByAreaX()
-	 * @see #setLinearStiffnessByAreaX(float)
+	 * @see #setLinearStiffnessByAreaX(double)
 	 * @generated
 	 */
 	boolean isSetLinearStiffnessByAreaX();
@@ -155,12 +155,12 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Linear Stiffness By Area Y</em>' attribute.
 	 * @see #isSetLinearStiffnessByAreaY()
 	 * @see #unsetLinearStiffnessByAreaY()
-	 * @see #setLinearStiffnessByAreaY(float)
+	 * @see #setLinearStiffnessByAreaY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryFaceCondition_LinearStiffnessByAreaY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearStiffnessByAreaY();
+	double getLinearStiffnessByAreaY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryFaceCondition#getLinearStiffnessByAreaY <em>Linear Stiffness By Area Y</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @see #getLinearStiffnessByAreaY()
 	 * @generated
 	 */
-	void setLinearStiffnessByAreaY(float value);
+	void setLinearStiffnessByAreaY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryFaceCondition#getLinearStiffnessByAreaY <em>Linear Stiffness By Area Y</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearStiffnessByAreaY()
 	 * @see #getLinearStiffnessByAreaY()
-	 * @see #setLinearStiffnessByAreaY(float)
+	 * @see #setLinearStiffnessByAreaY(double)
 	 * @generated
 	 */
 	void unsetLinearStiffnessByAreaY();
@@ -192,7 +192,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Linear Stiffness By Area Y</em>' attribute is set.
 	 * @see #unsetLinearStiffnessByAreaY()
 	 * @see #getLinearStiffnessByAreaY()
-	 * @see #setLinearStiffnessByAreaY(float)
+	 * @see #setLinearStiffnessByAreaY(double)
 	 * @generated
 	 */
 	boolean isSetLinearStiffnessByAreaY();
@@ -261,12 +261,12 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @return the value of the '<em>Linear Stiffness By Area Z</em>' attribute.
 	 * @see #isSetLinearStiffnessByAreaZ()
 	 * @see #unsetLinearStiffnessByAreaZ()
-	 * @see #setLinearStiffnessByAreaZ(float)
+	 * @see #setLinearStiffnessByAreaZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundaryFaceCondition_LinearStiffnessByAreaZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLinearStiffnessByAreaZ();
+	double getLinearStiffnessByAreaZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryFaceCondition#getLinearStiffnessByAreaZ <em>Linear Stiffness By Area Z</em>}' attribute.
@@ -278,7 +278,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @see #getLinearStiffnessByAreaZ()
 	 * @generated
 	 */
-	void setLinearStiffnessByAreaZ(float value);
+	void setLinearStiffnessByAreaZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundaryFaceCondition#getLinearStiffnessByAreaZ <em>Linear Stiffness By Area Z</em>}' attribute.
@@ -286,7 +286,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLinearStiffnessByAreaZ()
 	 * @see #getLinearStiffnessByAreaZ()
-	 * @see #setLinearStiffnessByAreaZ(float)
+	 * @see #setLinearStiffnessByAreaZ(double)
 	 * @generated
 	 */
 	void unsetLinearStiffnessByAreaZ();
@@ -298,7 +298,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @return whether the value of the '<em>Linear Stiffness By Area Z</em>' attribute is set.
 	 * @see #unsetLinearStiffnessByAreaZ()
 	 * @see #getLinearStiffnessByAreaZ()
-	 * @see #setLinearStiffnessByAreaZ(float)
+	 * @see #setLinearStiffnessByAreaZ(double)
 	 * @generated
 	 */
 	boolean isSetLinearStiffnessByAreaZ();

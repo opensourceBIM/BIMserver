@@ -64,8 +64,8 @@ public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSlippageX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_X, true);
+	public double getSlippageX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_X, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSlippageX(float newSlippageX) {
+	public void setSlippageX(double newSlippageX) {
 		eSet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_X, newSlippageX);
 	}
 
@@ -136,8 +136,8 @@ public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSlippageY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_Y, true);
+	public double getSlippageY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_Y, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSlippageY(float newSlippageY) {
+	public void setSlippageY(double newSlippageY) {
 		eSet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_Y, newSlippageY);
 	}
 
@@ -208,8 +208,8 @@ public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSlippageZ() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_Z, true);
+	public double getSlippageZ() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_Z, true);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSlippageZ(float newSlippageZ) {
+	public void setSlippageZ(double newSlippageZ) {
 		eSet(Ifc2x3Package.Literals.IFC_SLIPPAGE_CONNECTION_CONDITION__SLIPPAGE_Z, newSlippageZ);
 	}
 

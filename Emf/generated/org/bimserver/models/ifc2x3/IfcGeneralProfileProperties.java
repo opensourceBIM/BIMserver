@@ -53,12 +53,12 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Physical Weight</em>' attribute.
 	 * @see #isSetPhysicalWeight()
 	 * @see #unsetPhysicalWeight()
-	 * @see #setPhysicalWeight(float)
+	 * @see #setPhysicalWeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralProfileProperties_PhysicalWeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPhysicalWeight();
+	double getPhysicalWeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getPhysicalWeight <em>Physical Weight</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @see #getPhysicalWeight()
 	 * @generated
 	 */
-	void setPhysicalWeight(float value);
+	void setPhysicalWeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getPhysicalWeight <em>Physical Weight</em>}' attribute.
@@ -78,7 +78,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPhysicalWeight()
 	 * @see #getPhysicalWeight()
-	 * @see #setPhysicalWeight(float)
+	 * @see #setPhysicalWeight(double)
 	 * @generated
 	 */
 	void unsetPhysicalWeight();
@@ -90,7 +90,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Physical Weight</em>' attribute is set.
 	 * @see #unsetPhysicalWeight()
 	 * @see #getPhysicalWeight()
-	 * @see #setPhysicalWeight(float)
+	 * @see #setPhysicalWeight(double)
 	 * @generated
 	 */
 	boolean isSetPhysicalWeight();
@@ -159,12 +159,12 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Perimeter</em>' attribute.
 	 * @see #isSetPerimeter()
 	 * @see #unsetPerimeter()
-	 * @see #setPerimeter(float)
+	 * @see #setPerimeter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralProfileProperties_Perimeter()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPerimeter();
+	double getPerimeter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getPerimeter <em>Perimeter</em>}' attribute.
@@ -176,7 +176,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @see #getPerimeter()
 	 * @generated
 	 */
-	void setPerimeter(float value);
+	void setPerimeter(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getPerimeter <em>Perimeter</em>}' attribute.
@@ -184,7 +184,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPerimeter()
 	 * @see #getPerimeter()
-	 * @see #setPerimeter(float)
+	 * @see #setPerimeter(double)
 	 * @generated
 	 */
 	void unsetPerimeter();
@@ -196,7 +196,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Perimeter</em>' attribute is set.
 	 * @see #unsetPerimeter()
 	 * @see #getPerimeter()
-	 * @see #setPerimeter(float)
+	 * @see #setPerimeter(double)
 	 * @generated
 	 */
 	boolean isSetPerimeter();
@@ -265,12 +265,12 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Minimum Plate Thickness</em>' attribute.
 	 * @see #isSetMinimumPlateThickness()
 	 * @see #unsetMinimumPlateThickness()
-	 * @see #setMinimumPlateThickness(float)
+	 * @see #setMinimumPlateThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralProfileProperties_MinimumPlateThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMinimumPlateThickness();
+	double getMinimumPlateThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getMinimumPlateThickness <em>Minimum Plate Thickness</em>}' attribute.
@@ -282,7 +282,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @see #getMinimumPlateThickness()
 	 * @generated
 	 */
-	void setMinimumPlateThickness(float value);
+	void setMinimumPlateThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getMinimumPlateThickness <em>Minimum Plate Thickness</em>}' attribute.
@@ -290,7 +290,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinimumPlateThickness()
 	 * @see #getMinimumPlateThickness()
-	 * @see #setMinimumPlateThickness(float)
+	 * @see #setMinimumPlateThickness(double)
 	 * @generated
 	 */
 	void unsetMinimumPlateThickness();
@@ -302,7 +302,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Minimum Plate Thickness</em>' attribute is set.
 	 * @see #unsetMinimumPlateThickness()
 	 * @see #getMinimumPlateThickness()
-	 * @see #setMinimumPlateThickness(float)
+	 * @see #setMinimumPlateThickness(double)
 	 * @generated
 	 */
 	boolean isSetMinimumPlateThickness();
@@ -371,12 +371,12 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Maximum Plate Thickness</em>' attribute.
 	 * @see #isSetMaximumPlateThickness()
 	 * @see #unsetMaximumPlateThickness()
-	 * @see #setMaximumPlateThickness(float)
+	 * @see #setMaximumPlateThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralProfileProperties_MaximumPlateThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMaximumPlateThickness();
+	double getMaximumPlateThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getMaximumPlateThickness <em>Maximum Plate Thickness</em>}' attribute.
@@ -388,7 +388,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @see #getMaximumPlateThickness()
 	 * @generated
 	 */
-	void setMaximumPlateThickness(float value);
+	void setMaximumPlateThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getMaximumPlateThickness <em>Maximum Plate Thickness</em>}' attribute.
@@ -396,7 +396,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMaximumPlateThickness()
 	 * @see #getMaximumPlateThickness()
-	 * @see #setMaximumPlateThickness(float)
+	 * @see #setMaximumPlateThickness(double)
 	 * @generated
 	 */
 	void unsetMaximumPlateThickness();
@@ -408,7 +408,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Maximum Plate Thickness</em>' attribute is set.
 	 * @see #unsetMaximumPlateThickness()
 	 * @see #getMaximumPlateThickness()
-	 * @see #setMaximumPlateThickness(float)
+	 * @see #setMaximumPlateThickness(double)
 	 * @generated
 	 */
 	boolean isSetMaximumPlateThickness();
@@ -477,12 +477,12 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return the value of the '<em>Cross Section Area</em>' attribute.
 	 * @see #isSetCrossSectionArea()
 	 * @see #unsetCrossSectionArea()
-	 * @see #setCrossSectionArea(float)
+	 * @see #setCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeneralProfileProperties_CrossSectionArea()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCrossSectionArea();
+	double getCrossSectionArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getCrossSectionArea <em>Cross Section Area</em>}' attribute.
@@ -494,7 +494,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @see #getCrossSectionArea()
 	 * @generated
 	 */
-	void setCrossSectionArea(float value);
+	void setCrossSectionArea(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeneralProfileProperties#getCrossSectionArea <em>Cross Section Area</em>}' attribute.
@@ -502,7 +502,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCrossSectionArea()
 	 * @see #getCrossSectionArea()
-	 * @see #setCrossSectionArea(float)
+	 * @see #setCrossSectionArea(double)
 	 * @generated
 	 */
 	void unsetCrossSectionArea();
@@ -514,7 +514,7 @@ public interface IfcGeneralProfileProperties extends IfcProfileProperties {
 	 * @return whether the value of the '<em>Cross Section Area</em>' attribute is set.
 	 * @see #unsetCrossSectionArea()
 	 * @see #getCrossSectionArea()
-	 * @see #setCrossSectionArea(float)
+	 * @see #setCrossSectionArea(double)
 	 * @generated
 	 */
 	boolean isSetCrossSectionArea();

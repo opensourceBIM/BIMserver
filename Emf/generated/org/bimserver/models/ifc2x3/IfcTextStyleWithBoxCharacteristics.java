@@ -52,12 +52,12 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return the value of the '<em>Box Height</em>' attribute.
 	 * @see #isSetBoxHeight()
 	 * @see #unsetBoxHeight()
-	 * @see #setBoxHeight(float)
+	 * @see #setBoxHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextStyleWithBoxCharacteristics_BoxHeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getBoxHeight();
+	double getBoxHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxHeight <em>Box Height</em>}' attribute.
@@ -69,7 +69,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @see #getBoxHeight()
 	 * @generated
 	 */
-	void setBoxHeight(float value);
+	void setBoxHeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxHeight <em>Box Height</em>}' attribute.
@@ -77,7 +77,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * <!-- end-user-doc -->
 	 * @see #isSetBoxHeight()
 	 * @see #getBoxHeight()
-	 * @see #setBoxHeight(float)
+	 * @see #setBoxHeight(double)
 	 * @generated
 	 */
 	void unsetBoxHeight();
@@ -89,7 +89,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return whether the value of the '<em>Box Height</em>' attribute is set.
 	 * @see #unsetBoxHeight()
 	 * @see #getBoxHeight()
-	 * @see #setBoxHeight(float)
+	 * @see #setBoxHeight(double)
 	 * @generated
 	 */
 	boolean isSetBoxHeight();
@@ -158,12 +158,12 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return the value of the '<em>Box Width</em>' attribute.
 	 * @see #isSetBoxWidth()
 	 * @see #unsetBoxWidth()
-	 * @see #setBoxWidth(float)
+	 * @see #setBoxWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextStyleWithBoxCharacteristics_BoxWidth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getBoxWidth();
+	double getBoxWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxWidth <em>Box Width</em>}' attribute.
@@ -175,7 +175,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @see #getBoxWidth()
 	 * @generated
 	 */
-	void setBoxWidth(float value);
+	void setBoxWidth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxWidth <em>Box Width</em>}' attribute.
@@ -183,7 +183,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * <!-- end-user-doc -->
 	 * @see #isSetBoxWidth()
 	 * @see #getBoxWidth()
-	 * @see #setBoxWidth(float)
+	 * @see #setBoxWidth(double)
 	 * @generated
 	 */
 	void unsetBoxWidth();
@@ -195,7 +195,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return whether the value of the '<em>Box Width</em>' attribute is set.
 	 * @see #unsetBoxWidth()
 	 * @see #getBoxWidth()
-	 * @see #setBoxWidth(float)
+	 * @see #setBoxWidth(double)
 	 * @generated
 	 */
 	boolean isSetBoxWidth();
@@ -264,12 +264,12 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return the value of the '<em>Box Slant Angle</em>' attribute.
 	 * @see #isSetBoxSlantAngle()
 	 * @see #unsetBoxSlantAngle()
-	 * @see #setBoxSlantAngle(float)
+	 * @see #setBoxSlantAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextStyleWithBoxCharacteristics_BoxSlantAngle()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getBoxSlantAngle();
+	double getBoxSlantAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxSlantAngle <em>Box Slant Angle</em>}' attribute.
@@ -281,7 +281,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @see #getBoxSlantAngle()
 	 * @generated
 	 */
-	void setBoxSlantAngle(float value);
+	void setBoxSlantAngle(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxSlantAngle <em>Box Slant Angle</em>}' attribute.
@@ -289,7 +289,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * <!-- end-user-doc -->
 	 * @see #isSetBoxSlantAngle()
 	 * @see #getBoxSlantAngle()
-	 * @see #setBoxSlantAngle(float)
+	 * @see #setBoxSlantAngle(double)
 	 * @generated
 	 */
 	void unsetBoxSlantAngle();
@@ -301,7 +301,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return whether the value of the '<em>Box Slant Angle</em>' attribute is set.
 	 * @see #unsetBoxSlantAngle()
 	 * @see #getBoxSlantAngle()
-	 * @see #setBoxSlantAngle(float)
+	 * @see #setBoxSlantAngle(double)
 	 * @generated
 	 */
 	boolean isSetBoxSlantAngle();
@@ -370,12 +370,12 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return the value of the '<em>Box Rotate Angle</em>' attribute.
 	 * @see #isSetBoxRotateAngle()
 	 * @see #unsetBoxRotateAngle()
-	 * @see #setBoxRotateAngle(float)
+	 * @see #setBoxRotateAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextStyleWithBoxCharacteristics_BoxRotateAngle()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getBoxRotateAngle();
+	double getBoxRotateAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxRotateAngle <em>Box Rotate Angle</em>}' attribute.
@@ -387,7 +387,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @see #getBoxRotateAngle()
 	 * @generated
 	 */
-	void setBoxRotateAngle(float value);
+	void setBoxRotateAngle(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics#getBoxRotateAngle <em>Box Rotate Angle</em>}' attribute.
@@ -395,7 +395,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * <!-- end-user-doc -->
 	 * @see #isSetBoxRotateAngle()
 	 * @see #getBoxRotateAngle()
-	 * @see #setBoxRotateAngle(float)
+	 * @see #setBoxRotateAngle(double)
 	 * @generated
 	 */
 	void unsetBoxRotateAngle();
@@ -407,7 +407,7 @@ public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	 * @return whether the value of the '<em>Box Rotate Angle</em>' attribute is set.
 	 * @see #unsetBoxRotateAngle()
 	 * @see #getBoxRotateAngle()
-	 * @see #setBoxRotateAngle(float)
+	 * @see #setBoxRotateAngle(double)
 	 * @generated
 	 */
 	boolean isSetBoxRotateAngle();

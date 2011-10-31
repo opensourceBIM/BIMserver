@@ -39,7 +39,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	/**
 	 * Returns the value of the '<em><b>Coordinates</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Double}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Coordinates</em>' attribute list isn't clear,
@@ -51,7 +51,7 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Float> getCoordinates();
+	EList<Double> getCoordinates();
 
 	/**
 	 * Returns the value of the '<em><b>Coordinates As String</b></em>' attribute list.

@@ -49,12 +49,12 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nominal Diameter</em>' attribute.
-	 * @see #setNominalDiameter(float)
+	 * @see #setNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_NominalDiameter()
 	 * @model
 	 * @generated
 	 */
-	float getNominalDiameter();
+	double getNominalDiameter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getNominalDiameter <em>Nominal Diameter</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * @see #getNominalDiameter()
 	 * @generated
 	 */
-	void setNominalDiameter(float value);
+	void setNominalDiameter(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Nominal Diameter As String</b></em>' attribute.
@@ -101,12 +101,12 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Area</em>' attribute.
-	 * @see #setCrossSectionArea(float)
+	 * @see #setCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_CrossSectionArea()
 	 * @model
 	 * @generated
 	 */
-	float getCrossSectionArea();
+	double getCrossSectionArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getCrossSectionArea <em>Cross Section Area</em>}' attribute.
@@ -116,7 +116,7 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * @see #getCrossSectionArea()
 	 * @generated
 	 */
-	void setCrossSectionArea(float value);
+	void setCrossSectionArea(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Area As String</b></em>' attribute.
@@ -155,12 +155,12 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * @return the value of the '<em>Bar Length</em>' attribute.
 	 * @see #isSetBarLength()
 	 * @see #unsetBarLength()
-	 * @see #setBarLength(float)
+	 * @see #setBarLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_BarLength()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getBarLength();
+	double getBarLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getBarLength <em>Bar Length</em>}' attribute.
@@ -172,7 +172,7 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * @see #getBarLength()
 	 * @generated
 	 */
-	void setBarLength(float value);
+	void setBarLength(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getBarLength <em>Bar Length</em>}' attribute.
@@ -180,7 +180,7 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetBarLength()
 	 * @see #getBarLength()
-	 * @see #setBarLength(float)
+	 * @see #setBarLength(double)
 	 * @generated
 	 */
 	void unsetBarLength();
@@ -192,7 +192,7 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Bar Length</em>' attribute is set.
 	 * @see #unsetBarLength()
 	 * @see #getBarLength()
-	 * @see #setBarLength(float)
+	 * @see #setBarLength(double)
 	 * @generated
 	 */
 	boolean isSetBarLength();

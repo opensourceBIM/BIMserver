@@ -51,12 +51,12 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return the value of the '<em>Shear Area Z</em>' attribute.
 	 * @see #isSetShearAreaZ()
 	 * @see #unsetShearAreaZ()
-	 * @see #setShearAreaZ(float)
+	 * @see #setShearAreaZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSteelProfileProperties_ShearAreaZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getShearAreaZ();
+	double getShearAreaZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getShearAreaZ <em>Shear Area Z</em>}' attribute.
@@ -68,7 +68,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @see #getShearAreaZ()
 	 * @generated
 	 */
-	void setShearAreaZ(float value);
+	void setShearAreaZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getShearAreaZ <em>Shear Area Z</em>}' attribute.
@@ -76,7 +76,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * <!-- end-user-doc -->
 	 * @see #isSetShearAreaZ()
 	 * @see #getShearAreaZ()
-	 * @see #setShearAreaZ(float)
+	 * @see #setShearAreaZ(double)
 	 * @generated
 	 */
 	void unsetShearAreaZ();
@@ -88,7 +88,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return whether the value of the '<em>Shear Area Z</em>' attribute is set.
 	 * @see #unsetShearAreaZ()
 	 * @see #getShearAreaZ()
-	 * @see #setShearAreaZ(float)
+	 * @see #setShearAreaZ(double)
 	 * @generated
 	 */
 	boolean isSetShearAreaZ();
@@ -157,12 +157,12 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return the value of the '<em>Shear Area Y</em>' attribute.
 	 * @see #isSetShearAreaY()
 	 * @see #unsetShearAreaY()
-	 * @see #setShearAreaY(float)
+	 * @see #setShearAreaY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSteelProfileProperties_ShearAreaY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getShearAreaY();
+	double getShearAreaY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getShearAreaY <em>Shear Area Y</em>}' attribute.
@@ -174,7 +174,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @see #getShearAreaY()
 	 * @generated
 	 */
-	void setShearAreaY(float value);
+	void setShearAreaY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getShearAreaY <em>Shear Area Y</em>}' attribute.
@@ -182,7 +182,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * <!-- end-user-doc -->
 	 * @see #isSetShearAreaY()
 	 * @see #getShearAreaY()
-	 * @see #setShearAreaY(float)
+	 * @see #setShearAreaY(double)
 	 * @generated
 	 */
 	void unsetShearAreaY();
@@ -194,7 +194,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return whether the value of the '<em>Shear Area Y</em>' attribute is set.
 	 * @see #unsetShearAreaY()
 	 * @see #getShearAreaY()
-	 * @see #setShearAreaY(float)
+	 * @see #setShearAreaY(double)
 	 * @generated
 	 */
 	boolean isSetShearAreaY();
@@ -263,12 +263,12 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return the value of the '<em>Plastic Shape Factor Y</em>' attribute.
 	 * @see #isSetPlasticShapeFactorY()
 	 * @see #unsetPlasticShapeFactorY()
-	 * @see #setPlasticShapeFactorY(float)
+	 * @see #setPlasticShapeFactorY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSteelProfileProperties_PlasticShapeFactorY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPlasticShapeFactorY();
+	double getPlasticShapeFactorY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getPlasticShapeFactorY <em>Plastic Shape Factor Y</em>}' attribute.
@@ -280,7 +280,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @see #getPlasticShapeFactorY()
 	 * @generated
 	 */
-	void setPlasticShapeFactorY(float value);
+	void setPlasticShapeFactorY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getPlasticShapeFactorY <em>Plastic Shape Factor Y</em>}' attribute.
@@ -288,7 +288,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * <!-- end-user-doc -->
 	 * @see #isSetPlasticShapeFactorY()
 	 * @see #getPlasticShapeFactorY()
-	 * @see #setPlasticShapeFactorY(float)
+	 * @see #setPlasticShapeFactorY(double)
 	 * @generated
 	 */
 	void unsetPlasticShapeFactorY();
@@ -300,7 +300,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return whether the value of the '<em>Plastic Shape Factor Y</em>' attribute is set.
 	 * @see #unsetPlasticShapeFactorY()
 	 * @see #getPlasticShapeFactorY()
-	 * @see #setPlasticShapeFactorY(float)
+	 * @see #setPlasticShapeFactorY(double)
 	 * @generated
 	 */
 	boolean isSetPlasticShapeFactorY();
@@ -369,12 +369,12 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return the value of the '<em>Plastic Shape Factor Z</em>' attribute.
 	 * @see #isSetPlasticShapeFactorZ()
 	 * @see #unsetPlasticShapeFactorZ()
-	 * @see #setPlasticShapeFactorZ(float)
+	 * @see #setPlasticShapeFactorZ(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSteelProfileProperties_PlasticShapeFactorZ()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPlasticShapeFactorZ();
+	double getPlasticShapeFactorZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getPlasticShapeFactorZ <em>Plastic Shape Factor Z</em>}' attribute.
@@ -386,7 +386,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @see #getPlasticShapeFactorZ()
 	 * @generated
 	 */
-	void setPlasticShapeFactorZ(float value);
+	void setPlasticShapeFactorZ(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties#getPlasticShapeFactorZ <em>Plastic Shape Factor Z</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * <!-- end-user-doc -->
 	 * @see #isSetPlasticShapeFactorZ()
 	 * @see #getPlasticShapeFactorZ()
-	 * @see #setPlasticShapeFactorZ(float)
+	 * @see #setPlasticShapeFactorZ(double)
 	 * @generated
 	 */
 	void unsetPlasticShapeFactorZ();
@@ -406,7 +406,7 @@ public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfil
 	 * @return whether the value of the '<em>Plastic Shape Factor Z</em>' attribute is set.
 	 * @see #unsetPlasticShapeFactorZ()
 	 * @see #getPlasticShapeFactorZ()
-	 * @see #setPlasticShapeFactorZ(float)
+	 * @see #setPlasticShapeFactorZ(double)
 	 * @generated
 	 */
 	boolean isSetPlasticShapeFactorZ();

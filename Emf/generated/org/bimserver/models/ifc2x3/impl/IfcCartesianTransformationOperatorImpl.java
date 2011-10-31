@@ -156,8 +156,8 @@ public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getScale() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCALE, true);
+	public double getScale() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCALE, true);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setScale(float newScale) {
+	public void setScale(double newScale) {
 		eSet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCALE, newScale);
 	}
 

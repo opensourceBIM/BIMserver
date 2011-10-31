@@ -45,12 +45,12 @@ public interface IfcStructuralLoadSingleForceWarping extends IfcStructuralLoadSi
 	 * @return the value of the '<em>Warping Moment</em>' attribute.
 	 * @see #isSetWarpingMoment()
 	 * @see #unsetWarpingMoment()
-	 * @see #setWarpingMoment(float)
+	 * @see #setWarpingMoment(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadSingleForceWarping_WarpingMoment()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getWarpingMoment();
+	double getWarpingMoment();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForceWarping#getWarpingMoment <em>Warping Moment</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcStructuralLoadSingleForceWarping extends IfcStructuralLoadSi
 	 * @see #getWarpingMoment()
 	 * @generated
 	 */
-	void setWarpingMoment(float value);
+	void setWarpingMoment(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForceWarping#getWarpingMoment <em>Warping Moment</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcStructuralLoadSingleForceWarping extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @see #isSetWarpingMoment()
 	 * @see #getWarpingMoment()
-	 * @see #setWarpingMoment(float)
+	 * @see #setWarpingMoment(double)
 	 * @generated
 	 */
 	void unsetWarpingMoment();
@@ -82,7 +82,7 @@ public interface IfcStructuralLoadSingleForceWarping extends IfcStructuralLoadSi
 	 * @return whether the value of the '<em>Warping Moment</em>' attribute is set.
 	 * @see #unsetWarpingMoment()
 	 * @see #getWarpingMoment()
-	 * @see #setWarpingMoment(float)
+	 * @see #setWarpingMoment(double)
 	 * @generated
 	 */
 	boolean isSetWarpingMoment();

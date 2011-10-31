@@ -47,12 +47,12 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wall Thickness</em>' attribute.
-	 * @see #setWallThickness(float)
+	 * @see #setWallThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleHollowProfileDef_WallThickness()
 	 * @model
 	 * @generated
 	 */
-	float getWallThickness();
+	double getWallThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleHollowProfileDef#getWallThickness <em>Wall Thickness</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @see #getWallThickness()
 	 * @generated
 	 */
-	void setWallThickness(float value);
+	void setWallThickness(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Wall Thickness As String</b></em>' attribute.
@@ -101,12 +101,12 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @return the value of the '<em>Inner Fillet Radius</em>' attribute.
 	 * @see #isSetInnerFilletRadius()
 	 * @see #unsetInnerFilletRadius()
-	 * @see #setInnerFilletRadius(float)
+	 * @see #setInnerFilletRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleHollowProfileDef_InnerFilletRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getInnerFilletRadius();
+	double getInnerFilletRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleHollowProfileDef#getInnerFilletRadius <em>Inner Fillet Radius</em>}' attribute.
@@ -118,7 +118,7 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @see #getInnerFilletRadius()
 	 * @generated
 	 */
-	void setInnerFilletRadius(float value);
+	void setInnerFilletRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleHollowProfileDef#getInnerFilletRadius <em>Inner Fillet Radius</em>}' attribute.
@@ -126,7 +126,7 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetInnerFilletRadius()
 	 * @see #getInnerFilletRadius()
-	 * @see #setInnerFilletRadius(float)
+	 * @see #setInnerFilletRadius(double)
 	 * @generated
 	 */
 	void unsetInnerFilletRadius();
@@ -138,7 +138,7 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @return whether the value of the '<em>Inner Fillet Radius</em>' attribute is set.
 	 * @see #unsetInnerFilletRadius()
 	 * @see #getInnerFilletRadius()
-	 * @see #setInnerFilletRadius(float)
+	 * @see #setInnerFilletRadius(double)
 	 * @generated
 	 */
 	boolean isSetInnerFilletRadius();
@@ -207,12 +207,12 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @return the value of the '<em>Outer Fillet Radius</em>' attribute.
 	 * @see #isSetOuterFilletRadius()
 	 * @see #unsetOuterFilletRadius()
-	 * @see #setOuterFilletRadius(float)
+	 * @see #setOuterFilletRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleHollowProfileDef_OuterFilletRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getOuterFilletRadius();
+	double getOuterFilletRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleHollowProfileDef#getOuterFilletRadius <em>Outer Fillet Radius</em>}' attribute.
@@ -224,7 +224,7 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @see #getOuterFilletRadius()
 	 * @generated
 	 */
-	void setOuterFilletRadius(float value);
+	void setOuterFilletRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleHollowProfileDef#getOuterFilletRadius <em>Outer Fillet Radius</em>}' attribute.
@@ -232,7 +232,7 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetOuterFilletRadius()
 	 * @see #getOuterFilletRadius()
-	 * @see #setOuterFilletRadius(float)
+	 * @see #setOuterFilletRadius(double)
 	 * @generated
 	 */
 	void unsetOuterFilletRadius();
@@ -244,7 +244,7 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @return whether the value of the '<em>Outer Fillet Radius</em>' attribute is set.
 	 * @see #unsetOuterFilletRadius()
 	 * @see #getOuterFilletRadius()
-	 * @see #setOuterFilletRadius(float)
+	 * @see #setOuterFilletRadius(double)
 	 * @generated
 	 */
 	boolean isSetOuterFilletRadius();

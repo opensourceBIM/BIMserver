@@ -75,8 +75,8 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getApplicableValueRatio() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__APPLICABLE_VALUE_RATIO, true);
+	public double getApplicableValueRatio() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__APPLICABLE_VALUE_RATIO, true);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setApplicableValueRatio(float newApplicableValueRatio) {
+	public void setApplicableValueRatio(double newApplicableValueRatio) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__APPLICABLE_VALUE_RATIO, newApplicableValueRatio);
 	}
 
@@ -219,8 +219,8 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMaximumValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE, true);
+	public double getMaximumValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE, true);
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMaximumValue(float newMaximumValue) {
+	public void setMaximumValue(double newMaximumValue) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE, newMaximumValue);
 	}
 
@@ -255,8 +255,8 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMinimumValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MINIMUM_VALUE, true);
+	public double getMinimumValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MINIMUM_VALUE, true);
 	}
 
 	/**
@@ -264,7 +264,7 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinimumValue(float newMinimumValue) {
+	public void setMinimumValue(double newMinimumValue) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MINIMUM_VALUE, newMinimumValue);
 	}
 

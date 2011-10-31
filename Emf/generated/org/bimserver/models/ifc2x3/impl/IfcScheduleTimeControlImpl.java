@@ -376,8 +376,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getScheduleDuration() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_DURATION, true);
+	public double getScheduleDuration() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_DURATION, true);
 	}
 
 	/**
@@ -385,7 +385,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setScheduleDuration(float newScheduleDuration) {
+	public void setScheduleDuration(double newScheduleDuration) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_DURATION, newScheduleDuration);
 	}
 
@@ -448,8 +448,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getActualDuration() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__ACTUAL_DURATION, true);
+	public double getActualDuration() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__ACTUAL_DURATION, true);
 	}
 
 	/**
@@ -457,7 +457,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActualDuration(float newActualDuration) {
+	public void setActualDuration(double newActualDuration) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__ACTUAL_DURATION, newActualDuration);
 	}
 
@@ -520,8 +520,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRemainingTime() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__REMAINING_TIME, true);
+	public double getRemainingTime() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__REMAINING_TIME, true);
 	}
 
 	/**
@@ -529,7 +529,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRemainingTime(float newRemainingTime) {
+	public void setRemainingTime(double newRemainingTime) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__REMAINING_TIME, newRemainingTime);
 	}
 
@@ -592,8 +592,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFreeFloat() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__FREE_FLOAT, true);
+	public double getFreeFloat() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__FREE_FLOAT, true);
 	}
 
 	/**
@@ -601,7 +601,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFreeFloat(float newFreeFloat) {
+	public void setFreeFloat(double newFreeFloat) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__FREE_FLOAT, newFreeFloat);
 	}
 
@@ -664,8 +664,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTotalFloat() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__TOTAL_FLOAT, true);
+	public double getTotalFloat() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__TOTAL_FLOAT, true);
 	}
 
 	/**
@@ -673,7 +673,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTotalFloat(float newTotalFloat) {
+	public void setTotalFloat(double newTotalFloat) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__TOTAL_FLOAT, newTotalFloat);
 	}
 
@@ -790,8 +790,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getStartFloat() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__START_FLOAT, true);
+	public double getStartFloat() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__START_FLOAT, true);
 	}
 
 	/**
@@ -799,7 +799,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStartFloat(float newStartFloat) {
+	public void setStartFloat(double newStartFloat) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__START_FLOAT, newStartFloat);
 	}
 
@@ -862,8 +862,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFinishFloat() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__FINISH_FLOAT, true);
+	public double getFinishFloat() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__FINISH_FLOAT, true);
 	}
 
 	/**
@@ -871,7 +871,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFinishFloat(float newFinishFloat) {
+	public void setFinishFloat(double newFinishFloat) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__FINISH_FLOAT, newFinishFloat);
 	}
 
@@ -934,8 +934,8 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCompletion() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__COMPLETION, true);
+	public double getCompletion() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__COMPLETION, true);
 	}
 
 	/**
@@ -943,7 +943,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompletion(float newCompletion) {
+	public void setCompletion(double newCompletion) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__COMPLETION, newCompletion);
 	}
 

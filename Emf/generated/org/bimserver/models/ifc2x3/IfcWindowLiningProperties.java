@@ -60,12 +60,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Lining Depth</em>' attribute.
 	 * @see #isSetLiningDepth()
 	 * @see #unsetLiningDepth()
-	 * @see #setLiningDepth(float)
+	 * @see #setLiningDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_LiningDepth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLiningDepth();
+	double getLiningDepth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getLiningDepth <em>Lining Depth</em>}' attribute.
@@ -77,7 +77,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getLiningDepth()
 	 * @generated
 	 */
-	void setLiningDepth(float value);
+	void setLiningDepth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getLiningDepth <em>Lining Depth</em>}' attribute.
@@ -85,7 +85,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLiningDepth()
 	 * @see #getLiningDepth()
-	 * @see #setLiningDepth(float)
+	 * @see #setLiningDepth(double)
 	 * @generated
 	 */
 	void unsetLiningDepth();
@@ -97,7 +97,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Lining Depth</em>' attribute is set.
 	 * @see #unsetLiningDepth()
 	 * @see #getLiningDepth()
-	 * @see #setLiningDepth(float)
+	 * @see #setLiningDepth(double)
 	 * @generated
 	 */
 	boolean isSetLiningDepth();
@@ -166,12 +166,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Lining Thickness</em>' attribute.
 	 * @see #isSetLiningThickness()
 	 * @see #unsetLiningThickness()
-	 * @see #setLiningThickness(float)
+	 * @see #setLiningThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_LiningThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getLiningThickness();
+	double getLiningThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getLiningThickness <em>Lining Thickness</em>}' attribute.
@@ -183,7 +183,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getLiningThickness()
 	 * @generated
 	 */
-	void setLiningThickness(float value);
+	void setLiningThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getLiningThickness <em>Lining Thickness</em>}' attribute.
@@ -191,7 +191,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLiningThickness()
 	 * @see #getLiningThickness()
-	 * @see #setLiningThickness(float)
+	 * @see #setLiningThickness(double)
 	 * @generated
 	 */
 	void unsetLiningThickness();
@@ -203,7 +203,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Lining Thickness</em>' attribute is set.
 	 * @see #unsetLiningThickness()
 	 * @see #getLiningThickness()
-	 * @see #setLiningThickness(float)
+	 * @see #setLiningThickness(double)
 	 * @generated
 	 */
 	boolean isSetLiningThickness();
@@ -272,12 +272,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Transom Thickness</em>' attribute.
 	 * @see #isSetTransomThickness()
 	 * @see #unsetTransomThickness()
-	 * @see #setTransomThickness(float)
+	 * @see #setTransomThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_TransomThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTransomThickness();
+	double getTransomThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getTransomThickness <em>Transom Thickness</em>}' attribute.
@@ -289,7 +289,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getTransomThickness()
 	 * @generated
 	 */
-	void setTransomThickness(float value);
+	void setTransomThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getTransomThickness <em>Transom Thickness</em>}' attribute.
@@ -297,7 +297,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTransomThickness()
 	 * @see #getTransomThickness()
-	 * @see #setTransomThickness(float)
+	 * @see #setTransomThickness(double)
 	 * @generated
 	 */
 	void unsetTransomThickness();
@@ -309,7 +309,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Transom Thickness</em>' attribute is set.
 	 * @see #unsetTransomThickness()
 	 * @see #getTransomThickness()
-	 * @see #setTransomThickness(float)
+	 * @see #setTransomThickness(double)
 	 * @generated
 	 */
 	boolean isSetTransomThickness();
@@ -378,12 +378,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Mullion Thickness</em>' attribute.
 	 * @see #isSetMullionThickness()
 	 * @see #unsetMullionThickness()
-	 * @see #setMullionThickness(float)
+	 * @see #setMullionThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_MullionThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMullionThickness();
+	double getMullionThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getMullionThickness <em>Mullion Thickness</em>}' attribute.
@@ -395,7 +395,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getMullionThickness()
 	 * @generated
 	 */
-	void setMullionThickness(float value);
+	void setMullionThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getMullionThickness <em>Mullion Thickness</em>}' attribute.
@@ -403,7 +403,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMullionThickness()
 	 * @see #getMullionThickness()
-	 * @see #setMullionThickness(float)
+	 * @see #setMullionThickness(double)
 	 * @generated
 	 */
 	void unsetMullionThickness();
@@ -415,7 +415,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Mullion Thickness</em>' attribute is set.
 	 * @see #unsetMullionThickness()
 	 * @see #getMullionThickness()
-	 * @see #setMullionThickness(float)
+	 * @see #setMullionThickness(double)
 	 * @generated
 	 */
 	boolean isSetMullionThickness();
@@ -484,12 +484,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>First Transom Offset</em>' attribute.
 	 * @see #isSetFirstTransomOffset()
 	 * @see #unsetFirstTransomOffset()
-	 * @see #setFirstTransomOffset(float)
+	 * @see #setFirstTransomOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_FirstTransomOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFirstTransomOffset();
+	double getFirstTransomOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getFirstTransomOffset <em>First Transom Offset</em>}' attribute.
@@ -501,7 +501,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getFirstTransomOffset()
 	 * @generated
 	 */
-	void setFirstTransomOffset(float value);
+	void setFirstTransomOffset(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getFirstTransomOffset <em>First Transom Offset</em>}' attribute.
@@ -509,7 +509,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFirstTransomOffset()
 	 * @see #getFirstTransomOffset()
-	 * @see #setFirstTransomOffset(float)
+	 * @see #setFirstTransomOffset(double)
 	 * @generated
 	 */
 	void unsetFirstTransomOffset();
@@ -521,7 +521,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>First Transom Offset</em>' attribute is set.
 	 * @see #unsetFirstTransomOffset()
 	 * @see #getFirstTransomOffset()
-	 * @see #setFirstTransomOffset(float)
+	 * @see #setFirstTransomOffset(double)
 	 * @generated
 	 */
 	boolean isSetFirstTransomOffset();
@@ -590,12 +590,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Second Transom Offset</em>' attribute.
 	 * @see #isSetSecondTransomOffset()
 	 * @see #unsetSecondTransomOffset()
-	 * @see #setSecondTransomOffset(float)
+	 * @see #setSecondTransomOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_SecondTransomOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSecondTransomOffset();
+	double getSecondTransomOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getSecondTransomOffset <em>Second Transom Offset</em>}' attribute.
@@ -607,7 +607,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getSecondTransomOffset()
 	 * @generated
 	 */
-	void setSecondTransomOffset(float value);
+	void setSecondTransomOffset(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getSecondTransomOffset <em>Second Transom Offset</em>}' attribute.
@@ -615,7 +615,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSecondTransomOffset()
 	 * @see #getSecondTransomOffset()
-	 * @see #setSecondTransomOffset(float)
+	 * @see #setSecondTransomOffset(double)
 	 * @generated
 	 */
 	void unsetSecondTransomOffset();
@@ -627,7 +627,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Second Transom Offset</em>' attribute is set.
 	 * @see #unsetSecondTransomOffset()
 	 * @see #getSecondTransomOffset()
-	 * @see #setSecondTransomOffset(float)
+	 * @see #setSecondTransomOffset(double)
 	 * @generated
 	 */
 	boolean isSetSecondTransomOffset();
@@ -696,12 +696,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>First Mullion Offset</em>' attribute.
 	 * @see #isSetFirstMullionOffset()
 	 * @see #unsetFirstMullionOffset()
-	 * @see #setFirstMullionOffset(float)
+	 * @see #setFirstMullionOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_FirstMullionOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFirstMullionOffset();
+	double getFirstMullionOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getFirstMullionOffset <em>First Mullion Offset</em>}' attribute.
@@ -713,7 +713,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getFirstMullionOffset()
 	 * @generated
 	 */
-	void setFirstMullionOffset(float value);
+	void setFirstMullionOffset(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getFirstMullionOffset <em>First Mullion Offset</em>}' attribute.
@@ -721,7 +721,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFirstMullionOffset()
 	 * @see #getFirstMullionOffset()
-	 * @see #setFirstMullionOffset(float)
+	 * @see #setFirstMullionOffset(double)
 	 * @generated
 	 */
 	void unsetFirstMullionOffset();
@@ -733,7 +733,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>First Mullion Offset</em>' attribute is set.
 	 * @see #unsetFirstMullionOffset()
 	 * @see #getFirstMullionOffset()
-	 * @see #setFirstMullionOffset(float)
+	 * @see #setFirstMullionOffset(double)
 	 * @generated
 	 */
 	boolean isSetFirstMullionOffset();
@@ -802,12 +802,12 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return the value of the '<em>Second Mullion Offset</em>' attribute.
 	 * @see #isSetSecondMullionOffset()
 	 * @see #unsetSecondMullionOffset()
-	 * @see #setSecondMullionOffset(float)
+	 * @see #setSecondMullionOffset(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowLiningProperties_SecondMullionOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSecondMullionOffset();
+	double getSecondMullionOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getSecondMullionOffset <em>Second Mullion Offset</em>}' attribute.
@@ -819,7 +819,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @see #getSecondMullionOffset()
 	 * @generated
 	 */
-	void setSecondMullionOffset(float value);
+	void setSecondMullionOffset(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowLiningProperties#getSecondMullionOffset <em>Second Mullion Offset</em>}' attribute.
@@ -827,7 +827,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSecondMullionOffset()
 	 * @see #getSecondMullionOffset()
-	 * @see #setSecondMullionOffset(float)
+	 * @see #setSecondMullionOffset(double)
 	 * @generated
 	 */
 	void unsetSecondMullionOffset();
@@ -839,7 +839,7 @@ public interface IfcWindowLiningProperties extends IfcPropertySetDefinition {
 	 * @return whether the value of the '<em>Second Mullion Offset</em>' attribute is set.
 	 * @see #unsetSecondMullionOffset()
 	 * @see #getSecondMullionOffset()
-	 * @see #setSecondMullionOffset(float)
+	 * @see #setSecondMullionOffset(double)
 	 * @generated
 	 */
 	boolean isSetSecondMullionOffset();

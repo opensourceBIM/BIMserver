@@ -46,7 +46,7 @@ public class SimpleTest {
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model = deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
             List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
-            Map<Float, IfcBuildingStorey> orderedStories = new TreeMap<Float, IfcBuildingStorey>();
+            Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
             for (IfcBuildingStorey storey : stories) {
                 orderedStories.put(storey.getElevation(), storey);
             }

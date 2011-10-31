@@ -47,12 +47,12 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * @return the value of the '<em>Nominal Diameter</em>' attribute.
 	 * @see #isSetNominalDiameter()
 	 * @see #unsetNominalDiameter()
-	 * @see #setNominalDiameter(float)
+	 * @see #setNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalFastener_NominalDiameter()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getNominalDiameter();
+	double getNominalDiameter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalFastener#getNominalDiameter <em>Nominal Diameter</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * @see #getNominalDiameter()
 	 * @generated
 	 */
-	void setNominalDiameter(float value);
+	void setNominalDiameter(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalFastener#getNominalDiameter <em>Nominal Diameter</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * <!-- end-user-doc -->
 	 * @see #isSetNominalDiameter()
 	 * @see #getNominalDiameter()
-	 * @see #setNominalDiameter(float)
+	 * @see #setNominalDiameter(double)
 	 * @generated
 	 */
 	void unsetNominalDiameter();
@@ -84,7 +84,7 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * @return whether the value of the '<em>Nominal Diameter</em>' attribute is set.
 	 * @see #unsetNominalDiameter()
 	 * @see #getNominalDiameter()
-	 * @see #setNominalDiameter(float)
+	 * @see #setNominalDiameter(double)
 	 * @generated
 	 */
 	boolean isSetNominalDiameter();
@@ -153,12 +153,12 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * @return the value of the '<em>Nominal Length</em>' attribute.
 	 * @see #isSetNominalLength()
 	 * @see #unsetNominalLength()
-	 * @see #setNominalLength(float)
+	 * @see #setNominalLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalFastener_NominalLength()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getNominalLength();
+	double getNominalLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalFastener#getNominalLength <em>Nominal Length</em>}' attribute.
@@ -170,7 +170,7 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * @see #getNominalLength()
 	 * @generated
 	 */
-	void setNominalLength(float value);
+	void setNominalLength(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalFastener#getNominalLength <em>Nominal Length</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * <!-- end-user-doc -->
 	 * @see #isSetNominalLength()
 	 * @see #getNominalLength()
-	 * @see #setNominalLength(float)
+	 * @see #setNominalLength(double)
 	 * @generated
 	 */
 	void unsetNominalLength();
@@ -190,7 +190,7 @@ public interface IfcMechanicalFastener extends IfcFastener {
 	 * @return whether the value of the '<em>Nominal Length</em>' attribute is set.
 	 * @see #unsetNominalLength()
 	 * @see #getNominalLength()
-	 * @see #setNominalLength(float)
+	 * @see #setNominalLength(double)
 	 * @generated
 	 */
 	boolean isSetNominalLength();

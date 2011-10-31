@@ -53,12 +53,12 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Dynamic Viscosity</em>' attribute.
 	 * @see #isSetDynamicViscosity()
 	 * @see #unsetDynamicViscosity()
-	 * @see #setDynamicViscosity(float)
+	 * @see #setDynamicViscosity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalMaterialProperties_DynamicViscosity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDynamicViscosity();
+	double getDynamicViscosity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getDynamicViscosity <em>Dynamic Viscosity</em>}' attribute.
@@ -70,7 +70,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getDynamicViscosity()
 	 * @generated
 	 */
-	void setDynamicViscosity(float value);
+	void setDynamicViscosity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getDynamicViscosity <em>Dynamic Viscosity</em>}' attribute.
@@ -78,7 +78,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDynamicViscosity()
 	 * @see #getDynamicViscosity()
-	 * @see #setDynamicViscosity(float)
+	 * @see #setDynamicViscosity(double)
 	 * @generated
 	 */
 	void unsetDynamicViscosity();
@@ -90,7 +90,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Dynamic Viscosity</em>' attribute is set.
 	 * @see #unsetDynamicViscosity()
 	 * @see #getDynamicViscosity()
-	 * @see #setDynamicViscosity(float)
+	 * @see #setDynamicViscosity(double)
 	 * @generated
 	 */
 	boolean isSetDynamicViscosity();
@@ -159,12 +159,12 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Young Modulus</em>' attribute.
 	 * @see #isSetYoungModulus()
 	 * @see #unsetYoungModulus()
-	 * @see #setYoungModulus(float)
+	 * @see #setYoungModulus(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalMaterialProperties_YoungModulus()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getYoungModulus();
+	double getYoungModulus();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getYoungModulus <em>Young Modulus</em>}' attribute.
@@ -176,7 +176,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getYoungModulus()
 	 * @generated
 	 */
-	void setYoungModulus(float value);
+	void setYoungModulus(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getYoungModulus <em>Young Modulus</em>}' attribute.
@@ -184,7 +184,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetYoungModulus()
 	 * @see #getYoungModulus()
-	 * @see #setYoungModulus(float)
+	 * @see #setYoungModulus(double)
 	 * @generated
 	 */
 	void unsetYoungModulus();
@@ -196,7 +196,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Young Modulus</em>' attribute is set.
 	 * @see #unsetYoungModulus()
 	 * @see #getYoungModulus()
-	 * @see #setYoungModulus(float)
+	 * @see #setYoungModulus(double)
 	 * @generated
 	 */
 	boolean isSetYoungModulus();
@@ -265,12 +265,12 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Shear Modulus</em>' attribute.
 	 * @see #isSetShearModulus()
 	 * @see #unsetShearModulus()
-	 * @see #setShearModulus(float)
+	 * @see #setShearModulus(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalMaterialProperties_ShearModulus()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getShearModulus();
+	double getShearModulus();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getShearModulus <em>Shear Modulus</em>}' attribute.
@@ -282,7 +282,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getShearModulus()
 	 * @generated
 	 */
-	void setShearModulus(float value);
+	void setShearModulus(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getShearModulus <em>Shear Modulus</em>}' attribute.
@@ -290,7 +290,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetShearModulus()
 	 * @see #getShearModulus()
-	 * @see #setShearModulus(float)
+	 * @see #setShearModulus(double)
 	 * @generated
 	 */
 	void unsetShearModulus();
@@ -302,7 +302,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Shear Modulus</em>' attribute is set.
 	 * @see #unsetShearModulus()
 	 * @see #getShearModulus()
-	 * @see #setShearModulus(float)
+	 * @see #setShearModulus(double)
 	 * @generated
 	 */
 	boolean isSetShearModulus();
@@ -371,12 +371,12 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Poisson Ratio</em>' attribute.
 	 * @see #isSetPoissonRatio()
 	 * @see #unsetPoissonRatio()
-	 * @see #setPoissonRatio(float)
+	 * @see #setPoissonRatio(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalMaterialProperties_PoissonRatio()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getPoissonRatio();
+	double getPoissonRatio();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getPoissonRatio <em>Poisson Ratio</em>}' attribute.
@@ -388,7 +388,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getPoissonRatio()
 	 * @generated
 	 */
-	void setPoissonRatio(float value);
+	void setPoissonRatio(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getPoissonRatio <em>Poisson Ratio</em>}' attribute.
@@ -396,7 +396,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPoissonRatio()
 	 * @see #getPoissonRatio()
-	 * @see #setPoissonRatio(float)
+	 * @see #setPoissonRatio(double)
 	 * @generated
 	 */
 	void unsetPoissonRatio();
@@ -408,7 +408,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Poisson Ratio</em>' attribute is set.
 	 * @see #unsetPoissonRatio()
 	 * @see #getPoissonRatio()
-	 * @see #setPoissonRatio(float)
+	 * @see #setPoissonRatio(double)
 	 * @generated
 	 */
 	boolean isSetPoissonRatio();
@@ -477,12 +477,12 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return the value of the '<em>Thermal Expansion Coefficient</em>' attribute.
 	 * @see #isSetThermalExpansionCoefficient()
 	 * @see #unsetThermalExpansionCoefficient()
-	 * @see #setThermalExpansionCoefficient(float)
+	 * @see #setThermalExpansionCoefficient(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMechanicalMaterialProperties_ThermalExpansionCoefficient()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getThermalExpansionCoefficient();
+	double getThermalExpansionCoefficient();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getThermalExpansionCoefficient <em>Thermal Expansion Coefficient</em>}' attribute.
@@ -494,7 +494,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @see #getThermalExpansionCoefficient()
 	 * @generated
 	 */
-	void setThermalExpansionCoefficient(float value);
+	void setThermalExpansionCoefficient(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties#getThermalExpansionCoefficient <em>Thermal Expansion Coefficient</em>}' attribute.
@@ -502,7 +502,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @see #isSetThermalExpansionCoefficient()
 	 * @see #getThermalExpansionCoefficient()
-	 * @see #setThermalExpansionCoefficient(float)
+	 * @see #setThermalExpansionCoefficient(double)
 	 * @generated
 	 */
 	void unsetThermalExpansionCoefficient();
@@ -514,7 +514,7 @@ public interface IfcMechanicalMaterialProperties extends IfcMaterialProperties {
 	 * @return whether the value of the '<em>Thermal Expansion Coefficient</em>' attribute is set.
 	 * @see #unsetThermalExpansionCoefficient()
 	 * @see #getThermalExpansionCoefficient()
-	 * @see #setThermalExpansionCoefficient(float)
+	 * @see #setThermalExpansionCoefficient(double)
 	 * @generated
 	 */
 	boolean isSetThermalExpansionCoefficient();

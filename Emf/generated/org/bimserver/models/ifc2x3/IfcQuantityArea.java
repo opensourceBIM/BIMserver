@@ -43,12 +43,12 @@ public interface IfcQuantityArea extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Area Value</em>' attribute.
-	 * @see #setAreaValue(float)
+	 * @see #setAreaValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityArea_AreaValue()
 	 * @model
 	 * @generated
 	 */
-	float getAreaValue();
+	double getAreaValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityArea#getAreaValue <em>Area Value</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcQuantityArea extends IfcPhysicalSimpleQuantity {
 	 * @see #getAreaValue()
 	 * @generated
 	 */
-	void setAreaValue(float value);
+	void setAreaValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Area Value As String</b></em>' attribute.

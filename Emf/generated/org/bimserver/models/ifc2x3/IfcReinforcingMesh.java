@@ -59,12 +59,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @return the value of the '<em>Mesh Length</em>' attribute.
 	 * @see #isSetMeshLength()
 	 * @see #unsetMeshLength()
-	 * @see #setMeshLength(float)
+	 * @see #setMeshLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_MeshLength()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMeshLength();
+	double getMeshLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getMeshLength <em>Mesh Length</em>}' attribute.
@@ -76,7 +76,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getMeshLength()
 	 * @generated
 	 */
-	void setMeshLength(float value);
+	void setMeshLength(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getMeshLength <em>Mesh Length</em>}' attribute.
@@ -84,7 +84,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMeshLength()
 	 * @see #getMeshLength()
-	 * @see #setMeshLength(float)
+	 * @see #setMeshLength(double)
 	 * @generated
 	 */
 	void unsetMeshLength();
@@ -96,7 +96,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Mesh Length</em>' attribute is set.
 	 * @see #unsetMeshLength()
 	 * @see #getMeshLength()
-	 * @see #setMeshLength(float)
+	 * @see #setMeshLength(double)
 	 * @generated
 	 */
 	boolean isSetMeshLength();
@@ -165,12 +165,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @return the value of the '<em>Mesh Width</em>' attribute.
 	 * @see #isSetMeshWidth()
 	 * @see #unsetMeshWidth()
-	 * @see #setMeshWidth(float)
+	 * @see #setMeshWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_MeshWidth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getMeshWidth();
+	double getMeshWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getMeshWidth <em>Mesh Width</em>}' attribute.
@@ -182,7 +182,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getMeshWidth()
 	 * @generated
 	 */
-	void setMeshWidth(float value);
+	void setMeshWidth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getMeshWidth <em>Mesh Width</em>}' attribute.
@@ -190,7 +190,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMeshWidth()
 	 * @see #getMeshWidth()
-	 * @see #setMeshWidth(float)
+	 * @see #setMeshWidth(double)
 	 * @generated
 	 */
 	void unsetMeshWidth();
@@ -202,7 +202,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @return whether the value of the '<em>Mesh Width</em>' attribute is set.
 	 * @see #unsetMeshWidth()
 	 * @see #getMeshWidth()
-	 * @see #setMeshWidth(float)
+	 * @see #setMeshWidth(double)
 	 * @generated
 	 */
 	boolean isSetMeshWidth();
@@ -269,12 +269,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Nominal Diameter</em>' attribute.
-	 * @see #setLongitudinalBarNominalDiameter(float)
+	 * @see #setLongitudinalBarNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarNominalDiameter()
 	 * @model
 	 * @generated
 	 */
-	float getLongitudinalBarNominalDiameter();
+	double getLongitudinalBarNominalDiameter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarNominalDiameter <em>Longitudinal Bar Nominal Diameter</em>}' attribute.
@@ -284,7 +284,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getLongitudinalBarNominalDiameter()
 	 * @generated
 	 */
-	void setLongitudinalBarNominalDiameter(float value);
+	void setLongitudinalBarNominalDiameter(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Nominal Diameter As String</b></em>' attribute.
@@ -321,12 +321,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Nominal Diameter</em>' attribute.
-	 * @see #setTransverseBarNominalDiameter(float)
+	 * @see #setTransverseBarNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarNominalDiameter()
 	 * @model
 	 * @generated
 	 */
-	float getTransverseBarNominalDiameter();
+	double getTransverseBarNominalDiameter();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarNominalDiameter <em>Transverse Bar Nominal Diameter</em>}' attribute.
@@ -336,7 +336,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getTransverseBarNominalDiameter()
 	 * @generated
 	 */
-	void setTransverseBarNominalDiameter(float value);
+	void setTransverseBarNominalDiameter(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Nominal Diameter As String</b></em>' attribute.
@@ -373,12 +373,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Cross Section Area</em>' attribute.
-	 * @see #setLongitudinalBarCrossSectionArea(float)
+	 * @see #setLongitudinalBarCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarCrossSectionArea()
 	 * @model
 	 * @generated
 	 */
-	float getLongitudinalBarCrossSectionArea();
+	double getLongitudinalBarCrossSectionArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarCrossSectionArea <em>Longitudinal Bar Cross Section Area</em>}' attribute.
@@ -388,7 +388,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getLongitudinalBarCrossSectionArea()
 	 * @generated
 	 */
-	void setLongitudinalBarCrossSectionArea(float value);
+	void setLongitudinalBarCrossSectionArea(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Cross Section Area As String</b></em>' attribute.
@@ -425,12 +425,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Cross Section Area</em>' attribute.
-	 * @see #setTransverseBarCrossSectionArea(float)
+	 * @see #setTransverseBarCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarCrossSectionArea()
 	 * @model
 	 * @generated
 	 */
-	float getTransverseBarCrossSectionArea();
+	double getTransverseBarCrossSectionArea();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarCrossSectionArea <em>Transverse Bar Cross Section Area</em>}' attribute.
@@ -440,7 +440,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getTransverseBarCrossSectionArea()
 	 * @generated
 	 */
-	void setTransverseBarCrossSectionArea(float value);
+	void setTransverseBarCrossSectionArea(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Cross Section Area As String</b></em>' attribute.
@@ -477,12 +477,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Spacing</em>' attribute.
-	 * @see #setLongitudinalBarSpacing(float)
+	 * @see #setLongitudinalBarSpacing(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarSpacing()
 	 * @model
 	 * @generated
 	 */
-	float getLongitudinalBarSpacing();
+	double getLongitudinalBarSpacing();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarSpacing <em>Longitudinal Bar Spacing</em>}' attribute.
@@ -492,7 +492,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getLongitudinalBarSpacing()
 	 * @generated
 	 */
-	void setLongitudinalBarSpacing(float value);
+	void setLongitudinalBarSpacing(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Spacing As String</b></em>' attribute.
@@ -529,12 +529,12 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Spacing</em>' attribute.
-	 * @see #setTransverseBarSpacing(float)
+	 * @see #setTransverseBarSpacing(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarSpacing()
 	 * @model
 	 * @generated
 	 */
-	float getTransverseBarSpacing();
+	double getTransverseBarSpacing();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarSpacing <em>Transverse Bar Spacing</em>}' attribute.
@@ -544,7 +544,7 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * @see #getTransverseBarSpacing()
 	 * @generated
 	 */
-	void setTransverseBarSpacing(float value);
+	void setTransverseBarSpacing(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Spacing As String</b></em>' attribute.

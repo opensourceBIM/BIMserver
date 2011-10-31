@@ -41,7 +41,7 @@ package org.bimserver.tests;
 //		// for (int i=0; i<100; i++) {
 //		// Pointer model = ifcEngineJNA.sdaiOpenModelBN(1,
 //		// "C:\\Users\\Ruben\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc",
-//		// "C:\\Users\\Ruben\\Workspaces\\BIMserver\\BimServer\\deploy\\shared\\IFC2X3_FINAL.exp");
+//		// "C:\\Users\\Ruben\\Workspaces\\BIMserver\\BimServer\\deploy\\shared\\IFC2X3_TC1.exp");
 //		// ifcEngineJNA.setPostProcessing(model, 1);
 //		// org.bimserver.ifcengine.IfcEngineJNA.SurfaceProperties
 //		// initializeModelling = ifcEngineJNA.initializeModelling(model, 0.0);
@@ -84,7 +84,7 @@ package org.bimserver.tests;
 //
 //	private static void testClashes(ResourceFetcher resourceFetcher) {
 //		try {
-//			IfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), new File("tmp"), "");
+//			IfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_TC1.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), new File("tmp"), "");
 //			try {
 //				File file = TestFile.AC11.getFile();
 //				IfcEngineModelImpl openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
@@ -109,7 +109,7 @@ package org.bimserver.tests;
 //
 //	private static void testGeometry(ResourceFetcher resourceFetcher) {
 //		try {
-//			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), new File("tmp"), "");
+//			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_TC1.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), new File("tmp"), "");
 //			try {
 //				File file = TestFile.AC11.getFile();
 //				IfcEngineModelImpl openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());

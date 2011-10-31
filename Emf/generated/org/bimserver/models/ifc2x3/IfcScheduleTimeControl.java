@@ -494,12 +494,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Schedule Duration</em>' attribute.
 	 * @see #isSetScheduleDuration()
 	 * @see #unsetScheduleDuration()
-	 * @see #setScheduleDuration(float)
+	 * @see #setScheduleDuration(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_ScheduleDuration()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getScheduleDuration();
+	double getScheduleDuration();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getScheduleDuration <em>Schedule Duration</em>}' attribute.
@@ -511,7 +511,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getScheduleDuration()
 	 * @generated
 	 */
-	void setScheduleDuration(float value);
+	void setScheduleDuration(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getScheduleDuration <em>Schedule Duration</em>}' attribute.
@@ -519,7 +519,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetScheduleDuration()
 	 * @see #getScheduleDuration()
-	 * @see #setScheduleDuration(float)
+	 * @see #setScheduleDuration(double)
 	 * @generated
 	 */
 	void unsetScheduleDuration();
@@ -531,7 +531,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Schedule Duration</em>' attribute is set.
 	 * @see #unsetScheduleDuration()
 	 * @see #getScheduleDuration()
-	 * @see #setScheduleDuration(float)
+	 * @see #setScheduleDuration(double)
 	 * @generated
 	 */
 	boolean isSetScheduleDuration();
@@ -600,12 +600,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Actual Duration</em>' attribute.
 	 * @see #isSetActualDuration()
 	 * @see #unsetActualDuration()
-	 * @see #setActualDuration(float)
+	 * @see #setActualDuration(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_ActualDuration()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getActualDuration();
+	double getActualDuration();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getActualDuration <em>Actual Duration</em>}' attribute.
@@ -617,7 +617,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getActualDuration()
 	 * @generated
 	 */
-	void setActualDuration(float value);
+	void setActualDuration(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getActualDuration <em>Actual Duration</em>}' attribute.
@@ -625,7 +625,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetActualDuration()
 	 * @see #getActualDuration()
-	 * @see #setActualDuration(float)
+	 * @see #setActualDuration(double)
 	 * @generated
 	 */
 	void unsetActualDuration();
@@ -637,7 +637,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Actual Duration</em>' attribute is set.
 	 * @see #unsetActualDuration()
 	 * @see #getActualDuration()
-	 * @see #setActualDuration(float)
+	 * @see #setActualDuration(double)
 	 * @generated
 	 */
 	boolean isSetActualDuration();
@@ -706,12 +706,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Remaining Time</em>' attribute.
 	 * @see #isSetRemainingTime()
 	 * @see #unsetRemainingTime()
-	 * @see #setRemainingTime(float)
+	 * @see #setRemainingTime(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_RemainingTime()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRemainingTime();
+	double getRemainingTime();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getRemainingTime <em>Remaining Time</em>}' attribute.
@@ -723,7 +723,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getRemainingTime()
 	 * @generated
 	 */
-	void setRemainingTime(float value);
+	void setRemainingTime(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getRemainingTime <em>Remaining Time</em>}' attribute.
@@ -731,7 +731,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRemainingTime()
 	 * @see #getRemainingTime()
-	 * @see #setRemainingTime(float)
+	 * @see #setRemainingTime(double)
 	 * @generated
 	 */
 	void unsetRemainingTime();
@@ -743,7 +743,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Remaining Time</em>' attribute is set.
 	 * @see #unsetRemainingTime()
 	 * @see #getRemainingTime()
-	 * @see #setRemainingTime(float)
+	 * @see #setRemainingTime(double)
 	 * @generated
 	 */
 	boolean isSetRemainingTime();
@@ -812,12 +812,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Free Float</em>' attribute.
 	 * @see #isSetFreeFloat()
 	 * @see #unsetFreeFloat()
-	 * @see #setFreeFloat(float)
+	 * @see #setFreeFloat(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_FreeFloat()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFreeFloat();
+	double getFreeFloat();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getFreeFloat <em>Free Float</em>}' attribute.
@@ -829,7 +829,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getFreeFloat()
 	 * @generated
 	 */
-	void setFreeFloat(float value);
+	void setFreeFloat(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getFreeFloat <em>Free Float</em>}' attribute.
@@ -837,7 +837,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFreeFloat()
 	 * @see #getFreeFloat()
-	 * @see #setFreeFloat(float)
+	 * @see #setFreeFloat(double)
 	 * @generated
 	 */
 	void unsetFreeFloat();
@@ -849,7 +849,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Free Float</em>' attribute is set.
 	 * @see #unsetFreeFloat()
 	 * @see #getFreeFloat()
-	 * @see #setFreeFloat(float)
+	 * @see #setFreeFloat(double)
 	 * @generated
 	 */
 	boolean isSetFreeFloat();
@@ -918,12 +918,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Total Float</em>' attribute.
 	 * @see #isSetTotalFloat()
 	 * @see #unsetTotalFloat()
-	 * @see #setTotalFloat(float)
+	 * @see #setTotalFloat(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_TotalFloat()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTotalFloat();
+	double getTotalFloat();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getTotalFloat <em>Total Float</em>}' attribute.
@@ -935,7 +935,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getTotalFloat()
 	 * @generated
 	 */
-	void setTotalFloat(float value);
+	void setTotalFloat(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getTotalFloat <em>Total Float</em>}' attribute.
@@ -943,7 +943,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTotalFloat()
 	 * @see #getTotalFloat()
-	 * @see #setTotalFloat(float)
+	 * @see #setTotalFloat(double)
 	 * @generated
 	 */
 	void unsetTotalFloat();
@@ -955,7 +955,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Total Float</em>' attribute is set.
 	 * @see #unsetTotalFloat()
 	 * @see #getTotalFloat()
-	 * @see #setTotalFloat(float)
+	 * @see #setTotalFloat(double)
 	 * @generated
 	 */
 	boolean isSetTotalFloat();
@@ -1106,12 +1106,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Start Float</em>' attribute.
 	 * @see #isSetStartFloat()
 	 * @see #unsetStartFloat()
-	 * @see #setStartFloat(float)
+	 * @see #setStartFloat(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_StartFloat()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getStartFloat();
+	double getStartFloat();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getStartFloat <em>Start Float</em>}' attribute.
@@ -1123,7 +1123,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getStartFloat()
 	 * @generated
 	 */
-	void setStartFloat(float value);
+	void setStartFloat(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getStartFloat <em>Start Float</em>}' attribute.
@@ -1131,7 +1131,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetStartFloat()
 	 * @see #getStartFloat()
-	 * @see #setStartFloat(float)
+	 * @see #setStartFloat(double)
 	 * @generated
 	 */
 	void unsetStartFloat();
@@ -1143,7 +1143,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Start Float</em>' attribute is set.
 	 * @see #unsetStartFloat()
 	 * @see #getStartFloat()
-	 * @see #setStartFloat(float)
+	 * @see #setStartFloat(double)
 	 * @generated
 	 */
 	boolean isSetStartFloat();
@@ -1212,12 +1212,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Finish Float</em>' attribute.
 	 * @see #isSetFinishFloat()
 	 * @see #unsetFinishFloat()
-	 * @see #setFinishFloat(float)
+	 * @see #setFinishFloat(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_FinishFloat()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getFinishFloat();
+	double getFinishFloat();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getFinishFloat <em>Finish Float</em>}' attribute.
@@ -1229,7 +1229,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getFinishFloat()
 	 * @generated
 	 */
-	void setFinishFloat(float value);
+	void setFinishFloat(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getFinishFloat <em>Finish Float</em>}' attribute.
@@ -1237,7 +1237,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetFinishFloat()
 	 * @see #getFinishFloat()
-	 * @see #setFinishFloat(float)
+	 * @see #setFinishFloat(double)
 	 * @generated
 	 */
 	void unsetFinishFloat();
@@ -1249,7 +1249,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Finish Float</em>' attribute is set.
 	 * @see #unsetFinishFloat()
 	 * @see #getFinishFloat()
-	 * @see #setFinishFloat(float)
+	 * @see #setFinishFloat(double)
 	 * @generated
 	 */
 	boolean isSetFinishFloat();
@@ -1318,12 +1318,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return the value of the '<em>Completion</em>' attribute.
 	 * @see #isSetCompletion()
 	 * @see #unsetCompletion()
-	 * @see #setCompletion(float)
+	 * @see #setCompletion(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_Completion()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCompletion();
+	double getCompletion();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getCompletion <em>Completion</em>}' attribute.
@@ -1335,7 +1335,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @see #getCompletion()
 	 * @generated
 	 */
-	void setCompletion(float value);
+	void setCompletion(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getCompletion <em>Completion</em>}' attribute.
@@ -1343,7 +1343,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCompletion()
 	 * @see #getCompletion()
-	 * @see #setCompletion(float)
+	 * @see #setCompletion(double)
 	 * @generated
 	 */
 	void unsetCompletion();
@@ -1355,7 +1355,7 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * @return whether the value of the '<em>Completion</em>' attribute is set.
 	 * @see #unsetCompletion()
 	 * @see #getCompletion()
-	 * @see #setCompletion(float)
+	 * @see #setCompletion(double)
 	 * @generated
 	 */
 	boolean isSetCompletion();

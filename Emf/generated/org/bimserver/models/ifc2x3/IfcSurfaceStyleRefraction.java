@@ -47,12 +47,12 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * @return the value of the '<em>Refraction Index</em>' attribute.
 	 * @see #isSetRefractionIndex()
 	 * @see #unsetRefractionIndex()
-	 * @see #setRefractionIndex(float)
+	 * @see #setRefractionIndex(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleRefraction_RefractionIndex()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRefractionIndex();
+	double getRefractionIndex();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRefraction#getRefractionIndex <em>Refraction Index</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * @see #getRefractionIndex()
 	 * @generated
 	 */
-	void setRefractionIndex(float value);
+	void setRefractionIndex(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRefraction#getRefractionIndex <em>Refraction Index</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * <!-- end-user-doc -->
 	 * @see #isSetRefractionIndex()
 	 * @see #getRefractionIndex()
-	 * @see #setRefractionIndex(float)
+	 * @see #setRefractionIndex(double)
 	 * @generated
 	 */
 	void unsetRefractionIndex();
@@ -84,7 +84,7 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * @return whether the value of the '<em>Refraction Index</em>' attribute is set.
 	 * @see #unsetRefractionIndex()
 	 * @see #getRefractionIndex()
-	 * @see #setRefractionIndex(float)
+	 * @see #setRefractionIndex(double)
 	 * @generated
 	 */
 	boolean isSetRefractionIndex();
@@ -153,12 +153,12 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * @return the value of the '<em>Dispersion Factor</em>' attribute.
 	 * @see #isSetDispersionFactor()
 	 * @see #unsetDispersionFactor()
-	 * @see #setDispersionFactor(float)
+	 * @see #setDispersionFactor(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleRefraction_DispersionFactor()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getDispersionFactor();
+	double getDispersionFactor();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRefraction#getDispersionFactor <em>Dispersion Factor</em>}' attribute.
@@ -170,7 +170,7 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * @see #getDispersionFactor()
 	 * @generated
 	 */
-	void setDispersionFactor(float value);
+	void setDispersionFactor(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRefraction#getDispersionFactor <em>Dispersion Factor</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * <!-- end-user-doc -->
 	 * @see #isSetDispersionFactor()
 	 * @see #getDispersionFactor()
-	 * @see #setDispersionFactor(float)
+	 * @see #setDispersionFactor(double)
 	 * @generated
 	 */
 	void unsetDispersionFactor();
@@ -190,7 +190,7 @@ public interface IfcSurfaceStyleRefraction extends IfcSurfaceStyleElementSelect 
 	 * @return whether the value of the '<em>Dispersion Factor</em>' attribute is set.
 	 * @see #unsetDispersionFactor()
 	 * @see #getDispersionFactor()
-	 * @see #setDispersionFactor(float)
+	 * @see #setDispersionFactor(double)
 	 * @generated
 	 */
 	boolean isSetDispersionFactor();

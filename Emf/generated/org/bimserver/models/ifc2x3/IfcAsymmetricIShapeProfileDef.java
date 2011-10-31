@@ -49,12 +49,12 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Top Flange Width</em>' attribute.
-	 * @see #setTopFlangeWidth(float)
+	 * @see #setTopFlangeWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAsymmetricIShapeProfileDef_TopFlangeWidth()
 	 * @model
 	 * @generated
 	 */
-	float getTopFlangeWidth();
+	double getTopFlangeWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeWidth <em>Top Flange Width</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @see #getTopFlangeWidth()
 	 * @generated
 	 */
-	void setTopFlangeWidth(float value);
+	void setTopFlangeWidth(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Top Flange Width As String</b></em>' attribute.
@@ -103,12 +103,12 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @return the value of the '<em>Top Flange Thickness</em>' attribute.
 	 * @see #isSetTopFlangeThickness()
 	 * @see #unsetTopFlangeThickness()
-	 * @see #setTopFlangeThickness(float)
+	 * @see #setTopFlangeThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAsymmetricIShapeProfileDef_TopFlangeThickness()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTopFlangeThickness();
+	double getTopFlangeThickness();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeThickness <em>Top Flange Thickness</em>}' attribute.
@@ -120,7 +120,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @see #getTopFlangeThickness()
 	 * @generated
 	 */
-	void setTopFlangeThickness(float value);
+	void setTopFlangeThickness(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeThickness <em>Top Flange Thickness</em>}' attribute.
@@ -128,7 +128,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTopFlangeThickness()
 	 * @see #getTopFlangeThickness()
-	 * @see #setTopFlangeThickness(float)
+	 * @see #setTopFlangeThickness(double)
 	 * @generated
 	 */
 	void unsetTopFlangeThickness();
@@ -140,7 +140,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @return whether the value of the '<em>Top Flange Thickness</em>' attribute is set.
 	 * @see #unsetTopFlangeThickness()
 	 * @see #getTopFlangeThickness()
-	 * @see #setTopFlangeThickness(float)
+	 * @see #setTopFlangeThickness(double)
 	 * @generated
 	 */
 	boolean isSetTopFlangeThickness();
@@ -209,12 +209,12 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @return the value of the '<em>Top Flange Fillet Radius</em>' attribute.
 	 * @see #isSetTopFlangeFilletRadius()
 	 * @see #unsetTopFlangeFilletRadius()
-	 * @see #setTopFlangeFilletRadius(float)
+	 * @see #setTopFlangeFilletRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAsymmetricIShapeProfileDef_TopFlangeFilletRadius()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTopFlangeFilletRadius();
+	double getTopFlangeFilletRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeFilletRadius <em>Top Flange Fillet Radius</em>}' attribute.
@@ -226,7 +226,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @see #getTopFlangeFilletRadius()
 	 * @generated
 	 */
-	void setTopFlangeFilletRadius(float value);
+	void setTopFlangeFilletRadius(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeFilletRadius <em>Top Flange Fillet Radius</em>}' attribute.
@@ -234,7 +234,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTopFlangeFilletRadius()
 	 * @see #getTopFlangeFilletRadius()
-	 * @see #setTopFlangeFilletRadius(float)
+	 * @see #setTopFlangeFilletRadius(double)
 	 * @generated
 	 */
 	void unsetTopFlangeFilletRadius();
@@ -246,7 +246,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @return whether the value of the '<em>Top Flange Fillet Radius</em>' attribute is set.
 	 * @see #unsetTopFlangeFilletRadius()
 	 * @see #getTopFlangeFilletRadius()
-	 * @see #setTopFlangeFilletRadius(float)
+	 * @see #setTopFlangeFilletRadius(double)
 	 * @generated
 	 */
 	boolean isSetTopFlangeFilletRadius();
@@ -315,12 +315,12 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @return the value of the '<em>Centre Of Gravity In Y</em>' attribute.
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #unsetCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAsymmetricIShapeProfileDef_CentreOfGravityInY()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCentreOfGravityInY();
+	double getCentreOfGravityInY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -332,7 +332,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @see #getCentreOfGravityInY()
 	 * @generated
 	 */
-	void setCentreOfGravityInY(float value);
+	void setCentreOfGravityInY(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}' attribute.
@@ -340,7 +340,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	void unsetCentreOfGravityInY();
@@ -352,7 +352,7 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * @return whether the value of the '<em>Centre Of Gravity In Y</em>' attribute is set.
 	 * @see #unsetCentreOfGravityInY()
 	 * @see #getCentreOfGravityInY()
-	 * @see #setCentreOfGravityInY(float)
+	 * @see #setCentreOfGravityInY(double)
 	 * @generated
 	 */
 	boolean isSetCentreOfGravityInY();

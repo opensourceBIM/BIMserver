@@ -68,8 +68,8 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__THICKNESS, true);
+	public double getThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__THICKNESS, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThickness(float newThickness) {
+	public void setThickness(double newThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__THICKNESS, newThickness);
 	}
 
@@ -140,8 +140,8 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRibHeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_HEIGHT, true);
+	public double getRibHeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_HEIGHT, true);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRibHeight(float newRibHeight) {
+	public void setRibHeight(double newRibHeight) {
 		eSet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_HEIGHT, newRibHeight);
 	}
 
@@ -212,8 +212,8 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRibWidth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_WIDTH, true);
+	public double getRibWidth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_WIDTH, true);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRibWidth(float newRibWidth) {
+	public void setRibWidth(double newRibWidth) {
 		eSet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_WIDTH, newRibWidth);
 	}
 
@@ -284,8 +284,8 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRibSpacing() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_SPACING, true);
+	public double getRibSpacing() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_SPACING, true);
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRibSpacing(float newRibSpacing) {
+	public void setRibSpacing(double newRibSpacing) {
 		eSet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__RIB_SPACING, newRibSpacing);
 	}
 

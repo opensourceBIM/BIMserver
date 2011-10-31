@@ -76,12 +76,12 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * @return the value of the '<em>Target Scale</em>' attribute.
 	 * @see #isSetTargetScale()
 	 * @see #unsetTargetScale()
-	 * @see #setTargetScale(float)
+	 * @see #setTargetScale(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationSubContext_TargetScale()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTargetScale();
+	double getTargetScale();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext#getTargetScale <em>Target Scale</em>}' attribute.
@@ -93,7 +93,7 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * @see #getTargetScale()
 	 * @generated
 	 */
-	void setTargetScale(float value);
+	void setTargetScale(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext#getTargetScale <em>Target Scale</em>}' attribute.
@@ -101,7 +101,7 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * <!-- end-user-doc -->
 	 * @see #isSetTargetScale()
 	 * @see #getTargetScale()
-	 * @see #setTargetScale(float)
+	 * @see #setTargetScale(double)
 	 * @generated
 	 */
 	void unsetTargetScale();
@@ -113,7 +113,7 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * @return whether the value of the '<em>Target Scale</em>' attribute is set.
 	 * @see #unsetTargetScale()
 	 * @see #getTargetScale()
-	 * @see #setTargetScale(float)
+	 * @see #setTargetScale(double)
 	 * @generated
 	 */
 	boolean isSetTargetScale();

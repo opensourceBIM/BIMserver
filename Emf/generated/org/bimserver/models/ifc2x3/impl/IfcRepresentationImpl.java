@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.emf.IdEObjectImpl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.IfcPresentationLayerAssignment;
 import org.bimserver.models.ifc2x3.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentationContext;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcRepresentationImpl#getRepresentationType <em>Representation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcRepresentationImpl#getItems <em>Items</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcRepresentationImpl#getRepresentationMap <em>Representation Map</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcRepresentationImpl#getLayerAssignments <em>Layer Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3.impl.IfcRepresentationImpl#getOfProductRepresentation <em>Of Product Representation</em>}</li>
  * </ul>
  * </p>
@@ -185,6 +187,16 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationMap> getRepresentationMap() {
 		return (EList<IfcRepresentationMap>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION__REPRESENTATION_MAP, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
+		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS, true);
 	}
 
 	/**

@@ -74,8 +74,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDepth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__DEPTH, true);
+	public double getDepth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__DEPTH, true);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDepth(float newDepth) {
+	public void setDepth(double newDepth) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__DEPTH, newDepth);
 	}
 
@@ -110,8 +110,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFlangeWidth() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_WIDTH, true);
+	public double getFlangeWidth() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_WIDTH, true);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFlangeWidth(float newFlangeWidth) {
+	public void setFlangeWidth(double newFlangeWidth) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_WIDTH, newFlangeWidth);
 	}
 
@@ -146,8 +146,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWebThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__WEB_THICKNESS, true);
+	public double getWebThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__WEB_THICKNESS, true);
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWebThickness(float newWebThickness) {
+	public void setWebThickness(double newWebThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__WEB_THICKNESS, newWebThickness);
 	}
 
@@ -182,8 +182,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFlangeThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_THICKNESS, true);
+	public double getFlangeThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_THICKNESS, true);
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFlangeThickness(float newFlangeThickness) {
+	public void setFlangeThickness(double newFlangeThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_THICKNESS, newFlangeThickness);
 	}
 
@@ -218,8 +218,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFilletRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FILLET_RADIUS, true);
+	public double getFilletRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FILLET_RADIUS, true);
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFilletRadius(float newFilletRadius) {
+	public void setFilletRadius(double newFilletRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FILLET_RADIUS, newFilletRadius);
 	}
 
@@ -290,8 +290,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getEdgeRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__EDGE_RADIUS, true);
+	public double getEdgeRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__EDGE_RADIUS, true);
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEdgeRadius(float newEdgeRadius) {
+	public void setEdgeRadius(double newEdgeRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__EDGE_RADIUS, newEdgeRadius);
 	}
 
@@ -362,8 +362,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getFlangeSlope() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_SLOPE, true);
+	public double getFlangeSlope() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_SLOPE, true);
 	}
 
 	/**
@@ -371,7 +371,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFlangeSlope(float newFlangeSlope) {
+	public void setFlangeSlope(double newFlangeSlope) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__FLANGE_SLOPE, newFlangeSlope);
 	}
 
@@ -434,8 +434,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCentreOfGravityInX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_X, true);
+	public double getCentreOfGravityInX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_X, true);
 	}
 
 	/**
@@ -443,7 +443,7 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCentreOfGravityInX(float newCentreOfGravityInX) {
+	public void setCentreOfGravityInX(double newCentreOfGravityInX) {
 		eSet(Ifc2x3Package.Literals.IFC_USHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_X, newCentreOfGravityInX);
 	}
 

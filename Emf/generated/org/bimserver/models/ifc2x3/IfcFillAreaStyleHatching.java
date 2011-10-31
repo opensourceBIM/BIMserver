@@ -205,12 +205,12 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hatch Line Angle</em>' attribute.
-	 * @see #setHatchLineAngle(float)
+	 * @see #setHatchLineAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleHatching_HatchLineAngle()
 	 * @model
 	 * @generated
 	 */
-	float getHatchLineAngle();
+	double getHatchLineAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getHatchLineAngle <em>Hatch Line Angle</em>}' attribute.
@@ -220,7 +220,7 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * @see #getHatchLineAngle()
 	 * @generated
 	 */
-	void setHatchLineAngle(float value);
+	void setHatchLineAngle(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Hatch Line Angle As String</b></em>' attribute.

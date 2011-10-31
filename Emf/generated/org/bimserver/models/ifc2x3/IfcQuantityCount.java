@@ -43,12 +43,12 @@ public interface IfcQuantityCount extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Count Value</em>' attribute.
-	 * @see #setCountValue(float)
+	 * @see #setCountValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityCount_CountValue()
 	 * @model
 	 * @generated
 	 */
-	float getCountValue();
+	double getCountValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityCount#getCountValue <em>Count Value</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcQuantityCount extends IfcPhysicalSimpleQuantity {
 	 * @see #getCountValue()
 	 * @generated
 	 */
-	void setCountValue(float value);
+	void setCountValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Count Value As String</b></em>' attribute.

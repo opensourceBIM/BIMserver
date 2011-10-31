@@ -75,12 +75,12 @@ public interface IfcBoundingBox extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XDim</em>' attribute.
-	 * @see #setXDim(float)
+	 * @see #setXDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundingBox_XDim()
 	 * @model
 	 * @generated
 	 */
-	float getXDim();
+	double getXDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundingBox#getXDim <em>XDim</em>}' attribute.
@@ -90,7 +90,7 @@ public interface IfcBoundingBox extends IfcGeometricRepresentationItem {
 	 * @see #getXDim()
 	 * @generated
 	 */
-	void setXDim(float value);
+	void setXDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>XDim As String</b></em>' attribute.
@@ -127,12 +127,12 @@ public interface IfcBoundingBox extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YDim</em>' attribute.
-	 * @see #setYDim(float)
+	 * @see #setYDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundingBox_YDim()
 	 * @model
 	 * @generated
 	 */
-	float getYDim();
+	double getYDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundingBox#getYDim <em>YDim</em>}' attribute.
@@ -142,7 +142,7 @@ public interface IfcBoundingBox extends IfcGeometricRepresentationItem {
 	 * @see #getYDim()
 	 * @generated
 	 */
-	void setYDim(float value);
+	void setYDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>YDim As String</b></em>' attribute.
@@ -179,12 +179,12 @@ public interface IfcBoundingBox extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ZDim</em>' attribute.
-	 * @see #setZDim(float)
+	 * @see #setZDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoundingBox_ZDim()
 	 * @model
 	 * @generated
 	 */
-	float getZDim();
+	double getZDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoundingBox#getZDim <em>ZDim</em>}' attribute.
@@ -194,7 +194,7 @@ public interface IfcBoundingBox extends IfcGeometricRepresentationItem {
 	 * @see #getZDim()
 	 * @generated
 	 */
-	void setZDim(float value);
+	void setZDim(double value);
 
 	/**
 	 * Returns the value of the '<em><b>ZDim As String</b></em>' attribute.

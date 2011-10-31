@@ -47,12 +47,12 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * @return the value of the '<em>Overall Height</em>' attribute.
 	 * @see #isSetOverallHeight()
 	 * @see #unsetOverallHeight()
-	 * @see #setOverallHeight(float)
+	 * @see #setOverallHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoor_OverallHeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getOverallHeight();
+	double getOverallHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoor#getOverallHeight <em>Overall Height</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * @see #getOverallHeight()
 	 * @generated
 	 */
-	void setOverallHeight(float value);
+	void setOverallHeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoor#getOverallHeight <em>Overall Height</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetOverallHeight()
 	 * @see #getOverallHeight()
-	 * @see #setOverallHeight(float)
+	 * @see #setOverallHeight(double)
 	 * @generated
 	 */
 	void unsetOverallHeight();
@@ -84,7 +84,7 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * @return whether the value of the '<em>Overall Height</em>' attribute is set.
 	 * @see #unsetOverallHeight()
 	 * @see #getOverallHeight()
-	 * @see #setOverallHeight(float)
+	 * @see #setOverallHeight(double)
 	 * @generated
 	 */
 	boolean isSetOverallHeight();
@@ -153,12 +153,12 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * @return the value of the '<em>Overall Width</em>' attribute.
 	 * @see #isSetOverallWidth()
 	 * @see #unsetOverallWidth()
-	 * @see #setOverallWidth(float)
+	 * @see #setOverallWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoor_OverallWidth()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getOverallWidth();
+	double getOverallWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoor#getOverallWidth <em>Overall Width</em>}' attribute.
@@ -170,7 +170,7 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * @see #getOverallWidth()
 	 * @generated
 	 */
-	void setOverallWidth(float value);
+	void setOverallWidth(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoor#getOverallWidth <em>Overall Width</em>}' attribute.
@@ -178,7 +178,7 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetOverallWidth()
 	 * @see #getOverallWidth()
-	 * @see #setOverallWidth(float)
+	 * @see #setOverallWidth(double)
 	 * @generated
 	 */
 	void unsetOverallWidth();
@@ -190,7 +190,7 @@ public interface IfcDoor extends IfcBuildingElement {
 	 * @return whether the value of the '<em>Overall Width</em>' attribute is set.
 	 * @see #unsetOverallWidth()
 	 * @see #getOverallWidth()
-	 * @see #setOverallWidth(float)
+	 * @see #setOverallWidth(double)
 	 * @generated
 	 */
 	boolean isSetOverallWidth();

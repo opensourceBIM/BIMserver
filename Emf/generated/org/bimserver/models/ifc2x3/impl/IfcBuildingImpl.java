@@ -64,8 +64,8 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getElevationOfRefHeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, true);
+	public double getElevationOfRefHeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, true);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElevationOfRefHeight(float newElevationOfRefHeight) {
+	public void setElevationOfRefHeight(double newElevationOfRefHeight) {
 		eSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, newElevationOfRefHeight);
 	}
 
@@ -136,8 +136,8 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getElevationOfTerrain() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, true);
+	public double getElevationOfTerrain() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElevationOfTerrain(float newElevationOfTerrain) {
+	public void setElevationOfTerrain(double newElevationOfTerrain) {
 		eSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, newElevationOfTerrain);
 	}
 

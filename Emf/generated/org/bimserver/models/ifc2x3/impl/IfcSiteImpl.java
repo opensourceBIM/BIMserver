@@ -123,8 +123,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRefElevation() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SITE__REF_ELEVATION, true);
+	public double getRefElevation() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SITE__REF_ELEVATION, true);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRefElevation(float newRefElevation) {
+	public void setRefElevation(double newRefElevation) {
 		eSet(Ifc2x3Package.Literals.IFC_SITE__REF_ELEVATION, newRefElevation);
 	}
 

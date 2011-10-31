@@ -46,12 +46,12 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Step</em>' attribute.
-	 * @see #setTimeStep(float)
+	 * @see #setTimeStep(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRegularTimeSeries_TimeStep()
 	 * @model
 	 * @generated
 	 */
-	float getTimeStep();
+	double getTimeStep();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcRegularTimeSeries#getTimeStep <em>Time Step</em>}' attribute.
@@ -61,7 +61,7 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * @see #getTimeStep()
 	 * @generated
 	 */
-	void setTimeStep(float value);
+	void setTimeStep(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Time Step As String</b></em>' attribute.

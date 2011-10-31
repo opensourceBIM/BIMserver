@@ -262,9 +262,9 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 //								model.add(wrappedObject);
 								EStructuralFeature wrappedValueFeature = eClass.getEStructuralFeature("wrappedValue");
 								wrappedObject.eSet(wrappedValueFeature, parsePrimitive(wrappedValueFeature.getEType(), text));
-								if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-									EStructuralFeature floatStringFeature = eClass.getEStructuralFeature("wrappedValueAsString");
-									wrappedObject.eSet(floatStringFeature, text);
+								if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+									EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature("wrappedValueAsString");
+									wrappedObject.eSet(doubleStringFeature, text);
 								}
 								List list = (List) object.eGet(eStructuralFeature);
 								if (eStructuralFeature.isMany()) {
@@ -295,8 +295,8 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 			return text;
 		} else if (eType == EcorePackage.eINSTANCE.getEInt()) {
 			return Integer.parseInt(text);
-		} else if (eType == EcorePackage.eINSTANCE.getEFloat()) {
-			return Float.parseFloat(text);
+		} else if (eType == EcorePackage.eINSTANCE.getEDouble()) {
+			return Double.parseDouble(text);
 		} else if (eType == EcorePackage.eINSTANCE.getEBoolean()) {
 			return Boolean.parseBoolean(text);
 		} else if (eType instanceof EEnum) {

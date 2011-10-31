@@ -70,8 +70,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTensionFailureX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X, true);
+	public double getTensionFailureX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X, true);
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTensionFailureX(float newTensionFailureX) {
+	public void setTensionFailureX(double newTensionFailureX) {
 		eSet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X, newTensionFailureX);
 	}
 
@@ -142,8 +142,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTensionFailureY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y, true);
+	public double getTensionFailureY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y, true);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTensionFailureY(float newTensionFailureY) {
+	public void setTensionFailureY(double newTensionFailureY) {
 		eSet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y, newTensionFailureY);
 	}
 
@@ -214,8 +214,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTensionFailureZ() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z, true);
+	public double getTensionFailureZ() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z, true);
 	}
 
 	/**
@@ -223,7 +223,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTensionFailureZ(float newTensionFailureZ) {
+	public void setTensionFailureZ(double newTensionFailureZ) {
 		eSet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z, newTensionFailureZ);
 	}
 
@@ -286,8 +286,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCompressionFailureX() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X, true);
+	public double getCompressionFailureX() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X, true);
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompressionFailureX(float newCompressionFailureX) {
+	public void setCompressionFailureX(double newCompressionFailureX) {
 		eSet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X, newCompressionFailureX);
 	}
 
@@ -358,8 +358,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCompressionFailureY() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y, true);
+	public double getCompressionFailureY() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y, true);
 	}
 
 	/**
@@ -367,7 +367,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompressionFailureY(float newCompressionFailureY) {
+	public void setCompressionFailureY(double newCompressionFailureY) {
 		eSet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y, newCompressionFailureY);
 	}
 
@@ -430,8 +430,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCompressionFailureZ() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z, true);
+	public double getCompressionFailureZ() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z, true);
 	}
 
 	/**
@@ -439,7 +439,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompressionFailureZ(float newCompressionFailureZ) {
+	public void setCompressionFailureZ(double newCompressionFailureZ) {
 		eSet(Ifc2x3Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z, newCompressionFailureZ);
 	}
 

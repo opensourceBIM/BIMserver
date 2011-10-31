@@ -60,8 +60,8 @@ public class IfcSphereImpl extends IfcCsgPrimitive3DImpl implements IfcSphere {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRadius() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS, true);
+	public double getRadius() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcSphereImpl extends IfcCsgPrimitive3DImpl implements IfcSphere {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRadius(float newRadius) {
+	public void setRadius(double newRadius) {
 		eSet(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS, newRadius);
 	}
 

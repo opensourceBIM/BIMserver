@@ -43,12 +43,12 @@ public interface IfcSphere extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
-	 * @see #setRadius(float)
+	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSphere_Radius()
 	 * @model
 	 * @generated
 	 */
-	float getRadius();
+	double getRadius();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcSphere#getRadius <em>Radius</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcSphere extends IfcCsgPrimitive3D {
 	 * @see #getRadius()
 	 * @generated
 	 */
-	void setRadius(float value);
+	void setRadius(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.

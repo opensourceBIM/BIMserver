@@ -101,8 +101,8 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTimeLag() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG, true);
+	public double getTimeLag() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG, true);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeLag(float newTimeLag) {
+	public void setTimeLag(double newTimeLag) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG, newTimeLag);
 	}
 

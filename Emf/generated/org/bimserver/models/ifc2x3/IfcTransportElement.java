@@ -77,12 +77,12 @@ public interface IfcTransportElement extends IfcElement {
 	 * @return the value of the '<em>Capacity By Weight</em>' attribute.
 	 * @see #isSetCapacityByWeight()
 	 * @see #unsetCapacityByWeight()
-	 * @see #setCapacityByWeight(float)
+	 * @see #setCapacityByWeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTransportElement_CapacityByWeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCapacityByWeight();
+	double getCapacityByWeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTransportElement#getCapacityByWeight <em>Capacity By Weight</em>}' attribute.
@@ -94,7 +94,7 @@ public interface IfcTransportElement extends IfcElement {
 	 * @see #getCapacityByWeight()
 	 * @generated
 	 */
-	void setCapacityByWeight(float value);
+	void setCapacityByWeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTransportElement#getCapacityByWeight <em>Capacity By Weight</em>}' attribute.
@@ -102,7 +102,7 @@ public interface IfcTransportElement extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCapacityByWeight()
 	 * @see #getCapacityByWeight()
-	 * @see #setCapacityByWeight(float)
+	 * @see #setCapacityByWeight(double)
 	 * @generated
 	 */
 	void unsetCapacityByWeight();
@@ -114,7 +114,7 @@ public interface IfcTransportElement extends IfcElement {
 	 * @return whether the value of the '<em>Capacity By Weight</em>' attribute is set.
 	 * @see #unsetCapacityByWeight()
 	 * @see #getCapacityByWeight()
-	 * @see #setCapacityByWeight(float)
+	 * @see #setCapacityByWeight(double)
 	 * @generated
 	 */
 	boolean isSetCapacityByWeight();
@@ -183,12 +183,12 @@ public interface IfcTransportElement extends IfcElement {
 	 * @return the value of the '<em>Capacity By Number</em>' attribute.
 	 * @see #isSetCapacityByNumber()
 	 * @see #unsetCapacityByNumber()
-	 * @see #setCapacityByNumber(float)
+	 * @see #setCapacityByNumber(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTransportElement_CapacityByNumber()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCapacityByNumber();
+	double getCapacityByNumber();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcTransportElement#getCapacityByNumber <em>Capacity By Number</em>}' attribute.
@@ -200,7 +200,7 @@ public interface IfcTransportElement extends IfcElement {
 	 * @see #getCapacityByNumber()
 	 * @generated
 	 */
-	void setCapacityByNumber(float value);
+	void setCapacityByNumber(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTransportElement#getCapacityByNumber <em>Capacity By Number</em>}' attribute.
@@ -208,7 +208,7 @@ public interface IfcTransportElement extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCapacityByNumber()
 	 * @see #getCapacityByNumber()
-	 * @see #setCapacityByNumber(float)
+	 * @see #setCapacityByNumber(double)
 	 * @generated
 	 */
 	void unsetCapacityByNumber();
@@ -220,7 +220,7 @@ public interface IfcTransportElement extends IfcElement {
 	 * @return whether the value of the '<em>Capacity By Number</em>' attribute is set.
 	 * @see #unsetCapacityByNumber()
 	 * @see #getCapacityByNumber()
-	 * @see #setCapacityByNumber(float)
+	 * @see #setCapacityByNumber(double)
 	 * @generated
 	 */
 	boolean isSetCapacityByNumber();

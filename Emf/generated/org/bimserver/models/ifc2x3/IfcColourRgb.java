@@ -47,12 +47,12 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Red</em>' attribute.
-	 * @see #setRed(float)
+	 * @see #setRed(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_Red()
 	 * @model
 	 * @generated
 	 */
-	float getRed();
+	double getRed();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getRed <em>Red</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * @see #getRed()
 	 * @generated
 	 */
-	void setRed(float value);
+	void setRed(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Red As String</b></em>' attribute.
@@ -99,12 +99,12 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Green</em>' attribute.
-	 * @see #setGreen(float)
+	 * @see #setGreen(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_Green()
 	 * @model
 	 * @generated
 	 */
-	float getGreen();
+	double getGreen();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getGreen <em>Green</em>}' attribute.
@@ -114,7 +114,7 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * @see #getGreen()
 	 * @generated
 	 */
-	void setGreen(float value);
+	void setGreen(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Green As String</b></em>' attribute.
@@ -151,12 +151,12 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Blue</em>' attribute.
-	 * @see #setBlue(float)
+	 * @see #setBlue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_Blue()
 	 * @model
 	 * @generated
 	 */
-	float getBlue();
+	double getBlue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getBlue <em>Blue</em>}' attribute.
@@ -166,7 +166,7 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * @see #getBlue()
 	 * @generated
 	 */
-	void setBlue(float value);
+	void setBlue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Blue As String</b></em>' attribute.

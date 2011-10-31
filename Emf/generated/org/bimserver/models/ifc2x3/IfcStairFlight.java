@@ -101,12 +101,12 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @return the value of the '<em>Riser Height</em>' attribute.
 	 * @see #isSetRiserHeight()
 	 * @see #unsetRiserHeight()
-	 * @see #setRiserHeight(float)
+	 * @see #setRiserHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStairFlight_RiserHeight()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getRiserHeight();
+	double getRiserHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getRiserHeight <em>Riser Height</em>}' attribute.
@@ -118,7 +118,7 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @see #getRiserHeight()
 	 * @generated
 	 */
-	void setRiserHeight(float value);
+	void setRiserHeight(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getRiserHeight <em>Riser Height</em>}' attribute.
@@ -126,7 +126,7 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetRiserHeight()
 	 * @see #getRiserHeight()
-	 * @see #setRiserHeight(float)
+	 * @see #setRiserHeight(double)
 	 * @generated
 	 */
 	void unsetRiserHeight();
@@ -138,7 +138,7 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @return whether the value of the '<em>Riser Height</em>' attribute is set.
 	 * @see #unsetRiserHeight()
 	 * @see #getRiserHeight()
-	 * @see #setRiserHeight(float)
+	 * @see #setRiserHeight(double)
 	 * @generated
 	 */
 	boolean isSetRiserHeight();
@@ -207,12 +207,12 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @return the value of the '<em>Tread Length</em>' attribute.
 	 * @see #isSetTreadLength()
 	 * @see #unsetTreadLength()
-	 * @see #setTreadLength(float)
+	 * @see #setTreadLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStairFlight_TreadLength()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getTreadLength();
+	double getTreadLength();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getTreadLength <em>Tread Length</em>}' attribute.
@@ -224,7 +224,7 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @see #getTreadLength()
 	 * @generated
 	 */
-	void setTreadLength(float value);
+	void setTreadLength(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getTreadLength <em>Tread Length</em>}' attribute.
@@ -232,7 +232,7 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @see #isSetTreadLength()
 	 * @see #getTreadLength()
-	 * @see #setTreadLength(float)
+	 * @see #setTreadLength(double)
 	 * @generated
 	 */
 	void unsetTreadLength();
@@ -244,7 +244,7 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @return whether the value of the '<em>Tread Length</em>' attribute is set.
 	 * @see #unsetTreadLength()
 	 * @see #getTreadLength()
-	 * @see #setTreadLength(float)
+	 * @see #setTreadLength(double)
 	 * @generated
 	 */
 	boolean isSetTreadLength();

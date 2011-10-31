@@ -76,12 +76,12 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @return the value of the '<em>Concentration Exponent</em>' attribute.
 	 * @see #isSetConcentrationExponent()
 	 * @see #unsetConcentrationExponent()
-	 * @see #setConcentrationExponent(float)
+	 * @see #setConcentrationExponent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_ConcentrationExponent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getConcentrationExponent();
+	double getConcentrationExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getConcentrationExponent <em>Concentration Exponent</em>}' attribute.
@@ -93,7 +93,7 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @see #getConcentrationExponent()
 	 * @generated
 	 */
-	void setConcentrationExponent(float value);
+	void setConcentrationExponent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getConcentrationExponent <em>Concentration Exponent</em>}' attribute.
@@ -101,7 +101,7 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * <!-- end-user-doc -->
 	 * @see #isSetConcentrationExponent()
 	 * @see #getConcentrationExponent()
-	 * @see #setConcentrationExponent(float)
+	 * @see #setConcentrationExponent(double)
 	 * @generated
 	 */
 	void unsetConcentrationExponent();
@@ -113,7 +113,7 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @return whether the value of the '<em>Concentration Exponent</em>' attribute is set.
 	 * @see #unsetConcentrationExponent()
 	 * @see #getConcentrationExponent()
-	 * @see #setConcentrationExponent(float)
+	 * @see #setConcentrationExponent(double)
 	 * @generated
 	 */
 	boolean isSetConcentrationExponent();
@@ -180,12 +180,12 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Spread Angle</em>' attribute.
-	 * @see #setSpreadAngle(float)
+	 * @see #setSpreadAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_SpreadAngle()
 	 * @model
 	 * @generated
 	 */
-	float getSpreadAngle();
+	double getSpreadAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getSpreadAngle <em>Spread Angle</em>}' attribute.
@@ -195,7 +195,7 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @see #getSpreadAngle()
 	 * @generated
 	 */
-	void setSpreadAngle(float value);
+	void setSpreadAngle(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Spread Angle As String</b></em>' attribute.
@@ -232,12 +232,12 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Beam Width Angle</em>' attribute.
-	 * @see #setBeamWidthAngle(float)
+	 * @see #setBeamWidthAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_BeamWidthAngle()
 	 * @model
 	 * @generated
 	 */
-	float getBeamWidthAngle();
+	double getBeamWidthAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getBeamWidthAngle <em>Beam Width Angle</em>}' attribute.
@@ -247,7 +247,7 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @see #getBeamWidthAngle()
 	 * @generated
 	 */
-	void setBeamWidthAngle(float value);
+	void setBeamWidthAngle(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Beam Width Angle As String</b></em>' attribute.

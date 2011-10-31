@@ -60,8 +60,8 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWeightValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, true);
+	public double getWeightValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWeightValue(float newWeightValue) {
+	public void setWeightValue(double newWeightValue) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, newWeightValue);
 	}
 

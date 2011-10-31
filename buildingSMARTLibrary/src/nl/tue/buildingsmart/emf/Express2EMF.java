@@ -77,8 +77,8 @@ public class Express2EMF {
 
 	public static void main(String[] args) {
 		Express2EMF express2EMF = new Express2EMF(
-				".." + File.separator + "Builds" + File.separator + "build" + File.separator + "targets" + File.separator + "shared" + File.separator + "IFC2X3_FINAL.exp", "ifc2x3");
-		express2EMF.writeEMF("../BimServer/src/org/bimserver/database/migrations/steps/" + "IFC2X3.ecore");
+				".." + File.separator + "Builds" + File.separator + "build" + File.separator + "targets" + File.separator + "shared" + File.separator + "IFC2X3_TC1.exp", "ifc2x3");
+		express2EMF.writeEMF("../BimServer/src/org/bimserver/database/migrations/steps/" + "IFC2X3_TC1.ecore");
 	}
 
 	public Express2EMF(String schemaFileName, String modelName) {
@@ -177,13 +177,11 @@ public class Express2EMF {
 								// eAttribute.setUnsettable(((ExplicitAttribute)
 								// attrib).isOptional());
 								eClass.getEStructuralFeatures().add(eAttribute);
-								if (type == EcorePackage.eINSTANCE.getEFloat() || type == EcorePackage.eINSTANCE.getEDouble()) {
-									EAttribute floatStringAttribute = eFactory.createEAttribute();
-									floatStringAttribute.setName(attributeName.getName() + "AsString");
-									floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-									// floatStringAttribute.setUnsettable(((ExplicitAttribute)
-									// attrib).isOptional());
-									eClass.getEStructuralFeatures().add(floatStringAttribute);
+								if (type == EcorePackage.eINSTANCE.getEDouble()) {
+									EAttribute doubleStringAttribute = eFactory.createEAttribute();
+									doubleStringAttribute.setName(attributeName.getName() + "AsString");
+									doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+									eClass.getEStructuralFeatures().add(doubleStringAttribute);
 								}
 							}
 						} else {
@@ -358,12 +356,12 @@ public class Express2EMF {
 					eAttribute.setEType(type);
 					eAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
 					cls.getEStructuralFeatures().add(eAttribute);
-					if (type == EcorePackage.eINSTANCE.getEFloat() || type == EcorePackage.eINSTANCE.getEDouble()) {
-						EAttribute floatStringAttribute = eFactory.createEAttribute();
-						floatStringAttribute.setName(attrib.getName() + "AsString");
-						floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-						floatStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
-						cls.getEStructuralFeatures().add(floatStringAttribute);
+					if (type == EcorePackage.eINSTANCE.getEDouble()) {
+						EAttribute doubleStringAttribute = eFactory.createEAttribute();
+						doubleStringAttribute.setName(attrib.getName() + "AsString");
+						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+						doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+						cls.getEStructuralFeatures().add(doubleStringAttribute);
 					}
 				} else {
 					EReference eRef = eFactory.createEReference();
@@ -395,31 +393,31 @@ public class Express2EMF {
 					eAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
 					eAttribute.setUnique(false);
 					cls.getEStructuralFeatures().add(eAttribute);
-					if (type == EcorePackage.eINSTANCE.getEFloat() || type == EcorePackage.eINSTANCE.getEDouble()) {
-						EAttribute floatStringAttribute = eFactory.createEAttribute();
-						floatStringAttribute.setName(attrib.getName() + "AsString");
-						floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-						floatStringAttribute.setUpperBound(-1);
-						floatStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
-						floatStringAttribute.setUpperBound(eAttribute.getUpperBound());
-						floatStringAttribute.setUnique(false);
-						cls.getEStructuralFeatures().add(floatStringAttribute);
+					if (type == EcorePackage.eINSTANCE.getEDouble()) {
+						EAttribute doubleStringAttribute = eFactory.createEAttribute();
+						doubleStringAttribute.setName(attrib.getName() + "AsString");
+						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+						doubleStringAttribute.setUpperBound(-1);
+						doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+						doubleStringAttribute.setUpperBound(eAttribute.getUpperBound());
+						doubleStringAttribute.setUnique(false);
+						cls.getEStructuralFeatures().add(doubleStringAttribute);
 					}
-				} else if (eType == EcorePackage.eINSTANCE.getEFloat()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEDouble()) {
 					EAttribute eAttribute = eFactory.createEAttribute();
 					eAttribute.setName(attrib.getName());
 					eAttribute.setUnique(false);
 					eAttribute.setEType(EcorePackage.eINSTANCE.getEAttribute());
 					cls.getEStructuralFeatures().add(eAttribute);
 					
-					EAttribute floatStringAttribute = eFactory.createEAttribute();
-					floatStringAttribute.setName(attrib.getName() + "AsString");
-					floatStringAttribute.setUpperBound(-1);
-					floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-					floatStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
-					floatStringAttribute.setUpperBound(eAttribute.getUpperBound());
-					floatStringAttribute.setUnique(false);
-					cls.getEStructuralFeatures().add(floatStringAttribute);
+					EAttribute doubleStringAttribute = eFactory.createEAttribute();
+					doubleStringAttribute.setName(attrib.getName() + "AsString");
+					doubleStringAttribute.setUpperBound(-1);
+					doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+					doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+					doubleStringAttribute.setUpperBound(eAttribute.getUpperBound());
+					doubleStringAttribute.setUnique(false);
+					cls.getEStructuralFeatures().add(doubleStringAttribute);
 				} else {
 					EReference eRef = eFactory.createEReference();
 					eRef.setUpperBound(-1);
@@ -443,17 +441,17 @@ public class Express2EMF {
 				eAttribute.setName(attrib.getName());
 				eAttribute.setUpperBound(-1);
 				eAttribute.setUnique(false);
-				eAttribute.setEType(EcorePackage.eINSTANCE.getEFloat());
+				eAttribute.setEType(EcorePackage.eINSTANCE.getEDouble());
 				cls.getEStructuralFeatures().add(eAttribute);
 
-				EAttribute floatStringAttribute = eFactory.createEAttribute();
-				floatStringAttribute.setName(attrib.getName() + "AsString");
-				floatStringAttribute.setUpperBound(-1);
-				floatStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-				floatStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
-				floatStringAttribute.setUpperBound(eAttribute.getUpperBound());
-				floatStringAttribute.setUnique(false);
-				cls.getEStructuralFeatures().add(floatStringAttribute);
+				EAttribute doubleStringAttribute = eFactory.createEAttribute();
+				doubleStringAttribute.setName(attrib.getName() + "AsString");
+				doubleStringAttribute.setUpperBound(-1);
+				doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+				doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+				doubleStringAttribute.setUpperBound(eAttribute.getUpperBound());
+				doubleStringAttribute.setUnique(false);
+				cls.getEStructuralFeatures().add(doubleStringAttribute);
 			} else if (bt instanceof IntegerType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
 				eAttribute.setName(attrib.getName());
@@ -494,7 +492,7 @@ public class Express2EMF {
 			} else if (domain instanceof RealType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
 				eAttribute.setName(attrib.getName());
-				eAttribute.setEType(EcorePackage.eINSTANCE.getEFloat());
+				eAttribute.setEType(EcorePackage.eINSTANCE.getEDouble());
 				cls.getEStructuralFeatures().add(eAttribute);
 				EAttribute eAttributeAsString = eFactory.createEAttribute();
 				eAttributeAsString.setName(attrib.getName() + "AsString");
@@ -589,22 +587,22 @@ public class Express2EMF {
 		if (type.getDomain() instanceof IntegerType) {
 			wrapperAttrib.setEType(ePackage.getEInt());
 		} else if (type.getDomain() instanceof RealType) {
-			wrapperAttrib.setEType(ePackage.getEFloat());
+			wrapperAttrib.setEType(ePackage.getEDouble());
 		} else if (type.getDomain() instanceof StringType) {
 			wrapperAttrib.setEType(ePackage.getEString());
 		} else if (type.getDomain() instanceof BooleanType) {
 			wrapperAttrib.setEType(schemaPack.getEClassifier("Tristate"));
 		} else if (type.getDomain() instanceof NumberType) {
-			wrapperAttrib.setEType(ePackage.getEFloat());
+			wrapperAttrib.setEType(ePackage.getEDouble());
 		} else if (type.getDomain() instanceof LogicalType) {
 			wrapperAttrib.setEType(schemaPack.getEClassifier("Tristate"));
 		}
 		testType.getEStructuralFeatures().add(wrapperAttrib);
-		if (wrapperAttrib.getEType() == ePackage.getEFloat() || wrapperAttrib.getEType() == ePackage.getEDouble()) {
-			EAttribute stringAttribute = eFactory.createEAttribute();
-			stringAttribute.setEType(ePackage.getEString());
-			stringAttribute.setName("wrappedValueAsString");
-			testType.getEStructuralFeatures().add(stringAttribute);
+		if (wrapperAttrib.getEType() == ePackage.getEDouble()) {
+			EAttribute doubleStringAttribute = eFactory.createEAttribute();
+			doubleStringAttribute.setEType(ePackage.getEString());
+			doubleStringAttribute.setName("wrappedValueAsString");
+			testType.getEStructuralFeatures().add(doubleStringAttribute);
 		}
 	}
 

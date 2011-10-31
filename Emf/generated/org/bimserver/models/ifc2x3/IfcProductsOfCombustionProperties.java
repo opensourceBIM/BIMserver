@@ -51,12 +51,12 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return the value of the '<em>Specific Heat Capacity</em>' attribute.
 	 * @see #isSetSpecificHeatCapacity()
 	 * @see #unsetSpecificHeatCapacity()
-	 * @see #setSpecificHeatCapacity(float)
+	 * @see #setSpecificHeatCapacity(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProductsOfCombustionProperties_SpecificHeatCapacity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSpecificHeatCapacity();
+	double getSpecificHeatCapacity();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getSpecificHeatCapacity <em>Specific Heat Capacity</em>}' attribute.
@@ -68,7 +68,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @see #getSpecificHeatCapacity()
 	 * @generated
 	 */
-	void setSpecificHeatCapacity(float value);
+	void setSpecificHeatCapacity(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getSpecificHeatCapacity <em>Specific Heat Capacity</em>}' attribute.
@@ -76,7 +76,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * <!-- end-user-doc -->
 	 * @see #isSetSpecificHeatCapacity()
 	 * @see #getSpecificHeatCapacity()
-	 * @see #setSpecificHeatCapacity(float)
+	 * @see #setSpecificHeatCapacity(double)
 	 * @generated
 	 */
 	void unsetSpecificHeatCapacity();
@@ -88,7 +88,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return whether the value of the '<em>Specific Heat Capacity</em>' attribute is set.
 	 * @see #unsetSpecificHeatCapacity()
 	 * @see #getSpecificHeatCapacity()
-	 * @see #setSpecificHeatCapacity(float)
+	 * @see #setSpecificHeatCapacity(double)
 	 * @generated
 	 */
 	boolean isSetSpecificHeatCapacity();
@@ -157,12 +157,12 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return the value of the '<em>N20 Content</em>' attribute.
 	 * @see #isSetN20Content()
 	 * @see #unsetN20Content()
-	 * @see #setN20Content(float)
+	 * @see #setN20Content(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProductsOfCombustionProperties_N20Content()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getN20Content();
+	double getN20Content();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getN20Content <em>N20 Content</em>}' attribute.
@@ -174,7 +174,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @see #getN20Content()
 	 * @generated
 	 */
-	void setN20Content(float value);
+	void setN20Content(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getN20Content <em>N20 Content</em>}' attribute.
@@ -182,7 +182,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * <!-- end-user-doc -->
 	 * @see #isSetN20Content()
 	 * @see #getN20Content()
-	 * @see #setN20Content(float)
+	 * @see #setN20Content(double)
 	 * @generated
 	 */
 	void unsetN20Content();
@@ -194,7 +194,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return whether the value of the '<em>N20 Content</em>' attribute is set.
 	 * @see #unsetN20Content()
 	 * @see #getN20Content()
-	 * @see #setN20Content(float)
+	 * @see #setN20Content(double)
 	 * @generated
 	 */
 	boolean isSetN20Content();
@@ -263,12 +263,12 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return the value of the '<em>CO Content</em>' attribute.
 	 * @see #isSetCOContent()
 	 * @see #unsetCOContent()
-	 * @see #setCOContent(float)
+	 * @see #setCOContent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProductsOfCombustionProperties_COContent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCOContent();
+	double getCOContent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getCOContent <em>CO Content</em>}' attribute.
@@ -280,7 +280,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @see #getCOContent()
 	 * @generated
 	 */
-	void setCOContent(float value);
+	void setCOContent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getCOContent <em>CO Content</em>}' attribute.
@@ -288,7 +288,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * <!-- end-user-doc -->
 	 * @see #isSetCOContent()
 	 * @see #getCOContent()
-	 * @see #setCOContent(float)
+	 * @see #setCOContent(double)
 	 * @generated
 	 */
 	void unsetCOContent();
@@ -300,7 +300,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return whether the value of the '<em>CO Content</em>' attribute is set.
 	 * @see #unsetCOContent()
 	 * @see #getCOContent()
-	 * @see #setCOContent(float)
+	 * @see #setCOContent(double)
 	 * @generated
 	 */
 	boolean isSetCOContent();
@@ -369,12 +369,12 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return the value of the '<em>CO2 Content</em>' attribute.
 	 * @see #isSetCO2Content()
 	 * @see #unsetCO2Content()
-	 * @see #setCO2Content(float)
+	 * @see #setCO2Content(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProductsOfCombustionProperties_CO2Content()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getCO2Content();
+	double getCO2Content();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getCO2Content <em>CO2 Content</em>}' attribute.
@@ -386,7 +386,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @see #getCO2Content()
 	 * @generated
 	 */
-	void setCO2Content(float value);
+	void setCO2Content(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties#getCO2Content <em>CO2 Content</em>}' attribute.
@@ -394,7 +394,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * <!-- end-user-doc -->
 	 * @see #isSetCO2Content()
 	 * @see #getCO2Content()
-	 * @see #setCO2Content(float)
+	 * @see #setCO2Content(double)
 	 * @generated
 	 */
 	void unsetCO2Content();
@@ -406,7 +406,7 @@ public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties
 	 * @return whether the value of the '<em>CO2 Content</em>' attribute is set.
 	 * @see #unsetCO2Content()
 	 * @see #getCO2Content()
-	 * @see #setCO2Content(float)
+	 * @see #setCO2Content(double)
 	 * @generated
 	 */
 	boolean isSetCO2Content();

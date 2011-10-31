@@ -73,12 +73,12 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point Parameter U</em>' attribute.
-	 * @see #setPointParameterU(float)
+	 * @see #setPointParameterU(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnSurface_PointParameterU()
 	 * @model
 	 * @generated
 	 */
-	float getPointParameterU();
+	double getPointParameterU();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterU <em>Point Parameter U</em>}' attribute.
@@ -88,7 +88,7 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * @see #getPointParameterU()
 	 * @generated
 	 */
-	void setPointParameterU(float value);
+	void setPointParameterU(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Point Parameter UAs String</b></em>' attribute.
@@ -125,12 +125,12 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point Parameter V</em>' attribute.
-	 * @see #setPointParameterV(float)
+	 * @see #setPointParameterV(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnSurface_PointParameterV()
 	 * @model
 	 * @generated
 	 */
-	float getPointParameterV();
+	double getPointParameterV();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterV <em>Point Parameter V</em>}' attribute.
@@ -140,7 +140,7 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * @see #getPointParameterV()
 	 * @generated
 	 */
-	void setPointParameterV(float value);
+	void setPointParameterV(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Point Parameter VAs String</b></em>' attribute.

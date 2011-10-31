@@ -128,12 +128,12 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @return the value of the '<em>Second Component</em>' attribute.
 	 * @see #isSetSecondComponent()
 	 * @see #unsetSecondComponent()
-	 * @see #setSecondComponent(float)
+	 * @see #setSecondComponent(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLocalTime_SecondComponent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	float getSecondComponent();
+	double getSecondComponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcLocalTime#getSecondComponent <em>Second Component</em>}' attribute.
@@ -145,7 +145,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @see #getSecondComponent()
 	 * @generated
 	 */
-	void setSecondComponent(float value);
+	void setSecondComponent(double value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLocalTime#getSecondComponent <em>Second Component</em>}' attribute.
@@ -153,7 +153,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * <!-- end-user-doc -->
 	 * @see #isSetSecondComponent()
 	 * @see #getSecondComponent()
-	 * @see #setSecondComponent(float)
+	 * @see #setSecondComponent(double)
 	 * @generated
 	 */
 	void unsetSecondComponent();
@@ -165,7 +165,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @return whether the value of the '<em>Second Component</em>' attribute is set.
 	 * @see #unsetSecondComponent()
 	 * @see #getSecondComponent()
-	 * @see #setSecondComponent(float)
+	 * @see #setSecondComponent(double)
 	 * @generated
 	 */
 	boolean isSetSecondComponent();

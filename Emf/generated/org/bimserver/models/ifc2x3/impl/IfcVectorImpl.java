@@ -81,8 +81,8 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMagnitude() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE, true);
+	public double getMagnitude() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE, true);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMagnitude(float newMagnitude) {
+	public void setMagnitude(double newMagnitude) {
 		eSet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE, newMagnitude);
 	}
 

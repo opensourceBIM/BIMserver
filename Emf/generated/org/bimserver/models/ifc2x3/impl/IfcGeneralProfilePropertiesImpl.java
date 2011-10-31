@@ -68,8 +68,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPhysicalWeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PHYSICAL_WEIGHT, true);
+	public double getPhysicalWeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PHYSICAL_WEIGHT, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPhysicalWeight(float newPhysicalWeight) {
+	public void setPhysicalWeight(double newPhysicalWeight) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PHYSICAL_WEIGHT, newPhysicalWeight);
 	}
 
@@ -140,8 +140,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPerimeter() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PERIMETER, true);
+	public double getPerimeter() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PERIMETER, true);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPerimeter(float newPerimeter) {
+	public void setPerimeter(double newPerimeter) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PERIMETER, newPerimeter);
 	}
 
@@ -212,8 +212,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMinimumPlateThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS, true);
+	public double getMinimumPlateThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS, true);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinimumPlateThickness(float newMinimumPlateThickness) {
+	public void setMinimumPlateThickness(double newMinimumPlateThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS, newMinimumPlateThickness);
 	}
 
@@ -284,8 +284,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMaximumPlateThickness() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS, true);
+	public double getMaximumPlateThickness() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS, true);
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMaximumPlateThickness(float newMaximumPlateThickness) {
+	public void setMaximumPlateThickness(double newMaximumPlateThickness) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS, newMaximumPlateThickness);
 	}
 
@@ -356,8 +356,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCrossSectionArea() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__CROSS_SECTION_AREA, true);
+	public double getCrossSectionArea() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__CROSS_SECTION_AREA, true);
 	}
 
 	/**
@@ -365,7 +365,7 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCrossSectionArea(float newCrossSectionArea) {
+	public void setCrossSectionArea(double newCrossSectionArea) {
 		eSet(Ifc2x3Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__CROSS_SECTION_AREA, newCrossSectionArea);
 	}
 

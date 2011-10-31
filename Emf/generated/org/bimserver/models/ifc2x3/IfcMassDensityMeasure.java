@@ -43,12 +43,12 @@ public interface IfcMassDensityMeasure extends WrappedValue, IfcDerivedMeasureVa
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wrapped Value</em>' attribute.
-	 * @see #setWrappedValue(float)
+	 * @see #setWrappedValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMassDensityMeasure_WrappedValue()
 	 * @model
 	 * @generated
 	 */
-	float getWrappedValue();
+	double getWrappedValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcMassDensityMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute.
@@ -58,7 +58,7 @@ public interface IfcMassDensityMeasure extends WrappedValue, IfcDerivedMeasureVa
 	 * @see #getWrappedValue()
 	 * @generated
 	 */
-	void setWrappedValue(float value);
+	void setWrappedValue(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value As String</b></em>' attribute.

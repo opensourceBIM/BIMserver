@@ -60,8 +60,8 @@ public class IfcCurvatureMeasureImpl extends WrappedValueImpl implements IfcCurv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWrappedValue() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_CURVATURE_MEASURE__WRAPPED_VALUE, true);
+	public double getWrappedValue() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_CURVATURE_MEASURE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class IfcCurvatureMeasureImpl extends WrappedValueImpl implements IfcCurv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWrappedValue(float newWrappedValue) {
+	public void setWrappedValue(double newWrappedValue) {
 		eSet(Ifc2x3Package.Literals.IFC_CURVATURE_MEASURE__WRAPPED_VALUE, newWrappedValue);
 	}
 

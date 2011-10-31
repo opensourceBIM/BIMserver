@@ -482,20 +482,20 @@ public class ColladaSerializer extends BimModelSerializer {
 
 	private void writeEffects(PrintWriter out) {
 		out.println("	<library_effects>");
-		writeEffect(out, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
-		writeEffect(out, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
-		writeEffect(out, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeEffect(out, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
-		writeEffect(out, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeEffect(out, "Window", new float[] { 0.2f, 0.2f, 0.8f }, 0.2f);
-		writeEffect(out, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
-		writeEffect(out, "Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
-		writeEffect(out, "FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
-		writeEffect(out, "CurtainWall", new float[] { 0.5f, 0.5f, 0.5f }, 0.5f);
-		writeEffect(out, "Stair", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeEffect(out, "BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 1.0f);
-		writeEffect(out, "FlowSegment", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f);
-		writeEffect(out, "Other", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f);
+		writeEffect(out, "Space", new double[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
+		writeEffect(out, "Roof", new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
+		writeEffect(out, "Slab", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeEffect(out, "Wall", new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
+		writeEffect(out, "Door", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeEffect(out, "Window", new double[] { 0.2f, 0.2f, 0.8f }, 0.2f);
+		writeEffect(out, "Railing", new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
+		writeEffect(out, "Column", new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
+		writeEffect(out, "FurnishingElement", new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
+		writeEffect(out, "CurtainWall", new double[] { 0.5f, 0.5f, 0.5f }, 0.5f);
+		writeEffect(out, "Stair", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeEffect(out, "BuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f);
+		writeEffect(out, "FlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
+		writeEffect(out, "Other", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
 			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
@@ -510,7 +510,7 @@ public class ColladaSerializer extends BimModelSerializer {
 					String name = fitNameForQualifiedName(ss.getName());
 					surfaceStyleIds.add(name);
 
-					writeEffect(out, name, new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
+					writeEffect(out, name, new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
 					break;
 				}
 			}
@@ -547,7 +547,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		return builder.toString();
 	}
 
-	private void writeEffect(PrintWriter out, String name, float[] colors, float transparency) {
+	private void writeEffect(PrintWriter out, String name, double[] colors, double transparency) {
 		out.println("        <effect id=\"" + name + "-fx\">");
 		out.println("            <profile_COMMON>");
 		out.println("                <technique sid=\"common\">");

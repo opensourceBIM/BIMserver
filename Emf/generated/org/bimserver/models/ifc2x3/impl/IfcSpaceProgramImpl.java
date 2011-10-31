@@ -90,8 +90,8 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMaxRequiredArea() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__MAX_REQUIRED_AREA, true);
+	public double getMaxRequiredArea() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__MAX_REQUIRED_AREA, true);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMaxRequiredArea(float newMaxRequiredArea) {
+	public void setMaxRequiredArea(double newMaxRequiredArea) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__MAX_REQUIRED_AREA, newMaxRequiredArea);
 	}
 
@@ -162,8 +162,8 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMinRequiredArea() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__MIN_REQUIRED_AREA, true);
+	public double getMinRequiredArea() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__MIN_REQUIRED_AREA, true);
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinRequiredArea(float newMinRequiredArea) {
+	public void setMinRequiredArea(double newMinRequiredArea) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__MIN_REQUIRED_AREA, newMinRequiredArea);
 	}
 
@@ -270,8 +270,8 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getStandardRequiredArea() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA, true);
+	public double getStandardRequiredArea() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA, true);
 	}
 
 	/**
@@ -279,7 +279,7 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStandardRequiredArea(float newStandardRequiredArea) {
+	public void setStandardRequiredArea(double newStandardRequiredArea) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA, newStandardRequiredArea);
 	}
 

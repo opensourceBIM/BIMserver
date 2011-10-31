@@ -82,8 +82,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCapacityByWeight() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT, true);
+	public double getCapacityByWeight() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT, true);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCapacityByWeight(float newCapacityByWeight) {
+	public void setCapacityByWeight(double newCapacityByWeight) {
 		eSet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT, newCapacityByWeight);
 	}
 
@@ -154,8 +154,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCapacityByNumber() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER, true);
+	public double getCapacityByNumber() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER, true);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCapacityByNumber(float newCapacityByNumber) {
+	public void setCapacityByNumber(double newCapacityByNumber) {
 		eSet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER, newCapacityByNumber);
 	}
 

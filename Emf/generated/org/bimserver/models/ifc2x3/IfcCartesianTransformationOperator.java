@@ -179,12 +179,12 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Scale</em>' attribute.
-	 * @see #setScale(float)
+	 * @see #setScale(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianTransformationOperator_Scale()
 	 * @model
 	 * @generated
 	 */
-	float getScale();
+	double getScale();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getScale <em>Scale</em>}' attribute.
@@ -194,7 +194,7 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * @see #getScale()
 	 * @generated
 	 */
-	void setScale(float value);
+	void setScale(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Scale As String</b></em>' attribute.

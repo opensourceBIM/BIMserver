@@ -68,8 +68,8 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDynamicViscosity() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__DYNAMIC_VISCOSITY, true);
+	public double getDynamicViscosity() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__DYNAMIC_VISCOSITY, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDynamicViscosity(float newDynamicViscosity) {
+	public void setDynamicViscosity(double newDynamicViscosity) {
 		eSet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__DYNAMIC_VISCOSITY, newDynamicViscosity);
 	}
 
@@ -140,8 +140,8 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getYoungModulus() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__YOUNG_MODULUS, true);
+	public double getYoungModulus() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__YOUNG_MODULUS, true);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setYoungModulus(float newYoungModulus) {
+	public void setYoungModulus(double newYoungModulus) {
 		eSet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__YOUNG_MODULUS, newYoungModulus);
 	}
 
@@ -212,8 +212,8 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getShearModulus() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__SHEAR_MODULUS, true);
+	public double getShearModulus() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__SHEAR_MODULUS, true);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShearModulus(float newShearModulus) {
+	public void setShearModulus(double newShearModulus) {
 		eSet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__SHEAR_MODULUS, newShearModulus);
 	}
 
@@ -284,8 +284,8 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPoissonRatio() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__POISSON_RATIO, true);
+	public double getPoissonRatio() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__POISSON_RATIO, true);
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPoissonRatio(float newPoissonRatio) {
+	public void setPoissonRatio(double newPoissonRatio) {
 		eSet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__POISSON_RATIO, newPoissonRatio);
 	}
 
@@ -356,8 +356,8 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getThermalExpansionCoefficient() {
-		return (Float) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__THERMAL_EXPANSION_COEFFICIENT, true);
+	public double getThermalExpansionCoefficient() {
+		return (Double) eGet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__THERMAL_EXPANSION_COEFFICIENT, true);
 	}
 
 	/**
@@ -365,7 +365,7 @@ public class IfcMechanicalMaterialPropertiesImpl extends IfcMaterialPropertiesIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThermalExpansionCoefficient(float newThermalExpansionCoefficient) {
+	public void setThermalExpansionCoefficient(double newThermalExpansionCoefficient) {
 		eSet(Ifc2x3Package.Literals.IFC_MECHANICAL_MATERIAL_PROPERTIES__THERMAL_EXPANSION_COEFFICIENT, newThermalExpansionCoefficient);
 	}
 
