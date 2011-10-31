@@ -66,9 +66,9 @@
 				if (project.getLastRevisionId() != -1) {
 					lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 				}
-				boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid());
-				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
-				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
+				boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.READ_ONLY;
+				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
+				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
 				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
 				boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 				boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;

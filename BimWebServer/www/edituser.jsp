@@ -17,7 +17,9 @@
 		SUserType userType = SUserType.values()[Integer.parseInt(request.getParameter("type"))];
 		try {
 			loginManager.getService().changeUserType(uoid, userType);
-			loginManager.getService().setHttpCallback(uoid, notificationUrl);
+			if (!notificationUrl.trim().equals("")) {
+				loginManager.getService().setHttpCallback(uoid, notificationUrl);
+			}
 			response.sendRedirect("user.jsp?uoid=" + uoid);
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);

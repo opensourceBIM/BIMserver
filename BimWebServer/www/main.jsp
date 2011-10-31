@@ -12,11 +12,10 @@ try {
 		if (loginManager.getService().getServerInfo().getServerState() == SServerState.RUNNING) { %>
 <div class="sidebar">
  <ul>
-<% if (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects()) { %>
+<% if (loginManager.getUserType() != SUserType.READ_ONLY && (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects())) { %>
  <li><a href="addproject.jsp">Add project</a></li>
+<% } %>
  <li><a class="rss" href="<%=request.getContextPath() %>/syndication/projects">Projects feed</a></li>
-<% }
-%>
 <jsp:include page="showdeleted.jsp"/>
  </ul>
 </div>
