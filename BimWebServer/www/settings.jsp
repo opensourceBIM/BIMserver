@@ -54,7 +54,7 @@
 %>
 <div class="tabber" id="settingstabber">
 <div class="tabbertab" id="ignorefilestab" title="Guidance Providers">
-<a href="addguidanceprovider.jsp">Add Guidance Provider</a>
+<a href="addguidanceprovider.jsp">Add objectIDM</a>
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
 <%
