@@ -48,7 +48,7 @@
 	<td><input name="name" id="name" value="<%=name%>"></input></td>
 </tr>
 <tr>
-	<td><label for="className">Guidance provider</label></td>
+	<td><label for="className">Object IDM</label></td>
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%

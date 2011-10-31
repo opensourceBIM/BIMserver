@@ -41,11 +41,11 @@
 	SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
 	deserializer.setEnabled(true);
 	loginManager.getService().updateDeserializer(deserializer);
-		} else if (action.equals("disableGuidanceProvider")) {
+		} else if (action.equals("disableObjectIDM")) {
 	SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
 	objectIDM.setEnabled(false);
 	loginManager.getService().updateObjectIDM(objectIDM);
-		} else if (action.equals("enableGuidanceProvider")) {
+		} else if (action.equals("enableObjectIDM")) {
 	SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
 	objectIDM.setEnabled(true);
 	loginManager.getService().updateObjectIDM(objectIDM);
@@ -65,16 +65,16 @@
 		<td><a href="objectidm.jsp?id=<%=objectIDM.getOid()%>"><%=objectIDM.getName() %></a></td>
 		<td><%=objectIDM.getClassName() %></td>
 		<td><%=objectIDM.getSerializers().size() %></td>
-		<td class="<%=objectIDM.isEnabled() ? "enabledGuidanceProvider" : "disabledGuidanceProvider" %>"> <%=objectIDM.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=objectIDM.isEnabled() ? "enabledObjectIDM" : "disabledObjectIDM" %>"> <%=objectIDM.isEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
 	if (objectIDM.isEnabled()) {
 %>
-<a href="settings.jsp?action=disableGuidanceProvider&objectIDM=<%=objectIDM.getName() %>">Disable</a>
+<a href="settings.jsp?action=disableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Disable</a>
 <%
 	} else {
 %>
-<a href="settings.jsp?action=enableGuidanceProvider&objectIDM=<%=objectIDM.getName() %>">Enable</a>
+<a href="settings.jsp?action=enableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Enable</a>
 <%
 	}
 %>

@@ -83,7 +83,7 @@
 	<td><%=type %></td>
 </tr>
 <tr>
-	<td><label for="objectIDM">Guidance provider</label></td>
+	<td><label for="objectIDM">Object IDMr</label></td>
 	<td><select name="objectIDM" id="objectIDM">
 		<option value="[none]">[None]</option>
 <%

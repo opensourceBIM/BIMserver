@@ -31,8 +31,8 @@
 		<copy todir="builds/BuildSource/BIMserver/Emf">
 			<fileset dir="../../Emf" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/FileBasedGuidanceProvider">
-			<fileset dir="../../FileBasedGuidanceProvider" />
+		<copy todir="builds/BuildSource/BIMserver/FileBasedObjectIDM">
+			<fileset dir="../../FileBasedObjectIDM" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/GeneratedSoapClient">
 			<fileset dir="../../GeneratedSoapClient" />
