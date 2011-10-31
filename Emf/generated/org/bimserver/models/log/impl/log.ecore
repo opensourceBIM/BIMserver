@@ -38,7 +38,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store#//User"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store#//Project"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewGuidanceProviderUploaded" eSuperTypes="#//LogAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewObjectIDMUploaded" eSuperTypes="#//LogAction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Download" eSuperTypes="#//LogAction"/>
   <eClassifiers xsi:type="ecore:EClass" name="UserRemovedFromProject" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store#//User"/>

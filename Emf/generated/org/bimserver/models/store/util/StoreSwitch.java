@@ -168,9 +168,9 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.GUIDANCE_PROVIDER: {
-			GuidanceProvider guidanceProvider = (GuidanceProvider) theEObject;
-			T result = caseGuidanceProvider(guidanceProvider);
+		case StorePackage.OBJECT_IDM: {
+			ObjectIDM objectIDM = (ObjectIDM) theEObject;
+			T result = caseObjectIDM(objectIDM);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -353,9 +353,9 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR: {
-			GuidanceProviderPluginDescriptor guidanceProviderPluginDescriptor = (GuidanceProviderPluginDescriptor) theEObject;
-			T result = caseGuidanceProviderPluginDescriptor(guidanceProviderPluginDescriptor);
+		case StorePackage.OBJECT_IDM_PLUGIN_DESCRIPTOR: {
+			ObjectIDMPluginDescriptor objectIDMPluginDescriptor = (ObjectIDMPluginDescriptor) theEObject;
+			T result = caseObjectIDMPluginDescriptor(objectIDMPluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -654,17 +654,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Guidance Provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Object IDM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Guidance Provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Object IDM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGuidanceProvider(GuidanceProvider object) {
+	public T caseObjectIDM(ObjectIDM object) {
 		return null;
 	}
 
@@ -1029,17 +1029,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Object IDM Plugin Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Object IDM Plugin Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGuidanceProviderPluginDescriptor(GuidanceProviderPluginDescriptor object) {
+	public T caseObjectIDMPluginDescriptor(ObjectIDMPluginDescriptor object) {
 		return null;
 	}
 

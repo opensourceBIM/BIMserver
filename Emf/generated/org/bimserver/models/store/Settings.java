@@ -44,7 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#getGuidanceProviders <em>Guidance Providers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}</li>
@@ -470,22 +470,22 @@ public interface Settings extends IdEObject {
 	EList<Serializer> getSerializers();
 
 	/**
-	 * Returns the value of the '<em><b>Guidance Providers</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.GuidanceProvider}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.GuidanceProvider#getSettings <em>Settings</em>}'.
+	 * Returns the value of the '<em><b>Object ID Ms</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ObjectIDM}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ObjectIDM#getSettings <em>Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Guidance Providers</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Object ID Ms</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Guidance Providers</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getSettings_GuidanceProviders()
-	 * @see org.bimserver.models.store.GuidanceProvider#getSettings
+	 * @return the value of the '<em>Object ID Ms</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_ObjectIDMs()
+	 * @see org.bimserver.models.store.ObjectIDM#getSettings
 	 * @model opposite="settings"
 	 * @generated
 	 */
-	EList<GuidanceProvider> getGuidanceProviders();
+	EList<ObjectIDM> getObjectIDMs();
 
 	/**
 	 * Returns the value of the '<em><b>Header Addition</b></em>' attribute.

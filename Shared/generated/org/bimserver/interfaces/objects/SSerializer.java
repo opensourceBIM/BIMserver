@@ -35,7 +35,7 @@ public class SSerializer implements SBase
 		sClass.addField(new SField("className", java.lang.String.class));
 		sClass.addField(new SField("enabled", boolean.class));
 		sClass.addField(new SField("defaultSerializer", boolean.class));
-		sClass.addField(new SField("guidanceProviderId", long.class));
+		sClass.addField(new SField("objectIDMId", long.class));
 		sClass.addField(new SField("settingsId", long.class));
 		SPackage.getInstance().addSClass(sClass);
 
@@ -75,8 +75,8 @@ public class SSerializer implements SBase
 		if (sField.getName().equals("defaultSerializer")) {
 			return isDefaultSerializer();
 		}
-		if (sField.getName().equals("guidanceProviderId")) {
-			return getGuidanceProviderId();
+		if (sField.getName().equals("objectIDMId")) {
+			return getObjectIDMId();
 		}
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
@@ -115,8 +115,8 @@ public class SSerializer implements SBase
 			setDefaultSerializer((Boolean)val);
 			return;
 		}
-		if (sField.getName().equals("guidanceProviderId")) {
-			setGuidanceProviderId((Long)val);
+		if (sField.getName().equals("objectIDMId")) {
+			setObjectIDMId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("settingsId")) {
@@ -137,7 +137,7 @@ public class SSerializer implements SBase
 	private java.lang.String className;
 	private boolean enabled;
 	private boolean defaultSerializer;
-	private long guidanceProviderId;
+	private long objectIDMId;
 	private long settingsId;
 	public java.lang.String getName() {
 		return name;
@@ -188,12 +188,12 @@ public class SSerializer implements SBase
 	public void setDefaultSerializer(boolean defaultSerializer) {
 		this.defaultSerializer = defaultSerializer;
 	}
-	public long getGuidanceProviderId() {
-		return guidanceProviderId;
+	public long getObjectIDMId() {
+		return objectIDMId;
 	}
 
-	public void setGuidanceProviderId(long guidanceProviderId) {
-		this.guidanceProviderId = guidanceProviderId;
+	public void setObjectIDMId(long objectIDMId) {
+		this.objectIDMId = objectIDMId;
 	}
 	
 	public long getSettingsId() {

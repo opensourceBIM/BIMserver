@@ -23,9 +23,9 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.plugins.GuidanceProviderException;
+import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -47,14 +47,14 @@ public abstract class BimModelSerializer extends EmfSerializer {
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject);
 		}
-		GuidanceProvider guidanceProvider;
+		ObjectIDM objectIDM;
 		try {
-			guidanceProvider = getPluginManager().requireGuidanceProvider();
-		} catch (GuidanceProviderException e) {
+			objectIDM = getPluginManager().requireObjectIDM();
+		} catch (ObjectIDMException e) {
 			throw new SerializerException(e);
 		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
-			if (!guidanceProvider.shouldIgnoreField(originalClass, ifcRootObject.eClass(), eStructuralFeature)) {
+			if (!objectIDM.shouldIgnoreField(originalClass, ifcRootObject.eClass(), eStructuralFeature)) {
 				Object get = ifcRootObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {

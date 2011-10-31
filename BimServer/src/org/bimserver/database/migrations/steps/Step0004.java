@@ -32,7 +32,7 @@ public class Step0004 extends Migration {
 	@Override
 	public void migrate(Schema schema) {
 		EClass serializerClass = schema.createEClass(schema.getEPackage("store"), "Serializer");
-		EClass guidanceProviderClass = schema.createEClass(schema.getEPackage("store"), "GuidanceProvider");
+		EClass objectIDMClass = schema.createEClass(schema.getEPackage("store"), "ObjectIDM");
 		EClass settingsClass = schema.getEClass("store", "Settings");
 
 		schema.createEAttribute(serializerClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
@@ -42,26 +42,26 @@ public class Step0004 extends Migration {
 		schema.createEAttribute(serializerClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "defaultSerializer", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		EReference serializerGuidanceProviderReference = schema.createEReference(serializerClass, "guidanceProvider", guidanceProviderClass, Multiplicity.SINGLE);
+		EReference serializerObjectIDMReference = schema.createEReference(serializerClass, "objectIDM", objectIDMClass, Multiplicity.SINGLE);
 		EReference serializerSettingsReference = schema.createEReference(serializerClass, "settings", settingsClass, Multiplicity.SINGLE);
 		
-		schema.createEAttribute(guidanceProviderClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(guidanceProviderClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(guidanceProviderClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		EReference guidanceProviderSerializers = schema.createEReference(guidanceProviderClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference guidanceProviderSettingsReference = schema.createEReference(guidanceProviderClass, "settings", settingsClass, Multiplicity.SINGLE);
+		schema.createEAttribute(objectIDMClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(objectIDMClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(objectIDMClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		EReference objectIDMSerializers = schema.createEReference(objectIDMClass, "serializers", serializerClass, Multiplicity.MANY);
+		EReference objectIDMSettingsReference = schema.createEReference(objectIDMClass, "settings", settingsClass, Multiplicity.SINGLE);
 		
 		EReference settingsSerializersReference = schema.createEReference(settingsClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference settingsGuidanceProviderReference = schema.createEReference(settingsClass, "guidanceProviders", guidanceProviderClass, Multiplicity.MANY);
+		EReference settingsObjectIDMReference = schema.createEReference(settingsClass, "objectIDMs", objectIDMClass, Multiplicity.MANY);
 		
 		serializerSettingsReference.setEOpposite(settingsSerializersReference);
-		guidanceProviderSettingsReference.setEOpposite(settingsGuidanceProviderReference);
+		objectIDMSettingsReference.setEOpposite(settingsObjectIDMReference);
 
 		settingsSerializersReference.setEOpposite(serializerSettingsReference);
-		settingsGuidanceProviderReference.setEOpposite(guidanceProviderSettingsReference);
+		settingsObjectIDMReference.setEOpposite(objectIDMSettingsReference);
 		
-		guidanceProviderSerializers.setEOpposite(serializerGuidanceProviderReference);
-		serializerGuidanceProviderReference.setEOpposite(guidanceProviderSerializers);
+		objectIDMSerializers.setEOpposite(serializerObjectIDMReference);
+		serializerObjectIDMReference.setEOpposite(objectIDMSerializers);
 	}
 
 	@Override

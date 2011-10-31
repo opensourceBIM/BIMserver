@@ -122,7 +122,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass newGuidanceProviderUploadedEClass = null;
+	private EClass newObjectIDMUploadedEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -506,11 +506,11 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNewGuidanceProviderUploaded() {
-		if (newGuidanceProviderUploadedEClass == null) {
-			newGuidanceProviderUploadedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(9);
+	public EClass getNewObjectIDMUploaded() {
+		if (newObjectIDMUploadedEClass == null) {
+			newObjectIDMUploadedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(9);
 		}
-		return newGuidanceProviderUploadedEClass;
+		return newObjectIDMUploadedEClass;
 	}
 
 	/**

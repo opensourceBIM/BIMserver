@@ -13,7 +13,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -26,59 +26,59 @@
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("disableSerializer")) {
-			SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
-			serializer.setEnabled(false);
-			loginManager.getService().updateSerializer(serializer);
+	SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
+	serializer.setEnabled(false);
+	loginManager.getService().updateSerializer(serializer);
 		} else if (action.equals("enableSerializer")) {
-			SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
-			serializer.setEnabled(true);
-			loginManager.getService().updateSerializer(serializer);
+	SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
+	serializer.setEnabled(true);
+	loginManager.getService().updateSerializer(serializer);
 		} else if (action.equals("disableDeserializer")) {
-			SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
-			deserializer.setEnabled(false);
-			loginManager.getService().updateDeserializer(deserializer);
+	SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+	deserializer.setEnabled(false);
+	loginManager.getService().updateDeserializer(deserializer);
 		} else if (action.equals("enableDeserializer")) {
-			SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
-			deserializer.setEnabled(true);
-			loginManager.getService().updateDeserializer(deserializer);
+	SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+	deserializer.setEnabled(true);
+	loginManager.getService().updateDeserializer(deserializer);
 		} else if (action.equals("disableGuidanceProvider")) {
-			SGuidanceProvider guidanceProvider = loginManager.getService().getGuidanceProviderByName(request.getParameter("guidanceProvider"));
-			guidanceProvider.setEnabled(false);
-			loginManager.getService().updateGuidanceProvider(guidanceProvider);
+	SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
+	objectIDM.setEnabled(false);
+	loginManager.getService().updateObjectIDM(objectIDM);
 		} else if (action.equals("enableGuidanceProvider")) {
-			SGuidanceProvider guidanceProvider = loginManager.getService().getGuidanceProviderByName(request.getParameter("guidanceProvider"));
-			guidanceProvider.setEnabled(true);
-			loginManager.getService().updateGuidanceProvider(guidanceProvider);
+	SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
+	objectIDM.setEnabled(true);
+	loginManager.getService().updateObjectIDM(objectIDM);
 		}
 	}
 %>
 <div class="tabber" id="settingstabber">
-<div class="tabbertab" id="ignorefilestab" title="Guidance Providers">
-<a href="addguidanceprovider.jsp">Add objectIDM</a>
+<div class="tabbertab" id="ignorefilestab" title="Object IDMs">
+<a href="addobjectidm.jsp">Add ObjectIDM</a>
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SGuidanceProvider> guidanceProviders = service.getAllGuidanceProviders();
-	for (SGuidanceProvider guidanceProvider : guidanceProviders) {
+	List<SObjectIDM> objectIDMs = service.getAllObjectIDMs();
+	for (SObjectIDM objectIDM : objectIDMs) {
 %>
 	<tr>
-		<td><a href="guidanceprovider.jsp?id=<%=guidanceProvider.getOid()%>"><%=guidanceProvider.getName() %></a></td>
-		<td><%=guidanceProvider.getClassName() %></td>
-		<td><%=guidanceProvider.getSerializers().size() %></td>
-		<td class="<%=guidanceProvider.isEnabled() ? "enabledGuidanceProvider" : "disabledGuidanceProvider" %>"> <%=guidanceProvider.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td><a href="objectidm.jsp?id=<%=objectIDM.getOid()%>"><%=objectIDM.getName() %></a></td>
+		<td><%=objectIDM.getClassName() %></td>
+		<td><%=objectIDM.getSerializers().size() %></td>
+		<td class="<%=objectIDM.isEnabled() ? "enabledGuidanceProvider" : "disabledGuidanceProvider" %>"> <%=objectIDM.isEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
-	if (guidanceProvider.isEnabled()) {
+	if (objectIDM.isEnabled()) {
 %>
-<a href="settings.jsp?action=disableGuidanceProvider&guidanceProvider=<%=guidanceProvider.getName() %>">Disable</a>
+<a href="settings.jsp?action=disableGuidanceProvider&objectIDM=<%=objectIDM.getName() %>">Disable</a>
 <%
 	} else {
 %>
-<a href="settings.jsp?action=enableGuidanceProvider&guidanceProvider=<%=guidanceProvider.getName() %>">Enable</a>
+<a href="settings.jsp?action=enableGuidanceProvider&objectIDM=<%=objectIDM.getName() %>">Enable</a>
 <%
 	}
 %>
-			<a href="deleteguidanceprovider.jsp?ifid=<%=guidanceProvider.getOid()%>">Delete</a>
+			<a href="deleteobjectidm.jsp?ifid=<%=objectIDM.getOid()%>">Delete</a>
 		</td>
 	</tr>
 <%
@@ -93,9 +93,9 @@
 <%
 	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
-		SGuidanceProvider guidanceProvider = null;
-		if (serializer.getGuidanceProviderId() != -1) {
-			guidanceProvider = service.getGuidanceProviderById(serializer.getGuidanceProviderId());
+		SObjectIDM objectIDM = null;
+		if (serializer.getObjectIDMId() != -1) {
+	objectIDM = service.getObjectIDMById(serializer.getObjectIDMId());
 		}
 %>
 	<tr>
@@ -103,7 +103,7 @@
 		<td><%=serializer.getDescription() %></td>
 		<td><%=serializer.getClassName() %></td>
 		<td><%=serializer.getContentType() %></td>
-		<td><%=guidanceProvider == null ? "none" : guidanceProvider.getName() %></td>
+		<td><%=objectIDM == null ? "none" : objectIDM.getName() %></td>
 		<td class="<%=serializer.isEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%

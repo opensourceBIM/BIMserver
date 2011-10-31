@@ -144,13 +144,13 @@ public interface StoreFactory extends EFactory {
 	Serializer createSerializer();
 
 	/**
-	 * Returns a new object of class '<em>Guidance Provider</em>'.
+	 * Returns a new object of class '<em>Object IDM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Guidance Provider</em>'.
+	 * @return a new object of class '<em>Object IDM</em>'.
 	 * @generated
 	 */
-	GuidanceProvider createGuidanceProvider();
+	ObjectIDM createObjectIDM();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Engine</em>'.
@@ -369,13 +369,13 @@ public interface StoreFactory extends EFactory {
 	LongCheckinAction createLongCheckinAction();
 
 	/**
-	 * Returns a new object of class '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * Returns a new object of class '<em>Object IDM Plugin Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * @return a new object of class '<em>Object IDM Plugin Descriptor</em>'.
 	 * @generated
 	 */
-	GuidanceProviderPluginDescriptor createGuidanceProviderPluginDescriptor();
+	ObjectIDMPluginDescriptor createObjectIDMPluginDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Compare Item</em>'.

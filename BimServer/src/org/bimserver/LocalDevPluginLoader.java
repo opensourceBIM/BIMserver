@@ -31,7 +31,7 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcEngine"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedGuidanceProvider"));
+		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedObjectIDM"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Report1Serializer"));
 		try {
 			pluginManager.loadPluginsFromEclipseProject(new File("C:\\Users\\Ruben de Laat\\git\\BIMserver\\DeserializerExample"));

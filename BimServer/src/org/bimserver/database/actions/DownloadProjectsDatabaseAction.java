@@ -32,7 +32,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
@@ -43,14 +43,14 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 	private final Set<Long> roids;
 	private int progress;
 	private final BimServer bimServer;
-	private final GuidanceProvider guidanceProvider;
+	private final ObjectIDM objectIDM;
 
-	public DownloadProjectsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, long actingUoid, GuidanceProvider guidanceProvider) {
+	public DownloadProjectsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, long actingUoid, ObjectIDM objectIDM) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.actingUoid = actingUoid;
-		this.guidanceProvider = guidanceProvider;
+		this.objectIDM = objectIDM;
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 							progress = Math.round(100L * total.get() / totalSize);
 						}
 					});
-					getDatabaseSession().getMap(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), true, guidanceProvider);
+					getDatabaseSession().getMap(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), true, objectIDM);
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.setDate(concreteRevision.getDate());
 					ifcModelSet.add(subModel);

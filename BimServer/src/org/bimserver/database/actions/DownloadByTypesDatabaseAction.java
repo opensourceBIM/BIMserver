@@ -32,7 +32,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
@@ -45,15 +45,15 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final long actingUoid;
 	private int progress;
 	private final BimServer bimServer;
-	private final GuidanceProvider guidanceProvider;
+	private final ObjectIDM objectIDM;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long actingUoid, GuidanceProvider guidanceProvider) {
+	public DownloadByTypesDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long actingUoid, ObjectIDM objectIDM) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.actingUoid = actingUoid;
 		this.classNames = classNames;
-		this.guidanceProvider = guidanceProvider;
+		this.objectIDM = objectIDM;
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				IfcModel subModel = getDatabaseSession().getAllOfTypes(eClasses, concreteRevision.getProject().getId(), concreteRevision.getId(), true, guidanceProvider);
+				IfcModel subModel = getDatabaseSession().getAllOfTypes(eClasses, concreteRevision.getProject().getId(), concreteRevision.getId(), true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
 				ifcModelSet.add(subModel);
 			}

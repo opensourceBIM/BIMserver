@@ -52,13 +52,13 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
-import org.bimserver.interfaces.objects.SGuidanceProvider;
-import org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
+import org.bimserver.interfaces.objects.SObjectIDM;
+import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -620,24 +620,24 @@ public interface ServiceInterface {
 	void updateDeserializer(
 			@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializer deserializer) throws ServiceException;
 
-	@WebMethod(action = "getAllGuidanceProviders")
-	List<SGuidanceProvider> getAllGuidanceProviders() throws ServiceException;
+	@WebMethod(action = "getAllObjectIDMs")
+	List<SObjectIDM> getAllObjectIDMs() throws ServiceException;
 	
-	@WebMethod(action = "getGuidanceProviderById")
-	SGuidanceProvider getGuidanceProviderById(
-			@WebParam(name = "oid", partName = "getGuidanceProviderById.oid") Long oid) throws ServiceException;
+	@WebMethod(action = "getObjectIDMById")
+	SObjectIDM getObjectIDMById(
+			@WebParam(name = "oid", partName = "getObjectIDMById.oid") Long oid) throws ServiceException;
 	
-	@WebMethod(action = "addGuidanceProvider")
-	void addGuidanceProvider(
-			@WebParam(name = "guidanceProvider", partName = "addGuidanceProvider.guidanceProvider") SGuidanceProvider guidanceProvider) throws ServiceException;
+	@WebMethod(action = "addObjectIDM")
+	void addObjectIDM(
+			@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDM objectIDM) throws ServiceException;
 	
-	@WebMethod(action = "updateGuidanceProvider")
-	void updateGuidanceProvider(
-			@WebParam(name = "guidanceProvider", partName = "updateGuidanceProvider.guidanceProvider") SGuidanceProvider guidanceProvider) throws ServiceException;
+	@WebMethod(action = "updateObjectIDM")
+	void updateObjectIDM(
+			@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDM objectIDM) throws ServiceException;
 	
-	@WebMethod(action = "deleteGuidanceProvider")
-	void deleteGuidanceProvider(
-			@WebParam(name = "ifid", partName = "deleteGuidanceProvider.ifid") Long ifid) throws ServiceException;
+	@WebMethod(action = "deleteObjectIDM")
+	void deleteObjectIDM(
+			@WebParam(name = "ifid", partName = "deleteObjectIDM.ifid") Long ifid) throws ServiceException;
 
 	@WebMethod(action = "deleteSerializer")
 	void deleteSerializer(
@@ -660,9 +660,9 @@ public interface ServiceInterface {
 	SSerializer getSerializerByName(
 			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServiceException;
 
-	@WebMethod(action = "getGuidanceProviderByName")
-	SGuidanceProvider getGuidanceProviderByName(
-			@WebParam(name = "guidanceProviderName", partName = "getGuidanceProviderByName.guidanceProviderName") String guidanceProviderName) throws ServiceException;
+	@WebMethod(action = "getObjectIDMByName")
+	SObjectIDM getObjectIDMByName(
+			@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServiceException;
 
 	@WebMethod(action = "getDeserializerByName")
 	SDeserializer getDeserializerByName(
@@ -814,8 +814,8 @@ public interface ServiceInterface {
 	@WebMethod(action = "getSerializerPluginDescriptor")
 	SSerializerPluginDescriptor getSerializerPluginDescriptor(@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws ServiceException;
 	
-	@WebMethod(action = "getAllGuidanceProviderPluginDescriptors")
-	List<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws ServiceException;
+	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
+	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServiceException;
 
 	@WebMethod(action = "getAllDeserializers")
 	List<SDeserializer> getAllDeserializers(@WebParam(name = "oid", partName = "removeReference.oid") Boolean onlyEnabled) throws ServiceException;

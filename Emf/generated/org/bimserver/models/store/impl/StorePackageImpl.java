@@ -17,23 +17,16 @@
 package org.bimserver.models.store.impl;
 
 import java.io.IOException;
-
 import java.net.URL;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
-
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.log.impl.LogPackageImpl;
-
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -41,11 +34,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
@@ -151,7 +141,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass guidanceProviderEClass = null;
+	private EClass objectIDMEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -326,7 +316,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass guidanceProviderPluginDescriptorEClass = null;
+	private EClass objectIDMPluginDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1585,7 +1575,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_GuidanceProviders() {
+	public EReference getSettings_ObjectIDMs() {
 		return (EReference) getSettings().getEStructuralFeatures().get(16);
 	}
 
@@ -1732,7 +1722,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializer_GuidanceProvider() {
+	public EReference getSerializer_ObjectIDM() {
 		return (EReference) getSerializer().getEStructuralFeatures().get(7);
 	}
 
@@ -1750,11 +1740,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGuidanceProvider() {
-		if (guidanceProviderEClass == null) {
-			guidanceProviderEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(16);
+	public EClass getObjectIDM() {
+		if (objectIDMEClass == null) {
+			objectIDMEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(16);
 		}
-		return guidanceProviderEClass;
+		return objectIDMEClass;
 	}
 
 	/**
@@ -1762,8 +1752,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGuidanceProvider_Name() {
-		return (EAttribute) getGuidanceProvider().getEStructuralFeatures().get(0);
+	public EAttribute getObjectIDM_Name() {
+		return (EAttribute) getObjectIDM().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1771,8 +1761,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGuidanceProvider_ClassName() {
-		return (EAttribute) getGuidanceProvider().getEStructuralFeatures().get(1);
+	public EAttribute getObjectIDM_ClassName() {
+		return (EAttribute) getObjectIDM().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1780,8 +1770,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGuidanceProvider_Enabled() {
-		return (EAttribute) getGuidanceProvider().getEStructuralFeatures().get(2);
+	public EAttribute getObjectIDM_Enabled() {
+		return (EAttribute) getObjectIDM().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1789,8 +1779,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGuidanceProvider_Serializers() {
-		return (EReference) getGuidanceProvider().getEStructuralFeatures().get(3);
+	public EReference getObjectIDM_Serializers() {
+		return (EReference) getObjectIDM().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1798,8 +1788,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGuidanceProvider_Settings() {
-		return (EReference) getGuidanceProvider().getEStructuralFeatures().get(4);
+	public EReference getObjectIDM_Settings() {
+		return (EReference) getObjectIDM().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2752,11 +2742,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGuidanceProviderPluginDescriptor() {
-		if (guidanceProviderPluginDescriptorEClass == null) {
-			guidanceProviderPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(43);
+	public EClass getObjectIDMPluginDescriptor() {
+		if (objectIDMPluginDescriptorEClass == null) {
+			objectIDMPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(43);
 		}
-		return guidanceProviderPluginDescriptorEClass;
+		return objectIDMPluginDescriptorEClass;
 	}
 
 	/**
@@ -2764,8 +2754,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGuidanceProviderPluginDescriptor_ClassName() {
-		return (EAttribute) getGuidanceProviderPluginDescriptor().getEStructuralFeatures().get(0);
+	public EAttribute getObjectIDMPluginDescriptor_ClassName() {
+		return (EAttribute) getObjectIDMPluginDescriptor().getEStructuralFeatures().get(0);
 	}
 
 	/**

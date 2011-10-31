@@ -86,8 +86,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createSettingsSaved();
 		case LogPackage.USER_ADDED_TO_PROJECT:
 			return (EObject) createUserAddedToProject();
-		case LogPackage.NEW_GUIDANCE_PROVIDER_UPLOADED:
-			return (EObject) createNewGuidanceProviderUploaded();
+		case LogPackage.NEW_OBJECT_IDM_UPLOADED:
+			return (EObject) createNewObjectIDMUploaded();
 		case LogPackage.DOWNLOAD:
 			return (EObject) createDownload();
 		case LogPackage.USER_REMOVED_FROM_PROJECT:
@@ -238,9 +238,9 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NewGuidanceProviderUploaded createNewGuidanceProviderUploaded() {
-		NewGuidanceProviderUploadedImpl newGuidanceProviderUploaded = new NewGuidanceProviderUploadedImpl();
-		return newGuidanceProviderUploaded;
+	public NewObjectIDMUploaded createNewObjectIDMUploaded() {
+		NewObjectIDMUploadedImpl newObjectIDMUploaded = new NewObjectIDMUploadedImpl();
+		return newObjectIDMUploaded;
 	}
 
 	/**

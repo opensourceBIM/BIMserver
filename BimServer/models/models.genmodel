@@ -194,7 +194,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/customLogoAddress"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/siteAddress"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/serializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/guidanceProviders"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/headerAddition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/footerAddition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/mergeIdentifier"/>
@@ -211,7 +210,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/className"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/defaultSerializer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/guidanceProvider"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/settings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/GuidanceProvider">

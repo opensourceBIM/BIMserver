@@ -4,11 +4,11 @@
 <%
 	if (loginManager.isLoggedIn()) {
 		try {
-			long ifid = Long.parseLong(request.getParameter("ifid"));
-			loginManager.getService().deleteGuidanceProvider(ifid);
-			response.sendRedirect("settings.jsp");
+	long ifid = Long.parseLong(request.getParameter("ifid"));
+	loginManager.getService().deleteObjectIDM(ifid);
+	response.sendRedirect("settings.jsp");
 		} catch (ServiceException e) {
-			JspHelper.showException(out, e);
+	JspHelper.showException(out, e);
 		}
 	}
 %>

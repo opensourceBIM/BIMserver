@@ -83,12 +83,11 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.plugins.GuidanceProviderException;
+import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
@@ -96,6 +95,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -127,7 +127,7 @@ public class IfcVisualiser extends JFrame {
 	private Appearances appearances = new Appearances();
 	private IfcEngine ifcEngine;
 	private PluginManager pluginManager;
-	private GuidanceProvider guidanceProvider;
+	private ObjectIDM objectIDM;
 
 	public static void main(String[] args) {
 		try {
@@ -203,10 +203,10 @@ public class IfcVisualiser extends JFrame {
 
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager();
-			guidanceProvider = pluginManager.requireGuidanceProvider();
+			objectIDM = pluginManager.requireObjectIDM();
 		} catch (PluginException e) {
 			e.printStackTrace();
-		} catch (GuidanceProviderException e) {
+		} catch (ObjectIDMException e) {
 			e.printStackTrace();
 		}
 		
@@ -461,7 +461,7 @@ public class IfcVisualiser extends JFrame {
 			newModel.add(newObject.getOid(), newObject, true);
 		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
-			if (!guidanceProvider.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
+			if (!objectIDM.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
 				Object get = ifcRootObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {

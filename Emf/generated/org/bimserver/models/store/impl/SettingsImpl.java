@@ -17,18 +17,15 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Deserializer;
-import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Plugin;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -54,7 +51,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSerializers <em>Serializers</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getGuidanceProviders <em>Guidance Providers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getMergeIdentifier <em>Merge Identifier</em>}</li>
@@ -383,8 +380,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<GuidanceProvider> getGuidanceProviders() {
-		return (EList<GuidanceProvider>) eGet(StorePackage.Literals.SETTINGS__GUIDANCE_PROVIDERS, true);
+	public EList<ObjectIDM> getObjectIDMs() {
+		return (EList<ObjectIDM>) eGet(StorePackage.Literals.SETTINGS__OBJECT_ID_MS, true);
 	}
 
 	/**

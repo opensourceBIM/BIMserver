@@ -149,10 +149,10 @@
 			<fileset dir="builds/utils"/>
 		</jar>
 	</target>
-	<target name="FileBasedGuidanceProvider">
-		<mkdir dir="builds/filebasedguidanceprovider" />
-		<javac destdir="builds/filebasedguidanceprovider" debug="on" fork="false" includeantruntime="false">
-			<src path="../../FileBasedGuidanceProvider/src" />
+	<target name="FileBasedObjectIDM">
+		<mkdir dir="builds/filebasedobjectidm" />
+		<javac destdir="builds/filebasedobjectidm" debug="on" fork="false" includeantruntime="false">
+			<src path="../../FileBasedObjectIDM/src" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
@@ -161,16 +161,16 @@
 			</classpath>
 		</javac>
 		<mkdir dir="builds/buildingSMARTLibrary/plugin"/>
-		<copy todir="builds/filebasedguidanceprovider/plugin">
+		<copy todir="builds/filebasedobjectidm/plugin">
 			<fileset dir="../../FileBasedGuidanceProvider/plugin"></fileset>
 		</copy>
-		<copy todir="builds/filebasedguidanceprovider">
-			<fileset dir="../../FileBasedGuidanceProvider">
+		<copy todir="builds/filebasedobjectidm">
+			<fileset dir="../../FileBasedObjectIDM">
 				<include name="*.xml" />
 			</fileset>
 		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-${version}-filebasedguidanceprovider.jar">
-			<fileset dir="builds/filebasedguidanceprovider"/>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-filebasedobjectidm.jar">
+			<fileset dir="builds/filebasedobjectidm"/>
 		</jar>
 	</target>
 	<target name="buildingSMARTLibrary">

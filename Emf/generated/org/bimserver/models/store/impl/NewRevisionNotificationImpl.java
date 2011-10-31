@@ -19,7 +19,6 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

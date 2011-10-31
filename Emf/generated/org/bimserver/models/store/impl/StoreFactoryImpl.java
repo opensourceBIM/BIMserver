@@ -19,14 +19,74 @@ package org.bimserver.models.store.impl;
 import javax.activation.DataHandler;
 
 import org.bimserver.models.store.*;
-
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.CheckinResult;
+import org.bimserver.models.store.CheckinState;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.CheckoutResult;
+import org.bimserver.models.store.Clash;
+import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.CompareContainer;
+import org.bimserver.models.store.CompareIdentifier;
+import org.bimserver.models.store.CompareItem;
+import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.CompareType;
+import org.bimserver.models.store.CompileResult;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
+import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DeserializerPluginDescriptor;
+import org.bimserver.models.store.DownloadResult;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.LongAction;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongCheckinAction;
+import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.NewProjectNotification;
+import org.bimserver.models.store.NewRevisionNotification;
+import org.bimserver.models.store.Notification;
+import org.bimserver.models.store.ObjectAdded;
+import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginDescriptor;
+import org.bimserver.models.store.ObjectModified;
+import org.bimserver.models.store.ObjectRemoved;
+import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.Plugin;
+import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.RunResult;
+import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginDescriptor;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerState;
+import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSession;
+import org.bimserver.models.store.UserType;
+import org.bimserver.models.store.Version;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -96,8 +156,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createSettings();
 		case StorePackage.SERIALIZER:
 			return (EObject) createSerializer();
-		case StorePackage.GUIDANCE_PROVIDER:
-			return (EObject) createGuidanceProvider();
+		case StorePackage.OBJECT_IDM:
+			return (EObject) createObjectIDM();
 		case StorePackage.IFC_ENGINE:
 			return (EObject) createIfcEngine();
 		case StorePackage.PLUGIN:
@@ -146,8 +206,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createLongAction();
 		case StorePackage.LONG_CHECKIN_ACTION:
 			return (EObject) createLongCheckinAction();
-		case StorePackage.GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR:
-			return (EObject) createGuidanceProviderPluginDescriptor();
+		case StorePackage.OBJECT_IDM_PLUGIN_DESCRIPTOR:
+			return (EObject) createObjectIDMPluginDescriptor();
 		case StorePackage.COMPARE_ITEM:
 			return (EObject) createCompareItem();
 		case StorePackage.OBJECT_ADDED:
@@ -372,9 +432,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GuidanceProvider createGuidanceProvider() {
-		GuidanceProviderImpl guidanceProvider = new GuidanceProviderImpl();
-		return guidanceProvider;
+	public ObjectIDM createObjectIDM() {
+		ObjectIDMImpl objectIDM = new ObjectIDMImpl();
+		return objectIDM;
 	}
 
 	/**
@@ -622,9 +682,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GuidanceProviderPluginDescriptor createGuidanceProviderPluginDescriptor() {
-		GuidanceProviderPluginDescriptorImpl guidanceProviderPluginDescriptor = new GuidanceProviderPluginDescriptorImpl();
-		return guidanceProviderPluginDescriptor;
+	public ObjectIDMPluginDescriptor createObjectIDMPluginDescriptor() {
+		ObjectIDMPluginDescriptorImpl objectIDMPluginDescriptor = new ObjectIDMPluginDescriptorImpl();
+		return objectIDMPluginDescriptor;
 	}
 
 	/**

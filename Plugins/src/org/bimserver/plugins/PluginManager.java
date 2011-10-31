@@ -38,10 +38,10 @@ import javax.xml.bind.Unmarshaller;
 
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
-import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
@@ -177,8 +177,8 @@ public class PluginManager {
 		return plugins;
 	}
 	
-	public Collection<GuidanceProviderPlugin> getAllGuidanceProviders(boolean onlyEnabled) {
-		return getPlugins(GuidanceProviderPlugin.class, onlyEnabled);
+	public Collection<ObjectIDMPlugin> getAllObjectIDMPlugins(boolean onlyEnabled) {
+		return getPlugins(ObjectIDMPlugin.class, onlyEnabled);
 	}
 
 	public Collection<IfcEnginePlugin> getAllIfcEnginePlugins(boolean onlyEnabled) {
@@ -356,12 +356,12 @@ public class PluginManager {
 		return ifcSerializer;
 	}
 
-	public GuidanceProvider requireGuidanceProvider() throws GuidanceProviderException {
-		Collection<GuidanceProviderPlugin> plugins = getPlugins(GuidanceProviderPlugin.class, true);
+	public ObjectIDM requireObjectIDM() throws ObjectIDMException {
+		Collection<ObjectIDMPlugin> plugins = getPlugins(ObjectIDMPlugin.class, true);
 		if (plugins.size() == 0) {
-			throw new GuidanceProviderException("A guidance provider is required");
+			throw new ObjectIDMException("An ObjectIDM is required");
 		}
-		return plugins.iterator().next().getGuidanceProvider();
+		return plugins.iterator().next().getObjectIDM();
 	}
 
 	public File getTempDir() {
@@ -437,11 +437,11 @@ public class PluginManager {
 		return schemaPlugin;
 	}
 
-	public GuidanceProviderPlugin getGuidanceProviderByName(String className) {
-		Collection<GuidanceProviderPlugin> allGuidanceProviders = getAllGuidanceProviders(true);
-		for (GuidanceProviderPlugin guidanceProviderPlugin : allGuidanceProviders) {
-			if (guidanceProviderPlugin.getClass().getName().equals(className)) {
-				return guidanceProviderPlugin;
+	public ObjectIDMPlugin getObjectIDMByName(String className) {
+		Collection<ObjectIDMPlugin> allObjectIDMs = getAllObjectIDMPlugins(true);
+		for (ObjectIDMPlugin objectIDMPlugin : allObjectIDMs) {
+			if (objectIDMPlugin.getClass().getName().equals(className)) {
+				return objectIDMPlugin;
 			}
 		}
 		return null;
