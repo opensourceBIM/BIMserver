@@ -27,17 +27,17 @@ import org.bimserver.utils.CollectionUtils;
 public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 
 	private boolean initialized;
-	private FileBasedObjectIDM fileBasedGuidanceProvider;
+	private FileBasedObjectIDM fileBasedObjectIDM;
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		fileBasedGuidanceProvider = new FileBasedObjectIDM(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), pluginManager.getPluginContext(this));
+		fileBasedObjectIDM = new FileBasedObjectIDM(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), pluginManager.getPluginContext(this));
 		initialized = true;
 	}
 
 	@Override
 	public String getDescription() {
-		return "FileBasedGuidanceProviderPlugin";
+		return "FileBasedObjectIDMPlugin";
 	}
 
 	@Override
@@ -52,11 +52,11 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 
 	@Override
 	public ObjectIDM getObjectIDM() {
-		return fileBasedGuidanceProvider;
+		return fileBasedObjectIDM;
 	}
 
 	@Override
 	public String getDefaultObjectIDMName() {
-		return "FileBasedGuidanceProviderPlugin";
+		return "FileBasedObjectIDMPlugin";
 	}
 }
