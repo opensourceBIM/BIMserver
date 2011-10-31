@@ -27,7 +27,6 @@ import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserAddedToProject;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 

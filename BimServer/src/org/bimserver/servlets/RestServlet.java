@@ -31,7 +31,6 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.RestAuthentication;
-import org.bimserver.webservices.Service;
 
 public class RestServlet extends CXFNonSpringJaxrsServlet {
 	private static final long serialVersionUID = 6288864278630843847L;
