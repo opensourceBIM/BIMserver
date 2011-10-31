@@ -53,7 +53,7 @@
 		<label for="ifcversion">IFC version</label>
 		<p class="explain">Choose which version of IFC should be used as the main database structure.</p>
 	</td>
-	<td><select name="ifcversion" size="1"><option value="ifc2x3">IFC2x3 RC1</option></select>
+	<td><select name="ifcversion" size="1"><option value="ifc2x3">IFC2x3 TC1</option></select>
 </tr>
 <tr>
 	<td colspan="2" class="tabletitle">Admin user</td>
@@ -79,6 +79,15 @@
 	</td>
 	<td><input type="password" id="adminPassword" name="adminPassword" value="<%=adminPassword %>"/></td>
 </tr>
+<tr>
+	<td>
+		<p class="explain">By clicking the 'setup' button, you agree that the JSP pages of this BIMserver will have a generic
+		Google Analytics code. This data is send anonymous to the BIMserver.org team to evaluate the use of the GUI. 
+		This is done to improve the usability of BIMserver.<br/>
+		If you don't want this, you can remove the code under 'server settings' in the box 'footer addition'.</p>
+	</td>
+</tr>
+
 </table>
 <input type="submit" name="setup" value="Setup"/>
 </form>
