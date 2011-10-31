@@ -1,3 +1,5 @@
+<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.client.factories.AutologinAuthenticationInfo"%>
 <%@page import="org.bimserver.interfaces.objects.SVersion"%>
 <%@page import="org.bimserver.interfaces.objects.SServerState"%>

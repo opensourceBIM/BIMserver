@@ -60,8 +60,6 @@
 		<copy todir="builds/BuildJar/plugins">
 			<fileset dir="builds/pluginlibs" />
 		</copy>
-		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildJar/classes/org/bimserver/database/migrations/steps" />
-		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildJar/classes/org/bimserver/models/ifc2x3/impl" />
 		<delete dir="builds/BuildJar/classes" />
 		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander"  includeantruntime="false"/>
 		<copy todir="builds/BuildJar/org/bimserver">
@@ -123,9 +121,6 @@
 		<copy file="${buildtargets}/${target}/web.xml" todir="builds/BuildWar/WEB-INF" overwrite="true"/>
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
 		
-		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/database/migrations/steps" />
-		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/models/ifc2x3/impl" />
-
 		<copy todir="builds/BuildWar" overwrite="true">
 			<fileset dir="${buildtargets}/${target}/jsp" />
 		</copy>
