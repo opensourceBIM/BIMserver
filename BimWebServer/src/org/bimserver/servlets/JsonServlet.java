@@ -36,7 +36,14 @@ public class JsonServlet extends HttpServlet {
 					}
 					long uoid = -1;
 					if (user == null) {
-						uoid = loginManager.getService().addUser(in.getString("username"), in.getString("name"), SUserType.valueOf(in.getString("type")), false);
+						if (loginManager.getService().isSettingAllowSelfRegistration()) {
+							uoid = loginManager.getService().addUser(in.getString("username"), in.getString("name"), SUserType.valueOf(in.getString("type")), false);
+						} else {
+							JSONObject result = new JSONObject();
+							result.put("error", "There is no user for this e-mail address and self-registration is disabled");
+							result.write(response.getWriter());
+							return;
+						}
 					} else {
 						uoid = user.getOid();
 					}
@@ -44,7 +51,10 @@ public class JsonServlet extends HttpServlet {
 					result.put("uoid", uoid);
 					result.write(response.getWriter());
 				} catch (ServiceException e) {
-					e.printStackTrace();
+					JSONObject result = new JSONObject();
+					result.put("error", e.getMessage());
+					result.write(response.getWriter());
+					return;
 				}
 			}
 		} catch (JSONException e) {

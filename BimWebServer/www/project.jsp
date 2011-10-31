@@ -830,6 +830,8 @@
 			}, function(data){
 				if (data.error == null) {
 					document.location = "addusertoproject.jsp?uoid=" + data.uoid + "&poid=<%=project.getOid()%>&type=project";
+				} else {
+					alert(data.error);
 				}
 			});
 		});
