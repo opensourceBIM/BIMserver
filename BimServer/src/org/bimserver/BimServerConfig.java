@@ -26,6 +26,7 @@ public class BimServerConfig {
 	private File homeDir;
 	private ResourceFetcher resourceFetcher;
 	private String classPath;
+	private int port;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -57,5 +58,13 @@ public class BimServerConfig {
 
 	public void setClassPath(String classPath) {
 		this.classPath = classPath;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+	
+	public int getPort() {
+		return port;
 	}
 }
