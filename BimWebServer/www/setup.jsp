@@ -91,5 +91,5 @@
 </table>
 <input type="submit" name="setup" value="Setup"/>
 </form>
-</div>
 <jsp:include page="footer.jsp" />
+</div>
