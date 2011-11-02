@@ -21,6 +21,7 @@ import java.io.File;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
+import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.factories.AuthenticationInfo;
@@ -31,6 +32,11 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
+import org.bimserver.servlets.CompileServlet;
+import org.bimserver.servlets.DownloadServlet;
+import org.bimserver.servlets.JsonServlet;
+import org.bimserver.servlets.ProgressServlet;
+import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.web.LocalDevBimWebServerStarter;
@@ -64,9 +70,17 @@ public class LocalDevBimCombinedServerStarter {
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
+		config.setPort(port);
 		bimServer = new BimServer(config);
 	 	try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
+		 	EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
+		 	embeddedWebServer.getContext().addServlet(DownloadServlet.class, "/download/*");
+		 	embeddedWebServer.getContext().addServlet(ProgressServlet.class, "/progress/*");
+		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
+		 	embeddedWebServer.getContext().addServlet(JsonServlet.class, "/json/*");
+		 	embeddedWebServer.getContext().addServlet(CompileServlet.class, "/compile/*");
+		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
 	 		bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin");
@@ -82,10 +96,7 @@ public class LocalDevBimCombinedServerStarter {
 		} catch (DatabaseRestartRequiredException e) {
 			e.printStackTrace();
 		}
-	 	
-	 	LocalDevBimWebServerStarter webServerStarter = new LocalDevBimWebServerStarter();
-	 	webServerStarter.start(address, port, "../BimWebServer/www");
-		
+
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {

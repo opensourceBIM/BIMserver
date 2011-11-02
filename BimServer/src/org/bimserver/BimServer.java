@@ -116,6 +116,7 @@ public class BimServer {
 	private final BimServerConfig config;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private SService sService;
+	private EmbeddedWebServer embeddedWebServer;
 
 	/**
 	 * Create a new BIMserver
@@ -199,6 +200,9 @@ public class BimServer {
 
 			clashDetectionCache = new ClashDetectionCache();
 			compareCache = new CompareCache();
+			if (config.isStartEmbeddedWebServer()) {
+				embeddedWebServer = new EmbeddedWebServer(this);
+			}
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
@@ -278,7 +282,7 @@ public class BimServer {
 
 			serviceFactory = new ServiceInterfaceFactory(this);
 			if (config.isStartEmbeddedWebServer()) {
-				new EmbeddedWebServer(this).start();
+				embeddedWebServer.start();
 			}
 
 			diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
@@ -580,5 +584,13 @@ public class BimServer {
 
 	public ProtocolBuffersMetaData getProtocolBuffersMetaData() {
 		return protocolBuffersMetaData;
+	}
+
+	public BimServerConfig getConfig() {
+		return config;
+	}
+
+	public EmbeddedWebServer getEmbeddedWebServer() {
+		return embeddedWebServer;
 	}
 }

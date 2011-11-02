@@ -33,6 +33,7 @@ public class LocalDevBimServerStarter {
 		config.setHomeDir(new File("home"));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 		config.setStartEmbeddedWebServer(true);
+		config.setPort(80);
 		BimServer bimServer = new BimServer(config);
 		try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());

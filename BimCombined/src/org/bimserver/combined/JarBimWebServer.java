@@ -18,10 +18,10 @@ package org.bimserver.combined;
  *****************************************************************************/
 
 import java.io.File;
-import java.util.Random;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
+import org.bimserver.EmbeddedWebServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
@@ -31,17 +31,19 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.resources.JarResourceFetcher;
+import org.bimserver.servlets.CompileServlet;
+import org.bimserver.servlets.DownloadServlet;
+import org.bimserver.servlets.JsonServlet;
+import org.bimserver.servlets.ProgressServlet;
+import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.web.LoginManager;
-import org.eclipse.jetty.server.bio.SocketConnector;
-import org.eclipse.jetty.server.session.HashSessionIdManager;
-import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JarBimWebServer {
-	private org.eclipse.jetty.server.Server server;
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarBimWebServer.class);
+	private BimServer bimServer;
 
 	public static void main(String[] args) {
 		String address = "127.0.0.1";
@@ -63,7 +65,7 @@ public class JarBimWebServer {
 	public void stop() {
 		LOGGER.info("Stopping server...");
 		try {
-			server.stop();
+			bimServer.stop();
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
@@ -75,9 +77,18 @@ public class JarBimWebServer {
 		BimServerConfig bimServerConfig = new BimServerConfig();
 		bimServerConfig.setHomeDir(new File(homedir));
 		bimServerConfig.setResourceFetcher(new JarResourceFetcher());
-		final BimServer bimServer = new BimServer(bimServerConfig);
+		bimServerConfig.setStartEmbeddedWebServer(true);
+		bimServerConfig.setPort(port);
+		bimServer = new BimServer(bimServerConfig);
 	 	try {
-			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
+	 		bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
+		 	EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
+		 	embeddedWebServer.getContext().addServlet(DownloadServlet.class, "/download/*");
+		 	embeddedWebServer.getContext().addServlet(ProgressServlet.class, "/progress/*");
+		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
+		 	embeddedWebServer.getContext().addServlet(JsonServlet.class, "/json/*");
+		 	embeddedWebServer.getContext().addServlet(CompileServlet.class, "/compile/*");
+		 	embeddedWebServer.getContext().setResourceBase("www");
 			bimServer.start();
 		} catch (PluginException e) {
 			LOGGER.error("", e);
@@ -96,30 +107,10 @@ public class JarBimWebServer {
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
 				bimServerClient.setAuthentication(authenticationInfo);
-//				bimServerClient.connectProtocolBuffers("localhost", 8020);
 				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
 				return bimServerClient;
 			}
 		};
-	 	
-		server = new org.eclipse.jetty.server.Server();
-		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
-		server.setSessionIdManager(hashSessionIdManager);
-		SocketConnector socketConnector = new SocketConnector();
-		socketConnector.setPort(port);
-		socketConnector.setHost(address);
-		server.addConnector(socketConnector);
-
-		WebAppContext context = new WebAppContext(server, "", "/");
-		context.setAttribute("bimserver", bimServer);
-		context.getServletContext().setAttribute("bimserver", bimServer);
-		context.setResourceBase(resourceBase);
-
-		try {
-			server.start();
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		}
 		LOGGER.info("Server started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 	}
 }
