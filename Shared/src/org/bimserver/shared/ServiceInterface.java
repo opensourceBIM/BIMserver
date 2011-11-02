@@ -710,12 +710,12 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServiceException;
 	
-	@WebMethod(action = "setFloatAttribute")
-	void setFloatAttribute(
-			@WebParam(name = "oid", partName = "setFloatAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "setFloatAttribute.className") String className, 
-			@WebParam(name = "attributeName", partName = "setFloatAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setFloatAttribute.value") Float value) throws ServiceException;
+	@WebMethod(action = "setDoubleAttribute")
+	void setDoubleAttribute(
+			@WebParam(name = "oid", partName = "setDoubleAttribute.oid") Long oid, 
+			@WebParam(name = "className", partName = "setDoubleAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
+			@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServiceException;
 
 	@WebMethod(action = "setEnumAttribute")
 	void setEnumAttribute(
@@ -765,12 +765,12 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServiceException;
 
-	@WebMethod(action = "addFloatAttribute")
-	void addFloatAttribute(
-			@WebParam(name = "oid", partName = "addFloatAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "addFloatAttribute.className") String className, 
-			@WebParam(name = "attributeName", partName = "addFloatAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addFloatAttribute.value") Float value) throws ServiceException;
+	@WebMethod(action = "addDoubleAttribute")
+	void addDoubleAttribute(
+			@WebParam(name = "oid", partName = "addDoubleAttribute.oid") Long oid, 
+			@WebParam(name = "className", partName = "addDoubleAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "addDoubleAttribute.attributeName") String attributeName,
+			@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServiceException;
 
 	@WebMethod(action = "addIntegerAttribute")
 	void addIntegerAttribute(

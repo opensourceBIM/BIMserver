@@ -444,11 +444,15 @@ public class IfcStepSerializer extends IfcSerializer {
 							}
 						} else {
 							if (doubleStingList != null) {
-								String val = (String)doubleStingList.get(index);
-								if (val == null) {
-									writePrimitive(out, listObject);
+								if (index < doubleStingList.size()) {
+									String val = (String)doubleStingList.get(index);
+									if (val == null) {
+										writePrimitive(out, listObject);
+									} else {
+										out.write(val);
+									}
 								} else {
-									out.write(val);
+									writePrimitive(out, listObject);
 								}
 							} else {
 								writePrimitive(out, listObject);

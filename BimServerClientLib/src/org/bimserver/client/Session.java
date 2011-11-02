@@ -87,8 +87,8 @@ public class Session {
 										serviceInterface.addStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) o);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
 										serviceInterface.addIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) o);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-										serviceInterface.addFloatAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Float) o);
+									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+										serviceInterface.addDoubleAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Double) o);
 									} else {
 										throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
 									}
@@ -98,8 +98,8 @@ public class Session {
 									serviceInterface.setStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) val);
 								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
 									serviceInterface.setIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) val);
-								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-									serviceInterface.setFloatAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Float) val);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+									serviceInterface.setDoubleAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Double) val);
 								} else if (eAttribute.getEType() instanceof EEnum) {
 									serviceInterface.setEnumAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), val.toString());
 								} else {

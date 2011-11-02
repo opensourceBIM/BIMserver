@@ -58,8 +58,8 @@ public class SetAttributeChange implements Change {
 		} else {
 			idEObject.eSet(eAttribute, value);
 		}
-		if (value instanceof Float) {
-			idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Float)value));
+		if (value instanceof Double) {
+			idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
 		}
 		bimDatabaseSession.store(idEObject);
 	}
