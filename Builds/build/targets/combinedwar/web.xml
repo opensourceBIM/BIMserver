@@ -86,6 +86,16 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>JsonServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.JsonServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JsonServlet</servlet-name>
+		<url-pattern>/json/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>CompileServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.CompileServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
