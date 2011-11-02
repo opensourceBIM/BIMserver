@@ -78,6 +78,14 @@ public class Expander extends JFrame {
 		
 		PrintStream out = new PrintStream(new OutputStream() {
 			@Override
+			public void write(byte[] bytes, int off, int len) throws IOException {
+				String str = new String(bytes, off, len);
+				systemOut.append(str);
+				logField.append(str);
+				logField.setCaretPosition(logField.getDocument().getLength());
+			}
+
+			@Override
 			public void write(int b) throws IOException {
 				String str = new String(new char[] { (char) b });
 				systemOut.append(str);
