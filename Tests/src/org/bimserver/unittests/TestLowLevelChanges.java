@@ -198,8 +198,8 @@ public class TestLowLevelChanges {
 			int pid = createProject();
 			service.startTransaction(pid);
 			long windowOid = service.createObject("IfcWindow");
-			float overallHeight = 200.5f;
-			service.setFloatAttribute(windowOid, "IfcWindow", "OverallHeight", overallHeight);
+			double overallHeight = 200.5;
+			service.setDoubleAttribute(windowOid, "IfcWindow", "OverallHeight", overallHeight);
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
@@ -212,7 +212,7 @@ public class TestLowLevelChanges {
 			if (idEObject.getOid() != windowOid) {
 				fail("Oids don't match " + idEObject.getOid() + ", " + windowOid);
 			}
-			float value = (Float)idEObject.eGet(idEObject.eClass().getEStructuralFeature("OverallHeight"));
+			double value = (Double)idEObject.eGet(idEObject.eClass().getEStructuralFeature("OverallHeight"));
 			if (value != overallHeight) {
 				fail("Values do not match: " + overallHeight + ", " + value);
 			}
@@ -258,12 +258,12 @@ public class TestLowLevelChanges {
 			int pid = createProject();
 			service.startTransaction(pid);
 			long cartesianPointId = service.createObject("IfcCartesianPoint");
-			float firstVal = 5.1f;
-			service.addFloatAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", firstVal);
-			float secondVal = 6.2f;
-			service.addFloatAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", secondVal);
-			float thirdVal = 7.3f;
-			service.addFloatAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", thirdVal);
+			double firstVal = 5.1;
+			service.addDoubleAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", firstVal);
+			double secondVal = 6.2;
+			service.addDoubleAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", secondVal);
+			double thirdVal = 7.3;
+			service.addDoubleAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", thirdVal);
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
 			List<IfcCartesianPoint> cartesianPoints = model.getAll(IfcCartesianPoint.class);
@@ -279,6 +279,7 @@ public class TestLowLevelChanges {
 				fail("Values did not match");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
@@ -298,6 +299,7 @@ public class TestLowLevelChanges {
 				fail("Model should be empty");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
@@ -308,9 +310,8 @@ public class TestLowLevelChanges {
 		int downloadId = service.download(revision.getOid(), serializerByContentType.getName(), true);
 		SDownloadResult downloadData = service.getDownloadData(downloadId);
 		DataHandler dataHandler = downloadData.getFile();
-		DeserializerPlugin deserializerPlugin;
 		try {
-			deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", true, 0);

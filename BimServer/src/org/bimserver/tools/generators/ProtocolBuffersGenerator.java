@@ -533,6 +533,8 @@ public class ProtocolBuffersGenerator {
 			return "int32";
 		} else if (clazz == Float.class | clazz == float.class) {
 			return "float";
+		} else if (clazz == Double.class | clazz == double.class) {
+			return "double";
 		} else if (clazz.isEnum()) {
 			return createEnum(sb, clazz);
 		} else {

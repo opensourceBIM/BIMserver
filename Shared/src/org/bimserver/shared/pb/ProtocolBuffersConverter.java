@@ -119,7 +119,7 @@ public class ProtocolBuffersConverter {
 				SField sField = sClass.getField(fieldDescriptor.getName());
 				Object value = object.sGet(sField);
 				if (value != null) {
-					if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Long.class || value.getClass() == Float.class
+					if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Long.class || value.getClass() == Double.class
 							|| value.getClass() == Integer.class) {
 						builder.setField(fieldDescriptor, value);
 					} else if (value.getClass().isEnum()) {
