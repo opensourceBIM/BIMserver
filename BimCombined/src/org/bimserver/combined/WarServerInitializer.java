@@ -70,8 +70,8 @@ public class WarServerInitializer implements ServletContextListener {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
-				ServiceInterface newService = bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress);
-				bimServerClient.connectDirect(newService);
+				bimServerClient.setAuthentication(authenticationInfo);
+				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
 				return bimServerClient;
 			}
 		};
