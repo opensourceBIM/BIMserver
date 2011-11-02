@@ -25,7 +25,7 @@
 		<ant antfile="satellite.build.xml" target="Build SatelliteWar"></ant>
 	</target>
 	<target name="serverlib">
-		<ant antfile="bimserverlib.build.xml" target="Build Server Lib"></ant>
+		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"></ant>
 	</target>
 	<target name="source" description="Create an eclipse workspace zipfile">
 		<ant antfile="source.build.xml" target="Build Source"></ant>

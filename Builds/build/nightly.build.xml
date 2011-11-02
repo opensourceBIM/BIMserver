@@ -52,13 +52,11 @@
 			<fileset file="builds/bimserver-satellite-${version}.war" />
 		</ftp>
 
-<!--	<ant antfile="bimserverlib.build.xml" target="buildbimserverlib">
-			<property name="target" value="jar" description="Create the BIMserver library" />
-		</ant>
+		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="builds/bimserver-lib-${version}.zip" />
 		</ftp>
--->
+
 		<ant antfile="client.build.xml" target="Build Client"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="builds/bimserver-client-${version}.jar" />
