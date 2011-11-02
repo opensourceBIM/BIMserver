@@ -19,10 +19,10 @@
 		<ant antfile="combined.build.xml" target="Build CombinedWar"></ant>
 	</target>
 	<target name="satellitejar">
-		<ant antfile="satellite.build.xml" target="Build Jar"></ant>
+		<ant antfile="satellite.build.xml" target="Build SatelliteJar"></ant>
 	</target>
 	<target name="satellitewar">
-		<ant antfile="satellite.build.xml" target="Build War"></ant>
+		<ant antfile="satellite.build.xml" target="Build SatelliteWar"></ant>
 	</target>
 	<target name="serverlib">
 		<ant antfile="bimserverlib.build.xml" target="Build Server Lib"></ant>

@@ -1,6 +1,6 @@
 <project name="Satellite Server">
 	<import file="common.build.xml"/>
-	<target name="Jar">
+	<target name="Build SatelliteJar">
 		<property name="target" value="satellitejar"/>
 		<delete dir="builds"/>
 		<mkdir dir="builds" />
@@ -40,7 +40,7 @@
 		</jar>
 		<delete dir="builds/BuildJar" failonerror="false" />
 	</target>
-	<target name="War">
+	<target name="Build SatelliteWar">
 		<property name="target" value="war"/>
 		<delete dir="builds" />
 		<mkdir dir="builds" />
