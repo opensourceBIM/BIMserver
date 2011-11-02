@@ -9,7 +9,7 @@
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
 	<target name="deploydemowar">
 		<property name="target" value="demo" />
-		<ant antfile="common.build.xml" target="buildwar"></ant>
+		<ant antfile="combined.build.xml" target="Build CombinedWar"></ant>
 		<undeploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
 		<deploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
 	</target>

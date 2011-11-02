@@ -1,6 +1,11 @@
 <project name="WebServer">
 	<import file="common.build.xml"/>
 	<target name="Build CombinedWar">
+		<condition property="target" value="combinedwar">
+			<not>
+				<isset property="target" />
+			</not>
+		</condition>
 		<property name="target" value="combinedwar"/>
 		<delete dir="builds" />
 		<mkdir dir="builds" />
