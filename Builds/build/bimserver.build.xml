@@ -8,7 +8,7 @@
 			<fileset file="${buildtargets}/shared/gpl.txt" />
 		</copy>
 		<copy todir="builds/BuildJar/www">
-			<fileset dir="../../BimWebServer/www" />
+			<fileset dir="../../BimServer/www" />
 		</copy>
 		<copy todir="builds/BuildJar/config" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
@@ -67,7 +67,6 @@
 				<include name="*.png" />
 			</fileset>
 		</copy>
-		<mkdir dir="builds/BuildJar/tmp" />
 		<jar jarfile="builds/bimserver-${version}.jar" manifest="${buildtargets}/${target}/MANIFEST.MF">
 			<fileset dir="builds/BuildJar">
 				<exclude name="*.svn" />

@@ -41,8 +41,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
+import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -84,6 +86,14 @@ public class Expander extends JFrame {
 		final PrintStream systemOut = System.out;
 		
 		PrintStream out = new PrintStream(new OutputStream() {
+			@Override
+			public void write(byte[] bytes, int off, int len) throws IOException {
+				String str = new String(bytes, off, len);
+				systemOut.append(str);
+				logField.append(str);
+				logField.setCaretPosition(logField.getDocument().getLength());
+			}
+			
 			@Override
 			public void write(int b) throws IOException {
 				String str = new String(new char[] { (char) b });
@@ -367,7 +377,21 @@ public class Expander extends JFrame {
 			if (command.endsWith(File.pathSeparator)) {
 				command = command.substring(0, command.length()-1);
 			}
-			command += " org.bimserver.combined.JarBimWebServer";
+			Enumeration<URL> resources = getClass().getClassLoader().getResources("META-INF/MANIFEST.MF");
+			String realMainClass = "";
+			while (resources.hasMoreElements()) {
+				URL url = resources.nextElement();
+				Manifest manifest = new Manifest(url.openStream());
+				Attributes mainAttributes = manifest.getMainAttributes();
+				for (Object key : mainAttributes.keySet()) {
+					if (key.toString().equals("Real-Main-Class")) {
+						realMainClass = mainAttributes.get(key).toString();
+						break;
+					}
+				}
+			}
+			System.out.println("Main class: " + realMainClass);
+			command += " " + realMainClass;
 			command += " address=" + address;
 			command += " port=" + port;
 			command += " homedir=\"" + homedir + "\"";

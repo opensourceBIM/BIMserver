@@ -27,6 +27,16 @@
 			<fileset file="builds/bimserver-${version}.jar" />
 		</ftp>
 		
+		<ant antfile="combined.build.xml" target="Build War"/>
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
+			<fileset file="builds/bimserver-combined-${version}.war" />
+		</ftp>
+
+		<ant antfile="combined.build.xml" target="Build Jar"/>
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
+			<fileset file="builds/bimserver-combined-${version}.jar" />
+		</ftp>
+
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="builds/bimserver-client-lib-${version}.zip" />
