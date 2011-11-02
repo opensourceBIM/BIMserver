@@ -17,6 +17,7 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -107,52 +108,58 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 				cleanupModel(idEObject.eClass(), idEObject, newModel, ifcModel, converted);
 			}
 		}
-		SerializerPlugin serializerPlugin = (SerializerPlugin) bimServer.getPluginManager().getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
-		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
-		try {
-			ifcSerializer.init(newModel, null, null);
-			byte[] bytes = ifcSerializer.getBytes();
-			IfcEngine ifcEngine = bimServer.getPluginManager().requireIfcEngine().createIfcEngine();
+		Collection<SerializerPlugin> allSerializerPlugins = bimServer.getPluginManager().getAllSerializerPlugins("application/ifc", true);
+		if (!allSerializerPlugins.isEmpty()) {
+			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
+			EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
 			try {
-				IfcEngineModel ifcEngineModel = ifcEngine.openModel(bytes);
+				ifcSerializer.init(newModel, null, bimServer.getPluginManager());
+				byte[] bytes = ifcSerializer.getBytes();
+				IfcEngine ifcEngine = bimServer.getPluginManager().requireIfcEngine().createIfcEngine();
 				try {
-					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(clashDetectionSettings.getMargin());
-
-					Set<EidClash> eidClashes = new HashSet<EidClash>();
-					for (IfcEngineClash clash : clashes) {
-						EidClash eidClash = StoreFactory.eINSTANCE.createEidClash();
-						eidClash.setName1(clash.getName1());
-						eidClash.setName2(clash.getName2());
-						eidClash.setType1(clash.getType1());
-						eidClash.setType2(clash.getType2());
+					IfcEngineModel ifcEngineModel = ifcEngine.openModel(bytes);
+					try {
+						Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(clashDetectionSettings.getMargin());
+						
+						Set<EidClash> eidClashes = new HashSet<EidClash>();
+						for (IfcEngineClash clash : clashes) {
+							EidClash eidClash = StoreFactory.eINSTANCE.createEidClash();
+							eidClash.setEid1(clash.getEid1());
+							eidClash.setEid2(clash.getEid2());
+							eidClash.setName1(clash.getName1());
+							eidClash.setName2(clash.getName2());
+							eidClash.setType1(clash.getType1());
+							eidClash.setType2(clash.getType2());
+							eidClashes.add(eidClash);
+						}
+						
+						// Store in cache
+						bimServer.getClashDetectionCache().storeClashDetection(clashDetectionSettings, eidClashes);
+						
+						for (EidClash clash : eidClashes) {
+							IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
+							clash.setName1(object1.getName());
+							clash.setType1(object1.eClass().getName());
+							clash.setRevision1(oidToRoidMap.get(clash.getEid1()));
+							IfcRoot object2 = (IfcRoot) newModel.get(clash.getEid2());
+							clash.setName2(object2.getName());
+							clash.setType2(object2.eClass().getName());
+							clash.setRevision2(oidToRoidMap.get(clash.getEid2()));
+						}
+						return (Set<T>) eidClashes;
+					} finally {
+						ifcEngineModel.close();
 					}
-
-					// Store in cache
-					bimServer.getClashDetectionCache().storeClashDetection(clashDetectionSettings, eidClashes);
-
-					for (EidClash clash : eidClashes) {
-						IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
-						clash.setName1(object1.getName());
-						clash.setType1(object1.eClass().getName());
-						clash.setRevision1(oidToRoidMap.get(clash.getEid1()));
-						IfcRoot object2 = (IfcRoot) newModel.get(clash.getEid2());
-						clash.setName2(object2.getName());
-						clash.setType2(object2.eClass().getName());
-						clash.setRevision2(oidToRoidMap.get(clash.getEid2()));
-					}
-					return (Set<T>) eidClashes;
+				} catch (PluginException e) {
+					LOGGER.error("", e);
 				} finally {
-					ifcEngineModel.close();
+					ifcEngine.close();
 				}
 			} catch (PluginException e) {
 				LOGGER.error("", e);
-			} finally {
-				ifcEngine.close();
+			} catch (SerializerException e) {
+				LOGGER.error("", e);
 			}
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		} catch (SerializerException e) {
-			LOGGER.error("", e);
 		}
 		return null;
 	}
