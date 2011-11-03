@@ -85,13 +85,13 @@ import org.bimserver.shared.exceptions.ServiceException;
 public interface ServiceInterface {
 	@GET
 	@Path("/ping")
-	@Produces("application/text")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "ping")
 	String ping(@QueryParam("in") @WebParam(name = "in", partName = "ping.in") String in) throws ServiceException;
 
 	@GET
 	@Path("/login")
-	@Produces("application/xml")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "login")
 	Boolean login(@QueryParam("username") @WebParam(name = "username", partName = "login.username") String username,
 			@QueryParam("password") @WebParam(name = "password", partName = "login.password") String password) throws ServiceException;
@@ -125,7 +125,7 @@ public interface ServiceInterface {
 
 	@GET
 	@Path("/download")
-	@Produces("application/xml")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "download")
 	Integer download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") Long roid,
 			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "download.serializerName") String serializerName,
@@ -153,7 +153,7 @@ public interface ServiceInterface {
 	Integer downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
 			@WebParam(name = "serializerName", partName = "downloadProjects.serializerName") String serializerName,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
-
+	
 	@WebMethod(action = "getDownloadData")
 	SDownloadResult getDownloadData(@WebParam(name = "actionID", partName = "downloadProjects.actionID") Integer actionId)
 			throws ServiceException;
@@ -201,13 +201,13 @@ public interface ServiceInterface {
 
 	@GET
 	@Path("/getAllProjects")
-	@Produces("application/xml")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllProjects")
 	List<SProject> getAllProjects() throws ServiceException;
 
 	@GET
 	@Path("/getAllReadableProjects")
-	@Produces("application/xml")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllReadableProjects")
 	List<SProject> getAllReadableProjects() throws ServiceException;
 
@@ -216,7 +216,7 @@ public interface ServiceInterface {
 
 	@GET
 	@Path("/getAllRevisionsOfProject")
-	@Produces("application/xml")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllRevisionsOfProject")
 	List<SRevision> getAllRevisionsOfProject(
 			@QueryParam("poid") @WebParam(name = "poid", partName = "getAllRevisionsOfProject.poid") Long poid) throws ServiceException;
@@ -304,8 +304,11 @@ public interface ServiceInterface {
 			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid,
 			@WebParam(name = "className", partName = "getDataObjectByOid.className") String className) throws ServiceException;
 
+	@GET
+	@Path("/getDataObjectByGuid")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getDataObjectByGuid")
-	SDataObject getDataObjectByGuid(@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") Long roid,
+	SDataObject getDataObjectByGuid(@QueryParam("roid") @WebParam(name = "roid", partName = "getDataObjectByGuid.roid") Long roid,
 			@WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws ServiceException;
 
 	@WebMethod(action = "getDataObjectsByType")
