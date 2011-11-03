@@ -278,7 +278,6 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(settingsClass, "registrationAddition", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "smtpServer", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "emailSenderAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "enabledExportTypes", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "customLogoAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "siteAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "hideUserListForNonAdmin", ecorePackage.getEBoolean(), Multiplicity.SINGLE);

@@ -39,7 +39,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getRegistrationAddition <em>Registration Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSmtpServer <em>Smtp Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getEmailSenderAddress <em>Email Sender Address</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#getEnabledExportTypes <em>Enabled Export Types</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
@@ -347,32 +346,6 @@ public interface Settings extends IdEObject {
 	 * @generated
 	 */
 	void setEmailSenderAddress(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Enabled Export Types</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Enabled Export Types</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enabled Export Types</em>' attribute.
-	 * @see #setEnabledExportTypes(String)
-	 * @see org.bimserver.models.store.StorePackage#getSettings_EnabledExportTypes()
-	 * @model
-	 * @generated
-	 */
-	String getEnabledExportTypes();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getEnabledExportTypes <em>Enabled Export Types</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enabled Export Types</em>' attribute.
-	 * @see #getEnabledExportTypes()
-	 * @generated
-	 */
-	void setEnabledExportTypes(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Custom Logo Address</b></em>' attribute.

@@ -16,7 +16,7 @@ Uploading... <img src="images/ajax-loader.gif"/>
 <tr><td><label for="file">File</label></td><td><input id="file" type="file" name="file"/></td></tr>
 <tr><td><label for="deserializerName">Deserializer</label></td><td><select name="deserializerName">
 <%
-	for (SDeserializer deserializer : loginManager.getService().getEnabledDeserializers()) {
+	for (SDeserializer deserializer : loginManager.getService().getAllDeserializers(true)) {
 		out.println("<option value=\"" + deserializer.getName() + "\">" + deserializer.getName() + "</option>");
 	}
 %>

@@ -1530,7 +1530,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_EnabledExportTypes() {
+	public EAttribute getSettings_CustomLogoAddress() {
 		return (EAttribute) getSettings().getEStructuralFeatures().get(11);
 	}
 
@@ -1539,7 +1539,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_CustomLogoAddress() {
+	public EAttribute getSettings_SiteAddress() {
 		return (EAttribute) getSettings().getEStructuralFeatures().get(12);
 	}
 
@@ -1548,7 +1548,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_SiteAddress() {
+	public EAttribute getSettings_HideUserListForNonAdmin() {
 		return (EAttribute) getSettings().getEStructuralFeatures().get(13);
 	}
 
@@ -1557,7 +1557,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_HideUserListForNonAdmin() {
+	public EAttribute getSettings_ProtocolBuffersPort() {
 		return (EAttribute) getSettings().getEStructuralFeatures().get(14);
 	}
 
@@ -1566,17 +1566,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_ProtocolBuffersPort() {
-		return (EAttribute) getSettings().getEStructuralFeatures().get(15);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSettings_Serializers() {
-		return (EReference) getSettings().getEStructuralFeatures().get(16);
+		return (EReference) getSettings().getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -1585,7 +1576,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSettings_ObjectIDMs() {
-		return (EReference) getSettings().getEStructuralFeatures().get(17);
+		return (EReference) getSettings().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -1594,7 +1585,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getSettings_HeaderAddition() {
-		return (EAttribute) getSettings().getEStructuralFeatures().get(18);
+		return (EAttribute) getSettings().getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -1603,7 +1594,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getSettings_FooterAddition() {
-		return (EAttribute) getSettings().getEStructuralFeatures().get(19);
+		return (EAttribute) getSettings().getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -1612,7 +1603,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getSettings_MergeIdentifier() {
-		return (EAttribute) getSettings().getEStructuralFeatures().get(20);
+		return (EAttribute) getSettings().getEStructuralFeatures().get(19);
 	}
 
 	/**
@@ -1621,7 +1612,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getSettings_CacheOutputFiles() {
-		return (EAttribute) getSettings().getEStructuralFeatures().get(21);
+		return (EAttribute) getSettings().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -1630,7 +1621,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSettings_IfcEngines() {
-		return (EReference) getSettings().getEStructuralFeatures().get(22);
+		return (EReference) getSettings().getEStructuralFeatures().get(21);
 	}
 
 	/**
@@ -1639,7 +1630,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSettings_Plugins() {
-		return (EReference) getSettings().getEStructuralFeatures().get(23);
+		return (EReference) getSettings().getEStructuralFeatures().get(22);
 	}
 
 	/**
@@ -1648,7 +1639,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSettings_Deserializers() {
-		return (EReference) getSettings().getEStructuralFeatures().get(24);
+		return (EReference) getSettings().getEStructuralFeatures().get(23);
 	}
 
 	/**

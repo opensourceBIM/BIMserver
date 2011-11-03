@@ -46,7 +46,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getRegistrationAddition <em>Registration Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSmtpServer <em>Smtp Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getEmailSenderAddress <em>Email Sender Address</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getEnabledExportTypes <em>Enabled Export Types</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
@@ -291,24 +290,6 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 */
 	public void setEmailSenderAddress(String newEmailSenderAddress) {
 		eSet(StorePackage.Literals.SETTINGS__EMAIL_SENDER_ADDRESS, newEmailSenderAddress);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getEnabledExportTypes() {
-		return (String) eGet(StorePackage.Literals.SETTINGS__ENABLED_EXPORT_TYPES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEnabledExportTypes(String newEnabledExportTypes) {
-		eSet(StorePackage.Literals.SETTINGS__ENABLED_EXPORT_TYPES, newEnabledExportTypes);
 	}
 
 	/**

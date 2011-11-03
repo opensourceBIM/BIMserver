@@ -41,7 +41,6 @@ public class SSettings implements SBase
 		sClass.addField(new SField("registrationAddition", java.lang.String.class));
 		sClass.addField(new SField("smtpServer", java.lang.String.class));
 		sClass.addField(new SField("emailSenderAddress", java.lang.String.class));
-		sClass.addField(new SField("enabledExportTypes", java.lang.String.class));
 		sClass.addField(new SField("customLogoAddress", java.lang.String.class));
 		sClass.addField(new SField("siteAddress", java.lang.String.class));
 		sClass.addField(new SField("hideUserListForNonAdmin", boolean.class));
@@ -104,9 +103,6 @@ public class SSettings implements SBase
 		}
 		if (sField.getName().equals("emailSenderAddress")) {
 			return getEmailSenderAddress();
-		}
-		if (sField.getName().equals("enabledExportTypes")) {
-			return getEnabledExportTypes();
 		}
 		if (sField.getName().equals("customLogoAddress")) {
 			return getCustomLogoAddress();
@@ -198,10 +194,6 @@ public class SSettings implements SBase
 			setEmailSenderAddress((String)val);
 			return;
 		}
-		if (sField.getName().equals("enabledExportTypes")) {
-			setEnabledExportTypes((String)val);
-			return;
-		}
 		if (sField.getName().equals("customLogoAddress")) {
 			setCustomLogoAddress((String)val);
 			return;
@@ -272,7 +264,6 @@ public class SSettings implements SBase
 	private java.lang.String registrationAddition;
 	private java.lang.String smtpServer;
 	private java.lang.String emailSenderAddress;
-	private java.lang.String enabledExportTypes;
 	private java.lang.String customLogoAddress;
 	private java.lang.String siteAddress;
 	private boolean hideUserListForNonAdmin;
@@ -362,13 +353,6 @@ public class SSettings implements SBase
 
 	public void setEmailSenderAddress(java.lang.String emailSenderAddress) {
 		this.emailSenderAddress = emailSenderAddress;
-	}
-	public java.lang.String getEnabledExportTypes() {
-		return enabledExportTypes;
-	}
-
-	public void setEnabledExportTypes(java.lang.String enabledExportTypes) {
-		this.enabledExportTypes = enabledExportTypes;
 	}
 	public java.lang.String getCustomLogoAddress() {
 		return customLogoAddress;
