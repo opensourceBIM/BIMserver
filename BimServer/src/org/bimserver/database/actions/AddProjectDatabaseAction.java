@@ -122,6 +122,14 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			project.setClashDetectionSettings(clashDetectionSettings);
 			getDatabaseSession().store(geoTag);
 			getDatabaseSession().store(clashDetectionSettings);
+		} else {
+			ClashDetectionSettings clashDetectionSettings = parentProject.getClashDetectionSettings();
+			project.setClashDetectionSettings(clashDetectionSettings);
+			getDatabaseSession().store(clashDetectionSettings);
+
+			GeoTag geoTag = parentProject.getGeoTag();
+			project.setGeoTag(geoTag);
+			getDatabaseSession().store(geoTag);
 		}
 		getDatabaseSession().store(project);
 		getDatabaseSession().store(newProjectAdded);

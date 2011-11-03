@@ -27,7 +27,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Hashers;
 
-public class ValidateUserDatabaseAction extends BimDatabaseAction<Void> {
+public class ValidateUserDatabaseAction extends BimDatabaseAction<User> {
 
 	private static final long VALIDATION_TOKEN_EXPIRE_MILLIS = 1000 * 60 * 60 * 24 * 7; // 7 days
 	private final long uoid;
@@ -42,7 +42,7 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public User execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = getUserByUoid(uoid);
 		if (user.getValidationToken() == null) {
 			throw new UserException("This account is already validated");
@@ -60,6 +60,6 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<Void> {
 		user.setValidationToken(null);
 		user.setValidationTokenCreated(null);
 		getDatabaseSession().store(user);
-		return null;
+		return user;
 	}
 }

@@ -15,22 +15,6 @@
 				} else if (request.getParameter("type").equals("user")) {
 					response.sendRedirect("user.jsp?uoid=" + uoid);
 				}
-			} else if (type.equals("invitedUser")) {
-				String username = request.getParameter("username");
-				String name = request.getParameter("name");
-%>
-<jsp:include page="register.jsp">
-	<jsp:param name="register" value="Register" />
-	<jsp:param name="register_username" value="<%=username%>" />
-	<jsp:param name="register_name" value="<%=name%>" />
-</jsp:include>
-<%
-				SUser user = loginManager.getService().getUserByUserName(username);
-				if (user != null) {
-					long uoid = user.getOid();
-					loginManager.getService().addUserToProject(uoid, poid);
-					response.sendRedirect("project.jsp?poid=" + poid);
-				}
 			}
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);

@@ -149,7 +149,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
 							context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
-							context.put("validationlink", settingsManager.getSettings().getSiteAddress() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+							String validationLink = settingsManager.getSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token;
+							System.out.println(validationLink);
+							context.put("validationlink", validationLink);
 							String body = null;
 							String subject = null;
 							if (selfRegistration) {

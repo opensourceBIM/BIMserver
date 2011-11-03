@@ -1763,16 +1763,17 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void validateAccount(Long uoid, String token, String password) throws ServiceException {
+	public SUser validateAccount(Long uoid, String token, String password) throws ServiceException {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<Void> action = new ValidateUserDatabaseAction(session, accessMethod, uoid, token, password);
-			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			BimDatabaseAction<User> action = new ValidateUserDatabaseAction(session, accessMethod, uoid, token, password);
+			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
 			session.close();
 		}
+		return null;
 	}
 
 	@Override
