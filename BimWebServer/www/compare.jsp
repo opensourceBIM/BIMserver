@@ -51,7 +51,7 @@ Download:
 <input type="hidden" name="roid2" value="<%=request.getParameter("roid2") %>" />
 <select name="resultType">
 	<%
-		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getName()%>"
 		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>

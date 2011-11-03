@@ -51,7 +51,6 @@ public class SettingsManager {
 		Settings settings = StoreFactory.eINSTANCE.createSettings();
 		settings.setCustomLogoAddress("http://www.bimserver.org/version/defaultlogo.gif");
 		settings.setEmailSenderAddress("");
-		settings.setEnabledExportTypes("IFC,IFCXML,COLLADA,CITYGML,KMZ");
 		settings.setSiteAddress("");
 		settings.setSmtpServer("");
 		settings.setRegistrationAddition("");
@@ -95,27 +94,6 @@ public class SettingsManager {
 			}
 		}
 		return settings;
-	}
-
-	public Set<String> getEnabledExportTypesAsSet() {
-		Set<String> resultTypes = new HashSet<String>();
-		String[] split = getSettings().getEnabledExportTypes().split(",");
-		for (String s : split) {
-			resultTypes.add(s);
-		}
-		return resultTypes;
-	}
-
-	public void updateEnabledResultTypes(Set<String> resultTypes) {
-		String enabledExportTypes = "";
-		for (String resultType : resultTypes) {
-			enabledExportTypes += resultType + ",";
-		}
-		if (enabledExportTypes.endsWith(",")) {
-			enabledExportTypes = enabledExportTypes.substring(0, enabledExportTypes.length() - 1);
-		}
-		getSettings().setEnabledExportTypes(enabledExportTypes);
-		saveSettings();
 	}
 
 	public void setSettings(Settings settings) {

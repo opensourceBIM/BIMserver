@@ -1217,22 +1217,13 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__EMAIL_SENDER_ADDRESS = 10;
 
 	/**
-	 * The feature id for the '<em><b>Enabled Export Types</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SETTINGS__ENABLED_EXPORT_TYPES = 11;
-
-	/**
 	 * The feature id for the '<em><b>Custom Logo Address</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__CUSTOM_LOGO_ADDRESS = 12;
+	int SETTINGS__CUSTOM_LOGO_ADDRESS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Site Address</b></em>' attribute.
@@ -1241,7 +1232,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__SITE_ADDRESS = 13;
+	int SETTINGS__SITE_ADDRESS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Hide User List For Non Admin</b></em>' attribute.
@@ -1250,7 +1241,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 14;
+	int SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 13;
 
 	/**
 	 * The feature id for the '<em><b>Protocol Buffers Port</b></em>' attribute.
@@ -1259,7 +1250,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__PROTOCOL_BUFFERS_PORT = 15;
+	int SETTINGS__PROTOCOL_BUFFERS_PORT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
@@ -1268,7 +1259,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__SERIALIZERS = 16;
+	int SETTINGS__SERIALIZERS = 15;
 
 	/**
 	 * The feature id for the '<em><b>Object ID Ms</b></em>' reference list.
@@ -1277,7 +1268,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__OBJECT_ID_MS = 17;
+	int SETTINGS__OBJECT_ID_MS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Header Addition</b></em>' attribute.
@@ -1286,7 +1277,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__HEADER_ADDITION = 18;
+	int SETTINGS__HEADER_ADDITION = 17;
 
 	/**
 	 * The feature id for the '<em><b>Footer Addition</b></em>' attribute.
@@ -1295,7 +1286,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__FOOTER_ADDITION = 19;
+	int SETTINGS__FOOTER_ADDITION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Merge Identifier</b></em>' attribute.
@@ -1304,7 +1295,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__MERGE_IDENTIFIER = 20;
+	int SETTINGS__MERGE_IDENTIFIER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Cache Output Files</b></em>' attribute.
@@ -1313,7 +1304,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__CACHE_OUTPUT_FILES = 21;
+	int SETTINGS__CACHE_OUTPUT_FILES = 20;
 
 	/**
 	 * The feature id for the '<em><b>Ifc Engines</b></em>' reference list.
@@ -1322,7 +1313,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__IFC_ENGINES = 22;
+	int SETTINGS__IFC_ENGINES = 21;
 
 	/**
 	 * The feature id for the '<em><b>Plugins</b></em>' reference list.
@@ -1331,7 +1322,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__PLUGINS = 23;
+	int SETTINGS__PLUGINS = 22;
 
 	/**
 	 * The feature id for the '<em><b>Deserializers</b></em>' reference list.
@@ -1340,7 +1331,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__DESERIALIZERS = 24;
+	int SETTINGS__DESERIALIZERS = 23;
 
 	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
@@ -1349,7 +1340,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 25;
+	int SETTINGS_FEATURE_COUNT = 24;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -4525,17 +4516,6 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_EmailSenderAddress();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getEnabledExportTypes <em>Enabled Export Types</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Enabled Export Types</em>'.
-	 * @see org.bimserver.models.store.Settings#getEnabledExportTypes()
-	 * @see #getSettings()
-	 * @generated
-	 */
-	EAttribute getSettings_EnabledExportTypes();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getCustomLogoAddress <em>Custom Logo Address</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7329,14 +7309,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SETTINGS__EMAIL_SENDER_ADDRESS = eINSTANCE.getSettings_EmailSenderAddress();
-
-		/**
-		 * The meta object literal for the '<em><b>Enabled Export Types</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SETTINGS__ENABLED_EXPORT_TYPES = eINSTANCE.getSettings_EnabledExportTypes();
 
 		/**
 		 * The meta object literal for the '<em><b>Custom Logo Address</b></em>' attribute feature.

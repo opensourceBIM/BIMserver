@@ -21,7 +21,7 @@
 	<td>
 		<select name="resultType">
 	<%
-		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getName()%>"
 		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
@@ -52,7 +52,7 @@
 	<td>
 		<select name="resultType">
 	<%
-		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getName()%>"
 		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
@@ -92,7 +92,7 @@
 	<td>
 		<select name="resultType">
 	<%
-		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getName()%>"
 		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>

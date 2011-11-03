@@ -240,7 +240,7 @@
 							<td><select name="serializerName"
 								id="detailsdownloadcheckoutselect">
 									<%
-										for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 									%>
 									<option value="<%=serializer.getName()%>"
 										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
@@ -291,7 +291,7 @@
 							<td>Download:</td>
 							<td><select name="serializerName">
 									<%
-										for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 									%>
 									<option value="<%=serializer.getName()%>"
 										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
@@ -586,7 +586,7 @@
 										value="<%=revision.getOid()%>" /> <select
 										name="serializerName" class="revisionsdownloadcheckoutselect">
 											<%
-												for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+												for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 											%>
 											<option value="<%=serializer.getName()%>"
 												<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
@@ -693,7 +693,7 @@
 								value="<%=checkout.getRevisionId()%>" /> <select
 								name="serializerName">
 								<%
-									for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+									for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 								%>
 								<option value="<%=serializer.getName()%>"
 									<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>

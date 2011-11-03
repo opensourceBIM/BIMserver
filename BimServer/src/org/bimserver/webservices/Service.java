@@ -1411,28 +1411,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setExportTypeEnabled(String resultTypeName, Boolean enabled) throws UserException {
-		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
-		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
-			if (user.getUserType() != UserType.ADMIN) {
-				throw new UserException("Only admin users can change enabled export types");
-			}
-			Set<String> resultTypes = bimServer.getSettingsManager().getEnabledExportTypesAsSet();
-			if (enabled) {
-				resultTypes.add(resultTypeName);
-			} else {
-				resultTypes.remove(resultTypeName);
-			}
-			bimServer.getSettingsManager().updateEnabledResultTypes(resultTypes);
-			bimServer.getSettingsManager().saveSettings();
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public SUser getCurrentUser() throws UserException {
 		if (currentUoid == -1) {
 			return null;
@@ -1494,17 +1472,6 @@ public class Service implements ServiceInterface {
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setEmailSenderAddress(emailSenderAddress);
 		bimServer.getSettingsManager().saveSettings();
-	}
-
-	@Override
-	public String getSettingEnabledExportTypes() throws ServiceException {
-		return bimServer.getSettingsManager().getSettings().getEnabledExportTypes();
-	}
-
-	@Override
-	public void setSettingEnabledExportTypes(Set<String> enabledExportTypeNames) throws ServiceException {
-		requireAdminAuthenticationAndRunningServer();
-		bimServer.getSettingsManager().updateEnabledResultTypes(enabledExportTypeNames);
 	}
 
 	@Override
@@ -2214,30 +2181,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SSerializer> getEnabledSerializers() throws ServiceException {
-		List<SSerializer> serializers = getAllSerializers(true);
-		List<SSerializer> result = new ArrayList<SSerializer>();
-		for (SSerializer serializer : serializers) {
-			if (serializer.isEnabled()) {
-				result.add(serializer);
-			}
-		}
-		return result;
-	}
-
-	@Override
-	public List<SDeserializer> getEnabledDeserializers() throws ServiceException {
-		List<SDeserializer> deserializers = getAllDeserializers(true);
-		List<SDeserializer> result = new ArrayList<SDeserializer>();
-		for (SDeserializer deserializer : deserializers) {
-			if (deserializer.isEnabled()) {
-				result.add(deserializer);
-			}
-		}
-		return result;
-	}
-
-	@Override
 	public Boolean hasActiveSerializer(String contentType) throws ServiceException {
 		try {
 			SSerializer serializer = getSerializerByContentType(contentType);
@@ -2468,10 +2411,6 @@ public class Service implements ServiceInterface {
 			descriptors.add(descriptor);
 		}
 		return descriptors;
-	}
-
-	@Override
-	public void registerNewRevisionListener() {
 	}
 
 	@Override
