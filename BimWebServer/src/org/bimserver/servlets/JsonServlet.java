@@ -38,6 +38,7 @@ public class JsonServlet extends HttpServlet {
 					if (user == null) {
 						if (loginManager.getService().isSettingAllowSelfRegistration()) {
 							uoid = loginManager.getService().addUser(in.getString("username"), in.getString("name"), SUserType.valueOf(in.getString("type")), false);
+							loginManager.getService().addUserToProject(uoid, in.getLong("poid"));
 						} else {
 							JSONObject result = new JSONObject();
 							result.put("error", "There is no user for this e-mail address and self-registration is disabled");

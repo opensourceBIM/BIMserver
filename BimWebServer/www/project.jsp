@@ -826,6 +826,7 @@
 				action: "inviteuser",
 				username: $("#usernamefield").val(),
 				name: $("#namefield").val(),
+				poid: <%=project.getOid()%>,
 				type: "USER"
 			}, function(data){
 				if (data.error == null) {
