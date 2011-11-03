@@ -40,14 +40,6 @@
 				service.setSettingFooterAddition(request.getParameter("footerAddition"));
 				service.setSettingMergeIdentifier(SMergeIdentifier.valueOf(request.getParameter("mergeIdentifier")));
 				service.setSettingProtocolBuffersPort(Integer.parseInt(request.getParameter("protocolBuffersPort")));
-				String enabledExportTypes = "";
-				Set<String> enabledTypes = new HashSet<String>();
-				for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-					if (request.getParameter(serializer.getName()) != null) {
-						enabledTypes.add(serializer.getName());
-					}
-				}
-				service.setSettingEnabledExportTypes(enabledTypes);
 				response.sendRedirect(getServletContext().getContextPath() + "/serversettings.jsp?msg=settingschangeok");
 			} catch (ServiceException e) {
 				JspHelper.showException(out, e);

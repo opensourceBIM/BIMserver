@@ -87,7 +87,7 @@
 	<td><select name="objectIDM" id="objectIDM">
 		<option value="[none]">[None]</option>
 <%
-	for (SObjectIDM objectIDM : service.getAllObjectIDMs()) {
+	for (SObjectIDM objectIDM : service.getAllObjectIDMs(true)) {
 %>
 	<option value="<%=objectIDM.getOid()%>"<%=(request.getParameter("objectIDM") != null && request.getParameter("objectIDM").equals("" + objectIDM.getOid())) ? " selected=\"selected\"" : "" %>><%=objectIDM.getName()%></option>
 <%

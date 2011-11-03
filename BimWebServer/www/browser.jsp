@@ -63,11 +63,6 @@ for (SRevision sRevision : revisionsInc) {
 	  				}
 	  			}
 	  			out.println("</table>");
-	if (loginManager.getService().hasActiveSerializer("application/json")) {
-%>
-	<br/>
-<%
-	}
 	  		} else if (request.getParameter("className") != null) { 
 				String className = request.getParameter("className");
 				List<SDataObject> dataObjects = loginManager.getService().getDataObjectsByType(roid, className);
