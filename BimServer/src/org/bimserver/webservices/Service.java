@@ -1951,11 +1951,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SObjectIDM> getAllObjectIDMs() throws ServiceException {
+	public List<SObjectIDM> getAllObjectIDMs(Boolean onlyEnabled) throws ServiceException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			return converter.convertToSListObjectIDM(session.executeAction(new GetAllObjectIDMsDatabaseAction(session, accessMethod), DEADLOCK_RETRIES));
+			return converter.convertToSListObjectIDM(session.executeAction(new GetAllObjectIDMsDatabaseAction(session, accessMethod, bimServer, onlyEnabled), DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

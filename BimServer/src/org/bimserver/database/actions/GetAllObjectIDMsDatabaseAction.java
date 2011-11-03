@@ -17,14 +17,46 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.bimserver.BimServer;
+import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.query.conditions.Condition;
+import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.utils.CollectionUtils;
 
 public class GetAllObjectIDMsDatabaseAction extends GetAllDatabaseAction<ObjectIDM> {
 
-	public GetAllObjectIDMsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
+	private boolean onlyEnabled;
+	private BimServer bimServer;
+
+	public GetAllObjectIDMsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
 		super(bimDatabaseSession, accessMethod, ObjectIDM.class, StorePackage.eINSTANCE.getObjectIDM());
+		this.bimServer = bimServer;
+		this.onlyEnabled = onlyEnabled;
+	}
+	
+	public List<ObjectIDM> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getObjectIDM());
+		Map<Long, ObjectIDM> result = getDatabaseSession().query(condition, ObjectIDM.class, false, null);
+		List<ObjectIDM> mapToList = CollectionUtils.mapToList(result);
+		if (onlyEnabled) {
+			Iterator<ObjectIDM> iterator = mapToList.iterator();
+			while (iterator.hasNext()) {
+				ObjectIDM objectIdm = iterator.next();
+				if (!bimServer.getPluginManager().isEnabled(objectIdm.getClassName())) {
+					iterator.remove();
+				}
+			}
+		}
+		return mapToList;
 	}
 }

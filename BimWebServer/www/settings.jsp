@@ -58,7 +58,7 @@
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SObjectIDM> objectIDMs = service.getAllObjectIDMs();
+	List<SObjectIDM> objectIDMs = service.getAllObjectIDMs(true);
 	for (SObjectIDM objectIDM : objectIDMs) {
 %>
 	<tr>

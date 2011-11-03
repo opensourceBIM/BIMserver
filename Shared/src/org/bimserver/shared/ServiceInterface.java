@@ -990,7 +990,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "getSettingFooterAddition")
 	String getSettingFooterAddition() throws ServiceException;
 
-
 	/**
 	 * @param footerAddition The new footer addition
 	 * @throws ServiceException
@@ -999,6 +998,10 @@ public interface ServiceInterface {
 	void setSettingFooterAddition(
 			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition) throws ServiceException;
 
+	/**
+	 * @param mergeIdentifier
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingMergeIdentifier")
 	void setSettingMergeIdentifier(
 			@WebParam(name = "mergeIdentifier", partName = "setSettingMergeIdentifier.mergeIdentifier") SMergeIdentifier mergeIdentifier) throws ServiceException;
@@ -1006,97 +1009,205 @@ public interface ServiceInterface {
 	@WebMethod(action = "getSettingsEmailSenderAddress")
 	String getSettingEmailSenderAddress() throws ServiceException;
 
+	/**
+	 * @param emailSenderAddress The new e-mail address e-mail will be sent from
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingsEmailSenderAddress")
 	void setSettingEmailSenderAddress(
 			@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServiceException;
 
+	/**
+	 * @return The registration addition text
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSettingsRegistrationAddition")
 	String getSettingRegistrationAddition() throws ServiceException;
 
+	/**
+	 * @param registrationAddition The new registration addition text
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingsRegistrationAddition")
 	void setSettingRegistrationAddition(
 			@WebParam(name = "registrationAddition", partName = "setSettingsRegistrationAddition.registrationAddition") String registrationAddition) throws ServiceException;
 
+	/**
+	 * @return The port on which the ProtocolBuffers server runs
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSettingProtocolBuffersPort")
 	Integer getSettingProtocolBuffersPort() throws ServiceException;
 
+	/**
+	 * @param port Set the port the ProtocolBuffers server runs on
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingsProtocolBuffersPort")
 	void setSettingProtocolBuffersPort(
 			@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port) throws ServiceException;
 	
+	/**
+	 * @return The address the BIMserver is running on (used for links in e-mail for example)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSettingsSiteAddress")
 	String getSettingSiteAddress() throws ServiceException;
 
+	/**
+	 * @param siteAddress The new address the BIMserver is running on (used for links in e-mail for example)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingsSiteAddress")
 	void setSettingSiteAddress(
 			@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress) throws ServiceException;
 
+	/**
+	 * @return Address of the SMTP server used for sending e-mails
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSettingsSmtpServer")
 	String getSettingSmtpServer() throws ServiceException;
 
+	/**
+	 * @param smtpServer New address of the SMTP server used for sending e-mails
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingsSmtpServer")
 	void setSettingSmtpServer(
 			@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer) throws ServiceException;
 
+	/**
+	 * @return Whether self-registration is enabled
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingAllowSelfRegistration")
 	Boolean isSettingAllowSelfRegistration() throws ServiceException;
 
+	/**
+	 * @param allowSelfRegistration Change whether self-registration is enabled
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingAllowSelfRegistration")
 	void setSettingAllowSelfRegistration(
 			@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)throws ServiceException;
 
+	/**
+	 * @return Whether to hide user lists (pricacy)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingHideUserListForNonAdmin")
 	Boolean isSettingHideUserListForNonAdmin() throws ServiceException;
 
+	/**
+	 * @param hideUserListForNonAdmin Set whether user lists should be hidden (privacy)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingHideUserListForNonAdmin")
 	void setSettingHideUserListForNonAdmin(
 			@WebParam(name = "hideUserListForNonAdmin", partName = "setSettingHideUserListForNonAdmin.hideUserListForNonAdmin") Boolean hideUserListForNonAdmin) throws ServiceException;
 
+	/**
+	 * @return Whether a user can create top level projects
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingAllowUsersToCreateTopLevelProjects")
 	Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServiceException;
 
+	/**
+	 * @param allowUsersToCreateTopLevelProjects Set if users can create top level projects
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingAllowUsersToCreateTopLevelProjects")
 	void setSettingAllowUsersToCreateTopLevelProjects(
 			@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects) throws ServiceException;
 
+	/**
+	 * @return Whether clash detection will be automatically performed after each checkin
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingAutoTestClashes")
 	Boolean isSettingAutoTestClashes() throws ServiceException;
 
+	/**
+	 * @param autoTestClashes Set whether clash detection will be automatically performed after each checkin
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingAutoTestClashes")
 	void setSettingAutoTestClashes(
 			@WebParam(name = "autoTestClashes", partName = "setSettingAutoTestClashes.autoTestClashes") Boolean autoTestClashes) throws ServiceException;
 
+	/**
+	 * @return Whether the BIMserver should do checkin merging (warning: this will alter your models)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingCheckinMergingEnabled")
 	Boolean isSettingCheckinMergingEnabled() throws ServiceException;
 
+	/**
+	 * @param checkinMergingEnabled Set whether the BIMserver should do checkin merging (warning: this wil alter your models)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingCheckinMergingEnabled")
 	void setSettingCheckinMergingEnabled(
 			@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServiceException;
 
+	/**
+	 * @return Whether intelligent merging is on
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingIntelligentMerging")
 	Boolean isSettingIntelligentMerging() throws ServiceException;
 
+	/**
+	 * @param intelligentMerging Set intelligent merging on/off
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingIntelligentMerging")
 	void setSettingIntelligentMerging(
 			@WebParam(name = "intelligentMerging", partName = "setSettingIntelligentMerging.intelligentMerging") Boolean intelligentMerging) throws ServiceException;
 
+	/**
+	 * @return Whether a confirmation e-mail should be send after registration
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingSendConfirmationEmailAfterRegistration")
 	Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServiceException;
 
+	/**
+	 * @param sendConfirmationEmailAfterRegistration Set whether a confirmation e-mail should be send after registration
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingSendConfirmationEmailAfterRegistration")
 	void setSettingSendConfirmationEmailAfterRegistration(
 			@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration) throws ServiceException;
 
+	/**
+	 * @return Whether it should be shown to the user that a new version of the BIMserver is available
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isSettingShowVersionUpgradeAvailable")
 	Boolean isSettingShowVersionUpgradeAvailable() throws ServiceException;
 
+	/**
+	 * @param showVersionUpgradeAvailable Set whether it should be shown to the user that a new version of the BIMserver is available
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setSettingShowVersionUpgradeAvailable")
 	void setSettingShowVersionUpgradeAvailable(
 			@WebParam(name = "showVersionUpgradeAvailable", partName = "setSettingShowVersionUpgradeAvailable.showVersionUpgradeAvailable") Boolean showVersionUpgradeAvailable) throws ServiceException;
 
+	/**
+	 * @return Whether output files (serialized version) should be cached on disk
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "isCacheOutputFiles")
 	Boolean isSettingCacheOutputFiles() throws ServiceException;
 
+	/**
+	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setCacheOutputFiles")
 	void setSettingCacheOutputFiles(
 			@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServiceException;
@@ -1145,114 +1256,253 @@ public interface ServiceInterface {
 	List<SSerializer> getAllSerializers(
 			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the Serializer
+	 * @return Serializer
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSerializerById")
 	SSerializer getSerializerById(
 			@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the Deserializer
+	 * @return Deserializer
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getDeserializerById")
 	SDeserializer getDeserializerById(
 			@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServiceException;
 
+	/**
+	 * @param serializer Serializer to add
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addSerializer")
 	void addSerializer(
 			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializer serializer) throws ServiceException;
 	
+	/**
+	 * @param deserializer Deserializer to add
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addSerializer")
 	void addDeserializer(
 			@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializer deserializer) throws ServiceException;
 
+	/**
+	 * @param serializer Serializer to update
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "updateSerializer")
 	void updateSerializer(
 			@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializer serializer) throws ServiceException;
 	
+	/**
+	 * @param deserializer Deserializer to update
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "updateDeserializer")
 	void updateDeserializer(
 			@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializer deserializer) throws ServiceException;
 
+	/**
+	 * @param onlyEnabled Whether to include only enabled ObjectIDMs
+	 * @return A list of ObjectIDMs
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getAllObjectIDMs")
-	List<SObjectIDM> getAllObjectIDMs() throws ServiceException;
+	List<SObjectIDM> getAllObjectIDMs(
+			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the ObjectIDM
+	 * @return ObjectIDM
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getObjectIDMById")
 	SObjectIDM getObjectIDMById(
 			@WebParam(name = "oid", partName = "getObjectIDMById.oid") Long oid) throws ServiceException;
 	
+	/**
+	 * @param objectIDM The ObjectIDM to add
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addObjectIDM")
 	void addObjectIDM(
 			@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDM objectIDM) throws ServiceException;
 	
+	/**
+	 * @param objectIDM The ObjectIDM to update
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "updateObjectIDM")
 	void updateObjectIDM(
 			@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDM objectIDM) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the ObjectIDM to delete
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "deleteObjectIDM")
 	void deleteObjectIDM(
-			@WebParam(name = "ifid", partName = "deleteObjectIDM.ifid") Long ifid) throws ServiceException;
+			@WebParam(name = "oid", partName = "deleteObjectIDM.oid") Long oid) throws ServiceException;
 
+	/**
+	 * @param sid ObjectID of the Serializer to delete
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "deleteSerializer")
 	void deleteSerializer(
 			@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServiceException;
 	
+	/**
+	 * @param sid ObjectID of the Deserializer to delete
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "deleteDeserializer")
 	void deleteDeserializer(
 			@WebParam(name = "sid", partName = "deleteDeserializer.sid") Long sid) throws ServiceException;
 
+	/**
+	 * @return List of all SerializerPluginDescriptors
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getAllSerializerClassNames")
 	List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServiceException;
 
+	/**
+	 * @return List of all DeserializerPluginDescriptors
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getAllDeserializerClassNames")
 	List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServiceException;
 
+	/**
+	 * @return A settings that determines how to merge
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSettingMergeIdentifier")
 	SMergeIdentifier getSettingMergeIdentifier() throws ServiceException;
 
+	/**
+	 * @param serializerName Name of the Serializer
+	 * @return Serializer
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSerializerByName")
 	SSerializer getSerializerByName(
 			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServiceException;
 
+	/**
+	 * @param objectIDMName Name of the ObjectIDM
+	 * @return ObjectIDM
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getObjectIDMByName")
 	SObjectIDM getObjectIDMByName(
 			@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServiceException;
 
+	/**
+	 * @param deserializerName Name of the Deserializer
+	 * @return Deserializer
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getDeserializerByName")
 	SDeserializer getDeserializerByName(
 			@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws ServiceException;
 
+	/**
+	 * @param contentType Content type
+	 * @return Whether there is an active Serializer supporting the given ContentType
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "hasActiveSerializer")
 	Boolean hasActiveSerializer(String contentType) throws ServiceException;
 	
+	/**
+	 * @return A list of all plugins
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getAllPlugins")
 	List<SPluginDescriptor> getAllPlugins() throws ServiceException;
 	
+	/**
+	 * @param name Name of the plugin to enable
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "enablePlugin")
 	void enablePlugin(String name) throws ServiceException;
 	
+	/**
+	 * @param name Name of the plugin to disable
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "disablePlugin")
 	void disablePlugin(String name) throws ServiceException;
 
+	/**
+	 * @param contentType The ContentType
+	 * @return Serializer supporting the given ContentType
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "getSerializerByContentType")
 	SSerializer getSerializerByContentType(
 			@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServiceException;
 	
+	/**
+	 * @param pid ObjectID of the Project to start a transaction on
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "startTransaction")
 	void startTransaction(
 			@WebParam(name = "pid", partName = "startTransaction.pid") Integer pid) throws ServiceException;
 
+	/**
+	 * Commit the current transaction, changes will be saved, a transaction must be started by startTransaction first
+	 * @param comment Comment describing what has changed
+	 * @return ObjectID of the Revision
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "commitTransaction")
 	Long commitTransaction(
 			@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServiceException;
 	
+	/**
+	 * Abort the current transaction, changes will not be saved
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "abortTransaction")
 	void abortTransaction() throws ServiceException;
 	
+	/**
+	 * Create a new Object
+	 * @param className The type of the new object
+	 * @return The ObjectID of the newly created object
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "createObject")
 	Long createObject(
 			@WebParam(name = "className", partName = "createObject.className") String className) throws ServiceException;
 	
+	/**
+	 * Remove an object
+	 * @param className ClassName of the Object, this parameter is required for performance reasons only, but is required 
+	 * @param oid ObjectID of the object to remove
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "removeObject")
 	void removeObject(
 			@WebParam(name = "className", partName = "removeObject.className") String className, 
 			@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New String value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setStringAttribute")
 	void setStringAttribute(
 			@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
@@ -1260,6 +1510,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Double value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setDoubleAttribute")
 	void setDoubleAttribute(
 			@WebParam(name = "oid", partName = "setDoubleAttribute.oid") Long oid, 
@@ -1267,6 +1524,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Enum value (name of the enum item)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setEnumAttribute")
 	void setEnumAttribute(
 			@WebParam(name = "oid", partName = "setEnumAttribute.oid") Long oid, 
@@ -1274,6 +1538,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "setEnumAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setIntegerAttribute")
 	void setIntegerAttribute(
 			@WebParam(name = "oid", partName = "setIntegerAttribute.oid") Long oid, 
@@ -1281,6 +1552,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Boolean value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setBooleanAttribute")
 	void setBooleanAttribute(
 			@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
@@ -1288,6 +1566,14 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param referenceName Name of the reference
+	 * @param referenceOid ObjectID of the newly referred object
+	 * @param referenceClassName Type of the newly referred object
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "setReference")
 	void setReference(
 			@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
@@ -1296,18 +1582,37 @@ public interface ServiceInterface {
 			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid, 
 			@WebParam(name = "referenceClassName", partName = "setReference.referenceClassName") String referenceClassName) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute to unset
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "unsetAttribute")
 	void unsetAttribute(
 			@WebParam(name = "oid", partName = "unsetAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "unsetAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param referenceName Name of the reference to unset (null)
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "unsetReference")
 	void unsetReference(
 			@WebParam(name = "oid", partName = "unsetReference.oid") Long oid,
 			@WebParam(name = "className", partName = "unsetReference.className") String className,
 			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute to add a value to
+	 * @param value New String value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addStringAttribute")
 	void addStringAttribute(
 			@WebParam(name = "oid", partName = "addStringAttribute.oid") Long oid, 
@@ -1315,6 +1620,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute to add a value to
+	 * @param value New Double value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addDoubleAttribute")
 	void addDoubleAttribute(
 			@WebParam(name = "oid", partName = "addDoubleAttribute.oid") Long oid, 
@@ -1322,6 +1634,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "addDoubleAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute to add a value to
+	 * @param value New Integer value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addIntegerAttribute")
 	void addIntegerAttribute(
 			@WebParam(name = "oid", partName = "addIntegerAttribute.oid") Long oid, 
@@ -1329,6 +1648,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute to add a value to
+	 * @param value New Boolean value
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addBooleanAttribute")
 	void addBooleanAttribute(
 			@WebParam(name = "oid", partName = "addBooleanAttribute.oid") Long oid, 
@@ -1336,6 +1662,14 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServiceException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param referenceName Name of the reference to add a reference to
+	 * @param referenceOid ObjectID of the newly referenced Object
+	 * @param referenceClassName Type of the newly referenced Object
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "addReference")
 	void addReference(
 			@WebParam(name = "oid", partName = "addReference.oid") Long oid, 
@@ -1344,6 +1678,13 @@ public interface ServiceInterface {
 			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid,
 			@WebParam(name = "referenceClassName", partName = "addReference.referenceClassName") String referenceClassName) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param attributeName Name of the attribute from which to remove an item
+	 * @param index Index of the item to remove
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "removeAttribute")
 	void removeAttribute(
 			@WebParam(name = "oid", partName = "removeAttribute.oid") Long oid, 
@@ -1351,6 +1692,13 @@ public interface ServiceInterface {
 			@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
 			@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServiceException;
 	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param className Type of the object to change
+	 * @param referenceName Name of the reference from which to remove an item
+	 * @param index Index of the item to remove
+	 * @throws ServiceException
+	 */
 	@WebMethod(action = "removeReference")
 	void removeReference(
 			@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
