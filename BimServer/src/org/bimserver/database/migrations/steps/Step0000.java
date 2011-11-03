@@ -282,6 +282,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(settingsClass, "customLogoAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "siteAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(settingsClass, "hideUserListForNonAdmin", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "protocolBuffersPort", ecorePackage.getEInt(), Multiplicity.SINGLE);
 	}
 	
 	private void createProjectClass() {

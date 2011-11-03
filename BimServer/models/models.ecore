@@ -192,6 +192,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="siteAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideUserListForNonAdmin"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocolBuffersPort"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
           eType="#/0/Serializer" eOpposite="#/0/Serializer/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDMs" upperBound="-1"

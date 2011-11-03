@@ -1476,6 +1476,19 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public void setSettingProtocolBuffersPort(Integer port) throws ServiceException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setProtocolBuffersPort(port);
+		bimServer.getSettingsManager().saveSettings();
+	}
+
+	@Override
+	public Integer getSettingProtocolBuffersPort() throws ServiceException {
+		return bimServer.getSettingsManager().getSettings().getProtocolBuffersPort();
+	}
+
+	@Override
 	public void setSettingEmailSenderAddress(String emailSenderAddress) throws ServiceException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();

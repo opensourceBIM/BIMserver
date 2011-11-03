@@ -31,17 +31,19 @@ public class ProtocolBuffersServer extends Thread {
 	private final Set<ProtocolBuffersConnectionHandler> activeHandlers = new HashSet<ProtocolBuffersConnectionHandler>();
 	private final ServiceFactoryRegistry serviceFactoryRegistry;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
+	private final int port;
 
-	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry) {
+	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, int port) {
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.serviceFactoryRegistry = serviceFactoryRegistry;
+		this.port = port;
 	}
 	
 	@Override
 	public void run() {
 		running = true;
 		try {
-			ServerSocket serverSocket = new ServerSocket(8020);
+			ServerSocket serverSocket = new ServerSocket(port);
 			while (running) {
 				Socket socket = serverSocket.accept();
 				ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler = new ProtocolBuffersConnectionHandler(socket, this);

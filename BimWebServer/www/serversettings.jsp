@@ -39,6 +39,7 @@
 				service.setSettingHeaderAddition(request.getParameter("headerAddition"));
 				service.setSettingFooterAddition(request.getParameter("footerAddition"));
 				service.setSettingMergeIdentifier(SMergeIdentifier.valueOf(request.getParameter("mergeIdentifier")));
+				service.setSettingProtocolBuffersPort(Integer.parseInt(request.getParameter("protocolBuffersPort")));
 				String enabledExportTypes = "";
 				Set<String> enabledTypes = new HashSet<String>();
 				for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
@@ -132,6 +133,11 @@
 		<td><input id="autoTestClashes" name="autoTestClashes"
 			type="checkbox"
 			<%=(request.getParameter("save") == null ? service.isSettingAutoTestClashes() : request.getParameter("autoTestClashes") != null) ? " checked=\"checked\"" : ""%>></input></td>
+	</tr>
+	<tr>
+		<td><label for="protocolBuffersPort">Protocol Buffers Port</label></td>
+		<td><input id="protocolBuffersPort" name="protocolBuffersPort"
+			type="text" value="<%=(request.getParameter("save") == null ? service.getSettingProtocolBuffersPort() : request.getParameter("protocolBuffersPort")) %>"></input></td>
 	</tr>
 	<tr>
 		<td><label for="allowUsersToCreateTopLevelProjects">Allow non-admin users to create projects</label></td>
