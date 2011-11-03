@@ -111,7 +111,7 @@ public class ExpressSchemaParser {
 			walker.syntax_pass2(t);
 			System.setErr(stdErrOld);
 			System.setOut(stdOutOld);
-			walker.schema.constructHirarchyMap();
+			walker.getSchema().constructHirarchyMap();
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			LOGGER.error(new String(log.toByteArray(), Charsets.UTF_8));
@@ -129,17 +129,17 @@ public class ExpressSchemaParser {
 		EasyParser parser;
 		Express2DictWalker walker;
 
-		File file;
 		FileOutputStream out;
 		String commonSchemaFile = null, fileIn = null, fileOut = null;
 		long startTime, endTime;
 		startTime = System.currentTimeMillis();
-		int c;
+		int currentCommandLineOption;
 
 		/* arguments management */
 		Getopt g = new Getopt("Express2Dict", argv, "o:s:");
-		while ((c = g.getopt()) != -1)
-			switch (c) {
+		while ((currentCommandLineOption = g.getopt()) != -1)
+		{
+			switch (currentCommandLineOption) {
 			case 'o':
 				fileOut = g.getOptarg();
 				break;
@@ -153,82 +153,131 @@ public class ExpressSchemaParser {
 			default:
 				break;
 			}
-		try {
-			fileIn = argv[g.getOptind()];
-		} catch (Exception e) {
-			System.err.println("E2OWL: Input file not specified");
-			System.exit(1);
 		}
-		file = new File(fileIn);
-		if (!file.canRead()) {
-			System.err.println("E2OWL: Unable to read file " + fileIn);
-			System.exit(1);
-		}
+		
+		fileIn = getFileIn(argv, g);
+		checkInputFile(fileIn);
+		
 		try {
 			parser = new EasyParser(fileIn);
 			walker = new Express2DictWalker();
 
 			/* result = */
-			CommonAST t = parser.parse();
+			CommonAST parsedTree = parser.parse();
 
 			walker.setPass(1);
-			walker.syntax(t);
+			walker.syntax(parsedTree);
+			
 			walker.setPass(2);
-
-			walker.syntax_pass2(t);
+			walker.syntax_pass2(parsedTree);
+			
 			walker.setPass(3);
-			walker.syntax_pass2(t);
+			walker.syntax_pass2(parsedTree);
 
 			SchemaDefinition schema = walker.getSchema();
-			Iterator iter = schema.getEntities().iterator();
-			while (iter.hasNext()) {
-				EntityDefinition ent = (EntityDefinition) iter.next();
-				LOGGER.info(ent.getName());
-				Iterator at = ent.getAttributes().iterator();
-				while (at.hasNext()) {
-					Attribute attr = (Attribute) at.next();
-					System.out.print(ent.getName() + ":" + attr.getName());
-					if (attr instanceof ExplicitAttribute) {
-						BaseType bt = (BaseType) ((ExplicitAttribute) attr).getDomain();
-						if (bt instanceof NamedType) {
-							if (bt != null)
-								System.out.print(" is-a " + ((NamedType) bt).getName());
-						} else if (bt instanceof AggregationType) {
-							if (bt != null && ((AggregationType) bt).getElement_type() != null)
-								System.out.print(" is-a " + ((AggregationType) bt).getElement_type().getClass());
-						}
-
-					}
-					if (attr instanceof InverseAttribute) {
-						InverseAttribute inv = (InverseAttribute) attr;
-						EntityDefinition forEnt = inv.getDomain();
-						ExplicitAttribute invertedAttr = inv.getInverted_attr();
-						System.out.print(inv.getName() + " inverse of ");
-						System.out.print(invertedAttr.getName() + " for " + forEnt.getName());
-
-					}
-					LOGGER.info("");
-				}
-			}
-
-			Iterator ti = schema.getTypes().iterator();
-			while (ti.hasNext()) {
-				DefinedType type = (DefinedType) ti.next();
-				UnderlyingType ut = type.getDomain();
-				if (ut != null)
-					LOGGER.info(type.getName() + ":" + ut.getClass());
-				else if (type instanceof SelectType) {
-					LOGGER.info(type.getName() + ((SelectType) type).getSelections().toString());
-				} else if (type instanceof EnumerationType) {
-					LOGGER.info(type.getName() + ((EnumerationType) type).getElements().toString());
-				}
-				else if (ut == null && !(type instanceof SelectType))
-					LOGGER.error(type.getName() + " has no underlying_type");
-			}
-		} catch (Exception e) {
+			printSchemaToConsole(schema);
+		} 
+		catch (Exception e) 
+		{
 			LOGGER.error("", e);
 		}
 		LOGGER.info("execution time: " + getStringTime(System.currentTimeMillis() - startTime));
+	}
+	
+	private static String getFileIn(String[] argv, Getopt g)
+	{
+		try {
+			return argv[g.getOptind()];
+			
+		} 
+		catch (Exception e)
+		{
+			System.err.println("E2OWL: Input file not specified");
+			System.exit(1);
+		}
+		System.err.println("E2OWL: Error in parsing input file");
+		System.exit(1);
+		
+		return null;
+	}
+	
+	private static void checkInputFile(String fileIn)
+	{
+		File file = new File(fileIn);
+		if (!file.canRead()) {
+			System.err.println("E2OWL: Unable to read file " + fileIn);
+			System.exit(1);
+		}
+	}
+	
+	private static void printSchemaToConsole(SchemaDefinition schema)
+	{
+		printEntities(schema);
+
+		printTypes(schema);
+	}
+	
+	private static void printEntities(SchemaDefinition schema)
+	{
+		Iterator entityIterator = schema.getEntities().iterator();
+		while (entityIterator.hasNext())
+		{
+			EntityDefinition ent = (EntityDefinition) entityIterator.next();
+			LOGGER.info(ent.getName());
+			Iterator at = ent.getAttributes().iterator();
+			while (at.hasNext())
+			{
+				Attribute attr = (Attribute) at.next();
+				System.out.print(ent.getName() + ":" + attr.getName());
+				if (attr instanceof ExplicitAttribute) {
+					BaseType bt = (BaseType) ((ExplicitAttribute) attr).getDomain();
+					if (bt instanceof NamedType)
+					{
+						if (bt != null)
+						{
+							System.out.print(" is-a " + ((NamedType) bt).getName());
+						}
+					}
+					else if (bt instanceof AggregationType)
+					{
+						if (bt != null && ((AggregationType) bt).getElement_type() != null)
+						{
+							System.out.print(" is-a " + ((AggregationType) bt).getElement_type().getClass());
+						}
+					}
+
+				}
+				if (attr instanceof InverseAttribute)
+				{
+					InverseAttribute inv = (InverseAttribute) attr;
+					EntityDefinition forEnt = inv.getDomain();
+					ExplicitAttribute invertedAttr = inv.getInverted_attr();
+					System.out.print(inv.getName() + " inverse of ");
+					System.out.print(invertedAttr.getName() + " for " + forEnt.getName());
+
+				}
+				LOGGER.info("");
+			}
+		}
+	}
+	
+	private static void printTypes(SchemaDefinition schema)
+	{
+		Iterator typeIterator = schema.getTypes().iterator();
+		while (typeIterator.hasNext())
+		{
+			DefinedType type = (DefinedType) typeIterator.next();
+			UnderlyingType ut = type.getDomain();
+			if (ut != null)
+				LOGGER.info(type.getName() + ":" + ut.getClass());
+			else if (type instanceof SelectType) {
+				LOGGER.info(type.getName() + ((SelectType) type).getSelections().toString());
+			} else if (type instanceof EnumerationType) {
+				LOGGER.info(type.getName() + ((EnumerationType) type).getElements().toString());
+			}
+			else if (ut == null && !(type instanceof SelectType))
+				LOGGER.error(type.getName() + " has no underlying_type");
+		}
 	}
 
 	private static final String getStringTime(long millis) {
