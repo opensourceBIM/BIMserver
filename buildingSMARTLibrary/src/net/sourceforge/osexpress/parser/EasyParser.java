@@ -45,6 +45,8 @@ public class EasyParser {
 	 */
 
 	private InputStream expin;
+	
+	private static final String TOKENOBJECTCLASS = "antlr.CommonHiddenStreamToken";
 
 	public EasyParser(String filename) throws IOException {
 		File file;
@@ -151,7 +153,7 @@ public class EasyParser {
 		this.expin.reset();
 		
 		ExpressLexer lexer = new ExpressLexer(this.expin);
-		lexer.setTokenObjectClass("antlr.CommonHiddenStreamToken");
+		lexer.setTokenObjectClass(TOKENOBJECTCLASS);
 		
 		TokenStreamHiddenTokenFilter filter = createFilter(lexer);
 
