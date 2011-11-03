@@ -407,7 +407,7 @@ public interface ServiceInterface {
 	void requestPasswordChange(@WebParam(name = "uoid", partName = "requestPasswordChange.uoid") Long uoid) throws ServiceException;
 
 	@WebMethod(action = "validateAccount")
-	void validateAccount(@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
+	SUser validateAccount(@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
 			@WebParam(name = "token", partName = "validateAccount.token") String token,
 			@WebParam(name = "password", partName = "validateAccount.password") String password) throws ServiceException;
 

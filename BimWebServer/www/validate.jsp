@@ -9,10 +9,9 @@
 <%
 	boolean showForm = true;
 	long uoid = Long.parseLong(request.getParameter("uoid"));
-	SUser sUser = loginManager.getService().getUserByUoid(uoid);
 	if (request.getParameter("password") != null) {
 		try {
-			loginManager.getService().validateAccount(uoid, request.getParameter("token"), request.getParameter("password"));
+			SUser sUser = loginManager.getService().validateAccount(uoid, request.getParameter("token"), request.getParameter("password"));
 			out.println("<div class=\"success\">Account successfully validated, you can now <a href=\"/?username=" + sUser.getUsername() + "\">login</a></div>");
 			showForm = false;
 		} catch (ServiceException e) {
@@ -24,7 +23,7 @@
 <p>Please choose your own personal password for accessing the BIMserver</p>
 <form method="post" name="validateForm">
 <table>
-<tr><td>Username</td><td><%=sUser.getUsername() %></td></tr>
+<tr><td>Username</td><td><%=request.getParameter("username") %></td></tr>
 <tr><td><label for="password">Password</label></td><td><input type="password" id="password" name="password"></input></td></tr>
 </table>
 <input type="hidden" name="uoid" value="<%=request.getParameter("uoid")%>"/>
