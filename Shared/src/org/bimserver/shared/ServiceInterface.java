@@ -486,6 +486,13 @@ public interface ServiceInterface {
 			@WebParam(name = "registrationAddition", partName = "setSettingsRegistrationAddition.registrationAddition") String registrationAddition)
 			throws ServiceException;
 
+	@WebMethod(action = "getSettingProtocolBuffersPort")
+	Integer getSettingProtocolBuffersPort() throws ServiceException;
+
+	@WebMethod(action = "setSettingsProtocolBuffersPort")
+	void setSettingProtocolBuffersPort(@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port)
+			throws ServiceException;
+	
 	@WebMethod(action = "getSettingsSiteAddress")
 	String getSettingSiteAddress() throws ServiceException;
 

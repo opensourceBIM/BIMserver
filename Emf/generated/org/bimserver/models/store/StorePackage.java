@@ -1253,13 +1253,22 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 14;
 
 	/**
+	 * The feature id for the '<em><b>Protocol Buffers Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__PROTOCOL_BUFFERS_PORT = 15;
+
+	/**
 	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__SERIALIZERS = 15;
+	int SETTINGS__SERIALIZERS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Object ID Ms</b></em>' reference list.
@@ -1268,7 +1277,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__OBJECT_ID_MS = 16;
+	int SETTINGS__OBJECT_ID_MS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Header Addition</b></em>' attribute.
@@ -1277,7 +1286,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__HEADER_ADDITION = 17;
+	int SETTINGS__HEADER_ADDITION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Footer Addition</b></em>' attribute.
@@ -1286,7 +1295,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__FOOTER_ADDITION = 18;
+	int SETTINGS__FOOTER_ADDITION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Merge Identifier</b></em>' attribute.
@@ -1295,7 +1304,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__MERGE_IDENTIFIER = 19;
+	int SETTINGS__MERGE_IDENTIFIER = 20;
 
 	/**
 	 * The feature id for the '<em><b>Cache Output Files</b></em>' attribute.
@@ -1304,7 +1313,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__CACHE_OUTPUT_FILES = 20;
+	int SETTINGS__CACHE_OUTPUT_FILES = 21;
 
 	/**
 	 * The feature id for the '<em><b>Ifc Engines</b></em>' reference list.
@@ -1313,7 +1322,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__IFC_ENGINES = 21;
+	int SETTINGS__IFC_ENGINES = 22;
 
 	/**
 	 * The feature id for the '<em><b>Plugins</b></em>' reference list.
@@ -1322,7 +1331,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__PLUGINS = 22;
+	int SETTINGS__PLUGINS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Deserializers</b></em>' reference list.
@@ -1331,7 +1340,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__DESERIALIZERS = 23;
+	int SETTINGS__DESERIALIZERS = 24;
 
 	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
@@ -1340,7 +1349,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 24;
+	int SETTINGS_FEATURE_COUNT = 25;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -4560,6 +4569,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_HideUserListForNonAdmin();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Protocol Buffers Port</em>'.
+	 * @see org.bimserver.models.store.Settings#getProtocolBuffersPort()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_ProtocolBuffersPort();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7341,6 +7361,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = eINSTANCE.getSettings_HideUserListForNonAdmin();
+
+		/**
+		 * The meta object literal for the '<em><b>Protocol Buffers Port</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__PROTOCOL_BUFFERS_PORT = eINSTANCE.getSettings_ProtocolBuffersPort();
 
 		/**
 		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.

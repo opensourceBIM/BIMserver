@@ -43,6 +43,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}</li>
@@ -450,6 +451,32 @@ public interface Settings extends IdEObject {
 	 * @generated
 	 */
 	void setHideUserListForNonAdmin(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Protocol Buffers Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Protocol Buffers Port</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Protocol Buffers Port</em>' attribute.
+	 * @see #setProtocolBuffersPort(int)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_ProtocolBuffersPort()
+	 * @model
+	 * @generated
+	 */
+	int getProtocolBuffersPort();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Protocol Buffers Port</em>' attribute.
+	 * @see #getProtocolBuffersPort()
+	 * @generated
+	 */
+	void setProtocolBuffersPort(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.

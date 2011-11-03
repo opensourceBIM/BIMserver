@@ -30,10 +30,10 @@ private Reflector reflector;
 	public void serverHasStarted() throws org.bimserver.shared.exceptions.ServiceException {
 		reflector.callMethod("NotificationInterface", "serverHasStarted", void.class);
 	}
-	public void newProject(org.bimserver.interfaces.objects.SNewProjectNotification arg0) throws org.bimserver.shared.exceptions.ServiceException {
-		reflector.callMethod("NotificationInterface", "newProject", void.class, arg0);
-	}
 	public void newRevision(org.bimserver.interfaces.objects.SNewRevisionNotification arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		reflector.callMethod("NotificationInterface", "newRevision", void.class, arg0);
+	}
+	public void newProject(org.bimserver.interfaces.objects.SNewProjectNotification arg0) throws org.bimserver.shared.exceptions.ServiceException {
+		reflector.callMethod("NotificationInterface", "newProject", void.class, arg0);
 	}
 }

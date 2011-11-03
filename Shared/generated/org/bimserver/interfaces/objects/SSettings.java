@@ -45,6 +45,7 @@ public class SSettings implements SBase
 		sClass.addField(new SField("customLogoAddress", java.lang.String.class));
 		sClass.addField(new SField("siteAddress", java.lang.String.class));
 		sClass.addField(new SField("hideUserListForNonAdmin", boolean.class));
+		sClass.addField(new SField("protocolBuffersPort", int.class));
 		sClass.addField(new SField("serializers", Long.class, true));
 		sClass.addField(new SField("objectIDMs", Long.class, true));
 		sClass.addField(new SField("headerAddition", java.lang.String.class));
@@ -115,6 +116,9 @@ public class SSettings implements SBase
 		}
 		if (sField.getName().equals("hideUserListForNonAdmin")) {
 			return isHideUserListForNonAdmin();
+		}
+		if (sField.getName().equals("protocolBuffersPort")) {
+			return getProtocolBuffersPort();
 		}
 		if (sField.getName().equals("serializers")) {
 			return getSerializers();
@@ -210,6 +214,10 @@ public class SSettings implements SBase
 			setHideUserListForNonAdmin((Boolean)val);
 			return;
 		}
+		if (sField.getName().equals("protocolBuffersPort")) {
+			setProtocolBuffersPort((Integer)val);
+			return;
+		}
 		if (sField.getName().equals("serializers")) {
 			setSerializers((List<Long>)val);
 			return;
@@ -268,6 +276,7 @@ public class SSettings implements SBase
 	private java.lang.String customLogoAddress;
 	private java.lang.String siteAddress;
 	private boolean hideUserListForNonAdmin;
+	private int protocolBuffersPort;
 	private List<Long> serializers = new ArrayList<Long>();
 	private List<Long> objectIDMs = new ArrayList<Long>();
 	private java.lang.String headerAddition;
@@ -381,6 +390,13 @@ public class SSettings implements SBase
 
 	public void setHideUserListForNonAdmin(boolean hideUserListForNonAdmin) {
 		this.hideUserListForNonAdmin = hideUserListForNonAdmin;
+	}
+	public int getProtocolBuffersPort() {
+		return protocolBuffersPort;
+	}
+
+	public void setProtocolBuffersPort(int protocolBuffersPort) {
+		this.protocolBuffersPort = protocolBuffersPort;
 	}
 	public List<Long> getSerializers() {
 		return serializers;

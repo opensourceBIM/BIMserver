@@ -50,6 +50,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
@@ -362,6 +363,24 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 */
 	public void setHideUserListForNonAdmin(boolean newHideUserListForNonAdmin) {
 		eSet(StorePackage.Literals.SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, newHideUserListForNonAdmin);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getProtocolBuffersPort() {
+		return (Integer) eGet(StorePackage.Literals.SETTINGS__PROTOCOL_BUFFERS_PORT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProtocolBuffersPort(int newProtocolBuffersPort) {
+		eSet(StorePackage.Literals.SETTINGS__PROTOCOL_BUFFERS_PORT, newProtocolBuffersPort);
 	}
 
 	/**
