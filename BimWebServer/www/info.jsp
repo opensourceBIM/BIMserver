@@ -60,6 +60,9 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 
 <div class="tabber" id="infotabber">
 	<%@ include file="extraInfo.jsp" %>
+	<p>If you plan to post an issue on <a href="http://support.bimserver.org" target="_blank">http://support.bimserver.org</a>, please make sure 
+	you accompany it with the <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog">server logfile</a>, a solid 
+	description of your situation (including BIMserver version number) and maybe even a screenshot. Only than we can help you the best possible way.</p>
 	<div class="tabbertab" id="license" title="License">
 	  (c) Copyright bimserver.org<br/>
 	  Licensed under GNU GPLv3<br/>
