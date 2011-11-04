@@ -850,23 +850,23 @@ public class SceneJSSerializer extends BimModelSerializer {
 			if (object instanceof IfcObject) {
 				IfcObject ifcObject = (IfcObject) object;
 				JSONObject wrappedJsonObj = new JSONObject();
-				jsonObj.put(ifcObject.getGlobalId().getWrappedValue(), new JSONObject());
+				jsonObj.put(ifcObject.getGlobalId().getWrappedValue(), wrappedJsonObj);
 
-				writeIfcPropertiesObject(jsonObj, ifcObject);
+				writeIfcPropertiesObject(wrappedJsonObj, ifcObject);
 				if (object instanceof IfcProject) {
-					writeIfcPropertiesProject(jsonObj, (IfcProject) object);
+					writeIfcPropertiesProject(wrappedJsonObj, (IfcProject) object);
 				} else if (object instanceof IfcSite) {
-					writeIfcPropertiesSite(jsonObj, (IfcSite) object);
+					writeIfcPropertiesSite(wrappedJsonObj, (IfcSite) object);
 				} else if (object instanceof IfcBuilding) {
-					writeIfcPropertiesBuilding(jsonObj, (IfcBuilding) object);
+					writeIfcPropertiesBuilding(wrappedJsonObj, (IfcBuilding) object);
 				} else if (object instanceof IfcBuildingStorey) {
-					writeIfcPropertiesBuildingStorey(jsonObj, (IfcBuildingStorey) object);
+					writeIfcPropertiesBuildingStorey(wrappedJsonObj, (IfcBuildingStorey) object);
 				} else if (object instanceof IfcElement) {
-					writeIfcPropertiesElement(jsonObj, (IfcElement) object);
+					writeIfcPropertiesElement(wrappedJsonObj, (IfcElement) object);
 				} else if (object instanceof IfcSpatialStructureElement) {
-					writeIfcPropertiesSpatialStructureElement(jsonObj, (IfcSpatialStructureElement) object);
+					writeIfcPropertiesSpatialStructureElement(wrappedJsonObj, (IfcSpatialStructureElement) object);
 				} else if (object instanceof IfcProduct) {
-					writeIfcPropertiesProduct(jsonObj, (IfcProduct) object);
+					writeIfcPropertiesProduct(wrappedJsonObj, (IfcProduct) object);
 				}
 			}
 		}
