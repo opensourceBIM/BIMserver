@@ -43,7 +43,7 @@ public interface ColumnDatabase {
 
 	boolean containsTable(String tableName);
 	
-	boolean createTable(String tableName, boolean useTransactions);
+	boolean createTable(String tableName, boolean useTransactions, DatabaseSession databaseSession);
 
 	boolean openTable(String tableName, boolean useTransactions) throws BimDatabaseException;
 

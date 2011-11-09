@@ -136,9 +136,9 @@ public class Database implements BimDatabase {
 		DatabaseSession databaseSession = createSession(true);
 		try {
 			if (getColumnDatabase().isNew()) {
-				columnDatabase.createTable(CLASS_LOOKUP_TABLE, true);
-				columnDatabase.createTable(Database.STORE_PROJECT_NAME, true);
-				columnDatabase.createTable(Registry.REGISTRY_TABLE, true);
+				columnDatabase.createTable(CLASS_LOOKUP_TABLE, true, null);
+				columnDatabase.createTable(Database.STORE_PROJECT_NAME, true, null);
+				columnDatabase.createTable(Registry.REGISTRY_TABLE, true, null);
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
@@ -481,8 +481,8 @@ public class Database implements BimDatabase {
 		return !transactionLessClasses.contains(eClass);
 	}
 
-	public void createTable(EClass eClass) throws BimDeadlockException {
-		columnDatabase.createTable(eClass.getName(), !transactionLessClasses.contains(eClass));
+	public void createTable(EClass eClass, DatabaseSession databaseSession) throws BimDeadlockException {
+		columnDatabase.createTable(eClass.getName(), !transactionLessClasses.contains(eClass), databaseSession);
 		tableId++;
 		try {
 			columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);

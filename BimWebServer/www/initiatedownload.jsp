@@ -38,7 +38,7 @@
 				}
 				Set<Long> roids = new HashSet<Long>();
 				roids.add(roid);
-				longActionId = loginManager.getService().downloadByTypes(roids, classes, serializerName, false);
+				longActionId = loginManager.getService().downloadByTypes(roids, classes, serializerName, false, false);
 			} else if (request.getParameter("multiple") != null){
 				Set<Long> roids = new HashSet<Long>();
 				for (Object key : request.getParameterMap().keySet()) {

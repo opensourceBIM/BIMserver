@@ -17,6 +17,7 @@ package org.bimserver.database;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.MetaDataManager;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.Migrator;
@@ -33,4 +34,6 @@ public interface BimDatabase {
 	void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException;
 
 	long newOid();
+	
+	MetaDataManager getMetaDataManager();
 }
