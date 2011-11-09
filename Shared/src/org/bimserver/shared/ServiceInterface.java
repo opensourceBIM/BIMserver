@@ -225,10 +225,11 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "downloadByTypes")
 	Integer downloadByTypes(
-			@WebParam(name = "roids", partName = "downloadOfType.roids") Set<Long> roids,
-			@WebParam(name = "classNames", partName = "downloadOfType.classNames") Set<String> classNames,
-			@WebParam(name = "serializerName", partName = "downloadOfType.serializerName") String serializerName,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
+			@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+			@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
+			@WebParam(name = "serializerName", partName = "downloadByTypes.serializerName") String serializerName,
+			@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
+			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisins and a set of guids to filter on

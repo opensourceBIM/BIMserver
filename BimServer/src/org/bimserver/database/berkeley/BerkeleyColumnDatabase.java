@@ -128,13 +128,13 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		return null;
 	}
 
-	public boolean createTable(String tableName, boolean useTransactions) {
+	public boolean createTable(String tableName, boolean useTransactions, DatabaseSession databaseSession) {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
 		databaseConfig.setDeferredWrite(false);
 		databaseConfig.setTransactional(useTransactions);
 		databaseConfig.setSortedDuplicates(false);
-		Database database = environment.openDatabase(null, tableName, databaseConfig);
+		Database database = environment.openDatabase(getTransaction(databaseSession), tableName, databaseConfig);
 		if (database == null) {
 			return false;
 		}

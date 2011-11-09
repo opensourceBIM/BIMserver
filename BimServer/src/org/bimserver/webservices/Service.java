@@ -714,9 +714,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, String resultTypeName, Boolean sync) throws ServiceException {
+	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, String resultTypeName, Boolean includeAllSubtypes, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, resultTypeName), sync);
+		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, resultTypeName), sync);
 	}
 
 	@Override

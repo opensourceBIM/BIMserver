@@ -37,7 +37,7 @@ public class NewClassChange implements Change {
 	public void change(Database database, DatabaseSession databaseSession) {
 		LOGGER.info("Creating table: " + getEClass().getName());
 		try {
-			database.createTable(getEClass());
+			database.createTable(getEClass(), databaseSession);
 		} catch (BimDeadlockException e) {
 			e.printStackTrace();
 		}

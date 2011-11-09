@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class MetaDataManager {
 	private final Map<String, EPackage> ePackages = new HashMap<String, EPackage>();
 	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
+	private final Map<EClass, Set<EClass>> allSubClasses = new HashMap<EClass, Set<EClass>>();
 	
 	public MetaDataManager(Set<EPackage> ePackages) {
 		for (EPackage ePackage : ePackages) {
@@ -53,8 +54,17 @@ public class MetaDataManager {
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass)eClassifier;
+				if (!allSubClasses.containsKey(eClass)) {
+					allSubClasses.put(eClass, new HashSet<EClass>());
+				}
 				if (!directSubClasses.containsKey(eClass)) {
 					directSubClasses.put(eClass, new HashSet<EClass>());
+				}
+				for (EClass superClass : eClass.getEAllSuperTypes()) {
+					if (!allSubClasses.containsKey(superClass)) {
+						allSubClasses.put(superClass, new HashSet<EClass>());
+					}
+					allSubClasses.get(superClass).add(eClass);
 				}
 				for (EClass superClass : eClass.getESuperTypes()) {
 					if (!directSubClasses.containsKey(superClass)) {
@@ -66,10 +76,14 @@ public class MetaDataManager {
 		}
 	}
 
-	public Set<EClass> getSubClasses(EClass superClass) {
+	public Set<EClass> getDirectSubClasses(EClass superClass) {
 		return directSubClasses.get(superClass);
 	}
 	
+	public Set<EClass> getAllSubClasses(EClass superClass) {
+		return allSubClasses.get(superClass);
+	}
+
 	public EClass getEClass(String type) {
 		for (EPackage ePackage : ePackages.values()) {
 			EClassifier eClassifier = ePackage.getEClassifier(type);

@@ -27,6 +27,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -46,11 +47,13 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
+	private final boolean includeAllSubtypes;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long actingUoid, ObjectIDM objectIDM) {
+	public DownloadByTypesDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, long actingUoid, ObjectIDM objectIDM) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
+		this.includeAllSubtypes = includeAllSubtypes;
 		this.actingUoid = actingUoid;
 		this.classNames = classNames;
 		this.objectIDM = objectIDM;
@@ -64,6 +67,9 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 		Set<EClass> eClasses = new HashSet<EClass>();
 		for (String className : classNames) {
 			eClasses.add(getDatabaseSession().getEClassForName(className));
+			if (includeAllSubtypes) {
+				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)Ifc2x3Package.eINSTANCE.getEClassifier(className)));
+			}
 		}
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
