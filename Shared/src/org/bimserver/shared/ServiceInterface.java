@@ -219,6 +219,7 @@ public interface ServiceInterface {
 	 * @param roids A set of Revision ObjectIDs
 	 * @param classNames A set of class names to filter on (e.g. "IfcWindow")
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServiceException
