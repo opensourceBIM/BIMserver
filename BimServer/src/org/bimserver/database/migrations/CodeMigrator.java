@@ -30,10 +30,10 @@ import org.bimserver.querycompiler.VirtualFile;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.tools.generators.DataObjectGenerator;
+import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
 import org.bimserver.tools.generators.SPackageGeneratorWrapper;
-import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,8 +110,6 @@ public class CodeMigrator {
 		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
 		sPackageGeneratorWrapper.generate(ePackages);
 		
-//		protocolBuffersGenerator.generateServiceInterfaceImplementation("ProtocolBuffersServiceInterfaceImplementation", new File("../BimServerClientLib/generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java"));
-
 		LOGGER.info("Protocol buffers file and classes generated");
 		LOGGER.info("");
 		LOGGER.info("Migration successfull");

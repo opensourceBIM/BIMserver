@@ -99,9 +99,9 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		Project parent = project.getParent();
 		while (parent != null) {
 			Revision revision = StoreFactory.eINSTANCE.createRevision();
-			revision.setComment(comment);
+			revision.setComment("generated for subproject " + project.getName() + ", revision " + concreteRevision.getId() + ", by " + user.getName());
 			revision.setDate(date);
-			revision.setUser(user);
+			revision.setUser(getSystemUser());
 			revision.setProject(parent);
 			revision.setState(checkinState);
 			if (parent.getLastRevision() != null) {

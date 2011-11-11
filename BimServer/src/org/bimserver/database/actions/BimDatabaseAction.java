@@ -66,6 +66,10 @@ public abstract class BimDatabaseAction<T> {
 	public User getAdminUser() throws BimDatabaseException, BimDeadlockException {
 		return getUserByUserName("admin");
 	}
+
+	public User getSystemUser() throws BimDatabaseException, BimDeadlockException {
+		return getUserByUserName("system");
+	}
 	
 	public Project getProjectById(int pid) throws BimDatabaseException, BimDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(pid));

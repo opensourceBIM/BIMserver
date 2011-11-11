@@ -53,7 +53,6 @@ import org.bimserver.models.store.ObjectAdded;
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.ObjectRemoved;
 import org.bimserver.models.store.Project;
-import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
@@ -83,12 +82,6 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		ObjectIDM objectIDM;
-		try {
-			objectIDM = bimServer.getPluginManager().requireObjectIDM();
-		} catch (ObjectIDMException e) {
-			throw new UserException(e);
-		}
 		Project project = getRevisionByRoid(roid1).getProject();
 		Compare compare = new Compare(objectIDM);
 		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1, roid2, compareType, compareIdentifier);
@@ -188,10 +181,8 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 					}
 				}
 			}
-			
 			return mergedModel;
 		}
-		return null;
 	}
 
 	public int getProgress() {
