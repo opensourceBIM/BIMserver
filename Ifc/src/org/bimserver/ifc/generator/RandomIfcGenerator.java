@@ -49,9 +49,6 @@ public class RandomIfcGenerator {
 		IfcProject ifcProject = Ifc2x3Factory.eINSTANCE.createIfcProject();
 		objects.add(ifcProject);
 		for (int i=1; i<nrObjects; i++) {
-			if (i % 10000 == 0) {
-				System.out.println(i);
-			}
 			if (!createObject()) {
 				i--;
 			}

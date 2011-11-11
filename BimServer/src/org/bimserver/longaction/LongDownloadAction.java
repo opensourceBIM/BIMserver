@@ -25,6 +25,7 @@ import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
+import org.bimserver.database.actions.DownloadCompareDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.database.query.conditions.AttributeCondition;
@@ -105,6 +106,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			break;
 		case DOWNLOAD_PROJECTS:
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid, ObjectIDM);
+			break;
+		case DOWNLOAD_COMPARE:
+			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getCompareIdentifier(), downloadParameters.getCompareType(), currentUoid, ObjectIDM);
 			break;
 		}
 	}

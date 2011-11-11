@@ -343,7 +343,7 @@ public class IfcStepSerializer extends IfcSerializer {
 				if (stringValue != null) {
 					out.print(stringValue);
 				} else {
-					out.print(DOLLAR);
+					out.print(ref);
 				}
 			} else {
 				writePrimitive(out, ref);

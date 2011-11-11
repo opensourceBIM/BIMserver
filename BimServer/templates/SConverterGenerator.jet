@@ -41,21 +41,7 @@ public class SConverter {
 	public Set<S<%=eClass.getName()%>> convertToSSet<%=eClass.getName()%>(Collection<<%=eClass.getName()%>> input) {
 		Set<S<%=eClass.getName()%>> result = new HashSet<S<%=eClass.getName()%>>();
 		for (<%=eClass.getName()%> o : input) {
-<% if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
-	for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
-%>
-		<%=metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (o instanceof <%=subClass.getName()%>) {
-			result.add(convertToSObject((<%=subClass.getName()%>)o));		
-		}
-<%
-	}
-%>
-	else {
-		result.add(convertToSObject(o));
-	}
-<% }  else {%>
-		result.add(convertToSObject(o));
-<% } %>
+			result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -71,21 +57,7 @@ public class SConverter {
 	public List<S<%=eClass.getName()%>> convertToSList<%=eClass.getName()%>(Collection<<%=eClass.getName()%>> input) {
 		List<S<%=eClass.getName()%>> result = new ArrayList<S<%=eClass.getName()%>>();
 		for (<%=eClass.getName()%> o : input) {
-<% if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
-	for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
-%>
-		<%=metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (o instanceof <%=subClass.getName()%>) {
-			result.add(convertToSObject((<%=subClass.getName()%>)o));		
-		}
-<%
-	}
-%>
-	else {
-		result.add(convertToSObject(o));
-	}
-<% }  else {%>
-		result.add(convertToSObject(o));
-<% } %>
+			result.add(convertToSObject(o));
 		}
 		return result;
 	}
@@ -102,6 +74,16 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		<% if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
+	for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+%>
+		<%=metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (input instanceof <%=subClass.getName()%>) {
+			return convertToSObject((<%=subClass.getName()%>)input);
+		}
+<%
+		}
+	}
+%>
 		S<%=eClass.getName()%> result = new S<%=eClass.getName()%>();
 		result.setOid(input.getOid());
 <%

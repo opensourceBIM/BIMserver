@@ -218,7 +218,6 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			}
 			break;
 		case FOOTER:
-			System.out.println(model.size());
 			if (line.equals("ENDSEC;")) {
 				mode = Mode.DONE;
 			}

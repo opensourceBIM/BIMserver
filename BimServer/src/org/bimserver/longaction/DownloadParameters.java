@@ -22,10 +22,19 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimServer;
+import org.bimserver.models.store.CompareIdentifier;
+import org.bimserver.models.store.CompareType;
+
+import com.google.common.collect.Sets;
 
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
-		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS
+		DOWNLOAD_REVISION, 
+		DOWNLOAD_BY_OIDS, 
+		DOWNLOAD_BY_GUIDS, 
+		DOWNLOAD_OF_TYPE, 
+		DOWNLOAD_PROJECTS,
+		DOWNLOAD_COMPARE
 	};
 
 	private Set<Long> roids;
@@ -36,6 +45,8 @@ public class DownloadParameters extends LongActionKey {
 	private String serializerName;
 	private DownloadType downloadType;
 	private BimServer bimServer;
+	private CompareIdentifier compareIdentifier;
+	private CompareType compareType;
 
 	public DownloadParameters(BimServer bimServer, long roid, String serializerName) {
 		this.bimServer = bimServer;
@@ -45,6 +56,24 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public DownloadParameters() {
+	}
+
+	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, CompareIdentifier identifier, String serializerName) {
+		DownloadParameters downloadParameters = new DownloadParameters();
+		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_COMPARE);
+		downloadParameters.setRoids(Sets.newHashSet(roid1, roid2));
+		downloadParameters.setCompareType(type);
+		downloadParameters.setCompareIdentifier(identifier);
+		downloadParameters.setSerializerName(serializerName);
+		return downloadParameters;
+	}
+	
+	private void setCompareIdentifier(CompareIdentifier compareIdentifier) {
+		this.compareIdentifier = compareIdentifier;
+	}
+
+	private void setCompareType(CompareType compareType) {
+		this.compareType = compareType;
 	}
 
 	public static DownloadParameters fromGuids(BimServer bimServer, Set<Long> roids, Set<String> guids, String serializerName) {
@@ -124,6 +153,14 @@ public class DownloadParameters extends LongActionKey {
 		this.oids = oids;
 	}
 
+	public CompareIdentifier getCompareIdentifier() {
+		return compareIdentifier;
+	}
+	
+	public CompareType getCompareType() {
+		return compareType;
+	}
+	
 	public Set<String> getGuids() {
 		return guids;
 	}
