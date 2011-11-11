@@ -52,11 +52,11 @@ public class TracingGarbageCollector {
 				if (schema != null) {
 					EntityDefinition entityBN = schema.getEntityBN(rootObject.eClass().getName());
 					if (entityBN == null) {
-						System.out.println(rootObject.eClass().getName() + " not found");
+						LOGGER.info(rootObject.eClass().getName() + " not found");
 					} else {
 						attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
 						if (attributeBNWithSuper == null) {
-							System.out.println(eReference.getName() + " not found");
+							LOGGER.info(eReference.getName() + " not found");
 						}
 					}
 				}

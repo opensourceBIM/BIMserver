@@ -75,17 +75,17 @@ public class CommandLine extends Thread {
 						try {
 							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, bimDatabaseSession, AccessMethod.INTERNAL, roid, bimServer.getSystemService().getCurrentUser().getOid(), null);
 							IfcModelInterface model = downloadDatabaseAction.execute();
-							System.out.println("Model size: " + model.size());
+							LOGGER.info("Model size: " + model.size());
 							
 							List<IfcWall> walls = model.getAll(IfcWall.class);
 							List<IfcProject> projects = model.getAll(IfcProject.class);
 							List<IfcSlab> slabs = model.getAll(IfcSlab.class);
 							List<IfcWindow> windows = model.getAll(IfcWindow.class);
 							
-							System.out.println("Walls: " + walls.size());
-							System.out.println("Windows: " + windows.size());
-							System.out.println("Projects: " + projects.size());
-							System.out.println("Slabs: " + slabs.size());
+							LOGGER.info("Walls: " + walls.size());
+							LOGGER.info("Windows: " + windows.size());
+							LOGGER.info("Projects: " + projects.size());
+							LOGGER.info("Slabs: " + slabs.size());
 						} catch (UserException e1) {
 							e1.printStackTrace();
 						} catch (ServerException e1) {
@@ -101,20 +101,20 @@ public class CommandLine extends Thread {
 						LOGGER.error("", e);
 					}
 				} else if (line.equalsIgnoreCase("dump")) {
-					System.out.println("Dumping all thread's track traces...");
-					System.out.println();
+					LOGGER.info("Dumping all thread's track traces...");
+					LOGGER.info("");
 					Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();
 					for (Thread t : allStackTraces.keySet()) {
-						System.out.println(t.getName());
+						LOGGER.info(t.getName());
 						StackTraceElement[] stackTraceElements = allStackTraces.get(t);
 						for (StackTraceElement stackTraceElement : stackTraceElements) {
-							System.out.println("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "."
+							LOGGER.info("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "."
 									+ stackTraceElement.getMethodName());
 						}
-						System.out.println();
+						LOGGER.info("");
 					}
-					System.out.println("Done printing stack traces");
-					System.out.println();
+					LOGGER.info("Done printing stack traces");
+					LOGGER.info("");
 					try {
 						Thread.sleep(10000);
 					} catch (InterruptedException e) {
@@ -128,10 +128,10 @@ public class CommandLine extends Thread {
 						long size = columnDatabase.count(tableName);
 						total += size;
 						if (size != 0) {
-							System.out.println(tableName + " " + size);
+							LOGGER.info(tableName + " " + size);
 						}
 					}
-					System.out.println("total: " + total);
+					LOGGER.info("total: " + total);
 				}
 			} catch (IOException e) {
 				LOGGER.error("", e);

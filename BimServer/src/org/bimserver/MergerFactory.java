@@ -32,9 +32,13 @@ public class MergerFactory {
 
 	public Merger createMerger() {
 		Settings settings = settingsManager.getSettings();
-		if (settings.getMergeIdentifier() == MergeIdentifier.GUID) {
+		return createMerger(settings.getMergeIdentifier());
+	}
+
+	public Merger createMerger(MergeIdentifier mergeIdentifier) {
+		if (mergeIdentifier == MergeIdentifier.GUID) {
 			return new Merger(new GuidMergeIdentifier());
-		} else if (settings.getMergeIdentifier() == MergeIdentifier.NAME) {
+		} else if (mergeIdentifier == MergeIdentifier.NAME) {
 			return new Merger(new NameMergeIdentifier());
 		}
 		return null;

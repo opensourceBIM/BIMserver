@@ -199,6 +199,25 @@ public interface ServiceInterface {
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
 	/**
+	 * Download a compare of a model
+	 * @param roid1
+	 * @param roid2
+	 * @param identifier
+	 * @param type
+	 * @param sync
+	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @throws ServiceException
+	 */
+	@WebMethod(action = "downloadCompareResults")
+	Integer downloadCompareResults(
+			@WebParam(name = "serializerName", partName = "downloadByOids.serializerName") String serializerName,
+			@WebParam(name = "roid1", partName = "downloadByOids.roid1") Long roid1,
+			@WebParam(name = "roid2", partName = "downloadByOids.roid2") Long roid2,
+			@WebParam(name = "identifier", partName = "downloadByOids.identifier") SCompareIdentifier identifier,
+			@WebParam(name = "type", partName = "downloadByOids.type") SCompareType type,
+			@WebParam(name = "sync", partName = "downloadByOids.sync") Boolean sync) throws ServiceException;
+
+	/**
 	 * Download a model in a serialized format by giving a set of revisions and a set of Object IDs 
 	 * @param roids A set of Revision ObjectIDs
 	 * @param oids A set of ObjectIDs
@@ -209,10 +228,10 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "downloadByOids")
 	Integer downloadByOids(
-			@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
-			@WebParam(name = "oids", partName = "downloadByOids.oids") Set<Long> oids,
-			@WebParam(name = "serializerName", partName = "downloadByOids.serializerName") String serializerName,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
+			@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
+			@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
+			@WebParam(name = "serializerName", partName = "downloadCompareResults.serializerName") String serializerName,
+			@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync) throws ServiceException;
 
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
@@ -246,7 +265,7 @@ public interface ServiceInterface {
 			@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
 			@WebParam(name = "serializerName", partName = "downloadByGuids.serializerName") String serializerName,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
+			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisions
@@ -260,7 +279,7 @@ public interface ServiceInterface {
 	Integer downloadProjects(
 			@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
 			@WebParam(name = "serializerName", partName = "downloadProjects.serializerName") String serializerName,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServiceException;
+			@WebParam(name = "sync", partName = "downloadProjects.sync") Boolean sync) throws ServiceException;
 	
 	/**
 	 * Get the data for a download/checkout
@@ -270,7 +289,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getDownloadData")
 	SDownloadResult getDownloadData(
-			@WebParam(name = "actionID", partName = "downloadProjects.actionID") Integer actionId) throws ServiceException;
+			@WebParam(name = "actionID", partName = "getDownloadData.actionID") Integer actionId) throws ServiceException;
 
 	/**
 	 * Get the current state of a download/checkout
@@ -280,7 +299,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getDownloadState")
 	SLongActionState getDownloadState(
-			@WebParam(name = "actionID", partName = "downloadProjects.actionID") Integer actionId) throws ServiceException;
+			@WebParam(name = "actionId", partName = "getDownloadState.actionId") Integer actionId) throws ServiceException;
 
 	/**
 	 * Add a new user

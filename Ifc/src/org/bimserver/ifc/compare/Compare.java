@@ -59,6 +59,7 @@ public class Compare {
 
 	private DataObject makeDataObject(IdEObject eObject) {
 		DataObject dataObject = StoreFactory.eINSTANCE.createDataObject();
+		dataObject.setOid(eObject.getOid());
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 			Object val = eObject.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EReference) {
@@ -154,6 +155,9 @@ public class Compare {
 			}
 		} catch (Exception e) {
 			LOGGER.error("", e);
+		}
+		for (CompareContainer compareContainer : map.values()) {
+			result.getItems().add(compareContainer);
 		}
 		return result;
 	}
