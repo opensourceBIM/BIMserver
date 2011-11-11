@@ -264,6 +264,70 @@ public interface LogPackage extends EPackage {
 	int NEW_PROJECT_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.RevisionBranchedImpl <em>Revision Branched</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.RevisionBranchedImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getRevisionBranched()
+	 * @generated
+	 */
+	int REVISION_BRANCHED = 4;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_BRANCHED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_BRANCHED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_BRANCHED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Oldrevision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_BRANCHED__OLDREVISION = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Newrevision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_BRANCHED__NEWREVISION = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Revision Branched</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_BRANCHED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewRevisionAddedImpl <em>New Revision Added</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -271,7 +335,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewRevisionAdded()
 	 * @generated
 	 */
-	int NEW_REVISION_ADDED = 4;
+	int NEW_REVISION_ADDED = 5;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -326,7 +390,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewCheckoutAdded()
 	 * @generated
 	 */
-	int NEW_CHECKOUT_ADDED = 5;
+	int NEW_CHECKOUT_ADDED = 6;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -381,7 +445,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getSettingsSaved()
 	 * @generated
 	 */
-	int SETTINGS_SAVED = 6;
+	int SETTINGS_SAVED = 7;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -427,7 +491,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserAddedToProject()
 	 * @generated
 	 */
-	int USER_ADDED_TO_PROJECT = 7;
+	int USER_ADDED_TO_PROJECT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -491,7 +555,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewObjectIDMUploaded()
 	 * @generated
 	 */
-	int NEW_OBJECT_IDM_UPLOADED = 8;
+	int NEW_OBJECT_IDM_UPLOADED = 9;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -537,7 +601,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getDownload()
 	 * @generated
 	 */
-	int DOWNLOAD = 9;
+	int DOWNLOAD = 10;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -583,7 +647,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserRemovedFromProject()
 	 * @generated
 	 */
-	int USER_REMOVED_FROM_PROJECT = 10;
+	int USER_REMOVED_FROM_PROJECT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -647,7 +711,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectDeleted()
 	 * @generated
 	 */
-	int PROJECT_DELETED = 11;
+	int PROJECT_DELETED = 12;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -702,7 +766,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserDeleted()
 	 * @generated
 	 */
-	int USER_DELETED = 12;
+	int USER_DELETED = 13;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -757,7 +821,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getPasswordReset()
 	 * @generated
 	 */
-	int PASSWORD_RESET = 13;
+	int PASSWORD_RESET = 14;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -812,7 +876,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getDatabaseCreated()
 	 * @generated
 	 */
-	int DATABASE_CREATED = 14;
+	int DATABASE_CREATED = 15;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -876,7 +940,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getServerStarted()
 	 * @generated
 	 */
-	int SERVER_STARTED = 15;
+	int SERVER_STARTED = 16;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -922,7 +986,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectUpdated()
 	 * @generated
 	 */
-	int PROJECT_UPDATED = 16;
+	int PROJECT_UPDATED = 17;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -977,7 +1041,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserUndeleted()
 	 * @generated
 	 */
-	int USER_UNDELETED = 17;
+	int USER_UNDELETED = 18;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1032,7 +1096,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectUndeleted()
 	 * @generated
 	 */
-	int PROJECT_UNDELETED = 18;
+	int PROJECT_UNDELETED = 19;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1087,7 +1151,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getRevisionUpdated()
 	 * @generated
 	 */
-	int REVISION_UPDATED = 19;
+	int REVISION_UPDATED = 20;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1142,7 +1206,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getGeoTagUpdated()
 	 * @generated
 	 */
-	int GEO_TAG_UPDATED = 20;
+	int GEO_TAG_UPDATED = 21;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1197,7 +1261,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getClashDetectionSettingsUpdated()
 	 * @generated
 	 */
-	int CLASH_DETECTION_SETTINGS_UPDATED = 21;
+	int CLASH_DETECTION_SETTINGS_UPDATED = 22;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1252,7 +1316,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getPasswordChanged()
 	 * @generated
 	 */
-	int PASSWORD_CHANGED = 22;
+	int PASSWORD_CHANGED = 23;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1307,7 +1371,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserChanged()
 	 * @generated
 	 */
-	int USER_CHANGED = 23;
+	int USER_CHANGED = 24;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1362,7 +1426,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getAccessMethod()
 	 * @generated
 	 */
-	int ACCESS_METHOD = 24;
+	int ACCESS_METHOD = 25;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.LogAction <em>Action</em>}'.
@@ -1480,6 +1544,38 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNewProjectAdded_ParentProject();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.RevisionBranched <em>Revision Branched</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Revision Branched</em>'.
+	 * @see org.bimserver.models.log.RevisionBranched
+	 * @generated
+	 */
+	EClass getRevisionBranched();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.RevisionBranched#getOldrevision <em>Oldrevision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Oldrevision</em>'.
+	 * @see org.bimserver.models.log.RevisionBranched#getOldrevision()
+	 * @see #getRevisionBranched()
+	 * @generated
+	 */
+	EReference getRevisionBranched_Oldrevision();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.RevisionBranched#getNewrevision <em>Newrevision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Newrevision</em>'.
+	 * @see org.bimserver.models.log.RevisionBranched#getNewrevision()
+	 * @see #getRevisionBranched()
+	 * @generated
+	 */
+	EReference getRevisionBranched_Newrevision();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.NewRevisionAdded <em>New Revision Added</em>}'.
@@ -2017,6 +2113,32 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NEW_PROJECT_ADDED__PARENT_PROJECT = eINSTANCE.getNewProjectAdded_ParentProject();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.RevisionBranchedImpl <em>Revision Branched</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.RevisionBranchedImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getRevisionBranched()
+		 * @generated
+		 */
+		EClass REVISION_BRANCHED = eINSTANCE.getRevisionBranched();
+
+		/**
+		 * The meta object literal for the '<em><b>Oldrevision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION_BRANCHED__OLDREVISION = eINSTANCE.getRevisionBranched_Oldrevision();
+
+		/**
+		 * The meta object literal for the '<em><b>Newrevision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION_BRANCHED__NEWREVISION = eINSTANCE.getRevisionBranched_Newrevision();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewRevisionAddedImpl <em>New Revision Added</em>}' class.

@@ -72,6 +72,15 @@ public interface LogFactory extends EFactory {
 	NewProjectAdded createNewProjectAdded();
 
 	/**
+	 * Returns a new object of class '<em>Revision Branched</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Revision Branched</em>'.
+	 * @generated
+	 */
+	RevisionBranched createRevisionBranched();
+
+	/**
 	 * Returns a new object of class '<em>New Revision Added</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

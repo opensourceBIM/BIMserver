@@ -78,6 +78,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createNewUserAdded();
 		case LogPackage.NEW_PROJECT_ADDED:
 			return (EObject) createNewProjectAdded();
+		case LogPackage.REVISION_BRANCHED:
+			return (EObject) createRevisionBranched();
 		case LogPackage.NEW_REVISION_ADDED:
 			return (EObject) createNewRevisionAdded();
 		case LogPackage.NEW_CHECKOUT_ADDED:
@@ -191,6 +193,16 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	public NewProjectAdded createNewProjectAdded() {
 		NewProjectAddedImpl newProjectAdded = new NewProjectAddedImpl();
 		return newProjectAdded;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionBranched createRevisionBranched() {
+		RevisionBranchedImpl revisionBranched = new RevisionBranchedImpl();
+		return revisionBranched;
 	}
 
 	/**

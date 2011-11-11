@@ -27,6 +27,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store#//Project"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentProject" eType="ecore:EClass store#//Project"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RevisionBranched" eSuperTypes="#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oldrevision" eType="ecore:EClass store#//Revision"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="newrevision" eType="ecore:EClass store#//Revision"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NewRevisionAdded" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass store#//Revision"/>
   </eClassifiers>
