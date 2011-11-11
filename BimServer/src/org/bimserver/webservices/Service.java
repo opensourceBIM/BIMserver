@@ -59,6 +59,8 @@ import org.bimserver.database.actions.AddSerializerDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
+import org.bimserver.database.actions.BranchToExistingProjectDatabaseAction;
+import org.bimserver.database.actions.BranchToNewProjectDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
@@ -132,8 +134,6 @@ import org.bimserver.database.migrations.Migrator;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
-import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckinResult;
@@ -210,7 +210,6 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.querycompiler.QueryCompiler;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.CompareWriter;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
@@ -1086,43 +1085,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			Revision oldRevision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
-			Project oldProject = oldRevision.getProject();
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
-			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
-				throw new UserException("User has insufficient rights to download revisions from this project");
-			}
-			IfcModelSet ifcModelSet = new IfcModelSet();
-			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-				IfcModel subModel = new IfcModel();
-				session.getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
-				subModel.setDate(subRevision.getDate());
-				ifcModelSet.add(subModel);
-			}
-			IfcModelInterface model = bimServer.getMergerFactory().createMerger()
-					.merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
-			model.resetOids();
-			Project newProject = new AddProjectDatabaseAction(bimServer, session, accessMethod, projectName, currentUoid).execute();
-			session.commit();
-			session.close();
-			session = bimServer.getDatabase().createSession(true);
-			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, newProject.getOid(), currentUoid, model, comment);
-			try {
-				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, model, currentUoid, revision.getOid(), false);
-				SCheckinResult result = new SCheckinResult();
-				result.setProjectId(revision.getProject().getOid());
-				// result.setProjectName(revision.getProject().getName());
-				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
-				return result;
-			} catch (UserException e) {
-				throw e;
-			} catch (Exception e) {
-				LOGGER.error("", e);
-			}
-		} catch (BimDeadlockException e) {
-			LOGGER.error("", e);
+			BranchToNewProjectDatabaseAction action = new BranchToNewProjectDatabaseAction(session, accessMethod, bimServer, currentUoid, roid, projectName, comment);
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
@@ -1136,39 +1100,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		final BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			Revision oldRevision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
-			Project oldProject = oldRevision.getProject();
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
-			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
-				throw new UserException("User has insufficient rights to download revisions from this project");
-			}
-			IfcModelSet ifcModelSet = new IfcModelSet();
-			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-				IfcModel subModel = new IfcModel();
-				session.getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
-				subModel.setDate(subRevision.getDate());
-				ifcModelSet.add(subModel);
-			}
-			IfcModelInterface model = bimServer.getMergerFactory().createMerger()
-					.merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
-			model.resetOids();
-			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, destPoid, currentUoid, model, comment);
-			try {
-				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, model, currentUoid, revision.getOid(), false);
-				SCheckinResult result = new SCheckinResult();
-				result.setProjectId(revision.getProject().getOid());
-				// result.setProjectName(revision.getProject().getName());
-				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
-				return result;
-			} catch (UserException e) {
-				throw e;
-			} catch (Exception e) {
-				LOGGER.error("", e);
-			}
-		} catch (BimDeadlockException e) {
-			LOGGER.error("", e);
+			BranchToExistingProjectDatabaseAction action = new BranchToExistingProjectDatabaseAction(session, accessMethod, bimServer, currentUoid, roid, destPoid, comment);
+			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
