@@ -308,11 +308,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof GuidClash) {
-			return convertToSObject((GuidClash)input);
-		}
-		else if (input instanceof EidClash) {
+		if (input instanceof EidClash) {
 			return convertToSObject((EidClash)input);
+		}
+		else if (input instanceof GuidClash) {
+			return convertToSObject((GuidClash)input);
 		}
 		SClash result = new SClash();
 		result.setOid(input.getOid());
@@ -1550,14 +1550,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ListDataValue) {
-			return convertToSObject((ListDataValue)input);
+		if (input instanceof ReferenceDataValue) {
+			return convertToSObject((ReferenceDataValue)input);
 		}
 		else if (input instanceof SimpleDataValue) {
 			return convertToSObject((SimpleDataValue)input);
 		}
-		else if (input instanceof ReferenceDataValue) {
-			return convertToSObject((ReferenceDataValue)input);
+		else if (input instanceof ListDataValue) {
+			return convertToSObject((ListDataValue)input);
 		}
 		SDataValue result = new SDataValue();
 		result.setOid(input.getOid());
@@ -2725,11 +2725,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ObjectRemoved) {
-			return convertToSObject((ObjectRemoved)input);
-		}
-		else if (input instanceof ObjectModified) {
+		if (input instanceof ObjectModified) {
 			return convertToSObject((ObjectModified)input);
+		}
+		else if (input instanceof ObjectRemoved) {
+			return convertToSObject((ObjectRemoved)input);
 		}
 		else if (input instanceof ObjectAdded) {
 			return convertToSObject((ObjectAdded)input);
@@ -3140,11 +3140,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof NewRevisionNotification) {
-			return convertToSObject((NewRevisionNotification)input);
-		}
-		else if (input instanceof NewProjectNotification) {
+		if (input instanceof NewProjectNotification) {
 			return convertToSObject((NewProjectNotification)input);
+		}
+		else if (input instanceof NewRevisionNotification) {
+			return convertToSObject((NewRevisionNotification)input);
 		}
 		SNotification result = new SNotification();
 		result.setOid(input.getOid());
@@ -3555,32 +3555,65 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof NewCheckoutAdded) {
-			return convertToSObject((NewCheckoutAdded)input);
-		}
-		else if (input instanceof UserChanged) {
-			return convertToSObject((UserChanged)input);
-		}
-		else if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
-		}
-		else if (input instanceof ClashDetectionSettingsUpdated) {
-			return convertToSObject((ClashDetectionSettingsUpdated)input);
-		}
-		else if (input instanceof NewRevisionAdded) {
-			return convertToSObject((NewRevisionAdded)input);
+		if (input instanceof RevisionUpdated) {
+			return convertToSObject((RevisionUpdated)input);
 		}
 		else if (input instanceof GeoTagUpdated) {
 			return convertToSObject((GeoTagUpdated)input);
 		}
-		else if (input instanceof ServerStarted) {
-			return convertToSObject((ServerStarted)input);
+		else if (input instanceof UserChanged) {
+			return convertToSObject((UserChanged)input);
+		}
+		else if (input instanceof ClashDetectionSettingsUpdated) {
+			return convertToSObject((ClashDetectionSettingsUpdated)input);
+		}
+		else if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
+		}
+		else if (input instanceof UserAddedToProject) {
+			return convertToSObject((UserAddedToProject)input);
+		}
+		else if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof NewObjectIDMUploaded) {
+			return convertToSObject((NewObjectIDMUploaded)input);
 		}
 		else if (input instanceof PasswordReset) {
 			return convertToSObject((PasswordReset)input);
 		}
-		else if (input instanceof RevisionUpdated) {
-			return convertToSObject((RevisionUpdated)input);
+		else if (input instanceof SettingsSaved) {
+			return convertToSObject((SettingsSaved)input);
+		}
+		else if (input instanceof NewRevisionAdded) {
+			return convertToSObject((NewRevisionAdded)input);
+		}
+		else if (input instanceof ProjectDeleted) {
+			return convertToSObject((ProjectDeleted)input);
+		}
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
+		}
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
+		}
+		else if (input instanceof ServerStarted) {
+			return convertToSObject((ServerStarted)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
+		}
+		else if (input instanceof NewProjectAdded) {
+			return convertToSObject((NewProjectAdded)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
+		}
+		else if (input instanceof UserUndeleted) {
+			return convertToSObject((UserUndeleted)input);
+		}
+		else if (input instanceof NewCheckoutAdded) {
+			return convertToSObject((NewCheckoutAdded)input);
 		}
 		else if (input instanceof ProjectUndeleted) {
 			return convertToSObject((ProjectUndeleted)input);
@@ -3588,38 +3621,8 @@ public class SConverter {
 		else if (input instanceof NewUserAdded) {
 			return convertToSObject((NewUserAdded)input);
 		}
-		else if (input instanceof ProjectDeleted) {
-			return convertToSObject((ProjectDeleted)input);
-		}
-		else if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof SettingsSaved) {
-			return convertToSObject((SettingsSaved)input);
-		}
-		else if (input instanceof NewProjectAdded) {
-			return convertToSObject((NewProjectAdded)input);
-		}
-		else if (input instanceof UserUndeleted) {
-			return convertToSObject((UserUndeleted)input);
-		}
 		else if (input instanceof Download) {
 			return convertToSObject((Download)input);
-		}
-		else if (input instanceof UserAddedToProject) {
-			return convertToSObject((UserAddedToProject)input);
-		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
-		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof NewObjectIDMUploaded) {
-			return convertToSObject((NewObjectIDMUploaded)input);
-		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());
@@ -3824,6 +3827,70 @@ public class SConverter {
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
 		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), false, null));
 		result.setParentProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentProjectId(), false, null));
+		return result;
+	}
+
+	public Set<SRevisionBranched> convertToSSetRevisionBranched(Collection<RevisionBranched> input) {
+		Set<SRevisionBranched> result = new HashSet<SRevisionBranched>();
+		for (RevisionBranched o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RevisionBranched> convertFromSSetRevisionBranched(Collection<SRevisionBranched> input, BimDatabaseSession session) {
+		Set<RevisionBranched> result = new HashSet<RevisionBranched>();
+		for (SRevisionBranched o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRevisionBranched> convertToSListRevisionBranched(Collection<RevisionBranched> input) {
+		List<SRevisionBranched> result = new ArrayList<SRevisionBranched>();
+		for (RevisionBranched o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RevisionBranched> convertFromSListRevisionBranched(Collection<SRevisionBranched> input, BimDatabaseSession session) {
+		List<RevisionBranched> result = new ArrayList<RevisionBranched>();
+		for (SRevisionBranched o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRevisionBranched convertToSObject(RevisionBranched input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SRevisionBranched result = new SRevisionBranched();
+		result.setOid(input.getOid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Revision oldrevisionVal = input.getOldrevision();
+		result.setOldrevisionId(oldrevisionVal == null ? -1 : oldrevisionVal.getOid());
+		Revision newrevisionVal = input.getNewrevision();
+		result.setNewrevisionId(newrevisionVal == null ? -1 : newrevisionVal.getOid());
+		return result;
+	}
+
+	public RevisionBranched convertFromSObject(SRevisionBranched input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		RevisionBranched result = LogFactory.eINSTANCE.createRevisionBranched();
+		result.setOid(input.getOid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
+		result.setOldrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getOldrevisionId(), false, null));
+		result.setNewrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getNewrevisionId(), false, null));
 		return result;
 	}
 

@@ -98,6 +98,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");
 		Class.forName("org.bimserver.interfaces.objects.SNewUserAdded");
 		Class.forName("org.bimserver.interfaces.objects.SNewProjectAdded");
+		Class.forName("org.bimserver.interfaces.objects.SRevisionBranched");
 		Class.forName("org.bimserver.interfaces.objects.SNewRevisionAdded");
 		Class.forName("org.bimserver.interfaces.objects.SNewCheckoutAdded");
 		Class.forName("org.bimserver.interfaces.objects.SSettingsSaved");

@@ -101,6 +101,11 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseRevisionBranched(RevisionBranched object) {
+			return createRevisionBranchedAdapter();
+		}
+
+		@Override
 		public Adapter caseNewRevisionAdded(NewRevisionAdded object) {
 			return createNewRevisionAddedAdapter();
 		}
@@ -272,6 +277,20 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNewProjectAddedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.RevisionBranched <em>Revision Branched</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.log.RevisionBranched
+	 * @generated
+	 */
+	public Adapter createRevisionBranchedAdapter() {
 		return null;
 	}
 

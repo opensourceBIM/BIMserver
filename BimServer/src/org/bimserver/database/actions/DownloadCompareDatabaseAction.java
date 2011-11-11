@@ -85,91 +85,89 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 		Project project = getRevisionByRoid(roid1).getProject();
 		Compare compare = new Compare(objectIDM);
 		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1, roid2, compareType, compareIdentifier);
-		if (compareResults == null) {
-			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, actingUoid, null).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, actingUoid, null).execute();
-			if (compareIdentifier == CompareIdentifier.GUID_ID) {
-				compareResults = compare.compareOnGuids(model1, model2, compareType);
-			} else if (compareIdentifier == CompareIdentifier.NAME_ID) {
-				compareResults = compare.compareOnNames(model1, model2, compareType);
-			}
-			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
-			
-			Merger merger = bimServer.getMergerFactory().createMerger(compareIdentifier == CompareIdentifier.GUID_ID ? MergeIdentifier.GUID : MergeIdentifier.NAME);
-			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), false);
+		IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, actingUoid, null).execute();
+		IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, actingUoid, null).execute();
+		if (compareIdentifier == CompareIdentifier.GUID_ID) {
+			compareResults = compare.compareOnGuids(model1, model2, compareType);
+		} else if (compareIdentifier == CompareIdentifier.NAME_ID) {
+			compareResults = compare.compareOnNames(model1, model2, compareType);
+		}
+		bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
+		
+		Merger merger = bimServer.getMergerFactory().createMerger(compareIdentifier == CompareIdentifier.GUID_ID ? MergeIdentifier.GUID : MergeIdentifier.NAME);
+		IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), false);
 
-			Set<Long> added = new HashSet<Long>();
-			Set<Long> modified = new HashSet<Long>();
-			Set<Long> deleted = new HashSet<Long>();
-			
-			for (CompareContainer compareContainer : compareResults.getItems()) {
-				for (CompareItem compareItem : compareContainer.getItems()) {
-					DataObject dataObject = compareItem.getDataObject();
-					if (compareItem instanceof ObjectAdded) {
-						added.add(dataObject.getOid());
-					} else if (compareItem instanceof ObjectModified) {
-						modified.add(dataObject.getOid());
-					} else if (compareItem instanceof ObjectRemoved) {
-						deleted.add(dataObject.getOid());
-					}
+		Set<Long> added = new HashSet<Long>();
+		Set<Long> modified = new HashSet<Long>();
+		Set<Long> deleted = new HashSet<Long>();
+		
+		for (CompareContainer compareContainer : compareResults.getItems()) {
+			for (CompareItem compareItem : compareContainer.getItems()) {
+				DataObject dataObject = compareItem.getDataObject();
+				if (compareItem instanceof ObjectAdded) {
+					added.add(dataObject.getOid());
+				} else if (compareItem instanceof ObjectModified) {
+					modified.add(dataObject.getOid());
+				} else if (compareItem instanceof ObjectRemoved) {
+					deleted.add(dataObject.getOid());
 				}
 			}
-			
-			IfcColourRgb red = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
-			red.setName("red");
-			mergedModel.add(red);
-			red.setRed(0.5);
-			red.setGreen(0.0);
-			red.setBlue(0.0);
+		}
+		
+		IfcColourRgb red = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
+		red.setName("red");
+		mergedModel.add(red);
+		red.setRed(0.5);
+		red.setGreen(0.0);
+		red.setBlue(0.0);
 
-			IfcColourRgb green = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
-			green.setName("green");
-			mergedModel.add(green);
-			green.setRed(0);
-			green.setGreen(0.5);
-			green.setBlue(0);
+		IfcColourRgb green = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
+		green.setName("green");
+		mergedModel.add(green);
+		green.setRed(0);
+		green.setGreen(0.5);
+		green.setBlue(0);
 
-			IfcColourRgb blue = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
-			blue.setName("blue");
-			mergedModel.add(blue);
-			blue.setRed(0);
-			blue.setGreen(0);
-			blue.setBlue(0.5);
-			
-			for (IdEObject idEObject : mergedModel.getValues()) {
-				if (idEObject instanceof IfcProduct) {
-					System.out.println(idEObject.eClass().getName());
-					IfcProduct product = (IfcProduct)idEObject;
-					IfcColourRgb color = null;
-					if (added.contains(product.getOid())) {
-						color = green;
-					} else if (deleted.contains(product.getOid())) {
-						color = red;
-					} else if (modified.contains(product.getOid())) {
-						color = blue;
-					}
-					IfcProductRepresentation representation = product.getRepresentation();
-					if (representation != null) {
-						for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
-							for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
-								for (IfcStyledItem ifcStyledItem : ifcRepresentationItem.getStyledByItem()) {
-									for (IfcPresentationStyleAssignment ifcPresentationStyleAssignment : ifcStyledItem.getStyles()) {
-										for (IfcPresentationStyleSelect ifcPresentationStyleSelect : ifcPresentationStyleAssignment.getStyles()) {
-											if (ifcPresentationStyleSelect instanceof IfcSurfaceStyle) {
-												IfcSurfaceStyle ifcSurfaceStyle = (IfcSurfaceStyle)ifcPresentationStyleSelect;
-												for (IfcSurfaceStyleElementSelect ifcSurfaceStyleElementSelect : ifcSurfaceStyle.getStyles()) {
-													if (ifcSurfaceStyleElementSelect instanceof IfcSurfaceStyleRendering) {
-														IfcSurfaceStyleRendering ifcSurfaceStyleRendering = (IfcSurfaceStyleRendering)ifcSurfaceStyleElementSelect;
-														System.out.println("Changing appearance");
-														if (color != null) {
-															ifcSurfaceStyleRendering.setDiffuseColour(color);
-															ifcSurfaceStyleRendering.setReflectionColour(color);
-															ifcSurfaceStyleRendering.setSpecularColour(color);
-															ifcSurfaceStyleRendering.setSurfaceColour(color);
-															ifcSurfaceStyleRendering.setTransmissionColour(color);
-														} else {
-															ifcSurfaceStyleRendering.setTransparency(0.5);
-														}
+		IfcColourRgb blue = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
+		blue.setName("blue");
+		mergedModel.add(blue);
+		blue.setRed(0);
+		blue.setGreen(0);
+		blue.setBlue(0.5);
+		
+		for (IdEObject idEObject : mergedModel.getValues()) {
+			if (idEObject instanceof IfcProduct) {
+				System.out.println(idEObject.eClass().getName());
+				IfcProduct product = (IfcProduct)idEObject;
+				IfcColourRgb color = null;
+				if (added.contains(product.getOid())) {
+					color = green;
+				} else if (deleted.contains(product.getOid())) {
+					color = red;
+				} else if (modified.contains(product.getOid())) {
+					color = blue;
+				}
+				IfcProductRepresentation representation = product.getRepresentation();
+				if (representation != null) {
+					for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
+						for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
+							for (IfcStyledItem ifcStyledItem : ifcRepresentationItem.getStyledByItem()) {
+								for (IfcPresentationStyleAssignment ifcPresentationStyleAssignment : ifcStyledItem.getStyles()) {
+									for (IfcPresentationStyleSelect ifcPresentationStyleSelect : ifcPresentationStyleAssignment.getStyles()) {
+										if (ifcPresentationStyleSelect instanceof IfcSurfaceStyle) {
+											IfcSurfaceStyle ifcSurfaceStyle = (IfcSurfaceStyle)ifcPresentationStyleSelect;
+											for (IfcSurfaceStyleElementSelect ifcSurfaceStyleElementSelect : ifcSurfaceStyle.getStyles()) {
+												if (ifcSurfaceStyleElementSelect instanceof IfcSurfaceStyleRendering) {
+													IfcSurfaceStyleRendering ifcSurfaceStyleRendering = (IfcSurfaceStyleRendering)ifcSurfaceStyleElementSelect;
+													System.out.println("Changing appearance");
+													if (color != null) {
+														ifcSurfaceStyleRendering.setDiffuseColour(color);
+														ifcSurfaceStyleRendering.setReflectionColour(color);
+														ifcSurfaceStyleRendering.setSpecularColour(color);
+														ifcSurfaceStyleRendering.setSurfaceColour(color);
+														ifcSurfaceStyleRendering.setTransmissionColour(color);
+													} else {
+														ifcSurfaceStyleRendering.setTransparency(0.5);
 													}
 												}
 											}
@@ -181,8 +179,8 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 					}
 				}
 			}
-			return mergedModel;
 		}
+		return mergedModel;
 	}
 
 	public int getProgress() {
