@@ -68,7 +68,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}
-		ObjectIDM ObjectIDM = null;
+		ObjectIDM objectIDM = null;
 		session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
@@ -76,9 +76,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			if (serializer != null) {
 				org.bimserver.models.store.ObjectIDM objectIdm = serializer.getObjectIDM();
 				if (objectIdm != null) {
-					ObjectIDMPlugin ObjectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getClassName());
-					if (ObjectIDMPlugin != null) {
-						ObjectIDM = ObjectIDMPlugin.getObjectIDM();
+					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getClassName());
+					if (objectIDMPlugin != null) {
+						objectIDM = objectIDMPlugin.getObjectIDM();
 					}
 				}
 			}
@@ -93,22 +93,22 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		session = getBimServer().getDatabase().createReadOnlySession();
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_REVISION:
-			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), currentUoid, ObjectIDM);
+			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), currentUoid, objectIDM);
 			break;
 		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid, ObjectIDM);
+			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid, objectIDM);
 			break;
 		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid, ObjectIDM);
+			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid, objectIDM);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.isIncludeAllSubtypes(), currentUoid, ObjectIDM);
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.isIncludeAllSubtypes(), currentUoid, objectIDM);
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid, ObjectIDM);
+			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid, objectIDM);
 			break;
 		case DOWNLOAD_COMPARE:
-			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getCompareIdentifier(), downloadParameters.getCompareType(), currentUoid, ObjectIDM);
+			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getCompareIdentifier(), downloadParameters.getCompareType(), currentUoid, objectIDM);
 			break;
 		}
 	}
