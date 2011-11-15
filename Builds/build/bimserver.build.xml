@@ -19,13 +19,6 @@
 			<fileset file="${buildtargets}/shared/service.desc" />
 			<fileset file="${buildtargets}/shared/notification.desc" />
 		</copy>
-		<copy todir="builds/BuildJar/home" overwrite="true">
-			<fileset file="${defaultsettings}/shared/settings.xml" />
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-
-			<fileset file="${defaultsettings}/shared/ignore.xml" />
-			<fileset file="${defaultsettings}/${target}/ignore.xml" />
-		</copy>
 		<copy file="${buildtargets}/${target}/servertype.txt" todir="builds/BuildJar/www" overwrite="true" />
 		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/context.xml" />
@@ -94,12 +87,6 @@
 			<fileset file="${buildtargets}/shared/notification.proto" />
 			<fileset file="${buildtargets}/shared/service.desc" />
 			<fileset file="${buildtargets}/shared/notification.desc" />
-			
-			<fileset file="${defaultsettings}/shared/settings.xml" />
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-
-			<fileset file="${defaultsettings}/shared/ignore.xml" />
-			<fileset file="${defaultsettings}/${target}/ignore.xml" />
 		</copy>
 
 		<mkdir dir="builds/BuildWar/WEB-INF/logs" />

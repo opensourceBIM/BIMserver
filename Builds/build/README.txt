@@ -1,0 +1,1 @@
+Have a look at http://code.google.com/p/bimserver/wiki/Download for help choosing the right file
