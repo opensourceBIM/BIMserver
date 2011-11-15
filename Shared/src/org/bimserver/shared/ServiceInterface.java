@@ -102,13 +102,10 @@ public interface ServiceInterface {
 	 * @return True when successful, false if not
 	 * @throws ServiceException
 	 */
-	@GET
-	@Path("/login")
-	@Produces({"text/plain"})
 	@WebMethod(action = "login")
 	Boolean login(
-			@QueryParam("username") @WebParam(name = "username", partName = "login.username") String username,
-			@QueryParam("password") @WebParam(name = "password", partName = "login.password") String password) throws ServiceException;
+			@WebParam(name = "username", partName = "login.username") String username,
+			@WebParam(name = "password", partName = "login.password") String password) throws ServiceException;
 
 	/**
 	 * Login with an autologin hash (useful for the "remember-me" functionality in web-interfaces)
