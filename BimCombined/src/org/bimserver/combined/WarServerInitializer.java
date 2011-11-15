@@ -35,7 +35,6 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.web.LoginManager;
 
