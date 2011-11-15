@@ -6,7 +6,6 @@
 				<isset property="target" />
 			</not>
 		</condition>
-		<property name="target" value="combinedwar"/>
 		<delete dir="builds" />
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildWar" />
@@ -25,12 +24,6 @@
 			<fileset file="${buildtargets}/shared/notification.proto" />
 			<fileset file="${buildtargets}/shared/service.desc" />
 			<fileset file="${buildtargets}/shared/notification.desc" />
-			
-			<fileset file="${defaultsettings}/shared/settings.xml" />
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-
-			<fileset file="${defaultsettings}/shared/ignore.xml" />
-			<fileset file="${defaultsettings}/${target}/ignore.xml" />
 		</copy>
 
 		<mkdir dir="builds/BuildWar/WEB-INF/logs" />
@@ -95,7 +88,11 @@
 		<delete dir="builds/BuildWar" failonerror="false" />
 	</target>
 	<target name="Build CombinedJar">
-		<property name="target" value="jar"/>
+		<condition property="target" value="combinedjar">
+			<not>
+				<isset property="target" />
+			</not>
+		</condition>
 		<delete dir="builds"/>
 		<mkdir dir="builds" />
 		<copy todir="builds/BuildJar">
@@ -112,13 +109,6 @@
 			<fileset file="${buildtargets}/shared/notification.proto" />
 			<fileset file="${buildtargets}/shared/service.desc" />
 			<fileset file="${buildtargets}/shared/notification.desc" />
-		</copy>
-		<copy todir="builds/BuildJar/home" overwrite="true">
-			<fileset file="${defaultsettings}/shared/settings.xml" />
-			<fileset file="${defaultsettings}/${target}/settings.xml" />
-
-			<fileset file="${defaultsettings}/shared/ignore.xml" />
-			<fileset file="${defaultsettings}/${target}/ignore.xml" />
 		</copy>
 		<copy file="${buildtargets}/${target}/servertype.txt" todir="builds/BuildJar/www" overwrite="true" />
 		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
@@ -155,7 +145,7 @@
 			<fileset dir="builds/pluginlibs" />
 		</copy>
 		<delete dir="builds/BuildJar/classes" />
-		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander"  includeantruntime="false"/>
+		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander" includeantruntime="false"/>
 		<copy todir="builds/BuildJar/org/bimserver">
 			<fileset dir="../../BimWebServer/expander/org/bimserver">
 				<include name="*.png" />
