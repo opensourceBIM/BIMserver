@@ -79,6 +79,7 @@ public class JarBimWebServer {
 		bimServerConfig.setResourceFetcher(new JarResourceFetcher());
 		bimServerConfig.setStartEmbeddedWebServer(true);
 		bimServerConfig.setPort(port);
+		bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 		bimServer = new BimServer(bimServerConfig);
 	 	try {
 	 		bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
