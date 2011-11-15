@@ -90,7 +90,7 @@ public interface ServiceInterface {
 	 */
 	@GET
 	@Path("/ping")
-	@Produces({"application/xml", "application/json"})
+	@Produces({"text/plain"})
 	@WebMethod(action = "ping")
 	String ping(
 			@QueryParam("in") @WebParam(name = "in", partName = "ping.in") String in) throws ServiceException;
@@ -104,7 +104,7 @@ public interface ServiceInterface {
 	 */
 	@GET
 	@Path("/login")
-	@Produces({"application/xml", "application/json"})
+	@Produces({"text/plain"})
 	@WebMethod(action = "login")
 	Boolean login(
 			@QueryParam("username") @WebParam(name = "username", partName = "login.username") String username,
@@ -191,7 +191,7 @@ public interface ServiceInterface {
 	 */
 	@GET
 	@Path("/download")
-	@Produces({"application/xml", "application/json"})
+	@Produces({"text/plain"})
 	@WebMethod(action = "download")
 	Integer download(
 			@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") Long roid,
@@ -287,9 +287,12 @@ public interface ServiceInterface {
 	 * @return An SDownloadResult containing the serialized data
 	 * @throws ServiceException
 	 */
+	@GET
+	@Path("/getDownloadData")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getDownloadData")
 	SDownloadResult getDownloadData(
-			@WebParam(name = "actionID", partName = "getDownloadData.actionID") Integer actionId) throws ServiceException;
+			@QueryParam("actionId") @WebParam(name = "actionId", partName = "getDownloadData.actionId") Integer actionId) throws ServiceException;
 
 	/**
 	 * Get the current state of a download/checkout

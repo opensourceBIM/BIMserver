@@ -92,7 +92,7 @@ import org.slf4j.LoggerFactory;
  * Main class to start a BIMserver
  */
 public class BimServer {
-	private static final Logger LOGGER = LoggerFactory.getLogger(BimServer.class);
+	private Logger LOGGER;
 
 	private GregorianCalendar serverStartTime;
 	private BimDatabase bimDatabase;
@@ -135,6 +135,8 @@ public class BimServer {
 			}
 
 			fixLogging();
+			
+			LOGGER = LoggerFactory.getLogger(BimServer.class);
 
 			LOGGER.info("Starting BIMserver");
 			if (config.getHomeDir() != null) {
