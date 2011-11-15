@@ -41,7 +41,7 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 					if (attribute.getName().equals("HasOpenings")) {
 						LOGGER.info("Not excluding HasOpening for " + entity.getName());
 						// Exception: http://code.google.com/p/bimserver/issues/detail?id=303
-						// Addition: Léon says this should be done for all types
+						// Addition: Leon says this should be done for all types
 					} else {
 						generalSet.add(new StructuralFeatureIdentifier(entity.getName(), attribute.getName()));
 					}
