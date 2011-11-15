@@ -77,7 +77,7 @@
 		</copy>
 		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
 		<copy todir="builds/BuildWar/">
-			<fileset dir="../../BimWebServer/www" />
+			<fileset dir="../../BimServer/www" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
