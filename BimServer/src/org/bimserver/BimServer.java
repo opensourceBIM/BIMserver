@@ -459,7 +459,7 @@ public class BimServer {
 	}
 
 	private void initHomeDir() throws IOException {
-		String[] filesToCheck = new String[] { "logs", "tmp", "collada.xml", "ignore.xml", "ignoreexceptions", "log4j.xml", "templates" };
+		String[] filesToCheck = new String[] { "logs", "tmp", "log4j.xml", "templates" };
 		if (!config.getHomeDir().exists()) {
 			config.getHomeDir().mkdir();
 		}

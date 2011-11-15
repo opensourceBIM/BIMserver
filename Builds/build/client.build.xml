@@ -11,6 +11,9 @@
 		<antcall target="Shared" />
 		<antcall target="BimServerClientLib"/>
 		<antcall target="Client"/>
+		<copy todir="builds/BuildClient">
+			<fileset file="${buildtargets}/shared/license.txt" />
+		</copy>
 		<copy todir="builds/BuildClient/lib">
 			<fileset dir="builds/lib"></fileset>
 		</copy>

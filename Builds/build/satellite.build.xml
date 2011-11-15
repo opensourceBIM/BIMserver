@@ -5,7 +5,7 @@
 		<delete dir="builds"/>
 		<mkdir dir="builds" />
 		<copy todir="builds/BuildJar">
-			<fileset file="${buildtargets}/shared/gpl.txt" />
+			<fileset file="${buildtargets}/shared/license.txt" />
 		</copy>
 		<mkdir dir="builds/lib" />
 		<mkdir dir="builds/pluginlibs" />
@@ -46,7 +46,7 @@
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildWar" />
 		<copy todir="builds/BuildWar">
-			<fileset file="${buildtargets}/shared/gpl.txt" />
+			<fileset file="${buildtargets}/shared/license.txt" />
 		</copy>
 		<jar destfile="builds/bimserver-satellite-${version}.war" manifest="../../BimWebServer/www/META-INF/MANIFEST.MF">
 			<fileset dir="builds/BuildWar">

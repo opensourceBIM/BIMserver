@@ -130,6 +130,7 @@ public class Session {
 		return -1;
 	}
 
+	@SuppressWarnings("unused")
 	public void loadModel(SRevision revision) {
 		try {
 			List<SDataObject> dataObjects = serviceInterface.getDataObjects(revision.getOid());

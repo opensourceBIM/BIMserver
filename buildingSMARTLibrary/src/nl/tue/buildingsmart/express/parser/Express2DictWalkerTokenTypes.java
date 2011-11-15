@@ -2,7 +2,6 @@
 
     package nl.tue.buildingsmart.express.parser;
 
-import net.sourceforge.osexpress.parser.ExpressParserTokenTypes;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org

@@ -5,7 +5,7 @@
 		<delete dir="builds"/>
 		<mkdir dir="builds" />
 		<copy todir="builds/BuildJar">
-			<fileset file="${buildtargets}/shared/gpl.txt" />
+			<fileset file="${buildtargets}/shared/license.txt" />
 		</copy>
 		<copy todir="builds/BuildJar/www">
 			<fileset dir="../../BimServer/www" />
@@ -73,7 +73,7 @@
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildWar" />
 		<copy todir="builds/BuildWar">
-			<fileset file="${buildtargets}/shared/gpl.txt" />
+			<fileset file="${buildtargets}/shared/license.txt" />
 		</copy>
 		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
 		<copy todir="builds/BuildWar/">

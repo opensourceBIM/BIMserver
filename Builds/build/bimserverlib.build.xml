@@ -7,6 +7,9 @@
 		<copy todir="builds/BuildLib/lib">
 			<fileset dir="builds/lib" />
 		</copy>
+		<copy todir="builds/BuildLib">
+			<fileset file="${buildtargets}/shared/license.txt" />
+		</copy>
 		<copy todir="builds/BuildLib/dep" flatten="true">
 			<fileset dir="../../BimServer/lib">
 				<include name="**/*.jar" />
