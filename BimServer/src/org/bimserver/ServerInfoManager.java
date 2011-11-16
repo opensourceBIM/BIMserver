@@ -20,10 +20,18 @@ package org.bimserver;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.BimDeadlockException;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +58,27 @@ public class ServerInfoManager {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
 			Settings settings = bimServer.getSettingsManager().getSettings();
-			if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty()) {
+			BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+			boolean adminFound = false;
+			try {
+				IfcModel users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
+				for (IdEObject idEObject : users.getValues()) {
+					if (idEObject instanceof User) {
+						User user = (User)idEObject;
+						if (user.getUserType() == UserType.ADMIN) {
+							adminFound = true;
+							break;
+						}
+					}
+				}
+			} catch (BimDatabaseException e) {
+				LOGGER.error("", e);
+			} catch (BimDeadlockException e) {
+				LOGGER.error("", e);
+			} finally {
+				session.close();
+			}
+			if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty() || !adminFound) {
 				setServerState(ServerState.NOT_SETUP);
 			} else {
 				setServerState(ServerState.RUNNING);

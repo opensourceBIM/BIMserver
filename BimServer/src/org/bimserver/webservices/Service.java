@@ -1757,8 +1757,6 @@ public class Service implements ServiceInterface {
 			throw new UserException("Admin Password cannot be empty");
 		}
 
-		bimServer.getServerInfoManager().update();
-
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			new AddUserDatabaseAction(bimServer, session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
@@ -1770,6 +1768,7 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+		bimServer.getServerInfoManager().update();
 	}
 
 	@Override
