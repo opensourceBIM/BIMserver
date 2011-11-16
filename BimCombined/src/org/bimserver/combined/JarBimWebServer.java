@@ -73,6 +73,7 @@ public class JarBimWebServer {
 	}
 
 	public void start(String address, int port, String homedir, String resourceBase) {
+		// Strange hack needed for OSX
 		if (homedir.startsWith("\"") && homedir.endsWith("\"")) {
 			homedir = homedir.substring(1, homedir.length()-2);
 		}
