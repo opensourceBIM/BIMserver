@@ -625,6 +625,10 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 	
+	public void fixOidCounter() {
+		oidCounter = getHighestOid() + 1;
+	}
+	
 	@SuppressWarnings("rawtypes")
 	private void checkDoubleOidsPlusReferences(BiMap<IdEObject, Long> done, IdEObject idEObject) {
 		if (idEObject == null) {

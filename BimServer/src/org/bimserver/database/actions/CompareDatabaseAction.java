@@ -69,8 +69,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 				compareResults = compare.compareOnNames(model1, model2, sCompareType);
 			}
 			bimServer.getCompareCache().storeResults(roid1, roid2, sCompareType, sCompareIdentifier, compareResults);
-			return compareResults;
 		}
-		return null;
+		return compareResults;
 	}
 }

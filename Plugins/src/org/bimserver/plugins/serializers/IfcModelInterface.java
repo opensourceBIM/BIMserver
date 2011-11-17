@@ -72,4 +72,5 @@ public interface IfcModelInterface {
 	boolean contains(long oid);
 	long add(IdEObject eObject);
 	IfcRoot get(String guid);
+	void fixOidCounter();
 }
