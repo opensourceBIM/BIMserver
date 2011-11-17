@@ -696,6 +696,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 							.put("specular", true))))))));
 
 		// Output each geometry instance grouped by material
+		HashSet<String> visitedGeometryIds = new HashSet<String>();
 		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
 			String tagName = ifcObjectType.toLowerCase();
 			JSONArray tagNodes = new JSONArray();
@@ -704,7 +705,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 				.put("tag", tagName)
 				.put("id", tagName)
 				.put("nodes", tagNodes));
-
+			
 			HashMap<String, HashSet<String>> materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
 			for (String materialId : materialGeometryRel.keySet()) {
 				JSONObject materialNode = new JSONObject();
@@ -726,6 +727,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 				JSONArray materialNodes = new JSONArray();
 				materialNode.put("nodes", materialNodes);
 				for (String geometryId : geometryIds) {
+					//Prevent duplicate id's
+					if (visitedGeometryIds.contains(geometryId)) {
+						continue;
+					}
+					visitedGeometryIds.add(geometryId);
 					materialNodes.put(new JSONObject()
 						.put("type", "name")
 						.put("id", geometryId)
@@ -887,16 +893,17 @@ public class SceneJSSerializer extends BimModelSerializer {
 				jsonArray.put(context.getContextIdentifier());
 			}
 		}
+		/* TODO: It doesn't look like there's currently any useful information to be written for units?
 		if (object.getUnitsInContext() != null) {
 			EList<IfcUnit> units = object.getUnitsInContext().getUnits();
 			if (units != null && !units.isEmpty()) {
 				JSONArray jsonArray = new JSONArray();
-				jsonObj.put("Units in Context", jsonArray);
+				jsonObj.put("Units in Context", jsonArray); 
 				for (IfcUnit unit : units) {
 					jsonArray.put(unit.toString());
 				}
 			}
-		}
+		}//*/
 		return jsonObj;
 	}
 
@@ -1311,9 +1318,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 		return jsonArray;
 	}
 	
-	private static String writeLink(IfcRoot root) {
+	private static JSONObject writeLink(IfcRoot root) throws JSONException {
 		// TODO: Might return a JSONObject later (with link name & global id)
-		return root.getGlobalId().getWrappedValue();
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("link", root.getGlobalId().getWrappedValue());
+		return jsonObj;
 	}
 
 	private static String fitNameForQualifiedName(String name) {
