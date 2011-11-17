@@ -38,11 +38,8 @@ import org.bimserver.servlets.ProgressServlet;
 import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.web.LoginManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class JarBimWebServer {
-	private static final Logger LOGGER = LoggerFactory.getLogger(JarBimWebServer.class);
 	private BimServer bimServer;
 
 	public static void main(String[] args) {
@@ -63,13 +60,10 @@ public class JarBimWebServer {
 	}
 
 	public void stop() {
-		LOGGER.info("Stopping server...");
 		try {
 			bimServer.stop();
 		} catch (Exception e) {
-			LOGGER.error("", e);
 		}
-		LOGGER.info("Server stopped successfully");
 	}
 
 	public void start(String address, int port, String homedir, String resourceBase) {
@@ -96,17 +90,17 @@ public class JarBimWebServer {
 		 	embeddedWebServer.getContext().setResourceBase("www");
 			bimServer.start();
 		} catch (PluginException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		} catch (ServerException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		} catch (DatabaseInitException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		} catch (DatabaseRestartRequiredException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		}
-		
+
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
@@ -116,6 +110,5 @@ public class JarBimWebServer {
 				return bimServerClient;
 			}
 		};
-		LOGGER.info("Server started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 	}
 }

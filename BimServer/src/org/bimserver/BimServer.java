@@ -454,9 +454,11 @@ public class BimServer {
 		CustomFileAppender appender = new CustomFileAppender(file);
 		System.out.println("Logging to: " + file.getAbsolutePath());
 		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
+		LogManager.getRootLogger().addAppender(appender);
 		while (currentLoggers.hasMoreElements()) {
 			Object nextElement = currentLoggers.nextElement();
-			((org.apache.log4j.Logger) nextElement).addAppender(appender);
+			org.apache.log4j.Logger logger2 = (org.apache.log4j.Logger) nextElement;
+			logger2.addAppender(appender);
 		}
 	}
 
