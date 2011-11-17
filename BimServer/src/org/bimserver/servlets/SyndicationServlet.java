@@ -197,10 +197,12 @@ public class SyndicationServlet extends HttpServlet {
 		try {
 			List<SCheckout> allCheckoutsOfProject = service.getAllCheckoutsOfProject(poid);
 			for (SCheckout sCheckout : allCheckoutsOfProject) {
+				SRevision revision = service.getRevision(sCheckout.getRevisionId());
+				SProject project = service.getProjectByPoid(sCheckout.getProjectId());
 				SUser user = service.getUserByUoid(sCheckout.getUserId());
 				SyndEntry entry = new SyndEntryImpl();
-				entry.setTitle(user.getUsername());
-				entry.setLink(request.getContextPath() + "/checkout.jsp?pid=" + sProject.getId() + "&cid=" + sCheckout.getOid());
+				entry.setTitle("Checkout on " + project.getName() + ", revision " + revision.getId());
+				entry.setLink(request.getContextPath() + "/project.jsp?poid=" + sProject.getOid());
 				entry.setPublishedDate(sCheckout.getDate());
 				SyndContent description = new SyndContentImpl();
 				description.setType("text/plain");
