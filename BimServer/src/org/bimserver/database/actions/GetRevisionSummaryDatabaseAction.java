@@ -95,8 +95,8 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 			return;
 		}
 		if (!map.containsKey(eClass)) {
-			map.put(eClass, 0);
+			map.put(eClass, count);
 		}
-		map.put(eClass, map.get(eClass) + 1);
+		map.put(eClass, count);
 	}
 }
