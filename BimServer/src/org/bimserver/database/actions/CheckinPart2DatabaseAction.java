@@ -38,9 +38,12 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CheckinPart2DatabaseAction.class);
 	private final IfcModelInterface ifcModel;
 	private final long actingUoid;
 	private final long croid;
@@ -119,6 +122,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				// Let this one slide
 				throw (BimDeadlockException)e;
 			}
+			LOGGER.error("", e);
 			for (Revision revision : concreteRevision.getRevisions()) {
 				revision.setState(CheckinState.ERROR);
 				revision.setLastError(e.getMessage());
