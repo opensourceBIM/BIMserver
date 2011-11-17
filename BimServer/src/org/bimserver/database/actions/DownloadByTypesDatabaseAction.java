@@ -71,9 +71,11 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)Ifc2x3Package.eINSTANCE.getEClassifier(className)));
 			}
 		}
+		String name = "";
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
+			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
@@ -92,7 +94,10 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 			ifcModel.setDate(virtualRevision.getDate());
 		}
 		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
-		ifcModel.setName("Unknown");
+		if (name.endsWith("-")) {
+			name = name.substring(0, name.length()-1);
+		}
+		ifcModel.setName(name);
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());
