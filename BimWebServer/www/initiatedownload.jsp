@@ -99,6 +99,7 @@
 </script>
 <%
 	} catch (Exception e) {
+		out.println(e.getMessage());
 		LoggerFactory.getLogger("initiatedownload.jsp").error("", e);
 	}
 %>

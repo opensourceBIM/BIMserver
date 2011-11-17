@@ -39,8 +39,11 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EmfSerializerFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializerFactory.class);
 	private PluginManager pluginManager;
 	private BimDatabase bimDatabase;
 
@@ -65,35 +68,42 @@ public class EmfSerializerFactory {
 		return descriptors;
 	}
 
-	public EmfSerializer create(Project project, User user, IfcModelInterface model, DownloadParameters downloadParameters) throws SerializerException {
+	public EmfSerializer get(String name) {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(found.getClassName(), true);
 				if (serializerPlugin != null) {
 					EmfSerializer serializer = serializerPlugin.createSerializer();
-					ProjectInfo projectInfo = new ProjectInfo();
-					projectInfo.setName(project.getName());
-					projectInfo.setDescription(project.getDescription());
-					projectInfo.setX(project.getGeoTag().getX());
-					projectInfo.setY(project.getGeoTag().getY());
-					projectInfo.setZ(project.getGeoTag().getZ());
-					projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
-					projectInfo.setAuthorName(user.getName());
-					serializer.init(model, projectInfo, pluginManager);
 					return serializer;
 				}
 			}
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
 		return null;
+	}
+	
+	public EmfSerializer create(Project project, User user, IfcModelInterface model, DownloadParameters downloadParameters) throws SerializerException {
+		EmfSerializer serializer = get(downloadParameters.getSerializerName());
+		if (serializer != null) {
+			ProjectInfo projectInfo = new ProjectInfo();
+			projectInfo.setName(project.getName());
+			projectInfo.setDescription(project.getDescription());
+			projectInfo.setX(project.getGeoTag().getX());
+			projectInfo.setY(project.getGeoTag().getY());
+			projectInfo.setZ(project.getGeoTag().getZ());
+			projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
+			projectInfo.setAuthorName(user.getName());
+			serializer.init(model, projectInfo, pluginManager);
+		}
+		return serializer;
 	}
 
 	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {
@@ -119,9 +129,9 @@ public class EmfSerializerFactory {
 				return found.getExtension();
 			}
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
