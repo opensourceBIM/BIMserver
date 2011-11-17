@@ -696,7 +696,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 							.put("specular", true))))))));
 
 		// Output each geometry instance grouped by material
-		HashSet<String> visitedGeometryIds = new HashSet<String>();
+		HashSet<String> visitedNameIds = new HashSet<String>();
 		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
 			String tagName = ifcObjectType.toLowerCase();
 			JSONArray tagNodes = new JSONArray();
@@ -728,13 +728,18 @@ public class SceneJSSerializer extends BimModelSerializer {
 				materialNode.put("nodes", materialNodes);
 				for (String geometryId : geometryIds) {
 					//Prevent duplicate id's
-					if (visitedGeometryIds.contains(geometryId)) {
-						continue;
+					String nameId = geometryId;
+					if (visitedNameIds.contains(nameId)) {
+						int n = 0;
+						while (visitedNameIds.contains(nameId + "--" + Integer.toString(n))) {
+							++n;
+						}
+						nameId = nameId + "--" + Integer.toString(n);
 					}
-					visitedGeometryIds.add(geometryId);
+					visitedNameIds.add(nameId);
 					materialNodes.put(new JSONObject()
 						.put("type", "name")
-						.put("id", geometryId)
+						.put("id", nameId)
 						.put("nodes", new JSONArray().put(new JSONObject() 
 							.put("type", "geometry")
 							.put("coreId", geometryId))));
