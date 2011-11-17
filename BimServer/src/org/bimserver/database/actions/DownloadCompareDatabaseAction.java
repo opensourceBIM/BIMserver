@@ -30,7 +30,10 @@ import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.merging.Merger;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
+import org.bimserver.models.ifc2x3.IfcCharacterStyleSelect;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
+import org.bimserver.models.ifc2x3.IfcCurveStyle;
+import org.bimserver.models.ifc2x3.IfcFillAreaStyle;
 import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
 import org.bimserver.models.ifc2x3.IfcProduct;
@@ -41,6 +44,9 @@ import org.bimserver.models.ifc2x3.IfcStyledItem;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
+import org.bimserver.models.ifc2x3.IfcSymbolStyle;
+import org.bimserver.models.ifc2x3.IfcTextStyle;
+import org.bimserver.models.ifc2x3.IfcTextStyleForDefinedFont;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareIdentifier;
@@ -56,6 +62,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.common.util.EList;
 
 public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
@@ -68,7 +75,8 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final CompareType compareType;
 	private final CompareIdentifier compareIdentifier;
 
-	public DownloadCompareDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, CompareIdentifier compareIdentifier, CompareType compareType, long actingUoid, ObjectIDM objectIDM) {
+	public DownloadCompareDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids,
+			CompareIdentifier compareIdentifier, CompareType compareType, long actingUoid, ObjectIDM objectIDM) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		Iterator<Long> iterator = roids.iterator();
@@ -84,7 +92,9 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Project project = getRevisionByRoid(roid1).getProject();
 		Compare compare = new Compare(objectIDM);
-		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1, roid2, compareType, compareIdentifier);
+		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
+											// roid2, compareType,
+											// compareIdentifier);
 		IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, actingUoid, null).execute();
 		IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, actingUoid, null).execute();
 		if (compareIdentifier == CompareIdentifier.GUID_ID) {
@@ -93,14 +103,14 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 			compareResults = compare.compareOnNames(model1, model2, compareType);
 		}
 		bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
-		
+
 		Merger merger = bimServer.getMergerFactory().createMerger(compareIdentifier == CompareIdentifier.GUID_ID ? MergeIdentifier.GUID : MergeIdentifier.NAME);
 		IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), false);
 
 		Set<Long> added = new HashSet<Long>();
 		Set<Long> modified = new HashSet<Long>();
 		Set<Long> deleted = new HashSet<Long>();
-		
+
 		for (CompareContainer compareContainer : compareResults.getItems()) {
 			for (CompareItem compareItem : compareContainer.getItems()) {
 				DataObject dataObject = compareItem.getDataObject();
@@ -113,7 +123,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 				}
 			}
 		}
-		
+
 		IfcColourRgb red = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
 		red.setName("red");
 		mergedModel.add(red);
@@ -134,11 +144,11 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 		blue.setRed(0);
 		blue.setGreen(0);
 		blue.setBlue(0.5);
-		
+
+		HashSet<IdEObject> newObjects = new HashSet<IdEObject>();
 		for (IdEObject idEObject : mergedModel.getValues()) {
 			if (idEObject instanceof IfcProduct) {
-				System.out.println(idEObject.eClass().getName());
-				IfcProduct product = (IfcProduct)idEObject;
+				IfcProduct product = (IfcProduct) idEObject;
 				IfcColourRgb color = null;
 				if (added.contains(product.getOid())) {
 					color = green;
@@ -147,29 +157,82 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 				} else if (modified.contains(product.getOid())) {
 					color = blue;
 				}
-				IfcProductRepresentation representation = product.getRepresentation();
-				if (representation != null) {
-					for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
-						for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
-							for (IfcStyledItem ifcStyledItem : ifcRepresentationItem.getStyledByItem()) {
-								for (IfcPresentationStyleAssignment ifcPresentationStyleAssignment : ifcStyledItem.getStyles()) {
-									for (IfcPresentationStyleSelect ifcPresentationStyleSelect : ifcPresentationStyleAssignment.getStyles()) {
-										if (ifcPresentationStyleSelect instanceof IfcSurfaceStyle) {
-											IfcSurfaceStyle ifcSurfaceStyle = (IfcSurfaceStyle)ifcPresentationStyleSelect;
-											for (IfcSurfaceStyleElementSelect ifcSurfaceStyleElementSelect : ifcSurfaceStyle.getStyles()) {
-												if (ifcSurfaceStyleElementSelect instanceof IfcSurfaceStyleRendering) {
-													IfcSurfaceStyleRendering ifcSurfaceStyleRendering = (IfcSurfaceStyleRendering)ifcSurfaceStyleElementSelect;
-													System.out.println("Changing appearance");
-													if (color != null) {
-														ifcSurfaceStyleRendering.setDiffuseColour(color);
-														ifcSurfaceStyleRendering.setReflectionColour(color);
-														ifcSurfaceStyleRendering.setSpecularColour(color);
-														ifcSurfaceStyleRendering.setSurfaceColour(color);
-														ifcSurfaceStyleRendering.setTransmissionColour(color);
-													} else {
-														ifcSurfaceStyleRendering.setTransparency(0.5);
+				setColor(mergedModel, newObjects, product, color);
+			}
+		}
+		mergedModel.fixOidCounter();
+		for (IdEObject newObject : newObjects) {
+			mergedModel.add(newObject);
+		}
+		return mergedModel;
+	}
+
+	private void setColor(IfcModelInterface model, Set<IdEObject> newObjects, IfcProduct product, IfcColourRgb color) {
+		IfcProductRepresentation representation = product.getRepresentation();
+		if (representation != null) {
+			EList<IfcRepresentation> representations = representation.getRepresentations();
+			for (IfcRepresentation ifcRepresentation : representations) {
+				EList<IfcRepresentationItem> representationItems = ifcRepresentation.getItems();
+				for (IfcRepresentationItem ifcRepresentationItem : representationItems) {
+					EList<IfcStyledItem> styledByItems = ifcRepresentationItem.getStyledByItem();
+					if (styledByItems.isEmpty()) {
+						createStyledByItems(model, newObjects, ifcRepresentationItem, color);
+					} else {
+						for (IfcStyledItem ifcStyledItem : styledByItems) {
+							EList<IfcPresentationStyleAssignment> styledItemStyles = ifcStyledItem.getStyles();
+							if (styledItemStyles.isEmpty()) {
+								createStyledItemStyles(model, newObjects, ifcRepresentationItem, ifcStyledItem, color);
+							} else {
+								for (IfcPresentationStyleAssignment ifcPresentationStyleAssignment : styledItemStyles) {
+									EList<IfcPresentationStyleSelect> presentationStyleAssignmentStyles = ifcPresentationStyleAssignment.getStyles();
+									if (presentationStyleAssignmentStyles.isEmpty()) {
+										createPresentationStyleAssignmentStyles(model, newObjects, ifcRepresentationItem, ifcPresentationStyleAssignment, color);
+									} else {
+										for (IfcPresentationStyleSelect ifcPresentationStyleSelect : presentationStyleAssignmentStyles) {
+											if (ifcPresentationStyleSelect instanceof IfcSurfaceStyle) {
+												IfcSurfaceStyle ifcSurfaceStyle = (IfcSurfaceStyle) ifcPresentationStyleSelect;
+												EList<IfcSurfaceStyleElementSelect> surfaceStyleStyles = ifcSurfaceStyle.getStyles();
+												if (surfaceStyleStyles.isEmpty()) {
+													createSurfaceStyleStyles(model, newObjects, ifcRepresentationItem, ifcSurfaceStyle, color);
+												} else {
+													boolean renderingFound = false;
+													for (IfcSurfaceStyleElementSelect ifcSurfaceStyleElementSelect : surfaceStyleStyles) {
+														if (ifcSurfaceStyleElementSelect instanceof IfcSurfaceStyleRendering) {
+															renderingFound = true;
+															IfcSurfaceStyleRendering ifcSurfaceStyleRendering = (IfcSurfaceStyleRendering) ifcSurfaceStyleElementSelect;
+															if (color != null) {
+																ifcSurfaceStyleRendering.setDiffuseColour(color);
+																ifcSurfaceStyleRendering.setReflectionColour(color);
+																ifcSurfaceStyleRendering.setSpecularColour(color);
+																ifcSurfaceStyleRendering.setSurfaceColour(color);
+																ifcSurfaceStyleRendering.setTransmissionColour(color);
+															} else {
+																ifcSurfaceStyleRendering.setTransparency(0.5);
+															}
+														}
+													}
+													if (!renderingFound) {
+														createSurfaceStyleStyles(model, newObjects, ifcRepresentationItem, ifcSurfaceStyle, color);
 													}
 												}
+											} else if (ifcPresentationStyleSelect instanceof IfcTextStyle) {
+												IfcTextStyle ifcTextStyle = (IfcTextStyle)ifcPresentationStyleSelect;
+												IfcCharacterStyleSelect textCharacterAppearance = ifcTextStyle.getTextCharacterAppearance();
+												if (textCharacterAppearance instanceof IfcTextStyleForDefinedFont) {
+													// IfcTextStyleForDefinedFont is the only subclass of IfcCharacterStyleSelect
+													IfcTextStyleForDefinedFont ifcTextStyleForDefinedFont = (IfcTextStyleForDefinedFont)textCharacterAppearance;
+													ifcTextStyleForDefinedFont.setColour(color);
+												}
+											} else if (ifcPresentationStyleSelect instanceof IfcCurveStyle) {
+												IfcCurveStyle ifcCurveStyle = (IfcCurveStyle)ifcPresentationStyleSelect;
+												ifcCurveStyle.setCurveColour(color);
+											} else if (ifcPresentationStyleSelect instanceof IfcFillAreaStyle) {
+												IfcFillAreaStyle ifcFillAreaStyle = (IfcFillAreaStyle)ifcPresentationStyleSelect;
+												ifcFillAreaStyle.getFillStyles().clear();
+												ifcFillAreaStyle.getFillStyles().add(color);
+											} else if (ifcPresentationStyleSelect instanceof IfcSymbolStyle) {
+												IfcSymbolStyle ifcSymbolStyle = (IfcSymbolStyle)ifcPresentationStyleSelect;
+												ifcSymbolStyle.setStyleOfSymbol(color);
 											}
 										}
 									}
@@ -180,7 +243,43 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 				}
 			}
 		}
-		return mergedModel;
+	}
+
+	private void createSurfaceStyleStyles(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcSurfaceStyle ifcSurfaceStyle, IfcColourRgb color) {
+		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = Ifc2x3Factory.eINSTANCE.createIfcSurfaceStyleRendering();
+		newObjects.add(ifcSurfaceStyleRendering);
+		ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
+		if (color != null) {
+			ifcSurfaceStyleRendering.setDiffuseColour(color);
+			ifcSurfaceStyleRendering.setReflectionColour(color);
+			ifcSurfaceStyleRendering.setSpecularColour(color);
+			ifcSurfaceStyleRendering.setSurfaceColour(color);
+			ifcSurfaceStyleRendering.setTransmissionColour(color);
+		} else {
+			ifcSurfaceStyleRendering.setTransparency(0.5);
+		}
+	}
+
+	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcPresentationStyleAssignment ifcPresentationStyleAssignment, IfcColourRgb color) {
+		IfcSurfaceStyle ifcPresentationStyleSelect = Ifc2x3Factory.eINSTANCE.createIfcSurfaceStyle();
+		// TODO could have to be something else, based on ifcRepresentationItem
+		newObjects.add(ifcPresentationStyleSelect);
+		ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
+		createSurfaceStyleStyles(model, newObjects, ifcRepresentationItem, ifcPresentationStyleSelect, color);
+	}
+
+	private void createStyledByItems(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcColourRgb color) {
+		IfcStyledItem ifcStyledItem = Ifc2x3Factory.eINSTANCE.createIfcStyledItem();
+		newObjects.add(ifcStyledItem);
+		ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
+		createStyledItemStyles(model, newObjects, ifcRepresentationItem, ifcStyledItem, color);
+	}
+
+	private void createStyledItemStyles(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcStyledItem ifcStyledItem, IfcColourRgb color) {
+		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = Ifc2x3Factory.eINSTANCE.createIfcPresentationStyleAssignment();
+		newObjects.add(ifcPresentationStyleAssignment);
+		ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
+		createPresentationStyleAssignmentStyles(model, newObjects, ifcRepresentationItem, ifcPresentationStyleAssignment, color);
 	}
 
 	public int getProgress() {

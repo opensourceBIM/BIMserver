@@ -124,8 +124,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				} else {
 					throw new DeserializeException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.error("", e);
 			}
 		} else {
 			return read(in, setOids, fileSize);
