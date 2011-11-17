@@ -935,7 +935,8 @@
 	<script>
 	$(document).ready(function(){
 		$('button[value="Download"]').click(function(event){
-			var progressDiv = $("<div>");
+			var progressDiv = $("<div class=\"progressdiv\">");
+			$(".progressdiv").remove();
 			$(this).parent().append(progressDiv);
 			var downloadframe = $(event.target).parent().parent();
 			var roid = downloadframe.find('input[name="roid"]');
@@ -953,7 +954,8 @@
 			}
 		});
 		$('button[value="Checkout"]').click(function(){
-			var progressDiv = $("<div>");
+			var progressDiv = $("<div class=\"progressdiv\">");
+			$(".progressdiv").remove();
 			$(this).parent().append(progressDiv);
 			var downloadframe = $(event.target).parent().parent();
 			var roid = downloadframe.find('input[name="roid"]');
@@ -984,75 +986,54 @@
 			$("#compareajaxloader").show();
 		});
 		$("#browserajaxlink").click(function() {
-												$("#browserajaxloader").show();
-												$("#browser")
-														.load(
-																"browser.jsp?roid=<%=lastRevision.getOid()%>");
-											});
-							$(".commentbox div").css("height", "18px");
-							$(".commentbox div").css("width", "200px");
-							$(".commentbox div").css("overflow", "hidden");
-							$(".commentbox div").each(function(index, element) {
-								if ($(element).attr("scrollHeight") == 18) {
-									$(element).parent().children("a").hide();
-								}
-							});
-							$(".commentbox .morelink").click(
-									function(event) {
-										$(event.target).parent()
-												.children("div").css("height",
-														"auto");
-										$(event.target).parent()
-												.children("div").css(
-														"overflow", "visible");
-										$(event.target).hide();
-										return false;
-									});
+			$("#browserajaxloader").show();
+			$("#browser").load("browser.jsp?roid=<%=lastRevision.getOid()%>");
+		});
+		$(".commentbox div").css("height", "18px");
+		$(".commentbox div").css("width", "200px");
+		$(".commentbox div").css("overflow", "hidden");
+		$(".commentbox div").each(function(index, element) {
+			if ($(element).attr("scrollHeight") == 18) {
+				$(element).parent().children("a").hide();
+			}
+		});
+		$(".commentbox .morelink").click(
+			function(event) {
+				$(event.target).parent().children("div").css("height", "auto");
+				$(event.target).parent().children("div").css("overflow", "visible");
+				$(event.target).hide();
+				return false;
+			});
 
-							var checkDetailsCheckoutButton = function() {
-								$("#detailscheckoutbutton")
-										.attr(
-												"disabled",
-												$(
-														"#detailsdownloadcheckoutselect")
-														.val() != "Ifc2x3"
-														&& $(
-																"#detailsdownloadcheckoutselect")
-																.val() != "IfcXML");
-							};
-							// Crappy MS browser does not understand change
-							if (!$.browser.msie) {
-								$("#detailsdownloadcheckoutselect").change(
-										checkDetailsCheckoutButton);
-							}
-							checkDetailsCheckoutButton();
+		var checkDetailsCheckoutButton = function() {
+			$("#detailscheckoutbutton").attr("disabled", $("#detailsdownloadcheckoutselect").val() != "Ifc2x3" && $("#detailsdownloadcheckoutselect").val() != "IfcXML");
+		};
+		
+		// Crappy MS browser does not understand change
+		if (!$.browser.msie) {
+			$("#detailsdownloadcheckoutselect").change(checkDetailsCheckoutButton);
+		}
+		checkDetailsCheckoutButton();
 
-							var checkRevisionsCheckoutButton = function(event) {
-								$(event.target)
-										.parent()
-										.children(
-	".revisionscheckoutbutton")
-									.attr(
-											"disabled",
-											$(event.target).val() != "Ifc2x3"
-													&& $(event.target).val() != "IfcXML");
-						};
-						// Crappy MS browser does not understand change
-						if (!$.browser.msie) {
-							$(".revisionsdownloadcheckoutselect").change(
-								checkRevisionsCheckoutButton);
-						}
-
-						$("#browserlink")
-								.click(
-										function() {
-											showOverlay("Browser",
-													"browser.jsp?roid=<%=project.getLastRevisionId()%>");
-											return false;
-										});
-
-						updateTreeSelectListeners();
-					});
+		var checkRevisionsCheckoutButton = function(event) {
+			$(event.target).parent().parent().find(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "Ifc2x3" && $(event.target).val() != "IfcXML");
+		};
+		
+		// Crappy MS browser does not understand change
+		if (!$.browser.msie) {
+			$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
+		}
+		
+		$(".revisionsdownloadcheckoutselect").each(function(){
+			$(this).parent().parent().find(".revisionscheckoutbutton").attr("disabled", $(this).val() != "Ifc2x3" && $(this).val() != "IfcXML");
+		});
+		
+		$("#browserlink").click(function() {
+			showOverlay("Browser", "browser.jsp?roid=<%=project.getLastRevisionId()%>");
+			return false;
+		});
+		updateTreeSelectListeners();
+	});
 
 	function setOffSupers(baseName, pid) {
 		var project = projects["project" + pid];

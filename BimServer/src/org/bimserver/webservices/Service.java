@@ -208,6 +208,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.shared.CompareWriter;
@@ -332,15 +333,10 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer checkout(Long roid, String serializerName, Boolean sync) throws ServiceException {
 		requireAuthenticationAndRunningServer();
-		// TODO
-		// ResultType serializerDescriptor =
-		// EmfSerializerFactory.getInstance().getResultType(resultTypeName);
-		// if (serializerDescriptor.getSerializerClass() !=
-		// IfcStepSerializer.class && serializerDescriptor.getSerializerClass()
-		// != IfcXmlSerializer.class) {
-		// throw new
-		// UserException("Only IFC or IFCXML allowed when checking out");
-		// }
+		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerName);
+		if (!serializer.getClass().getSimpleName().equals("IfcStepSerializer") && !serializer.getClass().getSimpleName().equals("IfcXmlSerializer")) {
+			throw new UserException("Only IFC or IFCXML allowed when checking out");
+		}
 		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerName);
 		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, downloadParameters, currentUoid, accessMethod);
 		try {
