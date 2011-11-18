@@ -134,6 +134,9 @@ public class IfcModel implements IfcModelInterface {
 
 	public void buildGuidIndex() {
 		guidIndex = new HashMap<EClass, Map<String,IdEObject>>();
+		if (objects.isEmpty()) {
+			return;
+		}
 		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
@@ -277,7 +280,11 @@ public class IfcModel implements IfcModelInterface {
 		if (guidIndex == null) {
 			buildGuidIndex();
 		}
-		return guidIndex.get(eClass).keySet();
+		Map<String, IdEObject> map = guidIndex.get(eClass);
+		if (map == null) {
+			return new HashSet<String>();
+		}
+		return map.keySet();
 	}
 
 	public Set<String> getNames(EClass eClass) {
@@ -298,7 +305,11 @@ public class IfcModel implements IfcModelInterface {
 		if (guidIndex == null) {
 			indexGuids();
 		}
-		return guidIndex.get(eClass).get(guid);
+		Map<String, IdEObject> map = guidIndex.get(eClass);
+		if (map == null) {
+			return null;
+		}
+		return map.get(guid);
 	}
 
 	public long size() {

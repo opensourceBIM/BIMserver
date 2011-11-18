@@ -176,24 +176,25 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 				for (IfcRepresentationItem ifcRepresentationItem : representationItems) {
 					EList<IfcStyledItem> styledByItems = ifcRepresentationItem.getStyledByItem();
 					if (styledByItems.isEmpty()) {
-						createStyledByItems(model, newObjects, ifcRepresentationItem, color);
+						createStyledByItems(model, newObjects, ifcRepresentationItem, ifcRepresentation.getRepresentationIdentifier(), color);
 					} else {
 						for (IfcStyledItem ifcStyledItem : styledByItems) {
 							EList<IfcPresentationStyleAssignment> styledItemStyles = ifcStyledItem.getStyles();
 							if (styledItemStyles.isEmpty()) {
-								createStyledItemStyles(model, newObjects, ifcRepresentationItem, ifcStyledItem, color);
+								createStyledItemStyles(model, newObjects, ifcRepresentation.getRepresentationIdentifier(), ifcStyledItem, color);
 							} else {
 								for (IfcPresentationStyleAssignment ifcPresentationStyleAssignment : styledItemStyles) {
 									EList<IfcPresentationStyleSelect> presentationStyleAssignmentStyles = ifcPresentationStyleAssignment.getStyles();
 									if (presentationStyleAssignmentStyles.isEmpty()) {
-										createPresentationStyleAssignmentStyles(model, newObjects, ifcRepresentationItem, ifcPresentationStyleAssignment, color);
+										createPresentationStyleAssignmentStyles(model, newObjects, ifcRepresentation.getRepresentationIdentifier(), ifcPresentationStyleAssignment,
+												color);
 									} else {
 										for (IfcPresentationStyleSelect ifcPresentationStyleSelect : presentationStyleAssignmentStyles) {
 											if (ifcPresentationStyleSelect instanceof IfcSurfaceStyle) {
 												IfcSurfaceStyle ifcSurfaceStyle = (IfcSurfaceStyle) ifcPresentationStyleSelect;
 												EList<IfcSurfaceStyleElementSelect> surfaceStyleStyles = ifcSurfaceStyle.getStyles();
 												if (surfaceStyleStyles.isEmpty()) {
-													createSurfaceStyleStyles(model, newObjects, ifcRepresentationItem, ifcSurfaceStyle, color);
+													createSurfaceStyleStyles(model, newObjects, ifcRepresentation.getRepresentationIdentifier(), ifcSurfaceStyle, color);
 												} else {
 													boolean renderingFound = false;
 													for (IfcSurfaceStyleElementSelect ifcSurfaceStyleElementSelect : surfaceStyleStyles) {
@@ -212,26 +213,28 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 														}
 													}
 													if (!renderingFound) {
-														createSurfaceStyleStyles(model, newObjects, ifcRepresentationItem, ifcSurfaceStyle, color);
+														createSurfaceStyleStyles(model, newObjects, ifcRepresentation.getRepresentationIdentifier(), ifcSurfaceStyle, color);
 													}
 												}
 											} else if (ifcPresentationStyleSelect instanceof IfcTextStyle) {
-												IfcTextStyle ifcTextStyle = (IfcTextStyle)ifcPresentationStyleSelect;
+												IfcTextStyle ifcTextStyle = (IfcTextStyle) ifcPresentationStyleSelect;
 												IfcCharacterStyleSelect textCharacterAppearance = ifcTextStyle.getTextCharacterAppearance();
 												if (textCharacterAppearance instanceof IfcTextStyleForDefinedFont) {
-													// IfcTextStyleForDefinedFont is the only subclass of IfcCharacterStyleSelect
-													IfcTextStyleForDefinedFont ifcTextStyleForDefinedFont = (IfcTextStyleForDefinedFont)textCharacterAppearance;
+													// IfcTextStyleForDefinedFont
+													// is the only subclass of
+													// IfcCharacterStyleSelect
+													IfcTextStyleForDefinedFont ifcTextStyleForDefinedFont = (IfcTextStyleForDefinedFont) textCharacterAppearance;
 													ifcTextStyleForDefinedFont.setColour(color);
 												}
 											} else if (ifcPresentationStyleSelect instanceof IfcCurveStyle) {
-												IfcCurveStyle ifcCurveStyle = (IfcCurveStyle)ifcPresentationStyleSelect;
+												IfcCurveStyle ifcCurveStyle = (IfcCurveStyle) ifcPresentationStyleSelect;
 												ifcCurveStyle.setCurveColour(color);
 											} else if (ifcPresentationStyleSelect instanceof IfcFillAreaStyle) {
-												IfcFillAreaStyle ifcFillAreaStyle = (IfcFillAreaStyle)ifcPresentationStyleSelect;
+												IfcFillAreaStyle ifcFillAreaStyle = (IfcFillAreaStyle) ifcPresentationStyleSelect;
 												ifcFillAreaStyle.getFillStyles().clear();
 												ifcFillAreaStyle.getFillStyles().add(color);
 											} else if (ifcPresentationStyleSelect instanceof IfcSymbolStyle) {
-												IfcSymbolStyle ifcSymbolStyle = (IfcSymbolStyle)ifcPresentationStyleSelect;
+												IfcSymbolStyle ifcSymbolStyle = (IfcSymbolStyle) ifcPresentationStyleSelect;
 												ifcSymbolStyle.setStyleOfSymbol(color);
 											}
 										}
@@ -245,7 +248,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 		}
 	}
 
-	private void createSurfaceStyleStyles(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcSurfaceStyle ifcSurfaceStyle, IfcColourRgb color) {
+	private void createSurfaceStyleStyles(IfcModelInterface model, Set<IdEObject> newObjects, String representationIdentifier, IfcSurfaceStyle ifcSurfaceStyle, IfcColourRgb color) {
 		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = Ifc2x3Factory.eINSTANCE.createIfcSurfaceStyleRendering();
 		newObjects.add(ifcSurfaceStyleRendering);
 		ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
@@ -260,26 +263,31 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 		}
 	}
 
-	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcPresentationStyleAssignment ifcPresentationStyleAssignment, IfcColourRgb color) {
-		IfcSurfaceStyle ifcPresentationStyleSelect = Ifc2x3Factory.eINSTANCE.createIfcSurfaceStyle();
-		// TODO could have to be something else, based on ifcRepresentationItem
-		newObjects.add(ifcPresentationStyleSelect);
-		ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
-		createSurfaceStyleStyles(model, newObjects, ifcRepresentationItem, ifcPresentationStyleSelect, color);
+	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, Set<IdEObject> newObjects, String representationIdentifier,
+			IfcPresentationStyleAssignment ifcPresentationStyleAssignment, IfcColourRgb color) {
+		if (representationIdentifier.equals("Body")) {
+			IfcSurfaceStyle ifcPresentationStyleSelect = Ifc2x3Factory.eINSTANCE.createIfcSurfaceStyle();
+			newObjects.add(ifcPresentationStyleSelect);
+			ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
+			createSurfaceStyleStyles(model, newObjects, representationIdentifier, ifcPresentationStyleSelect, color);
+		} else {
+			// Unimplemented
+		}
 	}
 
-	private void createStyledByItems(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcColourRgb color) {
+	private void createStyledByItems(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, String representationIdentifier,
+			IfcColourRgb color) {
 		IfcStyledItem ifcStyledItem = Ifc2x3Factory.eINSTANCE.createIfcStyledItem();
 		newObjects.add(ifcStyledItem);
 		ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
-		createStyledItemStyles(model, newObjects, ifcRepresentationItem, ifcStyledItem, color);
+		createStyledItemStyles(model, newObjects, representationIdentifier, ifcStyledItem, color);
 	}
 
-	private void createStyledItemStyles(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, IfcStyledItem ifcStyledItem, IfcColourRgb color) {
+	private void createStyledItemStyles(IfcModelInterface model, Set<IdEObject> newObjects, String representationIdentifier, IfcStyledItem ifcStyledItem, IfcColourRgb color) {
 		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = Ifc2x3Factory.eINSTANCE.createIfcPresentationStyleAssignment();
 		newObjects.add(ifcPresentationStyleAssignment);
 		ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
-		createPresentationStyleAssignmentStyles(model, newObjects, ifcRepresentationItem, ifcPresentationStyleAssignment, color);
+		createPresentationStyleAssignmentStyles(model, newObjects, representationIdentifier, ifcPresentationStyleAssignment, color);
 	}
 
 	public int getProgress() {
