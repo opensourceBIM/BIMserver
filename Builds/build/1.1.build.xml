@@ -14,7 +14,7 @@
 
 	<property name="version" value="1.1beta-${builddate}"/>
 
-	<target name="nightlybuild">
+	<target name="beta1.1">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/1.1beta/${version}" />
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="README.txt" />
