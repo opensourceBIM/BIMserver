@@ -16,7 +16,7 @@
 
 	<target name="beta1.1">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/1.1beta/${version}" />
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/beta/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1beta/${version}">
 			<fileset file="README.txt" />
 		</ftp>
 		
