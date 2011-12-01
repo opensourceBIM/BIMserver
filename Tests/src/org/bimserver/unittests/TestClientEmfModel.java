@@ -21,6 +21,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import javax.activation.DataHandler;
@@ -36,6 +37,9 @@ import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SRevisionSummary;
+import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
+import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.models.ifc2x3.IfcApplication;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
@@ -127,7 +131,7 @@ public class TestClientEmfModel {
 	@Test
 	public void test() {
 		bimServerClient = new BimServerClient(bimServer.getPluginManager());
-//		bimServerClient.connectSoap("http://localhost:8082/soap");
+		// bimServerClient.connectSoap("http://localhost:8082/soap");
 		try {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
@@ -135,13 +139,23 @@ public class TestClientEmfModel {
 		} catch (ConnectionException e1) {
 			e1.printStackTrace();
 		}
-//		bimServerClient.connectDirect(bimServer.getSystemService());
+		// bimServerClient.connectDirect(bimServer.getSystemService());
 		try {
 			session = bimServerClient.createSession();
 			int pid = createProject();
 			session.startTransaction(pid);
 			createIfcProject();
 			long roid = session.commitTransaction();
+
+			SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
+			List<SRevisionSummaryContainer> list = revisionSummary.getList();
+			for (SRevisionSummaryContainer container : list) {
+				System.out.println(container.getName());
+				for (SRevisionSummaryType type : container.getTypes()) {
+					System.out.println(type.getName() + ": " + type.getCount());
+				}
+			}
+
 			IfcModelInterface model = getSingleRevision(roid);
 			IfcStepSerializer serializer = new IfcStepSerializer();
 			serializer.init(model, null, bimServer.getPluginManager());

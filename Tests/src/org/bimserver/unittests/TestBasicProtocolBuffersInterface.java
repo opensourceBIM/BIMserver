@@ -1,22 +1,22 @@
-package org.bimserver.unittests;
-
-/******************************************************************************
- * Copyright (C) 2011  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
+//package org.bimserver.unittests;
+//
+///******************************************************************************
+// * Copyright (C) 2011  BIMserver.org
+// * 
+// * This program is free software: you can redistribute it and/or modify
+// * it under the terms of the GNU Affero General Public License as
+// * published by the Free Software Foundation, either version 3 of the
+// * License, or (at your option) any later version.
+// * 
+// * This program is distributed in the hope that it will be useful,
+// * but WITHOUT ANY WARRANTY; without even the implied warranty of
+// * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// * GNU Affero General Public License for more details.
+// * 
+// * You should have received a copy of the GNU Affero General Public License
+// * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// *****************************************************************************/
+//
 //import static org.junit.Assert.fail;
 //
 //import java.io.ByteArrayOutputStream;
@@ -30,10 +30,12 @@ package org.bimserver.unittests;
 //import org.apache.commons.io.IOUtils;
 //import org.bimserver.BimServer;
 //import org.bimserver.LocalDevPluginLoader;
-//import org.bimserver.ServerInfo.ServerState;
+//import org.bimserver.client.BimServerClient;
+//import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 //import org.bimserver.database.BimDatabaseException;
 //import org.bimserver.database.DatabaseRestartRequiredException;
 //import org.bimserver.database.berkeley.DatabaseInitException;
+//import org.bimserver.models.store.ServerState;
 //import org.bimserver.pb.ServiceInterfaceImpl;
 //import org.bimserver.pb.ServiceInterfaceImpl.AddProjectRequest;
 //import org.bimserver.pb.ServiceInterfaceImpl.AddProjectResponse;
@@ -41,8 +43,6 @@ package org.bimserver.unittests;
 //import org.bimserver.pb.ServiceInterfaceImpl.AddUserResponse;
 //import org.bimserver.pb.ServiceInterfaceImpl.ChangePasswordRequest;
 //import org.bimserver.pb.ServiceInterfaceImpl.ChangePasswordResponse;
-//import org.bimserver.pb.ServiceInterfaceImpl.CheckinSyncRequest;
-//import org.bimserver.pb.ServiceInterfaceImpl.CheckinSyncResponse;
 //import org.bimserver.pb.ServiceInterfaceImpl.CheckoutRequest;
 //import org.bimserver.pb.ServiceInterfaceImpl.DownloadRequest;
 //import org.bimserver.pb.ServiceInterfaceImpl.DownloadResponse;
@@ -92,32 +92,9 @@ package org.bimserver.unittests;
 //				FileUtils.deleteDirectory(home);
 //			}
 //
-//			// Create a BIMserver
-//			bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
-//
-//			// Load plugins
-//			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
-//
-//			// Start
-//			bimServer.start();
-//
-//			// Convenience, setup the server to make sure it is in RUNNING state
-//			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-//				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
-//			}
-//
-//			// Change a setting to normal users can create projects
-//			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
-//		} catch (org.bimserver.shared.exceptions.ServiceException e) {
-//			e.printStackTrace();
-//		} catch (PluginException e) {
-//			e.printStackTrace();
-//		} catch (DatabaseInitException e) {
-//			e.printStackTrace();
-//		} catch (BimDatabaseException e) {
-//			e.printStackTrace();
-//		} catch (DatabaseRestartRequiredException e) {
-//			e.printStackTrace();
+//			LocalDevBimCombinedServerStarter localDevBimWebServerStarter = new LocalDevBimCombinedServerStarter();
+//			localDevBimWebServerStarter.start("localhost", 8082);
+//			bimServer = localDevBimWebServerStarter.getBimServer();
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
@@ -137,15 +114,13 @@ package org.bimserver.unittests;
 //	 */
 //	@Test
 //	public void testCreateUser() {
+//		BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
 //		try {
-//			SocketChannel socketChannel = new SocketChannel(new InetSocketAddress("localhost", 8020));
-//			
-//
 //			LoginRequest.Builder loginRequestBuilder = LoginRequest.newBuilder();
 //			loginRequestBuilder.setUsername("admin@bimserver.org");
 //			loginRequestBuilder.setPassword("admin");
 //			LoginRequest loginRequest = loginRequestBuilder.build();
-//			LoginResponse loginResponse = service.login(rpcController, loginRequest);
+//			LoginResponse loginResponse = bimServerClient.login(rpcController, loginRequest);
 //			if (loginResponse.getErrorMessage().equals("OKE")) {
 //				if (loginResponse.getValue()) {
 //					AddUserRequest.Builder addUserRequestBuilder = AddUserRequest.newBuilder();
