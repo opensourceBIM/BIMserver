@@ -30,6 +30,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.SPackage;
 import org.bimserver.utils.ByteArrayDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,7 +72,7 @@ public class ProtocolBuffersConverter {
 			}
 			return newInstance;
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -89,8 +90,8 @@ public class ProtocolBuffersConverter {
 						break;
 					}
 				}
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				LOGGER.error("", e);
 			}
 			return val;
 		} else if (field.getType() == Date.class) {
@@ -98,6 +99,9 @@ public class ProtocolBuffersConverter {
 		} else if (field.getType() == DataHandler.class) {
 			ByteString byteString = (ByteString)val;
 			return new DataHandler(new ByteArrayDataSource(byteString.toByteArray()));
+		} else if (val instanceof DynamicMessage) {
+			SClass sClass = SPackage.getInstance().getSClass(field.getType().getSimpleName());
+			return convertProtocolBuffersMessageToSObject((DynamicMessage)val, sClass);
 		} else {
 			return val;
 		}
