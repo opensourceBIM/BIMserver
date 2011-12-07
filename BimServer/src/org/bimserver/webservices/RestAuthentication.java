@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.cxf.binding.soap.interceptor.SoapHeaderInterceptor;
 import org.apache.cxf.configuration.security.AuthorizationPolicy;
@@ -56,6 +57,8 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 	public void handleMessage(Message message) throws Fault {
 		Token token = (Token)message.getExchange().getSession().get("token");
 		HttpServletRequest httpRequest = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
+		HttpServletResponse response = (HttpServletResponse) message.get(AbstractHTTPDestination.HTTP_RESPONSE);
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		ServiceInterface newService = null;
 		if (token == null) {
 			newService = bimServer.getServiceFactory().newService(AccessMethod.REST, httpRequest.getRemoteAddr());
