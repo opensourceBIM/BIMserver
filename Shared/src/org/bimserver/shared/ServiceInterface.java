@@ -739,7 +739,7 @@ public interface ServiceInterface {
 	 * @throws ServiceException
 	 */
 	@WebMethod(action = "branchToNewProject")
-	SCheckinResult branchToNewProject(
+	Integer branchToNewProject(
 			@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
 			@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
 			@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment) throws ServiceException;
@@ -753,7 +753,7 @@ public interface ServiceInterface {
 	 * @throws ServiceException
 	 */
 	@WebMethod(action = "branchToExistingProject")
-	SCheckinResult branchToExistingProject(
+	Integer branchToExistingProject(
 			@WebParam(name = "roid", partName = "branchToExistingProject.roid") Long roid,
 			@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") Long destPoid,
 			@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment) throws ServiceException;

@@ -1085,12 +1085,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckinResult branchToNewProject(Long roid, String projectName, String comment) throws UserException {
+	public Integer branchToNewProject(Long roid, String projectName, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BranchToNewProjectDatabaseAction action = new BranchToNewProjectDatabaseAction(session, accessMethod, bimServer, currentUoid, roid, projectName, comment);
-			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
@@ -1100,7 +1100,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckinResult branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException {
+	public Integer branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		final BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {

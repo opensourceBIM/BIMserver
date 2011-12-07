@@ -321,11 +321,11 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SClash> getLastClashes(java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.util.List<org.bimserver.interfaces.objects.SClash>) reflector.callMethod("ServiceInterface", "getLastClashes", java.util.List.class, arg0);
 	}
-	public org.bimserver.interfaces.objects.SCheckinResult branchToNewProject(java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
-		return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("ServiceInterface", "branchToNewProject", org.bimserver.interfaces.objects.SCheckinResult.class, arg0, arg1, arg2);
+	public Integer branchToNewProject(java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
+		return (Integer) reflector.callMethod("ServiceInterface", "branchToNewProject", org.bimserver.interfaces.objects.SCheckinResult.class, arg0, arg1, arg2);
 	}
-	public org.bimserver.interfaces.objects.SCheckinResult branchToExistingProject(java.lang.Long arg0, java.lang.Long arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
-		return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("ServiceInterface", "branchToExistingProject", org.bimserver.interfaces.objects.SCheckinResult.class, arg0, arg1, arg2);
+	public Integer branchToExistingProject(java.lang.Long arg0, java.lang.Long arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
+		return (Integer) reflector.callMethod("ServiceInterface", "branchToExistingProject", org.bimserver.interfaces.objects.SCheckinResult.class, arg0, arg1, arg2);
 	}
 	public org.bimserver.interfaces.objects.SClashDetectionSettings getClashDetectionSettings(java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		return (org.bimserver.interfaces.objects.SClashDetectionSettings) reflector.callMethod("ServiceInterface", "getClashDetectionSettings", org.bimserver.interfaces.objects.SClashDetectionSettings.class, arg0);

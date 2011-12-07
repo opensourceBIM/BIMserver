@@ -20,7 +20,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<SCheckinResult> {
+public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Integer> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BranchToExistingProjectDatabaseAction.class);
 	private final Long roid;
 	private final Long destPoid;
@@ -38,7 +38,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<SCh
 	}
 
 	@Override
-	public SCheckinResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Integer execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
@@ -62,8 +62,9 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<SCh
 			SCheckinResult result = new SCheckinResult();
 			result.setProjectId(revision.getProject().getOid());
 			// result.setProjectName(revision.getProject().getName());
-			bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
-			return result;
+			LongCheckinAction longAction = new LongCheckinAction(bimServer, user, createCheckinAction);
+			bimServer.getLongActionManager().start(longAction);
+			return longAction.getId();
 		} catch (UserException e) {
 			throw e;
 		} catch (Exception e) {
