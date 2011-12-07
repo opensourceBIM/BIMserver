@@ -7,6 +7,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.interfaces.objects.SCheckinResult;
+import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -20,7 +21,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<SCheckinResult> {
+public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Integer> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BranchToNewProjectDatabaseAction.class);
 	private final BimServer bimServer;
 	private final Long currentUoid;
@@ -39,10 +40,10 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<SCheckin
 	}
 
 	@Override
-	public SCheckinResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Integer execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+		final User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
@@ -53,23 +54,21 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<SCheckin
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface model = bimServer.getMergerFactory().createMerger().merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		final IfcModelInterface model = bimServer.getMergerFactory().createMerger().merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
 		model.resetOids();
-		Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, currentUoid).execute();
+		final Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, currentUoid).execute();
 		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(getDatabaseSession(), getAccessMethod(), newProject.getOid(), currentUoid, model, comment);
+		ConcreteRevision revision = action.execute();
+		CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, bimServer.getDatabase().createSession(true), getAccessMethod(), model, currentUoid, revision.getOid(), false);
+		SCheckinResult result = new SCheckinResult();
+		result.setProjectId(revision.getProject().getOid());
+		// result.setProjectName(revision.getProject().getName());
+		LongCheckinAction longAction = new LongCheckinAction(bimServer, user, createCheckinAction);
 		try {
-			ConcreteRevision revision = action.execute();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), model, currentUoid, revision.getOid(), false);
-			SCheckinResult result = new SCheckinResult();
-			result.setProjectId(revision.getProject().getOid());
-			// result.setProjectName(revision.getProject().getName());
-			bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
-			return result;
-		} catch (UserException e) {
-			throw e;
-		} catch (Exception e) {
-			LOGGER.error("", e);
+			bimServer.getLongActionManager().start(longAction);
+		} catch (CannotBeScheduledException e) {
+			e.printStackTrace();
 		}
-		return null;
+		return longAction.getId();
 	}
 }
