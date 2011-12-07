@@ -3,6 +3,7 @@ package org.bimserver.generatedclient;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="sProject" type="{http://shared.bimserver.org/}sProject" minOccurs="0"/>
+ *         &lt;element ref="{http://shared.bimserver.org/}sProject" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class UpdateProject {
 
+    @XmlElement(namespace = "http://shared.bimserver.org/")
     protected SProject sProject;
 
     /**

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="uoid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="uoid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="token" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
@@ -35,23 +35,31 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ValidateAccount {
 
-    protected long uoid;
+    protected Long uoid;
     protected String token;
     protected String password;
 
     /**
      * Gets the value of the uoid property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getUoid() {
+    public Long getUoid() {
         return uoid;
     }
 
     /**
      * Sets the value of the uoid property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setUoid(long value) {
+    public void setUoid(Long value) {
         this.uoid = value;
     }
 

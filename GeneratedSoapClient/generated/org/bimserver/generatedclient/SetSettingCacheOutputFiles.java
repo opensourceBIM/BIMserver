@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="cacheOutputFiles" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="cacheOutputFiles" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetSettingCacheOutputFiles {
 
-    protected boolean cacheOutputFiles;
+    protected Boolean cacheOutputFiles;
 
     /**
      * Gets the value of the cacheOutputFiles property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isCacheOutputFiles() {
+    public Boolean isCacheOutputFiles() {
         return cacheOutputFiles;
     }
 
     /**
      * Sets the value of the cacheOutputFiles property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setCacheOutputFiles(boolean value) {
+    public void setCacheOutputFiles(Boolean value) {
         this.cacheOutputFiles = value;
     }
 

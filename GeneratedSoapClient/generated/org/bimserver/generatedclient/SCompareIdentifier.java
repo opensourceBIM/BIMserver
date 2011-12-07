@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="sCompareIdentifier">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="GUID_ID"/>
  *     &lt;enumeration value="NAME_ID"/>
+ *     &lt;enumeration value="GUID_ID"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum SCompareIdentifier {
 
-    GUID_ID,
-    NAME_ID;
+    NAME_ID,
+    GUID_ID;
 
     public String value() {
         return name();

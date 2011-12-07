@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="INTERNAL"/>
  *     &lt;enumeration value="REST"/>
  *     &lt;enumeration value="SYNDICATION"/>
+ *     &lt;enumeration value="PROTOCOL_BUFFERS"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -31,7 +32,8 @@ public enum SAccessMethod {
     WEB_INTERFACE,
     INTERNAL,
     REST,
-    SYNDICATION;
+    SYNDICATION,
+    PROTOCOL_BUFFERS;
 
     public String value() {
         return name();

@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://shared.bimserver.org/}databaseInformation" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://shared.bimserver.org/}sDatabaseInformation" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 public class GetDatabaseInformationResponse {
 
     @XmlElement(name = "return")
-    protected DatabaseInformation _return;
+    protected SDatabaseInformation _return;
 
     /**
      * Gets the value of the return property.
      * 
      * @return
      *     possible object is
-     *     {@link DatabaseInformation }
+     *     {@link SDatabaseInformation }
      *     
      */
-    public DatabaseInformation getReturn() {
+    public SDatabaseInformation getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class GetDatabaseInformationResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link DatabaseInformation }
+     *     {@link SDatabaseInformation }
      *     
      */
-    public void setReturn(DatabaseInformation value) {
+    public void setReturn(SDatabaseInformation value) {
         this._return = value;
     }
 

@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="onlyEnabled" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -25,8 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getAllSerializers")
+@XmlType(name = "getAllSerializers", propOrder = {
+    "onlyEnabled"
+})
 public class GetAllSerializers {
 
+    protected Boolean onlyEnabled;
+
+    /**
+     * Gets the value of the onlyEnabled property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isOnlyEnabled() {
+        return onlyEnabled;
+    }
+
+    /**
+     * Sets the value of the onlyEnabled property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOnlyEnabled(Boolean value) {
+        this.onlyEnabled = value;
+    }
 
 }

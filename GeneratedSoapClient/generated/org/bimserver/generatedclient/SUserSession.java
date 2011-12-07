@@ -22,8 +22,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="activeSince" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="lastActive" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="remoteAddress" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="type" type="{http://shared.bimserver.org/}sUserType" minOccurs="0"/>
- *         &lt;element name="uoid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -39,8 +41,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "activeSince",
     "lastActive",
     "name",
+    "oid",
+    "remoteAddress",
     "type",
-    "uoid",
+    "userId",
     "username"
 })
 public class SUserSession {
@@ -51,8 +55,10 @@ public class SUserSession {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar lastActive;
     protected String name;
+    protected long oid;
+    protected String remoteAddress;
     protected SUserType type;
-    protected long uoid;
+    protected long userId;
     protected String username;
 
     /**
@@ -152,6 +158,46 @@ public class SUserSession {
     }
 
     /**
+     * Gets the value of the oid property.
+     * 
+     */
+    public long getOid() {
+        return oid;
+    }
+
+    /**
+     * Sets the value of the oid property.
+     * 
+     */
+    public void setOid(long value) {
+        this.oid = value;
+    }
+
+    /**
+     * Gets the value of the remoteAddress property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRemoteAddress() {
+        return remoteAddress;
+    }
+
+    /**
+     * Sets the value of the remoteAddress property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRemoteAddress(String value) {
+        this.remoteAddress = value;
+    }
+
+    /**
      * Gets the value of the type property.
      * 
      * @return
@@ -176,19 +222,19 @@ public class SUserSession {
     }
 
     /**
-     * Gets the value of the uoid property.
+     * Gets the value of the userId property.
      * 
      */
-    public long getUoid() {
-        return uoid;
+    public long getUserId() {
+        return userId;
     }
 
     /**
-     * Sets the value of the uoid property.
+     * Sets the value of the userId property.
      * 
      */
-    public void setUoid(long value) {
-        this.uoid = value;
+    public void setUserId(long value) {
+        this.userId = value;
     }
 
     /**

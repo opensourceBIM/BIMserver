@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="intelligentMerging" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="intelligentMerging" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetSettingIntelligentMerging {
 
-    protected boolean intelligentMerging;
+    protected Boolean intelligentMerging;
 
     /**
      * Gets the value of the intelligentMerging property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isIntelligentMerging() {
+    public Boolean isIntelligentMerging() {
         return intelligentMerging;
     }
 
     /**
      * Sets the value of the intelligentMerging property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setIntelligentMerging(boolean value) {
+    public void setIntelligentMerging(Boolean value) {
         this.intelligentMerging = value;
     }
 

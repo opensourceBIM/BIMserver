@@ -1,10 +1,8 @@
 
 package org.bimserver.generatedclient;
 
-import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -19,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="file" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="projectName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="revisionNr" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
@@ -32,13 +31,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "sDownloadResult", propOrder = {
     "file",
+    "oid",
     "projectName",
     "revisionNr"
 })
 public class SDownloadResult {
 
-    @XmlMimeType("application/octet-stream")
-    protected DataHandler file;
+    protected byte[] file;
+    protected long oid;
     protected String projectName;
     protected int revisionNr;
 
@@ -47,10 +47,9 @@ public class SDownloadResult {
      * 
      * @return
      *     possible object is
-     *     {@link DataHandler }
-     *     
+     *     byte[]
      */
-    public DataHandler getFile() {
+    public byte[] getFile() {
         return file;
     }
 
@@ -59,11 +58,26 @@ public class SDownloadResult {
      * 
      * @param value
      *     allowed object is
-     *     {@link DataHandler }
-     *     
+     *     byte[]
      */
-    public void setFile(DataHandler value) {
+    public void setFile(byte[] value) {
         this.file = value;
+    }
+
+    /**
+     * Gets the value of the oid property.
+     * 
+     */
+    public long getOid() {
+        return oid;
+    }
+
+    /**
+     * Sets the value of the oid property.
+     * 
+     */
+    public void setOid(long value) {
+        this.oid = value;
     }
 
     /**

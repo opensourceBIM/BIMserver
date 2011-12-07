@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="showVersionUpgradeAvailable" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="showVersionUpgradeAvailable" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetSettingShowVersionUpgradeAvailable {
 
-    protected boolean showVersionUpgradeAvailable;
+    protected Boolean showVersionUpgradeAvailable;
 
     /**
      * Gets the value of the showVersionUpgradeAvailable property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isShowVersionUpgradeAvailable() {
+    public Boolean isShowVersionUpgradeAvailable() {
         return showVersionUpgradeAvailable;
     }
 
     /**
      * Sets the value of the showVersionUpgradeAvailable property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setShowVersionUpgradeAvailable(boolean value) {
+    public void setShowVersionUpgradeAvailable(Boolean value) {
         this.showVersionUpgradeAvailable = value;
     }
 

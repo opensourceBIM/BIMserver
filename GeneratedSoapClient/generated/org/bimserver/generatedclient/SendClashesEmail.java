@@ -3,9 +3,9 @@ package org.bimserver.generatedclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="sClashDetectionSettings" type="{http://shared.bimserver.org/}sClashDetectionSettings" minOccurs="0"/>
- *         &lt;element name="poid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element ref="{http://shared.bimserver.org/}sClashDetectionSettings" minOccurs="0"/>
+ *         &lt;element name="poid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="addressesTo" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -38,8 +38,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SendClashesEmail {
 
+    @XmlElement(namespace = "http://shared.bimserver.org/")
     protected SClashDetectionSettings sClashDetectionSettings;
-    protected long poid;
+    protected Long poid;
     protected List<String> addressesTo;
 
     /**
@@ -69,16 +70,24 @@ public class SendClashesEmail {
     /**
      * Gets the value of the poid property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getPoid() {
+    public Long getPoid() {
         return poid;
     }
 
     /**
      * Sets the value of the poid property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setPoid(long value) {
+    public void setPoid(Long value) {
         this.poid = value;
     }
 

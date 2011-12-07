@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="executed" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,13 +32,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "sMigration", propOrder = {
     "description",
     "executed",
-    "number"
+    "number",
+    "oid"
 })
 public class SMigration {
 
     protected String description;
     protected boolean executed;
     protected int number;
+    protected long oid;
 
     /**
      * Gets the value of the description property.
@@ -93,6 +96,22 @@ public class SMigration {
      */
     public void setNumber(int value) {
         this.number = value;
+    }
+
+    /**
+     * Gets the value of the oid property.
+     * 
+     */
+    public long getOid() {
+        return oid;
+    }
+
+    /**
+     * Sets the value of the oid property.
+     * 
+     */
+    public void setOid(long value) {
+        this.oid = value;
     }
 
 }

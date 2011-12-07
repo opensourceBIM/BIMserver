@@ -3,7 +3,6 @@ package org.bimserver.generatedclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -27,6 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="hasRightsOn" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="lastSeen" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="notificationUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="revisions" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
@@ -50,6 +50,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "hasRightsOn",
     "lastSeen",
     "name",
+    "notificationUrl",
     "oid",
     "password",
     "revisions",
@@ -69,6 +70,7 @@ public class SUser {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar lastSeen;
     protected String name;
+    protected String notificationUrl;
     protected long oid;
     protected String password;
     @XmlElement(nillable = true)
@@ -195,6 +197,30 @@ public class SUser {
      */
     public void setName(String value) {
         this.name = value;
+    }
+
+    /**
+     * Gets the value of the notificationUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNotificationUrl() {
+        return notificationUrl;
+    }
+
+    /**
+     * Sets the value of the notificationUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNotificationUrl(String value) {
+        this.notificationUrl = value;
     }
 
     /**

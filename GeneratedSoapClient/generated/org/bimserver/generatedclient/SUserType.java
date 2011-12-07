@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="SYSTEM"/>
  *     &lt;enumeration value="ADMIN"/>
  *     &lt;enumeration value="USER"/>
- *     &lt;enumeration value="ANONYMOUS"/>
+ *     &lt;enumeration value="READ_ONLY"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -29,7 +29,7 @@ public enum SUserType {
     SYSTEM,
     ADMIN,
     USER,
-    ANONYMOUS;
+    READ_ONLY;
 
     public String value() {
         return name();

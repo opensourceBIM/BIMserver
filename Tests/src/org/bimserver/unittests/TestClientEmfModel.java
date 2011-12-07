@@ -33,6 +33,7 @@ import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.combined.LocalDevBimCombinedServerStarter;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
@@ -131,7 +132,6 @@ public class TestClientEmfModel {
 	@Test
 	public void test() {
 		bimServerClient = new BimServerClient(bimServer.getPluginManager());
-		// bimServerClient.connectSoap("http://localhost:8082/soap");
 		try {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
@@ -139,24 +139,17 @@ public class TestClientEmfModel {
 		} catch (ConnectionException e1) {
 			e1.printStackTrace();
 		}
-		// bimServerClient.connectDirect(bimServer.getSystemService());
 		try {
 			session = bimServerClient.createSession();
 			int pid = createProject();
 			session.startTransaction(pid);
 			createIfcProject();
-			long roid = session.commitTransaction();
+			long roid = session.commitTransaction("tralala");
 
-			SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
-			List<SRevisionSummaryContainer> list = revisionSummary.getList();
-			for (SRevisionSummaryContainer container : list) {
-				System.out.println(container.getName());
-				for (SRevisionSummaryType type : container.getTypes()) {
-					System.out.println(type.getName() + ": " + type.getCount());
-				}
-			}
+			dump(roid);
+			alter(pid, roid);
 
-			IfcModelInterface model = getSingleRevision(roid);
+			IfcModelInterface model = bimServerClient.getModel(roid);
 			IfcStepSerializer serializer = new IfcStepSerializer();
 			serializer.init(model, null, bimServer.getPluginManager());
 			File output = new File("output");
@@ -170,23 +163,23 @@ public class TestClientEmfModel {
 		}
 	}
 
-	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
-		SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
-		SSerializer serializerByContentType = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
-		int downloadId = bimServerClient.getServiceInterface().download(revision.getOid(), serializerByContentType.getName(), true);
-		SDownloadResult downloadData = bimServerClient.getServiceInterface().getDownloadData(downloadId);
-		DataHandler dataHandler = downloadData.getFile();
-		DeserializerPlugin deserializerPlugin;
-		try {
-			deserializerPlugin = bimServer.getPluginManager().getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
-			deserializer.init(bimServer.getPluginManager().requireSchemaDefinition());
-			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", true, 0);
-			return model;
-		} catch (PluginException e) {
-			e.printStackTrace();
+	private void alter(int pid, long roid) {
+		Session session = bimServerClient.createSession();
+		session.startTransaction(pid);
+		IfcModel model = session.loadModel(roid);
+		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
 		}
-		return null;
+	}
+
+	private void dump(long roid) throws ServiceException {
+		SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
+		List<SRevisionSummaryContainer> list = revisionSummary.getList();
+		for (SRevisionSummaryContainer container : list) {
+			System.out.println(container.getName());
+			for (SRevisionSummaryType type : container.getTypes()) {
+				System.out.println(type.getName() + ": " + type.getCount());
+			}
+		}
 	}
 
 	private IfcWall createWall() {
