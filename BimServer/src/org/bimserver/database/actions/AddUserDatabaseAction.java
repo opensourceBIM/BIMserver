@@ -162,6 +162,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 							}
 							msg.setContent(body, "text/html");
 							msg.setSubject(subject.trim());
+							
+							LOGGER.info("Sending registration e-mail to " + user.getUsername());
+							
 							Transport.send(msg);
 						}
 					}
