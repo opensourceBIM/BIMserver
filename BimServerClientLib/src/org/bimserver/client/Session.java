@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
@@ -30,6 +29,7 @@ import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.eclipse.emf.ecore.EAttribute;
@@ -131,7 +131,7 @@ public class Session {
 	}
 
 	@SuppressWarnings("unused")
-	public IfcModel loadModel(long roid) {
+	public IfcModelInterface loadModel(long roid) {
 		try {
 			List<SDataObject> dataObjects = serviceInterface.getDataObjects(roid);
 			for (SDataObject dataObject : dataObjects) {
