@@ -133,7 +133,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 				try {
 					SettingsManager settingsManager = bimServer.getSettingsManager();
 					if (settingsManager != null && settingsManager.getSettings().isSendConfirmationEmailAfterRegistration()) {
-						if (MailSystem.isValidEmailAddress(user.getUsername()) && createrUoid != -1) {
+						if (MailSystem.isValidEmailAddress(user.getUsername())) {
 							Session mailSession = bimServer.getMailSystem().createMailSession();
 							
 							Message msg = new MimeMessage(mailSession);
