@@ -20,8 +20,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="identification" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="start" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="userOid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -35,17 +36,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "sLongAction", propOrder = {
     "identification",
     "name",
+    "oid",
     "start",
-    "userOid",
+    "userId",
     "username"
 })
 public class SLongAction {
 
     protected String identification;
     protected String name;
+    protected long oid;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar start;
-    protected long userOid;
+    protected long userId;
     protected String username;
 
     /**
@@ -97,6 +100,22 @@ public class SLongAction {
     }
 
     /**
+     * Gets the value of the oid property.
+     * 
+     */
+    public long getOid() {
+        return oid;
+    }
+
+    /**
+     * Sets the value of the oid property.
+     * 
+     */
+    public void setOid(long value) {
+        this.oid = value;
+    }
+
+    /**
      * Gets the value of the start property.
      * 
      * @return
@@ -121,19 +140,19 @@ public class SLongAction {
     }
 
     /**
-     * Gets the value of the userOid property.
+     * Gets the value of the userId property.
      * 
      */
-    public long getUserOid() {
-        return userOid;
+    public long getUserId() {
+        return userId;
     }
 
     /**
-     * Sets the value of the userOid property.
+     * Sets the value of the userId property.
      * 
      */
-    public void setUserOid(long value) {
-        this.userOid = value;
+    public void setUserId(long value) {
+        this.userId = value;
     }
 
     /**

@@ -3,9 +3,9 @@ package org.bimserver.generatedclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -19,11 +19,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="guid" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="values" type="{http://shared.bimserver.org/}sDataValue" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="values" type="{http://shared.bimserver.org/}sDataValue" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,59 +34,20 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "sDataObject", propOrder = {
-    "type",
-    "oid",
     "guid",
-    "values",
-    "name"
+    "name",
+    "oid",
+    "type",
+    "values"
 })
 public class SDataObject {
 
-    protected String type;
-    protected long oid;
     protected String guid;
-    protected List<SDataValue> values;
     protected String name;
-
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
-
-    /**
-     * Gets the value of the oid property.
-     * 
-     */
-    public long getOid() {
-        return oid;
-    }
-
-    /**
-     * Sets the value of the oid property.
-     * 
-     */
-    public void setOid(long value) {
-        this.oid = value;
-    }
+    protected long oid;
+    protected String type;
+    @XmlElement(nillable = true)
+    protected List<SDataValue> values;
 
     /**
      * Gets the value of the guid property.
@@ -110,6 +71,70 @@ public class SDataObject {
      */
     public void setGuid(String value) {
         this.guid = value;
+    }
+
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    /**
+     * Gets the value of the oid property.
+     * 
+     */
+    public long getOid() {
+        return oid;
+    }
+
+    /**
+     * Sets the value of the oid property.
+     * 
+     */
+    public void setOid(long value) {
+        this.oid = value;
+    }
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
     }
 
     /**
@@ -139,30 +164,6 @@ public class SDataObject {
             values = new ArrayList<SDataValue>();
         }
         return this.values;
-    }
-
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
     }
 
 }

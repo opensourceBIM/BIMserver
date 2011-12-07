@@ -3,7 +3,6 @@ package org.bimserver.generatedclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -22,8 +21,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="roids" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="guids" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="formatIdentifier" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="sync" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="serializerName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sync" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "downloadByGuids", propOrder = {
     "roids",
     "guids",
-    "formatIdentifier",
+    "serializerName",
     "sync"
 })
 public class DownloadByGuids {
@@ -44,8 +43,8 @@ public class DownloadByGuids {
     @XmlElement(type = Long.class)
     protected List<Long> roids;
     protected List<String> guids;
-    protected String formatIdentifier;
-    protected boolean sync;
+    protected String serializerName;
+    protected Boolean sync;
 
     /**
      * Gets the value of the roids property.
@@ -106,42 +105,50 @@ public class DownloadByGuids {
     }
 
     /**
-     * Gets the value of the formatIdentifier property.
+     * Gets the value of the serializerName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFormatIdentifier() {
-        return formatIdentifier;
+    public String getSerializerName() {
+        return serializerName;
     }
 
     /**
-     * Sets the value of the formatIdentifier property.
+     * Sets the value of the serializerName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setFormatIdentifier(String value) {
-        this.formatIdentifier = value;
+    public void setSerializerName(String value) {
+        this.serializerName = value;
     }
 
     /**
      * Gets the value of the sync property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isSync() {
+    public Boolean isSync() {
         return sync;
     }
 
     /**
      * Sets the value of the sync property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setSync(boolean value) {
+    public void setSync(Boolean value) {
         this.sync = value;
     }
 

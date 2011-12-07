@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="adminName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="adminUsername" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="adminPassword" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="createAnonymousUser" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,8 +35,7 @@ import javax.xml.bind.annotation.XmlType;
     "smtpServer",
     "adminName",
     "adminUsername",
-    "adminPassword",
-    "createAnonymousUser"
+    "adminPassword"
 })
 public class Setup {
 
@@ -46,7 +44,6 @@ public class Setup {
     protected String adminName;
     protected String adminUsername;
     protected String adminPassword;
-    protected boolean createAnonymousUser;
 
     /**
      * Gets the value of the siteAddress property.
@@ -166,22 +163,6 @@ public class Setup {
      */
     public void setAdminPassword(String value) {
         this.adminPassword = value;
-    }
-
-    /**
-     * Gets the value of the createAnonymousUser property.
-     * 
-     */
-    public boolean isCreateAnonymousUser() {
-        return createAnonymousUser;
-    }
-
-    /**
-     * Sets the value of the createAnonymousUser property.
-     * 
-     */
-    public void setCreateAnonymousUser(boolean value) {
-        this.createAnonymousUser = value;
     }
 
 }

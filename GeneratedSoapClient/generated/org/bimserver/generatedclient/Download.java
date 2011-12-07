@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="roid" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="formatIdentifier" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="sync" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="roid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="serializerName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sync" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,68 +30,84 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "download", propOrder = {
     "roid",
-    "formatIdentifier",
+    "serializerName",
     "sync"
 })
 public class Download {
 
-    protected long roid;
-    protected String formatIdentifier;
-    protected boolean sync;
+    protected Long roid;
+    protected String serializerName;
+    protected Boolean sync;
 
     /**
      * Gets the value of the roid property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getRoid() {
+    public Long getRoid() {
         return roid;
     }
 
     /**
      * Sets the value of the roid property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setRoid(long value) {
+    public void setRoid(Long value) {
         this.roid = value;
     }
 
     /**
-     * Gets the value of the formatIdentifier property.
+     * Gets the value of the serializerName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFormatIdentifier() {
-        return formatIdentifier;
+    public String getSerializerName() {
+        return serializerName;
     }
 
     /**
-     * Sets the value of the formatIdentifier property.
+     * Sets the value of the serializerName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setFormatIdentifier(String value) {
-        this.formatIdentifier = value;
+    public void setSerializerName(String value) {
+        this.serializerName = value;
     }
 
     /**
      * Gets the value of the sync property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isSync() {
+    public Boolean isSync() {
         return sync;
     }
 
     /**
      * Sets the value of the sync property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setSync(boolean value) {
+    public void setSync(Boolean value) {
         this.sync = value;
     }
 

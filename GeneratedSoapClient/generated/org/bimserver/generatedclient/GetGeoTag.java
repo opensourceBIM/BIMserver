@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="goid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="goid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetGeoTag {
 
-    protected long goid;
+    protected Long goid;
 
     /**
      * Gets the value of the goid property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getGoid() {
+    public Long getGoid() {
         return goid;
     }
 
     /**
      * Sets the value of the goid property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setGoid(long value) {
+    public void setGoid(Long value) {
         this.goid = value;
     }
 

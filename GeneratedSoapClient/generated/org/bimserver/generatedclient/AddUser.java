@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="type" type="{http://shared.bimserver.org/}sUserType" minOccurs="0"/>
- *         &lt;element name="selfRegistration" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="selfRegistration" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,7 +40,7 @@ public class AddUser {
     protected String username;
     protected String name;
     protected SUserType type;
-    protected boolean selfRegistration;
+    protected Boolean selfRegistration;
 
     /**
      * Gets the value of the username property.
@@ -117,16 +117,24 @@ public class AddUser {
     /**
      * Gets the value of the selfRegistration property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isSelfRegistration() {
+    public Boolean isSelfRegistration() {
         return selfRegistration;
     }
 
     /**
      * Sets the value of the selfRegistration property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setSelfRegistration(boolean value) {
+    public void setSelfRegistration(Boolean value) {
         this.selfRegistration = value;
     }
 

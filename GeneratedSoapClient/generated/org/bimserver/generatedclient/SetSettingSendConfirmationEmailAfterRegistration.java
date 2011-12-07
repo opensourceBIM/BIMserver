@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="sendConfirmationEmailAfterRegistration" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="sendConfirmationEmailAfterRegistration" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetSettingSendConfirmationEmailAfterRegistration {
 
-    protected boolean sendConfirmationEmailAfterRegistration;
+    protected Boolean sendConfirmationEmailAfterRegistration;
 
     /**
      * Gets the value of the sendConfirmationEmailAfterRegistration property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isSendConfirmationEmailAfterRegistration() {
+    public Boolean isSendConfirmationEmailAfterRegistration() {
         return sendConfirmationEmailAfterRegistration;
     }
 
     /**
      * Sets the value of the sendConfirmationEmailAfterRegistration property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setSendConfirmationEmailAfterRegistration(boolean value) {
+    public void setSendConfirmationEmailAfterRegistration(Boolean value) {
         this.sendConfirmationEmailAfterRegistration = value;
     }
 

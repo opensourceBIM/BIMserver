@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="projectName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="parentPoid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="parentPoid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 public class AddProjectAsSubProject {
 
     protected String projectName;
-    protected long parentPoid;
+    protected Long parentPoid;
 
     /**
      * Gets the value of the projectName property.
@@ -63,16 +63,24 @@ public class AddProjectAsSubProject {
     /**
      * Gets the value of the parentPoid property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getParentPoid() {
+    public Long getParentPoid() {
         return parentPoid;
     }
 
     /**
      * Sets the value of the parentPoid property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setParentPoid(long value) {
+    public void setParentPoid(Long value) {
         this.parentPoid = value;
     }
 

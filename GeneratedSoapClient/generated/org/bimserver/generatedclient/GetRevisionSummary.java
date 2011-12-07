@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="roid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="roid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetRevisionSummary {
 
-    protected long roid;
+    protected Long roid;
 
     /**
      * Gets the value of the roid property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getRoid() {
+    public Long getRoid() {
         return roid;
     }
 
     /**
      * Sets the value of the roid property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setRoid(long value) {
+    public void setRoid(Long value) {
         this.roid = value;
     }
 

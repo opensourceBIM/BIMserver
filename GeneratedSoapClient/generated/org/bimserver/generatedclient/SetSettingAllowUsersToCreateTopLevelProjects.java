@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="allowUsersToCreateTopLevelProjects" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="allowUsersToCreateTopLevelProjects" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetSettingAllowUsersToCreateTopLevelProjects {
 
-    protected boolean allowUsersToCreateTopLevelProjects;
+    protected Boolean allowUsersToCreateTopLevelProjects;
 
     /**
      * Gets the value of the allowUsersToCreateTopLevelProjects property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isAllowUsersToCreateTopLevelProjects() {
+    public Boolean isAllowUsersToCreateTopLevelProjects() {
         return allowUsersToCreateTopLevelProjects;
     }
 
     /**
      * Sets the value of the allowUsersToCreateTopLevelProjects property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setAllowUsersToCreateTopLevelProjects(boolean value) {
+    public void setAllowUsersToCreateTopLevelProjects(Boolean value) {
         this.allowUsersToCreateTopLevelProjects = value;
     }
 

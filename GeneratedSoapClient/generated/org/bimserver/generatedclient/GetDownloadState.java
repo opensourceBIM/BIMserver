@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="actionID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="actionId" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,26 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getDownloadState", propOrder = {
-    "actionID"
+    "actionId"
 })
 public class GetDownloadState {
 
-    protected int actionID;
+    protected Integer actionId;
 
     /**
-     * Gets the value of the actionID property.
+     * Gets the value of the actionId property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
-    public int getActionID() {
-        return actionID;
+    public Integer getActionId() {
+        return actionId;
     }
 
     /**
-     * Sets the value of the actionID property.
+     * Sets the value of the actionId property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
-    public void setActionID(int value) {
-        this.actionID = value;
+    public void setActionId(Integer value) {
+        this.actionId = value;
     }
 
 }

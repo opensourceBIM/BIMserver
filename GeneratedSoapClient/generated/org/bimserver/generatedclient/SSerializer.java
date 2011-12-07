@@ -17,10 +17,13 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="className" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="contentType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="defaultSerializer" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="enabled" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="ignoreFileId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="extension" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="objectIDMId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="settingsId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
@@ -34,20 +37,26 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "sSerializer", propOrder = {
     "className",
+    "contentType",
+    "defaultSerializer",
     "description",
     "enabled",
-    "ignoreFileId",
+    "extension",
     "name",
+    "objectIDMId",
     "oid",
     "settingsId"
 })
 public class SSerializer {
 
     protected String className;
+    protected String contentType;
+    protected boolean defaultSerializer;
     protected String description;
     protected boolean enabled;
-    protected long ignoreFileId;
+    protected String extension;
     protected String name;
+    protected long objectIDMId;
     protected long oid;
     protected long settingsId;
 
@@ -73,6 +82,46 @@ public class SSerializer {
      */
     public void setClassName(String value) {
         this.className = value;
+    }
+
+    /**
+     * Gets the value of the contentType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getContentType() {
+        return contentType;
+    }
+
+    /**
+     * Sets the value of the contentType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setContentType(String value) {
+        this.contentType = value;
+    }
+
+    /**
+     * Gets the value of the defaultSerializer property.
+     * 
+     */
+    public boolean isDefaultSerializer() {
+        return defaultSerializer;
+    }
+
+    /**
+     * Sets the value of the defaultSerializer property.
+     * 
+     */
+    public void setDefaultSerializer(boolean value) {
+        this.defaultSerializer = value;
     }
 
     /**
@@ -116,19 +165,27 @@ public class SSerializer {
     }
 
     /**
-     * Gets the value of the ignoreFileId property.
+     * Gets the value of the extension property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public long getIgnoreFileId() {
-        return ignoreFileId;
+    public String getExtension() {
+        return extension;
     }
 
     /**
-     * Sets the value of the ignoreFileId property.
+     * Sets the value of the extension property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setIgnoreFileId(long value) {
-        this.ignoreFileId = value;
+    public void setExtension(String value) {
+        this.extension = value;
     }
 
     /**
@@ -153,6 +210,22 @@ public class SSerializer {
      */
     public void setName(String value) {
         this.name = value;
+    }
+
+    /**
+     * Gets the value of the objectIDMId property.
+     * 
+     */
+    public long getObjectIDMId() {
+        return objectIDMId;
+    }
+
+    /**
+     * Sets the value of the objectIDMId property.
+     * 
+     */
+    public void setObjectIDMId(long value) {
+        this.objectIDMId = value;
     }
 
     /**

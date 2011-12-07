@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="checkinMergingEnabled" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="checkinMergingEnabled" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetSettingCheckinMergingEnabled {
 
-    protected boolean checkinMergingEnabled;
+    protected Boolean checkinMergingEnabled;
 
     /**
      * Gets the value of the checkinMergingEnabled property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isCheckinMergingEnabled() {
+    public Boolean isCheckinMergingEnabled() {
         return checkinMergingEnabled;
     }
 
     /**
      * Sets the value of the checkinMergingEnabled property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setCheckinMergingEnabled(boolean value) {
+    public void setCheckinMergingEnabled(Boolean value) {
         this.checkinMergingEnabled = value;
     }
 

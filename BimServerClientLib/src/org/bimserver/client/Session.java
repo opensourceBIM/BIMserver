@@ -22,11 +22,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
-import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -71,7 +71,7 @@ public class Session {
 		}
 	}
 
-	public long commitTransaction() {
+	public long commitTransaction(String comment) {
 		try {
 			for (IdEObject eObject : newObjects) {
 				for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
@@ -123,7 +123,7 @@ public class Session {
 					}
 				}
 			}
-			return serviceInterface.commitTransaction("test");
+			return serviceInterface.commitTransaction(comment);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
@@ -131,9 +131,9 @@ public class Session {
 	}
 
 	@SuppressWarnings("unused")
-	public void loadModel(SRevision revision) {
+	public IfcModel loadModel(long roid) {
 		try {
-			List<SDataObject> dataObjects = serviceInterface.getDataObjects(revision.getOid());
+			List<SDataObject> dataObjects = serviceInterface.getDataObjects(roid);
 			for (SDataObject dataObject : dataObjects) {
 				EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(dataObject.getType());
 				EObject eObject = Ifc2x3Factory.eINSTANCE.create(eClass);
@@ -158,5 +158,6 @@ public class Session {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

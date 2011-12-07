@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="allowSelfRegistration" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="allowSelfRegistration" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetSettingAllowSelfRegistration {
 
-    protected boolean allowSelfRegistration;
+    protected Boolean allowSelfRegistration;
 
     /**
      * Gets the value of the allowSelfRegistration property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isAllowSelfRegistration() {
+    public Boolean isAllowSelfRegistration() {
         return allowSelfRegistration;
     }
 
     /**
      * Sets the value of the allowSelfRegistration property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setAllowSelfRegistration(boolean value) {
+    public void setAllowSelfRegistration(Boolean value) {
         this.allowSelfRegistration = value;
     }
 

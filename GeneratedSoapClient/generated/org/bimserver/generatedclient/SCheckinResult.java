@@ -16,10 +16,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="poid" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="projectName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="rid" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="roid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="progress" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="projectId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="revisionId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,88 +30,80 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "sCheckinResult", propOrder = {
-    "poid",
-    "projectName",
-    "rid",
-    "roid"
+    "oid",
+    "progress",
+    "projectId",
+    "revisionId"
 })
 public class SCheckinResult {
 
-    protected long poid;
-    protected String projectName;
-    protected int rid;
-    protected long roid;
+    protected long oid;
+    protected int progress;
+    protected long projectId;
+    protected long revisionId;
 
     /**
-     * Gets the value of the poid property.
+     * Gets the value of the oid property.
      * 
      */
-    public long getPoid() {
-        return poid;
+    public long getOid() {
+        return oid;
     }
 
     /**
-     * Sets the value of the poid property.
+     * Sets the value of the oid property.
      * 
      */
-    public void setPoid(long value) {
-        this.poid = value;
+    public void setOid(long value) {
+        this.oid = value;
     }
 
     /**
-     * Gets the value of the projectName property.
+     * Gets the value of the progress property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getProjectName() {
-        return projectName;
+    public int getProgress() {
+        return progress;
     }
 
     /**
-     * Sets the value of the projectName property.
+     * Sets the value of the progress property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setProjectName(String value) {
-        this.projectName = value;
+    public void setProgress(int value) {
+        this.progress = value;
     }
 
     /**
-     * Gets the value of the rid property.
+     * Gets the value of the projectId property.
      * 
      */
-    public int getRid() {
-        return rid;
+    public long getProjectId() {
+        return projectId;
     }
 
     /**
-     * Sets the value of the rid property.
+     * Sets the value of the projectId property.
      * 
      */
-    public void setRid(int value) {
-        this.rid = value;
+    public void setProjectId(long value) {
+        this.projectId = value;
     }
 
     /**
-     * Gets the value of the roid property.
+     * Gets the value of the revisionId property.
      * 
      */
-    public long getRoid() {
-        return roid;
+    public long getRevisionId() {
+        return revisionId;
     }
 
     /**
-     * Sets the value of the roid property.
+     * Sets the value of the revisionId property.
      * 
      */
-    public void setRoid(long value) {
-        this.roid = value;
+    public void setRevisionId(long value) {
+        this.revisionId = value;
     }
 
 }

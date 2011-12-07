@@ -18,9 +18,9 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="sCompareType" type="{http://shared.bimserver.org/}sCompareType" minOccurs="0"/>
  *         &lt;element name="sCompareIdentifier" type="{http://shared.bimserver.org/}sCompareIdentifier" minOccurs="0"/>
- *         &lt;element name="poid" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="roid1" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="roid2" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="poid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="roid1" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="roid2" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -43,9 +43,9 @@ public class SendCompareEmail {
 
     protected SCompareType sCompareType;
     protected SCompareIdentifier sCompareIdentifier;
-    protected long poid;
-    protected long roid1;
-    protected long roid2;
+    protected Long poid;
+    protected Long roid1;
+    protected Long roid2;
     protected String address;
 
     /**
@@ -99,48 +99,72 @@ public class SendCompareEmail {
     /**
      * Gets the value of the poid property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getPoid() {
+    public Long getPoid() {
         return poid;
     }
 
     /**
      * Sets the value of the poid property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setPoid(long value) {
+    public void setPoid(Long value) {
         this.poid = value;
     }
 
     /**
      * Gets the value of the roid1 property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getRoid1() {
+    public Long getRoid1() {
         return roid1;
     }
 
     /**
      * Sets the value of the roid1 property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setRoid1(long value) {
+    public void setRoid1(Long value) {
         this.roid1 = value;
     }
 
     /**
      * Gets the value of the roid2 property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getRoid2() {
+    public Long getRoid2() {
         return roid2;
     }
 
     /**
      * Sets the value of the roid2 property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setRoid2(long value) {
+    public void setRoid2(Long value) {
         this.roid2 = value;
     }
 

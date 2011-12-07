@@ -81,6 +81,5 @@ public class CustomInvoker extends AbstractInvoker {
 
 	@Override
 	public void releaseServiceObject(Exchange context, Object obj) {
-		((Service) obj).close();
 	}
 }
