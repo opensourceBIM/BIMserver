@@ -31,7 +31,6 @@ import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.combined.LocalDevBimCombinedServerStarter;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -157,7 +156,7 @@ public class TestClientEmfModel {
 	private void alter(int pid, long roid) {
 		Session session = bimServerClient.createSession();
 		session.startTransaction(pid);
-		IfcModel model = session.loadModel(roid);
+		IfcModelInterface model = session.loadModel(roid);
 		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
 		}
 	}
