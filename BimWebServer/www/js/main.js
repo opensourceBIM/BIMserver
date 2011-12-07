@@ -25,7 +25,7 @@ function activateTabWithTabber(tabber, tabName) {
 }
 
 function activateTab(tabName) {
-	var tabber = $(".tabberlive").attr("tabber");
+	var tabber = $(".tabberlive").get(0).tabber;
 	activateTabWithTabber(tabber, tabName);
 }
 
