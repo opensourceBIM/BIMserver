@@ -16,11 +16,14 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import javax.xml.bind.annotation.XmlSeeAlso;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
+@XmlSeeAlso(value={SObjectModified.class, SObjectRemoved.class, SObjectAdded.class, 
+})
 public class SCompareItem implements SBase
 {
 	private long oid = -1;

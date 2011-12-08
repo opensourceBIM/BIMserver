@@ -4,6 +4,7 @@ package org.bimserver.generatedclient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -40,6 +41,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "start",
     "userId",
     "username"
+})
+@XmlSeeAlso({
+    SLongCheckinAction.class
 })
 public class SLongAction {
 

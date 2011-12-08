@@ -54,6 +54,9 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 	public List<DataObject> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		EClass eClass = getDatabaseSession().getEClassForName(className);
 		Revision virtualRevision = getVirtualRevision(roid);
+		if (virtualRevision == null) {
+			throw new UserException("No revision with roid " + roid + " found");
+		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			IfcModel subModel = getDatabaseSession().getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId(), false, null);
