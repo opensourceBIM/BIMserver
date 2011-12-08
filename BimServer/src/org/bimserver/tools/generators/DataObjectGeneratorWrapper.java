@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.MetaDataManager;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EClass;
@@ -62,7 +63,8 @@ public class DataObjectGeneratorWrapper {
 				if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
 					Object[] arguments = new Object[]{
 						eClassifier,
-						new ImportManager()
+						new ImportManager(),
+						new MetaDataManager(ePackages)
 					};
 					String generated = dataObjectGenerator.generate(arguments);
 					File file = new File(packageFolder, "S" + eClassifier.getName() + ".java");

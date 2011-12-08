@@ -4,6 +4,7 @@ package org.bimserver.generatedclient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -36,6 +37,31 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "date",
     "executorId",
     "oid"
+})
+@XmlSeeAlso({
+    SProjectDeleted.class,
+    SPasswordChanged.class,
+    SProjectUpdated.class,
+    SNewRevisionAdded.class,
+    SGeoTagUpdated.class,
+    SRevisionBranched.class,
+    SPasswordReset.class,
+    SRevisionUpdated.class,
+    SSettingsSaved.class,
+    SUserUndeleted.class,
+    SUserChanged.class,
+    SDownload.class,
+    SUserRemovedFromProject.class,
+    SNewUserAdded.class,
+    SProjectUndeleted.class,
+    SDatabaseCreated.class,
+    SServerStarted.class,
+    SUserAddedToProject.class,
+    SNewObjectIDMUploaded.class,
+    SNewCheckoutAdded.class,
+    SClashDetectionSettingsUpdated.class,
+    SNewProjectAdded.class,
+    SUserDeleted.class
 })
 public class SLogAction {
 

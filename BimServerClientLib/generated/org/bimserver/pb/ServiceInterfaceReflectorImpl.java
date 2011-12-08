@@ -24,17 +24,17 @@ public class ServiceInterfaceReflectorImpl implements org.bimserver.shared.Servi
 private Reflector reflector;
 
 	public ServiceInterfaceReflectorImpl (Reflector reflector) {this.reflector = reflector;}
-	public org.bimserver.interfaces.objects.SCompareResult compare(java.lang.Long arg0, java.lang.Long arg1, org.bimserver.interfaces.objects.SCompareType arg2, org.bimserver.interfaces.objects.SCompareIdentifier arg3) throws org.bimserver.shared.exceptions.ServiceException {
-		return (org.bimserver.interfaces.objects.SCompareResult) reflector.callMethod("ServiceInterface", "compare", org.bimserver.interfaces.objects.SCompareResult.class, arg0, arg1, arg2, arg3);
-	}
-	public org.bimserver.interfaces.objects.SCompileResult compile(java.lang.String arg0) throws org.bimserver.shared.exceptions.ServiceException {
-		return (org.bimserver.interfaces.objects.SCompileResult) reflector.callMethod("ServiceInterface", "compile", org.bimserver.interfaces.objects.SCompileResult.class, arg0);
-	}
 	public void setup(java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String arg4) throws org.bimserver.shared.exceptions.ServiceException {
 		reflector.callMethod("ServiceInterface", "setup", void.class, arg0, arg1, arg2, arg3, arg4);
 	}
 	public void close() throws org.bimserver.shared.exceptions.ServiceException {
 		reflector.callMethod("ServiceInterface", "close", void.class);
+	}
+	public org.bimserver.interfaces.objects.SCompareResult compare(java.lang.Long arg0, java.lang.Long arg1, org.bimserver.interfaces.objects.SCompareType arg2, org.bimserver.interfaces.objects.SCompareIdentifier arg3) throws org.bimserver.shared.exceptions.ServiceException {
+		return (org.bimserver.interfaces.objects.SCompareResult) reflector.callMethod("ServiceInterface", "compare", org.bimserver.interfaces.objects.SCompareResult.class, arg0, arg1, arg2, arg3);
+	}
+	public org.bimserver.interfaces.objects.SCompileResult compile(java.lang.String arg0) throws org.bimserver.shared.exceptions.ServiceException {
+		return (org.bimserver.interfaces.objects.SCompileResult) reflector.callMethod("ServiceInterface", "compile", org.bimserver.interfaces.objects.SCompileResult.class, arg0);
 	}
 	public java.lang.Long createObject(java.lang.String arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.lang.Long) reflector.callMethod("ServiceInterface", "createObject", java.lang.Long.class, arg0);
@@ -45,26 +45,32 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SMigration> getMigrations() throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.util.List<org.bimserver.interfaces.objects.SMigration>) reflector.callMethod("ServiceInterface", "getMigrations", java.util.List.class);
 	}
+	public java.lang.Integer checkin(java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Long arg3, javax.activation.DataHandler arg4, java.lang.Boolean arg5, java.lang.Boolean arg6) throws org.bimserver.shared.exceptions.ServiceException {
+		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "checkin", java.lang.Integer.class, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+	}
+	public java.lang.Integer checkout(java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServiceException {
+		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "checkout", java.lang.Integer.class, arg0, arg1, arg2);
+	}
 	public org.bimserver.interfaces.objects.SVersion getVersion() throws org.bimserver.shared.exceptions.ServiceException {
 		return (org.bimserver.interfaces.objects.SVersion) reflector.callMethod("ServiceInterface", "getVersion", org.bimserver.interfaces.objects.SVersion.class);
 	}
 	public void removeAttribute(java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Integer arg3) throws org.bimserver.shared.exceptions.ServiceException {
 		reflector.callMethod("ServiceInterface", "removeAttribute", void.class, arg0, arg1, arg2, arg3);
 	}
-	public java.lang.Boolean autologin(java.lang.String arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServiceException {
-		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "autologin", java.lang.Boolean.class, arg0, arg1);
+	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() throws org.bimserver.shared.exceptions.ServiceException {
+		return (org.bimserver.interfaces.objects.SAccessMethod) reflector.callMethod("ServiceInterface", "getAccessMethod", org.bimserver.interfaces.objects.SAccessMethod.class);
 	}
 	public java.lang.String ping(java.lang.String arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.lang.String) reflector.callMethod("ServiceInterface", "ping", java.lang.String.class, arg0);
 	}
+	public java.lang.Integer download(java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServiceException {
+		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "download", java.lang.Integer.class, arg0, arg1, arg2);
+	}
 	public java.lang.Boolean login(java.lang.String arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "login", java.lang.Boolean.class, arg0, arg1);
 	}
-	public java.lang.Integer checkin(java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2, java.lang.Long arg3, javax.activation.DataHandler arg4, java.lang.Boolean arg5, java.lang.Boolean arg6) throws org.bimserver.shared.exceptions.ServiceException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "checkin", java.lang.Integer.class, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-	}
-	public java.lang.Integer download(java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServiceException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "download", java.lang.Integer.class, arg0, arg1, arg2);
+	public java.lang.Boolean autologin(java.lang.String arg0, java.lang.String arg1) throws org.bimserver.shared.exceptions.ServiceException {
+		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "autologin", java.lang.Boolean.class, arg0, arg1);
 	}
 	public java.lang.Long addUser(java.lang.String arg0, java.lang.String arg1, org.bimserver.interfaces.objects.SUserType arg2, java.lang.Boolean arg3) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.lang.Long) reflector.callMethod("ServiceInterface", "addUser", java.lang.Long.class, arg0, arg1, arg2, arg3);
@@ -183,18 +189,6 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllObjectIDMPluginDescriptors", java.util.List.class);
 	}
-	public java.lang.Integer checkout(java.lang.Long arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.ServiceException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "checkout", java.lang.Integer.class, arg0, arg1, arg2);
-	}
-	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() throws org.bimserver.shared.exceptions.ServiceException {
-		return (org.bimserver.interfaces.objects.SAccessMethod) reflector.callMethod("ServiceInterface", "getAccessMethod", org.bimserver.interfaces.objects.SAccessMethod.class);
-	}
-	public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration() throws org.bimserver.shared.exceptions.ServiceException {
-		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "isSettingSendConfirmationEmailAfterRegistration", java.lang.Boolean.class);
-	}
-	public void setSettingSendConfirmationEmailAfterRegistration(java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServiceException {
-		reflector.callMethod("ServiceInterface", "setSettingSendConfirmationEmailAfterRegistration", void.class, arg0);
-	}
 	public org.bimserver.interfaces.objects.SCheckinResult getCheckinState(java.lang.Integer arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("ServiceInterface", "getCheckinState", org.bimserver.interfaces.objects.SCheckinResult.class, arg0);
 	}
@@ -203,6 +197,12 @@ private Reflector reflector;
 	}
 	public java.lang.Integer downloadCompareResults(java.lang.String arg0, java.lang.Long arg1, java.lang.Long arg2, org.bimserver.interfaces.objects.SCompareIdentifier arg3, org.bimserver.interfaces.objects.SCompareType arg4, java.lang.Boolean arg5) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadCompareResults", java.lang.Integer.class, arg0, arg1, arg2, arg3, arg4, arg5);
+	}
+	public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration() throws org.bimserver.shared.exceptions.ServiceException {
+		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "isSettingSendConfirmationEmailAfterRegistration", java.lang.Boolean.class);
+	}
+	public void setSettingSendConfirmationEmailAfterRegistration(java.lang.Boolean arg0) throws org.bimserver.shared.exceptions.ServiceException {
+		reflector.callMethod("ServiceInterface", "setSettingSendConfirmationEmailAfterRegistration", void.class, arg0);
 	}
 	public java.lang.Integer downloadByOids(java.util.Set<java.lang.Long> arg0, java.util.Set<java.lang.Long> arg1, java.lang.String arg2, java.lang.Boolean arg3) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadByOids", java.lang.Integer.class, arg0, arg1, arg2, arg3);
@@ -321,11 +321,11 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SClash> getLastClashes(java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		return (java.util.List<org.bimserver.interfaces.objects.SClash>) reflector.callMethod("ServiceInterface", "getLastClashes", java.util.List.class, arg0);
 	}
-	public Integer branchToNewProject(java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
-		return (Integer) reflector.callMethod("ServiceInterface", "branchToNewProject", org.bimserver.interfaces.objects.SCheckinResult.class, arg0, arg1, arg2);
+	public java.lang.Integer branchToNewProject(java.lang.Long arg0, java.lang.String arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
+		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "branchToNewProject", java.lang.Integer.class, arg0, arg1, arg2);
 	}
-	public Integer branchToExistingProject(java.lang.Long arg0, java.lang.Long arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
-		return (Integer) reflector.callMethod("ServiceInterface", "branchToExistingProject", org.bimserver.interfaces.objects.SCheckinResult.class, arg0, arg1, arg2);
+	public java.lang.Integer branchToExistingProject(java.lang.Long arg0, java.lang.Long arg1, java.lang.String arg2) throws org.bimserver.shared.exceptions.ServiceException {
+		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "branchToExistingProject", java.lang.Integer.class, arg0, arg1, arg2);
 	}
 	public org.bimserver.interfaces.objects.SClashDetectionSettings getClashDetectionSettings(java.lang.Long arg0) throws org.bimserver.shared.exceptions.ServiceException {
 		return (org.bimserver.interfaces.objects.SClashDetectionSettings) reflector.callMethod("ServiceInterface", "getClashDetectionSettings", org.bimserver.interfaces.objects.SClashDetectionSettings.class, arg0);

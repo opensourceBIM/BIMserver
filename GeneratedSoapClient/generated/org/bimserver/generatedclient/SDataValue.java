@@ -3,6 +3,7 @@ package org.bimserver.generatedclient;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -30,6 +31,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "sDataValue", propOrder = {
     "fieldName",
     "oid"
+})
+@XmlSeeAlso({
+    SListDataValue.class,
+    SSimpleDataValue.class,
+    SReferenceDataValue.class
 })
 public class SDataValue {
 

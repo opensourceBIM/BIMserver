@@ -17,11 +17,14 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.Date;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
+@XmlSeeAlso(value={SLongCheckinAction.class, 
+})
 public class SLongAction implements SBase
 {
 	private long oid = -1;

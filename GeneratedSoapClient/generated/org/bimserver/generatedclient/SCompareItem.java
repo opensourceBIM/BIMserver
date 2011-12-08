@@ -3,6 +3,7 @@ package org.bimserver.generatedclient;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -30,6 +31,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "sCompareItem", propOrder = {
     "dataObject",
     "oid"
+})
+@XmlSeeAlso({
+    SObjectAdded.class,
+    SObjectModified.class,
+    SObjectRemoved.class
 })
 public class SCompareItem {
 

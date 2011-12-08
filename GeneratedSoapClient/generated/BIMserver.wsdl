@@ -286,41 +286,72 @@
 <xs:element name="requestPasswordChangeResponse" type="tns:requestPasswordChangeResponse"/>
 <xs:element name="sCheckinResult" type="tns:sCheckinResult"/>
 <xs:element name="sCheckout" type="tns:sCheckout"/>
+<xs:element name="sCheckoutResult" type="tns:sCheckoutResult"/>
 <xs:element name="sClash" type="tns:sClash"/>
 <xs:element name="sClashDetectionSettings" type="tns:sClashDetectionSettings"/>
+<xs:element name="sClashDetectionSettingsUpdated" type="tns:sClashDetectionSettingsUpdated"/>
 <xs:element name="sCompareContainer" type="tns:sCompareContainer"/>
 <xs:element name="sCompareItem" type="tns:sCompareItem"/>
 <xs:element name="sCompareResult" type="tns:sCompareResult"/>
 <xs:element name="sCompileResult" type="tns:sCompileResult"/>
 <xs:element name="sDataObject" type="tns:sDataObject"/>
 <xs:element name="sDataValue" type="tns:sDataValue"/>
+<xs:element name="sDatabaseCreated" type="tns:sDatabaseCreated"/>
 <xs:element name="sDatabaseInformation" type="tns:sDatabaseInformation"/>
 <xs:element name="sDatabaseInformationCategory" type="tns:sDatabaseInformationCategory"/>
 <xs:element name="sDatabaseInformationItem" type="tns:sDatabaseInformationItem"/>
 <xs:element name="sDeserializer" type="tns:sDeserializer"/>
 <xs:element name="sDeserializerPluginDescriptor" type="tns:sDeserializerPluginDescriptor"/>
+<xs:element name="sDownload" type="tns:sDownload"/>
 <xs:element name="sDownloadResult" type="tns:sDownloadResult"/>
 <xs:element name="sEidClash" type="tns:sEidClash"/>
 <xs:element name="sGeoTag" type="tns:sGeoTag"/>
+<xs:element name="sGeoTagUpdated" type="tns:sGeoTagUpdated"/>
 <xs:element name="sGuidClash" type="tns:sGuidClash"/>
+<xs:element name="sListDataValue" type="tns:sListDataValue"/>
 <xs:element name="sLogAction" type="tns:sLogAction"/>
 <xs:element name="sLongAction" type="tns:sLongAction"/>
 <xs:element name="sLongActionState" type="tns:sLongActionState"/>
+<xs:element name="sLongCheckinAction" type="tns:sLongCheckinAction"/>
 <xs:element name="sMigration" type="tns:sMigration"/>
+<xs:element name="sNewCheckoutAdded" type="tns:sNewCheckoutAdded"/>
+<xs:element name="sNewObjectIDMUploaded" type="tns:sNewObjectIDMUploaded"/>
+<xs:element name="sNewProjectAdded" type="tns:sNewProjectAdded"/>
+<xs:element name="sNewRevisionAdded" type="tns:sNewRevisionAdded"/>
+<xs:element name="sNewUserAdded" type="tns:sNewUserAdded"/>
+<xs:element name="sObjectAdded" type="tns:sObjectAdded"/>
 <xs:element name="sObjectIDM" type="tns:sObjectIDM"/>
 <xs:element name="sObjectIDMPluginDescriptor" type="tns:sObjectIDMPluginDescriptor"/>
+<xs:element name="sObjectModified" type="tns:sObjectModified"/>
+<xs:element name="sObjectRemoved" type="tns:sObjectRemoved"/>
+<xs:element name="sPasswordChanged" type="tns:sPasswordChanged"/>
+<xs:element name="sPasswordReset" type="tns:sPasswordReset"/>
 <xs:element name="sPluginDescriptor" type="tns:sPluginDescriptor"/>
 <xs:element name="sProject" type="tns:sProject"/>
+<xs:element name="sProjectDeleted" type="tns:sProjectDeleted"/>
+<xs:element name="sProjectUndeleted" type="tns:sProjectUndeleted"/>
+<xs:element name="sProjectUpdated" type="tns:sProjectUpdated"/>
+<xs:element name="sReferenceDataValue" type="tns:sReferenceDataValue"/>
 <xs:element name="sRevision" type="tns:sRevision"/>
+<xs:element name="sRevisionBranched" type="tns:sRevisionBranched"/>
 <xs:element name="sRevisionSummary" type="tns:sRevisionSummary"/>
 <xs:element name="sRevisionSummaryContainer" type="tns:sRevisionSummaryContainer"/>
 <xs:element name="sRevisionSummaryType" type="tns:sRevisionSummaryType"/>
+<xs:element name="sRevisionUpdated" type="tns:sRevisionUpdated"/>
 <xs:element name="sRunResult" type="tns:sRunResult"/>
 <xs:element name="sSerializer" type="tns:sSerializer"/>
 <xs:element name="sSerializerPluginDescriptor" type="tns:sSerializerPluginDescriptor"/>
 <xs:element name="sServerInfo" type="tns:sServerInfo"/>
+<xs:element name="sServerStarted" type="tns:sServerStarted"/>
+<xs:element name="sSettingsSaved" type="tns:sSettingsSaved"/>
+<xs:element name="sSimpleDataValue" type="tns:sSimpleDataValue"/>
 <xs:element name="sUser" type="tns:sUser"/>
+<xs:element name="sUserAddedToProject" type="tns:sUserAddedToProject"/>
+<xs:element name="sUserChanged" type="tns:sUserChanged"/>
+<xs:element name="sUserDeleted" type="tns:sUserDeleted"/>
+<xs:element name="sUserRemovedFromProject" type="tns:sUserRemovedFromProject"/>
 <xs:element name="sUserSession" type="tns:sUserSession"/>
+<xs:element name="sUserUndeleted" type="tns:sUserUndeleted"/>
 <xs:element name="sVersion" type="tns:sVersion"/>
 <xs:element name="sendClashesEmail" type="tns:sendClashesEmail"/>
 <xs:element name="sendClashesEmailResponse" type="tns:sendClashesEmailResponse"/>
@@ -502,6 +533,13 @@
 <xs:element minOccurs="0" name="projectName" type="xs:string"/>
 <xs:element name="revisionNr" type="xs:int"/>
 </xs:sequence>
+</xs:complexType>
+<xs:complexType name="sCheckoutResult">
+<xs:complexContent>
+<xs:extension base="tns:sDownloadResult">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 <xs:complexType name="getCheckoutWarnings">
 <xs:sequence>
@@ -704,6 +742,16 @@
 <xs:element minOccurs="0" name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
+<xs:complexType name="getProjectsByName">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProjectsByNameResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sProject"/>
+</xs:sequence>
+</xs:complexType>
 <xs:complexType name="setRevisionTag">
 <xs:sequence>
 <xs:element minOccurs="0" name="roid" type="xs:long"/>
@@ -729,16 +777,6 @@
 <xs:complexType name="isSettingHideUserListForNonAdminResponse">
 <xs:sequence>
 <xs:element minOccurs="0" name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="getProjectsByName">
-<xs:sequence>
-<xs:element minOccurs="0" name="name" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="getProjectsByNameResponse">
-<xs:sequence>
-<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sProject"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="setSettingCustomLogoAddress">
@@ -777,26 +815,6 @@
 <xs:element minOccurs="0" name="validationTokenCreated" type="xs:dateTime"/>
 </xs:sequence>
 </xs:complexType>
-<xs:complexType name="hasActiveSerializer">
-<xs:sequence>
-<xs:element minOccurs="0" name="arg0" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="hasActiveSerializerResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="getAvailableClassesInRevision">
-<xs:sequence>
-<xs:element name="arg0" type="xs:long"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="getAvailableClassesInRevisionResponse">
-<xs:sequence>
-<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
 <xs:complexType name="getAllObjectIDMs">
 <xs:sequence>
 <xs:element minOccurs="0" name="onlyEnabled" type="xs:boolean"/>
@@ -817,26 +835,6 @@
 <xs:element name="settingsId" type="xs:long"/>
 </xs:sequence>
 </xs:complexType>
-<xs:complexType name="compileAndRun">
-<xs:sequence>
-<xs:element name="roid" type="xs:long"/>
-<xs:element minOccurs="0" name="code" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="compileAndRunResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="tns:sRunResult"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="sRunResult">
-<xs:sequence>
-<xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="xs:string"/>
-<xs:element name="oid" type="xs:long"/>
-<xs:element minOccurs="0" name="output" type="xs:string"/>
-<xs:element name="runOke" type="xs:boolean"/>
-<xs:element maxOccurs="unbounded" minOccurs="0" name="warnings" nillable="true" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
 <xs:complexType name="startTransaction">
 <xs:sequence>
 <xs:element minOccurs="0" name="pid" type="xs:int"/>
@@ -845,43 +843,12 @@
 <xs:complexType name="startTransactionResponse">
 <xs:sequence/>
 </xs:complexType>
-<xs:complexType name="addUser">
-<xs:sequence>
-<xs:element minOccurs="0" name="username" type="xs:string"/>
-<xs:element minOccurs="0" name="name" type="xs:string"/>
-<xs:element minOccurs="0" name="type" type="tns:sUserType"/>
-<xs:element minOccurs="0" name="selfRegistration" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="addUserResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="xs:long"/>
-</xs:sequence>
-</xs:complexType>
 <xs:complexType name="setSettingAllowUsersToCreateTopLevelProjects">
 <xs:sequence>
 <xs:element minOccurs="0" name="allowUsersToCreateTopLevelProjects" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="setSettingAllowUsersToCreateTopLevelProjectsResponse">
-<xs:sequence/>
-</xs:complexType>
-<xs:complexType name="addProject">
-<xs:sequence>
-<xs:element minOccurs="0" name="projectName" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="addProjectResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="tns:sProject"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="updateSerializer">
-<xs:sequence>
-<xs:element minOccurs="0" name="serializer" type="tns:sSerializer"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="updateSerializerResponse">
 <xs:sequence/>
 </xs:complexType>
 <xs:complexType name="updateGeoTag">
@@ -920,6 +887,77 @@
 <xs:element name="progress" type="xs:int"/>
 <xs:element minOccurs="0" name="state" type="tns:sActionState"/>
 </xs:sequence>
+</xs:complexType>
+<xs:complexType name="hasActiveSerializer">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="hasActiveSerializerResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAvailableClassesInRevision">
+<xs:sequence>
+<xs:element name="arg0" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAvailableClassesInRevisionResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="compileAndRun">
+<xs:sequence>
+<xs:element name="roid" type="xs:long"/>
+<xs:element minOccurs="0" name="code" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="compileAndRunResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:sRunResult"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sRunResult">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="xs:string"/>
+<xs:element name="oid" type="xs:long"/>
+<xs:element minOccurs="0" name="output" type="xs:string"/>
+<xs:element name="runOke" type="xs:boolean"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="warnings" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="username" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="type" type="tns:sUserType"/>
+<xs:element minOccurs="0" name="selfRegistration" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addProject">
+<xs:sequence>
+<xs:element minOccurs="0" name="projectName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addProjectResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:sProject"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateSerializer">
+<xs:sequence>
+<xs:element minOccurs="0" name="serializer" type="tns:sSerializer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateSerializerResponse">
+<xs:sequence/>
 </xs:complexType>
 <xs:complexType name="setSettingSmtpServer">
 <xs:sequence>
@@ -972,6 +1010,15 @@
 <xs:element name="userId" type="xs:long"/>
 <xs:element minOccurs="0" name="username" type="xs:string"/>
 </xs:sequence>
+</xs:complexType>
+<xs:complexType name="sLongCheckinAction">
+<xs:complexContent>
+<xs:extension base="tns:sLongAction">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="revisions" nillable="true" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 <xs:complexType name="getRevision">
 <xs:sequence>
@@ -1365,18 +1412,6 @@
 <xs:element minOccurs="0" name="return" type="xs:string"/>
 </xs:sequence>
 </xs:complexType>
-<xs:complexType name="checkoutLastRevision">
-<xs:sequence>
-<xs:element minOccurs="0" name="poid" type="xs:long"/>
-<xs:element minOccurs="0" name="serializerName" type="xs:string"/>
-<xs:element minOccurs="0" name="sync" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="checkoutLastRevisionResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
 <xs:complexType name="branchToNewProject">
 <xs:sequence>
 <xs:element minOccurs="0" name="roid" type="xs:long"/>
@@ -1386,25 +1421,7 @@
 </xs:complexType>
 <xs:complexType name="branchToNewProjectResponse">
 <xs:sequence>
-<xs:element minOccurs="0" name="return" type="tns:sCheckinResult"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="getLastDatabaseReset">
-<xs:sequence/>
-</xs:complexType>
-<xs:complexType name="getLastDatabaseResetResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="xs:dateTime"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="getDeserializerById">
-<xs:sequence>
-<xs:element minOccurs="0" name="oid" type="xs:long"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="getDeserializerByIdResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="tns:sDeserializer"/>
+<xs:element minOccurs="0" name="return" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="getDataObjectByGuid">
@@ -1433,6 +1450,34 @@
 <xs:element name="oid" type="xs:long"/>
 </xs:sequence>
 </xs:complexType>
+<xs:complexType name="sSimpleDataValue">
+<xs:complexContent>
+<xs:extension base="tns:sDataValue">
+<xs:sequence>
+<xs:element minOccurs="0" name="stringValue" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sReferenceDataValue">
+<xs:complexContent>
+<xs:extension base="tns:sDataValue">
+<xs:sequence>
+<xs:element minOccurs="0" name="guid" type="xs:string"/>
+<xs:element minOccurs="0" name="typeName" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sListDataValue">
+<xs:complexContent>
+<xs:extension base="tns:sDataValue">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="tns:sDataValue"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
 <xs:complexType name="setBooleanAttribute">
 <xs:sequence>
 <xs:element minOccurs="0" name="oid" type="xs:long"/>
@@ -1443,6 +1488,36 @@
 </xs:complexType>
 <xs:complexType name="setBooleanAttributeResponse">
 <xs:sequence/>
+</xs:complexType>
+<xs:complexType name="checkoutLastRevision">
+<xs:sequence>
+<xs:element minOccurs="0" name="poid" type="xs:long"/>
+<xs:element minOccurs="0" name="serializerName" type="xs:string"/>
+<xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="checkoutLastRevisionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLastDatabaseReset">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getLastDatabaseResetResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getDeserializerById">
+<xs:sequence>
+<xs:element minOccurs="0" name="oid" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getDeserializerByIdResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:sDeserializer"/>
+</xs:sequence>
 </xs:complexType>
 <xs:complexType name="getAllDeserializerPluginDescriptors">
 <xs:sequence/>
@@ -1603,7 +1678,7 @@
 </xs:complexType>
 <xs:complexType name="branchToExistingProjectResponse">
 <xs:sequence>
-<xs:element minOccurs="0" name="return" type="tns:sCheckinResult"/>
+<xs:element minOccurs="0" name="return" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="getSettingRegistrationAddition">
@@ -1810,6 +1885,210 @@
 <xs:element name="oid" type="xs:long"/>
 </xs:sequence>
 </xs:complexType>
+<xs:complexType name="sNewProjectAdded">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="parentProjectId" type="xs:long"/>
+<xs:element name="projectId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sRevisionUpdated">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="revisionId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sSettingsSaved">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sPasswordReset">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sRevisionBranched">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="newrevisionId" type="xs:long"/>
+<xs:element name="oldrevisionId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sNewCheckoutAdded">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="checkoutId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sProjectDeleted">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="projectId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sProjectUndeleted">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="projectId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sDownload">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sUserDeleted">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sGeoTagUpdated">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="geoTagId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sNewUserAdded">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sUserRemovedFromProject">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="projectId" type="xs:long"/>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sPasswordChanged">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sClashDetectionSettingsUpdated">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="clashDetectionSettingsId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sProjectUpdated">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="projectId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sServerStarted">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sNewRevisionAdded">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="revisionId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sUserAddedToProject">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="projectId" type="xs:long"/>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sDatabaseCreated">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element minOccurs="0" name="path" type="xs:string"/>
+<xs:element name="version" type="xs:int"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sUserUndeleted">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sUserChanged">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence>
+<xs:element name="userId" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sNewObjectIDMUploaded">
+<xs:complexContent>
+<xs:extension base="tns:sLogAction">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
 <xs:complexType name="removeAttribute">
 <xs:sequence>
 <xs:element minOccurs="0" name="oid" type="xs:long"/>
@@ -1975,6 +2254,16 @@
 <xs:element minOccurs="0" name="type1" type="xs:string"/>
 <xs:element minOccurs="0" name="type2" type="xs:string"/>
 </xs:sequence>
+</xs:complexType>
+<xs:complexType name="sEidClash">
+<xs:complexContent>
+<xs:extension base="tns:sClash">
+<xs:sequence>
+<xs:element name="eid1" type="xs:long"/>
+<xs:element name="eid2" type="xs:long"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 <xs:complexType name="setSettingAllowSelfRegistration">
 <xs:sequence>
@@ -2226,16 +2515,6 @@
 <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sEidClash"/>
 </xs:sequence>
 </xs:complexType>
-<xs:complexType name="sEidClash">
-<xs:complexContent>
-<xs:extension base="tns:sClash">
-<xs:sequence>
-<xs:element name="eid1" type="xs:long"/>
-<xs:element name="eid2" type="xs:long"/>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
 <xs:complexType name="getDataObjectByOid">
 <xs:sequence>
 <xs:element minOccurs="0" name="roid" type="xs:long"/>
@@ -2344,6 +2623,31 @@
 <xs:element minOccurs="0" name="dataObject" type="tns:sDataObject"/>
 <xs:element name="oid" type="xs:long"/>
 </xs:sequence>
+</xs:complexType>
+<xs:complexType name="sObjectModified">
+<xs:complexContent>
+<xs:extension base="tns:sCompareItem">
+<xs:sequence>
+<xs:element minOccurs="0" name="fieldName" type="xs:string"/>
+<xs:element minOccurs="0" name="newValue" type="xs:string"/>
+<xs:element minOccurs="0" name="oldValue" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sObjectRemoved">
+<xs:complexContent>
+<xs:extension base="tns:sCompareItem">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sObjectAdded">
+<xs:complexContent>
+<xs:extension base="tns:sCompareItem">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 <xs:complexType name="getAllAuthorizedUsersOfProject">
 <xs:sequence>
@@ -4251,6 +4555,14 @@
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getProjectsByName">
+      <wsdl:input name="getProjectsByName" message="tns:getProjectsByName">
+    </wsdl:input>
+      <wsdl:output name="getProjectsByNameResponse" message="tns:getProjectsByNameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="setRevisionTag">
       <wsdl:input name="setRevisionTag" message="tns:setRevisionTag">
     </wsdl:input>
@@ -4275,14 +4587,6 @@
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getProjectsByName">
-      <wsdl:input name="getProjectsByName" message="tns:getProjectsByName">
-    </wsdl:input>
-      <wsdl:output name="getProjectsByNameResponse" message="tns:getProjectsByNameResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="setSettingCustomLogoAddress">
       <wsdl:input name="setSettingCustomLogoAddress" message="tns:setSettingCustomLogoAddress">
     </wsdl:input>
@@ -4295,6 +4599,46 @@
       <wsdl:input name="getUserByUserName" message="tns:getUserByUserName">
     </wsdl:input>
       <wsdl:output name="getUserByUserNameResponse" message="tns:getUserByUserNameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllObjectIDMs">
+      <wsdl:input name="getAllObjectIDMs" message="tns:getAllObjectIDMs">
+    </wsdl:input>
+      <wsdl:output name="getAllObjectIDMsResponse" message="tns:getAllObjectIDMsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <wsdl:input name="startTransaction" message="tns:startTransaction">
+    </wsdl:input>
+      <wsdl:output name="startTransactionResponse" message="tns:startTransactionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setSettingAllowUsersToCreateTopLevelProjects">
+      <wsdl:input name="setSettingAllowUsersToCreateTopLevelProjects" message="tns:setSettingAllowUsersToCreateTopLevelProjects">
+    </wsdl:input>
+      <wsdl:output name="setSettingAllowUsersToCreateTopLevelProjectsResponse" message="tns:setSettingAllowUsersToCreateTopLevelProjectsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateGeoTag">
+      <wsdl:input name="updateGeoTag" message="tns:updateGeoTag">
+    </wsdl:input>
+      <wsdl:output name="updateGeoTagResponse" message="tns:updateGeoTagResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDownloadState">
+      <wsdl:input name="getDownloadState" message="tns:getDownloadState">
+    </wsdl:input>
+      <wsdl:output name="getDownloadStateResponse" message="tns:getDownloadStateResponse">
     </wsdl:output>
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
@@ -4315,14 +4659,6 @@
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getAllObjectIDMs">
-      <wsdl:input name="getAllObjectIDMs" message="tns:getAllObjectIDMs">
-    </wsdl:input>
-      <wsdl:output name="getAllObjectIDMsResponse" message="tns:getAllObjectIDMsResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="compileAndRun">
       <wsdl:input name="compileAndRun" message="tns:compileAndRun">
     </wsdl:input>
@@ -4331,26 +4667,10 @@
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="startTransaction">
-      <wsdl:input name="startTransaction" message="tns:startTransaction">
-    </wsdl:input>
-      <wsdl:output name="startTransactionResponse" message="tns:startTransactionResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="addUser">
       <wsdl:input name="addUser" message="tns:addUser">
     </wsdl:input>
       <wsdl:output name="addUserResponse" message="tns:addUserResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="setSettingAllowUsersToCreateTopLevelProjects">
-      <wsdl:input name="setSettingAllowUsersToCreateTopLevelProjects" message="tns:setSettingAllowUsersToCreateTopLevelProjects">
-    </wsdl:input>
-      <wsdl:output name="setSettingAllowUsersToCreateTopLevelProjectsResponse" message="tns:setSettingAllowUsersToCreateTopLevelProjectsResponse">
     </wsdl:output>
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
@@ -4367,22 +4687,6 @@
       <wsdl:input name="updateSerializer" message="tns:updateSerializer">
     </wsdl:input>
       <wsdl:output name="updateSerializerResponse" message="tns:updateSerializerResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="updateGeoTag">
-      <wsdl:input name="updateGeoTag" message="tns:updateGeoTag">
-    </wsdl:input>
-      <wsdl:output name="updateGeoTagResponse" message="tns:updateGeoTagResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getDownloadState">
-      <wsdl:input name="getDownloadState" message="tns:getDownloadState">
-    </wsdl:input>
-      <wsdl:output name="getDownloadStateResponse" message="tns:getDownloadStateResponse">
     </wsdl:output>
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
@@ -4707,34 +5011,10 @@
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="checkoutLastRevision">
-      <wsdl:input name="checkoutLastRevision" message="tns:checkoutLastRevision">
-    </wsdl:input>
-      <wsdl:output name="checkoutLastRevisionResponse" message="tns:checkoutLastRevisionResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="branchToNewProject">
       <wsdl:input name="branchToNewProject" message="tns:branchToNewProject">
     </wsdl:input>
       <wsdl:output name="branchToNewProjectResponse" message="tns:branchToNewProjectResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getLastDatabaseReset">
-      <wsdl:input name="getLastDatabaseReset" message="tns:getLastDatabaseReset">
-    </wsdl:input>
-      <wsdl:output name="getLastDatabaseResetResponse" message="tns:getLastDatabaseResetResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServiceException" message="tns:ServiceException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getDeserializerById">
-      <wsdl:input name="getDeserializerById" message="tns:getDeserializerById">
-    </wsdl:input>
-      <wsdl:output name="getDeserializerByIdResponse" message="tns:getDeserializerByIdResponse">
     </wsdl:output>
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
@@ -4751,6 +5031,30 @@
       <wsdl:input name="setBooleanAttribute" message="tns:setBooleanAttribute">
     </wsdl:input>
       <wsdl:output name="setBooleanAttributeResponse" message="tns:setBooleanAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkoutLastRevision">
+      <wsdl:input name="checkoutLastRevision" message="tns:checkoutLastRevision">
+    </wsdl:input>
+      <wsdl:output name="checkoutLastRevisionResponse" message="tns:checkoutLastRevisionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastDatabaseReset">
+      <wsdl:input name="getLastDatabaseReset" message="tns:getLastDatabaseReset">
+    </wsdl:input>
+      <wsdl:output name="getLastDatabaseResetResponse" message="tns:getLastDatabaseResetResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServiceException" message="tns:ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeserializerById">
+      <wsdl:input name="getDeserializerById" message="tns:getDeserializerById">
+    </wsdl:input>
+      <wsdl:output name="getDeserializerByIdResponse" message="tns:getDeserializerByIdResponse">
     </wsdl:output>
       <wsdl:fault name="ServiceException" message="tns:ServiceException">
     </wsdl:fault>
@@ -5574,24 +5878,24 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="userHasCheckinRights">
-      <soap:operation soapAction="userHasCheckinRights" style="document"/>
-      <wsdl:input name="userHasCheckinRights">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="userHasCheckinRightsResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="getServerInfo">
       <soap:operation soapAction="getServerInfo" style="document"/>
       <wsdl:input name="getServerInfo">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getServerInfoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="userHasCheckinRights">
+      <soap:operation soapAction="userHasCheckinRights" style="document"/>
+      <wsdl:input name="userHasCheckinRights">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="userHasCheckinRightsResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ServiceException">
@@ -5802,6 +6106,18 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getProjectsByName">
+      <soap:operation soapAction="getProjectsByName" style="document"/>
+      <wsdl:input name="getProjectsByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProjectsByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="commitTransaction">
       <soap:operation soapAction="commitTransaction" style="document"/>
       <wsdl:input name="commitTransaction">
@@ -5838,18 +6154,6 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getProjectsByName">
-      <soap:operation soapAction="getProjectsByName" style="document"/>
-      <wsdl:input name="getProjectsByName">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getProjectsByNameResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="getUserByUserName">
       <soap:operation soapAction="getUserByUserName" style="document"/>
       <wsdl:input name="getUserByUserName">
@@ -5874,24 +6178,72 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="hasActiveSerializer">
-      <soap:operation soapAction="hasActiveSerializer" style="document"/>
-      <wsdl:input name="hasActiveSerializer">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="hasActiveSerializerResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="getAllObjectIDMs">
       <soap:operation soapAction="getAllObjectIDMs" style="document"/>
       <wsdl:input name="getAllObjectIDMs">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getAllObjectIDMsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <soap:operation soapAction="startTransaction" style="document"/>
+      <wsdl:input name="startTransaction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="startTransactionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setSettingAllowUsersToCreateTopLevelProjects">
+      <soap:operation soapAction="setSettingAllowUsersToCreateTopLevelProjects" style="document"/>
+      <wsdl:input name="setSettingAllowUsersToCreateTopLevelProjects">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setSettingAllowUsersToCreateTopLevelProjectsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDownloadState">
+      <soap:operation soapAction="getDownloadState" style="document"/>
+      <wsdl:input name="getDownloadState">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDownloadStateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateGeoTag">
+      <soap:operation soapAction="updateGeoTag" style="document"/>
+      <wsdl:input name="updateGeoTag">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateGeoTagResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="hasActiveSerializer">
+      <soap:operation soapAction="hasActiveSerializer" style="document"/>
+      <wsdl:input name="hasActiveSerializer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="hasActiveSerializerResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ServiceException">
@@ -5922,18 +6274,6 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="startTransaction">
-      <soap:operation soapAction="startTransaction" style="document"/>
-      <wsdl:input name="startTransaction">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="startTransactionResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="addUser">
       <soap:operation soapAction="addUser" style="document"/>
       <wsdl:input name="addUser">
@@ -5946,48 +6286,12 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="setSettingAllowUsersToCreateTopLevelProjects">
-      <soap:operation soapAction="setSettingAllowUsersToCreateTopLevelProjects" style="document"/>
-      <wsdl:input name="setSettingAllowUsersToCreateTopLevelProjects">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="setSettingAllowUsersToCreateTopLevelProjectsResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="addProject">
       <soap:operation soapAction="addProject" style="document"/>
       <wsdl:input name="addProject">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="addProjectResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getDownloadState">
-      <soap:operation soapAction="getDownloadState" style="document"/>
-      <wsdl:input name="getDownloadState">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getDownloadStateResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="updateGeoTag">
-      <soap:operation soapAction="updateGeoTag" style="document"/>
-      <wsdl:input name="updateGeoTag">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="updateGeoTagResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ServiceException">
@@ -6498,6 +6802,30 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getDataObjectByGuid">
+      <soap:operation soapAction="getDataObjectByGuid" style="document"/>
+      <wsdl:input name="getDataObjectByGuid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDataObjectByGuidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setBooleanAttribute">
+      <soap:operation soapAction="setBooleanAttribute" style="document"/>
+      <wsdl:input name="setBooleanAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setBooleanAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="checkoutLastRevision">
       <soap:operation soapAction="checkoutLastRevision" style="document"/>
       <wsdl:input name="checkoutLastRevision">
@@ -6522,36 +6850,12 @@
         <soap:fault name="ServiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getDataObjectByGuid">
-      <soap:operation soapAction="getDataObjectByGuid" style="document"/>
-      <wsdl:input name="getDataObjectByGuid">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getDataObjectByGuidResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="getDeserializerById">
       <soap:operation soapAction="getDeserializerById" style="document"/>
       <wsdl:input name="getDeserializerById">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getDeserializerByIdResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServiceException">
-        <soap:fault name="ServiceException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="setBooleanAttribute">
-      <soap:operation soapAction="setBooleanAttribute" style="document"/>
-      <wsdl:input name="setBooleanAttribute">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="setBooleanAttributeResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ServiceException">

@@ -23,13 +23,13 @@ option java_outer_classname = "ServiceInterfaceImpl";
 option optimize_for = SPEED;
 
 service ServiceInterface {
-	rpc compare (CompareRequest) returns (CompareResponse);
-
-	rpc compile (CompileRequest) returns (CompileResponse);
-
 	rpc setup (SetupRequest) returns (VoidResponse);
 
 	rpc close (CloseRequest) returns (VoidResponse);
+
+	rpc compare (CompareRequest) returns (CompareResponse);
+
+	rpc compile (CompileRequest) returns (CompileResponse);
 
 	rpc createObject (CreateObjectRequest) returns (CreateObjectResponse);
 
@@ -37,19 +37,23 @@ service ServiceInterface {
 
 	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
 
+	rpc checkin (CheckinRequest) returns (CheckinResponse);
+
+	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
+
 	rpc getVersion (GetVersionRequest) returns (GetVersionResponse);
 
 	rpc removeAttribute (RemoveAttributeRequest) returns (VoidResponse);
 
-	rpc autologin (AutologinRequest) returns (AutologinResponse);
+	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
 
 	rpc ping (PingRequest) returns (PingResponse);
 
+	rpc download (DownloadRequest) returns (DownloadResponse);
+
 	rpc login (LoginRequest) returns (LoginResponse);
 
-	rpc checkin (CheckinRequest) returns (CheckinResponse);
-
-	rpc download (DownloadRequest) returns (DownloadResponse);
+	rpc autologin (AutologinRequest) returns (AutologinResponse);
 
 	rpc addUser (AddUserRequest) returns (AddUserResponse);
 
@@ -129,19 +133,15 @@ service ServiceInterface {
 
 	rpc getAllObjectIDMPluginDescriptors (GetAllObjectIDMPluginDescriptorsRequest) returns (GetAllObjectIDMPluginDescriptorsResponse);
 
-	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
-
-	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
-
-	rpc isSettingSendConfirmationEmailAfterRegistration (IsSettingSendConfirmationEmailAfterRegistrationRequest) returns (IsSettingSendConfirmationEmailAfterRegistrationResponse);
-
-	rpc setSettingSendConfirmationEmailAfterRegistration (SetSettingSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
-
 	rpc getCheckinState (GetCheckinStateRequest) returns (GetCheckinStateResponse);
 
 	rpc checkoutLastRevision (CheckoutLastRevisionRequest) returns (CheckoutLastRevisionResponse);
 
 	rpc downloadCompareResults (DownloadCompareResultsRequest) returns (DownloadCompareResultsResponse);
+
+	rpc isSettingSendConfirmationEmailAfterRegistration (IsSettingSendConfirmationEmailAfterRegistrationRequest) returns (IsSettingSendConfirmationEmailAfterRegistrationResponse);
+
+	rpc setSettingSendConfirmationEmailAfterRegistration (SetSettingSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
 
 	rpc downloadByOids (DownloadByOidsRequest) returns (DownloadByOidsResponse);
 
@@ -396,7 +396,18 @@ message VoidResponse {
 }
 
 message Void {
-}enum SCompareType{
+}message SetupRequest {
+	optional string siteAddress = 1;
+	optional string smtpServer = 2;
+	optional string adminName = 3;
+	optional string adminUsername = 4;
+	optional string adminPassword = 5;
+}
+
+message CloseRequest {
+}
+
+enum SCompareType{
 	ALL = 0;
 	ADD = 1;
 	MODIFY = 2;
@@ -429,8 +440,8 @@ message SDataObject {
 }
 
 message SCompareItem {
-	optional int64 oid = 1;
-	optional SDataObject dataObject = 2;
+	optional SDataObject dataObject = 1;
+	optional int64 oid = 2;
 }
 
 message SCompareContainer {
@@ -462,17 +473,6 @@ message SCompileResult {
 message CompileResponse {
 	optional string errorMessage = 1;
 	optional SCompileResult value = 2;
-}
-
-message SetupRequest {
-	optional string siteAddress = 1;
-	optional string smtpServer = 2;
-	optional string adminName = 3;
-	optional string adminUsername = 4;
-	optional string adminPassword = 5;
-}
-
-message CloseRequest {
 }
 
 message CreateObjectRequest {
@@ -517,50 +517,6 @@ message GetMigrationsResponse {
 	repeated SMigration value = 2;
 }
 
-message GetVersionRequest {
-}
-
-message GetVersionResponse {
-	optional string errorMessage = 1;
-	optional SVersion value = 2;
-}
-
-message RemoveAttributeRequest {
-	optional int64 oid = 1;
-	optional string className = 2;
-	optional string attributeName = 3;
-	optional int32 index = 4;
-}
-
-message AutologinRequest {
-	optional string username = 1;
-	optional string hash = 2;
-}
-
-message AutologinResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message PingRequest {
-	optional string in = 1;
-}
-
-message PingResponse {
-	optional string errorMessage = 1;
-	optional string value = 2;
-}
-
-message LoginRequest {
-	optional string username = 1;
-	optional string password = 2;
-}
-
-message LoginResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
 message CheckinRequest {
 	optional int64 poid = 1;
 	optional string comment = 2;
@@ -576,6 +532,58 @@ message CheckinResponse {
 	optional int32 value = 2;
 }
 
+message CheckoutRequest {
+	optional int64 roid = 1;
+	optional string serializerName = 2;
+	optional bool sync = 3;
+}
+
+message CheckoutResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
+message GetVersionRequest {
+}
+
+message GetVersionResponse {
+	optional string errorMessage = 1;
+	optional SVersion value = 2;
+}
+
+message RemoveAttributeRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+}
+
+message GetAccessMethodRequest {
+}
+
+enum SAccessMethod{
+	SOAP = 0;
+	WEB_INTERFACE = 1;
+	INTERNAL = 2;
+	REST = 3;
+	SYNDICATION = 4;
+	PROTOCOL_BUFFERS = 5;
+}
+
+message GetAccessMethodResponse {
+	optional string errorMessage = 1;
+	optional SAccessMethod value = 2;
+}
+
+message PingRequest {
+	optional string in = 1;
+}
+
+message PingResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
 message DownloadRequest {
 	optional int64 roid = 1;
 	optional string serializerName = 2;
@@ -585,6 +593,26 @@ message DownloadRequest {
 message DownloadResponse {
 	optional string errorMessage = 1;
 	optional int32 value = 2;
+}
+
+message LoginRequest {
+	optional string username = 1;
+	optional string password = 2;
+}
+
+message LoginResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message AutologinRequest {
+	optional string username = 1;
+	optional string hash = 2;
+}
+
+message AutologinResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
 }
 
 enum SUserType{
@@ -780,20 +808,11 @@ message IsLoggedInResponse {
 message GetLogsRequest {
 }
 
-enum SAccessMethod{
-	SOAP = 0;
-	WEB_INTERFACE = 1;
-	INTERNAL = 2;
-	REST = 3;
-	SYNDICATION = 4;
-	PROTOCOL_BUFFERS = 5;
-}
-
 message SLogAction {
 	optional int64 date = 1;
-	optional int64 oid = 2;
+	optional int64 executorId = 2;
 	optional SAccessMethod accessMethod = 3;
-	optional int64 executorId = 4;
+	optional int64 oid = 4;
 }
 
 message GetLogsResponse {
@@ -1028,37 +1047,6 @@ message GetAllObjectIDMPluginDescriptorsResponse {
 	repeated SObjectIDMPluginDescriptor value = 2;
 }
 
-message CheckoutRequest {
-	optional int64 roid = 1;
-	optional string serializerName = 2;
-	optional bool sync = 3;
-}
-
-message CheckoutResponse {
-	optional string errorMessage = 1;
-	optional int32 value = 2;
-}
-
-message GetAccessMethodRequest {
-}
-
-message GetAccessMethodResponse {
-	optional string errorMessage = 1;
-	optional SAccessMethod value = 2;
-}
-
-message IsSettingSendConfirmationEmailAfterRegistrationRequest {
-}
-
-message IsSettingSendConfirmationEmailAfterRegistrationResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message SetSettingSendConfirmationEmailAfterRegistrationRequest {
-	optional bool sendConfirmationEmailAfterRegistration = 1;
-}
-
 message GetCheckinStateRequest {
 	optional int32 actionID = 1;
 }
@@ -1098,6 +1086,18 @@ message DownloadCompareResultsRequest {
 message DownloadCompareResultsResponse {
 	optional string errorMessage = 1;
 	optional int32 value = 2;
+}
+
+message IsSettingSendConfirmationEmailAfterRegistrationRequest {
+}
+
+message IsSettingSendConfirmationEmailAfterRegistrationResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetSettingSendConfirmationEmailAfterRegistrationRequest {
+	optional bool sendConfirmationEmailAfterRegistration = 1;
 }
 
 message DownloadByOidsRequest {
@@ -1149,7 +1149,7 @@ message DownloadProjectsResponse {
 }
 
 message GetDownloadDataRequest {
-	optional int32 actionID = 1;
+	optional int32 actionId = 1;
 }
 
 message SDownloadResult {
@@ -1319,8 +1319,8 @@ message GetDatabaseInformationRequest {
 }
 
 message SDatabaseInformationItem {
-	optional string value = 1;
-	optional string key = 2;
+	optional string key = 1;
+	optional string value = 2;
 	optional int64 oid = 3;
 }
 
@@ -1400,14 +1400,14 @@ message GetRevisionSummaryRequest {
 
 message SRevisionSummaryType {
 	optional string name = 1;
-	optional int64 oid = 2;
-	optional int32 count = 3;
+	optional int32 count = 2;
+	optional int64 oid = 3;
 }
 
 message SRevisionSummaryContainer {
 	optional string name = 1;
-	optional int64 oid = 2;
-	repeated SRevisionSummaryType types = 3;
+	repeated SRevisionSummaryType types = 2;
+	optional int64 oid = 3;
 }
 
 message SRevisionSummary {
@@ -1500,15 +1500,15 @@ message FindClashesByGuidRequest {
 }
 
 message SGuidClash {
-	optional int64 oid = 1;
+	optional string guid2 = 1;
 	optional string guid1 = 2;
-	optional string guid2 = 3;
-	optional string name1 = 4;
-	optional string name2 = 5;
-	optional string type1 = 6;
-	optional string type2 = 7;
-	optional int64 revision1Id = 8;
-	optional int64 revision2Id = 9;
+	optional int64 oid = 3;
+	optional int64 revision1Id = 4;
+	optional int64 revision2Id = 5;
+	optional string type2 = 6;
+	optional string name2 = 7;
+	optional string type1 = 8;
+	optional string name1 = 9;
 }
 
 message FindClashesByGuidResponse {
@@ -1521,15 +1521,15 @@ message FindClashesByEidRequest {
 }
 
 message SEidClash {
-	optional int64 oid = 1;
+	optional int64 eid2 = 1;
 	optional int64 eid1 = 2;
-	optional int64 eid2 = 3;
-	optional string name1 = 4;
-	optional string name2 = 5;
-	optional string type1 = 6;
-	optional string type2 = 7;
-	optional int64 revision1Id = 8;
-	optional int64 revision2Id = 9;
+	optional int64 oid = 3;
+	optional int64 revision1Id = 4;
+	optional int64 revision2Id = 5;
+	optional string type2 = 6;
+	optional string name2 = 7;
+	optional string type1 = 8;
+	optional string name1 = 9;
 }
 
 message FindClashesByEidResponse {
@@ -1542,13 +1542,13 @@ message GetLastClashesRequest {
 }
 
 message SClash {
-	optional int64 oid = 1;
-	optional string name1 = 2;
-	optional string name2 = 3;
-	optional string type1 = 4;
-	optional string type2 = 5;
-	optional int64 revision1Id = 6;
-	optional int64 revision2Id = 7;
+	optional int64 revision1Id = 1;
+	optional int64 revision2Id = 2;
+	optional string type2 = 3;
+	optional string name2 = 4;
+	optional string type1 = 5;
+	optional string name1 = 6;
+	optional int64 oid = 7;
 }
 
 message GetLastClashesResponse {
@@ -1564,7 +1564,7 @@ message BranchToNewProjectRequest {
 
 message BranchToNewProjectResponse {
 	optional string errorMessage = 1;
-	optional SCheckinResult value = 2;
+	optional int32 value = 2;
 }
 
 message BranchToExistingProjectRequest {
@@ -1575,7 +1575,7 @@ message BranchToExistingProjectRequest {
 
 message BranchToExistingProjectResponse {
 	optional string errorMessage = 1;
-	optional SCheckinResult value = 2;
+	optional int32 value = 2;
 }
 
 message GetClashDetectionSettingsRequest {
@@ -1823,10 +1823,10 @@ message GetActiveUserSessionsRequest {
 message SUserSession {
 	optional string name = 1;
 	optional SUserType type = 2;
-	optional int64 oid = 3;
-	optional int64 userId = 4;
-	optional string username = 5;
-	optional SAccessMethod accessMethod = 6;
+	optional SAccessMethod accessMethod = 3;
+	optional int64 oid = 4;
+	optional int64 userId = 5;
+	optional string username = 6;
 	optional int64 activeSince = 7;
 	optional int64 lastActive = 8;
 	optional string remoteAddress = 9;
@@ -1842,11 +1842,11 @@ message GetActiveLongActionsRequest {
 
 message SLongAction {
 	optional string name = 1;
-	optional int64 oid = 2;
-	optional int64 userId = 3;
-	optional string username = 4;
-	optional int64 start = 5;
-	optional string identification = 6;
+	optional string identification = 2;
+	optional int64 start = 3;
+	optional int64 oid = 4;
+	optional int64 userId = 5;
+	optional string username = 6;
 }
 
 message GetActiveLongActionsResponse {
