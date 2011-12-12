@@ -195,7 +195,7 @@ public class SyndicationServlet extends HttpServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SCheckout> allCheckoutsOfProject = service.getAllCheckoutsOfProject(poid);
+			List<SCheckout> allCheckoutsOfProject = service.getAllCheckoutsOfProjectAndSubProjects(poid);
 			for (SCheckout sCheckout : allCheckoutsOfProject) {
 				SRevision revision = service.getRevision(sCheckout.getRevisionId());
 				SProject project = service.getProjectByPoid(sCheckout.getProjectId());
