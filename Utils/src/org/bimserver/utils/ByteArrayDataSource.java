@@ -10,8 +10,10 @@ import javax.activation.DataSource;
 public class ByteArrayDataSource implements DataSource {
 
 	private final byte[] data;
+	private final String name;
 
-	public ByteArrayDataSource(byte[] data) {
+	public ByteArrayDataSource(String name, byte[] data) {
+		this.name = name;
 		this.data = data;
 	}
 	
@@ -27,7 +29,7 @@ public class ByteArrayDataSource implements DataSource {
 
 	@Override
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	@Override

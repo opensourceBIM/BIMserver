@@ -81,7 +81,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 					arguments[i] = en.getEnumConstants()[enumValueDescriptor.getIndex()];
 				} else if (value instanceof ByteString) {
 					ByteString byteString = (ByteString)value;
-					DataSource dataSource = new ByteArrayDataSource(byteString.toByteArray(), "bytes");
+					DataSource dataSource = new org.bimserver.utils.ByteArrayDataSource("bytes", byteString.toByteArray());
 					DataHandler dataHandler = new DataHandler(dataSource);
 					arguments[i] = dataHandler;
 				} else if (value instanceof DynamicMessage) {

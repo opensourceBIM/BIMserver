@@ -262,6 +262,7 @@ public class Service implements ServiceInterface {
 			if (!userDirIncoming.exists()) {
 				userDirIncoming.mkdir();
 			}
+			LOGGER.info(dataHandler.getName());
 			MultiplexingInputStream multiplexingInputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
 			try {
 				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerName);
