@@ -98,7 +98,8 @@ public class ProtocolBuffersConverter {
 			return new Date((Long)val);
 		} else if (field.getType() == DataHandler.class) {
 			ByteString byteString = (ByteString)val;
-			return new DataHandler(new ByteArrayDataSource(byteString.toByteArray()));
+			ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource("test", byteString.toByteArray());
+			return new DataHandler(byteArrayDataSource);
 		} else if (val instanceof DynamicMessage) {
 			SClass sClass = SPackage.getInstance().getSClass(field.getType().getSimpleName());
 			return convertProtocolBuffersMessageToSObject((DynamicMessage)val, sClass);

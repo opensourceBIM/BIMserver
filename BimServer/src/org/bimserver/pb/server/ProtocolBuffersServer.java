@@ -34,6 +34,7 @@ public class ProtocolBuffersServer extends Thread {
 	private final int port;
 
 	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, int port) {
+		setName("ProtocolBuffersServer");
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.serviceFactoryRegistry = serviceFactoryRegistry;
 		this.port = port;

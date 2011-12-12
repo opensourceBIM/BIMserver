@@ -48,6 +48,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer) {
 		this.socket = socket;
 		this.protocolBuffersServer = protocolBuffersServer;
+		setName("ProtocolBuffersConnectionHandler");
 		try {
 			dataInputStream = new DataInputStream(socket.getInputStream());
 			outputStream = socket.getOutputStream();

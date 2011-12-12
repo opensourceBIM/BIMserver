@@ -131,6 +131,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		} finally {
 			session.close();
 		}
+		done();
 //		bimServer.getLongActionManager().remove(this);
 	}
 
