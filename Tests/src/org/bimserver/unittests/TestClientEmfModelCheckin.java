@@ -91,7 +91,7 @@ public class TestClientEmfModelCheckin {
 			long poid = createProject();
 			
 			File file = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
-			DataSource dataSource = new FileDataSource(file);
+			DataSource dataSource = new org.bimserver.utils.FileDataSource(file);
 			DataHandler dataHandler = new DataHandler(dataSource);
 			Integer checkin = bimServerClient.getServiceInterface().checkin(poid, "lala", "IfcStepDeserializer", file.length(), dataHandler, false, true);
 			SCheckinResult checkinState = bimServerClient.getServiceInterface().getCheckinState(checkin);
