@@ -23,8 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SCheckoutResult.class, 
-})
+@XmlSeeAlso(value={SCheckoutResult.class})
 public class SDownloadResult implements SBase
 {
 	private long oid = -1;

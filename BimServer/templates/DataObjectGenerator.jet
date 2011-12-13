@@ -40,11 +40,15 @@ importManager.getImport("javax.xml.bind.annotation.XmlSeeAlso");
 %>
 @XmlSeeAlso(value={
 <%
-for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
-	%>S<%=subClass.getName()%>.class, <%
-}
-%>
-})
+java.util.Set<EClass> subClasses = metaDataManager.getDirectSubClasses(eClass);
+int i=0;
+for (EClass subClass : subClasses) {
+	%>S<%=subClass.getName()%>.class<%
+	if (i != subClasses.size() - 1) {
+	%>, <%
+	}
+	i++;
+}%>})
 <%
 } 
 %>

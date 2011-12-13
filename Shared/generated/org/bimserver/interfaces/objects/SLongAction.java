@@ -23,8 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SLongCheckinAction.class, 
-})
+@XmlSeeAlso(value={SLongCheckinAction.class})
 public class SLongAction implements SBase
 {
 	private long oid = -1;
