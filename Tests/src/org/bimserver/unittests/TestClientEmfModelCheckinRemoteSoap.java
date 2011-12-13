@@ -20,25 +20,17 @@ package org.bimserver.unittests;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 
-import org.apache.commons.io.FileUtils;
-import org.bimserver.BimServer;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
-import org.bimserver.combined.LocalDevBimCombinedServerStarter;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
