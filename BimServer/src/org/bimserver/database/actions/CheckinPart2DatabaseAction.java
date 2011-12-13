@@ -102,7 +102,9 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				// There already was a revision, lets delete it (only when not merging)
 				getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
-			getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
+			if (ifcModel != null) {
+				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
+			}
 			for (final Revision revision : concreteRevision.getRevisions()) {
 				revision.setState(CheckinState.DONE);
 				getDatabaseSession().store(revision);

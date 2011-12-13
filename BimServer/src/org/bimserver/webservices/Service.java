@@ -2183,11 +2183,24 @@ public class Service implements ServiceInterface {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(transactionPid));
 			Project project = session.querySingle(condition, Project.class, false, null);
 			CheckinPart1DatabaseAction checkinPart1DatabaseAction = new CheckinPart1DatabaseAction(session, accessMethod, project.getOid(), currentUoid, null, comment);
-			checkinPart1DatabaseAction.execute();
+			ConcreteRevision concreteRevision = checkinPart1DatabaseAction.execute();
+			int newObjects = 0;
 			for (Change change : changes) {
-				change.execute(transactionPid, checkinPart1DatabaseAction.getConcreteRevision().getId(), session);
+				if (change instanceof CreateObjectChange) {
+					newObjects++;
+				}
+				change.execute(transactionPid, concreteRevision.getId(), session);
 			}
+			
+			
+			concreteRevision.setSize(newObjects);
+			for (Revision revision : concreteRevision.getRevisions()) {
+				revision.setSize(newObjects);
+			}
+			CheckinPart2DatabaseAction checkinPart2DatabaseAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, null, currentUoid, concreteRevision.getOid(), false);
 			session.commit();
+			LongCheckinAction longCheckinAction = new LongCheckinAction(bimServer, (User)session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null), checkinPart2DatabaseAction);
+			longCheckinAction.execute();
 			return checkinPart1DatabaseAction.getRevision().getOid();
 		} catch (BimDeadlockException e) {
 		} catch (BimDatabaseException e) {
