@@ -137,7 +137,6 @@ public class TestClientEmfModel {
 			long roid = session.commitTransaction("tralala");
 
 			dump(roid);
-			alter(pid, roid);
 
 			IfcModelInterface model = bimServerClient.getModel(roid);
 			IfcStepSerializer serializer = new IfcStepSerializer();
@@ -150,14 +149,6 @@ public class TestClientEmfModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());
-		}
-	}
-
-	private void alter(int pid, long roid) {
-		Session session = bimServerClient.createSession();
-		session.startTransaction(pid);
-		IfcModelInterface model = session.loadModel(roid);
-		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
 		}
 	}
 
