@@ -20,6 +20,7 @@ package org.bimserver.webservices;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -262,8 +263,12 @@ public class Service implements ServiceInterface {
 			if (!userDirIncoming.exists()) {
 				userDirIncoming.mkdir();
 			}
-			LOGGER.info(dataHandler.getName());
-			MultiplexingInputStream multiplexingInputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
+			InputStream inputStream = null;
+			if (dataHandler.getName() == null || dataHandler.getName().trim().equals("")) {
+				inputStream = dataHandler.getInputStream();
+			} else {
+				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
+			}
 			try {
 				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerName);
 				try {
@@ -271,7 +276,7 @@ public class Service implements ServiceInterface {
 				} catch (PluginException e) {
 					throw new UserException(e);
 				}
-				IfcModelInterface model = deserializer.read(multiplexingInputStream, dataHandler.getName(), false, fileSize);
+				IfcModelInterface model = deserializer.read(inputStream, dataHandler.getName(), false, fileSize);
 				BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, poid, currentUoid, model, comment);
 				GetUserByUoidDatabaseAction getUserByUoidDatabaseAction = new GetUserByUoidDatabaseAction(session, accessMethod, currentUoid);
 				User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
@@ -295,7 +300,7 @@ public class Service implements ServiceInterface {
 				LOGGER.error("", e);
 				new ServerException("Unknown error", e);
 			} finally {
-				multiplexingInputStream.close();
+				inputStream.close();
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);

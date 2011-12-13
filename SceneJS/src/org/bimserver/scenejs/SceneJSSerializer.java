@@ -1372,7 +1372,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		extents.max[2] = Math.max(vertex[2], extents.max[2]);
 	}
 
-	private static String stripClassName(Class classObject) {
+	private static String stripClassName(Class<?> classObject) {
 		String name = classObject.getName();
 		int ifcIndex = name.lastIndexOf("Ifc");
 		int implIndex = name.lastIndexOf("Impl");

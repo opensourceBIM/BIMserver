@@ -26,7 +26,6 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.mail.util.ByteArrayDataSource;
 
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
