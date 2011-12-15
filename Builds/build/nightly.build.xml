@@ -12,8 +12,11 @@
 		<format property="builddate" pattern="yyyy-MM-dd" />
 	</tstamp>
 
-	<property name="version" value="nightlybuild-${builddate}"/>
-
+	<property name="majorversion" value="1"/>
+	<property name="minorversion" value="1"/>
+	<property name="revisionversion" value="1.1beta-${builddate}"/>
+	<property name="revisiondate" value="${builddate}"/>
+		
 	<target name="nightlybuild">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}" />
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
