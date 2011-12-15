@@ -83,7 +83,6 @@
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
-
 			<fileset file="${buildtargets}/shared/service.proto" />
 			<fileset file="${buildtargets}/shared/notification.proto" />
 			<fileset file="${buildtargets}/shared/service.desc" />
@@ -101,8 +100,11 @@
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/${target}/MANIFEST.MF" />
 		</copy>
-		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@VERSION@" value="${version}" />
-		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
+
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@MAJOR@" value="${majorversion}" />
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@MINOR@" value="${minorversion}" />
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@REVISION@" value="${revisionversion}" />
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${revisiondate}" />
 
 		<copy file="${buildtargets}/${target}/web.xml" todir="builds/BuildWar/WEB-INF" overwrite="true"/>
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />

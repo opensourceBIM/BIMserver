@@ -37,10 +37,10 @@
 			<fileset file="${buildtargets}/${target}/MANIFEST.MF" />
 		</copy>
 		
-		<replace file="builds/BuildJar/config/version.xml" token="@MAJOR@" value="${majorversion}" />
-		<replace file="builds/BuildJar/config/version.xml" token="@MINOR@" value="${minorversion}" />
-		<replace file="builds/BuildJar/config/version.xml" token="@REVISION@" value="${revisionversion}" />
-		<replace file="builds/BuildJar/config/version.xml" token="@DATE@" value="${revisiondate}" />
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@MAJOR@" value="${majorversion}" />
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@MINOR@" value="${minorversion}" />
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@REVISION@" value="${revisionversion}" />
+		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${revisiondate}" />
 
 		<copy file="${buildtargets}/${target}/web.xml" todir="builds/BuildWar/WEB-INF" overwrite="true"/>
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${majorversion}.${minorversion}.{revisionversion}" />
