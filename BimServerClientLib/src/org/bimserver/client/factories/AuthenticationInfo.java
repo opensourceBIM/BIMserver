@@ -1,5 +1,4 @@
 package org.bimserver.client.factories;
 
-public class AuthenticationInfo {
-
+public abstract class AuthenticationInfo {
 }

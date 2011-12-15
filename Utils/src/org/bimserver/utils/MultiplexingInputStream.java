@@ -24,7 +24,9 @@ public class MultiplexingInputStream extends InputStream {
 	@Override
 	public int read(byte[] b, int off, int len) throws IOException {
 		int read = in.read(b, off, len);
-		out.write(b, off, len);
+		if (read != -1) {
+			out.write(b, off, len);
+		}
 		return read;
 	}
 	

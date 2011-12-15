@@ -9,4 +9,8 @@ public class ConnectionException extends Exception {
 	public ConnectionException(IOException e) {
 		super(e);
 	}
+
+	public ConnectionException(String message) {
+		super(message);
+	}
 }

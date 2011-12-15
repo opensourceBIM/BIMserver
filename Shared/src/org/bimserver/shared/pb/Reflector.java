@@ -59,7 +59,7 @@ public class Reflector extends ProtocolBuffersConverter {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, Object... args) throws org.bimserver.shared.exceptions.ServiceException {
+	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, Object... args) throws ServerException, UserException {
 		MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
 		Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
 		Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());

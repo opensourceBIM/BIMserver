@@ -52,8 +52,11 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BimServerClient implements ConnectDisconnectListener {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private Channel channel;
 	private SocketNotificationsClient notificationsClient;
@@ -76,7 +79,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		try {
 			schema = pluginManager.requireSchemaDefinition();
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -92,6 +95,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 	
 	public void connectProtocolBuffers(String address, int port) throws ConnectionException {
+		if (authenticationInfo == null) {
+			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
+		}
 		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData);
 		this.channel = protocolBuffersChannel;
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
@@ -102,7 +108,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 		}
 	}
 	
-	public void connectSoap(final String address, boolean useSoapHeaderSessions) {
+	public void connectSoap(final String address, boolean useSoapHeaderSessions) throws ConnectionException {
+		if (authenticationInfo == null) {
+			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
+		}
 		SoapChannel soapChannel = new SoapChannel();
 		this.channel = soapChannel;
 		soapChannel.registerConnectDisconnectListener(this);
@@ -141,7 +150,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		try {
 			getServiceInterface().close();
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		channel.disconnect();
 	}
@@ -157,7 +166,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 				connected = channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode());
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		if (connected) {
 			notifyOfConnect();

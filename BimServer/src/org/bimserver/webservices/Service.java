@@ -216,7 +216,6 @@ import org.bimserver.shared.CompareWriter;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Hashers;
 import org.bimserver.utils.MultiplexingInputStream;
@@ -251,7 +250,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkin(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServiceException {
+	public Integer checkin(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		final BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -264,11 +263,11 @@ public class Service implements ServiceInterface {
 				userDirIncoming.mkdir();
 			}
 			InputStream inputStream = null;
-			if (dataHandler.getName() == null || dataHandler.getName().trim().equals("")) {
+//			if (dataHandler.getName() == null || dataHandler.getName().trim().equals("")) {
 				inputStream = dataHandler.getInputStream();
-			} else {
-				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
-			}
+//			} else {
+//				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
+//			}
 			try {
 				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerName);
 				try {
@@ -312,7 +311,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckinResult getCheckinState(Integer actionId) throws ServiceException {
+	public SCheckinResult getCheckinState(Integer actionId) throws ServerException, UserException {
 		LongCheckinAction longAction = (LongCheckinAction) bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
 			return converter.convertToSObject(longAction.getCheckinResult());
@@ -322,7 +321,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public Integer checkoutLastRevision(Long poid, String formatIdentifier, Boolean sync) throws ServiceException {
+	public Integer checkoutLastRevision(Long poid, String formatIdentifier, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -337,7 +336,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkout(Long roid, String serializerName, Boolean sync) throws ServiceException {
+	public Integer checkout(Long roid, String serializerName, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerName);
 		if (!serializer.getClass().getSimpleName().equals("IfcStepSerializer") && !serializer.getClass().getSimpleName().equals("IfcXmlSerializer")) {
@@ -357,7 +356,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServiceException {
+	public Long addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
 		if (!selfRegistration) {
 			requireAuthenticationAndRunningServer();
 		} else if (!bimServer.getSettingsManager().getSettings().isAllowSelfRegistration()) {
@@ -376,7 +375,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private void handleException(Exception e) throws ServiceException {
+	private void handleException(Exception e) throws ServerException, UserException {
 		if (e instanceof UserException) {
 			throw (UserException) e;
 		} else if (e instanceof ServerException) {
@@ -391,7 +390,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SProject addProject(String projectName) throws ServiceException {
+	public SProject addProject(String projectName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -406,7 +405,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean addUserToProject(Long uoid, Long poid) throws ServiceException {
+	public Boolean addUserToProject(Long uoid, Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -421,7 +420,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getAllProjects() throws ServiceException {
+	public List<SProject> getAllProjects() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -480,7 +479,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SRevision> getAllRevisionsOfProject(Long poid) throws ServiceException {
+	public List<SRevision> getAllRevisionsOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -495,7 +494,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SCheckout> getAllCheckoutsOfProject(Long poid) throws ServiceException {
+	public List<SCheckout> getAllCheckoutsOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -510,7 +509,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(Long poid) throws ServiceException {
+	public List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -525,7 +524,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SUser> getAllUsers() throws ServiceException {
+	public List<SUser> getAllUsers() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -540,7 +539,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean login(String username, String password) throws ServiceException {
+	public Boolean login(String username, String password) throws ServerException, UserException {
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
@@ -571,7 +570,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SCheckout> getAllCheckoutsByUser(Long uoid) throws ServiceException {
+	public List<SCheckout> getAllCheckoutsByUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -586,7 +585,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SRevision> getAllRevisionsByUser(Long uoid) throws ServiceException {
+	public List<SRevision> getAllRevisionsByUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -601,7 +600,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SRevision getRevision(Long roid) throws ServiceException {
+	public SRevision getRevision(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -616,7 +615,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SCheckout> getAllCheckoutsOfRevision(Long roid) throws ServiceException {
+	public List<SCheckout> getAllCheckoutsOfRevision(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -630,18 +629,18 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public Integer download(Long roid, String resultTypeName, Boolean sync) throws ServiceException {
+	public Integer download(Long roid, String resultTypeName, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(new DownloadParameters(bimServer, roid, resultTypeName), sync);
 	}
 
 	@Override
-	public Integer downloadCompareResults(String serializerName, Long roid1, Long roid2, SCompareIdentifier identifier, SCompareType type, Boolean sync) throws ServiceException {
+	public Integer downloadCompareResults(String serializerName, Long roid1, Long roid2, SCompareIdentifier identifier, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromCompare(roid1, roid2, converter.convertFromSObject(type), converter.convertFromSObject(identifier), serializerName), sync);
 	}
 	
-	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServiceException {
+	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
 		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
@@ -655,7 +654,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDownloadResult getDownloadData(final Integer actionId) throws ServiceException {
+	public SDownloadResult getDownloadData(final Integer actionId) throws ServerException, UserException {
 		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
 			longAction.waitForCompletion();
@@ -668,7 +667,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SLongActionState getDownloadState(Integer actionId) throws ServiceException {
+	public SLongActionState getDownloadState(Integer actionId) throws ServerException, UserException {
 		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
 			return converter.convertToSObject(longAction.getState());
@@ -678,7 +677,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean deleteProject(Long poid) throws ServiceException {
+	public Boolean deleteProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -693,7 +692,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean deleteUser(Long uoid) throws ServiceException {
+	public Boolean deleteUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -708,7 +707,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean removeUserFromProject(Long uoid, Long poid) throws ServiceException {
+	public Boolean removeUserFromProject(Long uoid, Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -723,19 +722,19 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadByOids(Set<Long> roids, Set<Long> oids, String serializerName, Boolean sync) throws ServiceException {
+	public Integer downloadByOids(Set<Long> roids, Set<Long> oids, String serializerName, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromOids(bimServer, serializerName, roids, oids), sync);
 	}
 
 	@Override
-	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, String serializerName, Boolean includeAllSubtypes, Boolean sync) throws ServiceException {
+	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, String serializerName, Boolean includeAllSubtypes, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerName), sync);
 	}
 
 	@Override
-	public List<String> getAvailableClasses() throws ServiceException {
+	public List<String> getAvailableClasses() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -750,7 +749,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDatabaseInformation getDatabaseInformation() throws ServiceException {
+	public SDatabaseInformation getDatabaseInformation() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -765,19 +764,19 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadByGuids(Set<Long> roids, Set<String> guids, String serializerName, Boolean sync) throws ServiceException {
+	public Integer downloadByGuids(Set<Long> roids, Set<String> guids, String serializerName, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromGuids(bimServer, roids, guids, serializerName), sync);
 	}
 
 	@Override
-	public SUser getLoggedInUser() throws ServiceException {
+	public SUser getLoggedInUser() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return getUserByUoid(currentUoid);
 	}
 
 	@Override
-	public List<SProject> getAllNonAuthorizedProjectsOfUser(Long uoid) throws ServiceException {
+	public List<SProject> getAllNonAuthorizedProjectsOfUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -798,7 +797,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean changePassword(Long uoid, String oldPassword, String newPassword) throws ServiceException {
+	public Boolean changePassword(Long uoid, String oldPassword, String newPassword) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -813,7 +812,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SUser getUserByUserName(String username) throws ServiceException {
+	public SUser getUserByUserName(String username) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -835,7 +834,7 @@ public class Service implements ServiceInterface {
 	 * Do not add this method to the ServiceInterface, it will allow everyone to
 	 * login as system
 	 */
-	public Boolean loginAsSystem() throws ServiceException {
+	public Boolean loginAsSystem() throws ServerException, UserException {
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, "system");
@@ -855,7 +854,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean undeleteProject(Long poid) throws ServiceException {
+	public Boolean undeleteProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -870,7 +869,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean undeleteUser(Long uoid) throws ServiceException {
+	public Boolean undeleteUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -885,7 +884,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SProject addProjectAsSubProject(String projectName, Long parentPoid) throws ServiceException {
+	public SProject addProjectAsSubProject(String projectName, Long parentPoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -900,7 +899,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateProject(SProject sProject) throws ServiceException {
+	public void updateProject(SProject sProject) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -914,7 +913,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateRevision(SRevision sRevision) throws ServiceException {
+	public void updateRevision(SRevision sRevision) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -928,7 +927,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCompareResult compare(Long roid1, Long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) throws ServiceException {
+	public SCompareResult compare(Long roid1, Long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -944,7 +943,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SRevisionSummary getRevisionSummary(Long roid) throws ServiceException {
+	public SRevisionSummary getRevisionSummary(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -960,7 +959,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean userHasCheckinRights(Long poid) throws ServiceException {
+	public Boolean userHasCheckinRights(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -975,7 +974,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<String> getCheckoutWarnings(Long poid) throws ServiceException {
+	public Set<String> getCheckoutWarnings(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -990,7 +989,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean userHasRights(Long poid) throws ServiceException {
+	public Boolean userHasRights(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1005,13 +1004,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadProjects(Set<Long> roids, String resultTypeName, Boolean sync) throws ServiceException {
+	public Integer downloadProjects(Set<Long> roids, String resultTypeName, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromRoids(bimServer, roids, resultTypeName), sync);
 	}
 
 	@Override
-	public SDataObject getDataObjectByOid(Long roid, Long oid, String className) throws ServiceException {
+	public SDataObject getDataObjectByOid(Long roid, Long oid, String className) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1027,7 +1026,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDataObject getDataObjectByGuid(Long roid, String guid) throws ServiceException {
+	public SDataObject getDataObjectByGuid(Long roid, String guid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1043,7 +1042,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SDataObject> getDataObjectsByType(Long roid, String className) throws ServiceException {
+	public List<SDataObject> getDataObjectsByType(Long roid, String className) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(bimServer, session, accessMethod, roid, className);
@@ -1059,7 +1058,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SGuidClash> findClashesByGuid(SClashDetectionSettings sClashDetectionSettings) throws ServiceException {
+	public List<SGuidClash> findClashesByGuid(SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1075,7 +1074,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SEidClash> findClashesByEid(SClashDetectionSettings sClashDetectionSettings) throws ServiceException {
+	public List<SEidClash> findClashesByEid(SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1121,7 +1120,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SLogAction> getLogs() throws ServiceException {
+	public List<SLogAction> getLogs() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1137,7 +1136,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SGeoTag getGeoTag(Long goid) throws ServiceException {
+	public SGeoTag getGeoTag(Long goid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1152,7 +1151,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateGeoTag(SGeoTag sGeoTag) throws ServiceException {
+	public void updateGeoTag(SGeoTag sGeoTag) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1166,7 +1165,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SClashDetectionSettings getClashDetectionSettings(Long cdsoid) throws ServiceException {
+	public SClashDetectionSettings getClashDetectionSettings(Long cdsoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1181,7 +1180,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateClashDetectionSettings(SClashDetectionSettings sClashDetectionSettings) throws ServiceException {
+	public void updateClashDetectionSettings(SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1201,7 +1200,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SUser getUserByUoid(Long uoid) throws ServiceException {
+	public SUser getUserByUoid(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1216,7 +1215,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SProject getProjectByPoid(Long poid) throws ServiceException {
+	public SProject getProjectByPoid(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1235,7 +1234,7 @@ public class Service implements ServiceInterface {
 		return in;
 	}
 
-	public List<SUser> getAllNonAuthorizedUsersOfProject(Long poid) throws ServiceException {
+	public List<SUser> getAllNonAuthorizedUsersOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1250,7 +1249,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SUser> getAllAuthorizedUsersOfProject(Long poid) throws ServiceException {
+	public List<SUser> getAllAuthorizedUsersOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1291,7 +1290,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean autologin(String username, String hash) throws ServiceException {
+	public Boolean autologin(String username, String hash) throws ServerException, UserException {
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
@@ -1317,7 +1316,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setRevisionTag(Long roid, String tag) throws ServiceException {
+	public void setRevisionTag(Long roid, String tag) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1331,7 +1330,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getSubProjects(Long poid) throws ServiceException {
+	public List<SProject> getSubProjects(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1346,7 +1345,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void changeUserType(Long uoid, SUserType userType) throws ServiceException {
+	public void changeUserType(Long uoid, SUserType userType) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1384,13 +1383,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingCustomLogoAddress() throws ServiceException {
+	public String getSettingCustomLogoAddress() throws ServerException, UserException {
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		return settings.getCustomLogoAddress();
 	}
 
 	@Override
-	public void setSettingCustomLogoAddress(String customLogoAddress) throws ServiceException {
+	public void setSettingCustomLogoAddress(String customLogoAddress) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setCustomLogoAddress(customLogoAddress);
@@ -1398,12 +1397,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingEmailSenderAddress() throws ServiceException {
+	public String getSettingEmailSenderAddress() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().getEmailSenderAddress();
 	}
 
 	@Override
-	public void setSettingProtocolBuffersPort(Integer port) throws ServiceException {
+	public void setSettingProtocolBuffersPort(Integer port) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setProtocolBuffersPort(port);
@@ -1411,12 +1410,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer getSettingProtocolBuffersPort() throws ServiceException {
+	public Integer getSettingProtocolBuffersPort() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().getProtocolBuffersPort();
 	}
 
 	@Override
-	public void setSettingEmailSenderAddress(String emailSenderAddress) throws ServiceException {
+	public void setSettingEmailSenderAddress(String emailSenderAddress) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setEmailSenderAddress(emailSenderAddress);
@@ -1424,12 +1423,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingRegistrationAddition() throws ServiceException {
+	public String getSettingRegistrationAddition() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().getRegistrationAddition();
 	}
 
 	@Override
-	public void setSettingRegistrationAddition(String registrationAddition) throws ServiceException {
+	public void setSettingRegistrationAddition(String registrationAddition) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setRegistrationAddition(registrationAddition);
@@ -1437,12 +1436,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingSiteAddress() throws ServiceException {
+	public String getSettingSiteAddress() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().getSiteAddress();
 	}
 
 	@Override
-	public void setSettingSiteAddress(String siteAddress) throws ServiceException {
+	public void setSettingSiteAddress(String siteAddress) throws ServerException, UserException {
 		if (bimServer.getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
@@ -1457,12 +1456,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingSmtpServer() throws ServiceException {
+	public String getSettingSmtpServer() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().getSmtpServer();
 	}
 
 	@Override
-	public void setSettingSmtpServer(String smtpServer) throws ServiceException {
+	public void setSettingSmtpServer(String smtpServer) throws ServerException, UserException {
 		if (bimServer.getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
@@ -1475,17 +1474,17 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingAllowSelfRegistration() throws ServiceException {
+	public Boolean isSettingAllowSelfRegistration() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isAllowSelfRegistration();
 	}
 
 	@Override
-	public Boolean isSettingHideUserListForNonAdmin() throws ServiceException {
+	public Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isHideUserListForNonAdmin();
 	}
 	
 	@Override
-	public void setSettingHideUserListForNonAdmin(Boolean hideUserListForNonAdmin) throws ServiceException {
+	public void setSettingHideUserListForNonAdmin(Boolean hideUserListForNonAdmin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
@@ -1493,7 +1492,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void setSettingAllowSelfRegistration(Boolean allowSelfRegistration) throws ServiceException {
+	public void setSettingAllowSelfRegistration(Boolean allowSelfRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setAllowSelfRegistration(allowSelfRegistration);
@@ -1501,12 +1500,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServiceException {
+	public Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isAllowUsersToCreateTopLevelProjects();
 	}
 
 	@Override
-	public void setSettingAllowUsersToCreateTopLevelProjects(Boolean allowUsersToCreateTopLevelProjects) throws ServiceException {
+	public void setSettingAllowUsersToCreateTopLevelProjects(Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
@@ -1514,12 +1513,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingAutoTestClashes() throws ServiceException {
+	public Boolean isSettingAutoTestClashes() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isAutoTestClashes();
 	}
 
 	@Override
-	public void setSettingAutoTestClashes(Boolean autoTestClashes) throws ServiceException {
+	public void setSettingAutoTestClashes(Boolean autoTestClashes) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setAutoTestClashes(autoTestClashes);
@@ -1527,12 +1526,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingCheckinMergingEnabled() throws ServiceException {
+	public Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isCheckinMergingEnabled();
 	}
 
 	@Override
-	public void setSettingCheckinMergingEnabled(Boolean checkinMergingEnabled) throws ServiceException {
+	public void setSettingCheckinMergingEnabled(Boolean checkinMergingEnabled) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setCheckinMergingEnabled(checkinMergingEnabled);
@@ -1540,12 +1539,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingIntelligentMerging() throws ServiceException {
+	public Boolean isSettingIntelligentMerging() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isIntelligentMerging();
 	}
 
 	@Override
-	public void setSettingIntelligentMerging(Boolean intelligentMerging) throws ServiceException {
+	public void setSettingIntelligentMerging(Boolean intelligentMerging) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setIntelligentMerging(intelligentMerging);
@@ -1553,12 +1552,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServiceException {
+	public Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isSendConfirmationEmailAfterRegistration();
 	}
 
 	@Override
-	public void setSettingSendConfirmationEmailAfterRegistration(Boolean sendConfirmationEmailAfterRegistration) throws ServiceException {
+	public void setSettingSendConfirmationEmailAfterRegistration(Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
@@ -1566,12 +1565,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingShowVersionUpgradeAvailable() throws ServiceException {
+	public Boolean isSettingShowVersionUpgradeAvailable() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isShowVersionUpgradeAvailable();
 	}
 
 	@Override
-	public void setSettingShowVersionUpgradeAvailable(Boolean showVersionUpgradeAvailable) throws ServiceException {
+	public void setSettingShowVersionUpgradeAvailable(Boolean showVersionUpgradeAvailable) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
@@ -1579,12 +1578,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean isSettingCacheOutputFiles() throws ServiceException {
+	public Boolean isSettingCacheOutputFiles() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().isCacheOutputFiles();
 	}
 
 	@Override
-	public void setSettingCacheOutputFiles(Boolean cacheOutputFiles) throws ServiceException {
+	public void setSettingCacheOutputFiles(Boolean cacheOutputFiles) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setCacheOutputFiles(cacheOutputFiles);
@@ -1592,7 +1591,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SUserSession> getActiveUserSessions() throws ServiceException {
+	public List<SUserSession> getActiveUserSessions() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return serviceFactory.getActiveUserSessions();
 	}
@@ -1622,7 +1621,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void sendCompareEmail(SCompareType sCompareType, SCompareIdentifier sCompareIdentifier, Long poid, Long roid1, Long roid2, String address) throws ServiceException {
+	public void sendCompareEmail(SCompareType sCompareType, SCompareIdentifier sCompareIdentifier, Long poid, Long roid1, Long roid2, String address) throws ServerException, UserException {
 		SUser currentUser = getCurrentUser();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1665,7 +1664,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void requestPasswordChange(Long uoid) throws ServiceException {
+	public void requestPasswordChange(Long uoid) throws ServerException, UserException {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, bimServer, uoid);
@@ -1678,7 +1677,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void sendClashesEmail(SClashDetectionSettings sClashDetectionSettings, Long poid, Set<String> addressesTo) throws ServiceException {
+	public void sendClashesEmail(SClashDetectionSettings sClashDetectionSettings, Long poid, Set<String> addressesTo) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1692,7 +1691,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SUser validateAccount(Long uoid, String token, String password) throws ServiceException {
+	public SUser validateAccount(Long uoid, String token, String password) throws ServerException, UserException {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BimDatabaseAction<User> action = new ValidateUserDatabaseAction(session, accessMethod, uoid, token, password);
@@ -1706,13 +1705,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SLongAction> getActiveLongActions() throws ServerException, ServiceException {
+	public List<SLongAction> getActiveLongActions() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return converter.convertToSListLongAction(bimServer.getLongActionManager().getActiveLongActions());
 	}
 
 	@Override
-	public List<SProject> getAllReadableProjects() throws ServiceException {
+	public List<SProject> getAllReadableProjects() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1727,7 +1726,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Date getLastDatabaseReset() throws ServiceException {
+	public Date getLastDatabaseReset() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1740,7 +1739,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private void updateLastActive(Long uoid) throws ServiceException {
+	private void updateLastActive(Long uoid) throws ServerException, UserException {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
@@ -1755,7 +1754,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword) throws ServiceException {
+	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword) throws ServerException, UserException {
 		setSettingSmtpServer(smtpServer);
 		setSettingSiteAddress(siteAddress);
 
@@ -1806,7 +1805,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SSerializer> getAllSerializers(Boolean onlyEnabled) throws ServiceException {
+	public List<SSerializer> getAllSerializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1823,7 +1822,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SDeserializer> getAllDeserializers(Boolean onlyEnabled) throws ServiceException {
+	public List<SDeserializer> getAllDeserializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1840,7 +1839,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addSerializer(SSerializer serializer) throws ServiceException {
+	public void addSerializer(SSerializer serializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1854,7 +1853,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addDeserializer(SDeserializer deserializer) throws ServiceException {
+	public void addDeserializer(SDeserializer deserializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1868,7 +1867,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateSerializer(SSerializer serializer) throws ServiceException {
+	public void updateSerializer(SSerializer serializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1885,7 +1884,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateDeserializer(SDeserializer deserializer) throws ServiceException {
+	public void updateDeserializer(SDeserializer deserializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1899,7 +1898,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SObjectIDM> getAllObjectIDMs(Boolean onlyEnabled) throws ServiceException {
+	public List<SObjectIDM> getAllObjectIDMs(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1913,7 +1912,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addObjectIDM(SObjectIDM ObjectIDM) throws ServiceException {
+	public void addObjectIDM(SObjectIDM ObjectIDM) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1926,7 +1925,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateObjectIDM(SObjectIDM ObjectIDM) throws ServiceException {
+	public void updateObjectIDM(SObjectIDM ObjectIDM) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -1940,7 +1939,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SSerializer getSerializerById(Long oid) throws ServiceException {
+	public SSerializer getSerializerById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1954,7 +1953,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDeserializer getDeserializerById(Long oid) throws ServiceException {
+	public SDeserializer getDeserializerById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1968,7 +1967,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SObjectIDM getObjectIDMById(Long oid) throws ServiceException {
+	public SObjectIDM getObjectIDMById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -1988,7 +1987,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void deleteObjectIDM(Long ifid) throws ServiceException {
+	public void deleteObjectIDM(Long ifid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -2002,7 +2001,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void deleteSerializer(Long sid) throws ServiceException {
+	public void deleteSerializer(Long sid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -2016,7 +2015,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void deleteDeserializer(Long sid) throws ServiceException {
+	public void deleteDeserializer(Long sid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -2030,7 +2029,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setSettingFooterAddition(String footerAddition) throws ServiceException {
+	public void setSettingFooterAddition(String footerAddition) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setFooterAddition(footerAddition);
@@ -2038,7 +2037,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setSettingHeaderAddition(String headerAddition) throws ServiceException {
+	public void setSettingHeaderAddition(String headerAddition) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setHeaderAddition(headerAddition);
@@ -2046,26 +2045,26 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingFooterAddition() throws ServiceException {
+	public String getSettingFooterAddition() throws ServerException, UserException {
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		return settings.getFooterAddition();
 	}
 
 	@Override
-	public String getSettingHeaderAddition() throws ServiceException {
+	public String getSettingHeaderAddition() throws ServerException, UserException {
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		return settings.getHeaderAddition();
 	}
 
 	@Override
-	public SMergeIdentifier getSettingMergeIdentifier() throws ServiceException {
+	public SMergeIdentifier getSettingMergeIdentifier() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		return converter.convertToSObject(settings.getMergeIdentifier());
 	}
 
 	@Override
-	public void setSettingMergeIdentifier(SMergeIdentifier mergeIdentifier) throws ServiceException {
+	public void setSettingMergeIdentifier(SMergeIdentifier mergeIdentifier) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setMergeIdentifier(MergeIdentifier.valueOf(mergeIdentifier.name()));
@@ -2073,7 +2072,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SSerializer getSerializerByName(String serializerName) throws ServiceException {
+	public SSerializer getSerializerByName(String serializerName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -2087,7 +2086,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SObjectIDM getObjectIDMByName(String ObjectIDMName) throws ServiceException {
+	public SObjectIDM getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -2101,7 +2100,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDeserializer getDeserializerByName(String deserializerName) throws ServiceException {
+	public SDeserializer getDeserializerByName(String deserializerName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -2115,7 +2114,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SSerializer getSerializerByContentType(String contentType) throws ServiceException {
+	public SSerializer getSerializerByContentType(String contentType) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
@@ -2129,7 +2128,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean hasActiveSerializer(String contentType) throws ServiceException {
+	public Boolean hasActiveSerializer(String contentType) throws ServerException, UserException {
 		try {
 			SSerializer serializer = getSerializerByContentType(contentType);
 			if (serializer != null) {
@@ -2388,26 +2387,26 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCompileResult compile(String code) throws ServiceException {
+	public SCompileResult compile(String code) throws ServerException, UserException {
 		QueryCompiler queryCompiler = new QueryCompiler();
 		return converter.convertToSObject(queryCompiler.compile(code));
 	}
 
 	@Override
-	public SRunResult compileAndRun(long roid, String code) throws ServiceException {
+	public SRunResult compileAndRun(long roid, String code) throws ServerException, UserException {
 		QueryCompiler queryCompiler = new QueryCompiler();
 		return converter.convertToSObject(queryCompiler.run(code, roid, currentUoid, bimServer));
 	}
 
 	@Override
-	public Integer compileAndDownload(long roid, String code) throws ServiceException {
+	public Integer compileAndDownload(long roid, String code) throws ServerException, UserException {
 //		QueryCompiler queryCompiler = new QueryCompiler();
 //		RunResult runResult = queryCompiler.run(code, roid, currentUoid, bimServer);
 		return -1;
 	}
 
 	@Override
-	public String getProtocolBuffersFile() throws ServiceException {
+	public String getProtocolBuffersFile() throws ServerException, UserException {
 		File file = bimServer.getResourceFetcher().getFile("service.proto");
 		try {
 			return FileUtils.readFileToString(file);
@@ -2422,12 +2421,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SVersion getVersion() throws ServiceException {
+	public SVersion getVersion() throws ServerException, UserException {
 		return bimServer.getVersionChecker().getLocalVersion();
 	}
 
 	@Override
-	public SVersion getLatestVersion() throws ServiceException {
+	public SVersion getLatestVersion() throws ServerException, UserException {
 		return bimServer.getVersionChecker().getOnlineVersion();
 	}
 
@@ -2437,7 +2436,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServiceException {
+	public List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		List<SDeserializerPluginDescriptor> descriptors = new ArrayList<SDeserializerPluginDescriptor>();
 		for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
@@ -2450,7 +2449,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<String> getAvailableClassesInRevision(long roid) throws ServiceException {
+	public List<String> getAvailableClassesInRevision(long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -2465,7 +2464,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SDataObject> getDataObjects(long roid) throws ServiceException {
+	public List<SDataObject> getDataObjects(long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -2480,7 +2479,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public String getRemoteAddress() throws ServiceException {
+	public String getRemoteAddress() throws ServerException, UserException {
 		return remoteAddress;
 	}
 }

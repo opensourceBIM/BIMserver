@@ -51,17 +51,16 @@ public class SoapChannel extends Channel {
 		if (useSoapHeaderSessions) {
 			try {
 				Token token = serviceInterface.getCurrentToken();
-				LOGGER.info(token.getTokenString());
 				List<Header> headers = new ArrayList<Header>();
 				try {
 					Header sessionHeader = new Header(new QName("uri:org.bimserver", "token"), token, new JAXBDataBinding(Token.class));
 					headers.add(sessionHeader);
 				} catch (JAXBException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 				((BindingProvider) serviceInterface).getRequestContext().put(Header.HEADER_LIST, headers);
-			} catch (ServiceException e1) {
-				e1.printStackTrace();
+			} catch (ServiceException e) {
+				LOGGER.error("", e);
 			}
 		}
 		setServiceInterface(serviceInterface);

@@ -92,7 +92,7 @@ public class ProtocolBuffersGenerator {
 					sb2.append("arg" + i +  (i < method.getParameterTypes().length-1 ? ", " : ""));
 					i++;
 				}
-				out.println(sb1.toString() + ") throws org.bimserver.shared.exceptions.ServiceException {");
+				out.println(sb1.toString() + ") throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {");
 				if (method.getReturnType() == void.class) {
 					out.println("\t\treflector.callMethod(\"" + serviceInterfaceClass.getSimpleName() + "\", \"" + method.getName() + "\"" + ", " + method.getReturnType().getName() + ".class" + (method.getParameterTypes().length > 0 ? ", " : "") + sb2.toString() + ");");
 				} else {

@@ -19,7 +19,7 @@ package org.bimserver.shared.exceptions;
 
 import javax.xml.ws.WebFault;
 
-@WebFault(faultBean = "ServerException", name = "ServerException")
+@WebFault(faultBean = "ServerException", name = "ServerException", targetNamespace="bimserver")
 public class ServerException extends ServiceException {
 	private static final long serialVersionUID = -8757136271196139727L;
 
