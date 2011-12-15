@@ -113,10 +113,10 @@ public class BimServer {
 	private ClashDetectionCache clashDetectionCache;
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
-	private final BimServerConfig config;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private SService sService;
 	private EmbeddedWebServer embeddedWebServer;
+	private final BimServerConfig config;
 
 	/**
 	 * Create a new BIMserver
@@ -526,6 +526,12 @@ public class BimServer {
 		}
 		if (longActionManager != null) {
 			longActionManager.shutdown();
+		}
+		if (notificationsManager != null) {
+			notificationsManager.shutdown();
+		}
+		if (embeddedWebServer != null) {
+			embeddedWebServer.shutdown();
 		}
 	}
 

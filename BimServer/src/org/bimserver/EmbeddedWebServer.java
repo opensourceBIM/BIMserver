@@ -47,4 +47,12 @@ public class EmbeddedWebServer {
 	public WebAppContext getContext() {
 		return context;
 	}
+
+	public void shutdown() {
+		try {
+			server.stop();
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+	}
 }
