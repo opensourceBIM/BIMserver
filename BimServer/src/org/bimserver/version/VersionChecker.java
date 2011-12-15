@@ -18,6 +18,7 @@ package org.bimserver.version;
  *****************************************************************************/
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
@@ -68,7 +69,7 @@ public class VersionChecker {
 		if (lastCheck == null || lastCheck.before(getReferenceDate())) {
 			LOGGER.info("Fetching online version info");
 			try {
-				URL url = new URL("http://www.bimserver.org/version/latest.xml");
+				URL url = new URL("http://www.bimserver.org/version/latestv2.xml");
 				JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 				onlineVersion = (SVersion) unmarshaller.unmarshal(url);
