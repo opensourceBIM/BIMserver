@@ -16,7 +16,7 @@
 	<property name="minorversion" value="1"/>
 	<property name="revisionversion" value="0"/>
 	<property name="revisiondate" value="${builddate}"/>
-	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}"/>
+	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${builddate}"/>
 
 	<target name="nightlybuild">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}" />
