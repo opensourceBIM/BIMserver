@@ -84,6 +84,9 @@ import org.bimserver.shared.exceptions.ServiceException;
 public interface ServiceInterface {
 	/**
 	 * Method to test the connection, will return the given string
+	 * 
+	 * Available as REST call
+	 * 
 	 * @param in A random string
 	 * @return The string passed as "in"
 	 * @throws ServiceException
@@ -121,6 +124,9 @@ public interface ServiceInterface {
 
 	/**
 	 * Checkin a new model by sending a serialized form
+	 * 
+	 * Available as REST call
+	 * 
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
 	 * @param deserializerName Name of the deserializer to use, use getAllDeserializers to get a list of available deserializers
@@ -131,14 +137,17 @@ public interface ServiceInterface {
 	 * @return An id, which you can use for the getCheckinState method
 	 * @throws ServiceException
 	 */
+	@GET
+	@Path("/checkin")
+	@Produces("text/plain")
 	@WebMethod(action = "checkin")
 	Integer checkin(@WebParam(name = "poid", partName = "checkinSync.poid") Long poid,
-			@WebParam(name = "comment", partName = "checkinSync.comment") String comment,
-			@WebParam(name = "deserializerName", partName = "checkinSync.deserializerName") String deserializerName,
-			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
-			@WebParam(name = "ifcFile", partName = "checkinSync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
-			@WebParam(name = "merge", partName = "checkinSync.merge") Boolean merge,
-			@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServiceException;
+			@QueryParam("comment") @WebParam(name = "comment", partName = "checkinSync.comment") String comment,
+			@QueryParam("deserializerName") @WebParam(name = "deserializerName", partName = "checkinSync.deserializerName") String deserializerName,
+			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
+			@QueryParam("ifcFile") @WebParam(name = "ifcFile", partName = "checkinSync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
+			@QueryParam("merge") @WebParam(name = "merge", partName = "checkinSync.merge") Boolean merge,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServiceException;
 
 	/**
 	 * Get the current state of a running checkin
@@ -146,32 +155,47 @@ public interface ServiceInterface {
 	 * @return An object with information about the checkin state
 	 * @throws ServiceException
 	 */
+	@GET
+	@Path("/getCheckinState")
+	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getCheckinState")
 	SCheckinResult getCheckinState(
-			@WebParam(name = "actionID", partName = "getCheckinState.actionID") Integer actionId) throws ServiceException;
+			@QueryParam("actionID") @WebParam(name = "actionID", partName = "getCheckinState.actionID") Integer actionId) throws ServiceException;
 	
 	/**
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
+	 * 
+	 * Available as REST call
+	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState method
 	 * @throws ServiceException
 	 */
+	@GET
+	@Path("/checkout")
+	@Produces("text/plain")
 	@WebMethod(action = "checkout")
 	Integer checkout(
-			@WebParam(name = "roid", partName = "checkout.roid") Long roid,
-			@WebParam(name = "serializerName", partName = "checkout.serializerName") String serializerName,
+			@QueryParam("roid") @WebParam(name = "roid", partName = "checkout.roid") Long roid,
+			@QueryParam("serializerName") @WebParam(name = "serializerName", partName = "checkout.serializerName") String serializerName,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkout.sync") Boolean sync) throws ServiceException;
 
 	/**
 	 * Same as checkout, only this will automatically select the last revision to checkout
+	 * 
+	 * Available as REST call
+	 *
 	 * @param poid Project ObjectID
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param syncWhether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServiceException
 	 */
+	@GET
+	@Path("/checkoutLastRevision")
+	@Produces("text/plain")
 	@WebMethod(action = "checkoutLastRevision")
 	Integer checkoutLastRevision(
 			@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
@@ -180,6 +204,9 @@ public interface ServiceInterface {
 
 	/**
 	 * Download a single revision of a model in a serialized format
+	 * 
+	 * Available as REST call
+	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerName  Name of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
@@ -280,6 +307,9 @@ public interface ServiceInterface {
 	
 	/**
 	 * Get the data for a download/checkout
+	 * 
+	 * Available as REST call
+	 * 
 	 * @param actionId The actionId returned by one of the download or checkout methods
 	 * @return An SDownloadResult containing the serialized data
 	 * @throws ServiceException
@@ -414,6 +444,9 @@ public interface ServiceInterface {
 
 	/**
 	 * Get a list of all Projects the user is authorized for
+	 * 
+	 * Available as REST call
+	 * 
 	 * @return A list of Projects
 	 * @throws ServiceException
 	 */
@@ -424,6 +457,9 @@ public interface ServiceInterface {
 	List<SProject> getAllProjects() throws ServiceException;
 
 	/**
+	 * 
+	 * Available as REST call
+	 * 
 	 * Get a list of all Projects the user is authorized for to read from
 	 * @return
 	 * @throws ServiceException
@@ -439,6 +475,9 @@ public interface ServiceInterface {
 
 	/**
 	 * Get a list of all Revisions of a Project
+	 * 
+	 * Available as REST call
+	 * 
 	 * @param poid ObjectID of the Project
 	 * @return A list of all Revisions
 	 * @throws ServiceException
@@ -669,6 +708,10 @@ public interface ServiceInterface {
 			@WebParam(name = "className", partName = "getDataObjectByOid.className") String className) throws ServiceException;
 
 	/**
+	 * Get DataObjects based on a list of GUIDs
+	 * 
+	 * Available as REST call
+	 * 
 	 * @param roid ObjectID of the Revision
 	 * @param guid An IFC GUID
 	 * @return The object with the given GUID in the given Revision, of null if not found
