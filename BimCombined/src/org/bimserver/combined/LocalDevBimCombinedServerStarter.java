@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
@@ -72,6 +73,7 @@ public class LocalDevBimCombinedServerStarter {
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setPort(port);
 		bimServer = new BimServer(config);
+		LocalVersionConstructor.augmentWithSvn(bimServer.getVersionChecker().getLocalVersion());
 	 	try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 		 	EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
@@ -85,16 +87,16 @@ public class LocalDevBimCombinedServerStarter {
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin");
 			}
-		} catch (PluginException e1) {
-			e1.printStackTrace();
+		} catch (PluginException e) {
+			LOGGER.error("", e);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {

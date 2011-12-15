@@ -12,7 +12,10 @@
 		<format property="builddate" pattern="yyyy-MM-dd" />
 	</tstamp>
 
-	<property name="version" value="1.1beta-${builddate}"/>
+	<property name="majorversion" value="1"/>
+	<property name="minorversion" value="1"/>
+	<property name="revisionversion" value="1.1beta-${builddate}"/>
+	<property name="revisiondate" value="${builddate}"/>
 
 	<target name="beta1.1">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/1.1beta/${version}" />
