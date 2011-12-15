@@ -25,13 +25,17 @@ import java.util.Set;
 
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersServer extends Thread {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersServer.class);
 	private boolean running;
 	private final Set<ProtocolBuffersConnectionHandler> activeHandlers = new HashSet<ProtocolBuffersConnectionHandler>();
 	private final ServiceFactoryRegistry serviceFactoryRegistry;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final int port;
+	private ServerSocket serverSocket;
 
 	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, int port) {
 		setName("ProtocolBuffersServer");
@@ -44,7 +48,7 @@ public class ProtocolBuffersServer extends Thread {
 	public void run() {
 		running = true;
 		try {
-			ServerSocket serverSocket = new ServerSocket(port);
+			serverSocket = new ServerSocket(port);
 			while (running) {
 				Socket socket = serverSocket.accept();
 				ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler = new ProtocolBuffersConnectionHandler(socket, this);
@@ -52,7 +56,9 @@ public class ProtocolBuffersServer extends Thread {
 				protocolBuffersConnectionHandler.start();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			if (running) {
+				LOGGER.error("", e);
+			}
 		}
 	}
 
@@ -66,5 +72,15 @@ public class ProtocolBuffersServer extends Thread {
 	
 	public void registerService(ReflectiveRpcChannel reflectiveRpcChannel) {
 		
+	}
+
+	public void shutdown() {
+		try {
+			serverSocket.close();
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+		running = false;
+		this.interrupt();
 	}
 }
