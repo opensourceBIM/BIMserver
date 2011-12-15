@@ -117,7 +117,6 @@ public class BimServer {
 	private SService sService;
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
-
 	private ProtocolBuffersServer protocolBuffersServer;
 
 	/**

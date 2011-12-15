@@ -18,7 +18,6 @@ package org.bimserver.version;
  *****************************************************************************/
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
@@ -40,7 +39,7 @@ public class VersionChecker {
 	private static final Logger LOGGER = LoggerFactory.getLogger(VersionChecker.class);
 	private GregorianCalendar lastCheck;
 	private SVersion onlineVersion;
-	private final ResourceFetcher resourceFetcher;
+	private SVersion localVersion;
 
 	public static void main(String[] args) {
 		SVersion version = new SVersion();
@@ -62,7 +61,13 @@ public class VersionChecker {
 	}
 	
 	public VersionChecker(ResourceFetcher resourceFetcher) {
-		this.resourceFetcher = resourceFetcher;
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			localVersion = (SVersion) unmarshaller.unmarshal(resourceFetcher.getResource("version.xml"));
+		} catch (JAXBException e) {
+			LOGGER.error("", e);
+		}
 	}
 
 	public synchronized SVersion getOnlineVersion() {
@@ -104,15 +109,7 @@ public class VersionChecker {
 	}
 
 	public SVersion getLocalVersion() {
-		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			SVersion version = (SVersion) unmarshaller.unmarshal(resourceFetcher.getResource("version.xml"));
-			return version;
-		} catch (JAXBException e) {
-			LOGGER.error("", e);
-		}
-		return null;
+		return localVersion;
 	}
 
 	public boolean updateNeeded() {

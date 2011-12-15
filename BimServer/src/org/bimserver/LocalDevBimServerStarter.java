@@ -35,6 +35,7 @@ public class LocalDevBimServerStarter {
 		config.setStartEmbeddedWebServer(true);
 		config.setPort(80);
 		BimServer bimServer = new BimServer(config);
+		LocalVersionConstructor.augmentWithSvn(bimServer.getVersionChecker().getLocalVersion());
 		try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 			bimServer.start();
