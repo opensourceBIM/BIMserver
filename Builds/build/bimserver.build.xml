@@ -37,7 +37,7 @@
 		<replace file="builds/BuildJar/config/version.xml" token="@MINOR@" value="${minorversion}" />
 		<replace file="builds/BuildJar/config/version.xml" token="@REVISION@" value="${revisionversion}" />
 		<replace file="builds/BuildJar/config/version.xml" token="@DATE@" value="${revisiondate}" />
-		<replace file="builds/BuildJar/config/web.xml" token="@VERSION@" value="${majorversion}.${minorversion}.${revisionversion}" />
+		<replace file="builds/BuildJar/config/web.xml" token="@VERSION@" value="${version}" />
 		<copy todir="builds/BuildJar/lib">
 			<fileset file="${defaultsettings}/${target}/log4j.xml" />
 		</copy>
