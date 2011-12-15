@@ -263,11 +263,11 @@ public class Service implements ServiceInterface {
 				userDirIncoming.mkdir();
 			}
 			InputStream inputStream = null;
-//			if (dataHandler.getName() == null || dataHandler.getName().trim().equals("")) {
+			if (dataHandler.getName() == null || dataHandler.getName().trim().equals("")) {
 				inputStream = dataHandler.getInputStream();
-//			} else {
-//				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
-//			}
+			} else {
+				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
+			}
 			try {
 				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerName);
 				try {

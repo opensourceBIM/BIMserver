@@ -17,7 +17,6 @@ package org.bimserver.webservices;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -34,7 +33,6 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.GeneratorUtils;
 import org.slf4j.Logger;
