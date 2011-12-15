@@ -118,6 +118,8 @@ public class BimServer {
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 
+	private ProtocolBuffersServer protocolBuffersServer;
+
 	/**
 	 * Create a new BIMserver
 	 * 
@@ -250,8 +252,9 @@ public class BimServer {
 			try {
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
-			} catch (IOException e2) {
-				e2.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.error("", e);
+
 			}
 
 			sService = new SService(ServiceInterface.class);
@@ -299,7 +302,7 @@ public class BimServer {
 					throw new RuntimeException("System user not found");
 				}
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 
 			bimScheduler = new JobScheduler(this);
@@ -308,18 +311,12 @@ public class BimServer {
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-				ProtocolBuffersServer protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, settingsManager.getSettings().getProtocolBuffersPort());
+				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, settingsManager.getSettings().getProtocolBuffersPort());
 				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, new SService(ServiceInterface.class)));
 				protocolBuffersServer.start();
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
-
-			// if (serverType == ServerType.DEPLOYED_WAR) {
-			// File libDir = new File(classPath);
-			// LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
-			// QueryCompiler.addJarFolder(libDir);
-			// }
 
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
@@ -532,6 +529,9 @@ public class BimServer {
 		}
 		if (embeddedWebServer != null) {
 			embeddedWebServer.shutdown();
+		}
+		if (protocolBuffersServer != null) {
+			protocolBuffersServer.shutdown();
 		}
 	}
 
