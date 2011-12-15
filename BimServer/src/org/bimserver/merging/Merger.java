@@ -468,10 +468,8 @@ public class Merger {
 	private boolean allModelsSameScale(Set<IfcModelInterface> ifcModels, float foundPrefix) {
 		for (IfcModelInterface ifcModel : ifcModels) {
 			float lengthUnitPrefix = getLengthUnitPrefix(ifcModel);
-			if (foundPrefix != Float.MIN_VALUE) {
-				if (lengthUnitPrefix != foundPrefix) {
-					return false;
-				}
+			if (foundPrefix != Float.MIN_VALUE && lengthUnitPrefix != foundPrefix) {
+				return false;
 			} else {
 				foundPrefix = lengthUnitPrefix;
 			}
