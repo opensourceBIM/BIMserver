@@ -50,6 +50,7 @@ public class NotificationsManager extends Thread {
 	private final Set<NotificationContainer> listeners = new HashSet<NotificationContainer>();
 	private final BlockingQueue<Notification> queue = new ArrayBlockingQueue<Notification>(1000);
 	private final BimServer bimServer;
+	private volatile boolean running;
 
 	public NotificationsManager(BimServer bimServer) {
 		setName("NotificationsManager");
@@ -63,31 +64,36 @@ public class NotificationsManager extends Thread {
 	public void notify(Notification notification) {
 		queue.add(notification);
 	}
-	
+
 	@Override
 	public void run() {
 		initConnections();
 		SConverter sConverter = new SConverter();
-		while (true) {
-			try {
-				Notification notification = queue.take();
-				for (NotificationContainer notificationContainer : listeners) {
-					NotificationInterface notificationInterface = notificationContainer.getNotificationInterface();
-					boolean isAdmin = notificationContainer.getUser().getUserType() == UserType.ADMIN;
-					if (notification instanceof NewProjectNotification) {
-						if (isAdmin) {
-							notificationInterface.newProject(sConverter.convertToSObject((NewProjectNotification)notification));
-						}
-					} else if (notification instanceof NewRevisionNotification) {
-						NewRevisionNotification newRevisionNotification = (NewRevisionNotification)notification;
-						if (isAdmin || newRevisionNotification.getRevision().getProject().getHasAuthorizedUsers().contains(notificationContainer.getUser())) {
-							notificationInterface.newRevision(sConverter.convertToSObject(newRevisionNotification));
+		running = true;
+		try {
+			while (running) {
+				try {
+					Notification notification = queue.take();
+					for (NotificationContainer notificationContainer : listeners) {
+						NotificationInterface notificationInterface = notificationContainer.getNotificationInterface();
+						boolean isAdmin = notificationContainer.getUser().getUserType() == UserType.ADMIN;
+						if (notification instanceof NewProjectNotification) {
+							if (isAdmin) {
+								notificationInterface.newProject(sConverter.convertToSObject((NewProjectNotification) notification));
+							}
+						} else if (notification instanceof NewRevisionNotification) {
+							NewRevisionNotification newRevisionNotification = (NewRevisionNotification) notification;
+							if (isAdmin || newRevisionNotification.getRevision().getProject().getHasAuthorizedUsers().contains(notificationContainer.getUser())) {
+								notificationInterface.newRevision(sConverter.convertToSObject(newRevisionNotification));
+							}
 						}
 					}
+				} catch (ServiceException e) {
+					LOGGER.error("", e);
 				}
-			} catch (InterruptedException e) {
-				LOGGER.error("", e);
-			} catch (ServiceException e) {
+			}
+		} catch (InterruptedException e) {
+			if (running) {
 				LOGGER.error("", e);
 			}
 		}
@@ -99,7 +105,7 @@ public class NotificationsManager extends Thread {
 			IfcModel allOfType = bimDatabaseSession.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
 			for (IdEObject idEObject : allOfType.getValues()) {
 				if (idEObject instanceof User) {
-					User user = (User)idEObject;
+					User user = (User) idEObject;
 					String url = user.getNotificationUrl();
 					if (url != null && !url.isEmpty()) {
 						InetSocketAddress address = new InetSocketAddress(url.substring(0, url.indexOf(":")), Integer.parseInt(url.substring(url.indexOf(":") + 1)));
@@ -121,5 +127,10 @@ public class NotificationsManager extends Thread {
 		} finally {
 			bimDatabaseSession.close();
 		}
+	}
+
+	public void shutdown() {
+		running = false;
+		this.interrupt();
 	}
 }
