@@ -1,5 +1,13 @@
 <project name="BIMserver">
-	<property name="version" value="trunk" />
+	<tstamp>
+		<format property="builddate" pattern="yyyy-MM-dd" />
+	</tstamp>
+
+	<property name="majorversion" value="1"/>
+	<property name="minorversion" value="1"/>
+	<property name="revisionversion" value="1.1beta-${builddate}"/>
+	<property name="revisiondate" value="${builddate}"/>
+	
 	<target name="jar">
 		<ant antfile="bimserver.build.xml" target="Build Jar"></ant>
 	</target>
