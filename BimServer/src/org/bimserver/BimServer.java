@@ -206,6 +206,9 @@ public class BimServer {
 				embeddedWebServer = new EmbeddedWebServer(this);
 			}
 		} catch (Throwable e) {
+			if (LOGGER == null) {
+				e.printStackTrace();
+			}
 			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
