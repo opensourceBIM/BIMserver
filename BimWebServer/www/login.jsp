@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.client.factories.AutologinAuthenticationInfo"%>
 <%@page import="org.bimserver.client.factories.UsernamePasswordAuthenticationInfo"%>
 <%@page import="org.bimserver.client.factories.AuthenticationInfo"%>

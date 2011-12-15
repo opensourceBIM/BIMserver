@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <div class="sidebar">
 <ul>
 	<li><a href="<%=getServletContext().getContextPath()%>/serversettings.jsp">Server Settings</a></li>

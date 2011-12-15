@@ -63,7 +63,7 @@ public class SyndicationServlet extends HttpServlet {
 		if (request.getHeader("Authorization") != null) {
 			String authorization = request.getHeader("Authorization");
 			String usernamePasswordEncoded = authorization.substring(6);
-			String decodeBase64 = new String(Base64.decodeBase64(usernamePasswordEncoded.getBytes(Charsets.UTF_8)));
+			String decodeBase64 = new String(Base64.decodeBase64(usernamePasswordEncoded.getBytes(Charsets.UTF_8)), Charsets.UTF_8);
 			if (decodeBase64.equals(":")) {
 				response.getWriter().print("Not authenticated");
 				return;

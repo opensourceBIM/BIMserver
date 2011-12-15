@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SLongActionState"%>
 <%@page import="org.bimserver.interfaces.objects.SActionState"%>
 <%@page import="org.slf4j.LoggerFactory"%>

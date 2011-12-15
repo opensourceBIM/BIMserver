@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SCheckoutDateComparator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.DateFormat"%>

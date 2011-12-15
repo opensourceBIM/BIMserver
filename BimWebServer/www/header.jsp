@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.client.factories.AutologinAuthenticationInfo"%>

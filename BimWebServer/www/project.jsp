@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SUserNameComparator"%>
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
 <%@page import="org.bimserver.shared.comparators.SCheckoutDateComparator"%>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@ include file="header.jsp" %>

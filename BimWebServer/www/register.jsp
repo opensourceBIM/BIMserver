@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SVersion"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.ArrayList"%>
