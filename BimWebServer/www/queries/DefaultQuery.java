@@ -7,5 +7,6 @@ public class Query implements QueryInterface {
 
 	@Override
 	public void query(IfcModelInterface model, PrintWriter out) {
+		out.println("Running default example");
 	}
 }

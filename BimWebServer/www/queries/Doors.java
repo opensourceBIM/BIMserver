@@ -11,7 +11,7 @@ package org.bimserver.querycompiler;
 import java.io.PrintWriter;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import java.util.*;
-import org.bimserver.ifc.emf.Ifc2x3.*;
+import org.bimserver.models.ifc2x3.*;
 
 public class Query implements QueryInterface {
 
@@ -20,8 +20,9 @@ public class Query implements QueryInterface {
 
 	@Override
 	public void query(IfcModelInterface model, PrintWriter out) {
+		out.println("Running doors example");
         List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
-        Map<Float, IfcBuildingStorey> orderedStories = new TreeMap<Float, IfcBuildingStorey>();
+        Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
         for (IfcBuildingStorey storey : stories) {
             orderedStories.put(storey.getElevation(), storey);
         }

@@ -4,13 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.ifc.emf.Ifc2x3.IfcDistributionPort;
-import org.bimserver.ifc.emf.Ifc2x3.IfcElement;
-import org.bimserver.ifc.emf.Ifc2x3.IfcFlowFitting;
-import org.bimserver.ifc.emf.Ifc2x3.IfcFlowSegment;
-import org.bimserver.ifc.emf.Ifc2x3.IfcFlowTerminal;
-import org.bimserver.ifc.emf.Ifc2x3.IfcPort;
-import org.bimserver.ifc.emf.Ifc2x3.IfcRelConnectsPortToElement;
+import org.bimserver.models.ifc2x3.*;
 
 public class Query implements QueryInterface {
 
@@ -19,6 +13,7 @@ public class Query implements QueryInterface {
 
 	@Override
 	public void query(IfcModelInterface model, PrintWriter out) {
+		out.println("Running plumbing example");
 		this.model = model;
 		this.out = out;
 		step1();
