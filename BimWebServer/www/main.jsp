@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>

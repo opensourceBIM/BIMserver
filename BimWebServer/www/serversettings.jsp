@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>

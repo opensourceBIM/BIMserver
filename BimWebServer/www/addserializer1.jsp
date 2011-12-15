@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>

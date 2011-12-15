@@ -246,7 +246,7 @@ public class VirtualFile implements JavaFileObject {
 			@Override
 			public void close() throws IOException {
 				super.close();
-				data = this.toString().getBytes();
+				data = this.toString().getBytes(Charsets.UTF_8);
 			}
 		};
 	}

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SDatabaseInformationItem"%>
 <%@page import="org.bimserver.interfaces.objects.SDatabaseInformationCategory"%>
 <%@page import="org.bimserver.interfaces.objects.SDatabaseInformation"%>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.shared.comparators.SLogActionDateComparator"%>
