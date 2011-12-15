@@ -52,8 +52,8 @@ public class CompileServlet extends HttpServlet {
 			root.put("output", "");
 			root.put("compileErrors", errors);
 			root.put("compileWarnings", warnings);
-		} catch (JSONException e1) {
-			e1.printStackTrace();
+		} catch (JSONException e) {
+			LOGGER.error("", e);
 		}
 		try {
 			if (action.equals("compile")) {

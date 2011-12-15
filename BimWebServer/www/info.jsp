@@ -60,7 +60,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 %>
 
 	<p>If you plan to post an issue on <a href="http://support.bimserver.org" target="_blank">http://support.bimserver.org</a>, please make sure 
-	you accompany it with the <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog">server logfile</a>, a solid 
+	you accompany it with the <a href="<%=getServletContext().getContextPath()%>/files?file=serverlog">server logfile</a>, a solid 
 	description of your situation (including BIMserver version number) and maybe even a screenshot. Only than we can help you the best possible way.</p>
 <div class="tabber" id="infotabber">
 	<%@ include file="extraInfo.jsp" %>
@@ -81,7 +81,6 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 	</div>
 	<div class="tabbertab" id="systemtab" title="System">
 		<table class="formatted infotable">
-			<tr><td><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog">Download server Logfile</a></td></tr>
 			<tr><td colspan="2" class="tabletitle">System</td></tr>
 			<tr><td class="firstcolumn">CPU Cores</td><td><%=Runtime.getRuntime().availableProcessors() %></td></tr>
 			<tr><td class="firstcolumn">Date/Time</td><td><%=new GregorianCalendar().getTime() %></td></tr>
@@ -151,6 +150,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 			<tr><td class="firstcolumn">Revisions</td><td><%=databaseInformation.getNumberOfRevisions() %></td></tr>
 			<tr><td class="firstcolumn">Checkouts</td><td><%=databaseInformation.getNumberOfCheckouts() %></td></tr>
 			<tr><td colspan="2" class="tabletitle">Other</td></tr>
+			<tr><td>Server log</td><td><a href="<%=getServletContext().getContextPath()%>/files?file=serverlog">Download server Logfile</a></td></tr>
 			<tr><td class="firstcolumn">Server started at</td><td><%=dateFormat.format(loginManager.getService().getServerStartTime()) %></td></tr>
 			<%
 				GregorianCalendar gc = new GregorianCalendar();

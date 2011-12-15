@@ -2482,4 +2482,15 @@ public class Service implements ServiceInterface {
 	public String getRemoteAddress() throws ServerException, UserException {
 		return remoteAddress;
 	}
+
+	@Override
+	public String getServerLog() throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		try {
+			return FileUtils.readFileToString(new File(bimServer.getHomeDir(), "logs/bimserver.log"));
+		} catch (IOException e) {
+			LOGGER.error("", e);
+			throw new ServerException(e);
+		}
+	}
 }

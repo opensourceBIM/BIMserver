@@ -1,5 +1,5 @@
 
-Æô
+ùõ
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -1086,6 +1086,10 @@ SRunResult
 GetRemoteAddressRequest"?
 GetRemoteAddressResponse
 errorMessage (	
+value (	"
+GetServerLogRequest";
+GetServerLogResponse
+errorMessage (	
 value (	*8
 SCompareType
 ALL 
@@ -1159,7 +1163,7 @@ hectometer
 MIGRATION_REQUIRED
 MIGRATION_IMPOSSIBLE
 FATAL_ERROR
-RUNNING2—Ÿ
+RUNNING2öŸ
 ServiceInterfaceN
 compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponseN
 compile .org.bimserver.pb.CompileRequest!.org.bimserver.pb.CompileResponseG
@@ -1347,4 +1351,5 @@ $isSettingShowVersionUpgradeAvailable=.org.bimserver.pb.IsSettingShowVersionUpg
 getProtocolBuffersFile/.org.bimserver.pb.GetProtocolBuffersFileRequest0.org.bimserver.pb.GetProtocolBuffersFileResponse`
 getServerInfo&.org.bimserver.pb.GetServerInfoRequest'.org.bimserver.pb.GetServerInfoResponsef
 upgradePossible(.org.bimserver.pb.UpgradePossibleRequest).org.bimserver.pb.UpgradePossibleResponsei
-getRemoteAddress).org.bimserver.pb.GetRemoteAddressRequest*.org.bimserver.pb.GetRemoteAddressResponseBBServiceInterfaceImplHˆ
+getRemoteAddress).org.bimserver.pb.GetRemoteAddressRequest*.org.bimserver.pb.GetRemoteAddressResponse]
+getServerLog%.org.bimserver.pb.GetServerLogRequest&.org.bimserver.pb.GetServerLogResponseBBServiceInterfaceImplHˆ

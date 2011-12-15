@@ -45,6 +45,7 @@ import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.deserializers.EmfDeserializerFactory;
+import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
@@ -164,6 +165,12 @@ public class BimServer {
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
 			versionChecker = new VersionChecker(config.getResourceFetcher());
+			SVersion localVersion = versionChecker.getLocalVersion();
+			if (localVersion != null) {
+				LOGGER.info("Version: " + localVersion.getMajor() + "." + localVersion.getMinor() + "." + localVersion.getRevision() + " - " + localVersion.getDate());
+			} else {
+				LOGGER.info("Unknown version");
+			}
 
 			try {
 				pluginManager = new PluginManager(config.getHomeDir(), config.getClassPath());
