@@ -25,7 +25,6 @@ import java.util.Random;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
