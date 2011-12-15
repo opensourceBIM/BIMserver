@@ -41,6 +41,7 @@ public class CompileServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		String code = request.getParameter("code");
 		LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
@@ -48,6 +49,7 @@ public class CompileServlet extends HttpServlet {
 		JSONArray warnings = new JSONArray();
 		JSONArray errors = new JSONArray();
 		try {
+			root.put("output", "");
 			root.put("compileErrors", errors);
 			root.put("compileWarnings", warnings);
 		} catch (JSONException e1) {
@@ -75,7 +77,7 @@ public class CompileServlet extends HttpServlet {
 				try {
 					SRunResult compileAndRun = loginManager.getService().compileAndRun(roid, code);
 					if (compileAndRun.isRunOke()) {
-						root.put("output", root.getString("output") + "\n" + "Executing...\n\n" + compileAndRun.getOutput() + "\n" + "Execution complete");
+						root.put("output", compileAndRun.getOutput());
 					} else {
 						for (String warning : compileAndRun.getWarnings()) {
 							warnings.put(warning);
