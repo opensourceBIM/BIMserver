@@ -573,4 +573,7 @@ private Reflector reflector;
 	public java.lang.String getRemoteAddress() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.String) reflector.callMethod("ServiceInterface", "getRemoteAddress", java.lang.String.class);
 	}
+	public java.lang.String getServerLog() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.String) reflector.callMethod("ServiceInterface", "getServerLog", java.lang.String.class);
+	}
 }

@@ -27,9 +27,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 
 public class LoginManager {
 	public static BimServerClientFactory bimServerClientFactory;
-	
 	private BimServerClient bimServerClient;
-
 	private boolean loggedIn;
 
 	public long getUoid() throws ServiceException {

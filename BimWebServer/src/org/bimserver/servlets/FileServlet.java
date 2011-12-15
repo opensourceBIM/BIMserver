@@ -24,12 +24,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.web.LoginManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
 public class FileServlet extends HttpServlet {
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileServlet.class);
 	private static final long serialVersionUID = -521315408437405994L;
 
 	@Override
@@ -38,12 +43,19 @@ public class FileServlet extends HttpServlet {
 		if (request.getParameter("file") != null) {
 			String file = request.getParameter("file");
 			if (file.equals("service.proto")) {
-				String protocolBuffersFile;
 				try {
-					protocolBuffersFile = loginManager.getService().getProtocolBuffersFile();
+					String protocolBuffersFile = loginManager.getService().getProtocolBuffersFile();
 					response.getOutputStream().write(protocolBuffersFile.getBytes(Charsets.UTF_8));
 				} catch (ServiceException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
+				}
+			} else if (file.equals("serverlog")) {
+				try {
+					response.getWriter().write(loginManager.getService().getServerLog());
+				} catch (ServerException e) {
+					LOGGER.error("", e);
+				} catch (UserException e) {
+					LOGGER.error("", e);
 				}
 			}
 		}

@@ -1891,4 +1891,11 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getRemoteAddress")
 	String getRemoteAddress() throws ServerException, UserException;
+
+	/**
+	 * @return The BIMserver log (can be big)
+	 * @throws ServerException 
+	 */
+	@WebMethod(action = "getServerLog")
+	String getServerLog() throws ServerException, UserException;
 }
