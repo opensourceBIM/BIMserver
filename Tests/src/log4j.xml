@@ -8,7 +8,7 @@
 		</layout>
 	</appender>
 	<root>
-		<priority value="ERROR" />
+		<priority value="INFO" />
 		<appender-ref ref="Console" />
 	</root>
 </log4j:configuration>

@@ -17,6 +17,7 @@ package org.bimserver.webservices;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -89,7 +90,7 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 		tokens.remove(token);
 	}
 
-	public List<SUserSession> getActiveUserSessions() throws ServiceException {
+	public List<SUserSession> getActiveUserSessions() throws org.bimserver.shared.exceptions.ServerException, UserException {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
 		for (Token token : tokens.keySet()) {
 			ServiceInterface serviceInterface = tokens.get(token);

@@ -51,7 +51,11 @@ public class ServiceHolder {
 		this.username = username;
 		this.password = password;
 		LOGGER.info("Connecting to " + address);
-		bimServerClient.connectSoap(address, true);
+		try {
+			bimServerClient.connectSoap(address, true);
+		} catch (ConnectionException e) {
+			LOGGER.error("", e);
+		}
 
 		boolean connected = false;
 		try {

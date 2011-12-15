@@ -27,6 +27,7 @@ import javax.activation.DataSource;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SProject;
@@ -40,7 +41,7 @@ public class TestClientEmfModelCheckinRemoteSoap {
 	private static BimServerClient bimServerClient;
 
 	@BeforeClass
-	public static void setup() {
+	public static void setup() throws ConnectionException {
 		try {
 			bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager());
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");

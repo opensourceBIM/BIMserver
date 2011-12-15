@@ -1,6 +1,7 @@
 package org.bimserver.client.factories;
 
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.ConnectionException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.exceptions.ServiceException;
 
@@ -21,7 +22,7 @@ public class SoapBimServerClientFactory implements BimServerClientFactory {
 	}
 
 	@Override
-	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
+	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ConnectionException {
 		BimServerClient bimServerClient = new BimServerClient(pluginManager);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectSoap(address, false);
