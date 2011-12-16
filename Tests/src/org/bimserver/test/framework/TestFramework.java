@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TestFramework {
-	private static final int NR_VIRTUAL_USERS = 1;
+	private static final int NR_VIRTUAL_USERS = 2;
 	private static final File IFC_FILES_FOLDER = new File("../TestData/data");
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestFramework.class);
 	private final List<File> files = new ArrayList<File>();
@@ -27,7 +27,7 @@ public class TestFramework {
 		RandomBimServerClientFactory randomBimServerClientFactory = new RandomBimServerClientFactory();
 		VirtualUserFactory virtualUserFactory = new VirtualUserFactory(this, randomBimServerClientFactory);
 		for (int i=0; i<NR_VIRTUAL_USERS; i++) {
-			VirtualUser virtualUser = virtualUserFactory.create();
+			VirtualUser virtualUser = virtualUserFactory.create("" + i);
 			virtualUsers.add(virtualUser);
 		}
 		for (VirtualUser virtualUser : virtualUsers) {

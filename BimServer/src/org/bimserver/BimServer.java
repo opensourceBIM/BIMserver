@@ -165,12 +165,6 @@ public class BimServer {
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
 			versionChecker = new VersionChecker(config.getResourceFetcher());
-			SVersion localVersion = versionChecker.getLocalVersion();
-			if (localVersion != null) {
-				LOGGER.info("Version: " + localVersion.getMajor() + "." + localVersion.getMinor() + "." + localVersion.getRevision() + " - " + localVersion.getDate());
-			} else {
-				LOGGER.info("Unknown version");
-			}
 
 			try {
 				pluginManager = new PluginManager(config.getHomeDir(), config.getClassPath());
@@ -224,6 +218,13 @@ public class BimServer {
 
 	public void start() throws DatabaseInitException, BimDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
+			SVersion localVersion = versionChecker.getLocalVersion();
+			if (localVersion != null) {
+				LOGGER.info("Version: " + localVersion.getMajor() + "." + localVersion.getMinor() + "." + localVersion.getRevision() + " - " + localVersion.getDate());
+			} else {
+				LOGGER.info("Unknown version");
+			}
+
 			pluginManager.initAllLoadedPlugins();
 			serverStartTime = new GregorianCalendar();
 

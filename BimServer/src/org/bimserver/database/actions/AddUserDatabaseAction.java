@@ -47,7 +47,7 @@ import org.bimserver.utils.Hashers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
+public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AddUserDatabaseAction.class);
 	private final String name;
 	private final UserType userType;
@@ -80,7 +80,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		this.selfRegistration = selfRegistration;
 	}
 
-	public Long execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public User execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		String trimmedUserName = username.trim();
 		String trimmedName = name.trim();
 		if (userType == UserType.SYSTEM && !createSystemUser) {
@@ -173,7 +173,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 				}
 			}
 		});
-		return user.getOid();
+		return user;
 	}
 	
 	public void setCreateSystemUser() {

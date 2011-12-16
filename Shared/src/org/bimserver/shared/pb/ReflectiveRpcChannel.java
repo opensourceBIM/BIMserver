@@ -43,7 +43,6 @@ import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;
-import com.google.protobuf.ServiceException;
 
 public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 
@@ -59,13 +58,13 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Message callBlockingMethod(MethodDescriptorContainer methodDescriptor, Message request) throws ServiceException {
+	public Message callBlockingMethod(MethodDescriptorContainer methodDescriptor, Message request) {
 		FieldDescriptor errorMessageField = methodDescriptor.getOutputField("errorMessage");
 		DynamicMessage response = DynamicMessage.getDefaultInstance(methodDescriptor.getOutputDescriptor());
 		Descriptor inputType = methodDescriptor.getInputDescriptor();
 		SMethod sMethod = sService.getSMethod(methodDescriptor.getName());
 		if (sMethod == null) {
-			System.out.println("Method " + methodDescriptor.getName() + " not found");
+			LOGGER.info("Method " + methodDescriptor.getName() + " not found");
 		}
 		try {
 			Method method = sMethod.getMethod();
@@ -139,7 +138,9 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 			errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
 			return errorMessage.build();
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			if (!(e instanceof org.bimserver.shared.exceptions.ServiceException)) {
+				LOGGER.error("", e);
+			}
 			Builder errorMessage = response.newBuilderForType();
 			if (e.getMessage() != null) {
 				errorMessage.setField(errorMessageField, e.getMessage());

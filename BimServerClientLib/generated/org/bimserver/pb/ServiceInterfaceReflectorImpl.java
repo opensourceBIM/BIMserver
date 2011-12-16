@@ -99,8 +99,8 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SLongActionState getDownloadState(java.lang.Integer arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SLongActionState) reflector.callMethod("ServiceInterface", "getDownloadState", org.bimserver.interfaces.objects.SLongActionState.class, arg0);
 	}
-	public java.lang.Long addUser(java.lang.String arg0, java.lang.String arg1, org.bimserver.interfaces.objects.SUserType arg2, java.lang.Boolean arg3) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Long) reflector.callMethod("ServiceInterface", "addUser", java.lang.Long.class, arg0, arg1, arg2, arg3);
+	public org.bimserver.interfaces.objects.SUser addUser(java.lang.String arg0, java.lang.String arg1, org.bimserver.interfaces.objects.SUserType arg2, java.lang.Boolean arg3) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SUser) reflector.callMethod("ServiceInterface", "addUser", org.bimserver.interfaces.objects.SUser.class, arg0, arg1, arg2, arg3);
 	}
 	public void changeUserType(java.lang.Long arg0, org.bimserver.interfaces.objects.SUserType arg1) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "changeUserType", void.class, arg0, arg1);

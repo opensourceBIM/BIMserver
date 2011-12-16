@@ -342,7 +342,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addUser")
-	Long addUser(
+	SUser addUser(
 			@WebParam(name = "username", partName = "addUser.username") String username,
 			@WebParam(name = "name", partName = "addUser.name") String name,
 			@WebParam(name = "type", partName = "addUser.type") SUserType type,

@@ -286,7 +286,7 @@ public class RevisionMerger {
 							}
 						}
 						if (!guidsToRemove.isEmpty()) {
-							LOGGER.info("Removing list references");
+//							LOGGER.info("Removing list references");
 							oldList.removeAll(guidsToRemove);
 						}
 					} else {
@@ -296,7 +296,7 @@ public class RevisionMerger {
 								if (eGet instanceof IfcRoot) {
 									String oldGuid = ((IfcRoot) eGet).getGlobalId().getWrappedValue();
 									if (newModel.contains(oldGuid)) {
-										LOGGER.info("Settings explicit null reference");
+//										LOGGER.info("Settings explicit null reference");
 										resultModel.get(guid).eSet(eReference, null);
 									}
 								}
@@ -320,7 +320,7 @@ public class RevisionMerger {
 						String referencedGuid = ((IfcRoot) referencedObject).getGlobalId().getWrappedValue();
 						IfcRoot newObject = resultModel.get(referencedGuid);
 						oldObject.eSet(eReference, newObject);
-						LOGGER.info("Fixing reference from " + guid + " to " + referencedGuid);
+//						LOGGER.info("Fixing reference from " + guid + " to " + referencedGuid);
 					} else if (referencedObject instanceof List) {
 						List referencedList = (List) referencedObject;
 						List oldReferencedList = (List) oldObject.eGet(eReference);
@@ -329,7 +329,7 @@ public class RevisionMerger {
 								IfcRoot referencedItem = (IfcRoot) object;
 								String itemGuid = referencedItem.getGlobalId().getWrappedValue();
 								oldReferencedList.add(resultModel.get(itemGuid));
-								LOGGER.info("Fixing list reference from " + guid + " to " + itemGuid);
+//								LOGGER.info("Fixing list reference from " + guid + " to " + itemGuid);
 							}
 						}
 					}
@@ -344,14 +344,14 @@ public class RevisionMerger {
 				IfcRoot ifcRoot = (IfcRoot) idEObject;
 				String guid = ifcRoot.getGlobalId().getWrappedValue();
 				if (resultModel.contains(guid)) {
-					LOGGER.info("Updating attributes for object " + idEObject.eClass().getName() + " " + guid);
+//					LOGGER.info("Updating attributes for object " + idEObject.eClass().getName() + " " + guid);
 					IfcRoot oldObject = resultModel.get(guid);
 					for (EAttribute eAttribute : idEObject.eClass().getEAllAttributes()) {
 						Object newValue = idEObject.eGet(eAttribute);
 						oldObject.eSet(eAttribute, newValue);
 					}
 				} else {
-					LOGGER.info("Adding new GUID object " + idEObject.eClass().getName() + " " + guid);
+//					LOGGER.info("Adding new GUID object " + idEObject.eClass().getName() + " " + guid);
 					IdEObject newObject = (IdEObject) idEObject.eClass().getEPackage().getEFactoryInstance().create(idEObject.eClass());
 					newObject.setOid(idEObject.getOid());
 					((IfcRoot) newObject).setGlobalId(newGuid(guid));

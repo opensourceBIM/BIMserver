@@ -100,6 +100,6 @@ public class TracingGarbageCollector {
 				iterator.remove();
 			}
 		}
-		LOGGER.info(removed + " objects swept");
+//		LOGGER.info(removed + " objects swept");
 	}
 }
