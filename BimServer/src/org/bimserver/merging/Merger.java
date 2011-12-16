@@ -1255,15 +1255,17 @@ public class Merger {
 								// prefix in IFC
 								ifcSIUnit.setPrefix(null);
 							} else {
-								ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(prefix.getLiteral()));
+								String siPrefix = prefix.getLiteral().substring(0, prefix.getLiteral().length() - 5).toUpperCase();
+								ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(siPrefix));
 							}
 							break;
 						}
 					}
 				}
 			}
-			if (prefixFound)
+			if (prefixFound) {
 				break;
+			}
 		}
 	}
 }

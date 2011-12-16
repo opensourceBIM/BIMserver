@@ -9,7 +9,7 @@ public class VirtualUserFactory {
 		this.randomBimServerClientFactory = randomBimServerClientFactory;
 	}
 
-	public VirtualUser create() {
-		return new VirtualUser(testFramework, randomBimServerClientFactory.create());
+	public VirtualUser create(String name) {
+		return new VirtualUser(testFramework, randomBimServerClientFactory.create(), name);
 	}
 }

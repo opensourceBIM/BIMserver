@@ -18,6 +18,8 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
@@ -70,16 +72,21 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			BimDatabaseSession extraSession = bimServer.getDatabase().createSession(true);
 			try {
 				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false, null);
+				Map<Revision, Project> projects = new HashMap<Revision, Project>();
+				for (Revision r : concreteRevision.getRevisions()) {
+					projects.put(r, r.getProject());
+				}
 				for (Revision r : concreteRevision.getRevisions()) {
 					Revision latest = null;
-					for (Revision r2 : r.getProject().getRevisions()) {
+					for (Revision r2 : projects.get(r).getRevisions()) {
 						if (latest == null || r2.getId() > latest.getId()) {
 							latest = r2;
 						}
 					}
 					if (latest != null) {
-						latest.getProject().setLastRevision(latest);
-						extraSession.store(latest.getProject());
+						Project p = latest.getProject();
+						p.setLastRevision(latest);
+						extraSession.store(p);
 					}
 				}
 				extraSession.commit();

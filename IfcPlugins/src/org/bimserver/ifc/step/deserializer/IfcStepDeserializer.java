@@ -146,7 +146,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				md.update(bytes, 0, bytes.length);
 				try {
 					while (!processLine(line.trim(), setOids)) {
-						line += reader.readLine();
+						String readLine = reader.readLine();
+						if (readLine == null) {
+							break;
+						}
+						line += readLine;
 						lineNumber++;
 					}
 				} catch (Exception e) {

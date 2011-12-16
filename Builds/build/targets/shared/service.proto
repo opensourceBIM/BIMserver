@@ -757,9 +757,31 @@ message AddUserRequest {
 	optional bool selfRegistration = 4;
 }
 
+enum SObjectState{
+	ACTIVE = 0;
+	DELETED = 1;
+}
+
+message SUser {
+	optional string name = 1;
+	optional SObjectState state = 2;
+	optional int64 oid = 3;
+	optional string password = 4;
+	repeated int64 hasRightsOn = 5;
+	repeated int64 revisions = 6;
+	optional int64 createdOn = 7;
+	optional int64 createdById = 8;
+	optional SUserType userType = 9;
+	optional string username = 10;
+	optional int64 lastSeen = 11;
+	optional string validationToken = 12;
+	optional int64 validationTokenCreated = 13;
+	optional string notificationUrl = 14;
+}
+
 message AddUserResponse {
 	optional string errorMessage = 1;
-	optional int64 value = 2;
+	optional SUser value = 2;
 }
 
 message ChangeUserTypeRequest {
@@ -769,11 +791,6 @@ message ChangeUserTypeRequest {
 
 message AddProjectRequest {
 	optional string projectName = 1;
-}
-
-enum SObjectState{
-	ACTIVE = 0;
-	DELETED = 1;
 }
 
 enum SSIPrefix{
@@ -803,14 +820,14 @@ message SProject {
 	optional string description = 4;
 	repeated int64 subProjects = 5;
 	optional int64 oid = 6;
-	repeated int64 hasAuthorizedUsers = 7;
-	repeated int64 concreteRevisions = 8;
-	repeated int64 revisions = 9;
-	optional int64 lastConcreteRevisionId = 10;
-	optional int64 lastRevisionId = 11;
-	repeated int64 checkouts = 12;
-	optional int64 createdDate = 13;
-	optional int64 createdById = 14;
+	repeated int64 revisions = 7;
+	optional int64 createdById = 8;
+	repeated int64 hasAuthorizedUsers = 9;
+	repeated int64 concreteRevisions = 10;
+	optional int64 lastConcreteRevisionId = 11;
+	optional int64 lastRevisionId = 12;
+	repeated int64 checkouts = 13;
+	optional int64 createdDate = 14;
 	optional int64 geoTagId = 15;
 	optional int64 parentId = 16;
 	optional int64 clashDetectionSettingsId = 17;
@@ -925,23 +942,6 @@ message GetAllReadableProjectsResponse {
 }
 
 message GetAllUsersRequest {
-}
-
-message SUser {
-	optional string name = 1;
-	optional SObjectState state = 2;
-	optional int64 oid = 3;
-	repeated int64 revisions = 4;
-	optional int64 createdById = 5;
-	optional string password = 6;
-	repeated int64 hasRightsOn = 7;
-	optional int64 createdOn = 8;
-	optional SUserType userType = 9;
-	optional string username = 10;
-	optional int64 lastSeen = 11;
-	optional string validationToken = 12;
-	optional int64 validationTokenCreated = 13;
-	optional string notificationUrl = 14;
 }
 
 message GetAllUsersResponse {
@@ -1741,8 +1741,8 @@ message SUserSession {
 	optional int64 lastActive = 5;
 	optional string remoteAddress = 6;
 	optional int64 oid = 7;
-	optional int64 userId = 8;
-	optional string username = 9;
+	optional string username = 8;
+	optional int64 userId = 9;
 }
 
 message GetActiveUserSessionsResponse {
@@ -1757,8 +1757,8 @@ message SLongAction {
 	optional string name = 1;
 	optional string identification = 2;
 	optional int64 oid = 3;
-	optional int64 userId = 4;
-	optional string username = 5;
+	optional string username = 4;
+	optional int64 userId = 5;
 	optional int64 start = 6;
 }
 

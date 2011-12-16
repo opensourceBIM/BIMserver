@@ -32,13 +32,15 @@ import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.DynamicMessage.Builder;
 import com.google.protobuf.Message;
-import com.google.protobuf.ServiceException;
 
 public class ProtocolBuffersConnectionHandler extends Thread {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConnectionHandler.class);
 	private final Socket socket;
 	private OutputStream outputStream;
 	private DataInputStream dataInputStream;
@@ -53,7 +55,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 			dataInputStream = new DataInputStream(socket.getInputStream());
 			outputStream = socket.getOutputStream();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -76,11 +78,11 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				outputStream.flush();
 			}
 		} catch (SocketException e) {
+			LOGGER.error("", e);
 		} catch (EOFException e) {
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

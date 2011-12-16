@@ -120,7 +120,7 @@ public class TestLowLevelChanges {
 		int nextInt = new Random().nextInt();
 		try {
 			String username = "test" + nextInt + "@bimserver.org";
-			long addUser = service.addUser(username, "User " + nextInt, SUserType.USER, false);
+			long addUser = service.addUser(username, "User " + nextInt, SUserType.USER, false).getOid();
 			service.changePassword(addUser, null, "test");
 			service.login(username, "test");
 			return addUser;

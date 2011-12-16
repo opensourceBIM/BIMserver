@@ -270,6 +270,9 @@ public class Service implements ServiceInterface {
 			}
 			try {
 				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerName);
+				if (deserializer == null) {
+					throw new UserException("Deserializer " + deserializerName + " not found");
+				}
 				try {
 					deserializer.init(bimServer.getPluginManager().requireSchemaDefinition());
 				} catch (PluginException e) {
@@ -356,7 +359,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
+	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
 		if (!selfRegistration) {
 			requireAuthenticationAndRunningServer();
 		} else if (!bimServer.getSettingsManager().getSettings().isAllowSelfRegistration()) {
@@ -364,12 +367,12 @@ public class Service implements ServiceInterface {
 		}
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<Long> action = new AddUserDatabaseAction(bimServer, session, accessMethod, username, name, converter.convertFromSObject(type), currentUoid,
+			BimDatabaseAction<User> action = new AddUserDatabaseAction(bimServer, session, accessMethod, username, name, converter.convertFromSObject(type), currentUoid,
 					selfRegistration);
-			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
-			return -1L;
+			return null;
 		} finally {
 			session.close();
 		}

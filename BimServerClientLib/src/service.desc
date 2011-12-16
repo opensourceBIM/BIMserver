@@ -1,5 +1,5 @@
 
-ùõ
+’ö
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -220,10 +220,26 @@ revisionNr ("a
 username (	
 name (	)
 type (2.org.bimserver.pb.SUserType
-selfRegistration ("6
+selfRegistration ("Ø
+SUser
+name (	-
+state (2.org.bimserver.pb.SObjectState
+oid (
+password (	
+hasRightsOn (
+	revisions (
+	createdOn (
+createdById (-
+userType	 (2.org.bimserver.pb.SUserType
+username
+ (	
+lastSeen (
+validationToken (	
+validationTokenCreated (
+notificationUrl (	"O
 AddUserResponse
-errorMessage (	
-value ("T
+errorMessage (	&
+value (2.org.bimserver.pb.SUser"T
 ChangeUserTypeRequest
 uoid (-
 userType (2.org.bimserver.pb.SUserType"(
@@ -236,16 +252,16 @@ revisionNr ("a
 state (2.org.bimserver.pb.SObjectState
 description (	
 subProjects (
-oid (
-hasAuthorizedUsers (
-concreteRevisions (
-	revisions	 (
-lastConcreteRevisionId
- (
-lastRevisionId (
-	checkouts (
-createdDate (
-createdById (
+oid (
+	revisions (
+createdById (
+hasAuthorizedUsers	 (
+concreteRevisions
+ (
+lastConcreteRevisionId (
+lastRevisionId (
+	checkouts (
+createdDate (
 geoTagId (
 parentId ( 
 clashDetectionSettingsId (>
@@ -314,23 +330,7 @@ parentPoid ("a
 GetAllReadableProjectsResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"
-GetAllUsersRequest"Ø
-SUser
-name (	-
-state (2.org.bimserver.pb.SObjectState
-oid (
-	revisions (
-createdById (
-password (	
-hasRightsOn (
-	createdOn (-
-userType	 (2.org.bimserver.pb.SUserType
-username
- (	
-lastSeen (
-validationToken (	
-validationTokenCreated (
-notificationUrl (	"S
+GetAllUsersRequest"S
 GetAllUsersResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"/
@@ -796,9 +796,9 @@ executorId ("T
 
 lastActive (
 remoteAddress (	
-oid (
-userId (
-username	 (	"d
+oid (
+username (	
+userId	 ("d
 GetActiveUserSessionsResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SUserSession"
@@ -806,9 +806,9 @@ lastActive (
 SLongAction
 name (	
 identification (	
-oid (
-userId (
-username (	
+oid (
+username (	
+userId (
 start ("b
 GetActiveLongActionsResponse
 errorMessage (	,

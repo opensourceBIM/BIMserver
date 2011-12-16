@@ -9,15 +9,14 @@ import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
+import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.DynamicMessage;
-import com.google.protobuf.Message;
-import com.google.protobuf.ServiceException;
 import com.google.protobuf.DynamicMessage.Builder;
+import com.google.protobuf.Message;
 
 public class Handler extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Handler.class);
@@ -60,15 +59,11 @@ public class Handler extends Thread {
 				Builder newBuilder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
 				newBuilder.mergeDelimitedFrom(dis);
 				DynamicMessage request = newBuilder.build();
-				try {
-					Message response = reflectiveRpcChannel.callBlockingMethod(methodDescriptorContainer, request);
-					response.writeDelimitedTo(socket.getOutputStream());
-				} catch (ServiceException e) {
-					e.printStackTrace();
-				}
+				Message response = reflectiveRpcChannel.callBlockingMethod(methodDescriptorContainer, request);
+				response.writeDelimitedTo(socket.getOutputStream());
 			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 		socketNotificationsClient.notifyDisconnect();
 	}

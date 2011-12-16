@@ -165,7 +165,7 @@ public class BimServerTester {
 			String name = "user " + nr;
 			String password = "password";
 			try {
-				userId = client.addUser(username, name, SUserType.USER, false);
+				userId = client.addUser(username, name, SUserType.USER, false).getOid();
 				client.changePassword(userId, "", password);
 				userIds.put(userId, username);
 			} catch (ServiceException e) {
