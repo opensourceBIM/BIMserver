@@ -353,13 +353,13 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					}
 				} else {
 					Object convert = convert(structuralFeature.getEType(), stringValue);
-					while (list.size() <= index) {
-						if (doubleStringList != null) {
-							doubleStringList.addUnique(stringValue);
-						}
-						list.addUnique(convert);
-					}
 					if (convert != null) {
+						while (list.size() <= index) {
+							if (doubleStringList != null) {
+								doubleStringList.addUnique(stringValue);
+							}
+							list.addUnique(convert);
+						}
 						if (doubleStringList != null) {
 							doubleStringList.setUnique(index, stringValue);
 						}
