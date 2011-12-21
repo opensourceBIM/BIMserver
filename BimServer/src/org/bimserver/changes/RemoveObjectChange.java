@@ -17,6 +17,8 @@ package org.bimserver.changes;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Map;
+
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -35,12 +37,15 @@ public class RemoveObjectChange implements Change {
 	}
 
 	@Override
-	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession, Map<Long, IdEObject> created) throws UserException, BimDeadlockException, BimDatabaseException {
 		EClass eClass = bimDatabaseSession.getEClassForName(className);
 		if (eClass == null) {
 			throw new UserException("Unknown classname " + className);
 		}
 		IdEObject idEObject = bimDatabaseSession.get(eClass, pid, rid-1, oid, false, null);
+		if (idEObject == null) {
+			idEObject = created.get(oid);
+		}
 		if (idEObject == null) {
 			throw new UserException("Object with oid " + oid + " not found");
 		}

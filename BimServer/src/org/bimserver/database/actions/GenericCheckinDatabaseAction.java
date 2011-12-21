@@ -87,6 +87,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		User user = getUserByUoid(uoid);
 		concreteRevision.setProject(project);
 		concreteRevision.setState(checkinState);
+		project.setLastConcreteRevision(concreteRevision);
 		createNewVirtualRevision(session, project, concreteRevision, comment, date, user, size, checkinState);
 
 		for (Checkout checkout : project.getCheckouts()) {
@@ -134,19 +135,20 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		return concreteRevision;
 	}
 
-	private void createNewVirtualRevision(BimDatabaseSession session, Project project, ConcreteRevision revision, String comment, Date date, User user, long size, CheckinState checkinState)
+	private Revision createNewVirtualRevision(BimDatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size, CheckinState checkinState)
 			throws BimDeadlockException, BimDatabaseException {
-		Revision virtualRevision = StoreFactory.eINSTANCE.createRevision();
-		virtualRevision.setLastConcreteRevision(revision);
-		virtualRevision.setComment(comment);
-		virtualRevision.setDate(date);
-		virtualRevision.setUser(user);
-		virtualRevision.setSize(size);
-		virtualRevision.setState(checkinState);
-		virtualRevision.setId(project.getRevisions().size() + 1);
-		virtualRevision.getConcreteRevisions().add(revision);
-		virtualRevision.setProject(project);
-		session.store(virtualRevision);
+		Revision revision = StoreFactory.eINSTANCE.createRevision();
+		revision.setLastConcreteRevision(concreteRevision);
+		revision.setComment(comment);
+		revision.setDate(date);
+		revision.setUser(user);
+		revision.setSize(size);
+		revision.setState(checkinState);
+		revision.setId(project.getRevisions().size() + 1);
+		revision.getConcreteRevisions().add(concreteRevision);
+		revision.setProject(project);
+		session.store(revision);
+		return revision;
 	}
 
 	public IfcModelInterface getModel() {

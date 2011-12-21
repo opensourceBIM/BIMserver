@@ -141,6 +141,15 @@ public class TestLowLevelChanges {
 	}
 	
 	@Test
+	public void test() {
+		testCreateObject();
+		testSetStringAttribute();
+		testSetFloatAttribute();
+		testSetReference();
+		testAddFloatAttribute();
+		testRemoveObject();
+	}
+	
 	public void testCreateObject() {
 		try {
 			int pid = createProject();
@@ -163,7 +172,6 @@ public class TestLowLevelChanges {
 		}
 	}
 
-	@Test
 	public void testSetStringAttribute() {
 		try {
 			int pid = createProject();
@@ -192,7 +200,6 @@ public class TestLowLevelChanges {
 		}
 	}
 
-	@Test
 	public void testSetFloatAttribute() {
 		try {
 			int pid = createProject();
@@ -221,7 +228,6 @@ public class TestLowLevelChanges {
 		}
 	}
 
-	@Test
 	public void testSetReference() {
 		try {
 			int pid = createProject();
@@ -252,7 +258,6 @@ public class TestLowLevelChanges {
 		}
 	}
 
-	@Test
 	public void testAddFloatAttribute() {
 		try {
 			int pid = createProject();
@@ -284,7 +289,6 @@ public class TestLowLevelChanges {
 		}
 	}
 	
-	@Test
 	public void testRemoveObject() {
 		try {
 			int pid = createProject();

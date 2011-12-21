@@ -135,7 +135,11 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 		} catch (InvocationTargetException e) {
 			Builder errorMessage = response.newBuilderForType();
 			e.getTargetException().printStackTrace();
-			errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
+			if (e.getTargetException() != null) {
+				errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
+			} else {
+				errorMessage.setField(errorMessageField, e.getMessage());
+			}
 			return errorMessage.build();
 		} catch (Exception e) {
 			if (!(e instanceof org.bimserver.shared.exceptions.ServiceException)) {

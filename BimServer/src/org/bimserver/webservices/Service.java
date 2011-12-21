@@ -66,6 +66,7 @@ import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
+import org.bimserver.database.actions.CommitTransactionDatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteDeserializerDatabaseAction;
 import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
@@ -132,9 +133,6 @@ import org.bimserver.database.actions.ValidateUserDatabaseAction;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckinResult;
@@ -284,7 +282,7 @@ public class Service implements ServiceInterface {
 				User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, null, accessMethod, model, currentUoid, revision.getOid(), merge);
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, null, accessMethod, model, currentUoid, revision.getOid(), merge, true);
 				SCheckinResult result = new SCheckinResult();
 				result.setProjectId(revision.getProject().getOid());
 				// result.setProjectName(revision.getProject().getName());
@@ -2184,33 +2182,14 @@ public class Service implements ServiceInterface {
 	@Override
 	public Long commitTransaction(String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(session, accessMethod, changes, currentUoid, transactionPid, comment);
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(transactionPid));
-			Project project = session.querySingle(condition, Project.class, false, null);
-			CheckinPart1DatabaseAction checkinPart1DatabaseAction = new CheckinPart1DatabaseAction(session, accessMethod, project.getOid(), currentUoid, null, comment);
-			ConcreteRevision concreteRevision = checkinPart1DatabaseAction.execute();
-			int newObjects = 0;
-			for (Change change : changes) {
-				if (change instanceof CreateObjectChange) {
-					newObjects++;
-				}
-				change.execute(transactionPid, concreteRevision.getId(), session);
-			}
-			
-			
-			concreteRevision.setSize(newObjects);
-			for (Revision revision : concreteRevision.getRevisions()) {
-				revision.setSize(newObjects);
-			}
-			CheckinPart2DatabaseAction checkinPart2DatabaseAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, null, currentUoid, concreteRevision.getOid(), false);
-			session.commit();
-			LongCheckinAction longCheckinAction = new LongCheckinAction(bimServer, (User)session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null), checkinPart2DatabaseAction);
-			longCheckinAction.execute();
-			return checkinPart1DatabaseAction.getRevision().getOid();
-		} catch (BimDeadlockException e) {
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return action.getRevision().getOid();
 		} catch (BimDatabaseException e) {
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -2220,56 +2199,56 @@ public class Service implements ServiceInterface {
 	@Override
 	public void abortTransaction() throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes = null;
 	}
 
 	@Override
 	public void addStringAttribute(Long oid, String className, String attributeName, String value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void addIntegerAttribute(Long oid, String className, String attributeName, Integer value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void addDoubleAttribute(Long oid, String className, String attributeName, Double value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void addBooleanAttribute(Long oid, String className, String attributeName, Boolean value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void addReference(Long oid, String className, String referenceName, Long referenceOid, String referenceClassName) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new AddReferenceChange(oid, className, referenceName, referenceOid, referenceClassName));
 	}
 
 	@Override
 	public Long createObject(String className) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		Long oid = bimServer.getDatabase().newOid();
 		CreateObjectChange createObject = new CreateObjectChange(className, oid);
 		changes.add(createObject);
 		return oid;
 	}
 
-	private void requireOpenStransaction() throws UserException {
+	private void requireOpenTransaction() throws UserException {
 		if (changes == null) {
 			throw new UserException("No open transaction");
 		}
@@ -2278,77 +2257,77 @@ public class Service implements ServiceInterface {
 	@Override
 	public void removeAttribute(Long oid, String className, String attributeName, Integer index) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new RemoveAttributeChange(oid, className, attributeName, index));
 	}
 
 	@Override
 	public void removeObject(String className, Long oid) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new RemoveObjectChange(className, oid));
 	}
 
 	@Override
 	public void removeReference(Long oid, String className, String referenceName, Integer index) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new RemoveReferenceChange(oid, className, referenceName, index));
 	}
 
 	@Override
 	public void setStringAttribute(Long oid, String className, String attributeName, String value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void setIntegerAttribute(Long oid, String className, String attributeName, Integer value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void setBooleanAttribute(Long oid, String className, String attributeName, Boolean value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void setDoubleAttribute(Long oid, String className, String attributeName, Double value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void setEnumAttribute(Long oid, String className, String attributeName, String value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
 	public void setReference(Long oid, String className, String referenceName, Long referenceOid, String referenceClassName) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetReferenceChange(oid, className, referenceName, referenceOid, referenceClassName));
 	}
 
 	@Override
 	public void unsetAttribute(Long oid, String className, String attributeName) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, className, attributeName, null));
 	}
 
 	@Override
 	public void unsetReference(Long oid, String className, String referenceName) throws UserException {
 		requireAuthenticationAndRunningServer();
-		requireOpenStransaction();
+		requireOpenTransaction();
 		changes.add(new SetReferenceChange(oid, className, referenceName, -1, null));
 	}
 

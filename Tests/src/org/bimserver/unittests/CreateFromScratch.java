@@ -41,26 +41,21 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.Tristate;
 
 public class CreateFromScratch {
-	private final Session session;
 	private IfcOwnerHistory ownerHistory;
 	private IfcLocalPlacement buildingStoreyLocalPlacement;
 	private IfcGeometricRepresentationContext geometricContext;
 
-	public CreateFromScratch(Session session) {
-		this.session = session;
-	}
-	
-	private IfcWall createWall() {
+	public IfcWall createWall(Session session) {
 		IfcWall wall = session.create(IfcWall.class);
-		wall.setGlobalId(makeGuid("3Ep4r0uuX5ywPYOUG2H2A4"));
+		wall.setGlobalId(makeGuid(session, "3Ep4r0uuX5ywPYOUG2H2A4"));
 		wall.setOwnerHistory(ownerHistory);
 		wall.setName("Wall xyz");
 		wall.setDescription("Description of Wall");
 
 		IfcAxis2Placement3D axis2Placement3D = session.create(IfcAxis2Placement3D.class);
-		axis2Placement3D.setLocation(makeCartesianPoint(0f, 0f, 0f));
-		axis2Placement3D.setAxis(makeDirection(0f, 0f, 1f));
-		axis2Placement3D.setRefDirection(makeDirection(1f, 0f, 0f));
+		axis2Placement3D.setLocation(makeCartesianPoint(session, 0f, 0f, 0f));
+		axis2Placement3D.setAxis(makeDirection(session, 0f, 0f, 1f));
+		axis2Placement3D.setRefDirection(makeDirection(session, 1f, 0f, 0f));
 
 		IfcLocalPlacement localPlacement = session.create(IfcLocalPlacement.class);
 		localPlacement.setRelativePlacement(axis2Placement3D);
@@ -75,27 +70,27 @@ public class CreateFromScratch {
 
 		IfcClosedShell closedShell = session.create(IfcClosedShell.class);
 
-		IfcCartesianPoint p1 = makeCartesianPoint(0f, 0f, 0f);
-		IfcCartesianPoint p2 = makeCartesianPoint(0f, 200f, 0f);
-		IfcCartesianPoint p3 = makeCartesianPoint(5400f, 200f, 0f);
-		IfcCartesianPoint p4 = makeCartesianPoint(5400f, 0f, 0f);
-		IfcCartesianPoint p5 = makeCartesianPoint(0f, 0f, 5000f);
-		IfcCartesianPoint p6 = makeCartesianPoint(5400f, 0f, 5000f);
-		IfcCartesianPoint p7 = makeCartesianPoint(5400f, 200f, 5000f);
-		IfcCartesianPoint p8 = makeCartesianPoint(0, 200f, 5000f);
+		IfcCartesianPoint p1 = makeCartesianPoint(session, 0f, 0f, 0f);
+		IfcCartesianPoint p2 = makeCartesianPoint(session, 0f, 200f, 0f);
+		IfcCartesianPoint p3 = makeCartesianPoint(session, 5400f, 200f, 0f);
+		IfcCartesianPoint p4 = makeCartesianPoint(session, 5400f, 0f, 0f);
+		IfcCartesianPoint p5 = makeCartesianPoint(session, 0f, 0f, 5000f);
+		IfcCartesianPoint p6 = makeCartesianPoint(session, 5400f, 0f, 5000f);
+		IfcCartesianPoint p7 = makeCartesianPoint(session, 5400f, 200f, 5000f);
+		IfcCartesianPoint p8 = makeCartesianPoint(session, 0, 200f, 5000f);
 
-		closedShell.getCfsFaces().add(makeFace(p1, p2, p3, p4));
-		closedShell.getCfsFaces().add(makeFace(p5, p6, p7, p8));
-		closedShell.getCfsFaces().add(makeFace(p1, p5, p8, p2));
-		closedShell.getCfsFaces().add(makeFace(p2, p8, p7, p3));
-		closedShell.getCfsFaces().add(makeFace(p3, p7, p6, p4));
-		closedShell.getCfsFaces().add(makeFace(p4, p6, p5, p1));
+		closedShell.getCfsFaces().add(makeFace(session, p1, p2, p3, p4));
+		closedShell.getCfsFaces().add(makeFace(session, p5, p6, p7, p8));
+		closedShell.getCfsFaces().add(makeFace(session, p1, p5, p8, p2));
+		closedShell.getCfsFaces().add(makeFace(session, p2, p8, p7, p3));
+		closedShell.getCfsFaces().add(makeFace(session, p3, p7, p6, p4));
+		closedShell.getCfsFaces().add(makeFace(session, p4, p6, p5, p1));
 		IfcFacetedBrep facetedBrep = session.create(IfcFacetedBrep.class);
 		facetedBrep.setOuter(closedShell);
 		brep.getItems().add(facetedBrep);
 
 		IfcBoundingBox boundingBox = session.create(IfcBoundingBox.class);
-		boundingBox.setCorner(makeCartesianPoint(0f, 0f, 0f));
+		boundingBox.setCorner(makeCartesianPoint(session, 0f, 0f, 0f));
 		boundingBox.setXDim(5400f);
 		boundingBox.setYDim(200f);
 		boundingBox.setZDim(5000f);
@@ -115,7 +110,7 @@ public class CreateFromScratch {
 		return wall;
 	}
 
-	private IfcFace makeFace(IfcCartesianPoint... cartesianPoints) {
+	private IfcFace makeFace(Session session, IfcCartesianPoint... cartesianPoints) {
 		IfcFace face = session.create(IfcFace.class);
 		IfcPolyLoop polyLoop = session.create(IfcPolyLoop.class);
 		for (IfcCartesianPoint ifcCartesianPoint : cartesianPoints) {
@@ -128,46 +123,46 @@ public class CreateFromScratch {
 		return face;
 	}
 
-	private IfcBuildingStorey createBuildingStorey() {
+	private IfcBuildingStorey createBuildingStorey(Session session) {
 		IfcBuildingStorey buildingStorey = session.create(IfcBuildingStorey.class);
-		buildingStorey.setGlobalId(makeGuid("36_p3GiZXEHxQ3gWcOhQPE"));
+		buildingStorey.setGlobalId(makeGuid(session, "36_p3GiZXEHxQ3gWcOhQPE"));
 		buildingStorey.setName("Default Building Storey");
 		buildingStorey.setLongName("Description of Default Building Storey");
 		buildingStorey.setOwnerHistory(ownerHistory);
 		buildingStorey.setCompositionType(IfcElementCompositionEnum.ELEMENT);
 
 		IfcAxis2Placement3D axis2Placement3D = session.create(IfcAxis2Placement3D.class);
-		axis2Placement3D.setLocation(makeCartesianPoint(0f, 0f, 0f));
-		axis2Placement3D.setAxis(makeDirection(0f, 0f, 1f));
-		axis2Placement3D.setRefDirection(makeDirection(1f, 0f, 0f));
+		axis2Placement3D.setLocation(makeCartesianPoint(session, 0f, 0f, 0f));
+		axis2Placement3D.setAxis(makeDirection(session, 0f, 0f, 1f));
+		axis2Placement3D.setRefDirection(makeDirection(session, 1f, 0f, 0f));
 
 		buildingStoreyLocalPlacement = session.create(IfcLocalPlacement.class);
 		buildingStoreyLocalPlacement.setRelativePlacement(axis2Placement3D);
 		buildingStorey.setObjectPlacement(buildingStoreyLocalPlacement);
 
 		IfcRelContainedInSpatialStructure containedInSpatialStructure = session.create(IfcRelContainedInSpatialStructure.class);
-		containedInSpatialStructure.setGlobalId(makeGuid("2m$RhK6IP2zh0BtKz5RbtU"));
+		containedInSpatialStructure.setGlobalId(makeGuid(session, "2m$RhK6IP2zh0BtKz5RbtU"));
 		containedInSpatialStructure.setName("Default Building");
 		containedInSpatialStructure.setDescription("Description of Default Building");
 		containedInSpatialStructure.setOwnerHistory(ownerHistory);
 		containedInSpatialStructure.setRelatingStructure(buildingStorey);
-		containedInSpatialStructure.getRelatedElements().add(createWall());
+		containedInSpatialStructure.getRelatedElements().add(createWall(session));
 
 		return buildingStorey;
 	}
 
-	private IfcBuilding createBuilding() {
+	private IfcBuilding createBuilding(Session session) {
 		IfcBuilding building = session.create(IfcBuilding.class);
-		building.setGlobalId(makeGuid("1MW5jGD1fBiRPPs7T9I5O8"));
+		building.setGlobalId(makeGuid(session, "1MW5jGD1fBiRPPs7T9I5O8"));
 		building.setName("Default Building");
 		building.setLongName("Description of Default Building");
 		building.setOwnerHistory(ownerHistory);
 		building.setCompositionType(IfcElementCompositionEnum.ELEMENT);
 
 		IfcAxis2Placement3D axis2Placement3D = session.create(IfcAxis2Placement3D.class);
-		axis2Placement3D.setLocation(makeCartesianPoint(0f, 0f, 0f));
-		axis2Placement3D.setAxis(makeDirection(0f, 0f, 1f));
-		axis2Placement3D.setRefDirection(makeDirection(1f, 0f, 0f));
+		axis2Placement3D.setLocation(makeCartesianPoint(session, 0f, 0f, 0f));
+		axis2Placement3D.setAxis(makeDirection(session, 0f, 0f, 1f));
+		axis2Placement3D.setRefDirection(makeDirection(session, 1f, 0f, 0f));
 
 		IfcLocalPlacement localPlacement = session.create(IfcLocalPlacement.class);
 		localPlacement.setRelativePlacement(axis2Placement3D);
@@ -175,22 +170,22 @@ public class CreateFromScratch {
 
 		IfcRelAggregates buildingBuildingStorey = session.create(IfcRelAggregates.class);
 		buildingBuildingStorey.setRelatingObject(building);
-		buildingBuildingStorey.getRelatedObjects().add(createBuildingStorey());
+		buildingBuildingStorey.getRelatedObjects().add(createBuildingStorey(session));
 
 		return building;
 	}
 
-	private IfcSite createSite() {
+	private IfcSite createSite(Session session) {
 		IfcSite site = session.create(IfcSite.class);
-		site.setGlobalId(makeGuid("0X4tGlJqHCcwlHMZaCq8EN"));
+		site.setGlobalId(makeGuid(session, "0X4tGlJqHCcwlHMZaCq8EN"));
 		site.setDescription("Default Site");
 		site.setLongName("Description of Default Site");
 		site.setOwnerHistory(ownerHistory);
 
 		IfcAxis2Placement3D axis2Placement3D = session.create(IfcAxis2Placement3D.class);
-		axis2Placement3D.setLocation(makeCartesianPoint(0f, 0f, 0f));
-		axis2Placement3D.setAxis(makeDirection(0f, 0f, 1f));
-		axis2Placement3D.setRefDirection(makeDirection(1f, 0f, 0f));
+		axis2Placement3D.setLocation(makeCartesianPoint(session, 0f, 0f, 0f));
+		axis2Placement3D.setAxis(makeDirection(session, 0f, 0f, 1f));
+		axis2Placement3D.setRefDirection(makeDirection(session, 1f, 0f, 0f));
 
 		IfcLocalPlacement localPlacement = session.create(IfcLocalPlacement.class);
 		localPlacement.setRelativePlacement(axis2Placement3D);
@@ -205,27 +200,27 @@ public class CreateFromScratch {
 
 		IfcRelAggregates buildingBuildingStorey = session.create(IfcRelAggregates.class);
 		buildingBuildingStorey.setRelatingObject(site);
-		buildingBuildingStorey.getRelatedObjects().add(createBuilding());
+		buildingBuildingStorey.getRelatedObjects().add(createBuilding(session));
 
 		return site;
 	}
 
-	public void createIfcProject() {
+	public void createIfcProject(Session session) {
 		IfcProject project = session.create(IfcProject.class);
-		project.setGlobalId(makeGuid("2o1ykWxGT4ZxPjHNe4gayR"));
+		project.setGlobalId(makeGuid(session, "2o1ykWxGT4ZxPjHNe4gayR"));
 		project.setName("Default Project");
 		project.setDescription("Description of Default Project");
-		project.setOwnerHistory(createOwnerHistory());
-		project.setUnitsInContext(createUnits());
-		geometricContext = createGeometricContext();
+		project.setOwnerHistory(createOwnerHistory(session));
+		project.setUnitsInContext(createUnits(session));
+		geometricContext = createGeometricContext(session);
 		project.getRepresentationContexts().add(geometricContext);
 
 		IfcRelAggregates buildingBuildingStorey = session.create(IfcRelAggregates.class);
 		buildingBuildingStorey.setRelatingObject(project);
-		buildingBuildingStorey.getRelatedObjects().add(createSite());
+		buildingBuildingStorey.getRelatedObjects().add(createSite(session));
 	}
 
-	private IfcCartesianPoint makeCartesianPoint(double x, double y, double z) {
+	private IfcCartesianPoint makeCartesianPoint(Session session, double x, double y, double z) {
 		IfcCartesianPoint point = session.create(IfcCartesianPoint.class);
 		point.getCoordinates().add(x);
 		point.getCoordinates().add(y);
@@ -233,7 +228,7 @@ public class CreateFromScratch {
 		return point;
 	}
 
-	private IfcDirection makeDirection(double x, double y, double z) {
+	private IfcDirection makeDirection(Session session, double x, double y, double z) {
 		IfcDirection direction = session.create(IfcDirection.class);
 		direction.getDirectionRatios().add(x);
 		direction.getDirectionRatios().add(y);
@@ -241,7 +236,7 @@ public class CreateFromScratch {
 		return direction;
 	}
 
-	private IfcGeometricRepresentationContext createGeometricContext() {
+	private IfcGeometricRepresentationContext createGeometricContext(Session session) {
 		IfcCartesianPoint cartesianPoint = session.create(IfcCartesianPoint.class);
 		IfcAxis2Placement3D axis2Placement3D = session.create(IfcAxis2Placement3D.class);
 		axis2Placement3D.setLocation(cartesianPoint);
@@ -254,11 +249,11 @@ public class CreateFromScratch {
 		return geometricRepresentationContext;
 	}
 
-	private IfcUnitAssignment createUnits() {
+	private IfcUnitAssignment createUnits(Session session) {
 		IfcUnitAssignment unitAssignment = session.create(IfcUnitAssignment.class);
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.LENGTHUNIT, IfcSIPrefix.MILLI, IfcSIUnitName.METRE));
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.AREAUNIT, null, IfcSIUnitName.SQUARE_METRE));
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.VOLUMEUNIT, null, IfcSIUnitName.CUBIC_METRE));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.LENGTHUNIT, IfcSIPrefix.MILLI, IfcSIUnitName.METRE));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.AREAUNIT, null, IfcSIUnitName.SQUARE_METRE));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.VOLUMEUNIT, null, IfcSIUnitName.CUBIC_METRE));
 
 		IfcConversionBasedUnit conversionBasedUnit = session.create(IfcConversionBasedUnit.class);
 		IfcDimensionalExponents dimensionalExponents = session.create(IfcDimensionalExponents.class);
@@ -267,22 +262,22 @@ public class CreateFromScratch {
 		conversionBasedUnit.setConversionFactor(measureWithUnit);
 		conversionBasedUnit.setUnitType(IfcUnitEnum.PLANEANGLEUNIT);
 		conversionBasedUnit.setName("DEGREE");
-		IfcSIUnit planeAngleUnit = makeSiUnit(IfcUnitEnum.PLANEANGLEUNIT, null, IfcSIUnitName.RADIAN);
+		IfcSIUnit planeAngleUnit = makeSiUnit(session, IfcUnitEnum.PLANEANGLEUNIT, null, IfcSIUnitName.RADIAN);
 		IfcPlaneAngleMeasure value = session.create(IfcPlaneAngleMeasure.class);
 		value.setWrappedValue(1.745E-2f);
 		measureWithUnit.setValueComponent(value);
 		measureWithUnit.setUnitComponent(planeAngleUnit);
 		unitAssignment.getUnits().add(planeAngleUnit);
 
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.SOLIDANGLEUNIT, null, IfcSIUnitName.STERADIAN));
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.MASSUNIT, null, IfcSIUnitName.GRAM));
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.TIMEUNIT, null, IfcSIUnitName.SECOND));
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT, null, IfcSIUnitName.DEGREE_CELSIUS));
-		unitAssignment.getUnits().add(makeSiUnit(IfcUnitEnum.LUMINOUSINTENSITYUNIT, null, IfcSIUnitName.LUMEN));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.SOLIDANGLEUNIT, null, IfcSIUnitName.STERADIAN));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.MASSUNIT, null, IfcSIUnitName.GRAM));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.TIMEUNIT, null, IfcSIUnitName.SECOND));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT, null, IfcSIUnitName.DEGREE_CELSIUS));
+		unitAssignment.getUnits().add(makeSiUnit(session, IfcUnitEnum.LUMINOUSINTENSITYUNIT, null, IfcSIUnitName.LUMEN));
 		return unitAssignment;
 	}
 
-	private IfcOwnerHistory createOwnerHistory() {
+	private IfcOwnerHistory createOwnerHistory(Session session) {
 		IfcPerson person = session.create(IfcPerson.class);
 		person.setId("ID001");
 		person.setFamilyName("Bonsma");
@@ -310,7 +305,7 @@ public class CreateFromScratch {
 		return ownerHistory;
 	}
 
-	private IfcSIUnit makeSiUnit(IfcUnitEnum unitEnum, IfcSIPrefix siPrefix, IfcSIUnitName siUnitName) {
+	private IfcSIUnit makeSiUnit(Session session, IfcUnitEnum unitEnum, IfcSIPrefix siPrefix, IfcSIUnitName siUnitName) {
 		IfcSIUnit siUnit = session.create(IfcSIUnit.class);
 		siUnit.setPrefix(siPrefix);
 		siUnit.setUnitType(unitEnum);
@@ -318,10 +313,9 @@ public class CreateFromScratch {
 		return siUnit;
 	}
 
-	private IfcGloballyUniqueId makeGuid(String guid) {
+	private IfcGloballyUniqueId makeGuid(Session session, String guid) {
 		IfcGloballyUniqueId ifcGloballyUniqueId = session.create(IfcGloballyUniqueId.class);
 		ifcGloballyUniqueId.setWrappedValue(guid);
 		return ifcGloballyUniqueId;
 	}
-
 }

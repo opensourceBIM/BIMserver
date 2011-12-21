@@ -58,7 +58,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Int
 		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment);
 		try {
 			ConcreteRevision revision = action.execute();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), model, currentUoid, revision.getOid(), false);
+			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), model, currentUoid, revision.getOid(), false, true);
 			SCheckinResult result = new SCheckinResult();
 			result.setProjectId(revision.getProject().getOid());
 			// result.setProjectName(revision.getProject().getName());

@@ -18,6 +18,7 @@ package org.bimserver.changes;
  *****************************************************************************/
 
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -42,10 +43,13 @@ public class AddAttributeChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false, null);
+	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession, Map<Long, IdEObject> created) throws UserException, BimDeadlockException, BimDatabaseException {
+		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), pid, rid, oid, false, null);
 		if (idEObject == null) {
-			throw new UserException("No object of type " + className + " found in project with pid " + pid);
+			idEObject = created.get(oid);
+		}
+		if (idEObject == null) {
+			throw new UserException("No object of type " + className + " with oid " + oid + " found in project with pid " + pid);
 		}
 		EAttribute eAttribute = bimDatabaseSession.getMetaDataManager().getEAttribute(className, attributeName);
 		if (eAttribute == null) {
