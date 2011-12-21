@@ -17,6 +17,8 @@ package org.bimserver.changes;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Map;
+
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -28,6 +30,7 @@ public class CreateObjectChange implements Change {
 
 	private final long oid;
 	private final String type;
+	private IdEObject eObject;
 
 	public CreateObjectChange(String type, long oid) {
 		this.type = type;
@@ -35,15 +38,16 @@ public class CreateObjectChange implements Change {
 	}
 
 	@Override
-	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession, Map<Long, IdEObject> created) throws UserException, BimDeadlockException, BimDatabaseException {
 		EClass eClass = bimDatabaseSession.getEClassForName(type);
 		if (eClass == null) {
 			throw new UserException("Type " + type + " does not exist");
 		}
-		IdEObject eObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		eObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		eObject.setOid(oid);
 		eObject.setPid(pid);
 		eObject.setRid(rid);
 		bimDatabaseSession.store(eObject, pid, rid);
+		created.put(oid, eObject);
 	}
 }

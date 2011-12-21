@@ -59,7 +59,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Integer>
 		final Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, currentUoid).execute();
 		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(getDatabaseSession(), getAccessMethod(), newProject.getOid(), currentUoid, model, comment);
 		ConcreteRevision revision = action.execute();
-		CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, bimServer.getDatabase().createSession(true), getAccessMethod(), model, currentUoid, revision.getOid(), false);
+		CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, bimServer.getDatabase().createSession(true), getAccessMethod(), model, currentUoid, revision.getOid(), false, true);
 		SCheckinResult result = new SCheckinResult();
 		result.setProjectId(revision.getProject().getOid());
 		// result.setProjectName(revision.getProject().getName());

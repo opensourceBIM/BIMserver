@@ -74,7 +74,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 			session = bimServerClient.createSession();
 			int pid = createProject();
 			session.startTransaction(pid);
-			new CreateFromScratch(session).createIfcProject();
+			new CreateFromScratch().createIfcProject(session);
 			session.commitTransaction("tralala");
 		} catch (Exception e) {
 			e.printStackTrace();

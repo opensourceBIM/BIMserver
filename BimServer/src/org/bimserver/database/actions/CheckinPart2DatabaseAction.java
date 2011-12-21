@@ -51,14 +51,16 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	private final BimServer bimServer;
 	private Project project;
 	private ConcreteRevision concreteRevision;
+	private final boolean clean;
 
-	public CheckinPart2DatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface ifcModel, long actingUoid, long croid, boolean merge) {
+	public CheckinPart2DatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface ifcModel, long actingUoid, long croid, boolean merge, boolean clean) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.ifcModel = ifcModel;
 		this.actingUoid = actingUoid;
 		this.croid = croid;
 		this.merge = merge;
+		this.clean = clean;
 	}
 
 	@Override
@@ -98,7 +100,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 			} else {
 				ifcModel = getIfcModel();
 			}
-			if (project.getConcreteRevisions().size() != 0 && !merge) {
+			if (project.getConcreteRevisions().size() != 0 && !merge && clean) {
 				// There already was a revision, lets delete it (only when not merging)
 				getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}

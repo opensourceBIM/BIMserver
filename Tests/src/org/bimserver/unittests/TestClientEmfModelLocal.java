@@ -37,12 +37,13 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestClientEmfModel {
+public class TestClientEmfModelLocal {
 	private Session session;
 	private BimServerClient bimServerClient;
 	private static BimServer bimServer;
@@ -92,26 +93,35 @@ public class TestClientEmfModel {
 			session = bimServerClient.createSession();
 			int pid = createProject();
 			session.startTransaction(pid);
-			new CreateFromScratch(session).createIfcProject();
+			CreateFromScratch createFromScratch = new CreateFromScratch();
+			createFromScratch.createIfcProject(session);
 			long roid = session.commitTransaction("tralala");
 
-			dump(roid);
-
-			IfcModelInterface model = bimServerClient.getModel(roid);
-			IfcStepSerializer serializer = new IfcStepSerializer();
-			serializer.init(model, null, bimServer.getPluginManager());
-			File output = new File("output");
-			if (!output.exists()) {
-				output.mkdir();
-			}
-			serializer.writeToFile(new File(output, "test.ifc"));
+			dumpToFile(roid);
+			
+			session.startTransaction(pid);
+			createFromScratch.createWall(session);
+			roid = session.commitTransaction("test");
+			
+			dumpToFile(roid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
 
-	private void dump(long roid) throws ServiceException {
+	private void dumpToFile(long roid) throws SerializerException {
+		IfcModelInterface model = bimServerClient.getModel(roid);
+		IfcStepSerializer serializer = new IfcStepSerializer();
+		serializer.init(model, null, bimServer.getPluginManager());
+		File output = new File("output");
+		if (!output.exists()) {
+			output.mkdir();
+		}
+		serializer.writeToFile(new File(output, roid + ".ifc"));
+	}
+
+	private void dumpSummary(long roid) throws ServiceException {
 		SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
 		List<SRevisionSummaryContainer> list = revisionSummary.getList();
 		for (SRevisionSummaryContainer container : list) {
