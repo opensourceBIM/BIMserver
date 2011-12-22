@@ -1,4 +1,4 @@
-<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* java.io.File java.util.Set org.bimserver.utils.StringUtils" class="SPackageGenerator" %>
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* java.io.File java.util.Set" class="SPackageGenerator" %>
 package org.bimserver.shared.meta;
 <%
 /******************************************************************************
@@ -26,7 +26,7 @@ import org.bimserver.shared.meta.SClass;
 
 public class SPackage {
 <%
-	Set<EPackage> ePackages = (Set<EPackage>)argument;
+	@SuppressWarnings("unchecked") Set<EPackage> ePackages = (Set<EPackage>)argument;
 %>
 
 	private static final SPackage sPackage = new SPackage();

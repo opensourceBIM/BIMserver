@@ -29,7 +29,6 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
-import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -76,7 +75,7 @@ public class TestClientEmfModelCheckinRemoteSoap {
 			DataSource dataSource = new org.bimserver.utils.FileDataSource(file);
 			DataHandler dataHandler = new DataHandler(dataSource);
 			Integer checkin = bimServerClient.getServiceInterface().checkin(poid, "lala", "IfcStepDeserializer", file.length(), dataHandler, false, true);
-			SCheckinResult checkinState = bimServerClient.getServiceInterface().getCheckinState(checkin);
+			bimServerClient.getServiceInterface().getCheckinState(checkin);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

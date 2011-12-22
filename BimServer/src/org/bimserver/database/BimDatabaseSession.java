@@ -51,7 +51,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	Object convert(EClassifier type, String string);
 
-	void delete(IdEObject object);
+	void delete(IdEObject object) throws BimDeadlockException;
 
 	<T> T executeAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException;
 

@@ -430,7 +430,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return buffer;
 	}
 
-	private ByteBuffer createKeyBuffer(IdEObject object) {
+	public ByteBuffer createKeyBuffer(IdEObject object) {
 		return createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
 	}
 
@@ -443,10 +443,11 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public void delete(IdEObject object) {
+	public void delete(IdEObject object) throws BimDeadlockException {
+		ByteBuffer buffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
 		try {
-			database.getColumnDatabase().delete(object.eClass().getName(), createKeyBuffer(object).array(), this);
-		} catch (BimDeadlockException e) {
+			database.getColumnDatabase().store(object.eClass().getName(), buffer.array(), new byte[] { -1 }, this);
+		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		}
 	}

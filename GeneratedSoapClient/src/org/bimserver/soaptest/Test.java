@@ -12,9 +12,10 @@ import org.bimserver.generatedclient.SListDataValue;
 import org.bimserver.generatedclient.SProject;
 import org.bimserver.generatedclient.SReferenceDataValue;
 import org.bimserver.generatedclient.SSimpleDataValue;
-import org.bimserver.generatedclient.ServiceException_Exception;
+import org.bimserver.generatedclient.ServerException_Exception;
 import org.bimserver.generatedclient.ServiceInterfaceService;
 import org.bimserver.generatedclient.Soap;
+import org.bimserver.generatedclient.UserException_Exception;
 
 public class Test {
 	public static void main(String[] args) {
@@ -27,7 +28,6 @@ public class Test {
 			ServiceInterfaceService service = new ServiceInterfaceService(url);
 			Soap soapPort = service.getSoapPort();
 			((BindingProvider) soapPort).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
-			try {
 				soapPort.login("admin@bimserver.org", "admin");
 				for (SProject sProject : soapPort.getAllProjects()) {
 					System.out.println(sProject.getName());
@@ -54,11 +54,12 @@ public class Test {
 						}
 					}
 				}
-			} catch (ServiceException_Exception e) {
-				e.printStackTrace();
-			}
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
+		} catch (UserException_Exception e) {
+			e.printStackTrace();
+		} catch (ServerException_Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

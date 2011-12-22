@@ -32,12 +32,11 @@ public class VirtualUser extends Thread {
 	private final List<SProject> createdProjects = new ArrayList<SProject>();
 	private final List<SUser> createdUsers = new ArrayList<SUser>();
 	private volatile boolean running;
-	private final String name;
 
 	public VirtualUser(TestFramework testFramework, BimServerClient bimServerClient, String name) {
+		setName(name);
 		this.testFramework = testFramework;
 		this.bimServerClient = bimServerClient;
-		this.name = name;
 		LOGGER = LoggerFactory.getLogger(name);
 	}
 
@@ -95,7 +94,7 @@ public class VirtualUser extends Thread {
 		if (!createdUsers.isEmpty()) {
 			SUser user = getRandomUser();
 			LOGGER.info("Logging in as " + user.getUsername());
-			Boolean login = bimServerClient.getServiceInterface().login(user.getUsername(), "test");
+			bimServerClient.getServiceInterface().login(user.getUsername(), "test");
 		}
 	}
 

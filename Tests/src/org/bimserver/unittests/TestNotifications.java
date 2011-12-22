@@ -29,11 +29,8 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
-import org.bimserver.client.notifications.NotificationInterfaceAdapter;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.combined.LocalDevBimCombinedServerStarter;
-import org.bimserver.interfaces.objects.SNewProjectNotification;
-import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SService;
@@ -44,7 +41,6 @@ import org.junit.Test;
 
 public class TestNotifications {
 	private static BimServer bimServer;
-	private SProject addProject;
 
 	@BeforeClass
 	public static void before() {
@@ -80,12 +76,12 @@ public class TestNotifications {
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		
 		SocketNotificationsClient socketNotificationsClient = new SocketNotificationsClient();
-		NotificationInterfaceAdapter notificationInterfaceAdapter = new NotificationInterfaceAdapter() {
-			@Override
-			public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
-				countDownLatch.countDown();
-			}
-		};
+//		NotificationInterfaceAdapter notificationInterfaceAdapter = new NotificationInterfaceAdapter() {
+//			@Override
+//			public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
+//				countDownLatch.countDown();
+//			}
+//		};
 		socketNotificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055));
 		socketNotificationsClient.start();
 		
@@ -98,7 +94,7 @@ public class TestNotifications {
 		try {
 			bimServerClient.getServiceInterface().login("admin@bimserver.org", "admin");
 			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
-			addProject = bimServerClient.getServiceInterface().addProject("test12345");
+			bimServerClient.getServiceInterface().addProject("test12345");
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		}

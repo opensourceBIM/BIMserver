@@ -65,7 +65,6 @@ public class ObjectFactory {
     private final static QName _SetSettingAutoTestClashesResponse_QNAME = new QName("http://shared.bimserver.org/", "setSettingAutoTestClashesResponse");
     private final static QName _SetSettingSmtpServerResponse_QNAME = new QName("http://shared.bimserver.org/", "setSettingSmtpServerResponse");
     private final static QName _GetSettingFooterAdditionResponse_QNAME = new QName("http://shared.bimserver.org/", "getSettingFooterAdditionResponse");
-    private final static QName _DownloadProjects_QNAME = new QName("http://shared.bimserver.org/", "downloadProjects");
     private final static QName _GetSerializerByIdResponse_QNAME = new QName("http://shared.bimserver.org/", "getSerializerByIdResponse");
     private final static QName _GetRevisionSummary_QNAME = new QName("http://shared.bimserver.org/", "getRevisionSummary");
     private final static QName _GetDownloadData_QNAME = new QName("http://shared.bimserver.org/", "getDownloadData");
@@ -124,6 +123,7 @@ public class ObjectFactory {
     private final static QName _SListDataValue_QNAME = new QName("http://shared.bimserver.org/", "sListDataValue");
     private final static QName _GetSettingCustomLogoAddress_QNAME = new QName("http://shared.bimserver.org/", "getSettingCustomLogoAddress");
     private final static QName _SCheckout_QNAME = new QName("http://shared.bimserver.org/", "sCheckout");
+    private final static QName _DownloadRevisionsResponse_QNAME = new QName("http://shared.bimserver.org/", "downloadRevisionsResponse");
     private final static QName _ChangeUserTypeResponse_QNAME = new QName("http://shared.bimserver.org/", "changeUserTypeResponse");
     private final static QName _SNewRevisionAdded_QNAME = new QName("http://shared.bimserver.org/", "sNewRevisionAdded");
     private final static QName _GetLatestVersion_QNAME = new QName("http://shared.bimserver.org/", "getLatestVersion");
@@ -171,8 +171,8 @@ public class ObjectFactory {
     private final static QName _GetAllRevisionsByUserResponse_QNAME = new QName("http://shared.bimserver.org/", "getAllRevisionsByUserResponse");
     private final static QName _GetDatabaseInformation_QNAME = new QName("http://shared.bimserver.org/", "getDatabaseInformation");
     private final static QName _AddProjectAsSubProjectResponse_QNAME = new QName("http://shared.bimserver.org/", "addProjectAsSubProjectResponse");
-    private final static QName _UndeleteProjectResponse_QNAME = new QName("http://shared.bimserver.org/", "undeleteProjectResponse");
     private final static QName _IsSettingSendConfirmationEmailAfterRegistrationResponse_QNAME = new QName("http://shared.bimserver.org/", "isSettingSendConfirmationEmailAfterRegistrationResponse");
+    private final static QName _UndeleteProjectResponse_QNAME = new QName("http://shared.bimserver.org/", "undeleteProjectResponse");
     private final static QName _IsSettingAutoTestClashes_QNAME = new QName("http://shared.bimserver.org/", "isSettingAutoTestClashes");
     private final static QName _UndeleteUser_QNAME = new QName("http://shared.bimserver.org/", "undeleteUser");
     private final static QName _SLongCheckinAction_QNAME = new QName("http://shared.bimserver.org/", "sLongCheckinAction");
@@ -231,7 +231,6 @@ public class ObjectFactory {
     private final static QName _SObjectAdded_QNAME = new QName("http://shared.bimserver.org/", "sObjectAdded");
     private final static QName _GetAllReadableProjects_QNAME = new QName("http://shared.bimserver.org/", "getAllReadableProjects");
     private final static QName _FindClashesByGuid_QNAME = new QName("http://shared.bimserver.org/", "findClashesByGuid");
-    private final static QName _DownloadProjectsResponse_QNAME = new QName("http://shared.bimserver.org/", "downloadProjectsResponse");
     private final static QName _ChangeUserType_QNAME = new QName("http://shared.bimserver.org/", "changeUserType");
     private final static QName _GetDataObjects_QNAME = new QName("http://shared.bimserver.org/", "getDataObjects");
     private final static QName _ValidateAccount_QNAME = new QName("http://shared.bimserver.org/", "validateAccount");
@@ -258,6 +257,7 @@ public class ObjectFactory {
     private final static QName _GetAllSerializerPluginDescriptors_QNAME = new QName("http://shared.bimserver.org/", "getAllSerializerPluginDescriptors");
     private final static QName _GetAllObjectIDMPluginDescriptors_QNAME = new QName("http://shared.bimserver.org/", "getAllObjectIDMPluginDescriptors");
     private final static QName _SServerStarted_QNAME = new QName("http://shared.bimserver.org/", "sServerStarted");
+    private final static QName _DownloadRevisions_QNAME = new QName("http://shared.bimserver.org/", "downloadRevisions");
     private final static QName _SDatabaseCreated_QNAME = new QName("http://shared.bimserver.org/", "sDatabaseCreated");
     private final static QName _SetRevisionTag_QNAME = new QName("http://shared.bimserver.org/", "setRevisionTag");
     private final static QName _GetAllRevisionsByUser_QNAME = new QName("http://shared.bimserver.org/", "getAllRevisionsByUser");
@@ -291,7 +291,6 @@ public class ObjectFactory {
     private final static QName _GetSettingRegistrationAdditionResponse_QNAME = new QName("http://shared.bimserver.org/", "getSettingRegistrationAdditionResponse");
     private final static QName _GetGeoTag_QNAME = new QName("http://shared.bimserver.org/", "getGeoTag");
     private final static QName _GetDownloadState_QNAME = new QName("http://shared.bimserver.org/", "getDownloadState");
-    private final static QName _ServiceException_QNAME = new QName("http://shared.bimserver.org/", "ServiceException");
     private final static QName _SUserRemovedFromProject_QNAME = new QName("http://shared.bimserver.org/", "sUserRemovedFromProject");
     private final static QName _GetCurrentTokenResponse_QNAME = new QName("http://shared.bimserver.org/", "getCurrentTokenResponse");
     private final static QName _AbortTransaction_QNAME = new QName("http://shared.bimserver.org/", "abortTransaction");
@@ -303,6 +302,7 @@ public class ObjectFactory {
     private final static QName _StartTransactionResponse_QNAME = new QName("http://shared.bimserver.org/", "startTransactionResponse");
     private final static QName _GetVersionResponse_QNAME = new QName("http://shared.bimserver.org/", "getVersionResponse");
     private final static QName _SetSettingProtocolBuffersPortResponse_QNAME = new QName("http://shared.bimserver.org/", "setSettingProtocolBuffersPortResponse");
+    private final static QName _GetServerLogResponse_QNAME = new QName("http://shared.bimserver.org/", "getServerLogResponse");
     private final static QName _SetSettingAutoTestClashes_QNAME = new QName("http://shared.bimserver.org/", "setSettingAutoTestClashes");
     private final static QName _GetAccessMethod_QNAME = new QName("http://shared.bimserver.org/", "getAccessMethod");
     private final static QName _GetDataObjectByOid_QNAME = new QName("http://shared.bimserver.org/", "getDataObjectByOid");
@@ -319,6 +319,7 @@ public class ObjectFactory {
     private final static QName _SetSettingShowVersionUpgradeAvailableResponse_QNAME = new QName("http://shared.bimserver.org/", "setSettingShowVersionUpgradeAvailableResponse");
     private final static QName _GetCurrentUser_QNAME = new QName("http://shared.bimserver.org/", "getCurrentUser");
     private final static QName _DeleteObjectIDM_QNAME = new QName("http://shared.bimserver.org/", "deleteObjectIDM");
+    private final static QName _ServerException_QNAME = new QName("bimserver", "ServerException");
     private final static QName _UpdateProjectResponse_QNAME = new QName("http://shared.bimserver.org/", "updateProjectResponse");
     private final static QName _SSerializerPluginDescriptor_QNAME = new QName("http://shared.bimserver.org/", "sSerializerPluginDescriptor");
     private final static QName _UndeleteUserResponse_QNAME = new QName("http://shared.bimserver.org/", "undeleteUserResponse");
@@ -348,6 +349,7 @@ public class ObjectFactory {
     private final static QName _SetSettingRegistrationAdditionResponse_QNAME = new QName("http://shared.bimserver.org/", "setSettingRegistrationAdditionResponse");
     private final static QName _SDownloadResult_QNAME = new QName("http://shared.bimserver.org/", "sDownloadResult");
     private final static QName _CheckinResponse_QNAME = new QName("http://shared.bimserver.org/", "checkinResponse");
+    private final static QName _GetServerLog_QNAME = new QName("http://shared.bimserver.org/", "getServerLog");
     private final static QName _GetRevisionResponse_QNAME = new QName("http://shared.bimserver.org/", "getRevisionResponse");
     private final static QName _CompileAndRunResponse_QNAME = new QName("http://shared.bimserver.org/", "compileAndRunResponse");
     private final static QName _SetSettingCacheOutputFilesResponse_QNAME = new QName("http://shared.bimserver.org/", "setSettingCacheOutputFilesResponse");
@@ -417,6 +419,7 @@ public class ObjectFactory {
     private final static QName _DownloadResponse_QNAME = new QName("http://shared.bimserver.org/", "downloadResponse");
     private final static QName _GetProtocolBuffersFileResponse_QNAME = new QName("http://shared.bimserver.org/", "getProtocolBuffersFileResponse");
     private final static QName _DisablePluginResponse_QNAME = new QName("http://shared.bimserver.org/", "disablePluginResponse");
+    private final static QName _UserException_QNAME = new QName("bimserver", "UserException");
     private final static QName _SetStringAttributeResponse_QNAME = new QName("http://shared.bimserver.org/", "setStringAttributeResponse");
     private final static QName _AddReference_QNAME = new QName("http://shared.bimserver.org/", "addReference");
     private final static QName _GetUserByUserNameResponse_QNAME = new QName("http://shared.bimserver.org/", "getUserByUserNameResponse");
@@ -467,14 +470,6 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link Token }
-     * 
-     */
-    public Token createToken() {
-        return new Token();
     }
 
     /**
@@ -595,6 +590,14 @@ public class ObjectFactory {
      */
     public GetSettingCustomLogoAddress createGetSettingCustomLogoAddress() {
         return new GetSettingCustomLogoAddress();
+    }
+
+    /**
+     * Create an instance of {@link DownloadRevisionsResponse }
+     * 
+     */
+    public DownloadRevisionsResponse createDownloadRevisionsResponse() {
+        return new DownloadRevisionsResponse();
     }
 
     /**
@@ -1102,14 +1105,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DownloadProjects }
-     * 
-     */
-    public DownloadProjects createDownloadProjects() {
-        return new DownloadProjects();
-    }
-
-    /**
      * Create an instance of {@link GetSerializerByIdResponse }
      * 
      */
@@ -1539,14 +1534,6 @@ public class ObjectFactory {
      */
     public SObjectAdded createSObjectAdded() {
         return new SObjectAdded();
-    }
-
-    /**
-     * Create an instance of {@link DownloadProjectsResponse }
-     * 
-     */
-    public DownloadProjectsResponse createDownloadProjectsResponse() {
-        return new DownloadProjectsResponse();
     }
 
     /**
@@ -2534,6 +2521,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetServerLogResponse }
+     * 
+     */
+    public GetServerLogResponse createGetServerLogResponse() {
+        return new GetServerLogResponse();
+    }
+
+    /**
      * Create an instance of {@link GetAccessMethod }
      * 
      */
@@ -2675,14 +2670,6 @@ public class ObjectFactory {
      */
     public GetCurrentTokenResponse createGetCurrentTokenResponse() {
         return new GetCurrentTokenResponse();
-    }
-
-    /**
-     * Create an instance of {@link ServiceException }
-     * 
-     */
-    public ServiceException createServiceException() {
-        return new ServiceException();
     }
 
     /**
@@ -2947,6 +2934,14 @@ public class ObjectFactory {
      */
     public SServerStarted createSServerStarted() {
         return new SServerStarted();
+    }
+
+    /**
+     * Create an instance of {@link DownloadRevisions }
+     * 
+     */
+    public DownloadRevisions createDownloadRevisions() {
+        return new DownloadRevisions();
     }
 
     /**
@@ -3902,6 +3897,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetServerLog }
+     * 
+     */
+    public GetServerLog createGetServerLog() {
+        return new GetServerLog();
+    }
+
+    /**
      * Create an instance of {@link CompileAndRunResponse }
      * 
      */
@@ -3963,6 +3966,30 @@ public class ObjectFactory {
      */
     public SDownloadResult createSDownloadResult() {
         return new SDownloadResult();
+    }
+
+    /**
+     * Create an instance of {@link Token }
+     * 
+     */
+    public Token createToken() {
+        return new Token();
+    }
+
+    /**
+     * Create an instance of {@link ServerException }
+     * 
+     */
+    public ServerException createServerException() {
+        return new ServerException();
+    }
+
+    /**
+     * Create an instance of {@link UserException }
+     * 
+     */
+    public UserException createUserException() {
+        return new UserException();
     }
 
     /**
@@ -4332,15 +4359,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "getSettingFooterAdditionResponse")
     public JAXBElement<GetSettingFooterAdditionResponse> createGetSettingFooterAdditionResponse(GetSettingFooterAdditionResponse value) {
         return new JAXBElement<GetSettingFooterAdditionResponse>(_GetSettingFooterAdditionResponse_QNAME, GetSettingFooterAdditionResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadProjects }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "downloadProjects")
-    public JAXBElement<DownloadProjects> createDownloadProjects(DownloadProjects value) {
-        return new JAXBElement<DownloadProjects>(_DownloadProjects_QNAME, DownloadProjects.class, null, value);
     }
 
     /**
@@ -4866,6 +4884,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadRevisionsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "downloadRevisionsResponse")
+    public JAXBElement<DownloadRevisionsResponse> createDownloadRevisionsResponse(DownloadRevisionsResponse value) {
+        return new JAXBElement<DownloadRevisionsResponse>(_DownloadRevisionsResponse_QNAME, DownloadRevisionsResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ChangeUserTypeResponse }{@code >}}
      * 
      */
@@ -5289,21 +5316,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UndeleteProjectResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "undeleteProjectResponse")
-    public JAXBElement<UndeleteProjectResponse> createUndeleteProjectResponse(UndeleteProjectResponse value) {
-        return new JAXBElement<UndeleteProjectResponse>(_UndeleteProjectResponse_QNAME, UndeleteProjectResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link IsSettingSendConfirmationEmailAfterRegistrationResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "isSettingSendConfirmationEmailAfterRegistrationResponse")
     public JAXBElement<IsSettingSendConfirmationEmailAfterRegistrationResponse> createIsSettingSendConfirmationEmailAfterRegistrationResponse(IsSettingSendConfirmationEmailAfterRegistrationResponse value) {
         return new JAXBElement<IsSettingSendConfirmationEmailAfterRegistrationResponse>(_IsSettingSendConfirmationEmailAfterRegistrationResponse_QNAME, IsSettingSendConfirmationEmailAfterRegistrationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UndeleteProjectResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "undeleteProjectResponse")
+    public JAXBElement<UndeleteProjectResponse> createUndeleteProjectResponse(UndeleteProjectResponse value) {
+        return new JAXBElement<UndeleteProjectResponse>(_UndeleteProjectResponse_QNAME, UndeleteProjectResponse.class, null, value);
     }
 
     /**
@@ -5829,15 +5856,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadProjectsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "downloadProjectsResponse")
-    public JAXBElement<DownloadProjectsResponse> createDownloadProjectsResponse(DownloadProjectsResponse value) {
-        return new JAXBElement<DownloadProjectsResponse>(_DownloadProjectsResponse_QNAME, DownloadProjectsResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ChangeUserType }{@code >}}
      * 
      */
@@ -6069,6 +6087,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "sServerStarted")
     public JAXBElement<SServerStarted> createSServerStarted(SServerStarted value) {
         return new JAXBElement<SServerStarted>(_SServerStarted_QNAME, SServerStarted.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadRevisions }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "downloadRevisions")
+    public JAXBElement<DownloadRevisions> createDownloadRevisions(DownloadRevisions value) {
+        return new JAXBElement<DownloadRevisions>(_DownloadRevisions_QNAME, DownloadRevisions.class, null, value);
     }
 
     /**
@@ -6369,15 +6396,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ServiceException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "ServiceException")
-    public JAXBElement<ServiceException> createServiceException(ServiceException value) {
-        return new JAXBElement<ServiceException>(_ServiceException_QNAME, ServiceException.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SUserRemovedFromProject }{@code >}}
      * 
      */
@@ -6474,6 +6492,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "setSettingProtocolBuffersPortResponse")
     public JAXBElement<SetSettingProtocolBuffersPortResponse> createSetSettingProtocolBuffersPortResponse(SetSettingProtocolBuffersPortResponse value) {
         return new JAXBElement<SetSettingProtocolBuffersPortResponse>(_SetSettingProtocolBuffersPortResponse_QNAME, SetSettingProtocolBuffersPortResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetServerLogResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "getServerLogResponse")
+    public JAXBElement<GetServerLogResponse> createGetServerLogResponse(GetServerLogResponse value) {
+        return new JAXBElement<GetServerLogResponse>(_GetServerLogResponse_QNAME, GetServerLogResponse.class, null, value);
     }
 
     /**
@@ -6618,6 +6645,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "deleteObjectIDM")
     public JAXBElement<DeleteObjectIDM> createDeleteObjectIDM(DeleteObjectIDM value) {
         return new JAXBElement<DeleteObjectIDM>(_DeleteObjectIDM_QNAME, DeleteObjectIDM.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ServerException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "bimserver", name = "ServerException")
+    public JAXBElement<ServerException> createServerException(ServerException value) {
+        return new JAXBElement<ServerException>(_ServerException_QNAME, ServerException.class, null, value);
     }
 
     /**
@@ -6879,6 +6915,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "checkinResponse")
     public JAXBElement<CheckinResponse> createCheckinResponse(CheckinResponse value) {
         return new JAXBElement<CheckinResponse>(_CheckinResponse_QNAME, CheckinResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetServerLog }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "getServerLog")
+    public JAXBElement<GetServerLog> createGetServerLog(GetServerLog value) {
+        return new JAXBElement<GetServerLog>(_GetServerLog_QNAME, GetServerLog.class, null, value);
     }
 
     /**
@@ -7500,6 +7545,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "disablePluginResponse")
     public JAXBElement<DisablePluginResponse> createDisablePluginResponse(DisablePluginResponse value) {
         return new JAXBElement<DisablePluginResponse>(_DisablePluginResponse_QNAME, DisablePluginResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UserException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "bimserver", name = "UserException")
+    public JAXBElement<UserException> createUserException(UserException value) {
+        return new JAXBElement<UserException>(_UserException_QNAME, UserException.class, null, value);
     }
 
     /**
