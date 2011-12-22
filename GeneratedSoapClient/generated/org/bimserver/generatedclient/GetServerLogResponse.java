@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for addUserResponse complex type.
+ * <p>Java class for getServerLogResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="addUserResponse">
+ * &lt;complexType name="getServerLogResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://shared.bimserver.org/}sUser" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,23 +27,23 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "addUserResponse", propOrder = {
+@XmlType(name = "getServerLogResponse", propOrder = {
     "_return"
 })
-public class AddUserResponse {
+public class GetServerLogResponse {
 
     @XmlElement(name = "return")
-    protected SUser _return;
+    protected String _return;
 
     /**
      * Gets the value of the return property.
      * 
      * @return
      *     possible object is
-     *     {@link SUser }
+     *     {@link String }
      *     
      */
-    public SUser getReturn() {
+    public String getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class AddUserResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link SUser }
+     *     {@link String }
      *     
      */
-    public void setReturn(SUser value) {
+    public void setReturn(String value) {
         this._return = value;
     }
 

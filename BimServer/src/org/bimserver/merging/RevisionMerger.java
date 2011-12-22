@@ -32,12 +32,9 @@ import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class RevisionMerger {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(RevisionMerger.class);
 	private IfcModelInterface oldModel;
 	private IfcModelInterface newModel;
 	private IfcModel resultModel;

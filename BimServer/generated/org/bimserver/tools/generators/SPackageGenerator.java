@@ -4,7 +4,6 @@ import org.eclipse.emf.ecore.*;
 import org.bimserver.utils.*;
 import java.io.File;
 import java.util.Set;
-import org.bimserver.utils.StringUtils;
 
 public class SPackageGenerator
 {
@@ -54,7 +53,7 @@ public class SPackageGenerator
     stringBuffer.append(Licenser.getCommentedLicenseText(new File("license.txt")));
     stringBuffer.append(TEXT_4);
     
-	Set<EPackage> ePackages = (Set<EPackage>)argument;
+	@SuppressWarnings("unchecked") Set<EPackage> ePackages = (Set<EPackage>)argument;
 
     stringBuffer.append(TEXT_5);
     

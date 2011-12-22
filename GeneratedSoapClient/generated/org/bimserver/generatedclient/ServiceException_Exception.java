@@ -13,7 +13,8 @@ import javax.xml.ws.WebFault;
 @WebFault(name = "ServiceException", targetNamespace = "http://shared.bimserver.org/")
 public class ServiceException_Exception extends Exception {
     
-    private org.bimserver.generatedclient.ServiceException serviceException;
+	private static final long serialVersionUID = 595339356864177378L;
+	private org.bimserver.generatedclient.ServiceException serviceException;
 
     public ServiceException_Exception() {
         super();

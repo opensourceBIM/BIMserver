@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UserException", propOrder = {
+@XmlType(name = "UserException", namespace = "bimserver", propOrder = {
     "fullMessage",
     "userMessage"
 })

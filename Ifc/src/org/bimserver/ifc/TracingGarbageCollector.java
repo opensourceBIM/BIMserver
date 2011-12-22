@@ -91,15 +91,12 @@ public class TracingGarbageCollector {
 	public void sweep() {
 		Map<Long, IdEObject> objects = ifcModel.getObjects();
 		Iterator<Long> iterator = objects.keySet().iterator();
-		int removed = 0;
 		while (iterator.hasNext()) {
 			Long next = iterator.next();
 			IdEObject idEObject = objects.get(next);
 			if (!referencedObjects.contains(idEObject)) {
-				removed++;
 				iterator.remove();
 			}
 		}
-//		LOGGER.info(removed + " objects swept");
 	}
 }

@@ -121,7 +121,7 @@ public class TestClientEmfModelLocal {
 		serializer.writeToFile(new File(output, roid + ".ifc"));
 	}
 
-	private void dumpSummary(long roid) throws ServiceException {
+	public void dumpSummary(long roid) throws ServiceException {
 		SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
 		List<SRevisionSummaryContainer> list = revisionSummary.getList();
 		for (SRevisionSummaryContainer container : list) {

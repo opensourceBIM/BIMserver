@@ -176,7 +176,7 @@ public class SConverterGenerator
     
 	Object[] argumentsArray = (Object[])argument;
 	MetaDataManager metaDataManager = (MetaDataManager)argumentsArray[0];
-	Set<EPackage> ePackages = (Set<EPackage>)argumentsArray[1];
+	@SuppressWarnings("unchecked") Set<EPackage> ePackages = (Set<EPackage>)argumentsArray[1];
 	for (EPackage ePackage : ePackages) {
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {

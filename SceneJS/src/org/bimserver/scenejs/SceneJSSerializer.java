@@ -76,7 +76,6 @@ import org.bimserver.models.ifc2x3.IfcRelCoversBldgElements;
 import org.bimserver.models.ifc2x3.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3.IfcRelDefines;
 import org.bimserver.models.ifc2x3.IfcRelFillsElement;
-import org.bimserver.models.ifc2x3.IfcRelProjectsElement;
 import org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure;
 import org.bimserver.models.ifc2x3.IfcRelServicesBuildings;
 import org.bimserver.models.ifc2x3.IfcRelSpaceBoundary;
@@ -143,39 +142,6 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private HashMap<String, HashMap<String, HashSet<String>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<String>>>();
 	// private materialGeometryRel = new HashMap<String, Set<String>>();
 	private List<String> surfaceStyleIds;
-	
-	/**
-	 * JsWriter adds automatic indentation to the PrintWriter
-	 */
-	private class JsWriter extends PrintWriter {
-		private int indentation = 0;
-
-		public JsWriter(OutputStream out) {
-			super(out);
-		}
-
-		public void indent() {
-			indentation += 1;
-		}
-
-		public void unindent() {
-			indentation = Math.max(0, indentation - 1);
-		}
-
-		public void writeln(String s) {
-			for (int i = 0; i < indentation; ++i) {
-				super.print("  ");
-			}
-			super.println(s);
-		}
-
-		public void writetab(String s) {
-			for (int i = 0; i < indentation; ++i) {
-				super.print("  ");
-			}
-			super.print(s);
-		}
-	}
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
@@ -1018,12 +984,12 @@ public class SceneJSSerializer extends BimModelSerializer {
 		if (object.getHasProjections() != null && !object.getHasProjections().isEmpty()) {
 			JSONArray jsonArray = new JSONArray();
 			jsonObj.put("Has Projections", jsonArray);
-			for (IfcRelProjectsElement rel : object.getHasProjections()) {
+//			for (IfcRelProjectsElement rel : object.getHasProjections()) {
 				/* TODO:
 				jsonArray.put(new JSONObject());
 				IfcElement getRelatingElement();
 				IfcFeatureElementAddition getRelatedFeatureElement();//*/				
-			}
+//			}
 		}
 		if (object.getHasStructuralMember() != null && !object.getHasStructuralMember().isEmpty()) {
 			JSONArray jsonArray = new JSONArray();
