@@ -300,12 +300,12 @@ public interface ServiceInterface {
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "downloadProjects")
-	Integer downloadProjects(
-			@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
-			@WebParam(name = "serializerName", partName = "downloadProjects.serializerName") String serializerName,
-			@WebParam(name = "sync", partName = "downloadProjects.sync") Boolean sync) throws ServerException, UserException;
-	
+	@WebMethod(action = "downloadRevisions")
+	Integer downloadRevisions(
+			@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
+			@WebParam(name = "serializerName", partName = "downloadRevisions.serializerName") String serializerName,
+			@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
+
 	/**
 	 * Get the data for a download/checkout
 	 * 
