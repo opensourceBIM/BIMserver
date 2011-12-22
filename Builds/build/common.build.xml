@@ -1,7 +1,4 @@
 <project name="BIMserver Common">
-	<tstamp>
-		<format property="touch.time" pattern="yyyy-MM-dd'T'HH:mm:ss.S'+01:00'" />
-	</tstamp>
 	<fileset id="lib" dir="../../BimServer">
 		<include name="**/*.jar" />
 	</fileset>
