@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <script type="text/javascript">
   var _gaq = _gaq || [];

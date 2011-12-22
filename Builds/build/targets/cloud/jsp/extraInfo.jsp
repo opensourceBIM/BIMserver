@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <div class="tabbertab" id="demotab" title="Demo">
 	<table class="formatted infotable">
 		<tr><td colspan="2" class="tabletitle">Links</td></tr>

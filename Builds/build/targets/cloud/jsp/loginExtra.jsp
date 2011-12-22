@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.text.SimpleDateFormat"%>
