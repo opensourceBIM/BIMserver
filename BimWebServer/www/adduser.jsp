@@ -15,8 +15,8 @@
 	if (loginManager.isLoggedIn()) {
 		if (request.getParameter("save") != null) {
 			try {
-				long uoid = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))], false);
-				response.sendRedirect("user.jsp?uoid=" + uoid);
+				SUser user = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))], false);
+				response.sendRedirect("user.jsp?uoid=" + user.getOid());
 			} catch (ServiceException e) {
 				JspHelper.showException(out, e);
 			}

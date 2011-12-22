@@ -47,9 +47,11 @@ public class DownloadParameters extends LongActionKey {
 	private BimServer bimServer;
 	private CompareIdentifier compareIdentifier;
 	private CompareType compareType;
+	private long ignoreUoid = -1;
 
-	public DownloadParameters(BimServer bimServer, long roid, String serializerName) {
+	public DownloadParameters(BimServer bimServer, long roid, String serializerName, long ignoreUoid) {
 		this.bimServer = bimServer;
+		this.ignoreUoid = ignoreUoid;
 		setRoid(roid);
 		setDownloadType(DownloadType.DOWNLOAD_REVISION);
 		setSerializerName(serializerName);
@@ -58,6 +60,10 @@ public class DownloadParameters extends LongActionKey {
 	public DownloadParameters() {
 	}
 
+	public long getIgnoreUoid() {
+		return ignoreUoid;
+	}
+	
 	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, CompareIdentifier identifier, String serializerName) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_COMPARE);

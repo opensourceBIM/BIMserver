@@ -210,6 +210,7 @@ public interface ServiceInterface {
 	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerName  Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param showOwn Whether to return revisions created by the current user
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -221,6 +222,7 @@ public interface ServiceInterface {
 	Integer download(
 			@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") Long roid,
 			@QueryParam("serializerName") @WebParam(name = "serializerName", partName = "download.serializerName") String serializerName,
+			@QueryParam("showOwn") @WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**

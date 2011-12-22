@@ -43,11 +43,14 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
+	private final long ignoreUoid;
 
-	public DownloadDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long actingUoid, ObjectIDM objectIDM) {
+	public DownloadDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long actingUoid,
+			ObjectIDM objectIDM) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
+		this.ignoreUoid = ignoreUoid;
 		this.actingUoid = actingUoid;
 		this.objectIDM = objectIDM;
 	}
@@ -71,23 +74,26 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			IfcModel subModel = new IfcModel();
-			subModel.addChangeListener(new IfcModelChangeListener() {
-				@Override
-				public void objectAdded() {
-					total.incrementAndGet();
-					if (totalSize == 0) {
-						progress = 0;
-					} else {
-						progress = Math.round(100L * total.get() / totalSize);
+			if (subRevision.getUser().getOid() != ignoreUoid) {
+				IfcModel subModel = new IfcModel();
+				subModel.addChangeListener(new IfcModelChangeListener() {
+					@Override
+					public void objectAdded() {
+						total.incrementAndGet();
+						if (totalSize == 0) {
+							progress = 0;
+						} else {
+							progress = Math.round(100L * total.get() / totalSize);
+						}
 					}
-				}
-			});
-			getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, objectIDM);
-			subModel.setDate(subRevision.getDate());
-			ifcModelSet.add(subModel);
+				});
+				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, objectIDM);
+				subModel.setDate(subRevision.getDate());
+				ifcModelSet.add(subModel);
+			}
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(revision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger()
+				.merge(revision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
 		ifcModel.setName(project.getName() + "." + revision.getId());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());

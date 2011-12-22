@@ -67,7 +67,7 @@ service ServiceInterface {
 
 	rpc downloadByGuids (DownloadByGuidsRequest) returns (DownloadByGuidsResponse);
 
-	rpc downloadProjects (DownloadProjectsRequest) returns (DownloadProjectsResponse);
+	rpc downloadRevisions (DownloadRevisionsRequest) returns (DownloadRevisionsResponse);
 
 	rpc getDownloadData (GetDownloadDataRequest) returns (GetDownloadDataResponse);
 
@@ -480,7 +480,8 @@ message CloseRequest {
 message DownloadRequest {
 	optional int64 roid = 1;
 	optional string serializerName = 2;
-	optional bool sync = 3;
+	optional bool showOwn = 3;
+	optional bool sync = 4;
 }
 
 message DownloadResponse {
@@ -695,13 +696,13 @@ message DownloadByGuidsResponse {
 	optional int32 value = 2;
 }
 
-message DownloadProjectsRequest {
+message DownloadRevisionsRequest {
 	repeated int64 roids = 1;
 	optional string serializerName = 2;
 	optional bool sync = 3;
 }
 
-message DownloadProjectsResponse {
+message DownloadRevisionsResponse {
 	optional string errorMessage = 1;
 	optional int32 value = 2;
 }
@@ -867,8 +868,8 @@ message SRevision {
 	optional int32 id = 1;
 	optional SCheckinState state = 2;
 	optional int64 size = 3;
-	optional int64 date = 4;
-	optional string comment = 5;
+	optional string comment = 4;
+	optional int64 date = 5;
 	optional string tag = 6;
 	repeated int64 lastClashes = 7;
 	optional int64 oid = 8;

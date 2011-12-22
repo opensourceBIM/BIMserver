@@ -254,7 +254,7 @@ public class Client extends JFrame {
 
 	public void download(long roid, FileOutputStream out, boolean report) {
 		try {
-			int downloadId = serviceHolder.getService().download(roid, "IFC", true);
+			int downloadId = serviceHolder.getService().download(roid, "IFC", true, true);
 			SDownloadResult download = serviceHolder.getService().getDownloadData(downloadId);
 			try {
 				InputStream inputStream = download.getFile().getInputStream();

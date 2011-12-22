@@ -4,11 +4,6 @@
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Set"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
-<%
-if (!loginManager.isLoggedIn()) {
-	response.sendRedirect("login.jsp");
-} else {
-%>
 <h1>Migrations</h1>
 <%
 	if (request.getParameter("migrate") != null) {
@@ -48,6 +43,5 @@ No migrations required to execute
 	}
 %>
 </form>
-<% } %>
 </div>
 <%@ include file="footer.jsp"%>
