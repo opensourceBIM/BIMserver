@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SVersion"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
@@ -24,7 +25,7 @@
 			String name = request.getParameter("register_name");
 			String username = request.getParameter("register_username");
 			try {
-				long uoid = loginManager.getService().addUser(username, name, SUserType.USER, true);
+				SUser user = loginManager.getService().addUser(username, name, SUserType.USER, true);
 			} catch (ServiceException e) {
 				errorMessages.add(e.getUserMessage());
 			}

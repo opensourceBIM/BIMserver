@@ -138,7 +138,7 @@ public class DownloadServlet extends HttpServlet {
 						roids.add(roid);
 						downloadId = loginManager.getService().downloadByGuids(roids, guids, serializerName, true);
 					} else {
-						downloadId = loginManager.getService().download(roid, serializerName, true);
+						downloadId = loginManager.getService().download(roid, serializerName, true, true);
 					}
 				}
 			}

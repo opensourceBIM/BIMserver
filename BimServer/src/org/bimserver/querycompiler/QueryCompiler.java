@@ -78,7 +78,7 @@ public class QueryCompiler {
 		RunResult runResult = StoreFactory.eINSTANCE.createRunResult();
 		runResult.setRunOke(true);
 		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, uoid, null);
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, uoid, null);
 			IfcModelInterface IfcModel = session.executeAndCommitAction(action, 10);
 			StringWriter out = new StringWriter();
 			QueryInterface queryInterface = createQueryInterface(code);

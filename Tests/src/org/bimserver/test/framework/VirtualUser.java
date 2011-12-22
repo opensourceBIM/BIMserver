@@ -178,7 +178,7 @@ public class VirtualUser extends Thread {
 				SSerializer serializer = allSerializers.get(random.nextInt(allSerializers.size()));
 				boolean sync = random.nextBoolean();
 				LOGGER.info("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
-				Integer download = bimServerClient.getServiceInterface().download(project.getLastRevisionId(), serializer.getName(), sync);
+				Integer download = bimServerClient.getServiceInterface().download(project.getLastRevisionId(), serializer.getName(), true, sync);
 				while (bimServerClient.getServiceInterface().getDownloadState(download).getState() != SActionState.FINISHED) {
 					try {
 						Thread.sleep(1000);

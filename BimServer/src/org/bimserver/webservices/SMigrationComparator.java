@@ -25,6 +25,6 @@ public class SMigrationComparator implements Comparator<SMigration> {
 
 	@Override
 	public int compare(SMigration o1, SMigration o2) {
-		return o1.getNumber() - o2.getNumber();
+		return o2.getNumber() - o1.getNumber();
 	}
 }

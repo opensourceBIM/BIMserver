@@ -944,13 +944,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__LAST_ERROR = 7;
 
 	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__USER = 8;
+
+	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 8;
+	int CONCRETE_REVISION_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -4222,6 +4231,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getConcreteRevision_LastError();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getUser()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EReference getConcreteRevision_User();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.GeoTag <em>Geo Tag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7087,6 +7107,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONCRETE_REVISION__LAST_ERROR = eINSTANCE.getConcreteRevision_LastError();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_REVISION__USER = eINSTANCE.getConcreteRevision_User();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.

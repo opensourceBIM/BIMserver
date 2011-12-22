@@ -85,6 +85,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		Project project = getProjectByPoid(poid);
 		concreteRevision.setId(project.getConcreteRevisions().size() + 1);
 		User user = getUserByUoid(uoid);
+		concreteRevision.setUser(user);
 		concreteRevision.setProject(project);
 		concreteRevision.setState(checkinState);
 		project.setLastConcreteRevision(concreteRevision);

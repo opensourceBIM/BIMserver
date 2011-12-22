@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getLastError <em>Last Error</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}</li>
  * </ul>
  * </p>
  *
@@ -251,5 +252,31 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setLastError(String value);
+
+	/**
+	 * Returns the value of the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User</em>' reference.
+	 * @see #setUser(User)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_User()
+	 * @model
+	 * @generated
+	 */
+	User getUser();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>User</em>' reference.
+	 * @see #getUser()
+	 * @generated
+	 */
+	void setUser(User value);
 
 } // ConcreteRevision

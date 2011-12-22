@@ -39,6 +39,7 @@ public class SConcreteRevision implements SBase
 		sClass.addField(new SField("size", long.class));
 		sClass.addField(new SField("date", java.util.Date.class));
 		sClass.addField(new SField("lastError", java.lang.String.class));
+		sClass.addField(new SField("userId", long.class));
 		SPackage.getInstance().addSClass(sClass);
 
 	}
@@ -80,6 +81,9 @@ public class SConcreteRevision implements SBase
 		if (sField.getName().equals("lastError")) {
 			return getLastError();
 		}
+		if (sField.getName().equals("userId")) {
+			return getUserId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -119,6 +123,10 @@ public class SConcreteRevision implements SBase
 			setLastError((String)val);
 			return;
 		}
+		if (sField.getName().equals("userId")) {
+			setUserId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -134,6 +142,7 @@ public class SConcreteRevision implements SBase
 	private long size;
 	private java.util.Date date;
 	private java.lang.String lastError;
+	private long userId;
 	public int getId() {
 		return id;
 	}
@@ -191,6 +200,14 @@ public class SConcreteRevision implements SBase
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
 	}
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

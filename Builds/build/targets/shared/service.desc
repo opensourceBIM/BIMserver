@@ -1,5 +1,5 @@
 
-’ö
+¨ö
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -49,11 +49,12 @@ smtpServer (	
 	adminName (	
 adminUsername (	
 adminPassword (	"
-CloseRequest"E
+CloseRequest"V
 DownloadRequest
 roid (
-serializerName (	
-sync ("7
+serializerName (	
+showOwn (
+sync ("7
 DownloadResponse
 errorMessage (	
 value ("
@@ -188,12 +189,12 @@ classNames (	
 sync (">
 DownloadByGuidsResponse
 errorMessage (	
-value ("N
-DownloadProjectsRequest
+value ("O
+DownloadRevisionsRequest
 roids (
 serializerName (	
-sync ("?
-DownloadProjectsResponse
+sync ("@
+DownloadRevisionsResponse
 errorMessage (	
 value ("*
 GetDownloadDataRequest
@@ -282,9 +283,9 @@ parentPoid ("a
 
 id (.
 state (2.org.bimserver.pb.SCheckinState
-size (
-date (
-comment (	
+size (
+comment (	
+date (
 tag (	
 lastClashes (
 oid (
@@ -1163,7 +1164,7 @@ hectometer
 MIGRATION_REQUIRED
 MIGRATION_IMPOSSIBLE
 FATAL_ERROR
-RUNNING2öŸ
+RUNNING2ùŸ
 ServiceInterfaceN
 compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponseN
 compile .org.bimserver.pb.CompileRequest!.org.bimserver.pb.CompileResponseG
@@ -1187,8 +1188,8 @@ getVersion#.org.bimserver.pb.GetVersionRequest$.org.bimserver.pb.GetVersionRes
 downloadCompareResults/.org.bimserver.pb.DownloadCompareResultsRequest0.org.bimserver.pb.DownloadCompareResultsResponsec
 downloadByOids'.org.bimserver.pb.DownloadByOidsRequest(.org.bimserver.pb.DownloadByOidsResponsef
 downloadByTypes(.org.bimserver.pb.DownloadByTypesRequest).org.bimserver.pb.DownloadByTypesResponsef
-downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponsei
-downloadProjects).org.bimserver.pb.DownloadProjectsRequest*.org.bimserver.pb.DownloadProjectsResponsef
+downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponsel
+downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponsef
 getDownloadData(.org.bimserver.pb.GetDownloadDataRequest).org.bimserver.pb.GetDownloadDataResponsei
 getDownloadState).org.bimserver.pb.GetDownloadStateRequest*.org.bimserver.pb.GetDownloadStateResponseN
 addUser .org.bimserver.pb.AddUserRequest!.org.bimserver.pb.AddUserResponseY

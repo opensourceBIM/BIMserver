@@ -1,3 +1,5 @@
+com.google.protobuf
+org.bimserver.interfaces.objects
 org.bimserver.shared
 org.bimserver.shared.comparators
 org.bimserver.shared.exceptions

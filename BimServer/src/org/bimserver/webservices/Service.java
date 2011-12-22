@@ -343,7 +343,7 @@ public class Service implements ServiceInterface {
 		if (!serializer.getClass().getSimpleName().equals("IfcStepSerializer") && !serializer.getClass().getSimpleName().equals("IfcXmlSerializer")) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
-		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerName);
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerName, -1);
 		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
@@ -630,9 +630,9 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public Integer download(Long roid, String resultTypeName, Boolean sync) throws ServerException, UserException {
+	public Integer download(Long roid, String resultTypeName, Boolean showOwn, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(bimServer, roid, resultTypeName), sync);
+		return download(new DownloadParameters(bimServer, roid, resultTypeName, showOwn ? -1 : currentUoid), sync);
 	}
 
 	@Override
@@ -1783,7 +1783,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SMigration> getMigrations() throws UserException {
-		requireAuthentication();
 		Migrator migrator = bimServer.getDatabase().getMigrator();
 		List<SMigration> list = new ArrayList<SMigration>(converter.convertToSSetMigration(migrator.getMigrations()));
 		Collections.sort(list, new SMigrationComparator());
@@ -1792,7 +1791,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void migrateDatabase() throws ServerException, UserException {
-		requireAuthentication();
 		try {
 			bimServer.getDatabase().getMigrator().migrate();
 			bimServer.getServerInfoManager().update();
