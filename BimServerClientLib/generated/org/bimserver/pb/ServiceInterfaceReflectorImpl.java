@@ -90,7 +90,7 @@ private Reflector reflector;
 	public java.lang.Integer downloadByGuids(java.util.Set<java.lang.Long> arg0, java.util.Set<java.lang.String> arg1, java.lang.String arg2, java.lang.Boolean arg3) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadByGuids", java.lang.Integer.class, arg0, arg1, arg2, arg3);
 	}
-	public java.lang.Integer downloadProjects(java.util.Set<java.lang.Long> arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public java.lang.Integer downloadRevisions(java.util.Set<java.lang.Long> arg0, java.lang.String arg1, java.lang.Boolean arg2) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadProjects", java.lang.Integer.class, arg0, arg1, arg2);
 	}
 	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Integer arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {

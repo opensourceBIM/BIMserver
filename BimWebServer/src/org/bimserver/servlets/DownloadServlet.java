@@ -75,7 +75,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 					}
 				}
-				downloadId = loginManager.getService().downloadProjects(roids, serializerName, true);
+				downloadId = loginManager.getService().downloadRevisions(roids, serializerName, true);
 			} else if (request.getParameter("clashes") != null) {
 				SClashDetectionSettings sClashDetectionSettings = JspHelper.createSClashDetectionSettings(request);
 				List<SEidClash> findClashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);

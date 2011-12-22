@@ -1005,7 +1005,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadProjects(Set<Long> roids, String resultTypeName, Boolean sync) throws ServerException, UserException {
+	public Integer downloadRevisions(Set<Long> roids, String resultTypeName, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromRoids(bimServer, roids, resultTypeName), sync);
 	}
