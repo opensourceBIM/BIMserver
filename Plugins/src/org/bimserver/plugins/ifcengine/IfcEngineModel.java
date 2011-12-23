@@ -28,4 +28,5 @@ public interface IfcEngineModel {
 	void close() throws IfcEngineException;
 	Set<IfcEngineClash> findClashesWithEids(double d) throws IfcEngineException;
 	Set<IfcEngineClash> findClashesWithGuids(double d) throws IfcEngineException;
+	IfcEngineInstance getInstanceFromExpressId(int oid) throws IfcEngineException;
 }

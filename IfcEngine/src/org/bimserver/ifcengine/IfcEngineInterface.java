@@ -159,6 +159,11 @@ public interface IfcEngineInterface extends Library {
 
 	void setPostProcessing(Pointer model, int on);
 
+	public int internalGetP21Line(Pointer instanceId);
+
+	public Pointer internalGetInstanceFromP21Line(int expressId);
+
+	
 	/**
 	 * @param model
 	 * @param pV
