@@ -270,4 +270,12 @@ public class FailSafeIfcEngine implements IfcEngine {
 	public IfcEngineModelImpl openModel(byte[] bytes) throws IfcEngineException {
 		return openModel(new ByteArrayInputStream(bytes), bytes.length);
 	}
+
+	public void writeLong(long value) throws IfcEngineException {
+		try {
+			out.writeLong(value);
+		} catch (IOException e) {
+			throw new IfcEngineException("Unknown IFC Engine error");
+		}
+	}
 }

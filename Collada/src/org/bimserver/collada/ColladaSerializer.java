@@ -28,7 +28,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3.IfcColourOrFactor;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
@@ -89,7 +88,6 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -99,12 +97,27 @@ public class ColladaSerializer extends BimModelSerializer {
 	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private SIPrefix lengthUnitPrefix;
 	private List<String> surfaceStyleIds;
+	private IfcEngineModel ifcEngineModel;
+	private IfcEngineGeometry geometry;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
 		super.init(model, projectInfo, pluginManager);
 		lengthUnitPrefix = getLengthUnitPrefix(model);
 		this.surfaceStyleIds = new ArrayList<String>();
+
+		try {
+			ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
+			EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+			serializer.init(model, getProjectInfo(), getPluginManager());
+			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
+			ifcEngineModel.setPostProcessing(true);
+			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+		} catch (IfcEngineException e) {
+			LOGGER.error("", e);
+		} catch (PluginException e) {
+			LOGGER.error("", e);
+		}
 	}
 
 	@Override
@@ -115,16 +128,10 @@ public class ColladaSerializer extends BimModelSerializer {
 	@Override
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
-			try {
-				ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
-			} catch (PluginException e) {
-				throw new SerializerException(e);
-			}
 			PrintWriter writer = new PrintWriter(out);
 			try {
 				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
-				writer
-						.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
+				writer.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
 
 				writeAssets(writer);
 				writeCameras(writer);
@@ -173,7 +180,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("	<library_geometries>");
 
 		Set<IfcRoot> convertedObjects = new HashSet<IfcRoot>();
-		
+
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
 			convertedObjects.add(ifcRoof);
 			setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
@@ -349,77 +356,59 @@ public class ColladaSerializer extends BimModelSerializer {
 		}
 		converted.get(material).add(id);
 
-		IfcModel ifcModel = new IfcModel();
-		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
-		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
-		try {
-			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
-			try {
-				model.setPostProcessing(true);
-				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
-				if (geometry != null) {
-					out.println("<geometry id=\"" + id + "\" name=\"" + id + "\">");
-					out.println("<mesh>");
-					out.println("<source id=\"" + id + "-positions\" name=\"" + id + "-positions\">");
-					out.print("<float_array id=\"" + id + "-positions-array\" count=\"" + geometry.getNrVertices() + "\">");
-					for (int i = 0; i < geometry.getNrVertices(); i += 1) {
-						out.print(geometry.getVertex(i) + " ");
-					}
-					out.println("</float_array>");
-					out.println("<technique_common>");
-					out.println("<accessor count=\"" + (geometry.getNrVertices() / 3) + "\" offset=\"0\" source=\"#" + id + "-positions-array\" stride=\"3\">");
-					out.println("<param name=\"X\" type=\"float\"></param>");
-					out.println("<param name=\"Y\" type=\"float\"></param>");
-					out.println("<param name=\"Z\" type=\"float\"></param>");
-					out.println("</accessor>");
-					out.println("</technique_common>");
-					out.println("</source>");
+		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int)ifcRootObject.getOid());
+		IfcEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
+		out.println("<geometry id=\"" + id + "\" name=\"" + id + "\">");
+		out.println("<mesh>");
 
-					out.println("<source id=\"" + id + "-normals\" name=\"" + id + "-normals\">");
-					out.print("<float_array id=\"" + id + "-normals-array\" count=\"" + geometry.getNrNormals() + "\">");
-					for (int i = 0; i < geometry.getNrNormals(); i++) {
-						// Normals will also be scaled in Google Earth ...
-						out.print(geometry.getNormal(i) * 1000.0f + " ");
-					}
-					out.println("</float_array>");
-					out.println("<technique_common>");
-					out.println("<accessor count=\"" + (geometry.getNrNormals() / 3) + "\" offset=\"0\" source=\"#" + id + "-normals-array\" stride=\"3\">");
-					out.println("<param name=\"X\" type=\"float\"></param>");
-					out.println("<param name=\"Y\" type=\"float\"></param>");
-					out.println("<param name=\"Z\" type=\"float\"></param>");
-					out.println("</accessor>");
-					out.println("</technique_common>");
-					out.println("</source>");
-
-					out.println("<vertices id=\"" + id + "-vertices\">");
-					out.println("<input semantic=\"POSITION\" source=\"#" + id + "-positions\"/>");
-					out.println("<input semantic=\"NORMAL\" source=\"#" + id + "-normals\"/>");
-					out.println("</vertices>");
-					for (IfcEngineInstance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
-						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
-						out.println("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
-						out.println("<input offset=\"0\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
-						out.print("<p>");
-						for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
-							out.print(geometry.getIndex(i) + " ");
-							out.print(geometry.getIndex(i + 2) + " ");
-							out.print(geometry.getIndex(i + 1) + " ");
-						}
-						out.println("</p>");
-						out.println("</triangles>");
-					}
-					out.println("</mesh>");
-					out.println("</geometry>");
-				}
-			} finally {
-				model.close();
-			}
-		} catch (IfcEngineException e) {
-			throw e;
-		} catch (Exception e) {
-			LOGGER.error("", e);
+		out.println("<source id=\"positions\" name=\"positions\">");
+		out.print("<float_array id=\"positions-array\" count=\"" + geometry.getNrVertices() + "\">");
+		for (int i = 0; i < geometry.getNrVertices(); i += 1) {
+			out.print(geometry.getVertex(i) + " ");
 		}
+		out.println("</float_array>");
+		out.println("<technique_common>");
+		out.println("<accessor count=\"" + (geometry.getNrVertices() / 3) + "\" offset=\"0\" source=\"#positions-array\" stride=\"3\">");
+		out.println("<param name=\"X\" type=\"float\"></param>");
+		out.println("<param name=\"Y\" type=\"float\"></param>");
+		out.println("<param name=\"Z\" type=\"float\"></param>");
+		out.println("</accessor>");
+		out.println("</technique_common>");
+		out.println("</source>");
+
+		out.println("<source id=\"normals\" name=\"normals\">");
+		out.print("<float_array id=\"normals-array\" count=\"" + geometry.getNrNormals() + "\">");
+		for (int i = 0; i < geometry.getNrNormals(); i++) {
+			// Normals will also be scaled in Google Earth ...
+			out.print(geometry.getNormal(i) * 1000.0f + " ");
+		}
+		out.println("</float_array>");
+		out.println("<technique_common>");
+		out.println("<accessor count=\"" + (geometry.getNrNormals() / 3) + "\" offset=\"0\" source=\"#normals-array\" stride=\"3\">");
+		out.println("<param name=\"X\" type=\"float\"></param>");
+		out.println("<param name=\"Y\" type=\"float\"></param>");
+		out.println("<param name=\"Z\" type=\"float\"></param>");
+		out.println("</accessor>");
+		out.println("</technique_common>");
+		out.println("</source>");
+		
+		out.println("<vertices id=\"" + id + "-vertices\">");
+		out.println("<input semantic=\"POSITION\" source=\"#positions\"/>");
+		out.println("<input semantic=\"NORMAL\" source=\"#normals\"/>");
+		out.println("</vertices>");
+
+		out.println("<triangles count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
+		out.println("<input offset=\"" + visualisationProperties.getStartVertex() + "\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
+		out.print("<p>");
+		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i += 3) {
+			out.print(geometry.getIndex(i) + " ");
+			out.print(geometry.getIndex(i + 2) + " ");
+			out.print(geometry.getIndex(i + 1) + " ");
+		}
+		out.println("</p>");
+		out.println("</triangles>");
+		out.println("</mesh>");
+		out.println("</geometry>");
 	}
 
 	private void writeScene(PrintWriter out) {

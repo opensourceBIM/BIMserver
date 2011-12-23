@@ -172,6 +172,9 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	}
 
 	public IfcModel read(File sourceFile, boolean setOids) throws DeserializeException {
+		if (schema == null) {
+			throw new DeserializeException("No schema");
+		}
 		try {
 			FileInputStream in = new FileInputStream(sourceFile);
 			read(in, setOids, sourceFile.length());

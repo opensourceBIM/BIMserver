@@ -148,4 +148,15 @@ public class IfcEngineModelImpl implements IfcEngineModel {
 			return clashes;
 		}
 	}
+
+	@Override
+	public IfcEngineInstance getInstanceFromExpressId(int oid) throws IfcEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.GET_INSTANCE_FROM_EXPRESSID);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(oid);
+			failSafeIfcEngine.flush();
+			return new IfcEngineInstanceImpl(failSafeIfcEngine, modelId, failSafeIfcEngine.readInt());
+		}
+	}
 }

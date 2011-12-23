@@ -1311,6 +1311,14 @@ public class IfcEngine {
 		return noClashes;
 	}
 
+	public int internalGetP21Line(Pointer instanceId) {
+		return engine.internalGetP21Line(instanceId);
+	}
+	
+	public Pointer internalGetInstanceFromP21Line(int expressId) {
+		return engine.internalGetInstanceFromP21Line(expressId);
+	}
+	
 	/**
 	 * Returns a numeric aggregateID that uniquely identifies the aggregate that
 	 * holds all instances of one particular type and its sub-types in a model.
