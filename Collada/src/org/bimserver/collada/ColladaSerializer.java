@@ -74,7 +74,6 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -87,6 +86,7 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -113,10 +113,8 @@ public class ColladaSerializer extends BimModelSerializer {
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 			ifcEngineModel.setPostProcessing(true);
 			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
-		} catch (IfcEngineException e) {
-			LOGGER.error("", e);
-		} catch (PluginException e) {
-			LOGGER.error("", e);
+		} catch (Exception e) {
+			throw new SerializerException(e);
 		}
 	}
 
@@ -128,9 +126,9 @@ public class ColladaSerializer extends BimModelSerializer {
 	@Override
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
-			PrintWriter writer = new PrintWriter(out);
+			PrintWriter writer = new UTF8PrintWriter(out);
 			try {
-				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
+				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
 				writer.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
 
 				writeAssets(writer);
@@ -358,57 +356,63 @@ public class ColladaSerializer extends BimModelSerializer {
 
 		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int)ifcRootObject.getOid());
 		IfcEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
-		out.println("<geometry id=\"" + id + "\" name=\"" + id + "\">");
-		out.println("<mesh>");
+		out.println("	<geometry id=\"" + id + "\" name=\"" + id + "\">");
+		out.println("		<mesh>");
 
-		out.println("<source id=\"positions\" name=\"positions\">");
-		out.print("<float_array id=\"positions-array\" count=\"" + geometry.getNrVertices() + "\">");
-		for (int i = 0; i < geometry.getNrVertices(); i += 1) {
-			out.print(geometry.getVertex(i) + " ");
+		out.println("			<source id=\"positions\" name=\"positions\">");
+		out.print("				<float_array id=\"positions-array\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
+
+		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i++) {
+			int index = geometry.getIndex(i) * 3;
+			out.print(geometry.getVertex(index) + " ");
+			out.print(geometry.getVertex(index + 1) + " ");
+			out.print(geometry.getVertex(index + 2) + " ");
 		}
-		out.println("</float_array>");
-		out.println("<technique_common>");
-		out.println("<accessor count=\"" + (geometry.getNrVertices() / 3) + "\" offset=\"0\" source=\"#positions-array\" stride=\"3\">");
-		out.println("<param name=\"X\" type=\"float\"></param>");
-		out.println("<param name=\"Y\" type=\"float\"></param>");
-		out.println("<param name=\"Z\" type=\"float\"></param>");
-		out.println("</accessor>");
-		out.println("</technique_common>");
-		out.println("</source>");
 
-		out.println("<source id=\"normals\" name=\"normals\">");
-		out.print("<float_array id=\"normals-array\" count=\"" + geometry.getNrNormals() + "\">");
-		for (int i = 0; i < geometry.getNrNormals(); i++) {
+		out.println("				</float_array>");
+		out.println("				<technique_common>");
+		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#positions-array\" stride=\"3\">");
+		out.println("						<param name=\"X\" type=\"float\"></param>");
+		out.println("						<param name=\"Y\" type=\"float\"></param>");
+		out.println("						<param name=\"Z\" type=\"float\"></param>");
+		out.println("					</accessor>");
+		out.println("				</technique_common>");
+		out.println("			</source>");
+
+		out.println("			<source id=\"normals\" name=\"normals\">");
+		out.print("				<float_array id=\"normals-array\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
+		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i++) {
 			// Normals will also be scaled in Google Earth ...
-			out.print(geometry.getNormal(i) * 1000.0f + " ");
+			int index = geometry.getIndex(i) * 3;
+			out.print(geometry.getNormal(index) * 1000.0f + " ");
+			out.print(geometry.getNormal(index + 1) * 1000.0f + " ");
+			out.print(geometry.getNormal(index + 2) * 1000.0f + " ");
 		}
-		out.println("</float_array>");
-		out.println("<technique_common>");
-		out.println("<accessor count=\"" + (geometry.getNrNormals() / 3) + "\" offset=\"0\" source=\"#normals-array\" stride=\"3\">");
-		out.println("<param name=\"X\" type=\"float\"></param>");
-		out.println("<param name=\"Y\" type=\"float\"></param>");
-		out.println("<param name=\"Z\" type=\"float\"></param>");
-		out.println("</accessor>");
-		out.println("</technique_common>");
-		out.println("</source>");
-		
-		out.println("<vertices id=\"" + id + "-vertices\">");
-		out.println("<input semantic=\"POSITION\" source=\"#positions\"/>");
-		out.println("<input semantic=\"NORMAL\" source=\"#normals\"/>");
-		out.println("</vertices>");
+		out.println("				</float_array>");
+		out.println("				<technique_common>");
+		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#normals-array\" stride=\"3\">");
+		out.println("						<param name=\"X\" type=\"float\"></param>");
+		out.println("						<param name=\"Y\" type=\"float\"></param>");
+		out.println("						<param name=\"Z\" type=\"float\"></param>");
+		out.println("					</accessor>");
+		out.println("				</technique_common>");
+		out.println("			</source>");
 
-		out.println("<triangles count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
-		out.println("<input offset=\"" + visualisationProperties.getStartVertex() + "\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
-		out.print("<p>");
-		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i += 3) {
-			out.print(geometry.getIndex(i) + " ");
-			out.print(geometry.getIndex(i + 2) + " ");
-			out.print(geometry.getIndex(i + 1) + " ");
+		out.println("			<vertices id=\"" + id + "-vertices\">");
+		out.println("				<input semantic=\"POSITION\" source=\"#positions\"/>");
+		out.println("				<input semantic=\"NORMAL\" source=\"#normals\"/>");
+		out.println("			</vertices>");
+
+		out.println("			<triangles count=\"" + (visualisationProperties.getPrimitiveCount()) * 3 + "\" material=\"" + material + "SG\">");
+		out.println("				<input offset=\"0\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
+		out.print("				<p>");
+		for (int i = 0; i < visualisationProperties.getPrimitiveCount() * 3; i++) {
+			out.print(i + " ");
 		}
-		out.println("</p>");
-		out.println("</triangles>");
-		out.println("</mesh>");
-		out.println("</geometry>");
+		out.println("				</p>");
+		out.println("			</triangles>");
+		out.println("		</mesh>");
+		out.println("	</geometry>");
 	}
 
 	private void writeScene(PrintWriter out) {

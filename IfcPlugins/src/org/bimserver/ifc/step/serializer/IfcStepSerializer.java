@@ -38,7 +38,7 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.utils.UTFPrintWriter;
+import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -83,7 +83,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private Date date = new Date();
 
 	private Iterator<Long> iterator;
-	private UTFPrintWriter out;
+	private UTF8PrintWriter out;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
@@ -98,7 +98,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	
 	public boolean write(OutputStream outputStream) throws SerializerException {
 		if (out == null) {
-			out = new UTFPrintWriter(outputStream);
+			out = new UTF8PrintWriter(outputStream);
 		}
 		if (getMode() == Mode.HEADER) {
 			writeHeader(out);
@@ -161,12 +161,12 @@ public class IfcStepSerializer extends IfcSerializer {
 		this.preProcessorVersion = preProcessorVersion;
 	}
 
-	private void writeFooter(UTFPrintWriter out) {
+	private void writeFooter(UTF8PrintWriter out) {
 		out.println("ENDSEC;");
 		out.println("END-ISO-10303-21;");
 	}
 
-	private void writeHeader(UTFPrintWriter out) {
+	private void writeHeader(UTF8PrintWriter out) {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss");
 		String dateString = dateFormatter.format(date);
 

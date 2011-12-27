@@ -55,12 +55,12 @@ public class SceneJSSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultContentType() {
-		return "application/javascript";
+		return "application/json";
 	}
 
 	@Override
 	public String getDefaultExtension() {
-		return "js";
+		return "json";
 	}
 
 	@Override

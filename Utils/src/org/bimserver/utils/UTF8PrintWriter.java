@@ -23,9 +23,9 @@ import java.io.PrintWriter;
 
 import com.google.common.base.Charsets;
 
-public class UTFPrintWriter extends PrintWriter {
+public class UTF8PrintWriter extends PrintWriter {
 
-	public UTFPrintWriter(OutputStream out) {
+	public UTF8PrintWriter(OutputStream out) {
 		super(new PrintWriter(new OutputStreamWriter(out, Charsets.UTF_8)), false);
 	}
 }
