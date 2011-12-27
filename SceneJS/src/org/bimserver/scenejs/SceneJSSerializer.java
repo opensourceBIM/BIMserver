@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.IfcActorRole;
 import org.bimserver.models.ifc2x3.IfcApplication;
 import org.bimserver.models.ifc2x3.IfcBuilding;
@@ -121,7 +120,6 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -142,11 +140,23 @@ public class SceneJSSerializer extends BimModelSerializer {
 	private HashMap<String, HashMap<String, HashSet<String>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<String>>>();
 	// private materialGeometryRel = new HashMap<String, Set<String>>();
 	private List<String> surfaceStyleIds;
+	private IfcEngineGeometry geometry;
+	private IfcEngineModel ifcEngineModel;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
 		super.init(model, projectInfo, pluginManager);
 		this.surfaceStyleIds = new ArrayList<String>();
+		try {
+			ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
+			EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+			serializer.init(model, getProjectInfo(), getPluginManager());
+			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
+			ifcEngineModel.setPostProcessing(true);
+			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+		} catch (PluginException e) {
+			throw new SerializerException(e);
+		}
 	}
 
 	@Override
@@ -157,11 +167,6 @@ public class SceneJSSerializer extends BimModelSerializer {
 	@Override
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
-			try {
-				ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
-			} catch (PluginException e) {
-				throw new SerializerException(e);
-			}
 			PrintWriter writer = new PrintWriter(out);
 			try {
 				// Pre-calculate information for use during the export
@@ -261,54 +266,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 	}
 
 	private void calculateGeometryExtents() throws IfcEngineException, SerializerException {
-		// TODO: Please review (is there a simpler way to fetch geometric objects?)
-		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
-			calculateExtents(ifcRoof.getGlobalId().getWrappedValue(), ifcRoof);
-		}
-		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
-			calculateExtents(ifcSlab.getGlobalId().getWrappedValue(), ifcSlab);
-		}
-		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
-			calculateExtents(ifcWindow.getGlobalId().getWrappedValue(), ifcWindow);
-		}
-		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
-			calculateExtents(ifcDoor.getGlobalId().getWrappedValue(), ifcDoor);
-		}
-		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
-			calculateExtents(ifcWall.getGlobalId().getWrappedValue(), ifcWall);
-		}
-		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
-			calculateExtents(ifcStair.getGlobalId().getWrappedValue(), ifcStair);
-		}
-		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
-			calculateExtents(ifcStairFlight.getGlobalId().getWrappedValue(), ifcStairFlight);
-		}
-		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
-			calculateExtents(ifcFlowSegment.getGlobalId().getWrappedValue(), ifcFlowSegment);
-		}
-		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			calculateExtents(ifcFurnishingElement.getGlobalId().getWrappedValue(), ifcFurnishingElement);
-		}
-		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
-			calculateExtents(ifcPlate.getGlobalId().getWrappedValue(), ifcPlate);
-		}
-		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
-			calculateExtents(ifcMember.getGlobalId().getWrappedValue(), ifcMember);
-		}
-		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
-			calculateExtents(ifcWall.getGlobalId().getWrappedValue(), ifcWall);
-		}
-		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
-			calculateExtents(ifcCurtainWall.getGlobalId().getWrappedValue(), ifcCurtainWall);
-		}
-		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
-			calculateExtents(ifcRailing.getGlobalId().getWrappedValue(), ifcRailing);
-		}
-		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
-			calculateExtents(ifcColumn.getGlobalId().getWrappedValue(), ifcColumn);
-		}
-		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
-			calculateExtents(ifcBuildingElementProxy.getGlobalId().getWrappedValue(), ifcBuildingElementProxy);
+		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+			calculateExtents(ifcProduct.getGlobalId().getWrappedValue(), ifcProduct);
 		}
 	}
 	
@@ -319,30 +278,10 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 		Extents extents = geometryExtents.get(id);
 
-		// Create a geometric model to for calculating the extents of the object
-		IfcModelInterface ifcModel = new IfcModel();
-		convertToSubset(ifcObject.eClass(), ifcObject, ifcModel, new HashMap<EObject, EObject>());
-		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
-		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
-		try {
-			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
-			try {
-				model.setPostProcessing(true); // TODO: Please review - what does setPostProcessing do?
-				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
-				if (geometry != null) {
-					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
-						// Use the vertex to calculate the boundaries of the geometric object
-						addToExtents(extents, new float[] { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) });	
-					}
-				}
-			}
-			finally {
-				model.close();
-			}
-		} catch (IfcEngineException e) {
-			throw e;
-		} // catch (Exception e) {
-		// }
+		for (int i = 0; i < geometry.getNrVertices(); i += 3) {
+			// Use the vertex to calculate the boundaries of the geometric object
+			addToExtents(extents, new float[] { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) });	
+		}
 
 		// Add the object's extents to the scene's total extents
 		addToExtents(sceneExtents, extents.min);
@@ -535,63 +474,46 @@ public class SceneJSSerializer extends BimModelSerializer {
 
 		JSONObject jsonObj = new JSONObject();
 		
-		IfcModelInterface ifcModel = new IfcModel();
-		convertToSubset(ifcObject.eClass(), ifcObject, ifcModel, new HashMap<EObject, EObject>());
-		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
-		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
-		try {
-			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
-			try {
-				model.setPostProcessing(true);
-				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
-				if (geometry != null) {
-					JSONArray verticesArray = new JSONArray();
-					jsonObj.put("type", "geometry")
-						.put("coreId", ifcObject.getGlobalId().getWrappedValue())
-						.put("primitive", "triangles")
-						.put("positions", verticesArray);
-					
-					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
-						float[] v = { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) };
-						 
-						verticesArray
-							.put((Float.isInfinite(v[0]) || Float.isNaN(v[0])? 0.0f : v[0]) + modelOffset[0])
-							.put((Float.isInfinite(v[1]) || Float.isNaN(v[1])? 0.0f : v[1]) + modelOffset[1])
-							.put((Float.isInfinite(v[2]) || Float.isNaN(v[2])? 0.0f : v[2]) + modelOffset[2]);
-					}
-					
-					JSONArray normalsArray = new JSONArray();
-					jsonObj.put("normals", normalsArray);
-					for (int i = 0; i < geometry.getNrNormals(); i++) {
-						normalsArray.put(geometry.getNormal(i));
-					}
+		JSONArray verticesArray = new JSONArray();
+		jsonObj.put("type", "geometry")
+			.put("coreId", ifcObject.getGlobalId().getWrappedValue())
+			.put("primitive", "triangles")
+			.put("positions", verticesArray);
 
-					// TODO: Create sub-geometries if there are multiple index buffers
-					List<? extends IfcEngineInstance> instances = model.getInstances(ifcObject.eClass().getName().toUpperCase());
-					if (instances.size() > 1) {
-						// TODO: Create sub-geometries
-						LOGGER.error("Need to create sub-geometries for this model.");
-					}
-					for (IfcEngineInstance instance : instances) {
-						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
-						//out.writeln("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
-						JSONArray indicesArray = new JSONArray(); 
-						jsonObj.put("indices", indicesArray);
-						int endIndex = instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex();
-						for (int i = instanceInModelling.getStartIndex(); i < endIndex; i += 3) {
-							indicesArray.put(geometry.getIndex(i))
-								.put(geometry.getIndex(i + 2))
-								.put(geometry.getIndex(i + 1));
-						}
-					}
-				}
-			} finally {
-				model.close();
-			}
-		} catch (IfcEngineException e) {
-			throw e;
-		} catch (Exception e) {
-			LOGGER.error("", e);
+		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int) ifcObject.getOid());
+		IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+		
+		for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i++) {
+			int index = geometry.getIndex(i) * 3;
+
+			float x = geometry.getVertex(index);
+			float y = geometry.getVertex(index + 1);
+			float z = geometry.getVertex(index + 2);
+
+			verticesArray
+			.put((Float.isInfinite(x) || Float.isNaN(x)? 0.0f : x) + modelOffset[0])
+			.put((Float.isInfinite(y) || Float.isNaN(y)? 0.0f : y) + modelOffset[1])
+			.put((Float.isInfinite(z) || Float.isNaN(z)? 0.0f : z) + modelOffset[2]);
+		}
+		
+		JSONArray normalsArray = new JSONArray();
+		jsonObj.put("normals", normalsArray);
+		for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i++) {
+			int index = geometry.getIndex(i) * 3;
+
+			float x = geometry.getNormal(index);
+			float y = geometry.getNormal(index + 1);
+			float z = geometry.getNormal(index + 2);
+
+			normalsArray.put(x);
+			normalsArray.put(y);
+			normalsArray.put(z);
+		}
+
+		JSONArray indicesArray = new JSONArray(); 
+		jsonObj.put("indices", indicesArray);
+		for (int i = 0; i < instanceInModelling.getPrimitiveCount() * 3; i++) {
+			indicesArray.put(i);
 		}
 		return jsonObj;
 	}

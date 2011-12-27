@@ -11734,7 +11734,6 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final List enumeration_items(AST _t) throws RecognitionException {
 		List items = new ArrayList();
-		;
 
 		AST enumeration_items_AST_in = handleNullTree( _t );
 		returnAST = null;
@@ -11889,7 +11888,6 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final List select_list(AST _t) throws RecognitionException {
 		List items = new ArrayList();
-		;
 
 		AST select_list_AST_in = handleNullTree( _t );
 		returnAST = null;
