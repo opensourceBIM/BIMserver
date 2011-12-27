@@ -364,8 +364,8 @@ public class ColladaSerializer extends EmfSerializer {
 		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i++) {
 			int index = geometry.getIndex(i) * 3;
 			out.print(geometry.getVertex(index) + " ");
-			out.print(geometry.getVertex(index + 1) + " ");
 			out.print(geometry.getVertex(index + 2) + " ");
+			out.print(geometry.getVertex(index + 1) + " ");
 		}
 
 		out.println("				</float_array>");
@@ -384,8 +384,8 @@ public class ColladaSerializer extends EmfSerializer {
 			// Normals will also be scaled in Google Earth ...
 			int index = geometry.getIndex(i) * 3;
 			out.print(geometry.getNormal(index) * 1000.0f + " ");
-			out.print(geometry.getNormal(index + 1) * 1000.0f + " ");
 			out.print(geometry.getNormal(index + 2) * 1000.0f + " ");
+			out.print(geometry.getNormal(index + 1) * 1000.0f + " ");
 		}
 		out.println("				</float_array>");
 		out.println("				<technique_common>");
