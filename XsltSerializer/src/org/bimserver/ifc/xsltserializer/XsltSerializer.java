@@ -31,7 +31,6 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -40,7 +39,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XsltSerializer extends BimModelSerializer {
+public class XsltSerializer extends EmfSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(XsltSerializer.class);
 	private URL xsltUrl;
