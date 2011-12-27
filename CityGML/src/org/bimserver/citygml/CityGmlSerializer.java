@@ -64,7 +64,6 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -112,7 +111,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
-public class CityGmlSerializer extends BimModelSerializer {
+public class CityGmlSerializer extends EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);
 	private IfcEngine ifcEngine;
 	private GMLFactory gml;

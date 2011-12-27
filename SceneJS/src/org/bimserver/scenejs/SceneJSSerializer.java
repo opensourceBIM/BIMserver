@@ -111,7 +111,6 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -123,7 +122,7 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SceneJSSerializer extends BimModelSerializer {
+public class SceneJSSerializer extends EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJSSerializer.class);
 	private IfcEngine ifcEngine;
 

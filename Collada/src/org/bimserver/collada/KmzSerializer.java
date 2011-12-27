@@ -24,14 +24,14 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class KmzSerializer extends BimModelSerializer {
+public class KmzSerializer extends EmfSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(KmzSerializer.class);
 	private ColladaSerializer ifcToCollada;

@@ -27,14 +27,14 @@ import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public abstract class IfcSerializer extends BimModelSerializer {
+public abstract class IfcSerializer extends EmfSerializer {
 
 	protected static final Ifc2x3Package IFC_PACKAGE_INSTANCE = Ifc2x3Package.eINSTANCE;
 	protected static final Map<EClassifier, String> upperCases = initUpperCases();
