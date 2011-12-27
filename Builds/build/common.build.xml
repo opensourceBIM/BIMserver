@@ -27,6 +27,7 @@
 		<antcall target="buildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
 		<antcall target="Report1Serializer" />
+		<antcall target="ThreeJsServerPlugin" />
 	</target>
 	<target name="BimCombinedServer">
 		<mkdir dir="builds/bimcombined" />
@@ -144,6 +145,21 @@
 		</javac>
 		<jar destfile="builds/lib/bimserver-${version}-utils.jar">
 			<fileset dir="builds/utils"/>
+		</jar>
+	</target>
+	<target name="ThreeJsServerPlugin">
+		<mkdir dir="builds/threejsserverplugin" />
+		<javac destdir="builds/threejsserverplugin" debug="on" fork="false" includeantruntime="false">
+			<src path="../../ServerPlugin/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/lib/bimserver-${version}-utils.jar">
+			<fileset dir="builds/threejsserverplugin"/>
 		</jar>
 	</target>
 	<target name="FileBasedObjectIDM">
