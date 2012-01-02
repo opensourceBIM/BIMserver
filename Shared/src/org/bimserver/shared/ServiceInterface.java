@@ -956,7 +956,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "requestPasswordChange")
 	void requestPasswordChange(
-			@WebParam(name = "uoid", partName = "requestPasswordChange.uoid") Long uoid) throws ServerException, UserException;
+			@WebParam(name = "username", partName = "requestPasswordChange.username") String username) throws ServerException, UserException;
 
 	/**
 	 * @param uoid The ObejctID of the User

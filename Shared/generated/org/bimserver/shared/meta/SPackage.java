@@ -32,32 +32,6 @@ public class SPackage {
 	private void init() {
 			try {
 	
-		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
-		Class.forName("org.bimserver.interfaces.objects.SLogAction");
-		Class.forName("org.bimserver.interfaces.objects.SServerLog");
-		Class.forName("org.bimserver.interfaces.objects.SNewUserAdded");
-		Class.forName("org.bimserver.interfaces.objects.SNewProjectAdded");
-		Class.forName("org.bimserver.interfaces.objects.SRevisionBranched");
-		Class.forName("org.bimserver.interfaces.objects.SNewRevisionAdded");
-		Class.forName("org.bimserver.interfaces.objects.SNewCheckoutAdded");
-		Class.forName("org.bimserver.interfaces.objects.SSettingsSaved");
-		Class.forName("org.bimserver.interfaces.objects.SUserAddedToProject");
-		Class.forName("org.bimserver.interfaces.objects.SNewObjectIDMUploaded");
-		Class.forName("org.bimserver.interfaces.objects.SDownload");
-		Class.forName("org.bimserver.interfaces.objects.SUserRemovedFromProject");
-		Class.forName("org.bimserver.interfaces.objects.SProjectDeleted");
-		Class.forName("org.bimserver.interfaces.objects.SUserDeleted");
-		Class.forName("org.bimserver.interfaces.objects.SPasswordReset");
-		Class.forName("org.bimserver.interfaces.objects.SDatabaseCreated");
-		Class.forName("org.bimserver.interfaces.objects.SServerStarted");
-		Class.forName("org.bimserver.interfaces.objects.SProjectUpdated");
-		Class.forName("org.bimserver.interfaces.objects.SUserUndeleted");
-		Class.forName("org.bimserver.interfaces.objects.SProjectUndeleted");
-		Class.forName("org.bimserver.interfaces.objects.SRevisionUpdated");
-		Class.forName("org.bimserver.interfaces.objects.SGeoTagUpdated");
-		Class.forName("org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated");
-		Class.forName("org.bimserver.interfaces.objects.SPasswordChanged");
-		Class.forName("org.bimserver.interfaces.objects.SUserChanged");
 		Class.forName("org.bimserver.interfaces.objects.SUserType");
 		Class.forName("org.bimserver.interfaces.objects.SCheckinState");
 		Class.forName("org.bimserver.interfaces.objects.SSIPrefix");
@@ -119,6 +93,32 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SServerState");
 		Class.forName("org.bimserver.interfaces.objects.SServerInfo");
 		Class.forName("org.bimserver.interfaces.objects.SVersion");
+		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
+		Class.forName("org.bimserver.interfaces.objects.SLogAction");
+		Class.forName("org.bimserver.interfaces.objects.SServerLog");
+		Class.forName("org.bimserver.interfaces.objects.SNewUserAdded");
+		Class.forName("org.bimserver.interfaces.objects.SNewProjectAdded");
+		Class.forName("org.bimserver.interfaces.objects.SRevisionBranched");
+		Class.forName("org.bimserver.interfaces.objects.SNewRevisionAdded");
+		Class.forName("org.bimserver.interfaces.objects.SNewCheckoutAdded");
+		Class.forName("org.bimserver.interfaces.objects.SSettingsSaved");
+		Class.forName("org.bimserver.interfaces.objects.SUserAddedToProject");
+		Class.forName("org.bimserver.interfaces.objects.SNewObjectIDMUploaded");
+		Class.forName("org.bimserver.interfaces.objects.SDownload");
+		Class.forName("org.bimserver.interfaces.objects.SUserRemovedFromProject");
+		Class.forName("org.bimserver.interfaces.objects.SProjectDeleted");
+		Class.forName("org.bimserver.interfaces.objects.SUserDeleted");
+		Class.forName("org.bimserver.interfaces.objects.SPasswordReset");
+		Class.forName("org.bimserver.interfaces.objects.SDatabaseCreated");
+		Class.forName("org.bimserver.interfaces.objects.SServerStarted");
+		Class.forName("org.bimserver.interfaces.objects.SProjectUpdated");
+		Class.forName("org.bimserver.interfaces.objects.SUserUndeleted");
+		Class.forName("org.bimserver.interfaces.objects.SProjectUndeleted");
+		Class.forName("org.bimserver.interfaces.objects.SRevisionUpdated");
+		Class.forName("org.bimserver.interfaces.objects.SGeoTagUpdated");
+		Class.forName("org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated");
+		Class.forName("org.bimserver.interfaces.objects.SPasswordChanged");
+		Class.forName("org.bimserver.interfaces.objects.SUserChanged");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

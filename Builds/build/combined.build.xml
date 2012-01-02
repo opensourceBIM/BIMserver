@@ -6,7 +6,6 @@
 				<isset property="target" />
 			</not>
 		</condition>
-		<echo message="${target}"></echo>
 		<delete dir="builds" />
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildWar" />
