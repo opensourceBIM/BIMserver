@@ -44,18 +44,21 @@ import org.bimserver.utils.Hashers;
 
 public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void> {
 
-	private final long uoid;
 	private final BimServer bimServer;
+	private final String username;
 
-	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, long uoid) {
+	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, String username) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
-		this.uoid = uoid;
+		this.username = username;
 	}
 
 	@Override
 	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		final User user = getUserByUoid(uoid);
+		final User user = getUserByUserName(username);
+		if (user == null) {
+			throw new UserException("User with username " + username + " not found");
+		}
 		final String token = GeneratorUtils.generateToken();
 		user.setValidationToken(Hashers.getSha256Hash(token));
 		user.setValidationTokenCreated(new Date());

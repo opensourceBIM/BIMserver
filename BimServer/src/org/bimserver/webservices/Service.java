@@ -1665,10 +1665,10 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void requestPasswordChange(Long uoid) throws ServerException, UserException {
+	public void requestPasswordChange(String username) throws ServerException, UserException {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, bimServer, uoid);
+			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, bimServer, username);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
