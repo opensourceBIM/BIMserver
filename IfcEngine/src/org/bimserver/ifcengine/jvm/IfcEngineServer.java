@@ -56,8 +56,12 @@ public class IfcEngineServer extends Thread {
 	private final OutputStream out;
 
 	public static void main(String[] args) {
-		IfcEngineServer ifcEngineServer = new IfcEngineServer(args[0], System.in, System.out);
-		ifcEngineServer.run();
+		try {
+			IfcEngineServer ifcEngineServer = new IfcEngineServer(args[0], System.in, System.out);
+			ifcEngineServer.run();
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
 	}
 
 	public IfcEngineServer(String schemaFileName, InputStream in, OutputStream out) {
