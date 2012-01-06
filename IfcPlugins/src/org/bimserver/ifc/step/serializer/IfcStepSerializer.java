@@ -64,7 +64,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private static final String IFC_BOOLEAN = "IfcBoolean";
 	private static final String DOT = ".";
 	private static final String COMMA = ",";
-	private static final String OPEN_CLOSE = "(";
+	private static final String OPEN_PAREN = "(";
 	private static final String CLOSE_PAREN = ")";
 	private static final String BOOLEAN_UNDEFINED = ".U.";
 	private static final String SINGLE_QUOTE = "'";
@@ -239,7 +239,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.print(String.valueOf(key));
 		out.print("= ");
 		out.print(upperCases.get(eClass));
-		out.print(OPEN_CLOSE);
+		out.print(OPEN_PAREN);
 		boolean isFirst = true;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			if (!feature.isDerived() && !feature.isVolatile() && !feature.getName().endsWith("AsString")) {
@@ -354,7 +354,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private void writeEmbedded(PrintWriter out, EObject eObject) {
 		EClass class1 = eObject.eClass();
 		out.print(upperCases.get(class1));
-		out.print(OPEN_CLOSE);
+		out.print(OPEN_PAREN);
 		EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
 		if (structuralFeature != null) {
 			Object realVal = eObject.eGet(structuralFeature);
@@ -394,7 +394,7 @@ public class IfcStepSerializer extends IfcSerializer {
 				out.print(OPEN_CLOSE_PAREN);
 			}
 		} else {
-			out.print(OPEN_CLOSE);
+			out.print(OPEN_PAREN);
 			boolean first = true;
 			int index = 0;
 			for (Object listObject : list) {
@@ -429,7 +429,7 @@ public class IfcStepSerializer extends IfcSerializer {
 							if (structuralFeature != null) {
 								Object realVal = eObject.eGet(structuralFeature);
 								out.print(upperCases.get(class1));
-								out.print(OPEN_CLOSE);
+								out.print(OPEN_PAREN);
 								if (realVal instanceof Double) {
 									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
 									if (stringVal != null) {
@@ -503,7 +503,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					out.print(OPEN_CLOSE_PAREN);
 				}
 			} else {
-				out.print(OPEN_CLOSE);
+				out.print(OPEN_PAREN);
 				boolean first = true;
 				for (Object o : list) {
 					if (!first) {
