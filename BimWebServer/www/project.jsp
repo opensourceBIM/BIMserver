@@ -948,10 +948,14 @@
 				zip = "&zip=on";
 			}
 			var multiple = downloadframe.find('input[name="multiple"]');
-			if (multiple.val() != "undefined") {
+			if (multiple.size() == 0) {
 				progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&download=Download");
 			} else {
-				progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&multiple=" + multiple.val() + "&download=Download");				
+				var x = "";
+				$(".treeselect").each(function(){
+					x += $(this).attr("name") + "=" + $(this).val() + "&";
+				});
+				progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&multiple=" + multiple.val() + "&download=Download&" + x);				
 			}
 		});
 		$('button[value="Checkout"]').click(function(){

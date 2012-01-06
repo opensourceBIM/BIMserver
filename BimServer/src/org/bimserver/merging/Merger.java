@@ -167,14 +167,14 @@ public class Merger {
 			// Leon :)
 			return modelSet.iterator().next();
 		}
-		model = mergeScales(project, modelSet);
-		referenceCounter = new ReferenceCounter(model);
-		referenceCounter.updateReferences();
 		modelSet.sortByDate();
+		model = mergeScales(project, modelSet);
 
 		if (intelligentMerging) {
 			LOGGER.info("Intelligent merging");
 
+			referenceCounter = new ReferenceCounter(model);
+			referenceCounter.updateReferences();
 			Map<String, List<IdEObject>> identifierMap = buildIdentifierMap();
 			cleanIdentifierMap(identifierMap);
 		}
