@@ -18,6 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,17 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SRunResult implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SRunResult");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("runOke", boolean.class));
-		sClass.addField(new SField("warnings", java.lang.String.class, true));
-		sClass.addField(new SField("errors", java.lang.String.class, true));
-		sClass.addField(new SField("output", java.lang.String.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -46,10 +38,15 @@ public class SRunResult implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SRunResult.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("runOke")) {
 			return isRunOke();

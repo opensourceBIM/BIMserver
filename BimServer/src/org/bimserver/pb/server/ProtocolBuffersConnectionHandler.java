@@ -78,11 +78,10 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				outputStream.flush();
 			}
 		} catch (SocketException e) {
-			LOGGER.error("", e);
 		} catch (EOFException e) {
-			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
+		protocolBuffersServer.unregister(this);
 	}
 }

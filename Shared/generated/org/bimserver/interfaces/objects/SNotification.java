@@ -17,22 +17,18 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SNewProjectNotification.class, SNewRevisionNotification.class})
+@XmlSeeAlso(value={SNewRevisionNotification.class, SNewProjectNotification.class})
 public class SNotification implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SNotification");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -42,10 +38,15 @@ public class SNotification implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SNotification.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("oid")) {
 			return getOid();

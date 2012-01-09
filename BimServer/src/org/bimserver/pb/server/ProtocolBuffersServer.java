@@ -43,7 +43,7 @@ public class ProtocolBuffersServer extends Thread {
 		this.serviceFactoryRegistry = serviceFactoryRegistry;
 		this.port = port;
 	}
-	
+
 	@Override
 	public void run() {
 		running = true;
@@ -82,5 +82,9 @@ public class ProtocolBuffersServer extends Thread {
 		}
 		running = false;
 		this.interrupt();
+	}
+
+	public void unregister(ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler) {
+		activeHandlers.remove(protocolBuffersConnectionHandler);
 	}
 }

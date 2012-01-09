@@ -18,6 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,37 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SSettings implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SSettings");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("showVersionUpgradeAvailable", boolean.class));
-		sClass.addField(new SField("sendConfirmationEmailAfterRegistration", boolean.class));
-		sClass.addField(new SField("useCaching", boolean.class));
-		sClass.addField(new SField("allowSelfRegistration", boolean.class));
-		sClass.addField(new SField("autoTestClashes", boolean.class));
-		sClass.addField(new SField("intelligentMerging", boolean.class));
-		sClass.addField(new SField("allowUsersToCreateTopLevelProjects", boolean.class));
-		sClass.addField(new SField("checkinMergingEnabled", boolean.class));
-		sClass.addField(new SField("registrationAddition", java.lang.String.class));
-		sClass.addField(new SField("smtpServer", java.lang.String.class));
-		sClass.addField(new SField("emailSenderAddress", java.lang.String.class));
-		sClass.addField(new SField("customLogoAddress", java.lang.String.class));
-		sClass.addField(new SField("siteAddress", java.lang.String.class));
-		sClass.addField(new SField("hideUserListForNonAdmin", boolean.class));
-		sClass.addField(new SField("protocolBuffersPort", int.class));
-		sClass.addField(new SField("serializers", Long.class, true));
-		sClass.addField(new SField("objectIDMs", Long.class, true));
-		sClass.addField(new SField("headerAddition", java.lang.String.class));
-		sClass.addField(new SField("footerAddition", java.lang.String.class));
-		sClass.addField(new SField("mergeIdentifier", SMergeIdentifier.class));
-		sClass.addField(new SField("cacheOutputFiles", boolean.class));
-		sClass.addField(new SField("ifcEngines", Long.class, true));
-		sClass.addField(new SField("plugins", Long.class, true));
-		sClass.addField(new SField("deserializers", Long.class, true));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -66,10 +38,15 @@ public class SSettings implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SSettings.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("showVersionUpgradeAvailable")) {
 			return isShowVersionUpgradeAvailable();

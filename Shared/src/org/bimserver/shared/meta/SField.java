@@ -19,24 +19,30 @@ package org.bimserver.shared.meta;
 
 public class SField {
 	private String name;
-	private final Class<?> type;
-	private final boolean many;
+	private final SClass type;
+	private final boolean aggregate;
+	private final SClass genericType;
 	
-	public SField(String name, Class<?> type) {
-		this(name, type, false);
+	public SField(String name, SClass type, SClass generticType) {
+		this(name, type, generticType, false);
 	}
 
-	public SField(String name, Class<?> type, boolean many) {
+	public SField(String name, SClass type, SClass genericType, boolean aggregate) {
 		this.name = name;
 		this.type = type;
-		this.many = many;
+		this.genericType = genericType;
+		this.aggregate = aggregate;
 	}
 
-	public boolean isMany() {
-		return many;
+	public boolean isAggregate() {
+		return aggregate;
 	}
 	
-	public Class<?> getType() {
+	public SClass getGenericType() {
+		return genericType;
+	}
+	
+	public SClass getType() {
 		return type;
 	}
 	

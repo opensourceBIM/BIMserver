@@ -52,6 +52,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 	private final SService sService;
 
 	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData, SService sService) {
+		super(sService);
 		this.service = service;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.sService = sService;
@@ -83,7 +84,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 					DataHandler dataHandler = new DataHandler(dataSource);
 					arguments[i] = dataHandler;
 				} else if (value instanceof DynamicMessage) {
-					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value, sParameter.getObjectType());
+					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value, sParameter.getType());
 				} else {
 					arguments[i] = value;
 				}

@@ -18,6 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,15 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SDatabaseInformationCategory implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SDatabaseInformationCategory");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("title", java.lang.String.class));
-		sClass.addField(new SField("items", SDatabaseInformationItem.class, true));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -44,10 +38,15 @@ public class SDatabaseInformationCategory implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SDatabaseInformationCategory.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("title")) {
 			return getTitle();

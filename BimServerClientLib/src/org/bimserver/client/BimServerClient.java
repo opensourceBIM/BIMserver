@@ -117,6 +117,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 		soapChannel.registerConnectDisconnectListener(this);
 		soapChannel.connect(address, useSoapHeaderSessions);
 	}
+	
+	public Channel getChannel() {
+		return channel;
+	}
 
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
 		connectDisconnectListeners.add(connectDisconnectListener);

@@ -2373,13 +2373,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SRunResult compileAndRun(long roid, String code) throws ServerException, UserException {
+	public SRunResult compileAndRun(Long roid, String code) throws ServerException, UserException {
 		QueryCompiler queryCompiler = new QueryCompiler();
 		return converter.convertToSObject(queryCompiler.run(code, roid, currentUoid, bimServer));
 	}
 
 	@Override
-	public Integer compileAndDownload(long roid, String code) throws ServerException, UserException {
+	public Integer compileAndDownload(Long roid, String code) throws ServerException, UserException {
 //		QueryCompiler queryCompiler = new QueryCompiler();
 //		RunResult runResult = queryCompiler.run(code, roid, currentUoid, bimServer);
 		return -1;
@@ -2429,7 +2429,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<String> getAvailableClassesInRevision(long roid) throws ServerException, UserException {
+	public List<String> getAvailableClassesInRevision(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -2444,7 +2444,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SDataObject> getDataObjects(long roid) throws ServerException, UserException {
+	public List<SDataObject> getDataObjects(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {

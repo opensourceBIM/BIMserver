@@ -17,6 +17,7 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,19 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SClash implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SClash");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("name1", java.lang.String.class));
-		sClass.addField(new SField("name2", java.lang.String.class));
-		sClass.addField(new SField("type1", java.lang.String.class));
-		sClass.addField(new SField("type2", java.lang.String.class));
-		sClass.addField(new SField("revision1Id", long.class));
-		sClass.addField(new SField("revision2Id", long.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -48,10 +38,15 @@ public class SClash implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SClash.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("name1")) {
 			return getName1();

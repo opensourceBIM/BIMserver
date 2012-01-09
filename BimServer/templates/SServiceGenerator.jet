@@ -1,0 +1,54 @@
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* java.io.File" class="SServiceGenerator" %>
+package org.bimserver.interfaces;
+
+<%
+/******************************************************************************
+ * Copyright (C) 2011  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+%>
+
+import org.bimserver.shared.meta.*;
+
+<%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
+
+<%
+Object[] args = (Object[])argument;
+Class<?> cl = (Class<?>)args[0];
+EPackage ePackage = (EPackage)args[1];
+%>
+
+public class S<%=cl.getSimpleName()%>Service extends SService {
+
+	public S<%=cl.getSimpleName()%>Service(Class<?> cl) {
+		super(cl);
+	}
+	
+		public void init() {
+			try {
+<%
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
+%>
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>")));
+<%
+			}
+		}
+%>
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+}

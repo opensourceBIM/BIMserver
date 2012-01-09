@@ -18,6 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,14 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SRevisionSummary implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SRevisionSummary");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("list", SRevisionSummaryContainer.class, true));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -43,10 +38,15 @@ public class SRevisionSummary implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SRevisionSummary.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("list")) {
 			return getList();
