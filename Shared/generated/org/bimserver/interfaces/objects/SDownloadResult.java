@@ -18,6 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,16 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SDownloadResult implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SDownloadResult");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("projectName", java.lang.String.class));
-		sClass.addField(new SField("revisionNr", int.class));
-		sClass.addField(new SField("file", javax.activation.DataHandler.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -46,10 +39,15 @@ public class SDownloadResult implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SDownloadResult.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("projectName")) {
 			return getProjectName();

@@ -559,7 +559,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAvailableClassesInRevision")
-	List<String> getAvailableClassesInRevision(long roid) throws ServerException, UserException;
+	List<String> getAvailableClassesInRevision(Long roid) throws ServerException, UserException;
 	
 	/**
 	 * Get information about the BIMserver database
@@ -745,7 +745,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDataObjects")
-	List<SDataObject> getDataObjects(long roid) throws ServerException, UserException;
+	List<SDataObject> getDataObjects(Long roid) throws ServerException, UserException;
 
 	/**
 	 * Perform clashdetection
@@ -1832,7 +1832,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "compileAndRun")
 	SRunResult compileAndRun(
-			@WebParam(name = "roid", partName = "compileAndRun.roid") long roid, 
+			@WebParam(name = "roid", partName = "compileAndRun.roid") Long roid, 
 			@WebParam(name = "code", partName = "compileAndRun.code") String code) throws ServerException, UserException;
 
 	/**
@@ -1843,7 +1843,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "compileAndDownload")
 	Integer compileAndDownload(
-			@WebParam(name = "roid", partName = "compileAndDownload.roid") long roid, 
+			@WebParam(name = "roid", partName = "compileAndDownload.roid") Long roid, 
 			@WebParam(name = "code", partName = "compileAndDownload.code") String code) throws ServerException, UserException;
 	
 	/**

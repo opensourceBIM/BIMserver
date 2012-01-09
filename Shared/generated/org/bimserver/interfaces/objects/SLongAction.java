@@ -18,6 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.Date;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,18 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SLongAction implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SLongAction");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("identification", java.lang.String.class));
-		sClass.addField(new SField("userId", long.class));
-		sClass.addField(new SField("start", java.util.Date.class));
-		sClass.addField(new SField("username", java.lang.String.class));
-		sClass.addField(new SField("name", java.lang.String.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -48,10 +39,15 @@ public class SLongAction implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SLongAction.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("identification")) {
 			return getIdentification();

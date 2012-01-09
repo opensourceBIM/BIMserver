@@ -19,6 +19,7 @@ package org.bimserver.interfaces.objects;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,29 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SRevision implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SRevision");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("id", int.class));
-		sClass.addField(new SField("userId", long.class));
-		sClass.addField(new SField("date", java.util.Date.class));
-		sClass.addField(new SField("comment", java.lang.String.class));
-		sClass.addField(new SField("size", long.class));
-		sClass.addField(new SField("concreteRevisions", Long.class, true));
-		sClass.addField(new SField("lastConcreteRevisionId", long.class));
-		sClass.addField(new SField("checkouts", Long.class, true));
-		sClass.addField(new SField("projectId", long.class));
-		sClass.addField(new SField("state", SCheckinState.class));
-		sClass.addField(new SField("lastClashes", Long.class, true));
-		sClass.addField(new SField("tag", java.lang.String.class));
-		sClass.addField(new SField("lastError", java.lang.String.class));
-		sClass.addField(new SField("bmi", int.class));
-		sClass.addField(new SField("nrClashes", int.class));
-		sClass.addField(new SField("laid", long.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -59,10 +39,15 @@ public class SRevision implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SRevision.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("id")) {
 			return getId();

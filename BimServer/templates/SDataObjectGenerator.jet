@@ -1,0 +1,345 @@
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* org.bimserver.MetaDataManager java.io.File org.bimserver.tools.generators.GenerateUtils org.bimserver.utils.StringUtils" class="ServiceInterfaceObjectGenerator" %>
+package org.bimserver.interfaces.objects;
+<%
+/******************************************************************************
+ * Copyright (C) 2011  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+%>
+
+<%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
+
+<%
+	Object[] arguments = (Object[])argument;
+	EClassifier eClassifier = (EClassifier)arguments[0];
+	ImportManager importManager = (ImportManager)arguments[1];
+	MetaDataManager metaDataManager = (MetaDataManager)arguments[2];
+	importManager.mark(stringBuffer);
+	boolean hasLists = false;
+	if (eClassifier instanceof EClass) {
+		EClass eClass = (EClass)eClassifier;
+		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+			if (eStructuralFeature.isMany()) {
+				hasLists = true;
+				break;
+			}
+		}
+	
+		importManager.getImport("javax.xml.bind.annotation.XmlRootElement");
+		importManager.getImport("org.bimserver.shared.meta.*");
+%>
+
+@XmlRootElement
+<%
+importManager.getImport("javax.xml.bind.annotation.XmlTransient");
+if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) { 
+importManager.getImport("javax.xml.bind.annotation.XmlSeeAlso");
+%>
+@XmlSeeAlso(value={
+<%
+java.util.Set<EClass> subClasses = metaDataManager.getDirectSubClasses(eClass);
+int i=0;
+for (EClass subClass : subClasses) {
+	%>S<%=subClass.getName()%>.class<%
+	if (i != subClasses.size() - 1) {
+	%>, <%
+	}
+	i++;
+}%>})
+<%
+} 
+%>
+public class S<%=eClass.getName()%>
+<%
+	if (!eClass.getESuperTypes().isEmpty()) {
+		%> extends <%
+		for (EClass eSuperClass : eClass.getESuperTypes()) {
+			%>S<%=eSuperClass.getName()%><%
+		}
+	}
+%> implements SBase
+{
+	private long oid = -1;
+	@XmlTransient
+	private static SClass sClass;
+	
+	public long getOid() {
+		return oid;
+	}
+	
+	public void setOid(long oid) {
+		this.oid = oid;
+	}
+	
+	@XmlTransient
+	public SClass getSClass() {
+		return sClass;
+	}
+	
+	public static void setSClass(SClass sClass) {
+		S<%=eClass.getName()%>.sClass = sClass;
+	}
+
+	public Object sGet(SField sField) {
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+%>
+		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
+			return <%=eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>();
+		}
+<%
+	}
+%>
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+<% if (hasLists) { %>
+	@SuppressWarnings("unchecked")
+<% } %>
+	public void sSet(SField sField, Object val) {
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
+			importManager.getImport("java.util.Date");
+		} else if (eStructuralFeature.getEType().getName().equals("DataHandler")) {
+			importManager.getImport("javax.activation.DataHandler");
+		
+		}
+		boolean useId = (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null);
+%>
+		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
+			set<%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=useId ? "Id" : "" %>((<%=GenerateUtils.getType(eStructuralFeature)%>)val);
+			return;
+		}
+<%
+	}
+%>
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+			return;
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+		if (eStructuralFeature.getEAnnotation("notinserviceinterface") == null) {
+			if (eStructuralFeature instanceof EAttribute) {
+				EAttribute eAttribute = (EAttribute)eStructuralFeature;
+				if (eAttribute.getEType() instanceof EEnum) {
+%>
+	private S<%=eAttribute.getEType().getName()%> <%=eAttribute.getName()%>;
+<%
+				} else {
+					if (eAttribute.isMany()) {
+						importManager.getImport("java.util.List");
+						importManager.getImport("java.util.ArrayList");
+%>
+	private List<<%=eAttribute.getEType().getInstanceClassName()%>> <%=eAttribute.getName()%> = new ArrayList<<%=eAttribute.getEType().getInstanceClassName()%>>();
+<%
+					} else {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
+							importManager.getImport("javax.activation.DataHandler");
+%>
+	@XmlMimeType("application/octet-stream")
+	private DataHandler <%=eAttribute.getName()%>;
+<%
+						} else {
+%>
+	private <%=eAttribute.getEType().getInstanceClassName()%> <%=eAttribute.getName()%>;
+<%
+						}
+					}
+				}
+			} else if (eStructuralFeature instanceof EReference) {
+				EReference eReference = (EReference)eStructuralFeature;
+				if (eReference.isMany()) {
+					importManager.getImport("java.util.List");
+					importManager.getImport("java.util.ArrayList");
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	private List<S<%=eReference.getEType().getName()%>> <%=eReference.getName()%> = new ArrayList<S<%=eReference.getEType().getName()%>>();
+<%			
+					} else {
+%>
+	private List<Long> <%=eReference.getName()%> = new ArrayList<Long>();
+<%
+					}
+				} else {
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	private S<%=eReference.getEType().getName()%> <%=eReference.getName()%>;
+<%
+					} else {
+%>
+	private long <%=eReference.getName()%>Id;
+<%
+					}
+				}
+			}
+		}
+	}
+	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+		if (eStructuralFeature.getEAnnotation("notinserviceinterface") == null) {
+			if (eStructuralFeature instanceof EAttribute) {
+				EAttribute eAttribute = (EAttribute)eStructuralFeature;
+				if (eAttribute.getEType() instanceof EEnum) {
+%>
+	public S<%=eAttribute.getEType().getName()%> <%=GenerateUtils.makeGetter(eAttribute)%>() {
+		return <%=eAttribute.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eAttribute)%>(S<%=eAttribute.getEType().getName()%> <%=eAttribute.getName()%>) {
+		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
+	}
+<%
+				} else {
+					if (eAttribute.isMany()) {
+%>
+
+	public List<<%=eAttribute.getEType().getInstanceClassName()%>> <%=GenerateUtils.makeGetter(eAttribute)%>() {
+		return <%=eAttribute.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eAttribute)%>(List<<%=eAttribute.getEType().getInstanceClassName()%>> <%=eAttribute.getName()%>) {
+		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
+	}
+<%
+					} else {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
+%>
+	public DataHandler <%=GenerateUtils.makeGetter(eAttribute)%>() {
+		return <%=eAttribute.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eAttribute)%>(DataHandler <%=eAttribute.getName()%>) {
+		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
+	}
+<%
+						} else {
+%>
+	public <%=eAttribute.getEType().getInstanceClassName()%> <%=GenerateUtils.makeGetter(eAttribute)%>() {
+		return <%=eAttribute.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eAttribute)%>(<%=eAttribute.getEType().getInstanceClassName()%> <%=eAttribute.getName()%>) {
+		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
+	}
+<%
+						}
+					}
+				}
+			} else if (eStructuralFeature instanceof EReference) {
+				EReference eReference = (EReference)eStructuralFeature;
+				if (eReference.isMany()) {
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	public List<S<%=eReference.getEType().getName()%>> <%=GenerateUtils.makeGetter(eReference)%>() {
+		return <%=eReference.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eReference)%>(List<S<%=eReference.getEType().getName()%>> <%=eReference.getName()%>) {
+		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
+	}
+<%
+					} else {
+%>
+	public List<Long> <%=GenerateUtils.makeGetter(eReference)%>() {
+		return <%=eReference.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eReference)%>(List<Long> <%=eReference.getName()%>) {
+		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
+	}
+<%
+					}
+				} else {
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	public S<%=eReference.getEType().getName()%> <%=GenerateUtils.makeGetter(eReference)%>() {
+		return <%=eReference.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eReference)%>(S<%=eReference.getEType().getName()%> <%=eReference.getName()%>) {
+		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
+	}
+	
+<%
+					} else {
+%>
+	public long <%=GenerateUtils.makeGetter(eReference)%>() {
+		return <%=eReference.getName()%>Id;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eReference)%>(long <%=eReference.getName()%>Id) {
+		this.<%=eReference.getName()%>Id = <%=eReference.getName()%>Id;
+	}
+	
+<%
+					}
+				}
+			}
+		}
+	}
+%>
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (oid ^ (oid >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		S<%=eClass.getName()%> other = (S<%=eClass.getName()%>) obj;
+		if (oid != other.oid)
+			return false;
+		return true;
+	}
+<%
+	} else if (eClassifier instanceof EEnum) {
+		EEnum eEnum = (EEnum)eClassifier;
+%>
+public enum S<%=eEnum.getName()%> {
+<%
+	for (EEnumLiteral eEnumLiteral : eEnum.getELiterals()) {
+%>
+	<%=eEnumLiteral.getName()%>(<%=eEnumLiteral.getValue()%>)<%=eEnum.getELiterals().get(eEnum.getELiterals().size()-1) == eEnumLiteral ? ";" : ","%>
+<%
+	}
+%>
+	int ordinal;
+
+	S<%=eEnum.getName()%>(int ordinal) {
+		this.ordinal = ordinal;
+	}
+	
+	public int getOrdinal() {
+		return ordinal;
+	}
+<%	} %>
+<%
+	importManager.writeImports(stringBuffer);
+%>
+}

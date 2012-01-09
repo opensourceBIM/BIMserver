@@ -18,25 +18,18 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.Date;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SRevisionUpdated.class, SPasswordReset.class, SNewObjectIDMUploaded.class, SNewUserAdded.class, SUserDeleted.class, SNewCheckoutAdded.class, SSettingsSaved.class, SRevisionBranched.class, SGeoTagUpdated.class, SNewProjectAdded.class, SNewRevisionAdded.class, SPasswordChanged.class, SProjectUpdated.class, SProjectUndeleted.class, SDownload.class, SProjectDeleted.class, SUserRemovedFromProject.class, SDatabaseCreated.class, SServerStarted.class, SUserChanged.class, SClashDetectionSettingsUpdated.class, SUserAddedToProject.class, SUserUndeleted.class})
+@XmlSeeAlso(value={SUserAddedToProject.class, SProjectUpdated.class, SNewProjectAdded.class, SNewCheckoutAdded.class, SNewUserAdded.class, SServerStarted.class, SNewObjectIDMUploaded.class, SProjectUndeleted.class, SDownload.class, SRevisionUpdated.class, SNewRevisionAdded.class, SUserDeleted.class, SProjectDeleted.class, SDatabaseCreated.class, SPasswordChanged.class, SGeoTagUpdated.class, SRevisionBranched.class, SSettingsSaved.class, SUserChanged.class, SUserRemovedFromProject.class, SUserUndeleted.class, SClashDetectionSettingsUpdated.class, SPasswordReset.class})
 public class SLogAction implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SLogAction");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("date", java.util.Date.class));
-		sClass.addField(new SField("executorId", long.class));
-		sClass.addField(new SField("accessMethod", SAccessMethod.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -46,10 +39,15 @@ public class SLogAction implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SLogAction.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("date")) {
 			return getDate();

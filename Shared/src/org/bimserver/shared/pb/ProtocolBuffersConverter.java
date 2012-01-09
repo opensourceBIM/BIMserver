@@ -30,7 +30,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
-import org.bimserver.shared.meta.SPackage;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.utils.ByteArrayDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,12 +46,17 @@ import com.google.protobuf.Message.Builder;
 
 public class ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConverter.class);
+	private final SService sService;
+
+	public ProtocolBuffersConverter(SService sService) {
+		this.sService = sService;
+	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public SBase convertProtocolBuffersMessageToSObject(Message message, SClass targetType) {
+	public SBase convertProtocolBuffersMessageToSObject(Message message, SClass sClass) {
 		try {
 			Descriptor descriptor = message.getDescriptorForType();
-			SBase newInstance = targetType.newInstance();
+			SBase newInstance = sClass.newInstance();
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				Object val = message.getField(fieldDescriptor);
 				SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
@@ -60,13 +65,13 @@ public class ProtocolBuffersConverter {
 				}
 				if (fieldDescriptor.isRepeated()) {
 					List list = new ArrayList();
-					List oldList = (List)val;
+					List oldList = (List) val;
 					for (Object x : oldList) {
 						list.add(convertFieldValue(field, x));
 					}
 					newInstance.sSet(field, list);
 				} else {
-					SField sField = targetType.getField(fieldDescriptor.getName());
+					SField sField = sClass.getField(fieldDescriptor.getName());
 					newInstance.sSet(sField, convertFieldValue(sField, val));
 				}
 			}
@@ -79,12 +84,12 @@ public class ProtocolBuffersConverter {
 
 	private Object convertFieldValue(SField field, Object val) {
 		if (val instanceof EnumValueDescriptor) {
-			EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)val;
+			EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor) val;
 			Class<?> enumClass;
 			try {
 				enumClass = Class.forName("org.bimserver.interfaces.objects." + enumValueDescriptor.getType().getName());
 				for (Object v : enumClass.getEnumConstants()) {
-					Enum<?> e = (Enum<?>)v;
+					Enum<?> e = (Enum<?>) v;
 					if (e.ordinal() == enumValueDescriptor.getNumber()) {
 						val = e;
 						break;
@@ -94,20 +99,19 @@ public class ProtocolBuffersConverter {
 				LOGGER.error("", e);
 			}
 			return val;
-		} else if (field.getType() == Date.class) {
-			return new Date((Long)val);
-		} else if (field.getType() == DataHandler.class) {
-			ByteString byteString = (ByteString)val;
+		} else if (field.getType().getInstanceClass() == Date.class) {
+			return new Date((Long) val);
+		} else if (field.getType().getInstanceClass() == DataHandler.class) {
+			ByteString byteString = (ByteString) val;
 			ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource("test", byteString.toByteArray());
 			return new DataHandler(byteArrayDataSource);
 		} else if (val instanceof DynamicMessage) {
-			SClass sClass = SPackage.getInstance().getSClass(field.getType().getSimpleName());
-			return convertProtocolBuffersMessageToSObject((DynamicMessage)val, sClass);
+			return convertProtocolBuffersMessageToSObject((DynamicMessage) val, field.isAggregate() ? field.getGenericType() : field.getType());
 		} else {
 			return val;
 		}
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Message convertSObjectToProtocolBuffersObject(Descriptor descriptor, SBase object) {
 		Builder builder = null;
@@ -118,10 +122,13 @@ public class ProtocolBuffersConverter {
 		} catch (IllegalArgumentException e) {
 			LOGGER.error("", e);
 		}
+		SClass sClass = object.getSClass();
 		for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 			try {
-				SClass sClass = object.getSClass();
 				SField sField = sClass.getField(fieldDescriptor.getName());
+				if (sField == null) {
+					throw new RuntimeException("Field " + fieldDescriptor.getName() + " not found on class " + sClass.getName());
+				}
 				Object value = object.sGet(sField);
 				if (value != null) {
 					if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Long.class || value.getClass() == Double.class
@@ -191,7 +198,7 @@ public class ProtocolBuffersConverter {
 		}
 		return null;
 	}
-	
+
 	protected Class<?> getJavaPrimitiveType(FieldDescriptor fieldDescriptor) {
 		if (fieldDescriptor.getJavaType() == JavaType.BOOLEAN) {
 			return boolean.class;

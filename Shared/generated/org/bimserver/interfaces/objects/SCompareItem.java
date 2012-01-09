@@ -17,23 +17,18 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SObjectRemoved.class, SObjectModified.class, SObjectAdded.class})
+@XmlSeeAlso(value={SObjectRemoved.class, SObjectAdded.class, SObjectModified.class})
 public class SCompareItem implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SCompareItem");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("dataObjectId", SDataObject.class));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -43,10 +38,15 @@ public class SCompareItem implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SCompareItem.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("dataObject")) {
 			return getDataObject();

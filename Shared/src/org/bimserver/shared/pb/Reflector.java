@@ -53,6 +53,7 @@ public class Reflector extends ProtocolBuffersConverter {
 	private final SService sService;
 
 	public Reflector(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, Channel channel) {
+		super(sService);
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.sService = sService;
 		this.channel = channel;
@@ -108,7 +109,7 @@ public class Reflector extends ProtocolBuffersConverter {
 							}
 							for (Object v : collection) {
 								if (v instanceof DynamicMessage) {
-									x.add(convertProtocolBuffersMessageToSObject((DynamicMessage) v, sMethod.getReturnType()));
+									x.add(convertProtocolBuffersMessageToSObject((DynamicMessage) v, sMethod.getGenericReturnType()));
 								} else {
 									x.add(v);
 								}

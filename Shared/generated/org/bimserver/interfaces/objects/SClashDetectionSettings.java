@@ -18,6 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,18 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SClashDetectionSettings implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SClashDetectionSettings");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("enabled", boolean.class));
-		sClass.addField(new SField("projects", Long.class, true));
-		sClass.addField(new SField("margin", float.class));
-		sClass.addField(new SField("revisions", Long.class, true));
-		sClass.addField(new SField("ignoredClasses", java.lang.String.class, true));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -47,10 +38,15 @@ public class SClashDetectionSettings implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SClashDetectionSettings.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("enabled")) {
 			return isEnabled();

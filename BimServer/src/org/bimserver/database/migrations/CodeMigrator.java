@@ -17,23 +17,22 @@ package org.bimserver.database.migrations;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.MetaDataManager;
-import org.bimserver.querycompiler.VirtualFile;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.tools.generators.DataObjectGenerator;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
 import org.bimserver.tools.generators.SPackageGeneratorWrapper;
+import org.bimserver.tools.generators.SServiceGeneratorWrapper;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,8 +59,6 @@ public class CodeMigrator {
 	}
 
 	private void start() {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
 		LOGGER.info("Starting code migrator...");
 		Migrator migrator = new Migrator(null);
 		int latestVersion = migrator.getLatestVersion();
@@ -70,21 +67,6 @@ public class CodeMigrator {
 		schema.writeToEcore(new File("models/models.ecore"));
 		LOGGER.info("Model migrated to version " + latestVersion);
 
-		LOGGER.info("Choose \"auto\" or \"manual\"");
-		try {
-			String type = reader.readLine();
-			if (type.equalsIgnoreCase("auto")) {
-				LOGGER.info("Generating EMF classes...");
-				DataObjectGenerator dataObjectGenerator = new DataObjectGenerator(schema);
-				VirtualFile basedir = new VirtualFile(null, null);
-				VirtualFile generate = dataObjectGenerator.generate(basedir);
-				generate.dumpToDir(new File("../Store/generated"));
-				LOGGER.info("EMF classes successfully generated");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		LOGGER.info("Generating ServiceInterface objects...");
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper();
 		Set<EPackage> ePackages = new HashSet<EPackage>();
@@ -101,6 +83,9 @@ public class CodeMigrator {
 		SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper(metaDataManager);
 		sConverterGenerator.generate(ePackages);
 		
+		SServiceGeneratorWrapper x = new SServiceGeneratorWrapper();
+		x.generate(ServiceInterface.class, StorePackage.eINSTANCE);
+		
 		LOGGER.info("Generating protocol buffers file and classes...");
 		ProtocolBuffersGenerator protocolBuffersGenerator = new ProtocolBuffersGenerator();
 
@@ -116,10 +101,11 @@ public class CodeMigrator {
 	}
 
 	private void generateNotificationInterfaceImplementation(ProtocolBuffersGenerator protocolBuffersGenerator) {
+		SService service = new SService(NotificationInterface.class);
 		File protoFile = new File("../Builds/build/pb/notification.proto");
 		File descFile = new File("../Builds/build/pb/notification.desc");
 		File reflectorImplementationFile = new File("../BimServer/generated/org/bimserver/pb/NotificationInterfaceReflectorImpl.java");
-		protocolBuffersGenerator.generate(NotificationInterface.class, protoFile, descFile, reflectorImplementationFile, false, "service");
+		protocolBuffersGenerator.generate(NotificationInterface.class, protoFile, descFile, reflectorImplementationFile, false, service, "service");
 		try {
 			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/notification.proto"));
 			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/notification.desc"));
@@ -130,10 +116,11 @@ public class CodeMigrator {
 	}
 
 	private void generateProtocolBuffersServiceInterface(ProtocolBuffersGenerator protocolBuffersGenerator) {
+		SService service = new SService(ServiceInterface.class);
 		File protoFile = new File("../Builds/build/pb/service.proto");
 		File descFile = new File("../Builds/build/pb/service.desc");
 		File reflectorImplementationFile = new File("../BimServerClientLib/generated/org/bimserver/pb/ServiceInterfaceReflectorImpl.java");
-		protocolBuffersGenerator.generate(ServiceInterface.class, protoFile, descFile, reflectorImplementationFile, true);
+		protocolBuffersGenerator.generate(ServiceInterface.class, protoFile, descFile, reflectorImplementationFile, true, service);
 		try {
 			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/service.proto"));
 			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/service.desc"));

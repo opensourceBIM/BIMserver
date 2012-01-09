@@ -19,6 +19,7 @@ package org.bimserver.interfaces.objects;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,23 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SDatabaseInformation implements SBase
 {
 	private long oid = -1;
-	private static final SClass sClass = new SClass("SDatabaseInformation");
-	
-	static {
-		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("numberOfProjects", int.class));
-		sClass.addField(new SField("numberOfUsers", int.class));
-		sClass.addField(new SField("numberOfRevisions", int.class));
-		sClass.addField(new SField("numberOfCheckouts", int.class));
-		sClass.addField(new SField("databaseSizeInBytes", long.class));
-		sClass.addField(new SField("type", java.lang.String.class));
-		sClass.addField(new SField("created", java.util.Date.class));
-		sClass.addField(new SField("location", java.lang.String.class));
-		sClass.addField(new SField("schemaVersion", int.class));
-		sClass.addField(new SField("categories", SDatabaseInformationCategory.class, true));
-		SPackage.getInstance().addSClass(sClass);
-
-	}
+	@XmlTransient
+	private static SClass sClass;
 	
 	public long getOid() {
 		return oid;
@@ -53,10 +39,15 @@ public class SDatabaseInformation implements SBase
 		this.oid = oid;
 	}
 	
+	@XmlTransient
 	public SClass getSClass() {
 		return sClass;
 	}
 	
+	public static void setSClass(SClass sClass) {
+		SDatabaseInformation.sClass = sClass;
+	}
+
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("numberOfProjects")) {
 			return getNumberOfProjects();

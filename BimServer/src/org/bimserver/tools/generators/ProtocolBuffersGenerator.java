@@ -22,81 +22,58 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.activation.DataHandler;
-import javax.jws.WebParam;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.SMethod;
+import org.bimserver.shared.meta.SParameter;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.utils.Licenser;
 import org.bimserver.utils.StringUtils;
 
 public class ProtocolBuffersGenerator {
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
-	private static final Set<String> methodsToIgnore = new HashSet<String>();
-	
-	static {
-		methodsToIgnore.add("getClass");
-		methodsToIgnore.add("getDeclaredAnnotations");
-		methodsToIgnore.add("getConstructors");
-		methodsToIgnore.add("getParameterAnnotations");
-		methodsToIgnore.add("getGenericParameterTypes");
-		methodsToIgnore.add("getGenericExceptionTypes");
-		methodsToIgnore.add("getExceptionTypes");
-		methodsToIgnore.add("getTypeParameters");
-		methodsToIgnore.add("getAnnotation");
-		methodsToIgnore.add("getSClass");
-	}
-	
-	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, File reflectorImplementationFile, boolean createBaseMessages, String... imports) {
-		generateProtoFile(serviceInterfaceClass, protoFile, createBaseMessages, imports);
+
+	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, File reflectorImplementationFile, boolean createBaseMessages, SService service, String... imports) {
+		generateProtoFile(serviceInterfaceClass, protoFile, createBaseMessages, service, imports);
 		generateProtocolBuffersObjects(protoFile, descFile, true);
-		generateServiceInterfaceImplementationForReflector(serviceInterfaceClass, reflectorImplementationFile);
+		generateServiceInterfaceImplementationForReflector(service, reflectorImplementationFile);
 	}
 
-	private void generateServiceInterfaceImplementationForReflector(Class<?> serviceInterfaceClass, File reflectorImplementationFile) {
+	private void generateServiceInterfaceImplementationForReflector(SService service, File reflectorImplementationFile) {
 		try {
 			PrintWriter out = new PrintWriter(reflectorImplementationFile);
 			out.println("package org.bimserver.pb;\n");
 			out.println(Licenser.getCommentedLicenseText(new File("license.txt")));
 			out.println("import org.bimserver.shared.pb.Reflector;\n");
 			out.println("@SuppressWarnings(\"unchecked\")");
-			out.println("public class " + serviceInterfaceClass.getSimpleName() + "ReflectorImpl implements " + serviceInterfaceClass.getName() + " {\n");
+			out.println("public class " + service.getName() + "ReflectorImpl implements " + service.getInstanceClass().getName() + " {\n");
 			out.println("private Reflector reflector;\n");
-			out.println("\tpublic " + serviceInterfaceClass.getSimpleName() + "ReflectorImpl (Reflector reflector) {this.reflector = reflector;}");
-			for (Method method : serviceInterfaceClass.getMethods()) {
-				String returnType = method.getGenericReturnType().toString();
-				if (returnType.startsWith("class ")) {
-					returnType = returnType.substring(6);
-				}
+			out.println("\tpublic " + service.getName() + "ReflectorImpl (Reflector reflector) {this.reflector = reflector;}");
+
+			for (SMethod method : service.getMethods()) {
+				String returnType = method.getPrintableName();
 				out.print("\tpublic " + returnType + " " + method.getName() + "(");
-				int i=0;
 				StringBuilder sb1 = new StringBuilder();
 				StringBuilder sb2 = new StringBuilder();
-				for (Type type : method.getGenericParameterTypes()) {
-					String typeName = type.toString();
-					if (typeName.startsWith("class ")) {
-						typeName = typeName.substring(6);
-					}
-					sb1.append(typeName + " arg" + i + (i < method.getParameterTypes().length-1 ? ", " : ""));
-					sb2.append("arg" + i +  (i < method.getParameterTypes().length-1 ? ", " : ""));
-					i++;
+				for (SParameter parameter : method.getParameters()) {
+					sb1.append(parameter.getPrintableName() + " " + parameter.getName() + (parameter.isLast() ? "" : ", "));
+					sb2.append(parameter.getName() + (parameter.isLast() ? "" : ", "));
 				}
 				out.println(sb1.toString() + ") throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {");
-				if (method.getReturnType() == void.class) {
-					out.println("\t\treflector.callMethod(\"" + serviceInterfaceClass.getSimpleName() + "\", \"" + method.getName() + "\"" + ", " + method.getReturnType().getName() + ".class" + (method.getParameterTypes().length > 0 ? ", " : "") + sb2.toString() + ");");
+				if (method.returnsVoid()) {
+					out.println("\t\treflector.callMethod(\"" + service.getName() + "\", \"" + method.getName() + "\"" + ", " + method.getReturnType().getName() + ".class"
+							+ (method.getParameters().size() > 0 ? ", " : "") + sb2.toString() + ");");
 				} else {
-					out.println("\t\treturn (" + returnType + ") reflector.callMethod(\"" + serviceInterfaceClass.getSimpleName() + "\", \"" + method.getName() + "\", " + method.getReturnType().getName() + ".class" + (method.getParameterTypes().length > 0 ? (", " + sb2.toString()) : "") + ");");
+					out.println("\t\treturn (" + returnType + ") reflector.callMethod(\"" + service.getName() + "\", \"" + method.getName() + "\", "
+							+ method.getReturnType().getName() + ".class" + (method.getParameters().size() > 0 ? (", " + sb2.toString()) : "") + ");");
 				}
 				out.println("\t}");
 			}
@@ -114,11 +91,11 @@ public class ProtocolBuffersGenerator {
 		try {
 			ProcessBuilder processBuilder = null;
 			if (javaOut) {
-				processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--java_out=" + destDir.getAbsolutePath(), "--descriptor_set_out=" + protoDestFile.getAbsolutePath(), protoFile
-						.getAbsolutePath());
+				processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--java_out=" + destDir.getAbsolutePath(),
+						"--descriptor_set_out=" + protoDestFile.getAbsolutePath(), protoFile.getAbsolutePath());
 			} else {
-				processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--descriptor_set_out=" + protoDestFile.getAbsolutePath(), protoFile
-						.getAbsolutePath());
+				processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--descriptor_set_out=" + protoDestFile.getAbsolutePath(),
+						protoFile.getAbsolutePath());
 			}
 			final Process exec = processBuilder.start();
 			new Thread(new Runnable() {
@@ -163,7 +140,7 @@ public class ProtocolBuffersGenerator {
 		}
 	}
 
-	public void generateServiceInterfaceImplementation(String name, File file) {
+	public void generateServiceInterfaceImplementation(String name, File file, SService sService) {
 		try {
 			PrintWriter out = new PrintWriter(file);
 			out.println("package org.bimserver.pb;\n");
@@ -189,137 +166,119 @@ public class ProtocolBuffersGenerator {
 			out.println("\t\trpcController = new SocketRpcController();");
 			out.println("\t\tservice = ServiceInterface.newBlockingStub(rpcChannel);");
 			out.println("\t}\n");
-			for (Method method : ServiceInterface.class.getMethods()) {
-				boolean returnsVoid = method.getReturnType() == Void.class || method.getReturnType() == void.class;
+			for (SMethod sMethod : sService.getMethods()) {
 				String fullResultType = "void";
-				if (returnsVoid) {
-					out.print("\tpublic void " + method.getName() + "(");
+				if (sMethod.returnsVoid()) {
+					out.print("\tpublic void " + sMethod.getName() + "(");
 				} else {
-					Class<?> genericReturnType = getGenericReturnType(method);
-					fullResultType = method.getReturnType().getName();
-					if (genericReturnType != null) {
-						fullResultType = method.getReturnType().getName() + "<" + genericReturnType.getName() + ">";
+					fullResultType = sMethod.getReturnType().getName();
+					if (sMethod.isAggregateReturnType()) {
+						fullResultType = sMethod.getReturnType().getName() + "<" + sMethod.getGenericReturnType().getName() + ">";
 					}
-					out.print("\tpublic " + fullResultType + " " + method.getName() + "(");
+					out.print("\tpublic " + fullResultType + " " + sMethod.getName() + "(");
 				}
-				int parameterCounter = 0;
-				for (Class<?> parameterType : method.getParameterTypes()) {
-					WebParam annotation = extractAnnotation(method, parameterCounter, WebParam.class);
-					String paramName = "unknown";
-					if (annotation != null) {
-						paramName = annotation.name();
-					}
-					String typeName = parameterType.getName();
-					typeName = typeName.replace("$", ".");
-					Class<?> genericType = getGenericType(method, parameterCounter, parameterType);
-					if (parameterType.isAssignableFrom(List.class) || parameterType.isAssignableFrom(Set.class)) {
-						out.print(typeName + "<" + genericType.getName() + "> " + paramName + (parameterCounter < method.getParameterTypes().length - 1 ? ", " : ""));
+				for (SParameter parameter : sMethod.getParameters()) {
+					if (parameter.isAggregate()) {
+						out.print(parameter.getType().getName() + "<" + parameter.getGenericType().getName() + "> " + parameter.getName() + (parameter.isLast() ? "" : ", "));
 					} else {
-						out.print(typeName + " " + paramName + (parameterCounter < method.getParameterTypes().length - 1 ? ", " : ""));
+						out.print(parameter.getType().getName() + " " + parameter.getName() + (parameter.isLast() ? "" : ", "));
 					}
-					parameterCounter++;
 				}
 				out.println(") {");
 				out.println("\t\ttry {");
-				String requestClassName = StringUtils.firstUpperCase(method.getName()) + "Request";
-				String responseClassName = StringUtils.firstUpperCase(method.getName()) + "Response";
+				String requestClassName = StringUtils.firstUpperCase(sMethod.getName()) + "Request";
+				String responseClassName = StringUtils.firstUpperCase(sMethod.getName()) + "Response";
 				out.println("\t\t\t" + requestClassName + ".Builder requestBuilder = " + requestClassName + ".newBuilder();");
-				parameterCounter = 0;
-				for (Class<?> parameterType : method.getParameterTypes()) {
-					WebParam annotation = extractAnnotation(method, parameterCounter, WebParam.class);
-					String paramName = "unknown";
-					if (annotation != null) {
-						paramName = annotation.name();
-					}
-					if (parameterType.isAssignableFrom(List.class) || parameterType.isAssignableFrom(Set.class)) {
-						out.println("\t\t\tfor (" + getGenericType(method, parameterCounter, parameterType).getName() + " val : " + paramName + ") {");
-						Class<?> genericType = getGenericType(method, parameterCounter, parameterType);
-						if (isPrimitive(genericType) || genericType == String.class) {
-							out.println("\t\t\t\t" + genericType.getSimpleName() + " v = val;");
+				for (SParameter parameter : sMethod.getParameters()) {
+					if (parameter.isAggregate()) {
+						out.println("\t\t\tfor (" + parameter.getGenericType() + " val : " + parameter.getName() + ") {");
+						if (parameter.getType().isPrimitive() || parameter.getType().getInstanceClass() == String.class) {
+							out.println("\t\t\t\t" + parameter.getGenericType().getInstanceClass().getSimpleName() + " v = val;");
 						} else {
-							out.println("\t\t\t\tProtocolBuffersService." + genericType.getSimpleName() + " v = null;");
+							out.println("\t\t\t\tProtocolBuffersService." + parameter.getGenericType().getInstanceClass().getSimpleName() + " v = null;");
 						}
-						out.println("\t\t\t\trequestBuilder.add" + StringUtils.firstUpperCase(paramName) + "(v);");
+						out.println("\t\t\t\trequestBuilder.add" + StringUtils.firstUpperCase(parameter.getName()) + "(v);");
 						out.println("\t\t\t}");
-					} else if (parameterType.isAssignableFrom(DataHandler.class)) {
-						out.println("\t\t\tByteString bs = ByteString.copyFrom(BinUtils.readInputStream(" + paramName + ".getInputStream()));");
-						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(bs);");
-					} else if (parameterType.isPrimitive()) {
-						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
-					} else if (parameterType.isEnum()) {
-						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(ProtocolBuffersService." + parameterType.getSimpleName() + ".values()[" + paramName + ".ordinal()]);");
-					} else if (isPrimitive(parameterType) || parameterType == String.class) {
-						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
+					} else if (parameter.getType().getInstanceClass().isAssignableFrom(DataHandler.class)) {
+						out.println("\t\t\tByteString bs = ByteString.copyFrom(BinUtils.readInputStream(" + parameter.getName() + ".getInputStream()));");
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(parameter.getName()) + "(bs);");
+					} else if (parameter.getType().getInstanceClass().isPrimitive()) {
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(parameter.getName()) + "(" + parameter.getName() + ");");
+					} else if (parameter.getType().getInstanceClass().isEnum()) {
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(parameter.getName()) + "(ProtocolBuffersService."
+								+ parameter.getType().getInstanceClass().getSimpleName() + ".values()[" + parameter.getName() + ".ordinal()]);");
+					} else if (parameter.getType().getInstanceClass().isPrimitive() || parameter.getType().getInstanceClass() == String.class) {
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(parameter.getName()) + "(" + parameter.getName() + ");");
 					} else {
-						out.println("\t\t\tProtocolBuffersService." + parameterType.getSimpleName() + ".Builder newVal = " + parameterType.getSimpleName() + ".newBuilder();");
-						genServiceInterfaceToProtocolBuffers(out, paramName, "newVal", parameterType);
-						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(newVal.build());");
+						out.println("\t\t\tProtocolBuffersService." + parameter.getType().getInstanceClass().getSimpleName() + ".Builder newVal = "
+								+ parameter.getType().getInstanceClass().getSimpleName() + ".newBuilder();");
+						genServiceInterfaceToProtocolBuffers(out, parameter.getName(), "newVal", parameter.getType());
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(parameter.getName()) + "(newVal.build());");
 					}
-					parameterCounter++;
 				}
 				out.println("\t\t\t" + requestClassName + " request = requestBuilder.build();");
-				if (returnsVoid) {
-					out.println("\t\t\tservice." + method.getName() + "(rpcController, request);");
+				if (sMethod.returnsVoid()) {
+					out.println("\t\t\tservice." + sMethod.getName() + "(rpcController, request);");
 				} else {
-					out.println("\t\t\t" + responseClassName + " response = service." + method.getName() + "(rpcController, request);");
-					if (method.getReturnType().isAssignableFrom(List.class)) {
-						Class<?> genericReturnType = getGenericReturnType(method);
-						out.println("\t\t\t" + fullResultType + " realResult = new ArrayList<" + genericReturnType.getName() + ">();");
-						String fullTypeName = genericReturnType.getSimpleName();
-						if (isPrimitive(genericReturnType) || genericReturnType == String.class) {
+					out.println("\t\t\t" + responseClassName + " response = service." + sMethod.getName() + "(rpcController, request);");
+					if (sMethod.isListReturnType()) {
+						out.println("\t\t\t" + fullResultType + " realResult = new ArrayList<" + sMethod.getGenericReturnType().getName() + ">();");
+						String fullTypeName = sMethod.getGenericReturnType().getName();
+						if (sMethod.getGenericReturnType().isPrimitive() || sMethod.getGenericReturnType().getInstanceClass() == String.class) {
 						} else {
-							fullTypeName = "ProtocolBuffersService." + genericReturnType.getSimpleName();
+							fullTypeName = "ProtocolBuffersService." + sMethod.getGenericReturnType().getName();
 						}
 						out.println("\t\t\tList<" + fullTypeName + "> originalList = response.getValueList();");
 						out.println("\t\t\tfor (" + fullTypeName + " val : originalList) {");
-						if (getGenericReturnType(method) == String.class) {
+						if (sMethod.getGenericReturnType().getInstanceClass() == String.class) {
 							out.println("\t\t\t\trealResult.add(val);");
-						} else if (getGenericReturnType(method).isEnum()) {
-							out.println("\t\t\t\trealResult.add(" + getGenericReturnType(method).getName() + ".values()[val.ordinal()]);");
+						} else if (sMethod.getGenericReturnType().isEnum()) {
+							out.println("\t\t\t\trealResult.add(" + sMethod.getGenericReturnType().getName() + ".values()[val.ordinal()]);");
 						} else {
-							out.println("\t\t\t\t" + getGenericReturnType(method).getName() + " v = " + genInitializerCode(getGenericReturnType(method)) + ";");
-							genProtocolBuffersToServiceInterface(out, "val", "v", getGenericReturnType(method));
+							out.println("\t\t\t\t" + sMethod.getGenericReturnType().getName() + " v = " + genInitializerCode(sMethod.getGenericReturnType().getInstanceClass())
+									+ ";");
+							genProtocolBuffersToServiceInterface(out, "val", "v", sMethod.getGenericReturnType(), sMethod);
 							out.println("\t\t\t\trealResult.add(v);");
 						}
 						out.println("\t\t\t}");
 						out.println("\t\treturn realResult;");
-					} else if (method.getReturnType().isAssignableFrom(Set.class)) {
-						Class<?> genericReturnType = getGenericReturnType(method);
-						out.println("\t\t\t" + fullResultType + " realResult = new HashSet<" + genericReturnType.getName() + ">();");
-						String fullTypeName = genericReturnType.getSimpleName();
-						if (isPrimitive(genericReturnType) || genericReturnType == String.class) {
+					} else if (sMethod.getGenericReturnType().isSet()) {
+						out.println("\t\t\t" + fullResultType + " realResult = new HashSet<" + sMethod.getGenericReturnType().getName() + ">();");
+						String fullTypeName = "";
+						if (sMethod.getGenericReturnType().isPrimitive() || sMethod.getGenericReturnType().isString()) {
 						} else {
-							fullTypeName = "ProtocolBuffersService." + genericReturnType.getSimpleName();
+							fullTypeName = "ProtocolBuffersService." + sMethod.getGenericReturnType().getInstanceClass().getSimpleName();
 						}
 						out.println("\t\t\tList<" + fullTypeName + "> originalList = response.getValueList();");
 						out.println("\t\t\tfor (" + fullTypeName + " val : originalList) {");
-						if (getGenericReturnType(method) == String.class) {
+						if (sMethod.getGenericReturnType().isString()) {
 							out.println("\t\t\t\trealResult.add(val);");
-						} else if (getGenericReturnType(method).isEnum()) {
-							out.println("\t\t\t\trealResult.add(" + getGenericReturnType(method).getName() + ".values()[val.ordinal()]);");
+						} else if (sMethod.getGenericReturnType().isEnum()) {
+							out.println("\t\t\t\trealResult.add(" + sMethod.getGenericReturnType().getName() + ".values()[val.ordinal()]);");
 						} else {
-							out.println("\t\t\t\t" + getGenericReturnType(method).getName() + " v = " + genInitializerCode(getGenericReturnType(method)) + ";");
-							genProtocolBuffersToServiceInterface(out, "val", "v", getGenericReturnType(method));
+							out.println("\t\t\t\t" + sMethod.getGenericReturnType().getName() + " v = " + genInitializerCode(sMethod.getGenericReturnType().getInstanceClass())
+									+ ";");
+							genProtocolBuffersToServiceInterface(out, "val", "v", sMethod.getGenericReturnType(), sMethod);
 							out.println("\t\t\t\trealResult.add(v);");
 						}
 						out.println("\t\t\t}");
 						out.println("\t\treturn realResult;");
-					} else if (isPrimitive(method.getReturnType()) || method.getReturnType() == String.class) {
+					} else if (sMethod.getReturnType().isPrimitive() || sMethod.getReturnType().isString()) {
 						out.println("\t\t\treturn response.getValue();");
-					} else if (method.getReturnType() == Date.class) {
+					} else if (sMethod.getReturnType().isDate()) {
 						out.println("\t\t\treturn new java.util.Date(response.getValue());");
-					} else if (method.getReturnType().isEnum()) {
+					} else if (sMethod.getGenericReturnType().isEnum()) {
 						out.println("\t\t\treturn null;");
 					} else {
-						out.println("\t\t\t" + method.getReturnType().getName() + " realResult = new " + method.getReturnType().getName() + "();");
-						out.println("\t\t\t" + "ProtocolBuffersService." + method.getReturnType().getSimpleName() + " val = response.getValue();");
-						genProtocolBuffersToServiceInterface(out, "val", "realResult", method.getReturnType());
+						out.println("\t\t\t" + sMethod.getGenericReturnType().getName() + " realResult = new " + sMethod.getReturnType().getName() + "();");
+						out.println("\t\t\t" + "ProtocolBuffersService." + sMethod.getReturnType().getName() + " val = response.getValue();");
+						genProtocolBuffersToServiceInterface(out, "val", "realResult", sMethod.getReturnType(), sMethod);
 						out.println("\t\t\treturn realResult;");
 					}
 				}
 				out.println("\t\t} catch (Exception e) {}");
-				if (!returnsVoid) {
-					out.println("\t\treturn " + getDefaultLiteralCode(method.getReturnType()) + ";");
+				if (!sMethod.returnsVoid()) {
+					out.println("\t\treturn " + getDefaultLiteralCode(sMethod.getGenericReturnType().getInstanceClass()) + ";");
 				}
 				out.println("\t}\n");
 			}
@@ -329,71 +288,51 @@ public class ProtocolBuffersGenerator {
 			e.printStackTrace();
 		}
 	}
-	
-	private void genProtocolBuffersToServiceInterface(PrintWriter out, String sourceName, String targetName, Class<?> parameterType) {
-		for (Method method : parameterType.getMethods()) {
-			if (method.getName().startsWith("get") && !method.getName().equals("getClass") && method.getParameterTypes().length == 0) {
-				String fName = method.getName().substring(3);
-				try {
-					if (parameterType.getMethod("set" + StringUtils.firstUpperCase(fName), method.getReturnType()) != null) {
-						if (method.getReturnType().isAssignableFrom(List.class)) {
-							Class<?> genericReturnType = getGenericReturnType(method);
-							if (genericReturnType != null) {
-//						out.println("\t\t\t\tfor (" + genericReturnType.getName() + " o : " + sourceName + "." + method.getName() + "List()) {");
-//						out.println("\t\t\t\t\t" + targetName + ".get" + fName + "().add(o);");
-//						out.println("\t\t\t\t}");
-							}
-						} else if (method.getReturnType() == Date.class) {
-							out.println("\t\t\t\t" + targetName + ".set" + fName + "(new Date(" + sourceName + "." + method.getName() + "()));");
-						} else if (method.getReturnType() == Class.class) {
-							out.println("\t\t\t\t" + targetName + ".set" + fName + "(Class.forName(" + sourceName + "." + method.getName() + "()));");
-						} else if (method.getReturnType() == DataHandler.class) {
-							out.println("\t\t\t\t" + targetName + ".setFile(new DataHandler(new ByteArrayDataSource(" + sourceName + ".getFile().toByteArray(), \"\")));");
-//							out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "().toByteArray());");
-						} else if (method.getReturnType().isEnum()) {
-							out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getName().replace("$", ".") + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
-						} else {
-							out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "());");
-						}
-					}
-				} catch (NoSuchMethodException e) {
-				} catch (SecurityException e) {
-				}
+
+	private void genProtocolBuffersToServiceInterface(PrintWriter out, String sourceName, String targetName, SClass sType, SMethod method) {
+		for (SField field : sType.getFields()) {
+			if (sType.getInstanceClass().isAssignableFrom(List.class)) {
+			} else if (sType.isDate()) {
+				out.println("\t\t\t\t" + targetName + ".set" + field.getName() + "(new Date(" + sourceName + "." + method.getName() + "()));");
+			} else if (sType.isClass()) {
+				out.println("\t\t\t\t" + targetName + ".set" + field.getName() + "(Class.forName(" + sourceName + "." + method.getName() + "()));");
+			} else if (sType.isDataHandler()) {
+				out.println("\t\t\t\t" + targetName + ".setFile(new DataHandler(new ByteArrayDataSource(" + sourceName + ".getFile().toByteArray(), \"\")));");
+			} else if (sType.isEnum()) {
+				out.println("\t\t\t\t" + targetName + ".set" + field.getName() + "(" + method.getReturnType().getName().replace("$", ".") + ".values()[" + sourceName + "."
+						+ method.getName() + "().ordinal()]);");
+			} else {
+				out.println("\t\t\t\t" + targetName + ".set" + field.getName() + "(" + sourceName + "." + method.getName() + "());");
 			}
 		}
 	}
-	
-	private void genServiceInterfaceToProtocolBuffers(PrintWriter out, String sourceName, String targetName, Class<?> parameterType) {
-		for (Method method : parameterType.getMethods()) {
-			if (method.getName().startsWith("get") && !method.getName().equals("getClass")) {
-				String fName = method.getName().substring(3);
-				if (method.getReturnType().isAssignableFrom(List.class)) {
-					Class<?> genericReturnType = getGenericReturnType(method);
-					out.println("\t\t\tfor (" + genericReturnType.getName() + " o : " + sourceName + "." + method.getName() + "()) {");
-					out.println("\t\t\t\t" + targetName + ".add" + fName + "(o);");
-					out.println("\t\t\t}");
-				} else if (method.getReturnType() == Date.class) {
-					out.println("\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "().getTime());");
-				} else if (method.getReturnType() == byte[].class) {
-					out.println("\t\t\t" + targetName + ".set" + fName + "(ByteString.copyFrom(" + sourceName + "." + method.getName() + "()));");
-				} else if (method.getReturnType().isEnum()) {
-					out.println("\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getSimpleName() + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
-				} else {
-					out.println("\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "());");
+
+	private void genServiceInterfaceToProtocolBuffers(PrintWriter out, String sourceName, String targetName, SClass parameterType) {
+		if (parameterType instanceof SClass) {
+			SClass sClass = (SClass) parameterType;
+			for (SField field : sClass.getFields()) {
+				SClass fieldType = field.getType();
+				if (fieldType instanceof SClass) {
+					SClass fieldClass = (SClass) fieldType;
+					if (fieldClass.isList()) {
+						out.println("\t\t\tfor (" + fieldType.getName() + " o : " + sourceName + "." + field.getName() + "()) {");
+						out.println("\t\t\t\t" + targetName + ".add" + field.getName() + "(o);");
+						out.println("\t\t\t}");
+					} else if (fieldClass.isDate()) {
+						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + sourceName + "." + field.getName() + "().getTime());");
+					} else if (fieldType.getInstanceClass() == byte[].class) {
+						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(ByteString.copyFrom(" + sourceName + "." + field.getName() + "()));");
+					} else if (fieldClass.isEnum()) {
+						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + fieldType.getInstanceClass().getSimpleName() + ".values()[" + sourceName + "."
+								+ field.getName() + "().ordinal()]);");
+					} else {
+						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + sourceName + "." + field.getName() + "());");
+					}
 				}
 			}
 		}
 	}
 
-	private boolean isPrimitive(Class<?> type) {
-		if (type.isPrimitive()) {
-			return true;
-		} else if (type == Long.class || type == Integer.class || type == Float.class || type == Double.class || type == Boolean.class || type == Character.class) {
-			return true;
-		}
-		return false;
-	}
-	
 	private String genInitializerCode(Class<?> type) {
 		if (type.isPrimitive()) {
 			return getDefaultLiteralCode(type);
@@ -420,7 +359,7 @@ public class ProtocolBuffersGenerator {
 		}
 	}
 
-	private void generateProtoFile(Class<?> serviceInterfaceClass, File protoFile, boolean createBaseMessages, String... imports) {
+	private void generateProtoFile(Class<?> serviceInterfaceClass, File protoFile, boolean createBaseMessages, SService service, String... imports) {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(protoFile);
@@ -434,20 +373,20 @@ public class ProtocolBuffersGenerator {
 				out.println("import \"" + importFile + ".proto\";");
 			}
 			out.println("option java_generic_services = true;\n");
-			out.println("option java_outer_classname = \"" + serviceInterfaceClass.getSimpleName() + "Impl\";\n");
+			out.println("option java_outer_classname = \"" + service.getName() + "Impl\";\n");
 			out.println("option optimize_for = SPEED;\n");
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
-			serviceBuilder.append("service " + serviceInterfaceClass.getSimpleName() + " {\n");
+			serviceBuilder.append("service " + service.getName() + " {\n");
 			if (createBaseMessages) {
 				createVoidResponseMessage(messageBuilder);
 				generateVoidMessage(messageBuilder);
 			}
-			for (Method method : serviceInterfaceClass.getMethods()) {
+			for (SMethod method : service.getMethods()) {
 				String inputObjectName = StringUtils.firstUpperCase(method.getName()) + "Request";
 				String outputObjectName = StringUtils.firstUpperCase(method.getName()) + "Response";
 				createRequestMessage(messageBuilder, method, inputObjectName);
-				if (method.getReturnType() == void.class || method.getReturnType() == Void.class) {
+				if (method.returnsVoid()) {
 					outputObjectName = "VoidResponse";
 				} else {
 					createResponseMessage(messageBuilder, method, outputObjectName);
@@ -469,10 +408,11 @@ public class ProtocolBuffersGenerator {
 		}
 
 	}
+
 	private void generateVoidMessage(StringBuilder builder) {
 		builder.append("message Void {\n}");
 	}
-	
+
 	private void createVoidResponseMessage(StringBuilder builder) {
 		String messageName = "VoidResponse";
 		StringBuilder messageBuilder = new StringBuilder();
@@ -482,94 +422,85 @@ public class ProtocolBuffersGenerator {
 		builder.append(messageBuilder);
 	}
 
-	private void createResponseMessage(StringBuilder builder, Method method, String messageName) {
+	private void createResponseMessage(StringBuilder builder, SMethod method, String messageName) {
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");
 		messageBuilder.append("\toptional string errorMessage = 1;\n");
 		messageBuilder.append("\t");
-		boolean aggregate = method.getReturnType().isAssignableFrom(List.class) || method.getReturnType().isAssignableFrom(Set.class);
-		if (aggregate) {
+		if (method.isAggregateReturnType()) {
 			messageBuilder.append("repeated ");
 		} else {
 			messageBuilder.append("optional ");
 		}
-		Class<?> returnType = method.getReturnType();
-		if (aggregate) {
-			returnType = getGenericReturnType(method);
-		}
-		messageBuilder.append(createMessage(builder, returnType) + " value = 2;\n");
+		messageBuilder.append(createMessage(builder, method.isAggregateReturnType() ? method.getGenericReturnType() : method.getReturnType()) + " value = 2;\n");
 		messageBuilder.append("}\n\n");
 		builder.append(messageBuilder);
 	}
 
-	private Class<?> getGenericReturnType(Method method) {
-		Class<?> returnType;
-		Type genericReturnType = method.getGenericReturnType();
-		if (genericReturnType instanceof ParameterizedType) {
-			ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
-			Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
-			returnType = ((Class<?>)type2);
-			return returnType;
+	private String createMessage(StringBuilder sb, SClass sType) {
+		Class<?> clazz = sType.getInstanceClass();
+		if (generatedClasses.containsKey(clazz)) {
+			return generatedClasses.get(clazz);
 		}
-		return null;
-	}
-	
-	private String createMessage(StringBuilder sb, Class<?> clazz) {
-		if (clazz == Class.class) {
-			return "string";
-		}
-		StringBuilder messageBuilder = new StringBuilder();
-		if (clazz == boolean.class || clazz == Boolean.class) {
-			return "bool";
-		} else if (clazz == String.class) {
-			return "string";
-		} else if (clazz == Long.class || clazz == long.class) {
-			return "int64";
-		} else if (clazz == Date.class) {
-			return "int64";
-		} else if (clazz == DataHandler.class || clazz == byte[].class) {
-			return "bytes";
-		} else if (clazz == Integer.class | clazz == int.class) {
-			return "int32";
-		} else if (clazz == Float.class | clazz == float.class) {
-			return "float";
-		} else if (clazz == Double.class | clazz == double.class) {
-			return "double";
+		if (sType.isPrimitive()) {
+			if (clazz == Class.class) {
+				return "string";
+			} else if (clazz == boolean.class || clazz == Boolean.class) {
+				return "bool";
+			} else if (clazz == Long.class || clazz == long.class) {
+				return "int64";
+			} else if (clazz == Date.class) {
+				return "int64";
+			} else if (clazz == DataHandler.class || clazz == byte[].class) {
+				return "bytes";
+			} else if (clazz == Integer.class | clazz == int.class) {
+				return "int32";
+			} else if (clazz == Float.class | clazz == float.class) {
+				return "float";
+			} else if (clazz == Double.class | clazz == double.class) {
+				return "double";
+			}
 		} else if (clazz.isEnum()) {
 			return createEnum(sb, clazz);
+		} else if (sType.isString()) {
+			return "string";
 		} else {
-			if (generatedClasses.containsKey(clazz)) {
-				return generatedClasses.get(clazz);
-			}
-		}
-		generatedClasses.put(clazz, clazz.getSimpleName());
-		messageBuilder.append("message " + clazz.getSimpleName() + " {\n");
-		int counter = 1;
-		for (Method method : clazz.getMethods()) {
-			if (method.getName().startsWith("get") && method.getName().length() > 3 && !methodsToIgnore.contains(method.getName()) && method.getParameterTypes().length == 0) {
-				boolean aggregate = method.getReturnType().isAssignableFrom(List.class) || method.getReturnType().isAssignableFrom(Set.class);
+			StringBuilder messageBuilder = new StringBuilder();
+			SClass sClass = (SClass) sType;
+			generatedClasses.put(clazz, clazz.getSimpleName());
+			messageBuilder.append("message " + clazz.getSimpleName() + " {\n");
+			int counter = 1;
+			for (SField field : sClass.getFields()) {
 				messageBuilder.append("\t");
-				if (aggregate) {
+				if (field.isAggregate()) {
 					messageBuilder.append("repeated ");
 				} else {
 					messageBuilder.append("optional ");
 				}
-				Class<?> parameterType = method.getReturnType();
-				if (aggregate) {
-					Type genericReturnType = method.getGenericReturnType();
-					if (genericReturnType instanceof ParameterizedType) {
-						ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
-						Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
-						parameterType = ((Class<?>)type2);
-					}
+				SClass type = field.getType();
+				if (field.isAggregate()) {
+					type = field.getGenericType();
+					// Type genericReturnType = method.getGenericReturnType();
+					// if (genericReturnType instanceof ParameterizedType) {
+					// ParameterizedType parameterizedTypeImpl =
+					// (ParameterizedType)genericReturnType;
+					// Type type2 =
+					// parameterizedTypeImpl.getActualTypeArguments()[0];
+					// parameterType = ((Class<?>)type2);
+					// }
 				}
-				String fieldName = StringUtils.firstLowerCase(method.getName().substring(3));
-				messageBuilder.append(createMessage(sb, parameterType) + " " + fieldName + " = " + (counter++) + ";\n");
+				messageBuilder.append(createMessage(sb, type) + " " + field.getName() + " = " + (counter++) + ";\n");
 			}
+			for (SClass subClass : sClass.getSubClasses()) {
+				messageBuilder.append("\t");
+				messageBuilder.append("optional ");
+				messageBuilder.append(createMessage(sb, subClass) + " " + subClass.getInstanceClass().getSimpleName() + " = " + (counter++) + ";\n");
+			}
+			messageBuilder.append("}\n\n");
+			sb.append(messageBuilder);
+			return clazz.getSimpleName();
 		}
-		messageBuilder.append("}\n\n");
-		sb.append(messageBuilder);
-		return clazz.getSimpleName();
+		return null;
 	}
 
 	private String createEnum(StringBuilder sb, Class<?> clazz) {
@@ -587,55 +518,20 @@ public class ProtocolBuffersGenerator {
 		return clazz.getSimpleName();
 	}
 
-	@SuppressWarnings("unchecked")
-	private <T extends Annotation> T extractAnnotation(Method method, int parameterIndex, Class<T> annotationClass) {
-		Annotation[][] parameterAnnotations = method.getParameterAnnotations();
-		Annotation[] annotations = parameterAnnotations[parameterIndex];
-		for (Annotation annotation : annotations) {
-			if (annotationClass.isInstance(annotation)) {
-				return (T) annotation;
-			}
-		}
-		return null;
-	}
-	
-	private void createRequestMessage(StringBuilder builder, Method method, String messageName) {
+	private void createRequestMessage(StringBuilder builder, SMethod method, String messageName) {
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");
 		int counter = 1;
-		int parameterCounter = 0;
-		for (Class<?> parameterType : method.getParameterTypes()) {
+		for (SParameter sParameter : method.getParameters()) {
 			messageBuilder.append("\t");
-			WebParam annotation = extractAnnotation(method, parameterCounter, WebParam.class);
-			String paramName = "unknown";
-			if (annotation != null) {
-				paramName = annotation.name();
-			}
-			boolean aggregate = parameterType.isAssignableFrom(List.class) || parameterType.isAssignableFrom(Set.class);
-			if (aggregate) {
+			if (sParameter.isAggregate()) {
 				messageBuilder.append("repeated ");
 			} else {
 				messageBuilder.append("optional ");
 			}
-			if (aggregate) {
-				parameterType = getGenericType(method, parameterCounter, parameterType);
-			}
-			messageBuilder.append(createMessage(builder, parameterType) + " " + paramName + " = " + (counter++) + ";\n");
-			parameterCounter++;
+			messageBuilder.append(createMessage(builder, sParameter.getType()) + " " + sParameter.getName() + " = " + (counter++) + ";\n");
 		}
 		messageBuilder.append("}\n\n");
 		builder.append(messageBuilder);
-	}
-
-	private Class<?> getGenericType(Method method, int parameterCounter, Class<?> parameterType) {
-		Type genericReturnType = method.getGenericParameterTypes()[parameterCounter];
-		if (genericReturnType instanceof ParameterizedType) {
-			ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
-			Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
-			parameterType = ((Class<?>)type2);
-		} else if (genericReturnType instanceof Class<?>) {
-			parameterType = (Class<?>) genericReturnType;
-		}
-		return parameterType;
 	}
 }
