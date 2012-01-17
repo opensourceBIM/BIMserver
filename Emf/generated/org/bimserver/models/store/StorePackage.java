@@ -1443,13 +1443,22 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER__SETTINGS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Ifc Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__IFC_ENGINE = 9;
+
+	/**
 	 * The number of structural features of the '<em>Serializer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_FEATURE_COUNT = 9;
+	int SERIALIZER_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectIDMImpl <em>Object IDM</em>}' class.
@@ -1544,13 +1553,40 @@ public interface StorePackage extends EPackage {
 	int IFC_ENGINE__ACTIVE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE__CLASS_NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE__ENABLED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE__SERIALIZERS = 4;
+
+	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE__SETTINGS = 2;
+	int IFC_ENGINE__SETTINGS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Ifc Engine</em>' class.
@@ -1559,7 +1595,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_FEATURE_COUNT = 3;
+	int IFC_ENGINE_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginImpl <em>Plugin</em>}' class.
@@ -3292,6 +3328,43 @@ public interface StorePackage extends EPackage {
 	int VERSION_FEATURE_COUNT = 7;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl <em>Ifc Engine Plugin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEnginePluginDescriptor()
+	 * @generated
+	 */
+	int IFC_ENGINE_PLUGIN_DESCRIPTOR = 52;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Ifc Engine Plugin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3299,7 +3372,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 52;
+	int USER_TYPE = 53;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -3309,7 +3382,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 53;
+	int CHECKIN_STATE = 54;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -3319,7 +3392,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 54;
+	int SI_PREFIX = 55;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -3329,7 +3402,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 55;
+	int OBJECT_STATE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -3339,7 +3412,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 56;
+	int MERGE_IDENTIFIER = 57;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
@@ -3349,7 +3422,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 57;
+	int COMPARE_IDENTIFIER = 58;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -3359,7 +3432,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 58;
+	int COMPARE_TYPE = 59;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -3369,7 +3442,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 59;
+	int ACTION_STATE = 60;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -3379,7 +3452,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 60;
+	int SERVER_STATE = 61;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -3389,7 +3462,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 61;
+	int DATA_HANDLER = 62;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -4788,6 +4861,17 @@ public interface StorePackage extends EPackage {
 	EReference getSerializer_Settings();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Serializer#getIfcEngine <em>Ifc Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ifc Engine</em>'.
+	 * @see org.bimserver.models.store.Serializer#getIfcEngine()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EReference getSerializer_IfcEngine();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectIDM <em>Object IDM</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4883,6 +4967,39 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIfcEngine_Active();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.bimserver.models.store.IfcEngine#getClassName()
+	 * @see #getIfcEngine()
+	 * @generated
+	 */
+	EAttribute getIfcEngine_ClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.IfcEngine#isEnabled()
+	 * @see #getIfcEngine()
+	 * @generated
+	 */
+	EAttribute getIfcEngine_Enabled();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.IfcEngine#getSerializers <em>Serializers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Serializers</em>'.
+	 * @see org.bimserver.models.store.IfcEngine#getSerializers()
+	 * @see #getIfcEngine()
+	 * @generated
+	 */
+	EReference getIfcEngine_Serializers();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.IfcEngine#getSettings <em>Settings</em>}'.
@@ -6354,6 +6471,38 @@ public interface StorePackage extends EPackage {
 	EAttribute getVersion_SupportEmail();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.IfcEnginePluginDescriptor <em>Ifc Engine Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ifc Engine Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.IfcEnginePluginDescriptor
+	 * @generated
+	 */
+	EClass getIfcEnginePluginDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEnginePluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Class Name</em>'.
+	 * @see org.bimserver.models.store.IfcEnginePluginDescriptor#getPluginClassName()
+	 * @see #getIfcEnginePluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getIfcEnginePluginDescriptor_PluginClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEnginePluginDescriptor#getDefaultName <em>Default Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Name</em>'.
+	 * @see org.bimserver.models.store.IfcEnginePluginDescriptor#getDefaultName()
+	 * @see #getIfcEnginePluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getIfcEnginePluginDescriptor_DefaultName();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7525,6 +7674,14 @@ public interface StorePackage extends EPackage {
 		EReference SERIALIZER__SETTINGS = eINSTANCE.getSerializer_Settings();
 
 		/**
+		 * The meta object literal for the '<em><b>Ifc Engine</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERIALIZER__IFC_ENGINE = eINSTANCE.getSerializer_IfcEngine();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectIDMImpl <em>Object IDM</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7599,6 +7756,30 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IFC_ENGINE__ACTIVE = eINSTANCE.getIfcEngine_Active();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IFC_ENGINE__CLASS_NAME = eINSTANCE.getIfcEngine_ClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IFC_ENGINE__ENABLED = eINSTANCE.getIfcEngine_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IFC_ENGINE__SERIALIZERS = eINSTANCE.getIfcEngine_Serializers();
 
 		/**
 		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
@@ -8771,6 +8952,32 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VERSION__SUPPORT_EMAIL = eINSTANCE.getVersion_SupportEmail();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl <em>Ifc Engine Plugin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEnginePluginDescriptor()
+		 * @generated
+		 */
+		EClass IFC_ENGINE_PLUGIN_DESCRIPTOR = eINSTANCE.getIfcEnginePluginDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IFC_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = eINSTANCE.getIfcEnginePluginDescriptor_PluginClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IFC_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = eINSTANCE.getIfcEnginePluginDescriptor_DefaultName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

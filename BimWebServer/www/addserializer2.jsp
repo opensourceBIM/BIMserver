@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
@@ -46,6 +47,11 @@
 		} catch (NumberFormatException e) {
 			serializer.setObjectIDMId(-1);			
 		}
+		try {
+			serializer.setIfcEngineId(Long.parseLong(request.getParameter("ifcEngine")));
+		} catch (NumberFormatException e) {
+			serializer.setIfcEngineId(-1);			
+		}
 		serializer.setClassName(request.getParameter("type"));
 		try {
 			service.addSerializer(serializer);
@@ -84,13 +90,26 @@
 	<td><%=type %></td>
 </tr>
 <tr>
-	<td><label for="objectIDM">Object IDMr</label></td>
+	<td><label for="objectIDM">Object IDM</label></td>
 	<td><select name="objectIDM" id="objectIDM">
 		<option value="[none]">[None]</option>
 <%
 	for (SObjectIDM objectIDM : service.getAllObjectIDMs(true)) {
 %>
 	<option value="<%=objectIDM.getOid()%>"<%=(request.getParameter("objectIDM") != null && request.getParameter("objectIDM").equals("" + objectIDM.getOid())) ? " selected=\"selected\"" : "" %>><%=objectIDM.getName()%></option>
+<%
+	}
+%>
+	</select></td>
+</tr>
+<tr>
+	<td><label for="ifcEngine">IFC Engine</label></td>
+	<td><select name="ifcEngine" id="ifcEngine">
+		<option value="[none]">[None]</option>
+<%
+	for (SIfcEngine ifcEngine : service.getAllIfcEngines(true)) {
+%>
+	<option value="<%=ifcEngine.getOid()%>"<%=(request.getParameter("ifcEngine") != null && request.getParameter("ifcEngine").equals("" + ifcEngine.getOid())) ? " selected=\"selected\"" : "" %>><%=ifcEngine.getName()%></option>
 <%
 	}
 %>

@@ -17,6 +17,7 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getIfcEngine <em>Ifc Engine</em>}</li>
  * </ul>
  * </p>
  *
@@ -234,6 +236,24 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 */
 	public void setSettings(Settings newSettings) {
 		eSet(StorePackage.Literals.SERIALIZER__SETTINGS, newSettings);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcEngine getIfcEngine() {
+		return (IfcEngine) eGet(StorePackage.Literals.SERIALIZER__IFC_ENGINE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIfcEngine(IfcEngine newIfcEngine) {
+		eSet(StorePackage.Literals.SERIALIZER__IFC_ENGINE, newIfcEngine);
 	}
 
 } //SerializerImpl

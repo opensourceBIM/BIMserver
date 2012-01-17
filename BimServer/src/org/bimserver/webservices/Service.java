@@ -54,6 +54,7 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
+import org.bimserver.database.actions.AddIfcEngineDatabaseAction;
 import org.bimserver.database.actions.AddObjectIDMDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddSerializerDatabaseAction;
@@ -69,6 +70,7 @@ import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.actions.CommitTransactionDatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteDeserializerDatabaseAction;
+import org.bimserver.database.actions.DeleteIfcEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
@@ -79,6 +81,7 @@ import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
 import org.bimserver.database.actions.GetAllDeserializersDatabaseAction;
+import org.bimserver.database.actions.GetAllIfcEnginesDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllObjectIDMsDatabaseAction;
@@ -100,6 +103,8 @@ import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
+import org.bimserver.database.actions.GetIfcEngineByIdDatabaseAction;
+import org.bimserver.database.actions.GetIfcEngineByNameDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
@@ -123,6 +128,7 @@ import org.bimserver.database.actions.UndeleteUserDatabaseAction;
 import org.bimserver.database.actions.UpdateClashDetectionSettingsDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
+import org.bimserver.database.actions.UpdateIfcEngineDatabaseAction;
 import org.bimserver.database.actions.UpdateObjectIDMDatabaseAction;
 import org.bimserver.database.actions.UpdateProjectDatabaseAction;
 import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
@@ -152,6 +158,8 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
+import org.bimserver.interfaces.objects.SIfcEngine;
+import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -189,6 +197,7 @@ import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -2478,6 +2487,99 @@ public class Service implements ServiceInterface {
 		} catch (IOException e) {
 			LOGGER.error("", e);
 			throw new ServerException(e);
+		}
+	}
+
+	@Override
+	public List<SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return bimServer.getEmfSerializerFactory().getAllIfcEnginePluginDescriptors();
+	}
+
+	@Override
+	public List<SIfcEngine> getAllIfcEngines(Boolean onlyEnabled) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			List<SIfcEngine> ifcEngines = converter.convertToSListIfcEngine(session.executeAction(new GetAllIfcEnginesDatabaseAction(session, accessMethod, bimServer,
+					onlyEnabled), DEADLOCK_RETRIES));
+			Collections.sort(ifcEngines, new SIfcEngineComparator());
+			return ifcEngines;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public void updateIfcEngine(SIfcEngine ifcEngine) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
+			session.executeAndCommitAction(new UpdateIfcEngineDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void deleteIfcEngine(Long iid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			BimDatabaseAction<Void> action = new DeleteIfcEngineDatabaseAction(session, accessMethod, iid);
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SIfcEngine getIfcEngineByName(String name) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			return converter.convertToSObject(session.executeAction(new GetIfcEngineByNameDatabaseAction(session, accessMethod, name), DEADLOCK_RETRIES));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SIfcEngine getIfcEngineById(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			return converter.convertToSObject(session.executeAction(new GetIfcEngineByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public void addIfcEngine(SIfcEngine ifcEngine) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
+			session.executeAndCommitAction(new AddIfcEngineDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
 		}
 	}
 }

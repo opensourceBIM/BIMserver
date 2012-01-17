@@ -73,6 +73,9 @@ public class SSerializer implements SBase
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
 		}
+		if (sField.getName().equals("ifcEngineId")) {
+			return getIfcEngineId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -115,6 +118,10 @@ public class SSerializer implements SBase
 			setSettingsId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("ifcEngineId")) {
+			setIfcEngineId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -131,6 +138,7 @@ public class SSerializer implements SBase
 	private boolean defaultSerializer;
 	private long objectIDMId;
 	private long settingsId;
+	private long ifcEngineId;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -194,6 +202,14 @@ public class SSerializer implements SBase
 
 	public void setSettingsId(long settingsId) {
 		this.settingsId = settingsId;
+	}
+	
+	public long getIfcEngineId() {
+		return ifcEngineId;
+	}
+
+	public void setIfcEngineId(long ifcEngineId) {
+		this.ifcEngineId = ifcEngineId;
 	}
 	
 	@Override

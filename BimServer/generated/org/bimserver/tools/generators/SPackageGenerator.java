@@ -20,11 +20,11 @@ public class SPackageGenerator
   protected final String TEXT_1 = "package org.bimserver.shared.meta;";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL + NL + "import java.util.*;" + NL + "import org.bimserver.shared.meta.SClass;" + NL + "" + NL + "public class SPackage {";
+  protected final String TEXT_4 = NL + NL + "import java.util.*;" + NL + "import org.bimserver.shared.meta.SClass;" + NL + "import org.slf4j.Logger;" + NL + "import org.slf4j.LoggerFactory;" + NL + "" + NL + "public class SPackage {" + NL + "\tprivate static final Logger LOGGER = LoggerFactory.getLogger(SPackage.class);";
   protected final String TEXT_5 = NL + NL + "\tprivate static final SPackage sPackage = new SPackage();" + NL + "\tprivate final Map<String, SClass> sClasses = new HashMap<String, SClass>();" + NL + "" + NL + "\tstatic {" + NL + "\t\tgetInstance().init();" + NL + "\t}" + NL + "" + NL + "\tprivate void init() {" + NL + "\t\t\ttry {" + NL + "\t";
   protected final String TEXT_6 = NL + "\t\tClass.forName(\"org.bimserver.interfaces.objects.S";
   protected final String TEXT_7 = "\");";
-  protected final String TEXT_8 = NL + "\t\t} catch (ClassNotFoundException e) {" + NL + "\t\t\te.printStackTrace();" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\tpublic static SPackage getInstance() {" + NL + "\t\treturn sPackage;" + NL + "\t}" + NL + "" + NL + "\tpublic void addSClass(SClass sClass) {" + NL + "\t\tsClasses.put(sClass.getName(), sClass);" + NL + "\t}" + NL + "" + NL + "\tpublic SClass getSClass(String name) {" + NL + "\t\treturn sClasses.get(name);" + NL + "\t}" + NL + "}";
+  protected final String TEXT_8 = NL + "\t\t} catch (ClassNotFoundException e) {" + NL + "\t\t\tLOGGER.error(\"\", e);" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\tpublic static SPackage getInstance() {" + NL + "\t\treturn sPackage;" + NL + "\t}" + NL + "" + NL + "\tpublic void addSClass(SClass sClass) {" + NL + "\t\tsClasses.put(sClass.getName(), sClass);" + NL + "\t}" + NL + "" + NL + "\tpublic SClass getSClass(String name) {" + NL + "\t\treturn sClasses.get(name);" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {

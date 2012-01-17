@@ -100,15 +100,15 @@ public class ColladaSerializer extends EmfSerializer {
 	private IfcEngineGeometry geometry;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
+		this.ifcEngine = ifcEngine;
+		super.init(model, projectInfo, pluginManager, ifcEngine);
 		lengthUnitPrefix = getLengthUnitPrefix(model);
 		this.surfaceStyleIds = new ArrayList<String>();
 
 		try {
-			ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
 			EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
-			serializer.init(model, getProjectInfo(), getPluginManager());
+			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 			ifcEngineModel.setPostProcessing(true);
 			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());

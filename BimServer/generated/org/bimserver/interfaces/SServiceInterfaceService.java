@@ -2,6 +2,8 @@ package org.bimserver.interfaces;
 
 
 import org.bimserver.shared.meta.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -22,6 +24,7 @@ import org.bimserver.shared.meta.*;
 
 
 public class SServiceInterfaceService extends SService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SServiceInterfaceService.class);
 
 	public SServiceInterfaceService(Class<?> cl) {
 		super(cl);
@@ -90,8 +93,9 @@ public class SServiceInterfaceService extends SService {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServerState")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServerInfo")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SVersion")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor")));
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

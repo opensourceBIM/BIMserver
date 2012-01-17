@@ -52,6 +52,8 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
+import org.bimserver.interfaces.objects.SIfcEngine;
+import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -1323,6 +1325,16 @@ public interface ServiceInterface {
 	List<SSerializer> getAllSerializers(
 			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled IFC engines
+	 * @return A list of IfcEngines
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllIfcEngines")
+	List<SIfcEngine> getAllIfcEngines(
+			@WebParam(name = "onlyEnabled", partName = "getAllIfcEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+
 	/**
 	 * @param oid ObjectID of the Serializer
 	 * @return Serializer
@@ -1332,6 +1344,15 @@ public interface ServiceInterface {
 	SSerializer getSerializerById(
 			@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServerException, UserException;
 	
+	/**
+	 * @param oid ObjectID of the Serializer
+	 * @return Serializer
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getIfcEngineById")
+	SIfcEngine getIfcEngineById(
+			@WebParam(name = "oid", partName = "getIfcEngineById.oid") Long oid) throws ServerException, UserException;
+
 	/**
 	 * @param oid ObjectID of the Deserializer
 	 * @return Deserializer
@@ -1350,6 +1371,14 @@ public interface ServiceInterface {
 			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializer serializer) throws ServerException, UserException;
 	
 	/**
+	 * @param ifcEngine IfcEngine to add
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addIfcEngine")
+	void addIfcEngine(
+			@WebParam(name = "ifcEngine", partName = "addIfcEngine.ifcEngine") SIfcEngine ifcEngine) throws ServerException, UserException;
+
+	/**
 	 * @param deserializer Deserializer to add
 	 * @throws ServerException, UserException
 	 */
@@ -1364,7 +1393,15 @@ public interface ServiceInterface {
 	@WebMethod(action = "updateSerializer")
 	void updateSerializer(
 			@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializer serializer) throws ServerException, UserException;
-	
+
+	/**
+	 * @param ifcEngine IfcEngine to update
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "updateIfcEngine")
+	void updateIfcEngine(
+			@WebParam(name = "ifcEngine", partName = "updateIfcEngine.ifcEngine") SIfcEngine ifcEngine) throws ServerException, UserException;
+
 	/**
 	 * @param deserializer Deserializer to update
 	 * @throws ServerException, UserException
@@ -1422,6 +1459,14 @@ public interface ServiceInterface {
 	@WebMethod(action = "deleteSerializer")
 	void deleteSerializer(
 			@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServerException, UserException;
+
+	/**
+	 * @param iid ObjectID of the IfcEngine to delete
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "deleteIfcEngine")
+	void deleteIfcEngine(
+			@WebParam(name = "iid", partName = "deleteIfcEngine.iid") Long iid) throws ServerException, UserException;
 	
 	/**
 	 * @param sid ObjectID of the Deserializer to delete
@@ -1435,8 +1480,15 @@ public interface ServiceInterface {
 	 * @return List of all SerializerPluginDescriptors
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getAllSerializerClassNames")
+	@WebMethod(action = "getAllSerializerPluginDescriptors")
 	List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServerException, UserException;
+
+	/**
+	 * @return List of all SerializerPluginDescriptors
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllIfcEnginePluginDescriptors")
+	List<SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return List of all DeserializerPluginDescriptors
@@ -1460,6 +1512,15 @@ public interface ServiceInterface {
 	@WebMethod(action = "getSerializerByName")
 	SSerializer getSerializerByName(
 			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
+
+	/**
+	 * @param name Name of the IfcEngine
+	 * @return IfcEngine
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getIfcEngineByName")
+	SIfcEngine getIfcEngineByName(
+			@WebParam(name = "serializerName", partName = "getIfcEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param objectIDMName Name of the ObjectIDM

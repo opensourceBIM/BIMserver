@@ -38,6 +38,14 @@ public class Step0007 extends Migration {
 
 		schema.createEAttribute(ifcEngineClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(ifcEngineClass, "active", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(ifcEngineClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(ifcEngineClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		EReference ifcEngineSerializersReference = schema.createEReference(ifcEngineClass, "serializers", schema.getEClass("store", "Serializer"), Multiplicity.MANY);
+		EReference serializerIfcEngineReference = schema.createEReference(schema.getEClass("store", "Serializer"), "ifcEngine", ifcEngineClass, Multiplicity.SINGLE);
+		
+		serializerIfcEngineReference.setEOpposite(ifcEngineSerializersReference);
+		ifcEngineSerializersReference.setEOpposite(serializerIfcEngineReference);
+		
 		EReference ifcEngineSettings = schema.createEReference(ifcEngineClass, "settings", settingsClass, Multiplicity.SINGLE);
 
 		EReference settingsIfcEngines = schema.createEReference(settingsClass, "ifcEngines", ifcEngineClass, Multiplicity.MANY);

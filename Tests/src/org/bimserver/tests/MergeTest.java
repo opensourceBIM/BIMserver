@@ -62,7 +62,7 @@ public class MergeTest {
 			merged.checkDoubleOidsPlusReferences();
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();
-			serializer.init(merged, null, null);
+			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine());
 			serializer.writeToFile(new File("merged.ifc"));
 		} catch (DeserializationException e) {
 			e.printStackTrace();

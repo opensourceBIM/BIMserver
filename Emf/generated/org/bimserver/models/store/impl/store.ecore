@@ -217,6 +217,8 @@
         eOpposite="#//ObjectIDM/serializers"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//Settings"
         eOpposite="#//Settings/serializers"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngine" eType="#//IfcEngine"
+        eOpposite="#//IfcEngine/serializers"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectIDM">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -234,6 +236,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcEngine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
+        eType="#//Serializer" eOpposite="#//Serializer/ifcEngine"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//Settings"
         eOpposite="#//Settings/ifcEngines"/>
   </eClassifiers>
@@ -462,5 +468,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="downloadUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportEmail" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -17,6 +17,7 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +29,9 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.IfcEngine#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcEngine#isActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.IfcEngine#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.IfcEngine#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.IfcEngine#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcEngine#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -89,6 +93,76 @@ public interface IfcEngine extends IdEObject {
 	 * @generated
 	 */
 	void setActive(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Class Name</em>' attribute.
+	 * @see #setClassName(String)
+	 * @see org.bimserver.models.store.StorePackage#getIfcEngine_ClassName()
+	 * @model
+	 * @generated
+	 */
+	String getClassName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.IfcEngine#getClassName <em>Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class Name</em>' attribute.
+	 * @see #getClassName()
+	 * @generated
+	 */
+	void setClassName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enabled</em>' attribute.
+	 * @see #setEnabled(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getIfcEngine_Enabled()
+	 * @model
+	 * @generated
+	 */
+	boolean isEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.IfcEngine#isEnabled <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enabled</em>' attribute.
+	 * @see #isEnabled()
+	 * @generated
+	 */
+	void setEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.Serializer}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Serializer#getIfcEngine <em>Ifc Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Serializers</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Serializers</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getIfcEngine_Serializers()
+	 * @see org.bimserver.models.store.Serializer#getIfcEngine
+	 * @model opposite="ifcEngine"
+	 * @generated
+	 */
+	EList<Serializer> getSerializers();
 
 	/**
 	 * Returns the value of the '<em><b>Settings</b></em>' reference.

@@ -18,8 +18,10 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -31,6 +33,9 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#isActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -101,6 +106,52 @@ public class IfcEngineImpl extends IdEObjectImpl implements IfcEngine {
 	 */
 	public void setActive(boolean newActive) {
 		eSet(StorePackage.Literals.IFC_ENGINE__ACTIVE, newActive);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClassName() {
+		return (String) eGet(StorePackage.Literals.IFC_ENGINE__CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClassName(String newClassName) {
+		eSet(StorePackage.Literals.IFC_ENGINE__CLASS_NAME, newClassName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEnabled() {
+		return (Boolean) eGet(StorePackage.Literals.IFC_ENGINE__ENABLED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnabled(boolean newEnabled) {
+		eSet(StorePackage.Literals.IFC_ENGINE__ENABLED, newEnabled);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Serializer> getSerializers() {
+		return (EList<Serializer>) eGet(StorePackage.Literals.IFC_ENGINE__SERIALIZERS, true);
 	}
 
 	/**

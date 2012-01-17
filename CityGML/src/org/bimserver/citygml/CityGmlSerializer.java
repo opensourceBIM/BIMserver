@@ -126,8 +126,8 @@ public class CityGmlSerializer extends EmfSerializer {
 	// private org.citygml4j.jaxb.gml._3_1_1.ObjectFactory gmlObjectFactory;
 
 	@Override
-	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(ifcModel, projectInfo, pluginManager);
+	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
+		super.init(ifcModel, projectInfo, pluginManager, ifcEngine);
 		this.model = ifcModel;
 		ctx = new CityGMLContext();
 		citygml = new CityGMLFactory();
@@ -138,7 +138,7 @@ public class CityGmlSerializer extends EmfSerializer {
 		convertedObjects = new HashMap<EObject, AbstractCityObject>();
 
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
-		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
+		serializer.init(ifcModel, getProjectInfo(), getPluginManager(), ifcEngine);
 		try {
 			ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());

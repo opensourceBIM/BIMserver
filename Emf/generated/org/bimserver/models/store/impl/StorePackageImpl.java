@@ -421,6 +421,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass ifcEnginePluginDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -1749,6 +1756,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSerializer_IfcEngine() {
+		return (EReference) getSerializer().getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getObjectIDM() {
 		if (objectIDMEClass == null) {
 			objectIDMEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(16);
@@ -1836,8 +1852,35 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getIfcEngine_ClassName() {
+		return (EAttribute) getIfcEngine().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIfcEngine_Enabled() {
+		return (EAttribute) getIfcEngine().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfcEngine_Serializers() {
+		return (EReference) getIfcEngine().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getIfcEngine_Settings() {
-		return (EReference) getIfcEngine().getEStructuralFeatures().get(2);
+		return (EReference) getIfcEngine().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -3176,6 +3219,36 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getVersion_SupportEmail() {
 		return (EAttribute) getVersion().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIfcEnginePluginDescriptor() {
+		if (ifcEnginePluginDescriptorEClass == null) {
+			ifcEnginePluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(62);
+		}
+		return ifcEnginePluginDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIfcEnginePluginDescriptor_PluginClassName() {
+		return (EAttribute) getIfcEnginePluginDescriptor().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIfcEnginePluginDescriptor_DefaultName() {
+		return (EAttribute) getIfcEnginePluginDescriptor().getEStructuralFeatures().get(1);
 	}
 
 	/**

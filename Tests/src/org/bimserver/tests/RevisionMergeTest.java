@@ -53,7 +53,7 @@ public class RevisionMergeTest {
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();
-			serializer.init(merged, null, null);
+			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine());
 			serializer.writeToFile(new File("merged.ifc"));
 		} catch (DeserializationException e) {
 			e.printStackTrace();
