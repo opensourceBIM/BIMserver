@@ -261,10 +261,17 @@ public class Service implements ServiceInterface {
 				userDirIncoming.mkdir();
 			}
 			InputStream inputStream = null;
-			if (dataHandler.getName() == null || dataHandler.getName().trim().equals("")) {
+			String fileName = dataHandler.getName();
+			if (fileName == null || fileName.trim().equals("")) {
 				inputStream = dataHandler.getInputStream();
 			} else {
-				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, dataHandler.getName())));
+				if (fileName.contains("/")) {
+					fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
+				}
+				if (fileName.contains("\\")) {
+					fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+				}
+				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, fileName)));
 			}
 			try {
 				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerName);
@@ -276,7 +283,7 @@ public class Service implements ServiceInterface {
 				} catch (PluginException e) {
 					throw new UserException(e);
 				}
-				IfcModelInterface model = deserializer.read(inputStream, dataHandler.getName(), false, fileSize);
+				IfcModelInterface model = deserializer.read(inputStream, fileName, false, fileSize);
 				BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, poid, currentUoid, model, comment);
 				GetUserByUoidDatabaseAction getUserByUoidDatabaseAction = new GetUserByUoidDatabaseAction(session, accessMethod, currentUoid);
 				User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
