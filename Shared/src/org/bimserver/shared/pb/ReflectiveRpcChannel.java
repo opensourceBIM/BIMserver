@@ -135,7 +135,6 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 			return builder.build();
 		} catch (InvocationTargetException e) {
 			Builder errorMessage = response.newBuilderForType();
-			e.getTargetException().printStackTrace();
 			if (e.getTargetException() != null) {
 				errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
 			} else {

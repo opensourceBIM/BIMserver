@@ -18,8 +18,11 @@ import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Integer> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BranchToNewProjectDatabaseAction.class);
 	private final BimServer bimServer;
 	private final Long currentUoid;
 	private final Long roid;
@@ -64,7 +67,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Integer>
 		try {
 			bimServer.getLongActionManager().start(longAction);
 		} catch (CannotBeScheduledException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return longAction.getId();
 	}

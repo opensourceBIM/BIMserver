@@ -29,6 +29,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.shared.meta.SClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
 import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
 import com.google.protobuf.Descriptors;
@@ -40,6 +44,7 @@ import com.google.protobuf.Descriptors.MethodDescriptor;
 import com.google.protobuf.Descriptors.ServiceDescriptor;
 
 public class ProtocolBuffersMetaData {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersMetaData.class);
 
 	public static class ServiceDescriptorContainer {
 		private final Map<String, MethodDescriptorContainer> methodDescriptors = new HashMap<String, MethodDescriptorContainer>();
@@ -152,9 +157,9 @@ public class ProtocolBuffersMetaData {
 				return serviceDescriptor.getName();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DescriptorValidationException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

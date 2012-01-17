@@ -24,9 +24,12 @@ import java.io.InputStream;
 
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class EmfDeserializer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
 	public abstract void init(SchemaDefinition schema);
 
 	public abstract IfcModelInterface read(InputStream in, String filename, boolean setOids, long fileSize) throws DeserializeException;
@@ -35,7 +38,7 @@ public abstract class EmfDeserializer {
 		try {
 			return read(new FileInputStream(file), file.getName(), setOids, file.length());
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			return null;
 		}
 	}

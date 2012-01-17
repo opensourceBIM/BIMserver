@@ -37,9 +37,12 @@ import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CppIfcEnginePlugin implements IfcEnginePlugin {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CppIfcEnginePlugin.class);
 	private PluginManager pluginManager;
 	private boolean initialized = false;
 	private File nativeFolder;
@@ -77,15 +80,16 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 					if (nativeFolder.exists()) {
 						FileUtils.deleteDirectory(nativeFolder);
 					}
-					nativeFolder.mkdir();
-					IOUtils.copy(inputStream, new FileOutputStream(new File(nativeFolder, libraryName)));
+					FileUtils.forceMkdir(nativeFolder);
+					File file = new File(nativeFolder, libraryName);
+					IOUtils.copy(inputStream, new FileOutputStream(file));
 					initialized = true;
 				} catch (IOException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
-		} catch (PluginException e1) {
-			e1.printStackTrace();
+		} catch (PluginException e) {
+			LOGGER.error("", e);
 		}
 	}
 

@@ -86,14 +86,14 @@ public class CommandLine extends Thread {
 							LOGGER.info("Windows: " + windows.size());
 							LOGGER.info("Projects: " + projects.size());
 							LOGGER.info("Slabs: " + slabs.size());
-						} catch (UserException e1) {
-							e1.printStackTrace();
-						} catch (ServerException e1) {
-							e1.printStackTrace();
+						} catch (UserException e) {
+							LOGGER.error("", e);
+						} catch (ServerException e) {
+							LOGGER.error("", e);
 						} catch (BimDeadlockException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						} catch (BimDatabaseException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						} finally {
 							bimDatabaseSession.close();
 						}

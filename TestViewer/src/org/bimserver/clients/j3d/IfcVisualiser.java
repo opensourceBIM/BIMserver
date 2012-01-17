@@ -133,7 +133,7 @@ public class IfcVisualiser extends JFrame {
 		try {
 			new IfcVisualiser().start();
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -141,8 +141,8 @@ public class IfcVisualiser extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("haussmall.png")));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 		setSize(800, 600);
 		getContentPane().setBackground(Color.BLACK);
@@ -183,7 +183,7 @@ public class IfcVisualiser extends JFrame {
 					try {
 						Thread.sleep(25);
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 			};
@@ -205,9 +205,9 @@ public class IfcVisualiser extends JFrame {
 			pluginManager = LocalDevPluginLoader.createPluginManager();
 			objectIDM = pluginManager.requireObjectIDM();
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ObjectIDMException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		
 		createSceneGraph();
@@ -296,9 +296,9 @@ public class IfcVisualiser extends JFrame {
 //			deserializer.read(new File("../TestData/data/export1.ifc"));
 			model = deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), true);
 		} catch (DeserializationException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 
 		model.setObjectOids();

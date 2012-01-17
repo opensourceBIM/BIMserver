@@ -31,8 +31,11 @@ import java.util.Set;
 import javax.activation.DataHandler;
 
 import org.bimserver.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SClass {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SClass.class);
 	private final Map<String, SField> fields = new HashMap<String, SField>();
 	private final String name;
 	private final Class<?> instanceClass;
@@ -50,31 +53,33 @@ public class SClass {
 				method.invoke(null, this);
 			}
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (NoSuchMethodException e) {
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
 	public void init() {
 		for (Method method : instanceClass.getMethods()) {
-			if (method.getName().startsWith("get") && method.getName().length() > 3 && !method.getName().equals("getSClass")) {
-				String fieldName = StringUtils.firstLowerCase(method.getName().substring(3));
-				try {
-					if (instanceClass.getMethod("set" + StringUtils.firstUpperCase(fieldName), method.getReturnType()) != null) {
-						method.getGenericReturnType();
-						Class<?> genericType = getGenericType(method);
-						boolean aggregate = List.class.isAssignableFrom(method.getReturnType()) || Set.class.isAssignableFrom(method.getReturnType());
-						SField sField = new SField(fieldName, sService.getSType(method.getReturnType().getName()), genericType == null ? null : sService.getSType(genericType.getName()), aggregate);
-						addField(sField);
+			if (method.getDeclaringClass() == instanceClass) {
+				if (method.getName().startsWith("get") && method.getName().length() > 3 && !method.getName().equals("getSClass")) {
+					String fieldName = StringUtils.firstLowerCase(method.getName().substring(3));
+					try {
+						if (instanceClass.getMethod("set" + StringUtils.firstUpperCase(fieldName), method.getReturnType()) != null) {
+							method.getGenericReturnType();
+							Class<?> genericType = getGenericType(method);
+							boolean aggregate = List.class.isAssignableFrom(method.getReturnType()) || Set.class.isAssignableFrom(method.getReturnType());
+							SField sField = new SField(fieldName, sService.getSType(method.getReturnType().getName()), genericType == null ? null : sService.getSType(genericType.getName()), aggregate);
+							addField(sField);
+						}
+					} catch (SecurityException e) {
+					} catch (NoSuchMethodException e) {
 					}
-				} catch (SecurityException e) {
-				} catch (NoSuchMethodException e) {
 				}
 			}
 		}
@@ -127,9 +132,6 @@ public class SClass {
 					return sField;
 				}
 			}
-			if (getSuperClass() != null) {
-				return getSuperClass().getField(name);
-			}
 		}
 		return sField;
 	}
@@ -146,11 +148,11 @@ public class SClass {
 		try {
 			return (SBase) Class.forName(name).newInstance();
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

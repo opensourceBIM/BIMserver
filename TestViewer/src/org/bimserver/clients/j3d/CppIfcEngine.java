@@ -55,7 +55,7 @@ package org.bimserver.clients.j3d;
 //		try {
 //			ifcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_TC1.exp").getAbsoluteFile(), new File("../IfcEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null);
 //		} catch (IfcEngineException e) {
-//			e.printStackTrace();
+//			LOGGER.error("", e);
 //		}
 //	}	
 //}

@@ -72,8 +72,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 		try {
 			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
 			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("notification.desc"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 		notificationsClient = new SocketNotificationsClient();
 		try {
@@ -195,7 +195,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 				try {
 					getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
 				} catch (ServiceException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			} else {
 				registerConnectDisconnectListener(new ConnectDisconnectListener() {
@@ -208,7 +208,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 						try {
 							getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
 						} catch (ServiceException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						}
 					}
 				});
@@ -228,13 +228,13 @@ public class BimServerClient implements ConnectDisconnectListener {
 			IfcModelInterface model = deserializer.read(file.getInputStream(), "", true, 0);
 			return model;
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DeserializeException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -248,11 +248,11 @@ public class BimServerClient implements ConnectDisconnectListener {
 			SCheckinResult checkinResult = getServiceInterface().getCheckinState(checkinId);
 			return checkinResult.getRevisionId();
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (SerializerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return -1;
 	}

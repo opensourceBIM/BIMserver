@@ -308,11 +308,11 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		} catch (UnsupportedOperationException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

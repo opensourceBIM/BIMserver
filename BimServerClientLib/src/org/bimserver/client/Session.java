@@ -39,9 +39,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Session {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(Session.class);
 	private ServiceInterface serviceInterface;
 	private Set<IdEObject> newObjects = new HashSet<IdEObject>();
 
@@ -58,7 +61,7 @@ public class Session {
 			newObjects.add(eObject);
 			eObject.setOid(oid);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return (T) eObject;
 	}
@@ -67,7 +70,7 @@ public class Session {
 		try {
 			serviceInterface.startTransaction(pid);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -125,7 +128,7 @@ public class Session {
 			}
 			return serviceInterface.commitTransaction(comment);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return -1;
 	}
@@ -156,7 +159,7 @@ public class Session {
 				}
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

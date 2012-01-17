@@ -35,15 +35,19 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SendClashesEmailDatabaseAction.class);
 	private final SClashDetectionSettings sClashDetectionSettings;
 	private final long actingUoid;
 	private final long poid;
@@ -110,9 +114,9 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 				Transport.send(msg);
 			}
 		} catch (AddressException e) {
-			e.printStackTrace();
+			LOGGER.info("", e);
 		} catch (MessagingException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

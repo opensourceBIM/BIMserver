@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Licenser {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(Licenser.class);
 	private int same;
 	private int changed;
 	private int skipped;
@@ -59,7 +62,7 @@ public class Licenser {
 			newContent.append(" *****************************************************************************/");
 			return newContent.toString();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -108,7 +111,7 @@ public class Licenser {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

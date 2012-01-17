@@ -41,9 +41,12 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void> {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(RequestPasswordChangeDatabaseAction.class);
 	private final BimServer bimServer;
 	private final String username;
 
@@ -92,9 +95,9 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						msg.setSubject(subject.trim());
 						Transport.send(msg);
 					} catch (AddressException e) {
-						e.printStackTrace();
+						LOGGER.info("", e);
 					} catch (MessagingException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 			}

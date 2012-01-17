@@ -22,6 +22,7 @@ import java.io.File;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
+import org.bimserver.JarBimServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
@@ -38,8 +39,11 @@ import org.bimserver.servlets.ProgressServlet;
 import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.web.LoginManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JarBimWebServer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JarBimServer.class);
 	private BimServer bimServer;
 
 	public static void main(String[] args) {
@@ -90,15 +94,15 @@ public class JarBimWebServer {
 		 	embeddedWebServer.getContext().setResourceBase("www");
 			bimServer.start();
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {

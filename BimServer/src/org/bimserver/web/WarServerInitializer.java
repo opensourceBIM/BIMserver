@@ -32,9 +32,12 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WarServerInitializer implements ServletContextListener {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 	private BimServer bimServer;
 	
 	@Override
@@ -65,15 +68,15 @@ public class WarServerInitializer implements ServletContextListener {
 			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
 			bimServer.start();
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		servletContext.setAttribute("bimserver", bimServer);
 	}

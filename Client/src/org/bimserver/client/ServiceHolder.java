@@ -44,7 +44,7 @@ public class ServiceHolder {
 		try {
 			pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		bimServerClient = new BimServerClient(pluginManager);
 		this.address = address;

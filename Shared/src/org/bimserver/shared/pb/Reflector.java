@@ -35,6 +35,8 @@ import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Descriptors.Descriptor;
@@ -47,7 +49,7 @@ import com.google.protobuf.Message;
 import com.google.protobuf.ServiceException;
 
 public class Reflector extends ProtocolBuffersConverter {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(Reflector.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final Channel channel;
 	private final SService sService;
@@ -79,7 +81,7 @@ public class Reflector extends ProtocolBuffersConverter {
 					try {
 						IOUtils.copy(dataHandler.getInputStream(), baos);
 					} catch (IOException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 					builder.setField(field, ByteString.copyFrom(baos.toByteArray()));
 				} else {

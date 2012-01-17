@@ -36,9 +36,12 @@ import org.bimserver.BimServer;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.webservices.CustomInvoker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WebServiceServlet extends CXFNonSpringServlet {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebServiceServlet.class);
 	private static final long serialVersionUID = 3633266184012679113L;
 
 	@Override
@@ -63,7 +66,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 				try {
 					return new JAXBDataBinding(Token.class);
 				} catch (JAXBException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 				return null;
 			}

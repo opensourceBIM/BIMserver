@@ -1019,9 +1019,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		try {
 			lazyLoad(idEObject, new DummyObjectIDM());
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -1305,9 +1305,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			}
 			return classes;
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

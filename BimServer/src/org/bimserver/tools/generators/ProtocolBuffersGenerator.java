@@ -37,8 +37,11 @@ import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.utils.Licenser;
 import org.bimserver.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersGenerator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersGenerator.class);
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
 
 	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, File reflectorImplementationFile, boolean createBaseMessages, SService service, String... imports) {
@@ -80,7 +83,7 @@ public class ProtocolBuffersGenerator {
 			out.println("}");
 			out.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -111,7 +114,7 @@ public class ProtocolBuffersGenerator {
 							red = inputStream.read(buffer);
 						}
 					} catch (IOException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 			}).start();
@@ -128,15 +131,15 @@ public class ProtocolBuffersGenerator {
 							red = inputStream.read(buffer);
 						}
 					} catch (IOException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 			}).start();
 			exec.waitFor();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -285,7 +288,7 @@ public class ProtocolBuffersGenerator {
 			out.println("}");
 			out.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -363,8 +366,8 @@ public class ProtocolBuffersGenerator {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(protoFile);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+		} catch (FileNotFoundException e) {
+			LOGGER.error("", e);
 		}
 		try {
 			out.println("package org.bimserver.pb;\n");
@@ -403,10 +406,9 @@ public class ProtocolBuffersGenerator {
 		}
 		try {
 			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/" + protoFile.getName()));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
-
 	}
 
 	private void generateVoidMessage(StringBuilder builder) {

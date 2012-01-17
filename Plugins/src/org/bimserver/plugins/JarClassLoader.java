@@ -34,8 +34,11 @@ import java.util.jar.JarInputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JarClassLoader extends ClassLoader {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JarClassLoader.class);
 	private File jarFile;
 	private Map<String, byte[]> map;
 	private Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
@@ -74,7 +77,7 @@ public class JarClassLoader extends ClassLoader {
 			}
 			jarInputStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -98,7 +101,7 @@ public class JarClassLoader extends ClassLoader {
 					}
 				});
 			} catch (MalformedURLException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return null;

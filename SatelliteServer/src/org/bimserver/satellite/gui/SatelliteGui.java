@@ -29,10 +29,13 @@ import org.bimserver.satellite.activities.Activity;
 import org.bimserver.satellite.activities.ExploderActivity;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.utils.SwingUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SatelliteGui extends JFrame {
 
 	private static final long serialVersionUID = -5428454520760923784L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(SatelliteGui.class);
 	protected static final String APP_NAME = "BIMserver Satellite";
 	private SatelliteServer satelliteServer = new SatelliteServer();
 	private JButton connectDisconnectButton;
@@ -63,7 +66,7 @@ public class SatelliteGui extends JFrame {
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 				settings = (SatelliteSettings) unmarshaller.unmarshal(settingsFile);
 			} catch (JAXBException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		if (settings == null) {
@@ -131,7 +134,7 @@ public class SatelliteGui extends JFrame {
 			try {
 				connect(settings);
 			} catch (ConnectionException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
 			}
 		}

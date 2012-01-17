@@ -39,7 +39,7 @@ public class NewClassChange implements Change {
 		try {
 			database.createTable(getEClass(), databaseSession);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

@@ -20,12 +20,16 @@ import javax.swing.WindowConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import org.bimserver.plugins.PluginDescriptorWriter;
 import org.bimserver.satellite.SatelliteSettings;
 import org.bimserver.utils.AutoSelectTextField;
 import org.bimserver.utils.SpringUtilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConnectFrame extends JDialog {
 	private static final long serialVersionUID = -3385875607460570310L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConnectFrame.class);
 
 	public ConnectFrame(final SatelliteGui satelliteGui, SatelliteSettings settings) {
 		setIconImage(satelliteGui.getIconImage());
@@ -84,9 +88,9 @@ public class ConnectFrame extends JDialog {
 					Marshaller marshaller = jaxbContext.createMarshaller();
 					marshaller.marshal(settings, new File("settings.xml"));
 					setVisible(false);
-				} catch (Exception exception) {
-					exception.printStackTrace();
-					JOptionPane.showMessageDialog(satelliteGui, exception.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception ex) {
+					LOGGER.error("", ex);
+					JOptionPane.showMessageDialog(satelliteGui, ex.getMessage(), "Error connecting", JOptionPane.ERROR_MESSAGE);
 				}
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}});

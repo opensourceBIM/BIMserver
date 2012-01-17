@@ -26,9 +26,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,7 +54,7 @@ import org.slf4j.LoggerFactory;
 
 public class PluginManager {
 	private final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
-	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new HashMap<Class<? extends Plugin>, Set<PluginContext>>();
+	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<Class<? extends Plugin>, Set<PluginContext>>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
 	private File tempDir;
 	private final String baseClassPath;
@@ -141,7 +142,6 @@ public class PluginManager {
 				try {
 					loadPluginsFromJar(file);
 				} catch (PluginException e) {
-					e.printStackTrace();
 					LOGGER.error("", e);
 				}
 			}
@@ -373,7 +373,7 @@ public class PluginManager {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
 		}
 		if (!implementations.containsKey(interfaceClass)) {
-			implementations.put(interfaceClass, new HashSet<PluginContext>());
+			implementations.put(interfaceClass, new LinkedHashSet<PluginContext>());
 		}
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		PluginContext pluginContext = new PluginContext(this);
@@ -394,7 +394,6 @@ public class PluginManager {
 					}
 				} catch (Exception e) {
 					LOGGER.error("", e);
-					e.printStackTrace();
 				}
 			}
 		}

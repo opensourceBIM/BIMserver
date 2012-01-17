@@ -1079,7 +1079,7 @@
 				if (e.getCause() instanceof OutOfMemoryError) {
 					response.sendRedirect(getServletContext().getContextPath());
 				} else {
-					e.printStackTrace();
+					LoggerFactory.getLogger(JspHelper.class).error("", e);
 					out.println(e.getUserMessage());
 				}
 			} catch (Exception e) {

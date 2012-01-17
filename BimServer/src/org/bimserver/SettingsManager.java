@@ -27,6 +27,8 @@ import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
  * This class exists for 2 purposes
@@ -37,6 +39,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */ 
 public class SettingsManager {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SettingsManager.class);
 	private BimDatabase database;
 	private Settings settings;
 
@@ -63,9 +66,9 @@ public class SettingsManager {
 			session.store(settings);
 			session.commit();
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -83,9 +86,9 @@ public class SettingsManager {
 					}
 				}
 			} catch (BimDatabaseException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (BimDeadlockException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} finally {
 				session.close();
 			}

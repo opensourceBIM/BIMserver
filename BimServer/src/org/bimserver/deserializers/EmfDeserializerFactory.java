@@ -30,8 +30,11 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EmfDeserializerFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializerFactory.class);
 	private PluginManager pluginManager;
 	private BimDatabase bimDatabase;
 
@@ -54,11 +57,11 @@ public class EmfDeserializerFactory {
 				}
 			}
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PluginException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}

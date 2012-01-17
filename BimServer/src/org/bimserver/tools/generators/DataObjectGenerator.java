@@ -55,11 +55,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sleepycat.je.DatabaseException;
 
 public class DataObjectGenerator {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(DataObjectGenerator.class);
 	private static final String MODEL_PACKAGE = "org.bimserver.models.";
 	private final Schema schema;
 
@@ -259,7 +262,7 @@ public class DataObjectGenerator {
 				resource.save(openOutputStream, null);
 				openOutputStream.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return genModel.getGenPackages();
