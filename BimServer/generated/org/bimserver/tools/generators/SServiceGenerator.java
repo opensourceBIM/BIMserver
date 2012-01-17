@@ -17,15 +17,16 @@ public class SServiceGenerator
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "package org.bimserver.interfaces;" + NL;
-  protected final String TEXT_2 = NL + NL + "import org.bimserver.shared.meta.*;" + NL;
+  protected final String TEXT_2 = NL + NL + "import org.bimserver.shared.meta.*;" + NL + "import org.slf4j.Logger;" + NL + "import org.slf4j.LoggerFactory;" + NL;
   protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL + NL + "public class S";
-  protected final String TEXT_6 = "Service extends SService {" + NL + "" + NL + "\tpublic S";
-  protected final String TEXT_7 = "Service(Class<?> cl) {" + NL + "\t\tsuper(cl);" + NL + "\t}" + NL + "\t" + NL + "\t\tpublic void init() {" + NL + "\t\t\ttry {";
-  protected final String TEXT_8 = NL + "\t\taddType(new SClass(this, Class.forName(\"org.bimserver.interfaces.objects.S";
-  protected final String TEXT_9 = "\")));";
-  protected final String TEXT_10 = NL + "\t\t} catch (ClassNotFoundException e) {" + NL + "\t\t\te.printStackTrace();" + NL + "\t\t}" + NL + "\t}" + NL + "}";
+  protected final String TEXT_6 = "Service extends SService {" + NL + "\tprivate static final Logger LOGGER = LoggerFactory.getLogger(S";
+  protected final String TEXT_7 = "Service.class);" + NL + "" + NL + "\tpublic S";
+  protected final String TEXT_8 = "Service(Class<?> cl) {" + NL + "\t\tsuper(cl);" + NL + "\t}" + NL + "\t" + NL + "\t\tpublic void init() {" + NL + "\t\t\ttry {";
+  protected final String TEXT_9 = NL + "\t\taddType(new SClass(this, Class.forName(\"org.bimserver.interfaces.objects.S";
+  protected final String TEXT_10 = "\")));";
+  protected final String TEXT_11 = NL + "\t\t} catch (ClassNotFoundException e) {" + NL + "\t\t\tLOGGER.error(\"\", e);" + NL + "\t\t}" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {
@@ -63,18 +64,20 @@ EPackage ePackage = (EPackage)args[1];
     stringBuffer.append(TEXT_6);
     stringBuffer.append(cl.getSimpleName());
     stringBuffer.append(TEXT_7);
+    stringBuffer.append(cl.getSimpleName());
+    stringBuffer.append(TEXT_8);
     
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
 
-    stringBuffer.append(TEXT_8);
-    stringBuffer.append(eClassifier.getName());
     stringBuffer.append(TEXT_9);
+    stringBuffer.append(eClassifier.getName());
+    stringBuffer.append(TEXT_10);
     
 			}
 		}
 
-    stringBuffer.append(TEXT_10);
+    stringBuffer.append(TEXT_11);
     return stringBuffer.toString();
   }
 }

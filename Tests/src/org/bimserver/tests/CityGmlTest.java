@@ -42,7 +42,7 @@ public class CityGmlTest {
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile(), true);
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/gml", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();
-			serializer.init(model, null, pluginManager);
+			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
 			FileOutputStream fos = new FileOutputStream(new File("out.gml"));
 			serializer.writeToOutputStream(fos);
 			fos.close();

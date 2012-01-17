@@ -23,6 +23,7 @@ import java.util.Map;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
@@ -41,8 +42,8 @@ public abstract class IfcSerializer extends EmfSerializer {
 	private static final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine);
 	}
 
 	private static Map<EClassifier, String> initUpperCases() {

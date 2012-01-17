@@ -53,7 +53,7 @@ public class GuidHighlighter {
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();
 			try {
-				serializer.init(model, null, null);
+				serializer.init(model, null, null, pluginManager.requireIfcEngine().createIfcEngine());
 				serializer.writeToFile(outputFile);
 			} catch (SerializerException e) {
 				e.printStackTrace();

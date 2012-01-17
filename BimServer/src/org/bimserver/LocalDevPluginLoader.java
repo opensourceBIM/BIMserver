@@ -25,7 +25,6 @@ import org.bimserver.plugins.PluginManager;
 public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager) throws PluginException {
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcEngine"));
-		pluginManager.loadPluginsFromEclipseProject(new File("C:\\Users\\Ruben de Laat\\git\\COBie-plugins"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../SceneJS"));
@@ -34,6 +33,12 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedObjectIDM"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Report1Serializer"));
+		try {
+			pluginManager.loadPluginsFromEclipseProject(new File("C:\\Users\\Ruben de Laat\\git\\COBie-plugins"));
+			pluginManager.loadPluginsFromEclipseProject(new File("../IfcOpenShellPlugin"));
+		} catch (Exception e) {
+			// Ignore
+		}
 	}
 	
 	public static PluginManager createPluginManager() throws PluginException {

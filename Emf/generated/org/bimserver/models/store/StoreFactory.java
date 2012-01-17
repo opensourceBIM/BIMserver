@@ -504,6 +504,15 @@ public interface StoreFactory extends EFactory {
 	Version createVersion();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Engine Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Engine Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	IfcEnginePluginDescriptor createIfcEnginePluginDescriptor();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

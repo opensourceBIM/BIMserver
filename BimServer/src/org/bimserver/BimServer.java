@@ -359,14 +359,31 @@ public class BimServer {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getObjectIDM_Name(), new StringLiteral(name));
 			ObjectIDM found = session.querySingle(condition, ObjectIDM.class, false, null);
 			if (found == null) {
-				ObjectIDM ObjectIDM = StoreFactory.eINSTANCE.createObjectIDM();
-				ObjectIDM.setName(name);
-				ObjectIDM.setClassName(objectIDMPlugin.getClass().getName());
-				ObjectIDM.setEnabled(true);
-				defaultObjectIDM = ObjectIDM;
-				session.store(ObjectIDM);
+				ObjectIDM objectIDM = StoreFactory.eINSTANCE.createObjectIDM();
+				objectIDM.setName(name);
+				objectIDM.setClassName(objectIDMPlugin.getClass().getName());
+				objectIDM.setEnabled(true);
+				defaultObjectIDM = objectIDM;
+				session.store(objectIDM);
 			} else {
 				defaultObjectIDM = found;
+			}
+		}
+		IfcEngine defaultIfcEngine = null;
+		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
+			String name = ifcEnginePlugin.getDefaultIfcEngineName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
+			IfcEngine found = session.querySingle(condition, IfcEngine.class, false, null);
+			if (found == null) {
+				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
+				ifcEngine.setClassName(ifcEnginePlugin.getClass().getName());
+				ifcEngine.setName(name);
+				ifcEngine.setEnabled(true);
+				ifcEngine.setActive(false);
+				session.store(ifcEngine);
+				defaultIfcEngine = ifcEngine;
+			} else {
+				defaultIfcEngine = found;
 			}
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
@@ -382,6 +399,7 @@ public class BimServer {
 				serializer.setContentType(serializerPlugin.getDefaultContentType());
 				serializer.setExtension(serializerPlugin.getDefaultExtension());
 				serializer.setObjectIDM(defaultObjectIDM);
+				serializer.setIfcEngine(defaultIfcEngine);
 				session.store(serializer);
 			}
 		}
@@ -399,17 +417,7 @@ public class BimServer {
 			}
 		}
 		session.store(defaultObjectIDM);
-		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
-			String name = ifcEnginePlugin.getClass().getName();
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
-			Serializer found = session.querySingle(condition, Serializer.class, false, null);
-			if (found == null) {
-				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
-				ifcEngine.setName(name);
-				ifcEngine.setActive(false);
-				session.store(ifcEngine);
-			}
-		}
+		session.store(defaultIfcEngine);
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getClass().getName()));

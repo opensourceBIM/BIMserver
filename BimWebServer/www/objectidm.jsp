@@ -31,13 +31,14 @@
 		objectIDM.setName(name);
 		objectIDM.setClassName(className);
 		loginManager.getService().updateObjectIDM(objectIDM);
+		response.sendRedirect("settings.jsp");
 	} else {
 		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(id);
 		if (name == null) {
-	name = objectIDM.getName();
+			name = objectIDM.getName();
 		}
 		if (className == null) {
-	className = objectIDM.getClassName();
+			className = objectIDM.getClassName();
 		}
 	}
 %>

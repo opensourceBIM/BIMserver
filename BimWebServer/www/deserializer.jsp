@@ -36,6 +36,7 @@
 		deserializer.setDescription(description);
 		deserializer.setClassName(className);
 		loginManager.getService().updateDeserializer(deserializer);
+		response.sendRedirect("settings.jsp");
 	} else {
 		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = deserializer.getDescription();

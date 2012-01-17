@@ -16,6 +16,8 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -52,6 +54,15 @@ public class SIfcEngine implements SBase
 		if (sField.getName().equals("active")) {
 			return isActive();
 		}
+		if (sField.getName().equals("className")) {
+			return getClassName();
+		}
+		if (sField.getName().equals("enabled")) {
+			return isEnabled();
+		}
+		if (sField.getName().equals("serializers")) {
+			return getSerializers();
+		}
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
 		}
@@ -60,6 +71,7 @@ public class SIfcEngine implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -67,6 +79,18 @@ public class SIfcEngine implements SBase
 		}
 		if (sField.getName().equals("active")) {
 			setActive((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("className")) {
+			setClassName((String)val);
+			return;
+		}
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("serializers")) {
+			setSerializers((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("settingsId")) {
@@ -82,6 +106,9 @@ public class SIfcEngine implements SBase
 	
 	private java.lang.String name;
 	private boolean active;
+	private java.lang.String className;
+	private boolean enabled;
+	private List<Long> serializers = new ArrayList<Long>();
 	private long settingsId;
 	public java.lang.String getName() {
 		return name;
@@ -96,6 +123,27 @@ public class SIfcEngine implements SBase
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public java.lang.String getClassName() {
+		return className;
+	}
+
+	public void setClassName(java.lang.String className) {
+		this.className = className;
+	}
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	public List<Long> getSerializers() {
+		return serializers;
+	}
+
+	public void setSerializers(List<Long> serializers) {
+		this.serializers = serializers;
 	}
 	public long getSettingsId() {
 		return settingsId;

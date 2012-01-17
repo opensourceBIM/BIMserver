@@ -23,8 +23,11 @@ package org.bimserver.shared.meta;
 
 import java.util.*;
 import org.bimserver.shared.meta.SClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SPackage {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SPackage.class);
 <%
 	@SuppressWarnings("unchecked") Set<EPackage> ePackages = (Set<EPackage>)argument;
 %>

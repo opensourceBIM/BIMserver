@@ -19,8 +19,11 @@ package org.bimserver.shared.meta;
 
 import java.util.*;
 import org.bimserver.shared.meta.SClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SPackage {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SPackage.class);
 
 	private static final SPackage sPackage = new SPackage();
 	private final Map<String, SClass> sClasses = new HashMap<String, SClass>();
@@ -93,6 +96,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SServerState");
 		Class.forName("org.bimserver.interfaces.objects.SServerInfo");
 		Class.forName("org.bimserver.interfaces.objects.SVersion");
+		Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");
@@ -120,7 +124,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SPasswordChanged");
 		Class.forName("org.bimserver.interfaces.objects.SUserChanged");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

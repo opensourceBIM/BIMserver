@@ -27,6 +27,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.Project;
@@ -34,6 +35,8 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -76,8 +79,7 @@ public class EmfSerializerFactory {
 			if (found != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(found.getClassName(), true);
 				if (serializerPlugin != null) {
-					EmfSerializer serializer = serializerPlugin.createSerializer();
-					return serializer;
+					return serializerPlugin.createSerializer();
 				}
 			}
 		} catch (BimDatabaseException e) {
@@ -90,7 +92,7 @@ public class EmfSerializerFactory {
 		return null;
 	}
 	
-	public EmfSerializer create(Project project, User user, IfcModelInterface model, DownloadParameters downloadParameters) throws SerializerException {
+	public EmfSerializer create(Project project, User user, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
 		EmfSerializer serializer = get(downloadParameters.getSerializerName());
 		if (serializer != null) {
 			ProjectInfo projectInfo = new ProjectInfo();
@@ -101,7 +103,7 @@ public class EmfSerializerFactory {
 			projectInfo.setZ(project.getGeoTag().getZ());
 			projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
 			projectInfo.setAuthorName(user.getName());
-			serializer.init(model, projectInfo, pluginManager);
+			serializer.init(model, projectInfo, pluginManager, ifcEngine);
 		}
 		return serializer;
 	}
@@ -136,5 +138,16 @@ public class EmfSerializerFactory {
 			session.close();
 		}
 		return null;
+	}
+
+	public List<SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() {
+		List<SIfcEnginePluginDescriptor> descriptors = new ArrayList<SIfcEnginePluginDescriptor>();
+		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
+			SIfcEnginePluginDescriptor descriptor = new SIfcEnginePluginDescriptor();
+			descriptor.setDefaultName(ifcEnginePlugin.getDefaultIfcEngineName());
+			descriptor.setPluginClassName(ifcEnginePlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
 	}
 }

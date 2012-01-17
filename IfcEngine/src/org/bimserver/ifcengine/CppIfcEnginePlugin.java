@@ -75,7 +75,7 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
 			if (inputStream != null) {
 				File tmpFolder = new File(pluginManager.getTempDir(), "tmp");
-				nativeFolder = new File(tmpFolder, "ifcengine");
+				nativeFolder = new File(tmpFolder, "IfcEngineBonsma");
 				try {
 					if (nativeFolder.exists()) {
 						FileUtils.deleteDirectory(nativeFolder);
@@ -106,5 +106,10 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 	@Override
 	public boolean isInitialized() {
 		return initialized;
+	}
+
+	@Override
+	public String getDefaultIfcEngineName() {
+		return "IFC Engine Peter Bonsma";
 	}
 }

@@ -50,7 +50,7 @@ public class IfcXmlReadTest {
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 				EmfSerializer serializer = serializerPlugin.createSerializer();
-				serializer.init(model, null, pluginManager);
+				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
 				try {
 					serializer.writeToFile(outFile);
 				} catch (SerializerException e) {

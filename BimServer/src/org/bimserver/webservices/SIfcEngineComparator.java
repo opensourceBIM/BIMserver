@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.webservices;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -17,25 +17,14 @@ package org.bimserver.tests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import java.util.Comparator;
 
-public class IfcEngineTest {
-	public static void main(String[] args) {
-		new IfcEngineTest().start();
-	}
+import org.bimserver.interfaces.objects.SIfcEngine;
 
-	private void start() {
-		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
-			IfcEnginePlugin ifcEnginePlugin = pluginManager.requireIfcEngine();
-			IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine();
-			ifcEngine.close();
-		} catch (PluginException e) {
-			e.printStackTrace();
-		}
+public class SIfcEngineComparator implements Comparator<SIfcEngine> {
+
+	@Override
+	public int compare(SIfcEngine o1, SIfcEngine o2) {
+		return o1.getName().compareTo(o2.getName());
 	}
 }

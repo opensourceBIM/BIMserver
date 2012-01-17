@@ -35,6 +35,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#getIfcEngine <em>Ifc Engine</em>}</li>
  * </ul>
  * </p>
  *
@@ -281,5 +282,33 @@ public interface Serializer extends IdEObject {
 	 * @generated
 	 */
 	void setSettings(Settings value);
+
+	/**
+	 * Returns the value of the '<em><b>Ifc Engine</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.IfcEngine#getSerializers <em>Serializers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ifc Engine</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ifc Engine</em>' reference.
+	 * @see #setIfcEngine(IfcEngine)
+	 * @see org.bimserver.models.store.StorePackage#getSerializer_IfcEngine()
+	 * @see org.bimserver.models.store.IfcEngine#getSerializers
+	 * @model opposite="serializers"
+	 * @generated
+	 */
+	IfcEngine getIfcEngine();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getIfcEngine <em>Ifc Engine</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ifc Engine</em>' reference.
+	 * @see #getIfcEngine()
+	 * @generated
+	 */
+	void setIfcEngine(IfcEngine value);
 
 } // Serializer

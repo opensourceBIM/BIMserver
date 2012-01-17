@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinState;
@@ -235,6 +236,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createServerInfo();
 		case StorePackage.VERSION:
 			return (EObject) createVersion();
+		case StorePackage.IFC_ENGINE_PLUGIN_DESCRIPTOR:
+			return (EObject) createIfcEnginePluginDescriptor();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -824,6 +827,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Version createVersion() {
 		VersionImpl version = new VersionImpl();
 		return version;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcEnginePluginDescriptor createIfcEnginePluginDescriptor() {
+		IfcEnginePluginDescriptorImpl ifcEnginePluginDescriptor = new IfcEnginePluginDescriptorImpl();
+		return ifcEnginePluginDescriptor;
 	}
 
 	/**

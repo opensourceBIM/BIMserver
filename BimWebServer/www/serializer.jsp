@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
@@ -29,6 +30,7 @@
 	String description = "";
 	String name = "";
 	long objectIDMId = -1;
+	long ifcEngineId = -1;
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("update") != null) {
 		SSerializer serializer = loginManager.getService().getSerializerById(id);
@@ -38,13 +40,16 @@
 		extension = request.getParameter("extension");
 		description = request.getParameter("description");
 		objectIDMId = request.getParameter("objectIDM").equals("[none]") ? -1 : Long.parseLong(request.getParameter("objectIDM"));
+		ifcEngineId = request.getParameter("ifcEngine").equals("[none]") ? -1 : Long.parseLong(request.getParameter("ifcEngine"));
 		serializer.setName(name);
 		serializer.setContentType(contentType);
 		serializer.setExtension(extension);
 		serializer.setDescription(description);
 		serializer.setName(request.getParameter("name"));
 		serializer.setObjectIDMId(objectIDMId);
+		serializer.setIfcEngineId(ifcEngineId);
 		loginManager.getService().updateSerializer(serializer);
+		response.sendRedirect("settings.jsp");
 	} else {
 		SSerializer serializer = loginManager.getService().getSerializerById(id);
 		name = serializer.getName();
@@ -87,6 +92,19 @@
 	for (SObjectIDM objectIDM : service.getAllObjectIDMs(true)) {
 %>
 	<option value="<%=objectIDM.getOid()%>"<%=(objectIDMId == objectIDM.getOid() ? " selected=\"selected\"" : "") %>><%=objectIDM.getName()%></option>
+<%
+	}
+%>
+	</select></td>
+</tr>
+<tr>
+	<td><label for="ifcEngine">IFC Engine</label></td>
+	<td><select name="ifcEngine" id="ifcEngine">
+		<option value="[none]">[None]</option>
+<%
+	for (SIfcEngine ifcEngine : service.getAllIfcEngines(true)) {
+%>
+	<option value="<%=ifcEngine.getOid()%>"<%=(ifcEngineId == ifcEngine.getOid() ? " selected=\"selected\"" : "") %>><%=ifcEngine.getName()%></option>
 <%
 	}
 %>

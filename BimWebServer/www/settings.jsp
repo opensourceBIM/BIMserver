@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
@@ -27,33 +28,73 @@
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("disableSerializer")) {
-	SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
-	serializer.setEnabled(false);
-	loginManager.getService().updateSerializer(serializer);
+			SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
+			serializer.setEnabled(false);
+			loginManager.getService().updateSerializer(serializer);
 		} else if (action.equals("enableSerializer")) {
-	SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
-	serializer.setEnabled(true);
-	loginManager.getService().updateSerializer(serializer);
+			SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
+			serializer.setEnabled(true);
+			loginManager.getService().updateSerializer(serializer);
 		} else if (action.equals("disableDeserializer")) {
-	SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
-	deserializer.setEnabled(false);
-	loginManager.getService().updateDeserializer(deserializer);
+			SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+			deserializer.setEnabled(false);
+			loginManager.getService().updateDeserializer(deserializer);
 		} else if (action.equals("enableDeserializer")) {
-	SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
-	deserializer.setEnabled(true);
-	loginManager.getService().updateDeserializer(deserializer);
+			SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+			deserializer.setEnabled(true);
+			loginManager.getService().updateDeserializer(deserializer);
 		} else if (action.equals("disableObjectIDM")) {
-	SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
-	objectIDM.setEnabled(false);
-	loginManager.getService().updateObjectIDM(objectIDM);
+			SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
+			objectIDM.setEnabled(false);
+			loginManager.getService().updateObjectIDM(objectIDM);
 		} else if (action.equals("enableObjectIDM")) {
-	SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
-	objectIDM.setEnabled(true);
-	loginManager.getService().updateObjectIDM(objectIDM);
+			SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
+			objectIDM.setEnabled(true);
+			loginManager.getService().updateObjectIDM(objectIDM);
+		} else if (action.equals("disableIfcEngine")) {
+			SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
+			ifcEngine.setEnabled(false);
+			loginManager.getService().updateIfcEngine(ifcEngine);
+		} else if (action.equals("enableIfcEngine")) {
+			SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
+			ifcEngine.setEnabled(true);
+			loginManager.getService().updateIfcEngine(ifcEngine);
 		}
 	}
 %>
 <div class="tabber" id="settingstabber">
+<div class="tabbertab" id="ifcenginestab" title="IFC Engines">
+<a href="addifcengine.jsp">Add IfcEngine</a>
+<table class="formatted">
+<tr><th>Name</th><th>Classname</th><th>State</th><th>Actions</th></tr>
+<%
+	List<SIfcEngine> ifcEngines = service.getAllIfcEngines(true);
+	for (SIfcEngine ifcEngine : ifcEngines) {
+%>
+	<tr>
+		<td><a href="ifcengine.jsp?id=<%=ifcEngine.getOid()%>"><%=ifcEngine.getName() %></a></td>
+		<td><%=ifcEngine.getClassName() %></td>
+		<td class="<%=ifcEngine.isEnabled() ? "enabledIfcEngine" : "disabledIfcEngine" %>"> <%=ifcEngine.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td>
+		<%
+	if (ifcEngine.isEnabled()) {
+%>
+<a href="settings.jsp?action=disableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Disable</a>
+<%
+	} else {
+%>
+<a href="settings.jsp?action=enableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Enable</a>
+<%
+	}
+%>
+			<a href="deleteifcengine.jsp?ifid=<%=ifcEngine.getOid()%>">Delete</a>
+		</td>
+	</tr>
+<%
+	}
+%>
+</table>
+</div>
 <div class="tabbertab" id="ignorefilestab" title="Object IDMs">
 <a href="addobjectidm.jsp">Add ObjectIDM</a>
 <table class="formatted">
@@ -90,13 +131,17 @@
 <div class="tabbertab" id="serializerstab" title="Serializers">
 <a href="addserializer1.jsp">Add Serializer</a>
 <table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>Ignore file</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>Ignore file</th><th>IFC Engine</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
 		SObjectIDM objectIDM = null;
 		if (serializer.getObjectIDMId() != -1) {
-	objectIDM = service.getObjectIDMById(serializer.getObjectIDMId());
+			objectIDM = service.getObjectIDMById(serializer.getObjectIDMId());
+		}
+		SIfcEngine ifcEngine = null;
+		if (serializer.getIfcEngineId() != -1) {
+			ifcEngine = service.getIfcEngineById(serializer.getIfcEngineId());
 		}
 %>
 	<tr>
@@ -105,6 +150,7 @@
 		<td><%=serializer.getClassName() %></td>
 		<td><%=serializer.getContentType() %></td>
 		<td><%=objectIDM == null ? "none" : objectIDM.getName() %></td>
+		<td><%=ifcEngine == null ? "none" : ifcEngine.getName() %></td>
 		<td class="<%=serializer.isEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%

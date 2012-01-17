@@ -97,7 +97,7 @@ public class TestClientEmfModelCheckin {
 			
 			IfcModelInterface model = bimServerClient.getModel(checkinState.getRevisionId());
 			IfcStepSerializer serializer = new IfcStepSerializer();
-			serializer.init(model, null, bimServer.getPluginManager());
+			serializer.init(model, null, bimServer.getPluginManager(), null);
 			File output = new File("output");
 			if (!output.exists()) {
 				output.mkdir();

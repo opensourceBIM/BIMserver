@@ -1063,6 +1063,8 @@ public class SConverter {
 		result.setObjectIDMId(objectIDMVal == null ? -1 : objectIDMVal.getOid());
 		Settings settingsVal = input.getSettings();
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		IfcEngine ifcEngineVal = input.getIfcEngine();
+		result.setIfcEngineId(ifcEngineVal == null ? -1 : ifcEngineVal.getOid());
 		return result;
 	}
 
@@ -1081,6 +1083,7 @@ public class SConverter {
 		result.setDefaultSerializer(input.isDefaultSerializer());
 		result.setObjectIDM((ObjectIDM)session.get(StorePackage.eINSTANCE.getObjectIDM(), input.getObjectIDMId(), false, null));
 		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
+		result.setIfcEngine((IfcEngine)session.get(StorePackage.eINSTANCE.getIfcEngine(), input.getIfcEngineId(), false, null));
 		return result;
 	}
 
@@ -1201,6 +1204,13 @@ public class SConverter {
 		result.setOid(input.getOid());
 		result.setName(input.getName());
 		result.setActive(input.isActive());
+		result.setClassName(input.getClassName());
+		result.setEnabled(input.isEnabled());
+		List<Long> listserializers = new ArrayList<Long>();
+		for (Serializer v : input.getSerializers()) {
+			listserializers.add(v.getOid());
+		}
+		result.setSerializers(listserializers);
 		Settings settingsVal = input.getSettings();
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
 		return result;
@@ -1214,6 +1224,12 @@ public class SConverter {
 		result.setOid(input.getOid());
 		result.setName(input.getName());
 		result.setActive(input.isActive());
+		result.setClassName(input.getClassName());
+		result.setEnabled(input.isEnabled());
+		List<Serializer> listserializers = result.getSerializers();
+		for (long oid : input.getSerializers()) {
+			listserializers.add((Serializer)session.get(StorePackage.eINSTANCE.getSerializer(), oid, false, null));
+		}
 		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
 		return result;
 	}
@@ -1553,14 +1569,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ReferenceDataValue) {
-			return convertToSObject((ReferenceDataValue)input);
-		}
-		else if (input instanceof ListDataValue) {
+		if (input instanceof ListDataValue) {
 			return convertToSObject((ListDataValue)input);
 		}
 		else if (input instanceof SimpleDataValue) {
 			return convertToSObject((SimpleDataValue)input);
+		}
+		else if (input instanceof ReferenceDataValue) {
+			return convertToSObject((ReferenceDataValue)input);
 		}
 		SDataValue result = new SDataValue();
 		result.setOid(input.getOid());
@@ -2728,14 +2744,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ObjectRemoved) {
-			return convertToSObject((ObjectRemoved)input);
-		}
-		else if (input instanceof ObjectModified) {
+		if (input instanceof ObjectModified) {
 			return convertToSObject((ObjectModified)input);
 		}
 		else if (input instanceof ObjectAdded) {
 			return convertToSObject((ObjectAdded)input);
+		}
+		else if (input instanceof ObjectRemoved) {
+			return convertToSObject((ObjectRemoved)input);
 		}
 		SCompareItem result = new SCompareItem();
 		result.setOid(input.getOid());
@@ -3143,11 +3159,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof NewProjectNotification) {
-			return convertToSObject((NewProjectNotification)input);
-		}
-		else if (input instanceof NewRevisionNotification) {
+		if (input instanceof NewRevisionNotification) {
 			return convertToSObject((NewRevisionNotification)input);
+		}
+		else if (input instanceof NewProjectNotification) {
+			return convertToSObject((NewProjectNotification)input);
 		}
 		SNotification result = new SNotification();
 		result.setOid(input.getOid());
@@ -3513,6 +3529,61 @@ public class SConverter {
 		result.setSupportEmail(input.getSupportEmail());
 		return result;
 	}
+
+	public Set<SIfcEnginePluginDescriptor> convertToSSetIfcEnginePluginDescriptor(Collection<IfcEnginePluginDescriptor> input) {
+		Set<SIfcEnginePluginDescriptor> result = new HashSet<SIfcEnginePluginDescriptor>();
+		for (IfcEnginePluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<IfcEnginePluginDescriptor> convertFromSSetIfcEnginePluginDescriptor(Collection<SIfcEnginePluginDescriptor> input, BimDatabaseSession session) {
+		Set<IfcEnginePluginDescriptor> result = new HashSet<IfcEnginePluginDescriptor>();
+		for (SIfcEnginePluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SIfcEnginePluginDescriptor> convertToSListIfcEnginePluginDescriptor(Collection<IfcEnginePluginDescriptor> input) {
+		List<SIfcEnginePluginDescriptor> result = new ArrayList<SIfcEnginePluginDescriptor>();
+		for (IfcEnginePluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<IfcEnginePluginDescriptor> convertFromSListIfcEnginePluginDescriptor(Collection<SIfcEnginePluginDescriptor> input, BimDatabaseSession session) {
+		List<IfcEnginePluginDescriptor> result = new ArrayList<IfcEnginePluginDescriptor>();
+		for (SIfcEnginePluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SIfcEnginePluginDescriptor convertToSObject(IfcEnginePluginDescriptor input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SIfcEnginePluginDescriptor result = new SIfcEnginePluginDescriptor();
+		result.setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		return result;
+	}
+
+	public IfcEnginePluginDescriptor convertFromSObject(SIfcEnginePluginDescriptor input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		IfcEnginePluginDescriptor result = StoreFactory.eINSTANCE.createIfcEnginePluginDescriptor();
+		result.setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		return result;
+	}
 		public SAccessMethod convertToSObject(AccessMethod input) {
 			return SAccessMethod.values()[input.ordinal()];
 		}
@@ -3558,74 +3629,74 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof UserUndeleted) {
+		if (input instanceof UserChanged) {
+			return convertToSObject((UserChanged)input);
+		}
+		else if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof NewObjectIDMUploaded) {
+			return convertToSObject((NewObjectIDMUploaded)input);
+		}
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
+		}
+		else if (input instanceof UserAddedToProject) {
+			return convertToSObject((UserAddedToProject)input);
+		}
+		else if (input instanceof ClashDetectionSettingsUpdated) {
+			return convertToSObject((ClashDetectionSettingsUpdated)input);
+		}
+		else if (input instanceof NewUserAdded) {
+			return convertToSObject((NewUserAdded)input);
+		}
+		else if (input instanceof GeoTagUpdated) {
+			return convertToSObject((GeoTagUpdated)input);
+		}
+		else if (input instanceof ServerStarted) {
+			return convertToSObject((ServerStarted)input);
+		}
+		else if (input instanceof UserUndeleted) {
 			return convertToSObject((UserUndeleted)input);
 		}
 		else if (input instanceof ProjectDeleted) {
 			return convertToSObject((ProjectDeleted)input);
 		}
-		else if (input instanceof SettingsSaved) {
-			return convertToSObject((SettingsSaved)input);
-		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
-		}
-		else if (input instanceof RevisionBranched) {
-			return convertToSObject((RevisionBranched)input);
+		else if (input instanceof PasswordReset) {
+			return convertToSObject((PasswordReset)input);
 		}
 		else if (input instanceof NewRevisionAdded) {
 			return convertToSObject((NewRevisionAdded)input);
 		}
-		else if (input instanceof UserChanged) {
-			return convertToSObject((UserChanged)input);
-		}
-		else if (input instanceof NewUserAdded) {
-			return convertToSObject((NewUserAdded)input);
-		}
-		else if (input instanceof ProjectUndeleted) {
-			return convertToSObject((ProjectUndeleted)input);
-		}
-		else if (input instanceof NewProjectAdded) {
-			return convertToSObject((NewProjectAdded)input);
-		}
-		else if (input instanceof GeoTagUpdated) {
-			return convertToSObject((GeoTagUpdated)input);
-		}
-		else if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
-		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
-		}
-		else if (input instanceof UserAddedToProject) {
-			return convertToSObject((UserAddedToProject)input);
-		}
-		else if (input instanceof Download) {
-			return convertToSObject((Download)input);
-		}
-		else if (input instanceof NewObjectIDMUploaded) {
-			return convertToSObject((NewObjectIDMUploaded)input);
-		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof PasswordReset) {
-			return convertToSObject((PasswordReset)input);
-		}
-		else if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof ClashDetectionSettingsUpdated) {
-			return convertToSObject((ClashDetectionSettingsUpdated)input);
-		}
-		else if (input instanceof RevisionUpdated) {
-			return convertToSObject((RevisionUpdated)input);
+		else if (input instanceof SettingsSaved) {
+			return convertToSObject((SettingsSaved)input);
 		}
 		else if (input instanceof NewCheckoutAdded) {
 			return convertToSObject((NewCheckoutAdded)input);
 		}
-		else if (input instanceof ServerStarted) {
-			return convertToSObject((ServerStarted)input);
+		else if (input instanceof Download) {
+			return convertToSObject((Download)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
+		}
+		else if (input instanceof RevisionUpdated) {
+			return convertToSObject((RevisionUpdated)input);
+		}
+		else if (input instanceof ProjectUndeleted) {
+			return convertToSObject((ProjectUndeleted)input);
+		}
+		else if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
+		}
+		else if (input instanceof NewProjectAdded) {
+			return convertToSObject((NewProjectAdded)input);
+		}
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());
