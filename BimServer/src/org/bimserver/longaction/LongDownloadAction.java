@@ -83,9 +83,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 				}
 			}
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}

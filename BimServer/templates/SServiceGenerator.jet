@@ -48,7 +48,7 @@ public class S<%=cl.getSimpleName()%>Service extends SService {
 		}
 %>
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

@@ -25,9 +25,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EclipsePluginClassloader extends ClassLoader {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(EclipsePluginClassloader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 	private final File projectFolder;
 	private File classFolder;
@@ -45,7 +48,7 @@ public class EclipsePluginClassloader extends ClassLoader {
 			try {
 				return file.toURI().toURL();
 			} catch (MalformedURLException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return null;
@@ -67,7 +70,7 @@ public class EclipsePluginClassloader extends ClassLoader {
 					return definedClass;
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		throw new ClassNotFoundException(name);

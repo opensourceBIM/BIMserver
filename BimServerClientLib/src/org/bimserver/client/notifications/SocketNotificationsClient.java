@@ -74,8 +74,8 @@ public class SocketNotificationsClient extends NotificationsClient {
 			serverSocket = new ServerSocket();
 			serverSocket.bind(address);
 			start();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 	}
 }

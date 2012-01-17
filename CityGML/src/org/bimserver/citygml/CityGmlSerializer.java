@@ -167,8 +167,8 @@ public class CityGmlSerializer extends EmfSerializer {
 			JAXBBuilder builder = null;
 			try {
 				builder = ctx.createJAXBBuilder(getClass().getClassLoader());
-			} catch (JAXBException e1) {
-				e1.printStackTrace();
+			} catch (JAXBException e) {
+				LOGGER.error("", e);
 			}
 			for (IfcProject ifcProject : getModel().getAll(IfcProject.class)) {
 				for (IfcRelDecomposes ifcRelDecomposes : ifcProject.getIsDecomposedBy()) {
@@ -209,9 +209,9 @@ public class CityGmlSerializer extends EmfSerializer {
 				cityGmlWriter.close();
 				writer.flush();
 			} catch (CityGMLReadException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (CityGMLWriteException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 			setMode(Mode.FINISHED);
 			ifcEngine.close();

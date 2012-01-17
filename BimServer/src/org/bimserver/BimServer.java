@@ -188,9 +188,9 @@ public class BimServer {
 							}
 							session.commit();
 						} catch (BimDatabaseException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						} catch (BimDeadlockException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						} finally {
 							session.close();
 						}
@@ -198,7 +198,6 @@ public class BimServer {
 				});
 				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin());
 			} catch (Exception e) {
-				e.printStackTrace();
 				LOGGER.error("", e);
 			}
 
@@ -342,7 +341,6 @@ public class BimServer {
 			commandLine.start();
 			LOGGER.info("Done starting BIMserver");
 		} catch (Throwable e) {
-			e.printStackTrace();
 			serverInfoManager.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
 		}

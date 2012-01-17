@@ -16,10 +16,13 @@ import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JsonServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 186486233172374336L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonServlet.class);
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +61,7 @@ public class JsonServlet extends HttpServlet {
 				}
 			}
 		} catch (JSONException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

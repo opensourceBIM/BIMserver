@@ -24,8 +24,11 @@ import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginManager {
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginManager.class);
 	public static BimServerClientFactory bimServerClientFactory;
 	private BimServerClient bimServerClient;
 	private boolean loggedIn;
@@ -42,9 +45,9 @@ public class LoginManager {
 			bimServerClient = bimServerClientFactory.create(authenticationInfo, remoteAddress);
 			loggedIn = bimServerClient.isConnected();
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ConnectionException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return loggedIn;
 	}
@@ -53,7 +56,7 @@ public class LoginManager {
 		try {
 			bimServerClient.getServiceInterface().logout();
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		loggedIn = false;
 	}
@@ -67,9 +70,9 @@ public class LoginManager {
 			try {
 				bimServerClient = bimServerClientFactory.create(null, "unknown");
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (ConnectionException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return bimServerClient.getServiceInterface();

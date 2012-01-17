@@ -47,11 +47,11 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class IfcXmlDeserializer extends EmfDeserializer  {
+public class IfcXmlDeserializer extends EmfDeserializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcXmlDeserializer.class);
 	private final IfcModel model = new IfcModel();
-	
+
 	@Override
 	public IfcModelInterface read(InputStream inputStream, String filename, boolean setOids, long fileSize) throws DeserializeException {
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP"))) {
@@ -79,8 +79,8 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 				} else {
 					throw new DeserializeException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.error("", e);
 			}
 		} else {
 			return read(inputStream);
@@ -259,7 +259,7 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 							EClass eClass = (EClass) realType;
 							if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
 								IdEObject wrappedObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
-//								model.add(wrappedObject);
+								// model.add(wrappedObject);
 								EStructuralFeature wrappedValueFeature = eClass.getEStructuralFeature("wrappedValue");
 								wrappedObject.eSet(wrappedValueFeature, parsePrimitive(wrappedValueFeature.getEType(), text));
 								if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
@@ -316,6 +316,6 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 
 	@Override
 	public void init(SchemaDefinition schema) {
-		
+
 	}
 }

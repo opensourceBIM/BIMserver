@@ -56,7 +56,7 @@ public class VersionChecker {
 			Marshaller marshaller = jaxbContext.createMarshaller();
 			marshaller.marshal(version, new File("version.xml"));
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 	

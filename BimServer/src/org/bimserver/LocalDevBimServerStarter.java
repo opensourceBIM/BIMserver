@@ -26,8 +26,12 @@ import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LocalDevBimServerStarter {
+	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
+	
 	public static void main(String[] args) {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(new File("home"));
@@ -42,16 +46,16 @@ public class LocalDevBimServerStarter {
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin");
 			}
-		} catch (PluginException e1) {
-			e1.printStackTrace();
+		} catch (PluginException e) {
+			LOGGER.error("", e);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

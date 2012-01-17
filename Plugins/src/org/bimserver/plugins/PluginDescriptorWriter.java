@@ -24,7 +24,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PluginDescriptorWriter {
+	private static final Logger LOGGER = LoggerFactory.getLogger(PluginDescriptorWriter.class);
 	public static void main(String[] args) {
 		new PluginDescriptorWriter().start();
 	}
@@ -41,9 +45,9 @@ public class PluginDescriptorWriter {
 			Marshaller marshaller = jaxbContext.createMarshaller();
 			marshaller.marshal(pluginDescriptor, new FileOutputStream("test.xml"));
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} 
 	}
 }

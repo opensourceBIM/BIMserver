@@ -32,9 +32,12 @@ import org.bimserver.pb.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.pb.Reflector;
 import org.bimserver.shared.pb.SocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SetHttpCallbackUrlDatabaseAction extends BimDatabaseAction<Void> {
-
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(SetHttpCallbackUrlDatabaseAction.class);
 	private final long uoid;
 	private final String url;
 	private final long actingUoid;
@@ -68,7 +71,7 @@ public class SetHttpCallbackUrlDatabaseAction extends BimDatabaseAction<Void> {
 					channel.connect(address);
 					bimServer.getNotificationsManager().register(user, new NotificationInterfaceReflectorImpl(new Reflector(bimServer.getProtocolBuffersMetaData(), bimServer.getSService(), channel)));
 				} catch (IOException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		});

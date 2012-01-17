@@ -70,9 +70,9 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 			schemaDefinition = loadIfcSchema(schemaFile);
 			initialized = true;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

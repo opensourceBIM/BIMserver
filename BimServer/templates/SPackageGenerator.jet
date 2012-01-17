@@ -51,7 +51,7 @@ public class SPackage {
 	}
 %>
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

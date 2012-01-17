@@ -111,7 +111,7 @@ public class CodeMigrator {
 			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/notification.desc"));
 			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/notification.desc"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -126,7 +126,7 @@ public class CodeMigrator {
 			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/service.desc"));
 			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/service.desc"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

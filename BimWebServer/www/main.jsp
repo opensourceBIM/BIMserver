@@ -71,7 +71,6 @@ No projects<br/><br/>
 <%
 } catch (Exception e) {
 	LoggerFactory.getLogger(JspHelper.class).error("", e);
-	e.printStackTrace();
 }
 %>
 <%@ include file="footer.jsp" %>

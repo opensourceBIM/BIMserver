@@ -25,10 +25,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Charsets;
 
 public class StringUtils {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(StringUtils.class);
+	
 	public static StringBuilder stripEnd(StringBuilder sb, String needle) {
 		if (needle.length() > sb.length()) {
 			return sb;
@@ -129,9 +133,9 @@ public class StringUtils {
 			fis.close();
 			return sb.toString();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

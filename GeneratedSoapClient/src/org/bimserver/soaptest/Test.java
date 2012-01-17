@@ -16,8 +16,11 @@ import org.bimserver.generatedclient.ServerException_Exception;
 import org.bimserver.generatedclient.ServiceInterfaceService;
 import org.bimserver.generatedclient.Soap;
 import org.bimserver.generatedclient.UserException_Exception;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Test {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Test.class);
 	public static void main(String[] args) {
 		new Test().start();
 	}
@@ -54,12 +57,12 @@ public class Test {
 						}
 					}
 				}
-		} catch (MalformedURLException e1) {
-			e1.printStackTrace();
+		} catch (MalformedURLException e) {
+			LOGGER.error("", e);
 		} catch (UserException_Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException_Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

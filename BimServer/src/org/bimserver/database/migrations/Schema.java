@@ -210,7 +210,7 @@ public class Schema {
         try {
             resource.save(null);
         } catch (IOException e) {
-            e.printStackTrace();
+			LOGGER.error("", e);
         }
 	}
 
@@ -255,7 +255,7 @@ public class Schema {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
