@@ -47,11 +47,6 @@
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
-	<logger name="org.bimserver.ifcengine">
-		<level value="error" />
-		<appender-ref ref="ErrorConsole" />
-		<appender-ref ref="OutConsole" />
-	</logger>
 	<logger name="org.bimserver.ifcengine.jvm">
 		<level value="error" />
 		<appender-ref ref="ErrorConsole" />

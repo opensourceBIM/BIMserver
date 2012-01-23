@@ -29,6 +29,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.plugins.PluginException;
@@ -85,10 +86,16 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private Iterator<Long> iterator;
 	private UTF8PrintWriter out;
+	private SchemaDefinition schema;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, ifcEngine);
+		try {
+			schema = getPluginManager().requireSchemaDefinition();
+		} catch (PluginException e) {
+			throw new SerializerException(e);
+		}
 	}
 
 	@Override
@@ -235,6 +242,9 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void write(PrintWriter out, Long key, EObject object) throws SerializerException {
+		if (object instanceof IfcOwnerHistory) {
+			System.out.println();
+		}
 		EClass eClass = object.eClass();
 		out.print(DASH);
 		out.print(String.valueOf(key));
@@ -272,12 +282,6 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void writeEDataType(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
-		SchemaDefinition schema;
-		try {
-			schema = getPluginManager().requireSchemaDefinition();
-		} catch (PluginException e) {
-			throw new SerializerException(e);
-		}
 		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 		if (entityBN != null && entityBN.isDerived(feature.getName())) {
 			out.print(ASTERISK);
@@ -317,7 +321,7 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeObject(PrintWriter out, EObject object, EStructuralFeature feature) {
 		Object ref = object.eGet(feature);
-		if (ref == null) {
+		if (ref == null || !object.eIsSet(feature)) {
 			EClassifier type = feature.getEType();
 			if (type instanceof EClass) {
 				EStructuralFeature structuralFeature = ((EClass) type).getEStructuralFeature(WRAPPED_VALUE);

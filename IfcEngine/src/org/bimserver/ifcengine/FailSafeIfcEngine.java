@@ -77,7 +77,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 		}
 	}
 
-	public void startJvm() {
+	public void startJvm() throws IfcEngineException {
 		try {
 			if (!tempDir.exists()) {
 				tempDir.mkdir();
@@ -107,7 +107,15 @@ public class FailSafeIfcEngine implements IfcEngine {
 				command.append(classPath + File.pathSeparator);
 			}
 			command.append("\"");
-			command.append(" -Xmx512m");
+			if (Runtime.getRuntime().maxMemory() == Long.MAX_VALUE) {
+				command.append(" -Xmx512m");
+				command.append(" -Xms512m");
+			} else {
+				//int memoryInMegaBytes = (int) (Runtime.getRuntime().maxMemory() / 2000000);
+				int memoryInMegaBytes = 2000;
+				command.append(" -Xmx" + memoryInMegaBytes + "m");
+				command.append(" -Xms" + memoryInMegaBytes + "m");
+			}
 			command.append(" org.bimserver.ifcengine.jvm.IfcEngineServer");
 			if (schemaFile.getAbsolutePath().contains(" ")) {
 				command.append(" \"" + schemaFile.getAbsolutePath() + "\"");
@@ -121,7 +129,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 			err = process.getErrorStream();
 			startErrorHandler();
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			throw new IfcEngineException(e);
 		}
 	}
 	
@@ -141,7 +149,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 					LOGGER.error("", e);
 				}
 			}};
-		Thread thread = new Thread(runnable);
+		Thread thread = new Thread(runnable, "FailSafeIfcEngine ErrorHandler");
 		thread.start();
 	}
 
