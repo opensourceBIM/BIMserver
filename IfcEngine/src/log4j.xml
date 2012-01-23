@@ -6,10 +6,6 @@
 			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
 		</layout>
 	</appender>
-	<logger name="org.quartz">
-		<level value="error" />
-		<appender-ref ref="Console" />
-	</logger>
 	<root>
 		<priority value="INFO" />
 		<appender-ref ref="Console" />

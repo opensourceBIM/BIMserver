@@ -277,6 +277,10 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						char firstChar = val.charAt(0);
 						if (firstChar == '$') {
 							object.eUnset(structuralFeature);
+							if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+								EStructuralFeature doubleStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
+								object.eSet(doubleStringFeature, val);
+							}
 						} else if (firstChar == '#') {
 							readReference(val, object, structuralFeature);
 						} else if (firstChar == '.') {
