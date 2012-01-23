@@ -35,7 +35,6 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;

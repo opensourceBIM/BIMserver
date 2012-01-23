@@ -46,10 +46,8 @@ import com.google.protobuf.Message.Builder;
 
 public class ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConverter.class);
-	private final SService sService;
 
 	public ProtocolBuffersConverter(SService sService) {
-		this.sService = sService;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

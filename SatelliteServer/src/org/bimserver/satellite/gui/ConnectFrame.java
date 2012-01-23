@@ -20,7 +20,6 @@ import javax.swing.WindowConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-import org.bimserver.plugins.PluginDescriptorWriter;
 import org.bimserver.satellite.SatelliteSettings;
 import org.bimserver.utils.AutoSelectTextField;
 import org.bimserver.utils.SpringUtilities;
