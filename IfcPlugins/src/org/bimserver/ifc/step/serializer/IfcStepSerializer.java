@@ -29,7 +29,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.plugins.PluginException;
@@ -242,9 +241,6 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void write(PrintWriter out, Long key, EObject object) throws SerializerException {
-		if (object instanceof IfcOwnerHistory) {
-			System.out.println();
-		}
 		EClass eClass = object.eClass();
 		out.print(DASH);
 		out.print(String.valueOf(key));
