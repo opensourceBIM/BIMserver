@@ -58,6 +58,7 @@
 		description = serializer.getDescription();
 		objectIDMId = serializer.getObjectIDMId();
 		type = serializer.getClassName();
+		ifcEngineId = serializer.getIfcEngineId();
 	}
 %>
 <form method="post">
