@@ -44,13 +44,6 @@
 </tr>
 <tr>
 	<td>
-		<label for="engine">IFC geometry engine</label>
-		<p class="explain">Choose which engine you want to use for IFC geometry calculations. These engines can be closed source and are not part of the BIMserver project.</p>
-	</td>
-	<td><select name="engine" size="1"><option value="bonsma">Bonsma Engine DLL</option></select>
-</tr>
-<tr>
-	<td>
 		<label for="ifcversion">IFC version</label>
 		<p class="explain">Choose which version of IFC should be used as the main database structure.</p>
 	</td>
