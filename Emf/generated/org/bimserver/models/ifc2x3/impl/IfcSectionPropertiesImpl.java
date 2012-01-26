@@ -93,6 +93,24 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements IfcSectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSectionType() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSectionType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcProfileDef getStartProfile() {
 		return (IfcProfileDef) eGet(Ifc2x3Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE, true);
 	}
@@ -104,6 +122,24 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements IfcSectio
 	 */
 	public void setStartProfile(IfcProfileDef newStartProfile) {
 		eSet(Ifc2x3Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE, newStartProfile);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetStartProfile() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStartProfile() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE);
 	}
 
 	/**

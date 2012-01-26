@@ -72,4 +72,22 @@ public class IfcOrderActionImpl extends IfcTaskImpl implements IfcOrderAction {
 		eSet(Ifc2x3Package.Literals.IFC_ORDER_ACTION__ACTION_ID, newActionID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetActionID() {
+		eUnset(Ifc2x3Package.Literals.IFC_ORDER_ACTION__ACTION_ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActionID() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ORDER_ACTION__ACTION_ID);
+	}
+
 } //IfcOrderActionImpl

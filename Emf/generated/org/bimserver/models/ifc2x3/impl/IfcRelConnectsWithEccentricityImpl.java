@@ -73,4 +73,22 @@ public class IfcRelConnectsWithEccentricityImpl extends IfcRelConnectsStructural
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT, newConnectionConstraint);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetConnectionConstraint() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectionConstraint() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT);
+	}
+
 } //IfcRelConnectsWithEccentricityImpl

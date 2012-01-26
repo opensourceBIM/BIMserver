@@ -42,9 +42,11 @@ public interface IfcText extends WrappedValue, IfcMetricValueSelect, IfcSimpleVa
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wrapped Value</em>' attribute.
+	 * @see #isSetWrappedValue()
+	 * @see #unsetWrappedValue()
 	 * @see #setWrappedValue(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcText_WrappedValue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getWrappedValue();
@@ -54,9 +56,34 @@ public interface IfcText extends WrappedValue, IfcMetricValueSelect, IfcSimpleVa
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wrapped Value</em>' attribute.
+	 * @see #isSetWrappedValue()
+	 * @see #unsetWrappedValue()
 	 * @see #getWrappedValue()
 	 * @generated
 	 */
 	void setWrappedValue(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcText#getWrappedValue <em>Wrapped Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWrappedValue()
+	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(String)
+	 * @generated
+	 */
+	void unsetWrappedValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcText#getWrappedValue <em>Wrapped Value</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wrapped Value</em>' attribute is set.
+	 * @see #unsetWrappedValue()
+	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(String)
+	 * @generated
+	 */
+	boolean isSetWrappedValue();
 
 } // IfcText

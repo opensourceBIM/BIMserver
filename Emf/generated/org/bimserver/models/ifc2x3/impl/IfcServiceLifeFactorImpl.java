@@ -82,6 +82,24 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPredefinedType() {
+		eUnset(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPredefinedType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcMeasureValue getUpperValue() {
 		return (IfcMeasureValue) eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE, true);
 	}
@@ -129,6 +147,24 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public void setMostUsedValue(IfcMeasureValue newMostUsedValue) {
 		eSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE, newMostUsedValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetMostUsedValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMostUsedValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE);
 	}
 
 	/**

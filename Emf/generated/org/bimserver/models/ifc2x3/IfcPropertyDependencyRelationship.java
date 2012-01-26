@@ -50,10 +50,12 @@ public interface IfcPropertyDependencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depending Property</em>' reference.
+	 * @see #isSetDependingProperty()
+	 * @see #unsetDependingProperty()
 	 * @see #setDependingProperty(IfcProperty)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyDependencyRelationship_DependingProperty()
 	 * @see org.bimserver.models.ifc2x3.IfcProperty#getPropertyForDependance
-	 * @model opposite="PropertyForDependance"
+	 * @model opposite="PropertyForDependance" unsettable="true"
 	 * @generated
 	 */
 	IfcProperty getDependingProperty();
@@ -63,10 +65,35 @@ public interface IfcPropertyDependencyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depending Property</em>' reference.
+	 * @see #isSetDependingProperty()
+	 * @see #unsetDependingProperty()
 	 * @see #getDependingProperty()
 	 * @generated
 	 */
 	void setDependingProperty(IfcProperty value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship#getDependingProperty <em>Depending Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDependingProperty()
+	 * @see #getDependingProperty()
+	 * @see #setDependingProperty(IfcProperty)
+	 * @generated
+	 */
+	void unsetDependingProperty();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship#getDependingProperty <em>Depending Property</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Depending Property</em>' reference is set.
+	 * @see #unsetDependingProperty()
+	 * @see #getDependingProperty()
+	 * @see #setDependingProperty(IfcProperty)
+	 * @generated
+	 */
+	boolean isSetDependingProperty();
 
 	/**
 	 * Returns the value of the '<em><b>Dependant Property</b></em>' reference.
@@ -78,10 +105,12 @@ public interface IfcPropertyDependencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependant Property</em>' reference.
+	 * @see #isSetDependantProperty()
+	 * @see #unsetDependantProperty()
 	 * @see #setDependantProperty(IfcProperty)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyDependencyRelationship_DependantProperty()
 	 * @see org.bimserver.models.ifc2x3.IfcProperty#getPropertyDependsOn
-	 * @model opposite="PropertyDependsOn"
+	 * @model opposite="PropertyDependsOn" unsettable="true"
 	 * @generated
 	 */
 	IfcProperty getDependantProperty();
@@ -91,10 +120,35 @@ public interface IfcPropertyDependencyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dependant Property</em>' reference.
+	 * @see #isSetDependantProperty()
+	 * @see #unsetDependantProperty()
 	 * @see #getDependantProperty()
 	 * @generated
 	 */
 	void setDependantProperty(IfcProperty value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship#getDependantProperty <em>Dependant Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDependantProperty()
+	 * @see #getDependantProperty()
+	 * @see #setDependantProperty(IfcProperty)
+	 * @generated
+	 */
+	void unsetDependantProperty();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship#getDependantProperty <em>Dependant Property</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dependant Property</em>' reference is set.
+	 * @see #unsetDependantProperty()
+	 * @see #getDependantProperty()
+	 * @see #setDependantProperty(IfcProperty)
+	 * @generated
+	 */
+	boolean isSetDependantProperty();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

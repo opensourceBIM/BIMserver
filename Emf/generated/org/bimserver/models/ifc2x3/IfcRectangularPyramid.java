@@ -47,9 +47,11 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XLength</em>' attribute.
+	 * @see #isSetXLength()
+	 * @see #unsetXLength()
 	 * @see #setXLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_XLength()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getXLength();
@@ -59,10 +61,35 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>XLength</em>' attribute.
+	 * @see #isSetXLength()
+	 * @see #unsetXLength()
 	 * @see #getXLength()
 	 * @generated
 	 */
 	void setXLength(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getXLength <em>XLength</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetXLength()
+	 * @see #getXLength()
+	 * @see #setXLength(double)
+	 * @generated
+	 */
+	void unsetXLength();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getXLength <em>XLength</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>XLength</em>' attribute is set.
+	 * @see #unsetXLength()
+	 * @see #getXLength()
+	 * @see #setXLength(double)
+	 * @generated
+	 */
+	boolean isSetXLength();
 
 	/**
 	 * Returns the value of the '<em><b>XLength As String</b></em>' attribute.
@@ -73,9 +100,11 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XLength As String</em>' attribute.
+	 * @see #isSetXLengthAsString()
+	 * @see #unsetXLengthAsString()
 	 * @see #setXLengthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_XLengthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getXLengthAsString();
@@ -85,10 +114,35 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>XLength As String</em>' attribute.
+	 * @see #isSetXLengthAsString()
+	 * @see #unsetXLengthAsString()
 	 * @see #getXLengthAsString()
 	 * @generated
 	 */
 	void setXLengthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getXLengthAsString <em>XLength As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetXLengthAsString()
+	 * @see #getXLengthAsString()
+	 * @see #setXLengthAsString(String)
+	 * @generated
+	 */
+	void unsetXLengthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getXLengthAsString <em>XLength As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>XLength As String</em>' attribute is set.
+	 * @see #unsetXLengthAsString()
+	 * @see #getXLengthAsString()
+	 * @see #setXLengthAsString(String)
+	 * @generated
+	 */
+	boolean isSetXLengthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>YLength</b></em>' attribute.
@@ -99,9 +153,11 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YLength</em>' attribute.
+	 * @see #isSetYLength()
+	 * @see #unsetYLength()
 	 * @see #setYLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_YLength()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getYLength();
@@ -111,10 +167,35 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>YLength</em>' attribute.
+	 * @see #isSetYLength()
+	 * @see #unsetYLength()
 	 * @see #getYLength()
 	 * @generated
 	 */
 	void setYLength(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getYLength <em>YLength</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetYLength()
+	 * @see #getYLength()
+	 * @see #setYLength(double)
+	 * @generated
+	 */
+	void unsetYLength();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getYLength <em>YLength</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>YLength</em>' attribute is set.
+	 * @see #unsetYLength()
+	 * @see #getYLength()
+	 * @see #setYLength(double)
+	 * @generated
+	 */
+	boolean isSetYLength();
 
 	/**
 	 * Returns the value of the '<em><b>YLength As String</b></em>' attribute.
@@ -125,9 +206,11 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YLength As String</em>' attribute.
+	 * @see #isSetYLengthAsString()
+	 * @see #unsetYLengthAsString()
 	 * @see #setYLengthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_YLengthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getYLengthAsString();
@@ -137,10 +220,35 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>YLength As String</em>' attribute.
+	 * @see #isSetYLengthAsString()
+	 * @see #unsetYLengthAsString()
 	 * @see #getYLengthAsString()
 	 * @generated
 	 */
 	void setYLengthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getYLengthAsString <em>YLength As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetYLengthAsString()
+	 * @see #getYLengthAsString()
+	 * @see #setYLengthAsString(String)
+	 * @generated
+	 */
+	void unsetYLengthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getYLengthAsString <em>YLength As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>YLength As String</em>' attribute is set.
+	 * @see #unsetYLengthAsString()
+	 * @see #getYLengthAsString()
+	 * @see #setYLengthAsString(String)
+	 * @generated
+	 */
+	boolean isSetYLengthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Height</b></em>' attribute.
@@ -151,9 +259,11 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
+	 * @see #isSetHeight()
+	 * @see #unsetHeight()
 	 * @see #setHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_Height()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getHeight();
@@ -163,10 +273,35 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Height</em>' attribute.
+	 * @see #isSetHeight()
+	 * @see #unsetHeight()
 	 * @see #getHeight()
 	 * @generated
 	 */
 	void setHeight(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getHeight <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHeight()
+	 * @see #getHeight()
+	 * @see #setHeight(double)
+	 * @generated
+	 */
+	void unsetHeight();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getHeight <em>Height</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Height</em>' attribute is set.
+	 * @see #unsetHeight()
+	 * @see #getHeight()
+	 * @see #setHeight(double)
+	 * @generated
+	 */
+	boolean isSetHeight();
 
 	/**
 	 * Returns the value of the '<em><b>Height As String</b></em>' attribute.
@@ -177,9 +312,11 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height As String</em>' attribute.
+	 * @see #isSetHeightAsString()
+	 * @see #unsetHeightAsString()
 	 * @see #setHeightAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangularPyramid_HeightAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getHeightAsString();
@@ -189,9 +326,34 @@ public interface IfcRectangularPyramid extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Height As String</em>' attribute.
+	 * @see #isSetHeightAsString()
+	 * @see #unsetHeightAsString()
 	 * @see #getHeightAsString()
 	 * @generated
 	 */
 	void setHeightAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getHeightAsString <em>Height As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHeightAsString()
+	 * @see #getHeightAsString()
+	 * @see #setHeightAsString(String)
+	 * @generated
+	 */
+	void unsetHeightAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangularPyramid#getHeightAsString <em>Height As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Height As String</em>' attribute is set.
+	 * @see #unsetHeightAsString()
+	 * @see #getHeightAsString()
+	 * @see #setHeightAsString(String)
+	 * @generated
+	 */
+	boolean isSetHeightAsString();
 
 } // IfcRectangularPyramid

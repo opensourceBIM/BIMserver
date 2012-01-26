@@ -95,6 +95,24 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHourComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_LOCAL_TIME__HOUR_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHourComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__HOUR_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getMinuteComponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT, true);
 	}

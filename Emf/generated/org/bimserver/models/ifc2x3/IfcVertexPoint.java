@@ -42,9 +42,11 @@ public interface IfcVertexPoint extends IfcVertex, IfcPointOrVertexPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Vertex Geometry</em>' reference.
+	 * @see #isSetVertexGeometry()
+	 * @see #unsetVertexGeometry()
 	 * @see #setVertexGeometry(IfcPoint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVertexPoint_VertexGeometry()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcPoint getVertexGeometry();
@@ -54,9 +56,34 @@ public interface IfcVertexPoint extends IfcVertex, IfcPointOrVertexPoint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Vertex Geometry</em>' reference.
+	 * @see #isSetVertexGeometry()
+	 * @see #unsetVertexGeometry()
 	 * @see #getVertexGeometry()
 	 * @generated
 	 */
 	void setVertexGeometry(IfcPoint value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexPoint#getVertexGeometry <em>Vertex Geometry</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVertexGeometry()
+	 * @see #getVertexGeometry()
+	 * @see #setVertexGeometry(IfcPoint)
+	 * @generated
+	 */
+	void unsetVertexGeometry();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexPoint#getVertexGeometry <em>Vertex Geometry</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Vertex Geometry</em>' reference is set.
+	 * @see #unsetVertexGeometry()
+	 * @see #getVertexGeometry()
+	 * @see #setVertexGeometry(IfcPoint)
+	 * @generated
+	 */
+	boolean isSetVertexGeometry();
 
 } // IfcVertexPoint

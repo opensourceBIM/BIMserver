@@ -43,9 +43,11 @@ public interface IfcTextStyleForDefinedFont extends IfcCharacterStyleSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Colour</em>' reference.
+	 * @see #isSetColour()
+	 * @see #unsetColour()
 	 * @see #setColour(IfcColour)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextStyleForDefinedFont_Colour()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcColour getColour();
@@ -55,10 +57,35 @@ public interface IfcTextStyleForDefinedFont extends IfcCharacterStyleSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Colour</em>' reference.
+	 * @see #isSetColour()
+	 * @see #unsetColour()
 	 * @see #getColour()
 	 * @generated
 	 */
 	void setColour(IfcColour value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleForDefinedFont#getColour <em>Colour</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetColour()
+	 * @see #getColour()
+	 * @see #setColour(IfcColour)
+	 * @generated
+	 */
+	void unsetColour();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleForDefinedFont#getColour <em>Colour</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Colour</em>' reference is set.
+	 * @see #unsetColour()
+	 * @see #getColour()
+	 * @see #setColour(IfcColour)
+	 * @generated
+	 */
+	boolean isSetColour();
 
 	/**
 	 * Returns the value of the '<em><b>Background Colour</b></em>' reference.

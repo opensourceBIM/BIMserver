@@ -46,11 +46,34 @@ public interface IfcDistributionFlowElement extends IfcDistributionElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Control Elements</em>' reference list.
+	 * @see #isSetHasControlElements()
+	 * @see #unsetHasControlElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDistributionFlowElement_HasControlElements()
 	 * @see org.bimserver.models.ifc2x3.IfcRelFlowControlElements#getRelatingFlowElement
-	 * @model opposite="RelatingFlowElement" upper="2"
+	 * @model opposite="RelatingFlowElement" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelFlowControlElements> getHasControlElements();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDistributionFlowElement#getHasControlElements <em>Has Control Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasControlElements()
+	 * @see #getHasControlElements()
+	 * @generated
+	 */
+	void unsetHasControlElements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDistributionFlowElement#getHasControlElements <em>Has Control Elements</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Control Elements</em>' reference list is set.
+	 * @see #unsetHasControlElements()
+	 * @see #getHasControlElements()
+	 * @generated
+	 */
+	boolean isSetHasControlElements();
 
 } // IfcDistributionFlowElement

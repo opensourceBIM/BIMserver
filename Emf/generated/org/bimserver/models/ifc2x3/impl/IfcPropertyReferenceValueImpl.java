@@ -110,4 +110,22 @@ public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl impleme
 		eSet(Ifc2x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE, newPropertyReference);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPropertyReference() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPropertyReference() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE);
+	}
+
 } //IfcPropertyReferenceValueImpl

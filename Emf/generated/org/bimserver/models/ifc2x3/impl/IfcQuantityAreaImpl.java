@@ -78,6 +78,24 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetAreaValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAreaValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getAreaValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING, true);
 	}
@@ -89,6 +107,24 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 */
 	public void setAreaValueAsString(String newAreaValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING, newAreaValueAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAreaValueAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAreaValueAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING);
 	}
 
 } //IfcQuantityAreaImpl

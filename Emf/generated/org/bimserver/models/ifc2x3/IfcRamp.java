@@ -44,9 +44,11 @@ public interface IfcRamp extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shape Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcRampTypeEnum
+	 * @see #isSetShapeType()
+	 * @see #unsetShapeType()
 	 * @see #setShapeType(IfcRampTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRamp_ShapeType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcRampTypeEnum getShapeType();
@@ -57,9 +59,34 @@ public interface IfcRamp extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Shape Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcRampTypeEnum
+	 * @see #isSetShapeType()
+	 * @see #unsetShapeType()
 	 * @see #getShapeType()
 	 * @generated
 	 */
 	void setShapeType(IfcRampTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRamp#getShapeType <em>Shape Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetShapeType()
+	 * @see #getShapeType()
+	 * @see #setShapeType(IfcRampTypeEnum)
+	 * @generated
+	 */
+	void unsetShapeType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRamp#getShapeType <em>Shape Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Shape Type</em>' attribute is set.
+	 * @see #unsetShapeType()
+	 * @see #getShapeType()
+	 * @see #setShapeType(IfcRampTypeEnum)
+	 * @generated
+	 */
+	boolean isSetShapeType();
 
 } // IfcRamp

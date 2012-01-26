@@ -79,6 +79,24 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetProxyType() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROXY__PROXY_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetProxyType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROXY__PROXY_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTag() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PROXY__TAG, true);
 	}

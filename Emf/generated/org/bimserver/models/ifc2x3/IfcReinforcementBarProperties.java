@@ -54,9 +54,11 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Cross Section Area</em>' attribute.
+	 * @see #isSetTotalCrossSectionArea()
+	 * @see #unsetTotalCrossSectionArea()
 	 * @see #setTotalCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_TotalCrossSectionArea()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getTotalCrossSectionArea();
@@ -66,10 +68,35 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Total Cross Section Area</em>' attribute.
+	 * @see #isSetTotalCrossSectionArea()
+	 * @see #unsetTotalCrossSectionArea()
 	 * @see #getTotalCrossSectionArea()
 	 * @generated
 	 */
 	void setTotalCrossSectionArea(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getTotalCrossSectionArea <em>Total Cross Section Area</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTotalCrossSectionArea()
+	 * @see #getTotalCrossSectionArea()
+	 * @see #setTotalCrossSectionArea(double)
+	 * @generated
+	 */
+	void unsetTotalCrossSectionArea();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getTotalCrossSectionArea <em>Total Cross Section Area</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Total Cross Section Area</em>' attribute is set.
+	 * @see #unsetTotalCrossSectionArea()
+	 * @see #getTotalCrossSectionArea()
+	 * @see #setTotalCrossSectionArea(double)
+	 * @generated
+	 */
+	boolean isSetTotalCrossSectionArea();
 
 	/**
 	 * Returns the value of the '<em><b>Total Cross Section Area As String</b></em>' attribute.
@@ -80,9 +107,11 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Cross Section Area As String</em>' attribute.
+	 * @see #isSetTotalCrossSectionAreaAsString()
+	 * @see #unsetTotalCrossSectionAreaAsString()
 	 * @see #setTotalCrossSectionAreaAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_TotalCrossSectionAreaAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getTotalCrossSectionAreaAsString();
@@ -92,10 +121,35 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Total Cross Section Area As String</em>' attribute.
+	 * @see #isSetTotalCrossSectionAreaAsString()
+	 * @see #unsetTotalCrossSectionAreaAsString()
 	 * @see #getTotalCrossSectionAreaAsString()
 	 * @generated
 	 */
 	void setTotalCrossSectionAreaAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getTotalCrossSectionAreaAsString <em>Total Cross Section Area As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTotalCrossSectionAreaAsString()
+	 * @see #getTotalCrossSectionAreaAsString()
+	 * @see #setTotalCrossSectionAreaAsString(String)
+	 * @generated
+	 */
+	void unsetTotalCrossSectionAreaAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getTotalCrossSectionAreaAsString <em>Total Cross Section Area As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Total Cross Section Area As String</em>' attribute is set.
+	 * @see #unsetTotalCrossSectionAreaAsString()
+	 * @see #getTotalCrossSectionAreaAsString()
+	 * @see #setTotalCrossSectionAreaAsString(String)
+	 * @generated
+	 */
+	boolean isSetTotalCrossSectionAreaAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Steel Grade</b></em>' attribute.
@@ -106,9 +160,11 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steel Grade</em>' attribute.
+	 * @see #isSetSteelGrade()
+	 * @see #unsetSteelGrade()
 	 * @see #setSteelGrade(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_SteelGrade()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getSteelGrade();
@@ -118,10 +174,35 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Steel Grade</em>' attribute.
+	 * @see #isSetSteelGrade()
+	 * @see #unsetSteelGrade()
 	 * @see #getSteelGrade()
 	 * @generated
 	 */
 	void setSteelGrade(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getSteelGrade <em>Steel Grade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSteelGrade()
+	 * @see #getSteelGrade()
+	 * @see #setSteelGrade(String)
+	 * @generated
+	 */
+	void unsetSteelGrade();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getSteelGrade <em>Steel Grade</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Steel Grade</em>' attribute is set.
+	 * @see #unsetSteelGrade()
+	 * @see #getSteelGrade()
+	 * @see #setSteelGrade(String)
+	 * @generated
+	 */
+	boolean isSetSteelGrade();
 
 	/**
 	 * Returns the value of the '<em><b>Bar Surface</b></em>' attribute.
@@ -134,9 +215,11 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bar Surface</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarSurfaceEnum
+	 * @see #isSetBarSurface()
+	 * @see #unsetBarSurface()
 	 * @see #setBarSurface(IfcReinforcingBarSurfaceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementBarProperties_BarSurface()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcReinforcingBarSurfaceEnum getBarSurface();
@@ -147,10 +230,35 @@ public interface IfcReinforcementBarProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bar Surface</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarSurfaceEnum
+	 * @see #isSetBarSurface()
+	 * @see #unsetBarSurface()
 	 * @see #getBarSurface()
 	 * @generated
 	 */
 	void setBarSurface(IfcReinforcingBarSurfaceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getBarSurface <em>Bar Surface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBarSurface()
+	 * @see #getBarSurface()
+	 * @see #setBarSurface(IfcReinforcingBarSurfaceEnum)
+	 * @generated
+	 */
+	void unsetBarSurface();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementBarProperties#getBarSurface <em>Bar Surface</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Bar Surface</em>' attribute is set.
+	 * @see #unsetBarSurface()
+	 * @see #getBarSurface()
+	 * @see #setBarSurface(IfcReinforcingBarSurfaceEnum)
+	 * @generated
+	 */
+	boolean isSetBarSurface();
 
 	/**
 	 * Returns the value of the '<em><b>Effective Depth</b></em>' attribute.

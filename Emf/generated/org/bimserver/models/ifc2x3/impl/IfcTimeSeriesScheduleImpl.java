@@ -112,6 +112,24 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTimeSeriesScheduleType() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeSeriesScheduleType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcTimeSeries getTimeSeries() {
 		return (IfcTimeSeries) eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES, true);
 	}
@@ -123,6 +141,24 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	public void setTimeSeries(IfcTimeSeries newTimeSeries) {
 		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES, newTimeSeries);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTimeSeries() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeSeries() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES);
 	}
 
 } //IfcTimeSeriesScheduleImpl

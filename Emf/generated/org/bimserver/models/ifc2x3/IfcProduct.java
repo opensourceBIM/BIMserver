@@ -156,11 +156,34 @@ public interface IfcProduct extends IfcObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced By</em>' reference list.
+	 * @see #isSetReferencedBy()
+	 * @see #unsetReferencedBy()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProduct_ReferencedBy()
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToProduct#getRelatingProduct
-	 * @model opposite="RelatingProduct"
+	 * @model opposite="RelatingProduct" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToProduct> getReferencedBy();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProduct#getReferencedBy <em>Referenced By</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReferencedBy()
+	 * @see #getReferencedBy()
+	 * @generated
+	 */
+	void unsetReferencedBy();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProduct#getReferencedBy <em>Referenced By</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Referenced By</em>' reference list is set.
+	 * @see #unsetReferencedBy()
+	 * @see #getReferencedBy()
+	 * @generated
+	 */
+	boolean isSetReferencedBy();
 
 } // IfcProduct

@@ -157,11 +157,34 @@ public interface IfcRepresentationContext extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representations In Context</em>' reference list.
+	 * @see #isSetRepresentationsInContext()
+	 * @see #unsetRepresentationsInContext()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentationContext_RepresentationsInContext()
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentation#getContextOfItems
-	 * @model opposite="ContextOfItems"
+	 * @model opposite="ContextOfItems" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRepresentation> getRepresentationsInContext();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationContext#getRepresentationsInContext <em>Representations In Context</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRepresentationsInContext()
+	 * @see #getRepresentationsInContext()
+	 * @generated
+	 */
+	void unsetRepresentationsInContext();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationContext#getRepresentationsInContext <em>Representations In Context</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Representations In Context</em>' reference list is set.
+	 * @see #unsetRepresentationsInContext()
+	 * @see #getRepresentationsInContext()
+	 * @generated
+	 */
+	boolean isSetRepresentationsInContext();
 
 } // IfcRepresentationContext

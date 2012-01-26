@@ -43,9 +43,11 @@ public interface IfcRelConnectsStructuralActivity extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Element</em>' reference.
+	 * @see #isSetRelatingElement()
+	 * @see #unsetRelatingElement()
 	 * @see #setRelatingElement(IfcStructuralActivityAssignmentSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsStructuralActivity_RelatingElement()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcStructuralActivityAssignmentSelect getRelatingElement();
@@ -55,10 +57,35 @@ public interface IfcRelConnectsStructuralActivity extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Element</em>' reference.
+	 * @see #isSetRelatingElement()
+	 * @see #unsetRelatingElement()
 	 * @see #getRelatingElement()
 	 * @generated
 	 */
 	void setRelatingElement(IfcStructuralActivityAssignmentSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralActivity#getRelatingElement <em>Relating Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingElement()
+	 * @see #getRelatingElement()
+	 * @see #setRelatingElement(IfcStructuralActivityAssignmentSelect)
+	 * @generated
+	 */
+	void unsetRelatingElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralActivity#getRelatingElement <em>Relating Element</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Element</em>' reference is set.
+	 * @see #unsetRelatingElement()
+	 * @see #getRelatingElement()
+	 * @see #setRelatingElement(IfcStructuralActivityAssignmentSelect)
+	 * @generated
+	 */
+	boolean isSetRelatingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Related Structural Activity</b></em>' reference.
@@ -70,10 +97,12 @@ public interface IfcRelConnectsStructuralActivity extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Structural Activity</em>' reference.
+	 * @see #isSetRelatedStructuralActivity()
+	 * @see #unsetRelatedStructuralActivity()
 	 * @see #setRelatedStructuralActivity(IfcStructuralActivity)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsStructuralActivity_RelatedStructuralActivity()
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralActivity#getAssignedToStructuralItem
-	 * @model opposite="AssignedToStructuralItem"
+	 * @model opposite="AssignedToStructuralItem" unsettable="true"
 	 * @generated
 	 */
 	IfcStructuralActivity getRelatedStructuralActivity();
@@ -83,9 +112,34 @@ public interface IfcRelConnectsStructuralActivity extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Structural Activity</em>' reference.
+	 * @see #isSetRelatedStructuralActivity()
+	 * @see #unsetRelatedStructuralActivity()
 	 * @see #getRelatedStructuralActivity()
 	 * @generated
 	 */
 	void setRelatedStructuralActivity(IfcStructuralActivity value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralActivity#getRelatedStructuralActivity <em>Related Structural Activity</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedStructuralActivity()
+	 * @see #getRelatedStructuralActivity()
+	 * @see #setRelatedStructuralActivity(IfcStructuralActivity)
+	 * @generated
+	 */
+	void unsetRelatedStructuralActivity();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralActivity#getRelatedStructuralActivity <em>Related Structural Activity</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Structural Activity</em>' reference is set.
+	 * @see #unsetRelatedStructuralActivity()
+	 * @see #getRelatedStructuralActivity()
+	 * @see #setRelatedStructuralActivity(IfcStructuralActivity)
+	 * @generated
+	 */
+	boolean isSetRelatedStructuralActivity();
 
 } // IfcRelConnectsStructuralActivity

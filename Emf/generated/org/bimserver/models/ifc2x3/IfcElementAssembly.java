@@ -45,9 +45,11 @@ public interface IfcElementAssembly extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assembly Place</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAssemblyPlaceEnum
+	 * @see #isSetAssemblyPlace()
+	 * @see #unsetAssemblyPlace()
 	 * @see #setAssemblyPlace(IfcAssemblyPlaceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElementAssembly_AssemblyPlace()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAssemblyPlaceEnum getAssemblyPlace();
@@ -58,10 +60,35 @@ public interface IfcElementAssembly extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Assembly Place</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAssemblyPlaceEnum
+	 * @see #isSetAssemblyPlace()
+	 * @see #unsetAssemblyPlace()
 	 * @see #getAssemblyPlace()
 	 * @generated
 	 */
 	void setAssemblyPlace(IfcAssemblyPlaceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElementAssembly#getAssemblyPlace <em>Assembly Place</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAssemblyPlace()
+	 * @see #getAssemblyPlace()
+	 * @see #setAssemblyPlace(IfcAssemblyPlaceEnum)
+	 * @generated
+	 */
+	void unsetAssemblyPlace();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElementAssembly#getAssemblyPlace <em>Assembly Place</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Assembly Place</em>' attribute is set.
+	 * @see #unsetAssemblyPlace()
+	 * @see #getAssemblyPlace()
+	 * @see #setAssemblyPlace(IfcAssemblyPlaceEnum)
+	 * @generated
+	 */
+	boolean isSetAssemblyPlace();
 
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
@@ -74,9 +101,11 @@ public interface IfcElementAssembly extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElementAssemblyTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcElementAssemblyTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElementAssembly_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcElementAssemblyTypeEnum getPredefinedType();
@@ -87,9 +116,34 @@ public interface IfcElementAssembly extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElementAssemblyTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcElementAssemblyTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElementAssembly#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcElementAssemblyTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElementAssembly#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcElementAssemblyTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 } // IfcElementAssembly

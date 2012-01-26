@@ -45,10 +45,33 @@ public interface IfcDimensionCurve extends IfcAnnotationCurveOccurrence {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Annotated By Symbols</em>' reference list.
+	 * @see #isSetAnnotatedBySymbols()
+	 * @see #unsetAnnotatedBySymbols()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionCurve_AnnotatedBySymbols()
-	 * @model upper="3"
+	 * @model unsettable="true" upper="3"
 	 * @generated
 	 */
 	EList<IfcTerminatorSymbol> getAnnotatedBySymbols();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionCurve#getAnnotatedBySymbols <em>Annotated By Symbols</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAnnotatedBySymbols()
+	 * @see #getAnnotatedBySymbols()
+	 * @generated
+	 */
+	void unsetAnnotatedBySymbols();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionCurve#getAnnotatedBySymbols <em>Annotated By Symbols</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Annotated By Symbols</em>' reference list is set.
+	 * @see #unsetAnnotatedBySymbols()
+	 * @see #getAnnotatedBySymbols()
+	 * @generated
+	 */
+	boolean isSetAnnotatedBySymbols();
 
 } // IfcDimensionCurve

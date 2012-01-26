@@ -46,10 +46,12 @@ public interface IfcRelCoversSpaces extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Space</em>' reference.
+	 * @see #isSetRelatedSpace()
+	 * @see #unsetRelatedSpace()
 	 * @see #setRelatedSpace(IfcSpace)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelCoversSpaces_RelatedSpace()
 	 * @see org.bimserver.models.ifc2x3.IfcSpace#getHasCoverings
-	 * @model opposite="HasCoverings"
+	 * @model opposite="HasCoverings" unsettable="true"
 	 * @generated
 	 */
 	IfcSpace getRelatedSpace();
@@ -59,10 +61,35 @@ public interface IfcRelCoversSpaces extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Space</em>' reference.
+	 * @see #isSetRelatedSpace()
+	 * @see #unsetRelatedSpace()
 	 * @see #getRelatedSpace()
 	 * @generated
 	 */
 	void setRelatedSpace(IfcSpace value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversSpaces#getRelatedSpace <em>Related Space</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedSpace()
+	 * @see #getRelatedSpace()
+	 * @see #setRelatedSpace(IfcSpace)
+	 * @generated
+	 */
+	void unsetRelatedSpace();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversSpaces#getRelatedSpace <em>Related Space</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Space</em>' reference is set.
+	 * @see #unsetRelatedSpace()
+	 * @see #getRelatedSpace()
+	 * @see #setRelatedSpace(IfcSpace)
+	 * @generated
+	 */
+	boolean isSetRelatedSpace();
 
 	/**
 	 * Returns the value of the '<em><b>Related Coverings</b></em>' reference list.
@@ -75,11 +102,34 @@ public interface IfcRelCoversSpaces extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Coverings</em>' reference list.
+	 * @see #isSetRelatedCoverings()
+	 * @see #unsetRelatedCoverings()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelCoversSpaces_RelatedCoverings()
 	 * @see org.bimserver.models.ifc2x3.IfcCovering#getCoversSpaces
-	 * @model opposite="CoversSpaces"
+	 * @model opposite="CoversSpaces" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcCovering> getRelatedCoverings();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversSpaces#getRelatedCoverings <em>Related Coverings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedCoverings()
+	 * @see #getRelatedCoverings()
+	 * @generated
+	 */
+	void unsetRelatedCoverings();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversSpaces#getRelatedCoverings <em>Related Coverings</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Coverings</em>' reference list is set.
+	 * @see #unsetRelatedCoverings()
+	 * @see #getRelatedCoverings()
+	 * @generated
+	 */
+	boolean isSetRelatedCoverings();
 
 } // IfcRelCoversSpaces

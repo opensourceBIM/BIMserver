@@ -49,9 +49,11 @@ public interface IfcPhysicalQuantity extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPhysicalQuantity_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -61,10 +63,35 @@ public interface IfcPhysicalQuantity extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalQuantity#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalQuantity#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -130,11 +157,34 @@ public interface IfcPhysicalQuantity extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part Of Complex</em>' reference list.
+	 * @see #isSetPartOfComplex()
+	 * @see #unsetPartOfComplex()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPhysicalQuantity_PartOfComplex()
 	 * @see org.bimserver.models.ifc2x3.IfcPhysicalComplexQuantity#getHasQuantities
-	 * @model opposite="HasQuantities" upper="2"
+	 * @model opposite="HasQuantities" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcPhysicalComplexQuantity> getPartOfComplex();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalQuantity#getPartOfComplex <em>Part Of Complex</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPartOfComplex()
+	 * @see #getPartOfComplex()
+	 * @generated
+	 */
+	void unsetPartOfComplex();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalQuantity#getPartOfComplex <em>Part Of Complex</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Part Of Complex</em>' reference list is set.
+	 * @see #unsetPartOfComplex()
+	 * @see #getPartOfComplex()
+	 * @generated
+	 */
+	boolean isSetPartOfComplex();
 
 } // IfcPhysicalQuantity

@@ -80,6 +80,24 @@ public class IfcLineImpl extends IfcCurveImpl implements IfcLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPnt() {
+		eUnset(Ifc2x3Package.Literals.IFC_LINE__PNT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPnt() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LINE__PNT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcVector getDir() {
 		return (IfcVector) eGet(Ifc2x3Package.Literals.IFC_LINE__DIR, true);
 	}
@@ -91,6 +109,24 @@ public class IfcLineImpl extends IfcCurveImpl implements IfcLine {
 	 */
 	public void setDir(IfcVector newDir) {
 		eSet(Ifc2x3Package.Literals.IFC_LINE__DIR, newDir);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDir() {
+		eUnset(Ifc2x3Package.Literals.IFC_LINE__DIR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDir() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LINE__DIR);
 	}
 
 } //IfcLineImpl

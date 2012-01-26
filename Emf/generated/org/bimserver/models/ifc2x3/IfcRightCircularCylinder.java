@@ -45,9 +45,11 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
+	 * @see #isSetHeight()
+	 * @see #unsetHeight()
 	 * @see #setHeight(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCylinder_Height()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getHeight();
@@ -57,10 +59,35 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Height</em>' attribute.
+	 * @see #isSetHeight()
+	 * @see #unsetHeight()
 	 * @see #getHeight()
 	 * @generated
 	 */
 	void setHeight(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getHeight <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHeight()
+	 * @see #getHeight()
+	 * @see #setHeight(double)
+	 * @generated
+	 */
+	void unsetHeight();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getHeight <em>Height</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Height</em>' attribute is set.
+	 * @see #unsetHeight()
+	 * @see #getHeight()
+	 * @see #setHeight(double)
+	 * @generated
+	 */
+	boolean isSetHeight();
 
 	/**
 	 * Returns the value of the '<em><b>Height As String</b></em>' attribute.
@@ -71,9 +98,11 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height As String</em>' attribute.
+	 * @see #isSetHeightAsString()
+	 * @see #unsetHeightAsString()
 	 * @see #setHeightAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCylinder_HeightAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getHeightAsString();
@@ -83,10 +112,35 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Height As String</em>' attribute.
+	 * @see #isSetHeightAsString()
+	 * @see #unsetHeightAsString()
 	 * @see #getHeightAsString()
 	 * @generated
 	 */
 	void setHeightAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getHeightAsString <em>Height As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHeightAsString()
+	 * @see #getHeightAsString()
+	 * @see #setHeightAsString(String)
+	 * @generated
+	 */
+	void unsetHeightAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getHeightAsString <em>Height As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Height As String</em>' attribute is set.
+	 * @see #unsetHeightAsString()
+	 * @see #getHeightAsString()
+	 * @see #setHeightAsString(String)
+	 * @generated
+	 */
+	boolean isSetHeightAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Radius</b></em>' attribute.
@@ -97,9 +151,11 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
+	 * @see #isSetRadius()
+	 * @see #unsetRadius()
 	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCylinder_Radius()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getRadius();
@@ -109,10 +165,35 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Radius</em>' attribute.
+	 * @see #isSetRadius()
+	 * @see #unsetRadius()
 	 * @see #getRadius()
 	 * @generated
 	 */
 	void setRadius(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getRadius <em>Radius</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRadius()
+	 * @see #getRadius()
+	 * @see #setRadius(double)
+	 * @generated
+	 */
+	void unsetRadius();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getRadius <em>Radius</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Radius</em>' attribute is set.
+	 * @see #unsetRadius()
+	 * @see #getRadius()
+	 * @see #setRadius(double)
+	 * @generated
+	 */
+	boolean isSetRadius();
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.
@@ -123,9 +204,11 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius As String</em>' attribute.
+	 * @see #isSetRadiusAsString()
+	 * @see #unsetRadiusAsString()
 	 * @see #setRadiusAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRightCircularCylinder_RadiusAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getRadiusAsString();
@@ -135,9 +218,34 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Radius As String</em>' attribute.
+	 * @see #isSetRadiusAsString()
+	 * @see #unsetRadiusAsString()
 	 * @see #getRadiusAsString()
 	 * @generated
 	 */
 	void setRadiusAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getRadiusAsString <em>Radius As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRadiusAsString()
+	 * @see #getRadiusAsString()
+	 * @see #setRadiusAsString(String)
+	 * @generated
+	 */
+	void unsetRadiusAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRightCircularCylinder#getRadiusAsString <em>Radius As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Radius As String</em>' attribute is set.
+	 * @see #unsetRadiusAsString()
+	 * @see #getRadiusAsString()
+	 * @see #setRadiusAsString(String)
+	 * @generated
+	 */
+	boolean isSetRadiusAsString();
 
 } // IfcRightCircularCylinder

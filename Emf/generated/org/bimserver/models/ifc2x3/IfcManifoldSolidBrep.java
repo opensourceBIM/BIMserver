@@ -42,9 +42,11 @@ public interface IfcManifoldSolidBrep extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Outer</em>' reference.
+	 * @see #isSetOuter()
+	 * @see #unsetOuter()
 	 * @see #setOuter(IfcClosedShell)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcManifoldSolidBrep_Outer()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcClosedShell getOuter();
@@ -54,9 +56,34 @@ public interface IfcManifoldSolidBrep extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Outer</em>' reference.
+	 * @see #isSetOuter()
+	 * @see #unsetOuter()
 	 * @see #getOuter()
 	 * @generated
 	 */
 	void setOuter(IfcClosedShell value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcManifoldSolidBrep#getOuter <em>Outer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOuter()
+	 * @see #getOuter()
+	 * @see #setOuter(IfcClosedShell)
+	 * @generated
+	 */
+	void unsetOuter();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcManifoldSolidBrep#getOuter <em>Outer</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Outer</em>' reference is set.
+	 * @see #unsetOuter()
+	 * @see #getOuter()
+	 * @see #setOuter(IfcClosedShell)
+	 * @generated
+	 */
+	boolean isSetOuter();
 
 } // IfcManifoldSolidBrep

@@ -83,6 +83,24 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingProcess() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__RELATING_PROCESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingProcess() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__RELATING_PROCESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcProcess getRelatedProcess() {
 		return (IfcProcess) eGet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS, true);
 	}
@@ -94,6 +112,24 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequ
 	 */
 	public void setRelatedProcess(IfcProcess newRelatedProcess) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS, newRelatedProcess);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedProcess() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedProcess() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS);
 	}
 
 	/**
@@ -119,6 +155,24 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTimeLag() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeLag() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTimeLagAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG_AS_STRING, true);
 	}
@@ -137,6 +191,24 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTimeLagAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeLagAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__TIME_LAG_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSequenceEnum getSequenceType() {
 		return (IfcSequenceEnum) eGet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE, true);
 	}
@@ -148,6 +220,24 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequ
 	 */
 	public void setSequenceType(IfcSequenceEnum newSequenceType) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE, newSequenceType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSequenceType() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSequenceType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE);
 	}
 
 } //IfcRelSequenceImpl

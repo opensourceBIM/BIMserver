@@ -48,10 +48,33 @@ public interface IfcPresentationStyleAssignment extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Styles</em>' reference list.
+	 * @see #isSetStyles()
+	 * @see #unsetStyles()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPresentationStyleAssignment_Styles()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPresentationStyleSelect> getStyles();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment#getStyles <em>Styles</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStyles()
+	 * @see #getStyles()
+	 * @generated
+	 */
+	void unsetStyles();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment#getStyles <em>Styles</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Styles</em>' reference list is set.
+	 * @see #unsetStyles()
+	 * @see #getStyles()
+	 * @generated
+	 */
+	boolean isSetStyles();
 
 } // IfcPresentationStyleAssignment

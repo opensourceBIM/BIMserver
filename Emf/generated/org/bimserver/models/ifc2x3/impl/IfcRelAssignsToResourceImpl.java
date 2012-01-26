@@ -73,4 +73,22 @@ public class IfcRelAssignsToResourceImpl extends IfcRelAssignsImpl implements If
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_RESOURCE__RELATING_RESOURCE, newRelatingResource);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingResource() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_RESOURCE__RELATING_RESOURCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingResource() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_RESOURCE__RELATING_RESOURCE);
+	}
+
 } //IfcRelAssignsToResourceImpl

@@ -73,4 +73,22 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements IfcDistribut
 		eSet(Ifc2x3Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION, newFlowDirection);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetFlowDirection() {
+		eUnset(Ifc2x3Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlowDirection() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION);
+	}
+
 } //IfcDistributionPortImpl

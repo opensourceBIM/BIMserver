@@ -44,9 +44,11 @@ public interface IfcProcedure extends IfcProcess {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Procedure ID</em>' attribute.
+	 * @see #isSetProcedureID()
+	 * @see #unsetProcedureID()
 	 * @see #setProcedureID(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProcedure_ProcedureID()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getProcedureID();
@@ -56,10 +58,35 @@ public interface IfcProcedure extends IfcProcess {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Procedure ID</em>' attribute.
+	 * @see #isSetProcedureID()
+	 * @see #unsetProcedureID()
 	 * @see #getProcedureID()
 	 * @generated
 	 */
 	void setProcedureID(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProcedure#getProcedureID <em>Procedure ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetProcedureID()
+	 * @see #getProcedureID()
+	 * @see #setProcedureID(String)
+	 * @generated
+	 */
+	void unsetProcedureID();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProcedure#getProcedureID <em>Procedure ID</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Procedure ID</em>' attribute is set.
+	 * @see #unsetProcedureID()
+	 * @see #getProcedureID()
+	 * @see #setProcedureID(String)
+	 * @generated
+	 */
+	boolean isSetProcedureID();
 
 	/**
 	 * Returns the value of the '<em><b>Procedure Type</b></em>' attribute.
@@ -72,9 +99,11 @@ public interface IfcProcedure extends IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Procedure Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProcedureTypeEnum
+	 * @see #isSetProcedureType()
+	 * @see #unsetProcedureType()
 	 * @see #setProcedureType(IfcProcedureTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProcedure_ProcedureType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcProcedureTypeEnum getProcedureType();
@@ -85,10 +114,35 @@ public interface IfcProcedure extends IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Procedure Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProcedureTypeEnum
+	 * @see #isSetProcedureType()
+	 * @see #unsetProcedureType()
 	 * @see #getProcedureType()
 	 * @generated
 	 */
 	void setProcedureType(IfcProcedureTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProcedure#getProcedureType <em>Procedure Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetProcedureType()
+	 * @see #getProcedureType()
+	 * @see #setProcedureType(IfcProcedureTypeEnum)
+	 * @generated
+	 */
+	void unsetProcedureType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProcedure#getProcedureType <em>Procedure Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Procedure Type</em>' attribute is set.
+	 * @see #unsetProcedureType()
+	 * @see #getProcedureType()
+	 * @see #setProcedureType(IfcProcedureTypeEnum)
+	 * @generated
+	 */
+	boolean isSetProcedureType();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Procedure Type</b></em>' attribute.

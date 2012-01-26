@@ -83,6 +83,24 @@ public class IfcGeometricRepresentationSubContextImpl extends IfcGeometricRepres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetParentContext() {
+		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__PARENT_CONTEXT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParentContext() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__PARENT_CONTEXT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getTargetScale() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__TARGET_SCALE, true);
 	}
@@ -166,6 +184,24 @@ public class IfcGeometricRepresentationSubContextImpl extends IfcGeometricRepres
 	 */
 	public void setTargetView(IfcGeometricProjectionEnum newTargetView) {
 		eSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__TARGET_VIEW, newTargetView);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTargetView() {
+		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__TARGET_VIEW);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTargetView() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT__TARGET_VIEW);
 	}
 
 	/**

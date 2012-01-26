@@ -92,6 +92,24 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRole() {
+		eUnset(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__ROLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRole() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__ROLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getUserDefinedRole() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE, true);
 	}

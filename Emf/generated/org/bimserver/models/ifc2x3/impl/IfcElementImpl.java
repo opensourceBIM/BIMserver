@@ -130,9 +130,45 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetFillsVoids() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__FILLS_VOIDS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFillsVoids() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__FILLS_VOIDS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsElements> getConnectedTo() {
 		return (EList<IfcRelConnectsElements>) eGet(Ifc2x3Package.Literals.IFC_ELEMENT__CONNECTED_TO, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetConnectedTo() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__CONNECTED_TO);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectedTo() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__CONNECTED_TO);
 	}
 
 	/**
@@ -150,9 +186,45 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHasCoverings() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_COVERINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasCoverings() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_COVERINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelProjectsElement> getHasProjections() {
 		return (EList<IfcRelProjectsElement>) eGet(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_PROJECTIONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasProjections() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_PROJECTIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasProjections() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_PROJECTIONS);
 	}
 
 	/**
@@ -170,9 +242,45 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHasStructuralMember() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_STRUCTURAL_MEMBER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasStructuralMember() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_STRUCTURAL_MEMBER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelReferencedInSpatialStructure> getReferencedInStructures() {
 		return (EList<IfcRelReferencedInSpatialStructure>) eGet(Ifc2x3Package.Literals.IFC_ELEMENT__REFERENCED_IN_STRUCTURES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetReferencedInStructures() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__REFERENCED_IN_STRUCTURES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferencedInStructures() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__REFERENCED_IN_STRUCTURES);
 	}
 
 	/**
@@ -190,9 +298,45 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHasPorts() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_PORTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasPorts() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_PORTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelVoidsElement> getHasOpenings() {
 		return (EList<IfcRelVoidsElement>) eGet(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_OPENINGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasOpenings() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_OPENINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasOpenings() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__HAS_OPENINGS);
 	}
 
 	/**
@@ -210,9 +354,45 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsConnectionRealization() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__IS_CONNECTION_REALIZATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsConnectionRealization() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__IS_CONNECTION_REALIZATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary> getProvidesBoundaries() {
 		return (EList<IfcRelSpaceBoundary>) eGet(Ifc2x3Package.Literals.IFC_ELEMENT__PROVIDES_BOUNDARIES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetProvidesBoundaries() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__PROVIDES_BOUNDARIES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetProvidesBoundaries() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__PROVIDES_BOUNDARIES);
 	}
 
 	/**
@@ -230,9 +410,45 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetConnectedFrom() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__CONNECTED_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectedFrom() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__CONNECTED_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure() {
 		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc2x3Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetContainedInStructure() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetContainedInStructure() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE);
 	}
 
 } //IfcElementImpl

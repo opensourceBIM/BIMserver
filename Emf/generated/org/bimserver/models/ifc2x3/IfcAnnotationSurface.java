@@ -43,9 +43,11 @@ public interface IfcAnnotationSurface extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Item</em>' reference.
+	 * @see #isSetItem()
+	 * @see #unsetItem()
 	 * @see #setItem(IfcGeometricRepresentationItem)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAnnotationSurface_Item()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcGeometricRepresentationItem getItem();
@@ -55,10 +57,35 @@ public interface IfcAnnotationSurface extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Item</em>' reference.
+	 * @see #isSetItem()
+	 * @see #unsetItem()
 	 * @see #getItem()
 	 * @generated
 	 */
 	void setItem(IfcGeometricRepresentationItem value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotationSurface#getItem <em>Item</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetItem()
+	 * @see #getItem()
+	 * @see #setItem(IfcGeometricRepresentationItem)
+	 * @generated
+	 */
+	void unsetItem();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotationSurface#getItem <em>Item</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Item</em>' reference is set.
+	 * @see #unsetItem()
+	 * @see #getItem()
+	 * @see #setItem(IfcGeometricRepresentationItem)
+	 * @generated
+	 */
+	boolean isSetItem();
 
 	/**
 	 * Returns the value of the '<em><b>Texture Coordinates</b></em>' reference.

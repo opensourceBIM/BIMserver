@@ -88,6 +88,24 @@ public class IfcRelConnectsStructuralMemberImpl extends IfcRelConnectsImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingStructuralMember() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__RELATING_STRUCTURAL_MEMBER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingStructuralMember() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__RELATING_STRUCTURAL_MEMBER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcStructuralConnection getRelatedStructuralConnection() {
 		return (IfcStructuralConnection) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__RELATED_STRUCTURAL_CONNECTION, true);
 	}
@@ -99,6 +117,24 @@ public class IfcRelConnectsStructuralMemberImpl extends IfcRelConnectsImpl imple
 	 */
 	public void setRelatedStructuralConnection(IfcStructuralConnection newRelatedStructuralConnection) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__RELATED_STRUCTURAL_CONNECTION, newRelatedStructuralConnection);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedStructuralConnection() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__RELATED_STRUCTURAL_CONNECTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedStructuralConnection() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_MEMBER__RELATED_STRUCTURAL_CONNECTION);
 	}
 
 	/**

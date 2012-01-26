@@ -58,9 +58,11 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTendonTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcTendonTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcTendonTypeEnum getPredefinedType();
@@ -71,10 +73,35 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTendonTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcTendonTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcTendonTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcTendonTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 	/**
 	 * Returns the value of the '<em><b>Nominal Diameter</b></em>' attribute.
@@ -85,9 +112,11 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nominal Diameter</em>' attribute.
+	 * @see #isSetNominalDiameter()
+	 * @see #unsetNominalDiameter()
 	 * @see #setNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_NominalDiameter()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getNominalDiameter();
@@ -97,10 +126,35 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Nominal Diameter</em>' attribute.
+	 * @see #isSetNominalDiameter()
+	 * @see #unsetNominalDiameter()
 	 * @see #getNominalDiameter()
 	 * @generated
 	 */
 	void setNominalDiameter(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getNominalDiameter <em>Nominal Diameter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNominalDiameter()
+	 * @see #getNominalDiameter()
+	 * @see #setNominalDiameter(double)
+	 * @generated
+	 */
+	void unsetNominalDiameter();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getNominalDiameter <em>Nominal Diameter</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Nominal Diameter</em>' attribute is set.
+	 * @see #unsetNominalDiameter()
+	 * @see #getNominalDiameter()
+	 * @see #setNominalDiameter(double)
+	 * @generated
+	 */
+	boolean isSetNominalDiameter();
 
 	/**
 	 * Returns the value of the '<em><b>Nominal Diameter As String</b></em>' attribute.
@@ -111,9 +165,11 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nominal Diameter As String</em>' attribute.
+	 * @see #isSetNominalDiameterAsString()
+	 * @see #unsetNominalDiameterAsString()
 	 * @see #setNominalDiameterAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_NominalDiameterAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getNominalDiameterAsString();
@@ -123,10 +179,35 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Nominal Diameter As String</em>' attribute.
+	 * @see #isSetNominalDiameterAsString()
+	 * @see #unsetNominalDiameterAsString()
 	 * @see #getNominalDiameterAsString()
 	 * @generated
 	 */
 	void setNominalDiameterAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getNominalDiameterAsString <em>Nominal Diameter As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNominalDiameterAsString()
+	 * @see #getNominalDiameterAsString()
+	 * @see #setNominalDiameterAsString(String)
+	 * @generated
+	 */
+	void unsetNominalDiameterAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getNominalDiameterAsString <em>Nominal Diameter As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Nominal Diameter As String</em>' attribute is set.
+	 * @see #unsetNominalDiameterAsString()
+	 * @see #getNominalDiameterAsString()
+	 * @see #setNominalDiameterAsString(String)
+	 * @generated
+	 */
+	boolean isSetNominalDiameterAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Area</b></em>' attribute.
@@ -137,9 +218,11 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Area</em>' attribute.
+	 * @see #isSetCrossSectionArea()
+	 * @see #unsetCrossSectionArea()
 	 * @see #setCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_CrossSectionArea()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getCrossSectionArea();
@@ -149,10 +232,35 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cross Section Area</em>' attribute.
+	 * @see #isSetCrossSectionArea()
+	 * @see #unsetCrossSectionArea()
 	 * @see #getCrossSectionArea()
 	 * @generated
 	 */
 	void setCrossSectionArea(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getCrossSectionArea <em>Cross Section Area</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCrossSectionArea()
+	 * @see #getCrossSectionArea()
+	 * @see #setCrossSectionArea(double)
+	 * @generated
+	 */
+	void unsetCrossSectionArea();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getCrossSectionArea <em>Cross Section Area</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Cross Section Area</em>' attribute is set.
+	 * @see #unsetCrossSectionArea()
+	 * @see #getCrossSectionArea()
+	 * @see #setCrossSectionArea(double)
+	 * @generated
+	 */
+	boolean isSetCrossSectionArea();
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Area As String</b></em>' attribute.
@@ -163,9 +271,11 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Area As String</em>' attribute.
+	 * @see #isSetCrossSectionAreaAsString()
+	 * @see #unsetCrossSectionAreaAsString()
 	 * @see #setCrossSectionAreaAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTendon_CrossSectionAreaAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getCrossSectionAreaAsString();
@@ -175,10 +285,35 @@ public interface IfcTendon extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cross Section Area As String</em>' attribute.
+	 * @see #isSetCrossSectionAreaAsString()
+	 * @see #unsetCrossSectionAreaAsString()
 	 * @see #getCrossSectionAreaAsString()
 	 * @generated
 	 */
 	void setCrossSectionAreaAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getCrossSectionAreaAsString <em>Cross Section Area As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCrossSectionAreaAsString()
+	 * @see #getCrossSectionAreaAsString()
+	 * @see #setCrossSectionAreaAsString(String)
+	 * @generated
+	 */
+	void unsetCrossSectionAreaAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTendon#getCrossSectionAreaAsString <em>Cross Section Area As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Cross Section Area As String</em>' attribute is set.
+	 * @see #unsetCrossSectionAreaAsString()
+	 * @see #getCrossSectionAreaAsString()
+	 * @see #setCrossSectionAreaAsString(String)
+	 * @generated
+	 */
+	boolean isSetCrossSectionAreaAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Tension Force</b></em>' attribute.

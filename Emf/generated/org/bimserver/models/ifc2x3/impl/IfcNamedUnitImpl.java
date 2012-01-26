@@ -92,6 +92,24 @@ public class IfcNamedUnitImpl extends IdEObjectImpl implements IfcNamedUnit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDimensions() {
+		eUnset(Ifc2x3Package.Literals.IFC_NAMED_UNIT__DIMENSIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDimensions() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_NAMED_UNIT__DIMENSIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcUnitEnum getUnitType() {
 		return (IfcUnitEnum) eGet(Ifc2x3Package.Literals.IFC_NAMED_UNIT__UNIT_TYPE, true);
 	}
@@ -103,6 +121,24 @@ public class IfcNamedUnitImpl extends IdEObjectImpl implements IfcNamedUnit {
 	 */
 	public void setUnitType(IfcUnitEnum newUnitType) {
 		eSet(Ifc2x3Package.Literals.IFC_NAMED_UNIT__UNIT_TYPE, newUnitType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetUnitType() {
+		eUnset(Ifc2x3Package.Literals.IFC_NAMED_UNIT__UNIT_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetUnitType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_NAMED_UNIT__UNIT_TYPE);
 	}
 
 } //IfcNamedUnitImpl

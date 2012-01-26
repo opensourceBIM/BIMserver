@@ -43,9 +43,11 @@ public interface IfcEdgeCurve extends IfcEdge, IfcCurveOrEdgeCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edge Geometry</em>' reference.
+	 * @see #isSetEdgeGeometry()
+	 * @see #unsetEdgeGeometry()
 	 * @see #setEdgeGeometry(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEdgeCurve_EdgeGeometry()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurve getEdgeGeometry();
@@ -55,10 +57,35 @@ public interface IfcEdgeCurve extends IfcEdge, IfcCurveOrEdgeCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Edge Geometry</em>' reference.
+	 * @see #isSetEdgeGeometry()
+	 * @see #unsetEdgeGeometry()
 	 * @see #getEdgeGeometry()
 	 * @generated
 	 */
 	void setEdgeGeometry(IfcCurve value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeCurve#getEdgeGeometry <em>Edge Geometry</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEdgeGeometry()
+	 * @see #getEdgeGeometry()
+	 * @see #setEdgeGeometry(IfcCurve)
+	 * @generated
+	 */
+	void unsetEdgeGeometry();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeCurve#getEdgeGeometry <em>Edge Geometry</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Edge Geometry</em>' reference is set.
+	 * @see #unsetEdgeGeometry()
+	 * @see #getEdgeGeometry()
+	 * @see #setEdgeGeometry(IfcCurve)
+	 * @generated
+	 */
+	boolean isSetEdgeGeometry();
 
 	/**
 	 * Returns the value of the '<em><b>Same Sense</b></em>' attribute.
@@ -71,9 +98,11 @@ public interface IfcEdgeCurve extends IfcEdge, IfcCurveOrEdgeCurve {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSameSense()
+	 * @see #unsetSameSense()
 	 * @see #setSameSense(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEdgeCurve_SameSense()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getSameSense();
@@ -84,9 +113,34 @@ public interface IfcEdgeCurve extends IfcEdge, IfcCurveOrEdgeCurve {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSameSense()
+	 * @see #unsetSameSense()
 	 * @see #getSameSense()
 	 * @generated
 	 */
 	void setSameSense(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeCurve#getSameSense <em>Same Sense</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSameSense()
+	 * @see #getSameSense()
+	 * @see #setSameSense(Tristate)
+	 * @generated
+	 */
+	void unsetSameSense();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeCurve#getSameSense <em>Same Sense</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Same Sense</em>' attribute is set.
+	 * @see #unsetSameSense()
+	 * @see #getSameSense()
+	 * @see #setSameSense(Tristate)
+	 * @generated
+	 */
+	boolean isSetSameSense();
 
 } // IfcEdgeCurve

@@ -73,6 +73,24 @@ public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationIte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSbsmBoundary() {
+		eUnset(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__SBSM_BOUNDARY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSbsmBoundary() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__SBSM_BOUNDARY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, true);
 	}
@@ -84,6 +102,24 @@ public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationIte
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM);
 	}
 
 } //IfcShellBasedSurfaceModelImpl

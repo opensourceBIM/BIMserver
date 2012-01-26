@@ -81,6 +81,24 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLocationAtRelatingElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLocationAtRelatingElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcAxis2Placement getLocationAtRelatedElement() {
 		return (IfcAxis2Placement) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT, true);
 	}
@@ -128,6 +146,24 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public void setProfileOfPort(IfcProfileDef newProfileOfPort) {
 		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__PROFILE_OF_PORT, newProfileOfPort);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetProfileOfPort() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__PROFILE_OF_PORT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetProfileOfPort() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__PROFILE_OF_PORT);
 	}
 
 } //IfcConnectionPortGeometryImpl

@@ -42,9 +42,11 @@ public interface IfcSymbolStyle extends IfcPresentationStyle, IfcPresentationSty
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Style Of Symbol</em>' reference.
+	 * @see #isSetStyleOfSymbol()
+	 * @see #unsetStyleOfSymbol()
 	 * @see #setStyleOfSymbol(IfcSymbolStyleSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSymbolStyle_StyleOfSymbol()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcSymbolStyleSelect getStyleOfSymbol();
@@ -54,9 +56,34 @@ public interface IfcSymbolStyle extends IfcPresentationStyle, IfcPresentationSty
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Style Of Symbol</em>' reference.
+	 * @see #isSetStyleOfSymbol()
+	 * @see #unsetStyleOfSymbol()
 	 * @see #getStyleOfSymbol()
 	 * @generated
 	 */
 	void setStyleOfSymbol(IfcSymbolStyleSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSymbolStyle#getStyleOfSymbol <em>Style Of Symbol</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStyleOfSymbol()
+	 * @see #getStyleOfSymbol()
+	 * @see #setStyleOfSymbol(IfcSymbolStyleSelect)
+	 * @generated
+	 */
+	void unsetStyleOfSymbol();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSymbolStyle#getStyleOfSymbol <em>Style Of Symbol</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Style Of Symbol</em>' reference is set.
+	 * @see #unsetStyleOfSymbol()
+	 * @see #getStyleOfSymbol()
+	 * @see #setStyleOfSymbol(IfcSymbolStyleSelect)
+	 * @generated
+	 */
+	boolean isSetStyleOfSymbol();
 
 } // IfcSymbolStyle

@@ -43,9 +43,11 @@ public interface IfcSweptAreaSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Swept Area</em>' reference.
+	 * @see #isSetSweptArea()
+	 * @see #unsetSweptArea()
 	 * @see #setSweptArea(IfcProfileDef)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptAreaSolid_SweptArea()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcProfileDef getSweptArea();
@@ -55,10 +57,35 @@ public interface IfcSweptAreaSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Swept Area</em>' reference.
+	 * @see #isSetSweptArea()
+	 * @see #unsetSweptArea()
 	 * @see #getSweptArea()
 	 * @generated
 	 */
 	void setSweptArea(IfcProfileDef value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptAreaSolid#getSweptArea <em>Swept Area</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSweptArea()
+	 * @see #getSweptArea()
+	 * @see #setSweptArea(IfcProfileDef)
+	 * @generated
+	 */
+	void unsetSweptArea();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptAreaSolid#getSweptArea <em>Swept Area</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Swept Area</em>' reference is set.
+	 * @see #unsetSweptArea()
+	 * @see #getSweptArea()
+	 * @see #setSweptArea(IfcProfileDef)
+	 * @generated
+	 */
+	boolean isSetSweptArea();
 
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' reference.
@@ -69,9 +96,11 @@ public interface IfcSweptAreaSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #setPosition(IfcAxis2Placement3D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptAreaSolid_Position()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis2Placement3D getPosition();
@@ -81,9 +110,34 @@ public interface IfcSweptAreaSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #getPosition()
 	 * @generated
 	 */
 	void setPosition(IfcAxis2Placement3D value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptAreaSolid#getPosition <em>Position</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement3D)
+	 * @generated
+	 */
+	void unsetPosition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptAreaSolid#getPosition <em>Position</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Position</em>' reference is set.
+	 * @see #unsetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement3D)
+	 * @generated
+	 */
+	boolean isSetPosition();
 
 } // IfcSweptAreaSolid

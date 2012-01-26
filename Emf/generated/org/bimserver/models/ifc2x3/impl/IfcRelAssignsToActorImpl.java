@@ -80,6 +80,24 @@ public class IfcRelAssignsToActorImpl extends IfcRelAssignsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingActor() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__RELATING_ACTOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingActor() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__RELATING_ACTOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcActorRole getActingRole() {
 		return (IfcActorRole) eGet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__ACTING_ROLE, true);
 	}

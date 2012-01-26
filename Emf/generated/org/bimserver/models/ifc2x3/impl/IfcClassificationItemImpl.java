@@ -98,6 +98,24 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetNotation() {
+		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNotation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcClassification getItemOf() {
 		return (IfcClassification) eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF, true);
 	}
@@ -152,6 +170,24 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTitle() {
+		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTitle() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifiedItemIn() {
 		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN, true);
@@ -162,9 +198,45 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsClassifiedItemIn() {
+		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsClassifiedItemIn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifyingItemIn() {
 		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsClassifyingItemIn() {
+		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsClassifyingItemIn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN);
 	}
 
 } //IfcClassificationItemImpl

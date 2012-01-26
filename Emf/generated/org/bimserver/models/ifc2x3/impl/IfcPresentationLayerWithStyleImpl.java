@@ -83,6 +83,24 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLayerOn() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLayerOn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isLayerFrozen() {
 		return (Boolean) eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, true);
 	}
@@ -94,6 +112,24 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	public void setLayerFrozen(boolean newLayerFrozen) {
 		eSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, newLayerFrozen);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLayerFrozen() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLayerFrozen() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN);
 	}
 
 	/**
@@ -119,9 +155,45 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLayerBlocked() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLayerBlocked() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getLayerStyles() {
 		return (EList<IfcPresentationStyleSelect>) eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLayerStyles() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLayerStyles() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES);
 	}
 
 } //IfcPresentationLayerWithStyleImpl

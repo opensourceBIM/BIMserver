@@ -118,6 +118,24 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetFrequency() {
+		eUnset(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFrequency() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getFrequencyAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY_AS_STRING, true);
 	}
@@ -129,6 +147,24 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public void setFrequencyAsString(String newFrequencyAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY_AS_STRING, newFrequencyAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetFrequencyAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFrequencyAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY_AS_STRING);
 	}
 
 	/**

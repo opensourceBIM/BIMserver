@@ -46,11 +46,34 @@ public interface IfcLibraryReference extends IfcExternalReference, IfcLibrarySel
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference Into Library</em>' reference list.
+	 * @see #isSetReferenceIntoLibrary()
+	 * @see #unsetReferenceIntoLibrary()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLibraryReference_ReferenceIntoLibrary()
 	 * @see org.bimserver.models.ifc2x3.IfcLibraryInformation#getLibraryReference
-	 * @model opposite="LibraryReference" upper="2"
+	 * @model opposite="LibraryReference" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcLibraryInformation> getReferenceIntoLibrary();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLibraryReference#getReferenceIntoLibrary <em>Reference Into Library</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReferenceIntoLibrary()
+	 * @see #getReferenceIntoLibrary()
+	 * @generated
+	 */
+	void unsetReferenceIntoLibrary();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLibraryReference#getReferenceIntoLibrary <em>Reference Into Library</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Reference Into Library</em>' reference list is set.
+	 * @see #unsetReferenceIntoLibrary()
+	 * @see #getReferenceIntoLibrary()
+	 * @generated
+	 */
+	boolean isSetReferenceIntoLibrary();
 
 } // IfcLibraryReference

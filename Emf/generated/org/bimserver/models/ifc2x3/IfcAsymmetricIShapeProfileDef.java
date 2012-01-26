@@ -49,9 +49,11 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Top Flange Width</em>' attribute.
+	 * @see #isSetTopFlangeWidth()
+	 * @see #unsetTopFlangeWidth()
 	 * @see #setTopFlangeWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAsymmetricIShapeProfileDef_TopFlangeWidth()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getTopFlangeWidth();
@@ -61,10 +63,35 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Top Flange Width</em>' attribute.
+	 * @see #isSetTopFlangeWidth()
+	 * @see #unsetTopFlangeWidth()
 	 * @see #getTopFlangeWidth()
 	 * @generated
 	 */
 	void setTopFlangeWidth(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeWidth <em>Top Flange Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTopFlangeWidth()
+	 * @see #getTopFlangeWidth()
+	 * @see #setTopFlangeWidth(double)
+	 * @generated
+	 */
+	void unsetTopFlangeWidth();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeWidth <em>Top Flange Width</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Top Flange Width</em>' attribute is set.
+	 * @see #unsetTopFlangeWidth()
+	 * @see #getTopFlangeWidth()
+	 * @see #setTopFlangeWidth(double)
+	 * @generated
+	 */
+	boolean isSetTopFlangeWidth();
 
 	/**
 	 * Returns the value of the '<em><b>Top Flange Width As String</b></em>' attribute.
@@ -75,9 +102,11 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Top Flange Width As String</em>' attribute.
+	 * @see #isSetTopFlangeWidthAsString()
+	 * @see #unsetTopFlangeWidthAsString()
 	 * @see #setTopFlangeWidthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAsymmetricIShapeProfileDef_TopFlangeWidthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getTopFlangeWidthAsString();
@@ -87,10 +116,35 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcIShapeProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Top Flange Width As String</em>' attribute.
+	 * @see #isSetTopFlangeWidthAsString()
+	 * @see #unsetTopFlangeWidthAsString()
 	 * @see #getTopFlangeWidthAsString()
 	 * @generated
 	 */
 	void setTopFlangeWidthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeWidthAsString <em>Top Flange Width As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTopFlangeWidthAsString()
+	 * @see #getTopFlangeWidthAsString()
+	 * @see #setTopFlangeWidthAsString(String)
+	 * @generated
+	 */
+	void unsetTopFlangeWidthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef#getTopFlangeWidthAsString <em>Top Flange Width As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Top Flange Width As String</em>' attribute is set.
+	 * @see #unsetTopFlangeWidthAsString()
+	 * @see #getTopFlangeWidthAsString()
+	 * @see #setTopFlangeWidthAsString(String)
+	 * @generated
+	 */
+	boolean isSetTopFlangeWidthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Top Flange Thickness</b></em>' attribute.

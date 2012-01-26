@@ -51,9 +51,11 @@ public interface IfcProperty extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProperty_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -63,10 +65,35 @@ public interface IfcProperty extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -132,12 +159,35 @@ public interface IfcProperty extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property For Dependance</em>' reference list.
+	 * @see #isSetPropertyForDependance()
+	 * @see #unsetPropertyForDependance()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProperty_PropertyForDependance()
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship#getDependingProperty
-	 * @model opposite="DependingProperty"
+	 * @model opposite="DependingProperty" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPropertyDependencyRelationship> getPropertyForDependance();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getPropertyForDependance <em>Property For Dependance</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPropertyForDependance()
+	 * @see #getPropertyForDependance()
+	 * @generated
+	 */
+	void unsetPropertyForDependance();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getPropertyForDependance <em>Property For Dependance</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Property For Dependance</em>' reference list is set.
+	 * @see #unsetPropertyForDependance()
+	 * @see #getPropertyForDependance()
+	 * @generated
+	 */
+	boolean isSetPropertyForDependance();
 
 	/**
 	 * Returns the value of the '<em><b>Property Depends On</b></em>' reference list.
@@ -150,12 +200,35 @@ public interface IfcProperty extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property Depends On</em>' reference list.
+	 * @see #isSetPropertyDependsOn()
+	 * @see #unsetPropertyDependsOn()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProperty_PropertyDependsOn()
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship#getDependantProperty
-	 * @model opposite="DependantProperty"
+	 * @model opposite="DependantProperty" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPropertyDependencyRelationship> getPropertyDependsOn();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getPropertyDependsOn <em>Property Depends On</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPropertyDependsOn()
+	 * @see #getPropertyDependsOn()
+	 * @generated
+	 */
+	void unsetPropertyDependsOn();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getPropertyDependsOn <em>Property Depends On</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Property Depends On</em>' reference list is set.
+	 * @see #unsetPropertyDependsOn()
+	 * @see #getPropertyDependsOn()
+	 * @generated
+	 */
+	boolean isSetPropertyDependsOn();
 
 	/**
 	 * Returns the value of the '<em><b>Part Of Complex</b></em>' reference list.
@@ -168,11 +241,34 @@ public interface IfcProperty extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part Of Complex</em>' reference list.
+	 * @see #isSetPartOfComplex()
+	 * @see #unsetPartOfComplex()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProperty_PartOfComplex()
 	 * @see org.bimserver.models.ifc2x3.IfcComplexProperty#getHasProperties
-	 * @model opposite="HasProperties" upper="2"
+	 * @model opposite="HasProperties" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcComplexProperty> getPartOfComplex();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getPartOfComplex <em>Part Of Complex</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPartOfComplex()
+	 * @see #getPartOfComplex()
+	 * @generated
+	 */
+	void unsetPartOfComplex();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProperty#getPartOfComplex <em>Part Of Complex</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Part Of Complex</em>' reference list is set.
+	 * @see #unsetPartOfComplex()
+	 * @see #getPartOfComplex()
+	 * @generated
+	 */
+	boolean isSetPartOfComplex();
 
 } // IfcProperty

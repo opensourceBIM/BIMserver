@@ -46,11 +46,34 @@ public interface IfcShapeModel extends IfcRepresentation {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Of Shape Aspect</em>' reference list.
+	 * @see #isSetOfShapeAspect()
+	 * @see #unsetOfShapeAspect()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcShapeModel_OfShapeAspect()
 	 * @see org.bimserver.models.ifc2x3.IfcShapeAspect#getShapeRepresentations
-	 * @model opposite="ShapeRepresentations" upper="2"
+	 * @model opposite="ShapeRepresentations" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcShapeAspect> getOfShapeAspect();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeModel#getOfShapeAspect <em>Of Shape Aspect</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOfShapeAspect()
+	 * @see #getOfShapeAspect()
+	 * @generated
+	 */
+	void unsetOfShapeAspect();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeModel#getOfShapeAspect <em>Of Shape Aspect</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Of Shape Aspect</em>' reference list is set.
+	 * @see #unsetOfShapeAspect()
+	 * @see #getOfShapeAspect()
+	 * @generated
+	 */
+	boolean isSetOfShapeAspect();
 
 } // IfcShapeModel

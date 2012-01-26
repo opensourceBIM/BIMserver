@@ -42,9 +42,11 @@ public interface IfcImageTexture extends IfcSurfaceTexture {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Url Reference</em>' attribute.
+	 * @see #isSetUrlReference()
+	 * @see #unsetUrlReference()
 	 * @see #setUrlReference(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcImageTexture_UrlReference()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getUrlReference();
@@ -54,9 +56,34 @@ public interface IfcImageTexture extends IfcSurfaceTexture {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Url Reference</em>' attribute.
+	 * @see #isSetUrlReference()
+	 * @see #unsetUrlReference()
 	 * @see #getUrlReference()
 	 * @generated
 	 */
 	void setUrlReference(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcImageTexture#getUrlReference <em>Url Reference</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUrlReference()
+	 * @see #getUrlReference()
+	 * @see #setUrlReference(String)
+	 * @generated
+	 */
+	void unsetUrlReference();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcImageTexture#getUrlReference <em>Url Reference</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Url Reference</em>' attribute is set.
+	 * @see #unsetUrlReference()
+	 * @see #getUrlReference()
+	 * @see #setUrlReference(String)
+	 * @generated
+	 */
+	boolean isSetUrlReference();
 
 } // IfcImageTexture

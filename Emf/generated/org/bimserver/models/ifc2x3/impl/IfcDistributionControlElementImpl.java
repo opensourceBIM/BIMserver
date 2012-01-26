@@ -104,4 +104,22 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 		return (EList<IfcRelFlowControlElements>) eGet(Ifc2x3Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAssignedToFlowElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssignedToFlowElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT);
+	}
+
 } //IfcDistributionControlElementImpl

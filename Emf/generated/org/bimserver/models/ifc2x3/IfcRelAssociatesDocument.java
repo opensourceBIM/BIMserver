@@ -42,9 +42,11 @@ public interface IfcRelAssociatesDocument extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Document</em>' reference.
+	 * @see #isSetRelatingDocument()
+	 * @see #unsetRelatingDocument()
 	 * @see #setRelatingDocument(IfcDocumentSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesDocument_RelatingDocument()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDocumentSelect getRelatingDocument();
@@ -54,9 +56,34 @@ public interface IfcRelAssociatesDocument extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Document</em>' reference.
+	 * @see #isSetRelatingDocument()
+	 * @see #unsetRelatingDocument()
 	 * @see #getRelatingDocument()
 	 * @generated
 	 */
 	void setRelatingDocument(IfcDocumentSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesDocument#getRelatingDocument <em>Relating Document</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingDocument()
+	 * @see #getRelatingDocument()
+	 * @see #setRelatingDocument(IfcDocumentSelect)
+	 * @generated
+	 */
+	void unsetRelatingDocument();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesDocument#getRelatingDocument <em>Relating Document</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Document</em>' reference is set.
+	 * @see #unsetRelatingDocument()
+	 * @see #getRelatingDocument()
+	 * @see #setRelatingDocument(IfcDocumentSelect)
+	 * @generated
+	 */
+	boolean isSetRelatingDocument();
 
 } // IfcRelAssociatesDocument

@@ -91,6 +91,24 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPredefinedType() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPredefinedType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcActionTypeEnum getActionType() {
 		return (IfcActionTypeEnum) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_TYPE, true);
 	}
@@ -109,6 +127,24 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetActionType() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActionType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcActionSourceTypeEnum getActionSource() {
 		return (IfcActionSourceTypeEnum) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE, true);
 	}
@@ -120,6 +156,24 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 */
 	public void setActionSource(IfcActionSourceTypeEnum newActionSource) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE, newActionSource);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetActionSource() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActionSource() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE);
 	}
 
 	/**
@@ -245,9 +299,45 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSourceOfResultGroup() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSourceOfResultGroup() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAnalysisModel> getLoadGroupFor() {
 		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLoadGroupFor() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLoadGroupFor() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR);
 	}
 
 } //IfcStructuralLoadGroupImpl

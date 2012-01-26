@@ -84,6 +84,24 @@ public class IfcCoveringImpl extends IfcBuildingElementImpl implements IfcCoveri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPredefinedType() {
+		eUnset(Ifc2x3Package.Literals.IFC_COVERING__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPredefinedType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COVERING__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelCoversSpaces> getCoversSpaces() {
 		return (EList<IfcRelCoversSpaces>) eGet(Ifc2x3Package.Literals.IFC_COVERING__COVERS_SPACES, true);
@@ -94,9 +112,45 @@ public class IfcCoveringImpl extends IfcBuildingElementImpl implements IfcCoveri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCoversSpaces() {
+		eUnset(Ifc2x3Package.Literals.IFC_COVERING__COVERS_SPACES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCoversSpaces() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COVERING__COVERS_SPACES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelCoversBldgElements> getCovers() {
 		return (EList<IfcRelCoversBldgElements>) eGet(Ifc2x3Package.Literals.IFC_COVERING__COVERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCovers() {
+		eUnset(Ifc2x3Package.Literals.IFC_COVERING__COVERS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCovers() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COVERING__COVERS);
 	}
 
 } //IfcCoveringImpl

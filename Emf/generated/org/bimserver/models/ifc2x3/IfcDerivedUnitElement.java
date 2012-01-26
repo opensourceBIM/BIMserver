@@ -46,9 +46,11 @@ public interface IfcDerivedUnitElement extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unit</em>' reference.
+	 * @see #isSetUnit()
+	 * @see #unsetUnit()
 	 * @see #setUnit(IfcNamedUnit)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDerivedUnitElement_Unit()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcNamedUnit getUnit();
@@ -58,10 +60,35 @@ public interface IfcDerivedUnitElement extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Unit</em>' reference.
+	 * @see #isSetUnit()
+	 * @see #unsetUnit()
 	 * @see #getUnit()
 	 * @generated
 	 */
 	void setUnit(IfcNamedUnit value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnitElement#getUnit <em>Unit</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUnit()
+	 * @see #getUnit()
+	 * @see #setUnit(IfcNamedUnit)
+	 * @generated
+	 */
+	void unsetUnit();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnitElement#getUnit <em>Unit</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Unit</em>' reference is set.
+	 * @see #unsetUnit()
+	 * @see #getUnit()
+	 * @see #setUnit(IfcNamedUnit)
+	 * @generated
+	 */
+	boolean isSetUnit();
 
 	/**
 	 * Returns the value of the '<em><b>Exponent</b></em>' attribute.
@@ -72,9 +99,11 @@ public interface IfcDerivedUnitElement extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Exponent</em>' attribute.
+	 * @see #isSetExponent()
+	 * @see #unsetExponent()
 	 * @see #setExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDerivedUnitElement_Exponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getExponent();
@@ -84,9 +113,34 @@ public interface IfcDerivedUnitElement extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exponent</em>' attribute.
+	 * @see #isSetExponent()
+	 * @see #unsetExponent()
 	 * @see #getExponent()
 	 * @generated
 	 */
 	void setExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnitElement#getExponent <em>Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetExponent()
+	 * @see #getExponent()
+	 * @see #setExponent(int)
+	 * @generated
+	 */
+	void unsetExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnitElement#getExponent <em>Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Exponent</em>' attribute is set.
+	 * @see #unsetExponent()
+	 * @see #getExponent()
+	 * @see #setExponent(int)
+	 * @generated
+	 */
+	boolean isSetExponent();
 
 } // IfcDerivedUnitElement

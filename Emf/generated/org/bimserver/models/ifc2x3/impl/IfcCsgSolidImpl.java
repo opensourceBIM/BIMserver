@@ -73,4 +73,22 @@ public class IfcCsgSolidImpl extends IfcSolidModelImpl implements IfcCsgSolid {
 		eSet(Ifc2x3Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION, newTreeRootExpression);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTreeRootExpression() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTreeRootExpression() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION);
+	}
+
 } //IfcCsgSolidImpl

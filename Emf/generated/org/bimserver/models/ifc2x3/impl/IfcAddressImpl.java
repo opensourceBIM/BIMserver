@@ -98,6 +98,24 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPurpose() {
+		eUnset(Ifc2x3Package.Literals.IFC_ADDRESS__PURPOSE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPurpose() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ADDRESS__PURPOSE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ADDRESS__DESCRIPTION, true);
 	}
@@ -180,9 +198,45 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetOfPerson() {
+		eUnset(Ifc2x3Package.Literals.IFC_ADDRESS__OF_PERSON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOfPerson() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ADDRESS__OF_PERSON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getOfOrganization() {
 		return (EList<IfcOrganization>) eGet(Ifc2x3Package.Literals.IFC_ADDRESS__OF_ORGANIZATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOfOrganization() {
+		eUnset(Ifc2x3Package.Literals.IFC_ADDRESS__OF_ORGANIZATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOfOrganization() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ADDRESS__OF_ORGANIZATION);
 	}
 
 } //IfcAddressImpl

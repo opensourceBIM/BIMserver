@@ -46,11 +46,34 @@ public interface IfcOpeningElement extends IfcFeatureElementSubtraction {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Fillings</em>' reference list.
+	 * @see #isSetHasFillings()
+	 * @see #unsetHasFillings()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOpeningElement_HasFillings()
 	 * @see org.bimserver.models.ifc2x3.IfcRelFillsElement#getRelatingOpeningElement
-	 * @model opposite="RelatingOpeningElement"
+	 * @model opposite="RelatingOpeningElement" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelFillsElement> getHasFillings();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOpeningElement#getHasFillings <em>Has Fillings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasFillings()
+	 * @see #getHasFillings()
+	 * @generated
+	 */
+	void unsetHasFillings();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOpeningElement#getHasFillings <em>Has Fillings</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Fillings</em>' reference list is set.
+	 * @see #unsetHasFillings()
+	 * @see #getHasFillings()
+	 * @generated
+	 */
+	boolean isSetHasFillings();
 
 } // IfcOpeningElement

@@ -80,6 +80,24 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHeight() {
+		eUnset(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHeight() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getHeightAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT_AS_STRING, true);
 	}
@@ -91,6 +109,24 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 */
 	public void setHeightAsString(String newHeightAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT_AS_STRING, newHeightAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHeightAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHeightAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__HEIGHT_AS_STRING);
 	}
 
 	/**
@@ -116,6 +152,24 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRadius() {
+		eUnset(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRadius() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getRadiusAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS_AS_STRING, true);
 	}
@@ -127,6 +181,24 @@ public class IfcRightCircularCylinderImpl extends IfcCsgPrimitive3DImpl implemen
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS_AS_STRING, newRadiusAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRadiusAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRadiusAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_RIGHT_CIRCULAR_CYLINDER__RADIUS_AS_STRING);
 	}
 
 } //IfcRightCircularCylinderImpl

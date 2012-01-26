@@ -91,6 +91,24 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDayComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDayComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getMonthComponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT, true);
 	}
@@ -109,6 +127,24 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMonthComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMonthComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getYearComponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT, true);
 	}
@@ -120,6 +156,24 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 */
 	public void setYearComponent(int newYearComponent) {
 		eSet(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT, newYearComponent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetYearComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetYearComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT);
 	}
 
 } //IfcCalendarDateImpl

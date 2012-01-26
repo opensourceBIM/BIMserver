@@ -79,6 +79,24 @@ public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPosition() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSG_PRIMITIVE3_D__POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPosition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSG_PRIMITIVE3_D__POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM, true);
 	}
@@ -90,6 +108,24 @@ public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM);
 	}
 
 } //IfcCsgPrimitive3DImpl

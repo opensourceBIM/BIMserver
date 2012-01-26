@@ -79,4 +79,22 @@ public class IfcClassificationNotationImpl extends IdEObjectImpl implements IfcC
 		return (EList<IfcClassificationNotationFacet>) eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNotationFacets() {
+		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNotationFacets() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS);
+	}
+
 } //IfcClassificationNotationImpl

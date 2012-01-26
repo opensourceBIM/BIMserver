@@ -74,6 +74,24 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatedControlElements() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATED_CONTROL_ELEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedControlElements() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATED_CONTROL_ELEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcDistributionFlowElement getRelatingFlowElement() {
 		return (IfcDistributionFlowElement) eGet(Ifc2x3Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT, true);
 	}
@@ -85,6 +103,24 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 */
 	public void setRelatingFlowElement(IfcDistributionFlowElement newRelatingFlowElement) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT, newRelatingFlowElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingFlowElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingFlowElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT);
 	}
 
 } //IfcRelFlowControlElementsImpl

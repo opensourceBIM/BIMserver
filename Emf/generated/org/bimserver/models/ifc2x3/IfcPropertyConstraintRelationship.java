@@ -51,10 +51,12 @@ public interface IfcPropertyConstraintRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Constraint</em>' reference.
+	 * @see #isSetRelatingConstraint()
+	 * @see #unsetRelatingConstraint()
 	 * @see #setRelatingConstraint(IfcConstraint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyConstraintRelationship_RelatingConstraint()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraint#getPropertiesForConstraint
-	 * @model opposite="PropertiesForConstraint"
+	 * @model opposite="PropertiesForConstraint" unsettable="true"
 	 * @generated
 	 */
 	IfcConstraint getRelatingConstraint();
@@ -64,10 +66,35 @@ public interface IfcPropertyConstraintRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Constraint</em>' reference.
+	 * @see #isSetRelatingConstraint()
+	 * @see #unsetRelatingConstraint()
 	 * @see #getRelatingConstraint()
 	 * @generated
 	 */
 	void setRelatingConstraint(IfcConstraint value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship#getRelatingConstraint <em>Relating Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingConstraint()
+	 * @see #getRelatingConstraint()
+	 * @see #setRelatingConstraint(IfcConstraint)
+	 * @generated
+	 */
+	void unsetRelatingConstraint();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship#getRelatingConstraint <em>Relating Constraint</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Constraint</em>' reference is set.
+	 * @see #unsetRelatingConstraint()
+	 * @see #getRelatingConstraint()
+	 * @see #setRelatingConstraint(IfcConstraint)
+	 * @generated
+	 */
+	boolean isSetRelatingConstraint();
 
 	/**
 	 * Returns the value of the '<em><b>Related Properties</b></em>' reference list.
@@ -79,11 +106,34 @@ public interface IfcPropertyConstraintRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Properties</em>' reference list.
+	 * @see #isSetRelatedProperties()
+	 * @see #unsetRelatedProperties()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyConstraintRelationship_RelatedProperties()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcProperty> getRelatedProperties();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship#getRelatedProperties <em>Related Properties</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedProperties()
+	 * @see #getRelatedProperties()
+	 * @generated
+	 */
+	void unsetRelatedProperties();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship#getRelatedProperties <em>Related Properties</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Properties</em>' reference list is set.
+	 * @see #unsetRelatedProperties()
+	 * @see #getRelatedProperties()
+	 * @generated
+	 */
+	boolean isSetRelatedProperties();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

@@ -67,4 +67,22 @@ public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements IfcTe
 		return (EList<IfcVertexBasedTextureMap>) eGet(Ifc2x3Package.Literals.IFC_TEXTURE_MAP__TEXTURE_MAPS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTextureMaps() {
+		eUnset(Ifc2x3Package.Literals.IFC_TEXTURE_MAP__TEXTURE_MAPS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTextureMaps() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TEXTURE_MAP__TEXTURE_MAPS);
+	}
+
 } //IfcTextureMapImpl

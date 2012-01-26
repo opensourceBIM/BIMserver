@@ -81,6 +81,24 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetOrientation() {
+		eUnset(Ifc2x3Package.Literals.IFC_VECTOR__ORIENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOrientation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_VECTOR__ORIENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getMagnitude() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE, true);
 	}
@@ -92,6 +110,24 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public void setMagnitude(double newMagnitude) {
 		eSet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE, newMagnitude);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetMagnitude() {
+		eUnset(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMagnitude() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE);
 	}
 
 	/**
@@ -117,6 +153,24 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMagnitudeAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMagnitudeAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_VECTOR__DIM, true);
 	}
@@ -128,6 +182,24 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_VECTOR__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_VECTOR__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_VECTOR__DIM);
 	}
 
 } //IfcVectorImpl

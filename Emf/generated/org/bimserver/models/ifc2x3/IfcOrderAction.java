@@ -42,9 +42,11 @@ public interface IfcOrderAction extends IfcTask {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Action ID</em>' attribute.
+	 * @see #isSetActionID()
+	 * @see #unsetActionID()
 	 * @see #setActionID(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOrderAction_ActionID()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getActionID();
@@ -54,9 +56,34 @@ public interface IfcOrderAction extends IfcTask {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Action ID</em>' attribute.
+	 * @see #isSetActionID()
+	 * @see #unsetActionID()
 	 * @see #getActionID()
 	 * @generated
 	 */
 	void setActionID(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOrderAction#getActionID <em>Action ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetActionID()
+	 * @see #getActionID()
+	 * @see #setActionID(String)
+	 * @generated
+	 */
+	void unsetActionID();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOrderAction#getActionID <em>Action ID</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Action ID</em>' attribute is set.
+	 * @see #unsetActionID()
+	 * @see #getActionID()
+	 * @see #setActionID(String)
+	 * @generated
+	 */
+	boolean isSetActionID();
 
 } // IfcOrderAction

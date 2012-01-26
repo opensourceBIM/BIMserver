@@ -85,6 +85,24 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSpineCurve() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSpineCurve() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProfileDef> getCrossSections() {
 		return (EList<IfcProfileDef>) eGet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTIONS, true);
@@ -95,9 +113,45 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCrossSections() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCrossSections() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAxis2Placement3D> getCrossSectionPositions() {
 		return (EList<IfcAxis2Placement3D>) eGet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCrossSectionPositions() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCrossSectionPositions() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS);
 	}
 
 	/**
@@ -116,6 +170,24 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__DIM);
 	}
 
 } //IfcSectionedSpineImpl

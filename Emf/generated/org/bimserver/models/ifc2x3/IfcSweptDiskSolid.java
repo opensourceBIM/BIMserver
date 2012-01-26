@@ -50,9 +50,11 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Directrix</em>' reference.
+	 * @see #isSetDirectrix()
+	 * @see #unsetDirectrix()
 	 * @see #setDirectrix(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_Directrix()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurve getDirectrix();
@@ -62,10 +64,35 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Directrix</em>' reference.
+	 * @see #isSetDirectrix()
+	 * @see #unsetDirectrix()
 	 * @see #getDirectrix()
 	 * @generated
 	 */
 	void setDirectrix(IfcCurve value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getDirectrix <em>Directrix</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDirectrix()
+	 * @see #getDirectrix()
+	 * @see #setDirectrix(IfcCurve)
+	 * @generated
+	 */
+	void unsetDirectrix();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getDirectrix <em>Directrix</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Directrix</em>' reference is set.
+	 * @see #unsetDirectrix()
+	 * @see #getDirectrix()
+	 * @see #setDirectrix(IfcCurve)
+	 * @generated
+	 */
+	boolean isSetDirectrix();
 
 	/**
 	 * Returns the value of the '<em><b>Radius</b></em>' attribute.
@@ -76,9 +103,11 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
+	 * @see #isSetRadius()
+	 * @see #unsetRadius()
 	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_Radius()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getRadius();
@@ -88,10 +117,35 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Radius</em>' attribute.
+	 * @see #isSetRadius()
+	 * @see #unsetRadius()
 	 * @see #getRadius()
 	 * @generated
 	 */
 	void setRadius(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getRadius <em>Radius</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRadius()
+	 * @see #getRadius()
+	 * @see #setRadius(double)
+	 * @generated
+	 */
+	void unsetRadius();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getRadius <em>Radius</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Radius</em>' attribute is set.
+	 * @see #unsetRadius()
+	 * @see #getRadius()
+	 * @see #setRadius(double)
+	 * @generated
+	 */
+	boolean isSetRadius();
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.
@@ -102,9 +156,11 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius As String</em>' attribute.
+	 * @see #isSetRadiusAsString()
+	 * @see #unsetRadiusAsString()
 	 * @see #setRadiusAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_RadiusAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getRadiusAsString();
@@ -114,10 +170,35 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Radius As String</em>' attribute.
+	 * @see #isSetRadiusAsString()
+	 * @see #unsetRadiusAsString()
 	 * @see #getRadiusAsString()
 	 * @generated
 	 */
 	void setRadiusAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getRadiusAsString <em>Radius As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRadiusAsString()
+	 * @see #getRadiusAsString()
+	 * @see #setRadiusAsString(String)
+	 * @generated
+	 */
+	void unsetRadiusAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getRadiusAsString <em>Radius As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Radius As String</em>' attribute is set.
+	 * @see #unsetRadiusAsString()
+	 * @see #getRadiusAsString()
+	 * @see #setRadiusAsString(String)
+	 * @generated
+	 */
+	boolean isSetRadiusAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Inner Radius</b></em>' attribute.
@@ -234,9 +315,11 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Param</em>' attribute.
+	 * @see #isSetStartParam()
+	 * @see #unsetStartParam()
 	 * @see #setStartParam(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_StartParam()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getStartParam();
@@ -246,10 +329,35 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Param</em>' attribute.
+	 * @see #isSetStartParam()
+	 * @see #unsetStartParam()
 	 * @see #getStartParam()
 	 * @generated
 	 */
 	void setStartParam(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getStartParam <em>Start Param</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStartParam()
+	 * @see #getStartParam()
+	 * @see #setStartParam(double)
+	 * @generated
+	 */
+	void unsetStartParam();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getStartParam <em>Start Param</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Start Param</em>' attribute is set.
+	 * @see #unsetStartParam()
+	 * @see #getStartParam()
+	 * @see #setStartParam(double)
+	 * @generated
+	 */
+	boolean isSetStartParam();
 
 	/**
 	 * Returns the value of the '<em><b>Start Param As String</b></em>' attribute.
@@ -260,9 +368,11 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Param As String</em>' attribute.
+	 * @see #isSetStartParamAsString()
+	 * @see #unsetStartParamAsString()
 	 * @see #setStartParamAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_StartParamAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getStartParamAsString();
@@ -272,10 +382,35 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Param As String</em>' attribute.
+	 * @see #isSetStartParamAsString()
+	 * @see #unsetStartParamAsString()
 	 * @see #getStartParamAsString()
 	 * @generated
 	 */
 	void setStartParamAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getStartParamAsString <em>Start Param As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStartParamAsString()
+	 * @see #getStartParamAsString()
+	 * @see #setStartParamAsString(String)
+	 * @generated
+	 */
+	void unsetStartParamAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getStartParamAsString <em>Start Param As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Start Param As String</em>' attribute is set.
+	 * @see #unsetStartParamAsString()
+	 * @see #getStartParamAsString()
+	 * @see #setStartParamAsString(String)
+	 * @generated
+	 */
+	boolean isSetStartParamAsString();
 
 	/**
 	 * Returns the value of the '<em><b>End Param</b></em>' attribute.
@@ -286,9 +421,11 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Param</em>' attribute.
+	 * @see #isSetEndParam()
+	 * @see #unsetEndParam()
 	 * @see #setEndParam(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_EndParam()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getEndParam();
@@ -298,10 +435,35 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>End Param</em>' attribute.
+	 * @see #isSetEndParam()
+	 * @see #unsetEndParam()
 	 * @see #getEndParam()
 	 * @generated
 	 */
 	void setEndParam(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getEndParam <em>End Param</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEndParam()
+	 * @see #getEndParam()
+	 * @see #setEndParam(double)
+	 * @generated
+	 */
+	void unsetEndParam();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getEndParam <em>End Param</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>End Param</em>' attribute is set.
+	 * @see #unsetEndParam()
+	 * @see #getEndParam()
+	 * @see #setEndParam(double)
+	 * @generated
+	 */
+	boolean isSetEndParam();
 
 	/**
 	 * Returns the value of the '<em><b>End Param As String</b></em>' attribute.
@@ -312,9 +474,11 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Param As String</em>' attribute.
+	 * @see #isSetEndParamAsString()
+	 * @see #unsetEndParamAsString()
 	 * @see #setEndParamAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptDiskSolid_EndParamAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getEndParamAsString();
@@ -324,9 +488,34 @@ public interface IfcSweptDiskSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>End Param As String</em>' attribute.
+	 * @see #isSetEndParamAsString()
+	 * @see #unsetEndParamAsString()
 	 * @see #getEndParamAsString()
 	 * @generated
 	 */
 	void setEndParamAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getEndParamAsString <em>End Param As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEndParamAsString()
+	 * @see #getEndParamAsString()
+	 * @see #setEndParamAsString(String)
+	 * @generated
+	 */
+	void unsetEndParamAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptDiskSolid#getEndParamAsString <em>End Param As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>End Param As String</em>' attribute is set.
+	 * @see #unsetEndParamAsString()
+	 * @see #getEndParamAsString()
+	 * @see #setEndParamAsString(String)
+	 * @generated
+	 */
+	boolean isSetEndParamAsString();
 
 } // IfcSweptDiskSolid

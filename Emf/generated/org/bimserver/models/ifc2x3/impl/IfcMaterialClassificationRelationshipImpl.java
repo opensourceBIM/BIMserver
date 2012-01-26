@@ -86,6 +86,24 @@ public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMaterialClassifications() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__MATERIAL_CLASSIFICATIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMaterialClassifications() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__MATERIAL_CLASSIFICATIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcMaterial getClassifiedMaterial() {
 		return (IfcMaterial) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL, true);
 	}
@@ -97,6 +115,24 @@ public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl imp
 	 */
 	public void setClassifiedMaterial(IfcMaterial newClassifiedMaterial) {
 		eSet(Ifc2x3Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL, newClassifiedMaterial);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetClassifiedMaterial() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetClassifiedMaterial() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL);
 	}
 
 } //IfcMaterialClassificationRelationshipImpl

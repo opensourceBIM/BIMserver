@@ -51,9 +51,11 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Length Exponent</em>' attribute.
+	 * @see #isSetLengthExponent()
+	 * @see #unsetLengthExponent()
 	 * @see #setLengthExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionalExponents_LengthExponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getLengthExponent();
@@ -63,10 +65,35 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Length Exponent</em>' attribute.
+	 * @see #isSetLengthExponent()
+	 * @see #unsetLengthExponent()
 	 * @see #getLengthExponent()
 	 * @generated
 	 */
 	void setLengthExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getLengthExponent <em>Length Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLengthExponent()
+	 * @see #getLengthExponent()
+	 * @see #setLengthExponent(int)
+	 * @generated
+	 */
+	void unsetLengthExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getLengthExponent <em>Length Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Length Exponent</em>' attribute is set.
+	 * @see #unsetLengthExponent()
+	 * @see #getLengthExponent()
+	 * @see #setLengthExponent(int)
+	 * @generated
+	 */
+	boolean isSetLengthExponent();
 
 	/**
 	 * Returns the value of the '<em><b>Mass Exponent</b></em>' attribute.
@@ -77,9 +104,11 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mass Exponent</em>' attribute.
+	 * @see #isSetMassExponent()
+	 * @see #unsetMassExponent()
 	 * @see #setMassExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionalExponents_MassExponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getMassExponent();
@@ -89,10 +118,35 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mass Exponent</em>' attribute.
+	 * @see #isSetMassExponent()
+	 * @see #unsetMassExponent()
 	 * @see #getMassExponent()
 	 * @generated
 	 */
 	void setMassExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getMassExponent <em>Mass Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMassExponent()
+	 * @see #getMassExponent()
+	 * @see #setMassExponent(int)
+	 * @generated
+	 */
+	void unsetMassExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getMassExponent <em>Mass Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Mass Exponent</em>' attribute is set.
+	 * @see #unsetMassExponent()
+	 * @see #getMassExponent()
+	 * @see #setMassExponent(int)
+	 * @generated
+	 */
+	boolean isSetMassExponent();
 
 	/**
 	 * Returns the value of the '<em><b>Time Exponent</b></em>' attribute.
@@ -103,9 +157,11 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Exponent</em>' attribute.
+	 * @see #isSetTimeExponent()
+	 * @see #unsetTimeExponent()
 	 * @see #setTimeExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionalExponents_TimeExponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getTimeExponent();
@@ -115,10 +171,35 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Exponent</em>' attribute.
+	 * @see #isSetTimeExponent()
+	 * @see #unsetTimeExponent()
 	 * @see #getTimeExponent()
 	 * @generated
 	 */
 	void setTimeExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getTimeExponent <em>Time Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTimeExponent()
+	 * @see #getTimeExponent()
+	 * @see #setTimeExponent(int)
+	 * @generated
+	 */
+	void unsetTimeExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getTimeExponent <em>Time Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Time Exponent</em>' attribute is set.
+	 * @see #unsetTimeExponent()
+	 * @see #getTimeExponent()
+	 * @see #setTimeExponent(int)
+	 * @generated
+	 */
+	boolean isSetTimeExponent();
 
 	/**
 	 * Returns the value of the '<em><b>Electric Current Exponent</b></em>' attribute.
@@ -129,9 +210,11 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Electric Current Exponent</em>' attribute.
+	 * @see #isSetElectricCurrentExponent()
+	 * @see #unsetElectricCurrentExponent()
 	 * @see #setElectricCurrentExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionalExponents_ElectricCurrentExponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getElectricCurrentExponent();
@@ -141,10 +224,35 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Electric Current Exponent</em>' attribute.
+	 * @see #isSetElectricCurrentExponent()
+	 * @see #unsetElectricCurrentExponent()
 	 * @see #getElectricCurrentExponent()
 	 * @generated
 	 */
 	void setElectricCurrentExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getElectricCurrentExponent <em>Electric Current Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetElectricCurrentExponent()
+	 * @see #getElectricCurrentExponent()
+	 * @see #setElectricCurrentExponent(int)
+	 * @generated
+	 */
+	void unsetElectricCurrentExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getElectricCurrentExponent <em>Electric Current Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Electric Current Exponent</em>' attribute is set.
+	 * @see #unsetElectricCurrentExponent()
+	 * @see #getElectricCurrentExponent()
+	 * @see #setElectricCurrentExponent(int)
+	 * @generated
+	 */
+	boolean isSetElectricCurrentExponent();
 
 	/**
 	 * Returns the value of the '<em><b>Thermodynamic Temperature Exponent</b></em>' attribute.
@@ -155,9 +263,11 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Thermodynamic Temperature Exponent</em>' attribute.
+	 * @see #isSetThermodynamicTemperatureExponent()
+	 * @see #unsetThermodynamicTemperatureExponent()
 	 * @see #setThermodynamicTemperatureExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionalExponents_ThermodynamicTemperatureExponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getThermodynamicTemperatureExponent();
@@ -167,10 +277,35 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Thermodynamic Temperature Exponent</em>' attribute.
+	 * @see #isSetThermodynamicTemperatureExponent()
+	 * @see #unsetThermodynamicTemperatureExponent()
 	 * @see #getThermodynamicTemperatureExponent()
 	 * @generated
 	 */
 	void setThermodynamicTemperatureExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getThermodynamicTemperatureExponent <em>Thermodynamic Temperature Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetThermodynamicTemperatureExponent()
+	 * @see #getThermodynamicTemperatureExponent()
+	 * @see #setThermodynamicTemperatureExponent(int)
+	 * @generated
+	 */
+	void unsetThermodynamicTemperatureExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getThermodynamicTemperatureExponent <em>Thermodynamic Temperature Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Thermodynamic Temperature Exponent</em>' attribute is set.
+	 * @see #unsetThermodynamicTemperatureExponent()
+	 * @see #getThermodynamicTemperatureExponent()
+	 * @see #setThermodynamicTemperatureExponent(int)
+	 * @generated
+	 */
+	boolean isSetThermodynamicTemperatureExponent();
 
 	/**
 	 * Returns the value of the '<em><b>Amount Of Substance Exponent</b></em>' attribute.
@@ -181,9 +316,11 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Amount Of Substance Exponent</em>' attribute.
+	 * @see #isSetAmountOfSubstanceExponent()
+	 * @see #unsetAmountOfSubstanceExponent()
 	 * @see #setAmountOfSubstanceExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionalExponents_AmountOfSubstanceExponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getAmountOfSubstanceExponent();
@@ -193,10 +330,35 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Amount Of Substance Exponent</em>' attribute.
+	 * @see #isSetAmountOfSubstanceExponent()
+	 * @see #unsetAmountOfSubstanceExponent()
 	 * @see #getAmountOfSubstanceExponent()
 	 * @generated
 	 */
 	void setAmountOfSubstanceExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getAmountOfSubstanceExponent <em>Amount Of Substance Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAmountOfSubstanceExponent()
+	 * @see #getAmountOfSubstanceExponent()
+	 * @see #setAmountOfSubstanceExponent(int)
+	 * @generated
+	 */
+	void unsetAmountOfSubstanceExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getAmountOfSubstanceExponent <em>Amount Of Substance Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Amount Of Substance Exponent</em>' attribute is set.
+	 * @see #unsetAmountOfSubstanceExponent()
+	 * @see #getAmountOfSubstanceExponent()
+	 * @see #setAmountOfSubstanceExponent(int)
+	 * @generated
+	 */
+	boolean isSetAmountOfSubstanceExponent();
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Intensity Exponent</b></em>' attribute.
@@ -207,9 +369,11 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Luminous Intensity Exponent</em>' attribute.
+	 * @see #isSetLuminousIntensityExponent()
+	 * @see #unsetLuminousIntensityExponent()
 	 * @see #setLuminousIntensityExponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionalExponents_LuminousIntensityExponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getLuminousIntensityExponent();
@@ -219,9 +383,34 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Luminous Intensity Exponent</em>' attribute.
+	 * @see #isSetLuminousIntensityExponent()
+	 * @see #unsetLuminousIntensityExponent()
 	 * @see #getLuminousIntensityExponent()
 	 * @generated
 	 */
 	void setLuminousIntensityExponent(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getLuminousIntensityExponent <em>Luminous Intensity Exponent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLuminousIntensityExponent()
+	 * @see #getLuminousIntensityExponent()
+	 * @see #setLuminousIntensityExponent(int)
+	 * @generated
+	 */
+	void unsetLuminousIntensityExponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionalExponents#getLuminousIntensityExponent <em>Luminous Intensity Exponent</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Luminous Intensity Exponent</em>' attribute is set.
+	 * @see #unsetLuminousIntensityExponent()
+	 * @see #getLuminousIntensityExponent()
+	 * @see #setLuminousIntensityExponent(int)
+	 * @generated
+	 */
+	boolean isSetLuminousIntensityExponent();
 
 } // IfcDimensionalExponents

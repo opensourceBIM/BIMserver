@@ -45,10 +45,12 @@ public interface IfcRelConnectsPorts extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Port</em>' reference.
+	 * @see #isSetRelatingPort()
+	 * @see #unsetRelatingPort()
 	 * @see #setRelatingPort(IfcPort)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsPorts_RelatingPort()
 	 * @see org.bimserver.models.ifc2x3.IfcPort#getConnectedTo
-	 * @model opposite="ConnectedTo"
+	 * @model opposite="ConnectedTo" unsettable="true"
 	 * @generated
 	 */
 	IfcPort getRelatingPort();
@@ -58,10 +60,35 @@ public interface IfcRelConnectsPorts extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Port</em>' reference.
+	 * @see #isSetRelatingPort()
+	 * @see #unsetRelatingPort()
 	 * @see #getRelatingPort()
 	 * @generated
 	 */
 	void setRelatingPort(IfcPort value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsPorts#getRelatingPort <em>Relating Port</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingPort()
+	 * @see #getRelatingPort()
+	 * @see #setRelatingPort(IfcPort)
+	 * @generated
+	 */
+	void unsetRelatingPort();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsPorts#getRelatingPort <em>Relating Port</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Port</em>' reference is set.
+	 * @see #unsetRelatingPort()
+	 * @see #getRelatingPort()
+	 * @see #setRelatingPort(IfcPort)
+	 * @generated
+	 */
+	boolean isSetRelatingPort();
 
 	/**
 	 * Returns the value of the '<em><b>Related Port</b></em>' reference.
@@ -73,10 +100,12 @@ public interface IfcRelConnectsPorts extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Port</em>' reference.
+	 * @see #isSetRelatedPort()
+	 * @see #unsetRelatedPort()
 	 * @see #setRelatedPort(IfcPort)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsPorts_RelatedPort()
 	 * @see org.bimserver.models.ifc2x3.IfcPort#getConnectedFrom
-	 * @model opposite="ConnectedFrom"
+	 * @model opposite="ConnectedFrom" unsettable="true"
 	 * @generated
 	 */
 	IfcPort getRelatedPort();
@@ -86,10 +115,35 @@ public interface IfcRelConnectsPorts extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Port</em>' reference.
+	 * @see #isSetRelatedPort()
+	 * @see #unsetRelatedPort()
 	 * @see #getRelatedPort()
 	 * @generated
 	 */
 	void setRelatedPort(IfcPort value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsPorts#getRelatedPort <em>Related Port</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedPort()
+	 * @see #getRelatedPort()
+	 * @see #setRelatedPort(IfcPort)
+	 * @generated
+	 */
+	void unsetRelatedPort();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsPorts#getRelatedPort <em>Related Port</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Port</em>' reference is set.
+	 * @see #unsetRelatedPort()
+	 * @see #getRelatedPort()
+	 * @see #setRelatedPort(IfcPort)
+	 * @generated
+	 */
+	boolean isSetRelatedPort();
 
 	/**
 	 * Returns the value of the '<em><b>Realizing Element</b></em>' reference.

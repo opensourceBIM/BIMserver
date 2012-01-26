@@ -74,6 +74,24 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatedElements() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedElements() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSpatialStructureElement getRelatingStructure() {
 		return (IfcSpatialStructureElement) eGet(Ifc2x3Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, true);
 	}
@@ -85,6 +103,24 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl i
 	 */
 	public void setRelatingStructure(IfcSpatialStructureElement newRelatingStructure) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, newRelatingStructure);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingStructure() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingStructure() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE);
 	}
 
 } //IfcRelReferencedInSpatialStructureImpl

@@ -73,4 +73,22 @@ public class IfcSurfaceOfRevolutionImpl extends IfcSweptSurfaceImpl implements I
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_REVOLUTION__AXIS_POSITION, newAxisPosition);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAxisPosition() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_OF_REVOLUTION__AXIS_POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAxisPosition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_REVOLUTION__AXIS_POSITION);
+	}
+
 } //IfcSurfaceOfRevolutionImpl

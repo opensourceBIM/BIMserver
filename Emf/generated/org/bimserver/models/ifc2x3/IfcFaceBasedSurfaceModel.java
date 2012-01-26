@@ -46,11 +46,34 @@ public interface IfcFaceBasedSurfaceModel extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fbsm Faces</em>' reference list.
+	 * @see #isSetFbsmFaces()
+	 * @see #unsetFbsmFaces()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFaceBasedSurfaceModel_FbsmFaces()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcConnectedFaceSet> getFbsmFaces();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBasedSurfaceModel#getFbsmFaces <em>Fbsm Faces</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetFbsmFaces()
+	 * @see #getFbsmFaces()
+	 * @generated
+	 */
+	void unsetFbsmFaces();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBasedSurfaceModel#getFbsmFaces <em>Fbsm Faces</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Fbsm Faces</em>' reference list is set.
+	 * @see #unsetFbsmFaces()
+	 * @see #getFbsmFaces()
+	 * @generated
+	 */
+	boolean isSetFbsmFaces();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -61,9 +84,11 @@ public interface IfcFaceBasedSurfaceModel extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFaceBasedSurfaceModel_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -73,9 +98,34 @@ public interface IfcFaceBasedSurfaceModel extends IfcGeometricRepresentationItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBasedSurfaceModel#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBasedSurfaceModel#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcFaceBasedSurfaceModel

@@ -45,10 +45,33 @@ public interface IfcFillAreaStyle extends IfcPresentationStyle, IfcPresentationS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fill Styles</em>' reference list.
+	 * @see #isSetFillStyles()
+	 * @see #unsetFillStyles()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyle_FillStyles()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcFillStyleSelect> getFillStyles();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyle#getFillStyles <em>Fill Styles</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetFillStyles()
+	 * @see #getFillStyles()
+	 * @generated
+	 */
+	void unsetFillStyles();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyle#getFillStyles <em>Fill Styles</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Fill Styles</em>' reference list is set.
+	 * @see #unsetFillStyles()
+	 * @see #getFillStyles()
+	 * @generated
+	 */
+	boolean isSetFillStyles();
 
 } // IfcFillAreaStyle

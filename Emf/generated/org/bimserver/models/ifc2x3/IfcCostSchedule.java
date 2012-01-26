@@ -355,9 +355,11 @@ public interface IfcCostSchedule extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ID</em>' attribute.
+	 * @see #isSetID()
+	 * @see #unsetID()
 	 * @see #setID(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCostSchedule_ID()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getID();
@@ -367,10 +369,35 @@ public interface IfcCostSchedule extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>ID</em>' attribute.
+	 * @see #isSetID()
+	 * @see #unsetID()
 	 * @see #getID()
 	 * @generated
 	 */
 	void setID(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCostSchedule#getID <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetID()
+	 * @see #getID()
+	 * @see #setID(String)
+	 * @generated
+	 */
+	void unsetID();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCostSchedule#getID <em>ID</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>ID</em>' attribute is set.
+	 * @see #unsetID()
+	 * @see #getID()
+	 * @see #setID(String)
+	 * @generated
+	 */
+	boolean isSetID();
 
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
@@ -383,9 +410,11 @@ public interface IfcCostSchedule extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcCostScheduleTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcCostScheduleTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCostSchedule_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCostScheduleTypeEnum getPredefinedType();
@@ -396,9 +425,34 @@ public interface IfcCostSchedule extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcCostScheduleTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcCostScheduleTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCostSchedule#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcCostScheduleTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCostSchedule#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcCostScheduleTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 } // IfcCostSchedule

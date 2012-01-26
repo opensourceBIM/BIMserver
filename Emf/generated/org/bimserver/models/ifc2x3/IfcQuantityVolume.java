@@ -43,9 +43,11 @@ public interface IfcQuantityVolume extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Volume Value</em>' attribute.
+	 * @see #isSetVolumeValue()
+	 * @see #unsetVolumeValue()
 	 * @see #setVolumeValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityVolume_VolumeValue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getVolumeValue();
@@ -55,10 +57,35 @@ public interface IfcQuantityVolume extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Volume Value</em>' attribute.
+	 * @see #isSetVolumeValue()
+	 * @see #unsetVolumeValue()
 	 * @see #getVolumeValue()
 	 * @generated
 	 */
 	void setVolumeValue(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityVolume#getVolumeValue <em>Volume Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVolumeValue()
+	 * @see #getVolumeValue()
+	 * @see #setVolumeValue(double)
+	 * @generated
+	 */
+	void unsetVolumeValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityVolume#getVolumeValue <em>Volume Value</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Volume Value</em>' attribute is set.
+	 * @see #unsetVolumeValue()
+	 * @see #getVolumeValue()
+	 * @see #setVolumeValue(double)
+	 * @generated
+	 */
+	boolean isSetVolumeValue();
 
 	/**
 	 * Returns the value of the '<em><b>Volume Value As String</b></em>' attribute.
@@ -69,9 +96,11 @@ public interface IfcQuantityVolume extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Volume Value As String</em>' attribute.
+	 * @see #isSetVolumeValueAsString()
+	 * @see #unsetVolumeValueAsString()
 	 * @see #setVolumeValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityVolume_VolumeValueAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getVolumeValueAsString();
@@ -81,9 +110,34 @@ public interface IfcQuantityVolume extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Volume Value As String</em>' attribute.
+	 * @see #isSetVolumeValueAsString()
+	 * @see #unsetVolumeValueAsString()
 	 * @see #getVolumeValueAsString()
 	 * @generated
 	 */
 	void setVolumeValueAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityVolume#getVolumeValueAsString <em>Volume Value As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVolumeValueAsString()
+	 * @see #getVolumeValueAsString()
+	 * @see #setVolumeValueAsString(String)
+	 * @generated
+	 */
+	void unsetVolumeValueAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityVolume#getVolumeValueAsString <em>Volume Value As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Volume Value As String</em>' attribute is set.
+	 * @see #unsetVolumeValueAsString()
+	 * @see #getVolumeValueAsString()
+	 * @see #setVolumeValueAsString(String)
+	 * @generated
+	 */
+	boolean isSetVolumeValueAsString();
 
 } // IfcQuantityVolume

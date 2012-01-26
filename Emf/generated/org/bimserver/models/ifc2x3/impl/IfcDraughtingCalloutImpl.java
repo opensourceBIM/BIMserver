@@ -75,6 +75,24 @@ public class IfcDraughtingCalloutImpl extends IfcGeometricRepresentationItemImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetContents() {
+		eUnset(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__CONTENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetContents() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__CONTENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDraughtingCalloutRelationship> getIsRelatedFromCallout() {
 		return (EList<IfcDraughtingCalloutRelationship>) eGet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_FROM_CALLOUT, true);
@@ -85,9 +103,45 @@ public class IfcDraughtingCalloutImpl extends IfcGeometricRepresentationItemImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsRelatedFromCallout() {
+		eUnset(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_FROM_CALLOUT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsRelatedFromCallout() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_FROM_CALLOUT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDraughtingCalloutRelationship> getIsRelatedToCallout() {
 		return (EList<IfcDraughtingCalloutRelationship>) eGet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_TO_CALLOUT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsRelatedToCallout() {
+		eUnset(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_TO_CALLOUT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsRelatedToCallout() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_TO_CALLOUT);
 	}
 
 } //IfcDraughtingCalloutImpl

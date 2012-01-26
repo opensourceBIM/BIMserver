@@ -43,9 +43,11 @@ public interface IfcConversionBasedUnit extends IfcNamedUnit {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConversionBasedUnit_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -55,10 +57,35 @@ public interface IfcConversionBasedUnit extends IfcNamedUnit {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConversionBasedUnit#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConversionBasedUnit#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Conversion Factor</b></em>' reference.
@@ -69,9 +96,11 @@ public interface IfcConversionBasedUnit extends IfcNamedUnit {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Conversion Factor</em>' reference.
+	 * @see #isSetConversionFactor()
+	 * @see #unsetConversionFactor()
 	 * @see #setConversionFactor(IfcMeasureWithUnit)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConversionBasedUnit_ConversionFactor()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcMeasureWithUnit getConversionFactor();
@@ -81,9 +110,34 @@ public interface IfcConversionBasedUnit extends IfcNamedUnit {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Conversion Factor</em>' reference.
+	 * @see #isSetConversionFactor()
+	 * @see #unsetConversionFactor()
 	 * @see #getConversionFactor()
 	 * @generated
 	 */
 	void setConversionFactor(IfcMeasureWithUnit value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConversionBasedUnit#getConversionFactor <em>Conversion Factor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetConversionFactor()
+	 * @see #getConversionFactor()
+	 * @see #setConversionFactor(IfcMeasureWithUnit)
+	 * @generated
+	 */
+	void unsetConversionFactor();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConversionBasedUnit#getConversionFactor <em>Conversion Factor</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Conversion Factor</em>' reference is set.
+	 * @see #unsetConversionFactor()
+	 * @see #getConversionFactor()
+	 * @see #setConversionFactor(IfcMeasureWithUnit)
+	 * @generated
+	 */
+	boolean isSetConversionFactor();
 
 } // IfcConversionBasedUnit

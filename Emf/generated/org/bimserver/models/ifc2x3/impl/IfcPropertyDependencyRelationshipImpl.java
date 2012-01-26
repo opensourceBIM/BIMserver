@@ -94,6 +94,24 @@ public class IfcPropertyDependencyRelationshipImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDependingProperty() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDependingProperty() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcProperty getDependantProperty() {
 		return (IfcProperty) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY, true);
 	}
@@ -105,6 +123,24 @@ public class IfcPropertyDependencyRelationshipImpl extends IdEObjectImpl impleme
 	 */
 	public void setDependantProperty(IfcProperty newDependantProperty) {
 		eSet(Ifc2x3Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY, newDependantProperty);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDependantProperty() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDependantProperty() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY);
 	}
 
 	/**

@@ -44,9 +44,11 @@ public interface IfcFlowMeterType extends IfcFlowControllerType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcFlowMeterTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcFlowMeterTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFlowMeterType_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcFlowMeterTypeEnum getPredefinedType();
@@ -57,9 +59,34 @@ public interface IfcFlowMeterType extends IfcFlowControllerType {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcFlowMeterTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcFlowMeterTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFlowMeterType#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcFlowMeterTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFlowMeterType#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcFlowMeterTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 } // IfcFlowMeterType

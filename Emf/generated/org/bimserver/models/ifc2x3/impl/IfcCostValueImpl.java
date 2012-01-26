@@ -78,6 +78,24 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCostType() {
+		eUnset(Ifc2x3Package.Literals.IFC_COST_VALUE__COST_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCostType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COST_VALUE__COST_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getCondition() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_COST_VALUE__CONDITION, true);
 	}

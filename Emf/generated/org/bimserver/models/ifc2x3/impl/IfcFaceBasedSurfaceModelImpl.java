@@ -73,6 +73,24 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetFbsmFaces() {
+		eUnset(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFbsmFaces() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM, true);
 	}
@@ -84,6 +102,24 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM);
 	}
 
 } //IfcFaceBasedSurfaceModelImpl

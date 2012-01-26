@@ -42,9 +42,11 @@ public interface IfcLightSourceDirectional extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Orientation</em>' reference.
+	 * @see #isSetOrientation()
+	 * @see #unsetOrientation()
 	 * @see #setOrientation(IfcDirection)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceDirectional_Orientation()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDirection getOrientation();
@@ -54,9 +56,34 @@ public interface IfcLightSourceDirectional extends IfcLightSource {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Orientation</em>' reference.
+	 * @see #isSetOrientation()
+	 * @see #unsetOrientation()
 	 * @see #getOrientation()
 	 * @generated
 	 */
 	void setOrientation(IfcDirection value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceDirectional#getOrientation <em>Orientation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOrientation()
+	 * @see #getOrientation()
+	 * @see #setOrientation(IfcDirection)
+	 * @generated
+	 */
+	void unsetOrientation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceDirectional#getOrientation <em>Orientation</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Orientation</em>' reference is set.
+	 * @see #unsetOrientation()
+	 * @see #getOrientation()
+	 * @see #setOrientation(IfcDirection)
+	 * @generated
+	 */
+	boolean isSetOrientation();
 
 } // IfcLightSourceDirectional

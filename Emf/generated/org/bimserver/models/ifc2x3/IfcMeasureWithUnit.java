@@ -43,9 +43,11 @@ public interface IfcMeasureWithUnit extends IfcAppliedValueSelect, IfcConditionC
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Component</em>' reference.
+	 * @see #isSetValueComponent()
+	 * @see #unsetValueComponent()
 	 * @see #setValueComponent(IfcValue)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMeasureWithUnit_ValueComponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcValue getValueComponent();
@@ -55,10 +57,35 @@ public interface IfcMeasureWithUnit extends IfcAppliedValueSelect, IfcConditionC
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value Component</em>' reference.
+	 * @see #isSetValueComponent()
+	 * @see #unsetValueComponent()
 	 * @see #getValueComponent()
 	 * @generated
 	 */
 	void setValueComponent(IfcValue value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMeasureWithUnit#getValueComponent <em>Value Component</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetValueComponent()
+	 * @see #getValueComponent()
+	 * @see #setValueComponent(IfcValue)
+	 * @generated
+	 */
+	void unsetValueComponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMeasureWithUnit#getValueComponent <em>Value Component</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Value Component</em>' reference is set.
+	 * @see #unsetValueComponent()
+	 * @see #getValueComponent()
+	 * @see #setValueComponent(IfcValue)
+	 * @generated
+	 */
+	boolean isSetValueComponent();
 
 	/**
 	 * Returns the value of the '<em><b>Unit Component</b></em>' reference.
@@ -69,9 +96,11 @@ public interface IfcMeasureWithUnit extends IfcAppliedValueSelect, IfcConditionC
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unit Component</em>' reference.
+	 * @see #isSetUnitComponent()
+	 * @see #unsetUnitComponent()
 	 * @see #setUnitComponent(IfcUnit)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMeasureWithUnit_UnitComponent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcUnit getUnitComponent();
@@ -81,9 +110,34 @@ public interface IfcMeasureWithUnit extends IfcAppliedValueSelect, IfcConditionC
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Unit Component</em>' reference.
+	 * @see #isSetUnitComponent()
+	 * @see #unsetUnitComponent()
 	 * @see #getUnitComponent()
 	 * @generated
 	 */
 	void setUnitComponent(IfcUnit value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMeasureWithUnit#getUnitComponent <em>Unit Component</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUnitComponent()
+	 * @see #getUnitComponent()
+	 * @see #setUnitComponent(IfcUnit)
+	 * @generated
+	 */
+	void unsetUnitComponent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMeasureWithUnit#getUnitComponent <em>Unit Component</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Unit Component</em>' reference is set.
+	 * @see #unsetUnitComponent()
+	 * @see #getUnitComponent()
+	 * @see #setUnitComponent(IfcUnit)
+	 * @generated
+	 */
+	boolean isSetUnitComponent();
 
 } // IfcMeasureWithUnit

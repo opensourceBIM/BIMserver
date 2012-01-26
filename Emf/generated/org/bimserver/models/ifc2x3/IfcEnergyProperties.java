@@ -45,9 +45,11 @@ public interface IfcEnergyProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Energy Sequence</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcEnergySequenceEnum
+	 * @see #isSetEnergySequence()
+	 * @see #unsetEnergySequence()
 	 * @see #setEnergySequence(IfcEnergySequenceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEnergyProperties_EnergySequence()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcEnergySequenceEnum getEnergySequence();
@@ -58,10 +60,35 @@ public interface IfcEnergyProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Energy Sequence</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcEnergySequenceEnum
+	 * @see #isSetEnergySequence()
+	 * @see #unsetEnergySequence()
 	 * @see #getEnergySequence()
 	 * @generated
 	 */
 	void setEnergySequence(IfcEnergySequenceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEnergyProperties#getEnergySequence <em>Energy Sequence</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEnergySequence()
+	 * @see #getEnergySequence()
+	 * @see #setEnergySequence(IfcEnergySequenceEnum)
+	 * @generated
+	 */
+	void unsetEnergySequence();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEnergyProperties#getEnergySequence <em>Energy Sequence</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Energy Sequence</em>' attribute is set.
+	 * @see #unsetEnergySequence()
+	 * @see #getEnergySequence()
+	 * @see #setEnergySequence(IfcEnergySequenceEnum)
+	 * @generated
+	 */
+	boolean isSetEnergySequence();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Energy Sequence</b></em>' attribute.

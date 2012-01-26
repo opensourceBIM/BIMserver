@@ -86,6 +86,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetOverallWidth() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOverallWidth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getOverallWidthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH_AS_STRING, true);
 	}
@@ -97,6 +115,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setOverallWidthAsString(String newOverallWidthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH_AS_STRING, newOverallWidthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOverallWidthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOverallWidthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH_AS_STRING);
 	}
 
 	/**
@@ -122,6 +158,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetOverallDepth() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOverallDepth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getOverallDepthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH_AS_STRING, true);
 	}
@@ -133,6 +187,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setOverallDepthAsString(String newOverallDepthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH_AS_STRING, newOverallDepthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOverallDepthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOverallDepthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH_AS_STRING);
 	}
 
 	/**
@@ -158,6 +230,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetWebThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWebThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getWebThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, true);
 	}
@@ -169,6 +259,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setWebThicknessAsString(String newWebThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, newWebThicknessAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWebThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWebThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING);
 	}
 
 	/**
@@ -194,6 +302,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetFlangeThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlangeThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getFlangeThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING, true);
 	}
@@ -205,6 +331,24 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setFlangeThicknessAsString(String newFlangeThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING, newFlangeThicknessAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetFlangeThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlangeThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING);
 	}
 
 	/**

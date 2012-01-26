@@ -44,9 +44,11 @@ public interface IfcFooting extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcFootingTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcFootingTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFooting_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcFootingTypeEnum getPredefinedType();
@@ -57,9 +59,34 @@ public interface IfcFooting extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcFootingTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcFootingTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFooting#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcFootingTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFooting#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcFootingTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 } // IfcFooting

@@ -105,4 +105,22 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetConnectsStructuralMembers() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectsStructuralMembers() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS);
+	}
+
 } //IfcStructuralConnectionImpl

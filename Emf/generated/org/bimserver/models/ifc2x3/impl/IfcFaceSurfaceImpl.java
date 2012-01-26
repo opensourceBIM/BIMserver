@@ -80,6 +80,24 @@ public class IfcFaceSurfaceImpl extends IfcFaceImpl implements IfcFaceSurface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetFaceSurface() {
+		eUnset(Ifc2x3Package.Literals.IFC_FACE_SURFACE__FACE_SURFACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFaceSurface() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FACE_SURFACE__FACE_SURFACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Tristate getSameSense() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_FACE_SURFACE__SAME_SENSE, true);
 	}
@@ -91,6 +109,24 @@ public class IfcFaceSurfaceImpl extends IfcFaceImpl implements IfcFaceSurface {
 	 */
 	public void setSameSense(Tristate newSameSense) {
 		eSet(Ifc2x3Package.Literals.IFC_FACE_SURFACE__SAME_SENSE, newSameSense);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSameSense() {
+		eUnset(Ifc2x3Package.Literals.IFC_FACE_SURFACE__SAME_SENSE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSameSense() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FACE_SURFACE__SAME_SENSE);
 	}
 
 } //IfcFaceSurfaceImpl

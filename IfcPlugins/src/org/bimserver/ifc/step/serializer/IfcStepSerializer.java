@@ -325,7 +325,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					String name = structuralFeature.getEType().getName();
 					if (structuralFeature.isUnsettable()) {
 						out.print(DOLLAR);
-					} else if (name.equals(IFC_BOOLEAN) || name.equals(IFC_LOGICAL)) {
+					} else if (name.equals(IFC_BOOLEAN) || name.equals(IFC_LOGICAL) || structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 						out.print(BOOLEAN_UNDEFINED);
 					} else {
 						out.print(DOLLAR);
@@ -334,7 +334,11 @@ public class IfcStepSerializer extends IfcSerializer {
 					out.print(DOLLAR);
 				}
 			} else {
-				out.print(DOLLAR);
+				if (type == EcorePackage.eINSTANCE.getEBoolean()) {
+					out.print(BOOLEAN_UNDEFINED);
+				} else {
+					out.print(DOLLAR);
+				}
 			}
 		} else {
 			if (ref instanceof EObject) {

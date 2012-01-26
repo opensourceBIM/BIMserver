@@ -47,9 +47,11 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Riser</em>' attribute.
+	 * @see #isSetNumberOfRiser()
+	 * @see #unsetNumberOfRiser()
 	 * @see #setNumberOfRiser(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStairFlight_NumberOfRiser()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getNumberOfRiser();
@@ -59,10 +61,35 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Number Of Riser</em>' attribute.
+	 * @see #isSetNumberOfRiser()
+	 * @see #unsetNumberOfRiser()
 	 * @see #getNumberOfRiser()
 	 * @generated
 	 */
 	void setNumberOfRiser(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getNumberOfRiser <em>Number Of Riser</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNumberOfRiser()
+	 * @see #getNumberOfRiser()
+	 * @see #setNumberOfRiser(int)
+	 * @generated
+	 */
+	void unsetNumberOfRiser();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getNumberOfRiser <em>Number Of Riser</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Number Of Riser</em>' attribute is set.
+	 * @see #unsetNumberOfRiser()
+	 * @see #getNumberOfRiser()
+	 * @see #setNumberOfRiser(int)
+	 * @generated
+	 */
+	boolean isSetNumberOfRiser();
 
 	/**
 	 * Returns the value of the '<em><b>Number Of Treads</b></em>' attribute.
@@ -73,9 +100,11 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Treads</em>' attribute.
+	 * @see #isSetNumberOfTreads()
+	 * @see #unsetNumberOfTreads()
 	 * @see #setNumberOfTreads(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStairFlight_NumberOfTreads()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getNumberOfTreads();
@@ -85,10 +114,35 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Number Of Treads</em>' attribute.
+	 * @see #isSetNumberOfTreads()
+	 * @see #unsetNumberOfTreads()
 	 * @see #getNumberOfTreads()
 	 * @generated
 	 */
 	void setNumberOfTreads(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getNumberOfTreads <em>Number Of Treads</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNumberOfTreads()
+	 * @see #getNumberOfTreads()
+	 * @see #setNumberOfTreads(int)
+	 * @generated
+	 */
+	void unsetNumberOfTreads();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStairFlight#getNumberOfTreads <em>Number Of Treads</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Number Of Treads</em>' attribute is set.
+	 * @see #unsetNumberOfTreads()
+	 * @see #getNumberOfTreads()
+	 * @see #setNumberOfTreads(int)
+	 * @generated
+	 */
+	boolean isSetNumberOfTreads();
 
 	/**
 	 * Returns the value of the '<em><b>Riser Height</b></em>' attribute.

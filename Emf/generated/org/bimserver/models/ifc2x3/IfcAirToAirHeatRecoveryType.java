@@ -44,9 +44,11 @@ public interface IfcAirToAirHeatRecoveryType extends IfcEnergyConversionDeviceTy
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAirToAirHeatRecoveryTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcAirToAirHeatRecoveryTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAirToAirHeatRecoveryType_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAirToAirHeatRecoveryTypeEnum getPredefinedType();
@@ -57,9 +59,34 @@ public interface IfcAirToAirHeatRecoveryType extends IfcEnergyConversionDeviceTy
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAirToAirHeatRecoveryTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcAirToAirHeatRecoveryTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAirToAirHeatRecoveryType#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcAirToAirHeatRecoveryTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAirToAirHeatRecoveryType#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcAirToAirHeatRecoveryTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 } // IfcAirToAirHeatRecoveryType

@@ -79,6 +79,24 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcMeasureWithUnit getConversionFactor() {
 		return (IfcMeasureWithUnit) eGet(Ifc2x3Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, true);
 	}
@@ -90,6 +108,24 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 */
 	public void setConversionFactor(IfcMeasureWithUnit newConversionFactor) {
 		eSet(Ifc2x3Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, newConversionFactor);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetConversionFactor() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConversionFactor() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR);
 	}
 
 } //IfcConversionBasedUnitImpl

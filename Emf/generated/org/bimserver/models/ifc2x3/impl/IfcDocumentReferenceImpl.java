@@ -67,4 +67,22 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 		return (EList<IfcDocumentInformation>) eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCE_TO_DOCUMENT, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetReferenceToDocument() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCE_TO_DOCUMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferenceToDocument() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCE_TO_DOCUMENT);
+	}
+
 } //IfcDocumentReferenceImpl

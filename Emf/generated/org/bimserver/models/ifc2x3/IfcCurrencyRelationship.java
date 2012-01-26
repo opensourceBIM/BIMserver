@@ -50,9 +50,11 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Monetary Unit</em>' reference.
+	 * @see #isSetRelatingMonetaryUnit()
+	 * @see #unsetRelatingMonetaryUnit()
 	 * @see #setRelatingMonetaryUnit(IfcMonetaryUnit)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurrencyRelationship_RelatingMonetaryUnit()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcMonetaryUnit getRelatingMonetaryUnit();
@@ -62,10 +64,35 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Monetary Unit</em>' reference.
+	 * @see #isSetRelatingMonetaryUnit()
+	 * @see #unsetRelatingMonetaryUnit()
 	 * @see #getRelatingMonetaryUnit()
 	 * @generated
 	 */
 	void setRelatingMonetaryUnit(IfcMonetaryUnit value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getRelatingMonetaryUnit <em>Relating Monetary Unit</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingMonetaryUnit()
+	 * @see #getRelatingMonetaryUnit()
+	 * @see #setRelatingMonetaryUnit(IfcMonetaryUnit)
+	 * @generated
+	 */
+	void unsetRelatingMonetaryUnit();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getRelatingMonetaryUnit <em>Relating Monetary Unit</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Monetary Unit</em>' reference is set.
+	 * @see #unsetRelatingMonetaryUnit()
+	 * @see #getRelatingMonetaryUnit()
+	 * @see #setRelatingMonetaryUnit(IfcMonetaryUnit)
+	 * @generated
+	 */
+	boolean isSetRelatingMonetaryUnit();
 
 	/**
 	 * Returns the value of the '<em><b>Related Monetary Unit</b></em>' reference.
@@ -76,9 +103,11 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Monetary Unit</em>' reference.
+	 * @see #isSetRelatedMonetaryUnit()
+	 * @see #unsetRelatedMonetaryUnit()
 	 * @see #setRelatedMonetaryUnit(IfcMonetaryUnit)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurrencyRelationship_RelatedMonetaryUnit()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcMonetaryUnit getRelatedMonetaryUnit();
@@ -88,10 +117,35 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Monetary Unit</em>' reference.
+	 * @see #isSetRelatedMonetaryUnit()
+	 * @see #unsetRelatedMonetaryUnit()
 	 * @see #getRelatedMonetaryUnit()
 	 * @generated
 	 */
 	void setRelatedMonetaryUnit(IfcMonetaryUnit value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getRelatedMonetaryUnit <em>Related Monetary Unit</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedMonetaryUnit()
+	 * @see #getRelatedMonetaryUnit()
+	 * @see #setRelatedMonetaryUnit(IfcMonetaryUnit)
+	 * @generated
+	 */
+	void unsetRelatedMonetaryUnit();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getRelatedMonetaryUnit <em>Related Monetary Unit</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Monetary Unit</em>' reference is set.
+	 * @see #unsetRelatedMonetaryUnit()
+	 * @see #getRelatedMonetaryUnit()
+	 * @see #setRelatedMonetaryUnit(IfcMonetaryUnit)
+	 * @generated
+	 */
+	boolean isSetRelatedMonetaryUnit();
 
 	/**
 	 * Returns the value of the '<em><b>Exchange Rate</b></em>' attribute.
@@ -102,9 +156,11 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Exchange Rate</em>' attribute.
+	 * @see #isSetExchangeRate()
+	 * @see #unsetExchangeRate()
 	 * @see #setExchangeRate(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurrencyRelationship_ExchangeRate()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getExchangeRate();
@@ -114,10 +170,35 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exchange Rate</em>' attribute.
+	 * @see #isSetExchangeRate()
+	 * @see #unsetExchangeRate()
 	 * @see #getExchangeRate()
 	 * @generated
 	 */
 	void setExchangeRate(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getExchangeRate <em>Exchange Rate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetExchangeRate()
+	 * @see #getExchangeRate()
+	 * @see #setExchangeRate(double)
+	 * @generated
+	 */
+	void unsetExchangeRate();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getExchangeRate <em>Exchange Rate</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Exchange Rate</em>' attribute is set.
+	 * @see #unsetExchangeRate()
+	 * @see #getExchangeRate()
+	 * @see #setExchangeRate(double)
+	 * @generated
+	 */
+	boolean isSetExchangeRate();
 
 	/**
 	 * Returns the value of the '<em><b>Exchange Rate As String</b></em>' attribute.
@@ -128,9 +209,11 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Exchange Rate As String</em>' attribute.
+	 * @see #isSetExchangeRateAsString()
+	 * @see #unsetExchangeRateAsString()
 	 * @see #setExchangeRateAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurrencyRelationship_ExchangeRateAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getExchangeRateAsString();
@@ -140,10 +223,35 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exchange Rate As String</em>' attribute.
+	 * @see #isSetExchangeRateAsString()
+	 * @see #unsetExchangeRateAsString()
 	 * @see #getExchangeRateAsString()
 	 * @generated
 	 */
 	void setExchangeRateAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getExchangeRateAsString <em>Exchange Rate As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetExchangeRateAsString()
+	 * @see #getExchangeRateAsString()
+	 * @see #setExchangeRateAsString(String)
+	 * @generated
+	 */
+	void unsetExchangeRateAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getExchangeRateAsString <em>Exchange Rate As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Exchange Rate As String</em>' attribute is set.
+	 * @see #unsetExchangeRateAsString()
+	 * @see #getExchangeRateAsString()
+	 * @see #setExchangeRateAsString(String)
+	 * @generated
+	 */
+	boolean isSetExchangeRateAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Rate Date Time</b></em>' reference.
@@ -154,9 +262,11 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rate Date Time</em>' reference.
+	 * @see #isSetRateDateTime()
+	 * @see #unsetRateDateTime()
 	 * @see #setRateDateTime(IfcDateAndTime)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurrencyRelationship_RateDateTime()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDateAndTime getRateDateTime();
@@ -166,10 +276,35 @@ public interface IfcCurrencyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rate Date Time</em>' reference.
+	 * @see #isSetRateDateTime()
+	 * @see #unsetRateDateTime()
 	 * @see #getRateDateTime()
 	 * @generated
 	 */
 	void setRateDateTime(IfcDateAndTime value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getRateDateTime <em>Rate Date Time</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRateDateTime()
+	 * @see #getRateDateTime()
+	 * @see #setRateDateTime(IfcDateAndTime)
+	 * @generated
+	 */
+	void unsetRateDateTime();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurrencyRelationship#getRateDateTime <em>Rate Date Time</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Rate Date Time</em>' reference is set.
+	 * @see #unsetRateDateTime()
+	 * @see #getRateDateTime()
+	 * @see #setRateDateTime(IfcDateAndTime)
+	 * @generated
+	 */
+	boolean isSetRateDateTime();
 
 	/**
 	 * Returns the value of the '<em><b>Rate Source</b></em>' reference.

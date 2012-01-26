@@ -87,6 +87,24 @@ public class IfcMaterialLayerSetImpl extends IdEObjectImpl implements IfcMateria
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMaterialLayers() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__MATERIAL_LAYERS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMaterialLayers() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__MATERIAL_LAYERS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getLayerSetName() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME, true);
 	}
@@ -141,6 +159,24 @@ public class IfcMaterialLayerSetImpl extends IdEObjectImpl implements IfcMateria
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTotalThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTotalThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTotalThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING, true);
 	}
@@ -152,6 +188,24 @@ public class IfcMaterialLayerSetImpl extends IdEObjectImpl implements IfcMateria
 	 */
 	public void setTotalThicknessAsString(String newTotalThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING, newTotalThicknessAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTotalThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTotalThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING);
 	}
 
 } //IfcMaterialLayerSetImpl

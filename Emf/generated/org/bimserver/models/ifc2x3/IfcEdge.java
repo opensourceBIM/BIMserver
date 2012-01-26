@@ -43,9 +43,11 @@ public interface IfcEdge extends IfcTopologicalRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edge Start</em>' reference.
+	 * @see #isSetEdgeStart()
+	 * @see #unsetEdgeStart()
 	 * @see #setEdgeStart(IfcVertex)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEdge_EdgeStart()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcVertex getEdgeStart();
@@ -55,10 +57,35 @@ public interface IfcEdge extends IfcTopologicalRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Edge Start</em>' reference.
+	 * @see #isSetEdgeStart()
+	 * @see #unsetEdgeStart()
 	 * @see #getEdgeStart()
 	 * @generated
 	 */
 	void setEdgeStart(IfcVertex value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEdge#getEdgeStart <em>Edge Start</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEdgeStart()
+	 * @see #getEdgeStart()
+	 * @see #setEdgeStart(IfcVertex)
+	 * @generated
+	 */
+	void unsetEdgeStart();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEdge#getEdgeStart <em>Edge Start</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Edge Start</em>' reference is set.
+	 * @see #unsetEdgeStart()
+	 * @see #getEdgeStart()
+	 * @see #setEdgeStart(IfcVertex)
+	 * @generated
+	 */
+	boolean isSetEdgeStart();
 
 	/**
 	 * Returns the value of the '<em><b>Edge End</b></em>' reference.
@@ -69,9 +96,11 @@ public interface IfcEdge extends IfcTopologicalRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edge End</em>' reference.
+	 * @see #isSetEdgeEnd()
+	 * @see #unsetEdgeEnd()
 	 * @see #setEdgeEnd(IfcVertex)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEdge_EdgeEnd()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcVertex getEdgeEnd();
@@ -81,9 +110,34 @@ public interface IfcEdge extends IfcTopologicalRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Edge End</em>' reference.
+	 * @see #isSetEdgeEnd()
+	 * @see #unsetEdgeEnd()
 	 * @see #getEdgeEnd()
 	 * @generated
 	 */
 	void setEdgeEnd(IfcVertex value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEdge#getEdgeEnd <em>Edge End</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEdgeEnd()
+	 * @see #getEdgeEnd()
+	 * @see #setEdgeEnd(IfcVertex)
+	 * @generated
+	 */
+	void unsetEdgeEnd();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEdge#getEdgeEnd <em>Edge End</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Edge End</em>' reference is set.
+	 * @see #unsetEdgeEnd()
+	 * @see #getEdgeEnd()
+	 * @see #setEdgeEnd(IfcVertex)
+	 * @generated
+	 */
+	boolean isSetEdgeEnd();
 
 } // IfcEdge

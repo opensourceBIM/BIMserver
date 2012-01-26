@@ -44,9 +44,11 @@ public interface IfcDistributionPort extends IfcPort {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flow Direction</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcFlowDirectionEnum
+	 * @see #isSetFlowDirection()
+	 * @see #unsetFlowDirection()
 	 * @see #setFlowDirection(IfcFlowDirectionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDistributionPort_FlowDirection()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcFlowDirectionEnum getFlowDirection();
@@ -57,9 +59,34 @@ public interface IfcDistributionPort extends IfcPort {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Flow Direction</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcFlowDirectionEnum
+	 * @see #isSetFlowDirection()
+	 * @see #unsetFlowDirection()
 	 * @see #getFlowDirection()
 	 * @generated
 	 */
 	void setFlowDirection(IfcFlowDirectionEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDistributionPort#getFlowDirection <em>Flow Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetFlowDirection()
+	 * @see #getFlowDirection()
+	 * @see #setFlowDirection(IfcFlowDirectionEnum)
+	 * @generated
+	 */
+	void unsetFlowDirection();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDistributionPort#getFlowDirection <em>Flow Direction</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Flow Direction</em>' attribute is set.
+	 * @see #unsetFlowDirection()
+	 * @see #getFlowDirection()
+	 * @see #setFlowDirection(IfcFlowDirectionEnum)
+	 * @generated
+	 */
+	boolean isSetFlowDirection();
 
 } // IfcDistributionPort

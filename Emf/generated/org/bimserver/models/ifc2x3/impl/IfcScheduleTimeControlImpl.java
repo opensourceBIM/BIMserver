@@ -754,6 +754,24 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsCritical() {
+		eUnset(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__IS_CRITICAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsCritical() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__IS_CRITICAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcDateTimeSelect getStatusTime() {
 		return (IfcDateTimeSelect) eGet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__STATUS_TIME, true);
 	}
@@ -1017,6 +1035,24 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 */
 	public void setScheduleTimeControlAssigned(IfcRelAssignsTasks newScheduleTimeControlAssigned) {
 		eSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_TIME_CONTROL_ASSIGNED, newScheduleTimeControlAssigned);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetScheduleTimeControlAssigned() {
+		eUnset(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_TIME_CONTROL_ASSIGNED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScheduleTimeControlAssigned() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_TIME_CONTROL_ASSIGNED);
 	}
 
 } //IfcScheduleTimeControlImpl

@@ -45,10 +45,33 @@ public interface IfcArbitraryProfileDefWithVoids extends IfcArbitraryClosedProfi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inner Curves</em>' reference list.
+	 * @see #isSetInnerCurves()
+	 * @see #unsetInnerCurves()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcArbitraryProfileDefWithVoids_InnerCurves()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcCurve> getInnerCurves();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcArbitraryProfileDefWithVoids#getInnerCurves <em>Inner Curves</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInnerCurves()
+	 * @see #getInnerCurves()
+	 * @generated
+	 */
+	void unsetInnerCurves();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcArbitraryProfileDefWithVoids#getInnerCurves <em>Inner Curves</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Inner Curves</em>' reference list is set.
+	 * @see #unsetInnerCurves()
+	 * @see #getInnerCurves()
+	 * @generated
+	 */
+	boolean isSetInnerCurves();
 
 } // IfcArbitraryProfileDefWithVoids

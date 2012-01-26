@@ -67,4 +67,22 @@ public class IfcDistributionFlowElementImpl extends IfcDistributionElementImpl i
 		return (EList<IfcRelFlowControlElements>) eGet(Ifc2x3Package.Literals.IFC_DISTRIBUTION_FLOW_ELEMENT__HAS_CONTROL_ELEMENTS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasControlElements() {
+		eUnset(Ifc2x3Package.Literals.IFC_DISTRIBUTION_FLOW_ELEMENT__HAS_CONTROL_ELEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasControlElements() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DISTRIBUTION_FLOW_ELEMENT__HAS_CONTROL_ELEMENTS);
+	}
+
 } //IfcDistributionFlowElementImpl

@@ -297,6 +297,24 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements IfcCostSchedu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetID() {
+		eUnset(Ifc2x3Package.Literals.IFC_COST_SCHEDULE__ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetID() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COST_SCHEDULE__ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcCostScheduleTypeEnum getPredefinedType() {
 		return (IfcCostScheduleTypeEnum) eGet(Ifc2x3Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE, true);
 	}
@@ -308,6 +326,24 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements IfcCostSchedu
 	 */
 	public void setPredefinedType(IfcCostScheduleTypeEnum newPredefinedType) {
 		eSet(Ifc2x3Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE, newPredefinedType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPredefinedType() {
+		eUnset(Ifc2x3Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPredefinedType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE);
 	}
 
 } //IfcCostScheduleImpl

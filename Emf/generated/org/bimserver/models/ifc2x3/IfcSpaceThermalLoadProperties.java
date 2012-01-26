@@ -162,9 +162,11 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Thermal Load Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcThermalLoadSourceEnum
+	 * @see #isSetThermalLoadSource()
+	 * @see #unsetThermalLoadSource()
 	 * @see #setThermalLoadSource(IfcThermalLoadSourceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_ThermalLoadSource()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcThermalLoadSourceEnum getThermalLoadSource();
@@ -175,10 +177,35 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Thermal Load Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcThermalLoadSourceEnum
+	 * @see #isSetThermalLoadSource()
+	 * @see #unsetThermalLoadSource()
 	 * @see #getThermalLoadSource()
 	 * @generated
 	 */
 	void setThermalLoadSource(IfcThermalLoadSourceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getThermalLoadSource <em>Thermal Load Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetThermalLoadSource()
+	 * @see #getThermalLoadSource()
+	 * @see #setThermalLoadSource(IfcThermalLoadSourceEnum)
+	 * @generated
+	 */
+	void unsetThermalLoadSource();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getThermalLoadSource <em>Thermal Load Source</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Thermal Load Source</em>' attribute is set.
+	 * @see #unsetThermalLoadSource()
+	 * @see #getThermalLoadSource()
+	 * @see #setThermalLoadSource(IfcThermalLoadSourceEnum)
+	 * @generated
+	 */
+	boolean isSetThermalLoadSource();
 
 	/**
 	 * Returns the value of the '<em><b>Property Source</b></em>' attribute.
@@ -191,9 +218,11 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySourceEnum
+	 * @see #isSetPropertySource()
+	 * @see #unsetPropertySource()
 	 * @see #setPropertySource(IfcPropertySourceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_PropertySource()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcPropertySourceEnum getPropertySource();
@@ -204,10 +233,35 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Property Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySourceEnum
+	 * @see #isSetPropertySource()
+	 * @see #unsetPropertySource()
 	 * @see #getPropertySource()
 	 * @generated
 	 */
 	void setPropertySource(IfcPropertySourceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getPropertySource <em>Property Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPropertySource()
+	 * @see #getPropertySource()
+	 * @see #setPropertySource(IfcPropertySourceEnum)
+	 * @generated
+	 */
+	void unsetPropertySource();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getPropertySource <em>Property Source</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Property Source</em>' attribute is set.
+	 * @see #unsetPropertySource()
+	 * @see #getPropertySource()
+	 * @see #setPropertySource(IfcPropertySourceEnum)
+	 * @generated
+	 */
+	boolean isSetPropertySource();
 
 	/**
 	 * Returns the value of the '<em><b>Source Description</b></em>' attribute.
@@ -271,9 +325,11 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Maximum Value</em>' attribute.
+	 * @see #isSetMaximumValue()
+	 * @see #unsetMaximumValue()
 	 * @see #setMaximumValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_MaximumValue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getMaximumValue();
@@ -283,10 +339,35 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Maximum Value</em>' attribute.
+	 * @see #isSetMaximumValue()
+	 * @see #unsetMaximumValue()
 	 * @see #getMaximumValue()
 	 * @generated
 	 */
 	void setMaximumValue(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getMaximumValue <em>Maximum Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaximumValue()
+	 * @see #getMaximumValue()
+	 * @see #setMaximumValue(double)
+	 * @generated
+	 */
+	void unsetMaximumValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getMaximumValue <em>Maximum Value</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Maximum Value</em>' attribute is set.
+	 * @see #unsetMaximumValue()
+	 * @see #getMaximumValue()
+	 * @see #setMaximumValue(double)
+	 * @generated
+	 */
+	boolean isSetMaximumValue();
 
 	/**
 	 * Returns the value of the '<em><b>Maximum Value As String</b></em>' attribute.
@@ -297,9 +378,11 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Maximum Value As String</em>' attribute.
+	 * @see #isSetMaximumValueAsString()
+	 * @see #unsetMaximumValueAsString()
 	 * @see #setMaximumValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_MaximumValueAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getMaximumValueAsString();
@@ -309,10 +392,35 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Maximum Value As String</em>' attribute.
+	 * @see #isSetMaximumValueAsString()
+	 * @see #unsetMaximumValueAsString()
 	 * @see #getMaximumValueAsString()
 	 * @generated
 	 */
 	void setMaximumValueAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getMaximumValueAsString <em>Maximum Value As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaximumValueAsString()
+	 * @see #getMaximumValueAsString()
+	 * @see #setMaximumValueAsString(String)
+	 * @generated
+	 */
+	void unsetMaximumValueAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getMaximumValueAsString <em>Maximum Value As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Maximum Value As String</em>' attribute is set.
+	 * @see #unsetMaximumValueAsString()
+	 * @see #getMaximumValueAsString()
+	 * @see #setMaximumValueAsString(String)
+	 * @generated
+	 */
+	boolean isSetMaximumValueAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Minimum Value</b></em>' attribute.
@@ -590,9 +698,11 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Thermal Load Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcThermalLoadTypeEnum
+	 * @see #isSetThermalLoadType()
+	 * @see #unsetThermalLoadType()
 	 * @see #setThermalLoadType(IfcThermalLoadTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceThermalLoadProperties_ThermalLoadType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcThermalLoadTypeEnum getThermalLoadType();
@@ -603,9 +713,34 @@ public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Thermal Load Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcThermalLoadTypeEnum
+	 * @see #isSetThermalLoadType()
+	 * @see #unsetThermalLoadType()
 	 * @see #getThermalLoadType()
 	 * @generated
 	 */
 	void setThermalLoadType(IfcThermalLoadTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getThermalLoadType <em>Thermal Load Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetThermalLoadType()
+	 * @see #getThermalLoadType()
+	 * @see #setThermalLoadType(IfcThermalLoadTypeEnum)
+	 * @generated
+	 */
+	void unsetThermalLoadType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties#getThermalLoadType <em>Thermal Load Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Thermal Load Type</em>' attribute is set.
+	 * @see #unsetThermalLoadType()
+	 * @see #getThermalLoadType()
+	 * @see #setThermalLoadType(IfcThermalLoadTypeEnum)
+	 * @generated
+	 */
+	boolean isSetThermalLoadType();
 
 } // IfcSpaceThermalLoadProperties

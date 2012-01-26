@@ -43,10 +43,12 @@ public interface IfcFeatureElementAddition extends IfcFeatureElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Projects Elements</em>' reference.
+	 * @see #isSetProjectsElements()
+	 * @see #unsetProjectsElements()
 	 * @see #setProjectsElements(IfcRelProjectsElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFeatureElementAddition_ProjectsElements()
 	 * @see org.bimserver.models.ifc2x3.IfcRelProjectsElement#getRelatedFeatureElement
-	 * @model opposite="RelatedFeatureElement"
+	 * @model opposite="RelatedFeatureElement" unsettable="true"
 	 * @generated
 	 */
 	IfcRelProjectsElement getProjectsElements();
@@ -56,9 +58,34 @@ public interface IfcFeatureElementAddition extends IfcFeatureElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Projects Elements</em>' reference.
+	 * @see #isSetProjectsElements()
+	 * @see #unsetProjectsElements()
 	 * @see #getProjectsElements()
 	 * @generated
 	 */
 	void setProjectsElements(IfcRelProjectsElement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFeatureElementAddition#getProjectsElements <em>Projects Elements</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetProjectsElements()
+	 * @see #getProjectsElements()
+	 * @see #setProjectsElements(IfcRelProjectsElement)
+	 * @generated
+	 */
+	void unsetProjectsElements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFeatureElementAddition#getProjectsElements <em>Projects Elements</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Projects Elements</em>' reference is set.
+	 * @see #unsetProjectsElements()
+	 * @see #getProjectsElements()
+	 * @see #setProjectsElements(IfcRelProjectsElement)
+	 * @generated
+	 */
+	boolean isSetProjectsElements();
 
 } // IfcFeatureElementAddition

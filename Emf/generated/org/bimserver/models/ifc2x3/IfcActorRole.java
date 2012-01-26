@@ -49,9 +49,11 @@ public interface IfcActorRole extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcRoleEnum
+	 * @see #isSetRole()
+	 * @see #unsetRole()
 	 * @see #setRole(IfcRoleEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcActorRole_Role()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcRoleEnum getRole();
@@ -62,10 +64,35 @@ public interface IfcActorRole extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcRoleEnum
+	 * @see #isSetRole()
+	 * @see #unsetRole()
 	 * @see #getRole()
 	 * @generated
 	 */
 	void setRole(IfcRoleEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcActorRole#getRole <em>Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRole()
+	 * @see #getRole()
+	 * @see #setRole(IfcRoleEnum)
+	 * @generated
+	 */
+	void unsetRole();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcActorRole#getRole <em>Role</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Role</em>' attribute is set.
+	 * @see #unsetRole()
+	 * @see #getRole()
+	 * @see #setRole(IfcRoleEnum)
+	 * @generated
+	 */
+	boolean isSetRole();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Role</b></em>' attribute.

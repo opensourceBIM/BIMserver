@@ -155,10 +155,12 @@ public interface IfcDraughtingCalloutRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Draughting Callout</em>' reference.
+	 * @see #isSetRelatingDraughtingCallout()
+	 * @see #unsetRelatingDraughtingCallout()
 	 * @see #setRelatingDraughtingCallout(IfcDraughtingCallout)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDraughtingCalloutRelationship_RelatingDraughtingCallout()
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingCallout#getIsRelatedToCallout
-	 * @model opposite="IsRelatedToCallout"
+	 * @model opposite="IsRelatedToCallout" unsettable="true"
 	 * @generated
 	 */
 	IfcDraughtingCallout getRelatingDraughtingCallout();
@@ -168,10 +170,35 @@ public interface IfcDraughtingCalloutRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Draughting Callout</em>' reference.
+	 * @see #isSetRelatingDraughtingCallout()
+	 * @see #unsetRelatingDraughtingCallout()
 	 * @see #getRelatingDraughtingCallout()
 	 * @generated
 	 */
 	void setRelatingDraughtingCallout(IfcDraughtingCallout value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDraughtingCalloutRelationship#getRelatingDraughtingCallout <em>Relating Draughting Callout</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingDraughtingCallout()
+	 * @see #getRelatingDraughtingCallout()
+	 * @see #setRelatingDraughtingCallout(IfcDraughtingCallout)
+	 * @generated
+	 */
+	void unsetRelatingDraughtingCallout();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDraughtingCalloutRelationship#getRelatingDraughtingCallout <em>Relating Draughting Callout</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Draughting Callout</em>' reference is set.
+	 * @see #unsetRelatingDraughtingCallout()
+	 * @see #getRelatingDraughtingCallout()
+	 * @see #setRelatingDraughtingCallout(IfcDraughtingCallout)
+	 * @generated
+	 */
+	boolean isSetRelatingDraughtingCallout();
 
 	/**
 	 * Returns the value of the '<em><b>Related Draughting Callout</b></em>' reference.
@@ -183,10 +210,12 @@ public interface IfcDraughtingCalloutRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Draughting Callout</em>' reference.
+	 * @see #isSetRelatedDraughtingCallout()
+	 * @see #unsetRelatedDraughtingCallout()
 	 * @see #setRelatedDraughtingCallout(IfcDraughtingCallout)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDraughtingCalloutRelationship_RelatedDraughtingCallout()
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingCallout#getIsRelatedFromCallout
-	 * @model opposite="IsRelatedFromCallout"
+	 * @model opposite="IsRelatedFromCallout" unsettable="true"
 	 * @generated
 	 */
 	IfcDraughtingCallout getRelatedDraughtingCallout();
@@ -196,9 +225,34 @@ public interface IfcDraughtingCalloutRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Draughting Callout</em>' reference.
+	 * @see #isSetRelatedDraughtingCallout()
+	 * @see #unsetRelatedDraughtingCallout()
 	 * @see #getRelatedDraughtingCallout()
 	 * @generated
 	 */
 	void setRelatedDraughtingCallout(IfcDraughtingCallout value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDraughtingCalloutRelationship#getRelatedDraughtingCallout <em>Related Draughting Callout</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedDraughtingCallout()
+	 * @see #getRelatedDraughtingCallout()
+	 * @see #setRelatedDraughtingCallout(IfcDraughtingCallout)
+	 * @generated
+	 */
+	void unsetRelatedDraughtingCallout();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDraughtingCalloutRelationship#getRelatedDraughtingCallout <em>Related Draughting Callout</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Draughting Callout</em>' reference is set.
+	 * @see #unsetRelatedDraughtingCallout()
+	 * @see #getRelatedDraughtingCallout()
+	 * @see #setRelatedDraughtingCallout(IfcDraughtingCallout)
+	 * @generated
+	 */
+	boolean isSetRelatedDraughtingCallout();
 
 } // IfcDraughtingCalloutRelationship

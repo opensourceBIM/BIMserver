@@ -73,4 +73,22 @@ public class IfcFeatureElementAdditionImpl extends IfcFeatureElementImpl impleme
 		eSet(Ifc2x3Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS, newProjectsElements);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetProjectsElements() {
+		eUnset(Ifc2x3Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetProjectsElements() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS);
+	}
+
 } //IfcFeatureElementAdditionImpl

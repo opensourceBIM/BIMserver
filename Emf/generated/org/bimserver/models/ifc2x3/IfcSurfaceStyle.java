@@ -47,9 +47,11 @@ public interface IfcSurfaceStyle extends IfcPresentationStyle, IfcPresentationSt
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Side</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceSide
+	 * @see #isSetSide()
+	 * @see #unsetSide()
 	 * @see #setSide(IfcSurfaceSide)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyle_Side()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcSurfaceSide getSide();
@@ -60,10 +62,35 @@ public interface IfcSurfaceStyle extends IfcPresentationStyle, IfcPresentationSt
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Side</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceSide
+	 * @see #isSetSide()
+	 * @see #unsetSide()
 	 * @see #getSide()
 	 * @generated
 	 */
 	void setSide(IfcSurfaceSide value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyle#getSide <em>Side</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSide()
+	 * @see #getSide()
+	 * @see #setSide(IfcSurfaceSide)
+	 * @generated
+	 */
+	void unsetSide();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyle#getSide <em>Side</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Side</em>' attribute is set.
+	 * @see #unsetSide()
+	 * @see #getSide()
+	 * @see #setSide(IfcSurfaceSide)
+	 * @generated
+	 */
+	boolean isSetSide();
 
 	/**
 	 * Returns the value of the '<em><b>Styles</b></em>' reference list.
@@ -75,10 +102,33 @@ public interface IfcSurfaceStyle extends IfcPresentationStyle, IfcPresentationSt
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Styles</em>' reference list.
+	 * @see #isSetStyles()
+	 * @see #unsetStyles()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyle_Styles()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcSurfaceStyleElementSelect> getStyles();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyle#getStyles <em>Styles</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStyles()
+	 * @see #getStyles()
+	 * @generated
+	 */
+	void unsetStyles();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyle#getStyles <em>Styles</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Styles</em>' reference list is set.
+	 * @see #unsetStyles()
+	 * @see #getStyles()
+	 * @generated
+	 */
+	boolean isSetStyles();
 
 } // IfcSurfaceStyle

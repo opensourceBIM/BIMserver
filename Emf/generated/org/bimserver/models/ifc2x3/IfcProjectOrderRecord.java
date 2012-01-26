@@ -46,11 +46,34 @@ public interface IfcProjectOrderRecord extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Records</em>' reference list.
+	 * @see #isSetRecords()
+	 * @see #unsetRecords()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProjectOrderRecord_Records()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToProjectOrder> getRecords();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrderRecord#getRecords <em>Records</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRecords()
+	 * @see #getRecords()
+	 * @generated
+	 */
+	void unsetRecords();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrderRecord#getRecords <em>Records</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Records</em>' reference list is set.
+	 * @see #unsetRecords()
+	 * @see #getRecords()
+	 * @generated
+	 */
+	boolean isSetRecords();
 
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
@@ -63,9 +86,11 @@ public interface IfcProjectOrderRecord extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProjectOrderRecordTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcProjectOrderRecordTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProjectOrderRecord_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcProjectOrderRecordTypeEnum getPredefinedType();
@@ -76,9 +101,34 @@ public interface IfcProjectOrderRecord extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProjectOrderRecordTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcProjectOrderRecordTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrderRecord#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcProjectOrderRecordTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrderRecord#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcProjectOrderRecordTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 } // IfcProjectOrderRecord

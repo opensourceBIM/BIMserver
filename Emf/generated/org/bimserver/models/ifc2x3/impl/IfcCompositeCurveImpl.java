@@ -73,6 +73,24 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSegments() {
+		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE__SEGMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSegments() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE__SEGMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isSelfIntersect() {
 		return (Boolean) eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, true);
 	}
@@ -84,6 +102,24 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 */
 	public void setSelfIntersect(boolean newSelfIntersect) {
 		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, newSelfIntersect);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSelfIntersect() {
+		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSelfIntersect() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT);
 	}
 
 } //IfcCompositeCurveImpl

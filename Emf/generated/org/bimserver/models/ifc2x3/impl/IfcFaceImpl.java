@@ -67,4 +67,22 @@ public class IfcFaceImpl extends IfcTopologicalRepresentationItemImpl implements
 		return (EList<IfcFaceBound>) eGet(Ifc2x3Package.Literals.IFC_FACE__BOUNDS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetBounds() {
+		eUnset(Ifc2x3Package.Literals.IFC_FACE__BOUNDS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBounds() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FACE__BOUNDS);
+	}
+
 } //IfcFaceImpl

@@ -88,6 +88,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDepth() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDepth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDepthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__DEPTH_AS_STRING, true);
 	}
@@ -99,6 +117,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setDepthAsString(String newDepthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__DEPTH_AS_STRING, newDepthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDepthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__DEPTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDepthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__DEPTH_AS_STRING);
 	}
 
 	/**
@@ -124,6 +160,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetFlangeWidth() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlangeWidth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getFlangeWidthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_WIDTH_AS_STRING, true);
 	}
@@ -135,6 +189,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setFlangeWidthAsString(String newFlangeWidthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_WIDTH_AS_STRING, newFlangeWidthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetFlangeWidthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_WIDTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlangeWidthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_WIDTH_AS_STRING);
 	}
 
 	/**
@@ -160,6 +232,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetWebThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__WEB_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWebThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__WEB_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getWebThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, true);
 	}
@@ -171,6 +261,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setWebThicknessAsString(String newWebThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, newWebThicknessAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWebThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWebThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING);
 	}
 
 	/**
@@ -196,6 +304,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetFlangeThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlangeThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getFlangeThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING, true);
 	}
@@ -207,6 +333,24 @@ public class IfcZShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setFlangeThicknessAsString(String newFlangeThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING, newFlangeThicknessAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetFlangeThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlangeThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ZSHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING);
 	}
 
 	/**

@@ -92,6 +92,24 @@ public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements IfcMeasureW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetValueComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_MEASURE_WITH_UNIT__VALUE_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetValueComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MEASURE_WITH_UNIT__VALUE_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcUnit getUnitComponent() {
 		return (IfcUnit) eGet(Ifc2x3Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT, true);
 	}
@@ -103,6 +121,24 @@ public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements IfcMeasureW
 	 */
 	public void setUnitComponent(IfcUnit newUnitComponent) {
 		eSet(Ifc2x3Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT, newUnitComponent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetUnitComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetUnitComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT);
 	}
 
 } //IfcMeasureWithUnitImpl

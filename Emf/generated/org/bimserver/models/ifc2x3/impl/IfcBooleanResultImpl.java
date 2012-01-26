@@ -82,6 +82,24 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetOperator() {
+		eUnset(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__OPERATOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOperator() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__OPERATOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcBooleanOperand getFirstOperand() {
 		return (IfcBooleanOperand) eGet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__FIRST_OPERAND, true);
 	}
@@ -93,6 +111,24 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 */
 	public void setFirstOperand(IfcBooleanOperand newFirstOperand) {
 		eSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__FIRST_OPERAND, newFirstOperand);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetFirstOperand() {
+		eUnset(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__FIRST_OPERAND);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFirstOperand() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__FIRST_OPERAND);
 	}
 
 	/**
@@ -118,6 +154,24 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSecondOperand() {
+		eUnset(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__SECOND_OPERAND);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSecondOperand() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__SECOND_OPERAND);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__DIM, true);
 	}
@@ -129,6 +183,24 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__DIM);
 	}
 
 } //IfcBooleanResultImpl

@@ -153,4 +153,22 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRe
 		return (EList<IfcRepresentation>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRepresentationsInContext() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRepresentationsInContext() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT);
+	}
+
 } //IfcRepresentationContextImpl

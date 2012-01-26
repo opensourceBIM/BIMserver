@@ -50,9 +50,11 @@ public interface IfcWindowPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operation Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcWindowPanelOperationEnum
+	 * @see #isSetOperationType()
+	 * @see #unsetOperationType()
 	 * @see #setOperationType(IfcWindowPanelOperationEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowPanelProperties_OperationType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcWindowPanelOperationEnum getOperationType();
@@ -63,10 +65,35 @@ public interface IfcWindowPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operation Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcWindowPanelOperationEnum
+	 * @see #isSetOperationType()
+	 * @see #unsetOperationType()
 	 * @see #getOperationType()
 	 * @generated
 	 */
 	void setOperationType(IfcWindowPanelOperationEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowPanelProperties#getOperationType <em>Operation Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOperationType()
+	 * @see #getOperationType()
+	 * @see #setOperationType(IfcWindowPanelOperationEnum)
+	 * @generated
+	 */
+	void unsetOperationType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowPanelProperties#getOperationType <em>Operation Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Operation Type</em>' attribute is set.
+	 * @see #unsetOperationType()
+	 * @see #getOperationType()
+	 * @see #setOperationType(IfcWindowPanelOperationEnum)
+	 * @generated
+	 */
+	boolean isSetOperationType();
 
 	/**
 	 * Returns the value of the '<em><b>Panel Position</b></em>' attribute.
@@ -79,9 +106,11 @@ public interface IfcWindowPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Panel Position</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcWindowPanelPositionEnum
+	 * @see #isSetPanelPosition()
+	 * @see #unsetPanelPosition()
 	 * @see #setPanelPosition(IfcWindowPanelPositionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWindowPanelProperties_PanelPosition()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcWindowPanelPositionEnum getPanelPosition();
@@ -92,10 +121,35 @@ public interface IfcWindowPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Panel Position</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcWindowPanelPositionEnum
+	 * @see #isSetPanelPosition()
+	 * @see #unsetPanelPosition()
 	 * @see #getPanelPosition()
 	 * @generated
 	 */
 	void setPanelPosition(IfcWindowPanelPositionEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowPanelProperties#getPanelPosition <em>Panel Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPanelPosition()
+	 * @see #getPanelPosition()
+	 * @see #setPanelPosition(IfcWindowPanelPositionEnum)
+	 * @generated
+	 */
+	void unsetPanelPosition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcWindowPanelProperties#getPanelPosition <em>Panel Position</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Panel Position</em>' attribute is set.
+	 * @see #unsetPanelPosition()
+	 * @see #getPanelPosition()
+	 * @see #setPanelPosition(IfcWindowPanelPositionEnum)
+	 * @generated
+	 */
+	boolean isSetPanelPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Frame Depth</b></em>' attribute.

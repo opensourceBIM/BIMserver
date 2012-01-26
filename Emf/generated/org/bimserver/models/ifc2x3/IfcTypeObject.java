@@ -142,11 +142,34 @@ public interface IfcTypeObject extends IfcObjectDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Object Type Of</em>' reference list.
+	 * @see #isSetObjectTypeOf()
+	 * @see #unsetObjectTypeOf()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTypeObject_ObjectTypeOf()
 	 * @see org.bimserver.models.ifc2x3.IfcRelDefinesByType#getRelatingType
-	 * @model opposite="RelatingType" upper="2"
+	 * @model opposite="RelatingType" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByType> getObjectTypeOf();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTypeObject#getObjectTypeOf <em>Object Type Of</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetObjectTypeOf()
+	 * @see #getObjectTypeOf()
+	 * @generated
+	 */
+	void unsetObjectTypeOf();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTypeObject#getObjectTypeOf <em>Object Type Of</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Object Type Of</em>' reference list is set.
+	 * @see #unsetObjectTypeOf()
+	 * @see #getObjectTypeOf()
+	 * @generated
+	 */
+	boolean isSetObjectTypeOf();
 
 } // IfcTypeObject

@@ -45,10 +45,33 @@ public interface IfcAnnotation extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contained In Structure</em>' reference list.
+	 * @see #isSetContainedInStructure()
+	 * @see #unsetContainedInStructure()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAnnotation_ContainedInStructure()
-	 * @model upper="2"
+	 * @model unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelContainedInSpatialStructure> getContainedInStructure();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotation#getContainedInStructure <em>Contained In Structure</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContainedInStructure()
+	 * @see #getContainedInStructure()
+	 * @generated
+	 */
+	void unsetContainedInStructure();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotation#getContainedInStructure <em>Contained In Structure</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Contained In Structure</em>' reference list is set.
+	 * @see #unsetContainedInStructure()
+	 * @see #getContainedInStructure()
+	 * @generated
+	 */
+	boolean isSetContainedInStructure();
 
 } // IfcAnnotation

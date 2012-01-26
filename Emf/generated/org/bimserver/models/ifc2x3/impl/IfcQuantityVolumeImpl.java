@@ -78,6 +78,24 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetVolumeValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVolumeValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getVolumeValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING, true);
 	}
@@ -89,6 +107,24 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 */
 	public void setVolumeValueAsString(String newVolumeValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING, newVolumeValueAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetVolumeValueAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVolumeValueAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING);
 	}
 
 } //IfcQuantityVolumeImpl

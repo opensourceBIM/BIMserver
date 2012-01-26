@@ -314,10 +314,12 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Space Program</em>' reference.
+	 * @see #isSetRelatedSpaceProgram()
+	 * @see #unsetRelatedSpaceProgram()
 	 * @see #setRelatedSpaceProgram(IfcSpaceProgram)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelInteractionRequirements_RelatedSpaceProgram()
 	 * @see org.bimserver.models.ifc2x3.IfcSpaceProgram#getHasInteractionReqsFrom
-	 * @model opposite="HasInteractionReqsFrom"
+	 * @model opposite="HasInteractionReqsFrom" unsettable="true"
 	 * @generated
 	 */
 	IfcSpaceProgram getRelatedSpaceProgram();
@@ -327,10 +329,35 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Space Program</em>' reference.
+	 * @see #isSetRelatedSpaceProgram()
+	 * @see #unsetRelatedSpaceProgram()
 	 * @see #getRelatedSpaceProgram()
 	 * @generated
 	 */
 	void setRelatedSpaceProgram(IfcSpaceProgram value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getRelatedSpaceProgram <em>Related Space Program</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedSpaceProgram()
+	 * @see #getRelatedSpaceProgram()
+	 * @see #setRelatedSpaceProgram(IfcSpaceProgram)
+	 * @generated
+	 */
+	void unsetRelatedSpaceProgram();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getRelatedSpaceProgram <em>Related Space Program</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Space Program</em>' reference is set.
+	 * @see #unsetRelatedSpaceProgram()
+	 * @see #getRelatedSpaceProgram()
+	 * @see #setRelatedSpaceProgram(IfcSpaceProgram)
+	 * @generated
+	 */
+	boolean isSetRelatedSpaceProgram();
 
 	/**
 	 * Returns the value of the '<em><b>Relating Space Program</b></em>' reference.
@@ -342,10 +369,12 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Space Program</em>' reference.
+	 * @see #isSetRelatingSpaceProgram()
+	 * @see #unsetRelatingSpaceProgram()
 	 * @see #setRelatingSpaceProgram(IfcSpaceProgram)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelInteractionRequirements_RelatingSpaceProgram()
 	 * @see org.bimserver.models.ifc2x3.IfcSpaceProgram#getHasInteractionReqsTo
-	 * @model opposite="HasInteractionReqsTo"
+	 * @model opposite="HasInteractionReqsTo" unsettable="true"
 	 * @generated
 	 */
 	IfcSpaceProgram getRelatingSpaceProgram();
@@ -355,9 +384,34 @@ public interface IfcRelInteractionRequirements extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Space Program</em>' reference.
+	 * @see #isSetRelatingSpaceProgram()
+	 * @see #unsetRelatingSpaceProgram()
 	 * @see #getRelatingSpaceProgram()
 	 * @generated
 	 */
 	void setRelatingSpaceProgram(IfcSpaceProgram value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getRelatingSpaceProgram <em>Relating Space Program</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingSpaceProgram()
+	 * @see #getRelatingSpaceProgram()
+	 * @see #setRelatingSpaceProgram(IfcSpaceProgram)
+	 * @generated
+	 */
+	void unsetRelatingSpaceProgram();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelInteractionRequirements#getRelatingSpaceProgram <em>Relating Space Program</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Space Program</em>' reference is set.
+	 * @see #unsetRelatingSpaceProgram()
+	 * @see #getRelatingSpaceProgram()
+	 * @see #setRelatingSpaceProgram(IfcSpaceProgram)
+	 * @generated
+	 */
+	boolean isSetRelatingSpaceProgram();
 
 } // IfcRelInteractionRequirements

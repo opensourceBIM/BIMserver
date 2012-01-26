@@ -49,12 +49,35 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Material Layers</em>' reference list.
+	 * @see #isSetMaterialLayers()
+	 * @see #unsetMaterialLayers()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSet_MaterialLayers()
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialLayer#getToMaterialLayerSet
-	 * @model opposite="ToMaterialLayerSet"
+	 * @model opposite="ToMaterialLayerSet" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcMaterialLayer> getMaterialLayers();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getMaterialLayers <em>Material Layers</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaterialLayers()
+	 * @see #getMaterialLayers()
+	 * @generated
+	 */
+	void unsetMaterialLayers();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getMaterialLayers <em>Material Layers</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Material Layers</em>' reference list is set.
+	 * @see #unsetMaterialLayers()
+	 * @see #getMaterialLayers()
+	 * @generated
+	 */
+	boolean isSetMaterialLayers();
 
 	/**
 	 * Returns the value of the '<em><b>Layer Set Name</b></em>' attribute.
@@ -118,9 +141,11 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Thickness</em>' attribute.
+	 * @see #isSetTotalThickness()
+	 * @see #unsetTotalThickness()
 	 * @see #setTotalThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSet_TotalThickness()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	double getTotalThickness();
@@ -130,10 +155,35 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Total Thickness</em>' attribute.
+	 * @see #isSetTotalThickness()
+	 * @see #unsetTotalThickness()
 	 * @see #getTotalThickness()
 	 * @generated
 	 */
 	void setTotalThickness(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getTotalThickness <em>Total Thickness</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTotalThickness()
+	 * @see #getTotalThickness()
+	 * @see #setTotalThickness(double)
+	 * @generated
+	 */
+	void unsetTotalThickness();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getTotalThickness <em>Total Thickness</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Total Thickness</em>' attribute is set.
+	 * @see #unsetTotalThickness()
+	 * @see #getTotalThickness()
+	 * @see #setTotalThickness(double)
+	 * @generated
+	 */
+	boolean isSetTotalThickness();
 
 	/**
 	 * Returns the value of the '<em><b>Total Thickness As String</b></em>' attribute.
@@ -144,9 +194,11 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Thickness As String</em>' attribute.
+	 * @see #isSetTotalThicknessAsString()
+	 * @see #unsetTotalThicknessAsString()
 	 * @see #setTotalThicknessAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSet_TotalThicknessAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getTotalThicknessAsString();
@@ -156,9 +208,34 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Total Thickness As String</em>' attribute.
+	 * @see #isSetTotalThicknessAsString()
+	 * @see #unsetTotalThicknessAsString()
 	 * @see #getTotalThicknessAsString()
 	 * @generated
 	 */
 	void setTotalThicknessAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getTotalThicknessAsString <em>Total Thickness As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTotalThicknessAsString()
+	 * @see #getTotalThicknessAsString()
+	 * @see #setTotalThicknessAsString(String)
+	 * @generated
+	 */
+	void unsetTotalThicknessAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getTotalThicknessAsString <em>Total Thickness As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Total Thickness As String</em>' attribute is set.
+	 * @see #unsetTotalThicknessAsString()
+	 * @see #getTotalThicknessAsString()
+	 * @see #setTotalThicknessAsString(String)
+	 * @generated
+	 */
+	boolean isSetTotalThicknessAsString();
 
 } // IfcMaterialLayerSet

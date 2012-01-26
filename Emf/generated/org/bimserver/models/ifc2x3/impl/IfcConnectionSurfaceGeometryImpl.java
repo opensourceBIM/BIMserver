@@ -79,6 +79,24 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSurfaceOnRelatingElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSurfaceOnRelatingElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSurfaceOrFaceSurface getSurfaceOnRelatedElement() {
 		return (IfcSurfaceOrFaceSurface) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT, true);
 	}

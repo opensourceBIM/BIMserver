@@ -79,6 +79,24 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetWidth() {
+		eUnset(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWidth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getHeight() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, true);
 	}
@@ -97,6 +115,24 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHeight() {
+		eUnset(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHeight() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getColourComponents() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, true);
 	}
@@ -108,6 +144,24 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 */
 	public void setColourComponents(int newColourComponents) {
 		eSet(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, newColourComponents);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetColourComponents() {
+		eUnset(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetColourComponents() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS);
 	}
 
 } //IfcPixelTextureImpl

@@ -96,6 +96,24 @@ public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements IfcPe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetThePerson() {
+		eUnset(Ifc2x3Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_PERSON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetThePerson() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_PERSON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcOrganization getTheOrganization() {
 		return (IfcOrganization) eGet(Ifc2x3Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION, true);
 	}
@@ -107,6 +125,24 @@ public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements IfcPe
 	 */
 	public void setTheOrganization(IfcOrganization newTheOrganization) {
 		eSet(Ifc2x3Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION, newTheOrganization);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTheOrganization() {
+		eUnset(Ifc2x3Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTheOrganization() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION);
 	}
 
 	/**

@@ -47,12 +47,35 @@ public interface IfcRelFlowControlElements extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Control Elements</em>' reference list.
+	 * @see #isSetRelatedControlElements()
+	 * @see #unsetRelatedControlElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelFlowControlElements_RelatedControlElements()
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionControlElement#getAssignedToFlowElement
-	 * @model opposite="AssignedToFlowElement"
+	 * @model opposite="AssignedToFlowElement" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcDistributionControlElement> getRelatedControlElements();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFlowControlElements#getRelatedControlElements <em>Related Control Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedControlElements()
+	 * @see #getRelatedControlElements()
+	 * @generated
+	 */
+	void unsetRelatedControlElements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFlowControlElements#getRelatedControlElements <em>Related Control Elements</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Control Elements</em>' reference list is set.
+	 * @see #unsetRelatedControlElements()
+	 * @see #getRelatedControlElements()
+	 * @generated
+	 */
+	boolean isSetRelatedControlElements();
 
 	/**
 	 * Returns the value of the '<em><b>Relating Flow Element</b></em>' reference.
@@ -64,10 +87,12 @@ public interface IfcRelFlowControlElements extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Flow Element</em>' reference.
+	 * @see #isSetRelatingFlowElement()
+	 * @see #unsetRelatingFlowElement()
 	 * @see #setRelatingFlowElement(IfcDistributionFlowElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelFlowControlElements_RelatingFlowElement()
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionFlowElement#getHasControlElements
-	 * @model opposite="HasControlElements"
+	 * @model opposite="HasControlElements" unsettable="true"
 	 * @generated
 	 */
 	IfcDistributionFlowElement getRelatingFlowElement();
@@ -77,9 +102,34 @@ public interface IfcRelFlowControlElements extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Flow Element</em>' reference.
+	 * @see #isSetRelatingFlowElement()
+	 * @see #unsetRelatingFlowElement()
 	 * @see #getRelatingFlowElement()
 	 * @generated
 	 */
 	void setRelatingFlowElement(IfcDistributionFlowElement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFlowControlElements#getRelatingFlowElement <em>Relating Flow Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingFlowElement()
+	 * @see #getRelatingFlowElement()
+	 * @see #setRelatingFlowElement(IfcDistributionFlowElement)
+	 * @generated
+	 */
+	void unsetRelatingFlowElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFlowControlElements#getRelatingFlowElement <em>Relating Flow Element</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Flow Element</em>' reference is set.
+	 * @see #unsetRelatingFlowElement()
+	 * @see #getRelatingFlowElement()
+	 * @see #setRelatingFlowElement(IfcDistributionFlowElement)
+	 * @generated
+	 */
+	boolean isSetRelatingFlowElement();
 
 } // IfcRelFlowControlElements

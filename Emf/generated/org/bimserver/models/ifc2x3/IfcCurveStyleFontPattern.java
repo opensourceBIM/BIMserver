@@ -48,9 +48,11 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Visible Segment Length</em>' attribute.
+	 * @see #isSetVisibleSegmentLength()
+	 * @see #unsetVisibleSegmentLength()
 	 * @see #setVisibleSegmentLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontPattern_VisibleSegmentLength()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getVisibleSegmentLength();
@@ -60,10 +62,35 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Visible Segment Length</em>' attribute.
+	 * @see #isSetVisibleSegmentLength()
+	 * @see #unsetVisibleSegmentLength()
 	 * @see #getVisibleSegmentLength()
 	 * @generated
 	 */
 	void setVisibleSegmentLength(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getVisibleSegmentLength <em>Visible Segment Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVisibleSegmentLength()
+	 * @see #getVisibleSegmentLength()
+	 * @see #setVisibleSegmentLength(double)
+	 * @generated
+	 */
+	void unsetVisibleSegmentLength();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getVisibleSegmentLength <em>Visible Segment Length</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Visible Segment Length</em>' attribute is set.
+	 * @see #unsetVisibleSegmentLength()
+	 * @see #getVisibleSegmentLength()
+	 * @see #setVisibleSegmentLength(double)
+	 * @generated
+	 */
+	boolean isSetVisibleSegmentLength();
 
 	/**
 	 * Returns the value of the '<em><b>Visible Segment Length As String</b></em>' attribute.
@@ -74,9 +101,11 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Visible Segment Length As String</em>' attribute.
+	 * @see #isSetVisibleSegmentLengthAsString()
+	 * @see #unsetVisibleSegmentLengthAsString()
 	 * @see #setVisibleSegmentLengthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontPattern_VisibleSegmentLengthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getVisibleSegmentLengthAsString();
@@ -86,10 +115,35 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Visible Segment Length As String</em>' attribute.
+	 * @see #isSetVisibleSegmentLengthAsString()
+	 * @see #unsetVisibleSegmentLengthAsString()
 	 * @see #getVisibleSegmentLengthAsString()
 	 * @generated
 	 */
 	void setVisibleSegmentLengthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getVisibleSegmentLengthAsString <em>Visible Segment Length As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVisibleSegmentLengthAsString()
+	 * @see #getVisibleSegmentLengthAsString()
+	 * @see #setVisibleSegmentLengthAsString(String)
+	 * @generated
+	 */
+	void unsetVisibleSegmentLengthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getVisibleSegmentLengthAsString <em>Visible Segment Length As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Visible Segment Length As String</em>' attribute is set.
+	 * @see #unsetVisibleSegmentLengthAsString()
+	 * @see #getVisibleSegmentLengthAsString()
+	 * @see #setVisibleSegmentLengthAsString(String)
+	 * @generated
+	 */
+	boolean isSetVisibleSegmentLengthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Invisible Segment Length</b></em>' attribute.
@@ -100,9 +154,11 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Invisible Segment Length</em>' attribute.
+	 * @see #isSetInvisibleSegmentLength()
+	 * @see #unsetInvisibleSegmentLength()
 	 * @see #setInvisibleSegmentLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontPattern_InvisibleSegmentLength()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getInvisibleSegmentLength();
@@ -112,10 +168,35 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Invisible Segment Length</em>' attribute.
+	 * @see #isSetInvisibleSegmentLength()
+	 * @see #unsetInvisibleSegmentLength()
 	 * @see #getInvisibleSegmentLength()
 	 * @generated
 	 */
 	void setInvisibleSegmentLength(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getInvisibleSegmentLength <em>Invisible Segment Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInvisibleSegmentLength()
+	 * @see #getInvisibleSegmentLength()
+	 * @see #setInvisibleSegmentLength(double)
+	 * @generated
+	 */
+	void unsetInvisibleSegmentLength();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getInvisibleSegmentLength <em>Invisible Segment Length</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Invisible Segment Length</em>' attribute is set.
+	 * @see #unsetInvisibleSegmentLength()
+	 * @see #getInvisibleSegmentLength()
+	 * @see #setInvisibleSegmentLength(double)
+	 * @generated
+	 */
+	boolean isSetInvisibleSegmentLength();
 
 	/**
 	 * Returns the value of the '<em><b>Invisible Segment Length As String</b></em>' attribute.
@@ -126,9 +207,11 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Invisible Segment Length As String</em>' attribute.
+	 * @see #isSetInvisibleSegmentLengthAsString()
+	 * @see #unsetInvisibleSegmentLengthAsString()
 	 * @see #setInvisibleSegmentLengthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontPattern_InvisibleSegmentLengthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getInvisibleSegmentLengthAsString();
@@ -138,9 +221,34 @@ public interface IfcCurveStyleFontPattern extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Invisible Segment Length As String</em>' attribute.
+	 * @see #isSetInvisibleSegmentLengthAsString()
+	 * @see #unsetInvisibleSegmentLengthAsString()
 	 * @see #getInvisibleSegmentLengthAsString()
 	 * @generated
 	 */
 	void setInvisibleSegmentLengthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getInvisibleSegmentLengthAsString <em>Invisible Segment Length As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInvisibleSegmentLengthAsString()
+	 * @see #getInvisibleSegmentLengthAsString()
+	 * @see #setInvisibleSegmentLengthAsString(String)
+	 * @generated
+	 */
+	void unsetInvisibleSegmentLengthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern#getInvisibleSegmentLengthAsString <em>Invisible Segment Length As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Invisible Segment Length As String</em>' attribute is set.
+	 * @see #unsetInvisibleSegmentLengthAsString()
+	 * @see #getInvisibleSegmentLengthAsString()
+	 * @see #setInvisibleSegmentLengthAsString(String)
+	 * @generated
+	 */
+	boolean isSetInvisibleSegmentLengthAsString();
 
 } // IfcCurveStyleFontPattern

@@ -78,6 +78,24 @@ public class IfcSphereImpl extends IfcCsgPrimitive3DImpl implements IfcSphere {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRadius() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRadius() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getRadiusAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS_AS_STRING, true);
 	}
@@ -89,6 +107,24 @@ public class IfcSphereImpl extends IfcCsgPrimitive3DImpl implements IfcSphere {
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS_AS_STRING, newRadiusAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRadiusAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRadiusAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPHERE__RADIUS_AS_STRING);
 	}
 
 } //IfcSphereImpl

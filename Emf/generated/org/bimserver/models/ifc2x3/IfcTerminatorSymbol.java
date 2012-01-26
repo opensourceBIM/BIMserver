@@ -42,9 +42,11 @@ public interface IfcTerminatorSymbol extends IfcAnnotationSymbolOccurrence {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Annotated Curve</em>' reference.
+	 * @see #isSetAnnotatedCurve()
+	 * @see #unsetAnnotatedCurve()
 	 * @see #setAnnotatedCurve(IfcAnnotationCurveOccurrence)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTerminatorSymbol_AnnotatedCurve()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAnnotationCurveOccurrence getAnnotatedCurve();
@@ -54,9 +56,34 @@ public interface IfcTerminatorSymbol extends IfcAnnotationSymbolOccurrence {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Annotated Curve</em>' reference.
+	 * @see #isSetAnnotatedCurve()
+	 * @see #unsetAnnotatedCurve()
 	 * @see #getAnnotatedCurve()
 	 * @generated
 	 */
 	void setAnnotatedCurve(IfcAnnotationCurveOccurrence value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTerminatorSymbol#getAnnotatedCurve <em>Annotated Curve</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAnnotatedCurve()
+	 * @see #getAnnotatedCurve()
+	 * @see #setAnnotatedCurve(IfcAnnotationCurveOccurrence)
+	 * @generated
+	 */
+	void unsetAnnotatedCurve();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTerminatorSymbol#getAnnotatedCurve <em>Annotated Curve</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Annotated Curve</em>' reference is set.
+	 * @see #unsetAnnotatedCurve()
+	 * @see #getAnnotatedCurve()
+	 * @see #setAnnotatedCurve(IfcAnnotationCurveOccurrence)
+	 * @generated
+	 */
+	boolean isSetAnnotatedCurve();
 
 } // IfcTerminatorSymbol

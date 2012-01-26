@@ -72,4 +72,22 @@ public class IfcLabelImpl extends WrappedValueImpl implements IfcLabel {
 		eSet(Ifc2x3Package.Literals.IFC_LABEL__WRAPPED_VALUE, newWrappedValue);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWrappedValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_LABEL__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWrappedValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LABEL__WRAPPED_VALUE);
+	}
+
 } //IfcLabelImpl

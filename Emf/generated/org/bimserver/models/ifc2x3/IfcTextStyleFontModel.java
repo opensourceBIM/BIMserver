@@ -246,9 +246,11 @@ public interface IfcTextStyleFontModel extends IfcPreDefinedTextFont {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Font Size</em>' reference.
+	 * @see #isSetFontSize()
+	 * @see #unsetFontSize()
 	 * @see #setFontSize(IfcSizeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextStyleFontModel_FontSize()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcSizeSelect getFontSize();
@@ -258,9 +260,34 @@ public interface IfcTextStyleFontModel extends IfcPreDefinedTextFont {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Font Size</em>' reference.
+	 * @see #isSetFontSize()
+	 * @see #unsetFontSize()
 	 * @see #getFontSize()
 	 * @generated
 	 */
 	void setFontSize(IfcSizeSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleFontModel#getFontSize <em>Font Size</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetFontSize()
+	 * @see #getFontSize()
+	 * @see #setFontSize(IfcSizeSelect)
+	 * @generated
+	 */
+	void unsetFontSize();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyleFontModel#getFontSize <em>Font Size</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Font Size</em>' reference is set.
+	 * @see #unsetFontSize()
+	 * @see #getFontSize()
+	 * @see #setFontSize(IfcSizeSelect)
+	 * @generated
+	 */
+	boolean isSetFontSize();
 
 } // IfcTextStyleFontModel

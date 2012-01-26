@@ -104,4 +104,22 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 		return (EList<IfcRelDefines>) eGet(Ifc2x3Package.Literals.IFC_OBJECT__IS_DEFINED_BY, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsDefinedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECT__IS_DEFINED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsDefinedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECT__IS_DEFINED_BY);
+	}
+
 } //IfcObjectImpl

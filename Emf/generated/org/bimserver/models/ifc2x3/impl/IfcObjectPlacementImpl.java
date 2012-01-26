@@ -86,9 +86,45 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPlacesObject() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECT_PLACEMENT__PLACES_OBJECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPlacesObject() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECT_PLACEMENT__PLACES_OBJECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLocalPlacement> getReferencedByPlacements() {
 		return (EList<IfcLocalPlacement>) eGet(Ifc2x3Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetReferencedByPlacements() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferencedByPlacements() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS);
 	}
 
 } //IfcObjectPlacementImpl

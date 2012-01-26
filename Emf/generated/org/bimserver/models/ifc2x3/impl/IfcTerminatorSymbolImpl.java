@@ -73,4 +73,22 @@ public class IfcTerminatorSymbolImpl extends IfcAnnotationSymbolOccurrenceImpl i
 		eSet(Ifc2x3Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE, newAnnotatedCurve);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAnnotatedCurve() {
+		eUnset(Ifc2x3Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAnnotatedCurve() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE);
+	}
+
 } //IfcTerminatorSymbolImpl

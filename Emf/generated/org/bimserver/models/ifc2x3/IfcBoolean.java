@@ -44,9 +44,11 @@ public interface IfcBoolean extends WrappedValue, IfcValue {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wrapped Value</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetWrappedValue()
+	 * @see #unsetWrappedValue()
 	 * @see #setWrappedValue(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoolean_WrappedValue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getWrappedValue();
@@ -57,9 +59,34 @@ public interface IfcBoolean extends WrappedValue, IfcValue {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wrapped Value</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetWrappedValue()
+	 * @see #unsetWrappedValue()
 	 * @see #getWrappedValue()
 	 * @generated
 	 */
 	void setWrappedValue(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoolean#getWrappedValue <em>Wrapped Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWrappedValue()
+	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(Tristate)
+	 * @generated
+	 */
+	void unsetWrappedValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBoolean#getWrappedValue <em>Wrapped Value</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wrapped Value</em>' attribute is set.
+	 * @see #unsetWrappedValue()
+	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(Tristate)
+	 * @generated
+	 */
+	boolean isSetWrappedValue();
 
 } // IfcBoolean

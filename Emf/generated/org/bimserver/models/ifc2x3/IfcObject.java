@@ -100,11 +100,34 @@ public interface IfcObject extends IfcObjectDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Defined By</em>' reference list.
+	 * @see #isSetIsDefinedBy()
+	 * @see #unsetIsDefinedBy()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObject_IsDefinedBy()
 	 * @see org.bimserver.models.ifc2x3.IfcRelDefines#getRelatedObjects
-	 * @model opposite="RelatedObjects"
+	 * @model opposite="RelatedObjects" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelDefines> getIsDefinedBy();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObject#getIsDefinedBy <em>Is Defined By</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsDefinedBy()
+	 * @see #getIsDefinedBy()
+	 * @generated
+	 */
+	void unsetIsDefinedBy();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObject#getIsDefinedBy <em>Is Defined By</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Defined By</em>' reference list is set.
+	 * @see #unsetIsDefinedBy()
+	 * @see #getIsDefinedBy()
+	 * @generated
+	 */
+	boolean isSetIsDefinedBy();
 
 } // IfcObject

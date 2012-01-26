@@ -42,9 +42,11 @@ public interface IfcArbitraryClosedProfileDef extends IfcProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Outer Curve</em>' reference.
+	 * @see #isSetOuterCurve()
+	 * @see #unsetOuterCurve()
 	 * @see #setOuterCurve(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcArbitraryClosedProfileDef_OuterCurve()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurve getOuterCurve();
@@ -54,9 +56,34 @@ public interface IfcArbitraryClosedProfileDef extends IfcProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Outer Curve</em>' reference.
+	 * @see #isSetOuterCurve()
+	 * @see #unsetOuterCurve()
 	 * @see #getOuterCurve()
 	 * @generated
 	 */
 	void setOuterCurve(IfcCurve value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcArbitraryClosedProfileDef#getOuterCurve <em>Outer Curve</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOuterCurve()
+	 * @see #getOuterCurve()
+	 * @see #setOuterCurve(IfcCurve)
+	 * @generated
+	 */
+	void unsetOuterCurve();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcArbitraryClosedProfileDef#getOuterCurve <em>Outer Curve</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Outer Curve</em>' reference is set.
+	 * @see #unsetOuterCurve()
+	 * @see #getOuterCurve()
+	 * @see #setOuterCurve(IfcCurve)
+	 * @generated
+	 */
+	boolean isSetOuterCurve();
 
 } // IfcArbitraryClosedProfileDef

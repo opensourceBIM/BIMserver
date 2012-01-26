@@ -47,12 +47,35 @@ public interface IfcPropertySetDefinition extends IfcPropertyDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property Definition Of</em>' reference list.
+	 * @see #isSetPropertyDefinitionOf()
+	 * @see #unsetPropertyDefinitionOf()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertySetDefinition_PropertyDefinitionOf()
 	 * @see org.bimserver.models.ifc2x3.IfcRelDefinesByProperties#getRelatingPropertyDefinition
-	 * @model opposite="RelatingPropertyDefinition" upper="2"
+	 * @model opposite="RelatingPropertyDefinition" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByProperties> getPropertyDefinitionOf();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertySetDefinition#getPropertyDefinitionOf <em>Property Definition Of</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPropertyDefinitionOf()
+	 * @see #getPropertyDefinitionOf()
+	 * @generated
+	 */
+	void unsetPropertyDefinitionOf();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertySetDefinition#getPropertyDefinitionOf <em>Property Definition Of</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Property Definition Of</em>' reference list is set.
+	 * @see #unsetPropertyDefinitionOf()
+	 * @see #getPropertyDefinitionOf()
+	 * @generated
+	 */
+	boolean isSetPropertyDefinitionOf();
 
 	/**
 	 * Returns the value of the '<em><b>Defines Type</b></em>' reference list.
@@ -65,11 +88,34 @@ public interface IfcPropertySetDefinition extends IfcPropertyDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Defines Type</em>' reference list.
+	 * @see #isSetDefinesType()
+	 * @see #unsetDefinesType()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertySetDefinition_DefinesType()
 	 * @see org.bimserver.models.ifc2x3.IfcTypeObject#getHasPropertySets
-	 * @model opposite="HasPropertySets" upper="2"
+	 * @model opposite="HasPropertySets" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcTypeObject> getDefinesType();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertySetDefinition#getDefinesType <em>Defines Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDefinesType()
+	 * @see #getDefinesType()
+	 * @generated
+	 */
+	void unsetDefinesType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertySetDefinition#getDefinesType <em>Defines Type</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Defines Type</em>' reference list is set.
+	 * @see #unsetDefinesType()
+	 * @see #getDefinesType()
+	 * @generated
+	 */
+	boolean isSetDefinesType();
 
 } // IfcPropertySetDefinition

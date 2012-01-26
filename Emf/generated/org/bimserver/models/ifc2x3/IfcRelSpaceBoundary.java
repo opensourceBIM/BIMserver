@@ -47,10 +47,12 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Space</em>' reference.
+	 * @see #isSetRelatingSpace()
+	 * @see #unsetRelatingSpace()
 	 * @see #setRelatingSpace(IfcSpace)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSpaceBoundary_RelatingSpace()
 	 * @see org.bimserver.models.ifc2x3.IfcSpace#getBoundedBy
-	 * @model opposite="BoundedBy"
+	 * @model opposite="BoundedBy" unsettable="true"
 	 * @generated
 	 */
 	IfcSpace getRelatingSpace();
@@ -60,10 +62,35 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Space</em>' reference.
+	 * @see #isSetRelatingSpace()
+	 * @see #unsetRelatingSpace()
 	 * @see #getRelatingSpace()
 	 * @generated
 	 */
 	void setRelatingSpace(IfcSpace value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSpaceBoundary#getRelatingSpace <em>Relating Space</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingSpace()
+	 * @see #getRelatingSpace()
+	 * @see #setRelatingSpace(IfcSpace)
+	 * @generated
+	 */
+	void unsetRelatingSpace();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSpaceBoundary#getRelatingSpace <em>Relating Space</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Space</em>' reference is set.
+	 * @see #unsetRelatingSpace()
+	 * @see #getRelatingSpace()
+	 * @see #setRelatingSpace(IfcSpace)
+	 * @generated
+	 */
+	boolean isSetRelatingSpace();
 
 	/**
 	 * Returns the value of the '<em><b>Related Building Element</b></em>' reference.
@@ -184,9 +211,11 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Physical Or Virtual Boundary</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPhysicalOrVirtualEnum
+	 * @see #isSetPhysicalOrVirtualBoundary()
+	 * @see #unsetPhysicalOrVirtualBoundary()
 	 * @see #setPhysicalOrVirtualBoundary(IfcPhysicalOrVirtualEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSpaceBoundary_PhysicalOrVirtualBoundary()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcPhysicalOrVirtualEnum getPhysicalOrVirtualBoundary();
@@ -197,10 +226,35 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Physical Or Virtual Boundary</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPhysicalOrVirtualEnum
+	 * @see #isSetPhysicalOrVirtualBoundary()
+	 * @see #unsetPhysicalOrVirtualBoundary()
 	 * @see #getPhysicalOrVirtualBoundary()
 	 * @generated
 	 */
 	void setPhysicalOrVirtualBoundary(IfcPhysicalOrVirtualEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSpaceBoundary#getPhysicalOrVirtualBoundary <em>Physical Or Virtual Boundary</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPhysicalOrVirtualBoundary()
+	 * @see #getPhysicalOrVirtualBoundary()
+	 * @see #setPhysicalOrVirtualBoundary(IfcPhysicalOrVirtualEnum)
+	 * @generated
+	 */
+	void unsetPhysicalOrVirtualBoundary();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSpaceBoundary#getPhysicalOrVirtualBoundary <em>Physical Or Virtual Boundary</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Physical Or Virtual Boundary</em>' attribute is set.
+	 * @see #unsetPhysicalOrVirtualBoundary()
+	 * @see #getPhysicalOrVirtualBoundary()
+	 * @see #setPhysicalOrVirtualBoundary(IfcPhysicalOrVirtualEnum)
+	 * @generated
+	 */
+	boolean isSetPhysicalOrVirtualBoundary();
 
 	/**
 	 * Returns the value of the '<em><b>Internal Or External Boundary</b></em>' attribute.
@@ -213,9 +267,11 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Internal Or External Boundary</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum
+	 * @see #isSetInternalOrExternalBoundary()
+	 * @see #unsetInternalOrExternalBoundary()
 	 * @see #setInternalOrExternalBoundary(IfcInternalOrExternalEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSpaceBoundary_InternalOrExternalBoundary()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcInternalOrExternalEnum getInternalOrExternalBoundary();
@@ -226,9 +282,34 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Internal Or External Boundary</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum
+	 * @see #isSetInternalOrExternalBoundary()
+	 * @see #unsetInternalOrExternalBoundary()
 	 * @see #getInternalOrExternalBoundary()
 	 * @generated
 	 */
 	void setInternalOrExternalBoundary(IfcInternalOrExternalEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSpaceBoundary#getInternalOrExternalBoundary <em>Internal Or External Boundary</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInternalOrExternalBoundary()
+	 * @see #getInternalOrExternalBoundary()
+	 * @see #setInternalOrExternalBoundary(IfcInternalOrExternalEnum)
+	 * @generated
+	 */
+	void unsetInternalOrExternalBoundary();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSpaceBoundary#getInternalOrExternalBoundary <em>Internal Or External Boundary</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Internal Or External Boundary</em>' attribute is set.
+	 * @see #unsetInternalOrExternalBoundary()
+	 * @see #getInternalOrExternalBoundary()
+	 * @see #setInternalOrExternalBoundary(IfcInternalOrExternalEnum)
+	 * @generated
+	 */
+	boolean isSetInternalOrExternalBoundary();
 
 } // IfcRelSpaceBoundary

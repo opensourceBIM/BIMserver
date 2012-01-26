@@ -45,10 +45,33 @@ public interface IfcPropertyDefinition extends IfcRoot {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Associations</em>' reference list.
+	 * @see #isSetHasAssociations()
+	 * @see #unsetHasAssociations()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyDefinition_HasAssociations()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelAssociates> getHasAssociations();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyDefinition#getHasAssociations <em>Has Associations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasAssociations()
+	 * @see #getHasAssociations()
+	 * @generated
+	 */
+	void unsetHasAssociations();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyDefinition#getHasAssociations <em>Has Associations</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Associations</em>' reference list is set.
+	 * @see #unsetHasAssociations()
+	 * @see #getHasAssociations()
+	 * @generated
+	 */
+	boolean isSetHasAssociations();
 
 } // IfcPropertyDefinition

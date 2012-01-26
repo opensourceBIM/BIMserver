@@ -73,4 +73,22 @@ public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl implemen
 		eSet(Ifc2x3Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE, newCompositionType);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCompositionType() {
+		eUnset(Ifc2x3Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCompositionType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE);
+	}
+
 } //IfcBuildingElementProxyImpl

@@ -80,6 +80,24 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetAxis() {
+		eUnset(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__AXIS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAxis() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__AXIS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getAngle() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, true);
 	}
@@ -98,6 +116,24 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetAngle() {
+		eUnset(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAngle() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getAngleAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING, true);
 	}
@@ -109,6 +145,24 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public void setAngleAsString(String newAngleAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING, newAngleAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAngleAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAngleAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING);
 	}
 
 } //IfcRevolvedAreaSolidImpl

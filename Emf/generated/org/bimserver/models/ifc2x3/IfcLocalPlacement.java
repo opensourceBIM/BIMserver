@@ -98,9 +98,11 @@ public interface IfcLocalPlacement extends IfcObjectPlacement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relative Placement</em>' reference.
+	 * @see #isSetRelativePlacement()
+	 * @see #unsetRelativePlacement()
 	 * @see #setRelativePlacement(IfcAxis2Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLocalPlacement_RelativePlacement()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis2Placement getRelativePlacement();
@@ -110,9 +112,34 @@ public interface IfcLocalPlacement extends IfcObjectPlacement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relative Placement</em>' reference.
+	 * @see #isSetRelativePlacement()
+	 * @see #unsetRelativePlacement()
 	 * @see #getRelativePlacement()
 	 * @generated
 	 */
 	void setRelativePlacement(IfcAxis2Placement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLocalPlacement#getRelativePlacement <em>Relative Placement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelativePlacement()
+	 * @see #getRelativePlacement()
+	 * @see #setRelativePlacement(IfcAxis2Placement)
+	 * @generated
+	 */
+	void unsetRelativePlacement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLocalPlacement#getRelativePlacement <em>Relative Placement</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relative Placement</em>' reference is set.
+	 * @see #unsetRelativePlacement()
+	 * @see #getRelativePlacement()
+	 * @see #setRelativePlacement(IfcAxis2Placement)
+	 * @generated
+	 */
+	boolean isSetRelativePlacement();
 
 } // IfcLocalPlacement

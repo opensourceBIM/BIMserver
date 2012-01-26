@@ -45,9 +45,11 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XDim</em>' attribute.
+	 * @see #isSetXDim()
+	 * @see #unsetXDim()
 	 * @see #setXDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleProfileDef_XDim()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getXDim();
@@ -57,10 +59,35 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>XDim</em>' attribute.
+	 * @see #isSetXDim()
+	 * @see #unsetXDim()
 	 * @see #getXDim()
 	 * @generated
 	 */
 	void setXDim(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getXDim <em>XDim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetXDim()
+	 * @see #getXDim()
+	 * @see #setXDim(double)
+	 * @generated
+	 */
+	void unsetXDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getXDim <em>XDim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>XDim</em>' attribute is set.
+	 * @see #unsetXDim()
+	 * @see #getXDim()
+	 * @see #setXDim(double)
+	 * @generated
+	 */
+	boolean isSetXDim();
 
 	/**
 	 * Returns the value of the '<em><b>XDim As String</b></em>' attribute.
@@ -71,9 +98,11 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XDim As String</em>' attribute.
+	 * @see #isSetXDimAsString()
+	 * @see #unsetXDimAsString()
 	 * @see #setXDimAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleProfileDef_XDimAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getXDimAsString();
@@ -83,10 +112,35 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>XDim As String</em>' attribute.
+	 * @see #isSetXDimAsString()
+	 * @see #unsetXDimAsString()
 	 * @see #getXDimAsString()
 	 * @generated
 	 */
 	void setXDimAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getXDimAsString <em>XDim As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetXDimAsString()
+	 * @see #getXDimAsString()
+	 * @see #setXDimAsString(String)
+	 * @generated
+	 */
+	void unsetXDimAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getXDimAsString <em>XDim As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>XDim As String</em>' attribute is set.
+	 * @see #unsetXDimAsString()
+	 * @see #getXDimAsString()
+	 * @see #setXDimAsString(String)
+	 * @generated
+	 */
+	boolean isSetXDimAsString();
 
 	/**
 	 * Returns the value of the '<em><b>YDim</b></em>' attribute.
@@ -97,9 +151,11 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YDim</em>' attribute.
+	 * @see #isSetYDim()
+	 * @see #unsetYDim()
 	 * @see #setYDim(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleProfileDef_YDim()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getYDim();
@@ -109,10 +165,35 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>YDim</em>' attribute.
+	 * @see #isSetYDim()
+	 * @see #unsetYDim()
 	 * @see #getYDim()
 	 * @generated
 	 */
 	void setYDim(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getYDim <em>YDim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetYDim()
+	 * @see #getYDim()
+	 * @see #setYDim(double)
+	 * @generated
+	 */
+	void unsetYDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getYDim <em>YDim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>YDim</em>' attribute is set.
+	 * @see #unsetYDim()
+	 * @see #getYDim()
+	 * @see #setYDim(double)
+	 * @generated
+	 */
+	boolean isSetYDim();
 
 	/**
 	 * Returns the value of the '<em><b>YDim As String</b></em>' attribute.
@@ -123,9 +204,11 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YDim As String</em>' attribute.
+	 * @see #isSetYDimAsString()
+	 * @see #unsetYDimAsString()
 	 * @see #setYDimAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRectangleProfileDef_YDimAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getYDimAsString();
@@ -135,9 +218,34 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>YDim As String</em>' attribute.
+	 * @see #isSetYDimAsString()
+	 * @see #unsetYDimAsString()
 	 * @see #getYDimAsString()
 	 * @generated
 	 */
 	void setYDimAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getYDimAsString <em>YDim As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetYDimAsString()
+	 * @see #getYDimAsString()
+	 * @see #setYDimAsString(String)
+	 * @generated
+	 */
+	void unsetYDimAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRectangleProfileDef#getYDimAsString <em>YDim As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>YDim As String</em>' attribute is set.
+	 * @see #unsetYDimAsString()
+	 * @see #getYDimAsString()
+	 * @see #setYDimAsString(String)
+	 * @generated
+	 */
+	boolean isSetYDimAsString();
 
 } // IfcRectangleProfileDef

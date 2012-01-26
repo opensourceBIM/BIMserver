@@ -48,9 +48,11 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Basis Curve</em>' reference.
+	 * @see #isSetBasisCurve()
+	 * @see #unsetBasisCurve()
 	 * @see #setBasisCurve(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrimmedCurve_BasisCurve()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurve getBasisCurve();
@@ -60,10 +62,35 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Basis Curve</em>' reference.
+	 * @see #isSetBasisCurve()
+	 * @see #unsetBasisCurve()
 	 * @see #getBasisCurve()
 	 * @generated
 	 */
 	void setBasisCurve(IfcCurve value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getBasisCurve <em>Basis Curve</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBasisCurve()
+	 * @see #getBasisCurve()
+	 * @see #setBasisCurve(IfcCurve)
+	 * @generated
+	 */
+	void unsetBasisCurve();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getBasisCurve <em>Basis Curve</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Basis Curve</em>' reference is set.
+	 * @see #unsetBasisCurve()
+	 * @see #getBasisCurve()
+	 * @see #setBasisCurve(IfcCurve)
+	 * @generated
+	 */
+	boolean isSetBasisCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Trim1</b></em>' reference list.
@@ -75,11 +102,34 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Trim1</em>' reference list.
+	 * @see #isSetTrim1()
+	 * @see #unsetTrim1()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrimmedCurve_Trim1()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcTrimmingSelect> getTrim1();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getTrim1 <em>Trim1</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTrim1()
+	 * @see #getTrim1()
+	 * @generated
+	 */
+	void unsetTrim1();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getTrim1 <em>Trim1</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Trim1</em>' reference list is set.
+	 * @see #unsetTrim1()
+	 * @see #getTrim1()
+	 * @generated
+	 */
+	boolean isSetTrim1();
 
 	/**
 	 * Returns the value of the '<em><b>Trim2</b></em>' reference list.
@@ -91,11 +141,34 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Trim2</em>' reference list.
+	 * @see #isSetTrim2()
+	 * @see #unsetTrim2()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrimmedCurve_Trim2()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcTrimmingSelect> getTrim2();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getTrim2 <em>Trim2</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTrim2()
+	 * @see #getTrim2()
+	 * @generated
+	 */
+	void unsetTrim2();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getTrim2 <em>Trim2</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Trim2</em>' reference list is set.
+	 * @see #unsetTrim2()
+	 * @see #getTrim2()
+	 * @generated
+	 */
+	boolean isSetTrim2();
 
 	/**
 	 * Returns the value of the '<em><b>Sense Agreement</b></em>' attribute.
@@ -108,9 +181,11 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sense Agreement</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSenseAgreement()
+	 * @see #unsetSenseAgreement()
 	 * @see #setSenseAgreement(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrimmedCurve_SenseAgreement()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getSenseAgreement();
@@ -121,10 +196,35 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sense Agreement</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSenseAgreement()
+	 * @see #unsetSenseAgreement()
 	 * @see #getSenseAgreement()
 	 * @generated
 	 */
 	void setSenseAgreement(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getSenseAgreement <em>Sense Agreement</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSenseAgreement()
+	 * @see #getSenseAgreement()
+	 * @see #setSenseAgreement(Tristate)
+	 * @generated
+	 */
+	void unsetSenseAgreement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getSenseAgreement <em>Sense Agreement</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sense Agreement</em>' attribute is set.
+	 * @see #unsetSenseAgreement()
+	 * @see #getSenseAgreement()
+	 * @see #setSenseAgreement(Tristate)
+	 * @generated
+	 */
+	boolean isSetSenseAgreement();
 
 	/**
 	 * Returns the value of the '<em><b>Master Representation</b></em>' attribute.
@@ -137,9 +237,11 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Master Representation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTrimmingPreference
+	 * @see #isSetMasterRepresentation()
+	 * @see #unsetMasterRepresentation()
 	 * @see #setMasterRepresentation(IfcTrimmingPreference)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTrimmedCurve_MasterRepresentation()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcTrimmingPreference getMasterRepresentation();
@@ -150,9 +252,34 @@ public interface IfcTrimmedCurve extends IfcBoundedCurve {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Master Representation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTrimmingPreference
+	 * @see #isSetMasterRepresentation()
+	 * @see #unsetMasterRepresentation()
 	 * @see #getMasterRepresentation()
 	 * @generated
 	 */
 	void setMasterRepresentation(IfcTrimmingPreference value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getMasterRepresentation <em>Master Representation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMasterRepresentation()
+	 * @see #getMasterRepresentation()
+	 * @see #setMasterRepresentation(IfcTrimmingPreference)
+	 * @generated
+	 */
+	void unsetMasterRepresentation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTrimmedCurve#getMasterRepresentation <em>Master Representation</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Master Representation</em>' attribute is set.
+	 * @see #unsetMasterRepresentation()
+	 * @see #getMasterRepresentation()
+	 * @see #setMasterRepresentation(IfcTrimmingPreference)
+	 * @generated
+	 */
+	boolean isSetMasterRepresentation();
 
 } // IfcTrimmedCurve

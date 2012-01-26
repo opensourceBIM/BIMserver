@@ -91,6 +91,24 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDeriv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetUnit() {
+		eUnset(Ifc2x3Package.Literals.IFC_DERIVED_UNIT_ELEMENT__UNIT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetUnit() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DERIVED_UNIT_ELEMENT__UNIT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getExponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, true);
 	}
@@ -102,6 +120,24 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDeriv
 	 */
 	public void setExponent(int newExponent) {
 		eSet(Ifc2x3Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, newExponent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT);
 	}
 
 } //IfcDerivedUnitElementImpl

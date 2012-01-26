@@ -94,6 +94,24 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__DESCRIPTION, true);
 	}
@@ -133,6 +151,24 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalComplexQuantity> getPartOfComplex() {
 		return (EList<IfcPhysicalComplexQuantity>) eGet(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPartOfComplex() {
+		eUnset(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPartOfComplex() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX);
 	}
 
 } //IfcPhysicalQuantityImpl

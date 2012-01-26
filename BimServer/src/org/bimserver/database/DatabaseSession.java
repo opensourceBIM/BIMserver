@@ -40,6 +40,7 @@ import org.bimserver.emf.LazyLoader;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.IfcColourRgb;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
@@ -218,8 +219,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return database.convert(type, value);
 	}
 
-	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, boolean deep, ObjectIDM ObjectIDM)
-			throws BimDatabaseException, BimDeadlockException {
+	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, boolean deep,
+			ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
 		if (model.contains(oid)) {
 			return model.get(oid);
 		}
@@ -246,10 +247,18 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@SuppressWarnings("unchecked")
-	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid,
-			boolean deep, org.bimserver.plugins.objectidms.ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
+	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid,
+			int rid, boolean deep, org.bimserver.plugins.objectidms.ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
+
+		byte unsettedLength = buffer.get();
+		byte[] unsetted = new byte[unsettedLength];
+		buffer.get(unsetted);
+
+		int fieldCounter = 0;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			if (!feature.isTransient() && !feature.isVolatile()) {
+			if ((unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0) {
+				idEObject.eUnset(feature);
+			} else {
 				if (objectIDM != null && objectIDM.shouldIgnoreField(originalQueryClass, eClass, feature)) {
 					// we have to do some reading to maintain a correct index
 					database.fakeRead(buffer, feature);
@@ -264,9 +273,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 							} else {
 								/*
 								 * TODO There still is a problem with this, when
-								 * readReference (and all calls beyond that
-								 * call) alter (by opposites) this list, this
-								 * list can potentially grow too large
+								 * readReference (and all calls beyond that call)
+								 * alter (by opposites) this list, this list can
+								 * potentially grow too large
 								 * 
 								 * Only can happen with non-unique references
 								 */
@@ -354,8 +363,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					if (newValue != null) {
 						idEObject.eSet(feature, newValue);
 					}
-				}
+				}				
 			}
+			fieldCounter++;
 		}
 		idEObject.setLoaded();
 		return idEObject;
@@ -363,12 +373,32 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	public ByteBuffer convertObjectToByteArray(IdEObject object) throws BimDeadlockException, BimDatabaseException {
 		ByteBuffer buffer = ByteBuffer.allocate(getExactSize(object));
+
+		if (object instanceof IfcColourRgb) {
+			System.out.println();
+		}
+		
+		int bits = 0;
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
-			if (!feature.isTransient() && !feature.isVolatile()) {
+			bits++;
+		}
+		
+		byte[] unsetted = new byte[(int) Math.ceil(bits / 8.0)];
+		int fieldCounter = 0;
+		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
+			if (!object.eIsSet(feature)) {
+				unsetted[fieldCounter / 8] |= (1 << (fieldCounter % 8));
+			}
+			fieldCounter++;
+		}
+		buffer.put((byte) unsetted.length);
+		buffer.put(unsetted);
+
+		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
+			if (object.eIsSet(feature)) {
 				if (feature.isMany()) {
 					if (feature.getEType() instanceof EEnum) {
-						// Aggregate relations to enums never occur... at
-						// this
+						// Aggregate relations to enums never occur... at this
 						// moment
 					} else if (feature.getEType() instanceof EClass) {
 						EList<?> list = (EList<?>) object.eGet(feature);
@@ -424,7 +454,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					} else if (feature.getEType() instanceof EDataType) {
 						writePrimitiveValue(feature, value, buffer);
 					}
-				}
+				}				
 			}
 		}
 		return buffer;
@@ -542,7 +572,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		}
 		return null;
 	}
-	
+
 	public <T extends IdEObject> T get(short cid, long oid, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
 		return get(cid, oid, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, new IfcModel(), deep, ObjectIDM);
 	}
@@ -757,39 +787,49 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	private int getExactSize(IdEObject idEObject) {
 		int size = 0;
+
+		size += 1; // Length of unsetted bytes
+		int bits = 0;
+
 		for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {
-			Object val = idEObject.eGet(eStructuralFeature);
-			if (eStructuralFeature instanceof EAttribute) {
-				EAttribute eAttribute = (EAttribute) eStructuralFeature;
-				if (eAttribute.isMany()) {
-					size += 4;
-					for (Object v : ((List<?>) val)) {
-						size += getPrimitiveSize(eAttribute.getEAttributeType(), v);
-					}
-				} else {
-					size += getPrimitiveSize(eAttribute.getEAttributeType(), val);
-				}
-			} else if (eStructuralFeature instanceof EReference) {
-				EReference eReference = (EReference) eStructuralFeature;
-				if (val == null) {
-					size += 2;
-				} else {
-					if (eReference.isMany()) {
+			bits++;
+			if (idEObject.eIsSet(eStructuralFeature)) {
+				Object val = idEObject.eGet(eStructuralFeature);
+				if (eStructuralFeature instanceof EAttribute) {
+					EAttribute eAttribute = (EAttribute) eStructuralFeature;
+					if (eAttribute.isMany()) {
 						size += 4;
 						for (Object v : ((List<?>) val)) {
-							size += getWrappedValueSize(v);
+							size += getPrimitiveSize(eAttribute.getEAttributeType(), v);
 						}
 					} else {
-						size += getWrappedValueSize(val);
+						size += getPrimitiveSize(eAttribute.getEAttributeType(), val);
+					}
+				} else if (eStructuralFeature instanceof EReference) {
+					EReference eReference = (EReference) eStructuralFeature;
+					if (val == null) {
+						size += 2;
+					} else {
+						if (eReference.isMany()) {
+							size += 4;
+							for (Object v : ((List<?>) val)) {
+								size += getWrappedValueSize(v);
+							}
+						} else {
+							size += getWrappedValueSize(val);
+						}
 					}
 				}
 			}
 		}
+		
+		size += (int)Math.ceil(bits / 8.0);
+		
 		return size;
 	}
 
-	private int getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, int pid, int rid, boolean deep, ObjectIDM ObjectIDM)
-			throws BimDatabaseException, BimDeadlockException {
+	private int getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, int pid, int rid, boolean deep,
+			ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
 		if (keyPid == pid) {
 			if (keyRid <= rid) {
 				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, keyOid, keyRid);
@@ -1051,7 +1091,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return query(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz, deep, ObjectIDM);
 	}
 
-	public <T extends IdEObject> Map<Long, T> query(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
+	public <T extends IdEObject> Map<Long, T> query(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException,
+			BimDeadlockException {
 		Map<Long, T> map = new HashMap<Long, T>();
 		Set<EClass> eClasses = new HashSet<EClass>();
 		condition.getEClassRequirements(eClasses);
@@ -1074,7 +1115,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return querySingle(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz, deep, ObjectIDM);
 	}
 
-	public <T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
+	public <T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException,
+			BimDeadlockException {
 		Collection<T> values = query(pid, rid, condition, clazz, deep, ObjectIDM).values();
 		if (values.size() == 0) {
 			return null;
@@ -1119,8 +1161,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		}
 	}
 
-	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, IdEObject object, EStructuralFeature feature, EClass eClass,
-			boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
+	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, IdEObject object, EStructuralFeature feature,
+			EClass eClass, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return null;

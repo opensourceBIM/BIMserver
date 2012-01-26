@@ -67,4 +67,22 @@ public class IfcSystemImpl extends IfcGroupImpl implements IfcSystem {
 		return (EList<IfcRelServicesBuildings>) eGet(Ifc2x3Package.Literals.IFC_SYSTEM__SERVICES_BUILDINGS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetServicesBuildings() {
+		eUnset(Ifc2x3Package.Literals.IFC_SYSTEM__SERVICES_BUILDINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetServicesBuildings() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SYSTEM__SERVICES_BUILDINGS);
+	}
+
 } //IfcSystemImpl

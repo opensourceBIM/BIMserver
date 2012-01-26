@@ -43,10 +43,12 @@ public interface IfcRelDefinesByType extends IfcRelDefines {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Type</em>' reference.
+	 * @see #isSetRelatingType()
+	 * @see #unsetRelatingType()
 	 * @see #setRelatingType(IfcTypeObject)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelDefinesByType_RelatingType()
 	 * @see org.bimserver.models.ifc2x3.IfcTypeObject#getObjectTypeOf
-	 * @model opposite="ObjectTypeOf"
+	 * @model opposite="ObjectTypeOf" unsettable="true"
 	 * @generated
 	 */
 	IfcTypeObject getRelatingType();
@@ -56,9 +58,34 @@ public interface IfcRelDefinesByType extends IfcRelDefines {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Type</em>' reference.
+	 * @see #isSetRelatingType()
+	 * @see #unsetRelatingType()
 	 * @see #getRelatingType()
 	 * @generated
 	 */
 	void setRelatingType(IfcTypeObject value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDefinesByType#getRelatingType <em>Relating Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingType()
+	 * @see #getRelatingType()
+	 * @see #setRelatingType(IfcTypeObject)
+	 * @generated
+	 */
+	void unsetRelatingType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDefinesByType#getRelatingType <em>Relating Type</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Type</em>' reference is set.
+	 * @see #unsetRelatingType()
+	 * @see #getRelatingType()
+	 * @see #setRelatingType(IfcTypeObject)
+	 * @generated
+	 */
+	boolean isSetRelatingType();
 
 } // IfcRelDefinesByType

@@ -96,6 +96,24 @@ public class IfcRepresentationMapImpl extends IdEObjectImpl implements IfcRepres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMappingOrigin() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAPPING_ORIGIN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMappingOrigin() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAPPING_ORIGIN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcRepresentation getMappedRepresentation() {
 		return (IfcRepresentation) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAPPED_REPRESENTATION, true);
 	}
@@ -114,9 +132,45 @@ public class IfcRepresentationMapImpl extends IdEObjectImpl implements IfcRepres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMappedRepresentation() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAPPED_REPRESENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMappedRepresentation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAPPED_REPRESENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMappedItem> getMapUsage() {
 		return (EList<IfcMappedItem>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAP_USAGE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetMapUsage() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAP_USAGE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMapUsage() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION_MAP__MAP_USAGE);
 	}
 
 } //IfcRepresentationMapImpl

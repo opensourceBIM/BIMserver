@@ -73,4 +73,22 @@ public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresent
 		eSet(Ifc2x3Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL, newRepresentedMaterial);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRepresentedMaterial() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRepresentedMaterial() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL);
+	}
+
 } //IfcMaterialDefinitionRepresentationImpl

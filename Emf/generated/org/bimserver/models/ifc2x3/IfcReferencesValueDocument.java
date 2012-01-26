@@ -50,9 +50,11 @@ public interface IfcReferencesValueDocument extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced Document</em>' reference.
+	 * @see #isSetReferencedDocument()
+	 * @see #unsetReferencedDocument()
 	 * @see #setReferencedDocument(IfcDocumentSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReferencesValueDocument_ReferencedDocument()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDocumentSelect getReferencedDocument();
@@ -62,10 +64,35 @@ public interface IfcReferencesValueDocument extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referenced Document</em>' reference.
+	 * @see #isSetReferencedDocument()
+	 * @see #unsetReferencedDocument()
 	 * @see #getReferencedDocument()
 	 * @generated
 	 */
 	void setReferencedDocument(IfcDocumentSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReferencesValueDocument#getReferencedDocument <em>Referenced Document</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReferencedDocument()
+	 * @see #getReferencedDocument()
+	 * @see #setReferencedDocument(IfcDocumentSelect)
+	 * @generated
+	 */
+	void unsetReferencedDocument();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReferencesValueDocument#getReferencedDocument <em>Referenced Document</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Referenced Document</em>' reference is set.
+	 * @see #unsetReferencedDocument()
+	 * @see #getReferencedDocument()
+	 * @see #setReferencedDocument(IfcDocumentSelect)
+	 * @generated
+	 */
+	boolean isSetReferencedDocument();
 
 	/**
 	 * Returns the value of the '<em><b>Referencing Values</b></em>' reference list.
@@ -78,12 +105,35 @@ public interface IfcReferencesValueDocument extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referencing Values</em>' reference list.
+	 * @see #isSetReferencingValues()
+	 * @see #unsetReferencingValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReferencesValueDocument_ReferencingValues()
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValue#getValuesReferenced
-	 * @model opposite="ValuesReferenced"
+	 * @model opposite="ValuesReferenced" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcAppliedValue> getReferencingValues();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReferencesValueDocument#getReferencingValues <em>Referencing Values</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReferencingValues()
+	 * @see #getReferencingValues()
+	 * @generated
+	 */
+	void unsetReferencingValues();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReferencesValueDocument#getReferencingValues <em>Referencing Values</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Referencing Values</em>' reference list is set.
+	 * @see #unsetReferencingValues()
+	 * @see #getReferencingValues()
+	 * @generated
+	 */
+	boolean isSetReferencingValues();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

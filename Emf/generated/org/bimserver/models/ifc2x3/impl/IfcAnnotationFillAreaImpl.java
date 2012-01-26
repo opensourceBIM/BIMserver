@@ -81,6 +81,24 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetOuterBoundary() {
+		eUnset(Ifc2x3Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOuterBoundary() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurve> getInnerBoundaries() {
 		return (EList<IfcCurve>) eGet(Ifc2x3Package.Literals.IFC_ANNOTATION_FILL_AREA__INNER_BOUNDARIES, true);

@@ -47,12 +47,35 @@ public interface IfcRelConnectsWithRealizingElements extends IfcRelConnectsEleme
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Realizing Elements</em>' reference list.
+	 * @see #isSetRealizingElements()
+	 * @see #unsetRealizingElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsWithRealizingElements_RealizingElements()
 	 * @see org.bimserver.models.ifc2x3.IfcElement#getIsConnectionRealization
-	 * @model opposite="IsConnectionRealization"
+	 * @model opposite="IsConnectionRealization" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcElement> getRealizingElements();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsWithRealizingElements#getRealizingElements <em>Realizing Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRealizingElements()
+	 * @see #getRealizingElements()
+	 * @generated
+	 */
+	void unsetRealizingElements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsWithRealizingElements#getRealizingElements <em>Realizing Elements</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Realizing Elements</em>' reference list is set.
+	 * @see #unsetRealizingElements()
+	 * @see #getRealizingElements()
+	 * @generated
+	 */
+	boolean isSetRealizingElements();
 
 	/**
 	 * Returns the value of the '<em><b>Connection Type</b></em>' attribute.

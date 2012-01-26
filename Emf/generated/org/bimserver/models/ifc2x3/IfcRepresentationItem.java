@@ -46,11 +46,34 @@ public interface IfcRepresentationItem extends IfcLayeredItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Assignments</em>' reference list.
+	 * @see #isSetLayerAssignments()
+	 * @see #unsetLayerAssignments()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentationItem_LayerAssignments()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPresentationLayerAssignment> getLayerAssignments();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationItem#getLayerAssignments <em>Layer Assignments</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLayerAssignments()
+	 * @see #getLayerAssignments()
+	 * @generated
+	 */
+	void unsetLayerAssignments();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationItem#getLayerAssignments <em>Layer Assignments</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Layer Assignments</em>' reference list is set.
+	 * @see #unsetLayerAssignments()
+	 * @see #getLayerAssignments()
+	 * @generated
+	 */
+	boolean isSetLayerAssignments();
 
 	/**
 	 * Returns the value of the '<em><b>Styled By Item</b></em>' reference list.
@@ -63,11 +86,34 @@ public interface IfcRepresentationItem extends IfcLayeredItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Styled By Item</em>' reference list.
+	 * @see #isSetStyledByItem()
+	 * @see #unsetStyledByItem()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentationItem_StyledByItem()
 	 * @see org.bimserver.models.ifc2x3.IfcStyledItem#getItem
-	 * @model opposite="Item" upper="2"
+	 * @model opposite="Item" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcStyledItem> getStyledByItem();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationItem#getStyledByItem <em>Styled By Item</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStyledByItem()
+	 * @see #getStyledByItem()
+	 * @generated
+	 */
+	void unsetStyledByItem();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationItem#getStyledByItem <em>Styled By Item</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Styled By Item</em>' reference list is set.
+	 * @see #unsetStyledByItem()
+	 * @see #getStyledByItem()
+	 * @generated
+	 */
+	boolean isSetStyledByItem();
 
 } // IfcRepresentationItem

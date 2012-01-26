@@ -95,6 +95,24 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLengthExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LENGTH_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLengthExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LENGTH_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getMassExponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__MASS_EXPONENT, true);
 	}
@@ -106,6 +124,24 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 */
 	public void setMassExponent(int newMassExponent) {
 		eSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__MASS_EXPONENT, newMassExponent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetMassExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__MASS_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMassExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__MASS_EXPONENT);
 	}
 
 	/**
@@ -131,6 +167,24 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTimeExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__TIME_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__TIME_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getElectricCurrentExponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT, true);
 	}
@@ -142,6 +196,24 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 */
 	public void setElectricCurrentExponent(int newElectricCurrentExponent) {
 		eSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT, newElectricCurrentExponent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetElectricCurrentExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetElectricCurrentExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT);
 	}
 
 	/**
@@ -167,6 +239,24 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetThermodynamicTemperatureExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetThermodynamicTemperatureExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getAmountOfSubstanceExponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, true);
 	}
@@ -185,6 +275,24 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetAmountOfSubstanceExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAmountOfSubstanceExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getLuminousIntensityExponent() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT, true);
 	}
@@ -196,6 +304,24 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 */
 	public void setLuminousIntensityExponent(int newLuminousIntensityExponent) {
 		eSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT, newLuminousIntensityExponent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLuminousIntensityExponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLuminousIntensityExponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT);
 	}
 
 } //IfcDimensionalExponentsImpl

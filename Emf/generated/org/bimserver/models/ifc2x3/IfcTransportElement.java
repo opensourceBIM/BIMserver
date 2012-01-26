@@ -48,9 +48,11 @@ public interface IfcTransportElement extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operation Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTransportElementTypeEnum
+	 * @see #isSetOperationType()
+	 * @see #unsetOperationType()
 	 * @see #setOperationType(IfcTransportElementTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTransportElement_OperationType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcTransportElementTypeEnum getOperationType();
@@ -61,10 +63,35 @@ public interface IfcTransportElement extends IfcElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operation Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTransportElementTypeEnum
+	 * @see #isSetOperationType()
+	 * @see #unsetOperationType()
 	 * @see #getOperationType()
 	 * @generated
 	 */
 	void setOperationType(IfcTransportElementTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTransportElement#getOperationType <em>Operation Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOperationType()
+	 * @see #getOperationType()
+	 * @see #setOperationType(IfcTransportElementTypeEnum)
+	 * @generated
+	 */
+	void unsetOperationType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTransportElement#getOperationType <em>Operation Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Operation Type</em>' attribute is set.
+	 * @see #unsetOperationType()
+	 * @see #getOperationType()
+	 * @see #setOperationType(IfcTransportElementTypeEnum)
+	 * @generated
+	 */
+	boolean isSetOperationType();
 
 	/**
 	 * Returns the value of the '<em><b>Capacity By Weight</b></em>' attribute.

@@ -43,9 +43,11 @@ public interface IfcTextLiteralWithExtent extends IfcTextLiteral {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extent</em>' reference.
+	 * @see #isSetExtent()
+	 * @see #unsetExtent()
 	 * @see #setExtent(IfcPlanarExtent)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextLiteralWithExtent_Extent()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcPlanarExtent getExtent();
@@ -55,10 +57,35 @@ public interface IfcTextLiteralWithExtent extends IfcTextLiteral {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Extent</em>' reference.
+	 * @see #isSetExtent()
+	 * @see #unsetExtent()
 	 * @see #getExtent()
 	 * @generated
 	 */
 	void setExtent(IfcPlanarExtent value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextLiteralWithExtent#getExtent <em>Extent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetExtent()
+	 * @see #getExtent()
+	 * @see #setExtent(IfcPlanarExtent)
+	 * @generated
+	 */
+	void unsetExtent();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextLiteralWithExtent#getExtent <em>Extent</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Extent</em>' reference is set.
+	 * @see #unsetExtent()
+	 * @see #getExtent()
+	 * @see #setExtent(IfcPlanarExtent)
+	 * @generated
+	 */
+	boolean isSetExtent();
 
 	/**
 	 * Returns the value of the '<em><b>Box Alignment</b></em>' attribute.
@@ -69,9 +96,11 @@ public interface IfcTextLiteralWithExtent extends IfcTextLiteral {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Box Alignment</em>' attribute.
+	 * @see #isSetBoxAlignment()
+	 * @see #unsetBoxAlignment()
 	 * @see #setBoxAlignment(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextLiteralWithExtent_BoxAlignment()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getBoxAlignment();
@@ -81,9 +110,34 @@ public interface IfcTextLiteralWithExtent extends IfcTextLiteral {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Box Alignment</em>' attribute.
+	 * @see #isSetBoxAlignment()
+	 * @see #unsetBoxAlignment()
 	 * @see #getBoxAlignment()
 	 * @generated
 	 */
 	void setBoxAlignment(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextLiteralWithExtent#getBoxAlignment <em>Box Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBoxAlignment()
+	 * @see #getBoxAlignment()
+	 * @see #setBoxAlignment(String)
+	 * @generated
+	 */
+	void unsetBoxAlignment();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextLiteralWithExtent#getBoxAlignment <em>Box Alignment</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Box Alignment</em>' attribute is set.
+	 * @see #unsetBoxAlignment()
+	 * @see #getBoxAlignment()
+	 * @see #setBoxAlignment(String)
+	 * @generated
+	 */
+	boolean isSetBoxAlignment();
 
 } // IfcTextLiteralWithExtent

@@ -73,4 +73,22 @@ public class IfcRelAssociatesDocumentImpl extends IfcRelAssociatesImpl implement
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT, newRelatingDocument);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingDocument() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingDocument() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT);
+	}
+
 } //IfcRelAssociatesDocumentImpl

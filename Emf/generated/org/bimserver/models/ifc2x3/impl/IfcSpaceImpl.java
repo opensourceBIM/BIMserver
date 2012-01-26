@@ -86,6 +86,24 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetInteriorOrExteriorSpace() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInteriorOrExteriorSpace() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getElevationWithFlooring() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, true);
 	}
@@ -168,9 +186,45 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHasCoverings() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE__HAS_COVERINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasCoverings() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE__HAS_COVERINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary> getBoundedBy() {
 		return (EList<IfcRelSpaceBoundary>) eGet(Ifc2x3Package.Literals.IFC_SPACE__BOUNDED_BY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetBoundedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE__BOUNDED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBoundedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE__BOUNDED_BY);
 	}
 
 } //IfcSpaceImpl

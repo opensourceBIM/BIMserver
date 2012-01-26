@@ -265,6 +265,24 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatedSpaceProgram() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedSpaceProgram() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSpaceProgram getRelatingSpaceProgram() {
 		return (IfcSpaceProgram) eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, true);
 	}
@@ -276,6 +294,24 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setRelatingSpaceProgram(IfcSpaceProgram newRelatingSpaceProgram) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, newRelatingSpaceProgram);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingSpaceProgram() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingSpaceProgram() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM);
 	}
 
 } //IfcRelInteractionRequirementsImpl

@@ -44,10 +44,12 @@ public interface IfcRelFillsElement extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Opening Element</em>' reference.
+	 * @see #isSetRelatingOpeningElement()
+	 * @see #unsetRelatingOpeningElement()
 	 * @see #setRelatingOpeningElement(IfcOpeningElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelFillsElement_RelatingOpeningElement()
 	 * @see org.bimserver.models.ifc2x3.IfcOpeningElement#getHasFillings
-	 * @model opposite="HasFillings"
+	 * @model opposite="HasFillings" unsettable="true"
 	 * @generated
 	 */
 	IfcOpeningElement getRelatingOpeningElement();
@@ -57,10 +59,35 @@ public interface IfcRelFillsElement extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Opening Element</em>' reference.
+	 * @see #isSetRelatingOpeningElement()
+	 * @see #unsetRelatingOpeningElement()
 	 * @see #getRelatingOpeningElement()
 	 * @generated
 	 */
 	void setRelatingOpeningElement(IfcOpeningElement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFillsElement#getRelatingOpeningElement <em>Relating Opening Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingOpeningElement()
+	 * @see #getRelatingOpeningElement()
+	 * @see #setRelatingOpeningElement(IfcOpeningElement)
+	 * @generated
+	 */
+	void unsetRelatingOpeningElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFillsElement#getRelatingOpeningElement <em>Relating Opening Element</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Opening Element</em>' reference is set.
+	 * @see #unsetRelatingOpeningElement()
+	 * @see #getRelatingOpeningElement()
+	 * @see #setRelatingOpeningElement(IfcOpeningElement)
+	 * @generated
+	 */
+	boolean isSetRelatingOpeningElement();
 
 	/**
 	 * Returns the value of the '<em><b>Related Building Element</b></em>' reference.
@@ -72,10 +99,12 @@ public interface IfcRelFillsElement extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Building Element</em>' reference.
+	 * @see #isSetRelatedBuildingElement()
+	 * @see #unsetRelatedBuildingElement()
 	 * @see #setRelatedBuildingElement(IfcElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelFillsElement_RelatedBuildingElement()
 	 * @see org.bimserver.models.ifc2x3.IfcElement#getFillsVoids
-	 * @model opposite="FillsVoids"
+	 * @model opposite="FillsVoids" unsettable="true"
 	 * @generated
 	 */
 	IfcElement getRelatedBuildingElement();
@@ -85,9 +114,34 @@ public interface IfcRelFillsElement extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Building Element</em>' reference.
+	 * @see #isSetRelatedBuildingElement()
+	 * @see #unsetRelatedBuildingElement()
 	 * @see #getRelatedBuildingElement()
 	 * @generated
 	 */
 	void setRelatedBuildingElement(IfcElement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFillsElement#getRelatedBuildingElement <em>Related Building Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedBuildingElement()
+	 * @see #getRelatedBuildingElement()
+	 * @see #setRelatedBuildingElement(IfcElement)
+	 * @generated
+	 */
+	void unsetRelatedBuildingElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelFillsElement#getRelatedBuildingElement <em>Related Building Element</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Building Element</em>' reference is set.
+	 * @see #unsetRelatedBuildingElement()
+	 * @see #getRelatedBuildingElement()
+	 * @see #setRelatedBuildingElement(IfcElement)
+	 * @generated
+	 */
+	boolean isSetRelatedBuildingElement();
 
 } // IfcRelFillsElement

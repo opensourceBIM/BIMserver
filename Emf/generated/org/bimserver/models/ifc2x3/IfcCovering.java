@@ -48,9 +48,11 @@ public interface IfcCovering extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcCoveringTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcCoveringTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCovering_PredefinedType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCoveringTypeEnum getPredefinedType();
@@ -61,10 +63,35 @@ public interface IfcCovering extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcCoveringTypeEnum
+	 * @see #isSetPredefinedType()
+	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcCoveringTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCovering#getPredefinedType <em>Predefined Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcCoveringTypeEnum)
+	 * @generated
+	 */
+	void unsetPredefinedType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCovering#getPredefinedType <em>Predefined Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
+	 * @see #unsetPredefinedType()
+	 * @see #getPredefinedType()
+	 * @see #setPredefinedType(IfcCoveringTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPredefinedType();
 
 	/**
 	 * Returns the value of the '<em><b>Covers Spaces</b></em>' reference list.
@@ -77,12 +104,35 @@ public interface IfcCovering extends IfcBuildingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Covers Spaces</em>' reference list.
+	 * @see #isSetCoversSpaces()
+	 * @see #unsetCoversSpaces()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCovering_CoversSpaces()
 	 * @see org.bimserver.models.ifc2x3.IfcRelCoversSpaces#getRelatedCoverings
-	 * @model opposite="RelatedCoverings" upper="2"
+	 * @model opposite="RelatedCoverings" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelCoversSpaces> getCoversSpaces();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCovering#getCoversSpaces <em>Covers Spaces</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCoversSpaces()
+	 * @see #getCoversSpaces()
+	 * @generated
+	 */
+	void unsetCoversSpaces();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCovering#getCoversSpaces <em>Covers Spaces</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Covers Spaces</em>' reference list is set.
+	 * @see #unsetCoversSpaces()
+	 * @see #getCoversSpaces()
+	 * @generated
+	 */
+	boolean isSetCoversSpaces();
 
 	/**
 	 * Returns the value of the '<em><b>Covers</b></em>' reference list.
@@ -95,11 +145,34 @@ public interface IfcCovering extends IfcBuildingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Covers</em>' reference list.
+	 * @see #isSetCovers()
+	 * @see #unsetCovers()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCovering_Covers()
 	 * @see org.bimserver.models.ifc2x3.IfcRelCoversBldgElements#getRelatedCoverings
-	 * @model opposite="RelatedCoverings" upper="2"
+	 * @model opposite="RelatedCoverings" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelCoversBldgElements> getCovers();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCovering#getCovers <em>Covers</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCovers()
+	 * @see #getCovers()
+	 * @generated
+	 */
+	void unsetCovers();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCovering#getCovers <em>Covers</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Covers</em>' reference list is set.
+	 * @see #unsetCovers()
+	 * @see #getCovers()
+	 * @generated
+	 */
+	boolean isSetCovers();
 
 } // IfcCovering

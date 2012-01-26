@@ -50,9 +50,11 @@ public interface IfcOrganizationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOrganizationRelationship_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -62,10 +64,35 @@ public interface IfcOrganizationRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOrganizationRelationship#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOrganizationRelationship#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -130,10 +157,12 @@ public interface IfcOrganizationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Organization</em>' reference.
+	 * @see #isSetRelatingOrganization()
+	 * @see #unsetRelatingOrganization()
 	 * @see #setRelatingOrganization(IfcOrganization)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOrganizationRelationship_RelatingOrganization()
 	 * @see org.bimserver.models.ifc2x3.IfcOrganization#getRelates
-	 * @model opposite="Relates"
+	 * @model opposite="Relates" unsettable="true"
 	 * @generated
 	 */
 	IfcOrganization getRelatingOrganization();
@@ -143,10 +172,35 @@ public interface IfcOrganizationRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Organization</em>' reference.
+	 * @see #isSetRelatingOrganization()
+	 * @see #unsetRelatingOrganization()
 	 * @see #getRelatingOrganization()
 	 * @generated
 	 */
 	void setRelatingOrganization(IfcOrganization value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOrganizationRelationship#getRelatingOrganization <em>Relating Organization</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingOrganization()
+	 * @see #getRelatingOrganization()
+	 * @see #setRelatingOrganization(IfcOrganization)
+	 * @generated
+	 */
+	void unsetRelatingOrganization();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOrganizationRelationship#getRelatingOrganization <em>Relating Organization</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Organization</em>' reference is set.
+	 * @see #unsetRelatingOrganization()
+	 * @see #getRelatingOrganization()
+	 * @see #setRelatingOrganization(IfcOrganization)
+	 * @generated
+	 */
+	boolean isSetRelatingOrganization();
 
 	/**
 	 * Returns the value of the '<em><b>Related Organizations</b></em>' reference list.
@@ -159,11 +213,34 @@ public interface IfcOrganizationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Organizations</em>' reference list.
+	 * @see #isSetRelatedOrganizations()
+	 * @see #unsetRelatedOrganizations()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOrganizationRelationship_RelatedOrganizations()
 	 * @see org.bimserver.models.ifc2x3.IfcOrganization#getIsRelatedBy
-	 * @model opposite="IsRelatedBy"
+	 * @model opposite="IsRelatedBy" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcOrganization> getRelatedOrganizations();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOrganizationRelationship#getRelatedOrganizations <em>Related Organizations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedOrganizations()
+	 * @see #getRelatedOrganizations()
+	 * @generated
+	 */
+	void unsetRelatedOrganizations();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOrganizationRelationship#getRelatedOrganizations <em>Related Organizations</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Organizations</em>' reference list is set.
+	 * @see #unsetRelatedOrganizations()
+	 * @see #getRelatedOrganizations()
+	 * @generated
+	 */
+	boolean isSetRelatedOrganizations();
 
 } // IfcOrganizationRelationship

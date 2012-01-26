@@ -67,4 +67,22 @@ public class IfcIrregularTimeSeriesImpl extends IfcTimeSeriesImpl implements Ifc
 		return (EList<IfcIrregularTimeSeriesValue>) eGet(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetValues() {
+		eUnset(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetValues() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES);
+	}
+
 } //IfcIrregularTimeSeriesImpl

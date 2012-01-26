@@ -73,4 +73,22 @@ public class IfcArbitraryOpenProfileDefImpl extends IfcProfileDefImpl implements
 		eSet(Ifc2x3Package.Literals.IFC_ARBITRARY_OPEN_PROFILE_DEF__CURVE, newCurve);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCurve() {
+		eUnset(Ifc2x3Package.Literals.IFC_ARBITRARY_OPEN_PROFILE_DEF__CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCurve() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ARBITRARY_OPEN_PROFILE_DEF__CURVE);
+	}
+
 } //IfcArbitraryOpenProfileDefImpl

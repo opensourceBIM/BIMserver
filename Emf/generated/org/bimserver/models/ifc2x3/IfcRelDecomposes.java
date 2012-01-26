@@ -46,10 +46,12 @@ public interface IfcRelDecomposes extends IfcRelationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Object</em>' reference.
+	 * @see #isSetRelatingObject()
+	 * @see #unsetRelatingObject()
 	 * @see #setRelatingObject(IfcObjectDefinition)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelDecomposes_RelatingObject()
 	 * @see org.bimserver.models.ifc2x3.IfcObjectDefinition#getIsDecomposedBy
-	 * @model opposite="IsDecomposedBy"
+	 * @model opposite="IsDecomposedBy" unsettable="true"
 	 * @generated
 	 */
 	IfcObjectDefinition getRelatingObject();
@@ -59,10 +61,35 @@ public interface IfcRelDecomposes extends IfcRelationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Object</em>' reference.
+	 * @see #isSetRelatingObject()
+	 * @see #unsetRelatingObject()
 	 * @see #getRelatingObject()
 	 * @generated
 	 */
 	void setRelatingObject(IfcObjectDefinition value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDecomposes#getRelatingObject <em>Relating Object</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingObject()
+	 * @see #getRelatingObject()
+	 * @see #setRelatingObject(IfcObjectDefinition)
+	 * @generated
+	 */
+	void unsetRelatingObject();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDecomposes#getRelatingObject <em>Relating Object</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Object</em>' reference is set.
+	 * @see #unsetRelatingObject()
+	 * @see #getRelatingObject()
+	 * @see #setRelatingObject(IfcObjectDefinition)
+	 * @generated
+	 */
+	boolean isSetRelatingObject();
 
 	/**
 	 * Returns the value of the '<em><b>Related Objects</b></em>' reference list.
@@ -75,11 +102,34 @@ public interface IfcRelDecomposes extends IfcRelationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Objects</em>' reference list.
+	 * @see #isSetRelatedObjects()
+	 * @see #unsetRelatedObjects()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelDecomposes_RelatedObjects()
 	 * @see org.bimserver.models.ifc2x3.IfcObjectDefinition#getDecomposes
-	 * @model opposite="Decomposes"
+	 * @model opposite="Decomposes" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcObjectDefinition> getRelatedObjects();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDecomposes#getRelatedObjects <em>Related Objects</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedObjects()
+	 * @see #getRelatedObjects()
+	 * @generated
+	 */
+	void unsetRelatedObjects();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDecomposes#getRelatedObjects <em>Related Objects</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Objects</em>' reference list is set.
+	 * @see #unsetRelatedObjects()
+	 * @see #getRelatedObjects()
+	 * @generated
+	 */
+	boolean isSetRelatedObjects();
 
 } // IfcRelDecomposes

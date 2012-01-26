@@ -43,9 +43,11 @@ public interface IfcQuantityLength extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Length Value</em>' attribute.
+	 * @see #isSetLengthValue()
+	 * @see #unsetLengthValue()
 	 * @see #setLengthValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityLength_LengthValue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getLengthValue();
@@ -55,10 +57,35 @@ public interface IfcQuantityLength extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Length Value</em>' attribute.
+	 * @see #isSetLengthValue()
+	 * @see #unsetLengthValue()
 	 * @see #getLengthValue()
 	 * @generated
 	 */
 	void setLengthValue(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityLength#getLengthValue <em>Length Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLengthValue()
+	 * @see #getLengthValue()
+	 * @see #setLengthValue(double)
+	 * @generated
+	 */
+	void unsetLengthValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityLength#getLengthValue <em>Length Value</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Length Value</em>' attribute is set.
+	 * @see #unsetLengthValue()
+	 * @see #getLengthValue()
+	 * @see #setLengthValue(double)
+	 * @generated
+	 */
+	boolean isSetLengthValue();
 
 	/**
 	 * Returns the value of the '<em><b>Length Value As String</b></em>' attribute.
@@ -69,9 +96,11 @@ public interface IfcQuantityLength extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Length Value As String</em>' attribute.
+	 * @see #isSetLengthValueAsString()
+	 * @see #unsetLengthValueAsString()
 	 * @see #setLengthValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityLength_LengthValueAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getLengthValueAsString();
@@ -81,9 +110,34 @@ public interface IfcQuantityLength extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Length Value As String</em>' attribute.
+	 * @see #isSetLengthValueAsString()
+	 * @see #unsetLengthValueAsString()
 	 * @see #getLengthValueAsString()
 	 * @generated
 	 */
 	void setLengthValueAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityLength#getLengthValueAsString <em>Length Value As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLengthValueAsString()
+	 * @see #getLengthValueAsString()
+	 * @see #setLengthValueAsString(String)
+	 * @generated
+	 */
+	void unsetLengthValueAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityLength#getLengthValueAsString <em>Length Value As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Length Value As String</em>' attribute is set.
+	 * @see #unsetLengthValueAsString()
+	 * @see #getLengthValueAsString()
+	 * @see #setLengthValueAsString(String)
+	 * @generated
+	 */
+	boolean isSetLengthValueAsString();
 
 } // IfcQuantityLength

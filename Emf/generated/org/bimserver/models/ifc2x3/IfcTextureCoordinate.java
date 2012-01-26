@@ -49,11 +49,34 @@ public interface IfcTextureCoordinate extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Annotated Surface</em>' reference list.
+	 * @see #isSetAnnotatedSurface()
+	 * @see #unsetAnnotatedSurface()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextureCoordinate_AnnotatedSurface()
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationSurface#getTextureCoordinates
-	 * @model opposite="TextureCoordinates" upper="2"
+	 * @model opposite="TextureCoordinates" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcAnnotationSurface> getAnnotatedSurface();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureCoordinate#getAnnotatedSurface <em>Annotated Surface</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAnnotatedSurface()
+	 * @see #getAnnotatedSurface()
+	 * @generated
+	 */
+	void unsetAnnotatedSurface();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureCoordinate#getAnnotatedSurface <em>Annotated Surface</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Annotated Surface</em>' reference list is set.
+	 * @see #unsetAnnotatedSurface()
+	 * @see #getAnnotatedSurface()
+	 * @generated
+	 */
+	boolean isSetAnnotatedSurface();
 
 } // IfcTextureCoordinate

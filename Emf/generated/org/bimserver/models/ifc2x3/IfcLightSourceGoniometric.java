@@ -49,9 +49,11 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #setPosition(IfcAxis2Placement3D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_Position()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis2Placement3D getPosition();
@@ -61,10 +63,35 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #getPosition()
 	 * @generated
 	 */
 	void setPosition(IfcAxis2Placement3D value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getPosition <em>Position</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement3D)
+	 * @generated
+	 */
+	void unsetPosition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getPosition <em>Position</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Position</em>' reference is set.
+	 * @see #unsetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement3D)
+	 * @generated
+	 */
+	boolean isSetPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Colour Appearance</b></em>' reference.
@@ -128,9 +155,11 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Colour Temperature</em>' attribute.
+	 * @see #isSetColourTemperature()
+	 * @see #unsetColourTemperature()
 	 * @see #setColourTemperature(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_ColourTemperature()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getColourTemperature();
@@ -140,10 +169,35 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Colour Temperature</em>' attribute.
+	 * @see #isSetColourTemperature()
+	 * @see #unsetColourTemperature()
 	 * @see #getColourTemperature()
 	 * @generated
 	 */
 	void setColourTemperature(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getColourTemperature <em>Colour Temperature</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetColourTemperature()
+	 * @see #getColourTemperature()
+	 * @see #setColourTemperature(double)
+	 * @generated
+	 */
+	void unsetColourTemperature();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getColourTemperature <em>Colour Temperature</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Colour Temperature</em>' attribute is set.
+	 * @see #unsetColourTemperature()
+	 * @see #getColourTemperature()
+	 * @see #setColourTemperature(double)
+	 * @generated
+	 */
+	boolean isSetColourTemperature();
 
 	/**
 	 * Returns the value of the '<em><b>Colour Temperature As String</b></em>' attribute.
@@ -154,9 +208,11 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Colour Temperature As String</em>' attribute.
+	 * @see #isSetColourTemperatureAsString()
+	 * @see #unsetColourTemperatureAsString()
 	 * @see #setColourTemperatureAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_ColourTemperatureAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getColourTemperatureAsString();
@@ -166,10 +222,35 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Colour Temperature As String</em>' attribute.
+	 * @see #isSetColourTemperatureAsString()
+	 * @see #unsetColourTemperatureAsString()
 	 * @see #getColourTemperatureAsString()
 	 * @generated
 	 */
 	void setColourTemperatureAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getColourTemperatureAsString <em>Colour Temperature As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetColourTemperatureAsString()
+	 * @see #getColourTemperatureAsString()
+	 * @see #setColourTemperatureAsString(String)
+	 * @generated
+	 */
+	void unsetColourTemperatureAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getColourTemperatureAsString <em>Colour Temperature As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Colour Temperature As String</em>' attribute is set.
+	 * @see #unsetColourTemperatureAsString()
+	 * @see #getColourTemperatureAsString()
+	 * @see #setColourTemperatureAsString(String)
+	 * @generated
+	 */
+	boolean isSetColourTemperatureAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Flux</b></em>' attribute.
@@ -180,9 +261,11 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Luminous Flux</em>' attribute.
+	 * @see #isSetLuminousFlux()
+	 * @see #unsetLuminousFlux()
 	 * @see #setLuminousFlux(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_LuminousFlux()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getLuminousFlux();
@@ -192,10 +275,35 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Luminous Flux</em>' attribute.
+	 * @see #isSetLuminousFlux()
+	 * @see #unsetLuminousFlux()
 	 * @see #getLuminousFlux()
 	 * @generated
 	 */
 	void setLuminousFlux(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLuminousFlux <em>Luminous Flux</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLuminousFlux()
+	 * @see #getLuminousFlux()
+	 * @see #setLuminousFlux(double)
+	 * @generated
+	 */
+	void unsetLuminousFlux();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLuminousFlux <em>Luminous Flux</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Luminous Flux</em>' attribute is set.
+	 * @see #unsetLuminousFlux()
+	 * @see #getLuminousFlux()
+	 * @see #setLuminousFlux(double)
+	 * @generated
+	 */
+	boolean isSetLuminousFlux();
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Flux As String</b></em>' attribute.
@@ -206,9 +314,11 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Luminous Flux As String</em>' attribute.
+	 * @see #isSetLuminousFluxAsString()
+	 * @see #unsetLuminousFluxAsString()
 	 * @see #setLuminousFluxAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_LuminousFluxAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getLuminousFluxAsString();
@@ -218,10 +328,35 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Luminous Flux As String</em>' attribute.
+	 * @see #isSetLuminousFluxAsString()
+	 * @see #unsetLuminousFluxAsString()
 	 * @see #getLuminousFluxAsString()
 	 * @generated
 	 */
 	void setLuminousFluxAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLuminousFluxAsString <em>Luminous Flux As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLuminousFluxAsString()
+	 * @see #getLuminousFluxAsString()
+	 * @see #setLuminousFluxAsString(String)
+	 * @generated
+	 */
+	void unsetLuminousFluxAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLuminousFluxAsString <em>Luminous Flux As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Luminous Flux As String</em>' attribute is set.
+	 * @see #unsetLuminousFluxAsString()
+	 * @see #getLuminousFluxAsString()
+	 * @see #setLuminousFluxAsString(String)
+	 * @generated
+	 */
+	boolean isSetLuminousFluxAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Light Emission Source</b></em>' attribute.
@@ -234,9 +369,11 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Light Emission Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLightEmissionSourceEnum
+	 * @see #isSetLightEmissionSource()
+	 * @see #unsetLightEmissionSource()
 	 * @see #setLightEmissionSource(IfcLightEmissionSourceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_LightEmissionSource()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcLightEmissionSourceEnum getLightEmissionSource();
@@ -247,10 +384,35 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Light Emission Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLightEmissionSourceEnum
+	 * @see #isSetLightEmissionSource()
+	 * @see #unsetLightEmissionSource()
 	 * @see #getLightEmissionSource()
 	 * @generated
 	 */
 	void setLightEmissionSource(IfcLightEmissionSourceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLightEmissionSource <em>Light Emission Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLightEmissionSource()
+	 * @see #getLightEmissionSource()
+	 * @see #setLightEmissionSource(IfcLightEmissionSourceEnum)
+	 * @generated
+	 */
+	void unsetLightEmissionSource();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLightEmissionSource <em>Light Emission Source</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Light Emission Source</em>' attribute is set.
+	 * @see #unsetLightEmissionSource()
+	 * @see #getLightEmissionSource()
+	 * @see #setLightEmissionSource(IfcLightEmissionSourceEnum)
+	 * @generated
+	 */
+	boolean isSetLightEmissionSource();
 
 	/**
 	 * Returns the value of the '<em><b>Light Distribution Data Source</b></em>' reference.
@@ -261,9 +423,11 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Light Distribution Data Source</em>' reference.
+	 * @see #isSetLightDistributionDataSource()
+	 * @see #unsetLightDistributionDataSource()
 	 * @see #setLightDistributionDataSource(IfcLightDistributionDataSourceSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceGoniometric_LightDistributionDataSource()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcLightDistributionDataSourceSelect getLightDistributionDataSource();
@@ -273,9 +437,34 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Light Distribution Data Source</em>' reference.
+	 * @see #isSetLightDistributionDataSource()
+	 * @see #unsetLightDistributionDataSource()
 	 * @see #getLightDistributionDataSource()
 	 * @generated
 	 */
 	void setLightDistributionDataSource(IfcLightDistributionDataSourceSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLightDistributionDataSource <em>Light Distribution Data Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLightDistributionDataSource()
+	 * @see #getLightDistributionDataSource()
+	 * @see #setLightDistributionDataSource(IfcLightDistributionDataSourceSelect)
+	 * @generated
+	 */
+	void unsetLightDistributionDataSource();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceGoniometric#getLightDistributionDataSource <em>Light Distribution Data Source</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Light Distribution Data Source</em>' reference is set.
+	 * @see #unsetLightDistributionDataSource()
+	 * @see #getLightDistributionDataSource()
+	 * @see #setLightDistributionDataSource(IfcLightDistributionDataSourceSelect)
+	 * @generated
+	 */
+	boolean isSetLightDistributionDataSource();
 
 } // IfcLightSourceGoniometric

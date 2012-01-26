@@ -82,6 +82,24 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTaskId() {
+		eUnset(Ifc2x3Package.Literals.IFC_TASK__TASK_ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTaskId() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TASK__TASK_ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getStatus() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_TASK__STATUS, true);
 	}
@@ -172,6 +190,24 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsMilestone() {
+		eUnset(Ifc2x3Package.Literals.IFC_TASK__IS_MILESTONE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsMilestone() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TASK__IS_MILESTONE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getPriority() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_TASK__PRIORITY, true);
 	}
@@ -183,6 +219,24 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 */
 	public void setPriority(int newPriority) {
 		eSet(Ifc2x3Package.Literals.IFC_TASK__PRIORITY, newPriority);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPriority() {
+		eUnset(Ifc2x3Package.Literals.IFC_TASK__PRIORITY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPriority() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TASK__PRIORITY);
 	}
 
 } //IfcTaskImpl

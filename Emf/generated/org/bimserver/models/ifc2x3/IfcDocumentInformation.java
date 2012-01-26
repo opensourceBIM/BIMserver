@@ -62,9 +62,11 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Document Id</em>' attribute.
+	 * @see #isSetDocumentId()
+	 * @see #unsetDocumentId()
 	 * @see #setDocumentId(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_DocumentId()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getDocumentId();
@@ -74,10 +76,35 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Document Id</em>' attribute.
+	 * @see #isSetDocumentId()
+	 * @see #unsetDocumentId()
 	 * @see #getDocumentId()
 	 * @generated
 	 */
 	void setDocumentId(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getDocumentId <em>Document Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDocumentId()
+	 * @see #getDocumentId()
+	 * @see #setDocumentId(String)
+	 * @generated
+	 */
+	void unsetDocumentId();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getDocumentId <em>Document Id</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Document Id</em>' attribute is set.
+	 * @see #unsetDocumentId()
+	 * @see #getDocumentId()
+	 * @see #setDocumentId(String)
+	 * @generated
+	 */
+	boolean isSetDocumentId();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -88,9 +115,11 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -100,10 +129,35 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -779,9 +833,11 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Confidentiality</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentConfidentialityEnum
+	 * @see #isSetConfidentiality()
+	 * @see #unsetConfidentiality()
 	 * @see #setConfidentiality(IfcDocumentConfidentialityEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_Confidentiality()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDocumentConfidentialityEnum getConfidentiality();
@@ -792,10 +848,35 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Confidentiality</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentConfidentialityEnum
+	 * @see #isSetConfidentiality()
+	 * @see #unsetConfidentiality()
 	 * @see #getConfidentiality()
 	 * @generated
 	 */
 	void setConfidentiality(IfcDocumentConfidentialityEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getConfidentiality <em>Confidentiality</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetConfidentiality()
+	 * @see #getConfidentiality()
+	 * @see #setConfidentiality(IfcDocumentConfidentialityEnum)
+	 * @generated
+	 */
+	void unsetConfidentiality();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getConfidentiality <em>Confidentiality</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Confidentiality</em>' attribute is set.
+	 * @see #unsetConfidentiality()
+	 * @see #getConfidentiality()
+	 * @see #setConfidentiality(IfcDocumentConfidentialityEnum)
+	 * @generated
+	 */
+	boolean isSetConfidentiality();
 
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.
@@ -808,9 +889,11 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Status</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentStatusEnum
+	 * @see #isSetStatus()
+	 * @see #unsetStatus()
 	 * @see #setStatus(IfcDocumentStatusEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_Status()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDocumentStatusEnum getStatus();
@@ -821,10 +904,35 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Status</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentStatusEnum
+	 * @see #isSetStatus()
+	 * @see #unsetStatus()
 	 * @see #getStatus()
 	 * @generated
 	 */
 	void setStatus(IfcDocumentStatusEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getStatus <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStatus()
+	 * @see #getStatus()
+	 * @see #setStatus(IfcDocumentStatusEnum)
+	 * @generated
+	 */
+	void unsetStatus();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getStatus <em>Status</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Status</em>' attribute is set.
+	 * @see #unsetStatus()
+	 * @see #getStatus()
+	 * @see #setStatus(IfcDocumentStatusEnum)
+	 * @generated
+	 */
+	boolean isSetStatus();
 
 	/**
 	 * Returns the value of the '<em><b>Is Pointed To</b></em>' reference list.
@@ -837,12 +945,35 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Pointed To</em>' reference list.
+	 * @see #isSetIsPointedTo()
+	 * @see #unsetIsPointedTo()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_IsPointedTo()
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship#getRelatedDocuments
-	 * @model opposite="RelatedDocuments"
+	 * @model opposite="RelatedDocuments" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcDocumentInformationRelationship> getIsPointedTo();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getIsPointedTo <em>Is Pointed To</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsPointedTo()
+	 * @see #getIsPointedTo()
+	 * @generated
+	 */
+	void unsetIsPointedTo();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getIsPointedTo <em>Is Pointed To</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Pointed To</em>' reference list is set.
+	 * @see #unsetIsPointedTo()
+	 * @see #getIsPointedTo()
+	 * @generated
+	 */
+	boolean isSetIsPointedTo();
 
 	/**
 	 * Returns the value of the '<em><b>Is Pointer</b></em>' reference list.
@@ -855,11 +986,34 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Pointer</em>' reference list.
+	 * @see #isSetIsPointer()
+	 * @see #unsetIsPointer()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_IsPointer()
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship#getRelatingDocument
-	 * @model opposite="RelatingDocument" upper="2"
+	 * @model opposite="RelatingDocument" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcDocumentInformationRelationship> getIsPointer();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getIsPointer <em>Is Pointer</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsPointer()
+	 * @see #getIsPointer()
+	 * @generated
+	 */
+	void unsetIsPointer();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getIsPointer <em>Is Pointer</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Pointer</em>' reference list is set.
+	 * @see #unsetIsPointer()
+	 * @see #getIsPointer()
+	 * @generated
+	 */
+	boolean isSetIsPointer();
 
 } // IfcDocumentInformation

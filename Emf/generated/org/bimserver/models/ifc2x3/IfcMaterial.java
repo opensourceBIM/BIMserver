@@ -46,9 +46,11 @@ public interface IfcMaterial extends IfcMaterialSelect, IfcObjectReferenceSelect
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterial_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -58,10 +60,35 @@ public interface IfcMaterial extends IfcMaterialSelect, IfcObjectReferenceSelect
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterial#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterial#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Has Representation</b></em>' reference list.
@@ -74,12 +101,35 @@ public interface IfcMaterial extends IfcMaterialSelect, IfcObjectReferenceSelect
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Representation</em>' reference list.
+	 * @see #isSetHasRepresentation()
+	 * @see #unsetHasRepresentation()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterial_HasRepresentation()
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialDefinitionRepresentation#getRepresentedMaterial
-	 * @model opposite="RepresentedMaterial" upper="2"
+	 * @model opposite="RepresentedMaterial" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcMaterialDefinitionRepresentation> getHasRepresentation();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterial#getHasRepresentation <em>Has Representation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasRepresentation()
+	 * @see #getHasRepresentation()
+	 * @generated
+	 */
+	void unsetHasRepresentation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterial#getHasRepresentation <em>Has Representation</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Representation</em>' reference list is set.
+	 * @see #unsetHasRepresentation()
+	 * @see #getHasRepresentation()
+	 * @generated
+	 */
+	boolean isSetHasRepresentation();
 
 	/**
 	 * Returns the value of the '<em><b>Classified As</b></em>' reference list.
@@ -92,11 +142,34 @@ public interface IfcMaterial extends IfcMaterialSelect, IfcObjectReferenceSelect
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Classified As</em>' reference list.
+	 * @see #isSetClassifiedAs()
+	 * @see #unsetClassifiedAs()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterial_ClassifiedAs()
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialClassificationRelationship#getClassifiedMaterial
-	 * @model opposite="ClassifiedMaterial" upper="2"
+	 * @model opposite="ClassifiedMaterial" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcMaterialClassificationRelationship> getClassifiedAs();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterial#getClassifiedAs <em>Classified As</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetClassifiedAs()
+	 * @see #getClassifiedAs()
+	 * @generated
+	 */
+	void unsetClassifiedAs();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterial#getClassifiedAs <em>Classified As</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Classified As</em>' reference list is set.
+	 * @see #unsetClassifiedAs()
+	 * @see #getClassifiedAs()
+	 * @generated
+	 */
+	boolean isSetClassifiedAs();
 
 } // IfcMaterial

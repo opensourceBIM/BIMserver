@@ -79,6 +79,24 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLocation() {
+		eUnset(Ifc2x3Package.Literals.IFC_PLACEMENT__LOCATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLocation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PLACEMENT__LOCATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_PLACEMENT__DIM, true);
 	}
@@ -90,6 +108,24 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_PLACEMENT__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_PLACEMENT__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PLACEMENT__DIM);
 	}
 
 } //IfcPlacementImpl

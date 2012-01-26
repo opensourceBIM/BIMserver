@@ -44,10 +44,12 @@ public interface IfcRelVoidsElement extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Building Element</em>' reference.
+	 * @see #isSetRelatingBuildingElement()
+	 * @see #unsetRelatingBuildingElement()
 	 * @see #setRelatingBuildingElement(IfcElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelVoidsElement_RelatingBuildingElement()
 	 * @see org.bimserver.models.ifc2x3.IfcElement#getHasOpenings
-	 * @model opposite="HasOpenings"
+	 * @model opposite="HasOpenings" unsettable="true"
 	 * @generated
 	 */
 	IfcElement getRelatingBuildingElement();
@@ -57,10 +59,35 @@ public interface IfcRelVoidsElement extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Building Element</em>' reference.
+	 * @see #isSetRelatingBuildingElement()
+	 * @see #unsetRelatingBuildingElement()
 	 * @see #getRelatingBuildingElement()
 	 * @generated
 	 */
 	void setRelatingBuildingElement(IfcElement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelVoidsElement#getRelatingBuildingElement <em>Relating Building Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingBuildingElement()
+	 * @see #getRelatingBuildingElement()
+	 * @see #setRelatingBuildingElement(IfcElement)
+	 * @generated
+	 */
+	void unsetRelatingBuildingElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelVoidsElement#getRelatingBuildingElement <em>Relating Building Element</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Building Element</em>' reference is set.
+	 * @see #unsetRelatingBuildingElement()
+	 * @see #getRelatingBuildingElement()
+	 * @see #setRelatingBuildingElement(IfcElement)
+	 * @generated
+	 */
+	boolean isSetRelatingBuildingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Related Opening Element</b></em>' reference.
@@ -72,10 +99,12 @@ public interface IfcRelVoidsElement extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Opening Element</em>' reference.
+	 * @see #isSetRelatedOpeningElement()
+	 * @see #unsetRelatedOpeningElement()
 	 * @see #setRelatedOpeningElement(IfcFeatureElementSubtraction)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelVoidsElement_RelatedOpeningElement()
 	 * @see org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction#getVoidsElements
-	 * @model opposite="VoidsElements"
+	 * @model opposite="VoidsElements" unsettable="true"
 	 * @generated
 	 */
 	IfcFeatureElementSubtraction getRelatedOpeningElement();
@@ -85,9 +114,34 @@ public interface IfcRelVoidsElement extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Opening Element</em>' reference.
+	 * @see #isSetRelatedOpeningElement()
+	 * @see #unsetRelatedOpeningElement()
 	 * @see #getRelatedOpeningElement()
 	 * @generated
 	 */
 	void setRelatedOpeningElement(IfcFeatureElementSubtraction value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelVoidsElement#getRelatedOpeningElement <em>Related Opening Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedOpeningElement()
+	 * @see #getRelatedOpeningElement()
+	 * @see #setRelatedOpeningElement(IfcFeatureElementSubtraction)
+	 * @generated
+	 */
+	void unsetRelatedOpeningElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelVoidsElement#getRelatedOpeningElement <em>Related Opening Element</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Opening Element</em>' reference is set.
+	 * @see #unsetRelatedOpeningElement()
+	 * @see #getRelatedOpeningElement()
+	 * @see #setRelatedOpeningElement(IfcFeatureElementSubtraction)
+	 * @generated
+	 */
+	boolean isSetRelatedOpeningElement();
 
 } // IfcRelVoidsElement

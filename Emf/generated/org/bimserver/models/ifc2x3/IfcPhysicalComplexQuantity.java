@@ -49,12 +49,35 @@ public interface IfcPhysicalComplexQuantity extends IfcPhysicalQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Quantities</em>' reference list.
+	 * @see #isSetHasQuantities()
+	 * @see #unsetHasQuantities()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPhysicalComplexQuantity_HasQuantities()
 	 * @see org.bimserver.models.ifc2x3.IfcPhysicalQuantity#getPartOfComplex
-	 * @model opposite="PartOfComplex"
+	 * @model opposite="PartOfComplex" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPhysicalQuantity> getHasQuantities();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalComplexQuantity#getHasQuantities <em>Has Quantities</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasQuantities()
+	 * @see #getHasQuantities()
+	 * @generated
+	 */
+	void unsetHasQuantities();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalComplexQuantity#getHasQuantities <em>Has Quantities</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Quantities</em>' reference list is set.
+	 * @see #unsetHasQuantities()
+	 * @see #getHasQuantities()
+	 * @generated
+	 */
+	boolean isSetHasQuantities();
 
 	/**
 	 * Returns the value of the '<em><b>Discrimination</b></em>' attribute.
@@ -65,9 +88,11 @@ public interface IfcPhysicalComplexQuantity extends IfcPhysicalQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Discrimination</em>' attribute.
+	 * @see #isSetDiscrimination()
+	 * @see #unsetDiscrimination()
 	 * @see #setDiscrimination(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPhysicalComplexQuantity_Discrimination()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getDiscrimination();
@@ -77,10 +102,35 @@ public interface IfcPhysicalComplexQuantity extends IfcPhysicalQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Discrimination</em>' attribute.
+	 * @see #isSetDiscrimination()
+	 * @see #unsetDiscrimination()
 	 * @see #getDiscrimination()
 	 * @generated
 	 */
 	void setDiscrimination(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalComplexQuantity#getDiscrimination <em>Discrimination</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDiscrimination()
+	 * @see #getDiscrimination()
+	 * @see #setDiscrimination(String)
+	 * @generated
+	 */
+	void unsetDiscrimination();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPhysicalComplexQuantity#getDiscrimination <em>Discrimination</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Discrimination</em>' attribute is set.
+	 * @see #unsetDiscrimination()
+	 * @see #getDiscrimination()
+	 * @see #setDiscrimination(String)
+	 * @generated
+	 */
+	boolean isSetDiscrimination();
 
 	/**
 	 * Returns the value of the '<em><b>Quality</b></em>' attribute.

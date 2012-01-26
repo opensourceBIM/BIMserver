@@ -77,9 +77,45 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHasAssignments() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasAssignments() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDecomposes> getIsDecomposedBy() {
 		return (EList<IfcRelDecomposes>) eGet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsDecomposedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsDecomposedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY);
 	}
 
 	/**
@@ -97,9 +133,45 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDecomposes() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDecomposes() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociates> getHasAssociations() {
 		return (EList<IfcRelAssociates>) eGet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasAssociations() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasAssociations() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS);
 	}
 
 } //IfcObjectDefinitionImpl

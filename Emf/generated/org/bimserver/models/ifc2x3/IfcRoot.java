@@ -49,10 +49,12 @@ public interface IfcRoot extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Global Id</em>' reference.
+	 * @see #isSetGlobalId()
+	 * @see #unsetGlobalId()
 	 * @see #setGlobalId(IfcGloballyUniqueId)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRoot_GlobalId()
 	 * @see org.bimserver.models.ifc2x3.IfcGloballyUniqueId#getIfcRoot
-	 * @model opposite="ifcRoot"
+	 * @model opposite="ifcRoot" unsettable="true"
 	 * @generated
 	 */
 	IfcGloballyUniqueId getGlobalId();
@@ -62,10 +64,35 @@ public interface IfcRoot extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Global Id</em>' reference.
+	 * @see #isSetGlobalId()
+	 * @see #unsetGlobalId()
 	 * @see #getGlobalId()
 	 * @generated
 	 */
 	void setGlobalId(IfcGloballyUniqueId value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRoot#getGlobalId <em>Global Id</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGlobalId()
+	 * @see #getGlobalId()
+	 * @see #setGlobalId(IfcGloballyUniqueId)
+	 * @generated
+	 */
+	void unsetGlobalId();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRoot#getGlobalId <em>Global Id</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Global Id</em>' reference is set.
+	 * @see #unsetGlobalId()
+	 * @see #getGlobalId()
+	 * @see #setGlobalId(IfcGloballyUniqueId)
+	 * @generated
+	 */
+	boolean isSetGlobalId();
 
 	/**
 	 * Returns the value of the '<em><b>Owner History</b></em>' reference.
@@ -76,9 +103,11 @@ public interface IfcRoot extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owner History</em>' reference.
+	 * @see #isSetOwnerHistory()
+	 * @see #unsetOwnerHistory()
 	 * @see #setOwnerHistory(IfcOwnerHistory)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRoot_OwnerHistory()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcOwnerHistory getOwnerHistory();
@@ -88,10 +117,35 @@ public interface IfcRoot extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owner History</em>' reference.
+	 * @see #isSetOwnerHistory()
+	 * @see #unsetOwnerHistory()
 	 * @see #getOwnerHistory()
 	 * @generated
 	 */
 	void setOwnerHistory(IfcOwnerHistory value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRoot#getOwnerHistory <em>Owner History</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOwnerHistory()
+	 * @see #getOwnerHistory()
+	 * @see #setOwnerHistory(IfcOwnerHistory)
+	 * @generated
+	 */
+	void unsetOwnerHistory();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRoot#getOwnerHistory <em>Owner History</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Owner History</em>' reference is set.
+	 * @see #unsetOwnerHistory()
+	 * @see #getOwnerHistory()
+	 * @see #setOwnerHistory(IfcOwnerHistory)
+	 * @generated
+	 */
+	boolean isSetOwnerHistory();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

@@ -67,4 +67,22 @@ public class IfcStructuralItemImpl extends IfcProductImpl implements IfcStructur
 		return (EList<IfcRelConnectsStructuralActivity>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAssignedStructuralActivity() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssignedStructuralActivity() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY);
+	}
+
 } //IfcStructuralItemImpl

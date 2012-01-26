@@ -79,6 +79,24 @@ public class IfcGloballyUniqueIdImpl extends WrappedValueImpl implements IfcGlob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetWrappedValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_GLOBALLY_UNIQUE_ID__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWrappedValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GLOBALLY_UNIQUE_ID__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcRoot getIfcRoot() {
 		return (IfcRoot) eGet(Ifc2x3Package.Literals.IFC_GLOBALLY_UNIQUE_ID__IFC_ROOT, true);
 	}

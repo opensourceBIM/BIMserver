@@ -80,6 +80,24 @@ public class IfcDefinedSymbolImpl extends IfcGeometricRepresentationItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDefinition() {
+		eUnset(Ifc2x3Package.Literals.IFC_DEFINED_SYMBOL__DEFINITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefinition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DEFINED_SYMBOL__DEFINITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcCartesianTransformationOperator2D getTarget() {
 		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3Package.Literals.IFC_DEFINED_SYMBOL__TARGET, true);
 	}
@@ -91,6 +109,24 @@ public class IfcDefinedSymbolImpl extends IfcGeometricRepresentationItemImpl imp
 	 */
 	public void setTarget(IfcCartesianTransformationOperator2D newTarget) {
 		eSet(Ifc2x3Package.Literals.IFC_DEFINED_SYMBOL__TARGET, newTarget);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTarget() {
+		eUnset(Ifc2x3Package.Literals.IFC_DEFINED_SYMBOL__TARGET);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DEFINED_SYMBOL__TARGET);
 	}
 
 } //IfcDefinedSymbolImpl

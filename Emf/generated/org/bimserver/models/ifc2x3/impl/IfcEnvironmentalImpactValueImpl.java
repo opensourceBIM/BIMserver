@@ -80,6 +80,24 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetImpactType() {
+		eUnset(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__IMPACT_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetImpactType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__IMPACT_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcEnvironmentalImpactCategoryEnum getCategory() {
 		return (IfcEnvironmentalImpactCategoryEnum) eGet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, true);
 	}
@@ -91,6 +109,24 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public void setCategory(IfcEnvironmentalImpactCategoryEnum newCategory) {
 		eSet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, newCategory);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCategory() {
+		eUnset(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCategory() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY);
 	}
 
 	/**

@@ -86,6 +86,24 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetNominalDiameter() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNominalDiameter() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getNominalDiameterAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING, true);
 	}
@@ -97,6 +115,24 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setNominalDiameterAsString(String newNominalDiameterAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING, newNominalDiameterAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNominalDiameterAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNominalDiameterAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING);
 	}
 
 	/**
@@ -122,6 +158,24 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCrossSectionArea() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCrossSectionArea() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getCrossSectionAreaAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING, true);
 	}
@@ -133,6 +187,24 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setCrossSectionAreaAsString(String newCrossSectionAreaAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING, newCrossSectionAreaAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCrossSectionAreaAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCrossSectionAreaAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING);
 	}
 
 	/**
@@ -230,6 +302,24 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetBarRole() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBarRole() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcReinforcingBarSurfaceEnum getBarSurface() {
 		return (IfcReinforcingBarSurfaceEnum) eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE, true);
 	}
@@ -241,6 +331,24 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setBarSurface(IfcReinforcingBarSurfaceEnum newBarSurface) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE, newBarSurface);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetBarSurface() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBarSurface() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE);
 	}
 
 } //IfcReinforcingBarImpl

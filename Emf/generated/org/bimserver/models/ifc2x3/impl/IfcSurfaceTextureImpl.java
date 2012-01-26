@@ -95,6 +95,24 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRepeatS() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRepeatS() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Tristate getRepeatT() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T, true);
 	}
@@ -113,6 +131,24 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRepeatT() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRepeatT() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSurfaceTextureEnum getTextureType() {
 		return (IfcSurfaceTextureEnum) eGet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TYPE, true);
 	}
@@ -124,6 +160,24 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public void setTextureType(IfcSurfaceTextureEnum newTextureType) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TYPE, newTextureType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTextureType() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTextureType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TYPE);
 	}
 
 	/**

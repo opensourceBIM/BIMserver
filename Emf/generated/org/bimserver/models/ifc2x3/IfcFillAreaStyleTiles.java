@@ -47,9 +47,11 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tiling Pattern</em>' reference.
+	 * @see #isSetTilingPattern()
+	 * @see #unsetTilingPattern()
 	 * @see #setTilingPattern(IfcOneDirectionRepeatFactor)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleTiles_TilingPattern()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcOneDirectionRepeatFactor getTilingPattern();
@@ -59,10 +61,35 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tiling Pattern</em>' reference.
+	 * @see #isSetTilingPattern()
+	 * @see #unsetTilingPattern()
 	 * @see #getTilingPattern()
 	 * @generated
 	 */
 	void setTilingPattern(IfcOneDirectionRepeatFactor value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTilingPattern <em>Tiling Pattern</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTilingPattern()
+	 * @see #getTilingPattern()
+	 * @see #setTilingPattern(IfcOneDirectionRepeatFactor)
+	 * @generated
+	 */
+	void unsetTilingPattern();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTilingPattern <em>Tiling Pattern</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Tiling Pattern</em>' reference is set.
+	 * @see #unsetTilingPattern()
+	 * @see #getTilingPattern()
+	 * @see #setTilingPattern(IfcOneDirectionRepeatFactor)
+	 * @generated
+	 */
+	boolean isSetTilingPattern();
 
 	/**
 	 * Returns the value of the '<em><b>Tiles</b></em>' reference list.
@@ -74,11 +101,34 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tiles</em>' reference list.
+	 * @see #isSetTiles()
+	 * @see #unsetTiles()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleTiles_Tiles()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcFillAreaStyleTileShapeSelect> getTiles();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTiles <em>Tiles</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTiles()
+	 * @see #getTiles()
+	 * @generated
+	 */
+	void unsetTiles();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTiles <em>Tiles</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Tiles</em>' reference list is set.
+	 * @see #unsetTiles()
+	 * @see #getTiles()
+	 * @generated
+	 */
+	boolean isSetTiles();
 
 	/**
 	 * Returns the value of the '<em><b>Tiling Scale</b></em>' attribute.
@@ -89,9 +139,11 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tiling Scale</em>' attribute.
+	 * @see #isSetTilingScale()
+	 * @see #unsetTilingScale()
 	 * @see #setTilingScale(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleTiles_TilingScale()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getTilingScale();
@@ -101,10 +153,35 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tiling Scale</em>' attribute.
+	 * @see #isSetTilingScale()
+	 * @see #unsetTilingScale()
 	 * @see #getTilingScale()
 	 * @generated
 	 */
 	void setTilingScale(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTilingScale <em>Tiling Scale</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTilingScale()
+	 * @see #getTilingScale()
+	 * @see #setTilingScale(double)
+	 * @generated
+	 */
+	void unsetTilingScale();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTilingScale <em>Tiling Scale</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Tiling Scale</em>' attribute is set.
+	 * @see #unsetTilingScale()
+	 * @see #getTilingScale()
+	 * @see #setTilingScale(double)
+	 * @generated
+	 */
+	boolean isSetTilingScale();
 
 	/**
 	 * Returns the value of the '<em><b>Tiling Scale As String</b></em>' attribute.
@@ -115,9 +192,11 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tiling Scale As String</em>' attribute.
+	 * @see #isSetTilingScaleAsString()
+	 * @see #unsetTilingScaleAsString()
 	 * @see #setTilingScaleAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleTiles_TilingScaleAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getTilingScaleAsString();
@@ -127,9 +206,34 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tiling Scale As String</em>' attribute.
+	 * @see #isSetTilingScaleAsString()
+	 * @see #unsetTilingScaleAsString()
 	 * @see #getTilingScaleAsString()
 	 * @generated
 	 */
 	void setTilingScaleAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTilingScaleAsString <em>Tiling Scale As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTilingScaleAsString()
+	 * @see #getTilingScaleAsString()
+	 * @see #setTilingScaleAsString(String)
+	 * @generated
+	 */
+	void unsetTilingScaleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles#getTilingScaleAsString <em>Tiling Scale As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Tiling Scale As String</em>' attribute is set.
+	 * @see #unsetTilingScaleAsString()
+	 * @see #getTilingScaleAsString()
+	 * @see #setTilingScaleAsString(String)
+	 * @generated
+	 */
+	boolean isSetTilingScaleAsString();
 
 } // IfcFillAreaStyleTiles

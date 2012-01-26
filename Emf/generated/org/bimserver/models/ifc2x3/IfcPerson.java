@@ -410,11 +410,34 @@ public interface IfcPerson extends IfcActorSelect, IfcObjectReferenceSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Engaged In</em>' reference list.
+	 * @see #isSetEngagedIn()
+	 * @see #unsetEngagedIn()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPerson_EngagedIn()
 	 * @see org.bimserver.models.ifc2x3.IfcPersonAndOrganization#getThePerson
-	 * @model opposite="ThePerson"
+	 * @model opposite="ThePerson" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPersonAndOrganization> getEngagedIn();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPerson#getEngagedIn <em>Engaged In</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEngagedIn()
+	 * @see #getEngagedIn()
+	 * @generated
+	 */
+	void unsetEngagedIn();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPerson#getEngagedIn <em>Engaged In</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Engaged In</em>' reference list is set.
+	 * @see #unsetEngagedIn()
+	 * @see #getEngagedIn()
+	 * @generated
+	 */
+	boolean isSetEngagedIn();
 
 } // IfcPerson

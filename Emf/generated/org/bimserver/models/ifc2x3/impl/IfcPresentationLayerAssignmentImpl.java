@@ -95,6 +95,24 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__DESCRIPTION, true);
 	}
@@ -134,6 +152,24 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	@SuppressWarnings("unchecked")
 	public EList<IfcLayeredItem> getAssignedItems() {
 		return (EList<IfcLayeredItem>) eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAssignedItems() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssignedItems() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS);
 	}
 
 	/**

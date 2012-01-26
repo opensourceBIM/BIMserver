@@ -76,9 +76,45 @@ public class IfcStructuralSurfaceMemberVaryingImpl extends IfcStructuralSurfaceM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSubsequentThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__SUBSEQUENT_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSubsequentThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__SUBSEQUENT_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSubsequentThicknessAsString() {
 		return (EList<String>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__SUBSEQUENT_THICKNESS_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSubsequentThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__SUBSEQUENT_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSubsequentThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__SUBSEQUENT_THICKNESS_AS_STRING);
 	}
 
 	/**
@@ -104,6 +140,24 @@ public class IfcStructuralSurfaceMemberVaryingImpl extends IfcStructuralSurfaceM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetVaryingThicknessLocation() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS_LOCATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVaryingThicknessLocation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS_LOCATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getVaryingThickness() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS, true);
 	}
@@ -122,6 +176,24 @@ public class IfcStructuralSurfaceMemberVaryingImpl extends IfcStructuralSurfaceM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetVaryingThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVaryingThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getVaryingThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS_AS_STRING, true);
 	}
@@ -133,6 +205,24 @@ public class IfcStructuralSurfaceMemberVaryingImpl extends IfcStructuralSurfaceM
 	 */
 	public void setVaryingThicknessAsString(String newVaryingThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS_AS_STRING, newVaryingThicknessAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetVaryingThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVaryingThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING__VARYING_THICKNESS_AS_STRING);
 	}
 
 } //IfcStructuralSurfaceMemberVaryingImpl

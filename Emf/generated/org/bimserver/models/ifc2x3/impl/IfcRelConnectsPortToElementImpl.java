@@ -80,6 +80,24 @@ public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingPort() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATING_PORT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingPort() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATING_PORT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcElement getRelatedElement() {
 		return (IfcElement) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT, true);
 	}
@@ -91,6 +109,24 @@ public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl implemen
 	 */
 	public void setRelatedElement(IfcElement newRelatedElement) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT, newRelatedElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT);
 	}
 
 } //IfcRelConnectsPortToElementImpl

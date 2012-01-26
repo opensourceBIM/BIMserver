@@ -43,9 +43,11 @@ public interface IfcOrientedEdge extends IfcEdge {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edge Element</em>' reference.
+	 * @see #isSetEdgeElement()
+	 * @see #unsetEdgeElement()
 	 * @see #setEdgeElement(IfcEdge)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOrientedEdge_EdgeElement()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcEdge getEdgeElement();
@@ -55,10 +57,35 @@ public interface IfcOrientedEdge extends IfcEdge {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Edge Element</em>' reference.
+	 * @see #isSetEdgeElement()
+	 * @see #unsetEdgeElement()
 	 * @see #getEdgeElement()
 	 * @generated
 	 */
 	void setEdgeElement(IfcEdge value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOrientedEdge#getEdgeElement <em>Edge Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEdgeElement()
+	 * @see #getEdgeElement()
+	 * @see #setEdgeElement(IfcEdge)
+	 * @generated
+	 */
+	void unsetEdgeElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOrientedEdge#getEdgeElement <em>Edge Element</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Edge Element</em>' reference is set.
+	 * @see #unsetEdgeElement()
+	 * @see #getEdgeElement()
+	 * @see #setEdgeElement(IfcEdge)
+	 * @generated
+	 */
+	boolean isSetEdgeElement();
 
 	/**
 	 * Returns the value of the '<em><b>Orientation</b></em>' attribute.
@@ -71,9 +98,11 @@ public interface IfcOrientedEdge extends IfcEdge {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Orientation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetOrientation()
+	 * @see #unsetOrientation()
 	 * @see #setOrientation(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOrientedEdge_Orientation()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getOrientation();
@@ -84,9 +113,34 @@ public interface IfcOrientedEdge extends IfcEdge {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Orientation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetOrientation()
+	 * @see #unsetOrientation()
 	 * @see #getOrientation()
 	 * @generated
 	 */
 	void setOrientation(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOrientedEdge#getOrientation <em>Orientation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOrientation()
+	 * @see #getOrientation()
+	 * @see #setOrientation(Tristate)
+	 * @generated
+	 */
+	void unsetOrientation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOrientedEdge#getOrientation <em>Orientation</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Orientation</em>' attribute is set.
+	 * @see #unsetOrientation()
+	 * @see #getOrientation()
+	 * @see #setOrientation(Tristate)
+	 * @generated
+	 */
+	boolean isSetOrientation();
 
 } // IfcOrientedEdge

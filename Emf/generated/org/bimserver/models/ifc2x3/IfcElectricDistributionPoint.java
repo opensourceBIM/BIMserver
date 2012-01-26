@@ -45,9 +45,11 @@ public interface IfcElectricDistributionPoint extends IfcFlowController {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distribution Point Function</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElectricDistributionPointFunctionEnum
+	 * @see #isSetDistributionPointFunction()
+	 * @see #unsetDistributionPointFunction()
 	 * @see #setDistributionPointFunction(IfcElectricDistributionPointFunctionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricDistributionPoint_DistributionPointFunction()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcElectricDistributionPointFunctionEnum getDistributionPointFunction();
@@ -58,10 +60,35 @@ public interface IfcElectricDistributionPoint extends IfcFlowController {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Distribution Point Function</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElectricDistributionPointFunctionEnum
+	 * @see #isSetDistributionPointFunction()
+	 * @see #unsetDistributionPointFunction()
 	 * @see #getDistributionPointFunction()
 	 * @generated
 	 */
 	void setDistributionPointFunction(IfcElectricDistributionPointFunctionEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricDistributionPoint#getDistributionPointFunction <em>Distribution Point Function</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDistributionPointFunction()
+	 * @see #getDistributionPointFunction()
+	 * @see #setDistributionPointFunction(IfcElectricDistributionPointFunctionEnum)
+	 * @generated
+	 */
+	void unsetDistributionPointFunction();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricDistributionPoint#getDistributionPointFunction <em>Distribution Point Function</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Distribution Point Function</em>' attribute is set.
+	 * @see #unsetDistributionPointFunction()
+	 * @see #getDistributionPointFunction()
+	 * @see #setDistributionPointFunction(IfcElectricDistributionPointFunctionEnum)
+	 * @generated
+	 */
+	boolean isSetDistributionPointFunction();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Function</b></em>' attribute.

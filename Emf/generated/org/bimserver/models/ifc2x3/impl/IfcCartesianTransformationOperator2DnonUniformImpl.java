@@ -78,6 +78,24 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCarte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetScale2() {
+		eUnset(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScale2() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getScale2AsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING, true);
 	}
@@ -89,6 +107,24 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCarte
 	 */
 	public void setScale2AsString(String newScale2AsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING, newScale2AsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetScale2AsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScale2AsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING);
 	}
 
 } //IfcCartesianTransformationOperator2DnonUniformImpl

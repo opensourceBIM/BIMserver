@@ -43,10 +43,12 @@ public interface IfcGroup extends IfcObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Grouped By</em>' reference.
+	 * @see #isSetIsGroupedBy()
+	 * @see #unsetIsGroupedBy()
 	 * @see #setIsGroupedBy(IfcRelAssignsToGroup)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGroup_IsGroupedBy()
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToGroup#getRelatingGroup
-	 * @model opposite="RelatingGroup"
+	 * @model opposite="RelatingGroup" unsettable="true"
 	 * @generated
 	 */
 	IfcRelAssignsToGroup getIsGroupedBy();
@@ -56,9 +58,34 @@ public interface IfcGroup extends IfcObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Grouped By</em>' reference.
+	 * @see #isSetIsGroupedBy()
+	 * @see #unsetIsGroupedBy()
 	 * @see #getIsGroupedBy()
 	 * @generated
 	 */
 	void setIsGroupedBy(IfcRelAssignsToGroup value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGroup#getIsGroupedBy <em>Is Grouped By</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsGroupedBy()
+	 * @see #getIsGroupedBy()
+	 * @see #setIsGroupedBy(IfcRelAssignsToGroup)
+	 * @generated
+	 */
+	void unsetIsGroupedBy();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGroup#getIsGroupedBy <em>Is Grouped By</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Grouped By</em>' reference is set.
+	 * @see #unsetIsGroupedBy()
+	 * @see #getIsGroupedBy()
+	 * @see #setIsGroupedBy(IfcRelAssignsToGroup)
+	 * @generated
+	 */
+	boolean isSetIsGroupedBy();
 
 } // IfcGroup

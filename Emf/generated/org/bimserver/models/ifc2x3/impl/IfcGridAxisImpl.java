@@ -137,6 +137,24 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetAxisCurve() {
+		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAxisCurve() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Tristate getSameSense() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE, true);
 	}
@@ -155,9 +173,45 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSameSense() {
+		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSameSense() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGrid> getPartOfW() {
 		return (EList<IfcGrid>) eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_W, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPartOfW() {
+		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_W);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPartOfW() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_W);
 	}
 
 	/**
@@ -175,6 +229,24 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPartOfV() {
+		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_V);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPartOfV() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_V);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGrid> getPartOfU() {
 		return (EList<IfcGrid>) eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_U, true);
@@ -185,9 +257,45 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPartOfU() {
+		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_U);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPartOfU() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_U);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcVirtualGridIntersection> getHasIntersections() {
 		return (EList<IfcVirtualGridIntersection>) eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasIntersections() {
+		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasIntersections() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS);
 	}
 
 } //IfcGridAxisImpl

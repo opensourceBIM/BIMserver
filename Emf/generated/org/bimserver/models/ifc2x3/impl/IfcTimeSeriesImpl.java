@@ -104,6 +104,24 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DESCRIPTION, true);
 	}
@@ -158,6 +176,24 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetStartTime() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__START_TIME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStartTime() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__START_TIME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcDateTimeSelect getEndTime() {
 		return (IfcDateTimeSelect) eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__END_TIME, true);
 	}
@@ -169,6 +205,24 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 */
 	public void setEndTime(IfcDateTimeSelect newEndTime) {
 		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__END_TIME, newEndTime);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetEndTime() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__END_TIME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEndTime() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__END_TIME);
 	}
 
 	/**
@@ -194,6 +248,24 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTimeSeriesDataType() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeSeriesDataType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcDataOriginEnum getDataOrigin() {
 		return (IfcDataOriginEnum) eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN, true);
 	}
@@ -205,6 +277,24 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 */
 	public void setDataOrigin(IfcDataOriginEnum newDataOrigin) {
 		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN, newDataOrigin);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDataOrigin() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDataOrigin() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN);
 	}
 
 	/**
@@ -287,6 +377,24 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	@SuppressWarnings("unchecked")
 	public EList<IfcTimeSeriesReferenceRelationship> getDocumentedBy() {
 		return (EList<IfcTimeSeriesReferenceRelationship>) eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDocumentedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDocumentedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY);
 	}
 
 } //IfcTimeSeriesImpl
