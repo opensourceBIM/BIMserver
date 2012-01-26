@@ -90,6 +90,24 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSpaceProgramIdentifier() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__SPACE_PROGRAM_IDENTIFIER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSpaceProgramIdentifier() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__SPACE_PROGRAM_IDENTIFIER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getMaxRequiredArea() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__MAX_REQUIRED_AREA, true);
 	}
@@ -288,6 +306,24 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetStandardRequiredArea() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStandardRequiredArea() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getStandardRequiredAreaAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA_AS_STRING, true);
 	}
@@ -306,6 +342,24 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetStandardRequiredAreaAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStandardRequiredAreaAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelInteractionRequirements> getHasInteractionReqsFrom() {
 		return (EList<IfcRelInteractionRequirements>) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_FROM, true);
@@ -316,9 +370,45 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHasInteractionReqsFrom() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasInteractionReqsFrom() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelInteractionRequirements> getHasInteractionReqsTo() {
 		return (EList<IfcRelInteractionRequirements>) eGet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_TO, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasInteractionReqsTo() {
+		eUnset(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_TO);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasInteractionReqsTo() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_TO);
 	}
 
 } //IfcSpaceProgramImpl

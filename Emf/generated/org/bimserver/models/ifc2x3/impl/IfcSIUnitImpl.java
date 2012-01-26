@@ -80,6 +80,24 @@ public class IfcSIUnitImpl extends IfcNamedUnitImpl implements IfcSIUnit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPrefix() {
+		eUnset(Ifc2x3Package.Literals.IFC_SI_UNIT__PREFIX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPrefix() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SI_UNIT__PREFIX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSIUnitName getName() {
 		return (IfcSIUnitName) eGet(Ifc2x3Package.Literals.IFC_SI_UNIT__NAME, true);
 	}
@@ -91,6 +109,24 @@ public class IfcSIUnitImpl extends IfcNamedUnitImpl implements IfcSIUnit {
 	 */
 	public void setName(IfcSIUnitName newName) {
 		eSet(Ifc2x3Package.Literals.IFC_SI_UNIT__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_SI_UNIT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SI_UNIT__NAME);
 	}
 
 } //IfcSIUnitImpl

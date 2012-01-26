@@ -81,9 +81,45 @@ public class IfcRelDecomposesImpl extends IfcRelationshipImpl implements IfcRelD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingObject() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_DECOMPOSES__RELATING_OBJECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingObject() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_DECOMPOSES__RELATING_OBJECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObjectDefinition> getRelatedObjects() {
 		return (EList<IfcObjectDefinition>) eGet(Ifc2x3Package.Literals.IFC_REL_DECOMPOSES__RELATED_OBJECTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedObjects() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_DECOMPOSES__RELATED_OBJECTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedObjects() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_DECOMPOSES__RELATED_OBJECTS);
 	}
 
 } //IfcRelDecomposesImpl

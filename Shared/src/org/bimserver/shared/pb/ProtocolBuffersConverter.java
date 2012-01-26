@@ -121,6 +121,10 @@ public class ProtocolBuffersConverter {
 			LOGGER.error("", e);
 		}
 		SClass sClass = object.getSClass();
+		SClass superClass = sClass;
+		while (superClass != null) {
+			superClass = superClass.getSuperClass();
+		}
 		for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 			try {
 				SField sField = sClass.getField(fieldDescriptor.getName());

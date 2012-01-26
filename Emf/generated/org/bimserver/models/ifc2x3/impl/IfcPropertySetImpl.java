@@ -67,4 +67,22 @@ public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements 
 		return (EList<IfcProperty>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasProperties() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasProperties() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES);
+	}
+
 } //IfcPropertySetImpl

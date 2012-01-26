@@ -67,4 +67,22 @@ public class IfcStructuralReactionImpl extends IfcStructuralActivityImpl impleme
 		return (EList<IfcStructuralAction>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_REACTION__CAUSES, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCauses() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_REACTION__CAUSES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCauses() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_REACTION__CAUSES);
+	}
+
 } //IfcStructuralReactionImpl

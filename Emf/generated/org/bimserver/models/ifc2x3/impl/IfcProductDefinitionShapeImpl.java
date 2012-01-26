@@ -74,9 +74,45 @@ public class IfcProductDefinitionShapeImpl extends IfcProductRepresentationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetShapeOfProduct() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__SHAPE_OF_PRODUCT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetShapeOfProduct() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__SHAPE_OF_PRODUCT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcShapeAspect> getHasShapeAspects() {
 		return (EList<IfcShapeAspect>) eGet(Ifc2x3Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasShapeAspects() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasShapeAspects() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS);
 	}
 
 } //IfcProductDefinitionShapeImpl

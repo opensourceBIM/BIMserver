@@ -42,9 +42,11 @@ public interface IfcSubedge extends IfcEdge {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Edge</em>' reference.
+	 * @see #isSetParentEdge()
+	 * @see #unsetParentEdge()
 	 * @see #setParentEdge(IfcEdge)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSubedge_ParentEdge()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcEdge getParentEdge();
@@ -54,9 +56,34 @@ public interface IfcSubedge extends IfcEdge {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Edge</em>' reference.
+	 * @see #isSetParentEdge()
+	 * @see #unsetParentEdge()
 	 * @see #getParentEdge()
 	 * @generated
 	 */
 	void setParentEdge(IfcEdge value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSubedge#getParentEdge <em>Parent Edge</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetParentEdge()
+	 * @see #getParentEdge()
+	 * @see #setParentEdge(IfcEdge)
+	 * @generated
+	 */
+	void unsetParentEdge();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSubedge#getParentEdge <em>Parent Edge</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Parent Edge</em>' reference is set.
+	 * @see #unsetParentEdge()
+	 * @see #getParentEdge()
+	 * @see #setParentEdge(IfcEdge)
+	 * @generated
+	 */
+	boolean isSetParentEdge();
 
 } // IfcSubedge

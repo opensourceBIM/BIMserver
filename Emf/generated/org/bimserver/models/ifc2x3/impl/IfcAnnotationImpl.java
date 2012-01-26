@@ -67,4 +67,22 @@ public class IfcAnnotationImpl extends IfcProductImpl implements IfcAnnotation {
 		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc2x3Package.Literals.IFC_ANNOTATION__CONTAINED_IN_STRUCTURE, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetContainedInStructure() {
+		eUnset(Ifc2x3Package.Literals.IFC_ANNOTATION__CONTAINED_IN_STRUCTURE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetContainedInStructure() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ANNOTATION__CONTAINED_IN_STRUCTURE);
+	}
+
 } //IfcAnnotationImpl

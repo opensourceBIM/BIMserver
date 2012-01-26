@@ -49,12 +49,35 @@ public interface IfcGrid extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>UAxes</em>' reference list.
+	 * @see #isSetUAxes()
+	 * @see #unsetUAxes()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGrid_UAxes()
 	 * @see org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfU
-	 * @model opposite="PartOfU"
+	 * @model opposite="PartOfU" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcGridAxis> getUAxes();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getUAxes <em>UAxes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUAxes()
+	 * @see #getUAxes()
+	 * @generated
+	 */
+	void unsetUAxes();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getUAxes <em>UAxes</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>UAxes</em>' reference list is set.
+	 * @see #unsetUAxes()
+	 * @see #getUAxes()
+	 * @generated
+	 */
+	boolean isSetUAxes();
 
 	/**
 	 * Returns the value of the '<em><b>VAxes</b></em>' reference list.
@@ -67,12 +90,35 @@ public interface IfcGrid extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>VAxes</em>' reference list.
+	 * @see #isSetVAxes()
+	 * @see #unsetVAxes()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGrid_VAxes()
 	 * @see org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfV
-	 * @model opposite="PartOfV"
+	 * @model opposite="PartOfV" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcGridAxis> getVAxes();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getVAxes <em>VAxes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVAxes()
+	 * @see #getVAxes()
+	 * @generated
+	 */
+	void unsetVAxes();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getVAxes <em>VAxes</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>VAxes</em>' reference list is set.
+	 * @see #unsetVAxes()
+	 * @see #getVAxes()
+	 * @generated
+	 */
+	boolean isSetVAxes();
 
 	/**
 	 * Returns the value of the '<em><b>WAxes</b></em>' reference list.
@@ -125,10 +171,33 @@ public interface IfcGrid extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contained In Structure</em>' reference list.
+	 * @see #isSetContainedInStructure()
+	 * @see #unsetContainedInStructure()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGrid_ContainedInStructure()
-	 * @model upper="2"
+	 * @model unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelContainedInSpatialStructure> getContainedInStructure();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getContainedInStructure <em>Contained In Structure</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContainedInStructure()
+	 * @see #getContainedInStructure()
+	 * @generated
+	 */
+	void unsetContainedInStructure();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getContainedInStructure <em>Contained In Structure</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Contained In Structure</em>' reference list is set.
+	 * @see #unsetContainedInStructure()
+	 * @see #getContainedInStructure()
+	 * @generated
+	 */
+	boolean isSetContainedInStructure();
 
 } // IfcGrid

@@ -174,12 +174,12 @@ public class Express2EMF {
 								}
 								EClassifier type = ((EClass) eType).getEStructuralFeature("wrappedValue").getEType();
 								eAttribute.setEType(type);
-								// eAttribute.setUnsettable(((ExplicitAttribute)
-								// attrib).isOptional());
+								eAttribute.setUnsettable(true);
 								eClass.getEStructuralFeatures().add(eAttribute);
 								if (type == EcorePackage.eINSTANCE.getEDouble()) {
 									EAttribute doubleStringAttribute = eFactory.createEAttribute();
 									doubleStringAttribute.setName(attributeName.getName() + "AsString");
+									doubleStringAttribute.setUnsettable(true);
 									doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 									eClass.getEStructuralFeatures().add(doubleStringAttribute);
 								}
@@ -194,6 +194,7 @@ public class Express2EMF {
 								// RefLatitude and RefLongitude
 								// eRef.setUnsettable(((ExplicitAttribute)
 								// attrib).isOptional());
+								eReference.setUnsettable(true);
 								eReference.setEType(eType);
 								eClass.getEStructuralFeatures().add(eReference);
 							}
@@ -286,6 +287,7 @@ public class Express2EMF {
 	private void addInverseAttribute(Attribute attrib, EClass cls) {
 		InverseAttribute inverseAttribute = (InverseAttribute) attrib;
 		EReference eRef = eFactory.createEReference();
+		eRef.setUnsettable(true);
 		eRef.setName(attrib.getName());
 		if (inverseAttribute.getMax_cardinality() != null) {
 			IntegerBound max_cardinality = (IntegerBound) inverseAttribute.getMax_cardinality();
@@ -337,6 +339,7 @@ public class Express2EMF {
 			NamedType nt = (NamedType) domain;
 			if (nt instanceof EnumerationType) {
 				EAttribute enumAttrib = eFactory.createEAttribute();
+				enumAttrib.setUnsettable(true);
 				enumAttrib.setName(attrib.getName());
 				EClassifier eType = schemaPack.getEClassifier(nt.getName());
 				enumAttrib.setEType(eType);
@@ -347,6 +350,7 @@ public class Express2EMF {
 				EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());
 				if (wrappedValueSuperClass.isSuperTypeOf((EClass) eType) && !eType.getName().equals("IfcGloballyUniqueId")) {
 					EAttribute eAttribute = eFactory.createEAttribute();
+					eAttribute.setUnsettable(true);
 					eAttribute.setName(attrib.getName());
 					if (eAttribute.getName().equals("RefLatitude") || eAttribute.getName().equals("RefLongitude")) {
 						eAttribute.setUpperBound(3);
@@ -354,13 +358,12 @@ public class Express2EMF {
 					}
 					EClassifier type = ((EClass) eType).getEStructuralFeature("wrappedValue").getEType();
 					eAttribute.setEType(type);
-					eAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
 					cls.getEStructuralFeatures().add(eAttribute);
 					if (type == EcorePackage.eINSTANCE.getEDouble()) {
 						EAttribute doubleStringAttribute = eFactory.createEAttribute();
 						doubleStringAttribute.setName(attrib.getName() + "AsString");
 						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-						doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+						doubleStringAttribute.setUnsettable(true);
 						cls.getEStructuralFeatures().add(doubleStringAttribute);
 					}
 				} else {
@@ -369,7 +372,7 @@ public class Express2EMF {
 					// Hardcoded hack to fix multiplicity for
 					// IfcSpatialStructureElement which references
 					// RefLatitude and RefLongitude
-					eRef.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+					eRef.setUnsettable(true);
 					eRef.setEType(eType);
 					cls.getEStructuralFeatures().add(eRef);
 				}
@@ -390,7 +393,7 @@ public class Express2EMF {
 					}
 					EClassifier type = ((EClass) eType).getEStructuralFeature("wrappedValue").getEType();
 					eAttribute.setEType(type);
-					eAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+					eAttribute.setUnsettable(true);
 					eAttribute.setUnique(false);
 					cls.getEStructuralFeatures().add(eAttribute);
 					if (type == EcorePackage.eINSTANCE.getEDouble()) {
@@ -398,7 +401,7 @@ public class Express2EMF {
 						doubleStringAttribute.setName(attrib.getName() + "AsString");
 						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 						doubleStringAttribute.setUpperBound(-1);
-						doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+						doubleStringAttribute.setUnsettable(true);
 						doubleStringAttribute.setUpperBound(eAttribute.getUpperBound());
 						doubleStringAttribute.setUnique(false);
 						cls.getEStructuralFeatures().add(doubleStringAttribute);
@@ -406,6 +409,7 @@ public class Express2EMF {
 				} else if (eType == EcorePackage.eINSTANCE.getEDouble()) {
 					EAttribute eAttribute = eFactory.createEAttribute();
 					eAttribute.setName(attrib.getName());
+					eAttribute.setUnsettable(true);
 					eAttribute.setUnique(false);
 					eAttribute.setEType(EcorePackage.eINSTANCE.getEAttribute());
 					cls.getEStructuralFeatures().add(eAttribute);
@@ -414,7 +418,7 @@ public class Express2EMF {
 					doubleStringAttribute.setName(attrib.getName() + "AsString");
 					doubleStringAttribute.setUpperBound(-1);
 					doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-					doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+					doubleStringAttribute.setUnsettable(true);
 					doubleStringAttribute.setUpperBound(eAttribute.getUpperBound());
 					doubleStringAttribute.setUnique(false);
 					cls.getEStructuralFeatures().add(doubleStringAttribute);
@@ -425,7 +429,7 @@ public class Express2EMF {
 					// Hardcoded hack to fix multiplicity for
 					// IfcSpatialStructureElement which references
 					// RefLatitude and RefLongitude
-					eRef.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+					eRef.setUnsettable(true);
 					eRef.setEType(eType);
 					eRef.setUnique(false);
 					// EClass cls = (EClass)
@@ -438,6 +442,7 @@ public class Express2EMF {
 				// cls.getEStructuralFeatures().add(eRef);
 			} else if (bt instanceof RealType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(true);
 				eAttribute.setName(attrib.getName());
 				eAttribute.setUpperBound(-1);
 				eAttribute.setUnique(false);
@@ -448,7 +453,7 @@ public class Express2EMF {
 				doubleStringAttribute.setName(attrib.getName() + "AsString");
 				doubleStringAttribute.setUpperBound(-1);
 				doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
-				doubleStringAttribute.setUnsettable(((ExplicitAttribute) attrib).isOptional());
+				doubleStringAttribute.setUnsettable(true);
 				doubleStringAttribute.setUpperBound(eAttribute.getUpperBound());
 				doubleStringAttribute.setUnique(false);
 				cls.getEStructuralFeatures().add(doubleStringAttribute);
@@ -458,6 +463,7 @@ public class Express2EMF {
 				eAttribute.setUpperBound(-1);
 				eAttribute.setUnique(false);
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+				eAttribute.setUnsettable(true);
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (bt instanceof LogicalType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
@@ -465,6 +471,7 @@ public class Express2EMF {
 				eAttribute.setUpperBound(-1);
 				eAttribute.setUnique(false);
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEBoolean());
+				eAttribute.setUnsettable(true);
 				cls.getEStructuralFeatures().add(eAttribute);
 			}
 			if (domain instanceof ArrayType) {
@@ -476,30 +483,36 @@ public class Express2EMF {
 			EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());
 			if (domain == null) {
 				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(true);
 				eAttribute.setName(attrib.getName());
 				eAttribute.setEType(tristate);
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (domain instanceof IntegerType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(true);
 				eAttribute.setName(attrib.getName());
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (domain instanceof LogicalType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(true);
 				eAttribute.setName(attrib.getName());
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEBoolean());
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (domain instanceof RealType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(true);
 				eAttribute.setName(attrib.getName());
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEDouble());
 				cls.getEStructuralFeatures().add(eAttribute);
 				EAttribute eAttributeAsString = eFactory.createEAttribute();
+				eAttributeAsString.setUnsettable(true);
 				eAttributeAsString.setName(attrib.getName() + "AsString");
 				eAttributeAsString.setEType(EcorePackage.eINSTANCE.getEString());
 				cls.getEStructuralFeatures().add(eAttributeAsString);
 			} else if (domain instanceof StringType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(true);
 				eAttribute.setName(attrib.getName());
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 				cls.getEStructuralFeatures().add(eAttribute);
@@ -597,11 +610,13 @@ public class Express2EMF {
 		} else if (type.getDomain() instanceof LogicalType) {
 			wrapperAttrib.setEType(schemaPack.getEClassifier("Tristate"));
 		}
+		wrapperAttrib.setUnsettable(true);
 		testType.getEStructuralFeatures().add(wrapperAttrib);
 		if (wrapperAttrib.getEType() == ePackage.getEDouble()) {
 			EAttribute doubleStringAttribute = eFactory.createEAttribute();
 			doubleStringAttribute.setEType(ePackage.getEString());
 			doubleStringAttribute.setName("wrappedValueAsString");
+			doubleStringAttribute.setUnsettable(true);
 			testType.getEStructuralFeatures().add(doubleStringAttribute);
 		}
 	}

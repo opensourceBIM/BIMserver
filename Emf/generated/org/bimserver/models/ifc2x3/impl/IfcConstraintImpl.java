@@ -110,6 +110,24 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__DESCRIPTION, true);
 	}
@@ -157,6 +175,24 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	public void setConstraintGrade(IfcConstraintEnum newConstraintGrade) {
 		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE, newConstraintGrade);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetConstraintGrade() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConstraintGrade() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE);
 	}
 
 	/**
@@ -318,9 +354,45 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetClassifiedAs() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__CLASSIFIED_AS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetClassifiedAs() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CLASSIFIED_AS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintRelationship> getRelatesConstraints() {
 		return (EList<IfcConstraintRelationship>) eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatesConstraints() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatesConstraints() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS);
 	}
 
 	/**
@@ -338,9 +410,45 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsRelatedWith() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__IS_RELATED_WITH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsRelatedWith() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__IS_RELATED_WITH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyConstraintRelationship> getPropertiesForConstraint() {
 		return (EList<IfcPropertyConstraintRelationship>) eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPropertiesForConstraint() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPropertiesForConstraint() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT);
 	}
 
 	/**
@@ -358,9 +466,45 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetAggregates() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__AGGREGATES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAggregates() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__AGGREGATES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintAggregationRelationship> getIsAggregatedIn() {
 		return (EList<IfcConstraintAggregationRelationship>) eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsAggregatedIn() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsAggregatedIn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN);
 	}
 
 } //IfcConstraintImpl

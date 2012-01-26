@@ -72,4 +72,22 @@ public class IfcDescriptiveMeasureImpl extends WrappedValueImpl implements IfcDe
 		eSet(Ifc2x3Package.Literals.IFC_DESCRIPTIVE_MEASURE__WRAPPED_VALUE, newWrappedValue);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWrappedValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_DESCRIPTIVE_MEASURE__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWrappedValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DESCRIPTIVE_MEASURE__WRAPPED_VALUE);
+	}
+
 } //IfcDescriptiveMeasureImpl

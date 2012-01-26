@@ -134,4 +134,22 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 		return (EList<IfcRelDefinesByType>) eGet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__OBJECT_TYPE_OF, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetObjectTypeOf() {
+		eUnset(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__OBJECT_TYPE_OF);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetObjectTypeOf() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__OBJECT_TYPE_OF);
+	}
+
 } //IfcTypeObjectImpl

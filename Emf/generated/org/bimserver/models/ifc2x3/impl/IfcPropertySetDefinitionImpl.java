@@ -74,9 +74,45 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPropertyDefinitionOf() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_SET_DEFINITION__PROPERTY_DEFINITION_OF);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPropertyDefinitionOf() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_SET_DEFINITION__PROPERTY_DEFINITION_OF);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTypeObject> getDefinesType() {
 		return (EList<IfcTypeObject>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_TYPE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDefinesType() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefinesType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_TYPE);
 	}
 
 } //IfcPropertySetDefinitionImpl

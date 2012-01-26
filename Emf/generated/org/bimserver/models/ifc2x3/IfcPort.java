@@ -47,10 +47,12 @@ public interface IfcPort extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contained In</em>' reference.
+	 * @see #isSetContainedIn()
+	 * @see #unsetContainedIn()
 	 * @see #setContainedIn(IfcRelConnectsPortToElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPort_ContainedIn()
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement#getRelatingPort
-	 * @model opposite="RelatingPort"
+	 * @model opposite="RelatingPort" unsettable="true"
 	 * @generated
 	 */
 	IfcRelConnectsPortToElement getContainedIn();
@@ -60,10 +62,35 @@ public interface IfcPort extends IfcProduct {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Contained In</em>' reference.
+	 * @see #isSetContainedIn()
+	 * @see #unsetContainedIn()
 	 * @see #getContainedIn()
 	 * @generated
 	 */
 	void setContainedIn(IfcRelConnectsPortToElement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPort#getContainedIn <em>Contained In</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContainedIn()
+	 * @see #getContainedIn()
+	 * @see #setContainedIn(IfcRelConnectsPortToElement)
+	 * @generated
+	 */
+	void unsetContainedIn();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPort#getContainedIn <em>Contained In</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Contained In</em>' reference is set.
+	 * @see #unsetContainedIn()
+	 * @see #getContainedIn()
+	 * @see #setContainedIn(IfcRelConnectsPortToElement)
+	 * @generated
+	 */
+	boolean isSetContainedIn();
 
 	/**
 	 * Returns the value of the '<em><b>Connected From</b></em>' reference list.
@@ -76,12 +103,35 @@ public interface IfcPort extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connected From</em>' reference list.
+	 * @see #isSetConnectedFrom()
+	 * @see #unsetConnectedFrom()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPort_ConnectedFrom()
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsPorts#getRelatedPort
-	 * @model opposite="RelatedPort" upper="2"
+	 * @model opposite="RelatedPort" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelConnectsPorts> getConnectedFrom();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPort#getConnectedFrom <em>Connected From</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetConnectedFrom()
+	 * @see #getConnectedFrom()
+	 * @generated
+	 */
+	void unsetConnectedFrom();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPort#getConnectedFrom <em>Connected From</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Connected From</em>' reference list is set.
+	 * @see #unsetConnectedFrom()
+	 * @see #getConnectedFrom()
+	 * @generated
+	 */
+	boolean isSetConnectedFrom();
 
 	/**
 	 * Returns the value of the '<em><b>Connected To</b></em>' reference list.
@@ -94,11 +144,34 @@ public interface IfcPort extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connected To</em>' reference list.
+	 * @see #isSetConnectedTo()
+	 * @see #unsetConnectedTo()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPort_ConnectedTo()
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsPorts#getRelatingPort
-	 * @model opposite="RelatingPort" upper="2"
+	 * @model opposite="RelatingPort" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelConnectsPorts> getConnectedTo();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPort#getConnectedTo <em>Connected To</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetConnectedTo()
+	 * @see #getConnectedTo()
+	 * @generated
+	 */
+	void unsetConnectedTo();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPort#getConnectedTo <em>Connected To</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Connected To</em>' reference list is set.
+	 * @see #unsetConnectedTo()
+	 * @see #getConnectedTo()
+	 * @generated
+	 */
+	boolean isSetConnectedTo();
 
 } // IfcPort

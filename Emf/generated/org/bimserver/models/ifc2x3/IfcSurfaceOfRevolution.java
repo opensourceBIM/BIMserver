@@ -42,9 +42,11 @@ public interface IfcSurfaceOfRevolution extends IfcSweptSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Axis Position</em>' reference.
+	 * @see #isSetAxisPosition()
+	 * @see #unsetAxisPosition()
 	 * @see #setAxisPosition(IfcAxis1Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceOfRevolution_AxisPosition()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis1Placement getAxisPosition();
@@ -54,9 +56,34 @@ public interface IfcSurfaceOfRevolution extends IfcSweptSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Axis Position</em>' reference.
+	 * @see #isSetAxisPosition()
+	 * @see #unsetAxisPosition()
 	 * @see #getAxisPosition()
 	 * @generated
 	 */
 	void setAxisPosition(IfcAxis1Placement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfRevolution#getAxisPosition <em>Axis Position</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAxisPosition()
+	 * @see #getAxisPosition()
+	 * @see #setAxisPosition(IfcAxis1Placement)
+	 * @generated
+	 */
+	void unsetAxisPosition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfRevolution#getAxisPosition <em>Axis Position</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Axis Position</em>' reference is set.
+	 * @see #unsetAxisPosition()
+	 * @see #getAxisPosition()
+	 * @see #setAxisPosition(IfcAxis1Placement)
+	 * @generated
+	 */
+	boolean isSetAxisPosition();
 
 } // IfcSurfaceOfRevolution

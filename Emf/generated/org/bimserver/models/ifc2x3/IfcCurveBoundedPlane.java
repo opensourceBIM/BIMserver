@@ -47,9 +47,11 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Basis Surface</em>' reference.
+	 * @see #isSetBasisSurface()
+	 * @see #unsetBasisSurface()
 	 * @see #setBasisSurface(IfcPlane)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveBoundedPlane_BasisSurface()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcPlane getBasisSurface();
@@ -59,10 +61,35 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Basis Surface</em>' reference.
+	 * @see #isSetBasisSurface()
+	 * @see #unsetBasisSurface()
 	 * @see #getBasisSurface()
 	 * @generated
 	 */
 	void setBasisSurface(IfcPlane value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getBasisSurface <em>Basis Surface</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBasisSurface()
+	 * @see #getBasisSurface()
+	 * @see #setBasisSurface(IfcPlane)
+	 * @generated
+	 */
+	void unsetBasisSurface();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getBasisSurface <em>Basis Surface</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Basis Surface</em>' reference is set.
+	 * @see #unsetBasisSurface()
+	 * @see #getBasisSurface()
+	 * @see #setBasisSurface(IfcPlane)
+	 * @generated
+	 */
+	boolean isSetBasisSurface();
 
 	/**
 	 * Returns the value of the '<em><b>Outer Boundary</b></em>' reference.
@@ -73,9 +100,11 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Outer Boundary</em>' reference.
+	 * @see #isSetOuterBoundary()
+	 * @see #unsetOuterBoundary()
 	 * @see #setOuterBoundary(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveBoundedPlane_OuterBoundary()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurve getOuterBoundary();
@@ -85,10 +114,35 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Outer Boundary</em>' reference.
+	 * @see #isSetOuterBoundary()
+	 * @see #unsetOuterBoundary()
 	 * @see #getOuterBoundary()
 	 * @generated
 	 */
 	void setOuterBoundary(IfcCurve value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getOuterBoundary <em>Outer Boundary</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOuterBoundary()
+	 * @see #getOuterBoundary()
+	 * @see #setOuterBoundary(IfcCurve)
+	 * @generated
+	 */
+	void unsetOuterBoundary();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getOuterBoundary <em>Outer Boundary</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Outer Boundary</em>' reference is set.
+	 * @see #unsetOuterBoundary()
+	 * @see #getOuterBoundary()
+	 * @see #setOuterBoundary(IfcCurve)
+	 * @generated
+	 */
+	boolean isSetOuterBoundary();
 
 	/**
 	 * Returns the value of the '<em><b>Inner Boundaries</b></em>' reference list.
@@ -100,11 +154,34 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inner Boundaries</em>' reference list.
+	 * @see #isSetInnerBoundaries()
+	 * @see #unsetInnerBoundaries()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveBoundedPlane_InnerBoundaries()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcCurve> getInnerBoundaries();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getInnerBoundaries <em>Inner Boundaries</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInnerBoundaries()
+	 * @see #getInnerBoundaries()
+	 * @generated
+	 */
+	void unsetInnerBoundaries();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getInnerBoundaries <em>Inner Boundaries</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Inner Boundaries</em>' reference list is set.
+	 * @see #unsetInnerBoundaries()
+	 * @see #getInnerBoundaries()
+	 * @generated
+	 */
+	boolean isSetInnerBoundaries();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -115,9 +192,11 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveBoundedPlane_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -127,9 +206,34 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveBoundedPlane#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcCurveBoundedPlane

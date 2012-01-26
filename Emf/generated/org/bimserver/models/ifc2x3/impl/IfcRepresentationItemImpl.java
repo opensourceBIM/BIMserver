@@ -86,9 +86,45 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLayerAssignments() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLayerAssignments() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStyledItem> getStyledByItem() {
 		return (EList<IfcStyledItem>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION_ITEM__STYLED_BY_ITEM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetStyledByItem() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION_ITEM__STYLED_BY_ITEM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStyledByItem() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION_ITEM__STYLED_BY_ITEM);
 	}
 
 } //IfcRepresentationItemImpl

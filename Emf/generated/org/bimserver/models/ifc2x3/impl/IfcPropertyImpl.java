@@ -97,6 +97,24 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PROPERTY__DESCRIPTION, true);
 	}
@@ -143,6 +161,24 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPropertyForDependance() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPropertyForDependance() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyDependsOn() {
 		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON, true);
@@ -153,9 +189,45 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPropertyDependsOn() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPropertyDependsOn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcComplexProperty> getPartOfComplex() {
 		return (EList<IfcComplexProperty>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY__PART_OF_COMPLEX, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPartOfComplex() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY__PART_OF_COMPLEX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPartOfComplex() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY__PART_OF_COMPLEX);
 	}
 
 } //IfcPropertyImpl

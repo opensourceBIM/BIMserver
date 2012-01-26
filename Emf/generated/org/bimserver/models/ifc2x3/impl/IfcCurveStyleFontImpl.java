@@ -116,4 +116,22 @@ public class IfcCurveStyleFontImpl extends IdEObjectImpl implements IfcCurveStyl
 		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPatternList() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPatternList() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST);
+	}
+
 } //IfcCurveStyleFontImpl

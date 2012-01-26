@@ -78,6 +78,24 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCountValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCountValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getCountValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING, true);
 	}
@@ -89,6 +107,24 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl implemen
 	 */
 	public void setCountValueAsString(String newCountValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING, newCountValueAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCountValueAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCountValueAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING);
 	}
 
 } //IfcQuantityCountImpl

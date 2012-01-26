@@ -44,9 +44,11 @@ public interface IfcEnvironmentalImpactValue extends IfcAppliedValue {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Impact Type</em>' attribute.
+	 * @see #isSetImpactType()
+	 * @see #unsetImpactType()
 	 * @see #setImpactType(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEnvironmentalImpactValue_ImpactType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getImpactType();
@@ -56,10 +58,35 @@ public interface IfcEnvironmentalImpactValue extends IfcAppliedValue {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Impact Type</em>' attribute.
+	 * @see #isSetImpactType()
+	 * @see #unsetImpactType()
 	 * @see #getImpactType()
 	 * @generated
 	 */
 	void setImpactType(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEnvironmentalImpactValue#getImpactType <em>Impact Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetImpactType()
+	 * @see #getImpactType()
+	 * @see #setImpactType(String)
+	 * @generated
+	 */
+	void unsetImpactType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEnvironmentalImpactValue#getImpactType <em>Impact Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Impact Type</em>' attribute is set.
+	 * @see #unsetImpactType()
+	 * @see #getImpactType()
+	 * @see #setImpactType(String)
+	 * @generated
+	 */
+	boolean isSetImpactType();
 
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.
@@ -72,9 +99,11 @@ public interface IfcEnvironmentalImpactValue extends IfcAppliedValue {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Category</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcEnvironmentalImpactCategoryEnum
+	 * @see #isSetCategory()
+	 * @see #unsetCategory()
 	 * @see #setCategory(IfcEnvironmentalImpactCategoryEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEnvironmentalImpactValue_Category()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcEnvironmentalImpactCategoryEnum getCategory();
@@ -85,10 +114,35 @@ public interface IfcEnvironmentalImpactValue extends IfcAppliedValue {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Category</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcEnvironmentalImpactCategoryEnum
+	 * @see #isSetCategory()
+	 * @see #unsetCategory()
 	 * @see #getCategory()
 	 * @generated
 	 */
 	void setCategory(IfcEnvironmentalImpactCategoryEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEnvironmentalImpactValue#getCategory <em>Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCategory()
+	 * @see #getCategory()
+	 * @see #setCategory(IfcEnvironmentalImpactCategoryEnum)
+	 * @generated
+	 */
+	void unsetCategory();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEnvironmentalImpactValue#getCategory <em>Category</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Category</em>' attribute is set.
+	 * @see #unsetCategory()
+	 * @see #getCategory()
+	 * @see #setCategory(IfcEnvironmentalImpactCategoryEnum)
+	 * @generated
+	 */
+	boolean isSetCategory();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Category</b></em>' attribute.

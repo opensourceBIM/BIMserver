@@ -129,6 +129,24 @@ public class IfcCurveStyleFontAndScalingImpl extends IdEObjectImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCurveFont() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCurveFont() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getCurveFontScaling() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING, true);
 	}
@@ -147,6 +165,24 @@ public class IfcCurveStyleFontAndScalingImpl extends IdEObjectImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCurveFontScaling() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCurveFontScaling() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getCurveFontScalingAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING, true);
 	}
@@ -158,6 +194,24 @@ public class IfcCurveStyleFontAndScalingImpl extends IdEObjectImpl implements If
 	 */
 	public void setCurveFontScalingAsString(String newCurveFontScalingAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING, newCurveFontScalingAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCurveFontScalingAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCurveFontScalingAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING);
 	}
 
 } //IfcCurveStyleFontAndScalingImpl

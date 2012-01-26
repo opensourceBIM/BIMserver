@@ -72,4 +72,22 @@ public class IfcImageTextureImpl extends IfcSurfaceTextureImpl implements IfcIma
 		eSet(Ifc2x3Package.Literals.IFC_IMAGE_TEXTURE__URL_REFERENCE, newUrlReference);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetUrlReference() {
+		eUnset(Ifc2x3Package.Literals.IFC_IMAGE_TEXTURE__URL_REFERENCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetUrlReference() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_IMAGE_TEXTURE__URL_REFERENCE);
+	}
+
 } //IfcImageTextureImpl

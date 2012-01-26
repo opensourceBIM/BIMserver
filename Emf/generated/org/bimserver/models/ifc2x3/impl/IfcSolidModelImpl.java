@@ -72,4 +72,22 @@ public class IfcSolidModelImpl extends IfcGeometricRepresentationItemImpl implem
 		eSet(Ifc2x3Package.Literals.IFC_SOLID_MODEL__DIM, newDim);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_SOLID_MODEL__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SOLID_MODEL__DIM);
+	}
+
 } //IfcSolidModelImpl

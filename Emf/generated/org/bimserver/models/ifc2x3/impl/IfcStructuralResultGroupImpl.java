@@ -86,6 +86,24 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTheoryType() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__THEORY_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTheoryType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__THEORY_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcStructuralLoadGroup getResultForLoadGroup() {
 		return (IfcStructuralLoadGroup) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_FOR_LOAD_GROUP, true);
 	}
@@ -140,9 +158,45 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsLinear() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__IS_LINEAR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsLinear() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__IS_LINEAR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAnalysisModel> getResultGroupFor() {
 		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_GROUP_FOR, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetResultGroupFor() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_GROUP_FOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetResultGroupFor() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_GROUP_FOR);
 	}
 
 } //IfcStructuralResultGroupImpl

@@ -77,9 +77,45 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDefiningValues() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefiningValues() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getDefinedValues() {
 		return (EList<IfcValue>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDefinedValues() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefinedValues() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES);
 	}
 
 	/**

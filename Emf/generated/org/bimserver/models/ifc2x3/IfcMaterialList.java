@@ -45,10 +45,33 @@ public interface IfcMaterialList extends IfcMaterialSelect, IfcObjectReferenceSe
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Materials</em>' reference list.
+	 * @see #isSetMaterials()
+	 * @see #unsetMaterials()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialList_Materials()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcMaterial> getMaterials();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialList#getMaterials <em>Materials</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaterials()
+	 * @see #getMaterials()
+	 * @generated
+	 */
+	void unsetMaterials();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialList#getMaterials <em>Materials</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Materials</em>' reference list is set.
+	 * @see #unsetMaterials()
+	 * @see #getMaterials()
+	 * @generated
+	 */
+	boolean isSetMaterials();
 
 } // IfcMaterialList

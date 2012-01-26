@@ -371,4 +371,22 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl imp
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTANCE_METHOD, newReflectanceMethod);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetReflectanceMethod() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTANCE_METHOD);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReflectanceMethod() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTANCE_METHOD);
+	}
+
 } //IfcSurfaceStyleRenderingImpl

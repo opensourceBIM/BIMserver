@@ -51,9 +51,11 @@ public interface IfcClassification extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' attribute.
+	 * @see #isSetSource()
+	 * @see #unsetSource()
 	 * @see #setSource(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassification_Source()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getSource();
@@ -63,10 +65,35 @@ public interface IfcClassification extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' attribute.
+	 * @see #isSetSource()
+	 * @see #unsetSource()
 	 * @see #getSource()
 	 * @generated
 	 */
 	void setSource(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getSource <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSource()
+	 * @see #getSource()
+	 * @see #setSource(String)
+	 * @generated
+	 */
+	void unsetSource();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getSource <em>Source</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Source</em>' attribute is set.
+	 * @see #unsetSource()
+	 * @see #getSource()
+	 * @see #setSource(String)
+	 * @generated
+	 */
+	boolean isSetSource();
 
 	/**
 	 * Returns the value of the '<em><b>Edition</b></em>' attribute.
@@ -77,9 +104,11 @@ public interface IfcClassification extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edition</em>' attribute.
+	 * @see #isSetEdition()
+	 * @see #unsetEdition()
 	 * @see #setEdition(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassification_Edition()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getEdition();
@@ -89,10 +118,35 @@ public interface IfcClassification extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Edition</em>' attribute.
+	 * @see #isSetEdition()
+	 * @see #unsetEdition()
 	 * @see #getEdition()
 	 * @generated
 	 */
 	void setEdition(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getEdition <em>Edition</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetEdition()
+	 * @see #getEdition()
+	 * @see #setEdition(String)
+	 * @generated
+	 */
+	void unsetEdition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getEdition <em>Edition</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Edition</em>' attribute is set.
+	 * @see #unsetEdition()
+	 * @see #getEdition()
+	 * @see #setEdition(String)
+	 * @generated
+	 */
+	boolean isSetEdition();
 
 	/**
 	 * Returns the value of the '<em><b>Edition Date</b></em>' reference.
@@ -156,9 +210,11 @@ public interface IfcClassification extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassification_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -168,10 +224,35 @@ public interface IfcClassification extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Contains</b></em>' reference list.
@@ -184,11 +265,34 @@ public interface IfcClassification extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contains</em>' reference list.
+	 * @see #isSetContains()
+	 * @see #unsetContains()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassification_Contains()
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationItem#getItemOf
-	 * @model opposite="ItemOf"
+	 * @model opposite="ItemOf" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcClassificationItem> getContains();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getContains <em>Contains</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContains()
+	 * @see #getContains()
+	 * @generated
+	 */
+	void unsetContains();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassification#getContains <em>Contains</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Contains</em>' reference list is set.
+	 * @see #unsetContains()
+	 * @see #getContains()
+	 * @generated
+	 */
+	boolean isSetContains();
 
 } // IfcClassification

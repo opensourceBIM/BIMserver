@@ -42,9 +42,11 @@ public interface IfcConic extends IfcCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #setPosition(IfcAxis2Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConic_Position()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis2Placement getPosition();
@@ -54,9 +56,34 @@ public interface IfcConic extends IfcCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #getPosition()
 	 * @generated
 	 */
 	void setPosition(IfcAxis2Placement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConic#getPosition <em>Position</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement)
+	 * @generated
+	 */
+	void unsetPosition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConic#getPosition <em>Position</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Position</em>' reference is set.
+	 * @see #unsetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement)
+	 * @generated
+	 */
+	boolean isSetPosition();
 
 } // IfcConic

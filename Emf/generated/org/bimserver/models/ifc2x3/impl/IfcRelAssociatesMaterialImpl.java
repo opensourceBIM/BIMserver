@@ -73,4 +73,22 @@ public class IfcRelAssociatesMaterialImpl extends IfcRelAssociatesImpl implement
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL, newRelatingMaterial);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingMaterial() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingMaterial() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL);
+	}
+
 } //IfcRelAssociatesMaterialImpl

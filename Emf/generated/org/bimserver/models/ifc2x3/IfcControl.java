@@ -46,11 +46,34 @@ public interface IfcControl extends IfcObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Controls</em>' reference list.
+	 * @see #isSetControls()
+	 * @see #unsetControls()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcControl_Controls()
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToControl#getRelatingControl
-	 * @model opposite="RelatingControl"
+	 * @model opposite="RelatingControl" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToControl> getControls();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcControl#getControls <em>Controls</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetControls()
+	 * @see #getControls()
+	 * @generated
+	 */
+	void unsetControls();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcControl#getControls <em>Controls</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Controls</em>' reference list is set.
+	 * @see #unsetControls()
+	 * @see #getControls()
+	 * @generated
+	 */
+	boolean isSetControls();
 
 } // IfcControl

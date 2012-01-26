@@ -50,9 +50,11 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transition</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTransitionCode
+	 * @see #isSetTransition()
+	 * @see #unsetTransition()
 	 * @see #setTransition(IfcTransitionCode)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeCurveSegment_Transition()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcTransitionCode getTransition();
@@ -63,10 +65,35 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transition</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTransitionCode
+	 * @see #isSetTransition()
+	 * @see #unsetTransition()
 	 * @see #getTransition()
 	 * @generated
 	 */
 	void setTransition(IfcTransitionCode value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getTransition <em>Transition</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTransition()
+	 * @see #getTransition()
+	 * @see #setTransition(IfcTransitionCode)
+	 * @generated
+	 */
+	void unsetTransition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getTransition <em>Transition</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Transition</em>' attribute is set.
+	 * @see #unsetTransition()
+	 * @see #getTransition()
+	 * @see #setTransition(IfcTransitionCode)
+	 * @generated
+	 */
+	boolean isSetTransition();
 
 	/**
 	 * Returns the value of the '<em><b>Same Sense</b></em>' attribute.
@@ -79,9 +106,11 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSameSense()
+	 * @see #unsetSameSense()
 	 * @see #setSameSense(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeCurveSegment_SameSense()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getSameSense();
@@ -92,10 +121,35 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSameSense()
+	 * @see #unsetSameSense()
 	 * @see #getSameSense()
 	 * @generated
 	 */
 	void setSameSense(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getSameSense <em>Same Sense</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSameSense()
+	 * @see #getSameSense()
+	 * @see #setSameSense(Tristate)
+	 * @generated
+	 */
+	void unsetSameSense();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getSameSense <em>Same Sense</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Same Sense</em>' attribute is set.
+	 * @see #unsetSameSense()
+	 * @see #getSameSense()
+	 * @see #setSameSense(Tristate)
+	 * @generated
+	 */
+	boolean isSetSameSense();
 
 	/**
 	 * Returns the value of the '<em><b>Parent Curve</b></em>' reference.
@@ -106,9 +160,11 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Curve</em>' reference.
+	 * @see #isSetParentCurve()
+	 * @see #unsetParentCurve()
 	 * @see #setParentCurve(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeCurveSegment_ParentCurve()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurve getParentCurve();
@@ -118,10 +174,35 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Curve</em>' reference.
+	 * @see #isSetParentCurve()
+	 * @see #unsetParentCurve()
 	 * @see #getParentCurve()
 	 * @generated
 	 */
 	void setParentCurve(IfcCurve value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getParentCurve <em>Parent Curve</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetParentCurve()
+	 * @see #getParentCurve()
+	 * @see #setParentCurve(IfcCurve)
+	 * @generated
+	 */
+	void unsetParentCurve();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getParentCurve <em>Parent Curve</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Parent Curve</em>' reference is set.
+	 * @see #unsetParentCurve()
+	 * @see #getParentCurve()
+	 * @see #setParentCurve(IfcCurve)
+	 * @generated
+	 */
+	boolean isSetParentCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Using Curves</b></em>' reference list.
@@ -134,12 +215,35 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Using Curves</em>' reference list.
+	 * @see #isSetUsingCurves()
+	 * @see #unsetUsingCurves()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeCurveSegment_UsingCurves()
 	 * @see org.bimserver.models.ifc2x3.IfcCompositeCurve#getSegments
-	 * @model opposite="Segments"
+	 * @model opposite="Segments" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcCompositeCurve> getUsingCurves();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getUsingCurves <em>Using Curves</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUsingCurves()
+	 * @see #getUsingCurves()
+	 * @generated
+	 */
+	void unsetUsingCurves();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getUsingCurves <em>Using Curves</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Using Curves</em>' reference list is set.
+	 * @see #unsetUsingCurves()
+	 * @see #getUsingCurves()
+	 * @generated
+	 */
+	boolean isSetUsingCurves();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -150,9 +254,11 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeCurveSegment_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -162,9 +268,34 @@ public interface IfcCompositeCurveSegment extends IfcGeometricRepresentationItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcCompositeCurveSegment

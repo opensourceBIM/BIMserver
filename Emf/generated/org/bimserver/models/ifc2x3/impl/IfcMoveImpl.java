@@ -82,6 +82,24 @@ public class IfcMoveImpl extends IfcTaskImpl implements IfcMove {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMoveFrom() {
+		eUnset(Ifc2x3Package.Literals.IFC_MOVE__MOVE_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMoveFrom() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MOVE__MOVE_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSpatialStructureElement getMoveTo() {
 		return (IfcSpatialStructureElement) eGet(Ifc2x3Package.Literals.IFC_MOVE__MOVE_TO, true);
 	}
@@ -93,6 +111,24 @@ public class IfcMoveImpl extends IfcTaskImpl implements IfcMove {
 	 */
 	public void setMoveTo(IfcSpatialStructureElement newMoveTo) {
 		eSet(Ifc2x3Package.Literals.IFC_MOVE__MOVE_TO, newMoveTo);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetMoveTo() {
+		eUnset(Ifc2x3Package.Literals.IFC_MOVE__MOVE_TO);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMoveTo() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MOVE__MOVE_TO);
 	}
 
 	/**

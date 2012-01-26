@@ -372,12 +372,35 @@ public interface IfcAppliedValue extends IfcObjectReferenceSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values Referenced</em>' reference list.
+	 * @see #isSetValuesReferenced()
+	 * @see #unsetValuesReferenced()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAppliedValue_ValuesReferenced()
 	 * @see org.bimserver.models.ifc2x3.IfcReferencesValueDocument#getReferencingValues
-	 * @model opposite="ReferencingValues"
+	 * @model opposite="ReferencingValues" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcReferencesValueDocument> getValuesReferenced();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValue#getValuesReferenced <em>Values Referenced</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetValuesReferenced()
+	 * @see #getValuesReferenced()
+	 * @generated
+	 */
+	void unsetValuesReferenced();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValue#getValuesReferenced <em>Values Referenced</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Values Referenced</em>' reference list is set.
+	 * @see #unsetValuesReferenced()
+	 * @see #getValuesReferenced()
+	 * @generated
+	 */
+	boolean isSetValuesReferenced();
 
 	/**
 	 * Returns the value of the '<em><b>Value Of Components</b></em>' reference list.
@@ -390,12 +413,35 @@ public interface IfcAppliedValue extends IfcObjectReferenceSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Of Components</em>' reference list.
+	 * @see #isSetValueOfComponents()
+	 * @see #unsetValueOfComponents()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAppliedValue_ValueOfComponents()
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getComponentOfTotal
-	 * @model opposite="ComponentOfTotal"
+	 * @model opposite="ComponentOfTotal" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcAppliedValueRelationship> getValueOfComponents();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValue#getValueOfComponents <em>Value Of Components</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetValueOfComponents()
+	 * @see #getValueOfComponents()
+	 * @generated
+	 */
+	void unsetValueOfComponents();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValue#getValueOfComponents <em>Value Of Components</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Value Of Components</em>' reference list is set.
+	 * @see #unsetValueOfComponents()
+	 * @see #getValueOfComponents()
+	 * @generated
+	 */
+	boolean isSetValueOfComponents();
 
 	/**
 	 * Returns the value of the '<em><b>Is Component In</b></em>' reference list.
@@ -408,11 +454,34 @@ public interface IfcAppliedValue extends IfcObjectReferenceSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Component In</em>' reference list.
+	 * @see #isSetIsComponentIn()
+	 * @see #unsetIsComponentIn()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAppliedValue_IsComponentIn()
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getComponents
-	 * @model opposite="Components"
+	 * @model opposite="Components" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcAppliedValueRelationship> getIsComponentIn();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValue#getIsComponentIn <em>Is Component In</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsComponentIn()
+	 * @see #getIsComponentIn()
+	 * @generated
+	 */
+	void unsetIsComponentIn();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValue#getIsComponentIn <em>Is Component In</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Component In</em>' reference list is set.
+	 * @see #unsetIsComponentIn()
+	 * @see #getIsComponentIn()
+	 * @generated
+	 */
+	boolean isSetIsComponentIn();
 
 } // IfcAppliedValue

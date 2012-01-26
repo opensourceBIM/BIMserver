@@ -44,9 +44,11 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extruded Direction</em>' reference.
+	 * @see #isSetExtrudedDirection()
+	 * @see #unsetExtrudedDirection()
 	 * @see #setExtrudedDirection(IfcDirection)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceOfLinearExtrusion_ExtrudedDirection()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDirection getExtrudedDirection();
@@ -56,10 +58,35 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Extruded Direction</em>' reference.
+	 * @see #isSetExtrudedDirection()
+	 * @see #unsetExtrudedDirection()
 	 * @see #getExtrudedDirection()
 	 * @generated
 	 */
 	void setExtrudedDirection(IfcDirection value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion#getExtrudedDirection <em>Extruded Direction</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetExtrudedDirection()
+	 * @see #getExtrudedDirection()
+	 * @see #setExtrudedDirection(IfcDirection)
+	 * @generated
+	 */
+	void unsetExtrudedDirection();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion#getExtrudedDirection <em>Extruded Direction</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Extruded Direction</em>' reference is set.
+	 * @see #unsetExtrudedDirection()
+	 * @see #getExtrudedDirection()
+	 * @see #setExtrudedDirection(IfcDirection)
+	 * @generated
+	 */
+	boolean isSetExtrudedDirection();
 
 	/**
 	 * Returns the value of the '<em><b>Depth</b></em>' attribute.
@@ -70,9 +97,11 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
+	 * @see #isSetDepth()
+	 * @see #unsetDepth()
 	 * @see #setDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceOfLinearExtrusion_Depth()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getDepth();
@@ -82,10 +111,35 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth</em>' attribute.
+	 * @see #isSetDepth()
+	 * @see #unsetDepth()
 	 * @see #getDepth()
 	 * @generated
 	 */
 	void setDepth(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion#getDepth <em>Depth</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDepth()
+	 * @see #getDepth()
+	 * @see #setDepth(double)
+	 * @generated
+	 */
+	void unsetDepth();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion#getDepth <em>Depth</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Depth</em>' attribute is set.
+	 * @see #unsetDepth()
+	 * @see #getDepth()
+	 * @see #setDepth(double)
+	 * @generated
+	 */
+	boolean isSetDepth();
 
 	/**
 	 * Returns the value of the '<em><b>Depth As String</b></em>' attribute.
@@ -96,9 +150,11 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth As String</em>' attribute.
+	 * @see #isSetDepthAsString()
+	 * @see #unsetDepthAsString()
 	 * @see #setDepthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceOfLinearExtrusion_DepthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getDepthAsString();
@@ -108,9 +164,34 @@ public interface IfcSurfaceOfLinearExtrusion extends IfcSweptSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth As String</em>' attribute.
+	 * @see #isSetDepthAsString()
+	 * @see #unsetDepthAsString()
 	 * @see #getDepthAsString()
 	 * @generated
 	 */
 	void setDepthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion#getDepthAsString <em>Depth As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDepthAsString()
+	 * @see #getDepthAsString()
+	 * @see #setDepthAsString(String)
+	 * @generated
+	 */
+	void unsetDepthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion#getDepthAsString <em>Depth As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Depth As String</em>' attribute is set.
+	 * @see #unsetDepthAsString()
+	 * @see #getDepthAsString()
+	 * @see #setDepthAsString(String)
+	 * @generated
+	 */
+	boolean isSetDepthAsString();
 
 } // IfcSurfaceOfLinearExtrusion

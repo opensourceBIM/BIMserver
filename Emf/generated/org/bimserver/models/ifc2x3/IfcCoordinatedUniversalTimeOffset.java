@@ -47,9 +47,11 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hour Offset</em>' attribute.
+	 * @see #isSetHourOffset()
+	 * @see #unsetHourOffset()
 	 * @see #setHourOffset(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCoordinatedUniversalTimeOffset_HourOffset()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getHourOffset();
@@ -59,10 +61,35 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Hour Offset</em>' attribute.
+	 * @see #isSetHourOffset()
+	 * @see #unsetHourOffset()
 	 * @see #getHourOffset()
 	 * @generated
 	 */
 	void setHourOffset(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCoordinatedUniversalTimeOffset#getHourOffset <em>Hour Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHourOffset()
+	 * @see #getHourOffset()
+	 * @see #setHourOffset(int)
+	 * @generated
+	 */
+	void unsetHourOffset();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCoordinatedUniversalTimeOffset#getHourOffset <em>Hour Offset</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Hour Offset</em>' attribute is set.
+	 * @see #unsetHourOffset()
+	 * @see #getHourOffset()
+	 * @see #setHourOffset(int)
+	 * @generated
+	 */
+	boolean isSetHourOffset();
 
 	/**
 	 * Returns the value of the '<em><b>Minute Offset</b></em>' attribute.
@@ -128,9 +155,11 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAheadOrBehind
+	 * @see #isSetSense()
+	 * @see #unsetSense()
 	 * @see #setSense(IfcAheadOrBehind)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCoordinatedUniversalTimeOffset_Sense()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAheadOrBehind getSense();
@@ -141,9 +170,34 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAheadOrBehind
+	 * @see #isSetSense()
+	 * @see #unsetSense()
 	 * @see #getSense()
 	 * @generated
 	 */
 	void setSense(IfcAheadOrBehind value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCoordinatedUniversalTimeOffset#getSense <em>Sense</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSense()
+	 * @see #getSense()
+	 * @see #setSense(IfcAheadOrBehind)
+	 * @generated
+	 */
+	void unsetSense();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCoordinatedUniversalTimeOffset#getSense <em>Sense</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sense</em>' attribute is set.
+	 * @see #unsetSense()
+	 * @see #getSense()
+	 * @see #setSense(IfcAheadOrBehind)
+	 * @generated
+	 */
+	boolean isSetSense();
 
 } // IfcCoordinatedUniversalTimeOffset

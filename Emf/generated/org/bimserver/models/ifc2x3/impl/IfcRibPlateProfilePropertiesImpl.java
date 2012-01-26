@@ -369,4 +369,22 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 		eSet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__DIRECTION, newDirection);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDirection() {
+		eUnset(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__DIRECTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirection() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__DIRECTION);
+	}
+
 } //IfcRibPlateProfilePropertiesImpl

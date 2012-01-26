@@ -82,6 +82,24 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRed() {
+		eUnset(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRed() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getRedAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, true);
 	}
@@ -93,6 +111,24 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setRedAsString(String newRedAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, newRedAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRedAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRedAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING);
 	}
 
 	/**
@@ -118,6 +154,24 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetGreen() {
+		eUnset(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGreen() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getGreenAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, true);
 	}
@@ -129,6 +183,24 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setGreenAsString(String newGreenAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, newGreenAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetGreenAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGreenAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING);
 	}
 
 	/**
@@ -154,6 +226,24 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetBlue() {
+		eUnset(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBlue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getBlueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, true);
 	}
@@ -165,6 +255,24 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setBlueAsString(String newBlueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, newBlueAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetBlueAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBlueAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING);
 	}
 
 } //IfcColourRgbImpl

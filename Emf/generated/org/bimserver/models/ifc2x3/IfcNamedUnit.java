@@ -43,9 +43,11 @@ public interface IfcNamedUnit extends IfcUnit {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dimensions</em>' reference.
+	 * @see #isSetDimensions()
+	 * @see #unsetDimensions()
 	 * @see #setDimensions(IfcDimensionalExponents)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcNamedUnit_Dimensions()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDimensionalExponents getDimensions();
@@ -55,10 +57,35 @@ public interface IfcNamedUnit extends IfcUnit {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dimensions</em>' reference.
+	 * @see #isSetDimensions()
+	 * @see #unsetDimensions()
 	 * @see #getDimensions()
 	 * @generated
 	 */
 	void setDimensions(IfcDimensionalExponents value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcNamedUnit#getDimensions <em>Dimensions</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDimensions()
+	 * @see #getDimensions()
+	 * @see #setDimensions(IfcDimensionalExponents)
+	 * @generated
+	 */
+	void unsetDimensions();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcNamedUnit#getDimensions <em>Dimensions</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dimensions</em>' reference is set.
+	 * @see #unsetDimensions()
+	 * @see #getDimensions()
+	 * @see #setDimensions(IfcDimensionalExponents)
+	 * @generated
+	 */
+	boolean isSetDimensions();
 
 	/**
 	 * Returns the value of the '<em><b>Unit Type</b></em>' attribute.
@@ -71,9 +98,11 @@ public interface IfcNamedUnit extends IfcUnit {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unit Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcUnitEnum
+	 * @see #isSetUnitType()
+	 * @see #unsetUnitType()
 	 * @see #setUnitType(IfcUnitEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcNamedUnit_UnitType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcUnitEnum getUnitType();
@@ -84,9 +113,34 @@ public interface IfcNamedUnit extends IfcUnit {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Unit Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcUnitEnum
+	 * @see #isSetUnitType()
+	 * @see #unsetUnitType()
 	 * @see #getUnitType()
 	 * @generated
 	 */
 	void setUnitType(IfcUnitEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcNamedUnit#getUnitType <em>Unit Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUnitType()
+	 * @see #getUnitType()
+	 * @see #setUnitType(IfcUnitEnum)
+	 * @generated
+	 */
+	void unsetUnitType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcNamedUnit#getUnitType <em>Unit Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Unit Type</em>' attribute is set.
+	 * @see #unsetUnitType()
+	 * @see #getUnitType()
+	 * @see #setUnitType(IfcUnitEnum)
+	 * @generated
+	 */
+	boolean isSetUnitType();
 
 } // IfcNamedUnit

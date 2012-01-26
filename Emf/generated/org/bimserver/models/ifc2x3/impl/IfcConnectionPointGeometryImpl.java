@@ -79,6 +79,24 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPointOnRelatingElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPointOnRelatingElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcPointOrVertexPoint getPointOnRelatedElement() {
 		return (IfcPointOrVertexPoint) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
 	}

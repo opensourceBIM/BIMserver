@@ -1024,9 +1024,11 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Critical</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetIsCritical()
+	 * @see #unsetIsCritical()
 	 * @see #setIsCritical(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_IsCritical()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getIsCritical();
@@ -1037,10 +1039,35 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Critical</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetIsCritical()
+	 * @see #unsetIsCritical()
 	 * @see #getIsCritical()
 	 * @generated
 	 */
 	void setIsCritical(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getIsCritical <em>Is Critical</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsCritical()
+	 * @see #getIsCritical()
+	 * @see #setIsCritical(Tristate)
+	 * @generated
+	 */
+	void unsetIsCritical();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getIsCritical <em>Is Critical</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Critical</em>' attribute is set.
+	 * @see #unsetIsCritical()
+	 * @see #getIsCritical()
+	 * @see #setIsCritical(Tristate)
+	 * @generated
+	 */
+	boolean isSetIsCritical();
 
 	/**
 	 * Returns the value of the '<em><b>Status Time</b></em>' reference.
@@ -1423,10 +1450,12 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Schedule Time Control Assigned</em>' reference.
+	 * @see #isSetScheduleTimeControlAssigned()
+	 * @see #unsetScheduleTimeControlAssigned()
 	 * @see #setScheduleTimeControlAssigned(IfcRelAssignsTasks)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcScheduleTimeControl_ScheduleTimeControlAssigned()
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsTasks#getTimeForTask
-	 * @model opposite="TimeForTask"
+	 * @model opposite="TimeForTask" unsettable="true"
 	 * @generated
 	 */
 	IfcRelAssignsTasks getScheduleTimeControlAssigned();
@@ -1436,9 +1465,34 @@ public interface IfcScheduleTimeControl extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Schedule Time Control Assigned</em>' reference.
+	 * @see #isSetScheduleTimeControlAssigned()
+	 * @see #unsetScheduleTimeControlAssigned()
 	 * @see #getScheduleTimeControlAssigned()
 	 * @generated
 	 */
 	void setScheduleTimeControlAssigned(IfcRelAssignsTasks value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getScheduleTimeControlAssigned <em>Schedule Time Control Assigned</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetScheduleTimeControlAssigned()
+	 * @see #getScheduleTimeControlAssigned()
+	 * @see #setScheduleTimeControlAssigned(IfcRelAssignsTasks)
+	 * @generated
+	 */
+	void unsetScheduleTimeControlAssigned();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcScheduleTimeControl#getScheduleTimeControlAssigned <em>Schedule Time Control Assigned</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Schedule Time Control Assigned</em>' reference is set.
+	 * @see #unsetScheduleTimeControlAssigned()
+	 * @see #getScheduleTimeControlAssigned()
+	 * @see #setScheduleTimeControlAssigned(IfcRelAssignsTasks)
+	 * @generated
+	 */
+	boolean isSetScheduleTimeControlAssigned();
 
 } // IfcScheduleTimeControl

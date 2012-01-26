@@ -45,10 +45,33 @@ public interface IfcConnectedFaceSet extends IfcTopologicalRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cfs Faces</em>' reference list.
+	 * @see #isSetCfsFaces()
+	 * @see #unsetCfsFaces()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectedFaceSet_CfsFaces()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcFace> getCfsFaces();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectedFaceSet#getCfsFaces <em>Cfs Faces</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCfsFaces()
+	 * @see #getCfsFaces()
+	 * @generated
+	 */
+	void unsetCfsFaces();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectedFaceSet#getCfsFaces <em>Cfs Faces</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Cfs Faces</em>' reference list is set.
+	 * @see #unsetCfsFaces()
+	 * @see #getCfsFaces()
+	 * @generated
+	 */
+	boolean isSetCfsFaces();
 
 } // IfcConnectedFaceSet

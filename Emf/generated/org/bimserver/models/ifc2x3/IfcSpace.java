@@ -50,9 +50,11 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Interior Or Exterior Space</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum
+	 * @see #isSetInteriorOrExteriorSpace()
+	 * @see #unsetInteriorOrExteriorSpace()
 	 * @see #setInteriorOrExteriorSpace(IfcInternalOrExternalEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpace_InteriorOrExteriorSpace()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcInternalOrExternalEnum getInteriorOrExteriorSpace();
@@ -63,10 +65,35 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Interior Or Exterior Space</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum
+	 * @see #isSetInteriorOrExteriorSpace()
+	 * @see #unsetInteriorOrExteriorSpace()
 	 * @see #getInteriorOrExteriorSpace()
 	 * @generated
 	 */
 	void setInteriorOrExteriorSpace(IfcInternalOrExternalEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getInteriorOrExteriorSpace <em>Interior Or Exterior Space</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInteriorOrExteriorSpace()
+	 * @see #getInteriorOrExteriorSpace()
+	 * @see #setInteriorOrExteriorSpace(IfcInternalOrExternalEnum)
+	 * @generated
+	 */
+	void unsetInteriorOrExteriorSpace();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getInteriorOrExteriorSpace <em>Interior Or Exterior Space</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Interior Or Exterior Space</em>' attribute is set.
+	 * @see #unsetInteriorOrExteriorSpace()
+	 * @see #getInteriorOrExteriorSpace()
+	 * @see #setInteriorOrExteriorSpace(IfcInternalOrExternalEnum)
+	 * @generated
+	 */
+	boolean isSetInteriorOrExteriorSpace();
 
 	/**
 	 * Returns the value of the '<em><b>Elevation With Flooring</b></em>' attribute.
@@ -185,12 +212,35 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Coverings</em>' reference list.
+	 * @see #isSetHasCoverings()
+	 * @see #unsetHasCoverings()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpace_HasCoverings()
 	 * @see org.bimserver.models.ifc2x3.IfcRelCoversSpaces#getRelatedSpace
-	 * @model opposite="RelatedSpace"
+	 * @model opposite="RelatedSpace" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelCoversSpaces> getHasCoverings();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getHasCoverings <em>Has Coverings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasCoverings()
+	 * @see #getHasCoverings()
+	 * @generated
+	 */
+	void unsetHasCoverings();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getHasCoverings <em>Has Coverings</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Coverings</em>' reference list is set.
+	 * @see #unsetHasCoverings()
+	 * @see #getHasCoverings()
+	 * @generated
+	 */
+	boolean isSetHasCoverings();
 
 	/**
 	 * Returns the value of the '<em><b>Bounded By</b></em>' reference list.
@@ -203,11 +253,34 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bounded By</em>' reference list.
+	 * @see #isSetBoundedBy()
+	 * @see #unsetBoundedBy()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpace_BoundedBy()
 	 * @see org.bimserver.models.ifc2x3.IfcRelSpaceBoundary#getRelatingSpace
-	 * @model opposite="RelatingSpace"
+	 * @model opposite="RelatingSpace" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelSpaceBoundary> getBoundedBy();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getBoundedBy <em>Bounded By</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBoundedBy()
+	 * @see #getBoundedBy()
+	 * @generated
+	 */
+	void unsetBoundedBy();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getBoundedBy <em>Bounded By</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Bounded By</em>' reference list is set.
+	 * @see #unsetBoundedBy()
+	 * @see #getBoundedBy()
+	 * @generated
+	 */
+	boolean isSetBoundedBy();
 
 } // IfcSpace

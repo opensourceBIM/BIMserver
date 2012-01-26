@@ -44,9 +44,11 @@ public interface IfcFurnitureType extends IfcFurnishingElementType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assembly Place</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAssemblyPlaceEnum
+	 * @see #isSetAssemblyPlace()
+	 * @see #unsetAssemblyPlace()
 	 * @see #setAssemblyPlace(IfcAssemblyPlaceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFurnitureType_AssemblyPlace()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAssemblyPlaceEnum getAssemblyPlace();
@@ -57,9 +59,34 @@ public interface IfcFurnitureType extends IfcFurnishingElementType {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Assembly Place</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAssemblyPlaceEnum
+	 * @see #isSetAssemblyPlace()
+	 * @see #unsetAssemblyPlace()
 	 * @see #getAssemblyPlace()
 	 * @generated
 	 */
 	void setAssemblyPlace(IfcAssemblyPlaceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFurnitureType#getAssemblyPlace <em>Assembly Place</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAssemblyPlace()
+	 * @see #getAssemblyPlace()
+	 * @see #setAssemblyPlace(IfcAssemblyPlaceEnum)
+	 * @generated
+	 */
+	void unsetAssemblyPlace();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFurnitureType#getAssemblyPlace <em>Assembly Place</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Assembly Place</em>' attribute is set.
+	 * @see #unsetAssemblyPlace()
+	 * @see #getAssemblyPlace()
+	 * @see #setAssemblyPlace(IfcAssemblyPlaceEnum)
+	 * @generated
+	 */
+	boolean isSetAssemblyPlace();
 
 } // IfcFurnitureType

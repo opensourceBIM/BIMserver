@@ -46,11 +46,34 @@ public interface IfcStructuralReaction extends IfcStructuralActivity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Causes</em>' reference list.
+	 * @see #isSetCauses()
+	 * @see #unsetCauses()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralReaction_Causes()
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralAction#getCausedBy
-	 * @model opposite="CausedBy"
+	 * @model opposite="CausedBy" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcStructuralAction> getCauses();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralReaction#getCauses <em>Causes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCauses()
+	 * @see #getCauses()
+	 * @generated
+	 */
+	void unsetCauses();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralReaction#getCauses <em>Causes</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Causes</em>' reference list is set.
+	 * @see #unsetCauses()
+	 * @see #getCauses()
+	 * @generated
+	 */
+	boolean isSetCauses();
 
 } // IfcStructuralReaction

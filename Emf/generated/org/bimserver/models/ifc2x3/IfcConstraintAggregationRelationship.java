@@ -158,10 +158,12 @@ public interface IfcConstraintAggregationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Constraint</em>' reference.
+	 * @see #isSetRelatingConstraint()
+	 * @see #unsetRelatingConstraint()
 	 * @see #setRelatingConstraint(IfcConstraint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraintAggregationRelationship_RelatingConstraint()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraint#getAggregates
-	 * @model opposite="Aggregates"
+	 * @model opposite="Aggregates" unsettable="true"
 	 * @generated
 	 */
 	IfcConstraint getRelatingConstraint();
@@ -171,10 +173,35 @@ public interface IfcConstraintAggregationRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Constraint</em>' reference.
+	 * @see #isSetRelatingConstraint()
+	 * @see #unsetRelatingConstraint()
 	 * @see #getRelatingConstraint()
 	 * @generated
 	 */
 	void setRelatingConstraint(IfcConstraint value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getRelatingConstraint <em>Relating Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingConstraint()
+	 * @see #getRelatingConstraint()
+	 * @see #setRelatingConstraint(IfcConstraint)
+	 * @generated
+	 */
+	void unsetRelatingConstraint();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getRelatingConstraint <em>Relating Constraint</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Constraint</em>' reference is set.
+	 * @see #unsetRelatingConstraint()
+	 * @see #getRelatingConstraint()
+	 * @see #setRelatingConstraint(IfcConstraint)
+	 * @generated
+	 */
+	boolean isSetRelatingConstraint();
 
 	/**
 	 * Returns the value of the '<em><b>Related Constraints</b></em>' reference list.
@@ -187,12 +214,35 @@ public interface IfcConstraintAggregationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Constraints</em>' reference list.
+	 * @see #isSetRelatedConstraints()
+	 * @see #unsetRelatedConstraints()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraintAggregationRelationship_RelatedConstraints()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraint#getIsAggregatedIn
-	 * @model opposite="IsAggregatedIn"
+	 * @model opposite="IsAggregatedIn" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcConstraint> getRelatedConstraints();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getRelatedConstraints <em>Related Constraints</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedConstraints()
+	 * @see #getRelatedConstraints()
+	 * @generated
+	 */
+	void unsetRelatedConstraints();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getRelatedConstraints <em>Related Constraints</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Constraints</em>' reference list is set.
+	 * @see #unsetRelatedConstraints()
+	 * @see #getRelatedConstraints()
+	 * @generated
+	 */
+	boolean isSetRelatedConstraints();
 
 	/**
 	 * Returns the value of the '<em><b>Logical Aggregator</b></em>' attribute.
@@ -205,9 +255,11 @@ public interface IfcConstraintAggregationRelationship extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Logical Aggregator</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLogicalOperatorEnum
+	 * @see #isSetLogicalAggregator()
+	 * @see #unsetLogicalAggregator()
 	 * @see #setLogicalAggregator(IfcLogicalOperatorEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraintAggregationRelationship_LogicalAggregator()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcLogicalOperatorEnum getLogicalAggregator();
@@ -218,9 +270,34 @@ public interface IfcConstraintAggregationRelationship extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Logical Aggregator</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLogicalOperatorEnum
+	 * @see #isSetLogicalAggregator()
+	 * @see #unsetLogicalAggregator()
 	 * @see #getLogicalAggregator()
 	 * @generated
 	 */
 	void setLogicalAggregator(IfcLogicalOperatorEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getLogicalAggregator <em>Logical Aggregator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLogicalAggregator()
+	 * @see #getLogicalAggregator()
+	 * @see #setLogicalAggregator(IfcLogicalOperatorEnum)
+	 * @generated
+	 */
+	void unsetLogicalAggregator();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getLogicalAggregator <em>Logical Aggregator</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Logical Aggregator</em>' attribute is set.
+	 * @see #unsetLogicalAggregator()
+	 * @see #getLogicalAggregator()
+	 * @see #setLogicalAggregator(IfcLogicalOperatorEnum)
+	 * @generated
+	 */
+	boolean isSetLogicalAggregator();
 
 } // IfcConstraintAggregationRelationship

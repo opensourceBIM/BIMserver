@@ -47,11 +47,34 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinates</em>' attribute list.
+	 * @see #isSetCoordinates()
+	 * @see #unsetCoordinates()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianPoint_Coordinates()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<Double> getCoordinates();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianPoint#getCoordinates <em>Coordinates</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCoordinates()
+	 * @see #getCoordinates()
+	 * @generated
+	 */
+	void unsetCoordinates();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianPoint#getCoordinates <em>Coordinates</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Coordinates</em>' attribute list is set.
+	 * @see #unsetCoordinates()
+	 * @see #getCoordinates()
+	 * @generated
+	 */
+	boolean isSetCoordinates();
 
 	/**
 	 * Returns the value of the '<em><b>Coordinates As String</b></em>' attribute list.
@@ -63,11 +86,34 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinates As String</em>' attribute list.
+	 * @see #isSetCoordinatesAsString()
+	 * @see #unsetCoordinatesAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianPoint_CoordinatesAsString()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<String> getCoordinatesAsString();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianPoint#getCoordinatesAsString <em>Coordinates As String</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCoordinatesAsString()
+	 * @see #getCoordinatesAsString()
+	 * @generated
+	 */
+	void unsetCoordinatesAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianPoint#getCoordinatesAsString <em>Coordinates As String</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Coordinates As String</em>' attribute list is set.
+	 * @see #unsetCoordinatesAsString()
+	 * @see #getCoordinatesAsString()
+	 * @generated
+	 */
+	boolean isSetCoordinatesAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -78,9 +124,11 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianPoint_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -90,9 +138,34 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianPoint#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianPoint#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcCartesianPoint

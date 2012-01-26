@@ -44,9 +44,11 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Axis</em>' reference.
+	 * @see #isSetAxis()
+	 * @see #unsetAxis()
 	 * @see #setAxis(IfcAxis1Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRevolvedAreaSolid_Axis()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis1Placement getAxis();
@@ -56,10 +58,35 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Axis</em>' reference.
+	 * @see #isSetAxis()
+	 * @see #unsetAxis()
 	 * @see #getAxis()
 	 * @generated
 	 */
 	void setAxis(IfcAxis1Placement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid#getAxis <em>Axis</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAxis()
+	 * @see #getAxis()
+	 * @see #setAxis(IfcAxis1Placement)
+	 * @generated
+	 */
+	void unsetAxis();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid#getAxis <em>Axis</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Axis</em>' reference is set.
+	 * @see #unsetAxis()
+	 * @see #getAxis()
+	 * @see #setAxis(IfcAxis1Placement)
+	 * @generated
+	 */
+	boolean isSetAxis();
 
 	/**
 	 * Returns the value of the '<em><b>Angle</b></em>' attribute.
@@ -70,9 +97,11 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Angle</em>' attribute.
+	 * @see #isSetAngle()
+	 * @see #unsetAngle()
 	 * @see #setAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRevolvedAreaSolid_Angle()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getAngle();
@@ -82,10 +111,35 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Angle</em>' attribute.
+	 * @see #isSetAngle()
+	 * @see #unsetAngle()
 	 * @see #getAngle()
 	 * @generated
 	 */
 	void setAngle(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid#getAngle <em>Angle</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAngle()
+	 * @see #getAngle()
+	 * @see #setAngle(double)
+	 * @generated
+	 */
+	void unsetAngle();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid#getAngle <em>Angle</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Angle</em>' attribute is set.
+	 * @see #unsetAngle()
+	 * @see #getAngle()
+	 * @see #setAngle(double)
+	 * @generated
+	 */
+	boolean isSetAngle();
 
 	/**
 	 * Returns the value of the '<em><b>Angle As String</b></em>' attribute.
@@ -96,9 +150,11 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Angle As String</em>' attribute.
+	 * @see #isSetAngleAsString()
+	 * @see #unsetAngleAsString()
 	 * @see #setAngleAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRevolvedAreaSolid_AngleAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getAngleAsString();
@@ -108,9 +164,34 @@ public interface IfcRevolvedAreaSolid extends IfcSweptAreaSolid {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Angle As String</em>' attribute.
+	 * @see #isSetAngleAsString()
+	 * @see #unsetAngleAsString()
 	 * @see #getAngleAsString()
 	 * @generated
 	 */
 	void setAngleAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid#getAngleAsString <em>Angle As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAngleAsString()
+	 * @see #getAngleAsString()
+	 * @see #setAngleAsString(String)
+	 * @generated
+	 */
+	void unsetAngleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid#getAngleAsString <em>Angle As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Angle As String</em>' attribute is set.
+	 * @see #unsetAngleAsString()
+	 * @see #getAngleAsString()
+	 * @see #setAngleAsString(String)
+	 * @generated
+	 */
+	boolean isSetAngleAsString();
 
 } // IfcRevolvedAreaSolid

@@ -83,6 +83,24 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetContainedIn() {
+		eUnset(Ifc2x3Package.Literals.IFC_PORT__CONTAINED_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetContainedIn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PORT__CONTAINED_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsPorts> getConnectedFrom() {
 		return (EList<IfcRelConnectsPorts>) eGet(Ifc2x3Package.Literals.IFC_PORT__CONNECTED_FROM, true);
@@ -93,9 +111,45 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetConnectedFrom() {
+		eUnset(Ifc2x3Package.Literals.IFC_PORT__CONNECTED_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectedFrom() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PORT__CONNECTED_FROM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsPorts> getConnectedTo() {
 		return (EList<IfcRelConnectsPorts>) eGet(Ifc2x3Package.Literals.IFC_PORT__CONNECTED_TO, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetConnectedTo() {
+		eUnset(Ifc2x3Package.Literals.IFC_PORT__CONNECTED_TO);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectedTo() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PORT__CONNECTED_TO);
 	}
 
 } //IfcPortImpl

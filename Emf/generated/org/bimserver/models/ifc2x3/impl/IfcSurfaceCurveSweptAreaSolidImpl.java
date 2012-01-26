@@ -84,6 +84,24 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDirectrix() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__DIRECTRIX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectrix() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__DIRECTRIX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getStartParam() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM, true);
 	}
@@ -95,6 +113,24 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 */
 	public void setStartParam(double newStartParam) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM, newStartParam);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetStartParam() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStartParam() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM);
 	}
 
 	/**
@@ -120,6 +156,24 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetStartParamAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStartParamAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getEndParam() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM, true);
 	}
@@ -131,6 +185,24 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 */
 	public void setEndParam(double newEndParam) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM, newEndParam);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetEndParam() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEndParam() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM);
 	}
 
 	/**
@@ -156,6 +228,24 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetEndParamAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEndParamAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSurface getReferenceSurface() {
 		return (IfcSurface) eGet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE, true);
 	}
@@ -167,6 +257,24 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 */
 	public void setReferenceSurface(IfcSurface newReferenceSurface) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE, newReferenceSurface);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetReferenceSurface() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferenceSurface() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE);
 	}
 
 } //IfcSurfaceCurveSweptAreaSolidImpl

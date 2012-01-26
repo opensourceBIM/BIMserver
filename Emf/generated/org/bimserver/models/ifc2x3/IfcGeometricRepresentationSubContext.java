@@ -47,10 +47,12 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Context</em>' reference.
+	 * @see #isSetParentContext()
+	 * @see #unsetParentContext()
 	 * @see #setParentContext(IfcGeometricRepresentationContext)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationSubContext_ParentContext()
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getHasSubContexts
-	 * @model opposite="HasSubContexts"
+	 * @model opposite="HasSubContexts" unsettable="true"
 	 * @generated
 	 */
 	IfcGeometricRepresentationContext getParentContext();
@@ -60,10 +62,35 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Context</em>' reference.
+	 * @see #isSetParentContext()
+	 * @see #unsetParentContext()
 	 * @see #getParentContext()
 	 * @generated
 	 */
 	void setParentContext(IfcGeometricRepresentationContext value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext#getParentContext <em>Parent Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetParentContext()
+	 * @see #getParentContext()
+	 * @see #setParentContext(IfcGeometricRepresentationContext)
+	 * @generated
+	 */
+	void unsetParentContext();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext#getParentContext <em>Parent Context</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Parent Context</em>' reference is set.
+	 * @see #unsetParentContext()
+	 * @see #getParentContext()
+	 * @see #setParentContext(IfcGeometricRepresentationContext)
+	 * @generated
+	 */
+	boolean isSetParentContext();
 
 	/**
 	 * Returns the value of the '<em><b>Target Scale</b></em>' attribute.
@@ -182,9 +209,11 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target View</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricProjectionEnum
+	 * @see #isSetTargetView()
+	 * @see #unsetTargetView()
 	 * @see #setTargetView(IfcGeometricProjectionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationSubContext_TargetView()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcGeometricProjectionEnum getTargetView();
@@ -195,10 +224,35 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target View</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricProjectionEnum
+	 * @see #isSetTargetView()
+	 * @see #unsetTargetView()
 	 * @see #getTargetView()
 	 * @generated
 	 */
 	void setTargetView(IfcGeometricProjectionEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext#getTargetView <em>Target View</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTargetView()
+	 * @see #getTargetView()
+	 * @see #setTargetView(IfcGeometricProjectionEnum)
+	 * @generated
+	 */
+	void unsetTargetView();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext#getTargetView <em>Target View</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Target View</em>' attribute is set.
+	 * @see #unsetTargetView()
+	 * @see #getTargetView()
+	 * @see #setTargetView(IfcGeometricProjectionEnum)
+	 * @generated
+	 */
+	boolean isSetTargetView();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Target View</b></em>' attribute.

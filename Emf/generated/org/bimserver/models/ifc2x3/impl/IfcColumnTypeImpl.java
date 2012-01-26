@@ -73,4 +73,22 @@ public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements Ifc
 		eSet(Ifc2x3Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPredefinedType() {
+		eUnset(Ifc2x3Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPredefinedType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE);
+	}
+
 } //IfcColumnTypeImpl

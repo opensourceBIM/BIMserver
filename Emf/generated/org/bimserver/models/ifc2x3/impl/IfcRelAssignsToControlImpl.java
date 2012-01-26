@@ -73,4 +73,22 @@ public class IfcRelAssignsToControlImpl extends IfcRelAssignsImpl implements Ifc
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL, newRelatingControl);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingControl() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingControl() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL);
+	}
+
 } //IfcRelAssignsToControlImpl

@@ -82,6 +82,24 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTimeStep() {
+		eUnset(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeStep() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTimeStepAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP_AS_STRING, true);
 	}
@@ -100,9 +118,45 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTimeStepAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeStepAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTimeSeriesValue> getValues() {
 		return (EList<IfcTimeSeriesValue>) eGet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__VALUES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetValues() {
+		eUnset(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetValues() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__VALUES);
 	}
 
 } //IfcRegularTimeSeriesImpl

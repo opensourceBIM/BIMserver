@@ -49,11 +49,34 @@ public interface IfcMaterialClassificationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Material Classifications</em>' reference list.
+	 * @see #isSetMaterialClassifications()
+	 * @see #unsetMaterialClassifications()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialClassificationRelationship_MaterialClassifications()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcClassificationNotationSelect> getMaterialClassifications();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialClassificationRelationship#getMaterialClassifications <em>Material Classifications</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaterialClassifications()
+	 * @see #getMaterialClassifications()
+	 * @generated
+	 */
+	void unsetMaterialClassifications();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialClassificationRelationship#getMaterialClassifications <em>Material Classifications</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Material Classifications</em>' reference list is set.
+	 * @see #unsetMaterialClassifications()
+	 * @see #getMaterialClassifications()
+	 * @generated
+	 */
+	boolean isSetMaterialClassifications();
 
 	/**
 	 * Returns the value of the '<em><b>Classified Material</b></em>' reference.
@@ -65,10 +88,12 @@ public interface IfcMaterialClassificationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Classified Material</em>' reference.
+	 * @see #isSetClassifiedMaterial()
+	 * @see #unsetClassifiedMaterial()
 	 * @see #setClassifiedMaterial(IfcMaterial)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialClassificationRelationship_ClassifiedMaterial()
 	 * @see org.bimserver.models.ifc2x3.IfcMaterial#getClassifiedAs
-	 * @model opposite="ClassifiedAs"
+	 * @model opposite="ClassifiedAs" unsettable="true"
 	 * @generated
 	 */
 	IfcMaterial getClassifiedMaterial();
@@ -78,9 +103,34 @@ public interface IfcMaterialClassificationRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Classified Material</em>' reference.
+	 * @see #isSetClassifiedMaterial()
+	 * @see #unsetClassifiedMaterial()
 	 * @see #getClassifiedMaterial()
 	 * @generated
 	 */
 	void setClassifiedMaterial(IfcMaterial value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialClassificationRelationship#getClassifiedMaterial <em>Classified Material</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetClassifiedMaterial()
+	 * @see #getClassifiedMaterial()
+	 * @see #setClassifiedMaterial(IfcMaterial)
+	 * @generated
+	 */
+	void unsetClassifiedMaterial();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialClassificationRelationship#getClassifiedMaterial <em>Classified Material</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Classified Material</em>' reference is set.
+	 * @see #unsetClassifiedMaterial()
+	 * @see #getClassifiedMaterial()
+	 * @see #setClassifiedMaterial(IfcMaterial)
+	 * @generated
+	 */
+	boolean isSetClassifiedMaterial();
 
 } // IfcMaterialClassificationRelationship

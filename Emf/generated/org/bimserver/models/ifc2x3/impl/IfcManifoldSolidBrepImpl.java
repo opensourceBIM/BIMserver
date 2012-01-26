@@ -73,4 +73,22 @@ public class IfcManifoldSolidBrepImpl extends IfcSolidModelImpl implements IfcMa
 		eSet(Ifc2x3Package.Literals.IFC_MANIFOLD_SOLID_BREP__OUTER, newOuter);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOuter() {
+		eUnset(Ifc2x3Package.Literals.IFC_MANIFOLD_SOLID_BREP__OUTER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOuter() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MANIFOLD_SOLID_BREP__OUTER);
+	}
+
 } //IfcManifoldSolidBrepImpl

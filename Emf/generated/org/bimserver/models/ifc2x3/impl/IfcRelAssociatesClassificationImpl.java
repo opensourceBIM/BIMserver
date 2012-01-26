@@ -73,4 +73,22 @@ public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl imp
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, newRelatingClassification);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingClassification() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingClassification() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION);
+	}
+
 } //IfcRelAssociatesClassificationImpl

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SEidClash.class, SGuidClash.class})
+@XmlSeeAlso(value={SGuidClash.class, SEidClash.class})
 public class SClash implements SBase
 {
 	private long oid = -1;

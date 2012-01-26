@@ -47,12 +47,35 @@ public interface IfcRelAssigns extends IfcRelationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Objects</em>' reference list.
+	 * @see #isSetRelatedObjects()
+	 * @see #unsetRelatedObjects()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssigns_RelatedObjects()
 	 * @see org.bimserver.models.ifc2x3.IfcObjectDefinition#getHasAssignments
-	 * @model opposite="HasAssignments"
+	 * @model opposite="HasAssignments" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcObjectDefinition> getRelatedObjects();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssigns#getRelatedObjects <em>Related Objects</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedObjects()
+	 * @see #getRelatedObjects()
+	 * @generated
+	 */
+	void unsetRelatedObjects();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssigns#getRelatedObjects <em>Related Objects</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Objects</em>' reference list is set.
+	 * @see #unsetRelatedObjects()
+	 * @see #getRelatedObjects()
+	 * @generated
+	 */
+	boolean isSetRelatedObjects();
 
 	/**
 	 * Returns the value of the '<em><b>Related Objects Type</b></em>' attribute.
@@ -65,9 +88,11 @@ public interface IfcRelAssigns extends IfcRelationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Objects Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcObjectTypeEnum
+	 * @see #isSetRelatedObjectsType()
+	 * @see #unsetRelatedObjectsType()
 	 * @see #setRelatedObjectsType(IfcObjectTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssigns_RelatedObjectsType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcObjectTypeEnum getRelatedObjectsType();
@@ -78,9 +103,34 @@ public interface IfcRelAssigns extends IfcRelationship {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Objects Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcObjectTypeEnum
+	 * @see #isSetRelatedObjectsType()
+	 * @see #unsetRelatedObjectsType()
 	 * @see #getRelatedObjectsType()
 	 * @generated
 	 */
 	void setRelatedObjectsType(IfcObjectTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssigns#getRelatedObjectsType <em>Related Objects Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedObjectsType()
+	 * @see #getRelatedObjectsType()
+	 * @see #setRelatedObjectsType(IfcObjectTypeEnum)
+	 * @generated
+	 */
+	void unsetRelatedObjectsType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssigns#getRelatedObjectsType <em>Related Objects Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Objects Type</em>' attribute is set.
+	 * @see #unsetRelatedObjectsType()
+	 * @see #getRelatedObjectsType()
+	 * @see #setRelatedObjectsType(IfcObjectTypeEnum)
+	 * @generated
+	 */
+	boolean isSetRelatedObjectsType();
 
 } // IfcRelAssigns

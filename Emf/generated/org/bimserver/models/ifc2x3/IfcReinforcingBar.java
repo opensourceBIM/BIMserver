@@ -49,9 +49,11 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nominal Diameter</em>' attribute.
+	 * @see #isSetNominalDiameter()
+	 * @see #unsetNominalDiameter()
 	 * @see #setNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_NominalDiameter()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getNominalDiameter();
@@ -61,10 +63,35 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Nominal Diameter</em>' attribute.
+	 * @see #isSetNominalDiameter()
+	 * @see #unsetNominalDiameter()
 	 * @see #getNominalDiameter()
 	 * @generated
 	 */
 	void setNominalDiameter(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getNominalDiameter <em>Nominal Diameter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNominalDiameter()
+	 * @see #getNominalDiameter()
+	 * @see #setNominalDiameter(double)
+	 * @generated
+	 */
+	void unsetNominalDiameter();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getNominalDiameter <em>Nominal Diameter</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Nominal Diameter</em>' attribute is set.
+	 * @see #unsetNominalDiameter()
+	 * @see #getNominalDiameter()
+	 * @see #setNominalDiameter(double)
+	 * @generated
+	 */
+	boolean isSetNominalDiameter();
 
 	/**
 	 * Returns the value of the '<em><b>Nominal Diameter As String</b></em>' attribute.
@@ -75,9 +102,11 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nominal Diameter As String</em>' attribute.
+	 * @see #isSetNominalDiameterAsString()
+	 * @see #unsetNominalDiameterAsString()
 	 * @see #setNominalDiameterAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_NominalDiameterAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getNominalDiameterAsString();
@@ -87,10 +116,35 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Nominal Diameter As String</em>' attribute.
+	 * @see #isSetNominalDiameterAsString()
+	 * @see #unsetNominalDiameterAsString()
 	 * @see #getNominalDiameterAsString()
 	 * @generated
 	 */
 	void setNominalDiameterAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getNominalDiameterAsString <em>Nominal Diameter As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNominalDiameterAsString()
+	 * @see #getNominalDiameterAsString()
+	 * @see #setNominalDiameterAsString(String)
+	 * @generated
+	 */
+	void unsetNominalDiameterAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getNominalDiameterAsString <em>Nominal Diameter As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Nominal Diameter As String</em>' attribute is set.
+	 * @see #unsetNominalDiameterAsString()
+	 * @see #getNominalDiameterAsString()
+	 * @see #setNominalDiameterAsString(String)
+	 * @generated
+	 */
+	boolean isSetNominalDiameterAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Area</b></em>' attribute.
@@ -101,9 +155,11 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Area</em>' attribute.
+	 * @see #isSetCrossSectionArea()
+	 * @see #unsetCrossSectionArea()
 	 * @see #setCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_CrossSectionArea()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getCrossSectionArea();
@@ -113,10 +169,35 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cross Section Area</em>' attribute.
+	 * @see #isSetCrossSectionArea()
+	 * @see #unsetCrossSectionArea()
 	 * @see #getCrossSectionArea()
 	 * @generated
 	 */
 	void setCrossSectionArea(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getCrossSectionArea <em>Cross Section Area</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCrossSectionArea()
+	 * @see #getCrossSectionArea()
+	 * @see #setCrossSectionArea(double)
+	 * @generated
+	 */
+	void unsetCrossSectionArea();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getCrossSectionArea <em>Cross Section Area</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Cross Section Area</em>' attribute is set.
+	 * @see #unsetCrossSectionArea()
+	 * @see #getCrossSectionArea()
+	 * @see #setCrossSectionArea(double)
+	 * @generated
+	 */
+	boolean isSetCrossSectionArea();
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Area As String</b></em>' attribute.
@@ -127,9 +208,11 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Area As String</em>' attribute.
+	 * @see #isSetCrossSectionAreaAsString()
+	 * @see #unsetCrossSectionAreaAsString()
 	 * @see #setCrossSectionAreaAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_CrossSectionAreaAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getCrossSectionAreaAsString();
@@ -139,10 +222,35 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cross Section Area As String</em>' attribute.
+	 * @see #isSetCrossSectionAreaAsString()
+	 * @see #unsetCrossSectionAreaAsString()
 	 * @see #getCrossSectionAreaAsString()
 	 * @generated
 	 */
 	void setCrossSectionAreaAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getCrossSectionAreaAsString <em>Cross Section Area As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCrossSectionAreaAsString()
+	 * @see #getCrossSectionAreaAsString()
+	 * @see #setCrossSectionAreaAsString(String)
+	 * @generated
+	 */
+	void unsetCrossSectionAreaAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getCrossSectionAreaAsString <em>Cross Section Area As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Cross Section Area As String</em>' attribute is set.
+	 * @see #unsetCrossSectionAreaAsString()
+	 * @see #getCrossSectionAreaAsString()
+	 * @see #setCrossSectionAreaAsString(String)
+	 * @generated
+	 */
+	boolean isSetCrossSectionAreaAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Bar Length</b></em>' attribute.
@@ -261,9 +369,11 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bar Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarRoleEnum
+	 * @see #isSetBarRole()
+	 * @see #unsetBarRole()
 	 * @see #setBarRole(IfcReinforcingBarRoleEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_BarRole()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcReinforcingBarRoleEnum getBarRole();
@@ -274,10 +384,35 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bar Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarRoleEnum
+	 * @see #isSetBarRole()
+	 * @see #unsetBarRole()
 	 * @see #getBarRole()
 	 * @generated
 	 */
 	void setBarRole(IfcReinforcingBarRoleEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getBarRole <em>Bar Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBarRole()
+	 * @see #getBarRole()
+	 * @see #setBarRole(IfcReinforcingBarRoleEnum)
+	 * @generated
+	 */
+	void unsetBarRole();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getBarRole <em>Bar Role</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Bar Role</em>' attribute is set.
+	 * @see #unsetBarRole()
+	 * @see #getBarRole()
+	 * @see #setBarRole(IfcReinforcingBarRoleEnum)
+	 * @generated
+	 */
+	boolean isSetBarRole();
 
 	/**
 	 * Returns the value of the '<em><b>Bar Surface</b></em>' attribute.
@@ -290,9 +425,11 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bar Surface</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarSurfaceEnum
+	 * @see #isSetBarSurface()
+	 * @see #unsetBarSurface()
 	 * @see #setBarSurface(IfcReinforcingBarSurfaceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingBar_BarSurface()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcReinforcingBarSurfaceEnum getBarSurface();
@@ -303,9 +440,34 @@ public interface IfcReinforcingBar extends IfcReinforcingElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bar Surface</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarSurfaceEnum
+	 * @see #isSetBarSurface()
+	 * @see #unsetBarSurface()
 	 * @see #getBarSurface()
 	 * @generated
 	 */
 	void setBarSurface(IfcReinforcingBarSurfaceEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getBarSurface <em>Bar Surface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBarSurface()
+	 * @see #getBarSurface()
+	 * @see #setBarSurface(IfcReinforcingBarSurfaceEnum)
+	 * @generated
+	 */
+	void unsetBarSurface();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingBar#getBarSurface <em>Bar Surface</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Bar Surface</em>' attribute is set.
+	 * @see #unsetBarSurface()
+	 * @see #getBarSurface()
+	 * @see #setBarSurface(IfcReinforcingBarSurfaceEnum)
+	 * @generated
+	 */
+	boolean isSetBarSurface();
 
 } // IfcReinforcingBar

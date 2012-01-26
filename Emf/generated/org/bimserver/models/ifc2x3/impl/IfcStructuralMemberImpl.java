@@ -74,9 +74,45 @@ public class IfcStructuralMemberImpl extends IfcStructuralItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetReferencesElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_MEMBER__REFERENCES_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferencesElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_MEMBER__REFERENCES_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectedBy() {
 		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetConnectedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY);
 	}
 
 } //IfcStructuralMemberImpl

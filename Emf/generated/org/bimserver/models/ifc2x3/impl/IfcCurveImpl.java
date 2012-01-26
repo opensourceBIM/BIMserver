@@ -72,4 +72,22 @@ public class IfcCurveImpl extends IfcGeometricRepresentationItemImpl implements 
 		eSet(Ifc2x3Package.Literals.IFC_CURVE__DIM, newDim);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURVE__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE__DIM);
+	}
+
 } //IfcCurveImpl

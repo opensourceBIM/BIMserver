@@ -46,9 +46,11 @@ public interface IfcServiceLife extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Service Life Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcServiceLifeTypeEnum
+	 * @see #isSetServiceLifeType()
+	 * @see #unsetServiceLifeType()
 	 * @see #setServiceLifeType(IfcServiceLifeTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcServiceLife_ServiceLifeType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcServiceLifeTypeEnum getServiceLifeType();
@@ -59,10 +61,35 @@ public interface IfcServiceLife extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Service Life Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcServiceLifeTypeEnum
+	 * @see #isSetServiceLifeType()
+	 * @see #unsetServiceLifeType()
 	 * @see #getServiceLifeType()
 	 * @generated
 	 */
 	void setServiceLifeType(IfcServiceLifeTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcServiceLife#getServiceLifeType <em>Service Life Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetServiceLifeType()
+	 * @see #getServiceLifeType()
+	 * @see #setServiceLifeType(IfcServiceLifeTypeEnum)
+	 * @generated
+	 */
+	void unsetServiceLifeType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcServiceLife#getServiceLifeType <em>Service Life Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Service Life Type</em>' attribute is set.
+	 * @see #unsetServiceLifeType()
+	 * @see #getServiceLifeType()
+	 * @see #setServiceLifeType(IfcServiceLifeTypeEnum)
+	 * @generated
+	 */
+	boolean isSetServiceLifeType();
 
 	/**
 	 * Returns the value of the '<em><b>Service Life Duration</b></em>' attribute.
@@ -73,9 +100,11 @@ public interface IfcServiceLife extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Service Life Duration</em>' attribute.
+	 * @see #isSetServiceLifeDuration()
+	 * @see #unsetServiceLifeDuration()
 	 * @see #setServiceLifeDuration(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcServiceLife_ServiceLifeDuration()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getServiceLifeDuration();
@@ -85,10 +114,35 @@ public interface IfcServiceLife extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Service Life Duration</em>' attribute.
+	 * @see #isSetServiceLifeDuration()
+	 * @see #unsetServiceLifeDuration()
 	 * @see #getServiceLifeDuration()
 	 * @generated
 	 */
 	void setServiceLifeDuration(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcServiceLife#getServiceLifeDuration <em>Service Life Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetServiceLifeDuration()
+	 * @see #getServiceLifeDuration()
+	 * @see #setServiceLifeDuration(double)
+	 * @generated
+	 */
+	void unsetServiceLifeDuration();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcServiceLife#getServiceLifeDuration <em>Service Life Duration</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Service Life Duration</em>' attribute is set.
+	 * @see #unsetServiceLifeDuration()
+	 * @see #getServiceLifeDuration()
+	 * @see #setServiceLifeDuration(double)
+	 * @generated
+	 */
+	boolean isSetServiceLifeDuration();
 
 	/**
 	 * Returns the value of the '<em><b>Service Life Duration As String</b></em>' attribute.
@@ -99,9 +153,11 @@ public interface IfcServiceLife extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Service Life Duration As String</em>' attribute.
+	 * @see #isSetServiceLifeDurationAsString()
+	 * @see #unsetServiceLifeDurationAsString()
 	 * @see #setServiceLifeDurationAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcServiceLife_ServiceLifeDurationAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getServiceLifeDurationAsString();
@@ -111,9 +167,34 @@ public interface IfcServiceLife extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Service Life Duration As String</em>' attribute.
+	 * @see #isSetServiceLifeDurationAsString()
+	 * @see #unsetServiceLifeDurationAsString()
 	 * @see #getServiceLifeDurationAsString()
 	 * @generated
 	 */
 	void setServiceLifeDurationAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcServiceLife#getServiceLifeDurationAsString <em>Service Life Duration As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetServiceLifeDurationAsString()
+	 * @see #getServiceLifeDurationAsString()
+	 * @see #setServiceLifeDurationAsString(String)
+	 * @generated
+	 */
+	void unsetServiceLifeDurationAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcServiceLife#getServiceLifeDurationAsString <em>Service Life Duration As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Service Life Duration As String</em>' attribute is set.
+	 * @see #unsetServiceLifeDurationAsString()
+	 * @see #getServiceLifeDurationAsString()
+	 * @see #setServiceLifeDurationAsString(String)
+	 * @generated
+	 */
+	boolean isSetServiceLifeDurationAsString();
 
 } // IfcServiceLife

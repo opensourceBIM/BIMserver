@@ -106,9 +106,11 @@ public interface IfcGridAxis extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Axis Curve</em>' reference.
+	 * @see #isSetAxisCurve()
+	 * @see #unsetAxisCurve()
 	 * @see #setAxisCurve(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_AxisCurve()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurve getAxisCurve();
@@ -118,10 +120,35 @@ public interface IfcGridAxis extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Axis Curve</em>' reference.
+	 * @see #isSetAxisCurve()
+	 * @see #unsetAxisCurve()
 	 * @see #getAxisCurve()
 	 * @generated
 	 */
 	void setAxisCurve(IfcCurve value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getAxisCurve <em>Axis Curve</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAxisCurve()
+	 * @see #getAxisCurve()
+	 * @see #setAxisCurve(IfcCurve)
+	 * @generated
+	 */
+	void unsetAxisCurve();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getAxisCurve <em>Axis Curve</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Axis Curve</em>' reference is set.
+	 * @see #unsetAxisCurve()
+	 * @see #getAxisCurve()
+	 * @see #setAxisCurve(IfcCurve)
+	 * @generated
+	 */
+	boolean isSetAxisCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Same Sense</b></em>' attribute.
@@ -134,9 +161,11 @@ public interface IfcGridAxis extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSameSense()
+	 * @see #unsetSameSense()
 	 * @see #setSameSense(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_SameSense()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getSameSense();
@@ -147,10 +176,35 @@ public interface IfcGridAxis extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetSameSense()
+	 * @see #unsetSameSense()
 	 * @see #getSameSense()
 	 * @generated
 	 */
 	void setSameSense(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getSameSense <em>Same Sense</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSameSense()
+	 * @see #getSameSense()
+	 * @see #setSameSense(Tristate)
+	 * @generated
+	 */
+	void unsetSameSense();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getSameSense <em>Same Sense</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Same Sense</em>' attribute is set.
+	 * @see #unsetSameSense()
+	 * @see #getSameSense()
+	 * @see #setSameSense(Tristate)
+	 * @generated
+	 */
+	boolean isSetSameSense();
 
 	/**
 	 * Returns the value of the '<em><b>Part Of W</b></em>' reference list.
@@ -163,12 +217,35 @@ public interface IfcGridAxis extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part Of W</em>' reference list.
+	 * @see #isSetPartOfW()
+	 * @see #unsetPartOfW()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_PartOfW()
 	 * @see org.bimserver.models.ifc2x3.IfcGrid#getWAxes
-	 * @model opposite="WAxes" upper="2"
+	 * @model opposite="WAxes" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcGrid> getPartOfW();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfW <em>Part Of W</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPartOfW()
+	 * @see #getPartOfW()
+	 * @generated
+	 */
+	void unsetPartOfW();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfW <em>Part Of W</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Part Of W</em>' reference list is set.
+	 * @see #unsetPartOfW()
+	 * @see #getPartOfW()
+	 * @generated
+	 */
+	boolean isSetPartOfW();
 
 	/**
 	 * Returns the value of the '<em><b>Part Of V</b></em>' reference list.
@@ -181,12 +258,35 @@ public interface IfcGridAxis extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part Of V</em>' reference list.
+	 * @see #isSetPartOfV()
+	 * @see #unsetPartOfV()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_PartOfV()
 	 * @see org.bimserver.models.ifc2x3.IfcGrid#getVAxes
-	 * @model opposite="VAxes" upper="2"
+	 * @model opposite="VAxes" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcGrid> getPartOfV();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfV <em>Part Of V</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPartOfV()
+	 * @see #getPartOfV()
+	 * @generated
+	 */
+	void unsetPartOfV();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfV <em>Part Of V</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Part Of V</em>' reference list is set.
+	 * @see #unsetPartOfV()
+	 * @see #getPartOfV()
+	 * @generated
+	 */
+	boolean isSetPartOfV();
 
 	/**
 	 * Returns the value of the '<em><b>Part Of U</b></em>' reference list.
@@ -199,12 +299,35 @@ public interface IfcGridAxis extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part Of U</em>' reference list.
+	 * @see #isSetPartOfU()
+	 * @see #unsetPartOfU()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_PartOfU()
 	 * @see org.bimserver.models.ifc2x3.IfcGrid#getUAxes
-	 * @model opposite="UAxes" upper="2"
+	 * @model opposite="UAxes" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcGrid> getPartOfU();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfU <em>Part Of U</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPartOfU()
+	 * @see #getPartOfU()
+	 * @generated
+	 */
+	void unsetPartOfU();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfU <em>Part Of U</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Part Of U</em>' reference list is set.
+	 * @see #unsetPartOfU()
+	 * @see #getPartOfU()
+	 * @generated
+	 */
+	boolean isSetPartOfU();
 
 	/**
 	 * Returns the value of the '<em><b>Has Intersections</b></em>' reference list.
@@ -217,11 +340,34 @@ public interface IfcGridAxis extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Intersections</em>' reference list.
+	 * @see #isSetHasIntersections()
+	 * @see #unsetHasIntersections()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_HasIntersections()
 	 * @see org.bimserver.models.ifc2x3.IfcVirtualGridIntersection#getIntersectingAxes
-	 * @model opposite="IntersectingAxes"
+	 * @model opposite="IntersectingAxes" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcVirtualGridIntersection> getHasIntersections();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getHasIntersections <em>Has Intersections</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasIntersections()
+	 * @see #getHasIntersections()
+	 * @generated
+	 */
+	void unsetHasIntersections();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getHasIntersections <em>Has Intersections</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Intersections</em>' reference list is set.
+	 * @see #unsetHasIntersections()
+	 * @see #getHasIntersections()
+	 * @generated
+	 */
+	boolean isSetHasIntersections();
 
 } // IfcGridAxis

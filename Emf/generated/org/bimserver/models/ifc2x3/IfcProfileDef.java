@@ -48,9 +48,11 @@ public interface IfcProfileDef extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Profile Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProfileTypeEnum
+	 * @see #isSetProfileType()
+	 * @see #unsetProfileType()
 	 * @see #setProfileType(IfcProfileTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProfileDef_ProfileType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcProfileTypeEnum getProfileType();
@@ -61,10 +63,35 @@ public interface IfcProfileDef extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Profile Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProfileTypeEnum
+	 * @see #isSetProfileType()
+	 * @see #unsetProfileType()
 	 * @see #getProfileType()
 	 * @generated
 	 */
 	void setProfileType(IfcProfileTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProfileDef#getProfileType <em>Profile Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetProfileType()
+	 * @see #getProfileType()
+	 * @see #setProfileType(IfcProfileTypeEnum)
+	 * @generated
+	 */
+	void unsetProfileType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProfileDef#getProfileType <em>Profile Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Profile Type</em>' attribute is set.
+	 * @see #unsetProfileType()
+	 * @see #getProfileType()
+	 * @see #setProfileType(IfcProfileTypeEnum)
+	 * @generated
+	 */
+	boolean isSetProfileType();
 
 	/**
 	 * Returns the value of the '<em><b>Profile Name</b></em>' attribute.

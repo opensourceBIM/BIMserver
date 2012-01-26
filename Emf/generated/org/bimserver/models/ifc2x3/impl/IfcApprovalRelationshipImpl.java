@@ -93,6 +93,24 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatedApproval() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATED_APPROVAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedApproval() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATED_APPROVAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcApproval getRelatingApproval() {
 		return (IfcApproval) eGet(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, true);
 	}
@@ -104,6 +122,24 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 */
 	public void setRelatingApproval(IfcApproval newRelatingApproval) {
 		eSet(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, newRelatingApproval);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingApproval() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingApproval() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL);
 	}
 
 	/**
@@ -158,6 +194,24 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 */
 	public void setName(String newName) {
 		eSet(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_RELATIONSHIP__NAME);
 	}
 
 } //IfcApprovalRelationshipImpl

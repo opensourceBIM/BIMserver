@@ -102,6 +102,24 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLongitudinalStartPosition() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLongitudinalStartPosition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getLongitudinalStartPositionAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING, true);
 	}
@@ -113,6 +131,24 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 */
 	public void setLongitudinalStartPositionAsString(String newLongitudinalStartPositionAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING, newLongitudinalStartPositionAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLongitudinalStartPositionAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLongitudinalStartPositionAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING);
 	}
 
 	/**
@@ -138,6 +174,24 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLongitudinalEndPosition() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLongitudinalEndPosition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getLongitudinalEndPositionAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING, true);
 	}
@@ -149,6 +203,24 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 */
 	public void setLongitudinalEndPositionAsString(String newLongitudinalEndPositionAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING, newLongitudinalEndPositionAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLongitudinalEndPositionAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLongitudinalEndPositionAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING);
 	}
 
 	/**
@@ -246,6 +318,24 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetReinforcementRole() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__REINFORCEMENT_ROLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReinforcementRole() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__REINFORCEMENT_ROLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSectionProperties getSectionDefinition() {
 		return (IfcSectionProperties) eGet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__SECTION_DEFINITION, true);
 	}
@@ -264,9 +354,45 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSectionDefinition() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__SECTION_DEFINITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSectionDefinition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__SECTION_DEFINITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcReinforcementBarProperties> getCrossSectionReinforcementDefinitions() {
 		return (EList<IfcReinforcementBarProperties>) eGet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCrossSectionReinforcementDefinitions() {
+		eUnset(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCrossSectionReinforcementDefinitions() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS);
 	}
 
 } //IfcSectionReinforcementPropertiesImpl

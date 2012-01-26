@@ -49,12 +49,35 @@ public interface IfcObjectDefinition extends IfcRoot {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Assignments</em>' reference list.
+	 * @see #isSetHasAssignments()
+	 * @see #unsetHasAssignments()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObjectDefinition_HasAssignments()
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssigns#getRelatedObjects
-	 * @model opposite="RelatedObjects"
+	 * @model opposite="RelatedObjects" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelAssigns> getHasAssignments();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getHasAssignments <em>Has Assignments</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasAssignments()
+	 * @see #getHasAssignments()
+	 * @generated
+	 */
+	void unsetHasAssignments();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getHasAssignments <em>Has Assignments</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Assignments</em>' reference list is set.
+	 * @see #unsetHasAssignments()
+	 * @see #getHasAssignments()
+	 * @generated
+	 */
+	boolean isSetHasAssignments();
 
 	/**
 	 * Returns the value of the '<em><b>Is Decomposed By</b></em>' reference list.
@@ -67,12 +90,35 @@ public interface IfcObjectDefinition extends IfcRoot {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Decomposed By</em>' reference list.
+	 * @see #isSetIsDecomposedBy()
+	 * @see #unsetIsDecomposedBy()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObjectDefinition_IsDecomposedBy()
 	 * @see org.bimserver.models.ifc2x3.IfcRelDecomposes#getRelatingObject
-	 * @model opposite="RelatingObject"
+	 * @model opposite="RelatingObject" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelDecomposes> getIsDecomposedBy();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getIsDecomposedBy <em>Is Decomposed By</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsDecomposedBy()
+	 * @see #getIsDecomposedBy()
+	 * @generated
+	 */
+	void unsetIsDecomposedBy();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getIsDecomposedBy <em>Is Decomposed By</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Decomposed By</em>' reference list is set.
+	 * @see #unsetIsDecomposedBy()
+	 * @see #getIsDecomposedBy()
+	 * @generated
+	 */
+	boolean isSetIsDecomposedBy();
 
 	/**
 	 * Returns the value of the '<em><b>Decomposes</b></em>' reference list.
@@ -85,12 +131,35 @@ public interface IfcObjectDefinition extends IfcRoot {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Decomposes</em>' reference list.
+	 * @see #isSetDecomposes()
+	 * @see #unsetDecomposes()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObjectDefinition_Decomposes()
 	 * @see org.bimserver.models.ifc2x3.IfcRelDecomposes#getRelatedObjects
-	 * @model opposite="RelatedObjects" upper="2"
+	 * @model opposite="RelatedObjects" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelDecomposes> getDecomposes();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getDecomposes <em>Decomposes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDecomposes()
+	 * @see #getDecomposes()
+	 * @generated
+	 */
+	void unsetDecomposes();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getDecomposes <em>Decomposes</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Decomposes</em>' reference list is set.
+	 * @see #unsetDecomposes()
+	 * @see #getDecomposes()
+	 * @generated
+	 */
+	boolean isSetDecomposes();
 
 	/**
 	 * Returns the value of the '<em><b>Has Associations</b></em>' reference list.
@@ -102,10 +171,33 @@ public interface IfcObjectDefinition extends IfcRoot {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Associations</em>' reference list.
+	 * @see #isSetHasAssociations()
+	 * @see #unsetHasAssociations()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObjectDefinition_HasAssociations()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelAssociates> getHasAssociations();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getHasAssociations <em>Has Associations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasAssociations()
+	 * @see #getHasAssociations()
+	 * @generated
+	 */
+	void unsetHasAssociations();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectDefinition#getHasAssociations <em>Has Associations</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Associations</em>' reference list is set.
+	 * @see #unsetHasAssociations()
+	 * @see #getHasAssociations()
+	 * @generated
+	 */
+	boolean isSetHasAssociations();
 
 } // IfcObjectDefinition

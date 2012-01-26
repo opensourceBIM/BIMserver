@@ -99,6 +99,24 @@ public class IfcReinforcementBarPropertiesImpl extends IdEObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTotalCrossSectionArea() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__TOTAL_CROSS_SECTION_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTotalCrossSectionArea() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__TOTAL_CROSS_SECTION_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTotalCrossSectionAreaAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__TOTAL_CROSS_SECTION_AREA_AS_STRING, true);
 	}
@@ -110,6 +128,24 @@ public class IfcReinforcementBarPropertiesImpl extends IdEObjectImpl implements 
 	 */
 	public void setTotalCrossSectionAreaAsString(String newTotalCrossSectionAreaAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__TOTAL_CROSS_SECTION_AREA_AS_STRING, newTotalCrossSectionAreaAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTotalCrossSectionAreaAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__TOTAL_CROSS_SECTION_AREA_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTotalCrossSectionAreaAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__TOTAL_CROSS_SECTION_AREA_AS_STRING);
 	}
 
 	/**
@@ -135,6 +171,24 @@ public class IfcReinforcementBarPropertiesImpl extends IdEObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSteelGrade() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__STEEL_GRADE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSteelGrade() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__STEEL_GRADE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcReinforcingBarSurfaceEnum getBarSurface() {
 		return (IfcReinforcingBarSurfaceEnum) eGet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__BAR_SURFACE, true);
 	}
@@ -146,6 +200,24 @@ public class IfcReinforcementBarPropertiesImpl extends IdEObjectImpl implements 
 	 */
 	public void setBarSurface(IfcReinforcingBarSurfaceEnum newBarSurface) {
 		eSet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__BAR_SURFACE, newBarSurface);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetBarSurface() {
+		eUnset(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__BAR_SURFACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBarSurface() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_BAR_PROPERTIES__BAR_SURFACE);
 	}
 
 	/**

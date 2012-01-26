@@ -73,4 +73,22 @@ public class IfcOneDirectionRepeatFactorImpl extends IfcGeometricRepresentationI
 		eSet(Ifc2x3Package.Literals.IFC_ONE_DIRECTION_REPEAT_FACTOR__REPEAT_FACTOR, newRepeatFactor);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRepeatFactor() {
+		eUnset(Ifc2x3Package.Literals.IFC_ONE_DIRECTION_REPEAT_FACTOR__REPEAT_FACTOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRepeatFactor() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ONE_DIRECTION_REPEAT_FACTOR__REPEAT_FACTOR);
+	}
+
 } //IfcOneDirectionRepeatFactorImpl

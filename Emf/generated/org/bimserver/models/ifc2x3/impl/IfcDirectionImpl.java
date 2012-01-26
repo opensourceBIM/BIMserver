@@ -73,9 +73,45 @@ public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDirectionRatios() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectionRatios() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getDirectionRatiosAsString() {
 		return (EList<String>) eGet(Ifc2x3Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDirectionRatiosAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectionRatiosAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS_AS_STRING);
 	}
 
 	/**
@@ -94,6 +130,24 @@ public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl impleme
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_DIRECTION__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIRECTION__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIRECTION__DIM);
 	}
 
 } //IfcDirectionImpl

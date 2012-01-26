@@ -78,6 +78,24 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLengthValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLengthValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getLengthValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING, true);
 	}
@@ -89,6 +107,24 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 */
 	public void setLengthValueAsString(String newLengthValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING, newLengthValueAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLengthValueAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLengthValueAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING);
 	}
 
 } //IfcQuantityLengthImpl

@@ -154,6 +154,24 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetResourceConsumption() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetResourceConsumption() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcMeasureWithUnit getBaseQuantity() {
 		return (IfcMeasureWithUnit) eGet(Ifc2x3Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY, true);
 	}

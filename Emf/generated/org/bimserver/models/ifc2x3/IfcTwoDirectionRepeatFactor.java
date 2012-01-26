@@ -42,9 +42,11 @@ public interface IfcTwoDirectionRepeatFactor extends IfcOneDirectionRepeatFactor
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Second Repeat Factor</em>' reference.
+	 * @see #isSetSecondRepeatFactor()
+	 * @see #unsetSecondRepeatFactor()
 	 * @see #setSecondRepeatFactor(IfcVector)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTwoDirectionRepeatFactor_SecondRepeatFactor()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcVector getSecondRepeatFactor();
@@ -54,9 +56,34 @@ public interface IfcTwoDirectionRepeatFactor extends IfcOneDirectionRepeatFactor
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Second Repeat Factor</em>' reference.
+	 * @see #isSetSecondRepeatFactor()
+	 * @see #unsetSecondRepeatFactor()
 	 * @see #getSecondRepeatFactor()
 	 * @generated
 	 */
 	void setSecondRepeatFactor(IfcVector value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTwoDirectionRepeatFactor#getSecondRepeatFactor <em>Second Repeat Factor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSecondRepeatFactor()
+	 * @see #getSecondRepeatFactor()
+	 * @see #setSecondRepeatFactor(IfcVector)
+	 * @generated
+	 */
+	void unsetSecondRepeatFactor();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTwoDirectionRepeatFactor#getSecondRepeatFactor <em>Second Repeat Factor</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Second Repeat Factor</em>' reference is set.
+	 * @see #unsetSecondRepeatFactor()
+	 * @see #getSecondRepeatFactor()
+	 * @see #setSecondRepeatFactor(IfcVector)
+	 * @generated
+	 */
+	boolean isSetSecondRepeatFactor();
 
 } // IfcTwoDirectionRepeatFactor

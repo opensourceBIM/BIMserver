@@ -96,9 +96,45 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingConstraint() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingConstraint() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getRelatedProperties() {
 		return (EList<IfcProperty>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedProperties() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedProperties() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES);
 	}
 
 	/**

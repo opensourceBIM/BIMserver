@@ -45,9 +45,11 @@ public interface IfcComplexProperty extends IfcProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usage Name</em>' attribute.
+	 * @see #isSetUsageName()
+	 * @see #unsetUsageName()
 	 * @see #setUsageName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcComplexProperty_UsageName()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getUsageName();
@@ -57,10 +59,35 @@ public interface IfcComplexProperty extends IfcProperty {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Usage Name</em>' attribute.
+	 * @see #isSetUsageName()
+	 * @see #unsetUsageName()
 	 * @see #getUsageName()
 	 * @generated
 	 */
 	void setUsageName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcComplexProperty#getUsageName <em>Usage Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUsageName()
+	 * @see #getUsageName()
+	 * @see #setUsageName(String)
+	 * @generated
+	 */
+	void unsetUsageName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcComplexProperty#getUsageName <em>Usage Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Usage Name</em>' attribute is set.
+	 * @see #unsetUsageName()
+	 * @see #getUsageName()
+	 * @see #setUsageName(String)
+	 * @generated
+	 */
+	boolean isSetUsageName();
 
 	/**
 	 * Returns the value of the '<em><b>Has Properties</b></em>' reference list.
@@ -73,11 +100,34 @@ public interface IfcComplexProperty extends IfcProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Properties</em>' reference list.
+	 * @see #isSetHasProperties()
+	 * @see #unsetHasProperties()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcComplexProperty_HasProperties()
 	 * @see org.bimserver.models.ifc2x3.IfcProperty#getPartOfComplex
-	 * @model opposite="PartOfComplex"
+	 * @model opposite="PartOfComplex" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcProperty> getHasProperties();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcComplexProperty#getHasProperties <em>Has Properties</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasProperties()
+	 * @see #getHasProperties()
+	 * @generated
+	 */
+	void unsetHasProperties();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcComplexProperty#getHasProperties <em>Has Properties</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Properties</em>' reference list is set.
+	 * @see #unsetHasProperties()
+	 * @see #getHasProperties()
+	 * @generated
+	 */
+	boolean isSetHasProperties();
 
 } // IfcComplexProperty

@@ -67,4 +67,22 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 		return (EList<IfcLibraryInformation>) eGet(Ifc2x3Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCE_INTO_LIBRARY, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetReferenceIntoLibrary() {
+		eUnset(Ifc2x3Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCE_INTO_LIBRARY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferenceIntoLibrary() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCE_INTO_LIBRARY);
+	}
+
 } //IfcLibraryReferenceImpl

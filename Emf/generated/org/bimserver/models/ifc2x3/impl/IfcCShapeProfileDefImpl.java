@@ -88,6 +88,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDepth() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDepth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDepthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH_AS_STRING, true);
 	}
@@ -99,6 +117,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setDepthAsString(String newDepthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH_AS_STRING, newDepthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDepthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDepthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH_AS_STRING);
 	}
 
 	/**
@@ -124,6 +160,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetWidth() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWidth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getWidthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH_AS_STRING, true);
 	}
@@ -135,6 +189,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setWidthAsString(String newWidthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH_AS_STRING, newWidthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWidthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWidthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH_AS_STRING);
 	}
 
 	/**
@@ -160,6 +232,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetWallThickness() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWallThickness() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getWallThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS_AS_STRING, true);
 	}
@@ -171,6 +261,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setWallThicknessAsString(String newWallThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS_AS_STRING, newWallThicknessAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWallThicknessAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWallThicknessAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS_AS_STRING);
 	}
 
 	/**
@@ -196,6 +304,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetGirth() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGirth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getGirthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH_AS_STRING, true);
 	}
@@ -207,6 +333,24 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setGirthAsString(String newGirthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH_AS_STRING, newGirthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetGirthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGirthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH_AS_STRING);
 	}
 
 	/**

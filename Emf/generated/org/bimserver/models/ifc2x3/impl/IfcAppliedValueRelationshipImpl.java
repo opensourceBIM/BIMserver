@@ -97,9 +97,45 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetComponentOfTotal() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetComponentOfTotal() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getComponents() {
 		return (EList<IfcAppliedValue>) eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetComponents() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetComponents() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS);
 	}
 
 	/**
@@ -118,6 +154,24 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 */
 	public void setArithmeticOperator(IfcArithmeticOperatorEnum newArithmeticOperator) {
 		eSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR, newArithmeticOperator);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetArithmeticOperator() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetArithmeticOperator() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR);
 	}
 
 	/**

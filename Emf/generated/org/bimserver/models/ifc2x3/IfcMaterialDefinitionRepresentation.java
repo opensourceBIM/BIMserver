@@ -43,10 +43,12 @@ public interface IfcMaterialDefinitionRepresentation extends IfcProductRepresent
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Represented Material</em>' reference.
+	 * @see #isSetRepresentedMaterial()
+	 * @see #unsetRepresentedMaterial()
 	 * @see #setRepresentedMaterial(IfcMaterial)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialDefinitionRepresentation_RepresentedMaterial()
 	 * @see org.bimserver.models.ifc2x3.IfcMaterial#getHasRepresentation
-	 * @model opposite="HasRepresentation"
+	 * @model opposite="HasRepresentation" unsettable="true"
 	 * @generated
 	 */
 	IfcMaterial getRepresentedMaterial();
@@ -56,9 +58,34 @@ public interface IfcMaterialDefinitionRepresentation extends IfcProductRepresent
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Represented Material</em>' reference.
+	 * @see #isSetRepresentedMaterial()
+	 * @see #unsetRepresentedMaterial()
 	 * @see #getRepresentedMaterial()
 	 * @generated
 	 */
 	void setRepresentedMaterial(IfcMaterial value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialDefinitionRepresentation#getRepresentedMaterial <em>Represented Material</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRepresentedMaterial()
+	 * @see #getRepresentedMaterial()
+	 * @see #setRepresentedMaterial(IfcMaterial)
+	 * @generated
+	 */
+	void unsetRepresentedMaterial();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialDefinitionRepresentation#getRepresentedMaterial <em>Represented Material</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Represented Material</em>' reference is set.
+	 * @see #unsetRepresentedMaterial()
+	 * @see #getRepresentedMaterial()
+	 * @see #setRepresentedMaterial(IfcMaterial)
+	 * @generated
+	 */
+	boolean isSetRepresentedMaterial();
 
 } // IfcMaterialDefinitionRepresentation

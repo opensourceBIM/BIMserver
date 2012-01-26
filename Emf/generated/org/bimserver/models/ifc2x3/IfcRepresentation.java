@@ -51,10 +51,12 @@ public interface IfcRepresentation extends IfcLayeredItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Context Of Items</em>' reference.
+	 * @see #isSetContextOfItems()
+	 * @see #unsetContextOfItems()
 	 * @see #setContextOfItems(IfcRepresentationContext)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentation_ContextOfItems()
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentationContext#getRepresentationsInContext
-	 * @model opposite="RepresentationsInContext"
+	 * @model opposite="RepresentationsInContext" unsettable="true"
 	 * @generated
 	 */
 	IfcRepresentationContext getContextOfItems();
@@ -64,10 +66,35 @@ public interface IfcRepresentation extends IfcLayeredItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Context Of Items</em>' reference.
+	 * @see #isSetContextOfItems()
+	 * @see #unsetContextOfItems()
 	 * @see #getContextOfItems()
 	 * @generated
 	 */
 	void setContextOfItems(IfcRepresentationContext value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getContextOfItems <em>Context Of Items</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContextOfItems()
+	 * @see #getContextOfItems()
+	 * @see #setContextOfItems(IfcRepresentationContext)
+	 * @generated
+	 */
+	void unsetContextOfItems();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getContextOfItems <em>Context Of Items</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Context Of Items</em>' reference is set.
+	 * @see #unsetContextOfItems()
+	 * @see #getContextOfItems()
+	 * @see #setContextOfItems(IfcRepresentationContext)
+	 * @generated
+	 */
+	boolean isSetContextOfItems();
 
 	/**
 	 * Returns the value of the '<em><b>Representation Identifier</b></em>' attribute.
@@ -185,11 +212,34 @@ public interface IfcRepresentation extends IfcLayeredItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Items</em>' reference list.
+	 * @see #isSetItems()
+	 * @see #unsetItems()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentation_Items()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRepresentationItem> getItems();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getItems <em>Items</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetItems()
+	 * @see #getItems()
+	 * @generated
+	 */
+	void unsetItems();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getItems <em>Items</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Items</em>' reference list is set.
+	 * @see #unsetItems()
+	 * @see #getItems()
+	 * @generated
+	 */
+	boolean isSetItems();
 
 	/**
 	 * Returns the value of the '<em><b>Representation Map</b></em>' reference list.
@@ -202,12 +252,35 @@ public interface IfcRepresentation extends IfcLayeredItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representation Map</em>' reference list.
+	 * @see #isSetRepresentationMap()
+	 * @see #unsetRepresentationMap()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentation_RepresentationMap()
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentationMap#getMappedRepresentation
-	 * @model opposite="MappedRepresentation" upper="2"
+	 * @model opposite="MappedRepresentation" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRepresentationMap> getRepresentationMap();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getRepresentationMap <em>Representation Map</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRepresentationMap()
+	 * @see #getRepresentationMap()
+	 * @generated
+	 */
+	void unsetRepresentationMap();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getRepresentationMap <em>Representation Map</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Representation Map</em>' reference list is set.
+	 * @see #unsetRepresentationMap()
+	 * @see #getRepresentationMap()
+	 * @generated
+	 */
+	boolean isSetRepresentationMap();
 
 	/**
 	 * Returns the value of the '<em><b>Layer Assignments</b></em>' reference list.
@@ -219,11 +292,34 @@ public interface IfcRepresentation extends IfcLayeredItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Assignments</em>' reference list.
+	 * @see #isSetLayerAssignments()
+	 * @see #unsetLayerAssignments()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentation_LayerAssignments()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPresentationLayerAssignment> getLayerAssignments();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getLayerAssignments <em>Layer Assignments</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLayerAssignments()
+	 * @see #getLayerAssignments()
+	 * @generated
+	 */
+	void unsetLayerAssignments();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getLayerAssignments <em>Layer Assignments</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Layer Assignments</em>' reference list is set.
+	 * @see #unsetLayerAssignments()
+	 * @see #getLayerAssignments()
+	 * @generated
+	 */
+	boolean isSetLayerAssignments();
 
 	/**
 	 * Returns the value of the '<em><b>Of Product Representation</b></em>' reference list.
@@ -236,11 +332,34 @@ public interface IfcRepresentation extends IfcLayeredItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Of Product Representation</em>' reference list.
+	 * @see #isSetOfProductRepresentation()
+	 * @see #unsetOfProductRepresentation()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentation_OfProductRepresentation()
 	 * @see org.bimserver.models.ifc2x3.IfcProductRepresentation#getRepresentations
-	 * @model opposite="Representations" upper="2"
+	 * @model opposite="Representations" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcProductRepresentation> getOfProductRepresentation();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getOfProductRepresentation <em>Of Product Representation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOfProductRepresentation()
+	 * @see #getOfProductRepresentation()
+	 * @generated
+	 */
+	void unsetOfProductRepresentation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentation#getOfProductRepresentation <em>Of Product Representation</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Of Product Representation</em>' reference list is set.
+	 * @see #unsetOfProductRepresentation()
+	 * @see #getOfProductRepresentation()
+	 * @generated
+	 */
+	boolean isSetOfProductRepresentation();
 
 } // IfcRepresentation

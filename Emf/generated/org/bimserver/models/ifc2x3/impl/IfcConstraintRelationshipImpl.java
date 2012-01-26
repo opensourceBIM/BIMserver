@@ -167,9 +167,45 @@ public class IfcConstraintRelationshipImpl extends IdEObjectImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingConstraint() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingConstraint() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraint> getRelatedConstraints() {
 		return (EList<IfcConstraint>) eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATED_CONSTRAINTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedConstraints() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATED_CONSTRAINTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedConstraints() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATED_CONSTRAINTS);
 	}
 
 } //IfcConstraintRelationshipImpl

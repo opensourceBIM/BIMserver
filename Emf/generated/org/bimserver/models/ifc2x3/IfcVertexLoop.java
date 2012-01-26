@@ -42,9 +42,11 @@ public interface IfcVertexLoop extends IfcLoop {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Loop Vertex</em>' reference.
+	 * @see #isSetLoopVertex()
+	 * @see #unsetLoopVertex()
 	 * @see #setLoopVertex(IfcVertex)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVertexLoop_LoopVertex()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcVertex getLoopVertex();
@@ -54,9 +56,34 @@ public interface IfcVertexLoop extends IfcLoop {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Loop Vertex</em>' reference.
+	 * @see #isSetLoopVertex()
+	 * @see #unsetLoopVertex()
 	 * @see #getLoopVertex()
 	 * @generated
 	 */
 	void setLoopVertex(IfcVertex value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexLoop#getLoopVertex <em>Loop Vertex</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLoopVertex()
+	 * @see #getLoopVertex()
+	 * @see #setLoopVertex(IfcVertex)
+	 * @generated
+	 */
+	void unsetLoopVertex();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexLoop#getLoopVertex <em>Loop Vertex</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Loop Vertex</em>' reference is set.
+	 * @see #unsetLoopVertex()
+	 * @see #getLoopVertex()
+	 * @see #setLoopVertex(IfcVertex)
+	 * @generated
+	 */
+	boolean isSetLoopVertex();
 
 } // IfcVertexLoop

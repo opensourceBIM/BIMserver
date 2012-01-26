@@ -103,9 +103,11 @@ public interface IfcSpatialStructureElement extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Composition Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElementCompositionEnum
+	 * @see #isSetCompositionType()
+	 * @see #unsetCompositionType()
 	 * @see #setCompositionType(IfcElementCompositionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpatialStructureElement_CompositionType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcElementCompositionEnum getCompositionType();
@@ -116,10 +118,35 @@ public interface IfcSpatialStructureElement extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Composition Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElementCompositionEnum
+	 * @see #isSetCompositionType()
+	 * @see #unsetCompositionType()
 	 * @see #getCompositionType()
 	 * @generated
 	 */
 	void setCompositionType(IfcElementCompositionEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getCompositionType <em>Composition Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCompositionType()
+	 * @see #getCompositionType()
+	 * @see #setCompositionType(IfcElementCompositionEnum)
+	 * @generated
+	 */
+	void unsetCompositionType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getCompositionType <em>Composition Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Composition Type</em>' attribute is set.
+	 * @see #unsetCompositionType()
+	 * @see #getCompositionType()
+	 * @see #setCompositionType(IfcElementCompositionEnum)
+	 * @generated
+	 */
+	boolean isSetCompositionType();
 
 	/**
 	 * Returns the value of the '<em><b>References Elements</b></em>' reference list.
@@ -132,12 +159,35 @@ public interface IfcSpatialStructureElement extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>References Elements</em>' reference list.
+	 * @see #isSetReferencesElements()
+	 * @see #unsetReferencesElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpatialStructureElement_ReferencesElements()
 	 * @see org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure#getRelatingStructure
-	 * @model opposite="RelatingStructure"
+	 * @model opposite="RelatingStructure" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelReferencedInSpatialStructure> getReferencesElements();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getReferencesElements <em>References Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReferencesElements()
+	 * @see #getReferencesElements()
+	 * @generated
+	 */
+	void unsetReferencesElements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getReferencesElements <em>References Elements</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>References Elements</em>' reference list is set.
+	 * @see #unsetReferencesElements()
+	 * @see #getReferencesElements()
+	 * @generated
+	 */
+	boolean isSetReferencesElements();
 
 	/**
 	 * Returns the value of the '<em><b>Serviced By Systems</b></em>' reference list.
@@ -150,12 +200,35 @@ public interface IfcSpatialStructureElement extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Serviced By Systems</em>' reference list.
+	 * @see #isSetServicedBySystems()
+	 * @see #unsetServicedBySystems()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpatialStructureElement_ServicedBySystems()
 	 * @see org.bimserver.models.ifc2x3.IfcRelServicesBuildings#getRelatedBuildings
-	 * @model opposite="RelatedBuildings"
+	 * @model opposite="RelatedBuildings" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelServicesBuildings> getServicedBySystems();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getServicedBySystems <em>Serviced By Systems</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetServicedBySystems()
+	 * @see #getServicedBySystems()
+	 * @generated
+	 */
+	void unsetServicedBySystems();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getServicedBySystems <em>Serviced By Systems</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Serviced By Systems</em>' reference list is set.
+	 * @see #unsetServicedBySystems()
+	 * @see #getServicedBySystems()
+	 * @generated
+	 */
+	boolean isSetServicedBySystems();
 
 	/**
 	 * Returns the value of the '<em><b>Contains Elements</b></em>' reference list.
@@ -168,11 +241,34 @@ public interface IfcSpatialStructureElement extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contains Elements</em>' reference list.
+	 * @see #isSetContainsElements()
+	 * @see #unsetContainsElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpatialStructureElement_ContainsElements()
 	 * @see org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure#getRelatingStructure
-	 * @model opposite="RelatingStructure"
+	 * @model opposite="RelatingStructure" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelContainedInSpatialStructure> getContainsElements();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getContainsElements <em>Contains Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContainsElements()
+	 * @see #getContainsElements()
+	 * @generated
+	 */
+	void unsetContainsElements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getContainsElements <em>Contains Elements</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Contains Elements</em>' reference list is set.
+	 * @see #unsetContainsElements()
+	 * @see #getContainsElements()
+	 * @generated
+	 */
+	boolean isSetContainsElements();
 
 } // IfcSpatialStructureElement

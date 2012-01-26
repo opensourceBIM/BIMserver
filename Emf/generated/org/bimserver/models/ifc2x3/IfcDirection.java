@@ -47,11 +47,34 @@ public interface IfcDirection extends IfcGeometricRepresentationItem, IfcOrienta
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Direction Ratios</em>' attribute list.
+	 * @see #isSetDirectionRatios()
+	 * @see #unsetDirectionRatios()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDirection_DirectionRatios()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<Double> getDirectionRatios();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDirection#getDirectionRatios <em>Direction Ratios</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDirectionRatios()
+	 * @see #getDirectionRatios()
+	 * @generated
+	 */
+	void unsetDirectionRatios();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDirection#getDirectionRatios <em>Direction Ratios</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Direction Ratios</em>' attribute list is set.
+	 * @see #unsetDirectionRatios()
+	 * @see #getDirectionRatios()
+	 * @generated
+	 */
+	boolean isSetDirectionRatios();
 
 	/**
 	 * Returns the value of the '<em><b>Direction Ratios As String</b></em>' attribute list.
@@ -63,11 +86,34 @@ public interface IfcDirection extends IfcGeometricRepresentationItem, IfcOrienta
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Direction Ratios As String</em>' attribute list.
+	 * @see #isSetDirectionRatiosAsString()
+	 * @see #unsetDirectionRatiosAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDirection_DirectionRatiosAsString()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<String> getDirectionRatiosAsString();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDirection#getDirectionRatiosAsString <em>Direction Ratios As String</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDirectionRatiosAsString()
+	 * @see #getDirectionRatiosAsString()
+	 * @generated
+	 */
+	void unsetDirectionRatiosAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDirection#getDirectionRatiosAsString <em>Direction Ratios As String</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Direction Ratios As String</em>' attribute list is set.
+	 * @see #unsetDirectionRatiosAsString()
+	 * @see #getDirectionRatiosAsString()
+	 * @generated
+	 */
+	boolean isSetDirectionRatiosAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -78,9 +124,11 @@ public interface IfcDirection extends IfcGeometricRepresentationItem, IfcOrienta
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDirection_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -90,9 +138,34 @@ public interface IfcDirection extends IfcGeometricRepresentationItem, IfcOrienta
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDirection#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDirection#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcDirection

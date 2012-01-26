@@ -100,11 +100,34 @@ public interface IfcStructuralConnection extends IfcStructuralItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connects Structural Members</em>' reference list.
+	 * @see #isSetConnectsStructuralMembers()
+	 * @see #unsetConnectsStructuralMembers()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralConnection_ConnectsStructuralMembers()
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember#getRelatedStructuralConnection
-	 * @model opposite="RelatedStructuralConnection"
+	 * @model opposite="RelatedStructuralConnection" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelConnectsStructuralMember> getConnectsStructuralMembers();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralConnection#getConnectsStructuralMembers <em>Connects Structural Members</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetConnectsStructuralMembers()
+	 * @see #getConnectsStructuralMembers()
+	 * @generated
+	 */
+	void unsetConnectsStructuralMembers();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralConnection#getConnectsStructuralMembers <em>Connects Structural Members</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Connects Structural Members</em>' reference list is set.
+	 * @see #unsetConnectsStructuralMembers()
+	 * @see #getConnectsStructuralMembers()
+	 * @generated
+	 */
+	boolean isSetConnectsStructuralMembers();
 
 } // IfcStructuralConnection

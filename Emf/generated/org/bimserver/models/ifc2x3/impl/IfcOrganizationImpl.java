@@ -138,6 +138,24 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements IfcOrganizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ORGANIZATION__DESCRIPTION, true);
 	}
@@ -240,6 +258,24 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements IfcOrganizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsRelatedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsRelatedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganizationRelationship> getRelates() {
 		return (EList<IfcOrganizationRelationship>) eGet(Ifc2x3Package.Literals.IFC_ORGANIZATION__RELATES, true);
@@ -250,9 +286,45 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements IfcOrganizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelates() {
+		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION__RELATES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelates() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION__RELATES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPersonAndOrganization> getEngages() {
 		return (EList<IfcPersonAndOrganization>) eGet(Ifc2x3Package.Literals.IFC_ORGANIZATION__ENGAGES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetEngages() {
+		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION__ENGAGES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEngages() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION__ENGAGES);
 	}
 
 } //IfcOrganizationImpl

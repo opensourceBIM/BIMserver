@@ -46,11 +46,34 @@ public interface IfcDocumentReference extends IfcExternalReference, IfcDocumentS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference To Document</em>' reference list.
+	 * @see #isSetReferenceToDocument()
+	 * @see #unsetReferenceToDocument()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentReference_ReferenceToDocument()
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentInformation#getDocumentReferences
-	 * @model opposite="DocumentReferences" upper="2"
+	 * @model opposite="DocumentReferences" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcDocumentInformation> getReferenceToDocument();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentReference#getReferenceToDocument <em>Reference To Document</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReferenceToDocument()
+	 * @see #getReferenceToDocument()
+	 * @generated
+	 */
+	void unsetReferenceToDocument();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentReference#getReferenceToDocument <em>Reference To Document</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Reference To Document</em>' reference list is set.
+	 * @see #unsetReferenceToDocument()
+	 * @see #getReferenceToDocument()
+	 * @generated
+	 */
+	boolean isSetReferenceToDocument();
 
 } // IfcDocumentReference

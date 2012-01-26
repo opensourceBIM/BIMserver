@@ -44,9 +44,11 @@ public interface IfcRelAssociatesProfileProperties extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Profile Properties</em>' reference.
+	 * @see #isSetRelatingProfileProperties()
+	 * @see #unsetRelatingProfileProperties()
 	 * @see #setRelatingProfileProperties(IfcProfileProperties)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesProfileProperties_RelatingProfileProperties()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcProfileProperties getRelatingProfileProperties();
@@ -56,10 +58,35 @@ public interface IfcRelAssociatesProfileProperties extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Profile Properties</em>' reference.
+	 * @see #isSetRelatingProfileProperties()
+	 * @see #unsetRelatingProfileProperties()
 	 * @see #getRelatingProfileProperties()
 	 * @generated
 	 */
 	void setRelatingProfileProperties(IfcProfileProperties value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesProfileProperties#getRelatingProfileProperties <em>Relating Profile Properties</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingProfileProperties()
+	 * @see #getRelatingProfileProperties()
+	 * @see #setRelatingProfileProperties(IfcProfileProperties)
+	 * @generated
+	 */
+	void unsetRelatingProfileProperties();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesProfileProperties#getRelatingProfileProperties <em>Relating Profile Properties</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Profile Properties</em>' reference is set.
+	 * @see #unsetRelatingProfileProperties()
+	 * @see #getRelatingProfileProperties()
+	 * @see #setRelatingProfileProperties(IfcProfileProperties)
+	 * @generated
+	 */
+	boolean isSetRelatingProfileProperties();
 
 	/**
 	 * Returns the value of the '<em><b>Profile Section Location</b></em>' reference.

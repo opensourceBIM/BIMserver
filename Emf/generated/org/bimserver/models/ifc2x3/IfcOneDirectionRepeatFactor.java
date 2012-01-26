@@ -42,9 +42,11 @@ public interface IfcOneDirectionRepeatFactor extends IfcGeometricRepresentationI
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Repeat Factor</em>' reference.
+	 * @see #isSetRepeatFactor()
+	 * @see #unsetRepeatFactor()
 	 * @see #setRepeatFactor(IfcVector)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOneDirectionRepeatFactor_RepeatFactor()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcVector getRepeatFactor();
@@ -54,9 +56,34 @@ public interface IfcOneDirectionRepeatFactor extends IfcGeometricRepresentationI
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Repeat Factor</em>' reference.
+	 * @see #isSetRepeatFactor()
+	 * @see #unsetRepeatFactor()
 	 * @see #getRepeatFactor()
 	 * @generated
 	 */
 	void setRepeatFactor(IfcVector value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOneDirectionRepeatFactor#getRepeatFactor <em>Repeat Factor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRepeatFactor()
+	 * @see #getRepeatFactor()
+	 * @see #setRepeatFactor(IfcVector)
+	 * @generated
+	 */
+	void unsetRepeatFactor();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOneDirectionRepeatFactor#getRepeatFactor <em>Repeat Factor</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Repeat Factor</em>' reference is set.
+	 * @see #unsetRepeatFactor()
+	 * @see #getRepeatFactor()
+	 * @see #setRepeatFactor(IfcVector)
+	 * @generated
+	 */
+	boolean isSetRepeatFactor();
 
 } // IfcOneDirectionRepeatFactor

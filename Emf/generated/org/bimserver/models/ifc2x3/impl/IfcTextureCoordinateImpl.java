@@ -79,4 +79,22 @@ public class IfcTextureCoordinateImpl extends IdEObjectImpl implements IfcTextur
 		return (EList<IfcAnnotationSurface>) eGet(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE__ANNOTATED_SURFACE, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAnnotatedSurface() {
+		eUnset(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE__ANNOTATED_SURFACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAnnotatedSurface() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE__ANNOTATED_SURFACE);
+	}
+
 } //IfcTextureCoordinateImpl

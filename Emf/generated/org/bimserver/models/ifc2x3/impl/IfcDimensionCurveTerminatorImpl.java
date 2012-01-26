@@ -73,4 +73,22 @@ public class IfcDimensionCurveTerminatorImpl extends IfcTerminatorSymbolImpl imp
 		eSet(Ifc2x3Package.Literals.IFC_DIMENSION_CURVE_TERMINATOR__ROLE, newRole);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRole() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSION_CURVE_TERMINATOR__ROLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRole() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSION_CURVE_TERMINATOR__ROLE);
+	}
+
 } //IfcDimensionCurveTerminatorImpl

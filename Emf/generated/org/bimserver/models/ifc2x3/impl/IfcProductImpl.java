@@ -143,4 +143,22 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 		return (EList<IfcRelAssignsToProduct>) eGet(Ifc2x3Package.Literals.IFC_PRODUCT__REFERENCED_BY, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetReferencedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_PRODUCT__REFERENCED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferencedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PRODUCT__REFERENCED_BY);
+	}
+
 } //IfcProductImpl

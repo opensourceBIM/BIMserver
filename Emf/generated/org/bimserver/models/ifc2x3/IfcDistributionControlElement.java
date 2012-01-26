@@ -100,11 +100,34 @@ public interface IfcDistributionControlElement extends IfcDistributionElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assigned To Flow Element</em>' reference list.
+	 * @see #isSetAssignedToFlowElement()
+	 * @see #unsetAssignedToFlowElement()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDistributionControlElement_AssignedToFlowElement()
 	 * @see org.bimserver.models.ifc2x3.IfcRelFlowControlElements#getRelatedControlElements
-	 * @model opposite="RelatedControlElements" upper="2"
+	 * @model opposite="RelatedControlElements" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelFlowControlElements> getAssignedToFlowElement();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDistributionControlElement#getAssignedToFlowElement <em>Assigned To Flow Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAssignedToFlowElement()
+	 * @see #getAssignedToFlowElement()
+	 * @generated
+	 */
+	void unsetAssignedToFlowElement();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDistributionControlElement#getAssignedToFlowElement <em>Assigned To Flow Element</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Assigned To Flow Element</em>' reference list is set.
+	 * @see #unsetAssignedToFlowElement()
+	 * @see #getAssignedToFlowElement()
+	 * @generated
+	 */
+	boolean isSetAssignedToFlowElement();
 
 } // IfcDistributionControlElement

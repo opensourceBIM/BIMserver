@@ -80,6 +80,24 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetExtrudedDirection() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetExtrudedDirection() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getDepth() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, true);
 	}
@@ -98,6 +116,24 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDepth() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDepth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getDepthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING, true);
 	}
@@ -109,6 +145,24 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 */
 	public void setDepthAsString(String newDepthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING, newDepthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDepthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDepthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING);
 	}
 
 } //IfcSurfaceOfLinearExtrusionImpl

@@ -67,4 +67,22 @@ public class IfcShapeModelImpl extends IfcRepresentationImpl implements IfcShape
 		return (EList<IfcShapeAspect>) eGet(Ifc2x3Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOfShapeAspect() {
+		eUnset(Ifc2x3Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOfShapeAspect() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT);
+	}
+
 } //IfcShapeModelImpl

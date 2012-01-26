@@ -82,6 +82,24 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetNumberOfRiser() {
+		eUnset(Ifc2x3Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNumberOfRiser() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getNumberOfTreads() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS, true);
 	}
@@ -93,6 +111,24 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 */
 	public void setNumberOfTreads(int newNumberOfTreads) {
 		eSet(Ifc2x3Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS, newNumberOfTreads);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNumberOfTreads() {
+		eUnset(Ifc2x3Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNumberOfTreads() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS);
 	}
 
 	/**

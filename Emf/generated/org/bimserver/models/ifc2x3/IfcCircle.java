@@ -43,9 +43,11 @@ public interface IfcCircle extends IfcConic {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius</em>' attribute.
+	 * @see #isSetRadius()
+	 * @see #unsetRadius()
 	 * @see #setRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCircle_Radius()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getRadius();
@@ -55,10 +57,35 @@ public interface IfcCircle extends IfcConic {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Radius</em>' attribute.
+	 * @see #isSetRadius()
+	 * @see #unsetRadius()
 	 * @see #getRadius()
 	 * @generated
 	 */
 	void setRadius(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCircle#getRadius <em>Radius</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRadius()
+	 * @see #getRadius()
+	 * @see #setRadius(double)
+	 * @generated
+	 */
+	void unsetRadius();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCircle#getRadius <em>Radius</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Radius</em>' attribute is set.
+	 * @see #unsetRadius()
+	 * @see #getRadius()
+	 * @see #setRadius(double)
+	 * @generated
+	 */
+	boolean isSetRadius();
 
 	/**
 	 * Returns the value of the '<em><b>Radius As String</b></em>' attribute.
@@ -69,9 +96,11 @@ public interface IfcCircle extends IfcConic {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radius As String</em>' attribute.
+	 * @see #isSetRadiusAsString()
+	 * @see #unsetRadiusAsString()
 	 * @see #setRadiusAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCircle_RadiusAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getRadiusAsString();
@@ -81,9 +110,34 @@ public interface IfcCircle extends IfcConic {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Radius As String</em>' attribute.
+	 * @see #isSetRadiusAsString()
+	 * @see #unsetRadiusAsString()
 	 * @see #getRadiusAsString()
 	 * @generated
 	 */
 	void setRadiusAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCircle#getRadiusAsString <em>Radius As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRadiusAsString()
+	 * @see #getRadiusAsString()
+	 * @see #setRadiusAsString(String)
+	 * @generated
+	 */
+	void unsetRadiusAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCircle#getRadiusAsString <em>Radius As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Radius As String</em>' attribute is set.
+	 * @see #unsetRadiusAsString()
+	 * @see #getRadiusAsString()
+	 * @see #setRadiusAsString(String)
+	 * @generated
+	 */
+	boolean isSetRadiusAsString();
 
 } // IfcCircle

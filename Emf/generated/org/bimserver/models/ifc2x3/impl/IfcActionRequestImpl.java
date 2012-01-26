@@ -72,4 +72,22 @@ public class IfcActionRequestImpl extends IfcControlImpl implements IfcActionReq
 		eSet(Ifc2x3Package.Literals.IFC_ACTION_REQUEST__REQUEST_ID, newRequestID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRequestID() {
+		eUnset(Ifc2x3Package.Literals.IFC_ACTION_REQUEST__REQUEST_ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRequestID() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ACTION_REQUEST__REQUEST_ID);
+	}
+
 } //IfcActionRequestImpl

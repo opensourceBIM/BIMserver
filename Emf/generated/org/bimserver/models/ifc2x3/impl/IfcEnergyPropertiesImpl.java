@@ -79,6 +79,24 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetEnergySequence() {
+		eUnset(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEnergySequence() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getUserDefinedEnergySequence() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE, true);
 	}

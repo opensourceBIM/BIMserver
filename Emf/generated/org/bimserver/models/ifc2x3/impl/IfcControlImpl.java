@@ -67,4 +67,22 @@ public class IfcControlImpl extends IfcObjectImpl implements IfcControl {
 		return (EList<IfcRelAssignsToControl>) eGet(Ifc2x3Package.Literals.IFC_CONTROL__CONTROLS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetControls() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONTROL__CONTROLS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetControls() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONTROL__CONTROLS);
+	}
+
 } //IfcControlImpl

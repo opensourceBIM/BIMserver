@@ -73,4 +73,22 @@ public class IfcStructuralLinearActionImpl extends IfcStructuralActionImpl imple
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE, newProjectedOrTrue);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetProjectedOrTrue() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetProjectedOrTrue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE);
+	}
+
 } //IfcStructuralLinearActionImpl

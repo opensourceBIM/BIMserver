@@ -73,4 +73,22 @@ public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl imple
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, newRelatingAppliedValue);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingAppliedValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingAppliedValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE);
+	}
+
 } //IfcRelAssociatesAppliedValueImpl

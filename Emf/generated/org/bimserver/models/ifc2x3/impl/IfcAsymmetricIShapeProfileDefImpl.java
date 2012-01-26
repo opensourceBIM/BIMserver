@@ -84,6 +84,24 @@ public class IfcAsymmetricIShapeProfileDefImpl extends IfcIShapeProfileDefImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTopFlangeWidth() {
+		eUnset(Ifc2x3Package.Literals.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF__TOP_FLANGE_WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTopFlangeWidth() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF__TOP_FLANGE_WIDTH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTopFlangeWidthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF__TOP_FLANGE_WIDTH_AS_STRING, true);
 	}
@@ -95,6 +113,24 @@ public class IfcAsymmetricIShapeProfileDefImpl extends IfcIShapeProfileDefImpl i
 	 */
 	public void setTopFlangeWidthAsString(String newTopFlangeWidthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF__TOP_FLANGE_WIDTH_AS_STRING, newTopFlangeWidthAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTopFlangeWidthAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF__TOP_FLANGE_WIDTH_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTopFlangeWidthAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF__TOP_FLANGE_WIDTH_AS_STRING);
 	}
 
 	/**

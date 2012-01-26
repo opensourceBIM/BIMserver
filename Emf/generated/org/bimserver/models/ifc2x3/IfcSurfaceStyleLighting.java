@@ -45,9 +45,11 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Diffuse Transmission Colour</em>' reference.
+	 * @see #isSetDiffuseTransmissionColour()
+	 * @see #unsetDiffuseTransmissionColour()
 	 * @see #setDiffuseTransmissionColour(IfcColourRgb)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleLighting_DiffuseTransmissionColour()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcColourRgb getDiffuseTransmissionColour();
@@ -57,10 +59,35 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Diffuse Transmission Colour</em>' reference.
+	 * @see #isSetDiffuseTransmissionColour()
+	 * @see #unsetDiffuseTransmissionColour()
 	 * @see #getDiffuseTransmissionColour()
 	 * @generated
 	 */
 	void setDiffuseTransmissionColour(IfcColourRgb value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getDiffuseTransmissionColour <em>Diffuse Transmission Colour</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDiffuseTransmissionColour()
+	 * @see #getDiffuseTransmissionColour()
+	 * @see #setDiffuseTransmissionColour(IfcColourRgb)
+	 * @generated
+	 */
+	void unsetDiffuseTransmissionColour();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getDiffuseTransmissionColour <em>Diffuse Transmission Colour</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Diffuse Transmission Colour</em>' reference is set.
+	 * @see #unsetDiffuseTransmissionColour()
+	 * @see #getDiffuseTransmissionColour()
+	 * @see #setDiffuseTransmissionColour(IfcColourRgb)
+	 * @generated
+	 */
+	boolean isSetDiffuseTransmissionColour();
 
 	/**
 	 * Returns the value of the '<em><b>Diffuse Reflection Colour</b></em>' reference.
@@ -71,9 +98,11 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Diffuse Reflection Colour</em>' reference.
+	 * @see #isSetDiffuseReflectionColour()
+	 * @see #unsetDiffuseReflectionColour()
 	 * @see #setDiffuseReflectionColour(IfcColourRgb)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleLighting_DiffuseReflectionColour()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcColourRgb getDiffuseReflectionColour();
@@ -83,10 +112,35 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Diffuse Reflection Colour</em>' reference.
+	 * @see #isSetDiffuseReflectionColour()
+	 * @see #unsetDiffuseReflectionColour()
 	 * @see #getDiffuseReflectionColour()
 	 * @generated
 	 */
 	void setDiffuseReflectionColour(IfcColourRgb value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getDiffuseReflectionColour <em>Diffuse Reflection Colour</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDiffuseReflectionColour()
+	 * @see #getDiffuseReflectionColour()
+	 * @see #setDiffuseReflectionColour(IfcColourRgb)
+	 * @generated
+	 */
+	void unsetDiffuseReflectionColour();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getDiffuseReflectionColour <em>Diffuse Reflection Colour</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Diffuse Reflection Colour</em>' reference is set.
+	 * @see #unsetDiffuseReflectionColour()
+	 * @see #getDiffuseReflectionColour()
+	 * @see #setDiffuseReflectionColour(IfcColourRgb)
+	 * @generated
+	 */
+	boolean isSetDiffuseReflectionColour();
 
 	/**
 	 * Returns the value of the '<em><b>Transmission Colour</b></em>' reference.
@@ -97,9 +151,11 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transmission Colour</em>' reference.
+	 * @see #isSetTransmissionColour()
+	 * @see #unsetTransmissionColour()
 	 * @see #setTransmissionColour(IfcColourRgb)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleLighting_TransmissionColour()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcColourRgb getTransmissionColour();
@@ -109,10 +165,35 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transmission Colour</em>' reference.
+	 * @see #isSetTransmissionColour()
+	 * @see #unsetTransmissionColour()
 	 * @see #getTransmissionColour()
 	 * @generated
 	 */
 	void setTransmissionColour(IfcColourRgb value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getTransmissionColour <em>Transmission Colour</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTransmissionColour()
+	 * @see #getTransmissionColour()
+	 * @see #setTransmissionColour(IfcColourRgb)
+	 * @generated
+	 */
+	void unsetTransmissionColour();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getTransmissionColour <em>Transmission Colour</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Transmission Colour</em>' reference is set.
+	 * @see #unsetTransmissionColour()
+	 * @see #getTransmissionColour()
+	 * @see #setTransmissionColour(IfcColourRgb)
+	 * @generated
+	 */
+	boolean isSetTransmissionColour();
 
 	/**
 	 * Returns the value of the '<em><b>Reflectance Colour</b></em>' reference.
@@ -123,9 +204,11 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reflectance Colour</em>' reference.
+	 * @see #isSetReflectanceColour()
+	 * @see #unsetReflectanceColour()
 	 * @see #setReflectanceColour(IfcColourRgb)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleLighting_ReflectanceColour()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcColourRgb getReflectanceColour();
@@ -135,9 +218,34 @@ public interface IfcSurfaceStyleLighting extends IfcSurfaceStyleElementSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reflectance Colour</em>' reference.
+	 * @see #isSetReflectanceColour()
+	 * @see #unsetReflectanceColour()
 	 * @see #getReflectanceColour()
 	 * @generated
 	 */
 	void setReflectanceColour(IfcColourRgb value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getReflectanceColour <em>Reflectance Colour</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReflectanceColour()
+	 * @see #getReflectanceColour()
+	 * @see #setReflectanceColour(IfcColourRgb)
+	 * @generated
+	 */
+	void unsetReflectanceColour();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting#getReflectanceColour <em>Reflectance Colour</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Reflectance Colour</em>' reference is set.
+	 * @see #unsetReflectanceColour()
+	 * @see #getReflectanceColour()
+	 * @see #setReflectanceColour(IfcColourRgb)
+	 * @generated
+	 */
+	boolean isSetReflectanceColour();
 
 } // IfcSurfaceStyleLighting

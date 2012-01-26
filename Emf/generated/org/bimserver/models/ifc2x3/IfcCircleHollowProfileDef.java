@@ -43,9 +43,11 @@ public interface IfcCircleHollowProfileDef extends IfcCircleProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wall Thickness</em>' attribute.
+	 * @see #isSetWallThickness()
+	 * @see #unsetWallThickness()
 	 * @see #setWallThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCircleHollowProfileDef_WallThickness()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getWallThickness();
@@ -55,10 +57,35 @@ public interface IfcCircleHollowProfileDef extends IfcCircleProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wall Thickness</em>' attribute.
+	 * @see #isSetWallThickness()
+	 * @see #unsetWallThickness()
 	 * @see #getWallThickness()
 	 * @generated
 	 */
 	void setWallThickness(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCircleHollowProfileDef#getWallThickness <em>Wall Thickness</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWallThickness()
+	 * @see #getWallThickness()
+	 * @see #setWallThickness(double)
+	 * @generated
+	 */
+	void unsetWallThickness();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCircleHollowProfileDef#getWallThickness <em>Wall Thickness</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wall Thickness</em>' attribute is set.
+	 * @see #unsetWallThickness()
+	 * @see #getWallThickness()
+	 * @see #setWallThickness(double)
+	 * @generated
+	 */
+	boolean isSetWallThickness();
 
 	/**
 	 * Returns the value of the '<em><b>Wall Thickness As String</b></em>' attribute.
@@ -69,9 +96,11 @@ public interface IfcCircleHollowProfileDef extends IfcCircleProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wall Thickness As String</em>' attribute.
+	 * @see #isSetWallThicknessAsString()
+	 * @see #unsetWallThicknessAsString()
 	 * @see #setWallThicknessAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCircleHollowProfileDef_WallThicknessAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getWallThicknessAsString();
@@ -81,9 +110,34 @@ public interface IfcCircleHollowProfileDef extends IfcCircleProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wall Thickness As String</em>' attribute.
+	 * @see #isSetWallThicknessAsString()
+	 * @see #unsetWallThicknessAsString()
 	 * @see #getWallThicknessAsString()
 	 * @generated
 	 */
 	void setWallThicknessAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCircleHollowProfileDef#getWallThicknessAsString <em>Wall Thickness As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWallThicknessAsString()
+	 * @see #getWallThicknessAsString()
+	 * @see #setWallThicknessAsString(String)
+	 * @generated
+	 */
+	void unsetWallThicknessAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCircleHollowProfileDef#getWallThicknessAsString <em>Wall Thickness As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wall Thickness As String</em>' attribute is set.
+	 * @see #unsetWallThicknessAsString()
+	 * @see #getWallThicknessAsString()
+	 * @see #setWallThicknessAsString(String)
+	 * @generated
+	 */
+	boolean isSetWallThicknessAsString();
 
 } // IfcCircleHollowProfileDef

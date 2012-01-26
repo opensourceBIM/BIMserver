@@ -92,6 +92,24 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPredefinedType() {
+		eUnset(Ifc2x3Package.Literals.IFC_TENDON__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPredefinedType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getNominalDiameter() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER, true);
 	}
@@ -103,6 +121,24 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setNominalDiameter(double newNominalDiameter) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER, newNominalDiameter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNominalDiameter() {
+		eUnset(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNominalDiameter() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER);
 	}
 
 	/**
@@ -128,6 +164,24 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetNominalDiameterAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNominalDiameterAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getCrossSectionArea() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA, true);
 	}
@@ -146,6 +200,24 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCrossSectionArea() {
+		eUnset(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCrossSectionArea() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getCrossSectionAreaAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA_AS_STRING, true);
 	}
@@ -157,6 +229,24 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setCrossSectionAreaAsString(String newCrossSectionAreaAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA_AS_STRING, newCrossSectionAreaAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCrossSectionAreaAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCrossSectionAreaAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA_AS_STRING);
 	}
 
 	/**

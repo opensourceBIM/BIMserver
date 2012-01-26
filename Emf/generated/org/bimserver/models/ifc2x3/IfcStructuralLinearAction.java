@@ -44,9 +44,11 @@ public interface IfcStructuralLinearAction extends IfcStructuralAction {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Projected Or True</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProjectedOrTrueLengthEnum
+	 * @see #isSetProjectedOrTrue()
+	 * @see #unsetProjectedOrTrue()
 	 * @see #setProjectedOrTrue(IfcProjectedOrTrueLengthEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLinearAction_ProjectedOrTrue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcProjectedOrTrueLengthEnum getProjectedOrTrue();
@@ -57,9 +59,34 @@ public interface IfcStructuralLinearAction extends IfcStructuralAction {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Projected Or True</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProjectedOrTrueLengthEnum
+	 * @see #isSetProjectedOrTrue()
+	 * @see #unsetProjectedOrTrue()
 	 * @see #getProjectedOrTrue()
 	 * @generated
 	 */
 	void setProjectedOrTrue(IfcProjectedOrTrueLengthEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLinearAction#getProjectedOrTrue <em>Projected Or True</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetProjectedOrTrue()
+	 * @see #getProjectedOrTrue()
+	 * @see #setProjectedOrTrue(IfcProjectedOrTrueLengthEnum)
+	 * @generated
+	 */
+	void unsetProjectedOrTrue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLinearAction#getProjectedOrTrue <em>Projected Or True</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Projected Or True</em>' attribute is set.
+	 * @see #unsetProjectedOrTrue()
+	 * @see #getProjectedOrTrue()
+	 * @see #setProjectedOrTrue(IfcProjectedOrTrueLengthEnum)
+	 * @generated
+	 */
+	boolean isSetProjectedOrTrue();
 
 } // IfcStructuralLinearAction

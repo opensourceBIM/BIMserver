@@ -79,6 +79,24 @@ public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCurveOnRelatingElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCurveOnRelatingElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcCurveOrEdgeCurve getCurveOnRelatedElement() {
 		return (IfcCurveOrEdgeCurve) eGet(Ifc2x3Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATED_ELEMENT, true);
 	}

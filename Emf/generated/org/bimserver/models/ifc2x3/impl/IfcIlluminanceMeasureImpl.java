@@ -78,6 +78,24 @@ public class IfcIlluminanceMeasureImpl extends WrappedValueImpl implements IfcIl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetWrappedValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_ILLUMINANCE_MEASURE__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWrappedValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ILLUMINANCE_MEASURE__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getWrappedValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ILLUMINANCE_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
@@ -89,6 +107,24 @@ public class IfcIlluminanceMeasureImpl extends WrappedValueImpl implements IfcIl
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ILLUMINANCE_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWrappedValueAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_ILLUMINANCE_MEASURE__WRAPPED_VALUE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWrappedValueAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ILLUMINANCE_MEASURE__WRAPPED_VALUE_AS_STRING);
 	}
 
 } //IfcIlluminanceMeasureImpl

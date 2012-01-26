@@ -49,11 +49,34 @@ public interface IfcPropertyTableValue extends IfcSimpleProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Defining Values</em>' reference list.
+	 * @see #isSetDefiningValues()
+	 * @see #unsetDefiningValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyTableValue_DefiningValues()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcValue> getDefiningValues();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyTableValue#getDefiningValues <em>Defining Values</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDefiningValues()
+	 * @see #getDefiningValues()
+	 * @generated
+	 */
+	void unsetDefiningValues();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyTableValue#getDefiningValues <em>Defining Values</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Defining Values</em>' reference list is set.
+	 * @see #unsetDefiningValues()
+	 * @see #getDefiningValues()
+	 * @generated
+	 */
+	boolean isSetDefiningValues();
 
 	/**
 	 * Returns the value of the '<em><b>Defined Values</b></em>' reference list.
@@ -65,11 +88,34 @@ public interface IfcPropertyTableValue extends IfcSimpleProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Defined Values</em>' reference list.
+	 * @see #isSetDefinedValues()
+	 * @see #unsetDefinedValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyTableValue_DefinedValues()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcValue> getDefinedValues();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyTableValue#getDefinedValues <em>Defined Values</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDefinedValues()
+	 * @see #getDefinedValues()
+	 * @generated
+	 */
+	void unsetDefinedValues();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyTableValue#getDefinedValues <em>Defined Values</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Defined Values</em>' reference list is set.
+	 * @see #unsetDefinedValues()
+	 * @see #getDefinedValues()
+	 * @generated
+	 */
+	boolean isSetDefinedValues();
 
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' attribute.

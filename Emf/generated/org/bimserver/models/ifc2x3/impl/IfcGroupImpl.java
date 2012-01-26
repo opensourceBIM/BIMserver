@@ -73,4 +73,22 @@ public class IfcGroupImpl extends IfcObjectImpl implements IfcGroup {
 		eSet(Ifc2x3Package.Literals.IFC_GROUP__IS_GROUPED_BY, newIsGroupedBy);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsGroupedBy() {
+		eUnset(Ifc2x3Package.Literals.IFC_GROUP__IS_GROUPED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsGroupedBy() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GROUP__IS_GROUPED_BY);
+	}
+
 } //IfcGroupImpl

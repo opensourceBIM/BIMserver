@@ -73,4 +73,22 @@ public class IfcLogicalImpl extends WrappedValueImpl implements IfcLogical {
 		eSet(Ifc2x3Package.Literals.IFC_LOGICAL__WRAPPED_VALUE, newWrappedValue);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWrappedValue() {
+		eUnset(Ifc2x3Package.Literals.IFC_LOGICAL__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWrappedValue() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LOGICAL__WRAPPED_VALUE);
+	}
+
 } //IfcLogicalImpl

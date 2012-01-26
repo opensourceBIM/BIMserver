@@ -80,6 +80,24 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPosition() {
+		eUnset(Ifc2x3Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPosition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcBoundedCurve getPolygonalBoundary() {
 		return (IfcBoundedCurve) eGet(Ifc2x3Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY, true);
 	}
@@ -91,6 +109,24 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl impl
 	 */
 	public void setPolygonalBoundary(IfcBoundedCurve newPolygonalBoundary) {
 		eSet(Ifc2x3Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY, newPolygonalBoundary);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPolygonalBoundary() {
+		eUnset(Ifc2x3Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPolygonalBoundary() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY);
 	}
 
 } //IfcPolygonalBoundedHalfSpaceImpl

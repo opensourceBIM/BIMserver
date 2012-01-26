@@ -312,6 +312,24 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetValuesReferenced() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetValuesReferenced() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getValueOfComponents() {
 		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS, true);
@@ -322,9 +340,45 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetValueOfComponents() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetValueOfComponents() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getIsComponentIn() {
 		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsComponentIn() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsComponentIn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN);
 	}
 
 } //IfcAppliedValueImpl

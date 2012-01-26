@@ -56,9 +56,11 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Potable</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetIsPotable()
+	 * @see #unsetIsPotable()
 	 * @see #setIsPotable(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWaterProperties_IsPotable()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getIsPotable();
@@ -69,10 +71,35 @@ public interface IfcWaterProperties extends IfcMaterialProperties {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Potable</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetIsPotable()
+	 * @see #unsetIsPotable()
 	 * @see #getIsPotable()
 	 * @generated
 	 */
 	void setIsPotable(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getIsPotable <em>Is Potable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsPotable()
+	 * @see #getIsPotable()
+	 * @see #setIsPotable(Tristate)
+	 * @generated
+	 */
+	void unsetIsPotable();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcWaterProperties#getIsPotable <em>Is Potable</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Potable</em>' attribute is set.
+	 * @see #unsetIsPotable()
+	 * @see #getIsPotable()
+	 * @see #setIsPotable(Tristate)
+	 * @generated
+	 */
+	boolean isSetIsPotable();
 
 	/**
 	 * Returns the value of the '<em><b>Hardness</b></em>' attribute.

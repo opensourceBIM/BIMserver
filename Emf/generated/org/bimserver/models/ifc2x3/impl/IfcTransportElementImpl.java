@@ -82,6 +82,24 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetOperationType() {
+		eUnset(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOperationType() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getCapacityByWeight() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT, true);
 	}

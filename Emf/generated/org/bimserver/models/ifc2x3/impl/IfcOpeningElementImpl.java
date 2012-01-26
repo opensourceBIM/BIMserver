@@ -67,4 +67,22 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 		return (EList<IfcRelFillsElement>) eGet(Ifc2x3Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasFillings() {
+		eUnset(Ifc2x3Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasFillings() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS);
+	}
+
 } //IfcOpeningElementImpl

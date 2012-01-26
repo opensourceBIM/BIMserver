@@ -139,6 +139,24 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetApprovalDateTime() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__APPROVAL_DATE_TIME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetApprovalDateTime() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__APPROVAL_DATE_TIME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getApprovalStatus() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_APPROVAL__APPROVAL_STATUS, true);
 	}
@@ -265,6 +283,24 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getIdentifier() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_APPROVAL__IDENTIFIER, true);
 	}
@@ -283,9 +319,45 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIdentifier() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__IDENTIFIER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIdentifier() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__IDENTIFIER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcApprovalActorRelationship> getActors() {
 		return (EList<IfcApprovalActorRelationship>) eGet(Ifc2x3Package.Literals.IFC_APPROVAL__ACTORS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetActors() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__ACTORS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActors() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__ACTORS);
 	}
 
 	/**
@@ -303,9 +375,45 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsRelatedWith() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__IS_RELATED_WITH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsRelatedWith() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__IS_RELATED_WITH);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcApprovalRelationship> getRelates() {
 		return (EList<IfcApprovalRelationship>) eGet(Ifc2x3Package.Literals.IFC_APPROVAL__RELATES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelates() {
+		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__RELATES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelates() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__RELATES);
 	}
 
 } //IfcApprovalImpl

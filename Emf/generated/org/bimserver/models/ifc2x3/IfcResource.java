@@ -46,11 +46,34 @@ public interface IfcResource extends IfcObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resource Of</em>' reference list.
+	 * @see #isSetResourceOf()
+	 * @see #unsetResourceOf()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcResource_ResourceOf()
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToResource#getRelatingResource
-	 * @model opposite="RelatingResource"
+	 * @model opposite="RelatingResource" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToResource> getResourceOf();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcResource#getResourceOf <em>Resource Of</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetResourceOf()
+	 * @see #getResourceOf()
+	 * @generated
+	 */
+	void unsetResourceOf();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcResource#getResourceOf <em>Resource Of</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Resource Of</em>' reference list is set.
+	 * @see #unsetResourceOf()
+	 * @see #getResourceOf()
+	 * @generated
+	 */
+	boolean isSetResourceOf();
 
 } // IfcResource

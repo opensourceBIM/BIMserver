@@ -79,6 +79,24 @@ public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDistributionPointFunction() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDistributionPointFunction() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getUserDefinedFunction() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__USER_DEFINED_FUNCTION, true);
 	}

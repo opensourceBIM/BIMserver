@@ -44,9 +44,11 @@ public interface IfcDimensionCurveTerminator extends IfcTerminatorSymbol {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionExtentUsage
+	 * @see #isSetRole()
+	 * @see #unsetRole()
 	 * @see #setRole(IfcDimensionExtentUsage)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDimensionCurveTerminator_Role()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDimensionExtentUsage getRole();
@@ -57,9 +59,34 @@ public interface IfcDimensionCurveTerminator extends IfcTerminatorSymbol {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionExtentUsage
+	 * @see #isSetRole()
+	 * @see #unsetRole()
 	 * @see #getRole()
 	 * @generated
 	 */
 	void setRole(IfcDimensionExtentUsage value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionCurveTerminator#getRole <em>Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRole()
+	 * @see #getRole()
+	 * @see #setRole(IfcDimensionExtentUsage)
+	 * @generated
+	 */
+	void unsetRole();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDimensionCurveTerminator#getRole <em>Role</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Role</em>' attribute is set.
+	 * @see #unsetRole()
+	 * @see #getRole()
+	 * @see #setRole(IfcDimensionExtentUsage)
+	 * @generated
+	 */
+	boolean isSetRole();
 
 } // IfcDimensionCurveTerminator

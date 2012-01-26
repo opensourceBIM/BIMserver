@@ -73,4 +73,22 @@ public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl impl
 		eSet(Ifc2x3Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS, newVoidsElements);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetVoidsElements() {
+		eUnset(Ifc2x3Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVoidsElements() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS);
+	}
+
 } //IfcFeatureElementSubtractionImpl

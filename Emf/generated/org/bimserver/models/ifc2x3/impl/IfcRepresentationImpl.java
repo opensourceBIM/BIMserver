@@ -102,6 +102,24 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetContextOfItems() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetContextOfItems() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getRepresentationIdentifier() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION__REPRESENTATION_IDENTIFIER, true);
 	}
@@ -184,9 +202,45 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetItems() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION__ITEMS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetItems() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION__ITEMS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationMap> getRepresentationMap() {
 		return (EList<IfcRepresentationMap>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION__REPRESENTATION_MAP, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRepresentationMap() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION__REPRESENTATION_MAP);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRepresentationMap() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION__REPRESENTATION_MAP);
 	}
 
 	/**
@@ -204,9 +258,45 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLayerAssignments() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLayerAssignments() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProductRepresentation> getOfProductRepresentation() {
 		return (EList<IfcProductRepresentation>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOfProductRepresentation() {
+		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOfProductRepresentation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION);
 	}
 
 } //IfcRepresentationImpl

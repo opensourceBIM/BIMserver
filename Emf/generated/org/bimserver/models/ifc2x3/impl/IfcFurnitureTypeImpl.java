@@ -73,4 +73,22 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implement
 		eSet(Ifc2x3Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, newAssemblyPlace);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAssemblyPlace() {
+		eUnset(Ifc2x3Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssemblyPlace() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE);
+	}
+
 } //IfcFurnitureTypeImpl

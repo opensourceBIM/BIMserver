@@ -153,9 +153,11 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Origin</em>' reference.
+	 * @see #isSetLocalOrigin()
+	 * @see #unsetLocalOrigin()
 	 * @see #setLocalOrigin(IfcCartesianPoint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianTransformationOperator_LocalOrigin()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCartesianPoint getLocalOrigin();
@@ -165,10 +167,35 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Local Origin</em>' reference.
+	 * @see #isSetLocalOrigin()
+	 * @see #unsetLocalOrigin()
 	 * @see #getLocalOrigin()
 	 * @generated
 	 */
 	void setLocalOrigin(IfcCartesianPoint value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getLocalOrigin <em>Local Origin</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLocalOrigin()
+	 * @see #getLocalOrigin()
+	 * @see #setLocalOrigin(IfcCartesianPoint)
+	 * @generated
+	 */
+	void unsetLocalOrigin();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getLocalOrigin <em>Local Origin</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Local Origin</em>' reference is set.
+	 * @see #unsetLocalOrigin()
+	 * @see #getLocalOrigin()
+	 * @see #setLocalOrigin(IfcCartesianPoint)
+	 * @generated
+	 */
+	boolean isSetLocalOrigin();
 
 	/**
 	 * Returns the value of the '<em><b>Scale</b></em>' attribute.
@@ -179,9 +206,11 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Scale</em>' attribute.
+	 * @see #isSetScale()
+	 * @see #unsetScale()
 	 * @see #setScale(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianTransformationOperator_Scale()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getScale();
@@ -191,10 +220,35 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Scale</em>' attribute.
+	 * @see #isSetScale()
+	 * @see #unsetScale()
 	 * @see #getScale()
 	 * @generated
 	 */
 	void setScale(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getScale <em>Scale</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetScale()
+	 * @see #getScale()
+	 * @see #setScale(double)
+	 * @generated
+	 */
+	void unsetScale();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getScale <em>Scale</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Scale</em>' attribute is set.
+	 * @see #unsetScale()
+	 * @see #getScale()
+	 * @see #setScale(double)
+	 * @generated
+	 */
+	boolean isSetScale();
 
 	/**
 	 * Returns the value of the '<em><b>Scale As String</b></em>' attribute.
@@ -205,9 +259,11 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Scale As String</em>' attribute.
+	 * @see #isSetScaleAsString()
+	 * @see #unsetScaleAsString()
 	 * @see #setScaleAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianTransformationOperator_ScaleAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getScaleAsString();
@@ -217,10 +273,35 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Scale As String</em>' attribute.
+	 * @see #isSetScaleAsString()
+	 * @see #unsetScaleAsString()
 	 * @see #getScaleAsString()
 	 * @generated
 	 */
 	void setScaleAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getScaleAsString <em>Scale As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetScaleAsString()
+	 * @see #getScaleAsString()
+	 * @see #setScaleAsString(String)
+	 * @generated
+	 */
+	void unsetScaleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getScaleAsString <em>Scale As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Scale As String</em>' attribute is set.
+	 * @see #unsetScaleAsString()
+	 * @see #getScaleAsString()
+	 * @see #setScaleAsString(String)
+	 * @generated
+	 */
+	boolean isSetScaleAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -231,9 +312,11 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianTransformationOperator_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -243,9 +326,34 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcCartesianTransformationOperator

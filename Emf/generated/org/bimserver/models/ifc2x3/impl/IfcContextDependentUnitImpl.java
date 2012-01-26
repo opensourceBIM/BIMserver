@@ -72,4 +72,22 @@ public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements Ifc
 		eSet(Ifc2x3Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME, newName);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME);
+	}
+
 } //IfcContextDependentUnitImpl

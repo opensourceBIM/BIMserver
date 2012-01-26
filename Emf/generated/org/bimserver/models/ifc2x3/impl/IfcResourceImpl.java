@@ -67,4 +67,22 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 		return (EList<IfcRelAssignsToResource>) eGet(Ifc2x3Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetResourceOf() {
+		eUnset(Ifc2x3Package.Literals.IFC_RESOURCE__RESOURCE_OF);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetResourceOf() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_RESOURCE__RESOURCE_OF);
+	}
+
 } //IfcResourceImpl

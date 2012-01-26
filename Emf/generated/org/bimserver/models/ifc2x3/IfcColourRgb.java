@@ -47,9 +47,11 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Red</em>' attribute.
+	 * @see #isSetRed()
+	 * @see #unsetRed()
 	 * @see #setRed(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_Red()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getRed();
@@ -59,10 +61,35 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Red</em>' attribute.
+	 * @see #isSetRed()
+	 * @see #unsetRed()
 	 * @see #getRed()
 	 * @generated
 	 */
 	void setRed(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getRed <em>Red</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRed()
+	 * @see #getRed()
+	 * @see #setRed(double)
+	 * @generated
+	 */
+	void unsetRed();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getRed <em>Red</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Red</em>' attribute is set.
+	 * @see #unsetRed()
+	 * @see #getRed()
+	 * @see #setRed(double)
+	 * @generated
+	 */
+	boolean isSetRed();
 
 	/**
 	 * Returns the value of the '<em><b>Red As String</b></em>' attribute.
@@ -73,9 +100,11 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Red As String</em>' attribute.
+	 * @see #isSetRedAsString()
+	 * @see #unsetRedAsString()
 	 * @see #setRedAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_RedAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getRedAsString();
@@ -85,10 +114,35 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Red As String</em>' attribute.
+	 * @see #isSetRedAsString()
+	 * @see #unsetRedAsString()
 	 * @see #getRedAsString()
 	 * @generated
 	 */
 	void setRedAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getRedAsString <em>Red As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRedAsString()
+	 * @see #getRedAsString()
+	 * @see #setRedAsString(String)
+	 * @generated
+	 */
+	void unsetRedAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getRedAsString <em>Red As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Red As String</em>' attribute is set.
+	 * @see #unsetRedAsString()
+	 * @see #getRedAsString()
+	 * @see #setRedAsString(String)
+	 * @generated
+	 */
+	boolean isSetRedAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Green</b></em>' attribute.
@@ -99,9 +153,11 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Green</em>' attribute.
+	 * @see #isSetGreen()
+	 * @see #unsetGreen()
 	 * @see #setGreen(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_Green()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getGreen();
@@ -111,10 +167,35 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Green</em>' attribute.
+	 * @see #isSetGreen()
+	 * @see #unsetGreen()
 	 * @see #getGreen()
 	 * @generated
 	 */
 	void setGreen(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getGreen <em>Green</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGreen()
+	 * @see #getGreen()
+	 * @see #setGreen(double)
+	 * @generated
+	 */
+	void unsetGreen();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getGreen <em>Green</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Green</em>' attribute is set.
+	 * @see #unsetGreen()
+	 * @see #getGreen()
+	 * @see #setGreen(double)
+	 * @generated
+	 */
+	boolean isSetGreen();
 
 	/**
 	 * Returns the value of the '<em><b>Green As String</b></em>' attribute.
@@ -125,9 +206,11 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Green As String</em>' attribute.
+	 * @see #isSetGreenAsString()
+	 * @see #unsetGreenAsString()
 	 * @see #setGreenAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_GreenAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getGreenAsString();
@@ -137,10 +220,35 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Green As String</em>' attribute.
+	 * @see #isSetGreenAsString()
+	 * @see #unsetGreenAsString()
 	 * @see #getGreenAsString()
 	 * @generated
 	 */
 	void setGreenAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getGreenAsString <em>Green As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGreenAsString()
+	 * @see #getGreenAsString()
+	 * @see #setGreenAsString(String)
+	 * @generated
+	 */
+	void unsetGreenAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getGreenAsString <em>Green As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Green As String</em>' attribute is set.
+	 * @see #unsetGreenAsString()
+	 * @see #getGreenAsString()
+	 * @see #setGreenAsString(String)
+	 * @generated
+	 */
+	boolean isSetGreenAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Blue</b></em>' attribute.
@@ -151,9 +259,11 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Blue</em>' attribute.
+	 * @see #isSetBlue()
+	 * @see #unsetBlue()
 	 * @see #setBlue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_Blue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getBlue();
@@ -163,10 +273,35 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Blue</em>' attribute.
+	 * @see #isSetBlue()
+	 * @see #unsetBlue()
 	 * @see #getBlue()
 	 * @generated
 	 */
 	void setBlue(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getBlue <em>Blue</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBlue()
+	 * @see #getBlue()
+	 * @see #setBlue(double)
+	 * @generated
+	 */
+	void unsetBlue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getBlue <em>Blue</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Blue</em>' attribute is set.
+	 * @see #unsetBlue()
+	 * @see #getBlue()
+	 * @see #setBlue(double)
+	 * @generated
+	 */
+	boolean isSetBlue();
 
 	/**
 	 * Returns the value of the '<em><b>Blue As String</b></em>' attribute.
@@ -177,9 +312,11 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Blue As String</em>' attribute.
+	 * @see #isSetBlueAsString()
+	 * @see #unsetBlueAsString()
 	 * @see #setBlueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcColourRgb_BlueAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getBlueAsString();
@@ -189,9 +326,34 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Blue As String</em>' attribute.
+	 * @see #isSetBlueAsString()
+	 * @see #unsetBlueAsString()
 	 * @see #getBlueAsString()
 	 * @generated
 	 */
 	void setBlueAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getBlueAsString <em>Blue As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBlueAsString()
+	 * @see #getBlueAsString()
+	 * @see #setBlueAsString(String)
+	 * @generated
+	 */
+	void unsetBlueAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcColourRgb#getBlueAsString <em>Blue As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Blue As String</em>' attribute is set.
+	 * @see #unsetBlueAsString()
+	 * @see #getBlueAsString()
+	 * @see #setBlueAsString(String)
+	 * @generated
+	 */
+	boolean isSetBlueAsString();
 
 } // IfcColourRgb

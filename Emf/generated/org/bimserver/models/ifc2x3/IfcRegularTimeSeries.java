@@ -46,9 +46,11 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Step</em>' attribute.
+	 * @see #isSetTimeStep()
+	 * @see #unsetTimeStep()
 	 * @see #setTimeStep(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRegularTimeSeries_TimeStep()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getTimeStep();
@@ -58,10 +60,35 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Step</em>' attribute.
+	 * @see #isSetTimeStep()
+	 * @see #unsetTimeStep()
 	 * @see #getTimeStep()
 	 * @generated
 	 */
 	void setTimeStep(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRegularTimeSeries#getTimeStep <em>Time Step</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTimeStep()
+	 * @see #getTimeStep()
+	 * @see #setTimeStep(double)
+	 * @generated
+	 */
+	void unsetTimeStep();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRegularTimeSeries#getTimeStep <em>Time Step</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Time Step</em>' attribute is set.
+	 * @see #unsetTimeStep()
+	 * @see #getTimeStep()
+	 * @see #setTimeStep(double)
+	 * @generated
+	 */
+	boolean isSetTimeStep();
 
 	/**
 	 * Returns the value of the '<em><b>Time Step As String</b></em>' attribute.
@@ -72,9 +99,11 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Step As String</em>' attribute.
+	 * @see #isSetTimeStepAsString()
+	 * @see #unsetTimeStepAsString()
 	 * @see #setTimeStepAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRegularTimeSeries_TimeStepAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getTimeStepAsString();
@@ -84,10 +113,35 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Step As String</em>' attribute.
+	 * @see #isSetTimeStepAsString()
+	 * @see #unsetTimeStepAsString()
 	 * @see #getTimeStepAsString()
 	 * @generated
 	 */
 	void setTimeStepAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRegularTimeSeries#getTimeStepAsString <em>Time Step As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTimeStepAsString()
+	 * @see #getTimeStepAsString()
+	 * @see #setTimeStepAsString(String)
+	 * @generated
+	 */
+	void unsetTimeStepAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRegularTimeSeries#getTimeStepAsString <em>Time Step As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Time Step As String</em>' attribute is set.
+	 * @see #unsetTimeStepAsString()
+	 * @see #getTimeStepAsString()
+	 * @see #setTimeStepAsString(String)
+	 * @generated
+	 */
+	boolean isSetTimeStepAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Values</b></em>' reference list.
@@ -99,10 +153,33 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values</em>' reference list.
+	 * @see #isSetValues()
+	 * @see #unsetValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRegularTimeSeries_Values()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcTimeSeriesValue> getValues();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRegularTimeSeries#getValues <em>Values</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetValues()
+	 * @see #getValues()
+	 * @generated
+	 */
+	void unsetValues();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRegularTimeSeries#getValues <em>Values</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Values</em>' reference list is set.
+	 * @see #unsetValues()
+	 * @see #getValues()
+	 * @generated
+	 */
+	boolean isSetValues();
 
 } // IfcRegularTimeSeries

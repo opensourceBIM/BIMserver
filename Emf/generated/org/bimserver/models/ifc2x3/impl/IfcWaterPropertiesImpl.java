@@ -90,6 +90,24 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsPotable() {
+		eUnset(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__IS_POTABLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsPotable() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__IS_POTABLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getHardness() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_WATER_PROPERTIES__HARDNESS, true);
 	}

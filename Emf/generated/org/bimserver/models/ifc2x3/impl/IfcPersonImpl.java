@@ -337,4 +337,22 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 		return (EList<IfcPersonAndOrganization>) eGet(Ifc2x3Package.Literals.IFC_PERSON__ENGAGED_IN, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetEngagedIn() {
+		eUnset(Ifc2x3Package.Literals.IFC_PERSON__ENGAGED_IN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEngagedIn() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PERSON__ENGAGED_IN);
+	}
+
 } //IfcPersonImpl

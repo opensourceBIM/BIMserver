@@ -154,6 +154,24 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetObjectiveQualifier() {
+		eUnset(Ifc2x3Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetObjectiveQualifier() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getUserDefinedQualifier() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER, true);
 	}

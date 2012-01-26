@@ -50,11 +50,34 @@ public interface IfcTableRow extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Row Cells</em>' reference list.
+	 * @see #isSetRowCells()
+	 * @see #unsetRowCells()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTableRow_RowCells()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcValue> getRowCells();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTableRow#getRowCells <em>Row Cells</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRowCells()
+	 * @see #getRowCells()
+	 * @generated
+	 */
+	void unsetRowCells();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTableRow#getRowCells <em>Row Cells</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Row Cells</em>' reference list is set.
+	 * @see #unsetRowCells()
+	 * @see #getRowCells()
+	 * @generated
+	 */
+	boolean isSetRowCells();
 
 	/**
 	 * Returns the value of the '<em><b>Is Heading</b></em>' attribute.
@@ -67,9 +90,11 @@ public interface IfcTableRow extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Heading</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetIsHeading()
+	 * @see #unsetIsHeading()
 	 * @see #setIsHeading(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTableRow_IsHeading()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getIsHeading();
@@ -80,10 +105,35 @@ public interface IfcTableRow extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Heading</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetIsHeading()
+	 * @see #unsetIsHeading()
 	 * @see #getIsHeading()
 	 * @generated
 	 */
 	void setIsHeading(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTableRow#getIsHeading <em>Is Heading</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsHeading()
+	 * @see #getIsHeading()
+	 * @see #setIsHeading(Tristate)
+	 * @generated
+	 */
+	void unsetIsHeading();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTableRow#getIsHeading <em>Is Heading</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Heading</em>' attribute is set.
+	 * @see #unsetIsHeading()
+	 * @see #getIsHeading()
+	 * @see #setIsHeading(Tristate)
+	 * @generated
+	 */
+	boolean isSetIsHeading();
 
 	/**
 	 * Returns the value of the '<em><b>Of Table</b></em>' reference.
@@ -95,10 +145,12 @@ public interface IfcTableRow extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Of Table</em>' reference.
+	 * @see #isSetOfTable()
+	 * @see #unsetOfTable()
 	 * @see #setOfTable(IfcTable)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTableRow_OfTable()
 	 * @see org.bimserver.models.ifc2x3.IfcTable#getRows
-	 * @model opposite="Rows"
+	 * @model opposite="Rows" unsettable="true"
 	 * @generated
 	 */
 	IfcTable getOfTable();
@@ -108,9 +160,34 @@ public interface IfcTableRow extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Of Table</em>' reference.
+	 * @see #isSetOfTable()
+	 * @see #unsetOfTable()
 	 * @see #getOfTable()
 	 * @generated
 	 */
 	void setOfTable(IfcTable value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTableRow#getOfTable <em>Of Table</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOfTable()
+	 * @see #getOfTable()
+	 * @see #setOfTable(IfcTable)
+	 * @generated
+	 */
+	void unsetOfTable();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTableRow#getOfTable <em>Of Table</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Of Table</em>' reference is set.
+	 * @see #unsetOfTable()
+	 * @see #getOfTable()
+	 * @see #setOfTable(IfcTable)
+	 * @generated
+	 */
+	boolean isSetOfTable();
 
 } // IfcTableRow

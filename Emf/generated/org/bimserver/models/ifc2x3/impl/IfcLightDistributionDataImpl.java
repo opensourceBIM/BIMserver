@@ -96,6 +96,24 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMainPlaneAngle() {
+		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMainPlaneAngle() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getMainPlaneAngleAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE_AS_STRING, true);
 	}
@@ -114,9 +132,45 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMainPlaneAngleAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMainPlaneAngleAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__MAIN_PLANE_ANGLE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getSecondaryPlaneAngle() {
 		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSecondaryPlaneAngle() {
+		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSecondaryPlaneAngle() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE);
 	}
 
 	/**
@@ -134,6 +188,24 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSecondaryPlaneAngleAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSecondaryPlaneAngleAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getLuminousIntensity() {
 		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY, true);
@@ -144,9 +216,45 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetLuminousIntensity() {
+		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLuminousIntensity() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getLuminousIntensityAsString() {
 		return (EList<String>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLuminousIntensityAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLuminousIntensityAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY_AS_STRING);
 	}
 
 } //IfcLightDistributionDataImpl

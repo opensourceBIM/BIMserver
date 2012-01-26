@@ -52,9 +52,11 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Main Plane Angle</em>' attribute.
+	 * @see #isSetMainPlaneAngle()
+	 * @see #unsetMainPlaneAngle()
 	 * @see #setMainPlaneAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightDistributionData_MainPlaneAngle()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getMainPlaneAngle();
@@ -64,10 +66,35 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Main Plane Angle</em>' attribute.
+	 * @see #isSetMainPlaneAngle()
+	 * @see #unsetMainPlaneAngle()
 	 * @see #getMainPlaneAngle()
 	 * @generated
 	 */
 	void setMainPlaneAngle(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getMainPlaneAngle <em>Main Plane Angle</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMainPlaneAngle()
+	 * @see #getMainPlaneAngle()
+	 * @see #setMainPlaneAngle(double)
+	 * @generated
+	 */
+	void unsetMainPlaneAngle();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getMainPlaneAngle <em>Main Plane Angle</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Main Plane Angle</em>' attribute is set.
+	 * @see #unsetMainPlaneAngle()
+	 * @see #getMainPlaneAngle()
+	 * @see #setMainPlaneAngle(double)
+	 * @generated
+	 */
+	boolean isSetMainPlaneAngle();
 
 	/**
 	 * Returns the value of the '<em><b>Main Plane Angle As String</b></em>' attribute.
@@ -78,9 +105,11 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Main Plane Angle As String</em>' attribute.
+	 * @see #isSetMainPlaneAngleAsString()
+	 * @see #unsetMainPlaneAngleAsString()
 	 * @see #setMainPlaneAngleAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightDistributionData_MainPlaneAngleAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getMainPlaneAngleAsString();
@@ -90,10 +119,35 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Main Plane Angle As String</em>' attribute.
+	 * @see #isSetMainPlaneAngleAsString()
+	 * @see #unsetMainPlaneAngleAsString()
 	 * @see #getMainPlaneAngleAsString()
 	 * @generated
 	 */
 	void setMainPlaneAngleAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getMainPlaneAngleAsString <em>Main Plane Angle As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMainPlaneAngleAsString()
+	 * @see #getMainPlaneAngleAsString()
+	 * @see #setMainPlaneAngleAsString(String)
+	 * @generated
+	 */
+	void unsetMainPlaneAngleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getMainPlaneAngleAsString <em>Main Plane Angle As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Main Plane Angle As String</em>' attribute is set.
+	 * @see #unsetMainPlaneAngleAsString()
+	 * @see #getMainPlaneAngleAsString()
+	 * @see #setMainPlaneAngleAsString(String)
+	 * @generated
+	 */
+	boolean isSetMainPlaneAngleAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Secondary Plane Angle</b></em>' attribute list.
@@ -105,11 +159,34 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Secondary Plane Angle</em>' attribute list.
+	 * @see #isSetSecondaryPlaneAngle()
+	 * @see #unsetSecondaryPlaneAngle()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightDistributionData_SecondaryPlaneAngle()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<Double> getSecondaryPlaneAngle();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getSecondaryPlaneAngle <em>Secondary Plane Angle</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSecondaryPlaneAngle()
+	 * @see #getSecondaryPlaneAngle()
+	 * @generated
+	 */
+	void unsetSecondaryPlaneAngle();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getSecondaryPlaneAngle <em>Secondary Plane Angle</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Secondary Plane Angle</em>' attribute list is set.
+	 * @see #unsetSecondaryPlaneAngle()
+	 * @see #getSecondaryPlaneAngle()
+	 * @generated
+	 */
+	boolean isSetSecondaryPlaneAngle();
 
 	/**
 	 * Returns the value of the '<em><b>Secondary Plane Angle As String</b></em>' attribute list.
@@ -121,11 +198,34 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Secondary Plane Angle As String</em>' attribute list.
+	 * @see #isSetSecondaryPlaneAngleAsString()
+	 * @see #unsetSecondaryPlaneAngleAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightDistributionData_SecondaryPlaneAngleAsString()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<String> getSecondaryPlaneAngleAsString();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getSecondaryPlaneAngleAsString <em>Secondary Plane Angle As String</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSecondaryPlaneAngleAsString()
+	 * @see #getSecondaryPlaneAngleAsString()
+	 * @generated
+	 */
+	void unsetSecondaryPlaneAngleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getSecondaryPlaneAngleAsString <em>Secondary Plane Angle As String</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Secondary Plane Angle As String</em>' attribute list is set.
+	 * @see #unsetSecondaryPlaneAngleAsString()
+	 * @see #getSecondaryPlaneAngleAsString()
+	 * @generated
+	 */
+	boolean isSetSecondaryPlaneAngleAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Intensity</b></em>' attribute list.
@@ -137,11 +237,34 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Luminous Intensity</em>' attribute list.
+	 * @see #isSetLuminousIntensity()
+	 * @see #unsetLuminousIntensity()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightDistributionData_LuminousIntensity()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<Double> getLuminousIntensity();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getLuminousIntensity <em>Luminous Intensity</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLuminousIntensity()
+	 * @see #getLuminousIntensity()
+	 * @generated
+	 */
+	void unsetLuminousIntensity();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getLuminousIntensity <em>Luminous Intensity</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Luminous Intensity</em>' attribute list is set.
+	 * @see #unsetLuminousIntensity()
+	 * @see #getLuminousIntensity()
+	 * @generated
+	 */
+	boolean isSetLuminousIntensity();
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Intensity As String</b></em>' attribute list.
@@ -153,10 +276,33 @@ public interface IfcLightDistributionData extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Luminous Intensity As String</em>' attribute list.
+	 * @see #isSetLuminousIntensityAsString()
+	 * @see #unsetLuminousIntensityAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightDistributionData_LuminousIntensityAsString()
-	 * @model unique="false"
+	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
 	EList<String> getLuminousIntensityAsString();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getLuminousIntensityAsString <em>Luminous Intensity As String</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLuminousIntensityAsString()
+	 * @see #getLuminousIntensityAsString()
+	 * @generated
+	 */
+	void unsetLuminousIntensityAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightDistributionData#getLuminousIntensityAsString <em>Luminous Intensity As String</em>}' attribute list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Luminous Intensity As String</em>' attribute list is set.
+	 * @see #unsetLuminousIntensityAsString()
+	 * @see #getLuminousIntensityAsString()
+	 * @generated
+	 */
+	boolean isSetLuminousIntensityAsString();
 
 } // IfcLightDistributionData

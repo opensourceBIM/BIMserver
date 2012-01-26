@@ -111,4 +111,22 @@ public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrence
 		eSet(Ifc2x3Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL, newGlobalOrLocal);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetGlobalOrLocal() {
+		eUnset(Ifc2x3Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGlobalOrLocal() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL);
+	}
+
 } //IfcAnnotationFillAreaOccurrenceImpl

@@ -53,9 +53,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth</em>' attribute.
+	 * @see #isSetDepth()
+	 * @see #unsetDepth()
 	 * @see #setDepth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_Depth()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getDepth();
@@ -65,10 +67,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth</em>' attribute.
+	 * @see #isSetDepth()
+	 * @see #unsetDepth()
 	 * @see #getDepth()
 	 * @generated
 	 */
 	void setDepth(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getDepth <em>Depth</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDepth()
+	 * @see #getDepth()
+	 * @see #setDepth(double)
+	 * @generated
+	 */
+	void unsetDepth();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getDepth <em>Depth</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Depth</em>' attribute is set.
+	 * @see #unsetDepth()
+	 * @see #getDepth()
+	 * @see #setDepth(double)
+	 * @generated
+	 */
+	boolean isSetDepth();
 
 	/**
 	 * Returns the value of the '<em><b>Depth As String</b></em>' attribute.
@@ -79,9 +106,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depth As String</em>' attribute.
+	 * @see #isSetDepthAsString()
+	 * @see #unsetDepthAsString()
 	 * @see #setDepthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_DepthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getDepthAsString();
@@ -91,10 +120,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Depth As String</em>' attribute.
+	 * @see #isSetDepthAsString()
+	 * @see #unsetDepthAsString()
 	 * @see #getDepthAsString()
 	 * @generated
 	 */
 	void setDepthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getDepthAsString <em>Depth As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDepthAsString()
+	 * @see #getDepthAsString()
+	 * @see #setDepthAsString(String)
+	 * @generated
+	 */
+	void unsetDepthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getDepthAsString <em>Depth As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Depth As String</em>' attribute is set.
+	 * @see #unsetDepthAsString()
+	 * @see #getDepthAsString()
+	 * @see #setDepthAsString(String)
+	 * @generated
+	 */
+	boolean isSetDepthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
@@ -105,9 +159,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
+	 * @see #isSetWidth()
+	 * @see #unsetWidth()
 	 * @see #setWidth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_Width()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getWidth();
@@ -117,10 +173,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Width</em>' attribute.
+	 * @see #isSetWidth()
+	 * @see #unsetWidth()
 	 * @see #getWidth()
 	 * @generated
 	 */
 	void setWidth(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWidth <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWidth()
+	 * @see #getWidth()
+	 * @see #setWidth(double)
+	 * @generated
+	 */
+	void unsetWidth();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWidth <em>Width</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Width</em>' attribute is set.
+	 * @see #unsetWidth()
+	 * @see #getWidth()
+	 * @see #setWidth(double)
+	 * @generated
+	 */
+	boolean isSetWidth();
 
 	/**
 	 * Returns the value of the '<em><b>Width As String</b></em>' attribute.
@@ -131,9 +212,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width As String</em>' attribute.
+	 * @see #isSetWidthAsString()
+	 * @see #unsetWidthAsString()
 	 * @see #setWidthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_WidthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getWidthAsString();
@@ -143,10 +226,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Width As String</em>' attribute.
+	 * @see #isSetWidthAsString()
+	 * @see #unsetWidthAsString()
 	 * @see #getWidthAsString()
 	 * @generated
 	 */
 	void setWidthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWidthAsString <em>Width As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWidthAsString()
+	 * @see #getWidthAsString()
+	 * @see #setWidthAsString(String)
+	 * @generated
+	 */
+	void unsetWidthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWidthAsString <em>Width As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Width As String</em>' attribute is set.
+	 * @see #unsetWidthAsString()
+	 * @see #getWidthAsString()
+	 * @see #setWidthAsString(String)
+	 * @generated
+	 */
+	boolean isSetWidthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Wall Thickness</b></em>' attribute.
@@ -157,9 +265,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wall Thickness</em>' attribute.
+	 * @see #isSetWallThickness()
+	 * @see #unsetWallThickness()
 	 * @see #setWallThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_WallThickness()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getWallThickness();
@@ -169,10 +279,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wall Thickness</em>' attribute.
+	 * @see #isSetWallThickness()
+	 * @see #unsetWallThickness()
 	 * @see #getWallThickness()
 	 * @generated
 	 */
 	void setWallThickness(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWallThickness <em>Wall Thickness</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWallThickness()
+	 * @see #getWallThickness()
+	 * @see #setWallThickness(double)
+	 * @generated
+	 */
+	void unsetWallThickness();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWallThickness <em>Wall Thickness</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wall Thickness</em>' attribute is set.
+	 * @see #unsetWallThickness()
+	 * @see #getWallThickness()
+	 * @see #setWallThickness(double)
+	 * @generated
+	 */
+	boolean isSetWallThickness();
 
 	/**
 	 * Returns the value of the '<em><b>Wall Thickness As String</b></em>' attribute.
@@ -183,9 +318,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wall Thickness As String</em>' attribute.
+	 * @see #isSetWallThicknessAsString()
+	 * @see #unsetWallThicknessAsString()
 	 * @see #setWallThicknessAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_WallThicknessAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getWallThicknessAsString();
@@ -195,10 +332,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wall Thickness As String</em>' attribute.
+	 * @see #isSetWallThicknessAsString()
+	 * @see #unsetWallThicknessAsString()
 	 * @see #getWallThicknessAsString()
 	 * @generated
 	 */
 	void setWallThicknessAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWallThicknessAsString <em>Wall Thickness As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWallThicknessAsString()
+	 * @see #getWallThicknessAsString()
+	 * @see #setWallThicknessAsString(String)
+	 * @generated
+	 */
+	void unsetWallThicknessAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getWallThicknessAsString <em>Wall Thickness As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wall Thickness As String</em>' attribute is set.
+	 * @see #unsetWallThicknessAsString()
+	 * @see #getWallThicknessAsString()
+	 * @see #setWallThicknessAsString(String)
+	 * @generated
+	 */
+	boolean isSetWallThicknessAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Girth</b></em>' attribute.
@@ -209,9 +371,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Girth</em>' attribute.
+	 * @see #isSetGirth()
+	 * @see #unsetGirth()
 	 * @see #setGirth(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_Girth()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getGirth();
@@ -221,10 +385,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Girth</em>' attribute.
+	 * @see #isSetGirth()
+	 * @see #unsetGirth()
 	 * @see #getGirth()
 	 * @generated
 	 */
 	void setGirth(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getGirth <em>Girth</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGirth()
+	 * @see #getGirth()
+	 * @see #setGirth(double)
+	 * @generated
+	 */
+	void unsetGirth();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getGirth <em>Girth</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Girth</em>' attribute is set.
+	 * @see #unsetGirth()
+	 * @see #getGirth()
+	 * @see #setGirth(double)
+	 * @generated
+	 */
+	boolean isSetGirth();
 
 	/**
 	 * Returns the value of the '<em><b>Girth As String</b></em>' attribute.
@@ -235,9 +424,11 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Girth As String</em>' attribute.
+	 * @see #isSetGirthAsString()
+	 * @see #unsetGirthAsString()
 	 * @see #setGirthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCShapeProfileDef_GirthAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getGirthAsString();
@@ -247,10 +438,35 @@ public interface IfcCShapeProfileDef extends IfcParameterizedProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Girth As String</em>' attribute.
+	 * @see #isSetGirthAsString()
+	 * @see #unsetGirthAsString()
 	 * @see #getGirthAsString()
 	 * @generated
 	 */
 	void setGirthAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getGirthAsString <em>Girth As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGirthAsString()
+	 * @see #getGirthAsString()
+	 * @see #setGirthAsString(String)
+	 * @generated
+	 */
+	void unsetGirthAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCShapeProfileDef#getGirthAsString <em>Girth As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Girth As String</em>' attribute is set.
+	 * @see #unsetGirthAsString()
+	 * @see #getGirthAsString()
+	 * @see #setGirthAsString(String)
+	 * @generated
+	 */
+	boolean isSetGirthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Internal Fillet Radius</b></em>' attribute.

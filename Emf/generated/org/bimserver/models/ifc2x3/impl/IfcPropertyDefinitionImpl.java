@@ -67,4 +67,22 @@ public class IfcPropertyDefinitionImpl extends IfcRootImpl implements IfcPropert
 		return (EList<IfcRelAssociates>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasAssociations() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasAssociations() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS);
+	}
+
 } //IfcPropertyDefinitionImpl

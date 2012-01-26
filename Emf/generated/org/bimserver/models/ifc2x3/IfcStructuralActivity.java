@@ -44,9 +44,11 @@ public interface IfcStructuralActivity extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Applied Load</em>' reference.
+	 * @see #isSetAppliedLoad()
+	 * @see #unsetAppliedLoad()
 	 * @see #setAppliedLoad(IfcStructuralLoad)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralActivity_AppliedLoad()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcStructuralLoad getAppliedLoad();
@@ -56,10 +58,35 @@ public interface IfcStructuralActivity extends IfcProduct {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Applied Load</em>' reference.
+	 * @see #isSetAppliedLoad()
+	 * @see #unsetAppliedLoad()
 	 * @see #getAppliedLoad()
 	 * @generated
 	 */
 	void setAppliedLoad(IfcStructuralLoad value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralActivity#getAppliedLoad <em>Applied Load</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAppliedLoad()
+	 * @see #getAppliedLoad()
+	 * @see #setAppliedLoad(IfcStructuralLoad)
+	 * @generated
+	 */
+	void unsetAppliedLoad();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralActivity#getAppliedLoad <em>Applied Load</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Applied Load</em>' reference is set.
+	 * @see #unsetAppliedLoad()
+	 * @see #getAppliedLoad()
+	 * @see #setAppliedLoad(IfcStructuralLoad)
+	 * @generated
+	 */
+	boolean isSetAppliedLoad();
 
 	/**
 	 * Returns the value of the '<em><b>Global Or Local</b></em>' attribute.
@@ -72,9 +99,11 @@ public interface IfcStructuralActivity extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Global Or Local</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcGlobalOrLocalEnum
+	 * @see #isSetGlobalOrLocal()
+	 * @see #unsetGlobalOrLocal()
 	 * @see #setGlobalOrLocal(IfcGlobalOrLocalEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralActivity_GlobalOrLocal()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcGlobalOrLocalEnum getGlobalOrLocal();
@@ -85,10 +114,35 @@ public interface IfcStructuralActivity extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Global Or Local</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcGlobalOrLocalEnum
+	 * @see #isSetGlobalOrLocal()
+	 * @see #unsetGlobalOrLocal()
 	 * @see #getGlobalOrLocal()
 	 * @generated
 	 */
 	void setGlobalOrLocal(IfcGlobalOrLocalEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralActivity#getGlobalOrLocal <em>Global Or Local</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGlobalOrLocal()
+	 * @see #getGlobalOrLocal()
+	 * @see #setGlobalOrLocal(IfcGlobalOrLocalEnum)
+	 * @generated
+	 */
+	void unsetGlobalOrLocal();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralActivity#getGlobalOrLocal <em>Global Or Local</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Global Or Local</em>' attribute is set.
+	 * @see #unsetGlobalOrLocal()
+	 * @see #getGlobalOrLocal()
+	 * @see #setGlobalOrLocal(IfcGlobalOrLocalEnum)
+	 * @generated
+	 */
+	boolean isSetGlobalOrLocal();
 
 	/**
 	 * Returns the value of the '<em><b>Assigned To Structural Item</b></em>' reference.
@@ -100,10 +154,12 @@ public interface IfcStructuralActivity extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assigned To Structural Item</em>' reference.
+	 * @see #isSetAssignedToStructuralItem()
+	 * @see #unsetAssignedToStructuralItem()
 	 * @see #setAssignedToStructuralItem(IfcRelConnectsStructuralActivity)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralActivity_AssignedToStructuralItem()
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsStructuralActivity#getRelatedStructuralActivity
-	 * @model opposite="RelatedStructuralActivity"
+	 * @model opposite="RelatedStructuralActivity" unsettable="true"
 	 * @generated
 	 */
 	IfcRelConnectsStructuralActivity getAssignedToStructuralItem();
@@ -113,9 +169,34 @@ public interface IfcStructuralActivity extends IfcProduct {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Assigned To Structural Item</em>' reference.
+	 * @see #isSetAssignedToStructuralItem()
+	 * @see #unsetAssignedToStructuralItem()
 	 * @see #getAssignedToStructuralItem()
 	 * @generated
 	 */
 	void setAssignedToStructuralItem(IfcRelConnectsStructuralActivity value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralActivity#getAssignedToStructuralItem <em>Assigned To Structural Item</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAssignedToStructuralItem()
+	 * @see #getAssignedToStructuralItem()
+	 * @see #setAssignedToStructuralItem(IfcRelConnectsStructuralActivity)
+	 * @generated
+	 */
+	void unsetAssignedToStructuralItem();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralActivity#getAssignedToStructuralItem <em>Assigned To Structural Item</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Assigned To Structural Item</em>' reference is set.
+	 * @see #unsetAssignedToStructuralItem()
+	 * @see #getAssignedToStructuralItem()
+	 * @see #setAssignedToStructuralItem(IfcRelConnectsStructuralActivity)
+	 * @generated
+	 */
+	boolean isSetAssignedToStructuralItem();
 
 } // IfcStructuralActivity

@@ -79,6 +79,24 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPosition() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPosition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__DIM, true);
 	}
@@ -90,6 +108,24 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__DIM);
 	}
 
 } //IfcElementarySurfaceImpl

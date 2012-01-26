@@ -43,10 +43,12 @@ public interface IfcFeatureElementSubtraction extends IfcFeatureElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Voids Elements</em>' reference.
+	 * @see #isSetVoidsElements()
+	 * @see #unsetVoidsElements()
 	 * @see #setVoidsElements(IfcRelVoidsElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFeatureElementSubtraction_VoidsElements()
 	 * @see org.bimserver.models.ifc2x3.IfcRelVoidsElement#getRelatedOpeningElement
-	 * @model opposite="RelatedOpeningElement"
+	 * @model opposite="RelatedOpeningElement" unsettable="true"
 	 * @generated
 	 */
 	IfcRelVoidsElement getVoidsElements();
@@ -56,9 +58,34 @@ public interface IfcFeatureElementSubtraction extends IfcFeatureElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Voids Elements</em>' reference.
+	 * @see #isSetVoidsElements()
+	 * @see #unsetVoidsElements()
 	 * @see #getVoidsElements()
 	 * @generated
 	 */
 	void setVoidsElements(IfcRelVoidsElement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction#getVoidsElements <em>Voids Elements</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVoidsElements()
+	 * @see #getVoidsElements()
+	 * @see #setVoidsElements(IfcRelVoidsElement)
+	 * @generated
+	 */
+	void unsetVoidsElements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction#getVoidsElements <em>Voids Elements</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Voids Elements</em>' reference is set.
+	 * @see #unsetVoidsElements()
+	 * @see #getVoidsElements()
+	 * @see #setVoidsElements(IfcRelVoidsElement)
+	 * @generated
+	 */
+	boolean isSetVoidsElements();
 
 } // IfcFeatureElementSubtraction

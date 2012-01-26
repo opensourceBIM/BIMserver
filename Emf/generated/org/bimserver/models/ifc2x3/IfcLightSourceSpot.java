@@ -48,9 +48,11 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Orientation</em>' reference.
+	 * @see #isSetOrientation()
+	 * @see #unsetOrientation()
 	 * @see #setOrientation(IfcDirection)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_Orientation()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcDirection getOrientation();
@@ -60,10 +62,35 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Orientation</em>' reference.
+	 * @see #isSetOrientation()
+	 * @see #unsetOrientation()
 	 * @see #getOrientation()
 	 * @generated
 	 */
 	void setOrientation(IfcDirection value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getOrientation <em>Orientation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOrientation()
+	 * @see #getOrientation()
+	 * @see #setOrientation(IfcDirection)
+	 * @generated
+	 */
+	void unsetOrientation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getOrientation <em>Orientation</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Orientation</em>' reference is set.
+	 * @see #unsetOrientation()
+	 * @see #getOrientation()
+	 * @see #setOrientation(IfcDirection)
+	 * @generated
+	 */
+	boolean isSetOrientation();
 
 	/**
 	 * Returns the value of the '<em><b>Concentration Exponent</b></em>' attribute.
@@ -180,9 +207,11 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Spread Angle</em>' attribute.
+	 * @see #isSetSpreadAngle()
+	 * @see #unsetSpreadAngle()
 	 * @see #setSpreadAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_SpreadAngle()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getSpreadAngle();
@@ -192,10 +221,35 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Spread Angle</em>' attribute.
+	 * @see #isSetSpreadAngle()
+	 * @see #unsetSpreadAngle()
 	 * @see #getSpreadAngle()
 	 * @generated
 	 */
 	void setSpreadAngle(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getSpreadAngle <em>Spread Angle</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSpreadAngle()
+	 * @see #getSpreadAngle()
+	 * @see #setSpreadAngle(double)
+	 * @generated
+	 */
+	void unsetSpreadAngle();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getSpreadAngle <em>Spread Angle</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Spread Angle</em>' attribute is set.
+	 * @see #unsetSpreadAngle()
+	 * @see #getSpreadAngle()
+	 * @see #setSpreadAngle(double)
+	 * @generated
+	 */
+	boolean isSetSpreadAngle();
 
 	/**
 	 * Returns the value of the '<em><b>Spread Angle As String</b></em>' attribute.
@@ -206,9 +260,11 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Spread Angle As String</em>' attribute.
+	 * @see #isSetSpreadAngleAsString()
+	 * @see #unsetSpreadAngleAsString()
 	 * @see #setSpreadAngleAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_SpreadAngleAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getSpreadAngleAsString();
@@ -218,10 +274,35 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Spread Angle As String</em>' attribute.
+	 * @see #isSetSpreadAngleAsString()
+	 * @see #unsetSpreadAngleAsString()
 	 * @see #getSpreadAngleAsString()
 	 * @generated
 	 */
 	void setSpreadAngleAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getSpreadAngleAsString <em>Spread Angle As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSpreadAngleAsString()
+	 * @see #getSpreadAngleAsString()
+	 * @see #setSpreadAngleAsString(String)
+	 * @generated
+	 */
+	void unsetSpreadAngleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getSpreadAngleAsString <em>Spread Angle As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Spread Angle As String</em>' attribute is set.
+	 * @see #unsetSpreadAngleAsString()
+	 * @see #getSpreadAngleAsString()
+	 * @see #setSpreadAngleAsString(String)
+	 * @generated
+	 */
+	boolean isSetSpreadAngleAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Beam Width Angle</b></em>' attribute.
@@ -232,9 +313,11 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Beam Width Angle</em>' attribute.
+	 * @see #isSetBeamWidthAngle()
+	 * @see #unsetBeamWidthAngle()
 	 * @see #setBeamWidthAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_BeamWidthAngle()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getBeamWidthAngle();
@@ -244,10 +327,35 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Beam Width Angle</em>' attribute.
+	 * @see #isSetBeamWidthAngle()
+	 * @see #unsetBeamWidthAngle()
 	 * @see #getBeamWidthAngle()
 	 * @generated
 	 */
 	void setBeamWidthAngle(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getBeamWidthAngle <em>Beam Width Angle</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBeamWidthAngle()
+	 * @see #getBeamWidthAngle()
+	 * @see #setBeamWidthAngle(double)
+	 * @generated
+	 */
+	void unsetBeamWidthAngle();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getBeamWidthAngle <em>Beam Width Angle</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Beam Width Angle</em>' attribute is set.
+	 * @see #unsetBeamWidthAngle()
+	 * @see #getBeamWidthAngle()
+	 * @see #setBeamWidthAngle(double)
+	 * @generated
+	 */
+	boolean isSetBeamWidthAngle();
 
 	/**
 	 * Returns the value of the '<em><b>Beam Width Angle As String</b></em>' attribute.
@@ -258,9 +366,11 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Beam Width Angle As String</em>' attribute.
+	 * @see #isSetBeamWidthAngleAsString()
+	 * @see #unsetBeamWidthAngleAsString()
 	 * @see #setBeamWidthAngleAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSourceSpot_BeamWidthAngleAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getBeamWidthAngleAsString();
@@ -270,9 +380,34 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Beam Width Angle As String</em>' attribute.
+	 * @see #isSetBeamWidthAngleAsString()
+	 * @see #unsetBeamWidthAngleAsString()
 	 * @see #getBeamWidthAngleAsString()
 	 * @generated
 	 */
 	void setBeamWidthAngleAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getBeamWidthAngleAsString <em>Beam Width Angle As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBeamWidthAngleAsString()
+	 * @see #getBeamWidthAngleAsString()
+	 * @see #setBeamWidthAngleAsString(String)
+	 * @generated
+	 */
+	void unsetBeamWidthAngleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSourceSpot#getBeamWidthAngleAsString <em>Beam Width Angle As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Beam Width Angle As String</em>' attribute is set.
+	 * @see #unsetBeamWidthAngleAsString()
+	 * @see #getBeamWidthAngleAsString()
+	 * @see #setBeamWidthAngleAsString(String)
+	 * @generated
+	 */
+	boolean isSetBeamWidthAngleAsString();
 
 } // IfcLightSourceSpot

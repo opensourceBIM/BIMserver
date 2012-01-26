@@ -95,6 +95,24 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation() {
 		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc2x3Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
@@ -105,9 +123,45 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetHasRepresentation() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasRepresentation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialClassificationRelationship> getClassifiedAs() {
 		return (EList<IfcMaterialClassificationRelationship>) eGet(Ifc2x3Package.Literals.IFC_MATERIAL__CLASSIFIED_AS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetClassifiedAs() {
+		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL__CLASSIFIED_AS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetClassifiedAs() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL__CLASSIFIED_AS);
 	}
 
 } //IfcMaterialImpl

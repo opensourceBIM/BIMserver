@@ -98,9 +98,11 @@ public interface IfcAnnotationFillAreaOccurrence extends IfcAnnotationOccurrence
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Global Or Local</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcGlobalOrLocalEnum
+	 * @see #isSetGlobalOrLocal()
+	 * @see #unsetGlobalOrLocal()
 	 * @see #setGlobalOrLocal(IfcGlobalOrLocalEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAnnotationFillAreaOccurrence_GlobalOrLocal()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcGlobalOrLocalEnum getGlobalOrLocal();
@@ -111,9 +113,34 @@ public interface IfcAnnotationFillAreaOccurrence extends IfcAnnotationOccurrence
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Global Or Local</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcGlobalOrLocalEnum
+	 * @see #isSetGlobalOrLocal()
+	 * @see #unsetGlobalOrLocal()
 	 * @see #getGlobalOrLocal()
 	 * @generated
 	 */
 	void setGlobalOrLocal(IfcGlobalOrLocalEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotationFillAreaOccurrence#getGlobalOrLocal <em>Global Or Local</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGlobalOrLocal()
+	 * @see #getGlobalOrLocal()
+	 * @see #setGlobalOrLocal(IfcGlobalOrLocalEnum)
+	 * @generated
+	 */
+	void unsetGlobalOrLocal();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotationFillAreaOccurrence#getGlobalOrLocal <em>Global Or Local</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Global Or Local</em>' attribute is set.
+	 * @see #unsetGlobalOrLocal()
+	 * @see #getGlobalOrLocal()
+	 * @see #setGlobalOrLocal(IfcGlobalOrLocalEnum)
+	 * @generated
+	 */
+	boolean isSetGlobalOrLocal();
 
 } // IfcAnnotationFillAreaOccurrence

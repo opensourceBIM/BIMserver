@@ -79,6 +79,24 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIntent() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIntent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcConstraint getRelatingConstraint() {
 		return (IfcConstraint) eGet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT, true);
 	}
@@ -90,6 +108,24 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 */
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT, newRelatingConstraint);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatingConstraint() {
+		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingConstraint() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT);
 	}
 
 } //IfcRelAssociatesConstraintImpl

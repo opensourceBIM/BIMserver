@@ -45,10 +45,33 @@ public interface IfcPolyLoop extends IfcLoop {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Polygon</em>' reference list.
+	 * @see #isSetPolygon()
+	 * @see #unsetPolygon()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPolyLoop_Polygon()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcCartesianPoint> getPolygon();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPolyLoop#getPolygon <em>Polygon</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPolygon()
+	 * @see #getPolygon()
+	 * @generated
+	 */
+	void unsetPolygon();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPolyLoop#getPolygon <em>Polygon</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Polygon</em>' reference list is set.
+	 * @see #unsetPolygon()
+	 * @see #getPolygon()
+	 * @generated
+	 */
+	boolean isSetPolygon();
 
 } // IfcPolyLoop

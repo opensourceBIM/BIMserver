@@ -57,9 +57,11 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Electric Current Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElectricCurrentEnum
+	 * @see #isSetElectricCurrentType()
+	 * @see #unsetElectricCurrentType()
 	 * @see #setElectricCurrentType(IfcElectricCurrentEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_ElectricCurrentType()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcElectricCurrentEnum getElectricCurrentType();
@@ -70,10 +72,35 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Electric Current Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElectricCurrentEnum
+	 * @see #isSetElectricCurrentType()
+	 * @see #unsetElectricCurrentType()
 	 * @see #getElectricCurrentType()
 	 * @generated
 	 */
 	void setElectricCurrentType(IfcElectricCurrentEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getElectricCurrentType <em>Electric Current Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetElectricCurrentType()
+	 * @see #getElectricCurrentType()
+	 * @see #setElectricCurrentType(IfcElectricCurrentEnum)
+	 * @generated
+	 */
+	void unsetElectricCurrentType();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getElectricCurrentType <em>Electric Current Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Electric Current Type</em>' attribute is set.
+	 * @see #unsetElectricCurrentType()
+	 * @see #getElectricCurrentType()
+	 * @see #setElectricCurrentType(IfcElectricCurrentEnum)
+	 * @generated
+	 */
+	boolean isSetElectricCurrentType();
 
 	/**
 	 * Returns the value of the '<em><b>Input Voltage</b></em>' attribute.
@@ -84,9 +111,11 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Voltage</em>' attribute.
+	 * @see #isSetInputVoltage()
+	 * @see #unsetInputVoltage()
 	 * @see #setInputVoltage(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_InputVoltage()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getInputVoltage();
@@ -96,10 +125,35 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Input Voltage</em>' attribute.
+	 * @see #isSetInputVoltage()
+	 * @see #unsetInputVoltage()
 	 * @see #getInputVoltage()
 	 * @generated
 	 */
 	void setInputVoltage(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputVoltage <em>Input Voltage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInputVoltage()
+	 * @see #getInputVoltage()
+	 * @see #setInputVoltage(double)
+	 * @generated
+	 */
+	void unsetInputVoltage();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputVoltage <em>Input Voltage</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Input Voltage</em>' attribute is set.
+	 * @see #unsetInputVoltage()
+	 * @see #getInputVoltage()
+	 * @see #setInputVoltage(double)
+	 * @generated
+	 */
+	boolean isSetInputVoltage();
 
 	/**
 	 * Returns the value of the '<em><b>Input Voltage As String</b></em>' attribute.
@@ -110,9 +164,11 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Voltage As String</em>' attribute.
+	 * @see #isSetInputVoltageAsString()
+	 * @see #unsetInputVoltageAsString()
 	 * @see #setInputVoltageAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_InputVoltageAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getInputVoltageAsString();
@@ -122,10 +178,35 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Input Voltage As String</em>' attribute.
+	 * @see #isSetInputVoltageAsString()
+	 * @see #unsetInputVoltageAsString()
 	 * @see #getInputVoltageAsString()
 	 * @generated
 	 */
 	void setInputVoltageAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputVoltageAsString <em>Input Voltage As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInputVoltageAsString()
+	 * @see #getInputVoltageAsString()
+	 * @see #setInputVoltageAsString(String)
+	 * @generated
+	 */
+	void unsetInputVoltageAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputVoltageAsString <em>Input Voltage As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Input Voltage As String</em>' attribute is set.
+	 * @see #unsetInputVoltageAsString()
+	 * @see #getInputVoltageAsString()
+	 * @see #setInputVoltageAsString(String)
+	 * @generated
+	 */
+	boolean isSetInputVoltageAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Input Frequency</b></em>' attribute.
@@ -136,9 +217,11 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Frequency</em>' attribute.
+	 * @see #isSetInputFrequency()
+	 * @see #unsetInputFrequency()
 	 * @see #setInputFrequency(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_InputFrequency()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getInputFrequency();
@@ -148,10 +231,35 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Input Frequency</em>' attribute.
+	 * @see #isSetInputFrequency()
+	 * @see #unsetInputFrequency()
 	 * @see #getInputFrequency()
 	 * @generated
 	 */
 	void setInputFrequency(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputFrequency <em>Input Frequency</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInputFrequency()
+	 * @see #getInputFrequency()
+	 * @see #setInputFrequency(double)
+	 * @generated
+	 */
+	void unsetInputFrequency();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputFrequency <em>Input Frequency</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Input Frequency</em>' attribute is set.
+	 * @see #unsetInputFrequency()
+	 * @see #getInputFrequency()
+	 * @see #setInputFrequency(double)
+	 * @generated
+	 */
+	boolean isSetInputFrequency();
 
 	/**
 	 * Returns the value of the '<em><b>Input Frequency As String</b></em>' attribute.
@@ -162,9 +270,11 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Frequency As String</em>' attribute.
+	 * @see #isSetInputFrequencyAsString()
+	 * @see #unsetInputFrequencyAsString()
 	 * @see #setInputFrequencyAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_InputFrequencyAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getInputFrequencyAsString();
@@ -174,10 +284,35 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Input Frequency As String</em>' attribute.
+	 * @see #isSetInputFrequencyAsString()
+	 * @see #unsetInputFrequencyAsString()
 	 * @see #getInputFrequencyAsString()
 	 * @generated
 	 */
 	void setInputFrequencyAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputFrequencyAsString <em>Input Frequency As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInputFrequencyAsString()
+	 * @see #getInputFrequencyAsString()
+	 * @see #setInputFrequencyAsString(String)
+	 * @generated
+	 */
+	void unsetInputFrequencyAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputFrequencyAsString <em>Input Frequency As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Input Frequency As String</em>' attribute is set.
+	 * @see #unsetInputFrequencyAsString()
+	 * @see #getInputFrequencyAsString()
+	 * @see #setInputFrequencyAsString(String)
+	 * @generated
+	 */
+	boolean isSetInputFrequencyAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Full Load Current</b></em>' attribute.
@@ -612,9 +747,11 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Phase</em>' attribute.
+	 * @see #isSetInputPhase()
+	 * @see #unsetInputPhase()
 	 * @see #setInputPhase(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElectricalBaseProperties_InputPhase()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getInputPhase();
@@ -624,9 +761,34 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Input Phase</em>' attribute.
+	 * @see #isSetInputPhase()
+	 * @see #unsetInputPhase()
 	 * @see #getInputPhase()
 	 * @generated
 	 */
 	void setInputPhase(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputPhase <em>Input Phase</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInputPhase()
+	 * @see #getInputPhase()
+	 * @see #setInputPhase(int)
+	 * @generated
+	 */
+	void unsetInputPhase();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElectricalBaseProperties#getInputPhase <em>Input Phase</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Input Phase</em>' attribute is set.
+	 * @see #unsetInputPhase()
+	 * @see #getInputPhase()
+	 * @see #setInputPhase(int)
+	 * @generated
+	 */
+	boolean isSetInputPhase();
 
 } // IfcElectricalBaseProperties

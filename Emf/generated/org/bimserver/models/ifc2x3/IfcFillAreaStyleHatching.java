@@ -47,9 +47,11 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hatch Line Appearance</em>' reference.
+	 * @see #isSetHatchLineAppearance()
+	 * @see #unsetHatchLineAppearance()
 	 * @see #setHatchLineAppearance(IfcCurveStyle)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleHatching_HatchLineAppearance()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurveStyle getHatchLineAppearance();
@@ -59,10 +61,35 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Hatch Line Appearance</em>' reference.
+	 * @see #isSetHatchLineAppearance()
+	 * @see #unsetHatchLineAppearance()
 	 * @see #getHatchLineAppearance()
 	 * @generated
 	 */
 	void setHatchLineAppearance(IfcCurveStyle value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getHatchLineAppearance <em>Hatch Line Appearance</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHatchLineAppearance()
+	 * @see #getHatchLineAppearance()
+	 * @see #setHatchLineAppearance(IfcCurveStyle)
+	 * @generated
+	 */
+	void unsetHatchLineAppearance();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getHatchLineAppearance <em>Hatch Line Appearance</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Hatch Line Appearance</em>' reference is set.
+	 * @see #unsetHatchLineAppearance()
+	 * @see #getHatchLineAppearance()
+	 * @see #setHatchLineAppearance(IfcCurveStyle)
+	 * @generated
+	 */
+	boolean isSetHatchLineAppearance();
 
 	/**
 	 * Returns the value of the '<em><b>Start Of Next Hatch Line</b></em>' reference.
@@ -73,9 +100,11 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Of Next Hatch Line</em>' reference.
+	 * @see #isSetStartOfNextHatchLine()
+	 * @see #unsetStartOfNextHatchLine()
 	 * @see #setStartOfNextHatchLine(IfcHatchLineDistanceSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleHatching_StartOfNextHatchLine()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcHatchLineDistanceSelect getStartOfNextHatchLine();
@@ -85,10 +114,35 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Of Next Hatch Line</em>' reference.
+	 * @see #isSetStartOfNextHatchLine()
+	 * @see #unsetStartOfNextHatchLine()
 	 * @see #getStartOfNextHatchLine()
 	 * @generated
 	 */
 	void setStartOfNextHatchLine(IfcHatchLineDistanceSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getStartOfNextHatchLine <em>Start Of Next Hatch Line</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetStartOfNextHatchLine()
+	 * @see #getStartOfNextHatchLine()
+	 * @see #setStartOfNextHatchLine(IfcHatchLineDistanceSelect)
+	 * @generated
+	 */
+	void unsetStartOfNextHatchLine();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getStartOfNextHatchLine <em>Start Of Next Hatch Line</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Start Of Next Hatch Line</em>' reference is set.
+	 * @see #unsetStartOfNextHatchLine()
+	 * @see #getStartOfNextHatchLine()
+	 * @see #setStartOfNextHatchLine(IfcHatchLineDistanceSelect)
+	 * @generated
+	 */
+	boolean isSetStartOfNextHatchLine();
 
 	/**
 	 * Returns the value of the '<em><b>Point Of Reference Hatch Line</b></em>' reference.
@@ -205,9 +259,11 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hatch Line Angle</em>' attribute.
+	 * @see #isSetHatchLineAngle()
+	 * @see #unsetHatchLineAngle()
 	 * @see #setHatchLineAngle(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleHatching_HatchLineAngle()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getHatchLineAngle();
@@ -217,10 +273,35 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Hatch Line Angle</em>' attribute.
+	 * @see #isSetHatchLineAngle()
+	 * @see #unsetHatchLineAngle()
 	 * @see #getHatchLineAngle()
 	 * @generated
 	 */
 	void setHatchLineAngle(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getHatchLineAngle <em>Hatch Line Angle</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHatchLineAngle()
+	 * @see #getHatchLineAngle()
+	 * @see #setHatchLineAngle(double)
+	 * @generated
+	 */
+	void unsetHatchLineAngle();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getHatchLineAngle <em>Hatch Line Angle</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Hatch Line Angle</em>' attribute is set.
+	 * @see #unsetHatchLineAngle()
+	 * @see #getHatchLineAngle()
+	 * @see #setHatchLineAngle(double)
+	 * @generated
+	 */
+	boolean isSetHatchLineAngle();
 
 	/**
 	 * Returns the value of the '<em><b>Hatch Line Angle As String</b></em>' attribute.
@@ -231,9 +312,11 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hatch Line Angle As String</em>' attribute.
+	 * @see #isSetHatchLineAngleAsString()
+	 * @see #unsetHatchLineAngleAsString()
 	 * @see #setHatchLineAngleAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleHatching_HatchLineAngleAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getHatchLineAngleAsString();
@@ -243,9 +326,34 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Hatch Line Angle As String</em>' attribute.
+	 * @see #isSetHatchLineAngleAsString()
+	 * @see #unsetHatchLineAngleAsString()
 	 * @see #getHatchLineAngleAsString()
 	 * @generated
 	 */
 	void setHatchLineAngleAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getHatchLineAngleAsString <em>Hatch Line Angle As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHatchLineAngleAsString()
+	 * @see #getHatchLineAngleAsString()
+	 * @see #setHatchLineAngleAsString(String)
+	 * @generated
+	 */
+	void unsetHatchLineAngleAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching#getHatchLineAngleAsString <em>Hatch Line Angle As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Hatch Line Angle As String</em>' attribute is set.
+	 * @see #unsetHatchLineAngleAsString()
+	 * @see #getHatchLineAngleAsString()
+	 * @see #setHatchLineAngleAsString(String)
+	 * @generated
+	 */
+	boolean isSetHatchLineAngleAsString();
 
 } // IfcFillAreaStyleHatching

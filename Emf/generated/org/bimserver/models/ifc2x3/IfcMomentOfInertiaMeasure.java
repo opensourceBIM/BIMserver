@@ -43,9 +43,11 @@ public interface IfcMomentOfInertiaMeasure extends WrappedValue, IfcDerivedMeasu
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wrapped Value</em>' attribute.
+	 * @see #isSetWrappedValue()
+	 * @see #unsetWrappedValue()
 	 * @see #setWrappedValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMomentOfInertiaMeasure_WrappedValue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getWrappedValue();
@@ -55,10 +57,35 @@ public interface IfcMomentOfInertiaMeasure extends WrappedValue, IfcDerivedMeasu
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wrapped Value</em>' attribute.
+	 * @see #isSetWrappedValue()
+	 * @see #unsetWrappedValue()
 	 * @see #getWrappedValue()
 	 * @generated
 	 */
 	void setWrappedValue(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMomentOfInertiaMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWrappedValue()
+	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(double)
+	 * @generated
+	 */
+	void unsetWrappedValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMomentOfInertiaMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wrapped Value</em>' attribute is set.
+	 * @see #unsetWrappedValue()
+	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(double)
+	 * @generated
+	 */
+	boolean isSetWrappedValue();
 
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value As String</b></em>' attribute.
@@ -69,9 +96,11 @@ public interface IfcMomentOfInertiaMeasure extends WrappedValue, IfcDerivedMeasu
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Wrapped Value As String</em>' attribute.
+	 * @see #isSetWrappedValueAsString()
+	 * @see #unsetWrappedValueAsString()
 	 * @see #setWrappedValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMomentOfInertiaMeasure_WrappedValueAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getWrappedValueAsString();
@@ -81,9 +110,34 @@ public interface IfcMomentOfInertiaMeasure extends WrappedValue, IfcDerivedMeasu
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Wrapped Value As String</em>' attribute.
+	 * @see #isSetWrappedValueAsString()
+	 * @see #unsetWrappedValueAsString()
 	 * @see #getWrappedValueAsString()
 	 * @generated
 	 */
 	void setWrappedValueAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMomentOfInertiaMeasure#getWrappedValueAsString <em>Wrapped Value As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWrappedValueAsString()
+	 * @see #getWrappedValueAsString()
+	 * @see #setWrappedValueAsString(String)
+	 * @generated
+	 */
+	void unsetWrappedValueAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMomentOfInertiaMeasure#getWrappedValueAsString <em>Wrapped Value As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Wrapped Value As String</em>' attribute is set.
+	 * @see #unsetWrappedValueAsString()
+	 * @see #getWrappedValueAsString()
+	 * @see #setWrappedValueAsString(String)
+	 * @generated
+	 */
+	boolean isSetWrappedValueAsString();
 
 } // IfcMomentOfInertiaMeasure

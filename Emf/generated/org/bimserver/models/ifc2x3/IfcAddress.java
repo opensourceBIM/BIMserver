@@ -50,9 +50,11 @@ public interface IfcAddress extends IfcObjectReferenceSelect {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Purpose</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAddressTypeEnum
+	 * @see #isSetPurpose()
+	 * @see #unsetPurpose()
 	 * @see #setPurpose(IfcAddressTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAddress_Purpose()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAddressTypeEnum getPurpose();
@@ -63,10 +65,35 @@ public interface IfcAddress extends IfcObjectReferenceSelect {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Purpose</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAddressTypeEnum
+	 * @see #isSetPurpose()
+	 * @see #unsetPurpose()
 	 * @see #getPurpose()
 	 * @generated
 	 */
 	void setPurpose(IfcAddressTypeEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAddress#getPurpose <em>Purpose</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPurpose()
+	 * @see #getPurpose()
+	 * @see #setPurpose(IfcAddressTypeEnum)
+	 * @generated
+	 */
+	void unsetPurpose();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAddress#getPurpose <em>Purpose</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Purpose</em>' attribute is set.
+	 * @see #unsetPurpose()
+	 * @see #getPurpose()
+	 * @see #setPurpose(IfcAddressTypeEnum)
+	 * @generated
+	 */
+	boolean isSetPurpose();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -185,12 +212,35 @@ public interface IfcAddress extends IfcObjectReferenceSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Of Person</em>' reference list.
+	 * @see #isSetOfPerson()
+	 * @see #unsetOfPerson()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAddress_OfPerson()
 	 * @see org.bimserver.models.ifc2x3.IfcPerson#getAddresses
-	 * @model opposite="Addresses"
+	 * @model opposite="Addresses" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPerson> getOfPerson();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAddress#getOfPerson <em>Of Person</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOfPerson()
+	 * @see #getOfPerson()
+	 * @generated
+	 */
+	void unsetOfPerson();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAddress#getOfPerson <em>Of Person</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Of Person</em>' reference list is set.
+	 * @see #unsetOfPerson()
+	 * @see #getOfPerson()
+	 * @generated
+	 */
+	boolean isSetOfPerson();
 
 	/**
 	 * Returns the value of the '<em><b>Of Organization</b></em>' reference list.
@@ -203,11 +253,34 @@ public interface IfcAddress extends IfcObjectReferenceSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Of Organization</em>' reference list.
+	 * @see #isSetOfOrganization()
+	 * @see #unsetOfOrganization()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAddress_OfOrganization()
 	 * @see org.bimserver.models.ifc2x3.IfcOrganization#getAddresses
-	 * @model opposite="Addresses"
+	 * @model opposite="Addresses" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcOrganization> getOfOrganization();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAddress#getOfOrganization <em>Of Organization</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOfOrganization()
+	 * @see #getOfOrganization()
+	 * @generated
+	 */
+	void unsetOfOrganization();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAddress#getOfOrganization <em>Of Organization</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Of Organization</em>' reference list is set.
+	 * @see #unsetOfOrganization()
+	 * @see #getOfOrganization()
+	 * @generated
+	 */
+	boolean isSetOfOrganization();
 
 } // IfcAddress

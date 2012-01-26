@@ -74,6 +74,24 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetListValues() {
+		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_LIST_VALUE__LIST_VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetListValues() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_LIST_VALUE__LIST_VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcUnit getUnit() {
 		return (IfcUnit) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_LIST_VALUE__UNIT, true);
 	}

@@ -42,9 +42,11 @@ public interface IfcRelAssociatesClassification extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Classification</em>' reference.
+	 * @see #isSetRelatingClassification()
+	 * @see #unsetRelatingClassification()
 	 * @see #setRelatingClassification(IfcClassificationNotationSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesClassification_RelatingClassification()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcClassificationNotationSelect getRelatingClassification();
@@ -54,9 +56,34 @@ public interface IfcRelAssociatesClassification extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Classification</em>' reference.
+	 * @see #isSetRelatingClassification()
+	 * @see #unsetRelatingClassification()
 	 * @see #getRelatingClassification()
 	 * @generated
 	 */
 	void setRelatingClassification(IfcClassificationNotationSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesClassification#getRelatingClassification <em>Relating Classification</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingClassification()
+	 * @see #getRelatingClassification()
+	 * @see #setRelatingClassification(IfcClassificationNotationSelect)
+	 * @generated
+	 */
+	void unsetRelatingClassification();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesClassification#getRelatingClassification <em>Relating Classification</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Classification</em>' reference is set.
+	 * @see #unsetRelatingClassification()
+	 * @see #getRelatingClassification()
+	 * @see #setRelatingClassification(IfcClassificationNotationSelect)
+	 * @generated
+	 */
+	boolean isSetRelatingClassification();
 
 } // IfcRelAssociatesClassification

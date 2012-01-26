@@ -49,9 +49,11 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinate Space Dimension</em>' attribute.
+	 * @see #isSetCoordinateSpaceDimension()
+	 * @see #unsetCoordinateSpaceDimension()
 	 * @see #setCoordinateSpaceDimension(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_CoordinateSpaceDimension()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	int getCoordinateSpaceDimension();
@@ -61,10 +63,35 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Coordinate Space Dimension</em>' attribute.
+	 * @see #isSetCoordinateSpaceDimension()
+	 * @see #unsetCoordinateSpaceDimension()
 	 * @see #getCoordinateSpaceDimension()
 	 * @generated
 	 */
 	void setCoordinateSpaceDimension(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCoordinateSpaceDimension()
+	 * @see #getCoordinateSpaceDimension()
+	 * @see #setCoordinateSpaceDimension(int)
+	 * @generated
+	 */
+	void unsetCoordinateSpaceDimension();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Coordinate Space Dimension</em>' attribute is set.
+	 * @see #unsetCoordinateSpaceDimension()
+	 * @see #getCoordinateSpaceDimension()
+	 * @see #setCoordinateSpaceDimension(int)
+	 * @generated
+	 */
+	boolean isSetCoordinateSpaceDimension();
 
 	/**
 	 * Returns the value of the '<em><b>Precision</b></em>' attribute.
@@ -75,9 +102,11 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Precision</em>' attribute.
+	 * @see #isSetPrecision()
+	 * @see #unsetPrecision()
 	 * @see #setPrecision(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_Precision()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	double getPrecision();
@@ -87,10 +116,35 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Precision</em>' attribute.
+	 * @see #isSetPrecision()
+	 * @see #unsetPrecision()
 	 * @see #getPrecision()
 	 * @generated
 	 */
 	void setPrecision(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getPrecision <em>Precision</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPrecision()
+	 * @see #getPrecision()
+	 * @see #setPrecision(double)
+	 * @generated
+	 */
+	void unsetPrecision();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getPrecision <em>Precision</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Precision</em>' attribute is set.
+	 * @see #unsetPrecision()
+	 * @see #getPrecision()
+	 * @see #setPrecision(double)
+	 * @generated
+	 */
+	boolean isSetPrecision();
 
 	/**
 	 * Returns the value of the '<em><b>Precision As String</b></em>' attribute.
@@ -101,9 +155,11 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Precision As String</em>' attribute.
+	 * @see #isSetPrecisionAsString()
+	 * @see #unsetPrecisionAsString()
 	 * @see #setPrecisionAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_PrecisionAsString()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getPrecisionAsString();
@@ -113,10 +169,35 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Precision As String</em>' attribute.
+	 * @see #isSetPrecisionAsString()
+	 * @see #unsetPrecisionAsString()
 	 * @see #getPrecisionAsString()
 	 * @generated
 	 */
 	void setPrecisionAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getPrecisionAsString <em>Precision As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPrecisionAsString()
+	 * @see #getPrecisionAsString()
+	 * @see #setPrecisionAsString(String)
+	 * @generated
+	 */
+	void unsetPrecisionAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getPrecisionAsString <em>Precision As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Precision As String</em>' attribute is set.
+	 * @see #unsetPrecisionAsString()
+	 * @see #getPrecisionAsString()
+	 * @see #setPrecisionAsString(String)
+	 * @generated
+	 */
+	boolean isSetPrecisionAsString();
 
 	/**
 	 * Returns the value of the '<em><b>World Coordinate System</b></em>' reference.
@@ -127,9 +208,11 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>World Coordinate System</em>' reference.
+	 * @see #isSetWorldCoordinateSystem()
+	 * @see #unsetWorldCoordinateSystem()
 	 * @see #setWorldCoordinateSystem(IfcAxis2Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_WorldCoordinateSystem()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis2Placement getWorldCoordinateSystem();
@@ -139,10 +222,35 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>World Coordinate System</em>' reference.
+	 * @see #isSetWorldCoordinateSystem()
+	 * @see #unsetWorldCoordinateSystem()
 	 * @see #getWorldCoordinateSystem()
 	 * @generated
 	 */
 	void setWorldCoordinateSystem(IfcAxis2Placement value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getWorldCoordinateSystem <em>World Coordinate System</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetWorldCoordinateSystem()
+	 * @see #getWorldCoordinateSystem()
+	 * @see #setWorldCoordinateSystem(IfcAxis2Placement)
+	 * @generated
+	 */
+	void unsetWorldCoordinateSystem();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getWorldCoordinateSystem <em>World Coordinate System</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>World Coordinate System</em>' reference is set.
+	 * @see #unsetWorldCoordinateSystem()
+	 * @see #getWorldCoordinateSystem()
+	 * @see #setWorldCoordinateSystem(IfcAxis2Placement)
+	 * @generated
+	 */
+	boolean isSetWorldCoordinateSystem();
 
 	/**
 	 * Returns the value of the '<em><b>True North</b></em>' reference.
@@ -208,11 +316,34 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Sub Contexts</em>' reference list.
+	 * @see #isSetHasSubContexts()
+	 * @see #unsetHasSubContexts()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_HasSubContexts()
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext#getParentContext
-	 * @model opposite="ParentContext"
+	 * @model opposite="ParentContext" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcGeometricRepresentationSubContext> getHasSubContexts();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getHasSubContexts <em>Has Sub Contexts</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasSubContexts()
+	 * @see #getHasSubContexts()
+	 * @generated
+	 */
+	void unsetHasSubContexts();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getHasSubContexts <em>Has Sub Contexts</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Sub Contexts</em>' reference list is set.
+	 * @see #unsetHasSubContexts()
+	 * @see #getHasSubContexts()
+	 * @generated
+	 */
+	boolean isSetHasSubContexts();
 
 } // IfcGeometricRepresentationContext

@@ -43,9 +43,11 @@ public interface IfcElementarySurface extends IfcSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #setPosition(IfcAxis2Placement3D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElementarySurface_Position()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis2Placement3D getPosition();
@@ -55,10 +57,35 @@ public interface IfcElementarySurface extends IfcSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #getPosition()
 	 * @generated
 	 */
 	void setPosition(IfcAxis2Placement3D value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElementarySurface#getPosition <em>Position</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement3D)
+	 * @generated
+	 */
+	void unsetPosition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElementarySurface#getPosition <em>Position</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Position</em>' reference is set.
+	 * @see #unsetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement3D)
+	 * @generated
+	 */
+	boolean isSetPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -69,9 +96,11 @@ public interface IfcElementarySurface extends IfcSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElementarySurface_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -81,9 +110,34 @@ public interface IfcElementarySurface extends IfcSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElementarySurface#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElementarySurface#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcElementarySurface

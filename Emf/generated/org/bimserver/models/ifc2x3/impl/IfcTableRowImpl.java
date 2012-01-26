@@ -88,6 +88,24 @@ public class IfcTableRowImpl extends IdEObjectImpl implements IfcTableRow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRowCells() {
+		eUnset(Ifc2x3Package.Literals.IFC_TABLE_ROW__ROW_CELLS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRowCells() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TABLE_ROW__ROW_CELLS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Tristate getIsHeading() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_TABLE_ROW__IS_HEADING, true);
 	}
@@ -106,6 +124,24 @@ public class IfcTableRowImpl extends IdEObjectImpl implements IfcTableRow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsHeading() {
+		eUnset(Ifc2x3Package.Literals.IFC_TABLE_ROW__IS_HEADING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsHeading() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TABLE_ROW__IS_HEADING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcTable getOfTable() {
 		return (IfcTable) eGet(Ifc2x3Package.Literals.IFC_TABLE_ROW__OF_TABLE, true);
 	}
@@ -117,6 +153,24 @@ public class IfcTableRowImpl extends IdEObjectImpl implements IfcTableRow {
 	 */
 	public void setOfTable(IfcTable newOfTable) {
 		eSet(Ifc2x3Package.Literals.IFC_TABLE_ROW__OF_TABLE, newOfTable);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOfTable() {
+		eUnset(Ifc2x3Package.Literals.IFC_TABLE_ROW__OF_TABLE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOfTable() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TABLE_ROW__OF_TABLE);
 	}
 
 } //IfcTableRowImpl

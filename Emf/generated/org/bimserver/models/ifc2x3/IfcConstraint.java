@@ -59,9 +59,11 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_Name()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getName();
@@ -71,10 +73,35 @@ public interface IfcConstraint extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	void unsetName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #unsetName()
+	 * @see #getName()
+	 * @see #setName(String)
+	 * @generated
+	 */
+	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -140,9 +167,11 @@ public interface IfcConstraint extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraint Grade</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintEnum
+	 * @see #isSetConstraintGrade()
+	 * @see #unsetConstraintGrade()
 	 * @see #setConstraintGrade(IfcConstraintEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_ConstraintGrade()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcConstraintEnum getConstraintGrade();
@@ -153,10 +182,35 @@ public interface IfcConstraint extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Constraint Grade</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintEnum
+	 * @see #isSetConstraintGrade()
+	 * @see #unsetConstraintGrade()
 	 * @see #getConstraintGrade()
 	 * @generated
 	 */
 	void setConstraintGrade(IfcConstraintEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getConstraintGrade <em>Constraint Grade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetConstraintGrade()
+	 * @see #getConstraintGrade()
+	 * @see #setConstraintGrade(IfcConstraintEnum)
+	 * @generated
+	 */
+	void unsetConstraintGrade();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getConstraintGrade <em>Constraint Grade</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Constraint Grade</em>' attribute is set.
+	 * @see #unsetConstraintGrade()
+	 * @see #getConstraintGrade()
+	 * @see #setConstraintGrade(IfcConstraintEnum)
+	 * @generated
+	 */
+	boolean isSetConstraintGrade();
 
 	/**
 	 * Returns the value of the '<em><b>Constraint Source</b></em>' attribute.
@@ -381,12 +435,35 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Classified As</em>' reference list.
+	 * @see #isSetClassifiedAs()
+	 * @see #unsetClassifiedAs()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_ClassifiedAs()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintClassificationRelationship#getClassifiedConstraint
-	 * @model opposite="ClassifiedConstraint"
+	 * @model opposite="ClassifiedConstraint" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcConstraintClassificationRelationship> getClassifiedAs();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getClassifiedAs <em>Classified As</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetClassifiedAs()
+	 * @see #getClassifiedAs()
+	 * @generated
+	 */
+	void unsetClassifiedAs();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getClassifiedAs <em>Classified As</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Classified As</em>' reference list is set.
+	 * @see #unsetClassifiedAs()
+	 * @see #getClassifiedAs()
+	 * @generated
+	 */
+	boolean isSetClassifiedAs();
 
 	/**
 	 * Returns the value of the '<em><b>Relates Constraints</b></em>' reference list.
@@ -399,12 +476,35 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relates Constraints</em>' reference list.
+	 * @see #isSetRelatesConstraints()
+	 * @see #unsetRelatesConstraints()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_RelatesConstraints()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintRelationship#getRelatingConstraint
-	 * @model opposite="RelatingConstraint"
+	 * @model opposite="RelatingConstraint" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcConstraintRelationship> getRelatesConstraints();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getRelatesConstraints <em>Relates Constraints</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatesConstraints()
+	 * @see #getRelatesConstraints()
+	 * @generated
+	 */
+	void unsetRelatesConstraints();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getRelatesConstraints <em>Relates Constraints</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relates Constraints</em>' reference list is set.
+	 * @see #unsetRelatesConstraints()
+	 * @see #getRelatesConstraints()
+	 * @generated
+	 */
+	boolean isSetRelatesConstraints();
 
 	/**
 	 * Returns the value of the '<em><b>Is Related With</b></em>' reference list.
@@ -417,12 +517,35 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Related With</em>' reference list.
+	 * @see #isSetIsRelatedWith()
+	 * @see #unsetIsRelatedWith()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_IsRelatedWith()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintRelationship#getRelatedConstraints
-	 * @model opposite="RelatedConstraints"
+	 * @model opposite="RelatedConstraints" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcConstraintRelationship> getIsRelatedWith();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getIsRelatedWith <em>Is Related With</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsRelatedWith()
+	 * @see #getIsRelatedWith()
+	 * @generated
+	 */
+	void unsetIsRelatedWith();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getIsRelatedWith <em>Is Related With</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Related With</em>' reference list is set.
+	 * @see #unsetIsRelatedWith()
+	 * @see #getIsRelatedWith()
+	 * @generated
+	 */
+	boolean isSetIsRelatedWith();
 
 	/**
 	 * Returns the value of the '<em><b>Properties For Constraint</b></em>' reference list.
@@ -435,12 +558,35 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties For Constraint</em>' reference list.
+	 * @see #isSetPropertiesForConstraint()
+	 * @see #unsetPropertiesForConstraint()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_PropertiesForConstraint()
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship#getRelatingConstraint
-	 * @model opposite="RelatingConstraint"
+	 * @model opposite="RelatingConstraint" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcPropertyConstraintRelationship> getPropertiesForConstraint();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getPropertiesForConstraint <em>Properties For Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPropertiesForConstraint()
+	 * @see #getPropertiesForConstraint()
+	 * @generated
+	 */
+	void unsetPropertiesForConstraint();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getPropertiesForConstraint <em>Properties For Constraint</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Properties For Constraint</em>' reference list is set.
+	 * @see #unsetPropertiesForConstraint()
+	 * @see #getPropertiesForConstraint()
+	 * @generated
+	 */
+	boolean isSetPropertiesForConstraint();
 
 	/**
 	 * Returns the value of the '<em><b>Aggregates</b></em>' reference list.
@@ -453,12 +599,35 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Aggregates</em>' reference list.
+	 * @see #isSetAggregates()
+	 * @see #unsetAggregates()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_Aggregates()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getRelatingConstraint
-	 * @model opposite="RelatingConstraint"
+	 * @model opposite="RelatingConstraint" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcConstraintAggregationRelationship> getAggregates();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getAggregates <em>Aggregates</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAggregates()
+	 * @see #getAggregates()
+	 * @generated
+	 */
+	void unsetAggregates();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getAggregates <em>Aggregates</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Aggregates</em>' reference list is set.
+	 * @see #unsetAggregates()
+	 * @see #getAggregates()
+	 * @generated
+	 */
+	boolean isSetAggregates();
 
 	/**
 	 * Returns the value of the '<em><b>Is Aggregated In</b></em>' reference list.
@@ -471,11 +640,34 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Aggregated In</em>' reference list.
+	 * @see #isSetIsAggregatedIn()
+	 * @see #unsetIsAggregatedIn()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_IsAggregatedIn()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship#getRelatedConstraints
-	 * @model opposite="RelatedConstraints"
+	 * @model opposite="RelatedConstraints" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcConstraintAggregationRelationship> getIsAggregatedIn();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getIsAggregatedIn <em>Is Aggregated In</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetIsAggregatedIn()
+	 * @see #getIsAggregatedIn()
+	 * @generated
+	 */
+	void unsetIsAggregatedIn();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getIsAggregatedIn <em>Is Aggregated In</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Is Aggregated In</em>' reference list is set.
+	 * @see #unsetIsAggregatedIn()
+	 * @see #getIsAggregatedIn()
+	 * @generated
+	 */
+	boolean isSetIsAggregatedIn();
 
 } // IfcConstraint

@@ -79,4 +79,22 @@ public class IfcTimeSeriesValueImpl extends IdEObjectImpl implements IfcTimeSeri
 		return (EList<IfcValue>) eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES_VALUE__LIST_VALUES, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetListValues() {
+		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES_VALUE__LIST_VALUES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetListValues() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_VALUE__LIST_VALUES);
+	}
+
 } //IfcTimeSeriesValueImpl

@@ -82,9 +82,45 @@ public class IfcStructuralLinearActionVaryingImpl extends IfcStructuralLinearAct
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetVaryingAppliedLoadLocation() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION_VARYING__VARYING_APPLIED_LOAD_LOCATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVaryingAppliedLoadLocation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION_VARYING__VARYING_APPLIED_LOAD_LOCATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralLoad> getSubsequentAppliedLoads() {
 		return (EList<IfcStructuralLoad>) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION_VARYING__SUBSEQUENT_APPLIED_LOADS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSubsequentAppliedLoads() {
+		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION_VARYING__SUBSEQUENT_APPLIED_LOADS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSubsequentAppliedLoads() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION_VARYING__SUBSEQUENT_APPLIED_LOADS);
 	}
 
 } //IfcStructuralLinearActionVaryingImpl

@@ -48,9 +48,11 @@ public interface IfcApplication extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Application Developer</em>' reference.
+	 * @see #isSetApplicationDeveloper()
+	 * @see #unsetApplicationDeveloper()
 	 * @see #setApplicationDeveloper(IfcOrganization)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApplication_ApplicationDeveloper()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcOrganization getApplicationDeveloper();
@@ -60,10 +62,35 @@ public interface IfcApplication extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Application Developer</em>' reference.
+	 * @see #isSetApplicationDeveloper()
+	 * @see #unsetApplicationDeveloper()
 	 * @see #getApplicationDeveloper()
 	 * @generated
 	 */
 	void setApplicationDeveloper(IfcOrganization value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getApplicationDeveloper <em>Application Developer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetApplicationDeveloper()
+	 * @see #getApplicationDeveloper()
+	 * @see #setApplicationDeveloper(IfcOrganization)
+	 * @generated
+	 */
+	void unsetApplicationDeveloper();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getApplicationDeveloper <em>Application Developer</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Application Developer</em>' reference is set.
+	 * @see #unsetApplicationDeveloper()
+	 * @see #getApplicationDeveloper()
+	 * @see #setApplicationDeveloper(IfcOrganization)
+	 * @generated
+	 */
+	boolean isSetApplicationDeveloper();
 
 	/**
 	 * Returns the value of the '<em><b>Version</b></em>' attribute.
@@ -74,9 +101,11 @@ public interface IfcApplication extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Version</em>' attribute.
+	 * @see #isSetVersion()
+	 * @see #unsetVersion()
 	 * @see #setVersion(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApplication_Version()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getVersion();
@@ -86,10 +115,35 @@ public interface IfcApplication extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Version</em>' attribute.
+	 * @see #isSetVersion()
+	 * @see #unsetVersion()
 	 * @see #getVersion()
 	 * @generated
 	 */
 	void setVersion(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getVersion <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVersion()
+	 * @see #getVersion()
+	 * @see #setVersion(String)
+	 * @generated
+	 */
+	void unsetVersion();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getVersion <em>Version</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Version</em>' attribute is set.
+	 * @see #unsetVersion()
+	 * @see #getVersion()
+	 * @see #setVersion(String)
+	 * @generated
+	 */
+	boolean isSetVersion();
 
 	/**
 	 * Returns the value of the '<em><b>Application Full Name</b></em>' attribute.
@@ -100,9 +154,11 @@ public interface IfcApplication extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Application Full Name</em>' attribute.
+	 * @see #isSetApplicationFullName()
+	 * @see #unsetApplicationFullName()
 	 * @see #setApplicationFullName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApplication_ApplicationFullName()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getApplicationFullName();
@@ -112,10 +168,35 @@ public interface IfcApplication extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Application Full Name</em>' attribute.
+	 * @see #isSetApplicationFullName()
+	 * @see #unsetApplicationFullName()
 	 * @see #getApplicationFullName()
 	 * @generated
 	 */
 	void setApplicationFullName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getApplicationFullName <em>Application Full Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetApplicationFullName()
+	 * @see #getApplicationFullName()
+	 * @see #setApplicationFullName(String)
+	 * @generated
+	 */
+	void unsetApplicationFullName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getApplicationFullName <em>Application Full Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Application Full Name</em>' attribute is set.
+	 * @see #unsetApplicationFullName()
+	 * @see #getApplicationFullName()
+	 * @see #setApplicationFullName(String)
+	 * @generated
+	 */
+	boolean isSetApplicationFullName();
 
 	/**
 	 * Returns the value of the '<em><b>Application Identifier</b></em>' attribute.
@@ -126,9 +207,11 @@ public interface IfcApplication extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Application Identifier</em>' attribute.
+	 * @see #isSetApplicationIdentifier()
+	 * @see #unsetApplicationIdentifier()
 	 * @see #setApplicationIdentifier(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApplication_ApplicationIdentifier()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getApplicationIdentifier();
@@ -138,9 +221,34 @@ public interface IfcApplication extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Application Identifier</em>' attribute.
+	 * @see #isSetApplicationIdentifier()
+	 * @see #unsetApplicationIdentifier()
 	 * @see #getApplicationIdentifier()
 	 * @generated
 	 */
 	void setApplicationIdentifier(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getApplicationIdentifier <em>Application Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetApplicationIdentifier()
+	 * @see #getApplicationIdentifier()
+	 * @see #setApplicationIdentifier(String)
+	 * @generated
+	 */
+	void unsetApplicationIdentifier();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApplication#getApplicationIdentifier <em>Application Identifier</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Application Identifier</em>' attribute is set.
+	 * @see #unsetApplicationIdentifier()
+	 * @see #getApplicationIdentifier()
+	 * @see #setApplicationIdentifier(String)
+	 * @generated
+	 */
+	boolean isSetApplicationIdentifier();
 
 } // IfcApplication

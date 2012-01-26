@@ -80,6 +80,24 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetMappingSource() {
+		eUnset(Ifc2x3Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMappingSource() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcCartesianTransformationOperator getMappingTarget() {
 		return (IfcCartesianTransformationOperator) eGet(Ifc2x3Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, true);
 	}
@@ -91,6 +109,24 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 */
 	public void setMappingTarget(IfcCartesianTransformationOperator newMappingTarget) {
 		eSet(Ifc2x3Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, newMappingTarget);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetMappingTarget() {
+		eUnset(Ifc2x3Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMappingTarget() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET);
 	}
 
 } //IfcMappedItemImpl

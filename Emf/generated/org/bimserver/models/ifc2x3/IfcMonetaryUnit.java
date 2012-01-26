@@ -44,9 +44,11 @@ public interface IfcMonetaryUnit extends IfcUnit {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Currency</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcCurrencyEnum
+	 * @see #isSetCurrency()
+	 * @see #unsetCurrency()
 	 * @see #setCurrency(IfcCurrencyEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMonetaryUnit_Currency()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCurrencyEnum getCurrency();
@@ -57,9 +59,34 @@ public interface IfcMonetaryUnit extends IfcUnit {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Currency</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcCurrencyEnum
+	 * @see #isSetCurrency()
+	 * @see #unsetCurrency()
 	 * @see #getCurrency()
 	 * @generated
 	 */
 	void setCurrency(IfcCurrencyEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMonetaryUnit#getCurrency <em>Currency</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCurrency()
+	 * @see #getCurrency()
+	 * @see #setCurrency(IfcCurrencyEnum)
+	 * @generated
+	 */
+	void unsetCurrency();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMonetaryUnit#getCurrency <em>Currency</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Currency</em>' attribute is set.
+	 * @see #unsetCurrency()
+	 * @see #getCurrency()
+	 * @see #setCurrency(IfcCurrencyEnum)
+	 * @generated
+	 */
+	boolean isSetCurrency();
 
 } // IfcMonetaryUnit

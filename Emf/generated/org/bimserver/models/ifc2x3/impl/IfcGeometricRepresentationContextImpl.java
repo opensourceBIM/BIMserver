@@ -87,6 +87,24 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetCoordinateSpaceDimension() {
+		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCoordinateSpaceDimension() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getPrecision() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION, true);
 	}
@@ -98,6 +116,24 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 */
 	public void setPrecision(double newPrecision) {
 		eSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION, newPrecision);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPrecision() {
+		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPrecision() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION);
 	}
 
 	/**
@@ -123,6 +159,24 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetPrecisionAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPrecisionAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__PRECISION_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcAxis2Placement getWorldCoordinateSystem() {
 		return (IfcAxis2Placement) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM, true);
 	}
@@ -134,6 +188,24 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 */
 	public void setWorldCoordinateSystem(IfcAxis2Placement newWorldCoordinateSystem) {
 		eSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM, newWorldCoordinateSystem);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWorldCoordinateSystem() {
+		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWorldCoordinateSystem() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM);
 	}
 
 	/**
@@ -180,6 +252,24 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	@SuppressWarnings("unchecked")
 	public EList<IfcGeometricRepresentationSubContext> getHasSubContexts() {
 		return (EList<IfcGeometricRepresentationSubContext>) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_SUB_CONTEXTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasSubContexts() {
+		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_SUB_CONTEXTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasSubContexts() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_SUB_CONTEXTS);
 	}
 
 } //IfcGeometricRepresentationContextImpl

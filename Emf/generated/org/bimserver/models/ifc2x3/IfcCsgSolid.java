@@ -42,9 +42,11 @@ public interface IfcCsgSolid extends IfcSolidModel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tree Root Expression</em>' reference.
+	 * @see #isSetTreeRootExpression()
+	 * @see #unsetTreeRootExpression()
 	 * @see #setTreeRootExpression(IfcCsgSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCsgSolid_TreeRootExpression()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcCsgSelect getTreeRootExpression();
@@ -54,9 +56,34 @@ public interface IfcCsgSolid extends IfcSolidModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tree Root Expression</em>' reference.
+	 * @see #isSetTreeRootExpression()
+	 * @see #unsetTreeRootExpression()
 	 * @see #getTreeRootExpression()
 	 * @generated
 	 */
 	void setTreeRootExpression(IfcCsgSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCsgSolid#getTreeRootExpression <em>Tree Root Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTreeRootExpression()
+	 * @see #getTreeRootExpression()
+	 * @see #setTreeRootExpression(IfcCsgSelect)
+	 * @generated
+	 */
+	void unsetTreeRootExpression();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCsgSolid#getTreeRootExpression <em>Tree Root Expression</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Tree Root Expression</em>' reference is set.
+	 * @see #unsetTreeRootExpression()
+	 * @see #getTreeRootExpression()
+	 * @see #setTreeRootExpression(IfcCsgSelect)
+	 * @generated
+	 */
+	boolean isSetTreeRootExpression();
 
 } // IfcCsgSolid

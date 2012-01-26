@@ -49,10 +49,12 @@ public interface IfcClassificationItemRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Item</em>' reference.
+	 * @see #isSetRelatingItem()
+	 * @see #unsetRelatingItem()
 	 * @see #setRelatingItem(IfcClassificationItem)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassificationItemRelationship_RelatingItem()
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationItem#getIsClassifyingItemIn
-	 * @model opposite="IsClassifyingItemIn"
+	 * @model opposite="IsClassifyingItemIn" unsettable="true"
 	 * @generated
 	 */
 	IfcClassificationItem getRelatingItem();
@@ -62,10 +64,35 @@ public interface IfcClassificationItemRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Item</em>' reference.
+	 * @see #isSetRelatingItem()
+	 * @see #unsetRelatingItem()
 	 * @see #getRelatingItem()
 	 * @generated
 	 */
 	void setRelatingItem(IfcClassificationItem value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItemRelationship#getRelatingItem <em>Relating Item</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatingItem()
+	 * @see #getRelatingItem()
+	 * @see #setRelatingItem(IfcClassificationItem)
+	 * @generated
+	 */
+	void unsetRelatingItem();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItemRelationship#getRelatingItem <em>Relating Item</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Relating Item</em>' reference is set.
+	 * @see #unsetRelatingItem()
+	 * @see #getRelatingItem()
+	 * @see #setRelatingItem(IfcClassificationItem)
+	 * @generated
+	 */
+	boolean isSetRelatingItem();
 
 	/**
 	 * Returns the value of the '<em><b>Related Items</b></em>' reference list.
@@ -78,11 +105,34 @@ public interface IfcClassificationItemRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Items</em>' reference list.
+	 * @see #isSetRelatedItems()
+	 * @see #unsetRelatedItems()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassificationItemRelationship_RelatedItems()
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationItem#getIsClassifiedItemIn
-	 * @model opposite="IsClassifiedItemIn"
+	 * @model opposite="IsClassifiedItemIn" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcClassificationItem> getRelatedItems();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItemRelationship#getRelatedItems <em>Related Items</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRelatedItems()
+	 * @see #getRelatedItems()
+	 * @generated
+	 */
+	void unsetRelatedItems();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItemRelationship#getRelatedItems <em>Related Items</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Related Items</em>' reference list is set.
+	 * @see #unsetRelatedItems()
+	 * @see #getRelatedItems()
+	 * @generated
+	 */
+	boolean isSetRelatedItems();
 
 } // IfcClassificationItemRelationship

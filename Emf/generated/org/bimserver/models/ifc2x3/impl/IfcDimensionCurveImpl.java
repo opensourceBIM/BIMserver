@@ -67,4 +67,22 @@ public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl impl
 		return (EList<IfcTerminatorSymbol>) eGet(Ifc2x3Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAnnotatedBySymbols() {
+		eUnset(Ifc2x3Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAnnotatedBySymbols() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS);
+	}
+
 } //IfcDimensionCurveImpl

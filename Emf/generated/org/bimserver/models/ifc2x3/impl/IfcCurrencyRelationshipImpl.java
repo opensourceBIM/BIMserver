@@ -97,6 +97,24 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingMonetaryUnit() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingMonetaryUnit() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcMonetaryUnit getRelatedMonetaryUnit() {
 		return (IfcMonetaryUnit) eGet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT, true);
 	}
@@ -108,6 +126,24 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 */
 	public void setRelatedMonetaryUnit(IfcMonetaryUnit newRelatedMonetaryUnit) {
 		eSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT, newRelatedMonetaryUnit);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedMonetaryUnit() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedMonetaryUnit() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT);
 	}
 
 	/**
@@ -133,6 +169,24 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetExchangeRate() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetExchangeRate() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getExchangeRateAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE_AS_STRING, true);
 	}
@@ -151,6 +205,24 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetExchangeRateAsString() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetExchangeRateAsString() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcDateAndTime getRateDateTime() {
 		return (IfcDateAndTime) eGet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME, true);
 	}
@@ -162,6 +234,24 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 */
 	public void setRateDateTime(IfcDateAndTime newRateDateTime) {
 		eSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME, newRateDateTime);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRateDateTime() {
+		eUnset(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRateDateTime() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME);
 	}
 
 	/**

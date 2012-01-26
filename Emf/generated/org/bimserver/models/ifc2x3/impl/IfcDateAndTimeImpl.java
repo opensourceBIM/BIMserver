@@ -92,6 +92,24 @@ public class IfcDateAndTimeImpl extends IdEObjectImpl implements IfcDateAndTime 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDateComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DATE_AND_TIME__DATE_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDateComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DATE_AND_TIME__DATE_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcLocalTime getTimeComponent() {
 		return (IfcLocalTime) eGet(Ifc2x3Package.Literals.IFC_DATE_AND_TIME__TIME_COMPONENT, true);
 	}
@@ -103,6 +121,24 @@ public class IfcDateAndTimeImpl extends IdEObjectImpl implements IfcDateAndTime 
 	 */
 	public void setTimeComponent(IfcLocalTime newTimeComponent) {
 		eSet(Ifc2x3Package.Literals.IFC_DATE_AND_TIME__TIME_COMPONENT, newTimeComponent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTimeComponent() {
+		eUnset(Ifc2x3Package.Literals.IFC_DATE_AND_TIME__TIME_COMPONENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeComponent() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DATE_AND_TIME__TIME_COMPONENT);
 	}
 
 } //IfcDateAndTimeImpl

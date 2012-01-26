@@ -42,9 +42,11 @@ public interface IfcParameterizedProfileDef extends IfcProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #setPosition(IfcAxis2Placement2D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcParameterizedProfileDef_Position()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcAxis2Placement2D getPosition();
@@ -54,9 +56,34 @@ public interface IfcParameterizedProfileDef extends IfcProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' reference.
+	 * @see #isSetPosition()
+	 * @see #unsetPosition()
 	 * @see #getPosition()
 	 * @generated
 	 */
 	void setPosition(IfcAxis2Placement2D value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcParameterizedProfileDef#getPosition <em>Position</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement2D)
+	 * @generated
+	 */
+	void unsetPosition();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcParameterizedProfileDef#getPosition <em>Position</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Position</em>' reference is set.
+	 * @see #unsetPosition()
+	 * @see #getPosition()
+	 * @see #setPosition(IfcAxis2Placement2D)
+	 * @generated
+	 */
+	boolean isSetPosition();
 
 } // IfcParameterizedProfileDef

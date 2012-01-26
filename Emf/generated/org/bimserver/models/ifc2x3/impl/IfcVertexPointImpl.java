@@ -73,4 +73,22 @@ public class IfcVertexPointImpl extends IfcVertexImpl implements IfcVertexPoint 
 		eSet(Ifc2x3Package.Literals.IFC_VERTEX_POINT__VERTEX_GEOMETRY, newVertexGeometry);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetVertexGeometry() {
+		eUnset(Ifc2x3Package.Literals.IFC_VERTEX_POINT__VERTEX_GEOMETRY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVertexGeometry() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_VERTEX_POINT__VERTEX_GEOMETRY);
+	}
+
 } //IfcVertexPointImpl

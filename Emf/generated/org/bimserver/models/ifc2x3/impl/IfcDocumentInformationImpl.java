@@ -117,6 +117,24 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDocumentId() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__DOCUMENT_ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDocumentId() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__DOCUMENT_ID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getName() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__NAME, true);
 	}
@@ -128,6 +146,24 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 */
 	public void setName(String newName) {
 		eSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetName() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__NAME);
 	}
 
 	/**
@@ -605,6 +641,24 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetConfidentiality() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__CONFIDENTIALITY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConfidentiality() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__CONFIDENTIALITY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcDocumentStatusEnum getStatus() {
 		return (IfcDocumentStatusEnum) eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__STATUS, true);
 	}
@@ -623,6 +677,24 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetStatus() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__STATUS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStatus() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__STATUS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformationRelationship> getIsPointedTo() {
 		return (EList<IfcDocumentInformationRelationship>) eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTED_TO, true);
@@ -633,9 +705,45 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetIsPointedTo() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTED_TO);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsPointedTo() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTED_TO);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformationRelationship> getIsPointer() {
 		return (EList<IfcDocumentInformationRelationship>) eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetIsPointer() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsPointer() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTER);
 	}
 
 } //IfcDocumentInformationImpl

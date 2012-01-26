@@ -80,6 +80,24 @@ public class IfcOrientedEdgeImpl extends IfcEdgeImpl implements IfcOrientedEdge 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetEdgeElement() {
+		eUnset(Ifc2x3Package.Literals.IFC_ORIENTED_EDGE__EDGE_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEdgeElement() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ORIENTED_EDGE__EDGE_ELEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Tristate getOrientation() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION, true);
 	}
@@ -91,6 +109,24 @@ public class IfcOrientedEdgeImpl extends IfcEdgeImpl implements IfcOrientedEdge 
 	 */
 	public void setOrientation(Tristate newOrientation) {
 		eSet(Ifc2x3Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION, newOrientation);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOrientation() {
+		eUnset(Ifc2x3Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOrientation() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION);
 	}
 
 } //IfcOrientedEdgeImpl

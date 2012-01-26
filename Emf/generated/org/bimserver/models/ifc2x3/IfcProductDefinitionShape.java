@@ -46,11 +46,34 @@ public interface IfcProductDefinitionShape extends IfcProductRepresentation {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shape Of Product</em>' reference list.
+	 * @see #isSetShapeOfProduct()
+	 * @see #unsetShapeOfProduct()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProductDefinitionShape_ShapeOfProduct()
-	 * @model upper="2"
+	 * @model unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcProduct> getShapeOfProduct();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductDefinitionShape#getShapeOfProduct <em>Shape Of Product</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetShapeOfProduct()
+	 * @see #getShapeOfProduct()
+	 * @generated
+	 */
+	void unsetShapeOfProduct();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProductDefinitionShape#getShapeOfProduct <em>Shape Of Product</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Shape Of Product</em>' reference list is set.
+	 * @see #unsetShapeOfProduct()
+	 * @see #getShapeOfProduct()
+	 * @generated
+	 */
+	boolean isSetShapeOfProduct();
 
 	/**
 	 * Returns the value of the '<em><b>Has Shape Aspects</b></em>' reference list.
@@ -63,11 +86,34 @@ public interface IfcProductDefinitionShape extends IfcProductRepresentation {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Shape Aspects</em>' reference list.
+	 * @see #isSetHasShapeAspects()
+	 * @see #unsetHasShapeAspects()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProductDefinitionShape_HasShapeAspects()
 	 * @see org.bimserver.models.ifc2x3.IfcShapeAspect#getPartOfProductDefinitionShape
-	 * @model opposite="PartOfProductDefinitionShape"
+	 * @model opposite="PartOfProductDefinitionShape" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcShapeAspect> getHasShapeAspects();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductDefinitionShape#getHasShapeAspects <em>Has Shape Aspects</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasShapeAspects()
+	 * @see #getHasShapeAspects()
+	 * @generated
+	 */
+	void unsetHasShapeAspects();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProductDefinitionShape#getHasShapeAspects <em>Has Shape Aspects</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Shape Aspects</em>' reference list is set.
+	 * @see #unsetHasShapeAspects()
+	 * @see #getHasShapeAspects()
+	 * @generated
+	 */
+	boolean isSetHasShapeAspects();
 
 } // IfcProductDefinitionShape

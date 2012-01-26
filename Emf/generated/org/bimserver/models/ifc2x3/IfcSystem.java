@@ -46,11 +46,34 @@ public interface IfcSystem extends IfcGroup {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Services Buildings</em>' reference list.
+	 * @see #isSetServicesBuildings()
+	 * @see #unsetServicesBuildings()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSystem_ServicesBuildings()
 	 * @see org.bimserver.models.ifc2x3.IfcRelServicesBuildings#getRelatingSystem
-	 * @model opposite="RelatingSystem" upper="2"
+	 * @model opposite="RelatingSystem" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcRelServicesBuildings> getServicesBuildings();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSystem#getServicesBuildings <em>Services Buildings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetServicesBuildings()
+	 * @see #getServicesBuildings()
+	 * @generated
+	 */
+	void unsetServicesBuildings();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSystem#getServicesBuildings <em>Services Buildings</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Services Buildings</em>' reference list is set.
+	 * @see #unsetServicesBuildings()
+	 * @see #getServicesBuildings()
+	 * @generated
+	 */
+	boolean isSetServicesBuildings();
 
 } // IfcSystem

@@ -94,9 +94,45 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetRelatingDocument() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatingDocument() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformation> getRelatedDocuments() {
 		return (EList<IfcDocumentInformation>) eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetRelatedDocuments() {
+		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedDocuments() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS);
 	}
 
 	/**

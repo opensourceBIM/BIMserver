@@ -47,12 +47,35 @@ public interface IfcCompositeCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Segments</em>' reference list.
+	 * @see #isSetSegments()
+	 * @see #unsetSegments()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeCurve_Segments()
 	 * @see org.bimserver.models.ifc2x3.IfcCompositeCurveSegment#getUsingCurves
-	 * @model opposite="UsingCurves"
+	 * @model opposite="UsingCurves" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcCompositeCurveSegment> getSegments();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurve#getSegments <em>Segments</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSegments()
+	 * @see #getSegments()
+	 * @generated
+	 */
+	void unsetSegments();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurve#getSegments <em>Segments</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Segments</em>' reference list is set.
+	 * @see #unsetSegments()
+	 * @see #getSegments()
+	 * @generated
+	 */
+	boolean isSetSegments();
 
 	/**
 	 * Returns the value of the '<em><b>Self Intersect</b></em>' attribute.
@@ -63,9 +86,11 @@ public interface IfcCompositeCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Self Intersect</em>' attribute.
+	 * @see #isSetSelfIntersect()
+	 * @see #unsetSelfIntersect()
 	 * @see #setSelfIntersect(boolean)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeCurve_SelfIntersect()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	boolean isSelfIntersect();
@@ -75,9 +100,34 @@ public interface IfcCompositeCurve extends IfcBoundedCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Self Intersect</em>' attribute.
+	 * @see #isSetSelfIntersect()
+	 * @see #unsetSelfIntersect()
 	 * @see #isSelfIntersect()
 	 * @generated
 	 */
 	void setSelfIntersect(boolean value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurve#isSelfIntersect <em>Self Intersect</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSelfIntersect()
+	 * @see #isSelfIntersect()
+	 * @see #setSelfIntersect(boolean)
+	 * @generated
+	 */
+	void unsetSelfIntersect();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeCurve#isSelfIntersect <em>Self Intersect</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Self Intersect</em>' attribute is set.
+	 * @see #unsetSelfIntersect()
+	 * @see #isSelfIntersect()
+	 * @see #setSelfIntersect(boolean)
+	 * @generated
+	 */
+	boolean isSetSelfIntersect();
 
 } // IfcCompositeCurve

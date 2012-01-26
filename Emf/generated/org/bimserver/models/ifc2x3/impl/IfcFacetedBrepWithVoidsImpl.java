@@ -67,4 +67,22 @@ public class IfcFacetedBrepWithVoidsImpl extends IfcManifoldSolidBrepImpl implem
 		return (EList<IfcClosedShell>) eGet(Ifc2x3Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS, true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetVoids() {
+		eUnset(Ifc2x3Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVoids() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS);
+	}
+
 } //IfcFacetedBrepWithVoidsImpl

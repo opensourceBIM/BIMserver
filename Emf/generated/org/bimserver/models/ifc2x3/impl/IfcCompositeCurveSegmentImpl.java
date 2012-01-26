@@ -87,6 +87,24 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetTransition() {
+		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTransition() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Tristate getSameSense() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE, true);
 	}
@@ -98,6 +116,24 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setSameSense(Tristate newSameSense) {
 		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE, newSameSense);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSameSense() {
+		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSameSense() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE);
 	}
 
 	/**
@@ -123,9 +159,45 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetParentCurve() {
+		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParentCurve() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCompositeCurve> getUsingCurves() {
 		return (EList<IfcCompositeCurve>) eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetUsingCurves() {
+		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetUsingCurves() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES);
 	}
 
 	/**
@@ -144,6 +216,24 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setDim(int newDim) {
 		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__DIM);
 	}
 
 } //IfcCompositeCurveSegmentImpl

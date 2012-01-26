@@ -44,9 +44,11 @@ public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem, IfcBo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Surface</em>' reference.
+	 * @see #isSetBaseSurface()
+	 * @see #unsetBaseSurface()
 	 * @see #setBaseSurface(IfcSurface)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHalfSpaceSolid_BaseSurface()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcSurface getBaseSurface();
@@ -56,10 +58,35 @@ public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem, IfcBo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Surface</em>' reference.
+	 * @see #isSetBaseSurface()
+	 * @see #unsetBaseSurface()
 	 * @see #getBaseSurface()
 	 * @generated
 	 */
 	void setBaseSurface(IfcSurface value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHalfSpaceSolid#getBaseSurface <em>Base Surface</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetBaseSurface()
+	 * @see #getBaseSurface()
+	 * @see #setBaseSurface(IfcSurface)
+	 * @generated
+	 */
+	void unsetBaseSurface();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcHalfSpaceSolid#getBaseSurface <em>Base Surface</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Base Surface</em>' reference is set.
+	 * @see #unsetBaseSurface()
+	 * @see #getBaseSurface()
+	 * @see #setBaseSurface(IfcSurface)
+	 * @generated
+	 */
+	boolean isSetBaseSurface();
 
 	/**
 	 * Returns the value of the '<em><b>Agreement Flag</b></em>' attribute.
@@ -72,9 +99,11 @@ public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem, IfcBo
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Agreement Flag</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetAgreementFlag()
+	 * @see #unsetAgreementFlag()
 	 * @see #setAgreementFlag(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHalfSpaceSolid_AgreementFlag()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	Tristate getAgreementFlag();
@@ -85,10 +114,35 @@ public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem, IfcBo
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Agreement Flag</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
+	 * @see #isSetAgreementFlag()
+	 * @see #unsetAgreementFlag()
 	 * @see #getAgreementFlag()
 	 * @generated
 	 */
 	void setAgreementFlag(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHalfSpaceSolid#getAgreementFlag <em>Agreement Flag</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetAgreementFlag()
+	 * @see #getAgreementFlag()
+	 * @see #setAgreementFlag(Tristate)
+	 * @generated
+	 */
+	void unsetAgreementFlag();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcHalfSpaceSolid#getAgreementFlag <em>Agreement Flag</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Agreement Flag</em>' attribute is set.
+	 * @see #unsetAgreementFlag()
+	 * @see #getAgreementFlag()
+	 * @see #setAgreementFlag(Tristate)
+	 * @generated
+	 */
+	boolean isSetAgreementFlag();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
@@ -99,9 +153,11 @@ public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem, IfcBo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #setDim(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcHalfSpaceSolid_Dim()
-	 * @model derived="true"
+	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
 	int getDim();
@@ -111,9 +167,34 @@ public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem, IfcBo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
 	 * @see #getDim()
 	 * @generated
 	 */
 	void setDim(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcHalfSpaceSolid#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcHalfSpaceSolid#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(int)
+	 * @generated
+	 */
+	boolean isSetDim();
 
 } // IfcHalfSpaceSolid

@@ -50,12 +50,35 @@ public interface IfcObjectPlacement extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Places Object</em>' reference list.
+	 * @see #isSetPlacesObject()
+	 * @see #unsetPlacesObject()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObjectPlacement_PlacesObject()
 	 * @see org.bimserver.models.ifc2x3.IfcProduct#getObjectPlacement
-	 * @model opposite="ObjectPlacement" upper="2"
+	 * @model opposite="ObjectPlacement" unsettable="true" upper="2"
 	 * @generated
 	 */
 	EList<IfcProduct> getPlacesObject();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectPlacement#getPlacesObject <em>Places Object</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPlacesObject()
+	 * @see #getPlacesObject()
+	 * @generated
+	 */
+	void unsetPlacesObject();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectPlacement#getPlacesObject <em>Places Object</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Places Object</em>' reference list is set.
+	 * @see #unsetPlacesObject()
+	 * @see #getPlacesObject()
+	 * @generated
+	 */
+	boolean isSetPlacesObject();
 
 	/**
 	 * Returns the value of the '<em><b>Referenced By Placements</b></em>' reference list.
@@ -68,11 +91,34 @@ public interface IfcObjectPlacement extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced By Placements</em>' reference list.
+	 * @see #isSetReferencedByPlacements()
+	 * @see #unsetReferencedByPlacements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObjectPlacement_ReferencedByPlacements()
 	 * @see org.bimserver.models.ifc2x3.IfcLocalPlacement#getPlacementRelTo
-	 * @model opposite="PlacementRelTo"
+	 * @model opposite="PlacementRelTo" unsettable="true"
 	 * @generated
 	 */
 	EList<IfcLocalPlacement> getReferencedByPlacements();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectPlacement#getReferencedByPlacements <em>Referenced By Placements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetReferencedByPlacements()
+	 * @see #getReferencedByPlacements()
+	 * @generated
+	 */
+	void unsetReferencedByPlacements();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObjectPlacement#getReferencedByPlacements <em>Referenced By Placements</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Referenced By Placements</em>' reference list is set.
+	 * @see #unsetReferencedByPlacements()
+	 * @see #getReferencedByPlacements()
+	 * @generated
+	 */
+	boolean isSetReferencedByPlacements();
 
 } // IfcObjectPlacement

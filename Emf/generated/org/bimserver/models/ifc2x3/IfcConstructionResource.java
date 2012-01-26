@@ -153,9 +153,11 @@ public interface IfcConstructionResource extends IfcResource {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resource Consumption</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcResourceConsumptionEnum
+	 * @see #isSetResourceConsumption()
+	 * @see #unsetResourceConsumption()
 	 * @see #setResourceConsumption(IfcResourceConsumptionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstructionResource_ResourceConsumption()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcResourceConsumptionEnum getResourceConsumption();
@@ -166,10 +168,35 @@ public interface IfcConstructionResource extends IfcResource {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Resource Consumption</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcResourceConsumptionEnum
+	 * @see #isSetResourceConsumption()
+	 * @see #unsetResourceConsumption()
 	 * @see #getResourceConsumption()
 	 * @generated
 	 */
 	void setResourceConsumption(IfcResourceConsumptionEnum value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstructionResource#getResourceConsumption <em>Resource Consumption</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetResourceConsumption()
+	 * @see #getResourceConsumption()
+	 * @see #setResourceConsumption(IfcResourceConsumptionEnum)
+	 * @generated
+	 */
+	void unsetResourceConsumption();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstructionResource#getResourceConsumption <em>Resource Consumption</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Resource Consumption</em>' attribute is set.
+	 * @see #unsetResourceConsumption()
+	 * @see #getResourceConsumption()
+	 * @see #setResourceConsumption(IfcResourceConsumptionEnum)
+	 * @generated
+	 */
+	boolean isSetResourceConsumption();
 
 	/**
 	 * Returns the value of the '<em><b>Base Quantity</b></em>' reference.

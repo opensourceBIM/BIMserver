@@ -45,10 +45,33 @@ public interface IfcClassificationNotation extends IfcClassificationNotationSele
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Notation Facets</em>' reference list.
+	 * @see #isSetNotationFacets()
+	 * @see #unsetNotationFacets()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassificationNotation_NotationFacets()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcClassificationNotationFacet> getNotationFacets();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationNotation#getNotationFacets <em>Notation Facets</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNotationFacets()
+	 * @see #getNotationFacets()
+	 * @generated
+	 */
+	void unsetNotationFacets();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationNotation#getNotationFacets <em>Notation Facets</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Notation Facets</em>' reference list is set.
+	 * @see #unsetNotationFacets()
+	 * @see #getNotationFacets()
+	 * @generated
+	 */
+	boolean isSetNotationFacets();
 
 } // IfcClassificationNotation
