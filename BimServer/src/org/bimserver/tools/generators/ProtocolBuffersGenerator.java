@@ -444,24 +444,22 @@ public class ProtocolBuffersGenerator {
 		if (generatedClasses.containsKey(clazz)) {
 			return generatedClasses.get(clazz);
 		}
-		if (sType.isPrimitive()) {
-			if (clazz == Class.class) {
-				return "string";
-			} else if (clazz == boolean.class || clazz == Boolean.class) {
-				return "bool";
-			} else if (clazz == Long.class || clazz == long.class) {
-				return "int64";
-			} else if (clazz == Date.class) {
-				return "int64";
-			} else if (clazz == DataHandler.class || clazz == byte[].class) {
-				return "bytes";
-			} else if (clazz == Integer.class | clazz == int.class) {
-				return "int32";
-			} else if (clazz == Float.class | clazz == float.class) {
-				return "float";
-			} else if (clazz == Double.class | clazz == double.class) {
-				return "double";
-			}
+		if (clazz == Class.class) {
+			return "string";
+		} else if (clazz == boolean.class || clazz == Boolean.class) {
+			return "bool";
+		} else if (clazz == Long.class || clazz == long.class) {
+			return "int64";
+		} else if (clazz == Date.class) {
+			return "int64";
+		} else if (clazz == DataHandler.class || clazz == byte[].class) {
+			return "bytes";
+		} else if (clazz == Integer.class | clazz == int.class) {
+			return "int32";
+		} else if (clazz == Float.class | clazz == float.class) {
+			return "float";
+		} else if (clazz == Double.class | clazz == double.class) {
+			return "double";
 		} else if (clazz.isEnum()) {
 			return createEnum(sb, clazz);
 		} else if (sType.isString()) {
@@ -502,7 +500,6 @@ public class ProtocolBuffersGenerator {
 			sb.append(messageBuilder);
 			return clazz.getSimpleName();
 		}
-		return null;
 	}
 
 	private String createEnum(StringBuilder sb, Class<?> clazz) {
