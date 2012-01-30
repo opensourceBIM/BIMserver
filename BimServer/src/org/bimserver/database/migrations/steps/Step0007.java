@@ -37,9 +37,9 @@ public class Step0007 extends Migration {
 		EClass settingsClass = schema.getEClass("store", "Settings");
 
 		schema.createEAttribute(ifcEngineClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(ifcEngineClass, "active", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(ifcEngineClass, "active", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(ifcEngineClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(ifcEngineClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(ifcEngineClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		EReference ifcEngineSerializersReference = schema.createEReference(ifcEngineClass, "serializers", schema.getEClass("store", "Serializer"), Multiplicity.MANY);
 		EReference serializerIfcEngineReference = schema.createEReference(schema.getEClass("store", "Serializer"), "ifcEngine", ifcEngineClass, Multiplicity.SINGLE);
 		
@@ -55,7 +55,7 @@ public class Step0007 extends Migration {
 		
 		EClass pluginClass = schema.createEClass(schema.getEPackage("store"), "Plugin");
 		schema.createEAttribute(pluginClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		EReference pluginSettings = schema.createEReference(pluginClass, "settings", settingsClass, Multiplicity.SINGLE);
 		
 		EReference settingsPlugins = schema.createEReference(settingsClass, "plugins", pluginClass, Multiplicity.MANY);

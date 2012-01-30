@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.RunResult#isRunOke <em>Run Oke</em>}</li>
+ *   <li>{@link org.bimserver.models.store.RunResult#getRunOke <em>Run Oke</em>}</li>
  *   <li>{@link org.bimserver.models.store.RunResult#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.RunResult#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.RunResult#getOutput <em>Output</em>}</li>
@@ -50,22 +50,22 @@ public interface RunResult extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Run Oke</em>' attribute.
-	 * @see #setRunOke(boolean)
+	 * @see #setRunOke(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getRunResult_RunOke()
 	 * @model
 	 * @generated
 	 */
-	boolean isRunOke();
+	Boolean getRunOke();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.RunResult#isRunOke <em>Run Oke</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.RunResult#getRunOke <em>Run Oke</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Run Oke</em>' attribute.
-	 * @see #isRunOke()
+	 * @see #getRunOke()
 	 * @generated
 	 */
-	void setRunOke(boolean value);
+	void setRunOke(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Warnings</b></em>' attribute list.

@@ -111,22 +111,4 @@ public class IfcElementAssemblyImpl extends IfcElementImpl implements IfcElement
 		eSet(Ifc2x3Package.Literals.IFC_ELEMENT_ASSEMBLY__PREDEFINED_TYPE, newPredefinedType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPredefinedType() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT_ASSEMBLY__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPredefinedType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT_ASSEMBLY__PREDEFINED_TYPE);
-	}
-
 } //IfcElementAssemblyImpl

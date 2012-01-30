@@ -47,11 +47,9 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XLength</em>' attribute.
-	 * @see #isSetXLength()
-	 * @see #unsetXLength()
 	 * @see #setXLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_XLength()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getXLength();
@@ -61,35 +59,10 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>XLength</em>' attribute.
-	 * @see #isSetXLength()
-	 * @see #unsetXLength()
 	 * @see #getXLength()
 	 * @generated
 	 */
 	void setXLength(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getXLength <em>XLength</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetXLength()
-	 * @see #getXLength()
-	 * @see #setXLength(double)
-	 * @generated
-	 */
-	void unsetXLength();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getXLength <em>XLength</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>XLength</em>' attribute is set.
-	 * @see #unsetXLength()
-	 * @see #getXLength()
-	 * @see #setXLength(double)
-	 * @generated
-	 */
-	boolean isSetXLength();
 
 	/**
 	 * Returns the value of the '<em><b>XLength As String</b></em>' attribute.
@@ -100,11 +73,9 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>XLength As String</em>' attribute.
-	 * @see #isSetXLengthAsString()
-	 * @see #unsetXLengthAsString()
 	 * @see #setXLengthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_XLengthAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getXLengthAsString();
@@ -114,35 +85,10 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>XLength As String</em>' attribute.
-	 * @see #isSetXLengthAsString()
-	 * @see #unsetXLengthAsString()
 	 * @see #getXLengthAsString()
 	 * @generated
 	 */
 	void setXLengthAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getXLengthAsString <em>XLength As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetXLengthAsString()
-	 * @see #getXLengthAsString()
-	 * @see #setXLengthAsString(String)
-	 * @generated
-	 */
-	void unsetXLengthAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getXLengthAsString <em>XLength As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>XLength As String</em>' attribute is set.
-	 * @see #unsetXLengthAsString()
-	 * @see #getXLengthAsString()
-	 * @see #setXLengthAsString(String)
-	 * @generated
-	 */
-	boolean isSetXLengthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>YLength</b></em>' attribute.
@@ -153,11 +99,9 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YLength</em>' attribute.
-	 * @see #isSetYLength()
-	 * @see #unsetYLength()
 	 * @see #setYLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_YLength()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getYLength();
@@ -167,35 +111,10 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>YLength</em>' attribute.
-	 * @see #isSetYLength()
-	 * @see #unsetYLength()
 	 * @see #getYLength()
 	 * @generated
 	 */
 	void setYLength(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getYLength <em>YLength</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetYLength()
-	 * @see #getYLength()
-	 * @see #setYLength(double)
-	 * @generated
-	 */
-	void unsetYLength();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getYLength <em>YLength</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>YLength</em>' attribute is set.
-	 * @see #unsetYLength()
-	 * @see #getYLength()
-	 * @see #setYLength(double)
-	 * @generated
-	 */
-	boolean isSetYLength();
 
 	/**
 	 * Returns the value of the '<em><b>YLength As String</b></em>' attribute.
@@ -206,11 +125,9 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>YLength As String</em>' attribute.
-	 * @see #isSetYLengthAsString()
-	 * @see #unsetYLengthAsString()
 	 * @see #setYLengthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_YLengthAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getYLengthAsString();
@@ -220,35 +137,10 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>YLength As String</em>' attribute.
-	 * @see #isSetYLengthAsString()
-	 * @see #unsetYLengthAsString()
 	 * @see #getYLengthAsString()
 	 * @generated
 	 */
 	void setYLengthAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getYLengthAsString <em>YLength As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetYLengthAsString()
-	 * @see #getYLengthAsString()
-	 * @see #setYLengthAsString(String)
-	 * @generated
-	 */
-	void unsetYLengthAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getYLengthAsString <em>YLength As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>YLength As String</em>' attribute is set.
-	 * @see #unsetYLengthAsString()
-	 * @see #getYLengthAsString()
-	 * @see #setYLengthAsString(String)
-	 * @generated
-	 */
-	boolean isSetYLengthAsString();
 
 	/**
 	 * Returns the value of the '<em><b>ZLength</b></em>' attribute.
@@ -259,11 +151,9 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ZLength</em>' attribute.
-	 * @see #isSetZLength()
-	 * @see #unsetZLength()
 	 * @see #setZLength(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_ZLength()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getZLength();
@@ -273,35 +163,10 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>ZLength</em>' attribute.
-	 * @see #isSetZLength()
-	 * @see #unsetZLength()
 	 * @see #getZLength()
 	 * @generated
 	 */
 	void setZLength(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getZLength <em>ZLength</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetZLength()
-	 * @see #getZLength()
-	 * @see #setZLength(double)
-	 * @generated
-	 */
-	void unsetZLength();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getZLength <em>ZLength</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>ZLength</em>' attribute is set.
-	 * @see #unsetZLength()
-	 * @see #getZLength()
-	 * @see #setZLength(double)
-	 * @generated
-	 */
-	boolean isSetZLength();
 
 	/**
 	 * Returns the value of the '<em><b>ZLength As String</b></em>' attribute.
@@ -312,11 +177,9 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ZLength As String</em>' attribute.
-	 * @see #isSetZLengthAsString()
-	 * @see #unsetZLengthAsString()
 	 * @see #setZLengthAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlock_ZLengthAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getZLengthAsString();
@@ -326,34 +189,9 @@ public interface IfcBlock extends IfcCsgPrimitive3D {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>ZLength As String</em>' attribute.
-	 * @see #isSetZLengthAsString()
-	 * @see #unsetZLengthAsString()
 	 * @see #getZLengthAsString()
 	 * @generated
 	 */
 	void setZLengthAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getZLengthAsString <em>ZLength As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetZLengthAsString()
-	 * @see #getZLengthAsString()
-	 * @see #setZLengthAsString(String)
-	 * @generated
-	 */
-	void unsetZLengthAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlock#getZLengthAsString <em>ZLength As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>ZLength As String</em>' attribute is set.
-	 * @see #unsetZLengthAsString()
-	 * @see #getZLengthAsString()
-	 * @see #setZLengthAsString(String)
-	 * @generated
-	 */
-	boolean isSetZLengthAsString();
 
 } // IfcBlock

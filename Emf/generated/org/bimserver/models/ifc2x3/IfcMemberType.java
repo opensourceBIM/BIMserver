@@ -44,11 +44,9 @@ public interface IfcMemberType extends IfcBuildingElementType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcMemberTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcMemberTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMemberType_PredefinedType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcMemberTypeEnum getPredefinedType();
@@ -59,34 +57,9 @@ public interface IfcMemberType extends IfcBuildingElementType {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcMemberTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcMemberTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMemberType#getPredefinedType <em>Predefined Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcMemberTypeEnum)
-	 * @generated
-	 */
-	void unsetPredefinedType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMemberType#getPredefinedType <em>Predefined Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
-	 * @see #unsetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcMemberTypeEnum)
-	 * @generated
-	 */
-	boolean isSetPredefinedType();
 
 } // IfcMemberType

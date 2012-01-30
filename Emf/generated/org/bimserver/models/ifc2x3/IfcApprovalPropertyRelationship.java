@@ -49,34 +49,11 @@ public interface IfcApprovalPropertyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Approved Properties</em>' reference list.
-	 * @see #isSetApprovedProperties()
-	 * @see #unsetApprovedProperties()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalPropertyRelationship_ApprovedProperties()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcProperty> getApprovedProperties();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalPropertyRelationship#getApprovedProperties <em>Approved Properties</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetApprovedProperties()
-	 * @see #getApprovedProperties()
-	 * @generated
-	 */
-	void unsetApprovedProperties();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalPropertyRelationship#getApprovedProperties <em>Approved Properties</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Approved Properties</em>' reference list is set.
-	 * @see #unsetApprovedProperties()
-	 * @see #getApprovedProperties()
-	 * @generated
-	 */
-	boolean isSetApprovedProperties();
 
 	/**
 	 * Returns the value of the '<em><b>Approval</b></em>' reference.
@@ -87,11 +64,9 @@ public interface IfcApprovalPropertyRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Approval</em>' reference.
-	 * @see #isSetApproval()
-	 * @see #unsetApproval()
 	 * @see #setApproval(IfcApproval)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalPropertyRelationship_Approval()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcApproval getApproval();
@@ -101,34 +76,9 @@ public interface IfcApprovalPropertyRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Approval</em>' reference.
-	 * @see #isSetApproval()
-	 * @see #unsetApproval()
 	 * @see #getApproval()
 	 * @generated
 	 */
 	void setApproval(IfcApproval value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalPropertyRelationship#getApproval <em>Approval</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetApproval()
-	 * @see #getApproval()
-	 * @see #setApproval(IfcApproval)
-	 * @generated
-	 */
-	void unsetApproval();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalPropertyRelationship#getApproval <em>Approval</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Approval</em>' reference is set.
-	 * @see #unsetApproval()
-	 * @see #getApproval()
-	 * @see #setApproval(IfcApproval)
-	 * @generated
-	 */
-	boolean isSetApproval();
 
 } // IfcApprovalPropertyRelationship

@@ -87,24 +87,6 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetTransition() {
-		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTransition() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Tristate getSameSense() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE, true);
 	}
@@ -123,24 +105,6 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSameSense() {
-		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSameSense() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcCurve getParentCurve() {
 		return (IfcCurve) eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE, true);
 	}
@@ -152,24 +116,6 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setParentCurve(IfcCurve newParentCurve) {
 		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE, newParentCurve);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetParentCurve() {
-		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetParentCurve() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE);
 	}
 
 	/**

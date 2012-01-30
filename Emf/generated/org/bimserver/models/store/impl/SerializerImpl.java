@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isDefaultSerializer <em>Default Serializer</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getIfcEngine <em>Ifc Engine</em>}</li>
@@ -171,7 +171,7 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.SERIALIZER__ENABLED, true);
 	}
 
@@ -180,7 +180,7 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.SERIALIZER__ENABLED, newEnabled);
 	}
 
@@ -189,7 +189,7 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDefaultSerializer() {
+	public Boolean getDefaultSerializer() {
 		return (Boolean) eGet(StorePackage.Literals.SERIALIZER__DEFAULT_SERIALIZER, true);
 	}
 
@@ -198,7 +198,7 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultSerializer(boolean newDefaultSerializer) {
+	public void setDefaultSerializer(Boolean newDefaultSerializer) {
 		eSet(StorePackage.Literals.SERIALIZER__DEFAULT_SERIALIZER, newDefaultSerializer);
 	}
 

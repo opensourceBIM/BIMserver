@@ -74,7 +74,7 @@ public class SRevisionSummaryType implements SBase
 	}
 	
 	private java.lang.String name;
-	private int count;
+	private java.lang.Integer count;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -82,11 +82,11 @@ public class SRevisionSummaryType implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-	public int getCount() {
+	public java.lang.Integer getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(java.lang.Integer count) {
 		this.count = count;
 	}
 	@Override

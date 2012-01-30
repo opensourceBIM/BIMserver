@@ -3965,11 +3965,11 @@ public interface StorePackage extends EPackage {
 	EClass getClashDetectionSettings();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ClashDetectionSettings#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ClashDetectionSettings#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.ClashDetectionSettings#isEnabled()
+	 * @see org.bimserver.models.store.ClashDetectionSettings#getEnabled()
 	 * @see #getClashDetectionSettings()
 	 * @generated
 	 */
@@ -4325,11 +4325,11 @@ public interface StorePackage extends EPackage {
 	EClass getGeoTag();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GeoTag#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GeoTag#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.GeoTag#isEnabled()
+	 * @see org.bimserver.models.store.GeoTag#getEnabled()
 	 * @see #getGeoTag()
 	 * @generated
 	 */
@@ -4467,11 +4467,11 @@ public interface StorePackage extends EPackage {
 	EReference getCheckout_Checkin();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Checkout#isActive <em>Active</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Checkout#getActive <em>Active</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Active</em>'.
-	 * @see org.bimserver.models.store.Checkout#isActive()
+	 * @see org.bimserver.models.store.Checkout#getActive()
 	 * @see #getCheckout()
 	 * @generated
 	 */
@@ -4488,11 +4488,11 @@ public interface StorePackage extends EPackage {
 	EClass getSettings();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Show Version Upgrade Available</em>'.
-	 * @see org.bimserver.models.store.Settings#isShowVersionUpgradeAvailable()
+	 * @see org.bimserver.models.store.Settings#getShowVersionUpgradeAvailable()
 	 * @see #getSettings()
 	 * @generated
 	 */
@@ -4510,44 +4510,44 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_SendConfirmationEmailAfterRegistration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isUseCaching <em>Use Caching</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getUseCaching <em>Use Caching</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Use Caching</em>'.
-	 * @see org.bimserver.models.store.Settings#isUseCaching()
+	 * @see org.bimserver.models.store.Settings#getUseCaching()
 	 * @see #getSettings()
 	 * @generated
 	 */
 	EAttribute getSettings_UseCaching();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isAllowSelfRegistration <em>Allow Self Registration</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getAllowSelfRegistration <em>Allow Self Registration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Allow Self Registration</em>'.
-	 * @see org.bimserver.models.store.Settings#isAllowSelfRegistration()
+	 * @see org.bimserver.models.store.Settings#getAllowSelfRegistration()
 	 * @see #getSettings()
 	 * @generated
 	 */
 	EAttribute getSettings_AllowSelfRegistration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isAutoTestClashes <em>Auto Test Clashes</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getAutoTestClashes <em>Auto Test Clashes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Auto Test Clashes</em>'.
-	 * @see org.bimserver.models.store.Settings#isAutoTestClashes()
+	 * @see org.bimserver.models.store.Settings#getAutoTestClashes()
 	 * @see #getSettings()
 	 * @generated
 	 */
 	EAttribute getSettings_AutoTestClashes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isIntelligentMerging <em>Intelligent Merging</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getIntelligentMerging <em>Intelligent Merging</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Intelligent Merging</em>'.
-	 * @see org.bimserver.models.store.Settings#isIntelligentMerging()
+	 * @see org.bimserver.models.store.Settings#getIntelligentMerging()
 	 * @see #getSettings()
 	 * @generated
 	 */
@@ -4565,11 +4565,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_AllowUsersToCreateTopLevelProjects();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isCheckinMergingEnabled <em>Checkin Merging Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getCheckinMergingEnabled <em>Checkin Merging Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Checkin Merging Enabled</em>'.
-	 * @see org.bimserver.models.store.Settings#isCheckinMergingEnabled()
+	 * @see org.bimserver.models.store.Settings#getCheckinMergingEnabled()
 	 * @see #getSettings()
 	 * @generated
 	 */
@@ -4631,11 +4631,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_SiteAddress();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Hide User List For Non Admin</em>'.
-	 * @see org.bimserver.models.store.Settings#isHideUserListForNonAdmin()
+	 * @see org.bimserver.models.store.Settings#getHideUserListForNonAdmin()
 	 * @see #getSettings()
 	 * @generated
 	 */
@@ -4708,11 +4708,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_MergeIdentifier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getCacheOutputFiles <em>Cache Output Files</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Cache Output Files</em>'.
-	 * @see org.bimserver.models.store.Settings#isCacheOutputFiles()
+	 * @see org.bimserver.models.store.Settings#getCacheOutputFiles()
 	 * @see #getSettings()
 	 * @generated
 	 */
@@ -4817,22 +4817,22 @@ public interface StorePackage extends EPackage {
 	EAttribute getSerializer_ClassName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.Serializer#isEnabled()
+	 * @see org.bimserver.models.store.Serializer#getEnabled()
 	 * @see #getSerializer()
 	 * @generated
 	 */
 	EAttribute getSerializer_Enabled();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getDefaultSerializer <em>Default Serializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Default Serializer</em>'.
-	 * @see org.bimserver.models.store.Serializer#isDefaultSerializer()
+	 * @see org.bimserver.models.store.Serializer#getDefaultSerializer()
 	 * @see #getSerializer()
 	 * @generated
 	 */
@@ -4904,11 +4904,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getObjectIDM_ClassName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectIDM#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectIDM#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.ObjectIDM#isEnabled()
+	 * @see org.bimserver.models.store.ObjectIDM#getEnabled()
 	 * @see #getObjectIDM()
 	 * @generated
 	 */
@@ -4958,11 +4958,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getIfcEngine_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#isActive <em>Active</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#getActive <em>Active</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Active</em>'.
-	 * @see org.bimserver.models.store.IfcEngine#isActive()
+	 * @see org.bimserver.models.store.IfcEngine#getActive()
 	 * @see #getIfcEngine()
 	 * @generated
 	 */
@@ -4980,11 +4980,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getIfcEngine_ClassName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.IfcEngine#isEnabled()
+	 * @see org.bimserver.models.store.IfcEngine#getEnabled()
 	 * @see #getIfcEngine()
 	 * @generated
 	 */
@@ -5034,11 +5034,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getPlugin_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.Plugin#isEnabled()
+	 * @see org.bimserver.models.store.Plugin#getEnabled()
 	 * @see #getPlugin()
 	 * @generated
 	 */
@@ -5099,22 +5099,22 @@ public interface StorePackage extends EPackage {
 	EAttribute getDeserializer_ClassName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.Deserializer#isEnabled()
+	 * @see org.bimserver.models.store.Deserializer#getEnabled()
 	 * @see #getDeserializer()
 	 * @generated
 	 */
 	EAttribute getDeserializer_Enabled();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#isDefaultDeserializer <em>Default Deserializer</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#getDefaultDeserializer <em>Default Deserializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Default Deserializer</em>'.
-	 * @see org.bimserver.models.store.Deserializer#isDefaultDeserializer()
+	 * @see org.bimserver.models.store.Deserializer#getDefaultDeserializer()
 	 * @see #getDeserializer()
 	 * @generated
 	 */
@@ -5433,11 +5433,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getMigration_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Migration#isExecuted <em>Executed</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Migration#getExecuted <em>Executed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Executed</em>'.
-	 * @see org.bimserver.models.store.Migration#isExecuted()
+	 * @see org.bimserver.models.store.Migration#getExecuted()
 	 * @see #getMigration()
 	 * @generated
 	 */
@@ -5916,11 +5916,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginDescriptor_Location();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#isEnabled <em>Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getEnabled <em>Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.PluginDescriptor#isEnabled()
+	 * @see org.bimserver.models.store.PluginDescriptor#getEnabled()
 	 * @see #getPluginDescriptor()
 	 * @generated
 	 */
@@ -6265,11 +6265,11 @@ public interface StorePackage extends EPackage {
 	EClass getCompileResult();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.CompileResult#isCompileOke <em>Compile Oke</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.CompileResult#getCompileOke <em>Compile Oke</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Compile Oke</em>'.
-	 * @see org.bimserver.models.store.CompileResult#isCompileOke()
+	 * @see org.bimserver.models.store.CompileResult#getCompileOke()
 	 * @see #getCompileResult()
 	 * @generated
 	 */
@@ -6308,11 +6308,11 @@ public interface StorePackage extends EPackage {
 	EClass getRunResult();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.RunResult#isRunOke <em>Run Oke</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.RunResult#getRunOke <em>Run Oke</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Run Oke</em>'.
-	 * @see org.bimserver.models.store.RunResult#isRunOke()
+	 * @see org.bimserver.models.store.RunResult#getRunOke()
 	 * @see #getRunResult()
 	 * @generated
 	 */

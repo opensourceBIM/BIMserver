@@ -28,7 +28,7 @@ public class Step0003 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		schema.createEAttribute(schema.getEClass("store", "Revision"), "laid", ecorePackage.getELong(), Multiplicity.SINGLE);
+		schema.createEAttribute(schema.getEClass("store", "Revision"), "laid", ecorePackage.getELongObject(), Multiplicity.SINGLE);
 	}
 
 	@Override

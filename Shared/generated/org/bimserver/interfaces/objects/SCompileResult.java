@@ -49,7 +49,7 @@ public class SCompileResult implements SBase
 
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("compileOke")) {
-			return isCompileOke();
+			return getCompileOke();
 		}
 		if (sField.getName().equals("warnings")) {
 			return getWarnings();
@@ -83,14 +83,14 @@ public class SCompileResult implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private boolean compileOke;
+	private java.lang.Boolean compileOke;
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
 	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
-	public boolean isCompileOke() {
+	public java.lang.Boolean getCompileOke() {
 		return compileOke;
 	}
 
-	public void setCompileOke(boolean compileOke) {
+	public void setCompileOke(java.lang.Boolean compileOke) {
 		this.compileOke = compileOke;
 	}
 

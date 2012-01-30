@@ -73,22 +73,4 @@ public class IfcLightSourceDirectionalImpl extends IfcLightSourceImpl implements
 		eSet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION, newOrientation);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOrientation() {
-		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOrientation() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION);
-	}
-
 } //IfcLightSourceDirectionalImpl

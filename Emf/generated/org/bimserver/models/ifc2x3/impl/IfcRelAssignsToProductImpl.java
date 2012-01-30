@@ -73,22 +73,4 @@ public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements Ifc
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT, newRelatingProduct);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatingProduct() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingProduct() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT);
-	}
-
 } //IfcRelAssignsToProductImpl

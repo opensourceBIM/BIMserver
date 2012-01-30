@@ -85,22 +85,4 @@ public class IfcMaterialPropertiesImpl extends IdEObjectImpl implements IfcMater
 		eSet(Ifc2x3Package.Literals.IFC_MATERIAL_PROPERTIES__MATERIAL, newMaterial);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetMaterial() {
-		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_PROPERTIES__MATERIAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMaterial() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_PROPERTIES__MATERIAL);
-	}
-
 } //IfcMaterialPropertiesImpl

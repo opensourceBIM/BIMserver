@@ -165,24 +165,6 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetThermalLoadSource() {
-		eUnset(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__THERMAL_LOAD_SOURCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetThermalLoadSource() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__THERMAL_LOAD_SOURCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcPropertySourceEnum getPropertySource() {
 		return (IfcPropertySourceEnum) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__PROPERTY_SOURCE, true);
 	}
@@ -194,24 +176,6 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 */
 	public void setPropertySource(IfcPropertySourceEnum newPropertySource) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__PROPERTY_SOURCE, newPropertySource);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPropertySource() {
-		eUnset(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__PROPERTY_SOURCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPropertySource() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__PROPERTY_SOURCE);
 	}
 
 	/**
@@ -273,24 +237,6 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetMaximumValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMaximumValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getMaximumValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE_AS_STRING, true);
 	}
@@ -302,24 +248,6 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 */
 	public void setMaximumValueAsString(String newMaximumValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE_AS_STRING, newMaximumValueAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetMaximumValueAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMaximumValueAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__MAXIMUM_VALUE_AS_STRING);
 	}
 
 	/**
@@ -518,24 +446,6 @@ public class IfcSpaceThermalLoadPropertiesImpl extends IfcPropertySetDefinitionI
 	 */
 	public void setThermalLoadType(IfcThermalLoadTypeEnum newThermalLoadType) {
 		eSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__THERMAL_LOAD_TYPE, newThermalLoadType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetThermalLoadType() {
-		eUnset(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__THERMAL_LOAD_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetThermalLoadType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE_THERMAL_LOAD_PROPERTIES__THERMAL_LOAD_TYPE);
 	}
 
 } //IfcSpaceThermalLoadPropertiesImpl

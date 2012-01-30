@@ -42,11 +42,9 @@ public interface IfcFillAreaStyleTileSymbolWithStyle extends IfcGeometricReprese
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Symbol</em>' reference.
-	 * @see #isSetSymbol()
-	 * @see #unsetSymbol()
 	 * @see #setSymbol(IfcAnnotationSymbolOccurrence)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFillAreaStyleTileSymbolWithStyle_Symbol()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAnnotationSymbolOccurrence getSymbol();
@@ -56,34 +54,9 @@ public interface IfcFillAreaStyleTileSymbolWithStyle extends IfcGeometricReprese
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Symbol</em>' reference.
-	 * @see #isSetSymbol()
-	 * @see #unsetSymbol()
 	 * @see #getSymbol()
 	 * @generated
 	 */
 	void setSymbol(IfcAnnotationSymbolOccurrence value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTileSymbolWithStyle#getSymbol <em>Symbol</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSymbol()
-	 * @see #getSymbol()
-	 * @see #setSymbol(IfcAnnotationSymbolOccurrence)
-	 * @generated
-	 */
-	void unsetSymbol();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFillAreaStyleTileSymbolWithStyle#getSymbol <em>Symbol</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Symbol</em>' reference is set.
-	 * @see #unsetSymbol()
-	 * @see #getSymbol()
-	 * @see #setSymbol(IfcAnnotationSymbolOccurrence)
-	 * @generated
-	 */
-	boolean isSetSymbol();
 
 } // IfcFillAreaStyleTileSymbolWithStyle

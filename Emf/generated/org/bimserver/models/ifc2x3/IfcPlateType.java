@@ -44,11 +44,9 @@ public interface IfcPlateType extends IfcBuildingElementType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPlateTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcPlateTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlateType_PredefinedType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcPlateTypeEnum getPredefinedType();
@@ -59,34 +57,9 @@ public interface IfcPlateType extends IfcBuildingElementType {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPlateTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcPlateTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlateType#getPredefinedType <em>Predefined Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcPlateTypeEnum)
-	 * @generated
-	 */
-	void unsetPredefinedType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPlateType#getPredefinedType <em>Predefined Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
-	 * @see #unsetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcPlateTypeEnum)
-	 * @generated
-	 */
-	boolean isSetPredefinedType();
 
 } // IfcPlateType

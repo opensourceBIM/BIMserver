@@ -43,11 +43,9 @@ public interface IfcConditionCriterion extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Criterion</em>' reference.
-	 * @see #isSetCriterion()
-	 * @see #unsetCriterion()
 	 * @see #setCriterion(IfcConditionCriterionSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConditionCriterion_Criterion()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcConditionCriterionSelect getCriterion();
@@ -57,35 +55,10 @@ public interface IfcConditionCriterion extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Criterion</em>' reference.
-	 * @see #isSetCriterion()
-	 * @see #unsetCriterion()
 	 * @see #getCriterion()
 	 * @generated
 	 */
 	void setCriterion(IfcConditionCriterionSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConditionCriterion#getCriterion <em>Criterion</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCriterion()
-	 * @see #getCriterion()
-	 * @see #setCriterion(IfcConditionCriterionSelect)
-	 * @generated
-	 */
-	void unsetCriterion();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConditionCriterion#getCriterion <em>Criterion</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Criterion</em>' reference is set.
-	 * @see #unsetCriterion()
-	 * @see #getCriterion()
-	 * @see #setCriterion(IfcConditionCriterionSelect)
-	 * @generated
-	 */
-	boolean isSetCriterion();
 
 	/**
 	 * Returns the value of the '<em><b>Criterion Date Time</b></em>' reference.
@@ -96,11 +69,9 @@ public interface IfcConditionCriterion extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Criterion Date Time</em>' reference.
-	 * @see #isSetCriterionDateTime()
-	 * @see #unsetCriterionDateTime()
 	 * @see #setCriterionDateTime(IfcDateTimeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConditionCriterion_CriterionDateTime()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDateTimeSelect getCriterionDateTime();
@@ -110,34 +81,9 @@ public interface IfcConditionCriterion extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Criterion Date Time</em>' reference.
-	 * @see #isSetCriterionDateTime()
-	 * @see #unsetCriterionDateTime()
 	 * @see #getCriterionDateTime()
 	 * @generated
 	 */
 	void setCriterionDateTime(IfcDateTimeSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConditionCriterion#getCriterionDateTime <em>Criterion Date Time</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCriterionDateTime()
-	 * @see #getCriterionDateTime()
-	 * @see #setCriterionDateTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	void unsetCriterionDateTime();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConditionCriterion#getCriterionDateTime <em>Criterion Date Time</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Criterion Date Time</em>' reference is set.
-	 * @see #unsetCriterionDateTime()
-	 * @see #getCriterionDateTime()
-	 * @see #setCriterionDateTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	boolean isSetCriterionDateTime();
 
 } // IfcConditionCriterion

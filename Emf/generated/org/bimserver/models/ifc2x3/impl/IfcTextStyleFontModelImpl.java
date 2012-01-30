@@ -215,22 +215,4 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl impleme
 		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_SIZE, newFontSize);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetFontSize() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_SIZE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFontSize() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_SIZE);
-	}
-
 } //IfcTextStyleFontModelImpl

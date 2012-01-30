@@ -44,11 +44,9 @@ public interface IfcMotorConnectionType extends IfcEnergyConversionDeviceType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcMotorConnectionTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcMotorConnectionTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMotorConnectionType_PredefinedType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcMotorConnectionTypeEnum getPredefinedType();
@@ -59,34 +57,9 @@ public interface IfcMotorConnectionType extends IfcEnergyConversionDeviceType {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcMotorConnectionTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcMotorConnectionTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMotorConnectionType#getPredefinedType <em>Predefined Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcMotorConnectionTypeEnum)
-	 * @generated
-	 */
-	void unsetPredefinedType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMotorConnectionType#getPredefinedType <em>Predefined Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
-	 * @see #unsetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcMotorConnectionTypeEnum)
-	 * @generated
-	 */
-	boolean isSetPredefinedType();
 
 } // IfcMotorConnectionType

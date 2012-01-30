@@ -46,12 +46,10 @@ public interface IfcRelServicesBuildings extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating System</em>' reference.
-	 * @see #isSetRelatingSystem()
-	 * @see #unsetRelatingSystem()
 	 * @see #setRelatingSystem(IfcSystem)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelServicesBuildings_RelatingSystem()
 	 * @see org.bimserver.models.ifc2x3.IfcSystem#getServicesBuildings
-	 * @model opposite="ServicesBuildings" unsettable="true"
+	 * @model opposite="ServicesBuildings"
 	 * @generated
 	 */
 	IfcSystem getRelatingSystem();
@@ -61,35 +59,10 @@ public interface IfcRelServicesBuildings extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating System</em>' reference.
-	 * @see #isSetRelatingSystem()
-	 * @see #unsetRelatingSystem()
 	 * @see #getRelatingSystem()
 	 * @generated
 	 */
 	void setRelatingSystem(IfcSystem value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelServicesBuildings#getRelatingSystem <em>Relating System</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingSystem()
-	 * @see #getRelatingSystem()
-	 * @see #setRelatingSystem(IfcSystem)
-	 * @generated
-	 */
-	void unsetRelatingSystem();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelServicesBuildings#getRelatingSystem <em>Relating System</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating System</em>' reference is set.
-	 * @see #unsetRelatingSystem()
-	 * @see #getRelatingSystem()
-	 * @see #setRelatingSystem(IfcSystem)
-	 * @generated
-	 */
-	boolean isSetRelatingSystem();
 
 	/**
 	 * Returns the value of the '<em><b>Related Buildings</b></em>' reference list.
@@ -102,34 +75,11 @@ public interface IfcRelServicesBuildings extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Buildings</em>' reference list.
-	 * @see #isSetRelatedBuildings()
-	 * @see #unsetRelatedBuildings()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelServicesBuildings_RelatedBuildings()
 	 * @see org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getServicedBySystems
-	 * @model opposite="ServicedBySystems" unsettable="true"
+	 * @model opposite="ServicedBySystems"
 	 * @generated
 	 */
 	EList<IfcSpatialStructureElement> getRelatedBuildings();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelServicesBuildings#getRelatedBuildings <em>Related Buildings</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedBuildings()
-	 * @see #getRelatedBuildings()
-	 * @generated
-	 */
-	void unsetRelatedBuildings();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelServicesBuildings#getRelatedBuildings <em>Related Buildings</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Buildings</em>' reference list is set.
-	 * @see #unsetRelatedBuildings()
-	 * @see #getRelatedBuildings()
-	 * @generated
-	 */
-	boolean isSetRelatedBuildings();
 
 } // IfcRelServicesBuildings

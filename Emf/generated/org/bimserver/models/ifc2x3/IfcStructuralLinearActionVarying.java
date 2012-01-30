@@ -45,11 +45,9 @@ public interface IfcStructuralLinearActionVarying extends IfcStructuralLinearAct
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Varying Applied Load Location</em>' reference.
-	 * @see #isSetVaryingAppliedLoadLocation()
-	 * @see #unsetVaryingAppliedLoadLocation()
 	 * @see #setVaryingAppliedLoadLocation(IfcShapeAspect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLinearActionVarying_VaryingAppliedLoadLocation()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcShapeAspect getVaryingAppliedLoadLocation();
@@ -59,35 +57,10 @@ public interface IfcStructuralLinearActionVarying extends IfcStructuralLinearAct
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Varying Applied Load Location</em>' reference.
-	 * @see #isSetVaryingAppliedLoadLocation()
-	 * @see #unsetVaryingAppliedLoadLocation()
 	 * @see #getVaryingAppliedLoadLocation()
 	 * @generated
 	 */
 	void setVaryingAppliedLoadLocation(IfcShapeAspect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLinearActionVarying#getVaryingAppliedLoadLocation <em>Varying Applied Load Location</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetVaryingAppliedLoadLocation()
-	 * @see #getVaryingAppliedLoadLocation()
-	 * @see #setVaryingAppliedLoadLocation(IfcShapeAspect)
-	 * @generated
-	 */
-	void unsetVaryingAppliedLoadLocation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLinearActionVarying#getVaryingAppliedLoadLocation <em>Varying Applied Load Location</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Varying Applied Load Location</em>' reference is set.
-	 * @see #unsetVaryingAppliedLoadLocation()
-	 * @see #getVaryingAppliedLoadLocation()
-	 * @see #setVaryingAppliedLoadLocation(IfcShapeAspect)
-	 * @generated
-	 */
-	boolean isSetVaryingAppliedLoadLocation();
 
 	/**
 	 * Returns the value of the '<em><b>Subsequent Applied Loads</b></em>' reference list.
@@ -99,33 +72,10 @@ public interface IfcStructuralLinearActionVarying extends IfcStructuralLinearAct
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subsequent Applied Loads</em>' reference list.
-	 * @see #isSetSubsequentAppliedLoads()
-	 * @see #unsetSubsequentAppliedLoads()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLinearActionVarying_SubsequentAppliedLoads()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcStructuralLoad> getSubsequentAppliedLoads();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLinearActionVarying#getSubsequentAppliedLoads <em>Subsequent Applied Loads</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSubsequentAppliedLoads()
-	 * @see #getSubsequentAppliedLoads()
-	 * @generated
-	 */
-	void unsetSubsequentAppliedLoads();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLinearActionVarying#getSubsequentAppliedLoads <em>Subsequent Applied Loads</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Subsequent Applied Loads</em>' reference list is set.
-	 * @see #unsetSubsequentAppliedLoads()
-	 * @see #getSubsequentAppliedLoads()
-	 * @generated
-	 */
-	boolean isSetSubsequentAppliedLoads();
 
 } // IfcStructuralLinearActionVarying

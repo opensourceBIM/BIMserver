@@ -43,11 +43,9 @@ public interface IfcDateAndTime extends IfcDateTimeSelect, IfcObjectReferenceSel
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Date Component</em>' reference.
-	 * @see #isSetDateComponent()
-	 * @see #unsetDateComponent()
 	 * @see #setDateComponent(IfcCalendarDate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDateAndTime_DateComponent()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCalendarDate getDateComponent();
@@ -57,35 +55,10 @@ public interface IfcDateAndTime extends IfcDateTimeSelect, IfcObjectReferenceSel
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Date Component</em>' reference.
-	 * @see #isSetDateComponent()
-	 * @see #unsetDateComponent()
 	 * @see #getDateComponent()
 	 * @generated
 	 */
 	void setDateComponent(IfcCalendarDate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDateAndTime#getDateComponent <em>Date Component</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDateComponent()
-	 * @see #getDateComponent()
-	 * @see #setDateComponent(IfcCalendarDate)
-	 * @generated
-	 */
-	void unsetDateComponent();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDateAndTime#getDateComponent <em>Date Component</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Date Component</em>' reference is set.
-	 * @see #unsetDateComponent()
-	 * @see #getDateComponent()
-	 * @see #setDateComponent(IfcCalendarDate)
-	 * @generated
-	 */
-	boolean isSetDateComponent();
 
 	/**
 	 * Returns the value of the '<em><b>Time Component</b></em>' reference.
@@ -96,11 +69,9 @@ public interface IfcDateAndTime extends IfcDateTimeSelect, IfcObjectReferenceSel
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Component</em>' reference.
-	 * @see #isSetTimeComponent()
-	 * @see #unsetTimeComponent()
 	 * @see #setTimeComponent(IfcLocalTime)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDateAndTime_TimeComponent()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcLocalTime getTimeComponent();
@@ -110,34 +81,9 @@ public interface IfcDateAndTime extends IfcDateTimeSelect, IfcObjectReferenceSel
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Component</em>' reference.
-	 * @see #isSetTimeComponent()
-	 * @see #unsetTimeComponent()
 	 * @see #getTimeComponent()
 	 * @generated
 	 */
 	void setTimeComponent(IfcLocalTime value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDateAndTime#getTimeComponent <em>Time Component</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeComponent()
-	 * @see #getTimeComponent()
-	 * @see #setTimeComponent(IfcLocalTime)
-	 * @generated
-	 */
-	void unsetTimeComponent();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDateAndTime#getTimeComponent <em>Time Component</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Component</em>' reference is set.
-	 * @see #unsetTimeComponent()
-	 * @see #getTimeComponent()
-	 * @see #setTimeComponent(IfcLocalTime)
-	 * @generated
-	 */
-	boolean isSetTimeComponent();
 
 } // IfcDateAndTime

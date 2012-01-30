@@ -91,24 +91,6 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetProfileType() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetProfileType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getProfileName() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PROFILE_DEF__PROFILE_NAME, true);
 	}

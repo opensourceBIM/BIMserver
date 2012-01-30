@@ -149,22 +149,4 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, newTextFontStyle);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTextFontStyle() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTextFontStyle() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE);
-	}
-
 } //IfcTextStyleImpl

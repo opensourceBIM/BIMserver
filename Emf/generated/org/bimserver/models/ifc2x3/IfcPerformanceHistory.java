@@ -42,11 +42,9 @@ public interface IfcPerformanceHistory extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Life Cycle Phase</em>' attribute.
-	 * @see #isSetLifeCyclePhase()
-	 * @see #unsetLifeCyclePhase()
 	 * @see #setLifeCyclePhase(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPerformanceHistory_LifeCyclePhase()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getLifeCyclePhase();
@@ -56,34 +54,9 @@ public interface IfcPerformanceHistory extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Life Cycle Phase</em>' attribute.
-	 * @see #isSetLifeCyclePhase()
-	 * @see #unsetLifeCyclePhase()
 	 * @see #getLifeCyclePhase()
 	 * @generated
 	 */
 	void setLifeCyclePhase(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPerformanceHistory#getLifeCyclePhase <em>Life Cycle Phase</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLifeCyclePhase()
-	 * @see #getLifeCyclePhase()
-	 * @see #setLifeCyclePhase(String)
-	 * @generated
-	 */
-	void unsetLifeCyclePhase();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPerformanceHistory#getLifeCyclePhase <em>Life Cycle Phase</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Life Cycle Phase</em>' attribute is set.
-	 * @see #unsetLifeCyclePhase()
-	 * @see #getLifeCyclePhase()
-	 * @see #setLifeCyclePhase(String)
-	 * @generated
-	 */
-	boolean isSetLifeCyclePhase();
 
 } // IfcPerformanceHistory

@@ -46,34 +46,11 @@ public interface IfcCompositeProfileDef extends IfcProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Profiles</em>' reference list.
-	 * @see #isSetProfiles()
-	 * @see #unsetProfiles()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCompositeProfileDef_Profiles()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcProfileDef> getProfiles();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeProfileDef#getProfiles <em>Profiles</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetProfiles()
-	 * @see #getProfiles()
-	 * @generated
-	 */
-	void unsetProfiles();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCompositeProfileDef#getProfiles <em>Profiles</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Profiles</em>' reference list is set.
-	 * @see #unsetProfiles()
-	 * @see #getProfiles()
-	 * @generated
-	 */
-	boolean isSetProfiles();
 
 	/**
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.

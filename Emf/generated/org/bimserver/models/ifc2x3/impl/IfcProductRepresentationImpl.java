@@ -153,22 +153,4 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 		return (EList<IfcRepresentation>) eGet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRepresentations() {
-		eUnset(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRepresentations() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS);
-	}
-
 } //IfcProductRepresentationImpl

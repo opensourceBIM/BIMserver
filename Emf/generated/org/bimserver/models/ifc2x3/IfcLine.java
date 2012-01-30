@@ -43,11 +43,9 @@ public interface IfcLine extends IfcCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pnt</em>' reference.
-	 * @see #isSetPnt()
-	 * @see #unsetPnt()
 	 * @see #setPnt(IfcCartesianPoint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLine_Pnt()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCartesianPoint getPnt();
@@ -57,35 +55,10 @@ public interface IfcLine extends IfcCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pnt</em>' reference.
-	 * @see #isSetPnt()
-	 * @see #unsetPnt()
 	 * @see #getPnt()
 	 * @generated
 	 */
 	void setPnt(IfcCartesianPoint value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLine#getPnt <em>Pnt</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPnt()
-	 * @see #getPnt()
-	 * @see #setPnt(IfcCartesianPoint)
-	 * @generated
-	 */
-	void unsetPnt();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLine#getPnt <em>Pnt</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Pnt</em>' reference is set.
-	 * @see #unsetPnt()
-	 * @see #getPnt()
-	 * @see #setPnt(IfcCartesianPoint)
-	 * @generated
-	 */
-	boolean isSetPnt();
 
 	/**
 	 * Returns the value of the '<em><b>Dir</b></em>' reference.
@@ -96,11 +69,9 @@ public interface IfcLine extends IfcCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dir</em>' reference.
-	 * @see #isSetDir()
-	 * @see #unsetDir()
 	 * @see #setDir(IfcVector)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLine_Dir()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcVector getDir();
@@ -110,34 +81,9 @@ public interface IfcLine extends IfcCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dir</em>' reference.
-	 * @see #isSetDir()
-	 * @see #unsetDir()
 	 * @see #getDir()
 	 * @generated
 	 */
 	void setDir(IfcVector value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLine#getDir <em>Dir</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDir()
-	 * @see #getDir()
-	 * @see #setDir(IfcVector)
-	 * @generated
-	 */
-	void unsetDir();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLine#getDir <em>Dir</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Dir</em>' reference is set.
-	 * @see #unsetDir()
-	 * @see #getDir()
-	 * @see #setDir(IfcVector)
-	 * @generated
-	 */
-	boolean isSetDir();
 
 } // IfcLine

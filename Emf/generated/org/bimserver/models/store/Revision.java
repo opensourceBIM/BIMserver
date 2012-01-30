@@ -64,12 +64,12 @@ public interface Revision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(int)
+	 * @see #setId(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_Id()
 	 * @model
 	 * @generated
 	 */
-	int getId();
+	Integer getId();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getId <em>Id</em>}' attribute.
@@ -79,7 +79,7 @@ public interface Revision extends IdEObject {
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(int value);
+	void setId(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' reference.
@@ -168,12 +168,12 @@ public interface Revision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
-	 * @see #setSize(long)
+	 * @see #setSize(Long)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_Size()
 	 * @model
 	 * @generated
 	 */
-	long getSize();
+	Long getSize();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getSize <em>Size</em>}' attribute.
@@ -183,7 +183,7 @@ public interface Revision extends IdEObject {
 	 * @see #getSize()
 	 * @generated
 	 */
-	void setSize(long value);
+	void setSize(Long value);
 
 	/**
 	 * Returns the value of the '<em><b>Concrete Revisions</b></em>' reference list.
@@ -381,12 +381,12 @@ public interface Revision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bmi</em>' attribute.
-	 * @see #setBmi(int)
+	 * @see #setBmi(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_Bmi()
 	 * @model
 	 * @generated
 	 */
-	int getBmi();
+	Integer getBmi();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getBmi <em>Bmi</em>}' attribute.
@@ -396,7 +396,7 @@ public interface Revision extends IdEObject {
 	 * @see #getBmi()
 	 * @generated
 	 */
-	void setBmi(int value);
+	void setBmi(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Nr Clashes</b></em>' attribute.
@@ -407,12 +407,12 @@ public interface Revision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nr Clashes</em>' attribute.
-	 * @see #setNrClashes(int)
+	 * @see #setNrClashes(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_NrClashes()
 	 * @model
 	 * @generated
 	 */
-	int getNrClashes();
+	Integer getNrClashes();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getNrClashes <em>Nr Clashes</em>}' attribute.
@@ -422,7 +422,7 @@ public interface Revision extends IdEObject {
 	 * @see #getNrClashes()
 	 * @generated
 	 */
-	void setNrClashes(int value);
+	void setNrClashes(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Laid</b></em>' attribute.
@@ -433,12 +433,12 @@ public interface Revision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Laid</em>' attribute.
-	 * @see #setLaid(long)
+	 * @see #setLaid(Long)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_Laid()
 	 * @model
 	 * @generated
 	 */
-	long getLaid();
+	Long getLaid();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}' attribute.
@@ -448,6 +448,6 @@ public interface Revision extends IdEObject {
 	 * @see #getLaid()
 	 * @generated
 	 */
-	void setLaid(long value);
+	void setLaid(Long value);
 
 } // Revision

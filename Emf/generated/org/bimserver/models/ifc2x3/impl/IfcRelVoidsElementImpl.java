@@ -80,24 +80,6 @@ public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingBuildingElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingBuildingElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcFeatureElementSubtraction getRelatedOpeningElement() {
 		return (IfcFeatureElementSubtraction) eGet(Ifc2x3Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, true);
 	}
@@ -109,24 +91,6 @@ public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 */
 	public void setRelatedOpeningElement(IfcFeatureElementSubtraction newRelatedOpeningElement) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, newRelatedOpeningElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedOpeningElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedOpeningElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT);
 	}
 
 } //IfcRelVoidsElementImpl

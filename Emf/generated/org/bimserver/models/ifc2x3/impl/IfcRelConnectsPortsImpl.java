@@ -81,24 +81,6 @@ public class IfcRelConnectsPortsImpl extends IfcRelConnectsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingPort() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORTS__RELATING_PORT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingPort() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORTS__RELATING_PORT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcPort getRelatedPort() {
 		return (IfcPort) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORTS__RELATED_PORT, true);
 	}
@@ -110,24 +92,6 @@ public class IfcRelConnectsPortsImpl extends IfcRelConnectsImpl implements IfcRe
 	 */
 	public void setRelatedPort(IfcPort newRelatedPort) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORTS__RELATED_PORT, newRelatedPort);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedPort() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORTS__RELATED_PORT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedPort() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PORTS__RELATED_PORT);
 	}
 
 	/**

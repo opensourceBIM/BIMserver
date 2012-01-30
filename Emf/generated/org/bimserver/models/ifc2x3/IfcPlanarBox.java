@@ -42,11 +42,9 @@ public interface IfcPlanarBox extends IfcPlanarExtent {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Placement</em>' reference.
-	 * @see #isSetPlacement()
-	 * @see #unsetPlacement()
 	 * @see #setPlacement(IfcAxis2Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlanarBox_Placement()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAxis2Placement getPlacement();
@@ -56,34 +54,9 @@ public interface IfcPlanarBox extends IfcPlanarExtent {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Placement</em>' reference.
-	 * @see #isSetPlacement()
-	 * @see #unsetPlacement()
 	 * @see #getPlacement()
 	 * @generated
 	 */
 	void setPlacement(IfcAxis2Placement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarBox#getPlacement <em>Placement</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPlacement()
-	 * @see #getPlacement()
-	 * @see #setPlacement(IfcAxis2Placement)
-	 * @generated
-	 */
-	void unsetPlacement();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarBox#getPlacement <em>Placement</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Placement</em>' reference is set.
-	 * @see #unsetPlacement()
-	 * @see #getPlacement()
-	 * @see #setPlacement(IfcAxis2Placement)
-	 * @generated
-	 */
-	boolean isSetPlacement();
 
 } // IfcPlanarBox

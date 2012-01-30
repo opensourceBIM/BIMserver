@@ -89,24 +89,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetAssetID() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__ASSET_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAssetID() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__ASSET_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcCostValue getOriginalValue() {
 		return (IfcCostValue) eGet(Ifc2x3Package.Literals.IFC_ASSET__ORIGINAL_VALUE, true);
 	}
@@ -118,24 +100,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 */
 	public void setOriginalValue(IfcCostValue newOriginalValue) {
 		eSet(Ifc2x3Package.Literals.IFC_ASSET__ORIGINAL_VALUE, newOriginalValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOriginalValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__ORIGINAL_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOriginalValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__ORIGINAL_VALUE);
 	}
 
 	/**
@@ -161,24 +125,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetCurrentValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__CURRENT_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCurrentValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__CURRENT_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcCostValue getTotalReplacementCost() {
 		return (IfcCostValue) eGet(Ifc2x3Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST, true);
 	}
@@ -190,24 +136,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 */
 	public void setTotalReplacementCost(IfcCostValue newTotalReplacementCost) {
 		eSet(Ifc2x3Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST, newTotalReplacementCost);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTotalReplacementCost() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTotalReplacementCost() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST);
 	}
 
 	/**
@@ -233,24 +161,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOwner() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__OWNER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwner() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__OWNER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcActorSelect getUser() {
 		return (IfcActorSelect) eGet(Ifc2x3Package.Literals.IFC_ASSET__USER, true);
 	}
@@ -262,24 +172,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 */
 	public void setUser(IfcActorSelect newUser) {
 		eSet(Ifc2x3Package.Literals.IFC_ASSET__USER, newUser);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetUser() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__USER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetUser() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__USER);
 	}
 
 	/**
@@ -305,24 +197,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetResponsiblePerson() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetResponsiblePerson() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcCalendarDate getIncorporationDate() {
 		return (IfcCalendarDate) eGet(Ifc2x3Package.Literals.IFC_ASSET__INCORPORATION_DATE, true);
 	}
@@ -341,24 +215,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetIncorporationDate() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__INCORPORATION_DATE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIncorporationDate() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__INCORPORATION_DATE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcCostValue getDepreciatedValue() {
 		return (IfcCostValue) eGet(Ifc2x3Package.Literals.IFC_ASSET__DEPRECIATED_VALUE, true);
 	}
@@ -370,24 +226,6 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 */
 	public void setDepreciatedValue(IfcCostValue newDepreciatedValue) {
 		eSet(Ifc2x3Package.Literals.IFC_ASSET__DEPRECIATED_VALUE, newDepreciatedValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetDepreciatedValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_ASSET__DEPRECIATED_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDepreciatedValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ASSET__DEPRECIATED_VALUE);
 	}
 
 } //IfcAssetImpl

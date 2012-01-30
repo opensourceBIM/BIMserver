@@ -73,22 +73,4 @@ public class IfcBoxedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements IfcB
 		eSet(Ifc2x3Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE, newEnclosure);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetEnclosure() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEnclosure() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE);
-	}
-
 } //IfcBoxedHalfSpaceImpl

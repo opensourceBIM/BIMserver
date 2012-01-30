@@ -42,11 +42,9 @@ public interface IfcRelAssociatesMaterial extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Material</em>' reference.
-	 * @see #isSetRelatingMaterial()
-	 * @see #unsetRelatingMaterial()
 	 * @see #setRelatingMaterial(IfcMaterialSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesMaterial_RelatingMaterial()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcMaterialSelect getRelatingMaterial();
@@ -56,34 +54,9 @@ public interface IfcRelAssociatesMaterial extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Material</em>' reference.
-	 * @see #isSetRelatingMaterial()
-	 * @see #unsetRelatingMaterial()
 	 * @see #getRelatingMaterial()
 	 * @generated
 	 */
 	void setRelatingMaterial(IfcMaterialSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial#getRelatingMaterial <em>Relating Material</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingMaterial()
-	 * @see #getRelatingMaterial()
-	 * @see #setRelatingMaterial(IfcMaterialSelect)
-	 * @generated
-	 */
-	void unsetRelatingMaterial();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial#getRelatingMaterial <em>Relating Material</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Material</em>' reference is set.
-	 * @see #unsetRelatingMaterial()
-	 * @see #getRelatingMaterial()
-	 * @see #setRelatingMaterial(IfcMaterialSelect)
-	 * @generated
-	 */
-	boolean isSetRelatingMaterial();
 
 } // IfcRelAssociatesMaterial

@@ -42,11 +42,9 @@ public interface IfcRelAssociatesLibrary extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Library</em>' reference.
-	 * @see #isSetRelatingLibrary()
-	 * @see #unsetRelatingLibrary()
 	 * @see #setRelatingLibrary(IfcLibrarySelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesLibrary_RelatingLibrary()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcLibrarySelect getRelatingLibrary();
@@ -56,34 +54,9 @@ public interface IfcRelAssociatesLibrary extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Library</em>' reference.
-	 * @see #isSetRelatingLibrary()
-	 * @see #unsetRelatingLibrary()
 	 * @see #getRelatingLibrary()
 	 * @generated
 	 */
 	void setRelatingLibrary(IfcLibrarySelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesLibrary#getRelatingLibrary <em>Relating Library</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingLibrary()
-	 * @see #getRelatingLibrary()
-	 * @see #setRelatingLibrary(IfcLibrarySelect)
-	 * @generated
-	 */
-	void unsetRelatingLibrary();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesLibrary#getRelatingLibrary <em>Relating Library</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Library</em>' reference is set.
-	 * @see #unsetRelatingLibrary()
-	 * @see #getRelatingLibrary()
-	 * @see #setRelatingLibrary(IfcLibrarySelect)
-	 * @generated
-	 */
-	boolean isSetRelatingLibrary();
 
 } // IfcRelAssociatesLibrary

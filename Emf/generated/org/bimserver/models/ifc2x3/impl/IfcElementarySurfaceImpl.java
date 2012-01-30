@@ -79,24 +79,6 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPosition() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPosition() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_ELEMENTARY_SURFACE__DIM, true);
 	}

@@ -43,11 +43,9 @@ public interface IfcFaceSurface extends IfcFace, IfcSurfaceOrFaceSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Face Surface</em>' reference.
-	 * @see #isSetFaceSurface()
-	 * @see #unsetFaceSurface()
 	 * @see #setFaceSurface(IfcSurface)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFaceSurface_FaceSurface()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSurface getFaceSurface();
@@ -57,35 +55,10 @@ public interface IfcFaceSurface extends IfcFace, IfcSurfaceOrFaceSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Face Surface</em>' reference.
-	 * @see #isSetFaceSurface()
-	 * @see #unsetFaceSurface()
 	 * @see #getFaceSurface()
 	 * @generated
 	 */
 	void setFaceSurface(IfcSurface value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceSurface#getFaceSurface <em>Face Surface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetFaceSurface()
-	 * @see #getFaceSurface()
-	 * @see #setFaceSurface(IfcSurface)
-	 * @generated
-	 */
-	void unsetFaceSurface();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceSurface#getFaceSurface <em>Face Surface</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Face Surface</em>' reference is set.
-	 * @see #unsetFaceSurface()
-	 * @see #getFaceSurface()
-	 * @see #setFaceSurface(IfcSurface)
-	 * @generated
-	 */
-	boolean isSetFaceSurface();
 
 	/**
 	 * Returns the value of the '<em><b>Same Sense</b></em>' attribute.
@@ -98,11 +71,9 @@ public interface IfcFaceSurface extends IfcFace, IfcSurfaceOrFaceSurface {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetSameSense()
-	 * @see #unsetSameSense()
 	 * @see #setSameSense(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFaceSurface_SameSense()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getSameSense();
@@ -113,34 +84,9 @@ public interface IfcFaceSurface extends IfcFace, IfcSurfaceOrFaceSurface {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetSameSense()
-	 * @see #unsetSameSense()
 	 * @see #getSameSense()
 	 * @generated
 	 */
 	void setSameSense(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceSurface#getSameSense <em>Same Sense</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSameSense()
-	 * @see #getSameSense()
-	 * @see #setSameSense(Tristate)
-	 * @generated
-	 */
-	void unsetSameSense();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceSurface#getSameSense <em>Same Sense</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Same Sense</em>' attribute is set.
-	 * @see #unsetSameSense()
-	 * @see #getSameSense()
-	 * @see #setSameSense(Tristate)
-	 * @generated
-	 */
-	boolean isSetSameSense();
 
 } // IfcFaceSurface

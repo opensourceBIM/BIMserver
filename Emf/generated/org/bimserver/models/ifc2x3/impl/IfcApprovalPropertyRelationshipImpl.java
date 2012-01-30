@@ -86,24 +86,6 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetApprovedProperties() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetApprovedProperties() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcApproval getApproval() {
 		return (IfcApproval) eGet(Ifc2x3Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL, true);
 	}
@@ -115,24 +97,6 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implement
 	 */
 	public void setApproval(IfcApproval newApproval) {
 		eSet(Ifc2x3Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL, newApproval);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetApproval() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetApproval() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL);
 	}
 
 } //IfcApprovalPropertyRelationshipImpl

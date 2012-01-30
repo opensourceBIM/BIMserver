@@ -139,24 +139,6 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetApprovalDateTime() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__APPROVAL_DATE_TIME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetApprovalDateTime() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__APPROVAL_DATE_TIME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getApprovalStatus() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_APPROVAL__APPROVAL_STATUS, true);
 	}
@@ -283,24 +265,6 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getIdentifier() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_APPROVAL__IDENTIFIER, true);
 	}
@@ -312,24 +276,6 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 */
 	public void setIdentifier(String newIdentifier) {
 		eSet(Ifc2x3Package.Literals.IFC_APPROVAL__IDENTIFIER, newIdentifier);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetIdentifier() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL__IDENTIFIER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIdentifier() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL__IDENTIFIER);
 	}
 
 	/**

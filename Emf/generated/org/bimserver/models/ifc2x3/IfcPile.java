@@ -45,11 +45,9 @@ public interface IfcPile extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPileTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcPileTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPile_PredefinedType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcPileTypeEnum getPredefinedType();
@@ -60,35 +58,10 @@ public interface IfcPile extends IfcBuildingElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPileTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcPileTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPile#getPredefinedType <em>Predefined Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcPileTypeEnum)
-	 * @generated
-	 */
-	void unsetPredefinedType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPile#getPredefinedType <em>Predefined Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
-	 * @see #unsetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcPileTypeEnum)
-	 * @generated
-	 */
-	boolean isSetPredefinedType();
 
 	/**
 	 * Returns the value of the '<em><b>Construction Type</b></em>' attribute.

@@ -148,24 +148,6 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRepresentationContexts() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRepresentationContexts() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcUnitAssignment getUnitsInContext() {
 		return (IfcUnitAssignment) eGet(Ifc2x3Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT, true);
 	}
@@ -177,24 +159,6 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 */
 	public void setUnitsInContext(IfcUnitAssignment newUnitsInContext) {
 		eSet(Ifc2x3Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT, newUnitsInContext);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetUnitsInContext() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetUnitsInContext() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT);
 	}
 
 } //IfcProjectImpl

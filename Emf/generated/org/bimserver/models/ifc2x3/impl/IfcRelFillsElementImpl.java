@@ -80,24 +80,6 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingOpeningElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingOpeningElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcElement getRelatedBuildingElement() {
 		return (IfcElement) eGet(Ifc2x3Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT, true);
 	}
@@ -109,24 +91,6 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 */
 	public void setRelatedBuildingElement(IfcElement newRelatedBuildingElement) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT, newRelatedBuildingElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedBuildingElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedBuildingElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT);
 	}
 
 } //IfcRelFillsElementImpl

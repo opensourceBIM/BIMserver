@@ -49,28 +49,28 @@ public class SSettings implements SBase
 
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("showVersionUpgradeAvailable")) {
-			return isShowVersionUpgradeAvailable();
+			return getShowVersionUpgradeAvailable();
 		}
 		if (sField.getName().equals("sendConfirmationEmailAfterRegistration")) {
 			return isSendConfirmationEmailAfterRegistration();
 		}
 		if (sField.getName().equals("useCaching")) {
-			return isUseCaching();
+			return getUseCaching();
 		}
 		if (sField.getName().equals("allowSelfRegistration")) {
-			return isAllowSelfRegistration();
+			return getAllowSelfRegistration();
 		}
 		if (sField.getName().equals("autoTestClashes")) {
-			return isAutoTestClashes();
+			return getAutoTestClashes();
 		}
 		if (sField.getName().equals("intelligentMerging")) {
-			return isIntelligentMerging();
+			return getIntelligentMerging();
 		}
 		if (sField.getName().equals("allowUsersToCreateTopLevelProjects")) {
 			return isAllowUsersToCreateTopLevelProjects();
 		}
 		if (sField.getName().equals("checkinMergingEnabled")) {
-			return isCheckinMergingEnabled();
+			return getCheckinMergingEnabled();
 		}
 		if (sField.getName().equals("registrationAddition")) {
 			return getRegistrationAddition();
@@ -88,7 +88,7 @@ public class SSettings implements SBase
 			return getSiteAddress();
 		}
 		if (sField.getName().equals("hideUserListForNonAdmin")) {
-			return isHideUserListForNonAdmin();
+			return getHideUserListForNonAdmin();
 		}
 		if (sField.getName().equals("protocolBuffersPort")) {
 			return getProtocolBuffersPort();
@@ -109,7 +109,7 @@ public class SSettings implements SBase
 			return getMergeIdentifier();
 		}
 		if (sField.getName().equals("cacheOutputFiles")) {
-			return isCacheOutputFiles();
+			return getCacheOutputFiles();
 		}
 		if (sField.getName().equals("ifcEngines")) {
 			return getIfcEngines();
@@ -230,35 +230,35 @@ public class SSettings implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private boolean showVersionUpgradeAvailable;
+	private java.lang.Boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;
-	private boolean useCaching;
-	private boolean allowSelfRegistration;
-	private boolean autoTestClashes;
-	private boolean intelligentMerging;
+	private java.lang.Boolean useCaching;
+	private java.lang.Boolean allowSelfRegistration;
+	private java.lang.Boolean autoTestClashes;
+	private java.lang.Boolean intelligentMerging;
 	private boolean allowUsersToCreateTopLevelProjects;
-	private boolean checkinMergingEnabled;
+	private java.lang.Boolean checkinMergingEnabled;
 	private java.lang.String registrationAddition;
 	private java.lang.String smtpServer;
 	private java.lang.String emailSenderAddress;
 	private java.lang.String customLogoAddress;
 	private java.lang.String siteAddress;
-	private boolean hideUserListForNonAdmin;
-	private int protocolBuffersPort;
+	private java.lang.Boolean hideUserListForNonAdmin;
+	private java.lang.Integer protocolBuffersPort;
 	private List<Long> serializers = new ArrayList<Long>();
 	private List<Long> objectIDMs = new ArrayList<Long>();
 	private java.lang.String headerAddition;
 	private java.lang.String footerAddition;
 	private SMergeIdentifier mergeIdentifier;
-	private boolean cacheOutputFiles;
+	private java.lang.Boolean cacheOutputFiles;
 	private List<Long> ifcEngines = new ArrayList<Long>();
 	private List<Long> plugins = new ArrayList<Long>();
 	private List<Long> deserializers = new ArrayList<Long>();
-	public boolean isShowVersionUpgradeAvailable() {
+	public java.lang.Boolean getShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
 	}
 
-	public void setShowVersionUpgradeAvailable(boolean showVersionUpgradeAvailable) {
+	public void setShowVersionUpgradeAvailable(java.lang.Boolean showVersionUpgradeAvailable) {
 		this.showVersionUpgradeAvailable = showVersionUpgradeAvailable;
 	}
 	public boolean isSendConfirmationEmailAfterRegistration() {
@@ -268,32 +268,32 @@ public class SSettings implements SBase
 	public void setSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) {
 		this.sendConfirmationEmailAfterRegistration = sendConfirmationEmailAfterRegistration;
 	}
-	public boolean isUseCaching() {
+	public java.lang.Boolean getUseCaching() {
 		return useCaching;
 	}
 
-	public void setUseCaching(boolean useCaching) {
+	public void setUseCaching(java.lang.Boolean useCaching) {
 		this.useCaching = useCaching;
 	}
-	public boolean isAllowSelfRegistration() {
+	public java.lang.Boolean getAllowSelfRegistration() {
 		return allowSelfRegistration;
 	}
 
-	public void setAllowSelfRegistration(boolean allowSelfRegistration) {
+	public void setAllowSelfRegistration(java.lang.Boolean allowSelfRegistration) {
 		this.allowSelfRegistration = allowSelfRegistration;
 	}
-	public boolean isAutoTestClashes() {
+	public java.lang.Boolean getAutoTestClashes() {
 		return autoTestClashes;
 	}
 
-	public void setAutoTestClashes(boolean autoTestClashes) {
+	public void setAutoTestClashes(java.lang.Boolean autoTestClashes) {
 		this.autoTestClashes = autoTestClashes;
 	}
-	public boolean isIntelligentMerging() {
+	public java.lang.Boolean getIntelligentMerging() {
 		return intelligentMerging;
 	}
 
-	public void setIntelligentMerging(boolean intelligentMerging) {
+	public void setIntelligentMerging(java.lang.Boolean intelligentMerging) {
 		this.intelligentMerging = intelligentMerging;
 	}
 	public boolean isAllowUsersToCreateTopLevelProjects() {
@@ -303,11 +303,11 @@ public class SSettings implements SBase
 	public void setAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) {
 		this.allowUsersToCreateTopLevelProjects = allowUsersToCreateTopLevelProjects;
 	}
-	public boolean isCheckinMergingEnabled() {
+	public java.lang.Boolean getCheckinMergingEnabled() {
 		return checkinMergingEnabled;
 	}
 
-	public void setCheckinMergingEnabled(boolean checkinMergingEnabled) {
+	public void setCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) {
 		this.checkinMergingEnabled = checkinMergingEnabled;
 	}
 	public java.lang.String getRegistrationAddition() {
@@ -345,18 +345,18 @@ public class SSettings implements SBase
 	public void setSiteAddress(java.lang.String siteAddress) {
 		this.siteAddress = siteAddress;
 	}
-	public boolean isHideUserListForNonAdmin() {
+	public java.lang.Boolean getHideUserListForNonAdmin() {
 		return hideUserListForNonAdmin;
 	}
 
-	public void setHideUserListForNonAdmin(boolean hideUserListForNonAdmin) {
+	public void setHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) {
 		this.hideUserListForNonAdmin = hideUserListForNonAdmin;
 	}
-	public int getProtocolBuffersPort() {
+	public java.lang.Integer getProtocolBuffersPort() {
 		return protocolBuffersPort;
 	}
 
-	public void setProtocolBuffersPort(int protocolBuffersPort) {
+	public void setProtocolBuffersPort(java.lang.Integer protocolBuffersPort) {
 		this.protocolBuffersPort = protocolBuffersPort;
 	}
 	public List<Long> getSerializers() {
@@ -394,11 +394,11 @@ public class SSettings implements SBase
 	public void setMergeIdentifier(SMergeIdentifier mergeIdentifier) {
 		this.mergeIdentifier = mergeIdentifier;
 	}
-	public boolean isCacheOutputFiles() {
+	public java.lang.Boolean getCacheOutputFiles() {
 		return cacheOutputFiles;
 	}
 
-	public void setCacheOutputFiles(boolean cacheOutputFiles) {
+	public void setCacheOutputFiles(java.lang.Boolean cacheOutputFiles) {
 		this.cacheOutputFiles = cacheOutputFiles;
 	}
 	public List<Long> getIfcEngines() {

@@ -32,9 +32,9 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#isActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getActive <em>Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.IfcEngineImpl#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -95,7 +95,7 @@ public class IfcEngineImpl extends IdEObjectImpl implements IfcEngine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isActive() {
+	public Boolean getActive() {
 		return (Boolean) eGet(StorePackage.Literals.IFC_ENGINE__ACTIVE, true);
 	}
 
@@ -104,7 +104,7 @@ public class IfcEngineImpl extends IdEObjectImpl implements IfcEngine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActive(boolean newActive) {
+	public void setActive(Boolean newActive) {
 		eSet(StorePackage.Literals.IFC_ENGINE__ACTIVE, newActive);
 	}
 
@@ -131,7 +131,7 @@ public class IfcEngineImpl extends IdEObjectImpl implements IfcEngine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.IFC_ENGINE__ENABLED, true);
 	}
 
@@ -140,7 +140,7 @@ public class IfcEngineImpl extends IdEObjectImpl implements IfcEngine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.IFC_ENGINE__ENABLED, newEnabled);
 	}
 

@@ -43,11 +43,9 @@ public interface IfcPlacement extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Location</em>' reference.
-	 * @see #isSetLocation()
-	 * @see #unsetLocation()
 	 * @see #setLocation(IfcCartesianPoint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlacement_Location()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCartesianPoint getLocation();
@@ -57,35 +55,10 @@ public interface IfcPlacement extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Location</em>' reference.
-	 * @see #isSetLocation()
-	 * @see #unsetLocation()
 	 * @see #getLocation()
 	 * @generated
 	 */
 	void setLocation(IfcCartesianPoint value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlacement#getLocation <em>Location</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLocation()
-	 * @see #getLocation()
-	 * @see #setLocation(IfcCartesianPoint)
-	 * @generated
-	 */
-	void unsetLocation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPlacement#getLocation <em>Location</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Location</em>' reference is set.
-	 * @see #unsetLocation()
-	 * @see #getLocation()
-	 * @see #setLocation(IfcCartesianPoint)
-	 * @generated
-	 */
-	boolean isSetLocation();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

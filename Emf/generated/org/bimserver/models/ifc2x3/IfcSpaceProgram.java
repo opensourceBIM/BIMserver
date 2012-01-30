@@ -53,11 +53,9 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Space Program Identifier</em>' attribute.
-	 * @see #isSetSpaceProgramIdentifier()
-	 * @see #unsetSpaceProgramIdentifier()
 	 * @see #setSpaceProgramIdentifier(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceProgram_SpaceProgramIdentifier()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getSpaceProgramIdentifier();
@@ -67,35 +65,10 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Space Program Identifier</em>' attribute.
-	 * @see #isSetSpaceProgramIdentifier()
-	 * @see #unsetSpaceProgramIdentifier()
 	 * @see #getSpaceProgramIdentifier()
 	 * @generated
 	 */
 	void setSpaceProgramIdentifier(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getSpaceProgramIdentifier <em>Space Program Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSpaceProgramIdentifier()
-	 * @see #getSpaceProgramIdentifier()
-	 * @see #setSpaceProgramIdentifier(String)
-	 * @generated
-	 */
-	void unsetSpaceProgramIdentifier();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getSpaceProgramIdentifier <em>Space Program Identifier</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Space Program Identifier</em>' attribute is set.
-	 * @see #unsetSpaceProgramIdentifier()
-	 * @see #getSpaceProgramIdentifier()
-	 * @see #setSpaceProgramIdentifier(String)
-	 * @generated
-	 */
-	boolean isSetSpaceProgramIdentifier();
 
 	/**
 	 * Returns the value of the '<em><b>Max Required Area</b></em>' attribute.
@@ -371,11 +344,9 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Standard Required Area</em>' attribute.
-	 * @see #isSetStandardRequiredArea()
-	 * @see #unsetStandardRequiredArea()
 	 * @see #setStandardRequiredArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceProgram_StandardRequiredArea()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getStandardRequiredArea();
@@ -385,35 +356,10 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Standard Required Area</em>' attribute.
-	 * @see #isSetStandardRequiredArea()
-	 * @see #unsetStandardRequiredArea()
 	 * @see #getStandardRequiredArea()
 	 * @generated
 	 */
 	void setStandardRequiredArea(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getStandardRequiredArea <em>Standard Required Area</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetStandardRequiredArea()
-	 * @see #getStandardRequiredArea()
-	 * @see #setStandardRequiredArea(double)
-	 * @generated
-	 */
-	void unsetStandardRequiredArea();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getStandardRequiredArea <em>Standard Required Area</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Standard Required Area</em>' attribute is set.
-	 * @see #unsetStandardRequiredArea()
-	 * @see #getStandardRequiredArea()
-	 * @see #setStandardRequiredArea(double)
-	 * @generated
-	 */
-	boolean isSetStandardRequiredArea();
 
 	/**
 	 * Returns the value of the '<em><b>Standard Required Area As String</b></em>' attribute.
@@ -424,11 +370,9 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Standard Required Area As String</em>' attribute.
-	 * @see #isSetStandardRequiredAreaAsString()
-	 * @see #unsetStandardRequiredAreaAsString()
 	 * @see #setStandardRequiredAreaAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpaceProgram_StandardRequiredAreaAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getStandardRequiredAreaAsString();
@@ -438,35 +382,10 @@ public interface IfcSpaceProgram extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Standard Required Area As String</em>' attribute.
-	 * @see #isSetStandardRequiredAreaAsString()
-	 * @see #unsetStandardRequiredAreaAsString()
 	 * @see #getStandardRequiredAreaAsString()
 	 * @generated
 	 */
 	void setStandardRequiredAreaAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getStandardRequiredAreaAsString <em>Standard Required Area As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetStandardRequiredAreaAsString()
-	 * @see #getStandardRequiredAreaAsString()
-	 * @see #setStandardRequiredAreaAsString(String)
-	 * @generated
-	 */
-	void unsetStandardRequiredAreaAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpaceProgram#getStandardRequiredAreaAsString <em>Standard Required Area As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Standard Required Area As String</em>' attribute is set.
-	 * @see #unsetStandardRequiredAreaAsString()
-	 * @see #getStandardRequiredAreaAsString()
-	 * @see #setStandardRequiredAreaAsString(String)
-	 * @generated
-	 */
-	boolean isSetStandardRequiredAreaAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Has Interaction Reqs From</b></em>' reference list.

@@ -82,45 +82,9 @@ public class IfcSurfaceStyleImpl extends IfcPresentationStyleImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSide() {
-		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_STYLE__SIDE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSide() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE__SIDE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSurfaceStyleElementSelect> getStyles() {
 		return (EList<IfcSurfaceStyleElementSelect>) eGet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE__STYLES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetStyles() {
-		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_STYLE__STYLES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStyles() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE__STYLES);
 	}
 
 } //IfcSurfaceStyleImpl

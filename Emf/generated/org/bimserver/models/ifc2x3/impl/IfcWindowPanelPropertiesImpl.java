@@ -86,24 +86,6 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOperationType() {
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOperationType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcWindowPanelPositionEnum getPanelPosition() {
 		return (IfcWindowPanelPositionEnum) eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION, true);
 	}
@@ -115,24 +97,6 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setPanelPosition(IfcWindowPanelPositionEnum newPanelPosition) {
 		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION, newPanelPosition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPanelPosition() {
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPanelPosition() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION);
 	}
 
 	/**

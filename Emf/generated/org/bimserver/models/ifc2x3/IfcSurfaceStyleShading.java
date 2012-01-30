@@ -42,11 +42,9 @@ public interface IfcSurfaceStyleShading extends IfcSurfaceStyleElementSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Surface Colour</em>' reference.
-	 * @see #isSetSurfaceColour()
-	 * @see #unsetSurfaceColour()
 	 * @see #setSurfaceColour(IfcColourRgb)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleShading_SurfaceColour()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcColourRgb getSurfaceColour();
@@ -56,34 +54,9 @@ public interface IfcSurfaceStyleShading extends IfcSurfaceStyleElementSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Surface Colour</em>' reference.
-	 * @see #isSetSurfaceColour()
-	 * @see #unsetSurfaceColour()
 	 * @see #getSurfaceColour()
 	 * @generated
 	 */
 	void setSurfaceColour(IfcColourRgb value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleShading#getSurfaceColour <em>Surface Colour</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSurfaceColour()
-	 * @see #getSurfaceColour()
-	 * @see #setSurfaceColour(IfcColourRgb)
-	 * @generated
-	 */
-	void unsetSurfaceColour();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleShading#getSurfaceColour <em>Surface Colour</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Surface Colour</em>' reference is set.
-	 * @see #unsetSurfaceColour()
-	 * @see #getSurfaceColour()
-	 * @see #setSurfaceColour(IfcColourRgb)
-	 * @generated
-	 */
-	boolean isSetSurfaceColour();
 
 } // IfcSurfaceStyleShading

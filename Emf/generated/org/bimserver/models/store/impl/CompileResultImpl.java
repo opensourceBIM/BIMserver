@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.CompileResultImpl#isCompileOke <em>Compile Oke</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.CompileResultImpl#getCompileOke <em>Compile Oke</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CompileResultImpl#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CompileResultImpl#getErrors <em>Errors</em>}</li>
  * </ul>
@@ -72,7 +72,7 @@ public class CompileResultImpl extends IdEObjectImpl implements CompileResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCompileOke() {
+	public Boolean getCompileOke() {
 		return (Boolean) eGet(StorePackage.Literals.COMPILE_RESULT__COMPILE_OKE, true);
 	}
 
@@ -81,7 +81,7 @@ public class CompileResultImpl extends IdEObjectImpl implements CompileResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompileOke(boolean newCompileOke) {
+	public void setCompileOke(Boolean newCompileOke) {
 		eSet(StorePackage.Literals.COMPILE_RESULT__COMPILE_OKE, newCompileOke);
 	}
 

@@ -104,22 +104,4 @@ public class IfcElementQuantityImpl extends IfcPropertySetDefinitionImpl impleme
 		return (EList<IfcPhysicalQuantity>) eGet(Ifc2x3Package.Literals.IFC_ELEMENT_QUANTITY__QUANTITIES, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetQuantities() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELEMENT_QUANTITY__QUANTITIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetQuantities() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELEMENT_QUANTITY__QUANTITIES);
-	}
-
 } //IfcElementQuantityImpl

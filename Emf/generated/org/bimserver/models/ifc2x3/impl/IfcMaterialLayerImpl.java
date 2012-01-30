@@ -132,24 +132,6 @@ public class IfcMaterialLayerImpl extends IdEObjectImpl implements IfcMaterialLa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetLayerThickness() {
-		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLayerThickness() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getLayerThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS_AS_STRING, true);
 	}
@@ -161,24 +143,6 @@ public class IfcMaterialLayerImpl extends IdEObjectImpl implements IfcMaterialLa
 	 */
 	public void setLayerThicknessAsString(String newLayerThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS_AS_STRING, newLayerThicknessAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetLayerThicknessAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLayerThicknessAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER__LAYER_THICKNESS_AS_STRING);
 	}
 
 	/**

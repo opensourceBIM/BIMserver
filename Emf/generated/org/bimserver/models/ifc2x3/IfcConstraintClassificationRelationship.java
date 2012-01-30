@@ -49,12 +49,10 @@ public interface IfcConstraintClassificationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Classified Constraint</em>' reference.
-	 * @see #isSetClassifiedConstraint()
-	 * @see #unsetClassifiedConstraint()
 	 * @see #setClassifiedConstraint(IfcConstraint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraintClassificationRelationship_ClassifiedConstraint()
 	 * @see org.bimserver.models.ifc2x3.IfcConstraint#getClassifiedAs
-	 * @model opposite="ClassifiedAs" unsettable="true"
+	 * @model opposite="ClassifiedAs"
 	 * @generated
 	 */
 	IfcConstraint getClassifiedConstraint();
@@ -64,35 +62,10 @@ public interface IfcConstraintClassificationRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Classified Constraint</em>' reference.
-	 * @see #isSetClassifiedConstraint()
-	 * @see #unsetClassifiedConstraint()
 	 * @see #getClassifiedConstraint()
 	 * @generated
 	 */
 	void setClassifiedConstraint(IfcConstraint value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintClassificationRelationship#getClassifiedConstraint <em>Classified Constraint</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetClassifiedConstraint()
-	 * @see #getClassifiedConstraint()
-	 * @see #setClassifiedConstraint(IfcConstraint)
-	 * @generated
-	 */
-	void unsetClassifiedConstraint();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintClassificationRelationship#getClassifiedConstraint <em>Classified Constraint</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Classified Constraint</em>' reference is set.
-	 * @see #unsetClassifiedConstraint()
-	 * @see #getClassifiedConstraint()
-	 * @see #setClassifiedConstraint(IfcConstraint)
-	 * @generated
-	 */
-	boolean isSetClassifiedConstraint();
 
 	/**
 	 * Returns the value of the '<em><b>Related Classifications</b></em>' reference list.
@@ -104,33 +77,10 @@ public interface IfcConstraintClassificationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Classifications</em>' reference list.
-	 * @see #isSetRelatedClassifications()
-	 * @see #unsetRelatedClassifications()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraintClassificationRelationship_RelatedClassifications()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcClassificationNotationSelect> getRelatedClassifications();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintClassificationRelationship#getRelatedClassifications <em>Related Classifications</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedClassifications()
-	 * @see #getRelatedClassifications()
-	 * @generated
-	 */
-	void unsetRelatedClassifications();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraintClassificationRelationship#getRelatedClassifications <em>Related Classifications</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Classifications</em>' reference list is set.
-	 * @see #unsetRelatedClassifications()
-	 * @see #getRelatedClassifications()
-	 * @generated
-	 */
-	boolean isSetRelatedClassifications();
 
 } // IfcConstraintClassificationRelationship

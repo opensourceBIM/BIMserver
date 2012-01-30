@@ -150,11 +150,9 @@ public interface IfcTextStyle extends IfcPresentationStyle, IfcPresentationStyle
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Text Font Style</em>' reference.
-	 * @see #isSetTextFontStyle()
-	 * @see #unsetTextFontStyle()
 	 * @see #setTextFontStyle(IfcTextFontSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextStyle_TextFontStyle()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcTextFontSelect getTextFontStyle();
@@ -164,34 +162,9 @@ public interface IfcTextStyle extends IfcPresentationStyle, IfcPresentationStyle
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Text Font Style</em>' reference.
-	 * @see #isSetTextFontStyle()
-	 * @see #unsetTextFontStyle()
 	 * @see #getTextFontStyle()
 	 * @generated
 	 */
 	void setTextFontStyle(IfcTextFontSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyle#getTextFontStyle <em>Text Font Style</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTextFontStyle()
-	 * @see #getTextFontStyle()
-	 * @see #setTextFontStyle(IfcTextFontSelect)
-	 * @generated
-	 */
-	void unsetTextFontStyle();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextStyle#getTextFontStyle <em>Text Font Style</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Text Font Style</em>' reference is set.
-	 * @see #unsetTextFontStyle()
-	 * @see #getTextFontStyle()
-	 * @see #setTextFontStyle(IfcTextFontSelect)
-	 * @generated
-	 */
-	boolean isSetTextFontStyle();
 
 } // IfcTextStyle

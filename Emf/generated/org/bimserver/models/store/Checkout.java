@@ -33,7 +33,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Checkout#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.Checkout#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.Checkout#getCheckin <em>Checkin</em>}</li>
- *   <li>{@link org.bimserver.models.store.Checkout#isActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Checkout#getActive <em>Active</em>}</li>
  * </ul>
  * </p>
  *
@@ -186,21 +186,21 @@ public interface Checkout extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Active</em>' attribute.
-	 * @see #setActive(boolean)
+	 * @see #setActive(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getCheckout_Active()
 	 * @model
 	 * @generated
 	 */
-	boolean isActive();
+	Boolean getActive();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Checkout#isActive <em>Active</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Checkout#getActive <em>Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Active</em>' attribute.
-	 * @see #isActive()
+	 * @see #getActive()
 	 * @generated
 	 */
-	void setActive(boolean value);
+	void setActive(Boolean value);
 
 } // Checkout

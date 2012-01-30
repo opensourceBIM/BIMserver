@@ -81,45 +81,9 @@ public class IfcComplexPropertyImpl extends IfcPropertyImpl implements IfcComple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetUsageName() {
-		eUnset(Ifc2x3Package.Literals.IFC_COMPLEX_PROPERTY__USAGE_NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetUsageName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COMPLEX_PROPERTY__USAGE_NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getHasProperties() {
 		return (EList<IfcProperty>) eGet(Ifc2x3Package.Literals.IFC_COMPLEX_PROPERTY__HAS_PROPERTIES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetHasProperties() {
-		eUnset(Ifc2x3Package.Literals.IFC_COMPLEX_PROPERTY__HAS_PROPERTIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetHasProperties() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COMPLEX_PROPERTY__HAS_PROPERTIES);
 	}
 
 } //IfcComplexPropertyImpl

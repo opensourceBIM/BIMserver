@@ -73,22 +73,4 @@ public class IfcSymbolStyleImpl extends IfcPresentationStyleImpl implements IfcS
 		eSet(Ifc2x3Package.Literals.IFC_SYMBOL_STYLE__STYLE_OF_SYMBOL, newStyleOfSymbol);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetStyleOfSymbol() {
-		eUnset(Ifc2x3Package.Literals.IFC_SYMBOL_STYLE__STYLE_OF_SYMBOL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStyleOfSymbol() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SYMBOL_STYLE__STYLE_OF_SYMBOL);
-	}
-
 } //IfcSymbolStyleImpl

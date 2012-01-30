@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.CompileResult#isCompileOke <em>Compile Oke</em>}</li>
+ *   <li>{@link org.bimserver.models.store.CompileResult#getCompileOke <em>Compile Oke</em>}</li>
  *   <li>{@link org.bimserver.models.store.CompileResult#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.CompileResult#getErrors <em>Errors</em>}</li>
  * </ul>
@@ -49,22 +49,22 @@ public interface CompileResult extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Compile Oke</em>' attribute.
-	 * @see #setCompileOke(boolean)
+	 * @see #setCompileOke(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getCompileResult_CompileOke()
 	 * @model
 	 * @generated
 	 */
-	boolean isCompileOke();
+	Boolean getCompileOke();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.CompileResult#isCompileOke <em>Compile Oke</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.CompileResult#getCompileOke <em>Compile Oke</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Compile Oke</em>' attribute.
-	 * @see #isCompileOke()
+	 * @see #getCompileOke()
 	 * @generated
 	 */
-	void setCompileOke(boolean value);
+	void setCompileOke(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Warnings</b></em>' attribute list.

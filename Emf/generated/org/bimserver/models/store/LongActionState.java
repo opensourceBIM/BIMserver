@@ -46,12 +46,12 @@ public interface LongActionState extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Progress</em>' attribute.
-	 * @see #setProgress(int)
+	 * @see #setProgress(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getLongActionState_Progress()
 	 * @model
 	 * @generated
 	 */
-	int getProgress();
+	Integer getProgress();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.LongActionState#getProgress <em>Progress</em>}' attribute.
@@ -61,7 +61,7 @@ public interface LongActionState extends IdEObject {
 	 * @see #getProgress()
 	 * @generated
 	 */
-	void setProgress(int value);
+	void setProgress(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.

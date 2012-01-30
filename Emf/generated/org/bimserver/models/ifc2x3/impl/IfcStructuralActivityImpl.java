@@ -82,24 +82,6 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetAppliedLoad() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTIVITY__APPLIED_LOAD);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAppliedLoad() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTIVITY__APPLIED_LOAD);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcGlobalOrLocalEnum getGlobalOrLocal() {
 		return (IfcGlobalOrLocalEnum) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTIVITY__GLOBAL_OR_LOCAL, true);
 	}
@@ -111,24 +93,6 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 */
 	public void setGlobalOrLocal(IfcGlobalOrLocalEnum newGlobalOrLocal) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTIVITY__GLOBAL_OR_LOCAL, newGlobalOrLocal);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetGlobalOrLocal() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTIVITY__GLOBAL_OR_LOCAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetGlobalOrLocal() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTIVITY__GLOBAL_OR_LOCAL);
 	}
 
 	/**

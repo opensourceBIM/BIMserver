@@ -83,24 +83,6 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetBasisSurface() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__BASIS_SURFACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBasisSurface() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__BASIS_SURFACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getPointParameterU() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_U, true);
 	}
@@ -112,24 +94,6 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 */
 	public void setPointParameterU(double newPointParameterU) {
 		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_U, newPointParameterU);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPointParameterU() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_U);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPointParameterU() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_U);
 	}
 
 	/**
@@ -155,24 +119,6 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPointParameterUAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_UAS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPointParameterUAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_UAS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getPointParameterV() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_V, true);
 	}
@@ -191,24 +137,6 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPointParameterV() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_V);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPointParameterV() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_V);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getPointParameterVAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_VAS_STRING, true);
 	}
@@ -220,24 +148,6 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 */
 	public void setPointParameterVAsString(String newPointParameterVAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_VAS_STRING, newPointParameterVAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPointParameterVAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_VAS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPointParameterVAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_VAS_STRING);
 	}
 
 	/**

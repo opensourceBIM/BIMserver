@@ -42,11 +42,9 @@ public interface IfcRelAssociatesApproval extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Approval</em>' reference.
-	 * @see #isSetRelatingApproval()
-	 * @see #unsetRelatingApproval()
 	 * @see #setRelatingApproval(IfcApproval)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesApproval_RelatingApproval()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcApproval getRelatingApproval();
@@ -56,34 +54,9 @@ public interface IfcRelAssociatesApproval extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Approval</em>' reference.
-	 * @see #isSetRelatingApproval()
-	 * @see #unsetRelatingApproval()
 	 * @see #getRelatingApproval()
 	 * @generated
 	 */
 	void setRelatingApproval(IfcApproval value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesApproval#getRelatingApproval <em>Relating Approval</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingApproval()
-	 * @see #getRelatingApproval()
-	 * @see #setRelatingApproval(IfcApproval)
-	 * @generated
-	 */
-	void unsetRelatingApproval();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesApproval#getRelatingApproval <em>Relating Approval</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Approval</em>' reference is set.
-	 * @see #unsetRelatingApproval()
-	 * @see #getRelatingApproval()
-	 * @see #setRelatingApproval(IfcApproval)
-	 * @generated
-	 */
-	boolean isSetRelatingApproval();
 
 } // IfcRelAssociatesApproval

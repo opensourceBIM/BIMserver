@@ -102,24 +102,6 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetContextOfItems() {
-		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetContextOfItems() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getRepresentationIdentifier() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION__REPRESENTATION_IDENTIFIER, true);
 	}
@@ -195,24 +177,6 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationItem> getItems() {
 		return (EList<IfcRepresentationItem>) eGet(Ifc2x3Package.Literals.IFC_REPRESENTATION__ITEMS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetItems() {
-		eUnset(Ifc2x3Package.Literals.IFC_REPRESENTATION__ITEMS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetItems() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REPRESENTATION__ITEMS);
 	}
 
 	/**

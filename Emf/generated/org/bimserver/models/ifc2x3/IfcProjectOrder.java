@@ -44,11 +44,9 @@ public interface IfcProjectOrder extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ID</em>' attribute.
-	 * @see #isSetID()
-	 * @see #unsetID()
 	 * @see #setID(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProjectOrder_ID()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getID();
@@ -58,35 +56,10 @@ public interface IfcProjectOrder extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>ID</em>' attribute.
-	 * @see #isSetID()
-	 * @see #unsetID()
 	 * @see #getID()
 	 * @generated
 	 */
 	void setID(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrder#getID <em>ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetID()
-	 * @see #getID()
-	 * @see #setID(String)
-	 * @generated
-	 */
-	void unsetID();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrder#getID <em>ID</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>ID</em>' attribute is set.
-	 * @see #unsetID()
-	 * @see #getID()
-	 * @see #setID(String)
-	 * @generated
-	 */
-	boolean isSetID();
 
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
@@ -99,11 +72,9 @@ public interface IfcProjectOrder extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProjectOrderTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcProjectOrderTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProjectOrder_PredefinedType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcProjectOrderTypeEnum getPredefinedType();
@@ -114,35 +85,10 @@ public interface IfcProjectOrder extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcProjectOrderTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcProjectOrderTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrder#getPredefinedType <em>Predefined Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcProjectOrderTypeEnum)
-	 * @generated
-	 */
-	void unsetPredefinedType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProjectOrder#getPredefinedType <em>Predefined Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
-	 * @see #unsetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcProjectOrderTypeEnum)
-	 * @generated
-	 */
-	boolean isSetPredefinedType();
 
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.

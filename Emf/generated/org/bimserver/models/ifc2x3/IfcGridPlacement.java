@@ -43,11 +43,9 @@ public interface IfcGridPlacement extends IfcObjectPlacement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Placement Location</em>' reference.
-	 * @see #isSetPlacementLocation()
-	 * @see #unsetPlacementLocation()
 	 * @see #setPlacementLocation(IfcVirtualGridIntersection)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridPlacement_PlacementLocation()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcVirtualGridIntersection getPlacementLocation();
@@ -57,35 +55,10 @@ public interface IfcGridPlacement extends IfcObjectPlacement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Placement Location</em>' reference.
-	 * @see #isSetPlacementLocation()
-	 * @see #unsetPlacementLocation()
 	 * @see #getPlacementLocation()
 	 * @generated
 	 */
 	void setPlacementLocation(IfcVirtualGridIntersection value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridPlacement#getPlacementLocation <em>Placement Location</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPlacementLocation()
-	 * @see #getPlacementLocation()
-	 * @see #setPlacementLocation(IfcVirtualGridIntersection)
-	 * @generated
-	 */
-	void unsetPlacementLocation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridPlacement#getPlacementLocation <em>Placement Location</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Placement Location</em>' reference is set.
-	 * @see #unsetPlacementLocation()
-	 * @see #getPlacementLocation()
-	 * @see #setPlacementLocation(IfcVirtualGridIntersection)
-	 * @generated
-	 */
-	boolean isSetPlacementLocation();
 
 	/**
 	 * Returns the value of the '<em><b>Placement Ref Direction</b></em>' reference.

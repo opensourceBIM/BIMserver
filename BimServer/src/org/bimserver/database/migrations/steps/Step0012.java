@@ -28,12 +28,12 @@ public class Step0012 extends Migration {
 	@Override
 	public void migrate(Schema schema) {
 		EClass compileResultClass = schema.createEClass(schema.getEPackage("store"), "CompileResult");
-		schema.createEAttribute(compileResultClass, "compileOke", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(compileResultClass, "compileOke", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(compileResultClass, "warnings", ecorePackage.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(compileResultClass, "errors", ecorePackage.getEString(), Multiplicity.MANY);
 
 		EClass runResultClass = schema.createEClass(schema.getEPackage("store"), "RunResult");
-		schema.createEAttribute(runResultClass, "runOke", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(runResultClass, "runOke", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(runResultClass, "warnings", ecorePackage.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(runResultClass, "errors", ecorePackage.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(runResultClass, "output", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -51,9 +51,9 @@ public class Step0012 extends Migration {
 		schema.createEAttribute(serverInfoClass, "errorMessage", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
 		EClass versionInfoClass = schema.createEClass(schema.getEPackage("store"), "Version");
-		schema.createEAttribute(versionInfoClass, "major", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(versionInfoClass, "minor", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(versionInfoClass, "revision", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "major", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "minor", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "revision", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "downloadUrl", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "supportUrl", ecorePackage.getEString(), Multiplicity.SINGLE);

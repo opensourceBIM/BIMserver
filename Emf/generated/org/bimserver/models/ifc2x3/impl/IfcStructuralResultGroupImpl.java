@@ -86,24 +86,6 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetTheoryType() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__THEORY_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTheoryType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__THEORY_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcStructuralLoadGroup getResultForLoadGroup() {
 		return (IfcStructuralLoadGroup) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_FOR_LOAD_GROUP, true);
 	}
@@ -151,24 +133,6 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 */
 	public void setIsLinear(Tristate newIsLinear) {
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__IS_LINEAR, newIsLinear);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetIsLinear() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__IS_LINEAR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIsLinear() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__IS_LINEAR);
 	}
 
 	/**

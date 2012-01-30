@@ -49,35 +49,12 @@ public interface IfcMaterialLayerSet extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Material Layers</em>' reference list.
-	 * @see #isSetMaterialLayers()
-	 * @see #unsetMaterialLayers()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSet_MaterialLayers()
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialLayer#getToMaterialLayerSet
-	 * @model opposite="ToMaterialLayerSet" unsettable="true"
+	 * @model opposite="ToMaterialLayerSet"
 	 * @generated
 	 */
 	EList<IfcMaterialLayer> getMaterialLayers();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getMaterialLayers <em>Material Layers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMaterialLayers()
-	 * @see #getMaterialLayers()
-	 * @generated
-	 */
-	void unsetMaterialLayers();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSet#getMaterialLayers <em>Material Layers</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Material Layers</em>' reference list is set.
-	 * @see #unsetMaterialLayers()
-	 * @see #getMaterialLayers()
-	 * @generated
-	 */
-	boolean isSetMaterialLayers();
 
 	/**
 	 * Returns the value of the '<em><b>Layer Set Name</b></em>' attribute.

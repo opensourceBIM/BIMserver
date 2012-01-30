@@ -45,11 +45,9 @@ public interface IfcMaterialProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Material</em>' reference.
-	 * @see #isSetMaterial()
-	 * @see #unsetMaterial()
 	 * @see #setMaterial(IfcMaterial)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialProperties_Material()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcMaterial getMaterial();
@@ -59,34 +57,9 @@ public interface IfcMaterialProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Material</em>' reference.
-	 * @see #isSetMaterial()
-	 * @see #unsetMaterial()
 	 * @see #getMaterial()
 	 * @generated
 	 */
 	void setMaterial(IfcMaterial value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialProperties#getMaterial <em>Material</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMaterial()
-	 * @see #getMaterial()
-	 * @see #setMaterial(IfcMaterial)
-	 * @generated
-	 */
-	void unsetMaterial();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialProperties#getMaterial <em>Material</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Material</em>' reference is set.
-	 * @see #unsetMaterial()
-	 * @see #getMaterial()
-	 * @see #setMaterial(IfcMaterial)
-	 * @generated
-	 */
-	boolean isSetMaterial();
 
 } // IfcMaterialProperties

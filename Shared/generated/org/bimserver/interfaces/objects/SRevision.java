@@ -175,11 +175,11 @@ public class SRevision implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private int id;
+	private java.lang.Integer id;
 	private long userId;
 	private java.util.Date date;
 	private java.lang.String comment;
-	private long size;
+	private java.lang.Long size;
 	private List<Long> concreteRevisions = new ArrayList<Long>();
 	private long lastConcreteRevisionId;
 	private List<Long> checkouts = new ArrayList<Long>();
@@ -188,14 +188,14 @@ public class SRevision implements SBase
 	private List<Long> lastClashes = new ArrayList<Long>();
 	private java.lang.String tag;
 	private java.lang.String lastError;
-	private int bmi;
-	private int nrClashes;
-	private long laid;
-	public int getId() {
+	private java.lang.Integer bmi;
+	private java.lang.Integer nrClashes;
+	private java.lang.Long laid;
+	public java.lang.Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 	}
 	public long getUserId() {
@@ -220,11 +220,11 @@ public class SRevision implements SBase
 	public void setComment(java.lang.String comment) {
 		this.comment = comment;
 	}
-	public long getSize() {
+	public java.lang.Long getSize() {
 		return size;
 	}
 
-	public void setSize(long size) {
+	public void setSize(java.lang.Long size) {
 		this.size = size;
 	}
 	public List<Long> getConcreteRevisions() {
@@ -285,25 +285,25 @@ public class SRevision implements SBase
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
 	}
-	public int getBmi() {
+	public java.lang.Integer getBmi() {
 		return bmi;
 	}
 
-	public void setBmi(int bmi) {
+	public void setBmi(java.lang.Integer bmi) {
 		this.bmi = bmi;
 	}
-	public int getNrClashes() {
+	public java.lang.Integer getNrClashes() {
 		return nrClashes;
 	}
 
-	public void setNrClashes(int nrClashes) {
+	public void setNrClashes(java.lang.Integer nrClashes) {
 		this.nrClashes = nrClashes;
 	}
-	public long getLaid() {
+	public java.lang.Long getLaid() {
 		return laid;
 	}
 
-	public void setLaid(long laid) {
+	public void setLaid(java.lang.Long laid) {
 		this.laid = laid;
 	}
 	@Override

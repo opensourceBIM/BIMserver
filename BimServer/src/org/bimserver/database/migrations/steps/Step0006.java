@@ -39,6 +39,6 @@ public class Step0006 extends Migration {
 		
 		EClass settingsClass = schema.getEClass("store", "Settings");
 		schema.createEAttribute(settingsClass, "mergeIdentifier", mergeIdentifierEnum, Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "cacheOutputFiles", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "cacheOutputFiles", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 	}
 }

@@ -89,24 +89,6 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetShapeRepresentations() {
-		eUnset(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__SHAPE_REPRESENTATIONS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetShapeRepresentations() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__SHAPE_REPRESENTATIONS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getName() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__NAME, true);
 	}
@@ -197,24 +179,6 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetProductDefinitional() {
-		eUnset(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetProductDefinitional() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcProductDefinitionShape getPartOfProductDefinitionShape() {
 		return (IfcProductDefinitionShape) eGet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
 	}
@@ -226,24 +190,6 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 */
 	public void setPartOfProductDefinitionShape(IfcProductDefinitionShape newPartOfProductDefinitionShape) {
 		eSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, newPartOfProductDefinitionShape);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPartOfProductDefinitionShape() {
-		eUnset(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPartOfProductDefinitionShape() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE);
 	}
 
 } //IfcShapeAspectImpl

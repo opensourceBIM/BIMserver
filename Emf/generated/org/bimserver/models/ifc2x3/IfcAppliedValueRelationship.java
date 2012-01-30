@@ -52,12 +52,10 @@ public interface IfcAppliedValueRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Component Of Total</em>' reference.
-	 * @see #isSetComponentOfTotal()
-	 * @see #unsetComponentOfTotal()
 	 * @see #setComponentOfTotal(IfcAppliedValue)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAppliedValueRelationship_ComponentOfTotal()
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValue#getValueOfComponents
-	 * @model opposite="ValueOfComponents" unsettable="true"
+	 * @model opposite="ValueOfComponents"
 	 * @generated
 	 */
 	IfcAppliedValue getComponentOfTotal();
@@ -67,35 +65,10 @@ public interface IfcAppliedValueRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Component Of Total</em>' reference.
-	 * @see #isSetComponentOfTotal()
-	 * @see #unsetComponentOfTotal()
 	 * @see #getComponentOfTotal()
 	 * @generated
 	 */
 	void setComponentOfTotal(IfcAppliedValue value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getComponentOfTotal <em>Component Of Total</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetComponentOfTotal()
-	 * @see #getComponentOfTotal()
-	 * @see #setComponentOfTotal(IfcAppliedValue)
-	 * @generated
-	 */
-	void unsetComponentOfTotal();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getComponentOfTotal <em>Component Of Total</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Component Of Total</em>' reference is set.
-	 * @see #unsetComponentOfTotal()
-	 * @see #getComponentOfTotal()
-	 * @see #setComponentOfTotal(IfcAppliedValue)
-	 * @generated
-	 */
-	boolean isSetComponentOfTotal();
 
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' reference list.
@@ -108,35 +81,12 @@ public interface IfcAppliedValueRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Components</em>' reference list.
-	 * @see #isSetComponents()
-	 * @see #unsetComponents()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAppliedValueRelationship_Components()
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValue#getIsComponentIn
-	 * @model opposite="IsComponentIn" unsettable="true"
+	 * @model opposite="IsComponentIn"
 	 * @generated
 	 */
 	EList<IfcAppliedValue> getComponents();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getComponents <em>Components</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetComponents()
-	 * @see #getComponents()
-	 * @generated
-	 */
-	void unsetComponents();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getComponents <em>Components</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Components</em>' reference list is set.
-	 * @see #unsetComponents()
-	 * @see #getComponents()
-	 * @generated
-	 */
-	boolean isSetComponents();
 
 	/**
 	 * Returns the value of the '<em><b>Arithmetic Operator</b></em>' attribute.
@@ -149,11 +99,9 @@ public interface IfcAppliedValueRelationship extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Arithmetic Operator</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcArithmeticOperatorEnum
-	 * @see #isSetArithmeticOperator()
-	 * @see #unsetArithmeticOperator()
 	 * @see #setArithmeticOperator(IfcArithmeticOperatorEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAppliedValueRelationship_ArithmeticOperator()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcArithmeticOperatorEnum getArithmeticOperator();
@@ -164,35 +112,10 @@ public interface IfcAppliedValueRelationship extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Arithmetic Operator</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcArithmeticOperatorEnum
-	 * @see #isSetArithmeticOperator()
-	 * @see #unsetArithmeticOperator()
 	 * @see #getArithmeticOperator()
 	 * @generated
 	 */
 	void setArithmeticOperator(IfcArithmeticOperatorEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getArithmeticOperator <em>Arithmetic Operator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetArithmeticOperator()
-	 * @see #getArithmeticOperator()
-	 * @see #setArithmeticOperator(IfcArithmeticOperatorEnum)
-	 * @generated
-	 */
-	void unsetArithmeticOperator();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAppliedValueRelationship#getArithmeticOperator <em>Arithmetic Operator</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Arithmetic Operator</em>' attribute is set.
-	 * @see #unsetArithmeticOperator()
-	 * @see #getArithmeticOperator()
-	 * @see #setArithmeticOperator(IfcArithmeticOperatorEnum)
-	 * @generated
-	 */
-	boolean isSetArithmeticOperator();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

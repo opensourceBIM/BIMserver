@@ -84,7 +84,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
+	public Integer getId() {
 		return (Integer) eGet(StorePackage.Literals.CONCRETE_REVISION__ID, true);
 	}
 
@@ -93,7 +93,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
+	public void setId(Integer newId) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__ID, newId);
 	}
 
@@ -166,7 +166,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getSize() {
+	public Long getSize() {
 		return (Long) eGet(StorePackage.Literals.CONCRETE_REVISION__SIZE, true);
 	}
 
@@ -175,7 +175,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(long newSize) {
+	public void setSize(Long newSize) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__SIZE, newSize);
 	}
 

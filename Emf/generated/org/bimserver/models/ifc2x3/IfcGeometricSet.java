@@ -46,34 +46,11 @@ public interface IfcGeometricSet extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' reference list.
-	 * @see #isSetElements()
-	 * @see #unsetElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricSet_Elements()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcGeometricSetSelect> getElements();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricSet#getElements <em>Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetElements()
-	 * @see #getElements()
-	 * @generated
-	 */
-	void unsetElements();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricSet#getElements <em>Elements</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Elements</em>' reference list is set.
-	 * @see #unsetElements()
-	 * @see #getElements()
-	 * @generated
-	 */
-	boolean isSetElements();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

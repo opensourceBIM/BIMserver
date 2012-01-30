@@ -85,22 +85,4 @@ public class IfcMonetaryUnitImpl extends IdEObjectImpl implements IfcMonetaryUni
 		eSet(Ifc2x3Package.Literals.IFC_MONETARY_UNIT__CURRENCY, newCurrency);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetCurrency() {
-		eUnset(Ifc2x3Package.Literals.IFC_MONETARY_UNIT__CURRENCY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCurrency() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_MONETARY_UNIT__CURRENCY);
-	}
-
 } //IfcMonetaryUnitImpl

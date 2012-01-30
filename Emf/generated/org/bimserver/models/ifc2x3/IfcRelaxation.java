@@ -48,11 +48,9 @@ public interface IfcRelaxation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relaxation Value</em>' attribute.
-	 * @see #isSetRelaxationValue()
-	 * @see #unsetRelaxationValue()
 	 * @see #setRelaxationValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelaxation_RelaxationValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getRelaxationValue();
@@ -62,35 +60,10 @@ public interface IfcRelaxation extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relaxation Value</em>' attribute.
-	 * @see #isSetRelaxationValue()
-	 * @see #unsetRelaxationValue()
 	 * @see #getRelaxationValue()
 	 * @generated
 	 */
 	void setRelaxationValue(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getRelaxationValue <em>Relaxation Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelaxationValue()
-	 * @see #getRelaxationValue()
-	 * @see #setRelaxationValue(double)
-	 * @generated
-	 */
-	void unsetRelaxationValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getRelaxationValue <em>Relaxation Value</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relaxation Value</em>' attribute is set.
-	 * @see #unsetRelaxationValue()
-	 * @see #getRelaxationValue()
-	 * @see #setRelaxationValue(double)
-	 * @generated
-	 */
-	boolean isSetRelaxationValue();
 
 	/**
 	 * Returns the value of the '<em><b>Relaxation Value As String</b></em>' attribute.
@@ -101,11 +74,9 @@ public interface IfcRelaxation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relaxation Value As String</em>' attribute.
-	 * @see #isSetRelaxationValueAsString()
-	 * @see #unsetRelaxationValueAsString()
 	 * @see #setRelaxationValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelaxation_RelaxationValueAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getRelaxationValueAsString();
@@ -115,35 +86,10 @@ public interface IfcRelaxation extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relaxation Value As String</em>' attribute.
-	 * @see #isSetRelaxationValueAsString()
-	 * @see #unsetRelaxationValueAsString()
 	 * @see #getRelaxationValueAsString()
 	 * @generated
 	 */
 	void setRelaxationValueAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getRelaxationValueAsString <em>Relaxation Value As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelaxationValueAsString()
-	 * @see #getRelaxationValueAsString()
-	 * @see #setRelaxationValueAsString(String)
-	 * @generated
-	 */
-	void unsetRelaxationValueAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getRelaxationValueAsString <em>Relaxation Value As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relaxation Value As String</em>' attribute is set.
-	 * @see #unsetRelaxationValueAsString()
-	 * @see #getRelaxationValueAsString()
-	 * @see #setRelaxationValueAsString(String)
-	 * @generated
-	 */
-	boolean isSetRelaxationValueAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Initial Stress</b></em>' attribute.
@@ -154,11 +100,9 @@ public interface IfcRelaxation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Stress</em>' attribute.
-	 * @see #isSetInitialStress()
-	 * @see #unsetInitialStress()
 	 * @see #setInitialStress(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelaxation_InitialStress()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getInitialStress();
@@ -168,35 +112,10 @@ public interface IfcRelaxation extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initial Stress</em>' attribute.
-	 * @see #isSetInitialStress()
-	 * @see #unsetInitialStress()
 	 * @see #getInitialStress()
 	 * @generated
 	 */
 	void setInitialStress(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getInitialStress <em>Initial Stress</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetInitialStress()
-	 * @see #getInitialStress()
-	 * @see #setInitialStress(double)
-	 * @generated
-	 */
-	void unsetInitialStress();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getInitialStress <em>Initial Stress</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Initial Stress</em>' attribute is set.
-	 * @see #unsetInitialStress()
-	 * @see #getInitialStress()
-	 * @see #setInitialStress(double)
-	 * @generated
-	 */
-	boolean isSetInitialStress();
 
 	/**
 	 * Returns the value of the '<em><b>Initial Stress As String</b></em>' attribute.
@@ -207,11 +126,9 @@ public interface IfcRelaxation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Stress As String</em>' attribute.
-	 * @see #isSetInitialStressAsString()
-	 * @see #unsetInitialStressAsString()
 	 * @see #setInitialStressAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelaxation_InitialStressAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getInitialStressAsString();
@@ -221,34 +138,9 @@ public interface IfcRelaxation extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initial Stress As String</em>' attribute.
-	 * @see #isSetInitialStressAsString()
-	 * @see #unsetInitialStressAsString()
 	 * @see #getInitialStressAsString()
 	 * @generated
 	 */
 	void setInitialStressAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getInitialStressAsString <em>Initial Stress As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetInitialStressAsString()
-	 * @see #getInitialStressAsString()
-	 * @see #setInitialStressAsString(String)
-	 * @generated
-	 */
-	void unsetInitialStressAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelaxation#getInitialStressAsString <em>Initial Stress As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Initial Stress As String</em>' attribute is set.
-	 * @see #unsetInitialStressAsString()
-	 * @see #getInitialStressAsString()
-	 * @see #setInitialStressAsString(String)
-	 * @generated
-	 */
-	boolean isSetInitialStressAsString();
 
 } // IfcRelaxation

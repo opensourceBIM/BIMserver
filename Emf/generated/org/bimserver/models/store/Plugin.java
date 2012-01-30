@@ -27,7 +27,7 @@ import org.bimserver.emf.IdEObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.Plugin#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.Plugin#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Plugin#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.Plugin#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -73,22 +73,22 @@ public interface Plugin extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(boolean)
+	 * @see #setEnabled(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getPlugin_Enabled()
 	 * @model
 	 * @generated
 	 */
-	boolean isEnabled();
+	Boolean getEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Plugin#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Plugin#getEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #isEnabled()
+	 * @see #getEnabled()
 	 * @generated
 	 */
-	void setEnabled(boolean value);
+	void setEnabled(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Settings</b></em>' reference.

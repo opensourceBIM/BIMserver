@@ -53,11 +53,9 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLoadGroupTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #setPredefinedType(IfcLoadGroupTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadGroup_PredefinedType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcLoadGroupTypeEnum getPredefinedType();
@@ -68,35 +66,10 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Predefined Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLoadGroupTypeEnum
-	 * @see #isSetPredefinedType()
-	 * @see #unsetPredefinedType()
 	 * @see #getPredefinedType()
 	 * @generated
 	 */
 	void setPredefinedType(IfcLoadGroupTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getPredefinedType <em>Predefined Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcLoadGroupTypeEnum)
-	 * @generated
-	 */
-	void unsetPredefinedType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getPredefinedType <em>Predefined Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Predefined Type</em>' attribute is set.
-	 * @see #unsetPredefinedType()
-	 * @see #getPredefinedType()
-	 * @see #setPredefinedType(IfcLoadGroupTypeEnum)
-	 * @generated
-	 */
-	boolean isSetPredefinedType();
 
 	/**
 	 * Returns the value of the '<em><b>Action Type</b></em>' attribute.
@@ -109,11 +82,9 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Action Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcActionTypeEnum
-	 * @see #isSetActionType()
-	 * @see #unsetActionType()
 	 * @see #setActionType(IfcActionTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadGroup_ActionType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcActionTypeEnum getActionType();
@@ -124,35 +95,10 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Action Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcActionTypeEnum
-	 * @see #isSetActionType()
-	 * @see #unsetActionType()
 	 * @see #getActionType()
 	 * @generated
 	 */
 	void setActionType(IfcActionTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getActionType <em>Action Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetActionType()
-	 * @see #getActionType()
-	 * @see #setActionType(IfcActionTypeEnum)
-	 * @generated
-	 */
-	void unsetActionType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getActionType <em>Action Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Action Type</em>' attribute is set.
-	 * @see #unsetActionType()
-	 * @see #getActionType()
-	 * @see #setActionType(IfcActionTypeEnum)
-	 * @generated
-	 */
-	boolean isSetActionType();
 
 	/**
 	 * Returns the value of the '<em><b>Action Source</b></em>' attribute.
@@ -165,11 +111,9 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Action Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcActionSourceTypeEnum
-	 * @see #isSetActionSource()
-	 * @see #unsetActionSource()
 	 * @see #setActionSource(IfcActionSourceTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralLoadGroup_ActionSource()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcActionSourceTypeEnum getActionSource();
@@ -180,35 +124,10 @@ public interface IfcStructuralLoadGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Action Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcActionSourceTypeEnum
-	 * @see #isSetActionSource()
-	 * @see #unsetActionSource()
 	 * @see #getActionSource()
 	 * @generated
 	 */
 	void setActionSource(IfcActionSourceTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getActionSource <em>Action Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetActionSource()
-	 * @see #getActionSource()
-	 * @see #setActionSource(IfcActionSourceTypeEnum)
-	 * @generated
-	 */
-	void unsetActionSource();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralLoadGroup#getActionSource <em>Action Source</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Action Source</em>' attribute is set.
-	 * @see #unsetActionSource()
-	 * @see #getActionSource()
-	 * @see #setActionSource(IfcActionSourceTypeEnum)
-	 * @generated
-	 */
-	boolean isSetActionSource();
 
 	/**
 	 * Returns the value of the '<em><b>Coefficient</b></em>' attribute.

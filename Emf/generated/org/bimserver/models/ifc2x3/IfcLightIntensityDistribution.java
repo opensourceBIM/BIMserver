@@ -47,11 +47,9 @@ public interface IfcLightIntensityDistribution extends IfcLightDistributionDataS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Light Distribution Curve</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLightDistributionCurveEnum
-	 * @see #isSetLightDistributionCurve()
-	 * @see #unsetLightDistributionCurve()
 	 * @see #setLightDistributionCurve(IfcLightDistributionCurveEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightIntensityDistribution_LightDistributionCurve()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcLightDistributionCurveEnum getLightDistributionCurve();
@@ -62,35 +60,10 @@ public interface IfcLightIntensityDistribution extends IfcLightDistributionDataS
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Light Distribution Curve</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLightDistributionCurveEnum
-	 * @see #isSetLightDistributionCurve()
-	 * @see #unsetLightDistributionCurve()
 	 * @see #getLightDistributionCurve()
 	 * @generated
 	 */
 	void setLightDistributionCurve(IfcLightDistributionCurveEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightIntensityDistribution#getLightDistributionCurve <em>Light Distribution Curve</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLightDistributionCurve()
-	 * @see #getLightDistributionCurve()
-	 * @see #setLightDistributionCurve(IfcLightDistributionCurveEnum)
-	 * @generated
-	 */
-	void unsetLightDistributionCurve();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightIntensityDistribution#getLightDistributionCurve <em>Light Distribution Curve</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Light Distribution Curve</em>' attribute is set.
-	 * @see #unsetLightDistributionCurve()
-	 * @see #getLightDistributionCurve()
-	 * @see #setLightDistributionCurve(IfcLightDistributionCurveEnum)
-	 * @generated
-	 */
-	boolean isSetLightDistributionCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Distribution Data</b></em>' reference list.
@@ -102,33 +75,10 @@ public interface IfcLightIntensityDistribution extends IfcLightDistributionDataS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distribution Data</em>' reference list.
-	 * @see #isSetDistributionData()
-	 * @see #unsetDistributionData()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightIntensityDistribution_DistributionData()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcLightDistributionData> getDistributionData();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightIntensityDistribution#getDistributionData <em>Distribution Data</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDistributionData()
-	 * @see #getDistributionData()
-	 * @generated
-	 */
-	void unsetDistributionData();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightIntensityDistribution#getDistributionData <em>Distribution Data</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Distribution Data</em>' reference list is set.
-	 * @see #unsetDistributionData()
-	 * @see #getDistributionData()
-	 * @generated
-	 */
-	boolean isSetDistributionData();
 
 } // IfcLightIntensityDistribution

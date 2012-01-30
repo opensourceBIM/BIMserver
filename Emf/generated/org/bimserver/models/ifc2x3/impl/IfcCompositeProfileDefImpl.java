@@ -73,24 +73,6 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetProfiles() {
-		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__PROFILES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetProfiles() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__PROFILES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getLabel() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL, true);
 	}

@@ -89,24 +89,6 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetInventoryType() {
-		eUnset(Ifc2x3Package.Literals.IFC_INVENTORY__INVENTORY_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInventoryType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_INVENTORY__INVENTORY_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcActorSelect getJurisdiction() {
 		return (IfcActorSelect) eGet(Ifc2x3Package.Literals.IFC_INVENTORY__JURISDICTION, true);
 	}
@@ -125,45 +107,9 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetJurisdiction() {
-		eUnset(Ifc2x3Package.Literals.IFC_INVENTORY__JURISDICTION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetJurisdiction() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_INVENTORY__JURISDICTION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getResponsiblePersons() {
 		return (EList<IfcPerson>) eGet(Ifc2x3Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetResponsiblePersons() {
-		eUnset(Ifc2x3Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetResponsiblePersons() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS);
 	}
 
 	/**
@@ -182,24 +128,6 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 */
 	public void setLastUpdateDate(IfcCalendarDate newLastUpdateDate) {
 		eSet(Ifc2x3Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, newLastUpdateDate);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetLastUpdateDate() {
-		eUnset(Ifc2x3Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLastUpdateDate() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE);
 	}
 
 	/**

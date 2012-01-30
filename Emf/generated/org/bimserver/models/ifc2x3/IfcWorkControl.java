@@ -55,11 +55,9 @@ public interface IfcWorkControl extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
-	 * @see #isSetIdentifier()
-	 * @see #unsetIdentifier()
 	 * @see #setIdentifier(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWorkControl_Identifier()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getIdentifier();
@@ -69,35 +67,10 @@ public interface IfcWorkControl extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
-	 * @see #isSetIdentifier()
-	 * @see #unsetIdentifier()
 	 * @see #getIdentifier()
 	 * @generated
 	 */
 	void setIdentifier(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getIdentifier <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetIdentifier()
-	 * @see #getIdentifier()
-	 * @see #setIdentifier(String)
-	 * @generated
-	 */
-	void unsetIdentifier();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getIdentifier <em>Identifier</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Identifier</em>' attribute is set.
-	 * @see #unsetIdentifier()
-	 * @see #getIdentifier()
-	 * @see #setIdentifier(String)
-	 * @generated
-	 */
-	boolean isSetIdentifier();
 
 	/**
 	 * Returns the value of the '<em><b>Creation Date</b></em>' reference.
@@ -108,11 +81,9 @@ public interface IfcWorkControl extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Creation Date</em>' reference.
-	 * @see #isSetCreationDate()
-	 * @see #unsetCreationDate()
 	 * @see #setCreationDate(IfcDateTimeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWorkControl_CreationDate()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDateTimeSelect getCreationDate();
@@ -122,35 +93,10 @@ public interface IfcWorkControl extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Creation Date</em>' reference.
-	 * @see #isSetCreationDate()
-	 * @see #unsetCreationDate()
 	 * @see #getCreationDate()
 	 * @generated
 	 */
 	void setCreationDate(IfcDateTimeSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getCreationDate <em>Creation Date</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCreationDate()
-	 * @see #getCreationDate()
-	 * @see #setCreationDate(IfcDateTimeSelect)
-	 * @generated
-	 */
-	void unsetCreationDate();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getCreationDate <em>Creation Date</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Creation Date</em>' reference is set.
-	 * @see #unsetCreationDate()
-	 * @see #getCreationDate()
-	 * @see #setCreationDate(IfcDateTimeSelect)
-	 * @generated
-	 */
-	boolean isSetCreationDate();
 
 	/**
 	 * Returns the value of the '<em><b>Creators</b></em>' reference list.
@@ -465,11 +411,9 @@ public interface IfcWorkControl extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Time</em>' reference.
-	 * @see #isSetStartTime()
-	 * @see #unsetStartTime()
 	 * @see #setStartTime(IfcDateTimeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcWorkControl_StartTime()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDateTimeSelect getStartTime();
@@ -479,35 +423,10 @@ public interface IfcWorkControl extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Time</em>' reference.
-	 * @see #isSetStartTime()
-	 * @see #unsetStartTime()
 	 * @see #getStartTime()
 	 * @generated
 	 */
 	void setStartTime(IfcDateTimeSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getStartTime <em>Start Time</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetStartTime()
-	 * @see #getStartTime()
-	 * @see #setStartTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	void unsetStartTime();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcWorkControl#getStartTime <em>Start Time</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Start Time</em>' reference is set.
-	 * @see #unsetStartTime()
-	 * @see #getStartTime()
-	 * @see #setStartTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	boolean isSetStartTime();
 
 	/**
 	 * Returns the value of the '<em><b>Finish Time</b></em>' reference.

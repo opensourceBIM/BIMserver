@@ -133,49 +133,49 @@ public class SDatabaseInformation implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private int numberOfProjects;
-	private int numberOfUsers;
-	private int numberOfRevisions;
-	private int numberOfCheckouts;
-	private long databaseSizeInBytes;
+	private java.lang.Integer numberOfProjects;
+	private java.lang.Integer numberOfUsers;
+	private java.lang.Integer numberOfRevisions;
+	private java.lang.Integer numberOfCheckouts;
+	private java.lang.Long databaseSizeInBytes;
 	private java.lang.String type;
 	private java.util.Date created;
 	private java.lang.String location;
-	private int schemaVersion;
+	private java.lang.Integer schemaVersion;
 	private List<SDatabaseInformationCategory> categories = new ArrayList<SDatabaseInformationCategory>();
-	public int getNumberOfProjects() {
+	public java.lang.Integer getNumberOfProjects() {
 		return numberOfProjects;
 	}
 
-	public void setNumberOfProjects(int numberOfProjects) {
+	public void setNumberOfProjects(java.lang.Integer numberOfProjects) {
 		this.numberOfProjects = numberOfProjects;
 	}
-	public int getNumberOfUsers() {
+	public java.lang.Integer getNumberOfUsers() {
 		return numberOfUsers;
 	}
 
-	public void setNumberOfUsers(int numberOfUsers) {
+	public void setNumberOfUsers(java.lang.Integer numberOfUsers) {
 		this.numberOfUsers = numberOfUsers;
 	}
-	public int getNumberOfRevisions() {
+	public java.lang.Integer getNumberOfRevisions() {
 		return numberOfRevisions;
 	}
 
-	public void setNumberOfRevisions(int numberOfRevisions) {
+	public void setNumberOfRevisions(java.lang.Integer numberOfRevisions) {
 		this.numberOfRevisions = numberOfRevisions;
 	}
-	public int getNumberOfCheckouts() {
+	public java.lang.Integer getNumberOfCheckouts() {
 		return numberOfCheckouts;
 	}
 
-	public void setNumberOfCheckouts(int numberOfCheckouts) {
+	public void setNumberOfCheckouts(java.lang.Integer numberOfCheckouts) {
 		this.numberOfCheckouts = numberOfCheckouts;
 	}
-	public long getDatabaseSizeInBytes() {
+	public java.lang.Long getDatabaseSizeInBytes() {
 		return databaseSizeInBytes;
 	}
 
-	public void setDatabaseSizeInBytes(long databaseSizeInBytes) {
+	public void setDatabaseSizeInBytes(java.lang.Long databaseSizeInBytes) {
 		this.databaseSizeInBytes = databaseSizeInBytes;
 	}
 	public java.lang.String getType() {
@@ -199,11 +199,11 @@ public class SDatabaseInformation implements SBase
 	public void setLocation(java.lang.String location) {
 		this.location = location;
 	}
-	public int getSchemaVersion() {
+	public java.lang.Integer getSchemaVersion() {
 		return schemaVersion;
 	}
 
-	public void setSchemaVersion(int schemaVersion) {
+	public void setSchemaVersion(java.lang.Integer schemaVersion) {
 		this.schemaVersion = schemaVersion;
 	}
 	public List<SDatabaseInformationCategory> getCategories() {

@@ -80,24 +80,6 @@ public class IfcAnnotationSurfaceImpl extends IfcGeometricRepresentationItemImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetItem() {
-		eUnset(Ifc2x3Package.Literals.IFC_ANNOTATION_SURFACE__ITEM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetItem() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ANNOTATION_SURFACE__ITEM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcTextureCoordinate getTextureCoordinates() {
 		return (IfcTextureCoordinate) eGet(Ifc2x3Package.Literals.IFC_ANNOTATION_SURFACE__TEXTURE_COORDINATES, true);
 	}

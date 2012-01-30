@@ -62,10 +62,10 @@ public class SSerializer implements SBase
 			return getClassName();
 		}
 		if (sField.getName().equals("enabled")) {
-			return isEnabled();
+			return getEnabled();
 		}
 		if (sField.getName().equals("defaultSerializer")) {
-			return isDefaultSerializer();
+			return getDefaultSerializer();
 		}
 		if (sField.getName().equals("objectIDMId")) {
 			return getObjectIDMId();
@@ -134,8 +134,8 @@ public class SSerializer implements SBase
 	private java.lang.String extension;
 	private java.lang.String contentType;
 	private java.lang.String className;
-	private boolean enabled;
-	private boolean defaultSerializer;
+	private java.lang.Boolean enabled;
+	private java.lang.Boolean defaultSerializer;
 	private long objectIDMId;
 	private long settingsId;
 	private long ifcEngineId;
@@ -174,18 +174,18 @@ public class SSerializer implements SBase
 	public void setClassName(java.lang.String className) {
 		this.className = className;
 	}
-	public boolean isEnabled() {
+	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
-	public boolean isDefaultSerializer() {
+	public java.lang.Boolean getDefaultSerializer() {
 		return defaultSerializer;
 	}
 
-	public void setDefaultSerializer(boolean defaultSerializer) {
+	public void setDefaultSerializer(java.lang.Boolean defaultSerializer) {
 		this.defaultSerializer = defaultSerializer;
 	}
 	public long getObjectIDMId() {

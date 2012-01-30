@@ -73,22 +73,4 @@ public class IfcVertexLoopImpl extends IfcLoopImpl implements IfcVertexLoop {
 		eSet(Ifc2x3Package.Literals.IFC_VERTEX_LOOP__LOOP_VERTEX, newLoopVertex);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetLoopVertex() {
-		eUnset(Ifc2x3Package.Literals.IFC_VERTEX_LOOP__LOOP_VERTEX);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLoopVertex() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_VERTEX_LOOP__LOOP_VERTEX);
-	}
-
 } //IfcVertexLoopImpl

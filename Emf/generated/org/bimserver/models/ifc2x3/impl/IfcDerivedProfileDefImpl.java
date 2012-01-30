@@ -81,24 +81,6 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetParentProfile() {
-		eUnset(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetParentProfile() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcCartesianTransformationOperator2D getOperator() {
 		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, true);
 	}
@@ -110,24 +92,6 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public void setOperator(IfcCartesianTransformationOperator2D newOperator) {
 		eSet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, newOperator);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOperator() {
-		eUnset(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOperator() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR);
 	}
 
 	/**

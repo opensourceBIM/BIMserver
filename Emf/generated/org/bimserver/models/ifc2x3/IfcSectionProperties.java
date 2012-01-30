@@ -49,11 +49,9 @@ public interface IfcSectionProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Section Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSectionTypeEnum
-	 * @see #isSetSectionType()
-	 * @see #unsetSectionType()
 	 * @see #setSectionType(IfcSectionTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionProperties_SectionType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSectionTypeEnum getSectionType();
@@ -64,35 +62,10 @@ public interface IfcSectionProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Section Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSectionTypeEnum
-	 * @see #isSetSectionType()
-	 * @see #unsetSectionType()
 	 * @see #getSectionType()
 	 * @generated
 	 */
 	void setSectionType(IfcSectionTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionProperties#getSectionType <em>Section Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSectionType()
-	 * @see #getSectionType()
-	 * @see #setSectionType(IfcSectionTypeEnum)
-	 * @generated
-	 */
-	void unsetSectionType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionProperties#getSectionType <em>Section Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Section Type</em>' attribute is set.
-	 * @see #unsetSectionType()
-	 * @see #getSectionType()
-	 * @see #setSectionType(IfcSectionTypeEnum)
-	 * @generated
-	 */
-	boolean isSetSectionType();
 
 	/**
 	 * Returns the value of the '<em><b>Start Profile</b></em>' reference.
@@ -103,11 +76,9 @@ public interface IfcSectionProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Profile</em>' reference.
-	 * @see #isSetStartProfile()
-	 * @see #unsetStartProfile()
 	 * @see #setStartProfile(IfcProfileDef)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionProperties_StartProfile()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcProfileDef getStartProfile();
@@ -117,35 +88,10 @@ public interface IfcSectionProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Profile</em>' reference.
-	 * @see #isSetStartProfile()
-	 * @see #unsetStartProfile()
 	 * @see #getStartProfile()
 	 * @generated
 	 */
 	void setStartProfile(IfcProfileDef value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionProperties#getStartProfile <em>Start Profile</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetStartProfile()
-	 * @see #getStartProfile()
-	 * @see #setStartProfile(IfcProfileDef)
-	 * @generated
-	 */
-	void unsetStartProfile();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionProperties#getStartProfile <em>Start Profile</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Start Profile</em>' reference is set.
-	 * @see #unsetStartProfile()
-	 * @see #getStartProfile()
-	 * @see #setStartProfile(IfcProfileDef)
-	 * @generated
-	 */
-	boolean isSetStartProfile();
 
 	/**
 	 * Returns the value of the '<em><b>End Profile</b></em>' reference.

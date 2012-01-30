@@ -108,7 +108,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		ifcModel.setName("Unknown");
 		for (String guid : guids) {
 			if (!foundGuids.contains(guid)) {

@@ -100,24 +100,6 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPropertySource() {
-		eUnset(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__PROPERTY_SOURCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPropertySource() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__PROPERTY_SOURCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcTimeSeries getFlowConditionTimeSeries() {
 		return (IfcTimeSeries) eGet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__FLOW_CONDITION_TIME_SERIES, true);
 	}
@@ -237,24 +219,6 @@ public class IfcFluidFlowPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 */
 	public void setFluid(IfcMaterial newFluid) {
 		eSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__FLUID, newFluid);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetFluid() {
-		eUnset(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__FLUID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFluid() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_FLUID_FLOW_PROPERTIES__FLUID);
 	}
 
 	/**

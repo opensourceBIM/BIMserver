@@ -79,24 +79,6 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetLocation() {
-		eUnset(Ifc2x3Package.Literals.IFC_PLACEMENT__LOCATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLocation() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PLACEMENT__LOCATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_PLACEMENT__DIM, true);
 	}

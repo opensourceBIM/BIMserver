@@ -93,24 +93,6 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetApplicationDeveloper() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetApplicationDeveloper() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getVersion() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_APPLICATION__VERSION, true);
 	}
@@ -122,24 +104,6 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 */
 	public void setVersion(String newVersion) {
 		eSet(Ifc2x3Package.Literals.IFC_APPLICATION__VERSION, newVersion);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetVersion() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPLICATION__VERSION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetVersion() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLICATION__VERSION);
 	}
 
 	/**
@@ -165,24 +129,6 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetApplicationFullName() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetApplicationFullName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getApplicationIdentifier() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER, true);
 	}
@@ -194,24 +140,6 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 */
 	public void setApplicationIdentifier(String newApplicationIdentifier) {
 		eSet(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER, newApplicationIdentifier);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetApplicationIdentifier() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetApplicationIdentifier() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER);
 	}
 
 } //IfcApplicationImpl

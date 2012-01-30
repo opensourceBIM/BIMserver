@@ -46,34 +46,11 @@ public interface IfcFaceBasedSurfaceModel extends IfcGeometricRepresentationItem
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fbsm Faces</em>' reference list.
-	 * @see #isSetFbsmFaces()
-	 * @see #unsetFbsmFaces()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFaceBasedSurfaceModel_FbsmFaces()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcConnectedFaceSet> getFbsmFaces();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBasedSurfaceModel#getFbsmFaces <em>Fbsm Faces</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetFbsmFaces()
-	 * @see #getFbsmFaces()
-	 * @generated
-	 */
-	void unsetFbsmFaces();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBasedSurfaceModel#getFbsmFaces <em>Fbsm Faces</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Fbsm Faces</em>' reference list is set.
-	 * @see #unsetFbsmFaces()
-	 * @see #getFbsmFaces()
-	 * @generated
-	 */
-	boolean isSetFbsmFaces();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

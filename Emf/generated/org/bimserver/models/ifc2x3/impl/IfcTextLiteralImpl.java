@@ -81,24 +81,6 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetLiteral() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__LITERAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLiteral() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__LITERAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcAxis2Placement getPlacement() {
 		return (IfcAxis2Placement) eGet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__PLACEMENT, true);
 	}
@@ -117,24 +99,6 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPlacement() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__PLACEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPlacement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__PLACEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcTextPath getPath() {
 		return (IfcTextPath) eGet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__PATH, true);
 	}
@@ -146,24 +110,6 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setPath(IfcTextPath newPath) {
 		eSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__PATH, newPath);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPath() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__PATH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPath() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL__PATH);
 	}
 
 } //IfcTextLiteralImpl

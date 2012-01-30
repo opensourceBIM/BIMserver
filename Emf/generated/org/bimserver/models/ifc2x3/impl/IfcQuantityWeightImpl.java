@@ -78,24 +78,6 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetWeightValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetWeightValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getWeightValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, true);
 	}
@@ -107,24 +89,6 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 */
 	public void setWeightValueAsString(String newWeightValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, newWeightValueAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetWeightValueAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetWeightValueAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING);
 	}
 
 } //IfcQuantityWeightImpl

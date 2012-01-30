@@ -109,32 +109,32 @@ public class SVersion implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private int major;
-	private int minor;
-	private int revision;
+	private java.lang.Integer major;
+	private java.lang.Integer minor;
+	private java.lang.Integer revision;
 	private java.util.Date date;
 	private java.lang.String downloadUrl;
 	private java.lang.String supportUrl;
 	private java.lang.String supportEmail;
-	public int getMajor() {
+	public java.lang.Integer getMajor() {
 		return major;
 	}
 
-	public void setMajor(int major) {
+	public void setMajor(java.lang.Integer major) {
 		this.major = major;
 	}
-	public int getMinor() {
+	public java.lang.Integer getMinor() {
 		return minor;
 	}
 
-	public void setMinor(int minor) {
+	public void setMinor(java.lang.Integer minor) {
 		this.minor = minor;
 	}
-	public int getRevision() {
+	public java.lang.Integer getRevision() {
 		return revision;
 	}
 
-	public void setRevision(int revision) {
+	public void setRevision(java.lang.Integer revision) {
 		this.revision = revision;
 	}
 	public java.util.Date getDate() {

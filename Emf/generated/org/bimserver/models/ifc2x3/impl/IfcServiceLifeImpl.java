@@ -80,24 +80,6 @@ public class IfcServiceLifeImpl extends IfcControlImpl implements IfcServiceLife
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetServiceLifeType() {
-		eUnset(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetServiceLifeType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getServiceLifeDuration() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION, true);
 	}
@@ -116,24 +98,6 @@ public class IfcServiceLifeImpl extends IfcControlImpl implements IfcServiceLife
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetServiceLifeDuration() {
-		eUnset(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetServiceLifeDuration() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getServiceLifeDurationAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING, true);
 	}
@@ -145,24 +109,6 @@ public class IfcServiceLifeImpl extends IfcControlImpl implements IfcServiceLife
 	 */
 	public void setServiceLifeDurationAsString(String newServiceLifeDurationAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING, newServiceLifeDurationAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetServiceLifeDurationAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetServiceLifeDurationAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING);
 	}
 
 } //IfcServiceLifeImpl

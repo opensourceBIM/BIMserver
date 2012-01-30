@@ -73,22 +73,4 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl implem
 		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPredefinedType() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPredefinedType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE);
-	}
-
 } //IfcStructuralCurveMemberImpl

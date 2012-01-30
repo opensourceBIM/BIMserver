@@ -50,11 +50,9 @@ public interface IfcSurfaceTexture extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Repeat S</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetRepeatS()
-	 * @see #unsetRepeatS()
 	 * @see #setRepeatS(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceTexture_RepeatS()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getRepeatS();
@@ -65,35 +63,10 @@ public interface IfcSurfaceTexture extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Repeat S</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetRepeatS()
-	 * @see #unsetRepeatS()
 	 * @see #getRepeatS()
 	 * @generated
 	 */
 	void setRepeatS(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceTexture#getRepeatS <em>Repeat S</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRepeatS()
-	 * @see #getRepeatS()
-	 * @see #setRepeatS(Tristate)
-	 * @generated
-	 */
-	void unsetRepeatS();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceTexture#getRepeatS <em>Repeat S</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Repeat S</em>' attribute is set.
-	 * @see #unsetRepeatS()
-	 * @see #getRepeatS()
-	 * @see #setRepeatS(Tristate)
-	 * @generated
-	 */
-	boolean isSetRepeatS();
 
 	/**
 	 * Returns the value of the '<em><b>Repeat T</b></em>' attribute.
@@ -106,11 +79,9 @@ public interface IfcSurfaceTexture extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Repeat T</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetRepeatT()
-	 * @see #unsetRepeatT()
 	 * @see #setRepeatT(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceTexture_RepeatT()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getRepeatT();
@@ -121,35 +92,10 @@ public interface IfcSurfaceTexture extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Repeat T</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetRepeatT()
-	 * @see #unsetRepeatT()
 	 * @see #getRepeatT()
 	 * @generated
 	 */
 	void setRepeatT(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceTexture#getRepeatT <em>Repeat T</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRepeatT()
-	 * @see #getRepeatT()
-	 * @see #setRepeatT(Tristate)
-	 * @generated
-	 */
-	void unsetRepeatT();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceTexture#getRepeatT <em>Repeat T</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Repeat T</em>' attribute is set.
-	 * @see #unsetRepeatT()
-	 * @see #getRepeatT()
-	 * @see #setRepeatT(Tristate)
-	 * @generated
-	 */
-	boolean isSetRepeatT();
 
 	/**
 	 * Returns the value of the '<em><b>Texture Type</b></em>' attribute.
@@ -162,11 +108,9 @@ public interface IfcSurfaceTexture extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Texture Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceTextureEnum
-	 * @see #isSetTextureType()
-	 * @see #unsetTextureType()
 	 * @see #setTextureType(IfcSurfaceTextureEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceTexture_TextureType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSurfaceTextureEnum getTextureType();
@@ -177,35 +121,10 @@ public interface IfcSurfaceTexture extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Texture Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceTextureEnum
-	 * @see #isSetTextureType()
-	 * @see #unsetTextureType()
 	 * @see #getTextureType()
 	 * @generated
 	 */
 	void setTextureType(IfcSurfaceTextureEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceTexture#getTextureType <em>Texture Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTextureType()
-	 * @see #getTextureType()
-	 * @see #setTextureType(IfcSurfaceTextureEnum)
-	 * @generated
-	 */
-	void unsetTextureType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceTexture#getTextureType <em>Texture Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Texture Type</em>' attribute is set.
-	 * @see #unsetTextureType()
-	 * @see #getTextureType()
-	 * @see #setTextureType(IfcSurfaceTextureEnum)
-	 * @generated
-	 */
-	boolean isSetTextureType();
 
 	/**
 	 * Returns the value of the '<em><b>Texture Transform</b></em>' reference.

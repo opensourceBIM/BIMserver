@@ -87,24 +87,6 @@ public class IfcTrimmedCurveImpl extends IfcBoundedCurveImpl implements IfcTrimm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetBasisCurve() {
-		eUnset(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__BASIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBasisCurve() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__BASIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTrimmingSelect> getTrim1() {
 		return (EList<IfcTrimmingSelect>) eGet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__TRIM1, true);
@@ -115,45 +97,9 @@ public class IfcTrimmedCurveImpl extends IfcBoundedCurveImpl implements IfcTrimm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetTrim1() {
-		eUnset(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__TRIM1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTrim1() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__TRIM1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTrimmingSelect> getTrim2() {
 		return (EList<IfcTrimmingSelect>) eGet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__TRIM2, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTrim2() {
-		eUnset(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__TRIM2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTrim2() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__TRIM2);
 	}
 
 	/**
@@ -179,24 +125,6 @@ public class IfcTrimmedCurveImpl extends IfcBoundedCurveImpl implements IfcTrimm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSenseAgreement() {
-		eUnset(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__SENSE_AGREEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSenseAgreement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__SENSE_AGREEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcTrimmingPreference getMasterRepresentation() {
 		return (IfcTrimmingPreference) eGet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__MASTER_REPRESENTATION, true);
 	}
@@ -208,24 +136,6 @@ public class IfcTrimmedCurveImpl extends IfcBoundedCurveImpl implements IfcTrimm
 	 */
 	public void setMasterRepresentation(IfcTrimmingPreference newMasterRepresentation) {
 		eSet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__MASTER_REPRESENTATION, newMasterRepresentation);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetMasterRepresentation() {
-		eUnset(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__MASTER_REPRESENTATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMasterRepresentation() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TRIMMED_CURVE__MASTER_REPRESENTATION);
 	}
 
 } //IfcTrimmedCurveImpl

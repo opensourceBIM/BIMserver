@@ -323,9 +323,7 @@ public class IfcStepSerializer extends IfcSerializer {
 				EStructuralFeature structuralFeature = ((EClass) type).getEStructuralFeature(WRAPPED_VALUE);
 				if (structuralFeature != null) {
 					String name = structuralFeature.getEType().getName();
-					if (structuralFeature.isUnsettable()) {
-						out.print(DOLLAR);
-					} else if (name.equals(IFC_BOOLEAN) || name.equals(IFC_LOGICAL) || structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
+					if (name.equals(IFC_BOOLEAN) || name.equals(IFC_LOGICAL) || structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 						out.print(BOOLEAN_UNDEFINED);
 					} else {
 						out.print(DOLLAR);
@@ -336,6 +334,8 @@ public class IfcStepSerializer extends IfcSerializer {
 			} else {
 				if (type == EcorePackage.eINSTANCE.getEBoolean()) {
 					out.print(BOOLEAN_UNDEFINED);
+				} else if (feature.isMany()) {
+					out.print("()");
 				} else {
 					out.print(DOLLAR);
 				}
@@ -393,11 +393,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			doubleStingList = (List<?>) object.eGet(doubleStringFeature);
 		}
 		if (list.size() == 0) {
-			if (feature.isUnsettable()) {
-				out.print(DOLLAR);
-			} else {
-				out.print(OPEN_CLOSE_PAREN);
-			}
+			out.print(OPEN_CLOSE_PAREN);
 		} else {
 			out.print(OPEN_PAREN);
 			boolean first = true;
@@ -502,11 +498,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else if (get instanceof EList<?>) {
 			EList<?> list = (EList<?>) get;
 			if (list.size() == 0) {
-				if (feature.isUnsettable()) {
-					out.print(DOLLAR);
-				} else {
-					out.print(OPEN_CLOSE_PAREN);
-				}
+				out.print(OPEN_CLOSE_PAREN);
 			} else {
 				out.print(OPEN_PAREN);
 				boolean first = true;
@@ -529,11 +521,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			if (get == null) {
 				EClassifier type = structuralFeature.getEType();
 				if (type == IFC_PACKAGE_INSTANCE.getIfcBoolean() || type == IFC_PACKAGE_INSTANCE.getIfcLogical() || type == ECORE_PACKAGE_INSTANCE.getEBoolean()) {
-					if (feature.isUnsettable()) {
-						out.print(DOLLAR);
-					} else {
-						out.print(BOOLEAN_UNDEFINED);
-					}
+					out.print(BOOLEAN_UNDEFINED);
 				} else {
 					SchemaDefinition schema;
 					try {

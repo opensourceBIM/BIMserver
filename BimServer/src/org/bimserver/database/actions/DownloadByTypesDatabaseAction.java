@@ -87,13 +87,13 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 				subModel.setDate(concreteRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+			IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 			ifcModel.setName("Unknown");
 			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 			ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 			ifcModel.setDate(virtualRevision.getDate());
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		if (name.endsWith("-")) {
 			name = name.substring(0, name.length()-1);
 		}

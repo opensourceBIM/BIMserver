@@ -43,11 +43,9 @@ public interface IfcCostValue extends IfcAppliedValue, IfcMetricValueSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cost Type</em>' attribute.
-	 * @see #isSetCostType()
-	 * @see #unsetCostType()
 	 * @see #setCostType(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCostValue_CostType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getCostType();
@@ -57,35 +55,10 @@ public interface IfcCostValue extends IfcAppliedValue, IfcMetricValueSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cost Type</em>' attribute.
-	 * @see #isSetCostType()
-	 * @see #unsetCostType()
 	 * @see #getCostType()
 	 * @generated
 	 */
 	void setCostType(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCostValue#getCostType <em>Cost Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCostType()
-	 * @see #getCostType()
-	 * @see #setCostType(String)
-	 * @generated
-	 */
-	void unsetCostType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCostValue#getCostType <em>Cost Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Cost Type</em>' attribute is set.
-	 * @see #unsetCostType()
-	 * @see #getCostType()
-	 * @see #setCostType(String)
-	 * @generated
-	 */
-	boolean isSetCostType();
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' attribute.

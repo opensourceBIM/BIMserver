@@ -43,11 +43,9 @@ public interface IfcBlobTexture extends IfcSurfaceTexture {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Raster Format</em>' attribute.
-	 * @see #isSetRasterFormat()
-	 * @see #unsetRasterFormat()
 	 * @see #setRasterFormat(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlobTexture_RasterFormat()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getRasterFormat();
@@ -57,35 +55,10 @@ public interface IfcBlobTexture extends IfcSurfaceTexture {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Raster Format</em>' attribute.
-	 * @see #isSetRasterFormat()
-	 * @see #unsetRasterFormat()
 	 * @see #getRasterFormat()
 	 * @generated
 	 */
 	void setRasterFormat(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlobTexture#getRasterFormat <em>Raster Format</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRasterFormat()
-	 * @see #getRasterFormat()
-	 * @see #setRasterFormat(String)
-	 * @generated
-	 */
-	void unsetRasterFormat();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlobTexture#getRasterFormat <em>Raster Format</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Raster Format</em>' attribute is set.
-	 * @see #unsetRasterFormat()
-	 * @see #getRasterFormat()
-	 * @see #setRasterFormat(String)
-	 * @generated
-	 */
-	boolean isSetRasterFormat();
 
 	/**
 	 * Returns the value of the '<em><b>Raster Code</b></em>' attribute.
@@ -98,11 +71,9 @@ public interface IfcBlobTexture extends IfcSurfaceTexture {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Raster Code</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetRasterCode()
-	 * @see #unsetRasterCode()
 	 * @see #setRasterCode(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBlobTexture_RasterCode()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getRasterCode();
@@ -113,34 +84,9 @@ public interface IfcBlobTexture extends IfcSurfaceTexture {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Raster Code</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetRasterCode()
-	 * @see #unsetRasterCode()
 	 * @see #getRasterCode()
 	 * @generated
 	 */
 	void setRasterCode(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBlobTexture#getRasterCode <em>Raster Code</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRasterCode()
-	 * @see #getRasterCode()
-	 * @see #setRasterCode(Tristate)
-	 * @generated
-	 */
-	void unsetRasterCode();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBlobTexture#getRasterCode <em>Raster Code</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Raster Code</em>' attribute is set.
-	 * @see #unsetRasterCode()
-	 * @see #getRasterCode()
-	 * @see #setRasterCode(Tristate)
-	 * @generated
-	 */
-	boolean isSetRasterCode();
 
 } // IfcBlobTexture

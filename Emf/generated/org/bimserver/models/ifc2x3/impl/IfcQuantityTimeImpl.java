@@ -78,24 +78,6 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetTimeValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTimeValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getTimeValueAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING, true);
 	}
@@ -107,24 +89,6 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 */
 	public void setTimeValueAsString(String newTimeValueAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING, newTimeValueAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTimeValueAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTimeValueAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING);
 	}
 
 } //IfcQuantityTimeImpl

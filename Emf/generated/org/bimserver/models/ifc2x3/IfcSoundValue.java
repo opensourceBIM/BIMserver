@@ -98,11 +98,9 @@ public interface IfcSoundValue extends IfcPropertySetDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Frequency</em>' attribute.
-	 * @see #isSetFrequency()
-	 * @see #unsetFrequency()
 	 * @see #setFrequency(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSoundValue_Frequency()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getFrequency();
@@ -112,35 +110,10 @@ public interface IfcSoundValue extends IfcPropertySetDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Frequency</em>' attribute.
-	 * @see #isSetFrequency()
-	 * @see #unsetFrequency()
 	 * @see #getFrequency()
 	 * @generated
 	 */
 	void setFrequency(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundValue#getFrequency <em>Frequency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetFrequency()
-	 * @see #getFrequency()
-	 * @see #setFrequency(double)
-	 * @generated
-	 */
-	void unsetFrequency();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundValue#getFrequency <em>Frequency</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Frequency</em>' attribute is set.
-	 * @see #unsetFrequency()
-	 * @see #getFrequency()
-	 * @see #setFrequency(double)
-	 * @generated
-	 */
-	boolean isSetFrequency();
 
 	/**
 	 * Returns the value of the '<em><b>Frequency As String</b></em>' attribute.
@@ -151,11 +124,9 @@ public interface IfcSoundValue extends IfcPropertySetDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Frequency As String</em>' attribute.
-	 * @see #isSetFrequencyAsString()
-	 * @see #unsetFrequencyAsString()
 	 * @see #setFrequencyAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSoundValue_FrequencyAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getFrequencyAsString();
@@ -165,35 +136,10 @@ public interface IfcSoundValue extends IfcPropertySetDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Frequency As String</em>' attribute.
-	 * @see #isSetFrequencyAsString()
-	 * @see #unsetFrequencyAsString()
 	 * @see #getFrequencyAsString()
 	 * @generated
 	 */
 	void setFrequencyAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundValue#getFrequencyAsString <em>Frequency As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetFrequencyAsString()
-	 * @see #getFrequencyAsString()
-	 * @see #setFrequencyAsString(String)
-	 * @generated
-	 */
-	void unsetFrequencyAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundValue#getFrequencyAsString <em>Frequency As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Frequency As String</em>' attribute is set.
-	 * @see #unsetFrequencyAsString()
-	 * @see #getFrequencyAsString()
-	 * @see #setFrequencyAsString(String)
-	 * @generated
-	 */
-	boolean isSetFrequencyAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Sound Level Single Value</b></em>' reference.

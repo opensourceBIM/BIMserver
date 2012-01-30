@@ -43,11 +43,9 @@ public interface IfcRoundedRectangleProfileDef extends IfcRectangleProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rounding Radius</em>' attribute.
-	 * @see #isSetRoundingRadius()
-	 * @see #unsetRoundingRadius()
 	 * @see #setRoundingRadius(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRoundedRectangleProfileDef_RoundingRadius()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getRoundingRadius();
@@ -57,35 +55,10 @@ public interface IfcRoundedRectangleProfileDef extends IfcRectangleProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rounding Radius</em>' attribute.
-	 * @see #isSetRoundingRadius()
-	 * @see #unsetRoundingRadius()
 	 * @see #getRoundingRadius()
 	 * @generated
 	 */
 	void setRoundingRadius(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRoundedRectangleProfileDef#getRoundingRadius <em>Rounding Radius</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRoundingRadius()
-	 * @see #getRoundingRadius()
-	 * @see #setRoundingRadius(double)
-	 * @generated
-	 */
-	void unsetRoundingRadius();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRoundedRectangleProfileDef#getRoundingRadius <em>Rounding Radius</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Rounding Radius</em>' attribute is set.
-	 * @see #unsetRoundingRadius()
-	 * @see #getRoundingRadius()
-	 * @see #setRoundingRadius(double)
-	 * @generated
-	 */
-	boolean isSetRoundingRadius();
 
 	/**
 	 * Returns the value of the '<em><b>Rounding Radius As String</b></em>' attribute.
@@ -96,11 +69,9 @@ public interface IfcRoundedRectangleProfileDef extends IfcRectangleProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rounding Radius As String</em>' attribute.
-	 * @see #isSetRoundingRadiusAsString()
-	 * @see #unsetRoundingRadiusAsString()
 	 * @see #setRoundingRadiusAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRoundedRectangleProfileDef_RoundingRadiusAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getRoundingRadiusAsString();
@@ -110,34 +81,9 @@ public interface IfcRoundedRectangleProfileDef extends IfcRectangleProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rounding Radius As String</em>' attribute.
-	 * @see #isSetRoundingRadiusAsString()
-	 * @see #unsetRoundingRadiusAsString()
 	 * @see #getRoundingRadiusAsString()
 	 * @generated
 	 */
 	void setRoundingRadiusAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRoundedRectangleProfileDef#getRoundingRadiusAsString <em>Rounding Radius As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRoundingRadiusAsString()
-	 * @see #getRoundingRadiusAsString()
-	 * @see #setRoundingRadiusAsString(String)
-	 * @generated
-	 */
-	void unsetRoundingRadiusAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRoundedRectangleProfileDef#getRoundingRadiusAsString <em>Rounding Radius As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Rounding Radius As String</em>' attribute is set.
-	 * @see #unsetRoundingRadiusAsString()
-	 * @see #getRoundingRadiusAsString()
-	 * @see #setRoundingRadiusAsString(String)
-	 * @generated
-	 */
-	boolean isSetRoundingRadiusAsString();
 
 } // IfcRoundedRectangleProfileDef

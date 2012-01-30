@@ -79,24 +79,6 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetExtent() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetExtent() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getBoxAlignment() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT, true);
 	}
@@ -108,24 +90,6 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 */
 	public void setBoxAlignment(String newBoxAlignment) {
 		eSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT, newBoxAlignment);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetBoxAlignment() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBoxAlignment() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT);
 	}
 
 } //IfcTextLiteralWithExtentImpl

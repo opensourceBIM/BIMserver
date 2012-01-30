@@ -86,24 +86,6 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetInteriorOrExteriorSpace() {
-		eUnset(Ifc2x3Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInteriorOrExteriorSpace() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getElevationWithFlooring() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, true);
 	}

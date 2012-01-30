@@ -46,11 +46,9 @@ public interface IfcMove extends IfcTask {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Move From</em>' reference.
-	 * @see #isSetMoveFrom()
-	 * @see #unsetMoveFrom()
 	 * @see #setMoveFrom(IfcSpatialStructureElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMove_MoveFrom()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSpatialStructureElement getMoveFrom();
@@ -60,35 +58,10 @@ public interface IfcMove extends IfcTask {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Move From</em>' reference.
-	 * @see #isSetMoveFrom()
-	 * @see #unsetMoveFrom()
 	 * @see #getMoveFrom()
 	 * @generated
 	 */
 	void setMoveFrom(IfcSpatialStructureElement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMove#getMoveFrom <em>Move From</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMoveFrom()
-	 * @see #getMoveFrom()
-	 * @see #setMoveFrom(IfcSpatialStructureElement)
-	 * @generated
-	 */
-	void unsetMoveFrom();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMove#getMoveFrom <em>Move From</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Move From</em>' reference is set.
-	 * @see #unsetMoveFrom()
-	 * @see #getMoveFrom()
-	 * @see #setMoveFrom(IfcSpatialStructureElement)
-	 * @generated
-	 */
-	boolean isSetMoveFrom();
 
 	/**
 	 * Returns the value of the '<em><b>Move To</b></em>' reference.
@@ -99,11 +72,9 @@ public interface IfcMove extends IfcTask {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Move To</em>' reference.
-	 * @see #isSetMoveTo()
-	 * @see #unsetMoveTo()
 	 * @see #setMoveTo(IfcSpatialStructureElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMove_MoveTo()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSpatialStructureElement getMoveTo();
@@ -113,35 +84,10 @@ public interface IfcMove extends IfcTask {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Move To</em>' reference.
-	 * @see #isSetMoveTo()
-	 * @see #unsetMoveTo()
 	 * @see #getMoveTo()
 	 * @generated
 	 */
 	void setMoveTo(IfcSpatialStructureElement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMove#getMoveTo <em>Move To</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMoveTo()
-	 * @see #getMoveTo()
-	 * @see #setMoveTo(IfcSpatialStructureElement)
-	 * @generated
-	 */
-	void unsetMoveTo();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMove#getMoveTo <em>Move To</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Move To</em>' reference is set.
-	 * @see #unsetMoveTo()
-	 * @see #getMoveTo()
-	 * @see #setMoveTo(IfcSpatialStructureElement)
-	 * @generated
-	 */
-	boolean isSetMoveTo();
 
 	/**
 	 * Returns the value of the '<em><b>Punch List</b></em>' attribute list.

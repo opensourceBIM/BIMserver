@@ -43,12 +43,12 @@ public interface EidClash extends Clash {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Eid1</em>' attribute.
-	 * @see #setEid1(long)
+	 * @see #setEid1(Long)
 	 * @see org.bimserver.models.store.StorePackage#getEidClash_Eid1()
 	 * @model
 	 * @generated
 	 */
-	long getEid1();
+	Long getEid1();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.EidClash#getEid1 <em>Eid1</em>}' attribute.
@@ -58,7 +58,7 @@ public interface EidClash extends Clash {
 	 * @see #getEid1()
 	 * @generated
 	 */
-	void setEid1(long value);
+	void setEid1(Long value);
 
 	/**
 	 * Returns the value of the '<em><b>Eid2</b></em>' attribute.
@@ -69,12 +69,12 @@ public interface EidClash extends Clash {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Eid2</em>' attribute.
-	 * @see #setEid2(long)
+	 * @see #setEid2(Long)
 	 * @see org.bimserver.models.store.StorePackage#getEidClash_Eid2()
 	 * @model
 	 * @generated
 	 */
-	long getEid2();
+	Long getEid2();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.EidClash#getEid2 <em>Eid2</em>}' attribute.
@@ -84,6 +84,6 @@ public interface EidClash extends Clash {
 	 * @see #getEid2()
 	 * @generated
 	 */
-	void setEid2(long value);
+	void setEid2(Long value);
 
 } // EidClash

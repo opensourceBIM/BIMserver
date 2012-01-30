@@ -45,11 +45,9 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size In X</em>' attribute.
-	 * @see #isSetSizeInX()
-	 * @see #unsetSizeInX()
 	 * @see #setSizeInX(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlanarExtent_SizeInX()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getSizeInX();
@@ -59,35 +57,10 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Size In X</em>' attribute.
-	 * @see #isSetSizeInX()
-	 * @see #unsetSizeInX()
 	 * @see #getSizeInX()
 	 * @generated
 	 */
 	void setSizeInX(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInX <em>Size In X</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSizeInX()
-	 * @see #getSizeInX()
-	 * @see #setSizeInX(double)
-	 * @generated
-	 */
-	void unsetSizeInX();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInX <em>Size In X</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Size In X</em>' attribute is set.
-	 * @see #unsetSizeInX()
-	 * @see #getSizeInX()
-	 * @see #setSizeInX(double)
-	 * @generated
-	 */
-	boolean isSetSizeInX();
 
 	/**
 	 * Returns the value of the '<em><b>Size In XAs String</b></em>' attribute.
@@ -98,11 +71,9 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size In XAs String</em>' attribute.
-	 * @see #isSetSizeInXAsString()
-	 * @see #unsetSizeInXAsString()
 	 * @see #setSizeInXAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlanarExtent_SizeInXAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getSizeInXAsString();
@@ -112,35 +83,10 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Size In XAs String</em>' attribute.
-	 * @see #isSetSizeInXAsString()
-	 * @see #unsetSizeInXAsString()
 	 * @see #getSizeInXAsString()
 	 * @generated
 	 */
 	void setSizeInXAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInXAsString <em>Size In XAs String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSizeInXAsString()
-	 * @see #getSizeInXAsString()
-	 * @see #setSizeInXAsString(String)
-	 * @generated
-	 */
-	void unsetSizeInXAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInXAsString <em>Size In XAs String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Size In XAs String</em>' attribute is set.
-	 * @see #unsetSizeInXAsString()
-	 * @see #getSizeInXAsString()
-	 * @see #setSizeInXAsString(String)
-	 * @generated
-	 */
-	boolean isSetSizeInXAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Size In Y</b></em>' attribute.
@@ -151,11 +97,9 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size In Y</em>' attribute.
-	 * @see #isSetSizeInY()
-	 * @see #unsetSizeInY()
 	 * @see #setSizeInY(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlanarExtent_SizeInY()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getSizeInY();
@@ -165,35 +109,10 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Size In Y</em>' attribute.
-	 * @see #isSetSizeInY()
-	 * @see #unsetSizeInY()
 	 * @see #getSizeInY()
 	 * @generated
 	 */
 	void setSizeInY(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInY <em>Size In Y</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSizeInY()
-	 * @see #getSizeInY()
-	 * @see #setSizeInY(double)
-	 * @generated
-	 */
-	void unsetSizeInY();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInY <em>Size In Y</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Size In Y</em>' attribute is set.
-	 * @see #unsetSizeInY()
-	 * @see #getSizeInY()
-	 * @see #setSizeInY(double)
-	 * @generated
-	 */
-	boolean isSetSizeInY();
 
 	/**
 	 * Returns the value of the '<em><b>Size In YAs String</b></em>' attribute.
@@ -204,11 +123,9 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size In YAs String</em>' attribute.
-	 * @see #isSetSizeInYAsString()
-	 * @see #unsetSizeInYAsString()
 	 * @see #setSizeInYAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPlanarExtent_SizeInYAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getSizeInYAsString();
@@ -218,34 +135,9 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Size In YAs String</em>' attribute.
-	 * @see #isSetSizeInYAsString()
-	 * @see #unsetSizeInYAsString()
 	 * @see #getSizeInYAsString()
 	 * @generated
 	 */
 	void setSizeInYAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInYAsString <em>Size In YAs String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSizeInYAsString()
-	 * @see #getSizeInYAsString()
-	 * @see #setSizeInYAsString(String)
-	 * @generated
-	 */
-	void unsetSizeInYAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPlanarExtent#getSizeInYAsString <em>Size In YAs String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Size In YAs String</em>' attribute is set.
-	 * @see #unsetSizeInYAsString()
-	 * @see #getSizeInYAsString()
-	 * @see #setSizeInYAsString(String)
-	 * @generated
-	 */
-	boolean isSetSizeInYAsString();
 
 } // IfcPlanarExtent

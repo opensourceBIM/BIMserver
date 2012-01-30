@@ -82,45 +82,9 @@ public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingBuildingElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingBuildingElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCovering> getRelatedCoverings() {
 		return (EList<IfcCovering>) eGet(Ifc2x3Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATED_COVERINGS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedCoverings() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATED_COVERINGS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedCoverings() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATED_COVERINGS);
 	}
 
 } //IfcRelCoversBldgElementsImpl

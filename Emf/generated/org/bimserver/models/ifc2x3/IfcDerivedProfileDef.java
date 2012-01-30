@@ -44,11 +44,9 @@ public interface IfcDerivedProfileDef extends IfcProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Profile</em>' reference.
-	 * @see #isSetParentProfile()
-	 * @see #unsetParentProfile()
 	 * @see #setParentProfile(IfcProfileDef)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDerivedProfileDef_ParentProfile()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcProfileDef getParentProfile();
@@ -58,35 +56,10 @@ public interface IfcDerivedProfileDef extends IfcProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Profile</em>' reference.
-	 * @see #isSetParentProfile()
-	 * @see #unsetParentProfile()
 	 * @see #getParentProfile()
 	 * @generated
 	 */
 	void setParentProfile(IfcProfileDef value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedProfileDef#getParentProfile <em>Parent Profile</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetParentProfile()
-	 * @see #getParentProfile()
-	 * @see #setParentProfile(IfcProfileDef)
-	 * @generated
-	 */
-	void unsetParentProfile();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedProfileDef#getParentProfile <em>Parent Profile</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Parent Profile</em>' reference is set.
-	 * @see #unsetParentProfile()
-	 * @see #getParentProfile()
-	 * @see #setParentProfile(IfcProfileDef)
-	 * @generated
-	 */
-	boolean isSetParentProfile();
 
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' reference.
@@ -97,11 +70,9 @@ public interface IfcDerivedProfileDef extends IfcProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operator</em>' reference.
-	 * @see #isSetOperator()
-	 * @see #unsetOperator()
 	 * @see #setOperator(IfcCartesianTransformationOperator2D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDerivedProfileDef_Operator()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCartesianTransformationOperator2D getOperator();
@@ -111,35 +82,10 @@ public interface IfcDerivedProfileDef extends IfcProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' reference.
-	 * @see #isSetOperator()
-	 * @see #unsetOperator()
 	 * @see #getOperator()
 	 * @generated
 	 */
 	void setOperator(IfcCartesianTransformationOperator2D value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedProfileDef#getOperator <em>Operator</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOperator()
-	 * @see #getOperator()
-	 * @see #setOperator(IfcCartesianTransformationOperator2D)
-	 * @generated
-	 */
-	void unsetOperator();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedProfileDef#getOperator <em>Operator</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Operator</em>' reference is set.
-	 * @see #unsetOperator()
-	 * @see #getOperator()
-	 * @see #setOperator(IfcCartesianTransformationOperator2D)
-	 * @generated
-	 */
-	boolean isSetOperator();
 
 	/**
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.

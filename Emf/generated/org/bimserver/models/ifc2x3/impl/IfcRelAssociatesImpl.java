@@ -67,22 +67,4 @@ public class IfcRelAssociatesImpl extends IfcRelationshipImpl implements IfcRelA
 		return (EList<IfcRoot>) eGet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES__RELATED_OBJECTS, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedObjects() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES__RELATED_OBJECTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedObjects() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES__RELATED_OBJECTS);
-	}
-
 } //IfcRelAssociatesImpl

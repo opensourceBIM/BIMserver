@@ -57,12 +57,12 @@ public interface ConcreteRevision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(int)
+	 * @see #setId(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_Id()
 	 * @model
 	 * @generated
 	 */
-	int getId();
+	Integer getId();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getId <em>Id</em>}' attribute.
@@ -72,7 +72,7 @@ public interface ConcreteRevision extends IdEObject {
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(int value);
+	void setId(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Project</b></em>' reference.
@@ -184,12 +184,12 @@ public interface ConcreteRevision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
-	 * @see #setSize(long)
+	 * @see #setSize(Long)
 	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_Size()
 	 * @model
 	 * @generated
 	 */
-	long getSize();
+	Long getSize();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getSize <em>Size</em>}' attribute.
@@ -199,7 +199,7 @@ public interface ConcreteRevision extends IdEObject {
 	 * @see #getSize()
 	 * @generated
 	 */
-	void setSize(long value);
+	void setSize(Long value);
 
 	/**
 	 * Returns the value of the '<em><b>Date</b></em>' attribute.

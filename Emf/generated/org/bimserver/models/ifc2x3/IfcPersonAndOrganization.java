@@ -47,12 +47,10 @@ public interface IfcPersonAndOrganization extends IfcActorSelect, IfcObjectRefer
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>The Person</em>' reference.
-	 * @see #isSetThePerson()
-	 * @see #unsetThePerson()
 	 * @see #setThePerson(IfcPerson)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPersonAndOrganization_ThePerson()
 	 * @see org.bimserver.models.ifc2x3.IfcPerson#getEngagedIn
-	 * @model opposite="EngagedIn" unsettable="true"
+	 * @model opposite="EngagedIn"
 	 * @generated
 	 */
 	IfcPerson getThePerson();
@@ -62,35 +60,10 @@ public interface IfcPersonAndOrganization extends IfcActorSelect, IfcObjectRefer
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>The Person</em>' reference.
-	 * @see #isSetThePerson()
-	 * @see #unsetThePerson()
 	 * @see #getThePerson()
 	 * @generated
 	 */
 	void setThePerson(IfcPerson value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPersonAndOrganization#getThePerson <em>The Person</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetThePerson()
-	 * @see #getThePerson()
-	 * @see #setThePerson(IfcPerson)
-	 * @generated
-	 */
-	void unsetThePerson();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPersonAndOrganization#getThePerson <em>The Person</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>The Person</em>' reference is set.
-	 * @see #unsetThePerson()
-	 * @see #getThePerson()
-	 * @see #setThePerson(IfcPerson)
-	 * @generated
-	 */
-	boolean isSetThePerson();
 
 	/**
 	 * Returns the value of the '<em><b>The Organization</b></em>' reference.
@@ -102,12 +75,10 @@ public interface IfcPersonAndOrganization extends IfcActorSelect, IfcObjectRefer
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>The Organization</em>' reference.
-	 * @see #isSetTheOrganization()
-	 * @see #unsetTheOrganization()
 	 * @see #setTheOrganization(IfcOrganization)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPersonAndOrganization_TheOrganization()
 	 * @see org.bimserver.models.ifc2x3.IfcOrganization#getEngages
-	 * @model opposite="Engages" unsettable="true"
+	 * @model opposite="Engages"
 	 * @generated
 	 */
 	IfcOrganization getTheOrganization();
@@ -117,35 +88,10 @@ public interface IfcPersonAndOrganization extends IfcActorSelect, IfcObjectRefer
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>The Organization</em>' reference.
-	 * @see #isSetTheOrganization()
-	 * @see #unsetTheOrganization()
 	 * @see #getTheOrganization()
 	 * @generated
 	 */
 	void setTheOrganization(IfcOrganization value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPersonAndOrganization#getTheOrganization <em>The Organization</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTheOrganization()
-	 * @see #getTheOrganization()
-	 * @see #setTheOrganization(IfcOrganization)
-	 * @generated
-	 */
-	void unsetTheOrganization();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPersonAndOrganization#getTheOrganization <em>The Organization</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>The Organization</em>' reference is set.
-	 * @see #unsetTheOrganization()
-	 * @see #getTheOrganization()
-	 * @see #setTheOrganization(IfcOrganization)
-	 * @generated
-	 */
-	boolean isSetTheOrganization();
 
 	/**
 	 * Returns the value of the '<em><b>Roles</b></em>' reference list.

@@ -46,34 +46,11 @@ public interface IfcPropertyEnumeratedValue extends IfcSimpleProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enumeration Values</em>' reference list.
-	 * @see #isSetEnumerationValues()
-	 * @see #unsetEnumerationValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyEnumeratedValue_EnumerationValues()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcValue> getEnumerationValues();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyEnumeratedValue#getEnumerationValues <em>Enumeration Values</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetEnumerationValues()
-	 * @see #getEnumerationValues()
-	 * @generated
-	 */
-	void unsetEnumerationValues();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyEnumeratedValue#getEnumerationValues <em>Enumeration Values</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Enumeration Values</em>' reference list is set.
-	 * @see #unsetEnumerationValues()
-	 * @see #getEnumerationValues()
-	 * @generated
-	 */
-	boolean isSetEnumerationValues();
 
 	/**
 	 * Returns the value of the '<em><b>Enumeration Reference</b></em>' reference.

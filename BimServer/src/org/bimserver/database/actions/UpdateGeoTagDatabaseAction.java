@@ -56,7 +56,7 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 			}
 		}
 		if (hasRights) {
-			geoTag.setEnabled(sGeoTag.isEnabled());
+			geoTag.setEnabled(sGeoTag.getEnabled());
 			geoTag.setX(sGeoTag.getX());
 			geoTag.setY(sGeoTag.getY());
 			geoTag.setZ(sGeoTag.getZ());

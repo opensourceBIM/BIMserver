@@ -99,11 +99,9 @@ public interface IfcMaterialLayer extends IfcMaterialSelect, IfcObjectReferenceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Thickness</em>' attribute.
-	 * @see #isSetLayerThickness()
-	 * @see #unsetLayerThickness()
 	 * @see #setLayerThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayer_LayerThickness()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getLayerThickness();
@@ -113,35 +111,10 @@ public interface IfcMaterialLayer extends IfcMaterialSelect, IfcObjectReferenceS
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layer Thickness</em>' attribute.
-	 * @see #isSetLayerThickness()
-	 * @see #unsetLayerThickness()
 	 * @see #getLayerThickness()
 	 * @generated
 	 */
 	void setLayerThickness(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayer#getLayerThickness <em>Layer Thickness</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLayerThickness()
-	 * @see #getLayerThickness()
-	 * @see #setLayerThickness(double)
-	 * @generated
-	 */
-	void unsetLayerThickness();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayer#getLayerThickness <em>Layer Thickness</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Layer Thickness</em>' attribute is set.
-	 * @see #unsetLayerThickness()
-	 * @see #getLayerThickness()
-	 * @see #setLayerThickness(double)
-	 * @generated
-	 */
-	boolean isSetLayerThickness();
 
 	/**
 	 * Returns the value of the '<em><b>Layer Thickness As String</b></em>' attribute.
@@ -152,11 +125,9 @@ public interface IfcMaterialLayer extends IfcMaterialSelect, IfcObjectReferenceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Thickness As String</em>' attribute.
-	 * @see #isSetLayerThicknessAsString()
-	 * @see #unsetLayerThicknessAsString()
 	 * @see #setLayerThicknessAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayer_LayerThicknessAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getLayerThicknessAsString();
@@ -166,35 +137,10 @@ public interface IfcMaterialLayer extends IfcMaterialSelect, IfcObjectReferenceS
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layer Thickness As String</em>' attribute.
-	 * @see #isSetLayerThicknessAsString()
-	 * @see #unsetLayerThicknessAsString()
 	 * @see #getLayerThicknessAsString()
 	 * @generated
 	 */
 	void setLayerThicknessAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayer#getLayerThicknessAsString <em>Layer Thickness As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLayerThicknessAsString()
-	 * @see #getLayerThicknessAsString()
-	 * @see #setLayerThicknessAsString(String)
-	 * @generated
-	 */
-	void unsetLayerThicknessAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayer#getLayerThicknessAsString <em>Layer Thickness As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Layer Thickness As String</em>' attribute is set.
-	 * @see #unsetLayerThicknessAsString()
-	 * @see #getLayerThicknessAsString()
-	 * @see #setLayerThicknessAsString(String)
-	 * @generated
-	 */
-	boolean isSetLayerThicknessAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Is Ventilated</b></em>' attribute.

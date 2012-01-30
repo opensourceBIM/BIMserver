@@ -45,11 +45,9 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Orientation</em>' reference.
-	 * @see #isSetOrientation()
-	 * @see #unsetOrientation()
 	 * @see #setOrientation(IfcDirection)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVector_Orientation()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDirection getOrientation();
@@ -59,35 +57,10 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Orientation</em>' reference.
-	 * @see #isSetOrientation()
-	 * @see #unsetOrientation()
 	 * @see #getOrientation()
 	 * @generated
 	 */
 	void setOrientation(IfcDirection value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVector#getOrientation <em>Orientation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOrientation()
-	 * @see #getOrientation()
-	 * @see #setOrientation(IfcDirection)
-	 * @generated
-	 */
-	void unsetOrientation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVector#getOrientation <em>Orientation</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Orientation</em>' reference is set.
-	 * @see #unsetOrientation()
-	 * @see #getOrientation()
-	 * @see #setOrientation(IfcDirection)
-	 * @generated
-	 */
-	boolean isSetOrientation();
 
 	/**
 	 * Returns the value of the '<em><b>Magnitude</b></em>' attribute.
@@ -98,11 +71,9 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Magnitude</em>' attribute.
-	 * @see #isSetMagnitude()
-	 * @see #unsetMagnitude()
 	 * @see #setMagnitude(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVector_Magnitude()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getMagnitude();
@@ -112,35 +83,10 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Magnitude</em>' attribute.
-	 * @see #isSetMagnitude()
-	 * @see #unsetMagnitude()
 	 * @see #getMagnitude()
 	 * @generated
 	 */
 	void setMagnitude(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVector#getMagnitude <em>Magnitude</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMagnitude()
-	 * @see #getMagnitude()
-	 * @see #setMagnitude(double)
-	 * @generated
-	 */
-	void unsetMagnitude();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVector#getMagnitude <em>Magnitude</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Magnitude</em>' attribute is set.
-	 * @see #unsetMagnitude()
-	 * @see #getMagnitude()
-	 * @see #setMagnitude(double)
-	 * @generated
-	 */
-	boolean isSetMagnitude();
 
 	/**
 	 * Returns the value of the '<em><b>Magnitude As String</b></em>' attribute.
@@ -151,11 +97,9 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Magnitude As String</em>' attribute.
-	 * @see #isSetMagnitudeAsString()
-	 * @see #unsetMagnitudeAsString()
 	 * @see #setMagnitudeAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVector_MagnitudeAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getMagnitudeAsString();
@@ -165,35 +109,10 @@ public interface IfcVector extends IfcGeometricRepresentationItem, IfcVectorOrDi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Magnitude As String</em>' attribute.
-	 * @see #isSetMagnitudeAsString()
-	 * @see #unsetMagnitudeAsString()
 	 * @see #getMagnitudeAsString()
 	 * @generated
 	 */
 	void setMagnitudeAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVector#getMagnitudeAsString <em>Magnitude As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMagnitudeAsString()
-	 * @see #getMagnitudeAsString()
-	 * @see #setMagnitudeAsString(String)
-	 * @generated
-	 */
-	void unsetMagnitudeAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVector#getMagnitudeAsString <em>Magnitude As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Magnitude As String</em>' attribute is set.
-	 * @see #unsetMagnitudeAsString()
-	 * @see #getMagnitudeAsString()
-	 * @see #setMagnitudeAsString(String)
-	 * @generated
-	 */
-	boolean isSetMagnitudeAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

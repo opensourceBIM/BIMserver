@@ -73,22 +73,4 @@ public class IfcRampImpl extends IfcBuildingElementImpl implements IfcRamp {
 		eSet(Ifc2x3Package.Literals.IFC_RAMP__SHAPE_TYPE, newShapeType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetShapeType() {
-		eUnset(Ifc2x3Package.Literals.IFC_RAMP__SHAPE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetShapeType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RAMP__SHAPE_TYPE);
-	}
-
 } //IfcRampImpl

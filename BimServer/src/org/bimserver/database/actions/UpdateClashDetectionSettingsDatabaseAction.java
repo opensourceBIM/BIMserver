@@ -57,7 +57,7 @@ public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseActio
 			}
 		}
 		if (hasRights) {
-			clashDetectionSettings.setEnabled(sClashDetectionSettings.isEnabled());
+			clashDetectionSettings.setEnabled(sClashDetectionSettings.getEnabled());
 			clashDetectionSettings.setMargin(sClashDetectionSettings.getMargin());
 			for (long subPoid : sClashDetectionSettings.getProjects()) {
 				clashDetectionSettings.getProjects().add(getProjectByPoid(subPoid));

@@ -99,33 +99,10 @@ public interface IfcReinforcementDefinitionProperties extends IfcPropertySetDefi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reinforcement Section Definitions</em>' reference list.
-	 * @see #isSetReinforcementSectionDefinitions()
-	 * @see #unsetReinforcementSectionDefinitions()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcementDefinitionProperties_ReinforcementSectionDefinitions()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcSectionReinforcementProperties> getReinforcementSectionDefinitions();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementDefinitionProperties#getReinforcementSectionDefinitions <em>Reinforcement Section Definitions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetReinforcementSectionDefinitions()
-	 * @see #getReinforcementSectionDefinitions()
-	 * @generated
-	 */
-	void unsetReinforcementSectionDefinitions();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcementDefinitionProperties#getReinforcementSectionDefinitions <em>Reinforcement Section Definitions</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Reinforcement Section Definitions</em>' reference list is set.
-	 * @see #unsetReinforcementSectionDefinitions()
-	 * @see #getReinforcementSectionDefinitions()
-	 * @generated
-	 */
-	boolean isSetReinforcementSectionDefinitions();
 
 } // IfcReinforcementDefinitionProperties

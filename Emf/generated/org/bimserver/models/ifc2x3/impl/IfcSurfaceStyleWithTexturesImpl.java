@@ -79,22 +79,4 @@ public class IfcSurfaceStyleWithTexturesImpl extends IdEObjectImpl implements If
 		return (EList<IfcSurfaceTexture>) eGet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTextures() {
-		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTextures() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES);
-	}
-
 } //IfcSurfaceStyleWithTexturesImpl

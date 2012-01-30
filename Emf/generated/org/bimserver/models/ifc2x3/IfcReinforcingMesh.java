@@ -269,11 +269,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Nominal Diameter</em>' attribute.
-	 * @see #isSetLongitudinalBarNominalDiameter()
-	 * @see #unsetLongitudinalBarNominalDiameter()
 	 * @see #setLongitudinalBarNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarNominalDiameter()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getLongitudinalBarNominalDiameter();
@@ -283,35 +281,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Bar Nominal Diameter</em>' attribute.
-	 * @see #isSetLongitudinalBarNominalDiameter()
-	 * @see #unsetLongitudinalBarNominalDiameter()
 	 * @see #getLongitudinalBarNominalDiameter()
 	 * @generated
 	 */
 	void setLongitudinalBarNominalDiameter(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarNominalDiameter <em>Longitudinal Bar Nominal Diameter</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalBarNominalDiameter()
-	 * @see #getLongitudinalBarNominalDiameter()
-	 * @see #setLongitudinalBarNominalDiameter(double)
-	 * @generated
-	 */
-	void unsetLongitudinalBarNominalDiameter();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarNominalDiameter <em>Longitudinal Bar Nominal Diameter</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Bar Nominal Diameter</em>' attribute is set.
-	 * @see #unsetLongitudinalBarNominalDiameter()
-	 * @see #getLongitudinalBarNominalDiameter()
-	 * @see #setLongitudinalBarNominalDiameter(double)
-	 * @generated
-	 */
-	boolean isSetLongitudinalBarNominalDiameter();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Nominal Diameter As String</b></em>' attribute.
@@ -322,11 +295,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Nominal Diameter As String</em>' attribute.
-	 * @see #isSetLongitudinalBarNominalDiameterAsString()
-	 * @see #unsetLongitudinalBarNominalDiameterAsString()
 	 * @see #setLongitudinalBarNominalDiameterAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarNominalDiameterAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getLongitudinalBarNominalDiameterAsString();
@@ -336,35 +307,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Bar Nominal Diameter As String</em>' attribute.
-	 * @see #isSetLongitudinalBarNominalDiameterAsString()
-	 * @see #unsetLongitudinalBarNominalDiameterAsString()
 	 * @see #getLongitudinalBarNominalDiameterAsString()
 	 * @generated
 	 */
 	void setLongitudinalBarNominalDiameterAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarNominalDiameterAsString <em>Longitudinal Bar Nominal Diameter As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalBarNominalDiameterAsString()
-	 * @see #getLongitudinalBarNominalDiameterAsString()
-	 * @see #setLongitudinalBarNominalDiameterAsString(String)
-	 * @generated
-	 */
-	void unsetLongitudinalBarNominalDiameterAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarNominalDiameterAsString <em>Longitudinal Bar Nominal Diameter As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Bar Nominal Diameter As String</em>' attribute is set.
-	 * @see #unsetLongitudinalBarNominalDiameterAsString()
-	 * @see #getLongitudinalBarNominalDiameterAsString()
-	 * @see #setLongitudinalBarNominalDiameterAsString(String)
-	 * @generated
-	 */
-	boolean isSetLongitudinalBarNominalDiameterAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Nominal Diameter</b></em>' attribute.
@@ -375,11 +321,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Nominal Diameter</em>' attribute.
-	 * @see #isSetTransverseBarNominalDiameter()
-	 * @see #unsetTransverseBarNominalDiameter()
 	 * @see #setTransverseBarNominalDiameter(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarNominalDiameter()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getTransverseBarNominalDiameter();
@@ -389,35 +333,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transverse Bar Nominal Diameter</em>' attribute.
-	 * @see #isSetTransverseBarNominalDiameter()
-	 * @see #unsetTransverseBarNominalDiameter()
 	 * @see #getTransverseBarNominalDiameter()
 	 * @generated
 	 */
 	void setTransverseBarNominalDiameter(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarNominalDiameter <em>Transverse Bar Nominal Diameter</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTransverseBarNominalDiameter()
-	 * @see #getTransverseBarNominalDiameter()
-	 * @see #setTransverseBarNominalDiameter(double)
-	 * @generated
-	 */
-	void unsetTransverseBarNominalDiameter();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarNominalDiameter <em>Transverse Bar Nominal Diameter</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Transverse Bar Nominal Diameter</em>' attribute is set.
-	 * @see #unsetTransverseBarNominalDiameter()
-	 * @see #getTransverseBarNominalDiameter()
-	 * @see #setTransverseBarNominalDiameter(double)
-	 * @generated
-	 */
-	boolean isSetTransverseBarNominalDiameter();
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Nominal Diameter As String</b></em>' attribute.
@@ -428,11 +347,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Nominal Diameter As String</em>' attribute.
-	 * @see #isSetTransverseBarNominalDiameterAsString()
-	 * @see #unsetTransverseBarNominalDiameterAsString()
 	 * @see #setTransverseBarNominalDiameterAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarNominalDiameterAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getTransverseBarNominalDiameterAsString();
@@ -442,35 +359,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transverse Bar Nominal Diameter As String</em>' attribute.
-	 * @see #isSetTransverseBarNominalDiameterAsString()
-	 * @see #unsetTransverseBarNominalDiameterAsString()
 	 * @see #getTransverseBarNominalDiameterAsString()
 	 * @generated
 	 */
 	void setTransverseBarNominalDiameterAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarNominalDiameterAsString <em>Transverse Bar Nominal Diameter As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTransverseBarNominalDiameterAsString()
-	 * @see #getTransverseBarNominalDiameterAsString()
-	 * @see #setTransverseBarNominalDiameterAsString(String)
-	 * @generated
-	 */
-	void unsetTransverseBarNominalDiameterAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarNominalDiameterAsString <em>Transverse Bar Nominal Diameter As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Transverse Bar Nominal Diameter As String</em>' attribute is set.
-	 * @see #unsetTransverseBarNominalDiameterAsString()
-	 * @see #getTransverseBarNominalDiameterAsString()
-	 * @see #setTransverseBarNominalDiameterAsString(String)
-	 * @generated
-	 */
-	boolean isSetTransverseBarNominalDiameterAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Cross Section Area</b></em>' attribute.
@@ -481,11 +373,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Cross Section Area</em>' attribute.
-	 * @see #isSetLongitudinalBarCrossSectionArea()
-	 * @see #unsetLongitudinalBarCrossSectionArea()
 	 * @see #setLongitudinalBarCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarCrossSectionArea()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getLongitudinalBarCrossSectionArea();
@@ -495,35 +385,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Bar Cross Section Area</em>' attribute.
-	 * @see #isSetLongitudinalBarCrossSectionArea()
-	 * @see #unsetLongitudinalBarCrossSectionArea()
 	 * @see #getLongitudinalBarCrossSectionArea()
 	 * @generated
 	 */
 	void setLongitudinalBarCrossSectionArea(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarCrossSectionArea <em>Longitudinal Bar Cross Section Area</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalBarCrossSectionArea()
-	 * @see #getLongitudinalBarCrossSectionArea()
-	 * @see #setLongitudinalBarCrossSectionArea(double)
-	 * @generated
-	 */
-	void unsetLongitudinalBarCrossSectionArea();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarCrossSectionArea <em>Longitudinal Bar Cross Section Area</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Bar Cross Section Area</em>' attribute is set.
-	 * @see #unsetLongitudinalBarCrossSectionArea()
-	 * @see #getLongitudinalBarCrossSectionArea()
-	 * @see #setLongitudinalBarCrossSectionArea(double)
-	 * @generated
-	 */
-	boolean isSetLongitudinalBarCrossSectionArea();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Cross Section Area As String</b></em>' attribute.
@@ -534,11 +399,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Cross Section Area As String</em>' attribute.
-	 * @see #isSetLongitudinalBarCrossSectionAreaAsString()
-	 * @see #unsetLongitudinalBarCrossSectionAreaAsString()
 	 * @see #setLongitudinalBarCrossSectionAreaAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarCrossSectionAreaAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getLongitudinalBarCrossSectionAreaAsString();
@@ -548,35 +411,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Bar Cross Section Area As String</em>' attribute.
-	 * @see #isSetLongitudinalBarCrossSectionAreaAsString()
-	 * @see #unsetLongitudinalBarCrossSectionAreaAsString()
 	 * @see #getLongitudinalBarCrossSectionAreaAsString()
 	 * @generated
 	 */
 	void setLongitudinalBarCrossSectionAreaAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarCrossSectionAreaAsString <em>Longitudinal Bar Cross Section Area As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalBarCrossSectionAreaAsString()
-	 * @see #getLongitudinalBarCrossSectionAreaAsString()
-	 * @see #setLongitudinalBarCrossSectionAreaAsString(String)
-	 * @generated
-	 */
-	void unsetLongitudinalBarCrossSectionAreaAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarCrossSectionAreaAsString <em>Longitudinal Bar Cross Section Area As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Bar Cross Section Area As String</em>' attribute is set.
-	 * @see #unsetLongitudinalBarCrossSectionAreaAsString()
-	 * @see #getLongitudinalBarCrossSectionAreaAsString()
-	 * @see #setLongitudinalBarCrossSectionAreaAsString(String)
-	 * @generated
-	 */
-	boolean isSetLongitudinalBarCrossSectionAreaAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Cross Section Area</b></em>' attribute.
@@ -587,11 +425,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Cross Section Area</em>' attribute.
-	 * @see #isSetTransverseBarCrossSectionArea()
-	 * @see #unsetTransverseBarCrossSectionArea()
 	 * @see #setTransverseBarCrossSectionArea(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarCrossSectionArea()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getTransverseBarCrossSectionArea();
@@ -601,35 +437,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transverse Bar Cross Section Area</em>' attribute.
-	 * @see #isSetTransverseBarCrossSectionArea()
-	 * @see #unsetTransverseBarCrossSectionArea()
 	 * @see #getTransverseBarCrossSectionArea()
 	 * @generated
 	 */
 	void setTransverseBarCrossSectionArea(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarCrossSectionArea <em>Transverse Bar Cross Section Area</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTransverseBarCrossSectionArea()
-	 * @see #getTransverseBarCrossSectionArea()
-	 * @see #setTransverseBarCrossSectionArea(double)
-	 * @generated
-	 */
-	void unsetTransverseBarCrossSectionArea();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarCrossSectionArea <em>Transverse Bar Cross Section Area</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Transverse Bar Cross Section Area</em>' attribute is set.
-	 * @see #unsetTransverseBarCrossSectionArea()
-	 * @see #getTransverseBarCrossSectionArea()
-	 * @see #setTransverseBarCrossSectionArea(double)
-	 * @generated
-	 */
-	boolean isSetTransverseBarCrossSectionArea();
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Cross Section Area As String</b></em>' attribute.
@@ -640,11 +451,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Cross Section Area As String</em>' attribute.
-	 * @see #isSetTransverseBarCrossSectionAreaAsString()
-	 * @see #unsetTransverseBarCrossSectionAreaAsString()
 	 * @see #setTransverseBarCrossSectionAreaAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarCrossSectionAreaAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getTransverseBarCrossSectionAreaAsString();
@@ -654,35 +463,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transverse Bar Cross Section Area As String</em>' attribute.
-	 * @see #isSetTransverseBarCrossSectionAreaAsString()
-	 * @see #unsetTransverseBarCrossSectionAreaAsString()
 	 * @see #getTransverseBarCrossSectionAreaAsString()
 	 * @generated
 	 */
 	void setTransverseBarCrossSectionAreaAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarCrossSectionAreaAsString <em>Transverse Bar Cross Section Area As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTransverseBarCrossSectionAreaAsString()
-	 * @see #getTransverseBarCrossSectionAreaAsString()
-	 * @see #setTransverseBarCrossSectionAreaAsString(String)
-	 * @generated
-	 */
-	void unsetTransverseBarCrossSectionAreaAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarCrossSectionAreaAsString <em>Transverse Bar Cross Section Area As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Transverse Bar Cross Section Area As String</em>' attribute is set.
-	 * @see #unsetTransverseBarCrossSectionAreaAsString()
-	 * @see #getTransverseBarCrossSectionAreaAsString()
-	 * @see #setTransverseBarCrossSectionAreaAsString(String)
-	 * @generated
-	 */
-	boolean isSetTransverseBarCrossSectionAreaAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Spacing</b></em>' attribute.
@@ -693,11 +477,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Spacing</em>' attribute.
-	 * @see #isSetLongitudinalBarSpacing()
-	 * @see #unsetLongitudinalBarSpacing()
 	 * @see #setLongitudinalBarSpacing(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarSpacing()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getLongitudinalBarSpacing();
@@ -707,35 +489,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Bar Spacing</em>' attribute.
-	 * @see #isSetLongitudinalBarSpacing()
-	 * @see #unsetLongitudinalBarSpacing()
 	 * @see #getLongitudinalBarSpacing()
 	 * @generated
 	 */
 	void setLongitudinalBarSpacing(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarSpacing <em>Longitudinal Bar Spacing</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalBarSpacing()
-	 * @see #getLongitudinalBarSpacing()
-	 * @see #setLongitudinalBarSpacing(double)
-	 * @generated
-	 */
-	void unsetLongitudinalBarSpacing();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarSpacing <em>Longitudinal Bar Spacing</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Bar Spacing</em>' attribute is set.
-	 * @see #unsetLongitudinalBarSpacing()
-	 * @see #getLongitudinalBarSpacing()
-	 * @see #setLongitudinalBarSpacing(double)
-	 * @generated
-	 */
-	boolean isSetLongitudinalBarSpacing();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Bar Spacing As String</b></em>' attribute.
@@ -746,11 +503,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Bar Spacing As String</em>' attribute.
-	 * @see #isSetLongitudinalBarSpacingAsString()
-	 * @see #unsetLongitudinalBarSpacingAsString()
 	 * @see #setLongitudinalBarSpacingAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_LongitudinalBarSpacingAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getLongitudinalBarSpacingAsString();
@@ -760,35 +515,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Bar Spacing As String</em>' attribute.
-	 * @see #isSetLongitudinalBarSpacingAsString()
-	 * @see #unsetLongitudinalBarSpacingAsString()
 	 * @see #getLongitudinalBarSpacingAsString()
 	 * @generated
 	 */
 	void setLongitudinalBarSpacingAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarSpacingAsString <em>Longitudinal Bar Spacing As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalBarSpacingAsString()
-	 * @see #getLongitudinalBarSpacingAsString()
-	 * @see #setLongitudinalBarSpacingAsString(String)
-	 * @generated
-	 */
-	void unsetLongitudinalBarSpacingAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getLongitudinalBarSpacingAsString <em>Longitudinal Bar Spacing As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Bar Spacing As String</em>' attribute is set.
-	 * @see #unsetLongitudinalBarSpacingAsString()
-	 * @see #getLongitudinalBarSpacingAsString()
-	 * @see #setLongitudinalBarSpacingAsString(String)
-	 * @generated
-	 */
-	boolean isSetLongitudinalBarSpacingAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Spacing</b></em>' attribute.
@@ -799,11 +529,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Spacing</em>' attribute.
-	 * @see #isSetTransverseBarSpacing()
-	 * @see #unsetTransverseBarSpacing()
 	 * @see #setTransverseBarSpacing(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarSpacing()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getTransverseBarSpacing();
@@ -813,35 +541,10 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transverse Bar Spacing</em>' attribute.
-	 * @see #isSetTransverseBarSpacing()
-	 * @see #unsetTransverseBarSpacing()
 	 * @see #getTransverseBarSpacing()
 	 * @generated
 	 */
 	void setTransverseBarSpacing(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarSpacing <em>Transverse Bar Spacing</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTransverseBarSpacing()
-	 * @see #getTransverseBarSpacing()
-	 * @see #setTransverseBarSpacing(double)
-	 * @generated
-	 */
-	void unsetTransverseBarSpacing();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarSpacing <em>Transverse Bar Spacing</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Transverse Bar Spacing</em>' attribute is set.
-	 * @see #unsetTransverseBarSpacing()
-	 * @see #getTransverseBarSpacing()
-	 * @see #setTransverseBarSpacing(double)
-	 * @generated
-	 */
-	boolean isSetTransverseBarSpacing();
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Bar Spacing As String</b></em>' attribute.
@@ -852,11 +555,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transverse Bar Spacing As String</em>' attribute.
-	 * @see #isSetTransverseBarSpacingAsString()
-	 * @see #unsetTransverseBarSpacingAsString()
 	 * @see #setTransverseBarSpacingAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcReinforcingMesh_TransverseBarSpacingAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getTransverseBarSpacingAsString();
@@ -866,34 +567,9 @@ public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transverse Bar Spacing As String</em>' attribute.
-	 * @see #isSetTransverseBarSpacingAsString()
-	 * @see #unsetTransverseBarSpacingAsString()
 	 * @see #getTransverseBarSpacingAsString()
 	 * @generated
 	 */
 	void setTransverseBarSpacingAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarSpacingAsString <em>Transverse Bar Spacing As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTransverseBarSpacingAsString()
-	 * @see #getTransverseBarSpacingAsString()
-	 * @see #setTransverseBarSpacingAsString(String)
-	 * @generated
-	 */
-	void unsetTransverseBarSpacingAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcReinforcingMesh#getTransverseBarSpacingAsString <em>Transverse Bar Spacing As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Transverse Bar Spacing As String</em>' attribute is set.
-	 * @see #unsetTransverseBarSpacingAsString()
-	 * @see #getTransverseBarSpacingAsString()
-	 * @see #setTransverseBarSpacingAsString(String)
-	 * @generated
-	 */
-	boolean isSetTransverseBarSpacingAsString();
 
 } // IfcReinforcingMesh

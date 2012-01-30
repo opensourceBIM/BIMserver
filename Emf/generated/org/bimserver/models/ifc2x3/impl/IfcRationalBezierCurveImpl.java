@@ -72,45 +72,9 @@ public class IfcRationalBezierCurveImpl extends IfcBezierCurveImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetWeightsData() {
-		eUnset(Ifc2x3Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetWeightsData() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getWeightsDataAsString() {
 		return (EList<String>) eGet(Ifc2x3Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA_AS_STRING, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetWeightsDataAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetWeightsDataAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA_AS_STRING);
 	}
 
 } //IfcRationalBezierCurveImpl

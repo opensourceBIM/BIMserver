@@ -49,7 +49,7 @@ public class SRunResult implements SBase
 
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("runOke")) {
-			return isRunOke();
+			return getRunOke();
 		}
 		if (sField.getName().equals("warnings")) {
 			return getWarnings();
@@ -90,15 +90,15 @@ public class SRunResult implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private boolean runOke;
+	private java.lang.Boolean runOke;
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
 	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
 	private java.lang.String output;
-	public boolean isRunOke() {
+	public java.lang.Boolean getRunOke() {
 		return runOke;
 	}
 
-	public void setRunOke(boolean runOke) {
+	public void setRunOke(java.lang.Boolean runOke) {
 		this.runOke = runOke;
 	}
 

@@ -28,27 +28,27 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.Settings#isShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#isUseCaching <em>Use Caching</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#isAllowSelfRegistration <em>Allow Self Registration</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#isAutoTestClashes <em>Auto Test Clashes</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#isIntelligentMerging <em>Intelligent Merging</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getUseCaching <em>Use Caching</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getAllowSelfRegistration <em>Allow Self Registration</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getAutoTestClashes <em>Auto Test Clashes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getIntelligentMerging <em>Intelligent Merging</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#isAllowUsersToCreateTopLevelProjects <em>Allow Users To Create Top Level Projects</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#isCheckinMergingEnabled <em>Checkin Merging Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getCheckinMergingEnabled <em>Checkin Merging Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getRegistrationAddition <em>Registration Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSmtpServer <em>Smtp Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getEmailSenderAddress <em>Email Sender Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSiteAddress <em>Site Address</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getIfcEngines <em>Ifc Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getDeserializers <em>Deserializers</em>}</li>
@@ -70,22 +70,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Show Version Upgrade Available</em>' attribute.
-	 * @see #setShowVersionUpgradeAvailable(boolean)
+	 * @see #setShowVersionUpgradeAvailable(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_ShowVersionUpgradeAvailable()
 	 * @model
 	 * @generated
 	 */
-	boolean isShowVersionUpgradeAvailable();
+	Boolean getShowVersionUpgradeAvailable();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Show Version Upgrade Available</em>' attribute.
-	 * @see #isShowVersionUpgradeAvailable()
+	 * @see #getShowVersionUpgradeAvailable()
 	 * @generated
 	 */
-	void setShowVersionUpgradeAvailable(boolean value);
+	void setShowVersionUpgradeAvailable(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Send Confirmation Email After Registration</b></em>' attribute.
@@ -122,22 +122,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Use Caching</em>' attribute.
-	 * @see #setUseCaching(boolean)
+	 * @see #setUseCaching(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_UseCaching()
 	 * @model
 	 * @generated
 	 */
-	boolean isUseCaching();
+	Boolean getUseCaching();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isUseCaching <em>Use Caching</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getUseCaching <em>Use Caching</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Use Caching</em>' attribute.
-	 * @see #isUseCaching()
+	 * @see #getUseCaching()
 	 * @generated
 	 */
-	void setUseCaching(boolean value);
+	void setUseCaching(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Allow Self Registration</b></em>' attribute.
@@ -148,22 +148,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Allow Self Registration</em>' attribute.
-	 * @see #setAllowSelfRegistration(boolean)
+	 * @see #setAllowSelfRegistration(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_AllowSelfRegistration()
 	 * @model
 	 * @generated
 	 */
-	boolean isAllowSelfRegistration();
+	Boolean getAllowSelfRegistration();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isAllowSelfRegistration <em>Allow Self Registration</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getAllowSelfRegistration <em>Allow Self Registration</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allow Self Registration</em>' attribute.
-	 * @see #isAllowSelfRegistration()
+	 * @see #getAllowSelfRegistration()
 	 * @generated
 	 */
-	void setAllowSelfRegistration(boolean value);
+	void setAllowSelfRegistration(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Auto Test Clashes</b></em>' attribute.
@@ -174,22 +174,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Auto Test Clashes</em>' attribute.
-	 * @see #setAutoTestClashes(boolean)
+	 * @see #setAutoTestClashes(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_AutoTestClashes()
 	 * @model
 	 * @generated
 	 */
-	boolean isAutoTestClashes();
+	Boolean getAutoTestClashes();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isAutoTestClashes <em>Auto Test Clashes</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getAutoTestClashes <em>Auto Test Clashes</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Auto Test Clashes</em>' attribute.
-	 * @see #isAutoTestClashes()
+	 * @see #getAutoTestClashes()
 	 * @generated
 	 */
-	void setAutoTestClashes(boolean value);
+	void setAutoTestClashes(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Intelligent Merging</b></em>' attribute.
@@ -200,22 +200,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Intelligent Merging</em>' attribute.
-	 * @see #setIntelligentMerging(boolean)
+	 * @see #setIntelligentMerging(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_IntelligentMerging()
 	 * @model
 	 * @generated
 	 */
-	boolean isIntelligentMerging();
+	Boolean getIntelligentMerging();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isIntelligentMerging <em>Intelligent Merging</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getIntelligentMerging <em>Intelligent Merging</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Intelligent Merging</em>' attribute.
-	 * @see #isIntelligentMerging()
+	 * @see #getIntelligentMerging()
 	 * @generated
 	 */
-	void setIntelligentMerging(boolean value);
+	void setIntelligentMerging(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Allow Users To Create Top Level Projects</b></em>' attribute.
@@ -252,22 +252,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Checkin Merging Enabled</em>' attribute.
-	 * @see #setCheckinMergingEnabled(boolean)
+	 * @see #setCheckinMergingEnabled(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_CheckinMergingEnabled()
 	 * @model
 	 * @generated
 	 */
-	boolean isCheckinMergingEnabled();
+	Boolean getCheckinMergingEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isCheckinMergingEnabled <em>Checkin Merging Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getCheckinMergingEnabled <em>Checkin Merging Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Checkin Merging Enabled</em>' attribute.
-	 * @see #isCheckinMergingEnabled()
+	 * @see #getCheckinMergingEnabled()
 	 * @generated
 	 */
-	void setCheckinMergingEnabled(boolean value);
+	void setCheckinMergingEnabled(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Registration Addition</b></em>' attribute.
@@ -408,22 +408,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hide User List For Non Admin</em>' attribute.
-	 * @see #setHideUserListForNonAdmin(boolean)
+	 * @see #setHideUserListForNonAdmin(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_HideUserListForNonAdmin()
 	 * @model
 	 * @generated
 	 */
-	boolean isHideUserListForNonAdmin();
+	Boolean getHideUserListForNonAdmin();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Hide User List For Non Admin</em>' attribute.
-	 * @see #isHideUserListForNonAdmin()
+	 * @see #getHideUserListForNonAdmin()
 	 * @generated
 	 */
-	void setHideUserListForNonAdmin(boolean value);
+	void setHideUserListForNonAdmin(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Protocol Buffers Port</b></em>' attribute.
@@ -434,12 +434,12 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Protocol Buffers Port</em>' attribute.
-	 * @see #setProtocolBuffersPort(int)
+	 * @see #setProtocolBuffersPort(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_ProtocolBuffersPort()
 	 * @model
 	 * @generated
 	 */
-	int getProtocolBuffersPort();
+	Integer getProtocolBuffersPort();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}' attribute.
@@ -449,7 +449,7 @@ public interface Settings extends IdEObject {
 	 * @see #getProtocolBuffersPort()
 	 * @generated
 	 */
-	void setProtocolBuffersPort(int value);
+	void setProtocolBuffersPort(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.
@@ -577,22 +577,22 @@ public interface Settings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cache Output Files</em>' attribute.
-	 * @see #setCacheOutputFiles(boolean)
+	 * @see #setCacheOutputFiles(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSettings_CacheOutputFiles()
 	 * @model
 	 * @generated
 	 */
-	boolean isCacheOutputFiles();
+	Boolean getCacheOutputFiles();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getCacheOutputFiles <em>Cache Output Files</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cache Output Files</em>' attribute.
-	 * @see #isCacheOutputFiles()
+	 * @see #getCacheOutputFiles()
 	 * @generated
 	 */
-	void setCacheOutputFiles(boolean value);
+	void setCacheOutputFiles(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Ifc Engines</b></em>' reference list.

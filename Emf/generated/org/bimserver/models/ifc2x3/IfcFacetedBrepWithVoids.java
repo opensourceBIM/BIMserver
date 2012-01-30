@@ -45,33 +45,10 @@ public interface IfcFacetedBrepWithVoids extends IfcManifoldSolidBrep {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Voids</em>' reference list.
-	 * @see #isSetVoids()
-	 * @see #unsetVoids()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFacetedBrepWithVoids_Voids()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcClosedShell> getVoids();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFacetedBrepWithVoids#getVoids <em>Voids</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetVoids()
-	 * @see #getVoids()
-	 * @generated
-	 */
-	void unsetVoids();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFacetedBrepWithVoids#getVoids <em>Voids</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Voids</em>' reference list is set.
-	 * @see #unsetVoids()
-	 * @see #getVoids()
-	 * @generated
-	 */
-	boolean isSetVoids();
 
 } // IfcFacetedBrepWithVoids

@@ -82,7 +82,7 @@ public class SCheckinResult implements SBase
 	
 	private long revisionId;
 	private long projectId;
-	private int progress;
+	private java.lang.Integer progress;
 	public long getRevisionId() {
 		return revisionId;
 	}
@@ -99,11 +99,11 @@ public class SCheckinResult implements SBase
 		this.projectId = projectId;
 	}
 	
-	public int getProgress() {
+	public java.lang.Integer getProgress() {
 		return progress;
 	}
 
-	public void setProgress(int progress) {
+	public void setProgress(java.lang.Integer progress) {
 		this.progress = progress;
 	}
 	@Override

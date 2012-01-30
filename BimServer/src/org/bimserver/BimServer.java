@@ -430,7 +430,7 @@ public class BimServer {
 				session.store(pluginObject);
 			} else if (results.size() == 1) {
 				org.bimserver.models.store.Plugin pluginObject = results.values().iterator().next();
-				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.isEnabled());
+				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.getEnabled());
 			} else {
 				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getClass().getName());
 			}

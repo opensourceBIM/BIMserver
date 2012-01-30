@@ -138,24 +138,6 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements IfcOrganizatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ORGANIZATION__DESCRIPTION, true);
 	}

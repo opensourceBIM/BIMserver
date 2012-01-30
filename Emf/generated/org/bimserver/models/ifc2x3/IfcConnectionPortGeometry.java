@@ -44,11 +44,9 @@ public interface IfcConnectionPortGeometry extends IfcConnectionGeometry {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Location At Relating Element</em>' reference.
-	 * @see #isSetLocationAtRelatingElement()
-	 * @see #unsetLocationAtRelatingElement()
 	 * @see #setLocationAtRelatingElement(IfcAxis2Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionPortGeometry_LocationAtRelatingElement()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAxis2Placement getLocationAtRelatingElement();
@@ -58,35 +56,10 @@ public interface IfcConnectionPortGeometry extends IfcConnectionGeometry {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Location At Relating Element</em>' reference.
-	 * @see #isSetLocationAtRelatingElement()
-	 * @see #unsetLocationAtRelatingElement()
 	 * @see #getLocationAtRelatingElement()
 	 * @generated
 	 */
 	void setLocationAtRelatingElement(IfcAxis2Placement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPortGeometry#getLocationAtRelatingElement <em>Location At Relating Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLocationAtRelatingElement()
-	 * @see #getLocationAtRelatingElement()
-	 * @see #setLocationAtRelatingElement(IfcAxis2Placement)
-	 * @generated
-	 */
-	void unsetLocationAtRelatingElement();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPortGeometry#getLocationAtRelatingElement <em>Location At Relating Element</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Location At Relating Element</em>' reference is set.
-	 * @see #unsetLocationAtRelatingElement()
-	 * @see #getLocationAtRelatingElement()
-	 * @see #setLocationAtRelatingElement(IfcAxis2Placement)
-	 * @generated
-	 */
-	boolean isSetLocationAtRelatingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Location At Related Element</b></em>' reference.
@@ -150,11 +123,9 @@ public interface IfcConnectionPortGeometry extends IfcConnectionGeometry {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Profile Of Port</em>' reference.
-	 * @see #isSetProfileOfPort()
-	 * @see #unsetProfileOfPort()
 	 * @see #setProfileOfPort(IfcProfileDef)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionPortGeometry_ProfileOfPort()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcProfileDef getProfileOfPort();
@@ -164,34 +135,9 @@ public interface IfcConnectionPortGeometry extends IfcConnectionGeometry {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Profile Of Port</em>' reference.
-	 * @see #isSetProfileOfPort()
-	 * @see #unsetProfileOfPort()
 	 * @see #getProfileOfPort()
 	 * @generated
 	 */
 	void setProfileOfPort(IfcProfileDef value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPortGeometry#getProfileOfPort <em>Profile Of Port</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetProfileOfPort()
-	 * @see #getProfileOfPort()
-	 * @see #setProfileOfPort(IfcProfileDef)
-	 * @generated
-	 */
-	void unsetProfileOfPort();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPortGeometry#getProfileOfPort <em>Profile Of Port</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Profile Of Port</em>' reference is set.
-	 * @see #unsetProfileOfPort()
-	 * @see #getProfileOfPort()
-	 * @see #setProfileOfPort(IfcProfileDef)
-	 * @generated
-	 */
-	boolean isSetProfileOfPort();
 
 } // IfcConnectionPortGeometry

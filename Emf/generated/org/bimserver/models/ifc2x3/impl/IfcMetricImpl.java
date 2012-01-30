@@ -81,24 +81,6 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetBenchmark() {
-		eUnset(Ifc2x3Package.Literals.IFC_METRIC__BENCHMARK);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBenchmark() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_METRIC__BENCHMARK);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getValueSource() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_METRIC__VALUE_SOURCE, true);
 	}
@@ -146,24 +128,6 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 */
 	public void setDataValue(IfcMetricValueSelect newDataValue) {
 		eSet(Ifc2x3Package.Literals.IFC_METRIC__DATA_VALUE, newDataValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetDataValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_METRIC__DATA_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDataValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_METRIC__DATA_VALUE);
 	}
 
 } //IfcMetricImpl

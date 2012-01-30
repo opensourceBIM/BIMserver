@@ -94,24 +94,6 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PHYSICAL_QUANTITY__DESCRIPTION, true);
 	}

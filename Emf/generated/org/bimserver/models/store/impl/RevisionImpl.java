@@ -93,7 +93,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
+	public Integer getId() {
 		return (Integer) eGet(StorePackage.Literals.REVISION__ID, true);
 	}
 
@@ -102,7 +102,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
+	public void setId(Integer newId) {
 		eSet(StorePackage.Literals.REVISION__ID, newId);
 	}
 
@@ -165,7 +165,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getSize() {
+	public Long getSize() {
 		return (Long) eGet(StorePackage.Literals.REVISION__SIZE, true);
 	}
 
@@ -174,7 +174,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(long newSize) {
+	public void setSize(Long newSize) {
 		eSet(StorePackage.Literals.REVISION__SIZE, newSize);
 	}
 
@@ -303,7 +303,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getBmi() {
+	public Integer getBmi() {
 		return (Integer) eGet(StorePackage.Literals.REVISION__BMI, true);
 	}
 
@@ -312,7 +312,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBmi(int newBmi) {
+	public void setBmi(Integer newBmi) {
 		eSet(StorePackage.Literals.REVISION__BMI, newBmi);
 	}
 
@@ -321,7 +321,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNrClashes() {
+	public Integer getNrClashes() {
 		return (Integer) eGet(StorePackage.Literals.REVISION__NR_CLASHES, true);
 	}
 
@@ -330,7 +330,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNrClashes(int newNrClashes) {
+	public void setNrClashes(Integer newNrClashes) {
 		eSet(StorePackage.Literals.REVISION__NR_CLASHES, newNrClashes);
 	}
 
@@ -339,7 +339,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getLaid() {
+	public Long getLaid() {
 		return (Long) eGet(StorePackage.Literals.REVISION__LAID, true);
 	}
 
@@ -348,7 +348,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLaid(long newLaid) {
+	public void setLaid(Long newLaid) {
 		eSet(StorePackage.Literals.REVISION__LAID, newLaid);
 	}
 

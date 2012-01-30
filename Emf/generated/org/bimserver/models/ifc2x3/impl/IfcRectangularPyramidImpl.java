@@ -82,24 +82,6 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetXLength() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetXLength() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getXLengthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH_AS_STRING, true);
 	}
@@ -111,24 +93,6 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 */
 	public void setXLengthAsString(String newXLengthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH_AS_STRING, newXLengthAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetXLengthAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetXLengthAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__XLENGTH_AS_STRING);
 	}
 
 	/**
@@ -154,24 +118,6 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetYLength() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetYLength() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getYLengthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH_AS_STRING, true);
 	}
@@ -183,24 +129,6 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 */
 	public void setYLengthAsString(String newYLengthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH_AS_STRING, newYLengthAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetYLengthAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetYLengthAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__YLENGTH_AS_STRING);
 	}
 
 	/**
@@ -226,24 +154,6 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetHeight() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetHeight() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getHeightAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT_AS_STRING, true);
 	}
@@ -255,24 +165,6 @@ public class IfcRectangularPyramidImpl extends IfcCsgPrimitive3DImpl implements 
 	 */
 	public void setHeightAsString(String newHeightAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT_AS_STRING, newHeightAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetHeightAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetHeightAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGULAR_PYRAMID__HEIGHT_AS_STRING);
 	}
 
 } //IfcRectangularPyramidImpl

@@ -77,7 +77,7 @@ public class VersionImpl extends IdEObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMajor() {
+	public Integer getMajor() {
 		return (Integer) eGet(StorePackage.Literals.VERSION__MAJOR, true);
 	}
 
@@ -86,7 +86,7 @@ public class VersionImpl extends IdEObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMajor(int newMajor) {
+	public void setMajor(Integer newMajor) {
 		eSet(StorePackage.Literals.VERSION__MAJOR, newMajor);
 	}
 
@@ -95,7 +95,7 @@ public class VersionImpl extends IdEObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMinor() {
+	public Integer getMinor() {
 		return (Integer) eGet(StorePackage.Literals.VERSION__MINOR, true);
 	}
 
@@ -104,7 +104,7 @@ public class VersionImpl extends IdEObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinor(int newMinor) {
+	public void setMinor(Integer newMinor) {
 		eSet(StorePackage.Literals.VERSION__MINOR, newMinor);
 	}
 
@@ -113,7 +113,7 @@ public class VersionImpl extends IdEObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getRevision() {
+	public Integer getRevision() {
 		return (Integer) eGet(StorePackage.Literals.VERSION__REVISION, true);
 	}
 
@@ -122,7 +122,7 @@ public class VersionImpl extends IdEObjectImpl implements Version {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRevision(int newRevision) {
+	public void setRevision(Integer newRevision) {
 		eSet(StorePackage.Literals.VERSION__REVISION, newRevision);
 	}
 

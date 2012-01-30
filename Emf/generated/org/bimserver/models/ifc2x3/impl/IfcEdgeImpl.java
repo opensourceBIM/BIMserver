@@ -79,24 +79,6 @@ public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetEdgeStart() {
-		eUnset(Ifc2x3Package.Literals.IFC_EDGE__EDGE_START);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEdgeStart() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_EDGE__EDGE_START);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcVertex getEdgeEnd() {
 		return (IfcVertex) eGet(Ifc2x3Package.Literals.IFC_EDGE__EDGE_END, true);
 	}
@@ -108,24 +90,6 @@ public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements
 	 */
 	public void setEdgeEnd(IfcVertex newEdgeEnd) {
 		eSet(Ifc2x3Package.Literals.IFC_EDGE__EDGE_END, newEdgeEnd);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetEdgeEnd() {
-		eUnset(Ifc2x3Package.Literals.IFC_EDGE__EDGE_END);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEdgeEnd() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_EDGE__EDGE_END);
 	}
 
 } //IfcEdgeImpl

@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.MigrationImpl#getNumber <em>Number</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.MigrationImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.MigrationImpl#isExecuted <em>Executed</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.MigrationImpl#getExecuted <em>Executed</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,7 +71,7 @@ public class MigrationImpl extends IdEObjectImpl implements Migration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumber() {
+	public Integer getNumber() {
 		return (Integer) eGet(StorePackage.Literals.MIGRATION__NUMBER, true);
 	}
 
@@ -80,7 +80,7 @@ public class MigrationImpl extends IdEObjectImpl implements Migration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumber(int newNumber) {
+	public void setNumber(Integer newNumber) {
 		eSet(StorePackage.Literals.MIGRATION__NUMBER, newNumber);
 	}
 
@@ -107,7 +107,7 @@ public class MigrationImpl extends IdEObjectImpl implements Migration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isExecuted() {
+	public Boolean getExecuted() {
 		return (Boolean) eGet(StorePackage.Literals.MIGRATION__EXECUTED, true);
 	}
 
@@ -116,7 +116,7 @@ public class MigrationImpl extends IdEObjectImpl implements Migration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExecuted(boolean newExecuted) {
+	public void setExecuted(Boolean newExecuted) {
 		eSet(StorePackage.Literals.MIGRATION__EXECUTED, newExecuted);
 	}
 

@@ -48,11 +48,9 @@ public interface IfcSoundProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Attenuating</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetIsAttenuating()
-	 * @see #unsetIsAttenuating()
 	 * @see #setIsAttenuating(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSoundProperties_IsAttenuating()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getIsAttenuating();
@@ -63,35 +61,10 @@ public interface IfcSoundProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Attenuating</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetIsAttenuating()
-	 * @see #unsetIsAttenuating()
 	 * @see #getIsAttenuating()
 	 * @generated
 	 */
 	void setIsAttenuating(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundProperties#getIsAttenuating <em>Is Attenuating</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetIsAttenuating()
-	 * @see #getIsAttenuating()
-	 * @see #setIsAttenuating(Tristate)
-	 * @generated
-	 */
-	void unsetIsAttenuating();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundProperties#getIsAttenuating <em>Is Attenuating</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Is Attenuating</em>' attribute is set.
-	 * @see #unsetIsAttenuating()
-	 * @see #getIsAttenuating()
-	 * @see #setIsAttenuating(Tristate)
-	 * @generated
-	 */
-	boolean isSetIsAttenuating();
 
 	/**
 	 * Returns the value of the '<em><b>Sound Scale</b></em>' attribute.
@@ -159,33 +132,10 @@ public interface IfcSoundProperties extends IfcPropertySetDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sound Values</em>' reference list.
-	 * @see #isSetSoundValues()
-	 * @see #unsetSoundValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSoundProperties_SoundValues()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcSoundValue> getSoundValues();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundProperties#getSoundValues <em>Sound Values</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSoundValues()
-	 * @see #getSoundValues()
-	 * @generated
-	 */
-	void unsetSoundValues();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSoundProperties#getSoundValues <em>Sound Values</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sound Values</em>' reference list is set.
-	 * @see #unsetSoundValues()
-	 * @see #getSoundValues()
-	 * @generated
-	 */
-	boolean isSetSoundValues();
 
 } // IfcSoundProperties

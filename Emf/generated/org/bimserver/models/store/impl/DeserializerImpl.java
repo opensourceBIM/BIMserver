@@ -32,8 +32,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#isDefaultDeserializer <em>Default Deserializer</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#getEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#getDefaultDeserializer <em>Default Deserializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DeserializerImpl#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -129,7 +129,7 @@ public class DeserializerImpl extends IdEObjectImpl implements Deserializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.DESERIALIZER__ENABLED, true);
 	}
 
@@ -138,7 +138,7 @@ public class DeserializerImpl extends IdEObjectImpl implements Deserializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.DESERIALIZER__ENABLED, newEnabled);
 	}
 
@@ -147,7 +147,7 @@ public class DeserializerImpl extends IdEObjectImpl implements Deserializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDefaultDeserializer() {
+	public Boolean getDefaultDeserializer() {
 		return (Boolean) eGet(StorePackage.Literals.DESERIALIZER__DEFAULT_DESERIALIZER, true);
 	}
 
@@ -156,7 +156,7 @@ public class DeserializerImpl extends IdEObjectImpl implements Deserializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultDeserializer(boolean newDefaultDeserializer) {
+	public void setDefaultDeserializer(Boolean newDefaultDeserializer) {
 		eSet(StorePackage.Literals.DESERIALIZER__DEFAULT_DESERIALIZER, newDefaultDeserializer);
 	}
 

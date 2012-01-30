@@ -111,22 +111,4 @@ public class IfcLocalPlacementImpl extends IfcObjectPlacementImpl implements Ifc
 		eSet(Ifc2x3Package.Literals.IFC_LOCAL_PLACEMENT__RELATIVE_PLACEMENT, newRelativePlacement);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelativePlacement() {
-		eUnset(Ifc2x3Package.Literals.IFC_LOCAL_PLACEMENT__RELATIVE_PLACEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelativePlacement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LOCAL_PLACEMENT__RELATIVE_PLACEMENT);
-	}
-
 } //IfcLocalPlacementImpl

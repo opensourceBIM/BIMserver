@@ -80,24 +80,6 @@ public class IfcStructuralActionImpl extends IfcStructuralActivityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetDestabilizingLoad() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDestabilizingLoad() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcStructuralReaction getCausedBy() {
 		return (IfcStructuralReaction) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ACTION__CAUSED_BY, true);
 	}

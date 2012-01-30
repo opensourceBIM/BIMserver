@@ -123,24 +123,6 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetCompositionType() {
-		eUnset(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCompositionType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelReferencedInSpatialStructure> getReferencesElements() {
 		return (EList<IfcRelReferencedInSpatialStructure>) eGet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__REFERENCES_ELEMENTS, true);

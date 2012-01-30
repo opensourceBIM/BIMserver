@@ -43,11 +43,9 @@ public interface IfcFaceBound extends IfcTopologicalRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bound</em>' reference.
-	 * @see #isSetBound()
-	 * @see #unsetBound()
 	 * @see #setBound(IfcLoop)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFaceBound_Bound()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcLoop getBound();
@@ -57,35 +55,10 @@ public interface IfcFaceBound extends IfcTopologicalRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bound</em>' reference.
-	 * @see #isSetBound()
-	 * @see #unsetBound()
 	 * @see #getBound()
 	 * @generated
 	 */
 	void setBound(IfcLoop value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBound#getBound <em>Bound</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetBound()
-	 * @see #getBound()
-	 * @see #setBound(IfcLoop)
-	 * @generated
-	 */
-	void unsetBound();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBound#getBound <em>Bound</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Bound</em>' reference is set.
-	 * @see #unsetBound()
-	 * @see #getBound()
-	 * @see #setBound(IfcLoop)
-	 * @generated
-	 */
-	boolean isSetBound();
 
 	/**
 	 * Returns the value of the '<em><b>Orientation</b></em>' attribute.
@@ -98,11 +71,9 @@ public interface IfcFaceBound extends IfcTopologicalRepresentationItem {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Orientation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetOrientation()
-	 * @see #unsetOrientation()
 	 * @see #setOrientation(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFaceBound_Orientation()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getOrientation();
@@ -113,34 +84,9 @@ public interface IfcFaceBound extends IfcTopologicalRepresentationItem {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Orientation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetOrientation()
-	 * @see #unsetOrientation()
 	 * @see #getOrientation()
 	 * @generated
 	 */
 	void setOrientation(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBound#getOrientation <em>Orientation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOrientation()
-	 * @see #getOrientation()
-	 * @see #setOrientation(Tristate)
-	 * @generated
-	 */
-	void unsetOrientation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFaceBound#getOrientation <em>Orientation</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Orientation</em>' attribute is set.
-	 * @see #unsetOrientation()
-	 * @see #getOrientation()
-	 * @see #setOrientation(Tristate)
-	 * @generated
-	 */
-	boolean isSetOrientation();
 
 } // IfcFaceBound

@@ -74,24 +74,6 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements IfcRelAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatedObjects() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedObjects() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcObjectTypeEnum getRelatedObjectsType() {
 		return (IfcObjectTypeEnum) eGet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE, true);
 	}

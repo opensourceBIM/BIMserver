@@ -73,22 +73,4 @@ public class IfcFillAreaStyleTileSymbolWithStyleImpl extends IfcGeometricReprese
 		eSet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE__SYMBOL, newSymbol);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSymbol() {
-		eUnset(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE__SYMBOL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSymbol() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE__SYMBOL);
-	}
-
 } //IfcFillAreaStyleTileSymbolWithStyleImpl

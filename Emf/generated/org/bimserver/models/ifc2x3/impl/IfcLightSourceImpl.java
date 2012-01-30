@@ -119,24 +119,6 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetLightColour() {
-		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLightColour() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getAmbientIntensity() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY, true);
 	}

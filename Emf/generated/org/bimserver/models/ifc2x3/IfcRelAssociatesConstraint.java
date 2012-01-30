@@ -43,11 +43,9 @@ public interface IfcRelAssociatesConstraint extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Intent</em>' attribute.
-	 * @see #isSetIntent()
-	 * @see #unsetIntent()
 	 * @see #setIntent(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesConstraint_Intent()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getIntent();
@@ -57,35 +55,10 @@ public interface IfcRelAssociatesConstraint extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Intent</em>' attribute.
-	 * @see #isSetIntent()
-	 * @see #unsetIntent()
 	 * @see #getIntent()
 	 * @generated
 	 */
 	void setIntent(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesConstraint#getIntent <em>Intent</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetIntent()
-	 * @see #getIntent()
-	 * @see #setIntent(String)
-	 * @generated
-	 */
-	void unsetIntent();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesConstraint#getIntent <em>Intent</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Intent</em>' attribute is set.
-	 * @see #unsetIntent()
-	 * @see #getIntent()
-	 * @see #setIntent(String)
-	 * @generated
-	 */
-	boolean isSetIntent();
 
 	/**
 	 * Returns the value of the '<em><b>Relating Constraint</b></em>' reference.
@@ -96,11 +69,9 @@ public interface IfcRelAssociatesConstraint extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Constraint</em>' reference.
-	 * @see #isSetRelatingConstraint()
-	 * @see #unsetRelatingConstraint()
 	 * @see #setRelatingConstraint(IfcConstraint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesConstraint_RelatingConstraint()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcConstraint getRelatingConstraint();
@@ -110,34 +81,9 @@ public interface IfcRelAssociatesConstraint extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Constraint</em>' reference.
-	 * @see #isSetRelatingConstraint()
-	 * @see #unsetRelatingConstraint()
 	 * @see #getRelatingConstraint()
 	 * @generated
 	 */
 	void setRelatingConstraint(IfcConstraint value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesConstraint#getRelatingConstraint <em>Relating Constraint</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingConstraint()
-	 * @see #getRelatingConstraint()
-	 * @see #setRelatingConstraint(IfcConstraint)
-	 * @generated
-	 */
-	void unsetRelatingConstraint();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesConstraint#getRelatingConstraint <em>Relating Constraint</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Constraint</em>' reference is set.
-	 * @see #unsetRelatingConstraint()
-	 * @see #getRelatingConstraint()
-	 * @see #setRelatingConstraint(IfcConstraint)
-	 * @generated
-	 */
-	boolean isSetRelatingConstraint();
 
 } // IfcRelAssociatesConstraint

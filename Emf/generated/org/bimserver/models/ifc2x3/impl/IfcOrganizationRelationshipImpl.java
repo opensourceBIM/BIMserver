@@ -95,24 +95,6 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__DESCRIPTION, true);
 	}
@@ -167,45 +149,9 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingOrganization() {
-		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingOrganization() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getRelatedOrganizations() {
 		return (EList<IfcOrganization>) eGet(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedOrganizations() {
-		eUnset(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedOrganizations() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS);
 	}
 
 } //IfcOrganizationRelationshipImpl

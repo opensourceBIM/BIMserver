@@ -45,11 +45,9 @@ public interface IfcTextureCoordinateGenerator extends IfcTextureCoordinate {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mode</em>' attribute.
-	 * @see #isSetMode()
-	 * @see #unsetMode()
 	 * @see #setMode(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextureCoordinateGenerator_Mode()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getMode();
@@ -59,35 +57,10 @@ public interface IfcTextureCoordinateGenerator extends IfcTextureCoordinate {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mode</em>' attribute.
-	 * @see #isSetMode()
-	 * @see #unsetMode()
 	 * @see #getMode()
 	 * @generated
 	 */
 	void setMode(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureCoordinateGenerator#getMode <em>Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMode()
-	 * @see #getMode()
-	 * @see #setMode(String)
-	 * @generated
-	 */
-	void unsetMode();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureCoordinateGenerator#getMode <em>Mode</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Mode</em>' attribute is set.
-	 * @see #unsetMode()
-	 * @see #getMode()
-	 * @see #setMode(String)
-	 * @generated
-	 */
-	boolean isSetMode();
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.
@@ -99,33 +72,10 @@ public interface IfcTextureCoordinateGenerator extends IfcTextureCoordinate {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
-	 * @see #isSetParameter()
-	 * @see #unsetParameter()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextureCoordinateGenerator_Parameter()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcSimpleValue> getParameter();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureCoordinateGenerator#getParameter <em>Parameter</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetParameter()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	void unsetParameter();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureCoordinateGenerator#getParameter <em>Parameter</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Parameter</em>' reference list is set.
-	 * @see #unsetParameter()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	boolean isSetParameter();
 
 } // IfcTextureCoordinateGenerator

@@ -83,24 +83,6 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetConstructionType() {
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstructionType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcWindowStyleOperationEnum getOperationType() {
 		return (IfcWindowStyleOperationEnum) eGet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE, true);
 	}
@@ -112,24 +94,6 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 */
 	public void setOperationType(IfcWindowStyleOperationEnum newOperationType) {
 		eSet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE, newOperationType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOperationType() {
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOperationType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE);
 	}
 
 	/**
@@ -155,24 +119,6 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetParameterTakesPrecedence() {
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetParameterTakesPrecedence() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Tristate getSizeable() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__SIZEABLE, true);
 	}
@@ -184,24 +130,6 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 */
 	public void setSizeable(Tristate newSizeable) {
 		eSet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__SIZEABLE, newSizeable);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSizeable() {
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__SIZEABLE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSizeable() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_STYLE__SIZEABLE);
 	}
 
 } //IfcWindowStyleImpl

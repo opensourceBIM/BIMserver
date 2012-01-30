@@ -153,11 +153,9 @@ public interface IfcObjective extends IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Objective Qualifier</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcObjectiveEnum
-	 * @see #isSetObjectiveQualifier()
-	 * @see #unsetObjectiveQualifier()
 	 * @see #setObjectiveQualifier(IfcObjectiveEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcObjective_ObjectiveQualifier()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcObjectiveEnum getObjectiveQualifier();
@@ -168,35 +166,10 @@ public interface IfcObjective extends IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Objective Qualifier</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcObjectiveEnum
-	 * @see #isSetObjectiveQualifier()
-	 * @see #unsetObjectiveQualifier()
 	 * @see #getObjectiveQualifier()
 	 * @generated
 	 */
 	void setObjectiveQualifier(IfcObjectiveEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcObjective#getObjectiveQualifier <em>Objective Qualifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetObjectiveQualifier()
-	 * @see #getObjectiveQualifier()
-	 * @see #setObjectiveQualifier(IfcObjectiveEnum)
-	 * @generated
-	 */
-	void unsetObjectiveQualifier();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcObjective#getObjectiveQualifier <em>Objective Qualifier</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Objective Qualifier</em>' attribute is set.
-	 * @see #unsetObjectiveQualifier()
-	 * @see #getObjectiveQualifier()
-	 * @see #setObjectiveQualifier(IfcObjectiveEnum)
-	 * @generated
-	 */
-	boolean isSetObjectiveQualifier();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Qualifier</b></em>' attribute.

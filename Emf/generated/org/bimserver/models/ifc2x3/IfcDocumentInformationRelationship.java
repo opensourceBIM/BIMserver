@@ -50,12 +50,10 @@ public interface IfcDocumentInformationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Document</em>' reference.
-	 * @see #isSetRelatingDocument()
-	 * @see #unsetRelatingDocument()
 	 * @see #setRelatingDocument(IfcDocumentInformation)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformationRelationship_RelatingDocument()
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentInformation#getIsPointer
-	 * @model opposite="IsPointer" unsettable="true"
+	 * @model opposite="IsPointer"
 	 * @generated
 	 */
 	IfcDocumentInformation getRelatingDocument();
@@ -65,35 +63,10 @@ public interface IfcDocumentInformationRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Document</em>' reference.
-	 * @see #isSetRelatingDocument()
-	 * @see #unsetRelatingDocument()
 	 * @see #getRelatingDocument()
 	 * @generated
 	 */
 	void setRelatingDocument(IfcDocumentInformation value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship#getRelatingDocument <em>Relating Document</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingDocument()
-	 * @see #getRelatingDocument()
-	 * @see #setRelatingDocument(IfcDocumentInformation)
-	 * @generated
-	 */
-	void unsetRelatingDocument();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship#getRelatingDocument <em>Relating Document</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Document</em>' reference is set.
-	 * @see #unsetRelatingDocument()
-	 * @see #getRelatingDocument()
-	 * @see #setRelatingDocument(IfcDocumentInformation)
-	 * @generated
-	 */
-	boolean isSetRelatingDocument();
 
 	/**
 	 * Returns the value of the '<em><b>Related Documents</b></em>' reference list.
@@ -106,35 +79,12 @@ public interface IfcDocumentInformationRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Documents</em>' reference list.
-	 * @see #isSetRelatedDocuments()
-	 * @see #unsetRelatedDocuments()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformationRelationship_RelatedDocuments()
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentInformation#getIsPointedTo
-	 * @model opposite="IsPointedTo" unsettable="true"
+	 * @model opposite="IsPointedTo"
 	 * @generated
 	 */
 	EList<IfcDocumentInformation> getRelatedDocuments();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship#getRelatedDocuments <em>Related Documents</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedDocuments()
-	 * @see #getRelatedDocuments()
-	 * @generated
-	 */
-	void unsetRelatedDocuments();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship#getRelatedDocuments <em>Related Documents</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Documents</em>' reference list is set.
-	 * @see #unsetRelatedDocuments()
-	 * @see #getRelatedDocuments()
-	 * @generated
-	 */
-	boolean isSetRelatedDocuments();
 
 	/**
 	 * Returns the value of the '<em><b>Relationship Type</b></em>' attribute.

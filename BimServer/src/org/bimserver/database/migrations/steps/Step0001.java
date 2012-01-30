@@ -99,7 +99,7 @@ public class Step0001 extends Migration {
 		
 		EClass databaseCreatedClass = schema.createEClass(logPackage, "DatabaseCreated", logActionClass);
 		schema.createEAttribute(databaseCreatedClass, "path", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(databaseCreatedClass, "version", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseCreatedClass, "version", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		
 		schema.createEClass(logPackage, "ServerStarted", logActionClass);
 		

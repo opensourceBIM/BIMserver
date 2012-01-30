@@ -44,12 +44,10 @@ public interface IfcRelAssignsToProcess extends IfcRelAssigns {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Process</em>' reference.
-	 * @see #isSetRelatingProcess()
-	 * @see #unsetRelatingProcess()
 	 * @see #setRelatingProcess(IfcProcess)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssignsToProcess_RelatingProcess()
 	 * @see org.bimserver.models.ifc2x3.IfcProcess#getOperatesOn
-	 * @model opposite="OperatesOn" unsettable="true"
+	 * @model opposite="OperatesOn"
 	 * @generated
 	 */
 	IfcProcess getRelatingProcess();
@@ -59,35 +57,10 @@ public interface IfcRelAssignsToProcess extends IfcRelAssigns {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Process</em>' reference.
-	 * @see #isSetRelatingProcess()
-	 * @see #unsetRelatingProcess()
 	 * @see #getRelatingProcess()
 	 * @generated
 	 */
 	void setRelatingProcess(IfcProcess value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToProcess#getRelatingProcess <em>Relating Process</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingProcess()
-	 * @see #getRelatingProcess()
-	 * @see #setRelatingProcess(IfcProcess)
-	 * @generated
-	 */
-	void unsetRelatingProcess();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToProcess#getRelatingProcess <em>Relating Process</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Process</em>' reference is set.
-	 * @see #unsetRelatingProcess()
-	 * @see #getRelatingProcess()
-	 * @see #setRelatingProcess(IfcProcess)
-	 * @generated
-	 */
-	boolean isSetRelatingProcess();
 
 	/**
 	 * Returns the value of the '<em><b>Quantity In Process</b></em>' reference.

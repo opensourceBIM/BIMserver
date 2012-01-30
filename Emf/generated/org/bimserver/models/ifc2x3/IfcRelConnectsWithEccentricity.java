@@ -42,11 +42,9 @@ public interface IfcRelConnectsWithEccentricity extends IfcRelConnectsStructural
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connection Constraint</em>' reference.
-	 * @see #isSetConnectionConstraint()
-	 * @see #unsetConnectionConstraint()
 	 * @see #setConnectionConstraint(IfcConnectionGeometry)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsWithEccentricity_ConnectionConstraint()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcConnectionGeometry getConnectionConstraint();
@@ -56,34 +54,9 @@ public interface IfcRelConnectsWithEccentricity extends IfcRelConnectsStructural
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Connection Constraint</em>' reference.
-	 * @see #isSetConnectionConstraint()
-	 * @see #unsetConnectionConstraint()
 	 * @see #getConnectionConstraint()
 	 * @generated
 	 */
 	void setConnectionConstraint(IfcConnectionGeometry value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsWithEccentricity#getConnectionConstraint <em>Connection Constraint</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetConnectionConstraint()
-	 * @see #getConnectionConstraint()
-	 * @see #setConnectionConstraint(IfcConnectionGeometry)
-	 * @generated
-	 */
-	void unsetConnectionConstraint();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsWithEccentricity#getConnectionConstraint <em>Connection Constraint</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Connection Constraint</em>' reference is set.
-	 * @see #unsetConnectionConstraint()
-	 * @see #getConnectionConstraint()
-	 * @see #setConnectionConstraint(IfcConnectionGeometry)
-	 * @generated
-	 */
-	boolean isSetConnectionConstraint();
 
 } // IfcRelConnectsWithEccentricity

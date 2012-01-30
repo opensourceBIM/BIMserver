@@ -81,24 +81,6 @@ public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetBaseSurface() {
-		eUnset(Ifc2x3Package.Literals.IFC_HALF_SPACE_SOLID__BASE_SURFACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBaseSurface() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_HALF_SPACE_SOLID__BASE_SURFACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Tristate getAgreementFlag() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG, true);
 	}
@@ -110,24 +92,6 @@ public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	public void setAgreementFlag(Tristate newAgreementFlag) {
 		eSet(Ifc2x3Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG, newAgreementFlag);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetAgreementFlag() {
-		eUnset(Ifc2x3Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAgreementFlag() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG);
 	}
 
 	/**

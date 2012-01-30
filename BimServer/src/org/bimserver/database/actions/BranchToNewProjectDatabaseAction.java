@@ -54,7 +54,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Integer>
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		final IfcModelInterface model = bimServer.getMergerFactory().createMerger().merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		final IfcModelInterface model = bimServer.getMergerFactory().createMerger().merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		model.resetOids();
 		final Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, currentUoid).execute();
 		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(getDatabaseSession(), getAccessMethod(), newProject.getOid(), currentUoid, model, comment);

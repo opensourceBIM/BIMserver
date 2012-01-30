@@ -91,7 +91,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length() - 1);
 		}

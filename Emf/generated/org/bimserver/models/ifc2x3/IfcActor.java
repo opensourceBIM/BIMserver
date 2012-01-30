@@ -45,11 +45,9 @@ public interface IfcActor extends IfcObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>The Actor</em>' reference.
-	 * @see #isSetTheActor()
-	 * @see #unsetTheActor()
 	 * @see #setTheActor(IfcActorSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcActor_TheActor()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcActorSelect getTheActor();
@@ -59,35 +57,10 @@ public interface IfcActor extends IfcObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>The Actor</em>' reference.
-	 * @see #isSetTheActor()
-	 * @see #unsetTheActor()
 	 * @see #getTheActor()
 	 * @generated
 	 */
 	void setTheActor(IfcActorSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcActor#getTheActor <em>The Actor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTheActor()
-	 * @see #getTheActor()
-	 * @see #setTheActor(IfcActorSelect)
-	 * @generated
-	 */
-	void unsetTheActor();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcActor#getTheActor <em>The Actor</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>The Actor</em>' reference is set.
-	 * @see #unsetTheActor()
-	 * @see #getTheActor()
-	 * @see #setTheActor(IfcActorSelect)
-	 * @generated
-	 */
-	boolean isSetTheActor();
 
 	/**
 	 * Returns the value of the '<em><b>Is Acting Upon</b></em>' reference list.

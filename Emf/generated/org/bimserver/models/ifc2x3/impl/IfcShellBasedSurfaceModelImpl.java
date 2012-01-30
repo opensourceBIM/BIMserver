@@ -73,24 +73,6 @@ public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationIte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSbsmBoundary() {
-		eUnset(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__SBSM_BOUNDARY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSbsmBoundary() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__SBSM_BOUNDARY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, true);
 	}

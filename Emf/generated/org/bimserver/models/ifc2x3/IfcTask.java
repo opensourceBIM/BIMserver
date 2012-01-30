@@ -46,11 +46,9 @@ public interface IfcTask extends IfcProcess {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Task Id</em>' attribute.
-	 * @see #isSetTaskId()
-	 * @see #unsetTaskId()
 	 * @see #setTaskId(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTask_TaskId()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getTaskId();
@@ -60,35 +58,10 @@ public interface IfcTask extends IfcProcess {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Task Id</em>' attribute.
-	 * @see #isSetTaskId()
-	 * @see #unsetTaskId()
 	 * @see #getTaskId()
 	 * @generated
 	 */
 	void setTaskId(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTask#getTaskId <em>Task Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTaskId()
-	 * @see #getTaskId()
-	 * @see #setTaskId(String)
-	 * @generated
-	 */
-	void unsetTaskId();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTask#getTaskId <em>Task Id</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Task Id</em>' attribute is set.
-	 * @see #unsetTaskId()
-	 * @see #getTaskId()
-	 * @see #setTaskId(String)
-	 * @generated
-	 */
-	boolean isSetTaskId();
 
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.
@@ -207,11 +180,9 @@ public interface IfcTask extends IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Milestone</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetIsMilestone()
-	 * @see #unsetIsMilestone()
 	 * @see #setIsMilestone(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTask_IsMilestone()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getIsMilestone();
@@ -222,35 +193,10 @@ public interface IfcTask extends IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Milestone</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetIsMilestone()
-	 * @see #unsetIsMilestone()
 	 * @see #getIsMilestone()
 	 * @generated
 	 */
 	void setIsMilestone(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTask#getIsMilestone <em>Is Milestone</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetIsMilestone()
-	 * @see #getIsMilestone()
-	 * @see #setIsMilestone(Tristate)
-	 * @generated
-	 */
-	void unsetIsMilestone();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTask#getIsMilestone <em>Is Milestone</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Is Milestone</em>' attribute is set.
-	 * @see #unsetIsMilestone()
-	 * @see #getIsMilestone()
-	 * @see #setIsMilestone(Tristate)
-	 * @generated
-	 */
-	boolean isSetIsMilestone();
 
 	/**
 	 * Returns the value of the '<em><b>Priority</b></em>' attribute.

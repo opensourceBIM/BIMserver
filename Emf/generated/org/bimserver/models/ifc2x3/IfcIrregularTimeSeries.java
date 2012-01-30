@@ -45,33 +45,10 @@ public interface IfcIrregularTimeSeries extends IfcTimeSeries {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values</em>' reference list.
-	 * @see #isSetValues()
-	 * @see #unsetValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcIrregularTimeSeries_Values()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcIrregularTimeSeriesValue> getValues();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcIrregularTimeSeries#getValues <em>Values</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetValues()
-	 * @see #getValues()
-	 * @generated
-	 */
-	void unsetValues();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcIrregularTimeSeries#getValues <em>Values</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Values</em>' reference list is set.
-	 * @see #unsetValues()
-	 * @see #getValues()
-	 * @generated
-	 */
-	boolean isSetValues();
 
 } // IfcIrregularTimeSeries

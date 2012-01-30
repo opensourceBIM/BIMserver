@@ -59,11 +59,9 @@ public interface IfcConstraint extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -73,35 +71,10 @@ public interface IfcConstraint extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -167,11 +140,9 @@ public interface IfcConstraint extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraint Grade</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintEnum
-	 * @see #isSetConstraintGrade()
-	 * @see #unsetConstraintGrade()
 	 * @see #setConstraintGrade(IfcConstraintEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConstraint_ConstraintGrade()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcConstraintEnum getConstraintGrade();
@@ -182,35 +153,10 @@ public interface IfcConstraint extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Constraint Grade</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintEnum
-	 * @see #isSetConstraintGrade()
-	 * @see #unsetConstraintGrade()
 	 * @see #getConstraintGrade()
 	 * @generated
 	 */
 	void setConstraintGrade(IfcConstraintEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getConstraintGrade <em>Constraint Grade</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetConstraintGrade()
-	 * @see #getConstraintGrade()
-	 * @see #setConstraintGrade(IfcConstraintEnum)
-	 * @generated
-	 */
-	void unsetConstraintGrade();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConstraint#getConstraintGrade <em>Constraint Grade</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Constraint Grade</em>' attribute is set.
-	 * @see #unsetConstraintGrade()
-	 * @see #getConstraintGrade()
-	 * @see #setConstraintGrade(IfcConstraintEnum)
-	 * @generated
-	 */
-	boolean isSetConstraintGrade();
 
 	/**
 	 * Returns the value of the '<em><b>Constraint Source</b></em>' attribute.

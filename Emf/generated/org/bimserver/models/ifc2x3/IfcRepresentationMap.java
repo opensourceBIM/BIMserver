@@ -49,11 +49,9 @@ public interface IfcRepresentationMap extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mapping Origin</em>' reference.
-	 * @see #isSetMappingOrigin()
-	 * @see #unsetMappingOrigin()
 	 * @see #setMappingOrigin(IfcAxis2Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentationMap_MappingOrigin()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAxis2Placement getMappingOrigin();
@@ -63,35 +61,10 @@ public interface IfcRepresentationMap extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mapping Origin</em>' reference.
-	 * @see #isSetMappingOrigin()
-	 * @see #unsetMappingOrigin()
 	 * @see #getMappingOrigin()
 	 * @generated
 	 */
 	void setMappingOrigin(IfcAxis2Placement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationMap#getMappingOrigin <em>Mapping Origin</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMappingOrigin()
-	 * @see #getMappingOrigin()
-	 * @see #setMappingOrigin(IfcAxis2Placement)
-	 * @generated
-	 */
-	void unsetMappingOrigin();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationMap#getMappingOrigin <em>Mapping Origin</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Mapping Origin</em>' reference is set.
-	 * @see #unsetMappingOrigin()
-	 * @see #getMappingOrigin()
-	 * @see #setMappingOrigin(IfcAxis2Placement)
-	 * @generated
-	 */
-	boolean isSetMappingOrigin();
 
 	/**
 	 * Returns the value of the '<em><b>Mapped Representation</b></em>' reference.
@@ -103,12 +76,10 @@ public interface IfcRepresentationMap extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mapped Representation</em>' reference.
-	 * @see #isSetMappedRepresentation()
-	 * @see #unsetMappedRepresentation()
 	 * @see #setMappedRepresentation(IfcRepresentation)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRepresentationMap_MappedRepresentation()
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentation#getRepresentationMap
-	 * @model opposite="RepresentationMap" unsettable="true"
+	 * @model opposite="RepresentationMap"
 	 * @generated
 	 */
 	IfcRepresentation getMappedRepresentation();
@@ -118,35 +89,10 @@ public interface IfcRepresentationMap extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mapped Representation</em>' reference.
-	 * @see #isSetMappedRepresentation()
-	 * @see #unsetMappedRepresentation()
 	 * @see #getMappedRepresentation()
 	 * @generated
 	 */
 	void setMappedRepresentation(IfcRepresentation value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationMap#getMappedRepresentation <em>Mapped Representation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMappedRepresentation()
-	 * @see #getMappedRepresentation()
-	 * @see #setMappedRepresentation(IfcRepresentation)
-	 * @generated
-	 */
-	void unsetMappedRepresentation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRepresentationMap#getMappedRepresentation <em>Mapped Representation</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Mapped Representation</em>' reference is set.
-	 * @see #unsetMappedRepresentation()
-	 * @see #getMappedRepresentation()
-	 * @see #setMappedRepresentation(IfcRepresentation)
-	 * @generated
-	 */
-	boolean isSetMappedRepresentation();
 
 	/**
 	 * Returns the value of the '<em><b>Map Usage</b></em>' reference list.

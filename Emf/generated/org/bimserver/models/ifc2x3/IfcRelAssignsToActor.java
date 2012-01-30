@@ -44,12 +44,10 @@ public interface IfcRelAssignsToActor extends IfcRelAssigns {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Actor</em>' reference.
-	 * @see #isSetRelatingActor()
-	 * @see #unsetRelatingActor()
 	 * @see #setRelatingActor(IfcActor)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssignsToActor_RelatingActor()
 	 * @see org.bimserver.models.ifc2x3.IfcActor#getIsActingUpon
-	 * @model opposite="IsActingUpon" unsettable="true"
+	 * @model opposite="IsActingUpon"
 	 * @generated
 	 */
 	IfcActor getRelatingActor();
@@ -59,35 +57,10 @@ public interface IfcRelAssignsToActor extends IfcRelAssigns {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Actor</em>' reference.
-	 * @see #isSetRelatingActor()
-	 * @see #unsetRelatingActor()
 	 * @see #getRelatingActor()
 	 * @generated
 	 */
 	void setRelatingActor(IfcActor value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToActor#getRelatingActor <em>Relating Actor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingActor()
-	 * @see #getRelatingActor()
-	 * @see #setRelatingActor(IfcActor)
-	 * @generated
-	 */
-	void unsetRelatingActor();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToActor#getRelatingActor <em>Relating Actor</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Actor</em>' reference is set.
-	 * @see #unsetRelatingActor()
-	 * @see #getRelatingActor()
-	 * @see #setRelatingActor(IfcActor)
-	 * @generated
-	 */
-	boolean isSetRelatingActor();
 
 	/**
 	 * Returns the value of the '<em><b>Acting Role</b></em>' reference.

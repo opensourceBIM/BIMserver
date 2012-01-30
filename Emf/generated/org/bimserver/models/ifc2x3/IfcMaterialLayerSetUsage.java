@@ -46,11 +46,9 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>For Layer Set</em>' reference.
-	 * @see #isSetForLayerSet()
-	 * @see #unsetForLayerSet()
 	 * @see #setForLayerSet(IfcMaterialLayerSet)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSetUsage_ForLayerSet()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcMaterialLayerSet getForLayerSet();
@@ -60,35 +58,10 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>For Layer Set</em>' reference.
-	 * @see #isSetForLayerSet()
-	 * @see #unsetForLayerSet()
 	 * @see #getForLayerSet()
 	 * @generated
 	 */
 	void setForLayerSet(IfcMaterialLayerSet value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getForLayerSet <em>For Layer Set</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetForLayerSet()
-	 * @see #getForLayerSet()
-	 * @see #setForLayerSet(IfcMaterialLayerSet)
-	 * @generated
-	 */
-	void unsetForLayerSet();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getForLayerSet <em>For Layer Set</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>For Layer Set</em>' reference is set.
-	 * @see #unsetForLayerSet()
-	 * @see #getForLayerSet()
-	 * @see #setForLayerSet(IfcMaterialLayerSet)
-	 * @generated
-	 */
-	boolean isSetForLayerSet();
 
 	/**
 	 * Returns the value of the '<em><b>Layer Set Direction</b></em>' attribute.
@@ -101,11 +74,9 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Set Direction</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLayerSetDirectionEnum
-	 * @see #isSetLayerSetDirection()
-	 * @see #unsetLayerSetDirection()
 	 * @see #setLayerSetDirection(IfcLayerSetDirectionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSetUsage_LayerSetDirection()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcLayerSetDirectionEnum getLayerSetDirection();
@@ -116,35 +87,10 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layer Set Direction</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcLayerSetDirectionEnum
-	 * @see #isSetLayerSetDirection()
-	 * @see #unsetLayerSetDirection()
 	 * @see #getLayerSetDirection()
 	 * @generated
 	 */
 	void setLayerSetDirection(IfcLayerSetDirectionEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getLayerSetDirection <em>Layer Set Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLayerSetDirection()
-	 * @see #getLayerSetDirection()
-	 * @see #setLayerSetDirection(IfcLayerSetDirectionEnum)
-	 * @generated
-	 */
-	void unsetLayerSetDirection();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getLayerSetDirection <em>Layer Set Direction</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Layer Set Direction</em>' attribute is set.
-	 * @see #unsetLayerSetDirection()
-	 * @see #getLayerSetDirection()
-	 * @see #setLayerSetDirection(IfcLayerSetDirectionEnum)
-	 * @generated
-	 */
-	boolean isSetLayerSetDirection();
 
 	/**
 	 * Returns the value of the '<em><b>Direction Sense</b></em>' attribute.
@@ -157,11 +103,9 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Direction Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDirectionSenseEnum
-	 * @see #isSetDirectionSense()
-	 * @see #unsetDirectionSense()
 	 * @see #setDirectionSense(IfcDirectionSenseEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSetUsage_DirectionSense()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDirectionSenseEnum getDirectionSense();
@@ -172,35 +116,10 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Direction Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDirectionSenseEnum
-	 * @see #isSetDirectionSense()
-	 * @see #unsetDirectionSense()
 	 * @see #getDirectionSense()
 	 * @generated
 	 */
 	void setDirectionSense(IfcDirectionSenseEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getDirectionSense <em>Direction Sense</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDirectionSense()
-	 * @see #getDirectionSense()
-	 * @see #setDirectionSense(IfcDirectionSenseEnum)
-	 * @generated
-	 */
-	void unsetDirectionSense();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getDirectionSense <em>Direction Sense</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Direction Sense</em>' attribute is set.
-	 * @see #unsetDirectionSense()
-	 * @see #getDirectionSense()
-	 * @see #setDirectionSense(IfcDirectionSenseEnum)
-	 * @generated
-	 */
-	boolean isSetDirectionSense();
 
 	/**
 	 * Returns the value of the '<em><b>Offset From Reference Line</b></em>' attribute.
@@ -211,11 +130,9 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset From Reference Line</em>' attribute.
-	 * @see #isSetOffsetFromReferenceLine()
-	 * @see #unsetOffsetFromReferenceLine()
 	 * @see #setOffsetFromReferenceLine(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSetUsage_OffsetFromReferenceLine()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getOffsetFromReferenceLine();
@@ -225,35 +142,10 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Offset From Reference Line</em>' attribute.
-	 * @see #isSetOffsetFromReferenceLine()
-	 * @see #unsetOffsetFromReferenceLine()
 	 * @see #getOffsetFromReferenceLine()
 	 * @generated
 	 */
 	void setOffsetFromReferenceLine(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getOffsetFromReferenceLine <em>Offset From Reference Line</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOffsetFromReferenceLine()
-	 * @see #getOffsetFromReferenceLine()
-	 * @see #setOffsetFromReferenceLine(double)
-	 * @generated
-	 */
-	void unsetOffsetFromReferenceLine();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getOffsetFromReferenceLine <em>Offset From Reference Line</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Offset From Reference Line</em>' attribute is set.
-	 * @see #unsetOffsetFromReferenceLine()
-	 * @see #getOffsetFromReferenceLine()
-	 * @see #setOffsetFromReferenceLine(double)
-	 * @generated
-	 */
-	boolean isSetOffsetFromReferenceLine();
 
 	/**
 	 * Returns the value of the '<em><b>Offset From Reference Line As String</b></em>' attribute.
@@ -264,11 +156,9 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset From Reference Line As String</em>' attribute.
-	 * @see #isSetOffsetFromReferenceLineAsString()
-	 * @see #unsetOffsetFromReferenceLineAsString()
 	 * @see #setOffsetFromReferenceLineAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMaterialLayerSetUsage_OffsetFromReferenceLineAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getOffsetFromReferenceLineAsString();
@@ -278,34 +168,9 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Offset From Reference Line As String</em>' attribute.
-	 * @see #isSetOffsetFromReferenceLineAsString()
-	 * @see #unsetOffsetFromReferenceLineAsString()
 	 * @see #getOffsetFromReferenceLineAsString()
 	 * @generated
 	 */
 	void setOffsetFromReferenceLineAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getOffsetFromReferenceLineAsString <em>Offset From Reference Line As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOffsetFromReferenceLineAsString()
-	 * @see #getOffsetFromReferenceLineAsString()
-	 * @see #setOffsetFromReferenceLineAsString(String)
-	 * @generated
-	 */
-	void unsetOffsetFromReferenceLineAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage#getOffsetFromReferenceLineAsString <em>Offset From Reference Line As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Offset From Reference Line As String</em>' attribute is set.
-	 * @see #unsetOffsetFromReferenceLineAsString()
-	 * @see #getOffsetFromReferenceLineAsString()
-	 * @see #setOffsetFromReferenceLineAsString(String)
-	 * @generated
-	 */
-	boolean isSetOffsetFromReferenceLineAsString();
 
 } // IfcMaterialLayerSetUsage

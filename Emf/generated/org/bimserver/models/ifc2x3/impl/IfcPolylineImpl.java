@@ -67,22 +67,4 @@ public class IfcPolylineImpl extends IfcBoundedCurveImpl implements IfcPolyline 
 		return (EList<IfcCartesianPoint>) eGet(Ifc2x3Package.Literals.IFC_POLYLINE__POINTS, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPoints() {
-		eUnset(Ifc2x3Package.Literals.IFC_POLYLINE__POINTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPoints() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POLYLINE__POINTS);
-	}
-
 } //IfcPolylineImpl

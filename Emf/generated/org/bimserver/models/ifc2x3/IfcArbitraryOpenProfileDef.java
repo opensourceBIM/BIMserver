@@ -42,11 +42,9 @@ public interface IfcArbitraryOpenProfileDef extends IfcProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Curve</em>' reference.
-	 * @see #isSetCurve()
-	 * @see #unsetCurve()
 	 * @see #setCurve(IfcBoundedCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcArbitraryOpenProfileDef_Curve()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcBoundedCurve getCurve();
@@ -56,34 +54,9 @@ public interface IfcArbitraryOpenProfileDef extends IfcProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Curve</em>' reference.
-	 * @see #isSetCurve()
-	 * @see #unsetCurve()
 	 * @see #getCurve()
 	 * @generated
 	 */
 	void setCurve(IfcBoundedCurve value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcArbitraryOpenProfileDef#getCurve <em>Curve</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCurve()
-	 * @see #getCurve()
-	 * @see #setCurve(IfcBoundedCurve)
-	 * @generated
-	 */
-	void unsetCurve();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcArbitraryOpenProfileDef#getCurve <em>Curve</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Curve</em>' reference is set.
-	 * @see #unsetCurve()
-	 * @see #getCurve()
-	 * @see #setCurve(IfcBoundedCurve)
-	 * @generated
-	 */
-	boolean isSetCurve();
 
 } // IfcArbitraryOpenProfileDef

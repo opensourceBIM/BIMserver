@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.ClashDetectionSettings#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ClashDetectionSettings#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.ClashDetectionSettings#getProjects <em>Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.ClashDetectionSettings#getMargin <em>Margin</em>}</li>
  *   <li>{@link org.bimserver.models.store.ClashDetectionSettings#getRevisions <em>Revisions</em>}</li>
@@ -51,22 +51,22 @@ public interface ClashDetectionSettings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(boolean)
+	 * @see #setEnabled(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getClashDetectionSettings_Enabled()
 	 * @model
 	 * @generated
 	 */
-	boolean isEnabled();
+	Boolean getEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ClashDetectionSettings#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ClashDetectionSettings#getEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #isEnabled()
+	 * @see #getEnabled()
 	 * @generated
 	 */
-	void setEnabled(boolean value);
+	void setEnabled(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Projects</b></em>' reference list.
@@ -95,12 +95,12 @@ public interface ClashDetectionSettings extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Margin</em>' attribute.
-	 * @see #setMargin(float)
+	 * @see #setMargin(Double)
 	 * @see org.bimserver.models.store.StorePackage#getClashDetectionSettings_Margin()
 	 * @model
 	 * @generated
 	 */
-	float getMargin();
+	Double getMargin();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.ClashDetectionSettings#getMargin <em>Margin</em>}' attribute.
@@ -110,7 +110,7 @@ public interface ClashDetectionSettings extends IdEObject {
 	 * @see #getMargin()
 	 * @generated
 	 */
-	void setMargin(float value);
+	void setMargin(Double value);
 
 	/**
 	 * Returns the value of the '<em><b>Revisions</b></em>' reference list.

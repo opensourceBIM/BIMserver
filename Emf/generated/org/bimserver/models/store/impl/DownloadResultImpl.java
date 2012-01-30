@@ -91,7 +91,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getRevisionNr() {
+	public Integer getRevisionNr() {
 		return (Integer) eGet(StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, true);
 	}
 
@@ -100,7 +100,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRevisionNr(int newRevisionNr) {
+	public void setRevisionNr(Integer newRevisionNr) {
 		eSet(StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, newRevisionNr);
 	}
 

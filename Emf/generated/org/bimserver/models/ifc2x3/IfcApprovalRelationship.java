@@ -49,12 +49,10 @@ public interface IfcApprovalRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Approval</em>' reference.
-	 * @see #isSetRelatedApproval()
-	 * @see #unsetRelatedApproval()
 	 * @see #setRelatedApproval(IfcApproval)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalRelationship_RelatedApproval()
 	 * @see org.bimserver.models.ifc2x3.IfcApproval#getIsRelatedWith
-	 * @model opposite="IsRelatedWith" unsettable="true"
+	 * @model opposite="IsRelatedWith"
 	 * @generated
 	 */
 	IfcApproval getRelatedApproval();
@@ -64,35 +62,10 @@ public interface IfcApprovalRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Approval</em>' reference.
-	 * @see #isSetRelatedApproval()
-	 * @see #unsetRelatedApproval()
 	 * @see #getRelatedApproval()
 	 * @generated
 	 */
 	void setRelatedApproval(IfcApproval value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalRelationship#getRelatedApproval <em>Related Approval</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedApproval()
-	 * @see #getRelatedApproval()
-	 * @see #setRelatedApproval(IfcApproval)
-	 * @generated
-	 */
-	void unsetRelatedApproval();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalRelationship#getRelatedApproval <em>Related Approval</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Approval</em>' reference is set.
-	 * @see #unsetRelatedApproval()
-	 * @see #getRelatedApproval()
-	 * @see #setRelatedApproval(IfcApproval)
-	 * @generated
-	 */
-	boolean isSetRelatedApproval();
 
 	/**
 	 * Returns the value of the '<em><b>Relating Approval</b></em>' reference.
@@ -104,12 +77,10 @@ public interface IfcApprovalRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Approval</em>' reference.
-	 * @see #isSetRelatingApproval()
-	 * @see #unsetRelatingApproval()
 	 * @see #setRelatingApproval(IfcApproval)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalRelationship_RelatingApproval()
 	 * @see org.bimserver.models.ifc2x3.IfcApproval#getRelates
-	 * @model opposite="Relates" unsettable="true"
+	 * @model opposite="Relates"
 	 * @generated
 	 */
 	IfcApproval getRelatingApproval();
@@ -119,35 +90,10 @@ public interface IfcApprovalRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Approval</em>' reference.
-	 * @see #isSetRelatingApproval()
-	 * @see #unsetRelatingApproval()
 	 * @see #getRelatingApproval()
 	 * @generated
 	 */
 	void setRelatingApproval(IfcApproval value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalRelationship#getRelatingApproval <em>Relating Approval</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingApproval()
-	 * @see #getRelatingApproval()
-	 * @see #setRelatingApproval(IfcApproval)
-	 * @generated
-	 */
-	void unsetRelatingApproval();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalRelationship#getRelatingApproval <em>Relating Approval</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Approval</em>' reference is set.
-	 * @see #unsetRelatingApproval()
-	 * @see #getRelatingApproval()
-	 * @see #setRelatingApproval(IfcApproval)
-	 * @generated
-	 */
-	boolean isSetRelatingApproval();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -211,11 +157,9 @@ public interface IfcApprovalRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalRelationship_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -225,34 +169,9 @@ public interface IfcApprovalRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalRelationship#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalRelationship#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 } // IfcApprovalRelationship

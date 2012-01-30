@@ -73,22 +73,4 @@ public class IfcRelAssociatesApprovalImpl extends IfcRelAssociatesImpl implement
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL, newRelatingApproval);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatingApproval() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingApproval() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL);
-	}
-
 } //IfcRelAssociatesApprovalImpl

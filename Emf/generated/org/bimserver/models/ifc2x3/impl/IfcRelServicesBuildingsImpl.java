@@ -82,45 +82,9 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingSystem() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingSystem() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSpatialStructureElement> getRelatedBuildings() {
 		return (EList<IfcSpatialStructureElement>) eGet(Ifc2x3Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedBuildings() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedBuildings() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS);
 	}
 
 } //IfcRelServicesBuildingsImpl

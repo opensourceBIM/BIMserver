@@ -94,45 +94,9 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetLightDistributionCurve() {
-		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLightDistributionCurve() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLightDistributionData> getDistributionData() {
 		return (EList<IfcLightDistributionData>) eGet(Ifc2x3Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetDistributionData() {
-		eUnset(Ifc2x3Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDistributionData() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA);
 	}
 
 } //IfcLightIntensityDistributionImpl

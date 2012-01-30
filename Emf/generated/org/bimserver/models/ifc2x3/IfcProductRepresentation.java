@@ -157,34 +157,11 @@ public interface IfcProductRepresentation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representations</em>' reference list.
-	 * @see #isSetRepresentations()
-	 * @see #unsetRepresentations()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProductRepresentation_Representations()
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentation#getOfProductRepresentation
-	 * @model opposite="OfProductRepresentation" unsettable="true"
+	 * @model opposite="OfProductRepresentation"
 	 * @generated
 	 */
 	EList<IfcRepresentation> getRepresentations();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProductRepresentation#getRepresentations <em>Representations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRepresentations()
-	 * @see #getRepresentations()
-	 * @generated
-	 */
-	void unsetRepresentations();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProductRepresentation#getRepresentations <em>Representations</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Representations</em>' reference list is set.
-	 * @see #unsetRepresentations()
-	 * @see #getRepresentations()
-	 * @generated
-	 */
-	boolean isSetRepresentations();
 
 } // IfcProductRepresentation

@@ -74,24 +74,6 @@ public class IfcPropertyEnumeratedValueImpl extends IfcSimplePropertyImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetEnumerationValues() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_VALUES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEnumerationValues() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_VALUES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcPropertyEnumeration getEnumerationReference() {
 		return (IfcPropertyEnumeration) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_REFERENCE, true);
 	}

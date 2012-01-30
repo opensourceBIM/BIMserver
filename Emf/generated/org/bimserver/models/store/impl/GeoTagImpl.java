@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.GeoTagImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.GeoTagImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeoTagImpl#getProjects <em>Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeoTagImpl#getX <em>X</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeoTagImpl#getY <em>Y</em>}</li>
@@ -77,7 +77,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.GEO_TAG__ENABLED, true);
 	}
 
@@ -86,7 +86,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.GEO_TAG__ENABLED, newEnabled);
 	}
 
@@ -105,8 +105,8 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getX() {
-		return (Float) eGet(StorePackage.Literals.GEO_TAG__X, true);
+	public Double getX() {
+		return (Double) eGet(StorePackage.Literals.GEO_TAG__X, true);
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX(float newX) {
+	public void setX(Double newX) {
 		eSet(StorePackage.Literals.GEO_TAG__X, newX);
 	}
 
@@ -123,8 +123,8 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getY() {
-		return (Float) eGet(StorePackage.Literals.GEO_TAG__Y, true);
+	public Double getY() {
+		return (Double) eGet(StorePackage.Literals.GEO_TAG__Y, true);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY(float newY) {
+	public void setY(Double newY) {
 		eSet(StorePackage.Literals.GEO_TAG__Y, newY);
 	}
 
@@ -141,8 +141,8 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getZ() {
-		return (Float) eGet(StorePackage.Literals.GEO_TAG__Z, true);
+	public Double getZ() {
+		return (Double) eGet(StorePackage.Literals.GEO_TAG__Z, true);
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setZ(float newZ) {
+	public void setZ(Double newZ) {
 		eSet(StorePackage.Literals.GEO_TAG__Z, newZ);
 	}
 
@@ -159,7 +159,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getEpsg() {
+	public Integer getEpsg() {
 		return (Integer) eGet(StorePackage.Literals.GEO_TAG__EPSG, true);
 	}
 
@@ -168,7 +168,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEpsg(int newEpsg) {
+	public void setEpsg(Integer newEpsg) {
 		eSet(StorePackage.Literals.GEO_TAG__EPSG, newEpsg);
 	}
 
@@ -177,8 +177,8 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDirectionAngle() {
-		return (Float) eGet(StorePackage.Literals.GEO_TAG__DIRECTION_ANGLE, true);
+	public Double getDirectionAngle() {
+		return (Double) eGet(StorePackage.Literals.GEO_TAG__DIRECTION_ANGLE, true);
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDirectionAngle(float newDirectionAngle) {
+	public void setDirectionAngle(Double newDirectionAngle) {
 		eSet(StorePackage.Literals.GEO_TAG__DIRECTION_ANGLE, newDirectionAngle);
 	}
 

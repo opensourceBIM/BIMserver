@@ -137,24 +137,6 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetAxisCurve() {
-		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAxisCurve() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Tristate getSameSense() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE, true);
 	}
@@ -166,24 +148,6 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 */
 	public void setSameSense(Tristate newSameSense) {
 		eSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE, newSameSense);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSameSense() {
-		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSameSense() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE);
 	}
 
 	/**

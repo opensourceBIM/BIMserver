@@ -75,12 +75,12 @@ public interface DownloadResult extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Revision Nr</em>' attribute.
-	 * @see #setRevisionNr(int)
+	 * @see #setRevisionNr(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getDownloadResult_RevisionNr()
 	 * @model
 	 * @generated
 	 */
-	int getRevisionNr();
+	Integer getRevisionNr();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DownloadResult#getRevisionNr <em>Revision Nr</em>}' attribute.
@@ -90,7 +90,7 @@ public interface DownloadResult extends IdEObject {
 	 * @see #getRevisionNr()
 	 * @generated
 	 */
-	void setRevisionNr(int value);
+	void setRevisionNr(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>File</b></em>' attribute.

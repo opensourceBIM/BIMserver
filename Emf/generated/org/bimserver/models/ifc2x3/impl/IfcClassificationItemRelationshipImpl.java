@@ -93,45 +93,9 @@ public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingItem() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingItem() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItem> getRelatedItems() {
 		return (EList<IfcClassificationItem>) eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATED_ITEMS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedItems() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATED_ITEMS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedItems() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATED_ITEMS);
 	}
 
 } //IfcClassificationItemRelationshipImpl

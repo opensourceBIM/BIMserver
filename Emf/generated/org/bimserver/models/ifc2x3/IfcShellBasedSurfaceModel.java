@@ -46,34 +46,11 @@ public interface IfcShellBasedSurfaceModel extends IfcGeometricRepresentationIte
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sbsm Boundary</em>' reference list.
-	 * @see #isSetSbsmBoundary()
-	 * @see #unsetSbsmBoundary()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcShellBasedSurfaceModel_SbsmBoundary()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcShell> getSbsmBoundary();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcShellBasedSurfaceModel#getSbsmBoundary <em>Sbsm Boundary</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSbsmBoundary()
-	 * @see #getSbsmBoundary()
-	 * @generated
-	 */
-	void unsetSbsmBoundary();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcShellBasedSurfaceModel#getSbsmBoundary <em>Sbsm Boundary</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sbsm Boundary</em>' reference list is set.
-	 * @see #unsetSbsmBoundary()
-	 * @see #getSbsmBoundary()
-	 * @generated
-	 */
-	boolean isSetSbsmBoundary();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

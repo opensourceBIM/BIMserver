@@ -49,35 +49,12 @@ public interface IfcGrid extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>UAxes</em>' reference list.
-	 * @see #isSetUAxes()
-	 * @see #unsetUAxes()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGrid_UAxes()
 	 * @see org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfU
-	 * @model opposite="PartOfU" unsettable="true"
+	 * @model opposite="PartOfU"
 	 * @generated
 	 */
 	EList<IfcGridAxis> getUAxes();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getUAxes <em>UAxes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetUAxes()
-	 * @see #getUAxes()
-	 * @generated
-	 */
-	void unsetUAxes();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getUAxes <em>UAxes</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>UAxes</em>' reference list is set.
-	 * @see #unsetUAxes()
-	 * @see #getUAxes()
-	 * @generated
-	 */
-	boolean isSetUAxes();
 
 	/**
 	 * Returns the value of the '<em><b>VAxes</b></em>' reference list.
@@ -90,35 +67,12 @@ public interface IfcGrid extends IfcProduct {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>VAxes</em>' reference list.
-	 * @see #isSetVAxes()
-	 * @see #unsetVAxes()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGrid_VAxes()
 	 * @see org.bimserver.models.ifc2x3.IfcGridAxis#getPartOfV
-	 * @model opposite="PartOfV" unsettable="true"
+	 * @model opposite="PartOfV"
 	 * @generated
 	 */
 	EList<IfcGridAxis> getVAxes();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getVAxes <em>VAxes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetVAxes()
-	 * @see #getVAxes()
-	 * @generated
-	 */
-	void unsetVAxes();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGrid#getVAxes <em>VAxes</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>VAxes</em>' reference list is set.
-	 * @see #unsetVAxes()
-	 * @see #getVAxes()
-	 * @generated
-	 */
-	boolean isSetVAxes();
 
 	/**
 	 * Returns the value of the '<em><b>WAxes</b></em>' reference list.

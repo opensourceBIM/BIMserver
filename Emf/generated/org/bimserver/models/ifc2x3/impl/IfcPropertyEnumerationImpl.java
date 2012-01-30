@@ -95,45 +95,9 @@ public class IfcPropertyEnumerationImpl extends IdEObjectImpl implements IfcProp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATION__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATION__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getEnumerationValues() {
 		return (EList<IfcValue>) eGet(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetEnumerationValues() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEnumerationValues() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES);
 	}
 
 	/**

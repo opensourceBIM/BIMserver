@@ -52,11 +52,9 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeries_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -66,35 +64,10 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -158,11 +131,9 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Time</em>' reference.
-	 * @see #isSetStartTime()
-	 * @see #unsetStartTime()
 	 * @see #setStartTime(IfcDateTimeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeries_StartTime()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDateTimeSelect getStartTime();
@@ -172,35 +143,10 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Time</em>' reference.
-	 * @see #isSetStartTime()
-	 * @see #unsetStartTime()
 	 * @see #getStartTime()
 	 * @generated
 	 */
 	void setStartTime(IfcDateTimeSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getStartTime <em>Start Time</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetStartTime()
-	 * @see #getStartTime()
-	 * @see #setStartTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	void unsetStartTime();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getStartTime <em>Start Time</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Start Time</em>' reference is set.
-	 * @see #unsetStartTime()
-	 * @see #getStartTime()
-	 * @see #setStartTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	boolean isSetStartTime();
 
 	/**
 	 * Returns the value of the '<em><b>End Time</b></em>' reference.
@@ -211,11 +157,9 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Time</em>' reference.
-	 * @see #isSetEndTime()
-	 * @see #unsetEndTime()
 	 * @see #setEndTime(IfcDateTimeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeries_EndTime()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDateTimeSelect getEndTime();
@@ -225,35 +169,10 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>End Time</em>' reference.
-	 * @see #isSetEndTime()
-	 * @see #unsetEndTime()
 	 * @see #getEndTime()
 	 * @generated
 	 */
 	void setEndTime(IfcDateTimeSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getEndTime <em>End Time</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetEndTime()
-	 * @see #getEndTime()
-	 * @see #setEndTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	void unsetEndTime();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getEndTime <em>End Time</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>End Time</em>' reference is set.
-	 * @see #unsetEndTime()
-	 * @see #getEndTime()
-	 * @see #setEndTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	boolean isSetEndTime();
 
 	/**
 	 * Returns the value of the '<em><b>Time Series Data Type</b></em>' attribute.
@@ -266,11 +185,9 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Series Data Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeriesDataTypeEnum
-	 * @see #isSetTimeSeriesDataType()
-	 * @see #unsetTimeSeriesDataType()
 	 * @see #setTimeSeriesDataType(IfcTimeSeriesDataTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeries_TimeSeriesDataType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcTimeSeriesDataTypeEnum getTimeSeriesDataType();
@@ -281,35 +198,10 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Series Data Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeriesDataTypeEnum
-	 * @see #isSetTimeSeriesDataType()
-	 * @see #unsetTimeSeriesDataType()
 	 * @see #getTimeSeriesDataType()
 	 * @generated
 	 */
 	void setTimeSeriesDataType(IfcTimeSeriesDataTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getTimeSeriesDataType <em>Time Series Data Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeSeriesDataType()
-	 * @see #getTimeSeriesDataType()
-	 * @see #setTimeSeriesDataType(IfcTimeSeriesDataTypeEnum)
-	 * @generated
-	 */
-	void unsetTimeSeriesDataType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getTimeSeriesDataType <em>Time Series Data Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Series Data Type</em>' attribute is set.
-	 * @see #unsetTimeSeriesDataType()
-	 * @see #getTimeSeriesDataType()
-	 * @see #setTimeSeriesDataType(IfcTimeSeriesDataTypeEnum)
-	 * @generated
-	 */
-	boolean isSetTimeSeriesDataType();
 
 	/**
 	 * Returns the value of the '<em><b>Data Origin</b></em>' attribute.
@@ -322,11 +214,9 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Origin</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDataOriginEnum
-	 * @see #isSetDataOrigin()
-	 * @see #unsetDataOrigin()
 	 * @see #setDataOrigin(IfcDataOriginEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeries_DataOrigin()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDataOriginEnum getDataOrigin();
@@ -337,35 +227,10 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Data Origin</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDataOriginEnum
-	 * @see #isSetDataOrigin()
-	 * @see #unsetDataOrigin()
 	 * @see #getDataOrigin()
 	 * @generated
 	 */
 	void setDataOrigin(IfcDataOriginEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getDataOrigin <em>Data Origin</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDataOrigin()
-	 * @see #getDataOrigin()
-	 * @see #setDataOrigin(IfcDataOriginEnum)
-	 * @generated
-	 */
-	void unsetDataOrigin();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeries#getDataOrigin <em>Data Origin</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Data Origin</em>' attribute is set.
-	 * @see #unsetDataOrigin()
-	 * @see #getDataOrigin()
-	 * @see #setDataOrigin(IfcDataOriginEnum)
-	 * @generated
-	 */
-	boolean isSetDataOrigin();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Data Origin</b></em>' attribute.

@@ -43,11 +43,9 @@ public interface IfcQuantityWeight extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Weight Value</em>' attribute.
-	 * @see #isSetWeightValue()
-	 * @see #unsetWeightValue()
 	 * @see #setWeightValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityWeight_WeightValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getWeightValue();
@@ -57,35 +55,10 @@ public interface IfcQuantityWeight extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Weight Value</em>' attribute.
-	 * @see #isSetWeightValue()
-	 * @see #unsetWeightValue()
 	 * @see #getWeightValue()
 	 * @generated
 	 */
 	void setWeightValue(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityWeight#getWeightValue <em>Weight Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetWeightValue()
-	 * @see #getWeightValue()
-	 * @see #setWeightValue(double)
-	 * @generated
-	 */
-	void unsetWeightValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityWeight#getWeightValue <em>Weight Value</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Weight Value</em>' attribute is set.
-	 * @see #unsetWeightValue()
-	 * @see #getWeightValue()
-	 * @see #setWeightValue(double)
-	 * @generated
-	 */
-	boolean isSetWeightValue();
 
 	/**
 	 * Returns the value of the '<em><b>Weight Value As String</b></em>' attribute.
@@ -96,11 +69,9 @@ public interface IfcQuantityWeight extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Weight Value As String</em>' attribute.
-	 * @see #isSetWeightValueAsString()
-	 * @see #unsetWeightValueAsString()
 	 * @see #setWeightValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityWeight_WeightValueAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getWeightValueAsString();
@@ -110,34 +81,9 @@ public interface IfcQuantityWeight extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Weight Value As String</em>' attribute.
-	 * @see #isSetWeightValueAsString()
-	 * @see #unsetWeightValueAsString()
 	 * @see #getWeightValueAsString()
 	 * @generated
 	 */
 	void setWeightValueAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityWeight#getWeightValueAsString <em>Weight Value As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetWeightValueAsString()
-	 * @see #getWeightValueAsString()
-	 * @see #setWeightValueAsString(String)
-	 * @generated
-	 */
-	void unsetWeightValueAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityWeight#getWeightValueAsString <em>Weight Value As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Weight Value As String</em>' attribute is set.
-	 * @see #unsetWeightValueAsString()
-	 * @see #getWeightValueAsString()
-	 * @see #setWeightValueAsString(String)
-	 * @generated
-	 */
-	boolean isSetWeightValueAsString();
 
 } // IfcQuantityWeight

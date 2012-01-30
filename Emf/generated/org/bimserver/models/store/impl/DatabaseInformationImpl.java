@@ -82,7 +82,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumberOfProjects() {
+	public Integer getNumberOfProjects() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS, true);
 	}
 
@@ -91,7 +91,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberOfProjects(int newNumberOfProjects) {
+	public void setNumberOfProjects(Integer newNumberOfProjects) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS, newNumberOfProjects);
 	}
 
@@ -100,7 +100,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumberOfUsers() {
+	public Integer getNumberOfUsers() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS, true);
 	}
 
@@ -109,7 +109,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberOfUsers(int newNumberOfUsers) {
+	public void setNumberOfUsers(Integer newNumberOfUsers) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS, newNumberOfUsers);
 	}
 
@@ -118,7 +118,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumberOfRevisions() {
+	public Integer getNumberOfRevisions() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS, true);
 	}
 
@@ -127,7 +127,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberOfRevisions(int newNumberOfRevisions) {
+	public void setNumberOfRevisions(Integer newNumberOfRevisions) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS, newNumberOfRevisions);
 	}
 
@@ -136,7 +136,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumberOfCheckouts() {
+	public Integer getNumberOfCheckouts() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS, true);
 	}
 
@@ -145,7 +145,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberOfCheckouts(int newNumberOfCheckouts) {
+	public void setNumberOfCheckouts(Integer newNumberOfCheckouts) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS, newNumberOfCheckouts);
 	}
 
@@ -154,7 +154,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getDatabaseSizeInBytes() {
+	public Long getDatabaseSizeInBytes() {
 		return (Long) eGet(StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES, true);
 	}
 
@@ -163,7 +163,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDatabaseSizeInBytes(long newDatabaseSizeInBytes) {
+	public void setDatabaseSizeInBytes(Long newDatabaseSizeInBytes) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES, newDatabaseSizeInBytes);
 	}
 
@@ -226,7 +226,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSchemaVersion() {
+	public Integer getSchemaVersion() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION, true);
 	}
 
@@ -235,7 +235,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSchemaVersion(int newSchemaVersion) {
+	public void setSchemaVersion(Integer newSchemaVersion) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION, newSchemaVersion);
 	}
 

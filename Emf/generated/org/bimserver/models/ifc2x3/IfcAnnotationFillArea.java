@@ -45,11 +45,9 @@ public interface IfcAnnotationFillArea extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Outer Boundary</em>' reference.
-	 * @see #isSetOuterBoundary()
-	 * @see #unsetOuterBoundary()
 	 * @see #setOuterBoundary(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcAnnotationFillArea_OuterBoundary()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCurve getOuterBoundary();
@@ -59,35 +57,10 @@ public interface IfcAnnotationFillArea extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Outer Boundary</em>' reference.
-	 * @see #isSetOuterBoundary()
-	 * @see #unsetOuterBoundary()
 	 * @see #getOuterBoundary()
 	 * @generated
 	 */
 	void setOuterBoundary(IfcCurve value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotationFillArea#getOuterBoundary <em>Outer Boundary</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOuterBoundary()
-	 * @see #getOuterBoundary()
-	 * @see #setOuterBoundary(IfcCurve)
-	 * @generated
-	 */
-	void unsetOuterBoundary();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcAnnotationFillArea#getOuterBoundary <em>Outer Boundary</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Outer Boundary</em>' reference is set.
-	 * @see #unsetOuterBoundary()
-	 * @see #getOuterBoundary()
-	 * @see #setOuterBoundary(IfcCurve)
-	 * @generated
-	 */
-	boolean isSetOuterBoundary();
 
 	/**
 	 * Returns the value of the '<em><b>Inner Boundaries</b></em>' reference list.

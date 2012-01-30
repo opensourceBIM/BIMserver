@@ -45,33 +45,10 @@ public interface IfcSurfaceStyleWithTextures extends IfcSurfaceStyleElementSelec
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Textures</em>' reference list.
-	 * @see #isSetTextures()
-	 * @see #unsetTextures()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleWithTextures_Textures()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcSurfaceTexture> getTextures();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleWithTextures#getTextures <em>Textures</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTextures()
-	 * @see #getTextures()
-	 * @generated
-	 */
-	void unsetTextures();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleWithTextures#getTextures <em>Textures</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Textures</em>' reference list is set.
-	 * @see #unsetTextures()
-	 * @see #getTextures()
-	 * @generated
-	 */
-	boolean isSetTextures();
 
 } // IfcSurfaceStyleWithTextures

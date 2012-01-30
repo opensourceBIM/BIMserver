@@ -93,45 +93,9 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_TABLE__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TABLE__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTableRow> getRows() {
 		return (EList<IfcTableRow>) eGet(Ifc2x3Package.Literals.IFC_TABLE__ROWS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRows() {
-		eUnset(Ifc2x3Package.Literals.IFC_TABLE__ROWS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRows() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TABLE__ROWS);
 	}
 
 } //IfcTableImpl

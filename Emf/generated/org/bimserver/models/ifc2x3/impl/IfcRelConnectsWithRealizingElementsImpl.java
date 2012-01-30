@@ -73,24 +73,6 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRealizingElements() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__REALIZING_ELEMENTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRealizingElements() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__REALIZING_ELEMENTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getConnectionType() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__CONNECTION_TYPE, true);
 	}

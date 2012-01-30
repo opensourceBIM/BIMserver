@@ -80,24 +80,6 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcStructuralActivity getRelatedStructuralActivity() {
 		return (IfcStructuralActivity) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY, true);
 	}
@@ -109,24 +91,6 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 */
 	public void setRelatedStructuralActivity(IfcStructuralActivity newRelatedStructuralActivity) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY, newRelatedStructuralActivity);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedStructuralActivity() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedStructuralActivity() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY);
 	}
 
 } //IfcRelConnectsStructuralActivityImpl

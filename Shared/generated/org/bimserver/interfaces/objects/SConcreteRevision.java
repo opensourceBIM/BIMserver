@@ -126,20 +126,20 @@ public class SConcreteRevision implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private int id;
+	private java.lang.Integer id;
 	private long projectId;
 	private SCheckinState state;
 	private byte[] checksum;
 	private List<Long> revisions = new ArrayList<Long>();
-	private long size;
+	private java.lang.Long size;
 	private java.util.Date date;
 	private java.lang.String lastError;
 	private long userId;
-	public int getId() {
+	public java.lang.Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 	}
 	public long getProjectId() {
@@ -171,11 +171,11 @@ public class SConcreteRevision implements SBase
 	public void setRevisions(List<Long> revisions) {
 		this.revisions = revisions;
 	}
-	public long getSize() {
+	public java.lang.Long getSize() {
 		return size;
 	}
 
-	public void setSize(long size) {
+	public void setSize(java.lang.Long size) {
 		this.size = size;
 	}
 	public java.util.Date getDate() {

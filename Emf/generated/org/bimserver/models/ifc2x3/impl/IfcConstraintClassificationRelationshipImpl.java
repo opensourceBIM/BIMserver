@@ -94,45 +94,9 @@ public class IfcConstraintClassificationRelationshipImpl extends IdEObjectImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetClassifiedConstraint() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_CONSTRAINT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetClassifiedConstraint() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_CONSTRAINT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationNotationSelect> getRelatedClassifications() {
 		return (EList<IfcClassificationNotationSelect>) eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__RELATED_CLASSIFICATIONS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedClassifications() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__RELATED_CLASSIFICATIONS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedClassifications() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__RELATED_CLASSIFICATIONS);
 	}
 
 } //IfcConstraintClassificationRelationshipImpl

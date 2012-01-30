@@ -96,7 +96,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
+	public Integer getId() {
 		return (Integer) eGet(StorePackage.Literals.PROJECT__ID, true);
 	}
 
@@ -105,7 +105,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
+	public void setId(Integer newId) {
 		eSet(StorePackage.Literals.PROJECT__ID, newId);
 	}
 

@@ -154,34 +154,11 @@ public interface IfcProject extends IfcObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representation Contexts</em>' reference list.
-	 * @see #isSetRepresentationContexts()
-	 * @see #unsetRepresentationContexts()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProject_RepresentationContexts()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcRepresentationContext> getRepresentationContexts();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProject#getRepresentationContexts <em>Representation Contexts</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRepresentationContexts()
-	 * @see #getRepresentationContexts()
-	 * @generated
-	 */
-	void unsetRepresentationContexts();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProject#getRepresentationContexts <em>Representation Contexts</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Representation Contexts</em>' reference list is set.
-	 * @see #unsetRepresentationContexts()
-	 * @see #getRepresentationContexts()
-	 * @generated
-	 */
-	boolean isSetRepresentationContexts();
 
 	/**
 	 * Returns the value of the '<em><b>Units In Context</b></em>' reference.
@@ -192,11 +169,9 @@ public interface IfcProject extends IfcObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Units In Context</em>' reference.
-	 * @see #isSetUnitsInContext()
-	 * @see #unsetUnitsInContext()
 	 * @see #setUnitsInContext(IfcUnitAssignment)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProject_UnitsInContext()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcUnitAssignment getUnitsInContext();
@@ -206,34 +181,9 @@ public interface IfcProject extends IfcObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Units In Context</em>' reference.
-	 * @see #isSetUnitsInContext()
-	 * @see #unsetUnitsInContext()
 	 * @see #getUnitsInContext()
 	 * @generated
 	 */
 	void setUnitsInContext(IfcUnitAssignment value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProject#getUnitsInContext <em>Units In Context</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetUnitsInContext()
-	 * @see #getUnitsInContext()
-	 * @see #setUnitsInContext(IfcUnitAssignment)
-	 * @generated
-	 */
-	void unsetUnitsInContext();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProject#getUnitsInContext <em>Units In Context</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Units In Context</em>' reference is set.
-	 * @see #unsetUnitsInContext()
-	 * @see #getUnitsInContext()
-	 * @see #setUnitsInContext(IfcUnitAssignment)
-	 * @generated
-	 */
-	boolean isSetUnitsInContext();
 
 } // IfcProject
