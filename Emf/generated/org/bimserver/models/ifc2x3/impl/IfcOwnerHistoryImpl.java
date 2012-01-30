@@ -100,24 +100,6 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOwningUser() {
-		eUnset(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_USER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningUser() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_USER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcApplication getOwningApplication() {
 		return (IfcApplication) eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_APPLICATION, true);
 	}
@@ -129,24 +111,6 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setOwningApplication(IfcApplication newOwningApplication) {
 		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_APPLICATION, newOwningApplication);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOwningApplication() {
-		eUnset(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_APPLICATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningApplication() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_APPLICATION);
 	}
 
 	/**
@@ -201,24 +165,6 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setChangeAction(IfcChangeActionEnum newChangeAction) {
 		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CHANGE_ACTION, newChangeAction);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetChangeAction() {
-		eUnset(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CHANGE_ACTION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetChangeAction() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CHANGE_ACTION);
 	}
 
 	/**
@@ -345,24 +291,6 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setCreationDate(int newCreationDate) {
 		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE, newCreationDate);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetCreationDate() {
-		eUnset(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCreationDate() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE);
 	}
 
 } //IfcOwnerHistoryImpl

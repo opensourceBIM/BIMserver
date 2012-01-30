@@ -98,11 +98,9 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Curve Font</em>' reference.
-	 * @see #isSetCurveFont()
-	 * @see #unsetCurveFont()
 	 * @see #setCurveFont(IfcCurveStyleFontSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontAndScaling_CurveFont()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCurveStyleFontSelect getCurveFont();
@@ -112,35 +110,10 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Curve Font</em>' reference.
-	 * @see #isSetCurveFont()
-	 * @see #unsetCurveFont()
 	 * @see #getCurveFont()
 	 * @generated
 	 */
 	void setCurveFont(IfcCurveStyleFontSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling#getCurveFont <em>Curve Font</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCurveFont()
-	 * @see #getCurveFont()
-	 * @see #setCurveFont(IfcCurveStyleFontSelect)
-	 * @generated
-	 */
-	void unsetCurveFont();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling#getCurveFont <em>Curve Font</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Curve Font</em>' reference is set.
-	 * @see #unsetCurveFont()
-	 * @see #getCurveFont()
-	 * @see #setCurveFont(IfcCurveStyleFontSelect)
-	 * @generated
-	 */
-	boolean isSetCurveFont();
 
 	/**
 	 * Returns the value of the '<em><b>Curve Font Scaling</b></em>' attribute.
@@ -151,11 +124,9 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Curve Font Scaling</em>' attribute.
-	 * @see #isSetCurveFontScaling()
-	 * @see #unsetCurveFontScaling()
 	 * @see #setCurveFontScaling(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontAndScaling_CurveFontScaling()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getCurveFontScaling();
@@ -165,35 +136,10 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Curve Font Scaling</em>' attribute.
-	 * @see #isSetCurveFontScaling()
-	 * @see #unsetCurveFontScaling()
 	 * @see #getCurveFontScaling()
 	 * @generated
 	 */
 	void setCurveFontScaling(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling#getCurveFontScaling <em>Curve Font Scaling</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCurveFontScaling()
-	 * @see #getCurveFontScaling()
-	 * @see #setCurveFontScaling(double)
-	 * @generated
-	 */
-	void unsetCurveFontScaling();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling#getCurveFontScaling <em>Curve Font Scaling</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Curve Font Scaling</em>' attribute is set.
-	 * @see #unsetCurveFontScaling()
-	 * @see #getCurveFontScaling()
-	 * @see #setCurveFontScaling(double)
-	 * @generated
-	 */
-	boolean isSetCurveFontScaling();
 
 	/**
 	 * Returns the value of the '<em><b>Curve Font Scaling As String</b></em>' attribute.
@@ -204,11 +150,9 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Curve Font Scaling As String</em>' attribute.
-	 * @see #isSetCurveFontScalingAsString()
-	 * @see #unsetCurveFontScalingAsString()
 	 * @see #setCurveFontScalingAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFontAndScaling_CurveFontScalingAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getCurveFontScalingAsString();
@@ -218,34 +162,9 @@ public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Curve Font Scaling As String</em>' attribute.
-	 * @see #isSetCurveFontScalingAsString()
-	 * @see #unsetCurveFontScalingAsString()
 	 * @see #getCurveFontScalingAsString()
 	 * @generated
 	 */
 	void setCurveFontScalingAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling#getCurveFontScalingAsString <em>Curve Font Scaling As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCurveFontScalingAsString()
-	 * @see #getCurveFontScalingAsString()
-	 * @see #setCurveFontScalingAsString(String)
-	 * @generated
-	 */
-	void unsetCurveFontScalingAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling#getCurveFontScalingAsString <em>Curve Font Scaling As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Curve Font Scaling As String</em>' attribute is set.
-	 * @see #unsetCurveFontScalingAsString()
-	 * @see #getCurveFontScalingAsString()
-	 * @see #setCurveFontScalingAsString(String)
-	 * @generated
-	 */
-	boolean isSetCurveFontScalingAsString();
 
 } // IfcCurveStyleFontAndScaling

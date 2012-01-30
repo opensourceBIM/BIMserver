@@ -78,24 +78,6 @@ public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRadius() {
-		eUnset(Ifc2x3Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRadius() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getRadiusAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING, true);
 	}
@@ -107,24 +89,6 @@ public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING, newRadiusAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRadiusAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRadiusAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING);
 	}
 
 } //IfcCircleProfileDefImpl

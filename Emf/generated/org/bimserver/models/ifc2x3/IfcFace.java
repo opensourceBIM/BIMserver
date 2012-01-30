@@ -45,33 +45,10 @@ public interface IfcFace extends IfcTopologicalRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bounds</em>' reference list.
-	 * @see #isSetBounds()
-	 * @see #unsetBounds()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFace_Bounds()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcFaceBound> getBounds();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFace#getBounds <em>Bounds</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetBounds()
-	 * @see #getBounds()
-	 * @generated
-	 */
-	void unsetBounds();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFace#getBounds <em>Bounds</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Bounds</em>' reference list is set.
-	 * @see #unsetBounds()
-	 * @see #getBounds()
-	 * @generated
-	 */
-	boolean isSetBounds();
 
 } // IfcFace

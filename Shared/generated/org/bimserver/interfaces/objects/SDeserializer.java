@@ -56,10 +56,10 @@ public class SDeserializer implements SBase
 			return getClassName();
 		}
 		if (sField.getName().equals("enabled")) {
-			return isEnabled();
+			return getEnabled();
 		}
 		if (sField.getName().equals("defaultDeserializer")) {
-			return isDefaultDeserializer();
+			return getDefaultDeserializer();
 		}
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
@@ -104,8 +104,8 @@ public class SDeserializer implements SBase
 	private java.lang.String name;
 	private java.lang.String description;
 	private java.lang.String className;
-	private boolean enabled;
-	private boolean defaultDeserializer;
+	private java.lang.Boolean enabled;
+	private java.lang.Boolean defaultDeserializer;
 	private long settingsId;
 	public java.lang.String getName() {
 		return name;
@@ -128,18 +128,18 @@ public class SDeserializer implements SBase
 	public void setClassName(java.lang.String className) {
 		this.className = className;
 	}
-	public boolean isEnabled() {
+	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
-	public boolean isDefaultDeserializer() {
+	public java.lang.Boolean getDefaultDeserializer() {
 		return defaultDeserializer;
 	}
 
-	public void setDefaultDeserializer(boolean defaultDeserializer) {
+	public void setDefaultDeserializer(java.lang.Boolean defaultDeserializer) {
 		this.defaultDeserializer = defaultDeserializer;
 	}
 	public long getSettingsId() {

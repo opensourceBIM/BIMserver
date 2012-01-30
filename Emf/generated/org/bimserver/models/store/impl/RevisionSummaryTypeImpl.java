@@ -88,7 +88,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCount() {
+	public Integer getCount() {
 		return (Integer) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, true);
 	}
 
@@ -97,7 +97,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCount(int newCount) {
+	public void setCount(Integer newCount) {
 		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, newCount);
 	}
 

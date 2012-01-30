@@ -92,24 +92,6 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetDepth() {
-		eUnset(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDepth() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDepthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING, true);
 	}
@@ -121,24 +103,6 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setDepthAsString(String newDepthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING, newDepthAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetDepthAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDepthAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING);
 	}
 
 	/**
@@ -236,24 +200,6 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetThickness() {
-		eUnset(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetThickness() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING, true);
 	}
@@ -265,24 +211,6 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setThicknessAsString(String newThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING, newThicknessAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetThicknessAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetThicknessAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING);
 	}
 
 	/**

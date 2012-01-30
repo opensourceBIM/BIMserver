@@ -28,9 +28,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.IfcEngine#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.IfcEngine#isActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.IfcEngine#getActive <em>Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcEngine#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.IfcEngine#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.IfcEngine#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcEngine#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcEngine#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -77,22 +77,22 @@ public interface IfcEngine extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Active</em>' attribute.
-	 * @see #setActive(boolean)
+	 * @see #setActive(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getIfcEngine_Active()
 	 * @model
 	 * @generated
 	 */
-	boolean isActive();
+	Boolean getActive();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.IfcEngine#isActive <em>Active</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.IfcEngine#getActive <em>Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Active</em>' attribute.
-	 * @see #isActive()
+	 * @see #getActive()
 	 * @generated
 	 */
-	void setActive(boolean value);
+	void setActive(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
@@ -129,22 +129,22 @@ public interface IfcEngine extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(boolean)
+	 * @see #setEnabled(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getIfcEngine_Enabled()
 	 * @model
 	 * @generated
 	 */
-	boolean isEnabled();
+	Boolean getEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.IfcEngine#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.IfcEngine#getEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #isEnabled()
+	 * @see #getEnabled()
 	 * @generated
 	 */
-	void setEnabled(boolean value);
+	void setEnabled(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.

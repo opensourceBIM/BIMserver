@@ -43,11 +43,9 @@ public interface IfcConnectionCurveGeometry extends IfcConnectionGeometry {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Curve On Relating Element</em>' reference.
-	 * @see #isSetCurveOnRelatingElement()
-	 * @see #unsetCurveOnRelatingElement()
 	 * @see #setCurveOnRelatingElement(IfcCurveOrEdgeCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionCurveGeometry_CurveOnRelatingElement()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCurveOrEdgeCurve getCurveOnRelatingElement();
@@ -57,35 +55,10 @@ public interface IfcConnectionCurveGeometry extends IfcConnectionGeometry {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Curve On Relating Element</em>' reference.
-	 * @see #isSetCurveOnRelatingElement()
-	 * @see #unsetCurveOnRelatingElement()
 	 * @see #getCurveOnRelatingElement()
 	 * @generated
 	 */
 	void setCurveOnRelatingElement(IfcCurveOrEdgeCurve value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionCurveGeometry#getCurveOnRelatingElement <em>Curve On Relating Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCurveOnRelatingElement()
-	 * @see #getCurveOnRelatingElement()
-	 * @see #setCurveOnRelatingElement(IfcCurveOrEdgeCurve)
-	 * @generated
-	 */
-	void unsetCurveOnRelatingElement();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionCurveGeometry#getCurveOnRelatingElement <em>Curve On Relating Element</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Curve On Relating Element</em>' reference is set.
-	 * @see #unsetCurveOnRelatingElement()
-	 * @see #getCurveOnRelatingElement()
-	 * @see #setCurveOnRelatingElement(IfcCurveOrEdgeCurve)
-	 * @generated
-	 */
-	boolean isSetCurveOnRelatingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Curve On Related Element</b></em>' reference.

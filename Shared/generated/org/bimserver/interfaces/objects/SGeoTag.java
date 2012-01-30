@@ -49,7 +49,7 @@ public class SGeoTag implements SBase
 
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("enabled")) {
-			return isEnabled();
+			return getEnabled();
 		}
 		if (sField.getName().equals("projects")) {
 			return getProjects();
@@ -85,15 +85,15 @@ public class SGeoTag implements SBase
 			return;
 		}
 		if (sField.getName().equals("x")) {
-			setX((Float)val);
+			setX((Double)val);
 			return;
 		}
 		if (sField.getName().equals("y")) {
-			setY((Float)val);
+			setY((Double)val);
 			return;
 		}
 		if (sField.getName().equals("z")) {
-			setZ((Float)val);
+			setZ((Double)val);
 			return;
 		}
 		if (sField.getName().equals("epsg")) {
@@ -101,7 +101,7 @@ public class SGeoTag implements SBase
 			return;
 		}
 		if (sField.getName().equals("directionAngle")) {
-			setDirectionAngle((Float)val);
+			setDirectionAngle((Double)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -111,18 +111,18 @@ public class SGeoTag implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private boolean enabled;
+	private java.lang.Boolean enabled;
 	private List<Long> projects = new ArrayList<Long>();
-	private float x;
-	private float y;
-	private float z;
-	private int epsg;
-	private float directionAngle;
-	public boolean isEnabled() {
+	private java.lang.Double x;
+	private java.lang.Double y;
+	private java.lang.Double z;
+	private java.lang.Integer epsg;
+	private java.lang.Double directionAngle;
+	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
 	public List<Long> getProjects() {
@@ -132,39 +132,39 @@ public class SGeoTag implements SBase
 	public void setProjects(List<Long> projects) {
 		this.projects = projects;
 	}
-	public float getX() {
+	public java.lang.Double getX() {
 		return x;
 	}
 
-	public void setX(float x) {
+	public void setX(java.lang.Double x) {
 		this.x = x;
 	}
-	public float getY() {
+	public java.lang.Double getY() {
 		return y;
 	}
 
-	public void setY(float y) {
+	public void setY(java.lang.Double y) {
 		this.y = y;
 	}
-	public float getZ() {
+	public java.lang.Double getZ() {
 		return z;
 	}
 
-	public void setZ(float z) {
+	public void setZ(java.lang.Double z) {
 		this.z = z;
 	}
-	public int getEpsg() {
+	public java.lang.Integer getEpsg() {
 		return epsg;
 	}
 
-	public void setEpsg(int epsg) {
+	public void setEpsg(java.lang.Integer epsg) {
 		this.epsg = epsg;
 	}
-	public float getDirectionAngle() {
+	public java.lang.Double getDirectionAngle() {
 		return directionAngle;
 	}
 
-	public void setDirectionAngle(float directionAngle) {
+	public void setDirectionAngle(java.lang.Double directionAngle) {
 		this.directionAngle = directionAngle;
 	}
 	@Override

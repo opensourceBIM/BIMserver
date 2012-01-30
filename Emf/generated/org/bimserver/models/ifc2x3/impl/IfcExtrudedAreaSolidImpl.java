@@ -80,24 +80,6 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetExtrudedDirection() {
-		eUnset(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetExtrudedDirection() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getDepth() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH, true);
 	}
@@ -116,24 +98,6 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetDepth() {
-		eUnset(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDepth() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDepthAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING, true);
 	}
@@ -145,24 +109,6 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public void setDepthAsString(String newDepthAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING, newDepthAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetDepthAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDepthAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING);
 	}
 
 } //IfcExtrudedAreaSolidImpl

@@ -63,11 +63,9 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySourceEnum
-	 * @see #isSetPropertySource()
-	 * @see #unsetPropertySource()
 	 * @see #setPropertySource(IfcPropertySourceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFluidFlowProperties_PropertySource()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcPropertySourceEnum getPropertySource();
@@ -78,35 +76,10 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Property Source</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySourceEnum
-	 * @see #isSetPropertySource()
-	 * @see #unsetPropertySource()
 	 * @see #getPropertySource()
 	 * @generated
 	 */
 	void setPropertySource(IfcPropertySourceEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getPropertySource <em>Property Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPropertySource()
-	 * @see #getPropertySource()
-	 * @see #setPropertySource(IfcPropertySourceEnum)
-	 * @generated
-	 */
-	void unsetPropertySource();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getPropertySource <em>Property Source</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Property Source</em>' attribute is set.
-	 * @see #unsetPropertySource()
-	 * @see #getPropertySource()
-	 * @see #setPropertySource(IfcPropertySourceEnum)
-	 * @generated
-	 */
-	boolean isSetPropertySource();
 
 	/**
 	 * Returns the value of the '<em><b>Flow Condition Time Series</b></em>' reference.
@@ -276,11 +249,9 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fluid</em>' reference.
-	 * @see #isSetFluid()
-	 * @see #unsetFluid()
 	 * @see #setFluid(IfcMaterial)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcFluidFlowProperties_Fluid()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcMaterial getFluid();
@@ -290,35 +261,10 @@ public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Fluid</em>' reference.
-	 * @see #isSetFluid()
-	 * @see #unsetFluid()
 	 * @see #getFluid()
 	 * @generated
 	 */
 	void setFluid(IfcMaterial value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getFluid <em>Fluid</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetFluid()
-	 * @see #getFluid()
-	 * @see #setFluid(IfcMaterial)
-	 * @generated
-	 */
-	void unsetFluid();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcFluidFlowProperties#getFluid <em>Fluid</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Fluid</em>' reference is set.
-	 * @see #unsetFluid()
-	 * @see #getFluid()
-	 * @see #setFluid(IfcMaterial)
-	 * @generated
-	 */
-	boolean isSetFluid();
 
 	/**
 	 * Returns the value of the '<em><b>Pressure Time Series</b></em>' reference.

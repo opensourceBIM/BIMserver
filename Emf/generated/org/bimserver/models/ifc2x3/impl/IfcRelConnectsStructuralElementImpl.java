@@ -80,24 +80,6 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcStructuralMember getRelatedStructuralMember() {
 		return (IfcStructuralMember) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER, true);
 	}
@@ -109,24 +91,6 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 */
 	public void setRelatedStructuralMember(IfcStructuralMember newRelatedStructuralMember) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER, newRelatedStructuralMember);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedStructuralMember() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedStructuralMember() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER);
 	}
 
 } //IfcRelConnectsStructuralElementImpl

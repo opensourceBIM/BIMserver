@@ -48,11 +48,9 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Degree</em>' attribute.
-	 * @see #isSetDegree()
-	 * @see #unsetDegree()
 	 * @see #setDegree(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBSplineCurve_Degree()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	int getDegree();
@@ -62,35 +60,10 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Degree</em>' attribute.
-	 * @see #isSetDegree()
-	 * @see #unsetDegree()
 	 * @see #getDegree()
 	 * @generated
 	 */
 	void setDegree(int value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#getDegree <em>Degree</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDegree()
-	 * @see #getDegree()
-	 * @see #setDegree(int)
-	 * @generated
-	 */
-	void unsetDegree();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#getDegree <em>Degree</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Degree</em>' attribute is set.
-	 * @see #unsetDegree()
-	 * @see #getDegree()
-	 * @see #setDegree(int)
-	 * @generated
-	 */
-	boolean isSetDegree();
 
 	/**
 	 * Returns the value of the '<em><b>Control Points List</b></em>' reference list.
@@ -102,34 +75,11 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Control Points List</em>' reference list.
-	 * @see #isSetControlPointsList()
-	 * @see #unsetControlPointsList()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBSplineCurve_ControlPointsList()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcCartesianPoint> getControlPointsList();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#getControlPointsList <em>Control Points List</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetControlPointsList()
-	 * @see #getControlPointsList()
-	 * @generated
-	 */
-	void unsetControlPointsList();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#getControlPointsList <em>Control Points List</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Control Points List</em>' reference list is set.
-	 * @see #unsetControlPointsList()
-	 * @see #getControlPointsList()
-	 * @generated
-	 */
-	boolean isSetControlPointsList();
 
 	/**
 	 * Returns the value of the '<em><b>Curve Form</b></em>' attribute.
@@ -142,11 +92,9 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Curve Form</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcBSplineCurveForm
-	 * @see #isSetCurveForm()
-	 * @see #unsetCurveForm()
 	 * @see #setCurveForm(IfcBSplineCurveForm)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBSplineCurve_CurveForm()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcBSplineCurveForm getCurveForm();
@@ -157,35 +105,10 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Curve Form</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcBSplineCurveForm
-	 * @see #isSetCurveForm()
-	 * @see #unsetCurveForm()
 	 * @see #getCurveForm()
 	 * @generated
 	 */
 	void setCurveForm(IfcBSplineCurveForm value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#getCurveForm <em>Curve Form</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCurveForm()
-	 * @see #getCurveForm()
-	 * @see #setCurveForm(IfcBSplineCurveForm)
-	 * @generated
-	 */
-	void unsetCurveForm();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#getCurveForm <em>Curve Form</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Curve Form</em>' attribute is set.
-	 * @see #unsetCurveForm()
-	 * @see #getCurveForm()
-	 * @see #setCurveForm(IfcBSplineCurveForm)
-	 * @generated
-	 */
-	boolean isSetCurveForm();
 
 	/**
 	 * Returns the value of the '<em><b>Closed Curve</b></em>' attribute.
@@ -196,11 +119,9 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Closed Curve</em>' attribute.
-	 * @see #isSetClosedCurve()
-	 * @see #unsetClosedCurve()
 	 * @see #setClosedCurve(boolean)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBSplineCurve_ClosedCurve()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	boolean isClosedCurve();
@@ -210,35 +131,10 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Closed Curve</em>' attribute.
-	 * @see #isSetClosedCurve()
-	 * @see #unsetClosedCurve()
 	 * @see #isClosedCurve()
 	 * @generated
 	 */
 	void setClosedCurve(boolean value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#isClosedCurve <em>Closed Curve</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetClosedCurve()
-	 * @see #isClosedCurve()
-	 * @see #setClosedCurve(boolean)
-	 * @generated
-	 */
-	void unsetClosedCurve();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#isClosedCurve <em>Closed Curve</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Closed Curve</em>' attribute is set.
-	 * @see #unsetClosedCurve()
-	 * @see #isClosedCurve()
-	 * @see #setClosedCurve(boolean)
-	 * @generated
-	 */
-	boolean isSetClosedCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Self Intersect</b></em>' attribute.
@@ -249,11 +145,9 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Self Intersect</em>' attribute.
-	 * @see #isSetSelfIntersect()
-	 * @see #unsetSelfIntersect()
 	 * @see #setSelfIntersect(boolean)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBSplineCurve_SelfIntersect()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	boolean isSelfIntersect();
@@ -263,34 +157,9 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Self Intersect</em>' attribute.
-	 * @see #isSetSelfIntersect()
-	 * @see #unsetSelfIntersect()
 	 * @see #isSelfIntersect()
 	 * @generated
 	 */
 	void setSelfIntersect(boolean value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#isSelfIntersect <em>Self Intersect</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSelfIntersect()
-	 * @see #isSelfIntersect()
-	 * @see #setSelfIntersect(boolean)
-	 * @generated
-	 */
-	void unsetSelfIntersect();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBSplineCurve#isSelfIntersect <em>Self Intersect</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Self Intersect</em>' attribute is set.
-	 * @see #unsetSelfIntersect()
-	 * @see #isSelfIntersect()
-	 * @see #setSelfIntersect(boolean)
-	 * @generated
-	 */
-	boolean isSetSelfIntersect();
 
 } // IfcBSplineCurve

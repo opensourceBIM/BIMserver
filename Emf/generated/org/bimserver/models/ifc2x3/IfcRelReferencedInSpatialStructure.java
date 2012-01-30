@@ -46,34 +46,11 @@ public interface IfcRelReferencedInSpatialStructure extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Elements</em>' reference list.
-	 * @see #isSetRelatedElements()
-	 * @see #unsetRelatedElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelReferencedInSpatialStructure_RelatedElements()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcProduct> getRelatedElements();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure#getRelatedElements <em>Related Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedElements()
-	 * @see #getRelatedElements()
-	 * @generated
-	 */
-	void unsetRelatedElements();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure#getRelatedElements <em>Related Elements</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Elements</em>' reference list is set.
-	 * @see #unsetRelatedElements()
-	 * @see #getRelatedElements()
-	 * @generated
-	 */
-	boolean isSetRelatedElements();
 
 	/**
 	 * Returns the value of the '<em><b>Relating Structure</b></em>' reference.
@@ -85,12 +62,10 @@ public interface IfcRelReferencedInSpatialStructure extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Structure</em>' reference.
-	 * @see #isSetRelatingStructure()
-	 * @see #unsetRelatingStructure()
 	 * @see #setRelatingStructure(IfcSpatialStructureElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelReferencedInSpatialStructure_RelatingStructure()
 	 * @see org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getReferencesElements
-	 * @model opposite="ReferencesElements" unsettable="true"
+	 * @model opposite="ReferencesElements"
 	 * @generated
 	 */
 	IfcSpatialStructureElement getRelatingStructure();
@@ -100,34 +75,9 @@ public interface IfcRelReferencedInSpatialStructure extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Structure</em>' reference.
-	 * @see #isSetRelatingStructure()
-	 * @see #unsetRelatingStructure()
 	 * @see #getRelatingStructure()
 	 * @generated
 	 */
 	void setRelatingStructure(IfcSpatialStructureElement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure#getRelatingStructure <em>Relating Structure</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingStructure()
-	 * @see #getRelatingStructure()
-	 * @see #setRelatingStructure(IfcSpatialStructureElement)
-	 * @generated
-	 */
-	void unsetRelatingStructure();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure#getRelatingStructure <em>Relating Structure</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Structure</em>' reference is set.
-	 * @see #unsetRelatingStructure()
-	 * @see #getRelatingStructure()
-	 * @see #setRelatingStructure(IfcSpatialStructureElement)
-	 * @generated
-	 */
-	boolean isSetRelatingStructure();
 
 } // IfcRelReferencedInSpatialStructure

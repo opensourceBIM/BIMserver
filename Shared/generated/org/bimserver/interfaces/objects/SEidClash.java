@@ -115,20 +115,20 @@ public class SEidClash extends SClash implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long eid1;
-	private long eid2;
-	public long getEid1() {
+	private java.lang.Long eid1;
+	private java.lang.Long eid2;
+	public java.lang.Long getEid1() {
 		return eid1;
 	}
 
-	public void setEid1(long eid1) {
+	public void setEid1(java.lang.Long eid1) {
 		this.eid1 = eid1;
 	}
-	public long getEid2() {
+	public java.lang.Long getEid2() {
 		return eid2;
 	}
 
-	public void setEid2(long eid2) {
+	public void setEid2(java.lang.Long eid2) {
 		this.eid2 = eid2;
 	}
 	@Override

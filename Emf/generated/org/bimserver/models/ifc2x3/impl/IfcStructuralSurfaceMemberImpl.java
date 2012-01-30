@@ -80,24 +80,6 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPredefinedType() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPredefinedType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getThickness() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS, true);
 	}

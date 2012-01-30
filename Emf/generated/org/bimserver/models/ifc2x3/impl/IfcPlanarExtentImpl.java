@@ -80,24 +80,6 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSizeInX() {
-		eUnset(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_X);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSizeInX() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_X);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getSizeInXAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING, true);
 	}
@@ -109,24 +91,6 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 */
 	public void setSizeInXAsString(String newSizeInXAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING, newSizeInXAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSizeInXAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSizeInXAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING);
 	}
 
 	/**
@@ -152,24 +116,6 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSizeInY() {
-		eUnset(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_Y);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSizeInY() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_Y);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getSizeInYAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING, true);
 	}
@@ -181,24 +127,6 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl impl
 	 */
 	public void setSizeInYAsString(String newSizeInYAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING, newSizeInYAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSizeInYAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSizeInYAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING);
 	}
 
 } //IfcPlanarExtentImpl

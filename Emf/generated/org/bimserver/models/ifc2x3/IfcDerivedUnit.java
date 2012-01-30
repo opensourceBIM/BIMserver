@@ -47,34 +47,11 @@ public interface IfcDerivedUnit extends IfcUnit {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' reference list.
-	 * @see #isSetElements()
-	 * @see #unsetElements()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDerivedUnit_Elements()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcDerivedUnitElement> getElements();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnit#getElements <em>Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetElements()
-	 * @see #getElements()
-	 * @generated
-	 */
-	void unsetElements();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnit#getElements <em>Elements</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Elements</em>' reference list is set.
-	 * @see #unsetElements()
-	 * @see #getElements()
-	 * @generated
-	 */
-	boolean isSetElements();
 
 	/**
 	 * Returns the value of the '<em><b>Unit Type</b></em>' attribute.
@@ -87,11 +64,9 @@ public interface IfcDerivedUnit extends IfcUnit {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unit Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDerivedUnitEnum
-	 * @see #isSetUnitType()
-	 * @see #unsetUnitType()
 	 * @see #setUnitType(IfcDerivedUnitEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDerivedUnit_UnitType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDerivedUnitEnum getUnitType();
@@ -102,35 +77,10 @@ public interface IfcDerivedUnit extends IfcUnit {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Unit Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDerivedUnitEnum
-	 * @see #isSetUnitType()
-	 * @see #unsetUnitType()
 	 * @see #getUnitType()
 	 * @generated
 	 */
 	void setUnitType(IfcDerivedUnitEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnit#getUnitType <em>Unit Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetUnitType()
-	 * @see #getUnitType()
-	 * @see #setUnitType(IfcDerivedUnitEnum)
-	 * @generated
-	 */
-	void unsetUnitType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDerivedUnit#getUnitType <em>Unit Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Unit Type</em>' attribute is set.
-	 * @see #unsetUnitType()
-	 * @see #getUnitType()
-	 * @see #setUnitType(IfcDerivedUnitEnum)
-	 * @generated
-	 */
-	boolean isSetUnitType();
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Type</b></em>' attribute.

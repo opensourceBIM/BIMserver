@@ -45,11 +45,9 @@ public interface IfcProxy extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Proxy Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcObjectTypeEnum
-	 * @see #isSetProxyType()
-	 * @see #unsetProxyType()
 	 * @see #setProxyType(IfcObjectTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcProxy_ProxyType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcObjectTypeEnum getProxyType();
@@ -60,35 +58,10 @@ public interface IfcProxy extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Proxy Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcObjectTypeEnum
-	 * @see #isSetProxyType()
-	 * @see #unsetProxyType()
 	 * @see #getProxyType()
 	 * @generated
 	 */
 	void setProxyType(IfcObjectTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcProxy#getProxyType <em>Proxy Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetProxyType()
-	 * @see #getProxyType()
-	 * @see #setProxyType(IfcObjectTypeEnum)
-	 * @generated
-	 */
-	void unsetProxyType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcProxy#getProxyType <em>Proxy Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Proxy Type</em>' attribute is set.
-	 * @see #unsetProxyType()
-	 * @see #getProxyType()
-	 * @see #setProxyType(IfcObjectTypeEnum)
-	 * @generated
-	 */
-	boolean isSetProxyType();
 
 	/**
 	 * Returns the value of the '<em><b>Tag</b></em>' attribute.

@@ -84,24 +84,6 @@ public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetIsAttenuating() {
-		eUnset(Ifc2x3Package.Literals.IFC_SOUND_PROPERTIES__IS_ATTENUATING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIsAttenuating() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SOUND_PROPERTIES__IS_ATTENUATING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcSoundScaleEnum getSoundScale() {
 		return (IfcSoundScaleEnum) eGet(Ifc2x3Package.Literals.IFC_SOUND_PROPERTIES__SOUND_SCALE, true);
 	}
@@ -141,24 +123,6 @@ public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl impleme
 	@SuppressWarnings("unchecked")
 	public EList<IfcSoundValue> getSoundValues() {
 		return (EList<IfcSoundValue>) eGet(Ifc2x3Package.Literals.IFC_SOUND_PROPERTIES__SOUND_VALUES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSoundValues() {
-		eUnset(Ifc2x3Package.Literals.IFC_SOUND_PROPERTIES__SOUND_VALUES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSoundValues() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SOUND_PROPERTIES__SOUND_VALUES);
 	}
 
 } //IfcSoundPropertiesImpl

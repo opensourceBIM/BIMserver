@@ -98,24 +98,6 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetNotation() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetNotation() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcClassification getItemOf() {
 		return (IfcClassification) eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF, true);
 	}
@@ -163,24 +145,6 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public void setTitle(String newTitle) {
 		eSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE, newTitle);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTitle() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTitle() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE);
 	}
 
 	/**

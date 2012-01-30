@@ -67,22 +67,4 @@ public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfi
 		return (EList<IfcCurve>) eGet(Ifc2x3Package.Literals.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS__INNER_CURVES, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetInnerCurves() {
-		eUnset(Ifc2x3Package.Literals.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS__INNER_CURVES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInnerCurves() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS__INNER_CURVES);
-	}
-
 } //IfcArbitraryProfileDefWithVoidsImpl

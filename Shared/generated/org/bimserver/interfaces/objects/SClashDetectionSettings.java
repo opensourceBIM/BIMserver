@@ -49,7 +49,7 @@ public class SClashDetectionSettings implements SBase
 
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("enabled")) {
-			return isEnabled();
+			return getEnabled();
 		}
 		if (sField.getName().equals("projects")) {
 			return getProjects();
@@ -79,7 +79,7 @@ public class SClashDetectionSettings implements SBase
 			return;
 		}
 		if (sField.getName().equals("margin")) {
-			setMargin((Float)val);
+			setMargin((Double)val);
 			return;
 		}
 		if (sField.getName().equals("revisions")) {
@@ -97,16 +97,16 @@ public class SClashDetectionSettings implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private boolean enabled;
+	private java.lang.Boolean enabled;
 	private List<Long> projects = new ArrayList<Long>();
-	private float margin;
+	private java.lang.Double margin;
 	private List<Long> revisions = new ArrayList<Long>();
 	private List<java.lang.String> ignoredClasses = new ArrayList<java.lang.String>();
-	public boolean isEnabled() {
+	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
 	public List<Long> getProjects() {
@@ -116,11 +116,11 @@ public class SClashDetectionSettings implements SBase
 	public void setProjects(List<Long> projects) {
 		this.projects = projects;
 	}
-	public float getMargin() {
+	public java.lang.Double getMargin() {
 		return margin;
 	}
 
-	public void setMargin(float margin) {
+	public void setMargin(java.lang.Double margin) {
 		this.margin = margin;
 	}
 	public List<Long> getRevisions() {

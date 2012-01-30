@@ -101,11 +101,9 @@ public interface IfcSIUnit extends IfcNamedUnit {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSIUnitName
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(IfcSIUnitName)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSIUnit_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSIUnitName getName();
@@ -116,34 +114,9 @@ public interface IfcSIUnit extends IfcNamedUnit {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSIUnitName
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(IfcSIUnitName value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSIUnit#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(IfcSIUnitName)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSIUnit#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(IfcSIUnitName)
-	 * @generated
-	 */
-	boolean isSetName();
 
 } // IfcSIUnit

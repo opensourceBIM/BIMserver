@@ -80,24 +80,6 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetXDim() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetXDim() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getXDimAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING, true);
 	}
@@ -109,24 +91,6 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 */
 	public void setXDimAsString(String newXDimAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING, newXDimAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetXDimAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetXDimAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING);
 	}
 
 	/**
@@ -152,24 +116,6 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetYDim() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetYDim() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getYDimAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING, true);
 	}
@@ -181,24 +127,6 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 */
 	public void setYDimAsString(String newYDimAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING, newYDimAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetYDimAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetYDimAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING);
 	}
 
 } //IfcRectangleProfileDefImpl

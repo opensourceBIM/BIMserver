@@ -75,24 +75,6 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetHasQuantities() {
-		eUnset(Ifc2x3Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetHasQuantities() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDiscrimination() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION, true);
 	}
@@ -104,24 +86,6 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 */
 	public void setDiscrimination(String newDiscrimination) {
 		eSet(Ifc2x3Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION, newDiscrimination);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetDiscrimination() {
-		eUnset(Ifc2x3Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDiscrimination() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION);
 	}
 
 	/**

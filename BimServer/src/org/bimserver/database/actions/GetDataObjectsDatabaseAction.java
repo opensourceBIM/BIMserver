@@ -40,7 +40,7 @@ public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObj
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		List<DataObject> dataObjects = new ArrayList<DataObject>();
 		for (Long oid : ifcModel.keySet()) {
 			EObject eObject = ifcModel.get(oid);

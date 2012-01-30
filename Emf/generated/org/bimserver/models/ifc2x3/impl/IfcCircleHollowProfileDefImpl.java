@@ -78,24 +78,6 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetWallThickness() {
-		eUnset(Ifc2x3Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetWallThickness() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getWallThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, true);
 	}
@@ -107,24 +89,6 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 */
 	public void setWallThicknessAsString(String newWallThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, newWallThicknessAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetWallThicknessAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetWallThicknessAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING);
 	}
 
 } //IfcCircleHollowProfileDefImpl

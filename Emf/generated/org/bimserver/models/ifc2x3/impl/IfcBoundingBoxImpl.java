@@ -85,24 +85,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetCorner() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__CORNER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCorner() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__CORNER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getXDim() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM, true);
 	}
@@ -114,24 +96,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setXDim(double newXDim) {
 		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM, newXDim);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetXDim() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetXDim() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM);
 	}
 
 	/**
@@ -157,24 +121,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetXDimAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetXDimAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getYDim() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM, true);
 	}
@@ -186,24 +132,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setYDim(double newYDim) {
 		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM, newYDim);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetYDim() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetYDim() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM);
 	}
 
 	/**
@@ -229,24 +157,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetYDimAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetYDimAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getZDim() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM, true);
 	}
@@ -265,24 +175,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetZDim() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetZDim() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getZDimAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING, true);
 	}
@@ -294,24 +186,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setZDimAsString(String newZDimAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING, newZDimAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetZDimAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetZDimAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING);
 	}
 
 	/**

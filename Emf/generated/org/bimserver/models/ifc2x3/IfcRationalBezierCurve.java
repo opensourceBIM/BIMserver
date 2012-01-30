@@ -46,34 +46,11 @@ public interface IfcRationalBezierCurve extends IfcBezierCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Weights Data</em>' attribute list.
-	 * @see #isSetWeightsData()
-	 * @see #unsetWeightsData()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRationalBezierCurve_WeightsData()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<Double> getWeightsData();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRationalBezierCurve#getWeightsData <em>Weights Data</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetWeightsData()
-	 * @see #getWeightsData()
-	 * @generated
-	 */
-	void unsetWeightsData();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRationalBezierCurve#getWeightsData <em>Weights Data</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Weights Data</em>' attribute list is set.
-	 * @see #unsetWeightsData()
-	 * @see #getWeightsData()
-	 * @generated
-	 */
-	boolean isSetWeightsData();
 
 	/**
 	 * Returns the value of the '<em><b>Weights Data As String</b></em>' attribute list.
@@ -85,33 +62,10 @@ public interface IfcRationalBezierCurve extends IfcBezierCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Weights Data As String</em>' attribute list.
-	 * @see #isSetWeightsDataAsString()
-	 * @see #unsetWeightsDataAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRationalBezierCurve_WeightsDataAsString()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getWeightsDataAsString();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRationalBezierCurve#getWeightsDataAsString <em>Weights Data As String</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetWeightsDataAsString()
-	 * @see #getWeightsDataAsString()
-	 * @generated
-	 */
-	void unsetWeightsDataAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRationalBezierCurve#getWeightsDataAsString <em>Weights Data As String</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Weights Data As String</em>' attribute list is set.
-	 * @see #unsetWeightsDataAsString()
-	 * @see #getWeightsDataAsString()
-	 * @generated
-	 */
-	boolean isSetWeightsDataAsString();
 
 } // IfcRationalBezierCurve

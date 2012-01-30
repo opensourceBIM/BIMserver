@@ -47,12 +47,10 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Process</em>' reference.
-	 * @see #isSetRelatingProcess()
-	 * @see #unsetRelatingProcess()
 	 * @see #setRelatingProcess(IfcProcess)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSequence_RelatingProcess()
 	 * @see org.bimserver.models.ifc2x3.IfcProcess#getIsPredecessorTo
-	 * @model opposite="IsPredecessorTo" unsettable="true"
+	 * @model opposite="IsPredecessorTo"
 	 * @generated
 	 */
 	IfcProcess getRelatingProcess();
@@ -62,35 +60,10 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Process</em>' reference.
-	 * @see #isSetRelatingProcess()
-	 * @see #unsetRelatingProcess()
 	 * @see #getRelatingProcess()
 	 * @generated
 	 */
 	void setRelatingProcess(IfcProcess value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getRelatingProcess <em>Relating Process</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingProcess()
-	 * @see #getRelatingProcess()
-	 * @see #setRelatingProcess(IfcProcess)
-	 * @generated
-	 */
-	void unsetRelatingProcess();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getRelatingProcess <em>Relating Process</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Process</em>' reference is set.
-	 * @see #unsetRelatingProcess()
-	 * @see #getRelatingProcess()
-	 * @see #setRelatingProcess(IfcProcess)
-	 * @generated
-	 */
-	boolean isSetRelatingProcess();
 
 	/**
 	 * Returns the value of the '<em><b>Related Process</b></em>' reference.
@@ -102,12 +75,10 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Process</em>' reference.
-	 * @see #isSetRelatedProcess()
-	 * @see #unsetRelatedProcess()
 	 * @see #setRelatedProcess(IfcProcess)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSequence_RelatedProcess()
 	 * @see org.bimserver.models.ifc2x3.IfcProcess#getIsSuccessorFrom
-	 * @model opposite="IsSuccessorFrom" unsettable="true"
+	 * @model opposite="IsSuccessorFrom"
 	 * @generated
 	 */
 	IfcProcess getRelatedProcess();
@@ -117,35 +88,10 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Process</em>' reference.
-	 * @see #isSetRelatedProcess()
-	 * @see #unsetRelatedProcess()
 	 * @see #getRelatedProcess()
 	 * @generated
 	 */
 	void setRelatedProcess(IfcProcess value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getRelatedProcess <em>Related Process</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedProcess()
-	 * @see #getRelatedProcess()
-	 * @see #setRelatedProcess(IfcProcess)
-	 * @generated
-	 */
-	void unsetRelatedProcess();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getRelatedProcess <em>Related Process</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Process</em>' reference is set.
-	 * @see #unsetRelatedProcess()
-	 * @see #getRelatedProcess()
-	 * @see #setRelatedProcess(IfcProcess)
-	 * @generated
-	 */
-	boolean isSetRelatedProcess();
 
 	/**
 	 * Returns the value of the '<em><b>Time Lag</b></em>' attribute.
@@ -156,11 +102,9 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Lag</em>' attribute.
-	 * @see #isSetTimeLag()
-	 * @see #unsetTimeLag()
 	 * @see #setTimeLag(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSequence_TimeLag()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getTimeLag();
@@ -170,35 +114,10 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Lag</em>' attribute.
-	 * @see #isSetTimeLag()
-	 * @see #unsetTimeLag()
 	 * @see #getTimeLag()
 	 * @generated
 	 */
 	void setTimeLag(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getTimeLag <em>Time Lag</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeLag()
-	 * @see #getTimeLag()
-	 * @see #setTimeLag(double)
-	 * @generated
-	 */
-	void unsetTimeLag();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getTimeLag <em>Time Lag</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Lag</em>' attribute is set.
-	 * @see #unsetTimeLag()
-	 * @see #getTimeLag()
-	 * @see #setTimeLag(double)
-	 * @generated
-	 */
-	boolean isSetTimeLag();
 
 	/**
 	 * Returns the value of the '<em><b>Time Lag As String</b></em>' attribute.
@@ -209,11 +128,9 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Lag As String</em>' attribute.
-	 * @see #isSetTimeLagAsString()
-	 * @see #unsetTimeLagAsString()
 	 * @see #setTimeLagAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSequence_TimeLagAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getTimeLagAsString();
@@ -223,35 +140,10 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Lag As String</em>' attribute.
-	 * @see #isSetTimeLagAsString()
-	 * @see #unsetTimeLagAsString()
 	 * @see #getTimeLagAsString()
 	 * @generated
 	 */
 	void setTimeLagAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getTimeLagAsString <em>Time Lag As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeLagAsString()
-	 * @see #getTimeLagAsString()
-	 * @see #setTimeLagAsString(String)
-	 * @generated
-	 */
-	void unsetTimeLagAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getTimeLagAsString <em>Time Lag As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Lag As String</em>' attribute is set.
-	 * @see #unsetTimeLagAsString()
-	 * @see #getTimeLagAsString()
-	 * @see #setTimeLagAsString(String)
-	 * @generated
-	 */
-	boolean isSetTimeLagAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Sequence Type</b></em>' attribute.
@@ -264,11 +156,9 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sequence Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSequenceEnum
-	 * @see #isSetSequenceType()
-	 * @see #unsetSequenceType()
 	 * @see #setSequenceType(IfcSequenceEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelSequence_SequenceType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSequenceEnum getSequenceType();
@@ -279,34 +169,9 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sequence Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcSequenceEnum
-	 * @see #isSetSequenceType()
-	 * @see #unsetSequenceType()
 	 * @see #getSequenceType()
 	 * @generated
 	 */
 	void setSequenceType(IfcSequenceEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getSequenceType <em>Sequence Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSequenceType()
-	 * @see #getSequenceType()
-	 * @see #setSequenceType(IfcSequenceEnum)
-	 * @generated
-	 */
-	void unsetSequenceType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelSequence#getSequenceType <em>Sequence Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sequence Type</em>' attribute is set.
-	 * @see #unsetSequenceType()
-	 * @see #getSequenceType()
-	 * @see #setSequenceType(IfcSequenceEnum)
-	 * @generated
-	 */
-	boolean isSetSequenceType();
 
 } // IfcRelSequence

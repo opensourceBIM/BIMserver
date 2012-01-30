@@ -79,22 +79,4 @@ public class IfcMaterialListImpl extends IdEObjectImpl implements IfcMaterialLis
 		return (EList<IfcMaterial>) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LIST__MATERIALS, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetMaterials() {
-		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_LIST__MATERIALS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMaterials() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_LIST__MATERIALS);
-	}
-
 } //IfcMaterialListImpl

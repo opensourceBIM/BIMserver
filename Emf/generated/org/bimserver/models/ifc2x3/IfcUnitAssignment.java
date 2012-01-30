@@ -48,33 +48,10 @@ public interface IfcUnitAssignment extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Units</em>' reference list.
-	 * @see #isSetUnits()
-	 * @see #unsetUnits()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcUnitAssignment_Units()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcUnit> getUnits();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcUnitAssignment#getUnits <em>Units</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetUnits()
-	 * @see #getUnits()
-	 * @generated
-	 */
-	void unsetUnits();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcUnitAssignment#getUnits <em>Units</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Units</em>' reference list is set.
-	 * @see #unsetUnits()
-	 * @see #getUnits()
-	 * @generated
-	 */
-	boolean isSetUnits();
 
 } // IfcUnitAssignment

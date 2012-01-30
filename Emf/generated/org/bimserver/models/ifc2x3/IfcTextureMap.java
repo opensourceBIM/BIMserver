@@ -45,33 +45,10 @@ public interface IfcTextureMap extends IfcTextureCoordinate {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Texture Maps</em>' reference list.
-	 * @see #isSetTextureMaps()
-	 * @see #unsetTextureMaps()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextureMap_TextureMaps()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcVertexBasedTextureMap> getTextureMaps();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureMap#getTextureMaps <em>Texture Maps</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTextureMaps()
-	 * @see #getTextureMaps()
-	 * @generated
-	 */
-	void unsetTextureMaps();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureMap#getTextureMaps <em>Texture Maps</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Texture Maps</em>' reference list is set.
-	 * @see #unsetTextureMaps()
-	 * @see #getTextureMaps()
-	 * @generated
-	 */
-	boolean isSetTextureMaps();
 
 } // IfcTextureMap

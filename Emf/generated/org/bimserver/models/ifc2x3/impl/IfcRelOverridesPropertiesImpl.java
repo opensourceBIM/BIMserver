@@ -67,22 +67,4 @@ public class IfcRelOverridesPropertiesImpl extends IfcRelDefinesByPropertiesImpl
 		return (EList<IfcProperty>) eGet(Ifc2x3Package.Literals.IFC_REL_OVERRIDES_PROPERTIES__OVERRIDING_PROPERTIES, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOverridingProperties() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_OVERRIDES_PROPERTIES__OVERRIDING_PROPERTIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOverridingProperties() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_OVERRIDES_PROPERTIES__OVERRIDING_PROPERTIES);
-	}
-
 } //IfcRelOverridesPropertiesImpl

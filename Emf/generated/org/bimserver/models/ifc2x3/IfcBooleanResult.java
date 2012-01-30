@@ -47,11 +47,9 @@ public interface IfcBooleanResult extends IfcGeometricRepresentationItem, IfcBoo
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcBooleanOperator
-	 * @see #isSetOperator()
-	 * @see #unsetOperator()
 	 * @see #setOperator(IfcBooleanOperator)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBooleanResult_Operator()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcBooleanOperator getOperator();
@@ -62,35 +60,10 @@ public interface IfcBooleanResult extends IfcGeometricRepresentationItem, IfcBoo
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcBooleanOperator
-	 * @see #isSetOperator()
-	 * @see #unsetOperator()
 	 * @see #getOperator()
 	 * @generated
 	 */
 	void setOperator(IfcBooleanOperator value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBooleanResult#getOperator <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOperator()
-	 * @see #getOperator()
-	 * @see #setOperator(IfcBooleanOperator)
-	 * @generated
-	 */
-	void unsetOperator();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBooleanResult#getOperator <em>Operator</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Operator</em>' attribute is set.
-	 * @see #unsetOperator()
-	 * @see #getOperator()
-	 * @see #setOperator(IfcBooleanOperator)
-	 * @generated
-	 */
-	boolean isSetOperator();
 
 	/**
 	 * Returns the value of the '<em><b>First Operand</b></em>' reference.
@@ -101,11 +74,9 @@ public interface IfcBooleanResult extends IfcGeometricRepresentationItem, IfcBoo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>First Operand</em>' reference.
-	 * @see #isSetFirstOperand()
-	 * @see #unsetFirstOperand()
 	 * @see #setFirstOperand(IfcBooleanOperand)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBooleanResult_FirstOperand()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcBooleanOperand getFirstOperand();
@@ -115,35 +86,10 @@ public interface IfcBooleanResult extends IfcGeometricRepresentationItem, IfcBoo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>First Operand</em>' reference.
-	 * @see #isSetFirstOperand()
-	 * @see #unsetFirstOperand()
 	 * @see #getFirstOperand()
 	 * @generated
 	 */
 	void setFirstOperand(IfcBooleanOperand value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBooleanResult#getFirstOperand <em>First Operand</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetFirstOperand()
-	 * @see #getFirstOperand()
-	 * @see #setFirstOperand(IfcBooleanOperand)
-	 * @generated
-	 */
-	void unsetFirstOperand();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBooleanResult#getFirstOperand <em>First Operand</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>First Operand</em>' reference is set.
-	 * @see #unsetFirstOperand()
-	 * @see #getFirstOperand()
-	 * @see #setFirstOperand(IfcBooleanOperand)
-	 * @generated
-	 */
-	boolean isSetFirstOperand();
 
 	/**
 	 * Returns the value of the '<em><b>Second Operand</b></em>' reference.
@@ -154,11 +100,9 @@ public interface IfcBooleanResult extends IfcGeometricRepresentationItem, IfcBoo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Second Operand</em>' reference.
-	 * @see #isSetSecondOperand()
-	 * @see #unsetSecondOperand()
 	 * @see #setSecondOperand(IfcBooleanOperand)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBooleanResult_SecondOperand()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcBooleanOperand getSecondOperand();
@@ -168,35 +112,10 @@ public interface IfcBooleanResult extends IfcGeometricRepresentationItem, IfcBoo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Second Operand</em>' reference.
-	 * @see #isSetSecondOperand()
-	 * @see #unsetSecondOperand()
 	 * @see #getSecondOperand()
 	 * @generated
 	 */
 	void setSecondOperand(IfcBooleanOperand value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBooleanResult#getSecondOperand <em>Second Operand</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSecondOperand()
-	 * @see #getSecondOperand()
-	 * @see #setSecondOperand(IfcBooleanOperand)
-	 * @generated
-	 */
-	void unsetSecondOperand();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBooleanResult#getSecondOperand <em>Second Operand</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Second Operand</em>' reference is set.
-	 * @see #unsetSecondOperand()
-	 * @see #getSecondOperand()
-	 * @see #setSecondOperand(IfcBooleanOperand)
-	 * @generated
-	 */
-	boolean isSetSecondOperand();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

@@ -43,11 +43,9 @@ public interface IfcDefinedSymbol extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Definition</em>' reference.
-	 * @see #isSetDefinition()
-	 * @see #unsetDefinition()
 	 * @see #setDefinition(IfcDefinedSymbolSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDefinedSymbol_Definition()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDefinedSymbolSelect getDefinition();
@@ -57,35 +55,10 @@ public interface IfcDefinedSymbol extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Definition</em>' reference.
-	 * @see #isSetDefinition()
-	 * @see #unsetDefinition()
 	 * @see #getDefinition()
 	 * @generated
 	 */
 	void setDefinition(IfcDefinedSymbolSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDefinedSymbol#getDefinition <em>Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDefinition()
-	 * @see #getDefinition()
-	 * @see #setDefinition(IfcDefinedSymbolSelect)
-	 * @generated
-	 */
-	void unsetDefinition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDefinedSymbol#getDefinition <em>Definition</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Definition</em>' reference is set.
-	 * @see #unsetDefinition()
-	 * @see #getDefinition()
-	 * @see #setDefinition(IfcDefinedSymbolSelect)
-	 * @generated
-	 */
-	boolean isSetDefinition();
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
@@ -96,11 +69,9 @@ public interface IfcDefinedSymbol extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #isSetTarget()
-	 * @see #unsetTarget()
 	 * @see #setTarget(IfcCartesianTransformationOperator2D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDefinedSymbol_Target()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCartesianTransformationOperator2D getTarget();
@@ -110,34 +81,9 @@ public interface IfcDefinedSymbol extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #isSetTarget()
-	 * @see #unsetTarget()
 	 * @see #getTarget()
 	 * @generated
 	 */
 	void setTarget(IfcCartesianTransformationOperator2D value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDefinedSymbol#getTarget <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTarget()
-	 * @see #getTarget()
-	 * @see #setTarget(IfcCartesianTransformationOperator2D)
-	 * @generated
-	 */
-	void unsetTarget();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDefinedSymbol#getTarget <em>Target</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Target</em>' reference is set.
-	 * @see #unsetTarget()
-	 * @see #getTarget()
-	 * @see #setTarget(IfcCartesianTransformationOperator2D)
-	 * @generated
-	 */
-	boolean isSetTarget();
 
 } // IfcDefinedSymbol

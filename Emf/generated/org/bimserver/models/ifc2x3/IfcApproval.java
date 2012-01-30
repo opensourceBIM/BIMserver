@@ -109,11 +109,9 @@ public interface IfcApproval extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Approval Date Time</em>' reference.
-	 * @see #isSetApprovalDateTime()
-	 * @see #unsetApprovalDateTime()
 	 * @see #setApprovalDateTime(IfcDateTimeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApproval_ApprovalDateTime()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDateTimeSelect getApprovalDateTime();
@@ -123,35 +121,10 @@ public interface IfcApproval extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Approval Date Time</em>' reference.
-	 * @see #isSetApprovalDateTime()
-	 * @see #unsetApprovalDateTime()
 	 * @see #getApprovalDateTime()
 	 * @generated
 	 */
 	void setApprovalDateTime(IfcDateTimeSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApproval#getApprovalDateTime <em>Approval Date Time</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetApprovalDateTime()
-	 * @see #getApprovalDateTime()
-	 * @see #setApprovalDateTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	void unsetApprovalDateTime();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApproval#getApprovalDateTime <em>Approval Date Time</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Approval Date Time</em>' reference is set.
-	 * @see #unsetApprovalDateTime()
-	 * @see #getApprovalDateTime()
-	 * @see #setApprovalDateTime(IfcDateTimeSelect)
-	 * @generated
-	 */
-	boolean isSetApprovalDateTime();
 
 	/**
 	 * Returns the value of the '<em><b>Approval Status</b></em>' attribute.
@@ -321,11 +294,9 @@ public interface IfcApproval extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApproval_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -335,35 +306,10 @@ public interface IfcApproval extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApproval#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApproval#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
@@ -374,11 +320,9 @@ public interface IfcApproval extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
-	 * @see #isSetIdentifier()
-	 * @see #unsetIdentifier()
 	 * @see #setIdentifier(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApproval_Identifier()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getIdentifier();
@@ -388,35 +332,10 @@ public interface IfcApproval extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
-	 * @see #isSetIdentifier()
-	 * @see #unsetIdentifier()
 	 * @see #getIdentifier()
 	 * @generated
 	 */
 	void setIdentifier(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApproval#getIdentifier <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetIdentifier()
-	 * @see #getIdentifier()
-	 * @see #setIdentifier(String)
-	 * @generated
-	 */
-	void unsetIdentifier();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApproval#getIdentifier <em>Identifier</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Identifier</em>' attribute is set.
-	 * @see #unsetIdentifier()
-	 * @see #getIdentifier()
-	 * @see #setIdentifier(String)
-	 * @generated
-	 */
-	boolean isSetIdentifier();
 
 	/**
 	 * Returns the value of the '<em><b>Actors</b></em>' reference list.

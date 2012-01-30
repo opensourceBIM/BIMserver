@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.models.store.ObjectIDM#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ObjectIDM#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.ObjectIDM#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ObjectIDM#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.ObjectIDM#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.ObjectIDM#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -103,22 +103,22 @@ public interface ObjectIDM extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(boolean)
+	 * @see #setEnabled(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getObjectIDM_Enabled()
 	 * @model
 	 * @generated
 	 */
-	boolean isEnabled();
+	Boolean getEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ObjectIDM#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ObjectIDM#getEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #isEnabled()
+	 * @see #getEnabled()
 	 * @generated
 	 */
-	void setEnabled(boolean value);
+	void setEnabled(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.

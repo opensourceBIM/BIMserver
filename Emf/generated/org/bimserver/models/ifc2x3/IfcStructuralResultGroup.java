@@ -49,11 +49,9 @@ public interface IfcStructuralResultGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Theory Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAnalysisTheoryTypeEnum
-	 * @see #isSetTheoryType()
-	 * @see #unsetTheoryType()
 	 * @see #setTheoryType(IfcAnalysisTheoryTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralResultGroup_TheoryType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAnalysisTheoryTypeEnum getTheoryType();
@@ -64,35 +62,10 @@ public interface IfcStructuralResultGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Theory Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcAnalysisTheoryTypeEnum
-	 * @see #isSetTheoryType()
-	 * @see #unsetTheoryType()
 	 * @see #getTheoryType()
 	 * @generated
 	 */
 	void setTheoryType(IfcAnalysisTheoryTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralResultGroup#getTheoryType <em>Theory Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTheoryType()
-	 * @see #getTheoryType()
-	 * @see #setTheoryType(IfcAnalysisTheoryTypeEnum)
-	 * @generated
-	 */
-	void unsetTheoryType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralResultGroup#getTheoryType <em>Theory Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Theory Type</em>' attribute is set.
-	 * @see #unsetTheoryType()
-	 * @see #getTheoryType()
-	 * @see #setTheoryType(IfcAnalysisTheoryTypeEnum)
-	 * @generated
-	 */
-	boolean isSetTheoryType();
 
 	/**
 	 * Returns the value of the '<em><b>Result For Load Group</b></em>' reference.
@@ -160,11 +133,9 @@ public interface IfcStructuralResultGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Linear</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetIsLinear()
-	 * @see #unsetIsLinear()
 	 * @see #setIsLinear(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralResultGroup_IsLinear()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getIsLinear();
@@ -175,35 +146,10 @@ public interface IfcStructuralResultGroup extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Linear</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetIsLinear()
-	 * @see #unsetIsLinear()
 	 * @see #getIsLinear()
 	 * @generated
 	 */
 	void setIsLinear(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralResultGroup#getIsLinear <em>Is Linear</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetIsLinear()
-	 * @see #getIsLinear()
-	 * @see #setIsLinear(Tristate)
-	 * @generated
-	 */
-	void unsetIsLinear();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralResultGroup#getIsLinear <em>Is Linear</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Is Linear</em>' attribute is set.
-	 * @see #unsetIsLinear()
-	 * @see #getIsLinear()
-	 * @see #setIsLinear(Tristate)
-	 * @generated
-	 */
-	boolean isSetIsLinear();
 
 	/**
 	 * Returns the value of the '<em><b>Result Group For</b></em>' reference list.

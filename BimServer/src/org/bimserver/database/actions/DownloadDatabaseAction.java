@@ -93,7 +93,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 			}
 		}
 		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger()
-				.merge(revision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+				.merge(revision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		ifcModel.setName(project.getName() + "." + revision.getId());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());

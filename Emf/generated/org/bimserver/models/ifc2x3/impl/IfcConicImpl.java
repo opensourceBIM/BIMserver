@@ -73,22 +73,4 @@ public class IfcConicImpl extends IfcCurveImpl implements IfcConic {
 		eSet(Ifc2x3Package.Literals.IFC_CONIC__POSITION, newPosition);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPosition() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONIC__POSITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPosition() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONIC__POSITION);
-	}
-
 } //IfcConicImpl

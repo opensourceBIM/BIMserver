@@ -73,22 +73,4 @@ public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements IfcRel
 		eSet(Ifc2x3Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE, newRelatingType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatingType() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE);
-	}
-
 } //IfcRelDefinesByTypeImpl

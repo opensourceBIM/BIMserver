@@ -71,7 +71,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getProgress() {
+	public Integer getProgress() {
 		return (Integer) eGet(StorePackage.Literals.LONG_ACTION_STATE__PROGRESS, true);
 	}
 
@@ -80,7 +80,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProgress(int newProgress) {
+	public void setProgress(Integer newProgress) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__PROGRESS, newProgress);
 	}
 

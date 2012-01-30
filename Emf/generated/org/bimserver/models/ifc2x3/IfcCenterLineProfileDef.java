@@ -43,11 +43,9 @@ public interface IfcCenterLineProfileDef extends IfcArbitraryOpenProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Thickness</em>' attribute.
-	 * @see #isSetThickness()
-	 * @see #unsetThickness()
 	 * @see #setThickness(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCenterLineProfileDef_Thickness()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getThickness();
@@ -57,35 +55,10 @@ public interface IfcCenterLineProfileDef extends IfcArbitraryOpenProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Thickness</em>' attribute.
-	 * @see #isSetThickness()
-	 * @see #unsetThickness()
 	 * @see #getThickness()
 	 * @generated
 	 */
 	void setThickness(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCenterLineProfileDef#getThickness <em>Thickness</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetThickness()
-	 * @see #getThickness()
-	 * @see #setThickness(double)
-	 * @generated
-	 */
-	void unsetThickness();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCenterLineProfileDef#getThickness <em>Thickness</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Thickness</em>' attribute is set.
-	 * @see #unsetThickness()
-	 * @see #getThickness()
-	 * @see #setThickness(double)
-	 * @generated
-	 */
-	boolean isSetThickness();
 
 	/**
 	 * Returns the value of the '<em><b>Thickness As String</b></em>' attribute.
@@ -96,11 +69,9 @@ public interface IfcCenterLineProfileDef extends IfcArbitraryOpenProfileDef {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Thickness As String</em>' attribute.
-	 * @see #isSetThicknessAsString()
-	 * @see #unsetThicknessAsString()
 	 * @see #setThicknessAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCenterLineProfileDef_ThicknessAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getThicknessAsString();
@@ -110,34 +81,9 @@ public interface IfcCenterLineProfileDef extends IfcArbitraryOpenProfileDef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Thickness As String</em>' attribute.
-	 * @see #isSetThicknessAsString()
-	 * @see #unsetThicknessAsString()
 	 * @see #getThicknessAsString()
 	 * @generated
 	 */
 	void setThicknessAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCenterLineProfileDef#getThicknessAsString <em>Thickness As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetThicknessAsString()
-	 * @see #getThicknessAsString()
-	 * @see #setThicknessAsString(String)
-	 * @generated
-	 */
-	void unsetThicknessAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCenterLineProfileDef#getThicknessAsString <em>Thickness As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Thickness As String</em>' attribute is set.
-	 * @see #unsetThicknessAsString()
-	 * @see #getThicknessAsString()
-	 * @see #setThicknessAsString(String)
-	 * @generated
-	 */
-	boolean isSetThicknessAsString();
 
 } // IfcCenterLineProfileDef

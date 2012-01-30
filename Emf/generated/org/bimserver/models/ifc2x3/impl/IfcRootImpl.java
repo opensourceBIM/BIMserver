@@ -94,24 +94,6 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetGlobalId() {
-		eUnset(Ifc2x3Package.Literals.IFC_ROOT__GLOBAL_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetGlobalId() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ROOT__GLOBAL_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcOwnerHistory getOwnerHistory() {
 		return (IfcOwnerHistory) eGet(Ifc2x3Package.Literals.IFC_ROOT__OWNER_HISTORY, true);
 	}
@@ -123,24 +105,6 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 */
 	public void setOwnerHistory(IfcOwnerHistory newOwnerHistory) {
 		eSet(Ifc2x3Package.Literals.IFC_ROOT__OWNER_HISTORY, newOwnerHistory);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOwnerHistory() {
-		eUnset(Ifc2x3Package.Literals.IFC_ROOT__OWNER_HISTORY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnerHistory() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ROOT__OWNER_HISTORY);
 	}
 
 	/**

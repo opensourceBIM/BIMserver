@@ -45,33 +45,10 @@ public interface IfcPropertySet extends IfcPropertySetDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Properties</em>' reference list.
-	 * @see #isSetHasProperties()
-	 * @see #unsetHasProperties()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertySet_HasProperties()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcProperty> getHasProperties();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertySet#getHasProperties <em>Has Properties</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetHasProperties()
-	 * @see #getHasProperties()
-	 * @generated
-	 */
-	void unsetHasProperties();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertySet#getHasProperties <em>Has Properties</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Has Properties</em>' reference list is set.
-	 * @see #unsetHasProperties()
-	 * @see #getHasProperties()
-	 * @generated
-	 */
-	boolean isSetHasProperties();
 
 } // IfcPropertySet

@@ -73,22 +73,4 @@ public class IfcRoofImpl extends IfcBuildingElementImpl implements IfcRoof {
 		eSet(Ifc2x3Package.Literals.IFC_ROOF__SHAPE_TYPE, newShapeType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetShapeType() {
-		eUnset(Ifc2x3Package.Literals.IFC_ROOF__SHAPE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetShapeType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ROOF__SHAPE_TYPE);
-	}
-
 } //IfcRoofImpl

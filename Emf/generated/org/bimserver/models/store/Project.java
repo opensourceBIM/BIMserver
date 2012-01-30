@@ -65,12 +65,12 @@ public interface Project extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(int)
+	 * @see #setId(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getProject_Id()
 	 * @model
 	 * @generated
 	 */
-	int getId();
+	Integer getId();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Project#getId <em>Id</em>}' attribute.
@@ -80,7 +80,7 @@ public interface Project extends IdEObject {
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(int value);
+	void setId(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

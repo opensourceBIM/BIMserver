@@ -43,11 +43,9 @@ public interface IfcConnectionPointGeometry extends IfcConnectionGeometry {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point On Relating Element</em>' reference.
-	 * @see #isSetPointOnRelatingElement()
-	 * @see #unsetPointOnRelatingElement()
 	 * @see #setPointOnRelatingElement(IfcPointOrVertexPoint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionPointGeometry_PointOnRelatingElement()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcPointOrVertexPoint getPointOnRelatingElement();
@@ -57,35 +55,10 @@ public interface IfcConnectionPointGeometry extends IfcConnectionGeometry {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Point On Relating Element</em>' reference.
-	 * @see #isSetPointOnRelatingElement()
-	 * @see #unsetPointOnRelatingElement()
 	 * @see #getPointOnRelatingElement()
 	 * @generated
 	 */
 	void setPointOnRelatingElement(IfcPointOrVertexPoint value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointGeometry#getPointOnRelatingElement <em>Point On Relating Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPointOnRelatingElement()
-	 * @see #getPointOnRelatingElement()
-	 * @see #setPointOnRelatingElement(IfcPointOrVertexPoint)
-	 * @generated
-	 */
-	void unsetPointOnRelatingElement();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionPointGeometry#getPointOnRelatingElement <em>Point On Relating Element</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Point On Relating Element</em>' reference is set.
-	 * @see #unsetPointOnRelatingElement()
-	 * @see #getPointOnRelatingElement()
-	 * @see #setPointOnRelatingElement(IfcPointOrVertexPoint)
-	 * @generated
-	 */
-	boolean isSetPointOnRelatingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Point On Related Element</b></em>' reference.

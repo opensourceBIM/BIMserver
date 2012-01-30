@@ -73,22 +73,4 @@ public class IfcElectricTimeControlTypeImpl extends IfcFlowControllerTypeImpl im
 		eSet(Ifc2x3Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPredefinedType() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPredefinedType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE);
-	}
-
 } //IfcElectricTimeControlTypeImpl

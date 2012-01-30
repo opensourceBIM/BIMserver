@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.ClashDetectionSettingsImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ClashDetectionSettingsImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ClashDetectionSettingsImpl#getProjects <em>Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ClashDetectionSettingsImpl#getMargin <em>Margin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ClashDetectionSettingsImpl#getRevisions <em>Revisions</em>}</li>
@@ -76,7 +76,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.CLASH_DETECTION_SETTINGS__ENABLED, true);
 	}
 
@@ -85,7 +85,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.CLASH_DETECTION_SETTINGS__ENABLED, newEnabled);
 	}
 
@@ -104,8 +104,8 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getMargin() {
-		return (Float) eGet(StorePackage.Literals.CLASH_DETECTION_SETTINGS__MARGIN, true);
+	public Double getMargin() {
+		return (Double) eGet(StorePackage.Literals.CLASH_DETECTION_SETTINGS__MARGIN, true);
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMargin(float newMargin) {
+	public void setMargin(Double newMargin) {
 		eSet(StorePackage.Literals.CLASH_DETECTION_SETTINGS__MARGIN, newMargin);
 	}
 

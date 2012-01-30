@@ -476,11 +476,9 @@ public interface IfcSurfaceStyleRendering extends IfcSurfaceStyleShading {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reflectance Method</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReflectanceMethodEnum
-	 * @see #isSetReflectanceMethod()
-	 * @see #unsetReflectanceMethod()
 	 * @see #setReflectanceMethod(IfcReflectanceMethodEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSurfaceStyleRendering_ReflectanceMethod()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcReflectanceMethodEnum getReflectanceMethod();
@@ -491,34 +489,9 @@ public interface IfcSurfaceStyleRendering extends IfcSurfaceStyleShading {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reflectance Method</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReflectanceMethodEnum
-	 * @see #isSetReflectanceMethod()
-	 * @see #unsetReflectanceMethod()
 	 * @see #getReflectanceMethod()
 	 * @generated
 	 */
 	void setReflectanceMethod(IfcReflectanceMethodEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering#getReflectanceMethod <em>Reflectance Method</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetReflectanceMethod()
-	 * @see #getReflectanceMethod()
-	 * @see #setReflectanceMethod(IfcReflectanceMethodEnum)
-	 * @generated
-	 */
-	void unsetReflectanceMethod();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering#getReflectanceMethod <em>Reflectance Method</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Reflectance Method</em>' attribute is set.
-	 * @see #unsetReflectanceMethod()
-	 * @see #getReflectanceMethod()
-	 * @see #setReflectanceMethod(IfcReflectanceMethodEnum)
-	 * @generated
-	 */
-	boolean isSetReflectanceMethod();
 
 } // IfcSurfaceStyleRendering

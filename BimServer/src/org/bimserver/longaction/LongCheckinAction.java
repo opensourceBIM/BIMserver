@@ -149,7 +149,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		while (mainProject.getParent() != null) {
 			mainProject = mainProject.getParent();
 		}
-		if (mainProject.getClashDetectionSettings().isEnabled()) {
+		if (mainProject.getClashDetectionSettings().getEnabled()) {
 			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(bimServer, user, createCheckinAction.getActingUid(), mainProject.getOid());
 			try {
 				bimServer.getLongActionManager().start(clashDetectionLongAction);

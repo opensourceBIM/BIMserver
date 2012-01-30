@@ -43,12 +43,10 @@ public interface IfcRelAssignsToResource extends IfcRelAssigns {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Resource</em>' reference.
-	 * @see #isSetRelatingResource()
-	 * @see #unsetRelatingResource()
 	 * @see #setRelatingResource(IfcResource)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssignsToResource_RelatingResource()
 	 * @see org.bimserver.models.ifc2x3.IfcResource#getResourceOf
-	 * @model opposite="ResourceOf" unsettable="true"
+	 * @model opposite="ResourceOf"
 	 * @generated
 	 */
 	IfcResource getRelatingResource();
@@ -58,34 +56,9 @@ public interface IfcRelAssignsToResource extends IfcRelAssigns {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Resource</em>' reference.
-	 * @see #isSetRelatingResource()
-	 * @see #unsetRelatingResource()
 	 * @see #getRelatingResource()
 	 * @generated
 	 */
 	void setRelatingResource(IfcResource value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToResource#getRelatingResource <em>Relating Resource</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingResource()
-	 * @see #getRelatingResource()
-	 * @see #setRelatingResource(IfcResource)
-	 * @generated
-	 */
-	void unsetRelatingResource();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToResource#getRelatingResource <em>Relating Resource</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Resource</em>' reference is set.
-	 * @see #unsetRelatingResource()
-	 * @see #getRelatingResource()
-	 * @see #setRelatingResource(IfcResource)
-	 * @generated
-	 */
-	boolean isSetRelatingResource();
 
 } // IfcRelAssignsToResource

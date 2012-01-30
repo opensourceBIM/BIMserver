@@ -73,22 +73,4 @@ public class IfcTransformerTypeImpl extends IfcEnergyConversionDeviceTypeImpl im
 		eSet(Ifc2x3Package.Literals.IFC_TRANSFORMER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPredefinedType() {
-		eUnset(Ifc2x3Package.Literals.IFC_TRANSFORMER_TYPE__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPredefinedType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TRANSFORMER_TYPE__PREDEFINED_TYPE);
-	}
-
 } //IfcTransformerTypeImpl

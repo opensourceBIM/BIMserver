@@ -153,11 +153,9 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Origin</em>' reference.
-	 * @see #isSetLocalOrigin()
-	 * @see #unsetLocalOrigin()
 	 * @see #setLocalOrigin(IfcCartesianPoint)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCartesianTransformationOperator_LocalOrigin()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCartesianPoint getLocalOrigin();
@@ -167,35 +165,10 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Local Origin</em>' reference.
-	 * @see #isSetLocalOrigin()
-	 * @see #unsetLocalOrigin()
 	 * @see #getLocalOrigin()
 	 * @generated
 	 */
 	void setLocalOrigin(IfcCartesianPoint value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getLocalOrigin <em>Local Origin</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLocalOrigin()
-	 * @see #getLocalOrigin()
-	 * @see #setLocalOrigin(IfcCartesianPoint)
-	 * @generated
-	 */
-	void unsetLocalOrigin();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator#getLocalOrigin <em>Local Origin</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Local Origin</em>' reference is set.
-	 * @see #unsetLocalOrigin()
-	 * @see #getLocalOrigin()
-	 * @see #setLocalOrigin(IfcCartesianPoint)
-	 * @generated
-	 */
-	boolean isSetLocalOrigin();
 
 	/**
 	 * Returns the value of the '<em><b>Scale</b></em>' attribute.

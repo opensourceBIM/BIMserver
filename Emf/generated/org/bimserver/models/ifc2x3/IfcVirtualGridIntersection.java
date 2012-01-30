@@ -51,35 +51,12 @@ public interface IfcVirtualGridIntersection extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Intersecting Axes</em>' reference list.
-	 * @see #isSetIntersectingAxes()
-	 * @see #unsetIntersectingAxes()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVirtualGridIntersection_IntersectingAxes()
 	 * @see org.bimserver.models.ifc2x3.IfcGridAxis#getHasIntersections
-	 * @model opposite="HasIntersections" unsettable="true"
+	 * @model opposite="HasIntersections"
 	 * @generated
 	 */
 	EList<IfcGridAxis> getIntersectingAxes();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVirtualGridIntersection#getIntersectingAxes <em>Intersecting Axes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetIntersectingAxes()
-	 * @see #getIntersectingAxes()
-	 * @generated
-	 */
-	void unsetIntersectingAxes();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVirtualGridIntersection#getIntersectingAxes <em>Intersecting Axes</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Intersecting Axes</em>' reference list is set.
-	 * @see #unsetIntersectingAxes()
-	 * @see #getIntersectingAxes()
-	 * @generated
-	 */
-	boolean isSetIntersectingAxes();
 
 	/**
 	 * Returns the value of the '<em><b>Offset Distances</b></em>' attribute list.
@@ -91,34 +68,11 @@ public interface IfcVirtualGridIntersection extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset Distances</em>' attribute list.
-	 * @see #isSetOffsetDistances()
-	 * @see #unsetOffsetDistances()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVirtualGridIntersection_OffsetDistances()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<Double> getOffsetDistances();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVirtualGridIntersection#getOffsetDistances <em>Offset Distances</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOffsetDistances()
-	 * @see #getOffsetDistances()
-	 * @generated
-	 */
-	void unsetOffsetDistances();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVirtualGridIntersection#getOffsetDistances <em>Offset Distances</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Offset Distances</em>' attribute list is set.
-	 * @see #unsetOffsetDistances()
-	 * @see #getOffsetDistances()
-	 * @generated
-	 */
-	boolean isSetOffsetDistances();
 
 	/**
 	 * Returns the value of the '<em><b>Offset Distances As String</b></em>' attribute list.
@@ -130,33 +84,10 @@ public interface IfcVirtualGridIntersection extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset Distances As String</em>' attribute list.
-	 * @see #isSetOffsetDistancesAsString()
-	 * @see #unsetOffsetDistancesAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVirtualGridIntersection_OffsetDistancesAsString()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getOffsetDistancesAsString();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVirtualGridIntersection#getOffsetDistancesAsString <em>Offset Distances As String</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOffsetDistancesAsString()
-	 * @see #getOffsetDistancesAsString()
-	 * @generated
-	 */
-	void unsetOffsetDistancesAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVirtualGridIntersection#getOffsetDistancesAsString <em>Offset Distances As String</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Offset Distances As String</em>' attribute list is set.
-	 * @see #unsetOffsetDistancesAsString()
-	 * @see #getOffsetDistancesAsString()
-	 * @generated
-	 */
-	boolean isSetOffsetDistancesAsString();
 
 } // IfcVirtualGridIntersection

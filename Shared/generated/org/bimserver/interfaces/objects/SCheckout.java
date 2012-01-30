@@ -63,7 +63,7 @@ public class SCheckout implements SBase
 			return getCheckinId();
 		}
 		if (sField.getName().equals("active")) {
-			return isActive();
+			return getActive();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -107,7 +107,7 @@ public class SCheckout implements SBase
 	private long projectId;
 	private java.util.Date date;
 	private long checkinId;
-	private boolean active;
+	private java.lang.Boolean active;
 	public long getUserId() {
 		return userId;
 	}
@@ -147,11 +147,11 @@ public class SCheckout implements SBase
 		this.checkinId = checkinId;
 	}
 	
-	public boolean isActive() {
+	public java.lang.Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(java.lang.Boolean active) {
 		this.active = active;
 	}
 	@Override

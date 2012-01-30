@@ -73,22 +73,4 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 		eSet(Ifc2x3Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, newRelatingPropertyDefinition);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatingPropertyDefinition() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingPropertyDefinition() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION);
-	}
-
 } //IfcRelDefinesByPropertiesImpl

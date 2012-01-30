@@ -67,22 +67,4 @@ public class IfcPathImpl extends IfcTopologicalRepresentationItemImpl implements
 		return (EList<IfcOrientedEdge>) eGet(Ifc2x3Package.Literals.IFC_PATH__EDGE_LIST, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetEdgeList() {
-		eUnset(Ifc2x3Package.Literals.IFC_PATH__EDGE_LIST);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEdgeList() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PATH__EDGE_LIST);
-	}
-
 } //IfcPathImpl

@@ -42,11 +42,9 @@ public interface IfcRelAssociatesAppliedValue extends IfcRelAssociates {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Applied Value</em>' reference.
-	 * @see #isSetRelatingAppliedValue()
-	 * @see #unsetRelatingAppliedValue()
 	 * @see #setRelatingAppliedValue(IfcAppliedValue)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociatesAppliedValue_RelatingAppliedValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAppliedValue getRelatingAppliedValue();
@@ -56,34 +54,9 @@ public interface IfcRelAssociatesAppliedValue extends IfcRelAssociates {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Applied Value</em>' reference.
-	 * @see #isSetRelatingAppliedValue()
-	 * @see #unsetRelatingAppliedValue()
 	 * @see #getRelatingAppliedValue()
 	 * @generated
 	 */
 	void setRelatingAppliedValue(IfcAppliedValue value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesAppliedValue#getRelatingAppliedValue <em>Relating Applied Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingAppliedValue()
-	 * @see #getRelatingAppliedValue()
-	 * @see #setRelatingAppliedValue(IfcAppliedValue)
-	 * @generated
-	 */
-	void unsetRelatingAppliedValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociatesAppliedValue#getRelatingAppliedValue <em>Relating Applied Value</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Applied Value</em>' reference is set.
-	 * @see #unsetRelatingAppliedValue()
-	 * @see #getRelatingAppliedValue()
-	 * @see #setRelatingAppliedValue(IfcAppliedValue)
-	 * @generated
-	 */
-	boolean isSetRelatingAppliedValue();
 
 } // IfcRelAssociatesAppliedValue

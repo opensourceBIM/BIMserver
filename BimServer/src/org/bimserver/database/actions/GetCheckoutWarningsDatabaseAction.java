@@ -54,7 +54,7 @@ public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<Str
 	private void checkInterleavingCommits(Project project, User user, Set<String> warnings) {
 		Checkout lastOwnActiveCheckout = null;
 		for (Checkout checkout : project.getCheckouts()) {
-			if (checkout.getUser() == user && checkout.isActive()) {
+			if (checkout.getUser() == user && checkout.getActive()) {
 				lastOwnActiveCheckout = checkout;
 			}
 		}
@@ -81,7 +81,7 @@ public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<Str
 		int activeCheckouts = 0;
 		for (Project p : getAllRelatedProjects(project)) {
 			for (Checkout checkout : p.getCheckouts()) {
-				if (checkout.isActive() && checkout.getUser() != user) {
+				if (checkout.getActive() && checkout.getUser() != user) {
 					activeCheckouts++;
 				}
 			}

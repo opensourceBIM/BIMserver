@@ -94,45 +94,9 @@ public class IfcTimeSeriesReferenceRelationshipImpl extends IdEObjectImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetReferencedTimeSeries() {
-		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__REFERENCED_TIME_SERIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetReferencedTimeSeries() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__REFERENCED_TIME_SERIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentSelect> getTimeSeriesReferences() {
 		return (EList<IfcDocumentSelect>) eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__TIME_SERIES_REFERENCES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTimeSeriesReferences() {
-		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__TIME_SERIES_REFERENCES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTimeSeriesReferences() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__TIME_SERIES_REFERENCES);
 	}
 
 } //IfcTimeSeriesReferenceRelationshipImpl

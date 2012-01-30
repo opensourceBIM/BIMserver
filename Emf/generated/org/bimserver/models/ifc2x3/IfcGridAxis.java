@@ -106,11 +106,9 @@ public interface IfcGridAxis extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Axis Curve</em>' reference.
-	 * @see #isSetAxisCurve()
-	 * @see #unsetAxisCurve()
 	 * @see #setAxisCurve(IfcCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_AxisCurve()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCurve getAxisCurve();
@@ -120,35 +118,10 @@ public interface IfcGridAxis extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Axis Curve</em>' reference.
-	 * @see #isSetAxisCurve()
-	 * @see #unsetAxisCurve()
 	 * @see #getAxisCurve()
 	 * @generated
 	 */
 	void setAxisCurve(IfcCurve value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getAxisCurve <em>Axis Curve</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetAxisCurve()
-	 * @see #getAxisCurve()
-	 * @see #setAxisCurve(IfcCurve)
-	 * @generated
-	 */
-	void unsetAxisCurve();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getAxisCurve <em>Axis Curve</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Axis Curve</em>' reference is set.
-	 * @see #unsetAxisCurve()
-	 * @see #getAxisCurve()
-	 * @see #setAxisCurve(IfcCurve)
-	 * @generated
-	 */
-	boolean isSetAxisCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Same Sense</b></em>' attribute.
@@ -161,11 +134,9 @@ public interface IfcGridAxis extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetSameSense()
-	 * @see #unsetSameSense()
 	 * @see #setSameSense(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGridAxis_SameSense()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getSameSense();
@@ -176,35 +147,10 @@ public interface IfcGridAxis extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Same Sense</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetSameSense()
-	 * @see #unsetSameSense()
 	 * @see #getSameSense()
 	 * @generated
 	 */
 	void setSameSense(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getSameSense <em>Same Sense</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSameSense()
-	 * @see #getSameSense()
-	 * @see #setSameSense(Tristate)
-	 * @generated
-	 */
-	void unsetSameSense();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGridAxis#getSameSense <em>Same Sense</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Same Sense</em>' attribute is set.
-	 * @see #unsetSameSense()
-	 * @see #getSameSense()
-	 * @see #setSameSense(Tristate)
-	 * @generated
-	 */
-	boolean isSetSameSense();
 
 	/**
 	 * Returns the value of the '<em><b>Part Of W</b></em>' reference list.

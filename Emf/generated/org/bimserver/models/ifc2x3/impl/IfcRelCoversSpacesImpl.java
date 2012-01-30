@@ -82,45 +82,9 @@ public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatedSpace() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_COVERS_SPACES__RELATED_SPACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedSpace() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_COVERS_SPACES__RELATED_SPACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCovering> getRelatedCoverings() {
 		return (EList<IfcCovering>) eGet(Ifc2x3Package.Literals.IFC_REL_COVERS_SPACES__RELATED_COVERINGS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedCoverings() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_COVERS_SPACES__RELATED_COVERINGS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedCoverings() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_COVERS_SPACES__RELATED_COVERINGS);
 	}
 
 } //IfcRelCoversSpacesImpl

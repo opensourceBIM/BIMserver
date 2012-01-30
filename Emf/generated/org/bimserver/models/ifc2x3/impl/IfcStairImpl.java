@@ -73,22 +73,4 @@ public class IfcStairImpl extends IfcBuildingElementImpl implements IfcStair {
 		eSet(Ifc2x3Package.Literals.IFC_STAIR__SHAPE_TYPE, newShapeType);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetShapeType() {
-		eUnset(Ifc2x3Package.Literals.IFC_STAIR__SHAPE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetShapeType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STAIR__SHAPE_TYPE);
-	}
-
 } //IfcStairImpl

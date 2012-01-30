@@ -42,11 +42,9 @@ public interface IfcActionRequest extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Request ID</em>' attribute.
-	 * @see #isSetRequestID()
-	 * @see #unsetRequestID()
 	 * @see #setRequestID(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcActionRequest_RequestID()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getRequestID();
@@ -56,34 +54,9 @@ public interface IfcActionRequest extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Request ID</em>' attribute.
-	 * @see #isSetRequestID()
-	 * @see #unsetRequestID()
 	 * @see #getRequestID()
 	 * @generated
 	 */
 	void setRequestID(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcActionRequest#getRequestID <em>Request ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRequestID()
-	 * @see #getRequestID()
-	 * @see #setRequestID(String)
-	 * @generated
-	 */
-	void unsetRequestID();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcActionRequest#getRequestID <em>Request ID</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Request ID</em>' attribute is set.
-	 * @see #unsetRequestID()
-	 * @see #getRequestID()
-	 * @see #setRequestID(String)
-	 * @generated
-	 */
-	boolean isSetRequestID();
 
 } // IfcActionRequest

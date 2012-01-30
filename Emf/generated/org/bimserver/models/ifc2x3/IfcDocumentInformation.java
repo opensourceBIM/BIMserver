@@ -62,11 +62,9 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Document Id</em>' attribute.
-	 * @see #isSetDocumentId()
-	 * @see #unsetDocumentId()
 	 * @see #setDocumentId(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_DocumentId()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getDocumentId();
@@ -76,35 +74,10 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Document Id</em>' attribute.
-	 * @see #isSetDocumentId()
-	 * @see #unsetDocumentId()
 	 * @see #getDocumentId()
 	 * @generated
 	 */
 	void setDocumentId(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getDocumentId <em>Document Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDocumentId()
-	 * @see #getDocumentId()
-	 * @see #setDocumentId(String)
-	 * @generated
-	 */
-	void unsetDocumentId();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getDocumentId <em>Document Id</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Document Id</em>' attribute is set.
-	 * @see #unsetDocumentId()
-	 * @see #getDocumentId()
-	 * @see #setDocumentId(String)
-	 * @generated
-	 */
-	boolean isSetDocumentId();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -115,11 +88,9 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDocumentInformation_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -129,35 +100,10 @@ public interface IfcDocumentInformation extends IfcDocumentSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDocumentInformation#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.

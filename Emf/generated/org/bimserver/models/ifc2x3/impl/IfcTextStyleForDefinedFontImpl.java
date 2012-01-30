@@ -91,24 +91,6 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetColour() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetColour() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcColour getBackgroundColour() {
 		return (IfcColour) eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR, true);
 	}

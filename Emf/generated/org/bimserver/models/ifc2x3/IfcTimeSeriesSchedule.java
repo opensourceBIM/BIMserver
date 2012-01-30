@@ -87,11 +87,9 @@ public interface IfcTimeSeriesSchedule extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Series Schedule Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeriesScheduleTypeEnum
-	 * @see #isSetTimeSeriesScheduleType()
-	 * @see #unsetTimeSeriesScheduleType()
 	 * @see #setTimeSeriesScheduleType(IfcTimeSeriesScheduleTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeriesSchedule_TimeSeriesScheduleType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcTimeSeriesScheduleTypeEnum getTimeSeriesScheduleType();
@@ -102,35 +100,10 @@ public interface IfcTimeSeriesSchedule extends IfcControl {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Series Schedule Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeriesScheduleTypeEnum
-	 * @see #isSetTimeSeriesScheduleType()
-	 * @see #unsetTimeSeriesScheduleType()
 	 * @see #getTimeSeriesScheduleType()
 	 * @generated
 	 */
 	void setTimeSeriesScheduleType(IfcTimeSeriesScheduleTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesSchedule#getTimeSeriesScheduleType <em>Time Series Schedule Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeSeriesScheduleType()
-	 * @see #getTimeSeriesScheduleType()
-	 * @see #setTimeSeriesScheduleType(IfcTimeSeriesScheduleTypeEnum)
-	 * @generated
-	 */
-	void unsetTimeSeriesScheduleType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesSchedule#getTimeSeriesScheduleType <em>Time Series Schedule Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Series Schedule Type</em>' attribute is set.
-	 * @see #unsetTimeSeriesScheduleType()
-	 * @see #getTimeSeriesScheduleType()
-	 * @see #setTimeSeriesScheduleType(IfcTimeSeriesScheduleTypeEnum)
-	 * @generated
-	 */
-	boolean isSetTimeSeriesScheduleType();
 
 	/**
 	 * Returns the value of the '<em><b>Time Series</b></em>' reference.
@@ -141,11 +114,9 @@ public interface IfcTimeSeriesSchedule extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Series</em>' reference.
-	 * @see #isSetTimeSeries()
-	 * @see #unsetTimeSeries()
 	 * @see #setTimeSeries(IfcTimeSeries)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeriesSchedule_TimeSeries()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcTimeSeries getTimeSeries();
@@ -155,34 +126,9 @@ public interface IfcTimeSeriesSchedule extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Series</em>' reference.
-	 * @see #isSetTimeSeries()
-	 * @see #unsetTimeSeries()
 	 * @see #getTimeSeries()
 	 * @generated
 	 */
 	void setTimeSeries(IfcTimeSeries value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesSchedule#getTimeSeries <em>Time Series</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeSeries()
-	 * @see #getTimeSeries()
-	 * @see #setTimeSeries(IfcTimeSeries)
-	 * @generated
-	 */
-	void unsetTimeSeries();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesSchedule#getTimeSeries <em>Time Series</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Series</em>' reference is set.
-	 * @see #unsetTimeSeries()
-	 * @see #getTimeSeries()
-	 * @see #setTimeSeries(IfcTimeSeries)
-	 * @generated
-	 */
-	boolean isSetTimeSeries();
 
 } // IfcTimeSeriesSchedule

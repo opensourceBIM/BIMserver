@@ -80,24 +80,6 @@ public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements IfcSwept
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSweptArea() {
-		eUnset(Ifc2x3Package.Literals.IFC_SWEPT_AREA_SOLID__SWEPT_AREA);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSweptArea() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SWEPT_AREA_SOLID__SWEPT_AREA);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcAxis2Placement3D getPosition() {
 		return (IfcAxis2Placement3D) eGet(Ifc2x3Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION, true);
 	}
@@ -109,24 +91,6 @@ public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements IfcSwept
 	 */
 	public void setPosition(IfcAxis2Placement3D newPosition) {
 		eSet(Ifc2x3Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION, newPosition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPosition() {
-		eUnset(Ifc2x3Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPosition() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION);
 	}
 
 } //IfcSweptAreaSolidImpl

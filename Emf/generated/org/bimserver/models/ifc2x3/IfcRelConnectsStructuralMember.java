@@ -49,12 +49,10 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Structural Member</em>' reference.
-	 * @see #isSetRelatingStructuralMember()
-	 * @see #unsetRelatingStructuralMember()
 	 * @see #setRelatingStructuralMember(IfcStructuralMember)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsStructuralMember_RelatingStructuralMember()
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralMember#getConnectedBy
-	 * @model opposite="ConnectedBy" unsettable="true"
+	 * @model opposite="ConnectedBy"
 	 * @generated
 	 */
 	IfcStructuralMember getRelatingStructuralMember();
@@ -64,35 +62,10 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Structural Member</em>' reference.
-	 * @see #isSetRelatingStructuralMember()
-	 * @see #unsetRelatingStructuralMember()
 	 * @see #getRelatingStructuralMember()
 	 * @generated
 	 */
 	void setRelatingStructuralMember(IfcStructuralMember value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember#getRelatingStructuralMember <em>Relating Structural Member</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingStructuralMember()
-	 * @see #getRelatingStructuralMember()
-	 * @see #setRelatingStructuralMember(IfcStructuralMember)
-	 * @generated
-	 */
-	void unsetRelatingStructuralMember();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember#getRelatingStructuralMember <em>Relating Structural Member</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Structural Member</em>' reference is set.
-	 * @see #unsetRelatingStructuralMember()
-	 * @see #getRelatingStructuralMember()
-	 * @see #setRelatingStructuralMember(IfcStructuralMember)
-	 * @generated
-	 */
-	boolean isSetRelatingStructuralMember();
 
 	/**
 	 * Returns the value of the '<em><b>Related Structural Connection</b></em>' reference.
@@ -104,12 +77,10 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Structural Connection</em>' reference.
-	 * @see #isSetRelatedStructuralConnection()
-	 * @see #unsetRelatedStructuralConnection()
 	 * @see #setRelatedStructuralConnection(IfcStructuralConnection)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsStructuralMember_RelatedStructuralConnection()
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralConnection#getConnectsStructuralMembers
-	 * @model opposite="ConnectsStructuralMembers" unsettable="true"
+	 * @model opposite="ConnectsStructuralMembers"
 	 * @generated
 	 */
 	IfcStructuralConnection getRelatedStructuralConnection();
@@ -119,35 +90,10 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Structural Connection</em>' reference.
-	 * @see #isSetRelatedStructuralConnection()
-	 * @see #unsetRelatedStructuralConnection()
 	 * @see #getRelatedStructuralConnection()
 	 * @generated
 	 */
 	void setRelatedStructuralConnection(IfcStructuralConnection value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember#getRelatedStructuralConnection <em>Related Structural Connection</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedStructuralConnection()
-	 * @see #getRelatedStructuralConnection()
-	 * @see #setRelatedStructuralConnection(IfcStructuralConnection)
-	 * @generated
-	 */
-	void unsetRelatedStructuralConnection();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember#getRelatedStructuralConnection <em>Related Structural Connection</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Structural Connection</em>' reference is set.
-	 * @see #unsetRelatedStructuralConnection()
-	 * @see #getRelatedStructuralConnection()
-	 * @see #setRelatedStructuralConnection(IfcStructuralConnection)
-	 * @generated
-	 */
-	boolean isSetRelatedStructuralConnection();
 
 	/**
 	 * Returns the value of the '<em><b>Applied Condition</b></em>' reference.

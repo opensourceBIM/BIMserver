@@ -82,24 +82,6 @@ public class IfcActorImpl extends IfcObjectImpl implements IfcActor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetTheActor() {
-		eUnset(Ifc2x3Package.Literals.IFC_ACTOR__THE_ACTOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTheActor() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ACTOR__THE_ACTOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToActor> getIsActingUpon() {
 		return (EList<IfcRelAssignsToActor>) eGet(Ifc2x3Package.Literals.IFC_ACTOR__IS_ACTING_UPON, true);

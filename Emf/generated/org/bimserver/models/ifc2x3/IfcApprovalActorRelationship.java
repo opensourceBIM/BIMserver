@@ -47,11 +47,9 @@ public interface IfcApprovalActorRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Actor</em>' reference.
-	 * @see #isSetActor()
-	 * @see #unsetActor()
 	 * @see #setActor(IfcActorSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalActorRelationship_Actor()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcActorSelect getActor();
@@ -61,35 +59,10 @@ public interface IfcApprovalActorRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Actor</em>' reference.
-	 * @see #isSetActor()
-	 * @see #unsetActor()
 	 * @see #getActor()
 	 * @generated
 	 */
 	void setActor(IfcActorSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalActorRelationship#getActor <em>Actor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetActor()
-	 * @see #getActor()
-	 * @see #setActor(IfcActorSelect)
-	 * @generated
-	 */
-	void unsetActor();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalActorRelationship#getActor <em>Actor</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Actor</em>' reference is set.
-	 * @see #unsetActor()
-	 * @see #getActor()
-	 * @see #setActor(IfcActorSelect)
-	 * @generated
-	 */
-	boolean isSetActor();
 
 	/**
 	 * Returns the value of the '<em><b>Approval</b></em>' reference.
@@ -101,12 +74,10 @@ public interface IfcApprovalActorRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Approval</em>' reference.
-	 * @see #isSetApproval()
-	 * @see #unsetApproval()
 	 * @see #setApproval(IfcApproval)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalActorRelationship_Approval()
 	 * @see org.bimserver.models.ifc2x3.IfcApproval#getActors
-	 * @model opposite="Actors" unsettable="true"
+	 * @model opposite="Actors"
 	 * @generated
 	 */
 	IfcApproval getApproval();
@@ -116,35 +87,10 @@ public interface IfcApprovalActorRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Approval</em>' reference.
-	 * @see #isSetApproval()
-	 * @see #unsetApproval()
 	 * @see #getApproval()
 	 * @generated
 	 */
 	void setApproval(IfcApproval value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalActorRelationship#getApproval <em>Approval</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetApproval()
-	 * @see #getApproval()
-	 * @see #setApproval(IfcApproval)
-	 * @generated
-	 */
-	void unsetApproval();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalActorRelationship#getApproval <em>Approval</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Approval</em>' reference is set.
-	 * @see #unsetApproval()
-	 * @see #getApproval()
-	 * @see #setApproval(IfcApproval)
-	 * @generated
-	 */
-	boolean isSetApproval();
 
 	/**
 	 * Returns the value of the '<em><b>Role</b></em>' reference.
@@ -155,11 +101,9 @@ public interface IfcApprovalActorRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Role</em>' reference.
-	 * @see #isSetRole()
-	 * @see #unsetRole()
 	 * @see #setRole(IfcActorRole)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcApprovalActorRelationship_Role()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcActorRole getRole();
@@ -169,34 +113,9 @@ public interface IfcApprovalActorRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Role</em>' reference.
-	 * @see #isSetRole()
-	 * @see #unsetRole()
 	 * @see #getRole()
 	 * @generated
 	 */
 	void setRole(IfcActorRole value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalActorRelationship#getRole <em>Role</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRole()
-	 * @see #getRole()
-	 * @see #setRole(IfcActorRole)
-	 * @generated
-	 */
-	void unsetRole();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcApprovalActorRelationship#getRole <em>Role</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Role</em>' reference is set.
-	 * @see #unsetRole()
-	 * @see #getRole()
-	 * @see #setRole(IfcActorRole)
-	 * @generated
-	 */
-	boolean isSetRole();
 
 } // IfcApprovalActorRelationship

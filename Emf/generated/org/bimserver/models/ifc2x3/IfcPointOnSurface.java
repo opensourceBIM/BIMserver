@@ -47,11 +47,9 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Basis Surface</em>' reference.
-	 * @see #isSetBasisSurface()
-	 * @see #unsetBasisSurface()
 	 * @see #setBasisSurface(IfcSurface)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnSurface_BasisSurface()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSurface getBasisSurface();
@@ -61,35 +59,10 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Basis Surface</em>' reference.
-	 * @see #isSetBasisSurface()
-	 * @see #unsetBasisSurface()
 	 * @see #getBasisSurface()
 	 * @generated
 	 */
 	void setBasisSurface(IfcSurface value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getBasisSurface <em>Basis Surface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetBasisSurface()
-	 * @see #getBasisSurface()
-	 * @see #setBasisSurface(IfcSurface)
-	 * @generated
-	 */
-	void unsetBasisSurface();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getBasisSurface <em>Basis Surface</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Basis Surface</em>' reference is set.
-	 * @see #unsetBasisSurface()
-	 * @see #getBasisSurface()
-	 * @see #setBasisSurface(IfcSurface)
-	 * @generated
-	 */
-	boolean isSetBasisSurface();
 
 	/**
 	 * Returns the value of the '<em><b>Point Parameter U</b></em>' attribute.
@@ -100,11 +73,9 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point Parameter U</em>' attribute.
-	 * @see #isSetPointParameterU()
-	 * @see #unsetPointParameterU()
 	 * @see #setPointParameterU(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnSurface_PointParameterU()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getPointParameterU();
@@ -114,35 +85,10 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Point Parameter U</em>' attribute.
-	 * @see #isSetPointParameterU()
-	 * @see #unsetPointParameterU()
 	 * @see #getPointParameterU()
 	 * @generated
 	 */
 	void setPointParameterU(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterU <em>Point Parameter U</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPointParameterU()
-	 * @see #getPointParameterU()
-	 * @see #setPointParameterU(double)
-	 * @generated
-	 */
-	void unsetPointParameterU();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterU <em>Point Parameter U</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Point Parameter U</em>' attribute is set.
-	 * @see #unsetPointParameterU()
-	 * @see #getPointParameterU()
-	 * @see #setPointParameterU(double)
-	 * @generated
-	 */
-	boolean isSetPointParameterU();
 
 	/**
 	 * Returns the value of the '<em><b>Point Parameter UAs String</b></em>' attribute.
@@ -153,11 +99,9 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point Parameter UAs String</em>' attribute.
-	 * @see #isSetPointParameterUAsString()
-	 * @see #unsetPointParameterUAsString()
 	 * @see #setPointParameterUAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnSurface_PointParameterUAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getPointParameterUAsString();
@@ -167,35 +111,10 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Point Parameter UAs String</em>' attribute.
-	 * @see #isSetPointParameterUAsString()
-	 * @see #unsetPointParameterUAsString()
 	 * @see #getPointParameterUAsString()
 	 * @generated
 	 */
 	void setPointParameterUAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterUAsString <em>Point Parameter UAs String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPointParameterUAsString()
-	 * @see #getPointParameterUAsString()
-	 * @see #setPointParameterUAsString(String)
-	 * @generated
-	 */
-	void unsetPointParameterUAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterUAsString <em>Point Parameter UAs String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Point Parameter UAs String</em>' attribute is set.
-	 * @see #unsetPointParameterUAsString()
-	 * @see #getPointParameterUAsString()
-	 * @see #setPointParameterUAsString(String)
-	 * @generated
-	 */
-	boolean isSetPointParameterUAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Point Parameter V</b></em>' attribute.
@@ -206,11 +125,9 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point Parameter V</em>' attribute.
-	 * @see #isSetPointParameterV()
-	 * @see #unsetPointParameterV()
 	 * @see #setPointParameterV(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnSurface_PointParameterV()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getPointParameterV();
@@ -220,35 +137,10 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Point Parameter V</em>' attribute.
-	 * @see #isSetPointParameterV()
-	 * @see #unsetPointParameterV()
 	 * @see #getPointParameterV()
 	 * @generated
 	 */
 	void setPointParameterV(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterV <em>Point Parameter V</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPointParameterV()
-	 * @see #getPointParameterV()
-	 * @see #setPointParameterV(double)
-	 * @generated
-	 */
-	void unsetPointParameterV();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterV <em>Point Parameter V</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Point Parameter V</em>' attribute is set.
-	 * @see #unsetPointParameterV()
-	 * @see #getPointParameterV()
-	 * @see #setPointParameterV(double)
-	 * @generated
-	 */
-	boolean isSetPointParameterV();
 
 	/**
 	 * Returns the value of the '<em><b>Point Parameter VAs String</b></em>' attribute.
@@ -259,11 +151,9 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point Parameter VAs String</em>' attribute.
-	 * @see #isSetPointParameterVAsString()
-	 * @see #unsetPointParameterVAsString()
 	 * @see #setPointParameterVAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPointOnSurface_PointParameterVAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getPointParameterVAsString();
@@ -273,35 +163,10 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Point Parameter VAs String</em>' attribute.
-	 * @see #isSetPointParameterVAsString()
-	 * @see #unsetPointParameterVAsString()
 	 * @see #getPointParameterVAsString()
 	 * @generated
 	 */
 	void setPointParameterVAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterVAsString <em>Point Parameter VAs String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPointParameterVAsString()
-	 * @see #getPointParameterVAsString()
-	 * @see #setPointParameterVAsString(String)
-	 * @generated
-	 */
-	void unsetPointParameterVAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPointOnSurface#getPointParameterVAsString <em>Point Parameter VAs String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Point Parameter VAs String</em>' attribute is set.
-	 * @see #unsetPointParameterVAsString()
-	 * @see #getPointParameterVAsString()
-	 * @see #setPointParameterVAsString(String)
-	 * @generated
-	 */
-	boolean isSetPointParameterVAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

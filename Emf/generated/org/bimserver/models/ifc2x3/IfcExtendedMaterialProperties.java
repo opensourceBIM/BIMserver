@@ -47,34 +47,11 @@ public interface IfcExtendedMaterialProperties extends IfcMaterialProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extended Properties</em>' reference list.
-	 * @see #isSetExtendedProperties()
-	 * @see #unsetExtendedProperties()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcExtendedMaterialProperties_ExtendedProperties()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcProperty> getExtendedProperties();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcExtendedMaterialProperties#getExtendedProperties <em>Extended Properties</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetExtendedProperties()
-	 * @see #getExtendedProperties()
-	 * @generated
-	 */
-	void unsetExtendedProperties();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcExtendedMaterialProperties#getExtendedProperties <em>Extended Properties</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Extended Properties</em>' reference list is set.
-	 * @see #unsetExtendedProperties()
-	 * @see #getExtendedProperties()
-	 * @generated
-	 */
-	boolean isSetExtendedProperties();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -138,11 +115,9 @@ public interface IfcExtendedMaterialProperties extends IfcMaterialProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcExtendedMaterialProperties_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -152,34 +127,9 @@ public interface IfcExtendedMaterialProperties extends IfcMaterialProperties {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcExtendedMaterialProperties#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcExtendedMaterialProperties#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 } // IfcExtendedMaterialProperties

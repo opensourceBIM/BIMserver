@@ -84,7 +84,7 @@ public class SDownloadResult implements SBase
 	}
 	
 	private java.lang.String projectName;
-	private int revisionNr;
+	private java.lang.Integer revisionNr;
 	private javax.activation.DataHandler file;
 	public java.lang.String getProjectName() {
 		return projectName;
@@ -93,11 +93,11 @@ public class SDownloadResult implements SBase
 	public void setProjectName(java.lang.String projectName) {
 		this.projectName = projectName;
 	}
-	public int getRevisionNr() {
+	public java.lang.Integer getRevisionNr() {
 		return revisionNr;
 	}
 
-	public void setRevisionNr(int revisionNr) {
+	public void setRevisionNr(java.lang.Integer revisionNr) {
 		this.revisionNr = revisionNr;
 	}
 	public javax.activation.DataHandler getFile() {

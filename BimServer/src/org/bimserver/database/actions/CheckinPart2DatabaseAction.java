@@ -81,7 +81,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				getIfcModel().setDate(new Date());
 				IfcModelInterface newModel = getIfcModel();
 				newModel.fixOids(getDatabaseSession());
-				IfcModelInterface oldModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+				IfcModelInterface oldModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 				
 				oldModel.setObjectOids();
 				newModel.setObjectOids();

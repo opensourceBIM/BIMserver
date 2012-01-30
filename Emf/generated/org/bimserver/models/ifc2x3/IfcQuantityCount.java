@@ -43,11 +43,9 @@ public interface IfcQuantityCount extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Count Value</em>' attribute.
-	 * @see #isSetCountValue()
-	 * @see #unsetCountValue()
 	 * @see #setCountValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityCount_CountValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getCountValue();
@@ -57,35 +55,10 @@ public interface IfcQuantityCount extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Count Value</em>' attribute.
-	 * @see #isSetCountValue()
-	 * @see #unsetCountValue()
 	 * @see #getCountValue()
 	 * @generated
 	 */
 	void setCountValue(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityCount#getCountValue <em>Count Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCountValue()
-	 * @see #getCountValue()
-	 * @see #setCountValue(double)
-	 * @generated
-	 */
-	void unsetCountValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityCount#getCountValue <em>Count Value</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Count Value</em>' attribute is set.
-	 * @see #unsetCountValue()
-	 * @see #getCountValue()
-	 * @see #setCountValue(double)
-	 * @generated
-	 */
-	boolean isSetCountValue();
 
 	/**
 	 * Returns the value of the '<em><b>Count Value As String</b></em>' attribute.
@@ -96,11 +69,9 @@ public interface IfcQuantityCount extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Count Value As String</em>' attribute.
-	 * @see #isSetCountValueAsString()
-	 * @see #unsetCountValueAsString()
 	 * @see #setCountValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityCount_CountValueAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getCountValueAsString();
@@ -110,34 +81,9 @@ public interface IfcQuantityCount extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Count Value As String</em>' attribute.
-	 * @see #isSetCountValueAsString()
-	 * @see #unsetCountValueAsString()
 	 * @see #getCountValueAsString()
 	 * @generated
 	 */
 	void setCountValueAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityCount#getCountValueAsString <em>Count Value As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCountValueAsString()
-	 * @see #getCountValueAsString()
-	 * @see #setCountValueAsString(String)
-	 * @generated
-	 */
-	void unsetCountValueAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityCount#getCountValueAsString <em>Count Value As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Count Value As String</em>' attribute is set.
-	 * @see #unsetCountValueAsString()
-	 * @see #getCountValueAsString()
-	 * @see #setCountValueAsString(String)
-	 * @generated
-	 */
-	boolean isSetCountValueAsString();
 
 } // IfcQuantityCount

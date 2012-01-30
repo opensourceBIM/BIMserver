@@ -43,11 +43,9 @@ public interface IfcConnectionSurfaceGeometry extends IfcConnectionGeometry {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Surface On Relating Element</em>' reference.
-	 * @see #isSetSurfaceOnRelatingElement()
-	 * @see #unsetSurfaceOnRelatingElement()
 	 * @see #setSurfaceOnRelatingElement(IfcSurfaceOrFaceSurface)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcConnectionSurfaceGeometry_SurfaceOnRelatingElement()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSurfaceOrFaceSurface getSurfaceOnRelatingElement();
@@ -57,35 +55,10 @@ public interface IfcConnectionSurfaceGeometry extends IfcConnectionGeometry {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Surface On Relating Element</em>' reference.
-	 * @see #isSetSurfaceOnRelatingElement()
-	 * @see #unsetSurfaceOnRelatingElement()
 	 * @see #getSurfaceOnRelatingElement()
 	 * @generated
 	 */
 	void setSurfaceOnRelatingElement(IfcSurfaceOrFaceSurface value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionSurfaceGeometry#getSurfaceOnRelatingElement <em>Surface On Relating Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSurfaceOnRelatingElement()
-	 * @see #getSurfaceOnRelatingElement()
-	 * @see #setSurfaceOnRelatingElement(IfcSurfaceOrFaceSurface)
-	 * @generated
-	 */
-	void unsetSurfaceOnRelatingElement();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcConnectionSurfaceGeometry#getSurfaceOnRelatingElement <em>Surface On Relating Element</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Surface On Relating Element</em>' reference is set.
-	 * @see #unsetSurfaceOnRelatingElement()
-	 * @see #getSurfaceOnRelatingElement()
-	 * @see #setSurfaceOnRelatingElement(IfcSurfaceOrFaceSurface)
-	 * @generated
-	 */
-	boolean isSetSurfaceOnRelatingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Surface On Related Element</b></em>' reference.

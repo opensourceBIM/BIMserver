@@ -28,7 +28,7 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.Migration#getNumber <em>Number</em>}</li>
  *   <li>{@link org.bimserver.models.store.Migration#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.Migration#isExecuted <em>Executed</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Migration#getExecuted <em>Executed</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,12 +47,12 @@ public interface Migration extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number</em>' attribute.
-	 * @see #setNumber(int)
+	 * @see #setNumber(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getMigration_Number()
 	 * @model
 	 * @generated
 	 */
-	int getNumber();
+	Integer getNumber();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Migration#getNumber <em>Number</em>}' attribute.
@@ -62,7 +62,7 @@ public interface Migration extends IdEObject {
 	 * @see #getNumber()
 	 * @generated
 	 */
-	void setNumber(int value);
+	void setNumber(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -99,21 +99,21 @@ public interface Migration extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Executed</em>' attribute.
-	 * @see #setExecuted(boolean)
+	 * @see #setExecuted(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getMigration_Executed()
 	 * @model
 	 * @generated
 	 */
-	boolean isExecuted();
+	Boolean getExecuted();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Migration#isExecuted <em>Executed</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Migration#getExecuted <em>Executed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Executed</em>' attribute.
-	 * @see #isExecuted()
+	 * @see #getExecuted()
 	 * @generated
 	 */
-	void setExecuted(boolean value);
+	void setExecuted(Boolean value);
 
 } // Migration

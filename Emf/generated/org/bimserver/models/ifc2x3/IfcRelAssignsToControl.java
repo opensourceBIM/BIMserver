@@ -43,12 +43,10 @@ public interface IfcRelAssignsToControl extends IfcRelAssigns {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Control</em>' reference.
-	 * @see #isSetRelatingControl()
-	 * @see #unsetRelatingControl()
 	 * @see #setRelatingControl(IfcControl)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssignsToControl_RelatingControl()
 	 * @see org.bimserver.models.ifc2x3.IfcControl#getControls
-	 * @model opposite="Controls" unsettable="true"
+	 * @model opposite="Controls"
 	 * @generated
 	 */
 	IfcControl getRelatingControl();
@@ -58,34 +56,9 @@ public interface IfcRelAssignsToControl extends IfcRelAssigns {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Control</em>' reference.
-	 * @see #isSetRelatingControl()
-	 * @see #unsetRelatingControl()
 	 * @see #getRelatingControl()
 	 * @generated
 	 */
 	void setRelatingControl(IfcControl value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToControl#getRelatingControl <em>Relating Control</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingControl()
-	 * @see #getRelatingControl()
-	 * @see #setRelatingControl(IfcControl)
-	 * @generated
-	 */
-	void unsetRelatingControl();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToControl#getRelatingControl <em>Relating Control</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Control</em>' reference is set.
-	 * @see #unsetRelatingControl()
-	 * @see #getRelatingControl()
-	 * @see #setRelatingControl(IfcControl)
-	 * @generated
-	 */
-	boolean isSetRelatingControl();
 
 } // IfcRelAssignsToControl

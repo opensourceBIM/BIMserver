@@ -84,22 +84,4 @@ public class IfcPreDefinedItemImpl extends IdEObjectImpl implements IfcPreDefine
 		eSet(Ifc2x3Package.Literals.IFC_PRE_DEFINED_ITEM__NAME, newName);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_PRE_DEFINED_ITEM__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PRE_DEFINED_ITEM__NAME);
-	}
-
 } //IfcPreDefinedItemImpl

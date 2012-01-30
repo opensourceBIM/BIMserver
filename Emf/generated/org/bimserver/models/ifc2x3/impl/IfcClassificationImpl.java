@@ -97,24 +97,6 @@ public class IfcClassificationImpl extends IdEObjectImpl implements IfcClassific
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSource() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION__SOURCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION__SOURCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getEdition() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION__EDITION, true);
 	}
@@ -126,24 +108,6 @@ public class IfcClassificationImpl extends IdEObjectImpl implements IfcClassific
 	 */
 	public void setEdition(String newEdition) {
 		eSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION__EDITION, newEdition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetEdition() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION__EDITION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEdition() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION__EDITION);
 	}
 
 	/**
@@ -198,24 +162,6 @@ public class IfcClassificationImpl extends IdEObjectImpl implements IfcClassific
 	 */
 	public void setName(String newName) {
 		eSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION__NAME, newName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION__NAME);
 	}
 
 	/**

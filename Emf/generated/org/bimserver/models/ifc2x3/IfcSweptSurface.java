@@ -44,11 +44,9 @@ public interface IfcSweptSurface extends IfcSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Swept Curve</em>' reference.
-	 * @see #isSetSweptCurve()
-	 * @see #unsetSweptCurve()
 	 * @see #setSweptCurve(IfcProfileDef)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptSurface_SweptCurve()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcProfileDef getSweptCurve();
@@ -58,35 +56,10 @@ public interface IfcSweptSurface extends IfcSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Swept Curve</em>' reference.
-	 * @see #isSetSweptCurve()
-	 * @see #unsetSweptCurve()
 	 * @see #getSweptCurve()
 	 * @generated
 	 */
 	void setSweptCurve(IfcProfileDef value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptSurface#getSweptCurve <em>Swept Curve</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSweptCurve()
-	 * @see #getSweptCurve()
-	 * @see #setSweptCurve(IfcProfileDef)
-	 * @generated
-	 */
-	void unsetSweptCurve();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptSurface#getSweptCurve <em>Swept Curve</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Swept Curve</em>' reference is set.
-	 * @see #unsetSweptCurve()
-	 * @see #getSweptCurve()
-	 * @see #setSweptCurve(IfcProfileDef)
-	 * @generated
-	 */
-	boolean isSetSweptCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' reference.
@@ -97,11 +70,9 @@ public interface IfcSweptSurface extends IfcSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference.
-	 * @see #isSetPosition()
-	 * @see #unsetPosition()
 	 * @see #setPosition(IfcAxis2Placement3D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSweptSurface_Position()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAxis2Placement3D getPosition();
@@ -111,35 +82,10 @@ public interface IfcSweptSurface extends IfcSurface {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' reference.
-	 * @see #isSetPosition()
-	 * @see #unsetPosition()
 	 * @see #getPosition()
 	 * @generated
 	 */
 	void setPosition(IfcAxis2Placement3D value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptSurface#getPosition <em>Position</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPosition()
-	 * @see #getPosition()
-	 * @see #setPosition(IfcAxis2Placement3D)
-	 * @generated
-	 */
-	void unsetPosition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSweptSurface#getPosition <em>Position</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Position</em>' reference is set.
-	 * @see #unsetPosition()
-	 * @see #getPosition()
-	 * @see #setPosition(IfcAxis2Placement3D)
-	 * @generated
-	 */
-	boolean isSetPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

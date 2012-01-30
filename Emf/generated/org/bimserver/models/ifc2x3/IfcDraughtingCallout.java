@@ -47,34 +47,11 @@ public interface IfcDraughtingCallout extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contents</em>' reference list.
-	 * @see #isSetContents()
-	 * @see #unsetContents()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDraughtingCallout_Contents()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcDraughtingCalloutElement> getContents();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDraughtingCallout#getContents <em>Contents</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetContents()
-	 * @see #getContents()
-	 * @generated
-	 */
-	void unsetContents();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDraughtingCallout#getContents <em>Contents</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Contents</em>' reference list is set.
-	 * @see #unsetContents()
-	 * @see #getContents()
-	 * @generated
-	 */
-	boolean isSetContents();
 
 	/**
 	 * Returns the value of the '<em><b>Is Related From Callout</b></em>' reference list.

@@ -57,15 +57,15 @@ public class GenerateUtils {
 			if (eType instanceof EDataType) {
 				if (eType == EcorePackage.eINSTANCE.getEString()) {
 					return "List<String>";
-				} else if (eType == EcorePackage.eINSTANCE.getEInt()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEInt() || eType == EcorePackage.eINSTANCE.getEIntegerObject()) {
 					return "List<Integer>";
-				} else if (eType == EcorePackage.eINSTANCE.getELong()) {
+				} else if (eType == EcorePackage.eINSTANCE.getELong() || eType == EcorePackage.eINSTANCE.getELongObject()) {
 					return "List<Long>";
-				} else if (eType == EcorePackage.eINSTANCE.getEDouble()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEDouble() || eType == EcorePackage.eINSTANCE.getEDoubleObject()) {
 					return "List<Double>";
-				} else if (eType == EcorePackage.eINSTANCE.getEBoolean()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEBoolean() || eType == EcorePackage.eINSTANCE.getEBooleanObject()) {
 					return "List<Boolean>";
-				} else if (eType == EcorePackage.eINSTANCE.getEFloat()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEFloat() || eType == EcorePackage.eINSTANCE.getEFloatObject()) {
 					return "List<Float>";
 				} else if (eType == EcorePackage.eINSTANCE.getEDate()) {
 					return "List<Date>";
@@ -81,15 +81,15 @@ public class GenerateUtils {
 			if (eType instanceof EDataType) {
 				if (eType == EcorePackage.eINSTANCE.getEString()) {
 					return "String";
-				} else if (eType == EcorePackage.eINSTANCE.getEInt()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEInt() || eType == EcorePackage.eINSTANCE.getEIntegerObject()) {
 					return "Integer";
-				} else if (eType == EcorePackage.eINSTANCE.getELong()) {
+				} else if (eType == EcorePackage.eINSTANCE.getELong() || eType == EcorePackage.eINSTANCE.getELongObject()) {
 					return "Long";
-				} else if (eType == EcorePackage.eINSTANCE.getEDouble()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEDouble() || eType == EcorePackage.eINSTANCE.getEDoubleObject()) {
 					return "Double";
-				} else if (eType == EcorePackage.eINSTANCE.getEBoolean()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEBoolean() || eType == EcorePackage.eINSTANCE.getEBooleanObject()) {
 					return "Boolean";
-				} else if (eType == EcorePackage.eINSTANCE.getEFloat()) {
+				} else if (eType == EcorePackage.eINSTANCE.getEFloat() || eType == EcorePackage.eINSTANCE.getEFloatObject()) {
 					return "Float";
 				} else if (eType == EcorePackage.eINSTANCE.getEDate()) {
 					return "Date";

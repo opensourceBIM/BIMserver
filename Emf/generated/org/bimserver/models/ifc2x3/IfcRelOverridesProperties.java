@@ -45,33 +45,10 @@ public interface IfcRelOverridesProperties extends IfcRelDefinesByProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Overriding Properties</em>' reference list.
-	 * @see #isSetOverridingProperties()
-	 * @see #unsetOverridingProperties()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelOverridesProperties_OverridingProperties()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcProperty> getOverridingProperties();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelOverridesProperties#getOverridingProperties <em>Overriding Properties</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOverridingProperties()
-	 * @see #getOverridingProperties()
-	 * @generated
-	 */
-	void unsetOverridingProperties();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelOverridesProperties#getOverridingProperties <em>Overriding Properties</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Overriding Properties</em>' reference list is set.
-	 * @see #unsetOverridingProperties()
-	 * @see #getOverridingProperties()
-	 * @generated
-	 */
-	boolean isSetOverridingProperties();
 
 } // IfcRelOverridesProperties

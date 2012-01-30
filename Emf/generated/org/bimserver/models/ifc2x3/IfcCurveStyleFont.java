@@ -99,33 +99,10 @@ public interface IfcCurveStyleFont extends IfcCurveStyleFontSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pattern List</em>' reference list.
-	 * @see #isSetPatternList()
-	 * @see #unsetPatternList()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCurveStyleFont_PatternList()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcCurveStyleFontPattern> getPatternList();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFont#getPatternList <em>Pattern List</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPatternList()
-	 * @see #getPatternList()
-	 * @generated
-	 */
-	void unsetPatternList();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCurveStyleFont#getPatternList <em>Pattern List</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Pattern List</em>' reference list is set.
-	 * @see #unsetPatternList()
-	 * @see #getPatternList()
-	 * @generated
-	 */
-	boolean isSetPatternList();
 
 } // IfcCurveStyleFont

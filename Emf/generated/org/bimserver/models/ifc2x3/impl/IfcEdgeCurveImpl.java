@@ -80,24 +80,6 @@ public class IfcEdgeCurveImpl extends IfcEdgeImpl implements IfcEdgeCurve {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetEdgeGeometry() {
-		eUnset(Ifc2x3Package.Literals.IFC_EDGE_CURVE__EDGE_GEOMETRY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEdgeGeometry() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_EDGE_CURVE__EDGE_GEOMETRY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Tristate getSameSense() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_EDGE_CURVE__SAME_SENSE, true);
 	}
@@ -109,24 +91,6 @@ public class IfcEdgeCurveImpl extends IfcEdgeImpl implements IfcEdgeCurve {
 	 */
 	public void setSameSense(Tristate newSameSense) {
 		eSet(Ifc2x3Package.Literals.IFC_EDGE_CURVE__SAME_SENSE, newSameSense);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSameSense() {
-		eUnset(Ifc2x3Package.Literals.IFC_EDGE_CURVE__SAME_SENSE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSameSense() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_EDGE_CURVE__SAME_SENSE);
 	}
 
 } //IfcEdgeCurveImpl

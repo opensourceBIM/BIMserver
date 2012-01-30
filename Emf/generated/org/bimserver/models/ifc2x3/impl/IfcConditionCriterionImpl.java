@@ -80,24 +80,6 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcCond
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetCriterion() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONDITION_CRITERION__CRITERION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCriterion() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONDITION_CRITERION__CRITERION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcDateTimeSelect getCriterionDateTime() {
 		return (IfcDateTimeSelect) eGet(Ifc2x3Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME, true);
 	}
@@ -109,24 +91,6 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcCond
 	 */
 	public void setCriterionDateTime(IfcDateTimeSelect newCriterionDateTime) {
 		eSet(Ifc2x3Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME, newCriterionDateTime);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetCriterionDateTime() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCriterionDateTime() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME);
 	}
 
 } //IfcConditionCriterionImpl

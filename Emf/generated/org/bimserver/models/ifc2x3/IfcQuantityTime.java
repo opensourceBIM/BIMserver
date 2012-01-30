@@ -43,11 +43,9 @@ public interface IfcQuantityTime extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Value</em>' attribute.
-	 * @see #isSetTimeValue()
-	 * @see #unsetTimeValue()
 	 * @see #setTimeValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityTime_TimeValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getTimeValue();
@@ -57,35 +55,10 @@ public interface IfcQuantityTime extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Value</em>' attribute.
-	 * @see #isSetTimeValue()
-	 * @see #unsetTimeValue()
 	 * @see #getTimeValue()
 	 * @generated
 	 */
 	void setTimeValue(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityTime#getTimeValue <em>Time Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeValue()
-	 * @see #getTimeValue()
-	 * @see #setTimeValue(double)
-	 * @generated
-	 */
-	void unsetTimeValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityTime#getTimeValue <em>Time Value</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Value</em>' attribute is set.
-	 * @see #unsetTimeValue()
-	 * @see #getTimeValue()
-	 * @see #setTimeValue(double)
-	 * @generated
-	 */
-	boolean isSetTimeValue();
 
 	/**
 	 * Returns the value of the '<em><b>Time Value As String</b></em>' attribute.
@@ -96,11 +69,9 @@ public interface IfcQuantityTime extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Value As String</em>' attribute.
-	 * @see #isSetTimeValueAsString()
-	 * @see #unsetTimeValueAsString()
 	 * @see #setTimeValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityTime_TimeValueAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getTimeValueAsString();
@@ -110,34 +81,9 @@ public interface IfcQuantityTime extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Value As String</em>' attribute.
-	 * @see #isSetTimeValueAsString()
-	 * @see #unsetTimeValueAsString()
 	 * @see #getTimeValueAsString()
 	 * @generated
 	 */
 	void setTimeValueAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityTime#getTimeValueAsString <em>Time Value As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeValueAsString()
-	 * @see #getTimeValueAsString()
-	 * @see #setTimeValueAsString(String)
-	 * @generated
-	 */
-	void unsetTimeValueAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityTime#getTimeValueAsString <em>Time Value As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Value As String</em>' attribute is set.
-	 * @see #unsetTimeValueAsString()
-	 * @see #getTimeValueAsString()
-	 * @see #setTimeValueAsString(String)
-	 * @generated
-	 */
-	boolean isSetTimeValueAsString();
 
 } // IfcQuantityTime

@@ -75,7 +75,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 				break;
 			}
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		if (eObject == null) {
 			throw new UserException("Object not found in this project/revision");
 		}

@@ -239,6 +239,9 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		int lastIndexOfSemiColon = line.lastIndexOf(";");
 		int indexOfFirstParen = line.indexOf("(");
 		long recordNumber = Long.parseLong(line.substring(1, equalSignLocation).trim());
+		if (recordNumber == 315197) {
+			System.out.println();
+		}
 		String name = line.substring(equalSignLocation + 1, indexOfFirstParen).trim();
 		EClass classifier = (EClass) classes.get(name);
 		if (classifier != null) {

@@ -67,22 +67,4 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements If
 		return (EList<IfcFillStyleSelect>) eGet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetFillStyles() {
-		eUnset(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFillStyles() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES);
-	}
-
 } //IfcFillAreaStyleImpl

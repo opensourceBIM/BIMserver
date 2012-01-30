@@ -52,13 +52,13 @@ public class SIfcEngine implements SBase
 			return getName();
 		}
 		if (sField.getName().equals("active")) {
-			return isActive();
+			return getActive();
 		}
 		if (sField.getName().equals("className")) {
 			return getClassName();
 		}
 		if (sField.getName().equals("enabled")) {
-			return isEnabled();
+			return getEnabled();
 		}
 		if (sField.getName().equals("serializers")) {
 			return getSerializers();
@@ -105,9 +105,9 @@ public class SIfcEngine implements SBase
 	}
 	
 	private java.lang.String name;
-	private boolean active;
+	private java.lang.Boolean active;
 	private java.lang.String className;
-	private boolean enabled;
+	private java.lang.Boolean enabled;
 	private List<Long> serializers = new ArrayList<Long>();
 	private long settingsId;
 	public java.lang.String getName() {
@@ -117,11 +117,11 @@ public class SIfcEngine implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-	public boolean isActive() {
+	public java.lang.Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(java.lang.Boolean active) {
 		this.active = active;
 	}
 	public java.lang.String getClassName() {
@@ -131,11 +131,11 @@ public class SIfcEngine implements SBase
 	public void setClassName(java.lang.String className) {
 		this.className = className;
 	}
-	public boolean isEnabled() {
+	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
 	public List<Long> getSerializers() {

@@ -53,7 +53,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Int
 			ifcModelSet.add(subModel);
 		}
 		IfcModelInterface model = bimServer.getMergerFactory().createMerger()
-				.merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
+				.merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		model.resetOids();
 		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment);
 		try {

@@ -47,11 +47,9 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hour Component</em>' attribute.
-	 * @see #isSetHourComponent()
-	 * @see #unsetHourComponent()
 	 * @see #setHourComponent(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLocalTime_HourComponent()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	int getHourComponent();
@@ -61,35 +59,10 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Hour Component</em>' attribute.
-	 * @see #isSetHourComponent()
-	 * @see #unsetHourComponent()
 	 * @see #getHourComponent()
 	 * @generated
 	 */
 	void setHourComponent(int value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLocalTime#getHourComponent <em>Hour Component</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetHourComponent()
-	 * @see #getHourComponent()
-	 * @see #setHourComponent(int)
-	 * @generated
-	 */
-	void unsetHourComponent();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLocalTime#getHourComponent <em>Hour Component</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Hour Component</em>' attribute is set.
-	 * @see #unsetHourComponent()
-	 * @see #getHourComponent()
-	 * @see #setHourComponent(int)
-	 * @generated
-	 */
-	boolean isSetHourComponent();
 
 	/**
 	 * Returns the value of the '<em><b>Minute Component</b></em>' attribute.

@@ -103,11 +103,9 @@ public interface IfcSpatialStructureElement extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Composition Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElementCompositionEnum
-	 * @see #isSetCompositionType()
-	 * @see #unsetCompositionType()
 	 * @see #setCompositionType(IfcElementCompositionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpatialStructureElement_CompositionType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcElementCompositionEnum getCompositionType();
@@ -118,35 +116,10 @@ public interface IfcSpatialStructureElement extends IfcProduct {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Composition Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcElementCompositionEnum
-	 * @see #isSetCompositionType()
-	 * @see #unsetCompositionType()
 	 * @see #getCompositionType()
 	 * @generated
 	 */
 	void setCompositionType(IfcElementCompositionEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getCompositionType <em>Composition Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCompositionType()
-	 * @see #getCompositionType()
-	 * @see #setCompositionType(IfcElementCompositionEnum)
-	 * @generated
-	 */
-	void unsetCompositionType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpatialStructureElement#getCompositionType <em>Composition Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Composition Type</em>' attribute is set.
-	 * @see #unsetCompositionType()
-	 * @see #getCompositionType()
-	 * @see #setCompositionType(IfcElementCompositionEnum)
-	 * @generated
-	 */
-	boolean isSetCompositionType();
 
 	/**
 	 * Returns the value of the '<em><b>References Elements</b></em>' reference list.

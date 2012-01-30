@@ -35,27 +35,27 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isUseCaching <em>Use Caching</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isAllowSelfRegistration <em>Allow Self Registration</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isAutoTestClashes <em>Auto Test Clashes</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isIntelligentMerging <em>Intelligent Merging</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getUseCaching <em>Use Caching</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getAllowSelfRegistration <em>Allow Self Registration</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getAutoTestClashes <em>Auto Test Clashes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIntelligentMerging <em>Intelligent Merging</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isAllowUsersToCreateTopLevelProjects <em>Allow Users To Create Top Level Projects</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isCheckinMergingEnabled <em>Checkin Merging Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getCheckinMergingEnabled <em>Checkin Merging Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getRegistrationAddition <em>Registration Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSmtpServer <em>Smtp Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getEmailSenderAddress <em>Email Sender Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSiteAddress <em>Site Address</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getMergeIdentifier <em>Merge Identifier</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isCacheOutputFiles <em>Cache Output Files</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIfcEngines <em>Ifc Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDeserializers <em>Deserializers</em>}</li>
@@ -99,7 +99,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isShowVersionUpgradeAvailable() {
+	public Boolean getShowVersionUpgradeAvailable() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE, true);
 	}
 
@@ -108,7 +108,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShowVersionUpgradeAvailable(boolean newShowVersionUpgradeAvailable) {
+	public void setShowVersionUpgradeAvailable(Boolean newShowVersionUpgradeAvailable) {
 		eSet(StorePackage.Literals.SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE, newShowVersionUpgradeAvailable);
 	}
 
@@ -135,7 +135,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUseCaching() {
+	public Boolean getUseCaching() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__USE_CACHING, true);
 	}
 
@@ -144,7 +144,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUseCaching(boolean newUseCaching) {
+	public void setUseCaching(Boolean newUseCaching) {
 		eSet(StorePackage.Literals.SETTINGS__USE_CACHING, newUseCaching);
 	}
 
@@ -153,7 +153,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAllowSelfRegistration() {
+	public Boolean getAllowSelfRegistration() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__ALLOW_SELF_REGISTRATION, true);
 	}
 
@@ -162,7 +162,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAllowSelfRegistration(boolean newAllowSelfRegistration) {
+	public void setAllowSelfRegistration(Boolean newAllowSelfRegistration) {
 		eSet(StorePackage.Literals.SETTINGS__ALLOW_SELF_REGISTRATION, newAllowSelfRegistration);
 	}
 
@@ -171,7 +171,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAutoTestClashes() {
+	public Boolean getAutoTestClashes() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__AUTO_TEST_CLASHES, true);
 	}
 
@@ -180,7 +180,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAutoTestClashes(boolean newAutoTestClashes) {
+	public void setAutoTestClashes(Boolean newAutoTestClashes) {
 		eSet(StorePackage.Literals.SETTINGS__AUTO_TEST_CLASHES, newAutoTestClashes);
 	}
 
@@ -189,7 +189,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIntelligentMerging() {
+	public Boolean getIntelligentMerging() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__INTELLIGENT_MERGING, true);
 	}
 
@@ -198,7 +198,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIntelligentMerging(boolean newIntelligentMerging) {
+	public void setIntelligentMerging(Boolean newIntelligentMerging) {
 		eSet(StorePackage.Literals.SETTINGS__INTELLIGENT_MERGING, newIntelligentMerging);
 	}
 
@@ -225,7 +225,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCheckinMergingEnabled() {
+	public Boolean getCheckinMergingEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__CHECKIN_MERGING_ENABLED, true);
 	}
 
@@ -234,7 +234,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCheckinMergingEnabled(boolean newCheckinMergingEnabled) {
+	public void setCheckinMergingEnabled(Boolean newCheckinMergingEnabled) {
 		eSet(StorePackage.Literals.SETTINGS__CHECKIN_MERGING_ENABLED, newCheckinMergingEnabled);
 	}
 
@@ -333,7 +333,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isHideUserListForNonAdmin() {
+	public Boolean getHideUserListForNonAdmin() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, true);
 	}
 
@@ -342,7 +342,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHideUserListForNonAdmin(boolean newHideUserListForNonAdmin) {
+	public void setHideUserListForNonAdmin(Boolean newHideUserListForNonAdmin) {
 		eSet(StorePackage.Literals.SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, newHideUserListForNonAdmin);
 	}
 
@@ -351,7 +351,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getProtocolBuffersPort() {
+	public Integer getProtocolBuffersPort() {
 		return (Integer) eGet(StorePackage.Literals.SETTINGS__PROTOCOL_BUFFERS_PORT, true);
 	}
 
@@ -360,7 +360,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProtocolBuffersPort(int newProtocolBuffersPort) {
+	public void setProtocolBuffersPort(Integer newProtocolBuffersPort) {
 		eSet(StorePackage.Literals.SETTINGS__PROTOCOL_BUFFERS_PORT, newProtocolBuffersPort);
 	}
 
@@ -443,7 +443,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCacheOutputFiles() {
+	public Boolean getCacheOutputFiles() {
 		return (Boolean) eGet(StorePackage.Literals.SETTINGS__CACHE_OUTPUT_FILES, true);
 	}
 
@@ -452,7 +452,7 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCacheOutputFiles(boolean newCacheOutputFiles) {
+	public void setCacheOutputFiles(Boolean newCacheOutputFiles) {
 		eSet(StorePackage.Literals.SETTINGS__CACHE_OUTPUT_FILES, newCacheOutputFiles);
 	}
 

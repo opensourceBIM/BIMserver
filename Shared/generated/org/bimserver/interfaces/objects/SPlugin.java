@@ -50,7 +50,7 @@ public class SPlugin implements SBase
 			return getName();
 		}
 		if (sField.getName().equals("enabled")) {
-			return isEnabled();
+			return getEnabled();
 		}
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
@@ -81,7 +81,7 @@ public class SPlugin implements SBase
 	}
 	
 	private java.lang.String name;
-	private boolean enabled;
+	private java.lang.Boolean enabled;
 	private long settingsId;
 	public java.lang.String getName() {
 		return name;
@@ -90,11 +90,11 @@ public class SPlugin implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-	public boolean isEnabled() {
+	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
 	public long getSettingsId() {

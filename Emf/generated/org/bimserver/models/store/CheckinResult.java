@@ -99,12 +99,12 @@ public interface CheckinResult extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Progress</em>' attribute.
-	 * @see #setProgress(int)
+	 * @see #setProgress(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getCheckinResult_Progress()
 	 * @model
 	 * @generated
 	 */
-	int getProgress();
+	Integer getProgress();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.CheckinResult#getProgress <em>Progress</em>}' attribute.
@@ -114,6 +114,6 @@ public interface CheckinResult extends IdEObject {
 	 * @see #getProgress()
 	 * @generated
 	 */
-	void setProgress(int value);
+	void setProgress(Integer value);
 
 } // CheckinResult

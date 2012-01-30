@@ -84,24 +84,6 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetBasisSurface() {
-		eUnset(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__BASIS_SURFACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBasisSurface() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__BASIS_SURFACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcCurve getOuterBoundary() {
 		return (IfcCurve) eGet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__OUTER_BOUNDARY, true);
 	}
@@ -120,45 +102,9 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOuterBoundary() {
-		eUnset(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__OUTER_BOUNDARY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOuterBoundary() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__OUTER_BOUNDARY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurve> getInnerBoundaries() {
 		return (EList<IfcCurve>) eGet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__INNER_BOUNDARIES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetInnerBoundaries() {
-		eUnset(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__INNER_BOUNDARIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInnerBoundaries() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__INNER_BOUNDARIES);
 	}
 
 	/**

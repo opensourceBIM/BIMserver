@@ -79,22 +79,4 @@ public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements
 		return (EList<IfcPresentationStyleSelect>) eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetStyles() {
-		eUnset(Ifc2x3Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStyles() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES);
-	}
-
 } //IfcPresentationStyleAssignmentImpl

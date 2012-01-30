@@ -29,7 +29,7 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 	private static final int MAX_UNACCESSED_TIME_MILLIS = 1000 * 60 * 30; // 30 minutes
 
 	public static class ClashDetectionSettingsKey extends GenericCacheKey {
-		private final float margin;
+		private final double margin;
 		private final List<String> ignoredClasses = new ArrayList<String>();
 		private final List<Long> revisions = new ArrayList<Long>();
 
@@ -48,13 +48,15 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 		public String toString() {
 			return "margin: " + margin + ", ignoredClasses: " + ignoredClasses.toString() + ", revisions: " + revisions.toString();
 		}
-		
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((ignoredClasses == null) ? 0 : ignoredClasses.hashCode());
-			result = prime * result + Float.floatToIntBits(margin);
+			long temp;
+			temp = Double.doubleToLongBits(margin);
+			result = prime * result + (int) (temp ^ (temp >>> 32));
 			result = prime * result + ((revisions == null) ? 0 : revisions.hashCode());
 			return result;
 		}
@@ -73,7 +75,7 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 					return false;
 			} else if (!ignoredClasses.equals(other.ignoredClasses))
 				return false;
-			if (Float.floatToIntBits(margin) != Float.floatToIntBits(other.margin))
+			if (Double.doubleToLongBits(margin) != Double.doubleToLongBits(other.margin))
 				return false;
 			if (revisions == null) {
 				if (other.revisions != null)

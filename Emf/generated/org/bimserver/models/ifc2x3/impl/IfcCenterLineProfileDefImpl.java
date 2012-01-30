@@ -78,24 +78,6 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetThickness() {
-		eUnset(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetThickness() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getThicknessAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING, true);
 	}
@@ -107,24 +89,6 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl 
 	 */
 	public void setThicknessAsString(String newThicknessAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING, newThicknessAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetThicknessAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetThicknessAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING);
 	}
 
 } //IfcCenterLineProfileDefImpl

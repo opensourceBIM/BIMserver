@@ -110,24 +110,6 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDescription() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__DESCRIPTION, true);
 	}
@@ -175,24 +157,6 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	public void setConstraintGrade(IfcConstraintEnum newConstraintGrade) {
 		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE, newConstraintGrade);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetConstraintGrade() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintGrade() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE);
 	}
 
 	/**

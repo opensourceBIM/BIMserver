@@ -45,11 +45,9 @@ public interface IfcTable extends IfcMetricValueSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTable_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -59,35 +57,10 @@ public interface IfcTable extends IfcMetricValueSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTable#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTable#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Rows</b></em>' reference list.
@@ -100,34 +73,11 @@ public interface IfcTable extends IfcMetricValueSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rows</em>' reference list.
-	 * @see #isSetRows()
-	 * @see #unsetRows()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTable_Rows()
 	 * @see org.bimserver.models.ifc2x3.IfcTableRow#getOfTable
-	 * @model opposite="OfTable" unsettable="true"
+	 * @model opposite="OfTable"
 	 * @generated
 	 */
 	EList<IfcTableRow> getRows();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTable#getRows <em>Rows</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRows()
-	 * @see #getRows()
-	 * @generated
-	 */
-	void unsetRows();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTable#getRows <em>Rows</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Rows</em>' reference list is set.
-	 * @see #unsetRows()
-	 * @see #getRows()
-	 * @generated
-	 */
-	boolean isSetRows();
 
 } // IfcTable

@@ -55,7 +55,7 @@ public class DiskCacheManager {
 	}
 	
 	private boolean isEnabled() {
-		return settingsManager.getSettings().isCacheOutputFiles();
+		return settingsManager.getSettings().getCacheOutputFiles();
 	}
 
 	public void store(DownloadParameters downloadParameters, DataHandler dataHandler) {

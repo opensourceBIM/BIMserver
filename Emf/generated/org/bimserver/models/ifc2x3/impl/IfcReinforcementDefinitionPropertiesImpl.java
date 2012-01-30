@@ -104,22 +104,4 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPropertySetDefi
 		return (EList<IfcSectionReinforcementProperties>) eGet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetReinforcementSectionDefinitions() {
-		eUnset(Ifc2x3Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetReinforcementSectionDefinitions() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS);
-	}
-
 } //IfcReinforcementDefinitionPropertiesImpl

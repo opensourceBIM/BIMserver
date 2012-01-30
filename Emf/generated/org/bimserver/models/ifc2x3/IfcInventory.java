@@ -51,11 +51,9 @@ public interface IfcInventory extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inventory Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInventoryTypeEnum
-	 * @see #isSetInventoryType()
-	 * @see #unsetInventoryType()
 	 * @see #setInventoryType(IfcInventoryTypeEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcInventory_InventoryType()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcInventoryTypeEnum getInventoryType();
@@ -66,35 +64,10 @@ public interface IfcInventory extends IfcGroup {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Inventory Type</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInventoryTypeEnum
-	 * @see #isSetInventoryType()
-	 * @see #unsetInventoryType()
 	 * @see #getInventoryType()
 	 * @generated
 	 */
 	void setInventoryType(IfcInventoryTypeEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getInventoryType <em>Inventory Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetInventoryType()
-	 * @see #getInventoryType()
-	 * @see #setInventoryType(IfcInventoryTypeEnum)
-	 * @generated
-	 */
-	void unsetInventoryType();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getInventoryType <em>Inventory Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Inventory Type</em>' attribute is set.
-	 * @see #unsetInventoryType()
-	 * @see #getInventoryType()
-	 * @see #setInventoryType(IfcInventoryTypeEnum)
-	 * @generated
-	 */
-	boolean isSetInventoryType();
 
 	/**
 	 * Returns the value of the '<em><b>Jurisdiction</b></em>' reference.
@@ -105,11 +78,9 @@ public interface IfcInventory extends IfcGroup {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Jurisdiction</em>' reference.
-	 * @see #isSetJurisdiction()
-	 * @see #unsetJurisdiction()
 	 * @see #setJurisdiction(IfcActorSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcInventory_Jurisdiction()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcActorSelect getJurisdiction();
@@ -119,35 +90,10 @@ public interface IfcInventory extends IfcGroup {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Jurisdiction</em>' reference.
-	 * @see #isSetJurisdiction()
-	 * @see #unsetJurisdiction()
 	 * @see #getJurisdiction()
 	 * @generated
 	 */
 	void setJurisdiction(IfcActorSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getJurisdiction <em>Jurisdiction</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetJurisdiction()
-	 * @see #getJurisdiction()
-	 * @see #setJurisdiction(IfcActorSelect)
-	 * @generated
-	 */
-	void unsetJurisdiction();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getJurisdiction <em>Jurisdiction</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Jurisdiction</em>' reference is set.
-	 * @see #unsetJurisdiction()
-	 * @see #getJurisdiction()
-	 * @see #setJurisdiction(IfcActorSelect)
-	 * @generated
-	 */
-	boolean isSetJurisdiction();
 
 	/**
 	 * Returns the value of the '<em><b>Responsible Persons</b></em>' reference list.
@@ -159,34 +105,11 @@ public interface IfcInventory extends IfcGroup {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Responsible Persons</em>' reference list.
-	 * @see #isSetResponsiblePersons()
-	 * @see #unsetResponsiblePersons()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcInventory_ResponsiblePersons()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcPerson> getResponsiblePersons();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getResponsiblePersons <em>Responsible Persons</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetResponsiblePersons()
-	 * @see #getResponsiblePersons()
-	 * @generated
-	 */
-	void unsetResponsiblePersons();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getResponsiblePersons <em>Responsible Persons</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Responsible Persons</em>' reference list is set.
-	 * @see #unsetResponsiblePersons()
-	 * @see #getResponsiblePersons()
-	 * @generated
-	 */
-	boolean isSetResponsiblePersons();
 
 	/**
 	 * Returns the value of the '<em><b>Last Update Date</b></em>' reference.
@@ -197,11 +120,9 @@ public interface IfcInventory extends IfcGroup {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Last Update Date</em>' reference.
-	 * @see #isSetLastUpdateDate()
-	 * @see #unsetLastUpdateDate()
 	 * @see #setLastUpdateDate(IfcCalendarDate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcInventory_LastUpdateDate()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCalendarDate getLastUpdateDate();
@@ -211,35 +132,10 @@ public interface IfcInventory extends IfcGroup {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Last Update Date</em>' reference.
-	 * @see #isSetLastUpdateDate()
-	 * @see #unsetLastUpdateDate()
 	 * @see #getLastUpdateDate()
 	 * @generated
 	 */
 	void setLastUpdateDate(IfcCalendarDate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getLastUpdateDate <em>Last Update Date</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLastUpdateDate()
-	 * @see #getLastUpdateDate()
-	 * @see #setLastUpdateDate(IfcCalendarDate)
-	 * @generated
-	 */
-	void unsetLastUpdateDate();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcInventory#getLastUpdateDate <em>Last Update Date</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Last Update Date</em>' reference is set.
-	 * @see #unsetLastUpdateDate()
-	 * @see #getLastUpdateDate()
-	 * @see #setLastUpdateDate(IfcCalendarDate)
-	 * @generated
-	 */
-	boolean isSetLastUpdateDate();
 
 	/**
 	 * Returns the value of the '<em><b>Current Value</b></em>' reference.

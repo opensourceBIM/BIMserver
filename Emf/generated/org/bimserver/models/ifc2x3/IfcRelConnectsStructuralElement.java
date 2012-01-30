@@ -44,12 +44,10 @@ public interface IfcRelConnectsStructuralElement extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Element</em>' reference.
-	 * @see #isSetRelatingElement()
-	 * @see #unsetRelatingElement()
 	 * @see #setRelatingElement(IfcElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsStructuralElement_RelatingElement()
 	 * @see org.bimserver.models.ifc2x3.IfcElement#getHasStructuralMember
-	 * @model opposite="HasStructuralMember" unsettable="true"
+	 * @model opposite="HasStructuralMember"
 	 * @generated
 	 */
 	IfcElement getRelatingElement();
@@ -59,35 +57,10 @@ public interface IfcRelConnectsStructuralElement extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Element</em>' reference.
-	 * @see #isSetRelatingElement()
-	 * @see #unsetRelatingElement()
 	 * @see #getRelatingElement()
 	 * @generated
 	 */
 	void setRelatingElement(IfcElement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement#getRelatingElement <em>Relating Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingElement()
-	 * @see #getRelatingElement()
-	 * @see #setRelatingElement(IfcElement)
-	 * @generated
-	 */
-	void unsetRelatingElement();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement#getRelatingElement <em>Relating Element</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Element</em>' reference is set.
-	 * @see #unsetRelatingElement()
-	 * @see #getRelatingElement()
-	 * @see #setRelatingElement(IfcElement)
-	 * @generated
-	 */
-	boolean isSetRelatingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Related Structural Member</b></em>' reference.
@@ -99,12 +72,10 @@ public interface IfcRelConnectsStructuralElement extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Structural Member</em>' reference.
-	 * @see #isSetRelatedStructuralMember()
-	 * @see #unsetRelatedStructuralMember()
 	 * @see #setRelatedStructuralMember(IfcStructuralMember)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelConnectsStructuralElement_RelatedStructuralMember()
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralMember#getReferencesElement
-	 * @model opposite="ReferencesElement" unsettable="true"
+	 * @model opposite="ReferencesElement"
 	 * @generated
 	 */
 	IfcStructuralMember getRelatedStructuralMember();
@@ -114,34 +85,9 @@ public interface IfcRelConnectsStructuralElement extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Related Structural Member</em>' reference.
-	 * @see #isSetRelatedStructuralMember()
-	 * @see #unsetRelatedStructuralMember()
 	 * @see #getRelatedStructuralMember()
 	 * @generated
 	 */
 	void setRelatedStructuralMember(IfcStructuralMember value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement#getRelatedStructuralMember <em>Related Structural Member</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedStructuralMember()
-	 * @see #getRelatedStructuralMember()
-	 * @see #setRelatedStructuralMember(IfcStructuralMember)
-	 * @generated
-	 */
-	void unsetRelatedStructuralMember();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement#getRelatedStructuralMember <em>Related Structural Member</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Structural Member</em>' reference is set.
-	 * @see #unsetRelatedStructuralMember()
-	 * @see #getRelatedStructuralMember()
-	 * @see #setRelatedStructuralMember(IfcStructuralMember)
-	 * @generated
-	 */
-	boolean isSetRelatedStructuralMember();
 
 } // IfcRelConnectsStructuralElement

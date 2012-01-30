@@ -56,7 +56,7 @@ public class SPluginDescriptor implements SBase
 			return getLocation();
 		}
 		if (sField.getName().equals("enabled")) {
-			return isEnabled();
+			return getEnabled();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -90,7 +90,7 @@ public class SPluginDescriptor implements SBase
 	private java.lang.String name;
 	private java.lang.String description;
 	private java.lang.String location;
-	private boolean enabled;
+	private java.lang.Boolean enabled;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -112,11 +112,11 @@ public class SPluginDescriptor implements SBase
 	public void setLocation(java.lang.String location) {
 		this.location = location;
 	}
-	public boolean isEnabled() {
+	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
 	@Override

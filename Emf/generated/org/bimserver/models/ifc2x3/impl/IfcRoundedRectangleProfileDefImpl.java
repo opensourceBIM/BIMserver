@@ -78,24 +78,6 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRoundingRadius() {
-		eUnset(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRoundingRadius() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getRoundingRadiusAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING, true);
 	}
@@ -107,24 +89,6 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 */
 	public void setRoundingRadiusAsString(String newRoundingRadiusAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING, newRoundingRadiusAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRoundingRadiusAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRoundingRadiusAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING);
 	}
 
 } //IfcRoundedRectangleProfileDefImpl

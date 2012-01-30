@@ -52,11 +52,9 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning User</em>' reference.
-	 * @see #isSetOwningUser()
-	 * @see #unsetOwningUser()
 	 * @see #setOwningUser(IfcPersonAndOrganization)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOwnerHistory_OwningUser()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcPersonAndOrganization getOwningUser();
@@ -66,35 +64,10 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owning User</em>' reference.
-	 * @see #isSetOwningUser()
-	 * @see #unsetOwningUser()
 	 * @see #getOwningUser()
 	 * @generated
 	 */
 	void setOwningUser(IfcPersonAndOrganization value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getOwningUser <em>Owning User</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOwningUser()
-	 * @see #getOwningUser()
-	 * @see #setOwningUser(IfcPersonAndOrganization)
-	 * @generated
-	 */
-	void unsetOwningUser();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getOwningUser <em>Owning User</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Owning User</em>' reference is set.
-	 * @see #unsetOwningUser()
-	 * @see #getOwningUser()
-	 * @see #setOwningUser(IfcPersonAndOrganization)
-	 * @generated
-	 */
-	boolean isSetOwningUser();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Application</b></em>' reference.
@@ -105,11 +78,9 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Application</em>' reference.
-	 * @see #isSetOwningApplication()
-	 * @see #unsetOwningApplication()
 	 * @see #setOwningApplication(IfcApplication)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOwnerHistory_OwningApplication()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcApplication getOwningApplication();
@@ -119,35 +90,10 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owning Application</em>' reference.
-	 * @see #isSetOwningApplication()
-	 * @see #unsetOwningApplication()
 	 * @see #getOwningApplication()
 	 * @generated
 	 */
 	void setOwningApplication(IfcApplication value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getOwningApplication <em>Owning Application</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOwningApplication()
-	 * @see #getOwningApplication()
-	 * @see #setOwningApplication(IfcApplication)
-	 * @generated
-	 */
-	void unsetOwningApplication();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getOwningApplication <em>Owning Application</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Owning Application</em>' reference is set.
-	 * @see #unsetOwningApplication()
-	 * @see #getOwningApplication()
-	 * @see #setOwningApplication(IfcApplication)
-	 * @generated
-	 */
-	boolean isSetOwningApplication();
 
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
@@ -216,11 +162,9 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Change Action</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcChangeActionEnum
-	 * @see #isSetChangeAction()
-	 * @see #unsetChangeAction()
 	 * @see #setChangeAction(IfcChangeActionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOwnerHistory_ChangeAction()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcChangeActionEnum getChangeAction();
@@ -231,35 +175,10 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Change Action</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcChangeActionEnum
-	 * @see #isSetChangeAction()
-	 * @see #unsetChangeAction()
 	 * @see #getChangeAction()
 	 * @generated
 	 */
 	void setChangeAction(IfcChangeActionEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getChangeAction <em>Change Action</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetChangeAction()
-	 * @see #getChangeAction()
-	 * @see #setChangeAction(IfcChangeActionEnum)
-	 * @generated
-	 */
-	void unsetChangeAction();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getChangeAction <em>Change Action</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Change Action</em>' attribute is set.
-	 * @see #unsetChangeAction()
-	 * @see #getChangeAction()
-	 * @see #setChangeAction(IfcChangeActionEnum)
-	 * @generated
-	 */
-	boolean isSetChangeAction();
 
 	/**
 	 * Returns the value of the '<em><b>Last Modified Date</b></em>' attribute.
@@ -429,11 +348,9 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Creation Date</em>' attribute.
-	 * @see #isSetCreationDate()
-	 * @see #unsetCreationDate()
 	 * @see #setCreationDate(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcOwnerHistory_CreationDate()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	int getCreationDate();
@@ -443,34 +360,9 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Creation Date</em>' attribute.
-	 * @see #isSetCreationDate()
-	 * @see #unsetCreationDate()
 	 * @see #getCreationDate()
 	 * @generated
 	 */
 	void setCreationDate(int value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getCreationDate <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCreationDate()
-	 * @see #getCreationDate()
-	 * @see #setCreationDate(int)
-	 * @generated
-	 */
-	void unsetCreationDate();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcOwnerHistory#getCreationDate <em>Creation Date</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Creation Date</em>' attribute is set.
-	 * @see #unsetCreationDate()
-	 * @see #getCreationDate()
-	 * @see #setCreationDate(int)
-	 * @generated
-	 */
-	boolean isSetCreationDate();
 
 } // IfcOwnerHistory

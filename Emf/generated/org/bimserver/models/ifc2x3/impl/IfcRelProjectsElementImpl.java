@@ -80,24 +80,6 @@ public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATING_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcFeatureElementAddition getRelatedFeatureElement() {
 		return (IfcFeatureElementAddition) eGet(Ifc2x3Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT, true);
 	}
@@ -109,24 +91,6 @@ public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements Ifc
 	 */
 	public void setRelatedFeatureElement(IfcFeatureElementAddition newRelatedFeatureElement) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT, newRelatedFeatureElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedFeatureElement() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedFeatureElement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT);
 	}
 
 } //IfcRelProjectsElementImpl

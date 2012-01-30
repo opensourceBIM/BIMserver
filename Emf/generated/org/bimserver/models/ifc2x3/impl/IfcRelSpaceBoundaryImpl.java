@@ -86,24 +86,6 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingSpace() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATING_SPACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingSpace() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATING_SPACE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcElement getRelatedBuildingElement() {
 		return (IfcElement) eGet(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATED_BUILDING_ELEMENT, true);
 	}
@@ -194,24 +176,6 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPhysicalOrVirtualBoundary() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPhysicalOrVirtualBoundary() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcInternalOrExternalEnum getInternalOrExternalBoundary() {
 		return (IfcInternalOrExternalEnum) eGet(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, true);
 	}
@@ -223,24 +187,6 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 */
 	public void setInternalOrExternalBoundary(IfcInternalOrExternalEnum newInternalOrExternalBoundary) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, newInternalOrExternalBoundary);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetInternalOrExternalBoundary() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInternalOrExternalBoundary() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY);
 	}
 
 } //IfcRelSpaceBoundaryImpl

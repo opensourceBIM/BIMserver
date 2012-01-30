@@ -44,12 +44,10 @@ public interface IfcMappedItem extends IfcRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mapping Source</em>' reference.
-	 * @see #isSetMappingSource()
-	 * @see #unsetMappingSource()
 	 * @see #setMappingSource(IfcRepresentationMap)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMappedItem_MappingSource()
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentationMap#getMapUsage
-	 * @model opposite="MapUsage" unsettable="true"
+	 * @model opposite="MapUsage"
 	 * @generated
 	 */
 	IfcRepresentationMap getMappingSource();
@@ -59,35 +57,10 @@ public interface IfcMappedItem extends IfcRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mapping Source</em>' reference.
-	 * @see #isSetMappingSource()
-	 * @see #unsetMappingSource()
 	 * @see #getMappingSource()
 	 * @generated
 	 */
 	void setMappingSource(IfcRepresentationMap value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMappedItem#getMappingSource <em>Mapping Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMappingSource()
-	 * @see #getMappingSource()
-	 * @see #setMappingSource(IfcRepresentationMap)
-	 * @generated
-	 */
-	void unsetMappingSource();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMappedItem#getMappingSource <em>Mapping Source</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Mapping Source</em>' reference is set.
-	 * @see #unsetMappingSource()
-	 * @see #getMappingSource()
-	 * @see #setMappingSource(IfcRepresentationMap)
-	 * @generated
-	 */
-	boolean isSetMappingSource();
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Target</b></em>' reference.
@@ -98,11 +71,9 @@ public interface IfcMappedItem extends IfcRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mapping Target</em>' reference.
-	 * @see #isSetMappingTarget()
-	 * @see #unsetMappingTarget()
 	 * @see #setMappingTarget(IfcCartesianTransformationOperator)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMappedItem_MappingTarget()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCartesianTransformationOperator getMappingTarget();
@@ -112,34 +83,9 @@ public interface IfcMappedItem extends IfcRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mapping Target</em>' reference.
-	 * @see #isSetMappingTarget()
-	 * @see #unsetMappingTarget()
 	 * @see #getMappingTarget()
 	 * @generated
 	 */
 	void setMappingTarget(IfcCartesianTransformationOperator value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMappedItem#getMappingTarget <em>Mapping Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMappingTarget()
-	 * @see #getMappingTarget()
-	 * @see #setMappingTarget(IfcCartesianTransformationOperator)
-	 * @generated
-	 */
-	void unsetMappingTarget();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMappedItem#getMappingTarget <em>Mapping Target</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Mapping Target</em>' reference is set.
-	 * @see #unsetMappingTarget()
-	 * @see #getMappingTarget()
-	 * @see #setMappingTarget(IfcCartesianTransformationOperator)
-	 * @generated
-	 */
-	boolean isSetMappingTarget();
 
 } // IfcMappedItem

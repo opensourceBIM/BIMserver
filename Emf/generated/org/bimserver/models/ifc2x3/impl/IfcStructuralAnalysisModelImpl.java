@@ -86,24 +86,6 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPredefinedType() {
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPredefinedType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcAxis2Placement3D getOrientationOf2DPlane() {
 		return (IfcAxis2Placement3D) eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__ORIENTATION_OF2_DPLANE, true);
 	}

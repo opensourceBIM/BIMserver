@@ -45,11 +45,9 @@ public interface IfcStructuralAction extends IfcStructuralActivity {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Destabilizing Load</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetDestabilizingLoad()
-	 * @see #unsetDestabilizingLoad()
 	 * @see #setDestabilizingLoad(Tristate)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralAction_DestabilizingLoad()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	Tristate getDestabilizingLoad();
@@ -60,35 +58,10 @@ public interface IfcStructuralAction extends IfcStructuralActivity {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Destabilizing Load</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.Tristate
-	 * @see #isSetDestabilizingLoad()
-	 * @see #unsetDestabilizingLoad()
 	 * @see #getDestabilizingLoad()
 	 * @generated
 	 */
 	void setDestabilizingLoad(Tristate value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralAction#getDestabilizingLoad <em>Destabilizing Load</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDestabilizingLoad()
-	 * @see #getDestabilizingLoad()
-	 * @see #setDestabilizingLoad(Tristate)
-	 * @generated
-	 */
-	void unsetDestabilizingLoad();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralAction#getDestabilizingLoad <em>Destabilizing Load</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Destabilizing Load</em>' attribute is set.
-	 * @see #unsetDestabilizingLoad()
-	 * @see #getDestabilizingLoad()
-	 * @see #setDestabilizingLoad(Tristate)
-	 * @generated
-	 */
-	boolean isSetDestabilizingLoad();
 
 	/**
 	 * Returns the value of the '<em><b>Caused By</b></em>' reference.

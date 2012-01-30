@@ -43,12 +43,10 @@ public interface IfcRelDefinesByProperties extends IfcRelDefines {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Property Definition</em>' reference.
-	 * @see #isSetRelatingPropertyDefinition()
-	 * @see #unsetRelatingPropertyDefinition()
 	 * @see #setRelatingPropertyDefinition(IfcPropertySetDefinition)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelDefinesByProperties_RelatingPropertyDefinition()
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySetDefinition#getPropertyDefinitionOf
-	 * @model opposite="PropertyDefinitionOf" unsettable="true"
+	 * @model opposite="PropertyDefinitionOf"
 	 * @generated
 	 */
 	IfcPropertySetDefinition getRelatingPropertyDefinition();
@@ -58,34 +56,9 @@ public interface IfcRelDefinesByProperties extends IfcRelDefines {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Property Definition</em>' reference.
-	 * @see #isSetRelatingPropertyDefinition()
-	 * @see #unsetRelatingPropertyDefinition()
 	 * @see #getRelatingPropertyDefinition()
 	 * @generated
 	 */
 	void setRelatingPropertyDefinition(IfcPropertySetDefinition value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDefinesByProperties#getRelatingPropertyDefinition <em>Relating Property Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingPropertyDefinition()
-	 * @see #getRelatingPropertyDefinition()
-	 * @see #setRelatingPropertyDefinition(IfcPropertySetDefinition)
-	 * @generated
-	 */
-	void unsetRelatingPropertyDefinition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelDefinesByProperties#getRelatingPropertyDefinition <em>Relating Property Definition</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Property Definition</em>' reference is set.
-	 * @see #unsetRelatingPropertyDefinition()
-	 * @see #getRelatingPropertyDefinition()
-	 * @see #setRelatingPropertyDefinition(IfcPropertySetDefinition)
-	 * @generated
-	 */
-	boolean isSetRelatingPropertyDefinition();
 
 } // IfcRelDefinesByProperties

@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#isRunOke <em>Run Oke</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getRunOke <em>Run Oke</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getOutput <em>Output</em>}</li>
@@ -73,7 +73,7 @@ public class RunResultImpl extends IdEObjectImpl implements RunResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRunOke() {
+	public Boolean getRunOke() {
 		return (Boolean) eGet(StorePackage.Literals.RUN_RESULT__RUN_OKE, true);
 	}
 
@@ -82,7 +82,7 @@ public class RunResultImpl extends IdEObjectImpl implements RunResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRunOke(boolean newRunOke) {
+	public void setRunOke(Boolean newRunOke) {
 		eSet(StorePackage.Literals.RUN_RESULT__RUN_OKE, newRunOke);
 	}
 

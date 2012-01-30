@@ -47,11 +47,9 @@ public interface IfcSectionedSpine extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Spine Curve</em>' reference.
-	 * @see #isSetSpineCurve()
-	 * @see #unsetSpineCurve()
 	 * @see #setSpineCurve(IfcCompositeCurve)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionedSpine_SpineCurve()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcCompositeCurve getSpineCurve();
@@ -61,35 +59,10 @@ public interface IfcSectionedSpine extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Spine Curve</em>' reference.
-	 * @see #isSetSpineCurve()
-	 * @see #unsetSpineCurve()
 	 * @see #getSpineCurve()
 	 * @generated
 	 */
 	void setSpineCurve(IfcCompositeCurve value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionedSpine#getSpineCurve <em>Spine Curve</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSpineCurve()
-	 * @see #getSpineCurve()
-	 * @see #setSpineCurve(IfcCompositeCurve)
-	 * @generated
-	 */
-	void unsetSpineCurve();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionedSpine#getSpineCurve <em>Spine Curve</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Spine Curve</em>' reference is set.
-	 * @see #unsetSpineCurve()
-	 * @see #getSpineCurve()
-	 * @see #setSpineCurve(IfcCompositeCurve)
-	 * @generated
-	 */
-	boolean isSetSpineCurve();
 
 	/**
 	 * Returns the value of the '<em><b>Cross Sections</b></em>' reference list.
@@ -101,34 +74,11 @@ public interface IfcSectionedSpine extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Sections</em>' reference list.
-	 * @see #isSetCrossSections()
-	 * @see #unsetCrossSections()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionedSpine_CrossSections()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcProfileDef> getCrossSections();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionedSpine#getCrossSections <em>Cross Sections</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCrossSections()
-	 * @see #getCrossSections()
-	 * @generated
-	 */
-	void unsetCrossSections();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionedSpine#getCrossSections <em>Cross Sections</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Cross Sections</em>' reference list is set.
-	 * @see #unsetCrossSections()
-	 * @see #getCrossSections()
-	 * @generated
-	 */
-	boolean isSetCrossSections();
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Positions</b></em>' reference list.
@@ -140,34 +90,11 @@ public interface IfcSectionedSpine extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Positions</em>' reference list.
-	 * @see #isSetCrossSectionPositions()
-	 * @see #unsetCrossSectionPositions()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionedSpine_CrossSectionPositions()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcAxis2Placement3D> getCrossSectionPositions();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionedSpine#getCrossSectionPositions <em>Cross Section Positions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCrossSectionPositions()
-	 * @see #getCrossSectionPositions()
-	 * @generated
-	 */
-	void unsetCrossSectionPositions();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionedSpine#getCrossSectionPositions <em>Cross Section Positions</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Cross Section Positions</em>' reference list is set.
-	 * @see #unsetCrossSectionPositions()
-	 * @see #getCrossSectionPositions()
-	 * @generated
-	 */
-	boolean isSetCrossSectionPositions();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

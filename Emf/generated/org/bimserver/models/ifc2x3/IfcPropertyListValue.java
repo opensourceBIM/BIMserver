@@ -46,34 +46,11 @@ public interface IfcPropertyListValue extends IfcSimpleProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>List Values</em>' reference list.
-	 * @see #isSetListValues()
-	 * @see #unsetListValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyListValue_ListValues()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcValue> getListValues();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyListValue#getListValues <em>List Values</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetListValues()
-	 * @see #getListValues()
-	 * @generated
-	 */
-	void unsetListValues();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyListValue#getListValues <em>List Values</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>List Values</em>' reference list is set.
-	 * @see #unsetListValues()
-	 * @see #getListValues()
-	 * @generated
-	 */
-	boolean isSetListValues();
 
 	/**
 	 * Returns the value of the '<em><b>Unit</b></em>' reference.

@@ -87,24 +87,6 @@ public class IfcMaterialLayerSetImpl extends IdEObjectImpl implements IfcMateria
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetMaterialLayers() {
-		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__MATERIAL_LAYERS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMaterialLayers() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__MATERIAL_LAYERS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getLayerSetName() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME, true);
 	}

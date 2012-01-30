@@ -96,7 +96,7 @@ public class SDatabaseCreated extends SLogAction implements SBase
 	}
 	
 	private java.lang.String path;
-	private int version;
+	private java.lang.Integer version;
 	public java.lang.String getPath() {
 		return path;
 	}
@@ -104,11 +104,11 @@ public class SDatabaseCreated extends SLogAction implements SBase
 	public void setPath(java.lang.String path) {
 		this.path = path;
 	}
-	public int getVersion() {
+	public java.lang.Integer getVersion() {
 		return version;
 	}
 
-	public void setVersion(int version) {
+	public void setVersion(java.lang.Integer version) {
 		this.version = version;
 	}
 	@Override

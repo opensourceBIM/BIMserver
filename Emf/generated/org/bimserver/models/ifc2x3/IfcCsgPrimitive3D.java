@@ -43,11 +43,9 @@ public interface IfcCsgPrimitive3D extends IfcGeometricRepresentationItem, IfcBo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference.
-	 * @see #isSetPosition()
-	 * @see #unsetPosition()
 	 * @see #setPosition(IfcAxis2Placement3D)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcCsgPrimitive3D_Position()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAxis2Placement3D getPosition();
@@ -57,35 +55,10 @@ public interface IfcCsgPrimitive3D extends IfcGeometricRepresentationItem, IfcBo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' reference.
-	 * @see #isSetPosition()
-	 * @see #unsetPosition()
 	 * @see #getPosition()
 	 * @generated
 	 */
 	void setPosition(IfcAxis2Placement3D value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcCsgPrimitive3D#getPosition <em>Position</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPosition()
-	 * @see #getPosition()
-	 * @see #setPosition(IfcAxis2Placement3D)
-	 * @generated
-	 */
-	void unsetPosition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcCsgPrimitive3D#getPosition <em>Position</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Position</em>' reference is set.
-	 * @see #unsetPosition()
-	 * @see #getPosition()
-	 * @see #setPosition(IfcAxis2Placement3D)
-	 * @generated
-	 */
-	boolean isSetPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.

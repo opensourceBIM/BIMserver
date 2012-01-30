@@ -82,24 +82,6 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOperator() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__OPERATOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOperator() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__OPERATOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcBooleanOperand getFirstOperand() {
 		return (IfcBooleanOperand) eGet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__FIRST_OPERAND, true);
 	}
@@ -118,24 +100,6 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetFirstOperand() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__FIRST_OPERAND);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFirstOperand() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__FIRST_OPERAND);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcBooleanOperand getSecondOperand() {
 		return (IfcBooleanOperand) eGet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__SECOND_OPERAND, true);
 	}
@@ -147,24 +111,6 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 */
 	public void setSecondOperand(IfcBooleanOperand newSecondOperand) {
 		eSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__SECOND_OPERAND, newSecondOperand);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSecondOperand() {
-		eUnset(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__SECOND_OPERAND);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSecondOperand() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOOLEAN_RESULT__SECOND_OPERAND);
 	}
 
 	/**

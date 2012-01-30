@@ -82,24 +82,6 @@ public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingProfileProperties() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__RELATING_PROFILE_PROPERTIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingProfileProperties() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__RELATING_PROFILE_PROPERTIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcShapeAspect getProfileSectionLocation() {
 		return (IfcShapeAspect) eGet(Ifc2x3Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_SECTION_LOCATION, true);
 	}

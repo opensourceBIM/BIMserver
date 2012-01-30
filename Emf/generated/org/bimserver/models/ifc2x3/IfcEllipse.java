@@ -45,11 +45,9 @@ public interface IfcEllipse extends IfcConic {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Semi Axis1</em>' attribute.
-	 * @see #isSetSemiAxis1()
-	 * @see #unsetSemiAxis1()
 	 * @see #setSemiAxis1(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEllipse_SemiAxis1()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getSemiAxis1();
@@ -59,35 +57,10 @@ public interface IfcEllipse extends IfcConic {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Semi Axis1</em>' attribute.
-	 * @see #isSetSemiAxis1()
-	 * @see #unsetSemiAxis1()
 	 * @see #getSemiAxis1()
 	 * @generated
 	 */
 	void setSemiAxis1(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis1 <em>Semi Axis1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSemiAxis1()
-	 * @see #getSemiAxis1()
-	 * @see #setSemiAxis1(double)
-	 * @generated
-	 */
-	void unsetSemiAxis1();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis1 <em>Semi Axis1</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Semi Axis1</em>' attribute is set.
-	 * @see #unsetSemiAxis1()
-	 * @see #getSemiAxis1()
-	 * @see #setSemiAxis1(double)
-	 * @generated
-	 */
-	boolean isSetSemiAxis1();
 
 	/**
 	 * Returns the value of the '<em><b>Semi Axis1 As String</b></em>' attribute.
@@ -98,11 +71,9 @@ public interface IfcEllipse extends IfcConic {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Semi Axis1 As String</em>' attribute.
-	 * @see #isSetSemiAxis1AsString()
-	 * @see #unsetSemiAxis1AsString()
 	 * @see #setSemiAxis1AsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEllipse_SemiAxis1AsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getSemiAxis1AsString();
@@ -112,35 +83,10 @@ public interface IfcEllipse extends IfcConic {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Semi Axis1 As String</em>' attribute.
-	 * @see #isSetSemiAxis1AsString()
-	 * @see #unsetSemiAxis1AsString()
 	 * @see #getSemiAxis1AsString()
 	 * @generated
 	 */
 	void setSemiAxis1AsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis1AsString <em>Semi Axis1 As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSemiAxis1AsString()
-	 * @see #getSemiAxis1AsString()
-	 * @see #setSemiAxis1AsString(String)
-	 * @generated
-	 */
-	void unsetSemiAxis1AsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis1AsString <em>Semi Axis1 As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Semi Axis1 As String</em>' attribute is set.
-	 * @see #unsetSemiAxis1AsString()
-	 * @see #getSemiAxis1AsString()
-	 * @see #setSemiAxis1AsString(String)
-	 * @generated
-	 */
-	boolean isSetSemiAxis1AsString();
 
 	/**
 	 * Returns the value of the '<em><b>Semi Axis2</b></em>' attribute.
@@ -151,11 +97,9 @@ public interface IfcEllipse extends IfcConic {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Semi Axis2</em>' attribute.
-	 * @see #isSetSemiAxis2()
-	 * @see #unsetSemiAxis2()
 	 * @see #setSemiAxis2(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEllipse_SemiAxis2()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getSemiAxis2();
@@ -165,35 +109,10 @@ public interface IfcEllipse extends IfcConic {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Semi Axis2</em>' attribute.
-	 * @see #isSetSemiAxis2()
-	 * @see #unsetSemiAxis2()
 	 * @see #getSemiAxis2()
 	 * @generated
 	 */
 	void setSemiAxis2(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis2 <em>Semi Axis2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSemiAxis2()
-	 * @see #getSemiAxis2()
-	 * @see #setSemiAxis2(double)
-	 * @generated
-	 */
-	void unsetSemiAxis2();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis2 <em>Semi Axis2</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Semi Axis2</em>' attribute is set.
-	 * @see #unsetSemiAxis2()
-	 * @see #getSemiAxis2()
-	 * @see #setSemiAxis2(double)
-	 * @generated
-	 */
-	boolean isSetSemiAxis2();
 
 	/**
 	 * Returns the value of the '<em><b>Semi Axis2 As String</b></em>' attribute.
@@ -204,11 +123,9 @@ public interface IfcEllipse extends IfcConic {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Semi Axis2 As String</em>' attribute.
-	 * @see #isSetSemiAxis2AsString()
-	 * @see #unsetSemiAxis2AsString()
 	 * @see #setSemiAxis2AsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEllipse_SemiAxis2AsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getSemiAxis2AsString();
@@ -218,34 +135,9 @@ public interface IfcEllipse extends IfcConic {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Semi Axis2 As String</em>' attribute.
-	 * @see #isSetSemiAxis2AsString()
-	 * @see #unsetSemiAxis2AsString()
 	 * @see #getSemiAxis2AsString()
 	 * @generated
 	 */
 	void setSemiAxis2AsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis2AsString <em>Semi Axis2 As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSemiAxis2AsString()
-	 * @see #getSemiAxis2AsString()
-	 * @see #setSemiAxis2AsString(String)
-	 * @generated
-	 */
-	void unsetSemiAxis2AsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEllipse#getSemiAxis2AsString <em>Semi Axis2 As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Semi Axis2 As String</em>' attribute is set.
-	 * @see #unsetSemiAxis2AsString()
-	 * @see #getSemiAxis2AsString()
-	 * @see #setSemiAxis2AsString(String)
-	 * @generated
-	 */
-	boolean isSetSemiAxis2AsString();
 
 } // IfcEllipse

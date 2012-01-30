@@ -34,8 +34,8 @@ public class Step0008 extends Migration {
 		schema.createEAttribute(deserializerClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(deserializerClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(deserializerClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(deserializerClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(deserializerClass, "defaultDeserializer", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(deserializerClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(deserializerClass, "defaultDeserializer", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		EReference deserializerSettingsReference = schema.createEReference(deserializerClass, "settings", settingsClass, Multiplicity.SINGLE);
 		EReference settingsDeserializersReference = schema.createEReference(settingsClass, "deserializers", deserializerClass, Multiplicity.MANY);
 		

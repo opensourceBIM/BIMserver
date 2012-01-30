@@ -79,22 +79,4 @@ public class IfcUnitAssignmentImpl extends IdEObjectImpl implements IfcUnitAssig
 		return (EList<IfcUnit>) eGet(Ifc2x3Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetUnits() {
-		eUnset(Ifc2x3Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetUnits() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS);
-	}
-
 } //IfcUnitAssignmentImpl

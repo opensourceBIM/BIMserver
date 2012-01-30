@@ -476,11 +476,9 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Direction</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcRibPlateDirectionEnum
-	 * @see #isSetDirection()
-	 * @see #unsetDirection()
 	 * @see #setDirection(IfcRibPlateDirectionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRibPlateProfileProperties_Direction()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcRibPlateDirectionEnum getDirection();
@@ -491,34 +489,9 @@ public interface IfcRibPlateProfileProperties extends IfcProfileProperties {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Direction</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcRibPlateDirectionEnum
-	 * @see #isSetDirection()
-	 * @see #unsetDirection()
 	 * @see #getDirection()
 	 * @generated
 	 */
 	void setDirection(IfcRibPlateDirectionEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getDirection <em>Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDirection()
-	 * @see #getDirection()
-	 * @see #setDirection(IfcRibPlateDirectionEnum)
-	 * @generated
-	 */
-	void unsetDirection();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties#getDirection <em>Direction</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Direction</em>' attribute is set.
-	 * @see #unsetDirection()
-	 * @see #getDirection()
-	 * @see #setDirection(IfcRibPlateDirectionEnum)
-	 * @generated
-	 */
-	boolean isSetDirection();
 
 } // IfcRibPlateProfileProperties

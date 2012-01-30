@@ -244,7 +244,7 @@ public class JspHelper {
 	}
 
 	public static SClashDetectionSettings createSClashDetectionSettings(HttpServletRequest request) {
-		float margin = Float.parseFloat(request.getParameter("margin"));
+		double margin = Double.parseDouble(request.getParameter("margin"));
 		SClashDetectionSettings sClashDetectionSettings = new SClashDetectionSettings();
 		sClashDetectionSettings.setMargin(margin);
 		String[] ignoredSplit = request.getParameter("ignored").split(";");

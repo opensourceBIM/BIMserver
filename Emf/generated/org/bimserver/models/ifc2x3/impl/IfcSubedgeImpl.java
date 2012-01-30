@@ -73,22 +73,4 @@ public class IfcSubedgeImpl extends IfcEdgeImpl implements IfcSubedge {
 		eSet(Ifc2x3Package.Literals.IFC_SUBEDGE__PARENT_EDGE, newParentEdge);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetParentEdge() {
-		eUnset(Ifc2x3Package.Literals.IFC_SUBEDGE__PARENT_EDGE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetParentEdge() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_SUBEDGE__PARENT_EDGE);
-	}
-
 } //IfcSubedgeImpl

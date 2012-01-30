@@ -46,12 +46,10 @@ public interface IfcRelCoversBldgElements extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Building Element</em>' reference.
-	 * @see #isSetRelatingBuildingElement()
-	 * @see #unsetRelatingBuildingElement()
 	 * @see #setRelatingBuildingElement(IfcElement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelCoversBldgElements_RelatingBuildingElement()
 	 * @see org.bimserver.models.ifc2x3.IfcElement#getHasCoverings
-	 * @model opposite="HasCoverings" unsettable="true"
+	 * @model opposite="HasCoverings"
 	 * @generated
 	 */
 	IfcElement getRelatingBuildingElement();
@@ -61,35 +59,10 @@ public interface IfcRelCoversBldgElements extends IfcRelConnects {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Building Element</em>' reference.
-	 * @see #isSetRelatingBuildingElement()
-	 * @see #unsetRelatingBuildingElement()
 	 * @see #getRelatingBuildingElement()
 	 * @generated
 	 */
 	void setRelatingBuildingElement(IfcElement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversBldgElements#getRelatingBuildingElement <em>Relating Building Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingBuildingElement()
-	 * @see #getRelatingBuildingElement()
-	 * @see #setRelatingBuildingElement(IfcElement)
-	 * @generated
-	 */
-	void unsetRelatingBuildingElement();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversBldgElements#getRelatingBuildingElement <em>Relating Building Element</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Building Element</em>' reference is set.
-	 * @see #unsetRelatingBuildingElement()
-	 * @see #getRelatingBuildingElement()
-	 * @see #setRelatingBuildingElement(IfcElement)
-	 * @generated
-	 */
-	boolean isSetRelatingBuildingElement();
 
 	/**
 	 * Returns the value of the '<em><b>Related Coverings</b></em>' reference list.
@@ -102,34 +75,11 @@ public interface IfcRelCoversBldgElements extends IfcRelConnects {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Coverings</em>' reference list.
-	 * @see #isSetRelatedCoverings()
-	 * @see #unsetRelatedCoverings()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelCoversBldgElements_RelatedCoverings()
 	 * @see org.bimserver.models.ifc2x3.IfcCovering#getCovers
-	 * @model opposite="Covers" unsettable="true"
+	 * @model opposite="Covers"
 	 * @generated
 	 */
 	EList<IfcCovering> getRelatedCoverings();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversBldgElements#getRelatedCoverings <em>Related Coverings</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedCoverings()
-	 * @see #getRelatedCoverings()
-	 * @generated
-	 */
-	void unsetRelatedCoverings();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelCoversBldgElements#getRelatedCoverings <em>Related Coverings</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Coverings</em>' reference list is set.
-	 * @see #unsetRelatedCoverings()
-	 * @see #getRelatedCoverings()
-	 * @generated
-	 */
-	boolean isSetRelatedCoverings();
 
 } // IfcRelCoversBldgElements

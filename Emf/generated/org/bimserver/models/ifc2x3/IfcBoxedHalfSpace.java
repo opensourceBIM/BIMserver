@@ -42,11 +42,9 @@ public interface IfcBoxedHalfSpace extends IfcHalfSpaceSolid {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enclosure</em>' reference.
-	 * @see #isSetEnclosure()
-	 * @see #unsetEnclosure()
 	 * @see #setEnclosure(IfcBoundingBox)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcBoxedHalfSpace_Enclosure()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcBoundingBox getEnclosure();
@@ -56,34 +54,9 @@ public interface IfcBoxedHalfSpace extends IfcHalfSpaceSolid {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enclosure</em>' reference.
-	 * @see #isSetEnclosure()
-	 * @see #unsetEnclosure()
 	 * @see #getEnclosure()
 	 * @generated
 	 */
 	void setEnclosure(IfcBoundingBox value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcBoxedHalfSpace#getEnclosure <em>Enclosure</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetEnclosure()
-	 * @see #getEnclosure()
-	 * @see #setEnclosure(IfcBoundingBox)
-	 * @generated
-	 */
-	void unsetEnclosure();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcBoxedHalfSpace#getEnclosure <em>Enclosure</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Enclosure</em>' reference is set.
-	 * @see #unsetEnclosure()
-	 * @see #getEnclosure()
-	 * @see #setEnclosure(IfcBoundingBox)
-	 * @generated
-	 */
-	boolean isSetEnclosure();
 
 } // IfcBoxedHalfSpace

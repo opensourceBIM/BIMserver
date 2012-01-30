@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getCheckin <em>Checkin</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#isActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getActive <em>Active</em>}</li>
  * </ul>
  * </p>
  *
@@ -169,7 +169,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isActive() {
+	public Boolean getActive() {
 		return (Boolean) eGet(StorePackage.Literals.CHECKOUT__ACTIVE, true);
 	}
 
@@ -178,7 +178,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActive(boolean newActive) {
+	public void setActive(Boolean newActive) {
 		eSet(StorePackage.Literals.CHECKOUT__ACTIVE, newActive);
 	}
 

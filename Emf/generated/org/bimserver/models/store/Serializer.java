@@ -31,8 +31,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Serializer#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#getEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getIfcEngine <em>Ifc Engine</em>}</li>
@@ -184,22 +184,22 @@ public interface Serializer extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(boolean)
+	 * @see #setEnabled(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSerializer_Enabled()
 	 * @model
 	 * @generated
 	 */
-	boolean isEnabled();
+	Boolean getEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #isEnabled()
+	 * @see #getEnabled()
 	 * @generated
 	 */
-	void setEnabled(boolean value);
+	void setEnabled(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Default Serializer</b></em>' attribute.
@@ -210,22 +210,22 @@ public interface Serializer extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Default Serializer</em>' attribute.
-	 * @see #setDefaultSerializer(boolean)
+	 * @see #setDefaultSerializer(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getSerializer_DefaultSerializer()
 	 * @model
 	 * @generated
 	 */
-	boolean isDefaultSerializer();
+	Boolean getDefaultSerializer();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getDefaultSerializer <em>Default Serializer</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Default Serializer</em>' attribute.
-	 * @see #isDefaultSerializer()
+	 * @see #getDefaultSerializer()
 	 * @generated
 	 */
-	void setDefaultSerializer(boolean value);
+	void setDefaultSerializer(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Object IDM</b></em>' reference.

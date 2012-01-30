@@ -49,12 +49,10 @@ public interface IfcTimeSeriesReferenceRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced Time Series</em>' reference.
-	 * @see #isSetReferencedTimeSeries()
-	 * @see #unsetReferencedTimeSeries()
 	 * @see #setReferencedTimeSeries(IfcTimeSeries)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeriesReferenceRelationship_ReferencedTimeSeries()
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeries#getDocumentedBy
-	 * @model opposite="DocumentedBy" unsettable="true"
+	 * @model opposite="DocumentedBy"
 	 * @generated
 	 */
 	IfcTimeSeries getReferencedTimeSeries();
@@ -64,35 +62,10 @@ public interface IfcTimeSeriesReferenceRelationship extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referenced Time Series</em>' reference.
-	 * @see #isSetReferencedTimeSeries()
-	 * @see #unsetReferencedTimeSeries()
 	 * @see #getReferencedTimeSeries()
 	 * @generated
 	 */
 	void setReferencedTimeSeries(IfcTimeSeries value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesReferenceRelationship#getReferencedTimeSeries <em>Referenced Time Series</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetReferencedTimeSeries()
-	 * @see #getReferencedTimeSeries()
-	 * @see #setReferencedTimeSeries(IfcTimeSeries)
-	 * @generated
-	 */
-	void unsetReferencedTimeSeries();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesReferenceRelationship#getReferencedTimeSeries <em>Referenced Time Series</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Referenced Time Series</em>' reference is set.
-	 * @see #unsetReferencedTimeSeries()
-	 * @see #getReferencedTimeSeries()
-	 * @see #setReferencedTimeSeries(IfcTimeSeries)
-	 * @generated
-	 */
-	boolean isSetReferencedTimeSeries();
 
 	/**
 	 * Returns the value of the '<em><b>Time Series References</b></em>' reference list.
@@ -104,33 +77,10 @@ public interface IfcTimeSeriesReferenceRelationship extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Series References</em>' reference list.
-	 * @see #isSetTimeSeriesReferences()
-	 * @see #unsetTimeSeriesReferences()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTimeSeriesReferenceRelationship_TimeSeriesReferences()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcDocumentSelect> getTimeSeriesReferences();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesReferenceRelationship#getTimeSeriesReferences <em>Time Series References</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeSeriesReferences()
-	 * @see #getTimeSeriesReferences()
-	 * @generated
-	 */
-	void unsetTimeSeriesReferences();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTimeSeriesReferenceRelationship#getTimeSeriesReferences <em>Time Series References</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Series References</em>' reference list is set.
-	 * @see #unsetTimeSeriesReferences()
-	 * @see #getTimeSeriesReferences()
-	 * @generated
-	 */
-	boolean isSetTimeSeriesReferences();
 
 } // IfcTimeSeriesReferenceRelationship

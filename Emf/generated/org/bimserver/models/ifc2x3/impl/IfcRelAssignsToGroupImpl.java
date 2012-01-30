@@ -73,22 +73,4 @@ public class IfcRelAssignsToGroupImpl extends IfcRelAssignsImpl implements IfcRe
 		eSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP, newRelatingGroup);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatingGroup() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingGroup() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP);
-	}
-
 } //IfcRelAssignsToGroupImpl

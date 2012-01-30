@@ -75,45 +75,9 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingPriorities() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_PRIORITIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingPriorities() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_PRIORITIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getRelatedPriorities() {
 		return (EList<Integer>) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_PRIORITIES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedPriorities() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_PRIORITIES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedPriorities() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_PRIORITIES);
 	}
 
 	/**
@@ -139,24 +103,6 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatedConnectionType() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_CONNECTION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedConnectionType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_CONNECTION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcConnectionTypeEnum getRelatingConnectionType() {
 		return (IfcConnectionTypeEnum) eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE, true);
 	}
@@ -168,24 +114,6 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 */
 	public void setRelatingConnectionType(IfcConnectionTypeEnum newRelatingConnectionType) {
 		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE, newRelatingConnectionType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatingConnectionType() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingConnectionType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE);
 	}
 
 } //IfcRelConnectsPathElementsImpl

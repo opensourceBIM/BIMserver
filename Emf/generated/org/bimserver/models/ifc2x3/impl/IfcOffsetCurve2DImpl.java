@@ -81,24 +81,6 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetBasisCurve() {
-		eUnset(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBasisCurve() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getDistance() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, true);
 	}
@@ -110,24 +92,6 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public void setDistance(double newDistance) {
 		eSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, newDistance);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetDistance() {
-		eUnset(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDistance() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE);
 	}
 
 	/**
@@ -153,24 +117,6 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetDistanceAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDistanceAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isSelfIntersect() {
 		return (Boolean) eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT, true);
 	}
@@ -182,24 +128,6 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public void setSelfIntersect(boolean newSelfIntersect) {
 		eSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT, newSelfIntersect);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSelfIntersect() {
-		eUnset(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSelfIntersect() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT);
 	}
 
 } //IfcOffsetCurve2DImpl

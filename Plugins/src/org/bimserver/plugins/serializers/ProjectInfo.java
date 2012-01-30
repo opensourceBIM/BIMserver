@@ -20,10 +20,10 @@ package org.bimserver.plugins.serializers;
 public class ProjectInfo {
 	private String name;
 	private String description;
-	private float x;
-	private float y;
-	private float z;
-	private float directionAngle;
+	private double x;
+	private double y;
+	private double z;
+	private double directionAngle;
 	private String authorName;
 
 	public String getName() {
@@ -42,35 +42,35 @@ public class ProjectInfo {
 		this.description = description;
 	}
 
-	public float getX() {
+	public double getX() {
 		return x;
 	}
 
-	public void setX(float x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
-	public float getY() {
+	public double getY() {
 		return y;
 	}
 
-	public void setY(float y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 
-	public float getZ() {
+	public double getZ() {
 		return z;
 	}
 
-	public void setZ(float z) {
+	public void setZ(double z) {
 		this.z = z;
 	}
 
-	public float getDirectionAngle() {
+	public double getDirectionAngle() {
 		return directionAngle;
 	}
 
-	public void setDirectionAngle(float directionAngle) {
+	public void setDirectionAngle(double directionAngle) {
 		this.directionAngle = directionAngle;
 	}
 

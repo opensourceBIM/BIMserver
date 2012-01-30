@@ -94,24 +94,6 @@ public class IfcApprovalActorRelationshipImpl extends IdEObjectImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetActor() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__ACTOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetActor() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__ACTOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcApproval getApproval() {
 		return (IfcApproval) eGet(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__APPROVAL, true);
 	}
@@ -130,24 +112,6 @@ public class IfcApprovalActorRelationshipImpl extends IdEObjectImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetApproval() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__APPROVAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetApproval() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__APPROVAL);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcActorRole getRole() {
 		return (IfcActorRole) eGet(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__ROLE, true);
 	}
@@ -159,24 +123,6 @@ public class IfcApprovalActorRelationshipImpl extends IdEObjectImpl implements I
 	 */
 	public void setRole(IfcActorRole newRole) {
 		eSet(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__ROLE, newRole);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRole() {
-		eUnset(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__ROLE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRole() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPROVAL_ACTOR_RELATIONSHIP__ROLE);
 	}
 
 } //IfcApprovalActorRelationshipImpl

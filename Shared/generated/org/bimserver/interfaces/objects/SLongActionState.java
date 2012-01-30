@@ -73,13 +73,13 @@ public class SLongActionState implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private int progress;
+	private java.lang.Integer progress;
 	private SActionState state;
-	public int getProgress() {
+	public java.lang.Integer getProgress() {
 		return progress;
 	}
 
-	public void setProgress(int progress) {
+	public void setProgress(java.lang.Integer progress) {
 		this.progress = progress;
 	}
 	public SActionState getState() {

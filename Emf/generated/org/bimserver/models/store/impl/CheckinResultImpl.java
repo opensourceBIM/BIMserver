@@ -109,7 +109,7 @@ public class CheckinResultImpl extends IdEObjectImpl implements CheckinResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getProgress() {
+	public Integer getProgress() {
 		return (Integer) eGet(StorePackage.Literals.CHECKIN_RESULT__PROGRESS, true);
 	}
 
@@ -118,7 +118,7 @@ public class CheckinResultImpl extends IdEObjectImpl implements CheckinResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProgress(int newProgress) {
+	public void setProgress(Integer newProgress) {
 		eSet(StorePackage.Literals.CHECKIN_RESULT__PROGRESS, newProgress);
 	}
 

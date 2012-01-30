@@ -376,7 +376,7 @@ public class Service implements ServiceInterface {
 	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
 		if (!selfRegistration) {
 			requireAuthenticationAndRunningServer();
-		} else if (!bimServer.getSettingsManager().getSettings().isAllowSelfRegistration()) {
+		} else if (!bimServer.getSettingsManager().getSettings().getAllowSelfRegistration()) {
 			requireSelfregistrationAllowed();
 		}
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
@@ -1492,12 +1492,12 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingAllowSelfRegistration() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isAllowSelfRegistration();
+		return bimServer.getSettingsManager().getSettings().getAllowSelfRegistration();
 	}
 
 	@Override
 	public Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isHideUserListForNonAdmin();
+		return bimServer.getSettingsManager().getSettings().getHideUserListForNonAdmin();
 	}
 	
 	@Override
@@ -1531,7 +1531,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingAutoTestClashes() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isAutoTestClashes();
+		return bimServer.getSettingsManager().getSettings().getAutoTestClashes();
 	}
 
 	@Override
@@ -1544,7 +1544,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isCheckinMergingEnabled();
+		return bimServer.getSettingsManager().getSettings().getCheckinMergingEnabled();
 	}
 
 	@Override
@@ -1557,7 +1557,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingIntelligentMerging() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isIntelligentMerging();
+		return bimServer.getSettingsManager().getSettings().getIntelligentMerging();
 	}
 
 	@Override
@@ -1583,7 +1583,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingShowVersionUpgradeAvailable() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isShowVersionUpgradeAvailable();
+		return bimServer.getSettingsManager().getSettings().getShowVersionUpgradeAvailable();
 	}
 
 	@Override
@@ -1596,7 +1596,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingCacheOutputFiles() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isCacheOutputFiles();
+		return bimServer.getSettingsManager().getSettings().getCacheOutputFiles();
 	}
 
 	@Override
@@ -2147,7 +2147,7 @@ public class Service implements ServiceInterface {
 		try {
 			SSerializer serializer = getSerializerByContentType(contentType);
 			if (serializer != null) {
-				if (serializer.isEnabled()) {
+				if (serializer.getEnabled()) {
 					return bimServer.getPluginManager().isEnabled(serializer.getClassName());
 				}
 			}

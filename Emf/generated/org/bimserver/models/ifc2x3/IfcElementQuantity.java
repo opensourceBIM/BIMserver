@@ -99,33 +99,10 @@ public interface IfcElementQuantity extends IfcPropertySetDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Quantities</em>' reference list.
-	 * @see #isSetQuantities()
-	 * @see #unsetQuantities()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcElementQuantity_Quantities()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcPhysicalQuantity> getQuantities();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcElementQuantity#getQuantities <em>Quantities</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetQuantities()
-	 * @see #getQuantities()
-	 * @generated
-	 */
-	void unsetQuantities();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcElementQuantity#getQuantities <em>Quantities</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Quantities</em>' reference list is set.
-	 * @see #unsetQuantities()
-	 * @see #getQuantities()
-	 * @generated
-	 */
-	boolean isSetQuantities();
 
 } // IfcElementQuantity

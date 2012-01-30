@@ -111,24 +111,6 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetStyles() {
-		eUnset(Ifc2x3Package.Literals.IFC_STYLED_ITEM__STYLES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStyles() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__STYLES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getName() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__NAME, true);
 	}

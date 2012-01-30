@@ -73,22 +73,4 @@ public class IfcTwoDirectionRepeatFactorImpl extends IfcOneDirectionRepeatFactor
 		eSet(Ifc2x3Package.Literals.IFC_TWO_DIRECTION_REPEAT_FACTOR__SECOND_REPEAT_FACTOR, newSecondRepeatFactor);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSecondRepeatFactor() {
-		eUnset(Ifc2x3Package.Literals.IFC_TWO_DIRECTION_REPEAT_FACTOR__SECOND_REPEAT_FACTOR);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSecondRepeatFactor() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TWO_DIRECTION_REPEAT_FACTOR__SECOND_REPEAT_FACTOR);
-	}
-
 } //IfcTwoDirectionRepeatFactorImpl

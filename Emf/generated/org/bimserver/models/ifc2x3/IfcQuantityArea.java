@@ -43,11 +43,9 @@ public interface IfcQuantityArea extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Area Value</em>' attribute.
-	 * @see #isSetAreaValue()
-	 * @see #unsetAreaValue()
 	 * @see #setAreaValue(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityArea_AreaValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getAreaValue();
@@ -57,35 +55,10 @@ public interface IfcQuantityArea extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Area Value</em>' attribute.
-	 * @see #isSetAreaValue()
-	 * @see #unsetAreaValue()
 	 * @see #getAreaValue()
 	 * @generated
 	 */
 	void setAreaValue(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityArea#getAreaValue <em>Area Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetAreaValue()
-	 * @see #getAreaValue()
-	 * @see #setAreaValue(double)
-	 * @generated
-	 */
-	void unsetAreaValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityArea#getAreaValue <em>Area Value</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Area Value</em>' attribute is set.
-	 * @see #unsetAreaValue()
-	 * @see #getAreaValue()
-	 * @see #setAreaValue(double)
-	 * @generated
-	 */
-	boolean isSetAreaValue();
 
 	/**
 	 * Returns the value of the '<em><b>Area Value As String</b></em>' attribute.
@@ -96,11 +69,9 @@ public interface IfcQuantityArea extends IfcPhysicalSimpleQuantity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Area Value As String</em>' attribute.
-	 * @see #isSetAreaValueAsString()
-	 * @see #unsetAreaValueAsString()
 	 * @see #setAreaValueAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcQuantityArea_AreaValueAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getAreaValueAsString();
@@ -110,34 +81,9 @@ public interface IfcQuantityArea extends IfcPhysicalSimpleQuantity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Area Value As String</em>' attribute.
-	 * @see #isSetAreaValueAsString()
-	 * @see #unsetAreaValueAsString()
 	 * @see #getAreaValueAsString()
 	 * @generated
 	 */
 	void setAreaValueAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityArea#getAreaValueAsString <em>Area Value As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetAreaValueAsString()
-	 * @see #getAreaValueAsString()
-	 * @see #setAreaValueAsString(String)
-	 * @generated
-	 */
-	void unsetAreaValueAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcQuantityArea#getAreaValueAsString <em>Area Value As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Area Value As String</em>' attribute is set.
-	 * @see #unsetAreaValueAsString()
-	 * @see #getAreaValueAsString()
-	 * @see #setAreaValueAsString(String)
-	 * @generated
-	 */
-	boolean isSetAreaValueAsString();
 
 } // IfcQuantityArea

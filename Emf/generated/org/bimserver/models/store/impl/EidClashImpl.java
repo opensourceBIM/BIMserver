@@ -59,7 +59,7 @@ public class EidClashImpl extends ClashImpl implements EidClash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getEid1() {
+	public Long getEid1() {
 		return (Long) eGet(StorePackage.Literals.EID_CLASH__EID1, true);
 	}
 
@@ -68,7 +68,7 @@ public class EidClashImpl extends ClashImpl implements EidClash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEid1(long newEid1) {
+	public void setEid1(Long newEid1) {
 		eSet(StorePackage.Literals.EID_CLASH__EID1, newEid1);
 	}
 
@@ -77,7 +77,7 @@ public class EidClashImpl extends ClashImpl implements EidClash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getEid2() {
+	public Long getEid2() {
 		return (Long) eGet(StorePackage.Literals.EID_CLASH__EID2, true);
 	}
 
@@ -86,7 +86,7 @@ public class EidClashImpl extends ClashImpl implements EidClash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEid2(long newEid2) {
+	public void setEid2(Long newEid2) {
 		eSet(StorePackage.Literals.EID_CLASH__EID2, newEid2);
 	}
 

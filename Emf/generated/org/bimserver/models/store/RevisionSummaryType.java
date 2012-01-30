@@ -72,12 +72,12 @@ public interface RevisionSummaryType extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Count</em>' attribute.
-	 * @see #setCount(int)
+	 * @see #setCount(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getRevisionSummaryType_Count()
 	 * @model
 	 * @generated
 	 */
-	int getCount();
+	Integer getCount();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.RevisionSummaryType#getCount <em>Count</em>}' attribute.
@@ -87,6 +87,6 @@ public interface RevisionSummaryType extends IdEObject {
 	 * @see #getCount()
 	 * @generated
 	 */
-	void setCount(int value);
+	void setCount(Integer value);
 
 } // RevisionSummaryType

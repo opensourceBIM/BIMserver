@@ -67,22 +67,4 @@ public class IfcConnectedFaceSetImpl extends IfcTopologicalRepresentationItemImp
 		return (EList<IfcFace>) eGet(Ifc2x3Package.Literals.IFC_CONNECTED_FACE_SET__CFS_FACES, true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetCfsFaces() {
-		eUnset(Ifc2x3Package.Literals.IFC_CONNECTED_FACE_SET__CFS_FACES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCfsFaces() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTED_FACE_SET__CFS_FACES);
-	}
-
 } //IfcConnectedFaceSetImpl

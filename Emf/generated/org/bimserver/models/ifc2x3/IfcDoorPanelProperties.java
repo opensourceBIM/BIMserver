@@ -156,11 +156,9 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Panel Operation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDoorPanelOperationEnum
-	 * @see #isSetPanelOperation()
-	 * @see #unsetPanelOperation()
 	 * @see #setPanelOperation(IfcDoorPanelOperationEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorPanelProperties_PanelOperation()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDoorPanelOperationEnum getPanelOperation();
@@ -171,35 +169,10 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Panel Operation</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDoorPanelOperationEnum
-	 * @see #isSetPanelOperation()
-	 * @see #unsetPanelOperation()
 	 * @see #getPanelOperation()
 	 * @generated
 	 */
 	void setPanelOperation(IfcDoorPanelOperationEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelOperation <em>Panel Operation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPanelOperation()
-	 * @see #getPanelOperation()
-	 * @see #setPanelOperation(IfcDoorPanelOperationEnum)
-	 * @generated
-	 */
-	void unsetPanelOperation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelOperation <em>Panel Operation</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Panel Operation</em>' attribute is set.
-	 * @see #unsetPanelOperation()
-	 * @see #getPanelOperation()
-	 * @see #setPanelOperation(IfcDoorPanelOperationEnum)
-	 * @generated
-	 */
-	boolean isSetPanelOperation();
 
 	/**
 	 * Returns the value of the '<em><b>Panel Width</b></em>' attribute.
@@ -318,11 +291,9 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Panel Position</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDoorPanelPositionEnum
-	 * @see #isSetPanelPosition()
-	 * @see #unsetPanelPosition()
 	 * @see #setPanelPosition(IfcDoorPanelPositionEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcDoorPanelProperties_PanelPosition()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDoorPanelPositionEnum getPanelPosition();
@@ -333,35 +304,10 @@ public interface IfcDoorPanelProperties extends IfcPropertySetDefinition {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Panel Position</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcDoorPanelPositionEnum
-	 * @see #isSetPanelPosition()
-	 * @see #unsetPanelPosition()
 	 * @see #getPanelPosition()
 	 * @generated
 	 */
 	void setPanelPosition(IfcDoorPanelPositionEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelPosition <em>Panel Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPanelPosition()
-	 * @see #getPanelPosition()
-	 * @see #setPanelPosition(IfcDoorPanelPositionEnum)
-	 * @generated
-	 */
-	void unsetPanelPosition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcDoorPanelProperties#getPanelPosition <em>Panel Position</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Panel Position</em>' attribute is set.
-	 * @see #unsetPanelPosition()
-	 * @see #getPanelPosition()
-	 * @see #setPanelPosition(IfcDoorPanelPositionEnum)
-	 * @generated
-	 */
-	boolean isSetPanelPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Shape Aspect Style</b></em>' reference.

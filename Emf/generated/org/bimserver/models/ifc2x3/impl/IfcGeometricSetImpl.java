@@ -73,24 +73,6 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetElements() {
-		eUnset(Ifc2x3Package.Literals.IFC_GEOMETRIC_SET__ELEMENTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetElements() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_GEOMETRIC_SET__ELEMENTS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getDim() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_GEOMETRIC_SET__DIM, true);
 	}

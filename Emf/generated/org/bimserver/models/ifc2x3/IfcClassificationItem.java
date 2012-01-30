@@ -51,11 +51,9 @@ public interface IfcClassificationItem extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Notation</em>' reference.
-	 * @see #isSetNotation()
-	 * @see #unsetNotation()
 	 * @see #setNotation(IfcClassificationNotationFacet)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassificationItem_Notation()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcClassificationNotationFacet getNotation();
@@ -65,35 +63,10 @@ public interface IfcClassificationItem extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Notation</em>' reference.
-	 * @see #isSetNotation()
-	 * @see #unsetNotation()
 	 * @see #getNotation()
 	 * @generated
 	 */
 	void setNotation(IfcClassificationNotationFacet value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItem#getNotation <em>Notation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetNotation()
-	 * @see #getNotation()
-	 * @see #setNotation(IfcClassificationNotationFacet)
-	 * @generated
-	 */
-	void unsetNotation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItem#getNotation <em>Notation</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Notation</em>' reference is set.
-	 * @see #unsetNotation()
-	 * @see #getNotation()
-	 * @see #setNotation(IfcClassificationNotationFacet)
-	 * @generated
-	 */
-	boolean isSetNotation();
 
 	/**
 	 * Returns the value of the '<em><b>Item Of</b></em>' reference.
@@ -159,11 +132,9 @@ public interface IfcClassificationItem extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Title</em>' attribute.
-	 * @see #isSetTitle()
-	 * @see #unsetTitle()
 	 * @see #setTitle(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassificationItem_Title()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getTitle();
@@ -173,35 +144,10 @@ public interface IfcClassificationItem extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Title</em>' attribute.
-	 * @see #isSetTitle()
-	 * @see #unsetTitle()
 	 * @see #getTitle()
 	 * @generated
 	 */
 	void setTitle(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItem#getTitle <em>Title</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTitle()
-	 * @see #getTitle()
-	 * @see #setTitle(String)
-	 * @generated
-	 */
-	void unsetTitle();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationItem#getTitle <em>Title</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Title</em>' attribute is set.
-	 * @see #unsetTitle()
-	 * @see #getTitle()
-	 * @see #setTitle(String)
-	 * @generated
-	 */
-	boolean isSetTitle();
 
 	/**
 	 * Returns the value of the '<em><b>Is Classified Item In</b></em>' reference list.

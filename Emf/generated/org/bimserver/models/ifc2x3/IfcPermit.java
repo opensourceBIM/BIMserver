@@ -42,11 +42,9 @@ public interface IfcPermit extends IfcControl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Permit ID</em>' attribute.
-	 * @see #isSetPermitID()
-	 * @see #unsetPermitID()
 	 * @see #setPermitID(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPermit_PermitID()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getPermitID();
@@ -56,34 +54,9 @@ public interface IfcPermit extends IfcControl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Permit ID</em>' attribute.
-	 * @see #isSetPermitID()
-	 * @see #unsetPermitID()
 	 * @see #getPermitID()
 	 * @generated
 	 */
 	void setPermitID(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPermit#getPermitID <em>Permit ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPermitID()
-	 * @see #getPermitID()
-	 * @see #setPermitID(String)
-	 * @generated
-	 */
-	void unsetPermitID();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPermit#getPermitID <em>Permit ID</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Permit ID</em>' attribute is set.
-	 * @see #unsetPermitID()
-	 * @see #getPermitID()
-	 * @see #setPermitID(String)
-	 * @generated
-	 */
-	boolean isSetPermitID();
 
 } // IfcPermit

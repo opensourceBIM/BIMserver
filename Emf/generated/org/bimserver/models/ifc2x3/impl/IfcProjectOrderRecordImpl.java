@@ -74,24 +74,6 @@ public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProj
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRecords() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROJECT_ORDER_RECORD__RECORDS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRecords() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER_RECORD__RECORDS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcProjectOrderRecordTypeEnum getPredefinedType() {
 		return (IfcProjectOrderRecordTypeEnum) eGet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE, true);
 	}
@@ -103,24 +85,6 @@ public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProj
 	 */
 	public void setPredefinedType(IfcProjectOrderRecordTypeEnum newPredefinedType) {
 		eSet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE, newPredefinedType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPredefinedType() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPredefinedType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE);
 	}
 
 } //IfcProjectOrderRecordImpl

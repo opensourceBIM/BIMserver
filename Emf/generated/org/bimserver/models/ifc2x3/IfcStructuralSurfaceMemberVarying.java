@@ -49,34 +49,11 @@ public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceM
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subsequent Thickness</em>' attribute list.
-	 * @see #isSetSubsequentThickness()
-	 * @see #unsetSubsequentThickness()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSurfaceMemberVarying_SubsequentThickness()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<Double> getSubsequentThickness();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying#getSubsequentThickness <em>Subsequent Thickness</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSubsequentThickness()
-	 * @see #getSubsequentThickness()
-	 * @generated
-	 */
-	void unsetSubsequentThickness();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying#getSubsequentThickness <em>Subsequent Thickness</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Subsequent Thickness</em>' attribute list is set.
-	 * @see #unsetSubsequentThickness()
-	 * @see #getSubsequentThickness()
-	 * @generated
-	 */
-	boolean isSetSubsequentThickness();
 
 	/**
 	 * Returns the value of the '<em><b>Subsequent Thickness As String</b></em>' attribute list.
@@ -88,34 +65,11 @@ public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceM
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subsequent Thickness As String</em>' attribute list.
-	 * @see #isSetSubsequentThicknessAsString()
-	 * @see #unsetSubsequentThicknessAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSurfaceMemberVarying_SubsequentThicknessAsString()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getSubsequentThicknessAsString();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying#getSubsequentThicknessAsString <em>Subsequent Thickness As String</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSubsequentThicknessAsString()
-	 * @see #getSubsequentThicknessAsString()
-	 * @generated
-	 */
-	void unsetSubsequentThicknessAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying#getSubsequentThicknessAsString <em>Subsequent Thickness As String</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Subsequent Thickness As String</em>' attribute list is set.
-	 * @see #unsetSubsequentThicknessAsString()
-	 * @see #getSubsequentThicknessAsString()
-	 * @generated
-	 */
-	boolean isSetSubsequentThicknessAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Varying Thickness Location</b></em>' reference.
@@ -126,11 +80,9 @@ public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceM
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Varying Thickness Location</em>' reference.
-	 * @see #isSetVaryingThicknessLocation()
-	 * @see #unsetVaryingThicknessLocation()
 	 * @see #setVaryingThicknessLocation(IfcShapeAspect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcStructuralSurfaceMemberVarying_VaryingThicknessLocation()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcShapeAspect getVaryingThicknessLocation();
@@ -140,35 +92,10 @@ public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceM
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Varying Thickness Location</em>' reference.
-	 * @see #isSetVaryingThicknessLocation()
-	 * @see #unsetVaryingThicknessLocation()
 	 * @see #getVaryingThicknessLocation()
 	 * @generated
 	 */
 	void setVaryingThicknessLocation(IfcShapeAspect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying#getVaryingThicknessLocation <em>Varying Thickness Location</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetVaryingThicknessLocation()
-	 * @see #getVaryingThicknessLocation()
-	 * @see #setVaryingThicknessLocation(IfcShapeAspect)
-	 * @generated
-	 */
-	void unsetVaryingThicknessLocation();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying#getVaryingThicknessLocation <em>Varying Thickness Location</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Varying Thickness Location</em>' reference is set.
-	 * @see #unsetVaryingThicknessLocation()
-	 * @see #getVaryingThicknessLocation()
-	 * @see #setVaryingThicknessLocation(IfcShapeAspect)
-	 * @generated
-	 */
-	boolean isSetVaryingThicknessLocation();
 
 	/**
 	 * Returns the value of the '<em><b>Varying Thickness</b></em>' attribute.

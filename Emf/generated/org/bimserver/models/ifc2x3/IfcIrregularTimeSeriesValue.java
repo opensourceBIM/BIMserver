@@ -48,11 +48,9 @@ public interface IfcIrregularTimeSeriesValue extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Stamp</em>' reference.
-	 * @see #isSetTimeStamp()
-	 * @see #unsetTimeStamp()
 	 * @see #setTimeStamp(IfcDateTimeSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcIrregularTimeSeriesValue_TimeStamp()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcDateTimeSelect getTimeStamp();
@@ -62,35 +60,10 @@ public interface IfcIrregularTimeSeriesValue extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Stamp</em>' reference.
-	 * @see #isSetTimeStamp()
-	 * @see #unsetTimeStamp()
 	 * @see #getTimeStamp()
 	 * @generated
 	 */
 	void setTimeStamp(IfcDateTimeSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcIrregularTimeSeriesValue#getTimeStamp <em>Time Stamp</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeStamp()
-	 * @see #getTimeStamp()
-	 * @see #setTimeStamp(IfcDateTimeSelect)
-	 * @generated
-	 */
-	void unsetTimeStamp();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcIrregularTimeSeriesValue#getTimeStamp <em>Time Stamp</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Stamp</em>' reference is set.
-	 * @see #unsetTimeStamp()
-	 * @see #getTimeStamp()
-	 * @see #setTimeStamp(IfcDateTimeSelect)
-	 * @generated
-	 */
-	boolean isSetTimeStamp();
 
 	/**
 	 * Returns the value of the '<em><b>List Values</b></em>' reference list.
@@ -102,33 +75,10 @@ public interface IfcIrregularTimeSeriesValue extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>List Values</em>' reference list.
-	 * @see #isSetListValues()
-	 * @see #unsetListValues()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcIrregularTimeSeriesValue_ListValues()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcValue> getListValues();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcIrregularTimeSeriesValue#getListValues <em>List Values</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetListValues()
-	 * @see #getListValues()
-	 * @generated
-	 */
-	void unsetListValues();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcIrregularTimeSeriesValue#getListValues <em>List Values</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>List Values</em>' reference list is set.
-	 * @see #unsetListValues()
-	 * @see #getListValues()
-	 * @generated
-	 */
-	boolean isSetListValues();
 
 } // IfcIrregularTimeSeriesValue

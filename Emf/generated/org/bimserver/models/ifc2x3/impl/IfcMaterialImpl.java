@@ -95,24 +95,6 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_MATERIAL__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_MATERIAL__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation() {
 		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc2x3Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);

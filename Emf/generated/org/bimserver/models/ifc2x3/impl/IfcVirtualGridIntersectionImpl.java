@@ -86,24 +86,6 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetIntersectingAxes() {
-		eUnset(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__INTERSECTING_AXES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIntersectingAxes() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__INTERSECTING_AXES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getOffsetDistances() {
 		return (EList<Double>) eGet(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES, true);
@@ -114,45 +96,9 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOffsetDistances() {
-		eUnset(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOffsetDistances() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetDistancesAsString() {
 		return (EList<String>) eGet(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOffsetDistancesAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOffsetDistancesAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING);
 	}
 
 } //IfcVirtualGridIntersectionImpl

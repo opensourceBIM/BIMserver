@@ -45,33 +45,10 @@ public interface IfcPolyline extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Points</em>' reference list.
-	 * @see #isSetPoints()
-	 * @see #unsetPoints()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPolyline_Points()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcCartesianPoint> getPoints();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPolyline#getPoints <em>Points</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPoints()
-	 * @see #getPoints()
-	 * @generated
-	 */
-	void unsetPoints();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPolyline#getPoints <em>Points</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Points</em>' reference list is set.
-	 * @see #unsetPoints()
-	 * @see #getPoints()
-	 * @generated
-	 */
-	boolean isSetPoints();
 
 } // IfcPolyline

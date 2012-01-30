@@ -73,22 +73,4 @@ public class IfcPlanarBoxImpl extends IfcPlanarExtentImpl implements IfcPlanarBo
 		eSet(Ifc2x3Package.Literals.IFC_PLANAR_BOX__PLACEMENT, newPlacement);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPlacement() {
-		eUnset(Ifc2x3Package.Literals.IFC_PLANAR_BOX__PLACEMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPlacement() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PLANAR_BOX__PLACEMENT);
-	}
-
 } //IfcPlanarBoxImpl

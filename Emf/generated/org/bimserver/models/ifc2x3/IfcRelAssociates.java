@@ -45,33 +45,10 @@ public interface IfcRelAssociates extends IfcRelationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Objects</em>' reference list.
-	 * @see #isSetRelatedObjects()
-	 * @see #unsetRelatedObjects()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssociates_RelatedObjects()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcRoot> getRelatedObjects();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociates#getRelatedObjects <em>Related Objects</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatedObjects()
-	 * @see #getRelatedObjects()
-	 * @generated
-	 */
-	void unsetRelatedObjects();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssociates#getRelatedObjects <em>Related Objects</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Related Objects</em>' reference list is set.
-	 * @see #unsetRelatedObjects()
-	 * @see #getRelatedObjects()
-	 * @generated
-	 */
-	boolean isSetRelatedObjects();
 
 } // IfcRelAssociates

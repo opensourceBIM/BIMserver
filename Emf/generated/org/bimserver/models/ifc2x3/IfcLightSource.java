@@ -100,11 +100,9 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Light Colour</em>' reference.
-	 * @see #isSetLightColour()
-	 * @see #unsetLightColour()
 	 * @see #setLightColour(IfcColourRgb)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcLightSource_LightColour()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcColourRgb getLightColour();
@@ -114,35 +112,10 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Light Colour</em>' reference.
-	 * @see #isSetLightColour()
-	 * @see #unsetLightColour()
 	 * @see #getLightColour()
 	 * @generated
 	 */
 	void setLightColour(IfcColourRgb value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSource#getLightColour <em>Light Colour</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLightColour()
-	 * @see #getLightColour()
-	 * @see #setLightColour(IfcColourRgb)
-	 * @generated
-	 */
-	void unsetLightColour();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcLightSource#getLightColour <em>Light Colour</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Light Colour</em>' reference is set.
-	 * @see #unsetLightColour()
-	 * @see #getLightColour()
-	 * @see #setLightColour(IfcColourRgb)
-	 * @generated
-	 */
-	boolean isSetLightColour();
 
 	/**
 	 * Returns the value of the '<em><b>Ambient Intensity</b></em>' attribute.

@@ -49,11 +49,9 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinate Space Dimension</em>' attribute.
-	 * @see #isSetCoordinateSpaceDimension()
-	 * @see #unsetCoordinateSpaceDimension()
 	 * @see #setCoordinateSpaceDimension(int)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_CoordinateSpaceDimension()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	int getCoordinateSpaceDimension();
@@ -63,35 +61,10 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Coordinate Space Dimension</em>' attribute.
-	 * @see #isSetCoordinateSpaceDimension()
-	 * @see #unsetCoordinateSpaceDimension()
 	 * @see #getCoordinateSpaceDimension()
 	 * @generated
 	 */
 	void setCoordinateSpaceDimension(int value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCoordinateSpaceDimension()
-	 * @see #getCoordinateSpaceDimension()
-	 * @see #setCoordinateSpaceDimension(int)
-	 * @generated
-	 */
-	void unsetCoordinateSpaceDimension();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Coordinate Space Dimension</em>' attribute is set.
-	 * @see #unsetCoordinateSpaceDimension()
-	 * @see #getCoordinateSpaceDimension()
-	 * @see #setCoordinateSpaceDimension(int)
-	 * @generated
-	 */
-	boolean isSetCoordinateSpaceDimension();
 
 	/**
 	 * Returns the value of the '<em><b>Precision</b></em>' attribute.
@@ -208,11 +181,9 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>World Coordinate System</em>' reference.
-	 * @see #isSetWorldCoordinateSystem()
-	 * @see #unsetWorldCoordinateSystem()
 	 * @see #setWorldCoordinateSystem(IfcAxis2Placement)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcGeometricRepresentationContext_WorldCoordinateSystem()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcAxis2Placement getWorldCoordinateSystem();
@@ -222,35 +193,10 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>World Coordinate System</em>' reference.
-	 * @see #isSetWorldCoordinateSystem()
-	 * @see #unsetWorldCoordinateSystem()
 	 * @see #getWorldCoordinateSystem()
 	 * @generated
 	 */
 	void setWorldCoordinateSystem(IfcAxis2Placement value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getWorldCoordinateSystem <em>World Coordinate System</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetWorldCoordinateSystem()
-	 * @see #getWorldCoordinateSystem()
-	 * @see #setWorldCoordinateSystem(IfcAxis2Placement)
-	 * @generated
-	 */
-	void unsetWorldCoordinateSystem();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext#getWorldCoordinateSystem <em>World Coordinate System</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>World Coordinate System</em>' reference is set.
-	 * @see #unsetWorldCoordinateSystem()
-	 * @see #getWorldCoordinateSystem()
-	 * @see #setWorldCoordinateSystem(IfcAxis2Placement)
-	 * @generated
-	 */
-	boolean isSetWorldCoordinateSystem();
 
 	/**
 	 * Returns the value of the '<em><b>True North</b></em>' reference.

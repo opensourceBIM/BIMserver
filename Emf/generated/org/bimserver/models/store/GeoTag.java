@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.GeoTag#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.GeoTag#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.GeoTag#getProjects <em>Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.GeoTag#getX <em>X</em>}</li>
  *   <li>{@link org.bimserver.models.store.GeoTag#getY <em>Y</em>}</li>
@@ -53,22 +53,22 @@ public interface GeoTag extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(boolean)
+	 * @see #setEnabled(Boolean)
 	 * @see org.bimserver.models.store.StorePackage#getGeoTag_Enabled()
 	 * @model
 	 * @generated
 	 */
-	boolean isEnabled();
+	Boolean getEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.GeoTag#isEnabled <em>Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.GeoTag#getEnabled <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #isEnabled()
+	 * @see #getEnabled()
 	 * @generated
 	 */
-	void setEnabled(boolean value);
+	void setEnabled(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Projects</b></em>' reference list.
@@ -97,12 +97,12 @@ public interface GeoTag extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>X</em>' attribute.
-	 * @see #setX(float)
+	 * @see #setX(Double)
 	 * @see org.bimserver.models.store.StorePackage#getGeoTag_X()
 	 * @model
 	 * @generated
 	 */
-	float getX();
+	Double getX();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.GeoTag#getX <em>X</em>}' attribute.
@@ -112,7 +112,7 @@ public interface GeoTag extends IdEObject {
 	 * @see #getX()
 	 * @generated
 	 */
-	void setX(float value);
+	void setX(Double value);
 
 	/**
 	 * Returns the value of the '<em><b>Y</b></em>' attribute.
@@ -123,12 +123,12 @@ public interface GeoTag extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Y</em>' attribute.
-	 * @see #setY(float)
+	 * @see #setY(Double)
 	 * @see org.bimserver.models.store.StorePackage#getGeoTag_Y()
 	 * @model
 	 * @generated
 	 */
-	float getY();
+	Double getY();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.GeoTag#getY <em>Y</em>}' attribute.
@@ -138,7 +138,7 @@ public interface GeoTag extends IdEObject {
 	 * @see #getY()
 	 * @generated
 	 */
-	void setY(float value);
+	void setY(Double value);
 
 	/**
 	 * Returns the value of the '<em><b>Z</b></em>' attribute.
@@ -149,12 +149,12 @@ public interface GeoTag extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Z</em>' attribute.
-	 * @see #setZ(float)
+	 * @see #setZ(Double)
 	 * @see org.bimserver.models.store.StorePackage#getGeoTag_Z()
 	 * @model
 	 * @generated
 	 */
-	float getZ();
+	Double getZ();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.GeoTag#getZ <em>Z</em>}' attribute.
@@ -164,7 +164,7 @@ public interface GeoTag extends IdEObject {
 	 * @see #getZ()
 	 * @generated
 	 */
-	void setZ(float value);
+	void setZ(Double value);
 
 	/**
 	 * Returns the value of the '<em><b>Epsg</b></em>' attribute.
@@ -175,12 +175,12 @@ public interface GeoTag extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Epsg</em>' attribute.
-	 * @see #setEpsg(int)
+	 * @see #setEpsg(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getGeoTag_Epsg()
 	 * @model
 	 * @generated
 	 */
-	int getEpsg();
+	Integer getEpsg();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.GeoTag#getEpsg <em>Epsg</em>}' attribute.
@@ -190,7 +190,7 @@ public interface GeoTag extends IdEObject {
 	 * @see #getEpsg()
 	 * @generated
 	 */
-	void setEpsg(int value);
+	void setEpsg(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Direction Angle</b></em>' attribute.
@@ -201,12 +201,12 @@ public interface GeoTag extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Direction Angle</em>' attribute.
-	 * @see #setDirectionAngle(float)
+	 * @see #setDirectionAngle(Double)
 	 * @see org.bimserver.models.store.StorePackage#getGeoTag_DirectionAngle()
 	 * @model
 	 * @generated
 	 */
-	float getDirectionAngle();
+	Double getDirectionAngle();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.GeoTag#getDirectionAngle <em>Direction Angle</em>}' attribute.
@@ -216,6 +216,6 @@ public interface GeoTag extends IdEObject {
 	 * @see #getDirectionAngle()
 	 * @generated
 	 */
-	void setDirectionAngle(float value);
+	void setDirectionAngle(Double value);
 
 } // GeoTag

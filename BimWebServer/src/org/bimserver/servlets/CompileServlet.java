@@ -59,7 +59,7 @@ public class CompileServlet extends HttpServlet {
 			if (action.equals("compile")) {
 				try {
 					SCompileResult compileResult = loginManager.getService().compile(code);
-					if (compileResult.isCompileOke()) {
+					if (compileResult.getCompileOke()) {
 						root.put("output", "Compilation successfull");
 					} else {
 						for (String warning : compileResult.getWarnings()) {
@@ -76,7 +76,7 @@ public class CompileServlet extends HttpServlet {
 				long roid = Long.parseLong(request.getParameter("roid"));
 				try {
 					SRunResult compileAndRun = loginManager.getService().compileAndRun(roid, code);
-					if (compileAndRun.isRunOke()) {
+					if (compileAndRun.getRunOke()) {
 						root.put("output", compileAndRun.getOutput());
 					} else {
 						for (String warning : compileAndRun.getWarnings()) {

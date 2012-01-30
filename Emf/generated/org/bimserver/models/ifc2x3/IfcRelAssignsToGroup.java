@@ -43,12 +43,10 @@ public interface IfcRelAssignsToGroup extends IfcRelAssigns {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Group</em>' reference.
-	 * @see #isSetRelatingGroup()
-	 * @see #unsetRelatingGroup()
 	 * @see #setRelatingGroup(IfcGroup)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssignsToGroup_RelatingGroup()
 	 * @see org.bimserver.models.ifc2x3.IfcGroup#getIsGroupedBy
-	 * @model opposite="IsGroupedBy" unsettable="true"
+	 * @model opposite="IsGroupedBy"
 	 * @generated
 	 */
 	IfcGroup getRelatingGroup();
@@ -58,34 +56,9 @@ public interface IfcRelAssignsToGroup extends IfcRelAssigns {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Group</em>' reference.
-	 * @see #isSetRelatingGroup()
-	 * @see #unsetRelatingGroup()
 	 * @see #getRelatingGroup()
 	 * @generated
 	 */
 	void setRelatingGroup(IfcGroup value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToGroup#getRelatingGroup <em>Relating Group</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingGroup()
-	 * @see #getRelatingGroup()
-	 * @see #setRelatingGroup(IfcGroup)
-	 * @generated
-	 */
-	void unsetRelatingGroup();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToGroup#getRelatingGroup <em>Relating Group</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Group</em>' reference is set.
-	 * @see #unsetRelatingGroup()
-	 * @see #getRelatingGroup()
-	 * @see #setRelatingGroup(IfcGroup)
-	 * @generated
-	 */
-	boolean isSetRelatingGroup();
 
 } // IfcRelAssignsToGroup

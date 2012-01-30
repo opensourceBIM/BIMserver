@@ -55,12 +55,12 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 		Project project = revision.getProject();
 		if (user.getHasRightsOn().contains(project)) {
 			for (Checkout checkout : revision.getCheckouts()) {
-				if (checkout.getRevision() == revision && checkout.getUser() == user && checkout.isActive()) {
+				if (checkout.getRevision() == revision && checkout.getUser() == user && checkout.getActive()) {
 					throw new UserException("This revision has already been checked out by you on " + dateFormat.format(checkout.getDate()));
 				}
 			}
 			for (Checkout checkout : project.getCheckouts()) {
-				if (checkout.getUser() == user && checkout.isActive()) {
+				if (checkout.getUser() == user && checkout.getActive()) {
 					checkout.setActive(false);
 					Checkout newCheckout = StoreFactory.eINSTANCE.createCheckout();
 					newCheckout.setActive(true);

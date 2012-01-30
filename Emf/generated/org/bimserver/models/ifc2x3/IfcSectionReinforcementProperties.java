@@ -55,11 +55,9 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Start Position</em>' attribute.
-	 * @see #isSetLongitudinalStartPosition()
-	 * @see #unsetLongitudinalStartPosition()
 	 * @see #setLongitudinalStartPosition(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_LongitudinalStartPosition()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getLongitudinalStartPosition();
@@ -69,35 +67,10 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Start Position</em>' attribute.
-	 * @see #isSetLongitudinalStartPosition()
-	 * @see #unsetLongitudinalStartPosition()
 	 * @see #getLongitudinalStartPosition()
 	 * @generated
 	 */
 	void setLongitudinalStartPosition(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalStartPosition <em>Longitudinal Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalStartPosition()
-	 * @see #getLongitudinalStartPosition()
-	 * @see #setLongitudinalStartPosition(double)
-	 * @generated
-	 */
-	void unsetLongitudinalStartPosition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalStartPosition <em>Longitudinal Start Position</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Start Position</em>' attribute is set.
-	 * @see #unsetLongitudinalStartPosition()
-	 * @see #getLongitudinalStartPosition()
-	 * @see #setLongitudinalStartPosition(double)
-	 * @generated
-	 */
-	boolean isSetLongitudinalStartPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Start Position As String</b></em>' attribute.
@@ -108,11 +81,9 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal Start Position As String</em>' attribute.
-	 * @see #isSetLongitudinalStartPositionAsString()
-	 * @see #unsetLongitudinalStartPositionAsString()
 	 * @see #setLongitudinalStartPositionAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_LongitudinalStartPositionAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getLongitudinalStartPositionAsString();
@@ -122,35 +93,10 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal Start Position As String</em>' attribute.
-	 * @see #isSetLongitudinalStartPositionAsString()
-	 * @see #unsetLongitudinalStartPositionAsString()
 	 * @see #getLongitudinalStartPositionAsString()
 	 * @generated
 	 */
 	void setLongitudinalStartPositionAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalStartPositionAsString <em>Longitudinal Start Position As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalStartPositionAsString()
-	 * @see #getLongitudinalStartPositionAsString()
-	 * @see #setLongitudinalStartPositionAsString(String)
-	 * @generated
-	 */
-	void unsetLongitudinalStartPositionAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalStartPositionAsString <em>Longitudinal Start Position As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal Start Position As String</em>' attribute is set.
-	 * @see #unsetLongitudinalStartPositionAsString()
-	 * @see #getLongitudinalStartPositionAsString()
-	 * @see #setLongitudinalStartPositionAsString(String)
-	 * @generated
-	 */
-	boolean isSetLongitudinalStartPositionAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal End Position</b></em>' attribute.
@@ -161,11 +107,9 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal End Position</em>' attribute.
-	 * @see #isSetLongitudinalEndPosition()
-	 * @see #unsetLongitudinalEndPosition()
 	 * @see #setLongitudinalEndPosition(double)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_LongitudinalEndPosition()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	double getLongitudinalEndPosition();
@@ -175,35 +119,10 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal End Position</em>' attribute.
-	 * @see #isSetLongitudinalEndPosition()
-	 * @see #unsetLongitudinalEndPosition()
 	 * @see #getLongitudinalEndPosition()
 	 * @generated
 	 */
 	void setLongitudinalEndPosition(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalEndPosition <em>Longitudinal End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalEndPosition()
-	 * @see #getLongitudinalEndPosition()
-	 * @see #setLongitudinalEndPosition(double)
-	 * @generated
-	 */
-	void unsetLongitudinalEndPosition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalEndPosition <em>Longitudinal End Position</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal End Position</em>' attribute is set.
-	 * @see #unsetLongitudinalEndPosition()
-	 * @see #getLongitudinalEndPosition()
-	 * @see #setLongitudinalEndPosition(double)
-	 * @generated
-	 */
-	boolean isSetLongitudinalEndPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Longitudinal End Position As String</b></em>' attribute.
@@ -214,11 +133,9 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitudinal End Position As String</em>' attribute.
-	 * @see #isSetLongitudinalEndPositionAsString()
-	 * @see #unsetLongitudinalEndPositionAsString()
 	 * @see #setLongitudinalEndPositionAsString(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_LongitudinalEndPositionAsString()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getLongitudinalEndPositionAsString();
@@ -228,35 +145,10 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Longitudinal End Position As String</em>' attribute.
-	 * @see #isSetLongitudinalEndPositionAsString()
-	 * @see #unsetLongitudinalEndPositionAsString()
 	 * @see #getLongitudinalEndPositionAsString()
 	 * @generated
 	 */
 	void setLongitudinalEndPositionAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalEndPositionAsString <em>Longitudinal End Position As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetLongitudinalEndPositionAsString()
-	 * @see #getLongitudinalEndPositionAsString()
-	 * @see #setLongitudinalEndPositionAsString(String)
-	 * @generated
-	 */
-	void unsetLongitudinalEndPositionAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getLongitudinalEndPositionAsString <em>Longitudinal End Position As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Longitudinal End Position As String</em>' attribute is set.
-	 * @see #unsetLongitudinalEndPositionAsString()
-	 * @see #getLongitudinalEndPositionAsString()
-	 * @see #setLongitudinalEndPositionAsString(String)
-	 * @generated
-	 */
-	boolean isSetLongitudinalEndPositionAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Transverse Position</b></em>' attribute.
@@ -375,11 +267,9 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reinforcement Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarRoleEnum
-	 * @see #isSetReinforcementRole()
-	 * @see #unsetReinforcementRole()
 	 * @see #setReinforcementRole(IfcReinforcingBarRoleEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_ReinforcementRole()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcReinforcingBarRoleEnum getReinforcementRole();
@@ -390,35 +280,10 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reinforcement Role</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBarRoleEnum
-	 * @see #isSetReinforcementRole()
-	 * @see #unsetReinforcementRole()
 	 * @see #getReinforcementRole()
 	 * @generated
 	 */
 	void setReinforcementRole(IfcReinforcingBarRoleEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getReinforcementRole <em>Reinforcement Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetReinforcementRole()
-	 * @see #getReinforcementRole()
-	 * @see #setReinforcementRole(IfcReinforcingBarRoleEnum)
-	 * @generated
-	 */
-	void unsetReinforcementRole();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getReinforcementRole <em>Reinforcement Role</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Reinforcement Role</em>' attribute is set.
-	 * @see #unsetReinforcementRole()
-	 * @see #getReinforcementRole()
-	 * @see #setReinforcementRole(IfcReinforcingBarRoleEnum)
-	 * @generated
-	 */
-	boolean isSetReinforcementRole();
 
 	/**
 	 * Returns the value of the '<em><b>Section Definition</b></em>' reference.
@@ -429,11 +294,9 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Section Definition</em>' reference.
-	 * @see #isSetSectionDefinition()
-	 * @see #unsetSectionDefinition()
 	 * @see #setSectionDefinition(IfcSectionProperties)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_SectionDefinition()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcSectionProperties getSectionDefinition();
@@ -443,35 +306,10 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Section Definition</em>' reference.
-	 * @see #isSetSectionDefinition()
-	 * @see #unsetSectionDefinition()
 	 * @see #getSectionDefinition()
 	 * @generated
 	 */
 	void setSectionDefinition(IfcSectionProperties value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getSectionDefinition <em>Section Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSectionDefinition()
-	 * @see #getSectionDefinition()
-	 * @see #setSectionDefinition(IfcSectionProperties)
-	 * @generated
-	 */
-	void unsetSectionDefinition();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getSectionDefinition <em>Section Definition</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Section Definition</em>' reference is set.
-	 * @see #unsetSectionDefinition()
-	 * @see #getSectionDefinition()
-	 * @see #setSectionDefinition(IfcSectionProperties)
-	 * @generated
-	 */
-	boolean isSetSectionDefinition();
 
 	/**
 	 * Returns the value of the '<em><b>Cross Section Reinforcement Definitions</b></em>' reference list.
@@ -483,33 +321,10 @@ public interface IfcSectionReinforcementProperties extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cross Section Reinforcement Definitions</em>' reference list.
-	 * @see #isSetCrossSectionReinforcementDefinitions()
-	 * @see #unsetCrossSectionReinforcementDefinitions()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSectionReinforcementProperties_CrossSectionReinforcementDefinitions()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcReinforcementBarProperties> getCrossSectionReinforcementDefinitions();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getCrossSectionReinforcementDefinitions <em>Cross Section Reinforcement Definitions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCrossSectionReinforcementDefinitions()
-	 * @see #getCrossSectionReinforcementDefinitions()
-	 * @generated
-	 */
-	void unsetCrossSectionReinforcementDefinitions();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties#getCrossSectionReinforcementDefinitions <em>Cross Section Reinforcement Definitions</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Cross Section Reinforcement Definitions</em>' reference list is set.
-	 * @see #unsetCrossSectionReinforcementDefinitions()
-	 * @see #getCrossSectionReinforcementDefinitions()
-	 * @generated
-	 */
-	boolean isSetCrossSectionReinforcementDefinitions();
 
 } // IfcSectionReinforcementProperties

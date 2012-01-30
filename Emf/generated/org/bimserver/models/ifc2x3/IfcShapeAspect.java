@@ -53,35 +53,12 @@ public interface IfcShapeAspect extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Shape Representations</em>' reference list.
-	 * @see #isSetShapeRepresentations()
-	 * @see #unsetShapeRepresentations()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcShapeAspect_ShapeRepresentations()
 	 * @see org.bimserver.models.ifc2x3.IfcShapeModel#getOfShapeAspect
-	 * @model opposite="OfShapeAspect" unsettable="true"
+	 * @model opposite="OfShapeAspect"
 	 * @generated
 	 */
 	EList<IfcShapeModel> getShapeRepresentations();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeAspect#getShapeRepresentations <em>Shape Representations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetShapeRepresentations()
-	 * @see #getShapeRepresentations()
-	 * @generated
-	 */
-	void unsetShapeRepresentations();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeAspect#getShapeRepresentations <em>Shape Representations</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Shape Representations</em>' reference list is set.
-	 * @see #unsetShapeRepresentations()
-	 * @see #getShapeRepresentations()
-	 * @generated
-	 */
-	boolean isSetShapeRepresentations();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -198,11 +175,9 @@ public interface IfcShapeAspect extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Product Definitional</em>' attribute.
-	 * @see #isSetProductDefinitional()
-	 * @see #unsetProductDefinitional()
 	 * @see #setProductDefinitional(boolean)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcShapeAspect_ProductDefinitional()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	boolean isProductDefinitional();
@@ -212,35 +187,10 @@ public interface IfcShapeAspect extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Product Definitional</em>' attribute.
-	 * @see #isSetProductDefinitional()
-	 * @see #unsetProductDefinitional()
 	 * @see #isProductDefinitional()
 	 * @generated
 	 */
 	void setProductDefinitional(boolean value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeAspect#isProductDefinitional <em>Product Definitional</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetProductDefinitional()
-	 * @see #isProductDefinitional()
-	 * @see #setProductDefinitional(boolean)
-	 * @generated
-	 */
-	void unsetProductDefinitional();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeAspect#isProductDefinitional <em>Product Definitional</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Product Definitional</em>' attribute is set.
-	 * @see #unsetProductDefinitional()
-	 * @see #isProductDefinitional()
-	 * @see #setProductDefinitional(boolean)
-	 * @generated
-	 */
-	boolean isSetProductDefinitional();
 
 	/**
 	 * Returns the value of the '<em><b>Part Of Product Definition Shape</b></em>' reference.
@@ -252,12 +202,10 @@ public interface IfcShapeAspect extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part Of Product Definition Shape</em>' reference.
-	 * @see #isSetPartOfProductDefinitionShape()
-	 * @see #unsetPartOfProductDefinitionShape()
 	 * @see #setPartOfProductDefinitionShape(IfcProductDefinitionShape)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcShapeAspect_PartOfProductDefinitionShape()
 	 * @see org.bimserver.models.ifc2x3.IfcProductDefinitionShape#getHasShapeAspects
-	 * @model opposite="HasShapeAspects" unsettable="true"
+	 * @model opposite="HasShapeAspects"
 	 * @generated
 	 */
 	IfcProductDefinitionShape getPartOfProductDefinitionShape();
@@ -267,34 +215,9 @@ public interface IfcShapeAspect extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Part Of Product Definition Shape</em>' reference.
-	 * @see #isSetPartOfProductDefinitionShape()
-	 * @see #unsetPartOfProductDefinitionShape()
 	 * @see #getPartOfProductDefinitionShape()
 	 * @generated
 	 */
 	void setPartOfProductDefinitionShape(IfcProductDefinitionShape value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeAspect#getPartOfProductDefinitionShape <em>Part Of Product Definition Shape</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPartOfProductDefinitionShape()
-	 * @see #getPartOfProductDefinitionShape()
-	 * @see #setPartOfProductDefinitionShape(IfcProductDefinitionShape)
-	 * @generated
-	 */
-	void unsetPartOfProductDefinitionShape();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcShapeAspect#getPartOfProductDefinitionShape <em>Part Of Product Definition Shape</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Part Of Product Definition Shape</em>' reference is set.
-	 * @see #unsetPartOfProductDefinitionShape()
-	 * @see #getPartOfProductDefinitionShape()
-	 * @see #setPartOfProductDefinitionShape(IfcProductDefinitionShape)
-	 * @generated
-	 */
-	boolean isSetPartOfProductDefinitionShape();
 
 } // IfcShapeAspect

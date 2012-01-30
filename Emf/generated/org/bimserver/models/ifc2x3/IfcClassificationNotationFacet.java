@@ -45,11 +45,9 @@ public interface IfcClassificationNotationFacet extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Notation Value</em>' attribute.
-	 * @see #isSetNotationValue()
-	 * @see #unsetNotationValue()
 	 * @see #setNotationValue(String)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcClassificationNotationFacet_NotationValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getNotationValue();
@@ -59,34 +57,9 @@ public interface IfcClassificationNotationFacet extends IdEObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Notation Value</em>' attribute.
-	 * @see #isSetNotationValue()
-	 * @see #unsetNotationValue()
 	 * @see #getNotationValue()
 	 * @generated
 	 */
 	void setNotationValue(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationNotationFacet#getNotationValue <em>Notation Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetNotationValue()
-	 * @see #getNotationValue()
-	 * @see #setNotationValue(String)
-	 * @generated
-	 */
-	void unsetNotationValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcClassificationNotationFacet#getNotationValue <em>Notation Value</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Notation Value</em>' attribute is set.
-	 * @see #unsetNotationValue()
-	 * @see #getNotationValue()
-	 * @see #setNotationValue(String)
-	 * @generated
-	 */
-	boolean isSetNotationValue();
 
 } // IfcClassificationNotationFacet

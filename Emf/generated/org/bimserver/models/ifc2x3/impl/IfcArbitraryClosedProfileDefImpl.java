@@ -73,22 +73,4 @@ public class IfcArbitraryClosedProfileDefImpl extends IfcProfileDefImpl implemen
 		eSet(Ifc2x3Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE, newOuterCurve);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOuterCurve() {
-		eUnset(Ifc2x3Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOuterCurve() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE);
-	}
-
 } //IfcArbitraryClosedProfileDefImpl

@@ -43,12 +43,10 @@ public interface IfcRelAssignsToProduct extends IfcRelAssigns {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relating Product</em>' reference.
-	 * @see #isSetRelatingProduct()
-	 * @see #unsetRelatingProduct()
 	 * @see #setRelatingProduct(IfcProduct)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcRelAssignsToProduct_RelatingProduct()
 	 * @see org.bimserver.models.ifc2x3.IfcProduct#getReferencedBy
-	 * @model opposite="ReferencedBy" unsettable="true"
+	 * @model opposite="ReferencedBy"
 	 * @generated
 	 */
 	IfcProduct getRelatingProduct();
@@ -58,34 +56,9 @@ public interface IfcRelAssignsToProduct extends IfcRelAssigns {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relating Product</em>' reference.
-	 * @see #isSetRelatingProduct()
-	 * @see #unsetRelatingProduct()
 	 * @see #getRelatingProduct()
 	 * @generated
 	 */
 	void setRelatingProduct(IfcProduct value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToProduct#getRelatingProduct <em>Relating Product</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetRelatingProduct()
-	 * @see #getRelatingProduct()
-	 * @see #setRelatingProduct(IfcProduct)
-	 * @generated
-	 */
-	void unsetRelatingProduct();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcRelAssignsToProduct#getRelatingProduct <em>Relating Product</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Relating Product</em>' reference is set.
-	 * @see #unsetRelatingProduct()
-	 * @see #getRelatingProduct()
-	 * @see #setRelatingProduct(IfcProduct)
-	 * @generated
-	 */
-	boolean isSetRelatingProduct();
 
 } // IfcRelAssignsToProduct

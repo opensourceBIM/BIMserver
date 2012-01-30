@@ -46,11 +46,9 @@ public interface IfcMetric extends IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Benchmark</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcBenchmarkEnum
-	 * @see #isSetBenchmark()
-	 * @see #unsetBenchmark()
 	 * @see #setBenchmark(IfcBenchmarkEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMetric_Benchmark()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcBenchmarkEnum getBenchmark();
@@ -61,35 +59,10 @@ public interface IfcMetric extends IfcConstraint {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Benchmark</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcBenchmarkEnum
-	 * @see #isSetBenchmark()
-	 * @see #unsetBenchmark()
 	 * @see #getBenchmark()
 	 * @generated
 	 */
 	void setBenchmark(IfcBenchmarkEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMetric#getBenchmark <em>Benchmark</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetBenchmark()
-	 * @see #getBenchmark()
-	 * @see #setBenchmark(IfcBenchmarkEnum)
-	 * @generated
-	 */
-	void unsetBenchmark();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMetric#getBenchmark <em>Benchmark</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Benchmark</em>' attribute is set.
-	 * @see #unsetBenchmark()
-	 * @see #getBenchmark()
-	 * @see #setBenchmark(IfcBenchmarkEnum)
-	 * @generated
-	 */
-	boolean isSetBenchmark();
 
 	/**
 	 * Returns the value of the '<em><b>Value Source</b></em>' attribute.
@@ -153,11 +126,9 @@ public interface IfcMetric extends IfcConstraint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Value</em>' reference.
-	 * @see #isSetDataValue()
-	 * @see #unsetDataValue()
 	 * @see #setDataValue(IfcMetricValueSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcMetric_DataValue()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcMetricValueSelect getDataValue();
@@ -167,34 +138,9 @@ public interface IfcMetric extends IfcConstraint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Data Value</em>' reference.
-	 * @see #isSetDataValue()
-	 * @see #unsetDataValue()
 	 * @see #getDataValue()
 	 * @generated
 	 */
 	void setDataValue(IfcMetricValueSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcMetric#getDataValue <em>Data Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDataValue()
-	 * @see #getDataValue()
-	 * @see #setDataValue(IfcMetricValueSelect)
-	 * @generated
-	 */
-	void unsetDataValue();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcMetric#getDataValue <em>Data Value</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Data Value</em>' reference is set.
-	 * @see #unsetDataValue()
-	 * @see #getDataValue()
-	 * @see #setDataValue(IfcMetricValueSelect)
-	 * @generated
-	 */
-	boolean isSetDataValue();
 
 } // IfcMetric

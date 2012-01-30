@@ -98,24 +98,6 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetName() {
-		eUnset(Ifc2x3Package.Literals.IFC_LIBRARY_INFORMATION__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_LIBRARY_INFORMATION__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getVersion() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_LIBRARY_INFORMATION__VERSION, true);
 	}

@@ -81,24 +81,6 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetBasisCurve() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBasisCurve() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getPointParameter() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, true);
 	}
@@ -117,24 +99,6 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetPointParameter() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPointParameter() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getPointParameterAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING, true);
 	}
@@ -146,24 +110,6 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public void setPointParameterAsString(String newPointParameterAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING, newPointParameterAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPointParameterAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPointParameterAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING);
 	}
 
 	/**

@@ -81,45 +81,9 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetMode() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMode() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSimpleValue> getParameter() {
 		return (EList<IfcSimpleValue>) eGet(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetParameter() {
-		eUnset(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetParameter() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER);
 	}
 
 } //IfcTextureCoordinateGeneratorImpl

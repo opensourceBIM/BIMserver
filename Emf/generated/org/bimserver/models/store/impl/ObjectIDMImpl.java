@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -112,7 +112,7 @@ public class ObjectIDMImpl extends IdEObjectImpl implements ObjectIDM {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.OBJECT_IDM__ENABLED, true);
 	}
 
@@ -121,7 +121,7 @@ public class ObjectIDMImpl extends IdEObjectImpl implements ObjectIDM {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.OBJECT_IDM__ENABLED, newEnabled);
 	}
 

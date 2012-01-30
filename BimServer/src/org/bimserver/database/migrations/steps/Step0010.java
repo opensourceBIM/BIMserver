@@ -35,7 +35,7 @@ public class Step0010 extends Migration {
 		EClass checkinResultClass = schema.createEClass(schema.getEPackage("store"), "CheckinResult");
 		schema.createEReference(checkinResultClass, "revision", schema.getEClass("store", "Revision"), Multiplicity.SINGLE);
 		schema.createEReference(checkinResultClass, "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
-		schema.createEAttribute(checkinResultClass, "progress", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(checkinResultClass, "progress", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		
 		EDataType dataHandler = schema.createEDataType(schema.getEPackage("store"), EcoreFactory.eINSTANCE.createEDataType());
 		dataHandler.setName("DataHandler");
@@ -43,7 +43,7 @@ public class Step0010 extends Migration {
 		
 		EClass downloadResultClass = schema.createEClass(schema.getEPackage("store"), "DownloadResult");
 		schema.createEAttribute(downloadResultClass, "projectName", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(downloadResultClass, "revisionNr", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(downloadResultClass, "revisionNr", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(downloadResultClass, "file", dataHandler, Multiplicity.SINGLE);
 
 		schema.createEClass(schema.getEPackage("store"), "CheckoutResult", downloadResultClass);
@@ -68,9 +68,9 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(userSessionClass, "accessMethod", schema.getEEnum("log", "AccessMethod"), Multiplicity.SINGLE);
 		
 		EClass migrationClass = schema.createEClass(schema.getEPackage("store"), "Migration");
-		schema.createEAttribute(migrationClass, "number", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(migrationClass, "number", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(migrationClass, "description", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(migrationClass, "executed", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(migrationClass, "executed", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		
 		EClass referenceDataValue = schema.createEClass(schema.getEPackage("store"), "ReferenceDataValue", dataValue);
 		schema.createEAttribute(referenceDataValue, "typeName", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -91,15 +91,15 @@ public class Step0010 extends Migration {
 		schema.createEReference(databaseInformationCategoryClass, "items", databaseInformationItem, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		
 		EClass databaseInformationClass = schema.createEClass(schema.getEPackage("store"), "DatabaseInformation");
-		schema.createEAttribute(databaseInformationClass, "numberOfProjects", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(databaseInformationClass, "numberOfUsers", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(databaseInformationClass, "numberOfRevisions", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(databaseInformationClass, "numberOfCheckouts", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(databaseInformationClass, "databaseSizeInBytes", ecorePackage.getELong(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseInformationClass, "numberOfProjects", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseInformationClass, "numberOfUsers", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseInformationClass, "numberOfRevisions", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseInformationClass, "numberOfCheckouts", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseInformationClass, "databaseSizeInBytes", ecorePackage.getELongObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "type", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "created", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "location", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(databaseInformationClass, "schemaVersion", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(databaseInformationClass, "schemaVersion", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEReference(databaseInformationClass, "categories", databaseInformationCategoryClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		
 		EClass serializerPluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "SerializerPluginDescriptor");
@@ -114,7 +114,7 @@ public class Step0010 extends Migration {
 
 		EClass revisionSummaryTypeClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummaryType");
 		schema.createEAttribute(revisionSummaryTypeClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(revisionSummaryTypeClass, "count", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(revisionSummaryTypeClass, "count", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		
 		EClass revisionSummaryContainerClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummaryContainer");
 		schema.createEAttribute(revisionSummaryContainerClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -127,7 +127,7 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(pluginDescriptorClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginDescriptorClass, "description", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginDescriptorClass, "location", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginDescriptorClass, "enabled", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginDescriptorClass, "enabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		
 		EClass longActionClass = schema.createEClass(schema.getEPackage("store"), "LongAction");
 		schema.createEAttribute(longActionClass, "identification", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -179,7 +179,7 @@ public class Step0010 extends Migration {
 		schema.createEEnumLiteral(actionStateEnum, "FINISHED");
 		
 		EClass longActionStateClass = schema.createEClass(schema.getEPackage("store"), "LongActionState");
-		schema.createEAttribute(longActionStateClass, "progress", ecorePackage.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(longActionStateClass, "progress", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(longActionStateClass, "state", actionStateEnum, Multiplicity.SINGLE);
 		
 		EEnum accessMethodEnum = schema.getEEnum("log", "AccessMethod");

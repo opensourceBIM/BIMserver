@@ -96,45 +96,9 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetReferencedDocument() {
-		eUnset(Ifc2x3Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetReferencedDocument() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getReferencingValues() {
 		return (EList<IfcAppliedValue>) eGet(Ifc2x3Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetReferencingValues() {
-		eUnset(Ifc2x3Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetReferencingValues() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES);
 	}
 
 	/**

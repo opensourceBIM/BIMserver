@@ -94,45 +94,9 @@ public class IfcIrregularTimeSeriesValueImpl extends IdEObjectImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetTimeStamp() {
-		eUnset(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__TIME_STAMP);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTimeStamp() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__TIME_STAMP);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getListValues() {
 		return (EList<IfcValue>) eGet(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__LIST_VALUES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetListValues() {
-		eUnset(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__LIST_VALUES);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetListValues() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__LIST_VALUES);
 	}
 
 } //IfcIrregularTimeSeriesValueImpl

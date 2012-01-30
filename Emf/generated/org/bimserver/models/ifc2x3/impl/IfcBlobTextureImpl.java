@@ -79,24 +79,6 @@ public class IfcBlobTextureImpl extends IfcSurfaceTextureImpl implements IfcBlob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRasterFormat() {
-		eUnset(Ifc2x3Package.Literals.IFC_BLOB_TEXTURE__RASTER_FORMAT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRasterFormat() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BLOB_TEXTURE__RASTER_FORMAT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Tristate getRasterCode() {
 		return (Tristate) eGet(Ifc2x3Package.Literals.IFC_BLOB_TEXTURE__RASTER_CODE, true);
 	}
@@ -108,24 +90,6 @@ public class IfcBlobTextureImpl extends IfcSurfaceTextureImpl implements IfcBlob
 	 */
 	public void setRasterCode(Tristate newRasterCode) {
 		eSet(Ifc2x3Package.Literals.IFC_BLOB_TEXTURE__RASTER_CODE, newRasterCode);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRasterCode() {
-		eUnset(Ifc2x3Package.Literals.IFC_BLOB_TEXTURE__RASTER_CODE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRasterCode() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_BLOB_TEXTURE__RASTER_CODE);
 	}
 
 } //IfcBlobTextureImpl

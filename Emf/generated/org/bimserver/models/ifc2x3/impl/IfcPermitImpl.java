@@ -72,22 +72,4 @@ public class IfcPermitImpl extends IfcControlImpl implements IfcPermit {
 		eSet(Ifc2x3Package.Literals.IFC_PERMIT__PERMIT_ID, newPermitID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPermitID() {
-		eUnset(Ifc2x3Package.Literals.IFC_PERMIT__PERMIT_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPermitID() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PERMIT__PERMIT_ID);
-	}
-
 } //IfcPermitImpl

@@ -53,7 +53,7 @@ public class SMigration implements SBase
 			return getDescription();
 		}
 		if (sField.getName().equals("executed")) {
-			return isExecuted();
+			return getExecuted();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -80,14 +80,14 @@ public class SMigration implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private int number;
+	private java.lang.Integer number;
 	private java.lang.String description;
-	private boolean executed;
-	public int getNumber() {
+	private java.lang.Boolean executed;
+	public java.lang.Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(java.lang.Integer number) {
 		this.number = number;
 	}
 	public java.lang.String getDescription() {
@@ -97,11 +97,11 @@ public class SMigration implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
-	public boolean isExecuted() {
+	public java.lang.Boolean getExecuted() {
 		return executed;
 	}
 
-	public void setExecuted(boolean executed) {
+	public void setExecuted(java.lang.Boolean executed) {
 		this.executed = executed;
 	}
 	@Override

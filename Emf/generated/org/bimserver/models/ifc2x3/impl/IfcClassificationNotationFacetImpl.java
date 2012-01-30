@@ -84,22 +84,4 @@ public class IfcClassificationNotationFacetImpl extends IdEObjectImpl implements
 		eSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_NOTATION_FACET__NOTATION_VALUE, newNotationValue);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetNotationValue() {
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_NOTATION_FACET__NOTATION_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetNotationValue() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_NOTATION_FACET__NOTATION_VALUE);
-	}
-
 } //IfcClassificationNotationFacetImpl

@@ -45,33 +45,10 @@ public interface IfcEdgeLoop extends IfcLoop {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edge List</em>' reference list.
-	 * @see #isSetEdgeList()
-	 * @see #unsetEdgeList()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcEdgeLoop_EdgeList()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcOrientedEdge> getEdgeList();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeLoop#getEdgeList <em>Edge List</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetEdgeList()
-	 * @see #getEdgeList()
-	 * @generated
-	 */
-	void unsetEdgeList();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcEdgeLoop#getEdgeList <em>Edge List</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Edge List</em>' reference list is set.
-	 * @see #unsetEdgeList()
-	 * @see #getEdgeList()
-	 * @generated
-	 */
-	boolean isSetEdgeList();
 
 } // IfcEdgeLoop

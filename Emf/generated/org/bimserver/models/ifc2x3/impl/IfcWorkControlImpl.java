@@ -93,24 +93,6 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetIdentifier() {
-		eUnset(Ifc2x3Package.Literals.IFC_WORK_CONTROL__IDENTIFIER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIdentifier() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__IDENTIFIER);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcDateTimeSelect getCreationDate() {
 		return (IfcDateTimeSelect) eGet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, true);
 	}
@@ -122,24 +104,6 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 */
 	public void setCreationDate(IfcDateTimeSelect newCreationDate) {
 		eSet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, newCreationDate);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetCreationDate() {
-		eUnset(Ifc2x3Package.Literals.IFC_WORK_CONTROL__CREATION_DATE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCreationDate() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__CREATION_DATE);
 	}
 
 	/**
@@ -366,24 +330,6 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 */
 	public void setStartTime(IfcDateTimeSelect newStartTime) {
 		eSet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__START_TIME, newStartTime);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetStartTime() {
-		eUnset(Ifc2x3Package.Literals.IFC_WORK_CONTROL__START_TIME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStartTime() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_WORK_CONTROL__START_TIME);
 	}
 
 	/**

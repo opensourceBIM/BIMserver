@@ -127,24 +127,6 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetInputVoltage() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInputVoltage() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getInputVoltageAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE_AS_STRING, true);
 	}
@@ -156,24 +138,6 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 */
 	public void setInputVoltageAsString(String newInputVoltageAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE_AS_STRING, newInputVoltageAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetInputVoltageAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInputVoltageAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE_AS_STRING);
 	}
 
 	/**
@@ -199,24 +163,6 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetInputFrequency() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInputFrequency() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getInputFrequencyAsString() {
 		return (String) eGet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY_AS_STRING, true);
 	}
@@ -228,24 +174,6 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 */
 	public void setInputFrequencyAsString(String newInputFrequencyAsString) {
 		eSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY_AS_STRING, newInputFrequencyAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetInputFrequencyAsString() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInputFrequencyAsString() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY_AS_STRING);
 	}
 
 	/**
@@ -552,24 +480,6 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 */
 	public void setInputPhase(int newInputPhase) {
 		eSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_PHASE, newInputPhase);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetInputPhase() {
-		eUnset(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_PHASE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInputPhase() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_PHASE);
 	}
 
 } //IfcElectricalBasePropertiesImpl

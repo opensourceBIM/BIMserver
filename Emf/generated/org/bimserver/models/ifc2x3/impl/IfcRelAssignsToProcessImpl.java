@@ -80,24 +80,6 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingProcess() {
-		eUnset(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingProcess() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcMeasureWithUnit getQuantityInProcess() {
 		return (IfcMeasureWithUnit) eGet(Ifc2x3Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, true);
 	}

@@ -58,12 +58,12 @@ public interface DatabaseInformation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Projects</em>' attribute.
-	 * @see #setNumberOfProjects(int)
+	 * @see #setNumberOfProjects(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_NumberOfProjects()
 	 * @model
 	 * @generated
 	 */
-	int getNumberOfProjects();
+	Integer getNumberOfProjects();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfProjects <em>Number Of Projects</em>}' attribute.
@@ -73,7 +73,7 @@ public interface DatabaseInformation extends IdEObject {
 	 * @see #getNumberOfProjects()
 	 * @generated
 	 */
-	void setNumberOfProjects(int value);
+	void setNumberOfProjects(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Number Of Users</b></em>' attribute.
@@ -84,12 +84,12 @@ public interface DatabaseInformation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Users</em>' attribute.
-	 * @see #setNumberOfUsers(int)
+	 * @see #setNumberOfUsers(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_NumberOfUsers()
 	 * @model
 	 * @generated
 	 */
-	int getNumberOfUsers();
+	Integer getNumberOfUsers();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfUsers <em>Number Of Users</em>}' attribute.
@@ -99,7 +99,7 @@ public interface DatabaseInformation extends IdEObject {
 	 * @see #getNumberOfUsers()
 	 * @generated
 	 */
-	void setNumberOfUsers(int value);
+	void setNumberOfUsers(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Number Of Revisions</b></em>' attribute.
@@ -110,12 +110,12 @@ public interface DatabaseInformation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Revisions</em>' attribute.
-	 * @see #setNumberOfRevisions(int)
+	 * @see #setNumberOfRevisions(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_NumberOfRevisions()
 	 * @model
 	 * @generated
 	 */
-	int getNumberOfRevisions();
+	Integer getNumberOfRevisions();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfRevisions <em>Number Of Revisions</em>}' attribute.
@@ -125,7 +125,7 @@ public interface DatabaseInformation extends IdEObject {
 	 * @see #getNumberOfRevisions()
 	 * @generated
 	 */
-	void setNumberOfRevisions(int value);
+	void setNumberOfRevisions(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Number Of Checkouts</b></em>' attribute.
@@ -136,12 +136,12 @@ public interface DatabaseInformation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Checkouts</em>' attribute.
-	 * @see #setNumberOfCheckouts(int)
+	 * @see #setNumberOfCheckouts(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_NumberOfCheckouts()
 	 * @model
 	 * @generated
 	 */
-	int getNumberOfCheckouts();
+	Integer getNumberOfCheckouts();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfCheckouts <em>Number Of Checkouts</em>}' attribute.
@@ -151,7 +151,7 @@ public interface DatabaseInformation extends IdEObject {
 	 * @see #getNumberOfCheckouts()
 	 * @generated
 	 */
-	void setNumberOfCheckouts(int value);
+	void setNumberOfCheckouts(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Database Size In Bytes</b></em>' attribute.
@@ -162,12 +162,12 @@ public interface DatabaseInformation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Database Size In Bytes</em>' attribute.
-	 * @see #setDatabaseSizeInBytes(long)
+	 * @see #setDatabaseSizeInBytes(Long)
 	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_DatabaseSizeInBytes()
 	 * @model
 	 * @generated
 	 */
-	long getDatabaseSizeInBytes();
+	Long getDatabaseSizeInBytes();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DatabaseInformation#getDatabaseSizeInBytes <em>Database Size In Bytes</em>}' attribute.
@@ -177,7 +177,7 @@ public interface DatabaseInformation extends IdEObject {
 	 * @see #getDatabaseSizeInBytes()
 	 * @generated
 	 */
-	void setDatabaseSizeInBytes(long value);
+	void setDatabaseSizeInBytes(Long value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
@@ -266,12 +266,12 @@ public interface DatabaseInformation extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Schema Version</em>' attribute.
-	 * @see #setSchemaVersion(int)
+	 * @see #setSchemaVersion(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformation_SchemaVersion()
 	 * @model
 	 * @generated
 	 */
-	int getSchemaVersion();
+	Integer getSchemaVersion();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DatabaseInformation#getSchemaVersion <em>Schema Version</em>}' attribute.
@@ -281,7 +281,7 @@ public interface DatabaseInformation extends IdEObject {
 	 * @see #getSchemaVersion()
 	 * @generated
 	 */
-	void setSchemaVersion(int value);
+	void setSchemaVersion(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Categories</b></em>' reference list.

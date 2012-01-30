@@ -49,34 +49,11 @@ public interface IfcTextureVertex extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinates</em>' attribute list.
-	 * @see #isSetCoordinates()
-	 * @see #unsetCoordinates()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextureVertex_Coordinates()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<Double> getCoordinates();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureVertex#getCoordinates <em>Coordinates</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCoordinates()
-	 * @see #getCoordinates()
-	 * @generated
-	 */
-	void unsetCoordinates();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureVertex#getCoordinates <em>Coordinates</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Coordinates</em>' attribute list is set.
-	 * @see #unsetCoordinates()
-	 * @see #getCoordinates()
-	 * @generated
-	 */
-	boolean isSetCoordinates();
 
 	/**
 	 * Returns the value of the '<em><b>Coordinates As String</b></em>' attribute list.
@@ -88,33 +65,10 @@ public interface IfcTextureVertex extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinates As String</em>' attribute list.
-	 * @see #isSetCoordinatesAsString()
-	 * @see #unsetCoordinatesAsString()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcTextureVertex_CoordinatesAsString()
-	 * @model unique="false" unsettable="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getCoordinatesAsString();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureVertex#getCoordinatesAsString <em>Coordinates As String</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCoordinatesAsString()
-	 * @see #getCoordinatesAsString()
-	 * @generated
-	 */
-	void unsetCoordinatesAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcTextureVertex#getCoordinatesAsString <em>Coordinates As String</em>}' attribute list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Coordinates As String</em>' attribute list is set.
-	 * @see #unsetCoordinatesAsString()
-	 * @see #getCoordinatesAsString()
-	 * @generated
-	 */
-	boolean isSetCoordinatesAsString();
 
 } // IfcTextureVertex

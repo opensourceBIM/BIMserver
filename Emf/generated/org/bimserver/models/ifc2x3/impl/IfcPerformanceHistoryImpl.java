@@ -72,22 +72,4 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements IfcPerf
 		eSet(Ifc2x3Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE, newLifeCyclePhase);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetLifeCyclePhase() {
-		eUnset(Ifc2x3Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLifeCyclePhase() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE);
-	}
-
 } //IfcPerformanceHistoryImpl

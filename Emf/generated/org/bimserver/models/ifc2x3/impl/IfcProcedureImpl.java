@@ -80,24 +80,6 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetProcedureID() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROCEDURE__PROCEDURE_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetProcedureID() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROCEDURE__PROCEDURE_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcProcedureTypeEnum getProcedureType() {
 		return (IfcProcedureTypeEnum) eGet(Ifc2x3Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE, true);
 	}
@@ -109,24 +91,6 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 */
 	public void setProcedureType(IfcProcedureTypeEnum newProcedureType) {
 		eSet(Ifc2x3Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE, newProcedureType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetProcedureType() {
-		eUnset(Ifc2x3Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetProcedureType() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE);
 	}
 
 	/**

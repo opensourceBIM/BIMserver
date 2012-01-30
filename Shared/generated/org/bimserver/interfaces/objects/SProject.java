@@ -182,7 +182,7 @@ public class SProject implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private int id;
+	private java.lang.Integer id;
 	private java.lang.String name;
 	private List<Long> hasAuthorizedUsers = new ArrayList<Long>();
 	private List<Long> concreteRevisions = new ArrayList<Long>();
@@ -199,11 +199,11 @@ public class SProject implements SBase
 	private java.lang.String description;
 	private long clashDetectionSettingsId;
 	private SSIPrefix exportLengthMeasurePrefix;
-	public int getId() {
+	public java.lang.Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 	}
 	public java.lang.String getName() {

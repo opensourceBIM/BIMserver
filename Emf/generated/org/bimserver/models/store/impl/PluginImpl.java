@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -90,7 +90,7 @@ public class PluginImpl extends IdEObjectImpl implements Plugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN__ENABLED, true);
 	}
 
@@ -99,7 +99,7 @@ public class PluginImpl extends IdEObjectImpl implements Plugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.PLUGIN__ENABLED, newEnabled);
 	}
 

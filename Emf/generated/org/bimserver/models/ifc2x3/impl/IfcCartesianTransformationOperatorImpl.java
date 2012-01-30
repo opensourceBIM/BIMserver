@@ -156,24 +156,6 @@ public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetLocalOrigin() {
-		eUnset(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__LOCAL_ORIGIN);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetLocalOrigin() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__LOCAL_ORIGIN);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public double getScale() {
 		return (Double) eGet(Ifc2x3Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCALE, true);
 	}

@@ -49,34 +49,11 @@ public interface IfcVertexBasedTextureMap extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Texture Vertices</em>' reference list.
-	 * @see #isSetTextureVertices()
-	 * @see #unsetTextureVertices()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVertexBasedTextureMap_TextureVertices()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcTextureVertex> getTextureVertices();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexBasedTextureMap#getTextureVertices <em>Texture Vertices</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTextureVertices()
-	 * @see #getTextureVertices()
-	 * @generated
-	 */
-	void unsetTextureVertices();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexBasedTextureMap#getTextureVertices <em>Texture Vertices</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Texture Vertices</em>' reference list is set.
-	 * @see #unsetTextureVertices()
-	 * @see #getTextureVertices()
-	 * @generated
-	 */
-	boolean isSetTextureVertices();
 
 	/**
 	 * Returns the value of the '<em><b>Texture Points</b></em>' reference list.
@@ -88,33 +65,10 @@ public interface IfcVertexBasedTextureMap extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Texture Points</em>' reference list.
-	 * @see #isSetTexturePoints()
-	 * @see #unsetTexturePoints()
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcVertexBasedTextureMap_TexturePoints()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	EList<IfcCartesianPoint> getTexturePoints();
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexBasedTextureMap#getTexturePoints <em>Texture Points</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTexturePoints()
-	 * @see #getTexturePoints()
-	 * @generated
-	 */
-	void unsetTexturePoints();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcVertexBasedTextureMap#getTexturePoints <em>Texture Points</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Texture Points</em>' reference list is set.
-	 * @see #unsetTexturePoints()
-	 * @see #getTexturePoints()
-	 * @generated
-	 */
-	boolean isSetTexturePoints();
 
 } // IfcVertexBasedTextureMap

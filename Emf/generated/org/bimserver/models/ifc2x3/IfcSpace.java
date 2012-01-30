@@ -50,11 +50,9 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Interior Or Exterior Space</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum
-	 * @see #isSetInteriorOrExteriorSpace()
-	 * @see #unsetInteriorOrExteriorSpace()
 	 * @see #setInteriorOrExteriorSpace(IfcInternalOrExternalEnum)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcSpace_InteriorOrExteriorSpace()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcInternalOrExternalEnum getInteriorOrExteriorSpace();
@@ -65,35 +63,10 @@ public interface IfcSpace extends IfcSpatialStructureElement {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Interior Or Exterior Space</em>' attribute.
 	 * @see org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum
-	 * @see #isSetInteriorOrExteriorSpace()
-	 * @see #unsetInteriorOrExteriorSpace()
 	 * @see #getInteriorOrExteriorSpace()
 	 * @generated
 	 */
 	void setInteriorOrExteriorSpace(IfcInternalOrExternalEnum value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getInteriorOrExteriorSpace <em>Interior Or Exterior Space</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetInteriorOrExteriorSpace()
-	 * @see #getInteriorOrExteriorSpace()
-	 * @see #setInteriorOrExteriorSpace(IfcInternalOrExternalEnum)
-	 * @generated
-	 */
-	void unsetInteriorOrExteriorSpace();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcSpace#getInteriorOrExteriorSpace <em>Interior Or Exterior Space</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Interior Or Exterior Space</em>' attribute is set.
-	 * @see #unsetInteriorOrExteriorSpace()
-	 * @see #getInteriorOrExteriorSpace()
-	 * @see #setInteriorOrExteriorSpace(IfcInternalOrExternalEnum)
-	 * @generated
-	 */
-	boolean isSetInteriorOrExteriorSpace();
 
 	/**
 	 * Returns the value of the '<em><b>Elevation With Flooring</b></em>' attribute.

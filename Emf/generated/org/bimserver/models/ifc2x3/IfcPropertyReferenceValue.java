@@ -96,11 +96,9 @@ public interface IfcPropertyReferenceValue extends IfcSimpleProperty {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property Reference</em>' reference.
-	 * @see #isSetPropertyReference()
-	 * @see #unsetPropertyReference()
 	 * @see #setPropertyReference(IfcObjectReferenceSelect)
 	 * @see org.bimserver.models.ifc2x3.Ifc2x3Package#getIfcPropertyReferenceValue_PropertyReference()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	IfcObjectReferenceSelect getPropertyReference();
@@ -110,34 +108,9 @@ public interface IfcPropertyReferenceValue extends IfcSimpleProperty {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Property Reference</em>' reference.
-	 * @see #isSetPropertyReference()
-	 * @see #unsetPropertyReference()
 	 * @see #getPropertyReference()
 	 * @generated
 	 */
 	void setPropertyReference(IfcObjectReferenceSelect value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyReferenceValue#getPropertyReference <em>Property Reference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPropertyReference()
-	 * @see #getPropertyReference()
-	 * @see #setPropertyReference(IfcObjectReferenceSelect)
-	 * @generated
-	 */
-	void unsetPropertyReference();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3.IfcPropertyReferenceValue#getPropertyReference <em>Property Reference</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Property Reference</em>' reference is set.
-	 * @see #unsetPropertyReference()
-	 * @see #getPropertyReference()
-	 * @see #setPropertyReference(IfcObjectReferenceSelect)
-	 * @generated
-	 */
-	boolean isSetPropertyReference();
 
 } // IfcPropertyReferenceValue

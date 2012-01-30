@@ -92,24 +92,6 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetHourOffset() {
-		eUnset(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__HOUR_OFFSET);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetHourOffset() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__HOUR_OFFSET);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getMinuteOffset() {
 		return (Integer) eGet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__MINUTE_OFFSET, true);
 	}
@@ -157,24 +139,6 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public void setSense(IfcAheadOrBehind newSense) {
 		eSet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__SENSE, newSense);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSense() {
-		eUnset(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__SENSE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSense() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__SENSE);
 	}
 
 } //IfcCoordinatedUniversalTimeOffsetImpl

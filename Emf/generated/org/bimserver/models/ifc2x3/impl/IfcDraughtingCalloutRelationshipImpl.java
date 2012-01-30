@@ -165,24 +165,6 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetRelatingDraughtingCallout() {
-		eUnset(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatingDraughtingCallout() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcDraughtingCallout getRelatedDraughtingCallout() {
 		return (IfcDraughtingCallout) eGet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT, true);
 	}
@@ -194,24 +176,6 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 */
 	public void setRelatedDraughtingCallout(IfcDraughtingCallout newRelatedDraughtingCallout) {
 		eSet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT, newRelatedDraughtingCallout);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetRelatedDraughtingCallout() {
-		eUnset(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedDraughtingCallout() {
-		return eIsSet(Ifc2x3Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT);
 	}
 
 } //IfcDraughtingCalloutRelationshipImpl
