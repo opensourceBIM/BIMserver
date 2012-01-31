@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ex="urn:iso.org:standard:10303:part(28):version(2):xmlschema:common" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:iso.org:standard:10303:part(28):version(2):xmlschema:common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- INCLUDE the configuration schema holding the P28 configuration schema -->
+	<!-- <xs:include schemaLocation="configuration.xsd"/> -->
+	<!-- DEFINE the P28 root element -->
+	<xs:element name="iso_10303_28">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ex:iso_10303_28_header" minOccurs="0"/>
+				<xs:element ref="ex:uos"/>
+				<!-- <xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="ex:express"/>
+						<xs:element ref="ex:schema_population"/>
+						<xs:element ref="ex:configuration"/>
+				</xs:choice> -->
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<!-- DEFINE the P28 schema population and express elements -->
+	<!-- schema population is not used for ifcXML 
+	<xs:element name="schema_population">
+		<xs:complexType>
+			<xs:attribute name="governing_schema" type="xs:IDREF" use="required"/>
+			<xs:attribute name="governed_sections" type="xs:IDREFS" use="optional"/>
+			<xs:attribute name="determination_method" type="xs:normalizedString" default="section_boundary"/>
+		</xs:complexType>
+	</xs:element>
+	-->
+	<!-- express element is not used for ifcXML
+	<xs:element name="express" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="schemaLocation" type="ex:Seq-anyURI" use="optional"/>
+					<xs:attribute name="id" type="xs:ID" use="required"/>
+					<xs:attribute name="schema_identifier" type="xs:normalizedString" use="optional"/>
+					<xs:attribute name="schema_name" type="xs:normalizedString" use="optional"/>
+					<xs:attribute name="schema_version" type="xs:normalizedString" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	-->
+	<!-- DEFINE the P28 header element -->
+	<xs:element name="iso_10303_28_header">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:anyURI"/>
+				<xs:element name="time_stamp" type="xs:dateTime"/>
+				<xs:element name="author" type="xs:string"/>
+				<xs:element name="organization" type="xs:string"/>
+				<xs:element name="preprocessor_version" type="xs:string"/>
+				<xs:element name="originating_system" type="xs:string"/>
+				<xs:element name="authorization" type="xs:string"/>
+				<xs:element name="documentation" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- DEFINE the P28 base element UOS -->
+	<xs:element name="uos" type="ex:uos" abstract="true"/>
+	<xs:complexType name="uos">
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="express" type="ex:Seq-anyURI" use="optional"/>
+		<xs:attribute name="configuration" type="ex:Seq-anyURI" use="optional"/>
+		<xs:attribute name="schemaLocation" type="ex:Seq-anyURI" use="optional"/>
+		<xs:attribute name="edo" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<!--  EX ENTITY DEFINTIONS and DECLARATIONS -->
+	<xs:element name="Entity" type="ex:Entity" abstract="true"/>
+	<xs:complexType name="Entity" abstract="true">
+		<xs:attribute name="href" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="ref" type="xs:IDREF" use="optional"/>
+		<xs:attribute name="proxy" type="xs:IDREF" use="optional"/>
+		<xs:attribute name="edo" type="xs:anyURI" use="optional"/>
+		<xs:attributeGroup ref="ex:instanceAttributes"/>
+	</xs:complexType>
+	<!--  GLOBAL ATTRIBUTE DECLARATIONS  -->
+	<xs:attribute name="arraySize">
+		<xs:simpleType>
+			<xs:restriction>
+				<xs:simpleType>
+					<xs:list itemType="xs:integer"/>
+				</xs:simpleType>
+				<xs:minLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="itemType" type="xs:QName"/>
+	<xs:attribute name="cType">
+		<xs:simpleType>
+			<xs:list itemType="ex:aggregateType"/>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="attributeType">
+		<xs:simpleType>
+			<xs:restriction base="xs:normalizedString">
+				<xs:enumeration value="explicit"/>
+				<xs:enumeration value="inverse"/>
+				<xs:enumeration value="derived"/>
+				<xs:enumeration value="renamed"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:simpleType name="Seq-anyURI">
+		<xs:list itemType="xs:anyURI"/>
+	</xs:simpleType>
+	<!--  GLOBAL ATTRIBUTE GROUP DECLARATIONS  -->
+	<xs:attributeGroup name="instanceAttributes">
+		<xs:attribute name="id" type="xs:ID" use="optional"/>
+		<xs:attribute name="path" type="xs:NMTOKENS" use="optional"/>
+		<xs:attribute name="pos" use="optional">
+			<xs:simpleType>
+				<xs:restriction>
+					<xs:simpleType>
+						<xs:list itemType="xs:integer"/>
+					</xs:simpleType>
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!--  GLOBAL SIMPLE TYPE  DECLARATIONS  -->
+	<xs:simpleType name="aggregateType">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="array"/>
+			<xs:enumeration value="list"/>
+			<xs:enumeration value="set"/>
+			<xs:enumeration value="bag"/>
+			<xs:enumeration value="array-unique"/>
+			<xs:enumeration value="array-optional"/>
+			<xs:enumeration value="array-optional-unique"/>
+			<xs:enumeration value="list-unique"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- WRAPPERS (OR INSTANCE ELEMENTS) FOR ATOMIC SIMPLE TYPES  -->
+	<xs:element name="base64Binary-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ex:base64Binary">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="base64Binary">
+		<xs:simpleContent>
+			<xs:extension base="xs:base64Binary">
+				<xs:attribute name="extraBits" type="xs:integer" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="hexBinary-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ex:hexBinary">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="hexBinary">
+		<xs:simpleContent>
+			<xs:extension base="xs:hexBinary">
+				<xs:attribute name="extraBits" type="xs:integer" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="logical-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ex:logical">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="logical">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="false"/>
+			<xs:enumeration value="true"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="boolean-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="decimal-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:decimal">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="double-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:double">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="long-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:long">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="integer-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:integer">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="string-wrapper" nillable="true">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:normalizedString">
+					<xs:attributeGroup ref="ex:instanceAttributes"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

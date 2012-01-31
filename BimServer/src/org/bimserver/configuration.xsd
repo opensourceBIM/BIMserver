@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+  targetNamespace="urn:iso.org:standard:10303:part(28):version(2):xmlschema:common"
+  xmlns:ex="urn:iso.org:standard:10303:part(28):version(2):xmlschema:common"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
+
+	<xs:element name="configuration" nillable="true">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="ex:include"/>
+				<xs:element ref="ex:option"/>
+				<xs:element ref="ex:type"/>
+				<xs:element ref="ex:entity"/>
+			</xs:choice>
+			<xs:attribute name="id" type="xs:ID" use="required"/>
+			<xs:attribute name="targetNamespace" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="schema" type="xs:IDREF" use="optional"/>
+			<xs:attribute name="configurationLocation" type="ex:Seq-anyURI" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="include">
+		<xs:complexType>
+			<xs:attribute name="configuration" type="xs:IDREF" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="option">
+		<xs:complexType>
+			<xs:attribute name="inheritance" type="xs:boolean" default="false"/>
+			<xs:attribute name="exp-type" type="ex:exp-type" default="unspecified"/>
+			<xs:attribute name="exp-attribute" type="ex:exp-attribute" default="double-tag"/>
+			<xs:attribute name="flatten" type="ex:boolean_or_depth" default="false"/>
+			<xs:attribute name="sparse" type="xs:boolean" default="false"/>
+			<xs:attribute name="tagless" type="ex:boolean_or_unspecified" default="unspecified"/>
+			<xs:attribute name="naming-convention" type="ex:naming-convention" default="initial-upper"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="type">
+		<xs:complexType>
+			<xs:choice minOccurs="0">
+				<xs:element ref="ex:aggregate"/>
+			</xs:choice>
+			<xs:attribute name="select" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="name" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="map" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="exp-type" type="ex:exp-type" use="optional"/>
+			<xs:attribute name="flatten" type="ex:boolean_or_depth" use="optional"/>
+			<xs:attribute name="sparse" type="xs:boolean" use="optional"/>
+			<xs:attribute name="tagless" type="ex:boolean_or_unspecified" use="optional"/>
+			<xs:attribute name="notation" type="xs:normalizedString" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="entity">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="ex:attribute"/>
+				<xs:element ref="ex:inverse"/>
+			</xs:choice>
+			<xs:attribute use="required" name="select">
+				<xs:simpleType>
+					<xs:restriction>
+						<xs:simpleType>
+							<xs:list itemType="xs:Name"/>
+						</xs:simpleType>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="tag-source" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="tag-values" type="xs:NMTOKENS" use="optional"/>
+			<xs:attribute name="exp-type" type="ex:exp-type" use="optional"/>
+			<xs:attribute name="content" type="ex:content" use="optional"/>
+			<xs:attribute name="exp-attribute" type="ex:exp-attribute" use="optional"/>
+			<xs:attribute name="flatten" type="ex:boolean_or_depth" use="optional"/>
+			<xs:attribute name="sparse" type="xs:boolean" use="optional"/>
+			<xs:attribute name="tagless" type="ex:boolean_or_unspecified" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="attribute">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="ex:aggregate"/>
+			</xs:choice>
+			<xs:attribute name="select" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="name" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="exp-attribute" type="ex:exp-attribute" use="optional"/>
+			<xs:attribute name="content" type="ex:content" use="optional"/>
+			<xs:attribute name="keep" type="xs:boolean" default="false"/>
+			<xs:attribute name="flatten" type="ex:boolean_or_depth" use="optional"/>
+			<xs:attribute name="sparse" type="xs:boolean" use="optional"/>
+			<xs:attribute name="tagless" type="ex:boolean_or_unspecified" use="optional"/>
+			<xs:attribute name="notation" type="xs:normalizedString" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="inverse">
+		<xs:complexType>
+			<xs:attribute name="select" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="name" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="exp-attribute" type="ex:exp-attribute" use="optional"/>
+			<xs:attribute name="content" type="ex:content" use="optional"/>
+			<xs:attribute name="flatten" type="ex:boolean_or_depth" use="optional"/>
+			<xs:attribute name="sparse" type="xs:boolean" use="optional"/>
+			<xs:attribute name="tagless" type="ex:boolean_or_unspecified" use="optional"/>
+			<xs:attribute name="use-id" type="xs:boolean" use="optional"/>
+			<xs:attribute name="invert" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="keep" type="xs:boolean" default="false"/>
+			<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="optional" default="0"/>
+			<xs:attribute name="maxOccurs" type="ex:nonNegativeInteger_or_unbounded" use="optional" default="unbounded"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="aggregate">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="ex:aggregate"/>
+			</xs:choice>
+			<xs:attribute name="name" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="exp-attribute" type="ex:exp-attribute" use="optional"/>
+			<xs:attribute name="flatten" type="ex:boolean_or_depth" use="optional"/>
+			<xs:attribute name="sparse" type="xs:boolean" use="optional"/>
+			<xs:attribute name="tagless" type="ex:boolean_or_unspecified" use="optional"/>
+			<xs:attribute name="use-id" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:simpleType name="exp-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="root"/>
+			<xs:enumeration value="value"/>
+			<xs:enumeration value="unspecified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="exp-attribute">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="double-tag"/>
+			<xs:enumeration value="attribute-tag"/>
+			<xs:enumeration value="entity-tag"/>
+			<xs:enumeration value="no-tag"/>
+			<xs:enumeration value="attribute-content"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="content">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="value"/>
+			<xs:enumeration value="ref"/>
+			<xs:enumeration value="unspecified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="naming-convention">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="initial-upper"/>
+			<xs:enumeration value="camel-case"/>
+			<xs:enumeration value="preserve-case"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="boolean_or_unspecified">
+		<xs:union memberTypes="xs:boolean">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="unspecified"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	
+	<xs:simpleType name="boolean_or_depth">
+		<xs:union memberTypes="xs:boolean xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="nonNegativeInteger_or_unbounded">
+		<xs:union memberTypes="xs:nonNegativeInteger">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="unbounded"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Seq-anyURI">
+		<xs:list itemType="xs:anyURI"/>
+	</xs:simpleType>
+	
+</xs:schema>
