@@ -38,6 +38,7 @@ public class SService {
 
 	public static void main(String[] args) {
 		SService sService = new SService(ServiceInterface.class);
+		System.out.println(sService.getMethods().size());
 		for (SClass type : sService.getTypes()) {
 			System.out.println(type.getName());
 			if (type instanceof SClass) {
