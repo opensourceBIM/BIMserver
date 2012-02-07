@@ -45,18 +45,18 @@
 					if (request.getParameter("parentoid") == null) {
 						SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
 						sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
-						sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
+						sGeoTag.setDirectionAngle(Double.parseDouble(request.getParameter("directionAngle")));
 						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
-						sGeoTag.setX(Float.parseFloat(request.getParameter("x"))); 
-						sGeoTag.setY(Float.parseFloat(request.getParameter("y"))); 
-						sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
-						if (sGeoTag.isEnabled()) {
+						sGeoTag.setX(Double.parseDouble(request.getParameter("x"))); 
+						sGeoTag.setY(Double.parseDouble(request.getParameter("y"))); 
+						sGeoTag.setZ(Double.parseDouble(request.getParameter("z")));
+						if (sGeoTag.getEnabled()) {
 							loginManager.getService().updateGeoTag(sGeoTag);
 						}
 						SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(sProject.getClashDetectionSettingsId());
 						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
-						sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
-						if (sClashDetectionSettings.isEnabled()) {
+						sClashDetectionSettings.setMargin(Double.parseDouble(request.getParameter("margin")));
+						if (sClashDetectionSettings.getEnabled()) {
 							loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
 						}
 					}

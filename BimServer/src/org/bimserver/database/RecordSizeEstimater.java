@@ -76,19 +76,19 @@ public class RecordSizeEstimater {
 	}
 
 	public int getPrimitiveSize(EDataType eDataType) {
-		if (eDataType == EcorePackage.eINSTANCE.getEInt()) {
+		if (eDataType == EcorePackage.eINSTANCE.getEInt() || eDataType == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEFloat()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEFloat() || eDataType == EcorePackage.eINSTANCE.getEFloatObject()) {
 			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEBoolean()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEBoolean() || eDataType == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			return 1;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEDate()) {
 			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getELong()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getELong() || eDataType == EcorePackage.eINSTANCE.getELongObject()) {
 			return 8;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEString()) {
 			return AVERAGE_STRING_SIZE;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble() || eDataType == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			return 8;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray() || eDataType.getName().equals("DataHandler")) {
 			return AVERAGE_BYTE_ARRAY_SIZE;
