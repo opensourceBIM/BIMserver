@@ -37,17 +37,20 @@ public class SatelliteGui extends JFrame {
 	private static final long serialVersionUID = -5428454520760923784L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(SatelliteGui.class);
 	protected static final String APP_NAME = "BIMserver Satellite";
-	private SatelliteServer satelliteServer = new SatelliteServer();
+	private SatelliteServer satelliteServer;
 	private JButton connectDisconnectButton;
 	private JTextArea logTextArea;
 	private JTextArea notificationsTextArea;
 	private SatelliteSettings settings;
 
 	public static void main(String[] args) {
-		new SatelliteGui();
+		SatelliteServer satelliteServer = new SatelliteServer();
+		satelliteServer.registerActivity(new ExploderActivity());
+		new SatelliteGui(satelliteServer);
 	}
 
-	public SatelliteGui() {
+	public SatelliteGui(final SatelliteServer satelliteServer) {
+		this.satelliteServer = satelliteServer;
 		SwingUtil.setLookAndFeelToNice();
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("logo_small.png")));
@@ -116,7 +119,6 @@ public class SatelliteGui extends JFrame {
 				setTitle(SatelliteGui.APP_NAME);
 			}
 		});
-		satelliteServer.registerActivity(new ExploderActivity());
 
 		for (Activity activity : satelliteServer.getActivities()) {
 			final JTextArea activityTextArea = new JTextArea();
