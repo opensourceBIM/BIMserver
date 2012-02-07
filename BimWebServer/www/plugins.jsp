@@ -30,10 +30,10 @@
 	<td><%=plugin.getName() %></td>
 	<td><%=plugin.getDescription() %></td>
 	<td><%=plugin.getLocation() %></td>
-	<td class="<%=plugin.isEnabled() ? "enabledPlugin" : "disabledPlugin" %>"><%=plugin.isEnabled() ? "Enabled" : "Disabled" %></td>
+	<td class="<%=plugin.getEnabled() ? "enabledPlugin" : "disabledPlugin" %>"><%=plugin.getEnabled() ? "Enabled" : "Disabled" %></td>
 	<td>
 <%
-	if (plugin.isEnabled()) {
+	if (plugin.getEnabled()) {
 %>
 <a href="plugins.jsp?action=disable&plugin=<%=plugin.getName() %>">Disable</a>
 <%

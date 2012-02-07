@@ -55,7 +55,7 @@
 				Collections.sort(checkouts, new SCheckoutDateComparator(false));
 				List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
 				for (SCheckout checkout : checkouts) {
-					if (checkout.isActive()) {
+					if (checkout.getActive()) {
 						activeCheckouts.add(checkout);
 					}
 				}
@@ -208,7 +208,7 @@
 					<td><%=project.getExportLengthMeasurePrefix().name()%></td>
 				</tr>
 				<%
-					if (geoTag.isEnabled()) {
+					if (geoTag.getEnabled()) {
 				%>
 				<tr>
 					<td class="first">Coordinates</td>
@@ -244,7 +244,7 @@
 										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 									%>
 									<option value="<%=serializer.getName()%>"
-										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+										<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 									<%
 										}
 									%>
@@ -295,7 +295,7 @@
 										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 									%>
 									<option value="<%=serializer.getName()%>"
-										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+										<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 									<%
 										}
 									%>
@@ -517,7 +517,7 @@
 					<th>User</th>
 					<th>Comment</th>
 					<%
-						if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
+						if (project.getParentId() == -1 && sClashDetectionSettings.getEnabled()) {
 					%>
 					<th>Clashes</th>
 					<%
@@ -547,7 +547,7 @@
 						</div>
 					</td>
 					<%
-						if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
+						if (project.getParentId() == -1 && sClashDetectionSettings.getEnabled()) {
 					%>
 					<td class="clashesfield"><img src="images/ajax-loader.gif"
 						align="left"
@@ -590,7 +590,7 @@
 												for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 											%>
 											<option value="<%=serializer.getName()%>"
-												<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+												<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 											<%
 												}
 											%>
@@ -658,7 +658,7 @@
 			<%
 				boolean showCheckoutToggle = false;
 							for (SCheckout checkout : checkouts) {
-								if (!checkout.isActive()) {
+								if (!checkout.getActive()) {
 									showCheckoutToggle = true;
 								}
 							}
@@ -682,12 +682,12 @@
 									SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
 				%>
 				<tr
-					class="<%=checkout.isActive() ? "" : "inactivecheckoutrow"%>">
+					class="<%=checkout.getActive() ? "" : "inactivecheckoutrow"%>">
 					<td><a href="revision.jsp?roid=<%=checkout.getRevisionId()%>"><%=loginManager.getService().getRevision(checkout.getRevisionId()).getId()%></a></td>
 					<td><a href="user.jsp?uoid=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a>
 					</td>
 					<td><%=dateFormat.format(checkout.getDate())%></td>
-					<td><%=checkout.isActive()%></td>
+					<td><%=checkout.getActive()%></td>
 					<td>
 						<form method="get" action="<%=request.getContextPath()%>/download">
 							<input type="hidden" name="roid"
@@ -697,7 +697,7 @@
 									for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 								%>
 								<option value="<%=serializer.getName()%>"
-									<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+									<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 								<%
 									}
 								%>

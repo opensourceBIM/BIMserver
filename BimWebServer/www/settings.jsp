@@ -74,10 +74,10 @@
 	<tr>
 		<td><a href="ifcengine.jsp?id=<%=ifcEngine.getOid()%>"><%=ifcEngine.getName() %></a></td>
 		<td><%=ifcEngine.getClassName() %></td>
-		<td class="<%=ifcEngine.isEnabled() ? "enabledIfcEngine" : "disabledIfcEngine" %>"> <%=ifcEngine.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=ifcEngine.getEnabled() ? "enabledIfcEngine" : "disabledIfcEngine" %>"> <%=ifcEngine.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
-	if (ifcEngine.isEnabled()) {
+	if (ifcEngine.getEnabled()) {
 %>
 <a href="settings.jsp?action=disableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Disable</a>
 <%
@@ -107,10 +107,10 @@
 		<td><a href="objectidm.jsp?id=<%=objectIDM.getOid()%>"><%=objectIDM.getName() %></a></td>
 		<td><%=objectIDM.getClassName() %></td>
 		<td><%=objectIDM.getSerializers().size() %></td>
-		<td class="<%=objectIDM.isEnabled() ? "enabledObjectIDM" : "disabledObjectIDM" %>"> <%=objectIDM.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=objectIDM.getEnabled() ? "enabledObjectIDM" : "disabledObjectIDM" %>"> <%=objectIDM.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
-	if (objectIDM.isEnabled()) {
+	if (objectIDM.getEnabled()) {
 %>
 <a href="settings.jsp?action=disableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Disable</a>
 <%
@@ -151,10 +151,10 @@
 		<td><%=serializer.getContentType() %></td>
 		<td><%=objectIDM == null ? "none" : objectIDM.getName() %></td>
 		<td><%=ifcEngine == null ? "none" : ifcEngine.getName() %></td>
-		<td class="<%=serializer.isEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=serializer.getEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%
-	if (serializer.isEnabled()) {
+	if (serializer.getEnabled()) {
 %>
 <a href="settings.jsp?action=disableSerializer&serializer=<%=serializer.getName() %>">Disable</a>
 <%
@@ -184,10 +184,10 @@
 		<td><a href="deserializer.jsp?id=<%=deserializer.getOid()%>"><%=deserializer.getName() %></a></td>
 		<td><%=deserializer.getDescription() %></td>
 		<td><%=deserializer.getClassName() %></td>
-		<td class="<%=deserializer.isEnabled() ? "enabledDeserializer" : "disabledDeserializer" %>"> <%=deserializer.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=deserializer.getEnabled() ? "enabledDeserializer" : "disabledDeserializer" %>"> <%=deserializer.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%
-	if (deserializer.isEnabled()) {
+	if (deserializer.getEnabled()) {
 %>
 <a href="settings.jsp?action=disableDeserializer&deserializer=<%=deserializer.getName() %>">Disable</a>
 <%

@@ -24,7 +24,7 @@
 	<tr>
 		<td><%=migration.getNumber() %></td>
 		<td><%=migration.getDescription() %></td>
-		<td><%=migration.isExecuted() %></td>
+		<td><%=migration.getExecuted() %></td>
 	</tr>
 <%
 	}
@@ -32,7 +32,7 @@
 </table>
 <form method="post">
 <%
-	if (!migrations.iterator().next().isExecuted()) {
+	if (!migrations.iterator().next().getExecuted()) {
 %>
 <input name="migrate" type="submit" value="Migrate to <%=migrations.iterator().next().getNumber() %>"/>
 <%	

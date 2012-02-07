@@ -87,7 +87,7 @@ public class XSDSchemaReader {
 				String name = term.asElementDecl().getName();
 				EClassifier subClass = ePackage.getEClassifier(name);
 				if (subClass != null && subClass instanceof EClass) {
-					((EClass)subClass).getESuperTypes().add(eClass);
+					((EClass) subClass).getESuperTypes().add(eClass);
 				}
 			}
 		}
@@ -95,13 +95,13 @@ public class XSDSchemaReader {
 
 	private void createSimpleType(XSSimpleType simpleType) {
 		if (simpleType instanceof RestrictionSimpleTypeImpl) {
-			RestrictionSimpleTypeImpl restrictionSimpleTypeImpl = (RestrictionSimpleTypeImpl)simpleType;
+			RestrictionSimpleTypeImpl restrictionSimpleTypeImpl = (RestrictionSimpleTypeImpl) simpleType;
 			String typeName = restrictionSimpleTypeImpl.getBaseType().getName();
 			if (typeName.equals("string")) {
 				EEnum eEnum = ecoreFactory.createEEnum();
 				eEnum.setName(simpleType.getName());
 				ePackage.getEClassifiers().add(eEnum);
-				int i=0;
+				int i = 0;
 				for (XSFacet facet : restrictionSimpleTypeImpl.getDeclaredFacets()) {
 					EEnumLiteral eEnumLiteral = ecoreFactory.createEEnumLiteral();
 					eEnumLiteral.setValue(i++);
@@ -145,7 +145,6 @@ public class XSDSchemaReader {
 				System.out.println("Super type not found: " + superTypeName);
 			}
 		}
-
 		XSParticle particle = type.getContentType().asParticle();
 		if (particle != null) {
 			XSTerm term = particle.getTerm();
@@ -166,11 +165,12 @@ public class XSDSchemaReader {
 					}
 				}
 			} else if (term.isModelGroupDecl()) {
-				EReference eReference = ecoreFactory.createEReference();
-				eReference.setName(term.asModelGroupDecl().getName());
-				EClassifier eClassifier = ePackage.getEClassifier(term.asModelGroupDecl().getName());
-				eReference.setEType(eClassifier);
-				eClass.getEStructuralFeatures().add(eReference);
+				// EReference eReference = ecoreFactory.createEReference();
+				// eReference.setName(term.asModelGroupDecl().getName());
+				// EClassifier eClassifier =
+				// ePackage.getEClassifier(term.asModelGroupDecl().getName());
+				// eReference.setEType(eClassifier);
+				// eClass.getEStructuralFeatures().add(eReference);
 			} else if (term.isElementDecl()) {
 				System.out.println("ed");
 			} else {
@@ -182,41 +182,39 @@ public class XSDSchemaReader {
 	private void processElementDecl(EClass eClass, XSElementDecl asElementDecl) {
 		String propertyName = asElementDecl.getName();
 		String propertyType = null;
-		if (asElementDecl.getType().getName() == null) {
-			propertyType = asElementDecl.getType().getBaseType().getName();
-		} else {
+		if (asElementDecl.getType().getName() != null) {
 			propertyType = asElementDecl.getType().getName();
-		}
-		if (propertyType.equals("double")) {
-			EAttribute eAttribute = ecoreFactory.createEAttribute();
-			eAttribute.setName(propertyName);
-			eAttribute.setEType(ecorePackage.getEDouble());
-			eClass.getEStructuralFeatures().add(eAttribute);
-		} else if (propertyType.equals("long")) {
-			EAttribute eAttribute = ecoreFactory.createEAttribute();
-			eAttribute.setName(propertyName);
-			eAttribute.setEType(ecorePackage.getELong());
-			eClass.getEStructuralFeatures().add(eAttribute);
-		} else if (propertyType.equals("boolean") || propertyType.equals("logical")) {
-			EAttribute eAttribute = ecoreFactory.createEAttribute();
-			eAttribute.setName(propertyName);
-			eAttribute.setEType(ecorePackage.getEBoolean());
-			eClass.getEStructuralFeatures().add(eAttribute);
-		} else if (propertyType.equals("anyType")) {
-			XSComplexType asComplexType = asElementDecl.getType().asComplexType();
-			EReference eReference = ecoreFactory.createEReference();
-			eReference.setEType(createComplexType(asComplexType));
-			eReference.setName(propertyName);
-			eClass.getEStructuralFeatures().add(eReference);
-		} else {
-			EClassifier eClassifier = ePackage.getEClassifier(propertyType);
-			if (eClassifier != null) {
+			if (propertyType.equals("double")) {
+				EAttribute eAttribute = ecoreFactory.createEAttribute();
+				eAttribute.setName(propertyName);
+				eAttribute.setEType(ecorePackage.getEDouble());
+				eClass.getEStructuralFeatures().add(eAttribute);
+			} else if (propertyType.equals("long")) {
+				EAttribute eAttribute = ecoreFactory.createEAttribute();
+				eAttribute.setName(propertyName);
+				eAttribute.setEType(ecorePackage.getELong());
+				eClass.getEStructuralFeatures().add(eAttribute);
+			} else if (propertyType.equals("boolean") || propertyType.equals("logical")) {
+				EAttribute eAttribute = ecoreFactory.createEAttribute();
+				eAttribute.setName(propertyName);
+				eAttribute.setEType(ecorePackage.getEBoolean());
+				eClass.getEStructuralFeatures().add(eAttribute);
+			} else if (propertyType.equals("anyType")) {
+				XSComplexType asComplexType = asElementDecl.getType().asComplexType();
 				EReference eReference = ecoreFactory.createEReference();
+				eReference.setEType(createComplexType(asComplexType));
 				eReference.setName(propertyName);
-				eReference.setEType(eClassifier);
 				eClass.getEStructuralFeatures().add(eReference);
 			} else {
-				System.out.println(propertyType + " not found");
+				EClassifier eClassifier = ePackage.getEClassifier(propertyType);
+				if (eClassifier != null) {
+					EReference eReference = ecoreFactory.createEReference();
+					eReference.setName(propertyName);
+					eReference.setEType(eClassifier);
+					eClass.getEStructuralFeatures().add(eReference);
+				} else {
+					System.out.println(propertyType + " not found");
+				}
 			}
 		}
 	}
@@ -234,7 +232,7 @@ public class XSDSchemaReader {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private EClass createComplexType(XSComplexType type) {
 		EClass eClass = ecoreFactory.createEClass();
 		eClass.setName(type.getName());

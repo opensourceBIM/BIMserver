@@ -107,7 +107,7 @@ if (allowEdit) { %>
 		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getName()%>"
-		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+		<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 	<%
 		}
 	%>
@@ -161,7 +161,7 @@ if (userHasCheckinRights) { %>
 		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getName()%>"
-		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+		<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 	<%
 		}
 	%>

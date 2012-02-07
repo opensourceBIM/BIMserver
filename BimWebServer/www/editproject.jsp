@@ -38,14 +38,14 @@
 				try {
 					if (sProject.getParentId() == -1) {
 						sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
-						sGeoTag.setX(Float.parseFloat(request.getParameter("x")));
-						sGeoTag.setY(Float.parseFloat(request.getParameter("y")));
-						sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
-						sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
+						sGeoTag.setX(Double.parseDouble(request.getParameter("x")));
+						sGeoTag.setY(Double.parseDouble(request.getParameter("y")));
+						sGeoTag.setZ(Double.parseDouble(request.getParameter("z")));
+						sGeoTag.setDirectionAngle(Double.parseDouble(request.getParameter("directionAngle")));
 						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
 						loginManager.getService().updateGeoTag(sGeoTag);
 						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
-						sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
+						sClashDetectionSettings.setMargin(Double.parseDouble(request.getParameter("margin")));
 						loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
 					}
 					sProject.setName(request.getParameter("name"));
@@ -93,7 +93,7 @@
 		clashdetection</label></td>
 		<td><input id="clashdetection" name="clashdetection"
 			class="checkbox" type="checkbox"
-			<%=sClashDetectionSettings.isEnabled() ? "checked=\"checked\"" : ""%> /></td>
+			<%=sClashDetectionSettings.getEnabled() ? "checked=\"checked\"" : ""%> /></td>
 	</tr>
 	<tr class="clashdetectionrow">
 		<td class="indent first"><label for="margin">Margin</label></td>
@@ -103,7 +103,7 @@
 	<tr>
 		<td><label for="coordcheck" class="checkbox">Geolocate</label></label></td>
 		<td><input id="coordcheck" name="coordcheck" class="checkbox"
-			type="checkbox" <%=sGeoTag.isEnabled() ? "checked=\"checked\"" : ""%> /></td>
+			type="checkbox" <%=sGeoTag.getEnabled() ? "checked=\"checked\"" : ""%> /></td>
 	</tr>
 	<tr class="coordcheckrow">
 		<td class="indent first"><label for="x">X</label></td>
@@ -163,10 +163,10 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-<%if (!sGeoTag.isEnabled()) {%>
+<%if (!sGeoTag.getEnabled()) {%>
 	$(".coordcheckrow").hide();
 <%}%>
-<%if (!sClashDetectionSettings.isEnabled()) {%>
+<%if (!sClashDetectionSettings.getEnabled()) {%>
 	$(".clashdetectionrow").hide();
 <%}%>
 	$("#coordcheck").click(function(){

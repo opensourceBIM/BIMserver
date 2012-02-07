@@ -47,6 +47,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/woodstox-core-asl-4.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jna.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.xsd_2.7.0.v20110606-0949.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>

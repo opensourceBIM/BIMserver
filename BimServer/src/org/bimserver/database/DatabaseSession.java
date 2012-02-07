@@ -40,7 +40,6 @@ import org.bimserver.emf.LazyLoader;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcColourRgb;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
@@ -88,6 +87,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
 	private boolean storeOid = false;
 	private boolean storePid = false;
+	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 
 	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly) {
 		this.database = database;
@@ -373,16 +373,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	public ByteBuffer convertObjectToByteArray(IdEObject object) throws BimDeadlockException, BimDatabaseException {
 		ByteBuffer buffer = ByteBuffer.allocate(getExactSize(object));
-
-		if (object instanceof IfcColourRgb) {
-			System.out.println();
-		}
-		
-		int bits = 0;
-		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
-			bits++;
-		}
-		
+		int bits = object.eClass().getEAllStructuralFeatures().size();
 		byte[] unsetted = new byte[(int) Math.ceil(bits / 8.0)];
 		int fieldCounter = 0;
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
@@ -988,24 +979,24 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	private int getPrimitiveSize(EDataType eDataType, Object val) {
-		if (eDataType == EcorePackage.eINSTANCE.getEInt()) {
+		if (eDataType == ECORE_PACKAGE.getEInt() || eDataType == ECORE_PACKAGE.getEIntegerObject()) {
 			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEFloat()) {
+		} else if (eDataType == ECORE_PACKAGE.getEFloat() || eDataType == ECORE_PACKAGE.getEFloatObject()) {
 			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEBoolean()) {
+		} else if (eDataType == ECORE_PACKAGE.getEBoolean() || eDataType == ECORE_PACKAGE.getEBooleanObject()) {
 			return 1;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEDate()) {
+		} else if (eDataType == ECORE_PACKAGE.getEDate()) {
 			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getELong()) {
+		} else if (eDataType == ECORE_PACKAGE.getELong() || eDataType == ECORE_PACKAGE.getELongObject()) {
 			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble()) {
+		} else if (eDataType == ECORE_PACKAGE.getEDouble() || eDataType == ECORE_PACKAGE.getEDoubleObject()) {
 			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEString()) {
+		} else if (eDataType == ECORE_PACKAGE.getEString()) {
 			if (val != null) {
 				return 4 + ((String) val).getBytes(Charsets.UTF_8).length;
 			}
 			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray()) {
+		} else if (eDataType == ECORE_PACKAGE.getEByteArray()) {
 			if (val != null) {
 				return 4 + ((byte[]) val).length;
 			}
@@ -1125,24 +1116,24 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	public Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer) {
-		if (classifier == EcorePackage.eINSTANCE.getEString()) {
+		if (classifier == ECORE_PACKAGE.getEString()) {
 			int length = buffer.getInt();
 			if (length != -1) {
 				return BinUtils.readString(buffer, length);
 			} else {
 				return null;
 			}
-		} else if (classifier == EcorePackage.eINSTANCE.getEInt()) {
+		} else if (classifier == ECORE_PACKAGE.getEInt() || classifier == ECORE_PACKAGE.getEIntegerObject()) {
 			return buffer.getInt();
-		} else if (classifier == EcorePackage.eINSTANCE.getELong()) {
+		} else if (classifier == ECORE_PACKAGE.getELong() || classifier == ECORE_PACKAGE.getELongObject()) {
 			return buffer.getLong();
-		} else if (classifier == EcorePackage.eINSTANCE.getEFloat()) {
+		} else if (classifier == ECORE_PACKAGE.getEFloat() || classifier == ECORE_PACKAGE.getEFloatObject()) {
 			return buffer.getFloat();
-		} else if (classifier == EcorePackage.eINSTANCE.getEDouble()) {
+		} else if (classifier == ECORE_PACKAGE.getEDouble() || classifier == ECORE_PACKAGE.getEDoubleObject()) {
 			return buffer.getDouble();
-		} else if (classifier == EcorePackage.eINSTANCE.getEBoolean()) {
+		} else if (classifier == ECORE_PACKAGE.getEBoolean() || classifier == ECORE_PACKAGE.getEBooleanObject()) {
 			return buffer.get() == 1;
-		} else if (classifier == EcorePackage.eINSTANCE.getEDate()) {
+		} else if (classifier == ECORE_PACKAGE.getEDate()) {
 			long val = buffer.getLong();
 			if (val == -1L) {
 				return null;
@@ -1261,7 +1252,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	public void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimDatabaseException {
-		if (feature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+		EClassifier type = feature.getEType();
+		if (type == ECORE_PACKAGE.getEString()) {
 			if (value == null) {
 				buffer.putInt(-1);
 			} else {
@@ -1273,26 +1265,26 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				buffer.putInt(bytes.length);
 				buffer.put(bytes);
 			}
-		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
+		} else if (type == ECORE_PACKAGE.getEInt() || type == ECORE_PACKAGE.getEIntegerObject()) {
 			buffer.putInt((Integer) value);
-		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+		} else if (type == ECORE_PACKAGE.getEDouble() || type == ECORE_PACKAGE.getEDoubleObject()) {
 			buffer.putDouble((Double) value);
-		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+		} else if (type == ECORE_PACKAGE.getEFloat() || type == ECORE_PACKAGE.getEFloatObject()) {
 			buffer.putFloat((Float) value);
-		} else if (feature.getEType() == EcorePackage.eINSTANCE.getELong()) {
+		} else if (type == ECORE_PACKAGE.getELong() || type == ECORE_PACKAGE.getELongObject()) {
 			buffer.putLong((Long) value);
-		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
+		} else if (type == ECORE_PACKAGE.getEBoolean() || type == ECORE_PACKAGE.getEBooleanObject()) {
 			buffer.put(((Boolean) value) ? (byte) 1 : (byte) 0);
-		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
+		} else if (type == ECORE_PACKAGE.getEDate()) {
 			if (value == null) {
 				buffer.putLong(-1L);
 			} else {
 				buffer.putLong(((Date) value).getTime());
 			}
-		} else if (feature.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
+		} else if (type == Ifc2x3Package.eINSTANCE.getTristate()) {
 			Enumerator eEnumLiteral = (Enumerator) value;
 			buffer.putInt(eEnumLiteral.getValue());
-		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+		} else if (type == EcorePackage.eINSTANCE.getEByteArray()) {
 			if (value == null) {
 				buffer.putInt(0);
 			} else {
@@ -1301,7 +1293,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				buffer.put(bytes);
 			}
 		} else {
-			throw new RuntimeException("Unsupported type " + feature.getEType().getName());
+			throw new RuntimeException("Unsupported type " + type.getName());
 		}
 	}
 

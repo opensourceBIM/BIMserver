@@ -83,7 +83,6 @@ public class Database implements BimDatabase {
 	private Date created;
 	private final Set<BimDatabaseSession> sessions = new HashSet<BimDatabaseSession>();
 	private final Set<EClass> transactionLessClasses = new HashSet<EClass>();
-	private final RecordSizeEstimater recordSizeEstimater = new RecordSizeEstimater();
 
 	private int databaseSchemaVersion;
 	private short tableId;
@@ -105,22 +104,6 @@ public class Database implements BimDatabase {
 		this.emfPackages.add(StorePackage.eINSTANCE);
 		this.emfPackages.add(LogPackage.eINSTANCE);
 		this.emfPackages.addAll(emfPackages);
-
-		// All classes from the packages other than Store/Log (basically only the Ifc2x3 package at the moment) are transaction-less (faster)
-
-		// 13-07-2011 disabling this because low-level-transactions in the service interface require database-level transactions on all tables
-		
-//		for (EPackage ePackage : emfPackages) {
-//			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-//				if (eClassifier instanceof EClass) {
-//					EClass eClass = (EClass)eClassifier;
-//					transactionLessClasses.add(eClass);
-//				}
-//			}
-//		}
-		
-		recordSizeEstimater.init(this.emfPackages);
-		
 		this.registry = new Registry(columnDatabase);
 	}
 
@@ -489,10 +472,6 @@ public class Database implements BimDatabase {
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		}
-	}
-
-	public RecordSizeEstimater getRecordSizeEstimater() {
-		return recordSizeEstimater;
 	}
 
 	public MetaDataManager getMetaDataManager() {
