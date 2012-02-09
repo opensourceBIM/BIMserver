@@ -82,7 +82,9 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(project);
 			return concreteRevision;
-		} catch (Exception e) {
+		} catch (UserException e) {
+			throw e;
+		} catch (Throwable e) {
 			throw new UserException(e);
 		}
 	}

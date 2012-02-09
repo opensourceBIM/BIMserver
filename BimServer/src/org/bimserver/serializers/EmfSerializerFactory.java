@@ -30,6 +30,7 @@ import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
@@ -95,15 +96,23 @@ public class EmfSerializerFactory {
 	public EmfSerializer create(Project project, User user, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
 		EmfSerializer serializer = get(downloadParameters.getSerializerName());
 		if (serializer != null) {
-			ProjectInfo projectInfo = new ProjectInfo();
-			projectInfo.setName(project.getName());
-			projectInfo.setDescription(project.getDescription());
-			projectInfo.setX(project.getGeoTag().getX());
-			projectInfo.setY(project.getGeoTag().getY());
-			projectInfo.setZ(project.getGeoTag().getZ());
-			projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
-			projectInfo.setAuthorName(user.getName());
-			serializer.init(model, projectInfo, pluginManager, ifcEngine);
+			try {
+				ProjectInfo projectInfo = new ProjectInfo();
+				projectInfo.setName(project.getName());
+				projectInfo.setDescription(project.getDescription());
+				GeoTag geoTag = project.getGeoTag();
+				if (geoTag != null) {
+					projectInfo.setX(geoTag.getX());
+					projectInfo.setY(geoTag.getY());
+					projectInfo.setZ(geoTag.getZ());
+					projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
+				}
+				projectInfo.setAuthorName(user.getName());
+				serializer.init(model, projectInfo, pluginManager, ifcEngine);
+			} catch (NullPointerException e) {
+				System.out.println();
+				e.printStackTrace();
+			}
 		}
 		return serializer;
 	}

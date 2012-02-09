@@ -5,17 +5,15 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
 
-public class LogoutAction extends Action {
+public class PingAction extends Action {
 
-	public LogoutAction(TestFramework testFramework) {
+	public PingAction(TestFramework testFramework) {
 		super(testFramework);
 	}
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		if (!virtualUser.getCreatedUsers().isEmpty()) {
-			virtualUser.getLogger().info("Logging out");
-			virtualUser.getBimServerClient().getServiceInterface().logout();
-		}
+		virtualUser.getLogger().info("Pinging");
+		virtualUser.getBimServerClient().getServiceInterface().ping("test");
 	}
 }

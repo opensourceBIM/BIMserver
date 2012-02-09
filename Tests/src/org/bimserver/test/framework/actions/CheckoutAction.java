@@ -13,11 +13,8 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CheckoutAction extends Action {
-	private static final Logger LOGGER = LoggerFactory.getLogger(CheckoutAction.class);
 
 	public CheckoutAction(TestFramework testFramework) {
 		super(testFramework);
@@ -32,7 +29,7 @@ public class CheckoutAction extends Action {
 				List<SSerializer> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);
 				SSerializer serializer = allSerializers.get(nextInt(allSerializers.size()));
 				boolean sync = nextBoolean();
-				LOGGER.info("Checking out revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
+				virtualUser.getLogger().info("Checking out revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
 				Integer download = virtualUser.getBimServerClient().getServiceInterface().checkout(project.getLastRevisionId(), serializer.getName(), sync);
 				while (virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download).getState() != SActionState.FINISHED) {
 					try {
@@ -40,14 +37,14 @@ public class CheckoutAction extends Action {
 					} catch (InterruptedException e) {
 					}
 				}
-				LOGGER.info("Done preparing checkout, downloading");
+				virtualUser.getLogger().info("Done preparing checkout, downloading");
 				SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);
 				try {
 					ByteArrayOutputStream data = new ByteArrayOutputStream();
 					IOUtils.copy(downloadData.getFile().getInputStream(), data);
-					LOGGER.info(data.size() + " bytes downloaded");
+					virtualUser.getLogger().info(data.size() + " bytes downloaded");
 				} catch (IOException e) {
-					LOGGER.error("", e);
+					virtualUser.getLogger().error("", e);
 				}
 			}
 		}

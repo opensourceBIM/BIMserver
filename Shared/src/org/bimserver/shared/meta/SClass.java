@@ -71,7 +71,6 @@ public class SClass {
 					String fieldName = StringUtils.firstLowerCase(method.getName().substring(3));
 					try {
 						if (instanceClass.getMethod("set" + StringUtils.firstUpperCase(fieldName), method.getReturnType()) != null) {
-							method.getGenericReturnType();
 							Class<?> genericType = getGenericType(method);
 							boolean aggregate = List.class.isAssignableFrom(method.getReturnType()) || Set.class.isAssignableFrom(method.getReturnType());
 							SField sField = new SField(fieldName, sService.getSType(method.getReturnType().getName()), genericType == null ? null : sService.getSType(genericType.getName()), aggregate);

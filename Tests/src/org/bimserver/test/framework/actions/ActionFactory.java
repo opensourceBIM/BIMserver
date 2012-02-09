@@ -22,6 +22,8 @@ public class ActionFactory {
 		add(new LogoutAction(testFramework));
 		add(new RemoveUserFromProjectAction(testFramework));
 		add(new UpdateProjectAction(testFramework));
+		add(new PingAction(testFramework));
+		add(new UpdateRevisionAction(testFramework));
 	}
 	
 	public Action createAction() {

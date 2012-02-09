@@ -59,7 +59,7 @@ public class ProtocolBuffersConverter {
 				Object val = message.getField(fieldDescriptor);
 				SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
 				if (field == null) {
-					throw new RuntimeException("No field with name " + fieldDescriptor.getName());
+					throw new RuntimeException("No field on " + sClass.getName() + " with name " + fieldDescriptor.getName());
 				}
 				if (fieldDescriptor.isRepeated()) {
 					List list = new ArrayList();
