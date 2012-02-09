@@ -134,7 +134,7 @@ public class ProtocolBuffersConverter {
 				Object value = object.sGet(sField);
 				if (value != null) {
 					if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Long.class || value.getClass() == Double.class
-							|| value.getClass() == Integer.class) {
+							|| value.getClass() == Integer.class || value.getClass() == Boolean.class) {
 						builder.setField(fieldDescriptor, value);
 					} else if (value.getClass().isEnum()) {
 						Enum eNum = (Enum) value;

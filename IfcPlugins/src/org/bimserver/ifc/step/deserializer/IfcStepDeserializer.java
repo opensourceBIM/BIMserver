@@ -69,14 +69,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
 public class IfcStepDeserializer extends EmfDeserializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(IfcStepDeserializer.class);
 	private static final int AVERAGE_LINE_LENGTH = 58;
 
 	public enum Mode {
@@ -125,12 +122,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					throw new DeserializeException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
 				}
 			} catch (IOException e) {
-				LOGGER.error("", e);
+				throw new DeserializeException(e);
 			}
 		} else {
 			return read(in, setOids, fileSize);
 		}
-		return model;
 	}
 
 	private IfcModelInterface read(InputStream inputStream, boolean setOids, long fileSize) throws DeserializeException {
@@ -154,7 +150,6 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						lineNumber++;
 					}
 				} catch (Exception e) {
-					LOGGER.error("", e);
 					throw new DeserializeException("Error on line " + lineNumber + " (" + e.getMessage() + ") " + line, e);
 				}
 				line = reader.readLine();
@@ -162,11 +157,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			}
 			model.setChecksum(md.digest());
 		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
+			throw new DeserializeException(e);
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			throw new DeserializeException(e);
 		} catch (NoSuchAlgorithmException e) {
-			LOGGER.error("", e);
+			throw new DeserializeException(e);
 		}
 		return model;
 	}
@@ -239,9 +234,6 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		int lastIndexOfSemiColon = line.lastIndexOf(";");
 		int indexOfFirstParen = line.indexOf("(");
 		long recordNumber = Long.parseLong(line.substring(1, equalSignLocation).trim());
-		if (recordNumber == 315197) {
-			System.out.println();
-		}
 		String name = line.substring(equalSignLocation + 1, indexOfFirstParen).trim();
 		EClass classifier = (EClass) classes.get(name);
 		if (classifier != null) {
