@@ -1031,7 +1031,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return lazyLoad(idEObject, idEObject.getPid(), idEObject.getRid(), ObjectIDM);
 	}
 
-	public IdEObject lazyLoad(IdEObject idEObject, int pid, int rid, ObjectIDM ObjectIDM) throws BimDeadlockException, BimDatabaseException {
+	public IdEObject lazyLoad(IdEObject idEObject, int pid, int rid, ObjectIDM objectIDM) throws BimDeadlockException, BimDatabaseException {
 		IfcModel model = new IfcModel();
 		ByteBuffer keyBuffer = createKeyBuffer(pid, idEObject.getOid(), rid);
 		byte[] value = database.getColumnDatabase().get(idEObject.eClass().getName(), keyBuffer.array(), this);
@@ -1039,7 +1039,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			return null;
 		} else {
 			ByteBuffer buffer = ByteBuffer.wrap(value);
-			IdEObject object = convertByteArrayToObject(idEObject, idEObject.eClass(), idEObject.eClass(), idEObject.getOid(), buffer, model, pid, rid, false, ObjectIDM);
+			IdEObject object = convertByteArrayToObject(idEObject, idEObject.eClass(), idEObject.eClass(), idEObject.getOid(), buffer, model, pid, rid, false, objectIDM);
 			putInCache(new RecordIdentifier(pid, idEObject.getOid(), rid), object);
 			return object;
 		}

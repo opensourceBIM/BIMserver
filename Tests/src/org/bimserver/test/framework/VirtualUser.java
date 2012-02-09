@@ -46,8 +46,10 @@ public class VirtualUser extends Thread {
 						action.execute(this);
 					}
 				} catch (ServerException e) {
-					LOGGER.error("", e);
+					LOGGER.info(e.getMessage());
 				} catch (UserException e) {
+					LOGGER.info(e.getMessage());
+				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
 			}
@@ -62,6 +64,9 @@ public class VirtualUser extends Thread {
 	}
 
 	public SProject getRandomProject() {
+		if (createdProjects.isEmpty()) {
+			return null;
+		}
 		return createdProjects.get(random.nextInt(createdProjects.size()));
 	}
 
@@ -75,5 +80,9 @@ public class VirtualUser extends Thread {
 
 	public List<SUser> getCreatedUsers() {
 		return createdUsers;
+	}
+
+	public Logger getLogger() {
+		return LOGGER;
 	}
 }

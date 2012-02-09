@@ -244,7 +244,7 @@
 										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 									%>
 									<option value="<%=serializer.getName()%>"
-										<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+										<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 									<%
 										}
 									%>
@@ -295,7 +295,7 @@
 										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 									%>
 									<option value="<%=serializer.getName()%>"
-										<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+										<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 									<%
 										}
 									%>
@@ -590,7 +590,7 @@
 												for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 											%>
 											<option value="<%=serializer.getName()%>"
-												<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+												<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 											<%
 												}
 											%>
@@ -697,7 +697,7 @@
 									for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 								%>
 								<option value="<%=serializer.getName()%>"
-									<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+									<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 								<%
 									}
 								%>

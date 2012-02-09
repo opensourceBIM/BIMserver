@@ -312,15 +312,14 @@ public class Service implements ServiceInterface {
 				throw e;
 			} catch (DeserializeException e) {
 				throw new UserException(e);
-			} catch (Exception e) {
-				LOGGER.error("", e);
-				new ServerException("Unknown error", e);
 			} finally {
 				inputStream.close();
 			}
-		} catch (IOException e) {
+		} catch (UserException e) {
+			throw e;
+		} catch (Throwable e) {
 			LOGGER.error("", e);
-			throw new UserException("IOException", e);
+			new ServerException("Unknown error", e);
 		} finally {
 			session.close();
 		}
@@ -329,11 +328,17 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckinResult getCheckinState(Integer actionId) throws ServerException, UserException {
-		LongCheckinAction longAction = (LongCheckinAction) bimServer.getLongActionManager().getLongAction(actionId);
-		if (longAction != null) {
-			return converter.convertToSObject(longAction.getCheckinResult());
-		} else {
-			throw new UserException("No state found for laid " + actionId);
+		try {
+			LongCheckinAction longAction = (LongCheckinAction) bimServer.getLongActionManager().getLongAction(actionId);
+			if (longAction != null) {
+				return converter.convertToSObject(longAction.getCheckinResult());
+			} else {
+				throw new UserException("No state found for laid " + actionId);
+			}
+		} catch (UserException e) {
+			throw e;
+		} catch (Throwable e) {
+			throw new UserException(e);
 		}
 	}
 	

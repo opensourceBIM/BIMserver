@@ -73,13 +73,15 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 			if (merge && lastRevision != null) {
 				IfcModelSet ifcModelSet = new IfcModelSet();
 				for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
-					IfcModel subModel = new IfcModel();
-					getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
-					subModel.setDate(subRevision.getDate());
-					ifcModelSet.add(subModel);
+					if (concreteRevision != subRevision) {
+						IfcModel subModel = new IfcModel();
+						getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
+						subModel.setDate(subRevision.getDate());
+						ifcModelSet.add(subModel);
+					}
 				}
-				getIfcModel().setDate(new Date());
 				IfcModelInterface newModel = getIfcModel();
+				newModel.setDate(new Date());
 				newModel.fixOids(getDatabaseSession());
 				IfcModelInterface oldModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 				

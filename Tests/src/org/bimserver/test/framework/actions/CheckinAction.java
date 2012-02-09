@@ -5,16 +5,14 @@ import java.io.File;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
+import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CheckinAction extends Action {
-	private static final Logger LOGGER = LoggerFactory.getLogger(CheckinAction.class);
 	
 	public CheckinAction(TestFramework testFramework) {
 		super(testFramework);
@@ -31,11 +29,32 @@ public class CheckinAction extends Action {
 				deserializerName = "IfcStepDeserializer";
 			} else if (randomFile.getName().endsWith(".ifcxml")) {
 				deserializerName = "IfcXmlDeserializer";
+			} else if (randomFile.getName().endsWith(".ifczip")) {
+				deserializerName = "IfcStepDeserializer";
+			} else if (randomFile.getName().endsWith(".ifcxmlzip")) {
+				deserializerName = "IfcXmlDeserializer";
+			} else {
+				return;
 			}
 			boolean sync = getRandom().nextBoolean();
-			boolean merge = getRandom().nextBoolean();
-			LOGGER.info("Checking in new revision on project " + sProject.getName() + " (" + randomFile.getName() + ") " + "sync: " + sync + ", merge: " + merge);
-			virtualUser.getBimServerClient().getServiceInterface().checkin(sProject.getOid(), randomString(), deserializerName, randomFile.length(), new DataHandler(dataSource), merge, sync);
+			boolean merge = false;// getRandom().nextBoolean();
+			virtualUser.getLogger().info("Checking in new revision on project " + sProject.getName() + " (" + randomFile.getName() + ") " + "sync: " + sync + ", merge: " + merge);
+			Integer checkinId = virtualUser.getBimServerClient().getServiceInterface().checkin(sProject.getOid(), randomString(), deserializerName, randomFile.length(), new DataHandler(dataSource), merge, sync);
+			if (sync) {
+				virtualUser.getBimServerClient().getServiceInterface().getCheckinState(checkinId);
+			} else {
+				while (true) {
+					SCheckinResult checkinState = virtualUser.getBimServerClient().getServiceInterface().getCheckinState(checkinId);
+					if (checkinState.getProgress() == 100) {
+						break;
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 	

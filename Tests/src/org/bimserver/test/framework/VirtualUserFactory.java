@@ -10,7 +10,7 @@ public class VirtualUserFactory {
 	public VirtualUserFactory(TestFramework testFramework, RandomBimServerClientFactory randomBimServerClientFactory) {
 		this.testFramework = testFramework;
 		this.randomBimServerClientFactory = randomBimServerClientFactory;
-		new ActionFactory(testFramework);
+		this.actionFactory = new ActionFactory(testFramework);
 	}
 
 	public VirtualUser create(String name) {
