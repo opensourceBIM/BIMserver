@@ -30,6 +30,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -40,13 +41,10 @@ import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.sun.jna.Pointer;
 
 public class IfcEngineServer extends Thread {
-	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineServer.class);
 	private volatile boolean running = true;
 	private final String schemaFileName;
 	private IfcEngine ifcEngine;
@@ -54,20 +52,22 @@ public class IfcEngineServer extends Thread {
 	private int pointerCounter = 0;
 	private final InputStream in;
 	private final OutputStream out;
+	private final PrintStream err;
 
 	public static void main(String[] args) {
 		try {
-			IfcEngineServer ifcEngineServer = new IfcEngineServer(args[0], System.in, System.out);
+			IfcEngineServer ifcEngineServer = new IfcEngineServer(args[0], System.in, System.out, System.err);
 			ifcEngineServer.run();
-		} catch (Exception e) {
-			LOGGER.error("", e);
+		} catch (Throwable e) {
+			e.printStackTrace(System.err);
 		}
 	}
 
-	public IfcEngineServer(String schemaFileName, InputStream in, OutputStream out) {
+	public IfcEngineServer(String schemaFileName, InputStream in, OutputStream out, PrintStream err) {
 		this.schemaFileName = schemaFileName;
 		this.in = in;
 		this.out = out;
+		this.err = err;
 		this.ifcEngine = new IfcEngine();
 	}
 
@@ -217,10 +217,10 @@ public class IfcEngineServer extends Thread {
 			}
 		} catch (IOException e) {
 			if (running) {
-				LOGGER.error("", e);
+				e.printStackTrace(err);
 			}
-		} catch (Exception e) {
-			LOGGER.error("", e);
+		} catch (Throwable e) {
+			e.printStackTrace(err);
 		}
 	}
 

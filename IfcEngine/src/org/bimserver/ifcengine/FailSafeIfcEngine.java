@@ -51,6 +51,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	private boolean useSecondJvm = true;
 	private final String classPath;
 	private final File tempDir;
+	private volatile IfcEngineException lastException;
 
 	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir, File tempDir, String classPath) throws IfcEngineException {
 		this.schemaFile = schemaFile;
@@ -68,7 +69,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 		try {
 			PipedInputStream pipedInputStream = new PipedInputStream();
 			PipedOutputStream pipedOutputStream = new PipedOutputStream(pipedInputStream);
-			IfcEngineServer ifcEngineServer = new IfcEngineServer(schemaFile.getAbsolutePath(), pipedInputStream, pipedOutputStream);
+			IfcEngineServer ifcEngineServer = new IfcEngineServer(schemaFile.getAbsolutePath(), pipedInputStream, pipedOutputStream, null);
 			in = new DataInputStream(new BufferedInputStream(pipedInputStream));
 			out = new DataOutputStream(new BufferedOutputStream(pipedOutputStream));
 			ifcEngineServer.start();
@@ -111,8 +112,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 				command.append(" -Xmx512m");
 				command.append(" -Xms512m");
 			} else {
-				//int memoryInMegaBytes = (int) (Runtime.getRuntime().maxMemory() / 2000000);
-				int memoryInMegaBytes = 2000;
+				int memoryInMegaBytes = (int) (Runtime.getRuntime().maxMemory() / 2000000);
 				command.append(" -Xmx" + memoryInMegaBytes + "m");
 				command.append(" -Xms" + memoryInMegaBytes + "m");
 			}
@@ -128,6 +128,22 @@ public class FailSafeIfcEngine implements IfcEngine {
 			out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));
 			err = process.getErrorStream();
 			startErrorHandler();
+			Thread thread = new Thread(){
+				@Override
+				public void run() {
+					int result;
+					try {
+						result = process.waitFor();
+						if (result != 0) {
+							lastException = new IfcEngineException("Process ended with errorcode: " + result);
+						}
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			};
+			thread.start();
+			Thread.sleep(1000);
 		} catch (Exception e) {
 			throw new IfcEngineException(e);
 		}
@@ -154,6 +170,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public synchronized IfcEngineModelImpl openModel(File ifcFile) throws IfcEngineException {
+		checkRunning();
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());
 		flush();
@@ -162,6 +179,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public synchronized IfcEngineModelImpl openModel(InputStream inputStream, int size) throws IfcEngineException {
+		checkRunning();
 		writeCommand(Command.OPEN_MODEL_STREAMING);
 		try {
 			out.writeInt(size);
@@ -183,7 +201,14 @@ public class FailSafeIfcEngine implements IfcEngine {
 		return new IfcEngineModelImpl(this, modelId);
 	}
 
+	private void checkRunning() throws IfcEngineException {
+		if (lastException != null) {
+			throw lastException;
+		}
+	}
+	
 	public int readInt() throws IfcEngineException {
+		checkRunning();
 		try {
 			return in.readInt();
 		} catch (IOException e) {
@@ -192,6 +217,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public void flush() throws IfcEngineException {
+		checkRunning();
 		try {
 			out.flush();
 		} catch (IOException e) {
@@ -200,6 +226,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	void writeUTF(String value) throws IfcEngineException {
+		checkRunning();
 		try {
 			out.writeUTF(value);
 		} catch (IOException e) {
@@ -208,6 +235,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public void writeCommand(Command command) throws IfcEngineException {
+		checkRunning();
 		try {
 			out.writeByte(command.getId());
 		} catch (IOException e) {
@@ -228,6 +256,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public void writeInt(int value) throws IfcEngineException {
+		checkRunning();
 		try {
 			out.writeInt(value);
 		} catch (IOException e) {
@@ -236,6 +265,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public void writeBoolean(boolean value) throws IfcEngineException {
+		checkRunning();
 		try {
 			out.writeBoolean(value);
 		} catch (IOException e) {
@@ -244,6 +274,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public float readFloat() throws IfcEngineException {
+		checkRunning();
 		try {
 			return in.readFloat();
 		} catch (IOException e) {
@@ -252,6 +283,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public String readString() throws IfcEngineException {
+		checkRunning();
 		try {
 			return in.readUTF();
 		} catch (IOException e) {
@@ -260,6 +292,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public void writeDouble(double d) throws IfcEngineException {
+		checkRunning();
 		try {
 			out.writeDouble(d);
 		} catch (IOException e) {
@@ -268,6 +301,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public long readLong() throws IfcEngineException {
+		checkRunning();
 		try {
 			return in.readLong();
 		} catch (IOException e) {
@@ -276,10 +310,12 @@ public class FailSafeIfcEngine implements IfcEngine {
 	}
 
 	public IfcEngineModelImpl openModel(byte[] bytes) throws IfcEngineException {
+		checkRunning();
 		return openModel(new ByteArrayInputStream(bytes), bytes.length);
 	}
 
 	public void writeLong(long value) throws IfcEngineException {
+		checkRunning();
 		try {
 			out.writeLong(value);
 		} catch (IOException e) {
