@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 public abstract class LongAction<T extends LongActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
-	private Date start;
+	private final Date start;
 	private int id;
 	private final CountDownLatch latch = new CountDownLatch(1);
 
