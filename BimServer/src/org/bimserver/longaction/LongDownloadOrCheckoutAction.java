@@ -110,11 +110,12 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			} else {
 				ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
 			}
-			
+
+			BimDatabaseSession newSession = getBimServer().getDatabase().createReadOnlySession();
 			IfcEnginePlugin ifcEnginePlugin  = null;
 			try {
 				Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
-				Serializer found = session.querySingle(condition, Serializer.class, false, null);
+				Serializer found = newSession.querySingle(condition, Serializer.class, false, null);
 				if (found != null) {
 					org.bimserver.models.store.IfcEngine ifcEngine = found.getIfcEngine();
 					if (ifcEngine != null) {
@@ -126,7 +127,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			} catch (BimDeadlockException e) {
 				LOGGER.error("", e);
 			} finally {
-				session.close();
+				newSession.close();
 			}
 			
 			IfcEngine ifcEngine = null;

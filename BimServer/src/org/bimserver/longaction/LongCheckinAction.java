@@ -78,9 +78,12 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				}
 				for (Revision r : concreteRevision.getRevisions()) {
 					Revision latest = null;
-					for (Revision r2 : projects.get(r).getRevisions()) {
-						if (latest == null || r2.getId() > latest.getId()) {
-							latest = r2;
+					Project project = projects.get(r);
+					if (project != null) {
+						for (Revision r2 : project.getRevisions()) {
+							if (latest == null || r2.getId() > latest.getId()) {
+								latest = r2;
+							}
 						}
 					}
 					if (latest != null) {

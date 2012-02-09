@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class TestFramework {
-	private static final int NR_VIRTUAL_USERS = 1;
+	private static final int NR_VIRTUAL_USERS = 3;
 	private static final File IFC_FILES_FOLDER = new File("../TestData/data");
 	private final List<File> files = new ArrayList<File>();
 	private final Set<VirtualUser> virtualUsers = new HashSet<VirtualUser>();

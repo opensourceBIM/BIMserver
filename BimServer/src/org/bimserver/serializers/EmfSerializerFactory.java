@@ -101,7 +101,7 @@ public class EmfSerializerFactory {
 				projectInfo.setName(project.getName());
 				projectInfo.setDescription(project.getDescription());
 				GeoTag geoTag = project.getGeoTag();
-				if (geoTag != null) {
+				if (geoTag != null && geoTag.getEnabled()) {
 					projectInfo.setX(geoTag.getX());
 					projectInfo.setY(geoTag.getY());
 					projectInfo.setZ(geoTag.getZ());
