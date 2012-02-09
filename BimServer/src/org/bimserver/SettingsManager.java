@@ -63,6 +63,8 @@ public class SettingsManager {
 		settings.setCheckinMergingEnabled(false);
 		settings.setIntelligentMerging(false);
 		settings.setHideUserListForNonAdmin(true);
+		settings.setShowVersionUpgradeAvailable(false);
+		settings.setCacheOutputFiles(false);
 		return settings;
 	}
 	

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SProjectDeleted.class, SUserUndeleted.class, SGeoTagUpdated.class, SDownload.class, SPasswordChanged.class, SNewRevisionAdded.class, SSettingsSaved.class, SUserRemovedFromProject.class, SDatabaseCreated.class, SServerStarted.class, SNewCheckoutAdded.class, SUserDeleted.class, SProjectUpdated.class, SPasswordReset.class, SRevisionBranched.class, SNewUserAdded.class, SRevisionUpdated.class, SNewProjectAdded.class, SUserAddedToProject.class, SProjectUndeleted.class, SUserChanged.class, SNewObjectIDMUploaded.class, SClashDetectionSettingsUpdated.class})
+@XmlSeeAlso(value={SUserRemovedFromProject.class, SRevisionBranched.class, SRevisionUpdated.class, SNewCheckoutAdded.class, SNewObjectIDMUploaded.class, SNewRevisionAdded.class, SProjectUndeleted.class, SProjectDeleted.class, SNewProjectAdded.class, SClashDetectionSettingsUpdated.class, SUserDeleted.class, SPasswordChanged.class, SServerStarted.class, SUserAddedToProject.class, SDatabaseCreated.class, SUserUndeleted.class, SUserChanged.class, SNewUserAdded.class, SSettingsSaved.class, SDownload.class, SPasswordReset.class, SGeoTagUpdated.class, SProjectUpdated.class})
 public class SLogAction implements SBase
 {
 	private long oid = -1;

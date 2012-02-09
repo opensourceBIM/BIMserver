@@ -91,10 +91,14 @@ public class VirtualUser extends Thread {
 	}
 
 	private void login() throws ServerException, UserException {
-		if (!createdUsers.isEmpty()) {
-			SUser user = getRandomUser();
-			LOGGER.info("Logging in as " + user.getUsername());
-			bimServerClient.getServiceInterface().login(user.getUsername(), "test");
+		if (random.nextInt(createdUsers.size() + 1) == 0) {
+			bimServerClient.getServiceInterface().login("admin@bimserver.or", "admin");
+		} else {
+			if (!createdUsers.isEmpty()) {
+				SUser user = getRandomUser();
+				LOGGER.info("Logging in as " + user.getUsername());
+				bimServerClient.getServiceInterface().login(user.getUsername(), "test");
+			}
 		}
 	}
 
