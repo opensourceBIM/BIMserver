@@ -66,8 +66,8 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 	<%@ include file="extraInfo.jsp" %>
 	<div class="tabbertab" id="license" title="License">
 	  (c) Copyright bimserver.org<br/>
-	  Licensed under GNU GPLv3<br/>
-	  <a href="http://www.gnu.org/licenses/gpl-3.0.txt" target="_blank">http://www.gnu.org/licenses/gpl-3.0.txt</a><br/>
+	  Licensed under GNU Affero General Public License<br/>
+	  <a href="http://www.gnu.org/licenses/agpl.html" target="_blank">http://www.gnu.org/licenses/agpl.html</a><br/>
 	  For more information mail to <a href="mailto:license@bimserver.org">license@bimserver.org</a><br/>
       <br/>
       BIMserver software uses the IFC Engine DLL.<br/>
