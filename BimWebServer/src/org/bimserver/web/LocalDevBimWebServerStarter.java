@@ -36,7 +36,7 @@ public class LocalDevBimWebServerStarter {
 
 	public static void main(String[] args) {
 		final LocalDevBimWebServerStarter server = new LocalDevBimWebServerStarter();
-		server.start("localhost", 80, "www");
+		server.start("localhost", 8080, "www");
 	}
 
 	public void stop() {
