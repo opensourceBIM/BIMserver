@@ -51,7 +51,7 @@ public class LocalDevBimCombinedServerStarter {
 	private BimServer bimServer;
 
 	public static void main(String[] args) {
-		new LocalDevBimCombinedServerStarter().start("localhost", 80);
+		new LocalDevBimCombinedServerStarter().start("localhost", 8080);
 	}
 
 	public void stop() {
@@ -85,7 +85,7 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
 	 		bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getSystemService().setup("http://localhost:8080", "localhost", "Administrator", "admin@bimserver.org", "admin");
 			}
 		} catch (PluginException e) {
 			LOGGER.error("", e);
