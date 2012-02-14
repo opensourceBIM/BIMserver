@@ -90,8 +90,23 @@ public class ProtocolBuffersGenerator {
 	private void generateProtocolBuffersObjects(File protoFile, File protoDestFile, boolean javaOut) {
 		File destDir = new File("../GeneratedProtocolBuffersClient/generated");
 		File protoDir = new File("../Builds/build/pb");
-		File execFile = new File("../Builds/build/pb/protoc.exe");
-		try {
+
+		File execFile = null;
+		String execFileName = "protoc";
+        String path = System.getenv("PATH");
+        String[] folders = path.split(File.pathSeparator);  
+        for (String folder : folders) {
+            File file = new File(folder, execFileName);  
+            if (file.isFile()) {
+            	execFile = file;
+            	break;
+            }
+		}
+        if (execFile == null) {
+        	execFile = new File("../Builds/build/pb/protoc.exe");
+        }
+
+        try {
 			ProcessBuilder processBuilder = null;
 			if (javaOut) {
 				processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--java_out=" + destDir.getAbsolutePath(),
