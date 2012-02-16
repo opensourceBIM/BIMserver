@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="java.util.List" %>
@@ -31,7 +32,7 @@ try {
 <table class="formatted maintable">
 <%
 		for (SProject project : projects) {
-			if (project.getParentId() == -1) {
+			if (project.getParentId() == -1 && project.getState() == SObjectState.ACTIVE) {
 				%>
 				<tr>
 					<th>Name</th>

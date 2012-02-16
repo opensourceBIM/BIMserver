@@ -29,6 +29,12 @@
 	 * http://www.gnu.org/licenses/gpl-3.0.txt
 	 * For more information mail to license@bimserver.org
 	 ***********************************************************/
+	 
+	 $.ajaxSetup ({
+		    // Disable caching of AJAX responses
+		    cache: false
+		});
+	 
 	var tabberOptions = {
 		'cookie' :"tabber",
 		'onLoad' : function(argsObj) {

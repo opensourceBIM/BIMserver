@@ -666,7 +666,7 @@ public class Service implements ServiceInterface {
 		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
-		} catch (CannotBeScheduledException e) {
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 		if (sync) {
