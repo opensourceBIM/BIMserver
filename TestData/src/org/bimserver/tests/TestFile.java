@@ -31,6 +31,7 @@ public enum TestFile {
 	RIOLERING_TEST(new File(TestFileConstants.DATA_FOLDER, "RioleringTestArkey.ifc")), 
 	EMPTY_TEST(new File(TestFileConstants.DATA_FOLDER, "EmptyTest.ifc")), 
 	WALL_ONLY(new File(TestFileConstants.DATA_FOLDER, "WallOnly.ifc")),
+	WALL_ONLY_ADDED_SPACE(new File(TestFileConstants.DATA_FOLDER, "WallOnlyAddedSpace.ifc")),
 	AC11(new File(TestFileConstants.DATA_FOLDER, "AC11-Institute-Var-2-IFC.ifc")), 
 	REVIT_QUANTITIES(new File(TestFileConstants.DATA_FOLDER, "revit_quantities.ifc")), 
 	BATHROOM(new File(TestFileConstants.DATA_FOLDER, "BathroomWindow.ifc")),
