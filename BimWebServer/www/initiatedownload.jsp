@@ -74,14 +74,20 @@
 			},
 			success:
 				function(data){
-					$("#progressBar<%=longActionId%>").progressbar("value", data.progress);
-					$("#statusfield<%=longActionId%>").html("<nobr>Preparing (" + data.progress + "%)</nobr>");
-					if (data.progress == 100) {
+					if (data.error != null) {
 						clearInterval(downloadUpdateFunctionHandle);
-						$("#progressBar<%=longActionId%>").hide();
-						$("#statusfield<%=longActionId%>").hide();
-						$(".downloadResult").hide();
-						window.location = 'download?longActionId=<%=longActionId%><%=(zip == null ? "" : ("&zip=" + zip))%>&serializerName=<%=serializerName%>';
+						console.log(data.error);
+						$("#statusfield<%=longActionId%>").html("<nobr>" + data.error + "</nobr>");
+					} else {
+						$("#progressBar<%=longActionId%>").progressbar("value", data.progress);
+						$("#statusfield<%=longActionId%>").html("<nobr>Preparing (" + data.progress + "%)</nobr>");
+						if (data.progress == 100) {
+							clearInterval(downloadUpdateFunctionHandle);
+							$("#progressBar<%=longActionId%>").hide();
+							$("#statusfield<%=longActionId%>").hide();
+							$(".downloadResult").hide();
+							window.location = 'download?longActionId=<%=longActionId%><%=(zip == null ? "" : ("&zip=" + zip))%>&serializerName=<%=serializerName%>';
+						}
 					}
 				},
 			data: {	longActionId: '<%=longActionId%>' ,

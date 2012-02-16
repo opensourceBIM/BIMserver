@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONArray;
@@ -80,7 +80,15 @@ public class ProgressServlet extends HttpServlet {
 			LOGGER.error("", e);
 		} catch (JSONException e) {
 			LOGGER.error("", e);
-		} catch (ServiceException e) {
+		} catch (UserException e) {
+			JSONObject result = new JSONObject();
+			try {
+				result.put("error", e.getMessage());
+				result.write(response.getWriter());
+			} catch (JSONException e1) {
+				LOGGER.error("", e);
+			}
+		} catch (ServerException e) {
 			LOGGER.error("", e);
 		}
 	}
