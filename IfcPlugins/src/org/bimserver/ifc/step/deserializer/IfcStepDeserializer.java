@@ -232,7 +232,17 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	public void processRecord(String line, boolean setOids) throws DeserializeException {
 		int equalSignLocation = line.indexOf("=");
 		int lastIndexOfSemiColon = line.lastIndexOf(";");
-		int indexOfFirstParen = line.indexOf("(");
+		if (lastIndexOfSemiColon == -1) {
+			throw new DeserializeException("No semicolon found in line");
+		}
+		int indexOfFirstParen = line.indexOf("(", equalSignLocation);
+		if  (indexOfFirstParen == -1) {
+			throw new DeserializeException("No left parenthesis found in line");
+		}
+		int indexOfLastParen = line.lastIndexOf(")", lastIndexOfSemiColon);
+		if (indexOfLastParen == -1) {
+			throw new DeserializeException("No right parenthesis found in line");
+		}
 		long recordNumber = Long.parseLong(line.substring(1, equalSignLocation).trim());
 		String name = line.substring(equalSignLocation + 1, indexOfFirstParen).trim();
 		EClass classifier = (EClass) classes.get(name);
@@ -242,7 +252,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			if (setOids) {
 				object.setOid(recordNumber);
 			}
-			String realData = line.substring(indexOfFirstParen + 1, lastIndexOfSemiColon - 1);
+			String realData = line.substring(indexOfFirstParen + 1, indexOfLastParen);
 			int lastIndex = 0;
 			EntityDefinition entityBN = schema.getEntityBN(name);
 			if (entityBN == null) {
