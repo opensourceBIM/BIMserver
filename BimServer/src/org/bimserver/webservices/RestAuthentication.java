@@ -58,7 +58,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 		Token token = (Token)message.getExchange().getSession().get("token");
 		HttpServletRequest httpRequest = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
 		HttpServletResponse response = (HttpServletResponse) message.get(AbstractHTTPDestination.HTTP_RESPONSE);
-		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Origin", httpRequest.getHeader("Origin"));
 		ServiceInterface newService = null;
 		if (token == null) {
 			newService = bimServer.getServiceFactory().newService(AccessMethod.REST, httpRequest.getRemoteAddr());
@@ -84,14 +84,15 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 		}
 		try {
 			if (newService.login(policy.getUserName(), policy.getPassword())) {
+                response.setHeader("Access-Control-Allow-Credentials", "true");
 				return;
 			} else {
 				LOGGER.warn("Invalid username or password for user: " + policy.getUserName());
-				sendErrorResponse(message, HttpURLConnection.HTTP_FORBIDDEN);
+				sendErrorResponse(message, HttpURLConnection.HTTP_UNAUTHORIZED);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
-			sendErrorResponse(message, HttpURLConnection.HTTP_FORBIDDEN);
+			sendErrorResponse(message, HttpURLConnection.HTTP_INTERNAL_ERROR);
 		}
 	}
 
