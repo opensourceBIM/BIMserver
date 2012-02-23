@@ -260,7 +260,6 @@ public class BimServer {
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
 			} catch (IOException e) {
 				LOGGER.error("", e);
-
 			}
 
 			sService = new SService(ServiceInterface.class);

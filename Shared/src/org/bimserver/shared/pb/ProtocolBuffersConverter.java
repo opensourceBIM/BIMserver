@@ -31,6 +31,7 @@ import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.pb.ProtocolBuffersMetaData.MessageDescriptorContainer;
 import org.bimserver.utils.ByteArrayDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,8 +47,12 @@ import com.google.protobuf.Message.Builder;
 
 public class ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConverter.class);
+	private final ProtocolBuffersMetaData protocolBuffersMetaData;
+	private final SService sService;
 
-	public ProtocolBuffersConverter(SService sService) {
+	public ProtocolBuffersConverter(SService sService, ProtocolBuffersMetaData protocolBuffersMetaData) {
+		this.sService = sService;
+		this.protocolBuffersMetaData = protocolBuffersMetaData;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -111,10 +116,12 @@ public class ProtocolBuffersConverter {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Message convertSObjectToProtocolBuffersObject(Descriptor descriptor, SBase object) {
+	public Message convertSObjectToProtocolBuffersObject(SBase object, SClass definedType) {
 		Builder builder = null;
+		MessageDescriptorContainer messageDescriptor = protocolBuffersMetaData.getMessageDescriptor(definedType.getName());
+		Descriptor definedDescriptor = messageDescriptor.getDescriptor();
 		try {
-			builder = DynamicMessage.getDefaultInstance(descriptor).newBuilderForType();
+			builder = DynamicMessage.getDefaultInstance(definedDescriptor).newBuilderForType();
 		} catch (SecurityException e) {
 			LOGGER.error("", e);
 		} catch (IllegalArgumentException e) {
@@ -125,13 +132,10 @@ public class ProtocolBuffersConverter {
 		while (superClass != null) {
 			superClass = superClass.getSuperClass();
 		}
-		for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
+		for (SField field : definedType.getFields()) {
 			try {
-				SField sField = sClass.getField(fieldDescriptor.getName());
-				if (sField == null) {
-					throw new RuntimeException("Field " + fieldDescriptor.getName() + " not found on class " + sClass.getName());
-				}
-				Object value = object.sGet(sField);
+				Object value = object.sGet(field);
+				FieldDescriptor fieldDescriptor = messageDescriptor.getField(field.getName());
 				if (value != null) {
 					if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Long.class || value.getClass() == Double.class
 							|| value.getClass() == Integer.class || value.getClass() == Boolean.class) {
@@ -155,7 +159,7 @@ public class ProtocolBuffersConverter {
 						List newList = new ArrayList();
 						for (Object o : list) {
 							if (fieldDescriptor.getJavaType() == JavaType.MESSAGE) {
-								newList.add(convertSObjectToProtocolBuffersObject(fieldDescriptor.getMessageType(), (SBase) o));
+								newList.add(convertSObjectToProtocolBuffersObject((SBase) o, field.getType()));
 							} else {
 								newList.add(o);
 							}

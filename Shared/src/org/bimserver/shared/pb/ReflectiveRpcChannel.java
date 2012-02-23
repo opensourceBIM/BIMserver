@@ -52,7 +52,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 	private final SService sService;
 
 	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData, SService sService) {
-		super(sService);
+		super(sService, protocolBuffersMetaData);
 		this.service = service;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.sService = sService;
@@ -114,7 +114,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 						List list = new ArrayList();
 						List originalList = (List) result;
 						for (Object object : originalList) {
-							list.add(convertSObjectToProtocolBuffersObject(messageType, (SBase) object));
+							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getReturnType()));
 						}
 						builder.setField(valueField, list);
 					} else if (result instanceof Set) {
@@ -122,12 +122,12 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 						List list = new ArrayList();
 						Set originalSet = (Set) result;
 						for (Object object : originalSet) {
-							list.add(convertSObjectToProtocolBuffersObject(messageType, (SBase) object));
+							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getReturnType()));
 						}
 						builder.setField(valueField, list);
 					} else {
 						Descriptor messageType = valueField.getMessageType();
-						builder.setField(valueField, convertSObjectToProtocolBuffersObject(messageType, (SBase) result));
+						builder.setField(valueField, convertSObjectToProtocolBuffersObject((SBase) result, sMethod.getReturnType()));
 					}
 				}
 				builder.setField(errorMessageField, "OKE");

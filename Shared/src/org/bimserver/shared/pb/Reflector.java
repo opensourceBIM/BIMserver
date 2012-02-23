@@ -55,7 +55,7 @@ public class Reflector extends ProtocolBuffersConverter {
 	private final SService sService;
 
 	public Reflector(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, Channel channel) {
-		super(sService);
+		super(sService, protocolBuffersMetaData);
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.sService = sService;
 		this.channel = channel;
@@ -74,7 +74,7 @@ public class Reflector extends ProtocolBuffersConverter {
 				builder.setField(field, enumType.findValueByName(arg.toString()));
 			} else {
 				if (arg instanceof SBase) {
-					builder.setField(field, convertSObjectToProtocolBuffersObject(field.getMessageType(), (SBase)arg));
+					builder.setField(field, convertSObjectToProtocolBuffersObject((SBase)arg, null));
 				} else if (arg instanceof DataHandler) {
 					DataHandler dataHandler = (DataHandler)arg;
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
