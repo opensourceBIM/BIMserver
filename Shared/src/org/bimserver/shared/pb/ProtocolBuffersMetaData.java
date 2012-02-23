@@ -122,11 +122,17 @@ public class ProtocolBuffersMetaData {
 	public static class MessageDescriptorContainer {
 
 		private final Map<String, FieldDescriptor> fieldDescriptors = new HashMap<String, Descriptors.FieldDescriptor>();
+		private final Descriptor descriptor;
 		
 		public MessageDescriptorContainer(Descriptor descriptor) {
+			this.descriptor = descriptor;
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				fieldDescriptors.put(fieldDescriptor.getName(), fieldDescriptor);
 			}
+		}
+		
+		public Descriptor getDescriptor() {
+			return descriptor;
 		}
 		
 		public FieldDescriptor getField(String name) {

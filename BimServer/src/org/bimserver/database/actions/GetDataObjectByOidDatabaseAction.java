@@ -30,7 +30,6 @@ import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.DataValue;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.ReferenceDataValue;
 import org.bimserver.models.store.Revision;
@@ -144,10 +143,6 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 							reference.setFieldName(eStructuralFeature.getName());
 							dataObject.getValues().add(reference);
 						}
-					} else {
-						DataValue empty = StoreFactory.eINSTANCE.createDataValue();
-						empty.setFieldName(eStructuralFeature.getName());
-						dataObject.getValues().add(empty);
 					}
 				} else {
 					EList<? extends EObject> list = (EList<EObject>) eGet;
