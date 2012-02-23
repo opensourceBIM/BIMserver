@@ -13,7 +13,7 @@ public class LogoutAction extends Action {
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		if (!virtualUser.getCreatedUsers().isEmpty()) {
+		if (!virtualUser.getUserNames().isEmpty()) {
 			virtualUser.getLogger().info("Logging out");
 			virtualUser.getBimServerClient().getServiceInterface().logout();
 		}

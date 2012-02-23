@@ -1,6 +1,5 @@
 package org.bimserver.test.framework.actions;
 
-import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -14,14 +13,14 @@ public class LoginAction extends Action {
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		if (nextInt(virtualUser.getCreatedUsers().size() + 1) == 0) {
+		if (nextInt(virtualUser.getUserNames().size() + 1) == 0) {
 			virtualUser.getLogger().info("Logging in as admin@bimserver.org");
 			virtualUser.getBimServerClient().getServiceInterface().login("admin@bimserver.or", "admin");
 		} else {
-			if (!virtualUser.getCreatedUsers().isEmpty()) {
-				SUser user = virtualUser.getRandomUser();
-				virtualUser.getLogger().info("Logging in as " + user.getUsername());
-				virtualUser.getBimServerClient().getServiceInterface().login(user.getUsername(), "test");
+			if (!virtualUser.getUserNames().isEmpty()) {
+				String username = virtualUser.getRandomUserName();
+				virtualUser.getLogger().info("Logging in as " + username);
+				virtualUser.getBimServerClient().getServiceInterface().login(username, "test");
 			}
 		}
 	}

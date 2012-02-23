@@ -14,12 +14,10 @@ public class CreateSubProjectAction extends Action {
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		if (!virtualUser.getCreatedProjects().isEmpty()) {
-			SProject parentProject = virtualUser.getRandomProject();
-			String name = "Project " + randomString();
-			virtualUser.getLogger().info("Creating new project: " + name + " as subproject of " + parentProject.getName());
-			SProject project = virtualUser.getBimServerClient().getServiceInterface().addProjectAsSubProject(name, parentProject.getOid());
-			virtualUser.getCreatedProjects().add(project);
-		}
+		SProject project = virtualUser.getRandomProject();
+		SProject parentProject = virtualUser.getRandomProject();
+		String name = "Project " + randomString();
+		virtualUser.getLogger().info("Creating new project: " + name + " as subproject of " + parentProject.getName());
+		virtualUser.getBimServerClient().getServiceInterface().addProjectAsSubProject(name, parentProject.getOid());
 	}
 }

@@ -18,15 +18,13 @@ public class UpdateRevisionAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SProject project = virtualUser.getRandomProject();
-		if (project != null) {
-			List<Long> revisions = project.getRevisions();
-			if (!revisions.isEmpty()) {
-				Long revisionId = revisions.get(nextInt(revisions.size()));
-				SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(revisionId);
-				revision.setTag(randomString());
-				virtualUser.getLogger().info("Updating revision " + revision.getOid());
-				virtualUser.getBimServerClient().getServiceInterface().updateRevision(revision);
-			}
+		List<Long> revisions = project.getRevisions();
+		if (!revisions.isEmpty()) {
+			Long revisionId = revisions.get(nextInt(revisions.size()));
+			SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(revisionId);
+			revision.setTag(randomString());
+			virtualUser.getLogger().info("Updating revision " + revision.getOid());
+			virtualUser.getBimServerClient().getServiceInterface().updateRevision(revision);
 		}
 	}
 }

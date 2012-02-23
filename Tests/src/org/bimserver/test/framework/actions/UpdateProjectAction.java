@@ -15,13 +15,11 @@ public class UpdateProjectAction extends Action {
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		if (!virtualUser.getCreatedProjects().isEmpty()) {
-			SProject project = virtualUser.getRandomProject();
-			virtualUser.getLogger().info("Changing settings of project " + project.getName());
-			project.setDescription(randomString());
-			project.setExportLengthMeasurePrefix(SSIPrefix.values()[nextInt(SSIPrefix.values().length)]);
-			project.setName(randomString());
-			virtualUser.getBimServerClient().getServiceInterface().updateProject(project);
-		}		
+		SProject project = virtualUser.getRandomProject();
+		virtualUser.getLogger().info("Changing settings of project " + project.getName());
+		project.setDescription(randomString());
+		project.setExportLengthMeasurePrefix(SSIPrefix.values()[nextInt(SSIPrefix.values().length)]);
+		project.setName(randomString());
+		virtualUser.getBimServerClient().getServiceInterface().updateProject(project);
 	}
 }
