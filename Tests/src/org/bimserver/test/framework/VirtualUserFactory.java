@@ -1,5 +1,6 @@
 package org.bimserver.test.framework;
 
+import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.test.framework.actions.ActionFactory;
 
 public class VirtualUserFactory {
@@ -14,6 +15,6 @@ public class VirtualUserFactory {
 	}
 
 	public VirtualUser create(String name) {
-		return new VirtualUser(testFramework, randomBimServerClientFactory.create(), actionFactory, name);
+		return new VirtualUser(testFramework, randomBimServerClientFactory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"), "localhost"), actionFactory, name);
 	}
 }

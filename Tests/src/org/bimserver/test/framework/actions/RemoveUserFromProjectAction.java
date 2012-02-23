@@ -14,13 +14,11 @@ public class RemoveUserFromProjectAction extends Action {
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		if (!virtualUser.getCreatedProjects().isEmpty()) {
-			SProject project = virtualUser.getRandomProject();
-			if (!project.getHasAuthorizedUsers().isEmpty()) {
-				Long uoid = project.getHasAuthorizedUsers().get(nextInt(project.getHasAuthorizedUsers().size()));
-				virtualUser.getLogger().info("Removing user " + uoid + " from project " + project.getName());
-				virtualUser.getBimServerClient().getServiceInterface().removeUserFromProject(uoid, project.getOid());
-			}
+		SProject project = virtualUser.getRandomProject();
+		if (!project.getHasAuthorizedUsers().isEmpty()) {
+			Long uoid = project.getHasAuthorizedUsers().get(nextInt(project.getHasAuthorizedUsers().size()));
+			virtualUser.getLogger().info("Removing user " + uoid + " from project " + project.getName());
+			virtualUser.getBimServerClient().getServiceInterface().removeUserFromProject(uoid, project.getOid());
 		}
 	}
 }

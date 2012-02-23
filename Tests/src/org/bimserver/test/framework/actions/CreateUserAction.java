@@ -19,6 +19,6 @@ public class CreateUserAction extends Action {
 		virtualUser.getLogger().info("Creating new user: " + username);
 		SUser user = virtualUser.getBimServerClient().getServiceInterface().addUser(username, randomString(), SUserType.values()[nextInt(SUserType.values().length)], nextBoolean());
 		virtualUser.getBimServerClient().getServiceInterface().changePassword(user.getOid(), "", "test");
-		virtualUser.getCreatedUsers().add(user);
+		virtualUser.addUsername(username);
 	}
 }
