@@ -272,8 +272,10 @@ public class Expander extends JFrame {
 		};
 
 		jvmField.getDocument().addDocumentListener(documentChangeListener);
+		homeDirField.getDocument().addDocumentListener(documentChangeListener);
 		addressField.getDocument().addDocumentListener(documentChangeListener);
 		portField.getDocument().addDocumentListener(documentChangeListener);
+		permSizeField.getDocument().addDocumentListener(documentChangeListener);
 		heapSizeField.getDocument().addDocumentListener(documentChangeListener);
 		stackSizeField.getDocument().addDocumentListener(documentChangeListener);
 		
