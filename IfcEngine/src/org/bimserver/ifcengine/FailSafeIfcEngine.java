@@ -58,13 +58,16 @@ public class FailSafeIfcEngine implements IfcEngine {
 		this.nativeBaseDir = nativeBaseDir;
 		this.tempDir = tempDir;
 		this.classPath = classPath;
+	}
+
+	public void start() throws IfcEngineException {
 		if (useSecondJvm) {
 			startJvm();
 		} else {
 			startLocal();
 		}
 	}
-
+	
 	private void startLocal() {
 		try {
 			PipedInputStream pipedInputStream = new PipedInputStream();

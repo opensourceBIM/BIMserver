@@ -393,7 +393,11 @@ public class IfcStepSerializer extends IfcSerializer {
 			doubleStingList = (List<?>) object.eGet(doubleStringFeature);
 		}
 		if (list.size() == 0) {
-			out.print(OPEN_CLOSE_PAREN);
+			if (feature.isRequired()) {
+				out.print(OPEN_CLOSE_PAREN);
+			} else {
+				out.print("$");
+			}
 		} else {
 			out.print(OPEN_PAREN);
 			boolean first = true;

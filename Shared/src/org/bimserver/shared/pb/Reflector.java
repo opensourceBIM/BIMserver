@@ -63,35 +63,35 @@ public class Reflector extends ProtocolBuffersConverter {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, Object... args) throws ServerException, UserException {
-		MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
-		Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
-		Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
-		int i = 0;
-		for (FieldDescriptor field : inputDescriptor.getFields()) {
-			Object arg = args[i++];
-			if (field.getJavaType() == JavaType.ENUM) {
-				EnumDescriptor enumType = field.getEnumType();
-				builder.setField(field, enumType.findValueByName(arg.toString()));
-			} else {
-				if (arg instanceof SBase) {
-					builder.setField(field, convertSObjectToProtocolBuffersObject((SBase)arg, null));
-				} else if (arg instanceof DataHandler) {
-					DataHandler dataHandler = (DataHandler)arg;
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					try {
-						IOUtils.copy(dataHandler.getInputStream(), baos);
-					} catch (IOException e) {
-						LOGGER.error("", e);
-					}
-					builder.setField(field, ByteString.copyFrom(baos.toByteArray()));
+		try {
+			MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
+			Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
+			Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
+			int i = 0;
+			for (FieldDescriptor field : inputDescriptor.getFields()) {
+				Object arg = args[i++];
+				if (field.getJavaType() == JavaType.ENUM) {
+					EnumDescriptor enumType = field.getEnumType();
+					builder.setField(field, enumType.findValueByName(arg.toString()));
 				} else {
-					builder.setField(field, arg);
+					if (arg instanceof SBase) {
+						builder.setField(field, convertSObjectToProtocolBuffersObject((SBase) arg, null));
+					} else if (arg instanceof DataHandler) {
+						DataHandler dataHandler = (DataHandler) arg;
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						try {
+							IOUtils.copy(dataHandler.getInputStream(), baos);
+						} catch (IOException e) {
+							LOGGER.error("", e);
+						}
+						builder.setField(field, ByteString.copyFrom(baos.toByteArray()));
+					} else {
+						builder.setField(field, arg);
+					}
 				}
 			}
-		}
-		SMethod sMethod = sService.getSMethod(methodName);
-		DynamicMessage message = builder.build();
-		try {
+			SMethod sMethod = sService.getSMethod(methodName);
+			DynamicMessage message = builder.build();
 			Message result = channel.callBlockingMethod(methodDescriptorContainer, message);
 			String errorMessage = (String) result.getField(methodDescriptorContainer.getOutputField("errorMessage"));
 			if (errorMessage.equals("OKE")) {
@@ -102,7 +102,7 @@ public class Reflector extends ProtocolBuffersConverter {
 					Object value = result.getField(outputField);
 					if (outputField.isRepeated()) {
 						if (value instanceof Collection) {
-							Collection collection = (Collection)value;
+							Collection collection = (Collection) value;
 							Collection x = null;
 							if (definedReturnType == List.class) {
 								x = new ArrayList();
@@ -111,7 +111,7 @@ public class Reflector extends ProtocolBuffersConverter {
 							}
 							for (Object v : collection) {
 								if (v instanceof DynamicMessage) {
-									x.add(convertProtocolBuffersMessageToSObject((DynamicMessage) v, sMethod.getGenericReturnType()));
+									x.add(convertProtocolBuffersMessageToSObject((DynamicMessage) v, null, sMethod.getBestReturnType()));
 								} else {
 									x.add(v);
 								}
@@ -124,10 +124,10 @@ public class Reflector extends ProtocolBuffersConverter {
 						EnumDescriptor enumType = outputField.getEnumType();
 						return enumType.findValueByName(value.toString());
 					} else if (value instanceof DynamicMessage) {
-						return convertProtocolBuffersMessageToSObject((DynamicMessage) value, sMethod.getReturnType());
+						return convertProtocolBuffersMessageToSObject((DynamicMessage) value, null, sMethod.getBestReturnType());
 					} else {
-						if  (definedReturnType == Date.class) {
-							return new Date((Long)value);
+						if (definedReturnType == Date.class) {
+							return new Date((Long) value);
 						}
 						return value;
 					}
@@ -135,6 +135,8 @@ public class Reflector extends ProtocolBuffersConverter {
 			} else {
 				throw new UserException(errorMessage);
 			}
+		} catch (ConvertException e) {
+			throw new ServerException(e);
 		} catch (ServiceException e) {
 			throw new ServerException(e.getMessage());
 		}

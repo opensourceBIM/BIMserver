@@ -11,7 +11,8 @@ public class ActionFactory {
 	private final Random random = new Random();
 	
 	public ActionFactory(TestFramework testFramework) {
-		add(new DumpDataObjects(testFramework));
+		add(new DownloadModelLowLevel(testFramework));
+//		add(new DumpDataObjects(testFramework));
 //		add(new AddUserToProjectAction(testFramework));
 //		add(new CheckinAction(testFramework));
 //		add(new CheckoutAction(testFramework));

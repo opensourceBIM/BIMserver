@@ -84,7 +84,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 					DataHandler dataHandler = new DataHandler(dataSource);
 					arguments[i] = dataHandler;
 				} else if (value instanceof DynamicMessage) {
-					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value, sParameter.getType());
+					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value, null, sParameter.getType());
 				} else {
 					arguments[i] = value;
 				}
@@ -114,7 +114,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 						List list = new ArrayList();
 						List originalList = (List) result;
 						for (Object object : originalList) {
-							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getReturnType()));
+							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getBestReturnType()));
 						}
 						builder.setField(valueField, list);
 					} else if (result instanceof Set) {
@@ -122,12 +122,12 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 						List list = new ArrayList();
 						Set originalSet = (Set) result;
 						for (Object object : originalSet) {
-							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getReturnType()));
+							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getBestReturnType()));
 						}
 						builder.setField(valueField, list);
 					} else {
 						Descriptor messageType = valueField.getMessageType();
-						builder.setField(valueField, convertSObjectToProtocolBuffersObject((SBase) result, sMethod.getReturnType()));
+						builder.setField(valueField, convertSObjectToProtocolBuffersObject((SBase) result, sMethod.getBestReturnType()));
 					}
 				}
 				builder.setField(errorMessageField, "OKE");

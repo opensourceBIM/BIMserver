@@ -27,6 +27,7 @@ import java.util.List;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.models.ifc2x3.IfcRelAssociatesClassification;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -56,27 +57,52 @@ public class ProtocolBuffersConverter {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public SBase convertProtocolBuffersMessageToSObject(Message message, SClass sClass) {
+	public SBase convertProtocolBuffersMessageToSObject(Message message, SBase newInstance, SClass sClass) throws ConvertException {
 		try {
 			Descriptor descriptor = message.getDescriptorForType();
-			SBase newInstance = sClass.newInstance();
+			if (newInstance == null) {
+				newInstance = sClass.newInstance();
+			}
+			Message subTypeMessage = null;
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
-				Object val = message.getField(fieldDescriptor);
-				SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
-				if (field == null) {
-					throw new RuntimeException("No field on " + sClass.getName() + " with name " + fieldDescriptor.getName());
-				}
-				if (fieldDescriptor.isRepeated()) {
-					List list = new ArrayList();
-					List oldList = (List) val;
-					for (Object x : oldList) {
-						list.add(convertFieldValue(field, x));
+				if (fieldDescriptor.getName().equals("__actual_type")) {
+					sClass = sClass.getsService().getSType((String)message.getField(fieldDescriptor));
+					newInstance = sClass.newInstance();
+				} else if (fieldDescriptor.getName().startsWith("__")) {
+					if (fieldDescriptor.getName().substring(2).equals(sClass.getSimpleName())) {
+						subTypeMessage = (Message) message.getField(fieldDescriptor);
 					}
-					newInstance.sSet(field, list);
 				} else {
-					SField sField = sClass.getField(fieldDescriptor.getName());
-					newInstance.sSet(sField, convertFieldValue(sField, val));
+					Object val = message.getField(fieldDescriptor);
+					SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
+					if (field == null) {
+						throw new ConvertException("No field on " + sClass.getName() + " with name " + fieldDescriptor.getName());
+					}
+					if (fieldDescriptor.isRepeated()) {
+						List list = new ArrayList();
+						if (val instanceof List) {
+							List oldList = (List) val;
+							for (Object x : oldList) {
+								list.add(convertFieldValue(field, x));
+							}
+						} else if (val instanceof DynamicMessage) {
+							int size = message.getRepeatedFieldCount(fieldDescriptor);
+							for (int index=0; index<size; index++) {
+								Object repeatedField = message.getRepeatedField(fieldDescriptor, index);
+								list.add(convertFieldValue(field, repeatedField));
+							}
+						} else {
+							throw new ConvertException("Field " + sClass.getName() + "." + fieldDescriptor.getName() + " should have list value");
+						}
+						newInstance.sSet(field, list);
+					} else {
+						SField sField = sClass.getField(fieldDescriptor.getName());
+						newInstance.sSet(sField, convertFieldValue(sField, val));
+					}
 				}
+			}
+			if (subTypeMessage != null) {
+				convertProtocolBuffersMessageToSObject(subTypeMessage, newInstance, sClass);
 			}
 			return newInstance;
 		} catch (IllegalArgumentException e) {
@@ -85,7 +111,7 @@ public class ProtocolBuffersConverter {
 		return null;
 	}
 
-	private Object convertFieldValue(SField field, Object val) {
+	private Object convertFieldValue(SField field, Object val) throws ConvertException {
 		if (val instanceof EnumValueDescriptor) {
 			EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor) val;
 			Class<?> enumClass;
@@ -109,28 +135,38 @@ public class ProtocolBuffersConverter {
 			ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource("test", byteString.toByteArray());
 			return new DataHandler(byteArrayDataSource);
 		} else if (val instanceof DynamicMessage) {
-			return convertProtocolBuffersMessageToSObject((DynamicMessage) val, field.isAggregate() ? field.getGenericType() : field.getType());
+			return convertProtocolBuffersMessageToSObject((DynamicMessage) val, null, field.isAggregate() ? field.getGenericType() : field.getType());
 		} else {
 			return val;
 		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Message convertSObjectToProtocolBuffersObject(SBase object, SClass definedType) {
+	public Message convertSObjectToProtocolBuffersObject(SBase object, SClass definedType) throws ConvertException {
+		if (object instanceof IfcRelAssociatesClassification) {
+			System.out.println();
+		}
 		Builder builder = null;
-		MessageDescriptorContainer messageDescriptor = protocolBuffersMetaData.getMessageDescriptor(definedType.getName());
+		MessageDescriptorContainer messageDescriptor = protocolBuffersMetaData.getMessageDescriptor(definedType.getSimpleName());
+		if (messageDescriptor == null) {
+			throw new ConvertException("No message descriptor found with name " + definedType.getSimpleName());
+		}
 		Descriptor definedDescriptor = messageDescriptor.getDescriptor();
 		try {
 			builder = DynamicMessage.getDefaultInstance(definedDescriptor).newBuilderForType();
 		} catch (SecurityException e) {
-			LOGGER.error("", e);
+			throw new ConvertException(e);
 		} catch (IllegalArgumentException e) {
-			LOGGER.error("", e);
+			throw new ConvertException(e);
 		}
 		SClass sClass = object.getSClass();
 		SClass superClass = sClass;
-		while (superClass != null) {
+		while (superClass.getSuperClass() != null && superClass.getSuperClass().getInstanceClass() != Object.class) {
 			superClass = superClass.getSuperClass();
+		}
+		if (sClass != superClass && messageDescriptor.getField("__actual_type") != null) {
+			builder.setField(messageDescriptor.getField("__actual_type"), sClass.getSimpleName());
+			builder.setField(messageDescriptor.getField("__" + sClass.getSimpleName()), convertSObjectToProtocolBuffersObject(object, sClass));
 		}
 		for (SField field : definedType.getFields()) {
 			try {
@@ -159,7 +195,7 @@ public class ProtocolBuffersConverter {
 						List newList = new ArrayList();
 						for (Object o : list) {
 							if (fieldDescriptor.getJavaType() == JavaType.MESSAGE) {
-								newList.add(convertSObjectToProtocolBuffersObject((SBase) o, field.getType()));
+								newList.add(convertSObjectToProtocolBuffersObject((SBase) o, field.getGenericType()));
 							} else {
 								newList.add(o);
 							}

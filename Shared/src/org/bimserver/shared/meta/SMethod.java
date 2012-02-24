@@ -108,6 +108,10 @@ public class SMethod {
 	public SClass getGenericReturnType() {
 		return genericReturnType;
 	}
+	
+	public SClass getBestReturnType() {
+		return genericReturnType != null ? genericReturnType : returnType;
+	}
 
 	public boolean isListReturnType() {
 		return List.class.isAssignableFrom(method.getReturnType());

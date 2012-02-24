@@ -89,9 +89,9 @@ public class SService {
 	}
 	
 	private void addType(Class<?> type) {
-		if (!types.containsKey(type.getName())) {
+		if (!types.containsKey(type.getSimpleName())) {
 			SClass sClass = new SClass(this, type);
-			types.put(sClass.getName(), sClass);
+			types.put(sClass.getSimpleName(), sClass);
 			addRelatedTypes(type);
 		}
 	}
@@ -127,7 +127,7 @@ public class SService {
 	}
 
 	public void addType(SClass type) {
-		types.put(type.getName(), type);
+		types.put(type.getSimpleName(), type);
 	}
 	
 	public String getName() {
@@ -153,7 +153,12 @@ public class SService {
 	public SClass getSType(String name) {
 		SClass sType = types.get(name);
 		if (sType == null) {
-			System.out.println("Type not found: " + name);
+			if (name.contains(".")) {
+				name = name.substring(name.lastIndexOf(".") + 1);
+				return getSType(name);
+			} else {
+				System.out.println("Type not found: " + name);
+			}
 		}
 		return sType;
 	}

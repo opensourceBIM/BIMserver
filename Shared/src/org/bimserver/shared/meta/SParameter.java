@@ -45,6 +45,10 @@ public class SParameter {
 	public SClass getGenericType() {
 		return genericType;
 	}
+	
+	public SClass getBestType() {
+		return genericType != null ? genericType : type;
+	}
 
 	public boolean isAggregate() {
 		return type.getInstanceClass().isAssignableFrom(List.class) || type.getInstanceClass().isAssignableFrom(Set.class);

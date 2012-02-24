@@ -13,6 +13,8 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
+import org.bimserver.tests.TestFile;
+import org.bimserver.tests.TestFileConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +22,7 @@ public class TestFramework {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestFramework.class);
 	
 	private static final int NR_VIRTUAL_USERS = 1;
+	private static final int NR_RUNS_PER_VIRTUAL_USER = 1;
 	private static final File IFC_FILES_FOLDER = new File("../TestData/data");
 	private static final boolean START_EMBEDDED_BIMSERVER = true;
 	private static final boolean STOP_ON_EXCEPTION = true;
@@ -37,6 +40,7 @@ public class TestFramework {
 			BimServerConfig bimServerConfig = new BimServerConfig();
 			bimServerConfig.setStartEmbeddedWebServer(true);
 			bimServerConfig.setHomeDir(new File("home"));
+			bimServerConfig.setPort(8080);
 			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 			BimServer bimServer = new BimServer(bimServerConfig);
 			try {
@@ -53,12 +57,14 @@ public class TestFramework {
 				LOGGER.error("", e);
 			}
 		}
-		initFiles();
+		files.add(TestFile.AC11.getFile());
+//		initFiles();
 		RandomBimServerClientFactory randomBimServerClientFactory = new RandomBimServerClientFactory(Type.PROTOCOL_BUFFERS);
 		VirtualUserFactory virtualUserFactory = new VirtualUserFactory(this, randomBimServerClientFactory);
 		for (int i=0; i<NR_VIRTUAL_USERS; i++) {
 			VirtualUser virtualUser = virtualUserFactory.create("" + i);
 			virtualUser.setStopOnException(STOP_ON_EXCEPTION);
+			virtualUser.setNrRuns(NR_RUNS_PER_VIRTUAL_USER);
 			virtualUsers.add(virtualUser);
 		}
 		for (VirtualUser virtualUser : virtualUsers) {

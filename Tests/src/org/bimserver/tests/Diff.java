@@ -363,8 +363,8 @@ public class Diff {
 	private void start() throws CompareException, NoSuchAlgorithmException {
 		boolean ignoreIntZeroDollar = true;
 
-		Model model1 = new Model(new File("C:\\Users\\Ruben de Laat\\Downloads\\q.1 (5).ifc"));
-		Model model2 = new Model(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Shared\\BIMserver\\geheime modellen van statsbygg\\SB_11873_6_ARK_PNN (Original).ifc"));
+		Model model1 = new Model(new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\Tests\\test.ifc"));
+		Model model2 = new Model(new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //		Model model1 = new Model(new File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserverNewest\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //		Model model2 = new Model(new File("C:\\Users\\Ruben de Laat\\Downloads\\test.1 (10).ifc"));
 		if (model1.getSize() != model2.getSize()) {
