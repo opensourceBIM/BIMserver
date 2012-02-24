@@ -120,7 +120,7 @@ public class SyndicationServlet extends HttpServlet {
 			for (SProject sProject : allProjects) {
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setTitle(sProject.getName());
-				entry.setLink(request.getContextPath() + "/project.jsp?id=" + sProject.getId());
+				entry.setLink(request.getContextPath() + "/project.jsp?poid=" + sProject.getOid());
 				entry.setPublishedDate(sProject.getCreatedDate());
 				SyndContent description = new SyndContentImpl();
 				description.setType("text/plain");
