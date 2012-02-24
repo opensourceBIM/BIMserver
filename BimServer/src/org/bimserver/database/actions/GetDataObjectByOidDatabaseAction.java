@@ -17,6 +17,8 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
+
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -24,7 +26,9 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcLengthMeasure;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.log.AccessMethod;
@@ -42,6 +46,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import com.google.common.collect.BiMap;
 
@@ -105,32 +110,95 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 			Object eGet = eObject.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EAttribute) {
 				if (!eStructuralFeature.getName().endsWith("AsString")) {
-					SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
-					if (eGet instanceof String) {
-						dataValue.setStringValue((String) eGet);
-					} else if (eGet != null) {
-						dataValue.setStringValue(eGet.toString());
+					if (eStructuralFeature.isMany()) {
+						ListDataValue listDataValue = StoreFactory.eINSTANCE.createListDataValue();
+						listDataValue.setFieldName(eStructuralFeature.getName());
+						dataObject.getValues().add(listDataValue);
+						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+							EStructuralFeature asStringFeature = eObject.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+							List list = (List) eObject.eGet(asStringFeature);
+							for (Object o : list) {
+								SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+								dataValue.setStringValue(o.toString());
+								listDataValue.getValues().add(dataValue);
+							}
+						} else {
+							List list = (List)eGet;
+							for (Object o : list) {
+								SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+								if (eGet != null) {
+									dataValue.setStringValue(o.toString());
+								} else {
+									dataValue.setStringValue(null);
+								}
+								listDataValue.getValues().add(dataValue);
+							}
+						}
 					} else {
-						dataValue.setStringValue("");
+						SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+						if (eGet != null) {
+							dataValue.setStringValue(eGet.toString());
+						} else {
+							dataValue.setStringValue(null);
+						}
+						dataValue.setFieldName(eStructuralFeature.getName());
+						dataObject.getValues().add(dataValue);
 					}
-					dataValue.setFieldName(eStructuralFeature.getName());
-					dataObject.getValues().add(dataValue);
 				}
 			} else if (eStructuralFeature instanceof EReference) {
-				if (eStructuralFeature.getUpperBound() == 1) {
+				if (eStructuralFeature.isMany()) {
+					if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+						List list = (List)eObject.eGet(eObject.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString"));
+						ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
+						dataValue.setFieldName(eStructuralFeature.getName());
+						dataObject.getValues().add(dataValue);
+						for (Object o : list) {
+							SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+							simpleDataValue.setStringValue(o.toString());
+							dataValue.getValues().add(simpleDataValue);
+						}
+					} else {
+						EList<? extends EObject> list = (EList<EObject>) eGet;
+						for (EObject item : list) {
+							ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
+							dataValue.setFieldName(eStructuralFeature.getName());
+							dataObject.getValues().add(dataValue);
+							if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
+								EObject referenceEObject = (EObject) item;
+								SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+								simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
+								dataValue.getValues().add(simpleDataValue);
+							} else {
+								Long oid = mapResult.inverse().get(item);
+								String guid = getGuid(item);
+								ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
+								referenceDataValue.setTypeName(item.eClass().getName());
+								referenceDataValue.setOid(oid);
+								referenceDataValue.setGuid(guid);
+								dataValue.getValues().add(referenceDataValue);
+							}
+						}
+					}
+				} else {
 					EObject eObject2 = (EObject) eGet;
 					if (eObject2 != null) {
 						if (eObject2 instanceof WrappedValue || eObject2 instanceof IfcGloballyUniqueId) {
 							EObject referenceEObject = (EObject) eGet;
-							SimpleDataValue e = StoreFactory.eINSTANCE.createSimpleDataValue();
-							Object eGet2 = referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue"));
-							if (eGet2 instanceof String) {
-								e.setStringValue((String) eGet2);
-							} else if (eGet2 != null) {
-								e.setStringValue(eGet2.toString());
-							} else {
-								e.setStringValue("");
+							if (referenceEObject instanceof IfcLengthMeasure) {
+								System.out.println();
 							}
+							SimpleDataValue e = StoreFactory.eINSTANCE.createSimpleDataValue();
+							EStructuralFeature wrappedValueFeature = referenceEObject.eClass().getEStructuralFeature("wrappedValue");
+							Object eGet2 = referenceEObject.eGet(wrappedValueFeature);
+//							if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject() || wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+//								e.setStringValue((String)referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValueAsString")));
+//							} else {
+								if (eGet2 != null) {
+									e.setStringValue(eGet2.toString());
+								} else {
+									e.setStringValue(null);
+								}
+//							}
 							e.setFieldName(eStructuralFeature.getName());
 							dataObject.getValues().add(e);
 						} else {
@@ -142,27 +210,6 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 							reference.setGuid(guid);
 							reference.setFieldName(eStructuralFeature.getName());
 							dataObject.getValues().add(reference);
-						}
-					}
-				} else {
-					EList<? extends EObject> list = (EList<EObject>) eGet;
-					for (EObject item : list) {
-						ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
-						dataValue.setFieldName(eStructuralFeature.getName());
-						dataObject.getValues().add(dataValue);
-						if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
-							EObject referenceEObject = (EObject) item;
-							SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
-							simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
-							dataValue.getValues().add(simpleDataValue);
-						} else {
-							Long oid = mapResult.inverse().get(item);
-							String guid = getGuid(item);
-							ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
-							referenceDataValue.setTypeName(item.eClass().getName());
-							referenceDataValue.setOid(oid);
-							referenceDataValue.setGuid(guid);
-							dataValue.getValues().add(referenceDataValue);
 						}
 					}
 				}

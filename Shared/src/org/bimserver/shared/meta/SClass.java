@@ -64,6 +64,10 @@ public class SClass {
 		}
 	}
 
+	public SService getsService() {
+		return sService;
+	}
+	
 	public void init() {
 		for (Method method : instanceClass.getMethods()) {
 			if (method.getDeclaringClass() == instanceClass) {
@@ -124,15 +128,13 @@ public class SClass {
 	
 	public SField getField(String name) {
 		SField sField = fields.get(name);
-		if (sField == null) {
-			for (SClass subClass : subClasses) {
-				sField = subClass.getField(name);
-				if (sField != null) {
-					return sField;
-				}
-			}
+		if (sField != null) {
+			return sField;
 		}
-		return sField;
+		if (superClass != null) {
+			return superClass.getField(name);
+		}
+		return null;
 	}
 
 	public Class<?> getInstanceClass() {
@@ -203,6 +205,15 @@ public class SClass {
 		if (name.startsWith("interface ")) {
 			name = name.substring(10);
 		}
+		return name;
+	}
+
+	public String getSimpleName() {
+		return instanceClass.getSimpleName();
+	}
+	
+	@Override
+	public String toString() {
 		return name;
 	}
 }

@@ -485,6 +485,14 @@ public class ProtocolBuffersGenerator {
 			generatedClasses.put(clazz, clazz.getSimpleName());
 			messageBuilder.append("message " + clazz.getSimpleName() + " {\n");
 			int counter = 1;
+			if (!sClass.getSubClasses().isEmpty()) {
+				messageBuilder.append("\trequired string __actual_type = " + (counter++) + ";\n");
+				for (SClass subClass : sClass.getSubClasses()) {
+					messageBuilder.append("\t");
+					messageBuilder.append("optional ");
+					messageBuilder.append(createMessage(sb, subClass) + " __" + subClass.getInstanceClass().getSimpleName() + " = " + (counter++) + ";\n");
+				}
+			}
 			for (SField field : sClass.getFields()) {
 				messageBuilder.append("\t");
 				if (field.isAggregate()) {
@@ -505,11 +513,6 @@ public class ProtocolBuffersGenerator {
 					// }
 				}
 				messageBuilder.append(createMessage(sb, type) + " " + field.getName() + " = " + (counter++) + ";\n");
-			}
-			for (SClass subClass : sClass.getSubClasses()) {
-				messageBuilder.append("\t");
-				messageBuilder.append("optional ");
-				messageBuilder.append(createMessage(sb, subClass) + " " + subClass.getInstanceClass().getSimpleName() + " = " + (counter++) + ";\n");
 			}
 			messageBuilder.append("}\n\n");
 			sb.append(messageBuilder);

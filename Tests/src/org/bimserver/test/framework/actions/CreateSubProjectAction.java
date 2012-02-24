@@ -14,7 +14,6 @@ public class CreateSubProjectAction extends Action {
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		SProject project = virtualUser.getRandomProject();
 		SProject parentProject = virtualUser.getRandomProject();
 		String name = "Project " + randomString();
 		virtualUser.getLogger().info("Creating new project: " + name + " as subproject of " + parentProject.getName());

@@ -68,6 +68,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		if (parentPoid != -1) {
 			parentProject = getProjectByPoid(parentPoid);
 			project.setParent(parentProject);
+			parentProject.getSubProjects().add(project);
 			getDatabaseSession().store(parentProject);
 		}
 		if (actingUser.getUserType() != UserType.SYSTEM) {

@@ -28,6 +28,7 @@ public class VirtualUser extends Thread {
 	private volatile boolean running;
 	private final List<String> usernames = new ArrayList<String>();
 	private boolean stopOnException;
+	private int nrRuns;
 
 	public VirtualUser(TestFramework testFramework, BimServerClient bimServerClient, ActionFactory actionFactory, String name) {
 		setName(name);
@@ -40,8 +41,9 @@ public class VirtualUser extends Thread {
 	@Override
 	public void run() {
 		running = true;
+		int nrRuns = 0;
 		try {
-			while (running) {
+			while (running && nrRuns < this.nrRuns) {
 				try {
 					if (!bimServerClient.getServiceInterface().isLoggedIn()) {
 						new LoginAction(testFramework).execute(this);
@@ -50,11 +52,13 @@ public class VirtualUser extends Thread {
 						action.execute(this);
 					}
 				} catch (Exception e) {
+					e.printStackTrace();
 					LOGGER.info(e.getMessage());
 					if (stopOnException) {
 						break;
 					}
 				}
+				nrRuns++;
 			}
 		} finally {
 			bimServerClient.disconnect();
@@ -135,5 +139,9 @@ public class VirtualUser extends Thread {
 
 	public void setStopOnException(boolean stopOnException) {
 		this.stopOnException = stopOnException;
+	}
+
+	public void setNrRuns(int nrRuns) {
+		this.nrRuns = nrRuns;
 	}
 }

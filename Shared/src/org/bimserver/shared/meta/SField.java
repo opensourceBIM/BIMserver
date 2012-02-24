@@ -42,6 +42,10 @@ public class SField {
 		return genericType;
 	}
 	
+	public SClass getBestType() {
+		return genericType != null ? genericType : type;
+	}
+	
 	public SClass getType() {
 		return type;
 	}

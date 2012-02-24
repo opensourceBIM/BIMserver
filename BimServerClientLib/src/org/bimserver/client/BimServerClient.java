@@ -20,6 +20,7 @@ package org.bimserver.client;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -32,9 +33,21 @@ import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.AutologinAuthenticationInfo;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.client.notifications.SocketNotificationsClient;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SCheckinResult;
+import org.bimserver.interfaces.objects.SDataObject;
+import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.interfaces.objects.SListDataValue;
+import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSimpleDataValue;
+import org.bimserver.models.ifc2x3.Ifc2x3Factory;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.IfcCartesianPoint;
+import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcTextStyleFontModel;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -49,9 +62,16 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,14 +106,14 @@ public class BimServerClient implements ConnectDisconnectListener {
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
 		this.authenticationInfo = authenticationInfo;
 	}
-	
+
 	public void connectDirect(ServiceInterface serviceInterface) {
 		DirectChannel directChannel = new DirectChannel();
 		this.channel = directChannel;
 		directChannel.registerConnectDisconnectListener(this);
 		directChannel.connect(serviceInterface);
 	}
-	
+
 	public void connectProtocolBuffers(String address, int port) throws ConnectionException {
 		if (authenticationInfo == null) {
 			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
@@ -107,7 +127,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 			throw new ConnectionException(e);
 		}
 	}
-	
+
 	public void connectSoap(final String address, boolean useSoapHeaderSessions) throws ConnectionException {
 		if (authenticationInfo == null) {
 			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
@@ -117,7 +137,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		soapChannel.registerConnectDisconnectListener(this);
 		soapChannel.connect(address, useSoapHeaderSessions);
 	}
-	
+
 	public Channel getChannel() {
 		return channel;
 	}
@@ -125,23 +145,23 @@ public class BimServerClient implements ConnectDisconnectListener {
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
 		connectDisconnectListeners.add(connectDisconnectListener);
 	}
-	
+
 	public void notifyOfConnect() {
 		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
 			connectDisconnectListener.connected();
 		}
 	}
-	
+
 	public void notifyOfDisconnect() {
 		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
 			connectDisconnectListener.disconnected();
 		}
 	}
-	
+
 	public ServiceInterface getServiceInterface() {
 		return channel.getServiceInterface();
 	}
-	
+
 	public Session createSession() {
 		if (channel.getServiceInterface() == null) {
 			throw new RuntimeException("Connect first");
@@ -163,10 +183,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 	public void connected() {
 		try {
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
-				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo)authenticationInfo;
+				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
 				connected = channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword());
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
-				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo)authenticationInfo;
+				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
 				connected = channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode());
 			}
 		} catch (ServiceException e) {
@@ -186,7 +206,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		setNotificationsEnabled(true);
 		notificationsClient.registerNotifictionListener(notificationInterface);
 	}
-	
+
 	public void setNotificationsEnabled(boolean enabled) {
 		if (enabled && !notificationsClient.isRunning()) {
 			notificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055));
@@ -202,7 +222,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 					@Override
 					public void disconnected() {
 					}
-					
+
 					@Override
 					public void connected() {
 						try {
@@ -239,6 +259,114 @@ public class BimServerClient implements ConnectDisconnectListener {
 		return null;
 	}
 
+	public IfcModelInterface getModelAlternative(long roid) {
+		try {
+			List<SDataObject> dataObjects = getServiceInterface().getDataObjects(roid);
+			IfcModelInterface model = new IfcModel(dataObjects.size());
+			for (SDataObject dataObject : dataObjects) {
+				EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(dataObject.getType());
+				IdEObject idEObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+				if (idEObject instanceof IfcTextStyleFontModel) {
+					System.out.println();
+				}
+				idEObject.setOid(dataObject.getOid());
+				model.add(dataObject.getOid(), idEObject);
+				for (SDataValue dataValue : dataObject.getValues()) {
+					if (dataValue instanceof SSimpleDataValue) {
+						SSimpleDataValue simpleDataValue = (SSimpleDataValue) dataValue;
+						EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(dataValue.getFieldName());
+						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+							EStructuralFeature asStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+							idEObject.eSet(asStringFeature, simpleDataValue.getStringValue());
+						}
+						idEObject.eSet(eStructuralFeature, convertStringValue(eStructuralFeature, simpleDataValue.getStringValue()));
+					} else if (dataValue instanceof SListDataValue) {
+						EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(dataValue.getFieldName());
+						SListDataValue listDataValue = (SListDataValue) dataValue;
+						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+							EStructuralFeature asStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+							List list = (List) idEObject.eGet(asStringFeature);
+							for (SDataValue listValue : listDataValue.getValues()) {
+								if (listValue instanceof SSimpleDataValue) {
+									list.add(((SSimpleDataValue) listValue).getStringValue());
+								}
+							}
+						}
+						List list = (List) idEObject.eGet(eStructuralFeature);
+						for (SDataValue listValue : listDataValue.getValues()) {
+							if (listValue instanceof SSimpleDataValue) {
+								list.add(convertStringValue(eStructuralFeature, ((SSimpleDataValue) listValue).getStringValue()));
+							}
+						}
+					}
+				}
+			}
+			for (SDataObject dataObject : dataObjects) {
+				IdEObject idEObject = model.get(dataObject.getOid());
+				for (SDataValue dataValue : dataObject.getValues()) {
+					if (dataValue instanceof SReferenceDataValue) {
+						EStructuralFeature eStructuralFeature = idEObject.eClass().getEStructuralFeature(dataValue.getFieldName());
+						SReferenceDataValue referenceDataValue = (SReferenceDataValue) dataValue;
+						idEObject.eSet(eStructuralFeature, model.get(referenceDataValue.getOid()));
+					} else if (dataValue instanceof SListDataValue) {
+						EStructuralFeature eStructuralFeature = idEObject.eClass().getEStructuralFeature(dataValue.getFieldName());
+						if (eStructuralFeature == null) {
+							throw new UserException("Feature " + dataValue.getFieldName() + " not found on class " + idEObject.eClass());
+						}
+						List list = (List) idEObject.eGet(eStructuralFeature);
+						SListDataValue listDataValue = (SListDataValue) dataValue;
+						for (SDataValue listValue : listDataValue.getValues()) {
+							if (listValue instanceof SReferenceDataValue) {
+								SReferenceDataValue referenceDataValue = (SReferenceDataValue) listValue;
+								IdEObject e = model.get(referenceDataValue.getOid());
+								if (e == null) {
+									throw new UserException("Object with oid " + referenceDataValue.getOid() + " not found");
+								}
+								list.add(e);
+							}
+						}
+					}
+				}
+			}
+			return model;
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private Object convertStringValue(EStructuralFeature eStructuralFeature, String stringValue) {
+		System.out.println(eStructuralFeature.getName() + ": " + stringValue);
+		EClassifier eType = eStructuralFeature.getEType();
+		EcorePackage einstance = EcorePackage.eINSTANCE;
+		if (eType == einstance.getEString()) {
+			return stringValue;
+		} else if (eType == einstance.getEFloat() || eType == einstance.getEFloatObject()) {
+			return Float.parseFloat(stringValue);
+		} else if (eType == einstance.getEDouble() || eType == einstance.getEDoubleObject()) {
+			return Double.parseDouble(stringValue);
+		} else if (eType == einstance.getEBoolean() || eType == einstance.getEBooleanObject()) {
+			return Boolean.parseBoolean(stringValue);
+		} else if (eType == einstance.getEInt() || eType == einstance.getEIntegerObject()) {
+			return Integer.parseInt(stringValue);
+		} else if (eType instanceof EEnum) {
+			EEnum eEnum = (EEnum) eType;
+			return eEnum.getEEnumLiteral(stringValue).getInstance();
+		} else if (eType instanceof EClass) {
+			if (eType.getName().equals("IfcGloballyUniqueId")) {
+				IfcGloballyUniqueId ifcGloballyUniqueId = Ifc2x3Factory.eINSTANCE.createIfcGloballyUniqueId();
+				ifcGloballyUniqueId.setWrappedValue(stringValue);
+				return ifcGloballyUniqueId;
+			} else {
+				return null;
+			}
+		} else {
+			throw new RuntimeException("Unimplemented type: " + eStructuralFeature.getEType());
+		}
+	}
+
 	public long uploadModel(long poid, String comment, IfcModelInterface model) {
 		try {
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
@@ -259,5 +387,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public boolean isConnected() {
 		return connected;
+	}
+
+	public PluginManager getPluginManager() {
+		return pluginManager;
 	}
 }

@@ -41,10 +41,10 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 				bimServerClient.connectProtocolBuffers("localhost", 8020);
 			} else if (type == Type.SOAP_HEADER) {
 				LOGGER.info("New BimServerClient: SOAP/useSoapHeaderSessions");
-				bimServerClient.connectSoap("http://localhost/soap", true);
+				bimServerClient.connectSoap("http://localhost:8080/soap", true);
 			} else if (type == Type.SOAP_NO_HEADERS){
 				LOGGER.info("New BimServerClient: SOAP");
-				bimServerClient.connectSoap("http://localhost/soap", false);
+				bimServerClient.connectSoap("http://localhost:8080/soap", false);
 			}
 			current = (current + 1) % types.length;
 			return bimServerClient;
