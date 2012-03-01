@@ -317,7 +317,7 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeObject(PrintWriter out, EObject object, EStructuralFeature feature) {
 		Object ref = object.eGet(feature);
-		if (ref == null || !object.eIsSet(feature)) {
+		if (ref == null || (feature.isUnsettable() && !object.eIsSet(feature))) {
 			EClassifier type = feature.getEType();
 			if (type instanceof EClass) {
 				EStructuralFeature structuralFeature = ((EClass) type).getEStructuralFeature(WRAPPED_VALUE);
@@ -392,8 +392,8 @@ public class IfcStepSerializer extends IfcSerializer {
 			}
 			doubleStingList = (List<?>) object.eGet(doubleStringFeature);
 		}
-		if (list.size() == 0) {
-			if (feature.isRequired()) {
+		if (list.isEmpty()) {
+			if (!feature.isUnsettable()) {
 				out.print(OPEN_CLOSE_PAREN);
 			} else {
 				out.print("$");
@@ -501,8 +501,12 @@ public class IfcStepSerializer extends IfcSerializer {
 			}
 		} else if (get instanceof EList<?>) {
 			EList<?> list = (EList<?>) get;
-			if (list.size() == 0) {
-				out.print(OPEN_CLOSE_PAREN);
+			if (list.isEmpty()) {
+				if (!feature.isUnsettable()) {
+					out.print(OPEN_CLOSE_PAREN);
+				} else {
+					out.print("$");
+				}
 			} else {
 				out.print(OPEN_PAREN);
 				boolean first = true;
