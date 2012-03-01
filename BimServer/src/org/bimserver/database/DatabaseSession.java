@@ -256,7 +256,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 		int fieldCounter = 0;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			if ((unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0) {
+			if (feature.isUnsettable() && (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0) {
 				idEObject.eUnset(feature);
 			} else {
 				if (objectIDM != null && objectIDM.shouldIgnoreField(originalQueryClass, eClass, feature)) {
@@ -373,11 +373,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	public ByteBuffer convertObjectToByteArray(IdEObject object) throws BimDeadlockException, BimDatabaseException {
 		ByteBuffer buffer = ByteBuffer.allocate(getExactSize(object));
-		int bits = object.eClass().getEAllStructuralFeatures().size();
-		byte[] unsetted = new byte[(int) Math.ceil(bits / 8.0)];
+		byte[] unsetted = new byte[(int) Math.ceil(object.eClass().getEAllStructuralFeatures().size() / 8.0)];
 		int fieldCounter = 0;
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
-			if (!object.eIsSet(feature)) {
+			if (feature.isUnsettable() && !object.eIsSet(feature)) {
 				unsetted[fieldCounter / 8] |= (1 << (fieldCounter % 8));
 			}
 			fieldCounter++;
@@ -386,7 +385,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		buffer.put(unsetted);
 
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
-			if (object.eIsSet(feature)) {
+			if (!feature.isUnsettable() || object.eIsSet(feature)) {
 				if (feature.isMany()) {
 					if (feature.getEType() instanceof EEnum) {
 						// Aggregate relations to enums never occur... at this
@@ -784,7 +783,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 		for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {
 			bits++;
-			if (idEObject.eIsSet(eStructuralFeature)) {
+			if (!eStructuralFeature.isUnsettable() || idEObject.eIsSet(eStructuralFeature)) {
 				Object val = idEObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					EAttribute eAttribute = (EAttribute) eStructuralFeature;
@@ -1266,15 +1265,35 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				buffer.put(bytes);
 			}
 		} else if (type == ECORE_PACKAGE.getEInt() || type == ECORE_PACKAGE.getEIntegerObject()) {
-			buffer.putInt((Integer) value);
+			if (value == null) {
+				buffer.putInt(0);
+			} else {
+				buffer.putInt((Integer) value);
+			}
 		} else if (type == ECORE_PACKAGE.getEDouble() || type == ECORE_PACKAGE.getEDoubleObject()) {
-			buffer.putDouble((Double) value);
+			if (value == null) {
+				buffer.putDouble(0D);
+			} else {
+				buffer.putDouble((Double) value);
+			}
 		} else if (type == ECORE_PACKAGE.getEFloat() || type == ECORE_PACKAGE.getEFloatObject()) {
-			buffer.putFloat((Float) value);
+			if (value == null) {
+				buffer.putFloat(0F);
+			} else {
+				buffer.putFloat((Float) value);
+			}
 		} else if (type == ECORE_PACKAGE.getELong() || type == ECORE_PACKAGE.getELongObject()) {
-			buffer.putLong((Long) value);
+			if (value == null) {
+				buffer.putLong(0L);
+			} else {
+				buffer.putLong((Long) value);
+			}
 		} else if (type == ECORE_PACKAGE.getEBoolean() || type == ECORE_PACKAGE.getEBooleanObject()) {
-			buffer.put(((Boolean) value) ? (byte) 1 : (byte) 0);
+			if (value == null) {
+				buffer.put((byte)0);
+			} else {
+				buffer.put(((Boolean) value) ? (byte) 1 : (byte) 0);
+			}
 		} else if (type == ECORE_PACKAGE.getEDate()) {
 			if (value == null) {
 				buffer.putLong(-1L);

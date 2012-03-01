@@ -333,6 +333,9 @@ public class Express2EMF {
 	}
 
 	private void processAttribute(EntityDefinition ent, Attribute attrib) {
+		if (ent.getName().equalsIgnoreCase("IfcDimensionalExponents")) {
+			System.out.println();
+		}
 		ExplicitAttribute expAttrib = (ExplicitAttribute) attrib;
 		BaseType domain = expAttrib.getDomain();
 		if (domain instanceof NamedType) {
