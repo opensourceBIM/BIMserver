@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 
 public class DerivedReader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DerivedReader.class);
-	
+
 	public DerivedReader(InputStream inputStream, SchemaDefinition schema) {
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -101,7 +101,7 @@ public class DerivedReader {
 			LOGGER.error("", e);
 		}
 	}
-	
+
 	public DerivedReader(File schemaFile, SchemaDefinition schemaDefinition) throws FileNotFoundException {
 		this(new FileInputStream(schemaFile), schemaDefinition);
 	}

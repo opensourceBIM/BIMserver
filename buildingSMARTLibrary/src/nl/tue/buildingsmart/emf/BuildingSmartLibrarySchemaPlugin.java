@@ -39,7 +39,7 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 	private SchemaDefinition schemaDefinition;
 	private boolean initialized = false;
 	private File schemaFile;
-	
+
 	@Override
 	public SchemaDefinition getSchemaDefinition() {
 		return schemaDefinition;

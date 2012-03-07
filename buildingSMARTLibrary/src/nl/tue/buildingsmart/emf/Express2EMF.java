@@ -76,8 +76,8 @@ public class Express2EMF {
 	private EEnum tristate;
 
 	public static void main(String[] args) {
-		Express2EMF express2EMF = new Express2EMF(
-				".." + File.separator + "Builds" + File.separator + "build" + File.separator + "targets" + File.separator + "shared" + File.separator + "IFC2X3_TC1.exp", "ifc2x3");
+		Express2EMF express2EMF = new Express2EMF(".." + File.separator + "Builds" + File.separator + "build" + File.separator + "targets" + File.separator + "shared"
+				+ File.separator + "IFC2X3_TC1.exp", "ifc2x3");
 		express2EMF.writeEMF("../BimServer/src/org/bimserver/database/migrations/steps/" + "IFC2X3_TC1.ecore");
 	}
 
@@ -174,12 +174,19 @@ public class Express2EMF {
 								}
 								EClassifier type = ((EClass) eType).getEStructuralFeature("wrappedValue").getEType();
 								eAttribute.setEType(type);
-								eAttribute.setUnsettable(true); // TODO find out if its optional
+								eAttribute.setUnsettable(true); // TODO find out
+																// if its
+																// optional
 								eClass.getEStructuralFeatures().add(eAttribute);
 								if (type == EcorePackage.eINSTANCE.getEDouble()) {
 									EAttribute doubleStringAttribute = eFactory.createEAttribute();
 									doubleStringAttribute.setName(attributeName.getName() + "AsString");
-									doubleStringAttribute.setUnsettable(true); // TODO find out if its optional
+									doubleStringAttribute.setUnsettable(true); // TODO
+																				// find
+																				// out
+																				// if
+																				// its
+																				// optional
 									doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 									eClass.getEStructuralFeatures().add(doubleStringAttribute);
 								}
@@ -194,7 +201,9 @@ public class Express2EMF {
 								// RefLatitude and RefLongitude
 								// eRef.setUnsettable(((ExplicitAttribute)
 								// attrib).isOptional());
-								eReference.setUnsettable(true); // TODO find out if its optional
+								eReference.setUnsettable(true); // TODO find out
+																// if its
+																// optional
 								eReference.setEType(eType);
 								eClass.getEStructuralFeatures().add(eReference);
 							}
@@ -274,7 +283,7 @@ public class Express2EMF {
 				Attribute attrib = (Attribute) attribIter.next();
 				// if (ent.getName().equals("IfcRepresentationItem") &&
 				// attrib.getName().equals("LayerAssignments")) {
-				//					
+				//
 				// } else {
 				if (attrib instanceof InverseAttribute) {
 					addInverseAttribute(attrib, cls);
@@ -416,7 +425,7 @@ public class Express2EMF {
 					eAttribute.setUnique(false);
 					eAttribute.setEType(EcorePackage.eINSTANCE.getEAttribute());
 					cls.getEStructuralFeatures().add(eAttribute);
-					
+
 					EAttribute doubleStringAttribute = eFactory.createEAttribute();
 					doubleStringAttribute.setName(attrib.getName() + "AsString");
 					doubleStringAttribute.setUpperBound(-1);
@@ -619,7 +628,8 @@ public class Express2EMF {
 			EAttribute doubleStringAttribute = eFactory.createEAttribute();
 			doubleStringAttribute.setEType(ePackage.getEString());
 			doubleStringAttribute.setName("wrappedValueAsString");
-			doubleStringAttribute.setUnsettable(true); // TODO find out if its optional
+			doubleStringAttribute.setUnsettable(true); // TODO find out if its
+														// optional
 			testType.getEStructuralFeatures().add(doubleStringAttribute);
 		}
 	}

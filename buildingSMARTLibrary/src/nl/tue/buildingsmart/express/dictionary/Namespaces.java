@@ -33,8 +33,7 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("all")
 public class Namespaces {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(Namespaces.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Namespaces.class);
 
 	// XML file for where the Namespaces are stored
 	private File nsConfFile;
@@ -59,8 +58,7 @@ public class Namespaces {
 
 		namespaces = new HashMap<String, List<String>>();
 		if (!nsConfFile.exists()) {
-			System.out.println("no existing file provided, using '" + filename
-					+ "' as namespace");
+			System.out.println("no existing file provided, using '" + filename + "' as namespace");
 			singleNamespace = true;
 			defaultNS = filename;
 			namespaces.put(filename, new ArrayList<String>());
@@ -72,23 +70,18 @@ public class Namespaces {
 		if (nsConfFile.canRead() && !singleNamespace) {
 			try {
 				ifcNamespaces = NamespacesDocument.Factory.parse(nsConfFile);
-				Namespace[] nsArray = ifcNamespaces.getNamespaces()
-						.getNamespaceArray();
+				Namespace[] nsArray = ifcNamespaces.getNamespaces().getNamespaceArray();
 				for (int i = 0; i < nsArray.length; i++) {
 					Namespace ns = nsArray[i];
 					List<String> objects = new ArrayList<String>();
 					if (ns.getDefinedtypes() != null)
-						objects.addAll(toStringList(ns.getDefinedtypes()
-								.getDefinedtypeArray()));
+						objects.addAll(toStringList(ns.getDefinedtypes().getDefinedtypeArray()));
 					if (ns.getEntites() != null)
-						objects.addAll(toStringList(ns.getEntites()
-								.getEntityArray()));
+						objects.addAll(toStringList(ns.getEntites().getEntityArray()));
 					if (ns.getEnumerations() != null)
-						objects.addAll(toStringList(ns.getEnumerations()
-								.getEnumerationArray()));
+						objects.addAll(toStringList(ns.getEnumerations().getEnumerationArray()));
 					if (ns.getSelects() != null)
-						objects.addAll(toStringList(ns.getSelects()
-								.getSelectArray()));
+						objects.addAll(toStringList(ns.getSelects().getSelectArray()));
 
 					// add all objects to HashMap for easy retrieval
 					String nsName = ns.getName();

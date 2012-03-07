@@ -1,12 +1,11 @@
-  package net.sourceforge.osexpress.parser;
+package net.sourceforge.osexpress.parser;
 
-   
 public enum ExpressParserTokenTypes {
 	/**
 	 * SKIP was originally in antlr.Token
 	 */
 	SKIP(-1),
-	
+
 	EOF(1),
 	NULL_TREE_LOOKAHEAD(3),
 	CONSTANT_IDENT(4),
@@ -380,18 +379,20 @@ public enum ExpressParserTokenTypes {
 	AT(372),
 	WS(373),
 	DIGIT(374);
-	
+
 	private int index;
-	private ExpressParserTokenTypes(int index){
+
+	private ExpressParserTokenTypes(int index) {
 		this.index = index;
 	}
-	
-	public int getIndex(){
+
+	public int getIndex() {
 		return this.index;
 	}
-	public static ExpressParserTokenTypes getToken(int tokenIndex){
-		for(ExpressParserTokenTypes t : ExpressParserTokenTypes.values()){
-			if(t.getIndex() == tokenIndex)
+
+	public static ExpressParserTokenTypes getToken(int tokenIndex) {
+		for (ExpressParserTokenTypes t : ExpressParserTokenTypes.values()) {
+			if (t.getIndex() == tokenIndex)
 				return t;
 		}
 		throw new IllegalArgumentException(String.format("ExpressParserTokenTypes does not have a Token with an index of %s", tokenIndex));

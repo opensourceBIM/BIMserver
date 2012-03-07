@@ -45,7 +45,7 @@ public class EasyParser {
 	 */
 
 	private InputStream expin;
-	
+
 	private static final String TOKENOBJECTCLASS = "antlr.CommonHiddenStreamToken";
 
 	public EasyParser(String filename) throws IOException {
@@ -78,8 +78,7 @@ public class EasyParser {
 		 * put all files in a single buffer and parse them as a file with
 		 * multiple schemas
 		 */
-		
-		
+
 		FileInputStream in = null;
 		ByteArrayInputStream buff = null;
 		byte[] filesContent;
@@ -110,10 +109,9 @@ public class EasyParser {
 		expin = buff;
 	}
 
-	public CommonAST parse() throws IOException, RecognitionException,
-			TokenStreamException {
+	public CommonAST parse() throws IOException, RecognitionException, TokenStreamException {
 		ExpressParser parser;
-		//Scope rootScope;
+		// Scope rootScope;
 
 		parser = createFirstPassParser();
 
@@ -127,7 +125,7 @@ public class EasyParser {
 
 		/* second pass initialization */
 		parser = createSecondPassParser(rootScope);
-		
+
 		/* second pass */
 		parser.syntax();
 
@@ -135,36 +133,36 @@ public class EasyParser {
 
 		/* AST returning */
 		CommonAST cast = (CommonAST) parser.getAST();
-		
+
 		return cast;
 	}
-	
-	private ExpressParser createFirstPassParser(){
+
+	private ExpressParser createFirstPassParser() {
 		ExpressLexer lexer = new ExpressLexer(this.expin);
 
 		ExpressParser parser = new ExpressParser(lexer);
 
 		lexer.setParser(parser);
-		
+
 		return parser;
 	}
-	
-	private ExpressParser createSecondPassParser(Scope rootScope) throws IOException{
+
+	private ExpressParser createSecondPassParser(Scope rootScope) throws IOException {
 		this.expin.reset();
-		
+
 		ExpressLexer lexer = new ExpressLexer(this.expin);
 		lexer.setTokenObjectClass(TOKENOBJECTCLASS);
-		
+
 		TokenStreamHiddenTokenFilter filter = createFilter(lexer);
 
 		ExpressParser parser = new ExpressParser(filter);
 		lexer.setParser(parser);
-		
+
 		parser.setRootScope(rootScope);
 		return parser;
 	}
-	
-	private TokenStreamHiddenTokenFilter createFilter(ExpressLexer lexer){
+
+	private TokenStreamHiddenTokenFilter createFilter(ExpressLexer lexer) {
 		TokenStreamHiddenTokenFilter filter = new TokenStreamHiddenTokenFilter(lexer);
 		filter.discard(ExpressParserTokenTypes.COMMENT.getIndex());
 		filter.discard(ExpressParserTokenTypes.LINECOMMENT.getIndex());
