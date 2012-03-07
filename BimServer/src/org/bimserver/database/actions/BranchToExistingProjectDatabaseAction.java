@@ -23,7 +23,6 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -72,18 +71,11 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Int
 		IfcModelInterface model = bimServer.getMergerFactory().createMerger()
 				.merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		model.resetOids();
-		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment);
 		try {
-			ConcreteRevision revision = action.execute();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), model, currentUoid, revision.getOid(), false, true);
-			SCheckinResult result = new SCheckinResult();
-			result.setProjectId(revision.getProject().getOid());
-			// result.setProjectName(revision.getProject().getName());
-			LongCheckinAction longAction = new LongCheckinAction(bimServer, user, createCheckinAction);
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment, false, true);
+			LongCheckinAction longAction = new LongCheckinAction(bimServer, user, checkinDatabaseAction);
 			bimServer.getLongActionManager().start(longAction);
 			return longAction.getId();
-		} catch (UserException e) {
-			throw e;
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}

@@ -199,6 +199,7 @@ public class BimServer {
 					}
 				});
 				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin());
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new TestObjectIDMPlugin());
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

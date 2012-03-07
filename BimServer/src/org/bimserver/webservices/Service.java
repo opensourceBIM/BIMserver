@@ -65,8 +65,7 @@ import org.bimserver.database.actions.BranchToExistingProjectDatabaseAction;
 import org.bimserver.database.actions.BranchToNewProjectDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
-import org.bimserver.database.actions.CheckinPart1DatabaseAction;
-import org.bimserver.database.actions.CheckinPart2DatabaseAction;
+import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CommitTransactionDatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteDeserializerDatabaseAction;
@@ -190,7 +189,6 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.CompareResult;
-import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
@@ -293,16 +291,10 @@ public class Service implements ServiceInterface {
 					throw new UserException(e);
 				}
 				IfcModelInterface model = deserializer.read(inputStream, fileName, false, fileSize);
-				BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, poid, currentUoid, model, comment);
 				GetUserByUoidDatabaseAction getUserByUoidDatabaseAction = new GetUserByUoidDatabaseAction(session, accessMethod, currentUoid);
 				User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
-				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, null, accessMethod, model, currentUoid, revision.getOid(), merge, true);
-				SCheckinResult result = new SCheckinResult();
-				result.setProjectId(revision.getProject().getOid());
-				// result.setProjectName(revision.getProject().getName());
-				LongCheckinAction longAction = new LongCheckinAction(bimServer, userByUoid, createCheckinAction);
+				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, session, accessMethod, poid, currentUoid, model, comment, merge, true);
+				LongCheckinAction longAction = new LongCheckinAction(bimServer, userByUoid, checkinDatabaseAction);
 				bimServer.getLongActionManager().start(longAction);
 				if (sync) {
 					longAction.waitForCompletion();

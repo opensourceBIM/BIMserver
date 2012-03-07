@@ -26,7 +26,7 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ProgressHandler;
-import org.bimserver.database.actions.CheckinPart2DatabaseAction;
+import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.CheckinResult;
@@ -46,12 +46,12 @@ import org.slf4j.LoggerFactory;
 public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
-	private final CheckinPart2DatabaseAction createCheckinAction;
+	private final CheckinDatabaseAction createCheckinAction;
 	private final User user;
 	private int progress;
 	private final BimServer bimServer;
 
-	public LongCheckinAction(BimServer bimServer, User user, CheckinPart2DatabaseAction createCheckinAction) {
+	public LongCheckinAction(BimServer bimServer, User user, CheckinDatabaseAction createCheckinAction) {
 		this.user = user;
 		this.bimServer = bimServer;
 		this.createCheckinAction = createCheckinAction;
@@ -140,8 +140,8 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			}
 		} finally {
 			session.close();
+			done();
 		}
-		done();
 //		bimServer.getLongActionManager().remove(this);
 	}
 
@@ -164,7 +164,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	@Override
 	public String getDescription() {
-		return getClass().getSimpleName() + " " + createCheckinAction.getCroid();
+		return getClass().getSimpleName();
 	}
 
 	public User getUser() {
@@ -192,7 +192,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		return new LongCheckinActionKey(createCheckinAction.getCroid());
 	}
 	
-	public CheckinPart2DatabaseAction getCreateCheckinAction() {
+	public CheckinDatabaseAction getCreateCheckinAction() {
 		return createCheckinAction;
 	}
 }
