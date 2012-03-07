@@ -12,8 +12,8 @@
 		<antcall target="Emf" />
 		<antcall target="Plugins" />
 		<antcall target="Shared" />
-		<antcall target="BimServerClientLib" />
 		<antcall target="Ifc" />
+		<antcall target="BimServerClientLib" />
 		<antcall target="XsltSerializer" />
 		<antcall target="BimServer" />
 		<antcall target="BimWebServer" />
