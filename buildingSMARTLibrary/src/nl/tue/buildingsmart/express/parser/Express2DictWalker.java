@@ -101,14 +101,14 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public Express2DictWalker() {
 		super.tokenNames = _tokenNames;
 	}
-	
-	private void match(AST tree, Express2DictWalkerTokenTypes type) throws MismatchedTokenException
-	{
+
+	private void match(AST tree, Express2DictWalkerTokenTypes type) throws MismatchedTokenException {
 		super.match(tree, type.getIndex());
 	}
-	
+
 	/**
 	 * Checks for null trees and returns null accordingly
+	 * 
 	 * @return
 	 */
 	private AST handleNullTree(AST treeToCheck) {
@@ -142,20 +142,15 @@ public class Express2DictWalker extends antlr.TreeParser {
 			_tree = _retTree;
 			astFactory.addASTChild(currentAST, returnAST);
 			{
-				_loop4: do
-				{
-					if (_tree == null)
-					{
+				_loop4: do {
+					if (_tree == null) {
 						_tree = ASTNULL;
 					}
-					if (_tree.getType() == Express2DictWalkerTokenTypes.PARAMETER.getIndex())
-					{
+					if (_tree.getType() == Express2DictWalkerTokenTypes.PARAMETER.getIndex()) {
 						parameter(_tree);
 						_tree = _retTree;
 						astFactory.addASTChild(currentAST, returnAST);
-					}
-					else
-					{
+					} else {
 						break _loop4;
 					}
 
@@ -213,7 +208,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void aggregate_initializer(AST _t) throws RecognitionException {
 
-		AST aggregate_initializer_AST_in = handleNullTree( _t );
+		AST aggregate_initializer_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregate_initializer_AST = null;
@@ -278,7 +273,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void element(AST _t) throws RecognitionException {
 
-		AST element_AST_in = handleNullTree( _t );
+		AST element_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST element_AST = null;
@@ -332,7 +327,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void aggregate_source(AST _t) throws RecognitionException {
 
-		AST aggregate_source_AST_in = handleNullTree( _t );
+		AST aggregate_source_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregate_source_AST = null;
@@ -368,7 +363,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void simple_expression(AST _t) throws RecognitionException {
 
-		AST simple_expression_AST_in = handleNullTree( _t );
+		AST simple_expression_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST simple_expression_AST = null;
@@ -422,7 +417,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String aggregate_type(AST _t) throws RecognitionException {
 		String TypeName = "aggregate";
 
-		AST aggregate_type_AST_in = handleNullTree( _t );
+		AST aggregate_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregate_type_AST = null;
@@ -477,7 +472,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void type_label(AST _t) throws RecognitionException {
 
-		AST type_label_AST_in = handleNullTree( _t );
+		AST type_label_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST type_label_AST = null;
@@ -518,7 +513,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String parameter_type(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST parameter_type_AST_in = handleNullTree( _t );
+		AST parameter_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST parameter_type_AST = null;
@@ -580,7 +575,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String[] aggregation_types(AST _t) throws RecognitionException {
 		String[] TypeName = new String[4];
 
-		AST aggregation_types_AST_in = handleNullTree( _t );
+		AST aggregation_types_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregation_types_AST = null;
@@ -648,7 +643,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String[] array_type(AST _t) throws RecognitionException {
 		String[] TypeName = new String[4];
 
-		AST array_type_AST_in = handleNullTree( _t );
+		AST array_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST array_type_AST = null;
@@ -736,7 +731,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String[] bag_type(AST _t) throws RecognitionException {
 		String[] TypeName = new String[4];
 
-		AST bag_type_AST_in = handleNullTree( _t );
+		AST bag_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST bag_type_AST = null;
@@ -801,7 +796,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String[] list_type(AST _t) throws RecognitionException {
 		String[] TypeName = new String[4];
 
-		AST list_type_AST_in = handleNullTree( _t );
+		AST list_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST list_type_AST = null;
@@ -891,7 +886,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String[] set_type(AST _t) throws RecognitionException {
 		String[] TypeName = new String[4];
 
-		AST set_type_AST_in = handleNullTree( _t );
+		AST set_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST set_type_AST = null;
@@ -980,7 +975,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void algorithm_head(AST _t) throws RecognitionException {
 
-		AST algorithm_head_AST_in = handleNullTree( _t );
+		AST algorithm_head_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST algorithm_head_AST = null;
@@ -1064,7 +1059,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void declaration(AST _t) throws RecognitionException {
 
-		AST declaration_AST_in = handleNullTree( _t );
+		AST declaration_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST declaration_AST = null;
@@ -1136,7 +1131,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void constant_decl(AST _t) throws RecognitionException {
 
-		AST constant_decl_AST_in = handleNullTree( _t );
+		AST constant_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST constant_decl_AST = null;
@@ -1186,7 +1181,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void local_decl(AST _t) throws RecognitionException {
 
-		AST local_decl_AST_in = handleNullTree( _t );
+		AST local_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST local_decl_AST = null;
@@ -1236,7 +1231,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void alias_stmt(AST _t) throws RecognitionException {
 
-		AST alias_stmt_AST_in = handleNullTree( _t );
+		AST alias_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST alias_stmt_AST = null;
@@ -1306,7 +1301,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void variable_id(AST _t) throws RecognitionException {
 
-		AST variable_id_AST_in = handleNullTree( _t );
+		AST variable_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST variable_id_AST = null;
@@ -1346,7 +1341,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void general_ref(AST _t) throws RecognitionException {
 
-		AST general_ref_AST_in = handleNullTree( _t );
+		AST general_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST general_ref_AST = null;
@@ -1400,7 +1395,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void qualifier(AST _t) throws RecognitionException {
 
-		AST qualifier_AST_in = handleNullTree( _t );
+		AST qualifier_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST qualifier_AST = null;
@@ -1460,7 +1455,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void stmt(AST _t) throws RecognitionException {
 
-		AST stmt_AST_in = handleNullTree( _t );
+		AST stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST stmt_AST = null;
@@ -1569,7 +1564,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String[] bound_spec(AST _t) throws RecognitionException {
 		String[] bound = new String[2];
 
-		AST bound_spec_AST_in = handleNullTree( _t );
+		AST bound_spec_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST bound_spec_AST = null;
@@ -1617,7 +1612,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String base_type(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST base_type_AST_in = handleNullTree( _t );
+		AST base_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST base_type_AST = null;
@@ -1672,7 +1667,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void assignment_stmt(AST _t) throws RecognitionException {
 
-		AST assignment_stmt_AST_in = handleNullTree( _t );
+		AST assignment_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST assignment_stmt_AST = null;
@@ -1727,7 +1722,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void expression(AST _t) throws RecognitionException {
 
-		AST expression_AST_in = handleNullTree( _t );
+		AST expression_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST expression_AST = null;
@@ -1785,7 +1780,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String concrete_types(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST concrete_types_AST_in = handleNullTree( _t );
+		AST concrete_types_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST concrete_types_AST = null;
@@ -1850,7 +1845,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String generalized_types(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST generalized_types_AST_in = handleNullTree( _t );
+		AST generalized_types_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST generalized_types_AST = null;
@@ -1918,7 +1913,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String simple_types(AST _t) throws RecognitionException {
 		String TypeName = "simpleType";
 
-		AST simple_types_AST_in = handleNullTree( _t );
+		AST simple_types_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST simple_types_AST = null;
@@ -2006,7 +2001,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String named_types(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST named_types_AST_in = handleNullTree( _t );
+		AST named_types_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST named_types_AST = null;
@@ -2064,7 +2059,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String binary_type(AST _t) throws RecognitionException {
 		String TypeName = "BINARY";
 
-		AST binary_type_AST_in = handleNullTree( _t );
+		AST binary_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST binary_type_AST = null;
@@ -2116,7 +2111,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void width_spec(AST _t) throws RecognitionException {
 
-		AST width_spec_AST_in = handleNullTree( _t );
+		AST width_spec_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST width_spec_AST = null;
@@ -2175,7 +2170,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String boolean_type(AST _t) throws RecognitionException {
 		String TypeName = "BOOLEAN";
 
-		AST boolean_type_AST_in = handleNullTree( _t );
+		AST boolean_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST boolean_type_AST = null;
@@ -2212,7 +2207,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void nothing(AST _t) throws RecognitionException {
 
-		AST nothing_AST_in = handleNullTree( _t );
+		AST nothing_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST nothing_AST = null;
@@ -2254,7 +2249,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String bound_1(AST _t) throws RecognitionException {
 		String NumEx = "";
 
-		AST bound_1_AST_in = handleNullTree( _t );
+		AST bound_1_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST bound_1_AST = null;
@@ -2309,7 +2304,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String numeric_expression(AST _t) throws RecognitionException {
 		String se = "";
 
-		AST numeric_expression_AST_in = handleNullTree( _t );
+		AST numeric_expression_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST numeric_expression_AST = null;
@@ -2353,7 +2348,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void unlimited_upper_bound(AST _t) throws RecognitionException {
 
-		AST unlimited_upper_bound_AST_in = handleNullTree( _t );
+		AST unlimited_upper_bound_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST unlimited_upper_bound_AST = null;
@@ -2402,7 +2397,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void term(AST _t) throws RecognitionException {
 
-		AST term_AST_in = handleNullTree( _t );
+		AST term_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST term_AST = null;
@@ -2455,7 +2450,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void factor(AST _t) throws RecognitionException {
 
-		AST factor_AST_in = handleNullTree( _t );
+		AST factor_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST factor_AST = null;
@@ -2510,7 +2505,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String bound_2(AST _t) throws RecognitionException {
 		String NumEx = "";
 
-		AST bound_2_AST_in = handleNullTree( _t );
+		AST bound_2_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST bound_2_AST = null;
@@ -2558,7 +2553,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void built_in_constant(AST _t) throws RecognitionException {
 
-		AST built_in_constant_AST_in = handleNullTree( _t );
+		AST built_in_constant_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST built_in_constant_AST = null;
@@ -2651,7 +2646,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void case_action(AST _t) throws RecognitionException {
 
-		AST case_action_AST_in = handleNullTree( _t );
+		AST case_action_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST case_action_AST = null;
@@ -2704,7 +2699,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void case_label(AST _t) throws RecognitionException {
 
-		AST case_label_AST_in = handleNullTree( _t );
+		AST case_label_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST case_label_AST = null;
@@ -2740,7 +2735,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void case_stmt(AST _t) throws RecognitionException {
 
-		AST case_stmt_AST_in = handleNullTree( _t );
+		AST case_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST case_stmt_AST = null;
@@ -2808,7 +2803,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void selector(AST _t) throws RecognitionException {
 
-		AST selector_AST_in = handleNullTree( _t );
+		AST selector_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST selector_AST = null;
@@ -2844,7 +2839,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void compound_stmt(AST _t) throws RecognitionException {
 
-		AST compound_stmt_AST_in = handleNullTree( _t );
+		AST compound_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST compound_stmt_AST = null;
@@ -2894,7 +2889,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void constant_body(AST _t) throws RecognitionException {
 
-		AST constant_body_AST_in = handleNullTree( _t );
+		AST constant_body_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST constant_body_AST = null;
@@ -2936,7 +2931,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void constant_id(AST _t) throws RecognitionException {
 
-		AST constant_id_AST_in = handleNullTree( _t );
+		AST constant_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST constant_id_AST = null;
@@ -2976,7 +2971,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void constant_factor(AST _t) throws RecognitionException {
 
-		AST constant_factor_AST_in = handleNullTree( _t );
+		AST constant_factor_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST constant_factor_AST = null;
@@ -3030,7 +3025,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void constant_ref(AST _t) throws RecognitionException {
 
-		AST constant_ref_AST_in = handleNullTree( _t );
+		AST constant_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST constant_ref_AST = null;
@@ -3070,7 +3065,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void entity_decl(AST _t) throws RecognitionException {
 
-		AST entity_decl_AST_in = handleNullTree( _t );
+		AST entity_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST entity_decl_AST = null;
@@ -3110,10 +3105,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void subtype_constraint_decl(AST _t)
-			throws RecognitionException {
+	public final void subtype_constraint_decl(AST _t) throws RecognitionException {
 
-		AST subtype_constraint_decl_AST_in = handleNullTree( _t );
+		AST subtype_constraint_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subtype_constraint_decl_AST = null;
@@ -3152,7 +3146,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void function_decl(AST _t) throws RecognitionException {
 
-		AST function_decl_AST_in = handleNullTree( _t );
+		AST function_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST function_decl_AST = null;
@@ -3223,7 +3217,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void procedure_decl(AST _t) throws RecognitionException {
 
-		AST procedure_decl_AST_in = handleNullTree( _t );
+		AST procedure_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST procedure_decl_AST = null;
@@ -3290,10 +3284,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void type_decl(AST _t, String IDName)
-			throws RecognitionException {
+	public final void type_decl(AST _t, String IDName) throws RecognitionException {
 
-		AST type_decl_AST_in = handleNullTree( _t );
+		AST type_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST type_decl_AST = null;
@@ -3388,7 +3381,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void domain_rule(AST _t) throws RecognitionException {
 
-		AST domain_rule_AST_in = handleNullTree( _t );
+		AST domain_rule_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST domain_rule_AST = null;
@@ -3442,7 +3435,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void label(AST _t) throws RecognitionException {
 
-		AST label_AST_in = handleNullTree( _t );
+		AST label_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST label_AST = null;
@@ -3482,7 +3475,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void logical_expression(AST _t) throws RecognitionException {
 
-		AST logical_expression_AST_in = handleNullTree( _t );
+		AST logical_expression_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST logical_expression_AST = null;
@@ -3518,7 +3511,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void repetition(AST _t) throws RecognitionException {
 
-		AST repetition_AST_in = handleNullTree( _t );
+		AST repetition_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST repetition_AST = null;
@@ -3555,7 +3548,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String entity_head(AST _t) throws RecognitionException {
 		String className = "";
 
-		AST entity_head_AST_in = handleNullTree( _t );
+		AST entity_head_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST entity_head_AST = null;
@@ -3670,7 +3663,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String entity_id(AST _t) throws RecognitionException {
 		String name;
 
-		AST entity_id_AST_in = handleNullTree( _t );
+		AST entity_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST entity_id_AST = null;
@@ -3720,7 +3713,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String[] subsuper(AST _t) throws RecognitionException {
 		String[] sub;
 
-		AST subsuper_AST_in = handleNullTree( _t );
+		AST subsuper_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subsuper_AST = null;
@@ -3796,11 +3789,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		return sub;
 	}
 
-	public final String entity_body(AST _t, String forClass)
-			throws RecognitionException {
+	public final String entity_body(AST _t, String forClass) throws RecognitionException {
 		String atrribs = "";
 
-		AST entity_body_AST_in = handleNullTree( _t );
+		AST entity_body_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST entity_body_AST = null;
@@ -3924,10 +3916,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		return atrribs;
 	}
 
-	public final void explicit_attr(AST _t, String forClass)
-			throws RecognitionException {
+	public final void explicit_attr(AST _t, String forClass) throws RecognitionException {
 
-		AST explicit_attr_AST_in = handleNullTree( _t );
+		AST explicit_attr_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST explicit_attr_AST = null;
@@ -4078,21 +4069,15 @@ public class Express2DictWalker extends antlr.TreeParser {
 						AggregationType aggr = null;
 						BaseType bt = schema.getBaseTypeBN(BoundedType[0]);
 						if (bt == null)
-							System.err.println("WARNING: could not find "
-									+ BoundedType[0] + "(for +" + forClass
-									+ ")");
+							System.err.println("WARNING: could not find " + BoundedType[0] + "(for +" + forClass + ")");
 						if (BoundedType[3].equals("LIST"))
-							aggr = new ListType(
-									schema.getBaseTypeBN(BoundedType[0]));
+							aggr = new ListType(schema.getBaseTypeBN(BoundedType[0]));
 						else if (BoundedType[3].equals("BAG"))
-							aggr = new BagType(
-									schema.getBaseTypeBN(BoundedType[0]));
+							aggr = new BagType(schema.getBaseTypeBN(BoundedType[0]));
 						else if (BoundedType[3].equals("ARRAY"))
-							aggr = new ArrayType(
-									schema.getBaseTypeBN(BoundedType[0]));
+							aggr = new ArrayType(schema.getBaseTypeBN(BoundedType[0]));
 						else if (BoundedType[3].equals("SET"))
-							aggr = new SetType(
-									schema.getBaseTypeBN(BoundedType[0]));
+							aggr = new SetType(schema.getBaseTypeBN(BoundedType[0]));
 
 						String lbs = BoundedType[1];
 						String ubs = BoundedType[2];
@@ -4105,16 +4090,13 @@ public class Express2DictWalker extends antlr.TreeParser {
 						IntegerBound ub = new IntegerBound(new Integer(ubs));
 						if (aggr instanceof VariableSizeAggregationType) {
 
-							((VariableSizeAggregationType) aggr)
-									.setUpper_bound(ub);
-							((VariableSizeAggregationType) aggr)
-									.setLower_bound(ub);
+							((VariableSizeAggregationType) aggr).setUpper_bound(ub);
+							((VariableSizeAggregationType) aggr).setLower_bound(ub);
 						} else if (aggr instanceof ArrayType) {
 							((ArrayType) aggr).setLower_index(lb);
 							((ArrayType) aggr).setUpper_index(ub);
 						}
-						ExplicitAttribute attr = new ExplicitAttribute(
-								PropName, ent);
+						ExplicitAttribute attr = new ExplicitAttribute(PropName, ent);
 						attr.setOptional(isOptional);
 						attr.setDomain(aggr);
 						ent.addAttribute(attr);
@@ -4127,8 +4109,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 					// " of Type "+ConcreteType);
 
 					else if ((ent != null)) {
-						ExplicitAttribute attr = new ExplicitAttribute(
-								PropName, ent);
+						ExplicitAttribute attr = new ExplicitAttribute(PropName, ent);
 						attr.setDomain(schema.getBaseTypeBN(ConcreteType));
 						attr.setOptional(isOptional);
 						ent.addAttribute(attr);
@@ -4147,8 +4128,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 					if (pass == 2) {
 						EntityDefinition ent = schema.getEntityBN(forClass);
 						if ((ent != null)) {
-							ExplicitAttribute attr = new ExplicitAttribute(
-									PropName, ent);
+							ExplicitAttribute attr = new ExplicitAttribute(PropName, ent);
 							attr.setDomain(schema.getBaseTypeBN(ConcreteType));
 							attr.setOptional(isOptional);
 							ent.addAttribute(attr);
@@ -4175,8 +4155,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 				}
 
 				else if (ConcreteType.indexOf("ENTITY_REF") > -1) {
-					String type = ConcreteType.substring(new String(
-							"ENTITY_REF").length());
+					String type = ConcreteType.substring(new String("ENTITY_REF").length());
 					// methods.createOrExtendObjectProperty(forClass,
 					// PropName,type );
 				}
@@ -4263,10 +4242,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void derive_clause(AST _t, String forClass)
-			throws RecognitionException {
+	public final void derive_clause(AST _t, String forClass) throws RecognitionException {
 
-		AST derive_clause_AST_in = handleNullTree( _t );
+		AST derive_clause_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST derive_clause_AST = null;
@@ -4314,10 +4292,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void inverse_clause(AST _t, String forClass)
-			throws RecognitionException {
+	public final void inverse_clause(AST _t, String forClass) throws RecognitionException {
 
-		AST inverse_clause_AST_in = handleNullTree( _t );
+		AST inverse_clause_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST inverse_clause_AST = null;
@@ -4367,7 +4344,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void unique_clause(AST _t) throws RecognitionException {
 
-		AST unique_clause_AST_in = handleNullTree( _t );
+		AST unique_clause_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST unique_clause_AST = null;
@@ -4417,7 +4394,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void where_clause(AST _t) throws RecognitionException {
 
-		AST where_clause_AST_in = handleNullTree( _t );
+		AST where_clause_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST where_clause_AST = null;
@@ -4465,11 +4442,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final String supertype_constraint(AST _t)
-			throws RecognitionException {
+	public final String supertype_constraint(AST _t) throws RecognitionException {
 		String isAbstract = "";
 
-		AST supertype_constraint_AST_in = handleNullTree( _t );
+		AST supertype_constraint_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST supertype_constraint_AST = null;
@@ -4525,7 +4501,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String subtype_declaration(AST _t) throws RecognitionException {
 		String subent = "";
 
-		AST subtype_declaration_AST_in = handleNullTree( _t );
+		AST subtype_declaration_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subtype_declaration_AST = null;
@@ -4584,12 +4560,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		return subent;
 	}
 
-	public final String abstract_supertype_declaration(AST _t)
-			throws RecognitionException {
+	public final String abstract_supertype_declaration(AST _t) throws RecognitionException {
 		String isAbstract = "true";
 
-		AST abstract_supertype_declaration_AST_in = (_t == ASTNULL) ? null
-				: (AST) _t;
+		AST abstract_supertype_declaration_AST_in = (_t == ASTNULL) ? null : (AST) _t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST abstract_supertype_declaration_AST = null;
@@ -4641,7 +4615,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void supertype_rule(AST _t) throws RecognitionException {
 
-		AST supertype_rule_AST_in = handleNullTree( _t );
+		AST supertype_rule_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST supertype_rule_AST = null;
@@ -4677,7 +4651,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void subtype_constraint(AST _t) throws RecognitionException {
 
-		AST subtype_constraint_AST_in = handleNullTree( _t );
+		AST subtype_constraint_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subtype_constraint_AST = null;
@@ -4714,7 +4688,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String get_ref(AST _t) throws RecognitionException {
 		String subent = "test";
 
-		AST get_ref_AST_in = handleNullTree( _t );
+		AST get_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST get_ref_AST = null;
@@ -4755,10 +4729,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		return subent;
 	}
 
-	public final void subtype_constraint_head(AST _t)
-			throws RecognitionException {
+	public final void subtype_constraint_head(AST _t) throws RecognitionException {
 
-		AST subtype_constraint_head_AST_in = handleNullTree( _t );
+		AST subtype_constraint_head_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subtype_constraint_head_AST = null;
@@ -4795,10 +4768,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void subtype_constraint_body(AST _t)
-			throws RecognitionException {
+	public final void subtype_constraint_body(AST _t) throws RecognitionException {
 
-		AST subtype_constraint_body_AST_in = handleNullTree( _t );
+		AST subtype_constraint_body_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subtype_constraint_body_AST = null;
@@ -4888,7 +4860,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void subtype_constraint_id(AST _t) throws RecognitionException {
 
-		AST subtype_constraint_id_AST_in = handleNullTree( _t );
+		AST subtype_constraint_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subtype_constraint_id_AST = null;
@@ -4932,7 +4904,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String entity_ref(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST entity_ref_AST_in = handleNullTree( _t );
+		AST entity_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST entity_ref_AST = null;
@@ -4977,7 +4949,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void abstract_supertype(AST _t) throws RecognitionException {
 
-		AST abstract_supertype_AST_in = handleNullTree( _t );
+		AST abstract_supertype_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST abstract_supertype_AST = null;
@@ -5013,7 +4985,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void total_over(AST _t) throws RecognitionException {
 
-		AST total_over_AST_in = handleNullTree( _t );
+		AST total_over_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST total_over_AST = null;
@@ -5063,7 +5035,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void supertype_expression(AST _t) throws RecognitionException {
 
-		AST supertype_expression_AST_in = handleNullTree( _t );
+		AST supertype_expression_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST supertype_expression_AST = null;
@@ -5114,7 +5086,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String attribute_decl(AST _t) throws RecognitionException {
 		String PropName = "";
 
-		AST attribute_decl_AST_in = handleNullTree( _t );
+		AST attribute_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST attribute_decl_AST = null;
@@ -5171,7 +5143,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String attribute_id(AST _t) throws RecognitionException {
 		String PropName = "";
 
-		AST attribute_id_AST_in = handleNullTree( _t );
+		AST attribute_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST attribute_id_AST = null;
@@ -5212,11 +5184,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		return PropName;
 	}
 
-	public final String redeclared_attribute(AST _t)
-			throws RecognitionException {
+	public final String redeclared_attribute(AST _t) throws RecognitionException {
 		String PropName = "";
 
-		AST redeclared_attribute_AST_in = handleNullTree( _t );
+		AST redeclared_attribute_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST redeclared_attribute_AST = null;
@@ -5271,7 +5242,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void qualified_attribute(AST _t) throws RecognitionException {
 
-		AST qualified_attribute_AST_in = handleNullTree( _t );
+		AST qualified_attribute_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST qualified_attribute_AST = null;
@@ -5310,7 +5281,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void group_qualifier(AST _t) throws RecognitionException {
 
-		AST group_qualifier_AST_in = handleNullTree( _t );
+		AST group_qualifier_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST group_qualifier_AST = null;
@@ -5346,7 +5317,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void attribute_qualifier(AST _t) throws RecognitionException {
 
-		AST attribute_qualifier_AST_in = handleNullTree( _t );
+		AST attribute_qualifier_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST attribute_qualifier_AST = null;
@@ -5380,10 +5351,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void derived_attr(AST _t, String forClass)
-			throws RecognitionException {
+	public final void derived_attr(AST _t, String forClass) throws RecognitionException {
 
-		AST derived_attr_AST_in = handleNullTree( _t );
+		AST derived_attr_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST derived_attr_AST = null;
@@ -5475,10 +5445,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void inverse_attr(AST _t, String forClass)
-			throws RecognitionException {
+	public final void inverse_attr(AST _t, String forClass) throws RecognitionException {
 
-		AST inverse_attr_AST_in = handleNullTree( _t );
+		AST inverse_attr_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST inverse_attr_AST = null;
@@ -5582,18 +5551,15 @@ public class Express2DictWalker extends antlr.TreeParser {
 				EntityDefinition ent = schema.getEntityBN(entity);
 				EntityDefinition forEnt = schema.getEntityBN(forClass);
 				if (ent != null) {
-					ExplicitAttribute attr = (ExplicitAttribute) ent
-							.getAttributeBN(attrib_ref);
+					ExplicitAttribute attr = (ExplicitAttribute) ent.getAttributeBN(attrib_ref);
 					if (attr != null) {
 						// System.out.println("INVERSE "+attrib+" of " +
 						// ent.getName()+" for " +attrib_ref);
 						InverseAttribute inv = new InverseAttribute(attrib, ent);
 						if (bounds[0] != null && bounds[1] != null) {
-							if ((bounds[0].equals(""))
-									|| (bounds[0].equals("?")))
+							if ((bounds[0].equals("")) || (bounds[0].equals("?")))
 								bounds[0] = "-1";
-							if ((bounds[1].equals(""))
-									|| (bounds[1].equals("?")))
+							if ((bounds[1].equals("")) || (bounds[1].equals("?")))
 								bounds[1] = "-1";
 							Bound lb = new IntegerBound(new Integer(bounds[0]));
 							Bound ub = new IntegerBound(new Integer(bounds[1]));
@@ -5632,7 +5598,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String attribute_ref(AST _t) throws RecognitionException {
 		String attrib_ref = "";
 
-		AST attribute_ref_AST_in = handleNullTree( _t );
+		AST attribute_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST attribute_ref_AST = null;
@@ -5675,7 +5641,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void unique_rule(AST _t) throws RecognitionException {
 
-		AST unique_rule_AST_in = handleNullTree( _t );
+		AST unique_rule_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST unique_rule_AST = null;
@@ -5743,7 +5709,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void referenced_attribute(AST _t) throws RecognitionException {
 
-		AST referenced_attribute_AST_in = handleNullTree( _t );
+		AST referenced_attribute_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST referenced_attribute_AST = null;
@@ -5797,7 +5763,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void entity_constructor(AST _t) throws RecognitionException {
 
-		AST entity_constructor_AST_in = handleNullTree( _t );
+		AST entity_constructor_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST entity_constructor_AST = null;
@@ -5865,7 +5831,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void enumeration_reference(AST _t) throws RecognitionException {
 
-		AST enumeration_reference_AST_in = handleNullTree( _t );
+		AST enumeration_reference_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST enumeration_reference_AST = null;
@@ -5920,7 +5886,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String type_ref(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST type_ref_AST_in = handleNullTree( _t );
+		AST type_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST type_ref_AST = null;
@@ -5965,7 +5931,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void enumeration_ref(AST _t) throws RecognitionException {
 
-		AST enumeration_ref_AST_in = handleNullTree( _t );
+		AST enumeration_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST enumeration_ref_AST = null;
@@ -6006,7 +5972,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void escape_stmt(AST _t) throws RecognitionException {
 
-		AST escape_stmt_AST_in = handleNullTree( _t );
+		AST escape_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST escape_stmt_AST = null;
@@ -6042,7 +6008,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void rel_op_extended(AST _t) throws RecognitionException {
 
-		AST rel_op_extended_AST_in = handleNullTree( _t );
+		AST rel_op_extended_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST rel_op_extended_AST = null;
@@ -6110,7 +6076,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void rel_op(AST _t) throws RecognitionException {
 
-		AST rel_op_AST_in = handleNullTree( _t );
+		AST rel_op_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST rel_op_AST = null;
@@ -6232,7 +6198,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void simple_factor(AST _t) throws RecognitionException {
 
-		AST simple_factor_AST_in = handleNullTree( _t );
+		AST simple_factor_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST simple_factor_AST = null;
@@ -6349,7 +6315,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void formal_parameter(AST _t) throws RecognitionException {
 
-		AST formal_parameter_AST_in = handleNullTree( _t );
+		AST formal_parameter_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST formal_parameter_AST = null;
@@ -6402,7 +6368,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void parameter_id(AST _t) throws RecognitionException {
 
-		AST parameter_id_AST_in = handleNullTree( _t );
+		AST parameter_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST parameter_id_AST = null;
@@ -6442,7 +6408,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void function_call(AST _t) throws RecognitionException {
 
-		AST function_call_AST_in = handleNullTree( _t );
+		AST function_call_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST function_call_AST = null;
@@ -6514,7 +6480,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void function_ref(AST _t) throws RecognitionException {
 
-		AST function_ref_AST_in = handleNullTree( _t );
+		AST function_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST function_ref_AST = null;
@@ -6554,7 +6520,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void built_in_function(AST _t) throws RecognitionException {
 
-		AST built_in_function_AST_in = handleNullTree( _t );
+		AST built_in_function_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST built_in_function_AST = null;
@@ -6886,7 +6852,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void function_head(AST _t) throws RecognitionException {
 
-		AST function_head_AST_in = handleNullTree( _t );
+		AST function_head_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST function_head_AST = null;
@@ -6957,7 +6923,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void function_id(AST _t) throws RecognitionException {
 
-		AST function_id_AST_in = handleNullTree( _t );
+		AST function_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST function_id_AST = null;
@@ -6995,12 +6961,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final String general_aggregation_types(AST _t)
-			throws RecognitionException {
+	public final String general_aggregation_types(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST general_aggregation_types_AST_in = (_t == ASTNULL) ? null
-				: (AST) _t;
+		AST general_aggregation_types_AST_in = (_t == ASTNULL) ? null : (AST) _t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST general_aggregation_types_AST = null;
@@ -7067,7 +7031,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void generic_type(AST _t) throws RecognitionException {
 
-		AST generic_type_AST_in = handleNullTree( _t );
+		AST generic_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST generic_type_AST = null;
@@ -7118,7 +7082,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void generic_entity_type(AST _t) throws RecognitionException {
 
-		AST generic_entity_type_AST_in = handleNullTree( _t );
+		AST generic_entity_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST generic_entity_type_AST = null;
@@ -7154,7 +7118,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void general_array_type(AST _t) throws RecognitionException {
 
-		AST general_array_type_AST_in = handleNullTree( _t );
+		AST general_array_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST general_array_type_AST = null;
@@ -7258,7 +7222,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void general_bag_type(AST _t) throws RecognitionException {
 
-		AST general_bag_type_AST_in = handleNullTree( _t );
+		AST general_bag_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST general_bag_type_AST = null;
@@ -7313,7 +7277,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String general_list_type(AST _t) throws RecognitionException {
 		String TypeName = "";
 
-		AST general_list_type_AST_in = handleNullTree( _t );
+		AST general_list_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST general_list_type_AST = null;
@@ -7399,7 +7363,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void general_set_type(AST _t) throws RecognitionException {
 
-		AST general_set_type_AST_in = handleNullTree( _t );
+		AST general_set_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST general_set_type_AST = null;
@@ -7453,7 +7417,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void parameter_ref(AST _t) throws RecognitionException {
 
-		AST parameter_ref_AST_in = handleNullTree( _t );
+		AST parameter_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST parameter_ref_AST = null;
@@ -7493,7 +7457,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void variable_ref(AST _t) throws RecognitionException {
 
-		AST variable_ref_AST_in = handleNullTree( _t );
+		AST variable_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST variable_ref_AST = null;
@@ -7533,7 +7497,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void if_stmt(AST _t) throws RecognitionException {
 
-		AST if_stmt_AST_in = handleNullTree( _t );
+		AST if_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST if_stmt_AST = null;
@@ -7604,7 +7568,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void else_clause(AST _t) throws RecognitionException {
 
-		AST else_clause_AST_in = handleNullTree( _t );
+		AST else_clause_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST else_clause_AST = null;
@@ -7654,7 +7618,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void increment(AST _t) throws RecognitionException {
 
-		AST increment_AST_in = handleNullTree( _t );
+		AST increment_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST increment_AST = null;
@@ -7690,7 +7654,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void increment_control(AST _t) throws RecognitionException {
 
-		AST increment_control_AST_in = handleNullTree( _t );
+		AST increment_control_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST increment_control_AST = null;
@@ -7750,7 +7714,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void index(AST _t) throws RecognitionException {
 
-		AST index_AST_in = handleNullTree( _t );
+		AST index_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST index_AST = null;
@@ -7786,7 +7750,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void index_1(AST _t) throws RecognitionException {
 
-		AST index_1_AST_in = handleNullTree( _t );
+		AST index_1_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST index_1_AST = null;
@@ -7822,7 +7786,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void index_2(AST _t) throws RecognitionException {
 
-		AST index_2_AST_in = handleNullTree( _t );
+		AST index_2_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST index_2_AST = null;
@@ -7858,7 +7822,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void index_qualifier(AST _t) throws RecognitionException {
 
-		AST index_qualifier_AST_in = handleNullTree( _t );
+		AST index_qualifier_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST index_qualifier_AST = null;
@@ -7913,7 +7877,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String integer_type(AST _t) throws RecognitionException {
 		String TypeName = "INTEGER";
 
-		AST integer_type_AST_in = handleNullTree( _t );
+		AST integer_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST integer_type_AST = null;
@@ -7950,7 +7914,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void interval(AST _t) throws RecognitionException {
 
-		AST interval_AST_in = handleNullTree( _t );
+		AST interval_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST interval_AST = null;
@@ -7998,7 +7962,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void interval_low(AST _t) throws RecognitionException {
 
-		AST interval_low_AST_in = handleNullTree( _t );
+		AST interval_low_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST interval_low_AST = null;
@@ -8034,7 +7998,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void interval_op(AST _t) throws RecognitionException {
 
-		AST interval_op_AST_in = handleNullTree( _t );
+		AST interval_op_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST interval_op_AST = null;
@@ -8096,7 +8060,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void interval_item(AST _t) throws RecognitionException {
 
-		AST interval_item_AST_in = handleNullTree( _t );
+		AST interval_item_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST interval_item_AST = null;
@@ -8132,7 +8096,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void interval_high(AST _t) throws RecognitionException {
 
-		AST interval_high_AST_in = handleNullTree( _t );
+		AST interval_high_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST interval_high_AST = null;
@@ -8168,7 +8132,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void literal(AST _t) throws RecognitionException {
 
-		AST literal_AST_in = handleNullTree( _t );
+		AST literal_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST literal_AST = null;
@@ -8234,7 +8198,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void real(AST _t) throws RecognitionException {
 
-		AST real_AST_in = handleNullTree( _t );
+		AST real_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST real_AST = null;
@@ -8274,7 +8238,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void integer(AST _t) throws RecognitionException {
 
-		AST integer_AST_in = handleNullTree( _t );
+		AST integer_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST integer_AST = null;
@@ -8318,7 +8282,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void logical(AST _t) throws RecognitionException {
 
-		AST logical_AST_in = handleNullTree( _t );
+		AST logical_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST logical_AST = null;
@@ -8390,7 +8354,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void string(AST _t) throws RecognitionException {
 
-		AST string_AST_in = handleNullTree( _t );
+		AST string_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST string_AST = null;
@@ -8430,7 +8394,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void local_variable(AST _t) throws RecognitionException {
 
-		AST local_variable_AST_in = handleNullTree( _t );
+		AST local_variable_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST local_variable_AST = null;
@@ -8502,7 +8466,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String logical_type(AST _t) throws RecognitionException {
 		String TypeName = "LOGICAL";
 
-		AST logical_type_AST_in = handleNullTree( _t );
+		AST logical_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST logical_type_AST = null;
@@ -8539,7 +8503,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void null_stmt(AST _t) throws RecognitionException {
 
-		AST null_stmt_AST_in = handleNullTree( _t );
+		AST null_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST null_stmt_AST = null;
@@ -8576,7 +8540,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String number_type(AST _t) throws RecognitionException {
 		String TypeName = "NUMBER";
 
-		AST number_type_AST_in = handleNullTree( _t );
+		AST number_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST number_type_AST = null;
@@ -8613,7 +8577,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void one_of(AST _t) throws RecognitionException {
 
-		AST one_of_AST_in = handleNullTree( _t );
+		AST one_of_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST one_of_AST = null;
@@ -8663,7 +8627,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void population(AST _t) throws RecognitionException {
 
-		AST population_AST_in = handleNullTree( _t );
+		AST population_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST population_AST = null;
@@ -8699,7 +8663,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void precision_spec(AST _t) throws RecognitionException {
 
-		AST precision_spec_AST_in = handleNullTree( _t );
+		AST precision_spec_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST precision_spec_AST = null;
@@ -8735,7 +8699,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void primary(AST _t) throws RecognitionException {
 
-		AST primary_AST_in = handleNullTree( _t );
+		AST primary_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST primary_AST = null;
@@ -8803,7 +8767,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void qualifiable_factor(AST _t) throws RecognitionException {
 
-		AST qualifiable_factor_AST_in = handleNullTree( _t );
+		AST qualifiable_factor_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST qualifiable_factor_AST = null;
@@ -8875,7 +8839,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void procedure_call_stmt(AST _t) throws RecognitionException {
 
-		AST procedure_call_stmt_AST_in = handleNullTree( _t );
+		AST procedure_call_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST procedure_call_stmt_AST = null;
@@ -8947,7 +8911,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void procedure_ref(AST _t) throws RecognitionException {
 
-		AST procedure_ref_AST_in = handleNullTree( _t );
+		AST procedure_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST procedure_ref_AST = null;
@@ -8987,7 +8951,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void built_in_procedure(AST _t) throws RecognitionException {
 
-		AST built_in_procedure_AST_in = handleNullTree( _t );
+		AST built_in_procedure_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST built_in_procedure_AST = null;
@@ -9049,7 +9013,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void procedure_head(AST _t) throws RecognitionException {
 
-		AST procedure_head_AST_in = handleNullTree( _t );
+		AST procedure_head_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST procedure_head_AST = null;
@@ -9104,8 +9068,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 						_loop390: do {
 							if (_t == null)
 								_t = ASTNULL;
-							if ((_t.getType() == Express2DictWalkerTokenTypes.FORMAL_PARAMETER.getIndex() || _t
-									.getType() == Express2DictWalkerTokenTypes.LITERAL_var.getIndex())) {
+							if ((_t.getType() == Express2DictWalkerTokenTypes.FORMAL_PARAMETER.getIndex() || _t.getType() == Express2DictWalkerTokenTypes.LITERAL_var.getIndex())) {
 								{
 									if (_t == null)
 										_t = ASTNULL;
@@ -9113,11 +9076,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 									case LITERAL_var: {
 										AST tmp233_AST = null;
 										AST tmp233_AST_in = null;
-										tmp233_AST = astFactory
-												.create((AST) _t);
+										tmp233_AST = astFactory.create((AST) _t);
 										tmp233_AST_in = (AST) _t;
-										astFactory.addASTChild(currentAST,
-												tmp233_AST);
+										astFactory.addASTChild(currentAST, tmp233_AST);
 										match(_t, Express2DictWalkerTokenTypes.LITERAL_var);
 										_t = _t.getNextSibling();
 										break;
@@ -9165,7 +9126,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void procedure_id(AST _t) throws RecognitionException {
 
-		AST procedure_id_AST_in = handleNullTree( _t );
+		AST procedure_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST procedure_id_AST = null;
@@ -9205,7 +9166,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void query_expression(AST _t) throws RecognitionException {
 
-		AST query_expression_AST_in = handleNullTree( _t );
+		AST query_expression_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST query_expression_AST = null;
@@ -9248,7 +9209,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String real_type(AST _t) throws RecognitionException {
 		String TypeName = "REAL";
 
-		AST real_type_AST_in = handleNullTree( _t );
+		AST real_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST real_type_AST = null;
@@ -9300,7 +9261,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void reference_clause(AST _t) throws RecognitionException {
 
-		AST reference_clause_AST_in = handleNullTree( _t );
+		AST reference_clause_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST reference_clause_AST = null;
@@ -9368,7 +9329,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void schema_ref(AST _t) throws RecognitionException {
 
-		AST schema_ref_AST_in = handleNullTree( _t );
+		AST schema_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST schema_ref_AST = null;
@@ -9408,7 +9369,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void resource_or_rename(AST _t) throws RecognitionException {
 
-		AST resource_or_rename_AST_in = handleNullTree( _t );
+		AST resource_or_rename_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST resource_or_rename_AST = null;
@@ -9462,7 +9423,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void rename_id(AST _t) throws RecognitionException {
 
-		AST rename_id_AST_in = handleNullTree( _t );
+		AST rename_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST rename_id_AST = null;
@@ -9535,7 +9496,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String type_id(AST _t) throws RecognitionException {
 		String identifyer = "";
 
-		AST type_id_AST_in = handleNullTree( _t );
+		AST type_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST type_id_AST = null;
@@ -9578,7 +9539,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void repeat_control(AST _t) throws RecognitionException {
 
-		AST repeat_control_AST_in = handleNullTree( _t );
+		AST repeat_control_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST repeat_control_AST = null;
@@ -9668,7 +9629,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void while_control(AST _t) throws RecognitionException {
 
-		AST while_control_AST_in = handleNullTree( _t );
+		AST while_control_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST while_control_AST = null;
@@ -9704,7 +9665,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void until_control(AST _t) throws RecognitionException {
 
-		AST until_control_AST_in = handleNullTree( _t );
+		AST until_control_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST until_control_AST = null;
@@ -9740,7 +9701,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void repeat_stmt(AST _t) throws RecognitionException {
 
-		AST repeat_stmt_AST_in = handleNullTree( _t );
+		AST repeat_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST repeat_stmt_AST = null;
@@ -9793,7 +9754,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void resource_ref(AST _t) throws RecognitionException {
 
-		AST resource_ref_AST_in = handleNullTree( _t );
+		AST resource_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST resource_ref_AST = null;
@@ -9865,7 +9826,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void return_stmt(AST _t) throws RecognitionException {
 
-		AST return_stmt_AST_in = handleNullTree( _t );
+		AST return_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST return_stmt_AST = null;
@@ -9916,7 +9877,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void rule_decl(AST _t) throws RecognitionException {
 
-		AST rule_decl_AST_in = handleNullTree( _t );
+		AST rule_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST rule_decl_AST = null;
@@ -9988,7 +9949,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void rule_head(AST _t) throws RecognitionException {
 
-		AST rule_head_AST_in = handleNullTree( _t );
+		AST rule_head_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST rule_head_AST = null;
@@ -10041,7 +10002,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void rule_id(AST _t) throws RecognitionException {
 
-		AST rule_id_AST_in = handleNullTree( _t );
+		AST rule_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST rule_id_AST = null;
@@ -10082,7 +10043,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String schema_id(AST _t) throws RecognitionException {
 		String schemaName;
 
-		AST schema_id_AST_in = handleNullTree( _t );
+		AST schema_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST schema_id_AST = null;
@@ -10129,7 +10090,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void schema_body(AST _t) throws RecognitionException {
 
-		AST schema_body_AST_in = handleNullTree( _t );
+		AST schema_body_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST schema_body_AST = null;
@@ -10217,10 +10178,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void interface_specification(AST _t)
-			throws RecognitionException {
+	public final void interface_specification(AST _t) throws RecognitionException {
 
-		AST interface_specification_AST_in = handleNullTree( _t );
+		AST interface_specification_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST interface_specification_AST = null;
@@ -10274,7 +10234,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void schema_decl(AST _t) throws RecognitionException {
 
-		AST schema_decl_AST_in = handleNullTree( _t );
+		AST schema_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST schema_decl_AST = null;
@@ -10350,7 +10310,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void schema_version_id(AST _t) throws RecognitionException {
 
-		AST schema_version_id_AST_in = handleNullTree( _t );
+		AST schema_version_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST schema_version_id_AST = null;
@@ -10386,7 +10346,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void use_clause(AST _t) throws RecognitionException {
 
-		AST use_clause_AST_in = handleNullTree( _t );
+		AST use_clause_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST use_clause_AST = null;
@@ -10454,7 +10414,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void named_type_or_rename(AST _t) throws RecognitionException {
 
-		AST named_type_or_rename_AST_in = handleNullTree( _t );
+		AST named_type_or_rename_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST named_type_or_rename_AST = null;
@@ -10514,7 +10474,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void add_like_op(AST _t) throws RecognitionException {
 
-		AST add_like_op_AST_in = handleNullTree( _t );
+		AST add_like_op_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST add_like_op_AST = null;
@@ -10596,7 +10556,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void unary_op(AST _t) throws RecognitionException {
 
-		AST unary_op_AST_in = handleNullTree( _t );
+		AST unary_op_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST unary_op_AST = null;
@@ -10669,7 +10629,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String string_type(AST _t) throws RecognitionException {
 		String TypeName = "STRING";
 
-		AST string_type_AST_in = handleNullTree( _t );
+		AST string_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST string_type_AST = null;
@@ -10719,11 +10679,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		return TypeName;
 	}
 
-	public final SimpleType simple_types_decl_bt(AST _t)
-			throws RecognitionException {
+	public final SimpleType simple_types_decl_bt(AST _t) throws RecognitionException {
 		SimpleType st = null;
 
-		AST simple_types_decl_bt_AST_in = handleNullTree( _t );
+		AST simple_types_decl_bt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST simple_types_decl_bt_AST = null;
@@ -10817,7 +10776,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void skip_stmt(AST _t) throws RecognitionException {
 
-		AST skip_stmt_AST_in = handleNullTree( _t );
+		AST skip_stmt_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST skip_stmt_AST = null;
@@ -10853,7 +10812,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void supertype_factor(AST _t) throws RecognitionException {
 
-		AST supertype_factor_AST_in = handleNullTree( _t );
+		AST supertype_factor_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST supertype_factor_AST = null;
@@ -10903,7 +10862,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void supertype_term(AST _t) throws RecognitionException {
 
-		AST supertype_term_AST_in = handleNullTree( _t );
+		AST supertype_term_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST supertype_term_AST = null;
@@ -11031,7 +10990,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void language_version_id(AST _t) throws RecognitionException {
 
-		AST language_version_id_AST_in = handleNullTree( _t );
+		AST language_version_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST language_version_id_AST = null;
@@ -11067,7 +11026,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void syntax_pass2(AST _t) throws RecognitionException {
 
-		AST syntax_pass2_AST_in = handleNullTree( _t );
+		AST syntax_pass2_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST syntax_pass2_AST = null;
@@ -11133,10 +11092,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final void multiplication_like_op(AST _t)
-			throws RecognitionException {
+	public final void multiplication_like_op(AST _t) throws RecognitionException {
 
-		AST multiplication_like_op_AST_in = handleNullTree( _t );
+		AST multiplication_like_op_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST multiplication_like_op_AST = null;
@@ -11236,11 +11194,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final UnderlyingType underlying_type_decl(AST _t, String TypeName)
-			throws RecognitionException {
+	public final UnderlyingType underlying_type_decl(AST _t, String TypeName) throws RecognitionException {
 		UnderlyingType ut = null;
 
-		AST underlying_type_decl_AST_in = handleNullTree( _t );
+		AST underlying_type_decl_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST underlying_type_decl_AST = null;
@@ -11293,8 +11250,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 					if (isPass2()) {
 						// TODO add Type Reference here
 						ut = schema.getTypeBN(UTN);
-						System.err.println(TypeName + "PASS 2 get TYPEREF:"
-								+ UTN);
+						System.err.println(TypeName + "PASS 2 get TYPEREF:" + UTN);
 
 					} else {
 						System.err.println("PASS one:" + TypeName);
@@ -11325,10 +11281,9 @@ public class Express2DictWalker extends antlr.TreeParser {
 		return ut;
 	}
 
-	public final void constructed_types(AST _t, String TypeName)
-			throws RecognitionException {
+	public final void constructed_types(AST _t, String TypeName) throws RecognitionException {
 
-		AST constructed_types_AST_in = handleNullTree( _t );
+		AST constructed_types_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST constructed_types_AST = null;
@@ -11424,11 +11379,10 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public final String underlying_type(AST _t, String TypeName)
-			throws RecognitionException {
+	public final String underlying_type(AST _t, String TypeName) throws RecognitionException {
 		String UnderlyingTypeName = "";
 
-		AST underlying_type_AST_in = handleNullTree( _t );
+		AST underlying_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST underlying_type_AST = null;
@@ -11515,7 +11469,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final List enumeration_type(AST _t) throws RecognitionException {
 		List ItemList = new ArrayList();
 
-		AST enumeration_type_AST_in = handleNullTree( _t );
+		AST enumeration_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST enumeration_type_AST = null;
@@ -11614,7 +11568,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 		List items = new ArrayList();
 		;
 
-		AST select_type_AST_in = handleNullTree( _t );
+		AST select_type_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST select_type_AST = null;
@@ -11735,7 +11689,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final List enumeration_items(AST _t) throws RecognitionException {
 		List items = new ArrayList();
 
-		AST enumeration_items_AST_in = handleNullTree( _t );
+		AST enumeration_items_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST enumeration_items_AST = null;
@@ -11790,7 +11744,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void enumeration_extension(AST _t) throws RecognitionException {
 
-		AST enumeration_extension_AST_in = handleNullTree( _t );
+		AST enumeration_extension_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST enumeration_extension_AST = null;
@@ -11845,7 +11799,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final String enumeration_id(AST _t) throws RecognitionException {
 		String identifier = "";
 
-		AST enumeration_id_AST_in = handleNullTree( _t );
+		AST enumeration_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST enumeration_id_AST = null;
@@ -11889,7 +11843,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 	public final List select_list(AST _t) throws RecognitionException {
 		List items = new ArrayList();
 
-		AST select_list_AST_in = handleNullTree( _t );
+		AST select_list_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST select_list_AST = null;
@@ -11944,7 +11898,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void select_extension(AST _t) throws RecognitionException {
 
-		AST select_extension_AST_in = handleNullTree( _t );
+		AST select_extension_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST select_extension_AST = null;
@@ -11998,7 +11952,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void type_label_id(AST _t) throws RecognitionException {
 
-		AST type_label_id_AST_in = handleNullTree( _t );
+		AST type_label_id_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST type_label_id_AST = null;
@@ -12038,7 +11992,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void width(AST _t) throws RecognitionException {
 
-		AST width_AST_in = handleNullTree( _t );
+		AST width_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST width_AST = null;
@@ -12074,7 +12028,7 @@ public class Express2DictWalker extends antlr.TreeParser {
 
 	public final void type_label_ref(AST _t) throws RecognitionException {
 
-		AST type_label_ref_AST_in = handleNullTree( _t );
+		AST type_label_ref_AST_in = handleNullTree(_t);
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST type_label_ref_AST = null;
@@ -12112,100 +12066,41 @@ public class Express2DictWalker extends antlr.TreeParser {
 		_retTree = _t;
 	}
 
-	public static final String[] _tokenNames = { "<0>", "EOF", "<2>",
-			"NULL_TREE_LOOKAHEAD", "CONSTANT_IDENT", "ENTITY_IDENT",
-			"FUNCTION_IDENT", "PROCEDURE_IDENT", "PARAMETER_IDENT",
-			"SCHEMA_IDENT", "TYPE_IDENT", "VARIABLE_IDENT",
-			"ENUMERATION_IDENT", "ATTRIBUTE_IDENT", "ENTITY_ATTR_IDENT",
-			"TYPE_ATTR_IDENT", "ENTITY_VAR_IDENT", "TYPE_VAR_IDENT",
-			"ENTITY_PARAM_IDENT", "TYPE_PARAM_IDENT", "SUBTYPE_CONSTRAINT_ID",
-			"ACTUAL_PARAMETER_LIST", "ADD_LIKE_OP", "AGGREGATE_INITIALIZER",
-			"AGGREGATE_SOURCE", "AGGREGATE_TYPE", "AGGREGATION_TYPES",
-			"ALGORITHM_HEAD", "ALIAS_STMT", "ARRAY_TYPE", "ASSIGNMENT_STMT",
-			"BAG_TYPE", "BASE_TYPE", "BINARY_TYPE", "BOOLEAN_TYPE", "BOUND_1",
-			"BOUND_2", "BOUND_SPEC", "BUILT_IN_CONSTANT", "BUILT_IN_FUNCTION",
-			"BUILT_IN_PROCEDURE", "CASE_ACTION", "CASE_LABEL", "CASE_STMT",
-			"COMPOUND_STMT", "CONSTANT_BODY", "CONSTANT_DECL",
-			"CONSTANT_FACTOR", "CONSTANT_ID", "DECLARATION", "DOMAIN_RULE",
-			"ELEMENT", "ENTITY_HEAD", "ENTITY_DECL", "ENTITY_BODY", "SUBSUPER",
-			"SUPERTYPE_CONSTRAINT", "ABSTRACT_SUPERTYPE_DECLARATION",
-			"SUBTYPE_DECLARATION", "EXPLICIT_ATTR", "ATTRIBUTE_DECL",
-			"ATTRIBUTE_ID", "QUALIFIED_ATTRIBUTE", "DERIVE_CLAUSE",
-			"DERIVED_ATTR", "INVERSE_CLAUSE", "INVERSE_ATTR", "UNIQUE_CLAUSE",
-			"UNIQUE_RULE", "REFERENCED_ATTRIBUTE", "ENTITY_CONSTRUCTOR",
-			"ENTITY_ID", "ENUMERATION_REFERENCE", "ESCAPE_STMT", "EXPRESSION",
-			"FACTOR", "FORMAL_PARAMETER", "ATTRIBUTE_QUALIFIER",
-			"FUNCTION_CALL", "FUNCTION_DECL", "FUNCTION_HEAD", "FUNCTION_ID",
-			"GENERALIZED_TYPES", "GENERAL_AGGREGATION_TYPES",
-			"GENERAL_ARRAY_TYPE", "GENERAL_BAG_TYPE", "GENERAL_LIST_TYPE",
-			"GENERAL_REF", "GENERAL_SET_TYPE", "GENERIC_TYPE",
-			"GROUP_QUALIFIER", "IF_STMT", "INCREMENT", "INCREMENT_CONTROL",
-			"INDEX", "INDEX_1", "INDEX_2", "INDEX_QUALIFIER", "INTEGER_TYPE",
-			"INTERVAL", "INTERVAL_HIGH", "INTERVAL_ITEM", "INTERVAL_LOW",
-			"INTERVAL_OP", "LABEL", "LIST_TYPE", "LITERAL", "REAL", "INTEGER",
-			"STRING", "LOCAL_DECL", "LOCAL_VARIABLE", "LOGICAL_EXPRESSION",
-			"LOGICAL", "LOGICAL_TYPE", "MULTIPLICATION_LIKE_OP", "NAMED_TYPES",
-			"NULL_STMT", "NUMBER_TYPE", "NUMERIC_EXPRESSION", "ONE_OF",
-			"PARAMETER", "PARAMETER_ID", "PARAMETER_TYPE", "POPULATION",
-			"PRECISION_SPEC", "PRIMARY", "PROCEDURE_CALL_STMT",
-			"PROCEDURE_DECL", "PROCEDURE_HEAD", "PROCEDURE_ID",
-			"QUALIFIABLE_FACTOR", "QUALIFIER", "QUERY_EXPRESSION", "REAL_TYPE",
-			"REFERENCE_CLAUSE", "REL_OP", "REL_OP_EXTENDED", "REPEAT_CONTROL",
-			"REPEAT_STMT", "REPETITION", "RESOURCE_OR_RENAME", "RESOURCE_REF",
-			"RETURN_STMT", "RULE_DECL", "RULE_HEAD", "RULE_ID", "SCHEMA_ID",
-			"SCHEMA_BODY", "SCHEMA_DECL", "INTERFACE_SPECIFICATION",
-			"USE_CLAUSE", "NAMED_TYPE_OR_RENAME", "SELECTOR", "SET_TYPE",
-			"SIMPLE_EXPRESSION", "SIMPLE_FACTOR", "SIMPLE_TYPES", "SKIP_STMT",
-			"STMT", "STRING_TYPE", "SUBTYPE_CONSTRAINT",
-			"SUPERTYPE_EXPRESSION", "SUPERTYPE_FACTOR", "SUPERTYPE_RULE",
-			"SUPERTYPE_TERM", "SYNTAX", "TERM", "TYPE_DECL", "UNDERLYING_TYPE",
-			"CONSTRUCTED_TYPES", "ENUMERATION_TYPE", "ENUMERATION_ID",
-			"SELECT_TYPE", "TYPE_ID", "TYPE_LABEL", "TYPE_LABEL_ID",
-			"UNARY_OP", "UNTIL_CONTROL", "VARIABLE_ID", "WHERE_CLAUSE",
-			"WHILE_CONTROL", "WIDTH", "WIDTH_SPEC", "ENTITY_REF", "TYPE_REF",
-			"ENUMERATION_REF", "ATTRIBUTE_REF", "CONSTANT_REF", "FUNCTION_REF",
-			"PARAMETER_REF", "VARIABLE_REF", "SCHEMA_REF", "TYPE_LABEL_REF",
-			"PROCEDURE_REF", "SIMPLE_ID", "ELSE_CLAUSE", "RENAME_ID",
-			"ENUMERATION_ITEMS", "ENUMERATION_EXTENSION", "SELECT_LIST",
-			"SELECT_EXTENSION", "REDECLARED_ATTRIBUTE",
-			"SUBTYPE_CONSTRAINT_DECL", "SUBTYPE_CONSTRAINT_HEAD",
-			"SUBTYPE_CONSTRAINT_BODY", "ABSTRACT_SUPERTYPE", "TOTAL_OVER",
-			"CONCRETE_TYPES", "GENERIC_ENTITY_TYPE", "SCHEMA_VERSION_ID",
-			"LANGUAGE_VERSION_ID", "(", ",", ")", "+", "-", "\"or\"",
-			"\"xor\"", "[", "]", "\"aggregate\"", ":", "\"of\"", "\"alias\"",
-			"\"for\"", "an identifer", ";", "\"end_alias\"", "\"array\"",
-			"\"optional\"", "\"unique\"", ":=", "\"bag\"", "\"binary\"",
-			"\"boolean\"", "\"const_e\"", "\"pi\"", "\"self\"", "?", "*",
-			"\"abs\"", "\"acos\"", "\"asin\"", "\"atan\"", "\"blength\"",
-			"\"cos\"", "\"exists\"", "\"exp\"", "\"format\"", "\"hibound\"",
-			"\"hiindex\"", "\"length\"", "\"lobound\"", "\"loindex\"",
-			"\"log\"", "\"log2\"", "\"log10\"", "\"nvl\"", "\"odd\"",
-			"\"rolesof\"", "\"sin\"", "\"sizeof\"", "\"sqrt\"", "\"tan\"",
-			"\"typeof\"", "\"usedin\"", "\"value\"", "\"value_in\"",
-			"\"value_unique\"", "\"insert\"", "\"remove\"", "\"case\"",
-			"\"otherwise\"", "\"end_case\"", "\"begin\"", "\"end\"",
-			"\"constant\"", "\"end_constant\"", "\"entity\"", "\"abstract\"",
-			"\"end_entity\"", "\"supertype\"", "\"subtype\"",
-			"\"end_subtype_constraint\"", "\"subtype_constraint\"",
-			"\"total_over\"", "\"renamed\"", "\"derive\"", "\"inverse\"",
-			"\"set\"", ".", "\"escape\"", "double star", "\"end_function\"",
-			"\"function\"", "\"list\"", "\"generic\"", "\"generic_entity\"",
-			"backslash", "\"if\"", "\"then\"", "\"end_if\"", "\"else\"",
-			"\"to\"", "\"by\"", "\"integer\"", "{", "}", "<", "<=",
-			"an integer value", "an floating point value", "a string literal",
-			"\"local\"", "\"end_local\"", "\"false\"", "\"true\"",
-			"\"unknown\"", "\"logical\"", "/", "\"div\"", "\"mod\"", "\"and\"",
-			"double bar", "\"number\"", "\"oneof\"", "\"end_procedure\"",
-			"\"procedure\"", "\"var\"", "\"query\"", "less than star", "|",
-			"\"real\"", "\"reference\"", "\"from\"", ">", ">=",
-			"less-than/greater-than thing", "=", ":<>:", ":=:", "\"in\"",
-			"\"like\"", "\"repeat\"", "\"end_repeat\"", "\"as\"", "\"return\"",
-			"\"end_rule\"", "\"rule\"", "\"schema\"", "\"end_schema\"",
-			"\"use\"", "\"skip\"", "\"string\"", "\"andor\"",
-			"language version id", "\"type\"", "\"end_type\"",
-			"\"extensible\"", "\"enumeration\"", "\"based_on\"", "\"with\"",
-			"\"select\"", "\"not\"", "\"until\"", "\"where\"", "\"while\"",
-			"\"fixed\"", "a comment", "a EXPRESS one line comment", "&", "@",
-			"white space", "a digit", "\"SELF\\\\\"", "\".\"", "\"\"" };
+	public static final String[] _tokenNames = { "<0>", "EOF", "<2>", "NULL_TREE_LOOKAHEAD", "CONSTANT_IDENT", "ENTITY_IDENT", "FUNCTION_IDENT", "PROCEDURE_IDENT",
+			"PARAMETER_IDENT", "SCHEMA_IDENT", "TYPE_IDENT", "VARIABLE_IDENT", "ENUMERATION_IDENT", "ATTRIBUTE_IDENT", "ENTITY_ATTR_IDENT", "TYPE_ATTR_IDENT", "ENTITY_VAR_IDENT",
+			"TYPE_VAR_IDENT", "ENTITY_PARAM_IDENT", "TYPE_PARAM_IDENT", "SUBTYPE_CONSTRAINT_ID", "ACTUAL_PARAMETER_LIST", "ADD_LIKE_OP", "AGGREGATE_INITIALIZER",
+			"AGGREGATE_SOURCE", "AGGREGATE_TYPE", "AGGREGATION_TYPES", "ALGORITHM_HEAD", "ALIAS_STMT", "ARRAY_TYPE", "ASSIGNMENT_STMT", "BAG_TYPE", "BASE_TYPE", "BINARY_TYPE",
+			"BOOLEAN_TYPE", "BOUND_1", "BOUND_2", "BOUND_SPEC", "BUILT_IN_CONSTANT", "BUILT_IN_FUNCTION", "BUILT_IN_PROCEDURE", "CASE_ACTION", "CASE_LABEL", "CASE_STMT",
+			"COMPOUND_STMT", "CONSTANT_BODY", "CONSTANT_DECL", "CONSTANT_FACTOR", "CONSTANT_ID", "DECLARATION", "DOMAIN_RULE", "ELEMENT", "ENTITY_HEAD", "ENTITY_DECL",
+			"ENTITY_BODY", "SUBSUPER", "SUPERTYPE_CONSTRAINT", "ABSTRACT_SUPERTYPE_DECLARATION", "SUBTYPE_DECLARATION", "EXPLICIT_ATTR", "ATTRIBUTE_DECL", "ATTRIBUTE_ID",
+			"QUALIFIED_ATTRIBUTE", "DERIVE_CLAUSE", "DERIVED_ATTR", "INVERSE_CLAUSE", "INVERSE_ATTR", "UNIQUE_CLAUSE", "UNIQUE_RULE", "REFERENCED_ATTRIBUTE", "ENTITY_CONSTRUCTOR",
+			"ENTITY_ID", "ENUMERATION_REFERENCE", "ESCAPE_STMT", "EXPRESSION", "FACTOR", "FORMAL_PARAMETER", "ATTRIBUTE_QUALIFIER", "FUNCTION_CALL", "FUNCTION_DECL",
+			"FUNCTION_HEAD", "FUNCTION_ID", "GENERALIZED_TYPES", "GENERAL_AGGREGATION_TYPES", "GENERAL_ARRAY_TYPE", "GENERAL_BAG_TYPE", "GENERAL_LIST_TYPE", "GENERAL_REF",
+			"GENERAL_SET_TYPE", "GENERIC_TYPE", "GROUP_QUALIFIER", "IF_STMT", "INCREMENT", "INCREMENT_CONTROL", "INDEX", "INDEX_1", "INDEX_2", "INDEX_QUALIFIER", "INTEGER_TYPE",
+			"INTERVAL", "INTERVAL_HIGH", "INTERVAL_ITEM", "INTERVAL_LOW", "INTERVAL_OP", "LABEL", "LIST_TYPE", "LITERAL", "REAL", "INTEGER", "STRING", "LOCAL_DECL",
+			"LOCAL_VARIABLE", "LOGICAL_EXPRESSION", "LOGICAL", "LOGICAL_TYPE", "MULTIPLICATION_LIKE_OP", "NAMED_TYPES", "NULL_STMT", "NUMBER_TYPE", "NUMERIC_EXPRESSION", "ONE_OF",
+			"PARAMETER", "PARAMETER_ID", "PARAMETER_TYPE", "POPULATION", "PRECISION_SPEC", "PRIMARY", "PROCEDURE_CALL_STMT", "PROCEDURE_DECL", "PROCEDURE_HEAD", "PROCEDURE_ID",
+			"QUALIFIABLE_FACTOR", "QUALIFIER", "QUERY_EXPRESSION", "REAL_TYPE", "REFERENCE_CLAUSE", "REL_OP", "REL_OP_EXTENDED", "REPEAT_CONTROL", "REPEAT_STMT", "REPETITION",
+			"RESOURCE_OR_RENAME", "RESOURCE_REF", "RETURN_STMT", "RULE_DECL", "RULE_HEAD", "RULE_ID", "SCHEMA_ID", "SCHEMA_BODY", "SCHEMA_DECL", "INTERFACE_SPECIFICATION",
+			"USE_CLAUSE", "NAMED_TYPE_OR_RENAME", "SELECTOR", "SET_TYPE", "SIMPLE_EXPRESSION", "SIMPLE_FACTOR", "SIMPLE_TYPES", "SKIP_STMT", "STMT", "STRING_TYPE",
+			"SUBTYPE_CONSTRAINT", "SUPERTYPE_EXPRESSION", "SUPERTYPE_FACTOR", "SUPERTYPE_RULE", "SUPERTYPE_TERM", "SYNTAX", "TERM", "TYPE_DECL", "UNDERLYING_TYPE",
+			"CONSTRUCTED_TYPES", "ENUMERATION_TYPE", "ENUMERATION_ID", "SELECT_TYPE", "TYPE_ID", "TYPE_LABEL", "TYPE_LABEL_ID", "UNARY_OP", "UNTIL_CONTROL", "VARIABLE_ID",
+			"WHERE_CLAUSE", "WHILE_CONTROL", "WIDTH", "WIDTH_SPEC", "ENTITY_REF", "TYPE_REF", "ENUMERATION_REF", "ATTRIBUTE_REF", "CONSTANT_REF", "FUNCTION_REF", "PARAMETER_REF",
+			"VARIABLE_REF", "SCHEMA_REF", "TYPE_LABEL_REF", "PROCEDURE_REF", "SIMPLE_ID", "ELSE_CLAUSE", "RENAME_ID", "ENUMERATION_ITEMS", "ENUMERATION_EXTENSION", "SELECT_LIST",
+			"SELECT_EXTENSION", "REDECLARED_ATTRIBUTE", "SUBTYPE_CONSTRAINT_DECL", "SUBTYPE_CONSTRAINT_HEAD", "SUBTYPE_CONSTRAINT_BODY", "ABSTRACT_SUPERTYPE", "TOTAL_OVER",
+			"CONCRETE_TYPES", "GENERIC_ENTITY_TYPE", "SCHEMA_VERSION_ID", "LANGUAGE_VERSION_ID", "(", ",", ")", "+", "-", "\"or\"", "\"xor\"", "[", "]", "\"aggregate\"", ":",
+			"\"of\"", "\"alias\"", "\"for\"", "an identifer", ";", "\"end_alias\"", "\"array\"", "\"optional\"", "\"unique\"", ":=", "\"bag\"", "\"binary\"", "\"boolean\"",
+			"\"const_e\"", "\"pi\"", "\"self\"", "?", "*", "\"abs\"", "\"acos\"", "\"asin\"", "\"atan\"", "\"blength\"", "\"cos\"", "\"exists\"", "\"exp\"", "\"format\"",
+			"\"hibound\"", "\"hiindex\"", "\"length\"", "\"lobound\"", "\"loindex\"", "\"log\"", "\"log2\"", "\"log10\"", "\"nvl\"", "\"odd\"", "\"rolesof\"", "\"sin\"",
+			"\"sizeof\"", "\"sqrt\"", "\"tan\"", "\"typeof\"", "\"usedin\"", "\"value\"", "\"value_in\"", "\"value_unique\"", "\"insert\"", "\"remove\"", "\"case\"",
+			"\"otherwise\"", "\"end_case\"", "\"begin\"", "\"end\"", "\"constant\"", "\"end_constant\"", "\"entity\"", "\"abstract\"", "\"end_entity\"", "\"supertype\"",
+			"\"subtype\"", "\"end_subtype_constraint\"", "\"subtype_constraint\"", "\"total_over\"", "\"renamed\"", "\"derive\"", "\"inverse\"", "\"set\"", ".", "\"escape\"",
+			"double star", "\"end_function\"", "\"function\"", "\"list\"", "\"generic\"", "\"generic_entity\"", "backslash", "\"if\"", "\"then\"", "\"end_if\"", "\"else\"",
+			"\"to\"", "\"by\"", "\"integer\"", "{", "}", "<", "<=", "an integer value", "an floating point value", "a string literal", "\"local\"", "\"end_local\"", "\"false\"",
+			"\"true\"", "\"unknown\"", "\"logical\"", "/", "\"div\"", "\"mod\"", "\"and\"", "double bar", "\"number\"", "\"oneof\"", "\"end_procedure\"", "\"procedure\"",
+			"\"var\"", "\"query\"", "less than star", "|", "\"real\"", "\"reference\"", "\"from\"", ">", ">=", "less-than/greater-than thing", "=", ":<>:", ":=:", "\"in\"",
+			"\"like\"", "\"repeat\"", "\"end_repeat\"", "\"as\"", "\"return\"", "\"end_rule\"", "\"rule\"", "\"schema\"", "\"end_schema\"", "\"use\"", "\"skip\"", "\"string\"",
+			"\"andor\"", "language version id", "\"type\"", "\"end_type\"", "\"extensible\"", "\"enumeration\"", "\"based_on\"", "\"with\"", "\"select\"", "\"not\"", "\"until\"",
+			"\"where\"", "\"while\"", "\"fixed\"", "a comment", "a EXPRESS one line comment", "&", "@", "white space", "a digit", "\"SELF\\\\\"", "\".\"", "\"\"" };
 
 }

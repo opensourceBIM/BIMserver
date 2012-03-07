@@ -31,8 +31,8 @@ import antlr.CommonAST;
 public class SchemaLoader {
 	private SchemaDefinition schema = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaLoader.class);
-	
-	public SchemaLoader (String fileName){
+
+	public SchemaLoader(String fileName) {
 		try {
 			EasyParser parser = new EasyParser(fileName);
 			Express2DictWalker walker = new Express2DictWalker();
@@ -40,8 +40,8 @@ public class SchemaLoader {
 
 			/* result = */
 			CommonAST t = parser.parse();
-			PrintStream stdErrOld= System.err;
-			PrintStream stdOutOld= System.out;
+			PrintStream stdErrOld = System.err;
+			PrintStream stdOutOld = System.out;
 			FileOutputStream log = new FileOutputStream("parser.log");
 			PrintStream myErr = new PrintStream(log);
 			System.setErr(myErr);
@@ -53,19 +53,19 @@ public class SchemaLoader {
 			walker.syntax_pass2(t);
 			walker.setPass(3);
 			walker.syntax_pass2(t);
-			
+
 			schema = walker.getSchema();
 			schema.constructHirarchyMap();
 			System.setErr(stdErrOld);
 			System.setOut(stdOutOld);
 			myErr.close();
-		}
-		catch (Exception e){
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}
-	public SchemaDefinition getSchema(){
+
+	public SchemaDefinition getSchema() {
 		return schema;
 	}
-	
+
 }

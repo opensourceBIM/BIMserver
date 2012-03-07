@@ -24,36 +24,45 @@ import org.bimserver.plugins.schema.EntityDefinition;
 
 /**
  * @author Jakob Beetz j.beetz@tue.nl
- * <p>
- * 		The EntityInstance gives access to an EXPRESS entity instance generated i.e. by 
- * 		reading in a SPFF / p21 file.</p>
- * </p>
- * <p>	Depending on the type of the EntityInstance that can be retrieved with the getEntityDefinition() 
- * 		function, the attributes can be retrieved as an ArrayList or by their name.
- * </p>
+ *         <p>
+ *         The EntityInstance gives access to an EXPRESS entity instance
+ *         generated i.e. by reading in a SPFF / p21 file.
+ *         </p>
+ *         </p>
+ *         <p>
+ *         Depending on the type of the EntityInstance that can be retrieved
+ *         with the getEntityDefinition() function, the attributes can be
+ *         retrieved as an ArrayList or by their name.
+ *         </p>
  * 
- * <p>
- * 		Member functions that have a "BN" in their name, e.g. "getAttributeValueBN" take a string argument to 
- * 		get a certain attribute value by its name according to the schema definition. (Roughly oriented at SDAI)
- *</p>
+ *         <p>
+ *         Member functions that have a "BN" in their name, e.g.
+ *         "getAttributeValueBN" take a string argument to get a certain
+ *         attribute value by its name according to the schema definition.
+ *         (Roughly oriented at SDAI)
+ *         </p>
  */
 public class EntityInstance {
-	private int id; //the #number of the part 21 file this instance is identified with
+	private int id; // the #number of the part 21 file this instance is
+					// identified with
 	private EntityDefinition entDef;
-	private ArrayList <AttributeInstance> attributes;
-	private ArrayList <EntityInstance> references;
-	private HashMap<String,AttributeInstance> attributeMap;
-	private int numAttribues =0;
+	private ArrayList<AttributeInstance> attributes;
+	private ArrayList<EntityInstance> references;
+	private HashMap<String, AttributeInstance> attributeMap;
+	private int numAttribues = 0;
 	private ModelPopulation model;
-	public EntityInstance(ModelPopulation model, int id){
+
+	public EntityInstance(ModelPopulation model, int id) {
 		this.setId(id);
 		setModel(model);
 		attributes = new ArrayList<AttributeInstance>();
-		references = new ArrayList <EntityInstance> ();
-		attributeMap = new HashMap<String,AttributeInstance>();
+		references = new ArrayList<EntityInstance>();
+		attributeMap = new HashMap<String, AttributeInstance>();
 	}
 
-	/** <strong>disscuraged to call this and operate on the attributes directly</strong>
+	/**
+	 * <strong>disscuraged to call this and operate on the attributes
+	 * directly</strong>
 	 * 
 	 * @return the list of attributes for this EntityInstance
 	 */
@@ -61,20 +70,19 @@ public class EntityInstance {
 		return attributes;
 	}
 
-	public void addAttribute(AttributeInstance attribute){
+	public void addAttribute(AttributeInstance attribute) {
 		attributes.add(attribute);
 		attribute.setAttributeOf(this);
 		attributeMap.put(attribute.getAttributeType().getName(), attribute);
-		numAttribues=attributes.size();
+		numAttribues = attributes.size();
 	}
-	
+
 	public void setAttributes(ArrayList<AttributeInstance> attributes) {
 		this.attributes = attributes;
-		for (int i = 0;i<attributes.size();i++){
-			attributeMap.put(attributes.get(i).getAttributeType().getName()
-					, attributes.get(i));
+		for (int i = 0; i < attributes.size(); i++) {
+			attributeMap.put(attributes.get(i).getAttributeType().getName(), attributes.get(i));
 		}
-		
+
 	}
 
 	public EntityDefinition getEntityDefinition() {
@@ -97,79 +105,90 @@ public class EntityInstance {
 		return references;
 	}
 
-	public void addReference(EntityInstance instance){
+	public void addReference(EntityInstance instance) {
 		references.add(instance);
 	}
-	
+
 	public void setReferneces(ArrayList<EntityInstance> referneces) {
 		this.references = referneces;
 	}
-	
-	/** get an attribute of this EntityInstance by its name an return its value as an Object.
-	 * Possible object types include EntityInstance, literal values or aggregate types.
+
+	/**
+	 * get an attribute of this EntityInstance by its name an return its value
+	 * as an Object. Possible object types include EntityInstance, literal
+	 * values or aggregate types.
+	 * 
 	 * @param attributeName
 	 * @return the value of the attribute as an object
 	 */
-	public Object getAttributeValueBN(String attributeName){
-		/*boolean found = false;
-		AttributeInstance attrib = null;
-		Iterator<AttributeInstance> attribIter=attributes.iterator();
-		while (!found && attribIter.hasNext()){
-			attrib = attribIter.next();
-			if (attrib.getAttributeType().getName().equals(attributeName))
-				found = true;
-			
-		}*/
-		
+	public Object getAttributeValueBN(String attributeName) {
+		/*
+		 * boolean found = false; AttributeInstance attrib = null;
+		 * Iterator<AttributeInstance> attribIter=attributes.iterator(); while
+		 * (!found && attribIter.hasNext()){ attrib = attribIter.next(); if
+		 * (attrib.getAttributeType().getName().equals(attributeName)) found =
+		 * true;
+		 * 
+		 * }
+		 */
+
 		AttributeInstance attrib = attributeMap.get(attributeName);
 		if (attrib != null)
 			return attrib.getValue();
-		else return null;
-		
+		else
+			return null;
+
 	}
-	
+
 	/**
 	 * get an attribute value by its name and return the value as a string
+	 * 
 	 * @param attributeName
 	 * @return a string representation of the Value of the attribute
 	 */
-	public String getAttributeValueBNasString(String attributeName){
-		return (String)getAttributeValueBN(attributeName);
-		
+	public String getAttributeValueBNasString(String attributeName) {
+		return (String) getAttributeValueBN(attributeName);
+
 	}
 
-	/** get the number of attributes of this instance
+	/**
+	 * get the number of attributes of this instance
+	 * 
 	 * @return the number of attributes
 	 */
 	public int getNumAttribues() {
 		return numAttribues;
 	}
-	
+
 	/**
 	 * Try to get the attribute by its name and return it as an EntityInstance
+	 * 
 	 * @param attributeName
-	 * @return the EntityInstance or null if its not an EntityInstance but a e.g. a literal or an Aggregate
+	 * @return the EntityInstance or null if its not an EntityInstance but a
+	 *         e.g. a literal or an Aggregate
 	 */
-	public EntityInstance getAttributeValueBNasEntityInstance(String attributeName){
-		AttributeInstance attr=  attributeMap.get(attributeName);
-		//if (attr.hasEntityInstanceValue())
-		if (attr!=null)
+	public EntityInstance getAttributeValueBNasEntityInstance(String attributeName) {
+		AttributeInstance attr = attributeMap.get(attributeName);
+		// if (attr.hasEntityInstanceValue())
+		if (attr != null)
 			return attr.getEntityInstanceValue();
-		else return null;
+		else
+			return null;
 	}
 
-	
-	
 	/**
-	 * @param attributeName the case-sensitive name of the AttributeInstance to retrieve
+	 * @param attributeName
+	 *            the case-sensitive name of the AttributeInstance to retrieve
 	 * @return
 	 */
-	public ArrayList<EntityInstance>getAttributeValueBNasEntityInstanceList(String attributeName){
-		AttributeInstance attr=  attributeMap.get(attributeName);
-		if (attr!=null)
+	public ArrayList<EntityInstance> getAttributeValueBNasEntityInstanceList(String attributeName) {
+		AttributeInstance attr = attributeMap.get(attributeName);
+		if (attr != null)
 			return attr.getEntityList();
-		else return null;
+		else
+			return null;
 	}
+
 	public ModelPopulation getModel() {
 		return model;
 	}

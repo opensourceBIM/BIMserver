@@ -22,7 +22,6 @@ import java.util.Vector;
 
 import org.bimserver.plugins.schema.ExplicitAttribute;
 
-
 @SuppressWarnings("all")
 public class AttributeInstance {
 	private EntityInstance attributeOf;
@@ -106,8 +105,7 @@ public class AttributeInstance {
 			String stringVal = (String) value;
 			if (stringVal.startsWith("#")) {
 				ModelPopulation pop = this.getAttributeOf().getModel();
-				return pop.getEntity(new Integer(stringVal.substring(1,
-						stringVal.length())));
+				return pop.getEntity(new Integer(stringVal.substring(1, stringVal.length())));
 			}
 
 		}
@@ -122,16 +120,14 @@ public class AttributeInstance {
 				String stringVal = (String) values.get(i);
 				if (stringVal.startsWith("#")) {
 					ModelPopulation pop = this.getAttributeOf().getModel();
-					list.add(pop.getEntity(new Integer(stringVal.substring(1,
-							stringVal.length()))));
+					list.add(pop.getEntity(new Integer(stringVal.substring(1, stringVal.length()))));
 				}
 			}
 		} else if (this.value instanceof String) {
 			String stringVal = (String) value;
 			if (stringVal.startsWith("#")) {
 				ModelPopulation pop = this.getAttributeOf().getModel();
-				list.add(pop.getEntity(new Integer(stringVal.substring(1,
-						stringVal.length()))));
+				list.add(pop.getEntity(new Integer(stringVal.substring(1, stringVal.length()))));
 			}
 
 		}

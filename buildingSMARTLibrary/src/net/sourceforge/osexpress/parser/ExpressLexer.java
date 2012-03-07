@@ -1,6 +1,6 @@
 // $ANTLR : "express.g" -> "ExpressLexer.java"$
- 
-  package net.sourceforge.osexpress.parser;
+
+package net.sourceforge.osexpress.parser;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -66,10 +66,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 	 * keyword defining the new scope is encountered (ie: REPEAT, ALIAS...)
 	 */
 	private boolean isNewScopeId(String id) {
-		return id.toUpperCase().equals("REPEAT")
-				|| id.toUpperCase().equals("ALIAS")
-				|| id.toUpperCase().equals("QUERY")
-				|| id.toUpperCase().equals("RULE");
+		return id.toUpperCase().equals("REPEAT") || id.toUpperCase().equals("ALIAS") || id.toUpperCase().equals("QUERY") || id.toUpperCase().equals("RULE");
 	}
 
 	public ExpressLexer(InputStream in) {
@@ -90,12 +87,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		setCaseSensitive(true);
 		initializeLiterals();
 	}
-	
-	private void addNewLiteral(String literalName, int key){
-		this.literals.put(new ANTLRHashString( literalName, this), new Integer(key));
+
+	private void addNewLiteral(String literalName, int key) {
+		this.literals.put(new ANTLRHashString(literalName, this), new Integer(key));
 	}
-	
-	private void initializeLiterals(){
+
+	private void initializeLiterals() {
 		literals = new Hashtable();
 		addNewLiteral("until", 365);
 		addNewLiteral("xor", 218);
@@ -242,16 +239,15 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 				}
 			} catch (CharStreamException cse) {
 				if (cse instanceof CharStreamIOException) {
-					throw new TokenStreamIOException(
-							((CharStreamIOException) cse).io);
+					throw new TokenStreamIOException(((CharStreamIOException) cse).io);
 				} else {
 					throw new TokenStreamException(cse.getMessage());
 				}
 			}
 		}
 	}
-	
-	private Token getNextToken() throws RecognitionException, CharStreamException, TokenStreamException{
+
+	private Token getNextToken() throws RecognitionException, CharStreamException, TokenStreamException {
 		Token theRetToken = null;
 		switch (LA(1)) {
 		case ';': {
@@ -353,12 +349,10 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 			break;
 		}
 		default:
-			if ((LA(1) == 'i') && (LA(2) == 's') && (LA(3) == 'o')
-					&& (LA(4) == ' ')) {
+			if ((LA(1) == 'i') && (LA(2) == 's') && (LA(3) == 'o') && (LA(4) == ' ')) {
 				mLANG_VERSION(true);
 				theRetToken = _returnToken;
-			} else if ((LA(1) == ':') && (LA(2) == '=')
-					&& (LA(3) == ':')) {
+			} else if ((LA(1) == ':') && (LA(2) == '=') && (LA(3) == ':')) {
 				mCOLEQCOL(true);
 				theRetToken = _returnToken;
 			} else if ((LA(1) == '(') && (LA(2) == '*')) {
@@ -391,8 +385,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 			} else if ((LA(1) == '|') && (LA(2) == '|')) {
 				mDOUBLEBAR(true);
 				theRetToken = _returnToken;
-			} else if ((LA(1) == '.')
-					&& ((LA(2) >= '0' && LA(2) <= '9'))) {
+			} else if ((LA(1) == '.') && ((LA(2) >= '0' && LA(2) <= '9'))) {
 				mFLOAT(true);
 				theRetToken = _returnToken;
 			} else if ((LA(1) == '(')) {
@@ -427,18 +420,14 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 					uponEOF();
 					_returnToken = makeToken(Token.EOF_TYPE);
 				} else {
-					throw new NoViableAltForCharException(
-							(char) LA(1), getFilename(), getLine(),
-							getColumn());
+					throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 				}
 			}
 		}
 		return _returnToken;
 	}
 
-	public final void mCOMMENT(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mCOMMENT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -451,26 +440,20 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 				// nongreedy exit test
 				if (isCommentClose())
 					break _loop35931;
-				if ((LA(1) == '\r') && (LA(2) == '\n')
-						&& isControlOrLatin1(LA(3)) && isControlOrLatin1(LA(4))) {
+				if ((LA(1) == '\r') && (LA(2) == '\n') && isControlOrLatin1(LA(3)) && isControlOrLatin1(LA(4))) {
 					match('\r');
 					match('\n');
 					newline();
-				} else if ((LA(1) == '\n') && (LA(2) == '\r')
-						&& isControlOrLatin1(LA(3)) && isControlOrLatin1(LA(4))) {
+				} else if ((LA(1) == '\n') && (LA(2) == '\r') && isControlOrLatin1(LA(3)) && isControlOrLatin1(LA(4))) {
 					match('\n');
 					match('\r');
 					newline();
-				} else if (((LA(1) == '*')
-						&& isControlOrLatin1(LA(2)) && isControlOrLatin1(LA(3)))
-						&& (LA(2) != '(')) {
+				} else if (((LA(1) == '*') && isControlOrLatin1(LA(2)) && isControlOrLatin1(LA(3))) && (LA(2) != '(')) {
 					match('*');
-				} else if ((LA(1) == '\r')
-						&& isControlOrLatin1(LA(2)) && isControlOrLatin1(LA(3))) {
+				} else if ((LA(1) == '\r') && isControlOrLatin1(LA(2)) && isControlOrLatin1(LA(3))) {
 					match('\r');
 					newline();
-				} else if ((LA(1) == '\n')
-						&& isControlOrLatin1(LA(2)) && isControlOrLatin1(LA(3))) {
+				} else if ((LA(1) == '\n') && isControlOrLatin1(LA(2)) && isControlOrLatin1(LA(3))) {
 					match('\n');
 					newline();
 				} else if ((_tokenSet_1.member(LA(1)))) {
@@ -488,27 +471,26 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 			_ttype = ExpressParserTokenTypes.SKIP;
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
-	
-	private boolean isCommentClose() throws CharStreamException{
+
+	private boolean isCommentClose() throws CharStreamException {
 		return (LA(1) == '*') && (LA(2) == ')');
 	}
-	
+
 	/**
-	 * Checks that the character is a control character (except for \u0000, \u0001, \u0002) or a Latin1 character (up to and including \u00ff)
+	 * Checks that the character is a control character (except for \u0000,
+	 * \u0001, \u0002) or a Latin1 character (up to and including \u00ff)
+	 * 
 	 * @return
 	 */
-	private boolean isControlOrLatin1(char charToCheck){
+	private boolean isControlOrLatin1(char charToCheck) {
 		return charToCheck >= '\u0003' && charToCheck <= '\u00ff';
 	}
 
-	public final void mLINECOMMENT(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mLINECOMMENT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -532,19 +514,16 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 			_ttype = ExpressParserTokenTypes.SKIP;
 		if (canMakeToken(_createToken, _token, _ttype)) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
-	
-	private boolean canMakeToken(boolean _createToken, Token _token, ExpressParserTokenTypes _ttype){
+
+	private boolean canMakeToken(boolean _createToken, Token _token, ExpressParserTokenTypes _ttype) {
 		return _createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP;
 	}
 
-	public final void mLANG_VERSION(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mLANG_VERSION(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -554,14 +533,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match("iso standard 10303 part (11) version (4)");
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mSEMI(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mSEMI(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -571,15 +548,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match(';');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mQUESTION(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mQUESTION(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -589,15 +563,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('?');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mLPAREN(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mLPAREN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -607,15 +578,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('(');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mRPAREN(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mRPAREN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -625,15 +593,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match(')');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mLBRACK(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mLBRACK(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -643,15 +608,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('[');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mRBRACK(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mRBRACK(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -661,15 +623,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match(']');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mLCURLY(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mLCURLY(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -679,15 +638,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('{');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mRCURLY(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mRCURLY(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -697,15 +653,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('}');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mBACKSLASH(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mBACKSLASH(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -715,14 +668,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('\\');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mBAR(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mBAR(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -732,15 +683,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('|');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mAMPERSAND(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mAMPERSAND(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -750,14 +698,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('&');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mCOLON(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mCOLON(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -767,14 +713,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match(':');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mCOLEQ(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mCOLEQ(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -785,15 +729,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('=');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mCOLEQCOL(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mCOLEQCOL(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -805,15 +746,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match(':');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mCOLLTGT(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mCOLLTGT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -826,14 +764,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match(':');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mCOMMA(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mCOMMA(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -843,14 +779,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match(',');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mDOT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mDOT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -860,15 +794,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('.');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mASSIGN(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mASSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -878,14 +809,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('=');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mLT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mLT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -895,14 +824,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('<');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mGT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mGT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -912,14 +839,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('>');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mLE(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mLE(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -930,14 +855,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('=');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mGE(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mGE(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -948,15 +871,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('=');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mDIVSIGN(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mDIVSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -966,14 +886,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('/');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mPLUS(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mPLUS(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -983,14 +901,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('+');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mMINUS(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mMINUS(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1000,14 +916,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('-');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mSTAR(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mSTAR(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1017,14 +931,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('*');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mAT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mAT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1034,14 +946,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('@');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mWS(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mWS(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1074,8 +984,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 					} else if ((LA(1) == '\r') && (true)) {
 						match('\r');
 					} else {
-						throw new NoViableAltForCharException((char) LA(1),
-								getFilename(), getLine(), getColumn());
+						throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 					}
 
 				}
@@ -1085,23 +994,19 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 				break;
 			}
 			default: {
-				throw new NoViableAltForCharException((char) LA(1),
-						getFilename(), getLine(), getColumn());
+				throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 			}
 			}
 		}
 		_ttype = ExpressParserTokenTypes.SKIP;
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mLTSTAR(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mLTSTAR(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1112,14 +1017,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('*');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mLTGT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mLTGT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1130,15 +1033,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('>');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mDOUBLESTAR(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mDOUBLESTAR(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1149,15 +1049,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('*');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mDOUBLEBAR(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mDOUBLEBAR(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1168,15 +1065,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('|');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mSTRING(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	public final void mSTRING(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1197,15 +1091,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		match('\'');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	protected final void mDIGIT(boolean _createToken)
-			throws RecognitionException, CharStreamException,
-			TokenStreamException {
+	protected final void mDIGIT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1215,14 +1106,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		matchRange('0', '9');
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mINT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mINT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1238,8 +1127,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 					if (_cnt35977 >= 1) {
 						break _loop35977;
 					} else {
-						throw new NoViableAltForCharException((char) LA(1),
-								getFilename(), getLine(), getColumn());
+						throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 					}
 				}
 
@@ -1248,14 +1136,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		}
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mFLOAT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mFLOAT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1272,8 +1158,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 					if (_cnt35980 >= 1) {
 						break _loop35980;
 					} else {
-						throw new NoViableAltForCharException((char) LA(1),
-								getFilename(), getLine(), getColumn());
+						throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 					}
 				}
 
@@ -1293,8 +1178,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 						break;
 					}
 					default: {
-						throw new NoViableAltForCharException((char) LA(1),
-								getFilename(), getLine(), getColumn());
+						throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 					}
 					}
 				}
@@ -1321,8 +1205,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 						break;
 					}
 					default: {
-						throw new NoViableAltForCharException((char) LA(1),
-								getFilename(), getLine(), getColumn());
+						throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 					}
 					}
 				}
@@ -1335,9 +1218,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 							if (_cnt35985 >= 1) {
 								break _loop35985;
 							} else {
-								throw new NoViableAltForCharException(
-										(char) LA(1), getFilename(), getLine(),
-										getColumn());
+								throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 							}
 						}
 
@@ -1350,14 +1231,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		}
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}
 
-	public final void mIDENT(boolean _createToken) throws RecognitionException,
-			CharStreamException, TokenStreamException {
+	public final void mIDENT(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		ExpressParserTokenTypes _ttype;
 		Token _token = null;
 		int _begin = text.length();
@@ -1429,8 +1308,7 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 				break;
 			}
 			default: {
-				throw new NoViableAltForCharException((char) LA(1),
-						getFilename(), getLine(), getColumn());
+				throw new NoViableAltForCharException((char) LA(1), getFilename(), getLine(), getColumn());
 			}
 			}
 		}
@@ -1520,14 +1398,12 @@ public class ExpressLexer extends antlr.CharScanner implements TokenStream {
 		}
 
 		if (!parser.isFirst)
-			_ttype = globalSearchId(new String(text.getBuffer(), _begin,
-					text.length() - _begin));
+			_ttype = globalSearchId(new String(text.getBuffer(), _begin, text.length() - _begin));
 
 		_ttype = ExpressParserTokenTypes.getToken(testLiteralsTable(_ttype.getIndex()));
 		if (_createToken && _token == null && _ttype != ExpressParserTokenTypes.SKIP) {
 			_token = makeToken(_ttype.getIndex());
-			_token.setText(new String(text.getBuffer(), _begin, text.length()
-					- _begin));
+			_token.setText(new String(text.getBuffer(), _begin, text.length() - _begin));
 		}
 		_returnToken = _token;
 	}

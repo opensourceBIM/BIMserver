@@ -75,7 +75,7 @@ public class ExpressSchemaParser {
 			LOGGER.error("", e);
 		}
 	}
-	
+
 	public ExpressSchemaParser(URL url) {
 		try {
 			this.inputStream = url.openConnection().getInputStream();
@@ -137,8 +137,7 @@ public class ExpressSchemaParser {
 
 		/* arguments management */
 		Getopt g = new Getopt("Express2Dict", argv, "o:s:");
-		while ((currentCommandLineOption = g.getopt()) != -1)
-		{
+		while ((currentCommandLineOption = g.getopt()) != -1) {
 			switch (currentCommandLineOption) {
 			case 'o':
 				fileOut = g.getOptarg();
@@ -154,10 +153,10 @@ public class ExpressSchemaParser {
 				break;
 			}
 		}
-		
+
 		fileIn = getFileIn(argv, g);
 		checkInputFile(fileIn);
-		
+
 		try {
 			parser = new EasyParser(fileIn);
 			walker = new Express2DictWalker();
@@ -167,88 +166,72 @@ public class ExpressSchemaParser {
 
 			walker.setPass(1);
 			walker.syntax(parsedTree);
-			
+
 			walker.setPass(2);
 			walker.syntax_pass2(parsedTree);
-			
+
 			walker.setPass(3);
 			walker.syntax_pass2(parsedTree);
 
 			SchemaDefinition schema = walker.getSchema();
 			printSchemaToConsole(schema);
-		} 
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 		LOGGER.info("execution time: " + getStringTime(System.currentTimeMillis() - startTime));
 	}
-	
-	private static String getFileIn(String[] argv, Getopt g)
-	{
+
+	private static String getFileIn(String[] argv, Getopt g) {
 		try {
 			return argv[g.getOptind()];
-			
-		} 
-		catch (Exception e)
-		{
+
+		} catch (Exception e) {
 			System.err.println("E2OWL: Input file not specified");
 			System.exit(1);
 		}
 		System.err.println("E2OWL: Error in parsing input file");
 		System.exit(1);
-		
+
 		return null;
 	}
-	
-	private static void checkInputFile(String fileIn)
-	{
+
+	private static void checkInputFile(String fileIn) {
 		File file = new File(fileIn);
 		if (!file.canRead()) {
 			System.err.println("E2OWL: Unable to read file " + fileIn);
 			System.exit(1);
 		}
 	}
-	
-	private static void printSchemaToConsole(SchemaDefinition schema)
-	{
+
+	private static void printSchemaToConsole(SchemaDefinition schema) {
 		printEntities(schema);
 
 		printTypes(schema);
 	}
-	
-	private static void printEntities(SchemaDefinition schema)
-	{
+
+	private static void printEntities(SchemaDefinition schema) {
 		Iterator entityIterator = schema.getEntities().iterator();
-		while (entityIterator.hasNext())
-		{
+		while (entityIterator.hasNext()) {
 			EntityDefinition ent = (EntityDefinition) entityIterator.next();
 			LOGGER.info(ent.getName());
 			Iterator at = ent.getAttributes().iterator();
-			while (at.hasNext())
-			{
+			while (at.hasNext()) {
 				Attribute attr = (Attribute) at.next();
 				System.out.print(ent.getName() + ":" + attr.getName());
 				if (attr instanceof ExplicitAttribute) {
 					BaseType bt = (BaseType) ((ExplicitAttribute) attr).getDomain();
-					if (bt instanceof NamedType)
-					{
-						if (bt != null)
-						{
+					if (bt instanceof NamedType) {
+						if (bt != null) {
 							System.out.print(" is-a " + ((NamedType) bt).getName());
 						}
-					}
-					else if (bt instanceof AggregationType)
-					{
-						if (bt != null && ((AggregationType) bt).getElement_type() != null)
-						{
+					} else if (bt instanceof AggregationType) {
+						if (bt != null && ((AggregationType) bt).getElement_type() != null) {
 							System.out.print(" is-a " + ((AggregationType) bt).getElement_type().getClass());
 						}
 					}
 
 				}
-				if (attr instanceof InverseAttribute)
-				{
+				if (attr instanceof InverseAttribute) {
 					InverseAttribute inv = (InverseAttribute) attr;
 					EntityDefinition forEnt = inv.getDomain();
 					ExplicitAttribute invertedAttr = inv.getInverted_attr();
@@ -260,12 +243,10 @@ public class ExpressSchemaParser {
 			}
 		}
 	}
-	
-	private static void printTypes(SchemaDefinition schema)
-	{
+
+	private static void printTypes(SchemaDefinition schema) {
 		Iterator typeIterator = schema.getTypes().iterator();
-		while (typeIterator.hasNext())
-		{
+		while (typeIterator.hasNext()) {
 			DefinedType type = (DefinedType) typeIterator.next();
 			UnderlyingType ut = type.getDomain();
 			if (ut != null)
@@ -274,8 +255,7 @@ public class ExpressSchemaParser {
 				LOGGER.info(type.getName() + ((SelectType) type).getSelections().toString());
 			} else if (type instanceof EnumerationType) {
 				LOGGER.info(type.getName() + ((EnumerationType) type).getElements().toString());
-			}
-			else if (ut == null && !(type instanceof SelectType))
+			} else if (ut == null && !(type instanceof SelectType))
 				LOGGER.error(type.getName() + " has no underlying_type");
 		}
 	}

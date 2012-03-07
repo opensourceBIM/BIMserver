@@ -1,6 +1,6 @@
 // $ANTLR : "express.g" -> "ExpressParser.java"$
- 
-  package net.sourceforge.osexpress.parser;
+
+package net.sourceforge.osexpress.parser;
 
 /******************************************************************************
  * Copyright (C) 2011  BIMserver.org
@@ -181,13 +181,11 @@ public class ExpressParser extends antlr.LLkParser {
 		}
 	}
 
-	protected void match(ExpressParserTokenTypes tokenType)
-			throws MismatchedTokenException, TokenStreamException {
+	protected void match(ExpressParserTokenTypes tokenType) throws MismatchedTokenException, TokenStreamException {
 		super.match(tokenType.getIndex());
 	}
 
-	protected boolean LA1Equals(ExpressParserTokenTypes tokenType)
-			throws TokenStreamException {
+	protected boolean LA1Equals(ExpressParserTokenTypes tokenType) throws TokenStreamException {
 		return LA(1) == tokenType.getIndex();
 	}
 
@@ -233,18 +231,14 @@ public class ExpressParser extends antlr.LLkParser {
 	}
 
 	protected AST makeAST(ExpressParserTokenTypes tokenType, AST root) {
-		return (AST) astFactory.make((new ASTArray(2)).add(
-				astFactory.create(tokenType.getIndex(), tokenType.name())).add(
-				root));
+		return (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(tokenType.getIndex(), tokenType.name())).add(root));
 	}
 
 	protected AST getChild(AST root) {
-		return root != null && root.getFirstChild() != null ? root
-				.getFirstChild() : root;
+		return root != null && root.getFirstChild() != null ? root.getFirstChild() : root;
 	}
 
-	public final void actual_parameter_list() throws RecognitionException,
-			TokenStreamException {
+	public final void actual_parameter_list() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -267,8 +261,7 @@ public class ExpressParser extends antlr.LLkParser {
 				} while (true);
 			}
 			match(ExpressParserTokenTypes.RPAREN);
-			actual_parameter_list_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ACTUAL_PARAMETER_LIST);
+			actual_parameter_list_AST = parseAST(currentAST, ExpressParserTokenTypes.ACTUAL_PARAMETER_LIST);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_0);
@@ -276,8 +269,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = actual_parameter_list_AST;
 	}
 
-	public final void parameter() throws RecognitionException,
-			TokenStreamException {
+	public final void parameter() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -286,8 +278,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			parameter_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.PARAMETER);
+			parameter_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_1);
@@ -295,8 +286,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = parameter_AST;
 	}
 
-	public final void add_like_op() throws RecognitionException,
-			TokenStreamException {
+	public final void add_like_op() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -309,8 +299,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp4_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp4_AST);
 				match(ExpressParserTokenTypes.PLUS);
-				add_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ADD_LIKE_OP);
+				add_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.ADD_LIKE_OP);
 				break;
 			}
 			case MINUS: {
@@ -318,8 +307,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp5_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp5_AST);
 				match(ExpressParserTokenTypes.MINUS);
-				add_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ADD_LIKE_OP);
+				add_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.ADD_LIKE_OP);
 				break;
 			}
 			case LITERAL_or: {
@@ -327,8 +315,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp6_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp6_AST);
 				match(ExpressParserTokenTypes.LITERAL_or);
-				add_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ADD_LIKE_OP);
+				add_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.ADD_LIKE_OP);
 				break;
 			}
 			case LITERAL_xor: {
@@ -336,8 +323,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp7_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp7_AST);
 				match(ExpressParserTokenTypes.LITERAL_xor);
-				add_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ADD_LIKE_OP);
+				add_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.ADD_LIKE_OP);
 				break;
 			}
 			default: {
@@ -351,8 +337,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = add_like_op_AST;
 	}
 
-	public final void aggregate_initializer() throws RecognitionException,
-			TokenStreamException {
+	public final void aggregate_initializer() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -448,8 +433,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			match(ExpressParserTokenTypes.RBRACK);
-			aggregate_initializer_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.AGGREGATE_INITIALIZER);
+			aggregate_initializer_AST = parseAST(currentAST, ExpressParserTokenTypes.AGGREGATE_INITIALIZER);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_3);
@@ -457,8 +441,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = aggregate_initializer_AST;
 	}
 
-	public final void element() throws RecognitionException,
-			TokenStreamException {
+	public final void element() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -492,8 +475,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = element_AST;
 	}
 
-	public final void aggregate_source() throws RecognitionException,
-			TokenStreamException {
+	public final void aggregate_source() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -502,8 +484,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			simple_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			aggregate_source_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.AGGREGATE_SOURCE);
+			aggregate_source_AST = parseAST(currentAST, ExpressParserTokenTypes.AGGREGATE_SOURCE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_5);
@@ -511,8 +492,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = aggregate_source_AST;
 	}
 
-	public final void simple_expression() throws RecognitionException,
-			TokenStreamException {
+	public final void simple_expression() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -523,8 +503,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, returnAST);
 			{
 				_loop35828: do {
-					if (((LA(1) >= ExpressParserTokenTypes.PLUS.getIndex() && LA(1) <= ExpressParserTokenTypes.LITERAL_xor
-							.getIndex()))) {
+					if (((LA(1) >= ExpressParserTokenTypes.PLUS.getIndex() && LA(1) <= ExpressParserTokenTypes.LITERAL_xor.getIndex()))) {
 						add_like_op();
 						astFactory.addASTChild(currentAST, returnAST);
 						term();
@@ -535,8 +514,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			simple_expression_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SIMPLE_EXPRESSION);
+			simple_expression_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_EXPRESSION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_6);
@@ -544,8 +522,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = simple_expression_AST;
 	}
 
-	public final void aggregate_type() throws RecognitionException,
-			TokenStreamException {
+	public final void aggregate_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -572,8 +549,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_of);
 			parameter_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			aggregate_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.AGGREGATE_TYPE);
+			aggregate_type_AST = parseAST(currentAST, ExpressParserTokenTypes.AGGREGATE_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -581,8 +557,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = aggregate_type_AST;
 	}
 
-	public final void type_label() throws RecognitionException,
-			TokenStreamException {
+	public final void type_label() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -593,8 +568,7 @@ public class ExpressParser extends antlr.LLkParser {
 			tmp15_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp15_AST);
 			match(ExpressParserTokenTypes.IDENT);
-			type_label_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.TYPE_LABEL);
+			type_label_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_LABEL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_8);
@@ -602,8 +576,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = type_label_AST;
 	}
 
-	public final void parameter_type() throws RecognitionException,
-			TokenStreamException {
+	public final void parameter_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -620,8 +593,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_generic_entity: {
 				generalized_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				parameter_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_TYPE);
+				parameter_type_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_TYPE);
 				break;
 			}
 			case ENTITY_IDENT:
@@ -635,8 +607,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case IDENT: {
 				named_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				parameter_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_TYPE);
+				parameter_type_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_TYPE);
 				break;
 			}
 			case LITERAL_binary:
@@ -648,8 +619,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_string: {
 				simple_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				parameter_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_TYPE);
+				parameter_type_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_TYPE);
 				break;
 			}
 			default: {
@@ -663,8 +633,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = parameter_type_AST;
 	}
 
-	public final void aggregation_types() throws RecognitionException,
-			TokenStreamException {
+	public final void aggregation_types() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -675,29 +644,25 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_array: {
 				array_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.AGGREGATION_TYPES);
+				aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.AGGREGATION_TYPES);
 				break;
 			}
 			case LITERAL_bag: {
 				bag_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.AGGREGATION_TYPES);
+				aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.AGGREGATION_TYPES);
 				break;
 			}
 			case LITERAL_list: {
 				list_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.AGGREGATION_TYPES);
+				aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.AGGREGATION_TYPES);
 				break;
 			}
 			case LITERAL_set: {
 				set_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.AGGREGATION_TYPES);
+				aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.AGGREGATION_TYPES);
 				break;
 			}
 			default: {
@@ -711,8 +676,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = aggregation_types_AST;
 	}
 
-	public final void array_type() throws RecognitionException,
-			TokenStreamException {
+	public final void array_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -798,8 +762,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			base_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			array_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ARRAY_TYPE);
+			array_type_AST = parseAST(currentAST, ExpressParserTokenTypes.ARRAY_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_9);
@@ -807,8 +770,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = array_type_AST;
 	}
 
-	public final void bag_type() throws RecognitionException,
-			TokenStreamException {
+	public final void bag_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -834,8 +796,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_of);
 			base_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			bag_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.BAG_TYPE);
+			bag_type_AST = parseAST(currentAST, ExpressParserTokenTypes.BAG_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_9);
@@ -843,8 +804,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = bag_type_AST;
 	}
 
-	public final void list_type() throws RecognitionException,
-			TokenStreamException {
+	public final void list_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -909,8 +869,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			base_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			list_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.LIST_TYPE);
+			list_type_AST = parseAST(currentAST, ExpressParserTokenTypes.LIST_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_9);
@@ -918,8 +877,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = list_type_AST;
 	}
 
-	public final void set_type() throws RecognitionException,
-			TokenStreamException {
+	public final void set_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -945,8 +903,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_of);
 			base_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			set_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SET_TYPE);
+			set_type_AST = parseAST(currentAST, ExpressParserTokenTypes.SET_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_9);
@@ -954,8 +911,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = set_type_AST;
 	}
 
-	public final void algorithm_head() throws RecognitionException,
-			TokenStreamException {
+	public final void algorithm_head() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1044,8 +1000,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			algorithm_head_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ALGORITHM_HEAD);
+			algorithm_head_AST = parseAST(currentAST, ExpressParserTokenTypes.ALGORITHM_HEAD);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_11);
@@ -1053,8 +1008,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = algorithm_head_AST;
 	}
 
-	public final void declaration() throws RecognitionException,
-			TokenStreamException {
+	public final void declaration() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1065,36 +1019,31 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_entity: {
 				entity_decl();
 				astFactory.addASTChild(currentAST, returnAST);
-				declaration_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.DECLARATION);
+				declaration_AST = parseAST(currentAST, ExpressParserTokenTypes.DECLARATION);
 				break;
 			}
 			case LITERAL_subtype_constraint: {
 				subtype_constraint_decl();
 				astFactory.addASTChild(currentAST, returnAST);
-				declaration_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.DECLARATION);
+				declaration_AST = parseAST(currentAST, ExpressParserTokenTypes.DECLARATION);
 				break;
 			}
 			case LITERAL_function: {
 				function_decl();
 				astFactory.addASTChild(currentAST, returnAST);
-				declaration_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.DECLARATION);
+				declaration_AST = parseAST(currentAST, ExpressParserTokenTypes.DECLARATION);
 				break;
 			}
 			case LITERAL_procedure: {
 				procedure_decl();
 				astFactory.addASTChild(currentAST, returnAST);
-				declaration_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.DECLARATION);
+				declaration_AST = parseAST(currentAST, ExpressParserTokenTypes.DECLARATION);
 				break;
 			}
 			case LITERAL_type: {
 				type_decl();
 				astFactory.addASTChild(currentAST, returnAST);
-				declaration_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.DECLARATION);
+				declaration_AST = parseAST(currentAST, ExpressParserTokenTypes.DECLARATION);
 				break;
 			}
 			default: {
@@ -1108,8 +1057,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = declaration_AST;
 	}
 
-	public final void constant_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void constant_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1121,8 +1069,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, returnAST);
 			{
 				_loop35564: do {
-					if (LA1Equals(ExpressParserTokenTypes.CONSTANT_IDENT)
-							|| LA1Equals(ExpressParserTokenTypes.IDENT)) {
+					if (LA1Equals(ExpressParserTokenTypes.CONSTANT_IDENT) || LA1Equals(ExpressParserTokenTypes.IDENT)) {
 						constant_body();
 						astFactory.addASTChild(currentAST, returnAST);
 					} else {
@@ -1133,8 +1080,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			match(ExpressParserTokenTypes.LITERAL_end_constant);
 			match(ExpressParserTokenTypes.SEMI);
-			constant_decl_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.CONSTANT_DECL);
+			constant_decl_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTANT_DECL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_13);
@@ -1142,8 +1088,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = constant_decl_AST;
 	}
 
-	public final void local_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void local_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1166,8 +1111,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			match(ExpressParserTokenTypes.LITERAL_end_local);
 			match(ExpressParserTokenTypes.SEMI);
-			local_decl_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.LOCAL_DECL);
+			local_decl_AST = parseAST(currentAST, ExpressParserTokenTypes.LOCAL_DECL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_11);
@@ -1175,16 +1119,14 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = local_decl_AST;
 	}
 
-	public final void alias_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void alias_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST alias_stmt_AST = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_alias)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_alias))) && (isFirst)) {
 				newScope1();
 				AST tmp33_AST = null;
 				tmp33_AST = astFactory.create(LT(1));
@@ -1202,9 +1144,7 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.IDENT);
 				{
 					_loop35523: do {
-						if (LA1Equals(ExpressParserTokenTypes.LBRACK)
-								|| LA1Equals(ExpressParserTokenTypes.DOT)
-								|| LA1Equals(ExpressParserTokenTypes.BACKSLASH)) {
+						if (LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH)) {
 							qualifier();
 							astFactory.addASTChild(currentAST, returnAST);
 						} else {
@@ -1249,8 +1189,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, returnAST);
 				{
 					_loop35527: do {
-						if ((LA1Equals(ExpressParserTokenTypes.LBRACK)
-								|| LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
+						if ((LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
 							qualifier();
 							astFactory.addASTChild(currentAST, returnAST);
 						} else {
@@ -1276,8 +1215,7 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.LITERAL_end_alias);
 				upScope();
 				match(ExpressParserTokenTypes.SEMI);
-				alias_stmt_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ALIAS_STMT);
+				alias_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.ALIAS_STMT);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -1289,8 +1227,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = alias_stmt_AST;
 	}
 
-	public final void variable_id() throws RecognitionException,
-			TokenStreamException {
+	public final void variable_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1312,8 +1249,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.VARIABLE_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				variable_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.VARIABLE_ID);
+				variable_id_AST = parseAST(currentAST, ExpressParserTokenTypes.VARIABLE_ID);
 				break;
 			}
 			case ENTITY_VAR_IDENT: {
@@ -1322,8 +1258,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_VAR_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				variable_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.VARIABLE_ID);
+				variable_id_AST = parseAST(currentAST, ExpressParserTokenTypes.VARIABLE_ID);
 				break;
 			}
 			case TYPE_VAR_IDENT: {
@@ -1332,8 +1267,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.TYPE_VAR_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				variable_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.VARIABLE_ID);
+				variable_id_AST = parseAST(currentAST, ExpressParserTokenTypes.VARIABLE_ID);
 				break;
 			}
 			default:
@@ -1355,8 +1289,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = variable_id_AST;
 	}
 
-	public final void qualifier() throws RecognitionException,
-			TokenStreamException {
+	public final void qualifier() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1367,22 +1300,19 @@ public class ExpressParser extends antlr.LLkParser {
 			case DOT: {
 				attribute_qualifier();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifier_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIER);
+				qualifier_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIER);
 				break;
 			}
 			case BACKSLASH: {
 				group_qualifier();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifier_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIER);
+				qualifier_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIER);
 				break;
 			}
 			case LBRACK: {
 				index_qualifier();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifier_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIER);
+				qualifier_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIER);
 				break;
 			}
 			default: {
@@ -1491,11 +1421,9 @@ public class ExpressParser extends antlr.LLkParser {
 						case BACKSLASH: {
 							{
 								_loop35851: do {
-									if ((LA1Equals(ExpressParserTokenTypes.LBRACK)
-											|| LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
+									if ((LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
 										qualifier();
-										astFactory.addASTChild(currentAST,
-												returnAST);
+										astFactory.addASTChild(currentAST, returnAST);
 									} else {
 										break _loop35851;
 									}
@@ -1516,16 +1444,14 @@ public class ExpressParser extends antlr.LLkParser {
 								switch (ExpressParserTokenTypes.getToken(LA(1))) {
 								case LPAREN: {
 									actual_parameter_list();
-									astFactory.addASTChild(currentAST,
-											returnAST);
+									astFactory.addASTChild(currentAST, returnAST);
 									break;
 								}
 								case SEMI: {
 									break;
 								}
 								default: {
-									throw new NoViableAltException(LT(1),
-											getFilename());
+									throw new NoViableAltException(LT(1), getFilename());
 								}
 								}
 							}
@@ -1552,8 +1478,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = stmt_AST;
 	}
 
-	public final void general_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void general_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1566,8 +1491,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case TYPE_PARAM_IDENT: {
 				parameter_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				general_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERAL_REF);
+				general_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_REF);
 				break;
 			}
 			case VARIABLE_IDENT:
@@ -1575,8 +1499,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case TYPE_VAR_IDENT: {
 				variable_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				general_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERAL_REF);
+				general_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_REF);
 				break;
 			}
 			default: {
@@ -1590,8 +1513,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = general_ref_AST;
 	}
 
-	public final void bound_spec() throws RecognitionException,
-			TokenStreamException {
+	public final void bound_spec() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1605,8 +1527,7 @@ public class ExpressParser extends antlr.LLkParser {
 			bound_2();
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.RBRACK);
-			bound_spec_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.BOUND_SPEC);
+			bound_spec_AST = parseAST(currentAST, ExpressParserTokenTypes.BOUND_SPEC);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_19);
@@ -1614,8 +1535,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = bound_spec_AST;
 	}
 
-	public final void base_type() throws RecognitionException,
-			TokenStreamException {
+	public final void base_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1625,13 +1545,11 @@ public class ExpressParser extends antlr.LLkParser {
 			if ((_tokenSet_20.member(LA(1)))) {
 				concrete_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				base_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BASE_TYPE);
+				base_type_AST = parseAST(currentAST, ExpressParserTokenTypes.BASE_TYPE);
 			} else if ((_tokenSet_21.member(LA(1)))) {
 				generalized_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				base_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BASE_TYPE);
+				base_type_AST = parseAST(currentAST, ExpressParserTokenTypes.BASE_TYPE);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -1643,8 +1561,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = base_type_AST;
 	}
 
-	public final void assignment_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void assignment_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1656,8 +1573,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, returnAST);
 				{
 					_loop35536: do {
-						if ((LA1Equals(ExpressParserTokenTypes.LBRACK)
-								|| LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
+						if ((LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
 							qualifier();
 							astFactory.addASTChild(currentAST, returnAST);
 						} else {
@@ -1671,8 +1587,7 @@ public class ExpressParser extends antlr.LLkParser {
 			expression();
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.SEMI);
-			assignment_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ASSIGNMENT_STMT);
+			assignment_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.ASSIGNMENT_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -1680,8 +1595,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = assignment_stmt_AST;
 	}
 
-	public final void expression() throws RecognitionException,
-			TokenStreamException {
+	public final void expression() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1723,8 +1637,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			expression_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.EXPRESSION);
+			expression_AST = parseAST(currentAST, ExpressParserTokenTypes.EXPRESSION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_22);
@@ -1732,8 +1645,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = expression_AST;
 	}
 
-	public final void concrete_types() throws RecognitionException,
-			TokenStreamException {
+	public final void concrete_types() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1747,8 +1659,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_list: {
 				aggregation_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				concrete_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONCRETE_TYPES);
+				concrete_types_AST = parseAST(currentAST, ExpressParserTokenTypes.CONCRETE_TYPES);
 				break;
 			}
 			case LITERAL_binary:
@@ -1760,8 +1671,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_string: {
 				simple_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				concrete_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONCRETE_TYPES);
+				concrete_types_AST = parseAST(currentAST, ExpressParserTokenTypes.CONCRETE_TYPES);
 				break;
 			}
 			case ENTITY_IDENT:
@@ -1775,8 +1685,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case IDENT: {
 				named_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				concrete_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONCRETE_TYPES);
+				concrete_types_AST = parseAST(currentAST, ExpressParserTokenTypes.CONCRETE_TYPES);
 				break;
 			}
 			default: {
@@ -1790,8 +1699,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = concrete_types_AST;
 	}
 
-	public final void generalized_types() throws RecognitionException,
-			TokenStreamException {
+	public final void generalized_types() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1802,8 +1710,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_aggregate: {
 				aggregate_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				generalized_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERALIZED_TYPES);
+				generalized_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERALIZED_TYPES);
 				break;
 			}
 			case LITERAL_array:
@@ -1812,22 +1719,19 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_list: {
 				general_aggregation_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				generalized_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERALIZED_TYPES);
+				generalized_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERALIZED_TYPES);
 				break;
 			}
 			case LITERAL_generic: {
 				generic_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				generalized_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERALIZED_TYPES);
+				generalized_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERALIZED_TYPES);
 				break;
 			}
 			case LITERAL_generic_entity: {
 				generic_entity_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				generalized_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERALIZED_TYPES);
+				generalized_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERALIZED_TYPES);
 				break;
 			}
 			default: {
@@ -1841,8 +1745,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = generalized_types_AST;
 	}
 
-	public final void simple_types() throws RecognitionException,
-			TokenStreamException {
+	public final void simple_types() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1853,50 +1756,43 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_binary: {
 				binary_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_TYPES);
+				simple_types_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_TYPES);
 				break;
 			}
 			case LITERAL_boolean: {
 				boolean_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_TYPES);
+				simple_types_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_TYPES);
 				break;
 			}
 			case LITERAL_integer: {
 				integer_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_TYPES);
+				simple_types_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_TYPES);
 				break;
 			}
 			case LITERAL_logical: {
 				logical_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_TYPES);
+				simple_types_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_TYPES);
 				break;
 			}
 			case LITERAL_number: {
 				number_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_TYPES);
+				simple_types_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_TYPES);
 				break;
 			}
 			case LITERAL_real: {
 				real_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_TYPES);
+				simple_types_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_TYPES);
 				break;
 			}
 			case LITERAL_string: {
 				string_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_TYPES);
+				simple_types_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_TYPES);
 				break;
 			}
 			default: {
@@ -1910,8 +1806,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = simple_types_AST;
 	}
 
-	public final void named_types() throws RecognitionException,
-			TokenStreamException {
+	public final void named_types() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1925,8 +1820,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case ENTITY_PARAM_IDENT: {
 				entity_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				named_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.NAMED_TYPES);
+				named_types_AST = parseAST(currentAST, ExpressParserTokenTypes.NAMED_TYPES);
 				break;
 			}
 			case TYPE_IDENT:
@@ -1935,8 +1829,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case TYPE_PARAM_IDENT: {
 				type_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				named_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.NAMED_TYPES);
+				named_types_AST = parseAST(currentAST, ExpressParserTokenTypes.NAMED_TYPES);
 				break;
 			}
 			default:
@@ -1957,8 +1850,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = named_types_AST;
 	}
 
-	public final void binary_type() throws RecognitionException,
-			TokenStreamException {
+	public final void binary_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -1983,8 +1875,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			binary_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.BINARY_TYPE);
+			binary_type_AST = parseAST(currentAST, ExpressParserTokenTypes.BINARY_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -1992,8 +1883,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = binary_type_AST;
 	}
 
-	public final void width_spec() throws RecognitionException,
-			TokenStreamException {
+	public final void width_spec() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2023,8 +1913,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			width_spec_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.WIDTH_SPEC);
+			width_spec_AST = parseAST(currentAST, ExpressParserTokenTypes.WIDTH_SPEC);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -2032,8 +1921,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = width_spec_AST;
 	}
 
-	public final void boolean_type() throws RecognitionException,
-			TokenStreamException {
+	public final void boolean_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2041,8 +1929,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 		try {
 			match(ExpressParserTokenTypes.LITERAL_boolean);
-			boolean_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.BOOLEAN_TYPE);
+			boolean_type_AST = parseAST(currentAST, ExpressParserTokenTypes.BOOLEAN_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -2050,8 +1937,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = boolean_type_AST;
 	}
 
-	public final void bound_1() throws RecognitionException,
-			TokenStreamException {
+	public final void bound_1() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2068,8 +1954,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = bound_1_AST;
 	}
 
-	public final void numeric_expression() throws RecognitionException,
-			TokenStreamException {
+	public final void numeric_expression() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2078,8 +1963,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			simple_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			numeric_expression_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.NUMERIC_EXPRESSION);
+			numeric_expression_AST = parseAST(currentAST, ExpressParserTokenTypes.NUMERIC_EXPRESSION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_25);
@@ -2087,8 +1971,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = numeric_expression_AST;
 	}
 
-	public final void bound_2() throws RecognitionException,
-			TokenStreamException {
+	public final void bound_2() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2105,8 +1988,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = bound_2_AST;
 	}
 
-	public final void built_in_constant() throws RecognitionException,
-			TokenStreamException {
+	public final void built_in_constant() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2119,8 +2001,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp58_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp58_AST);
 				match(ExpressParserTokenTypes.LITERAL_const_e);
-				built_in_constant_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_CONSTANT);
+				built_in_constant_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_CONSTANT);
 				break;
 			}
 			case LITERAL_pi: {
@@ -2128,8 +2009,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp59_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp59_AST);
 				match(ExpressParserTokenTypes.LITERAL_pi);
-				built_in_constant_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_CONSTANT);
+				built_in_constant_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_CONSTANT);
 				break;
 			}
 			case LITERAL_self: {
@@ -2137,8 +2017,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp60_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp60_AST);
 				match(ExpressParserTokenTypes.LITERAL_self);
-				built_in_constant_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_CONSTANT);
+				built_in_constant_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_CONSTANT);
 				break;
 			}
 			case QUESTION: {
@@ -2146,8 +2025,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp61_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp61_AST);
 				match(ExpressParserTokenTypes.QUESTION);
-				built_in_constant_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_CONSTANT);
+				built_in_constant_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_CONSTANT);
 				break;
 			}
 			case STAR: {
@@ -2155,8 +2033,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp62_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp62_AST);
 				match(ExpressParserTokenTypes.STAR);
-				built_in_constant_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_CONSTANT);
+				built_in_constant_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_CONSTANT);
 				break;
 			}
 			default: {
@@ -2170,8 +2047,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = built_in_constant_AST;
 	}
 
-	public final void built_in_function() throws RecognitionException,
-			TokenStreamException {
+	public final void built_in_function() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2184,8 +2060,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp63_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp63_AST);
 				match(ExpressParserTokenTypes.LITERAL_abs);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_acos: {
@@ -2193,8 +2068,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp64_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp64_AST);
 				match(ExpressParserTokenTypes.LITERAL_acos);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_asin: {
@@ -2202,8 +2076,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp65_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp65_AST);
 				match(ExpressParserTokenTypes.LITERAL_asin);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_atan: {
@@ -2211,8 +2084,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp66_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp66_AST);
 				match(ExpressParserTokenTypes.LITERAL_atan);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_blength: {
@@ -2220,8 +2092,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp67_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp67_AST);
 				match(ExpressParserTokenTypes.LITERAL_blength);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_cos: {
@@ -2229,8 +2100,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp68_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp68_AST);
 				match(ExpressParserTokenTypes.LITERAL_cos);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_exists: {
@@ -2238,8 +2108,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp69_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp69_AST);
 				match(ExpressParserTokenTypes.LITERAL_exists);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_exp: {
@@ -2247,8 +2116,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp70_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp70_AST);
 				match(ExpressParserTokenTypes.LITERAL_exp);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_format: {
@@ -2256,8 +2124,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp71_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp71_AST);
 				match(ExpressParserTokenTypes.LITERAL_format);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_hibound: {
@@ -2265,8 +2132,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp72_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp72_AST);
 				match(ExpressParserTokenTypes.LITERAL_hibound);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_hiindex: {
@@ -2274,8 +2140,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp73_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp73_AST);
 				match(ExpressParserTokenTypes.LITERAL_hiindex);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_length: {
@@ -2283,8 +2148,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp74_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp74_AST);
 				match(ExpressParserTokenTypes.LITERAL_length);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_lobound: {
@@ -2292,8 +2156,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp75_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp75_AST);
 				match(ExpressParserTokenTypes.LITERAL_lobound);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_loindex: {
@@ -2301,8 +2164,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp76_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp76_AST);
 				match(ExpressParserTokenTypes.LITERAL_loindex);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_log: {
@@ -2310,8 +2172,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp77_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp77_AST);
 				match(ExpressParserTokenTypes.LITERAL_log);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LOG2: {
@@ -2319,8 +2180,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp78_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp78_AST);
 				match(ExpressParserTokenTypes.LOG2);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LOG10: {
@@ -2328,8 +2188,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp79_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp79_AST);
 				match(ExpressParserTokenTypes.LOG10);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_nvl: {
@@ -2337,8 +2196,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp80_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp80_AST);
 				match(ExpressParserTokenTypes.LITERAL_nvl);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_odd: {
@@ -2346,8 +2204,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp81_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp81_AST);
 				match(ExpressParserTokenTypes.LITERAL_odd);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_rolesof: {
@@ -2355,8 +2212,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp82_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp82_AST);
 				match(ExpressParserTokenTypes.LITERAL_rolesof);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_sin: {
@@ -2364,8 +2220,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp83_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp83_AST);
 				match(ExpressParserTokenTypes.LITERAL_sin);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_sizeof: {
@@ -2373,8 +2228,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp84_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp84_AST);
 				match(ExpressParserTokenTypes.LITERAL_sizeof);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_sqrt: {
@@ -2382,8 +2236,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp85_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp85_AST);
 				match(ExpressParserTokenTypes.LITERAL_sqrt);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_tan: {
@@ -2391,8 +2244,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp86_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp86_AST);
 				match(ExpressParserTokenTypes.LITERAL_tan);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_typeof: {
@@ -2400,8 +2252,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp87_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp87_AST);
 				match(ExpressParserTokenTypes.LITERAL_typeof);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_usedin: {
@@ -2409,8 +2260,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp88_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp88_AST);
 				match(ExpressParserTokenTypes.LITERAL_usedin);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_value: {
@@ -2418,8 +2268,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp89_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp89_AST);
 				match(ExpressParserTokenTypes.LITERAL_value);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_value_in: {
@@ -2427,8 +2276,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp90_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp90_AST);
 				match(ExpressParserTokenTypes.LITERAL_value_in);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			case LITERAL_value_unique: {
@@ -2436,8 +2284,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp91_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp91_AST);
 				match(ExpressParserTokenTypes.LITERAL_value_unique);
-				built_in_function_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_FUNCTION);
+				built_in_function_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_FUNCTION);
 				break;
 			}
 			default: {
@@ -2451,8 +2298,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = built_in_function_AST;
 	}
 
-	public final void built_in_procedure() throws RecognitionException,
-			TokenStreamException {
+	public final void built_in_procedure() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2465,8 +2311,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp92_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp92_AST);
 				match(ExpressParserTokenTypes.LITERAL_insert);
-				built_in_procedure_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_PROCEDURE);
+				built_in_procedure_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_PROCEDURE);
 				break;
 			}
 			case LITERAL_remove: {
@@ -2474,8 +2319,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp93_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp93_AST);
 				match(ExpressParserTokenTypes.LITERAL_remove);
-				built_in_procedure_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.BUILT_IN_PROCEDURE);
+				built_in_procedure_AST = parseAST(currentAST, ExpressParserTokenTypes.BUILT_IN_PROCEDURE);
 				break;
 			}
 			default: {
@@ -2489,8 +2333,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = built_in_procedure_AST;
 	}
 
-	public final void case_action() throws RecognitionException,
-			TokenStreamException {
+	public final void case_action() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2514,8 +2357,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.COLON);
 			stmt();
 			astFactory.addASTChild(currentAST, returnAST);
-			case_action_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.CASE_ACTION);
+			case_action_AST = parseAST(currentAST, ExpressParserTokenTypes.CASE_ACTION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_29);
@@ -2523,8 +2365,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = case_action_AST;
 	}
 
-	public final void case_label() throws RecognitionException,
-			TokenStreamException {
+	public final void case_label() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2533,8 +2374,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			case_label_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.CASE_LABEL);
+			case_label_AST = parseAST(currentAST, ExpressParserTokenTypes.CASE_LABEL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_30);
@@ -2542,8 +2382,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = case_label_AST;
 	}
 
-	public final void case_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void case_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2584,8 +2423,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			match(ExpressParserTokenTypes.LITERAL_end_case);
 			match(ExpressParserTokenTypes.SEMI);
-			case_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.CASE_STMT);
+			case_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.CASE_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -2593,8 +2431,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = case_stmt_AST;
 	}
 
-	public final void selector() throws RecognitionException,
-			TokenStreamException {
+	public final void selector() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2603,8 +2440,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			selector_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SELECTOR);
+			selector_AST = parseAST(currentAST, ExpressParserTokenTypes.SELECTOR);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_19);
@@ -2612,8 +2448,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = selector_AST;
 	}
 
-	public final void compound_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void compound_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2636,8 +2471,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			match(ExpressParserTokenTypes.LITERAL_end);
 			match(ExpressParserTokenTypes.SEMI);
-			compound_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.COMPOUND_STMT);
+			compound_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.COMPOUND_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -2645,8 +2479,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = compound_stmt_AST;
 	}
 
-	public final void constant_body() throws RecognitionException,
-			TokenStreamException {
+	public final void constant_body() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2662,8 +2495,7 @@ public class ExpressParser extends antlr.LLkParser {
 			expression();
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.SEMI);
-			constant_body_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.CONSTANT_BODY);
+			constant_body_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTANT_BODY);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_31);
@@ -2671,8 +2503,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = constant_body_AST;
 	}
 
-	public final void constant_id() throws RecognitionException,
-			TokenStreamException {
+	public final void constant_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2696,8 +2527,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.CONSTANT_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				constant_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONSTANT_ID);
+				constant_id_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTANT_ID);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -2709,8 +2539,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = constant_id_AST;
 	}
 
-	public final void constant_factor() throws RecognitionException,
-			TokenStreamException {
+	public final void constant_factor() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2725,15 +2554,13 @@ public class ExpressParser extends antlr.LLkParser {
 			case STAR: {
 				built_in_constant();
 				astFactory.addASTChild(currentAST, returnAST);
-				constant_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONSTANT_FACTOR);
+				constant_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTANT_FACTOR);
 				break;
 			}
 			case CONSTANT_IDENT: {
 				constant_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				constant_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONSTANT_FACTOR);
+				constant_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTANT_FACTOR);
 				break;
 			}
 			default: {
@@ -2747,8 +2574,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = constant_factor_AST;
 	}
 
-	public final void constant_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void constant_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2762,8 +2588,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, nid_AST);
 			match(ExpressParserTokenTypes.CONSTANT_IDENT);
 			nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-			constant_ref_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.CONSTANT_REF);
+			constant_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTANT_REF);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_33);
@@ -2771,8 +2596,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = constant_ref_AST;
 	}
 
-	public final void entity_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void entity_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2786,8 +2610,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_end_entity);
 			upScope();
 			match(ExpressParserTokenTypes.SEMI);
-			entity_decl_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ENTITY_DECL);
+			entity_decl_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_DECL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_12);
@@ -2795,8 +2618,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = entity_decl_AST;
 	}
 
-	public final void subtype_constraint_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void subtype_constraint_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2809,8 +2631,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.LITERAL_end_subtype_constraint);
 			match(ExpressParserTokenTypes.SEMI);
-			subtype_constraint_decl_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_DECL);
+			subtype_constraint_decl_AST = parseAST(currentAST, ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_DECL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_12);
@@ -2818,8 +2639,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = subtype_constraint_decl_AST;
 	}
 
-	public final void function_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void function_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2855,8 +2675,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.SEMI);
 			function_decl_AST = (AST) currentAST.root;
 			upScope();
-			function_decl_AST = makeAST(ExpressParserTokenTypes.FUNCTION_DECL,
-					function_decl_AST);
+			function_decl_AST = makeAST(ExpressParserTokenTypes.FUNCTION_DECL, function_decl_AST);
 			currentAST.root = function_decl_AST;
 			currentAST.child = getChild(function_decl_AST);
 			currentAST.advanceChildToEnd();
@@ -2868,8 +2687,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = function_decl_AST;
 	}
 
-	public final void procedure_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void procedure_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2903,8 +2721,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.SEMI);
 			procedure_decl_AST = (AST) currentAST.root;
 			upScope();
-			procedure_decl_AST = makeAST(
-					ExpressParserTokenTypes.PROCEDURE_DECL, procedure_decl_AST);
+			procedure_decl_AST = makeAST(ExpressParserTokenTypes.PROCEDURE_DECL, procedure_decl_AST);
 			currentAST.root = procedure_decl_AST;
 			currentAST.child = getChild(procedure_decl_AST);
 			currentAST.advanceChildToEnd();
@@ -2916,8 +2733,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = procedure_decl_AST;
 	}
 
-	public final void type_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void type_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -2958,8 +2774,7 @@ public class ExpressParser extends antlr.LLkParser {
 				eids.setTypeName(id);
 				currentScope.addEnumerationType(eids);
 			}
-			type_decl_AST = makeAST(ExpressParserTokenTypes.TYPE_DECL,
-					type_decl_AST);
+			type_decl_AST = makeAST(ExpressParserTokenTypes.TYPE_DECL, type_decl_AST);
 			currentAST.root = type_decl_AST;
 			currentAST.child = getChild(type_decl_AST);
 			currentAST.advanceChildToEnd();
@@ -2971,17 +2786,14 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = type_decl_AST;
 	}
 
-	public final void domain_rule() throws RecognitionException,
-			TokenStreamException {
+	public final void domain_rule() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST domain_rule_AST = null;
 
 		try {
-			if (((_tokenSet_2.member(LA(1))))
-					&& (isFirst && (LA(2) != ExpressParserTokenTypes.COLON
-							.getIndex()))) {
+			if (((_tokenSet_2.member(LA(1)))) && (isFirst && (LA(2) != ExpressParserTokenTypes.COLON.getIndex()))) {
 				logical_expression();
 				astFactory.addASTChild(currentAST, returnAST);
 				domain_rule_AST = (AST) currentAST.root;
@@ -2999,8 +2811,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				logical_expression();
 				astFactory.addASTChild(currentAST, returnAST);
-				domain_rule_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.DOMAIN_RULE);
+				domain_rule_AST = parseAST(currentAST, ExpressParserTokenTypes.DOMAIN_RULE);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -3012,8 +2823,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = domain_rule_AST;
 	}
 
-	public final void logical_expression() throws RecognitionException,
-			TokenStreamException {
+	public final void logical_expression() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3022,8 +2832,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			logical_expression_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.LOGICAL_EXPRESSION);
+			logical_expression_AST = parseAST(currentAST, ExpressParserTokenTypes.LOGICAL_EXPRESSION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_38);
@@ -3050,8 +2859,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = label_AST;
 	}
 
-	public final void repetition() throws RecognitionException,
-			TokenStreamException {
+	public final void repetition() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3060,8 +2868,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			numeric_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			repetition_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.REPETITION);
+			repetition_AST = parseAST(currentAST, ExpressParserTokenTypes.REPETITION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_4);
@@ -3069,8 +2876,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = repetition_AST;
 	}
 
-	public final void entity_head() throws RecognitionException,
-			TokenStreamException {
+	public final void entity_head() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3083,9 +2889,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, returnAST);
 			newEntityScope(id);
 			{
-				if (((LA1Equals(ExpressParserTokenTypes.LITERAL_abstract)))
-						&& (LA(2) != ExpressParserTokenTypes.LITERAL_supertype
-								.getIndex())) {
+				if (((LA1Equals(ExpressParserTokenTypes.LITERAL_abstract))) && (LA(2) != ExpressParserTokenTypes.LITERAL_supertype.getIndex())) {
 					AST tmp124_AST = null;
 					tmp124_AST = astFactory.create(LT(1));
 					astFactory.addASTChild(currentAST, tmp124_AST);
@@ -3129,8 +2933,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			entity_head_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ENTITY_HEAD);
+			entity_head_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_HEAD);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_41);
@@ -3138,8 +2941,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = entity_head_AST;
 	}
 
-	public final String entity_id() throws RecognitionException,
-			TokenStreamException {
+	public final String entity_id() throws RecognitionException, TokenStreamException {
 		String eid;
 
 		returnAST = null;
@@ -3168,8 +2970,7 @@ public class ExpressParser extends antlr.LLkParser {
 				entity_id_AST = (AST) currentAST.root;
 				eid = id2.getText();
 				id2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				entity_id_AST = makeAST(ExpressParserTokenTypes.ENTITY_ID,
-						entity_id_AST);
+				entity_id_AST = makeAST(ExpressParserTokenTypes.ENTITY_ID, entity_id_AST);
 
 				currentAST.root = entity_id_AST;
 				currentAST.child = getChild(entity_id_AST);
@@ -3187,8 +2988,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return eid;
 	}
 
-	public final void subsuper() throws RecognitionException,
-			TokenStreamException {
+	public final void subsuper() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3247,8 +3047,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			subsuper_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SUBSUPER);
+			subsuper_AST = parseAST(currentAST, ExpressParserTokenTypes.SUBSUPER);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_40);
@@ -3256,8 +3055,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = subsuper_AST;
 	}
 
-	public final void entity_body() throws RecognitionException,
-			TokenStreamException {
+	public final void entity_body() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3341,8 +3139,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			entity_body_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ENTITY_BODY);
+			entity_body_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_BODY);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_44);
@@ -3350,8 +3147,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = entity_body_AST;
 	}
 
-	public final void explicit_attr() throws RecognitionException,
-			TokenStreamException {
+	public final void explicit_attr() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3415,8 +3211,7 @@ public class ExpressParser extends antlr.LLkParser {
 			base_type();
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.SEMI);
-			explicit_attr_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.EXPLICIT_ATTR);
+			explicit_attr_AST = parseAST(currentAST, ExpressParserTokenTypes.EXPLICIT_ATTR);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_41);
@@ -3424,8 +3219,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = explicit_attr_AST;
 	}
 
-	public final void derive_clause() throws RecognitionException,
-			TokenStreamException {
+	public final void derive_clause() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3446,8 +3240,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			derive_clause_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.DERIVE_CLAUSE);
+			derive_clause_AST = parseAST(currentAST, ExpressParserTokenTypes.DERIVE_CLAUSE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_45);
@@ -3455,8 +3248,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = derive_clause_AST;
 	}
 
-	public final void inverse_clause() throws RecognitionException,
-			TokenStreamException {
+	public final void inverse_clause() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3477,8 +3269,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			inverse_clause_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INVERSE_CLAUSE);
+			inverse_clause_AST = parseAST(currentAST, ExpressParserTokenTypes.INVERSE_CLAUSE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_46);
@@ -3486,8 +3277,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = inverse_clause_AST;
 	}
 
-	public final void unique_clause() throws RecognitionException,
-			TokenStreamException {
+	public final void unique_clause() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3510,8 +3300,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			unique_clause_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.UNIQUE_CLAUSE);
+			unique_clause_AST = parseAST(currentAST, ExpressParserTokenTypes.UNIQUE_CLAUSE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_47);
@@ -3519,8 +3308,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = unique_clause_AST;
 	}
 
-	public final void where_clause() throws RecognitionException,
-			TokenStreamException {
+	public final void where_clause() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3543,8 +3331,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			where_clause_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.WHERE_CLAUSE);
+			where_clause_AST = parseAST(currentAST, ExpressParserTokenTypes.WHERE_CLAUSE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_48);
@@ -3552,8 +3339,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = where_clause_AST;
 	}
 
-	public final void supertype_constraint() throws RecognitionException,
-			TokenStreamException {
+	public final void supertype_constraint() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3563,13 +3349,11 @@ public class ExpressParser extends antlr.LLkParser {
 			if ((LA1Equals(ExpressParserTokenTypes.LITERAL_abstract))) {
 				abstract_supertype_declaration();
 				astFactory.addASTChild(currentAST, returnAST);
-				supertype_constraint_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUPERTYPE_CONSTRAINT);
+				supertype_constraint_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_CONSTRAINT);
 			} else if ((LA1Equals(ExpressParserTokenTypes.LITERAL_abstract) || LA1Equals(ExpressParserTokenTypes.LITERAL_supertype))) {
 				supertype_rule();
 				astFactory.addASTChild(currentAST, returnAST);
-				supertype_constraint_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUPERTYPE_CONSTRAINT);
+				supertype_constraint_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_CONSTRAINT);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -3581,8 +3365,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = supertype_constraint_AST;
 	}
 
-	public final void subtype_declaration() throws RecognitionException,
-			TokenStreamException {
+	public final void subtype_declaration() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3593,8 +3376,7 @@ public class ExpressParser extends antlr.LLkParser {
 		AST id2_AST = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_subtype)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_subtype))) && (isFirst)) {
 				AST tmp138_AST = null;
 				tmp138_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp138_AST);
@@ -3675,8 +3457,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 
 				}
-				subtype_declaration_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUBTYPE_DECLARATION);
+				subtype_declaration_AST = parseAST(currentAST, ExpressParserTokenTypes.SUBTYPE_DECLARATION);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -3688,8 +3469,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = subtype_declaration_AST;
 	}
 
-	public final void abstract_supertype_declaration()
-			throws RecognitionException, TokenStreamException {
+	public final void abstract_supertype_declaration() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3724,8 +3504,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			abstract_supertype_declaration_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ABSTRACT_SUPERTYPE_DECLARATION);
+			abstract_supertype_declaration_AST = parseAST(currentAST, ExpressParserTokenTypes.ABSTRACT_SUPERTYPE_DECLARATION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_49);
@@ -3733,8 +3512,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = abstract_supertype_declaration_AST;
 	}
 
-	public final void supertype_rule() throws RecognitionException,
-			TokenStreamException {
+	public final void supertype_rule() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3785,8 +3563,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			supertype_rule_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SUPERTYPE_RULE);
+			supertype_rule_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_RULE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_49);
@@ -3794,8 +3571,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = supertype_rule_AST;
 	}
 
-	public final void subtype_constraint() throws RecognitionException,
-			TokenStreamException {
+	public final void subtype_constraint() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3816,8 +3592,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 
 			}
-			subtype_constraint_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SUBTYPE_CONSTRAINT);
+			subtype_constraint_AST = parseAST(currentAST, ExpressParserTokenTypes.SUBTYPE_CONSTRAINT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_49);
@@ -3825,8 +3600,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = subtype_constraint_AST;
 	}
 
-	public final void entity_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void entity_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -3848,8 +3622,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.ENTITY_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				entity_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ENTITY_REF);
+				entity_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_REF);
 				break;
 			}
 			case ENTITY_ATTR_IDENT: {
@@ -3858,8 +3631,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_ATTR_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				entity_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ENTITY_REF);
+				entity_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_REF);
 				break;
 			}
 			case ENTITY_VAR_IDENT: {
@@ -3868,8 +3640,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.ENTITY_VAR_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				entity_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ENTITY_REF);
+				entity_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_REF);
 				break;
 			}
 			case ENTITY_PARAM_IDENT: {
@@ -3878,8 +3649,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid4_AST);
 				match(ExpressParserTokenTypes.ENTITY_PARAM_IDENT);
 				nid4_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				entity_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ENTITY_REF);
+				entity_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_REF);
 				break;
 			}
 			default: {
@@ -3893,16 +3663,14 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = entity_ref_AST;
 	}
 
-	public final void subtype_constraint_head() throws RecognitionException,
-			TokenStreamException {
+	public final void subtype_constraint_head() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST subtype_constraint_head_AST = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_subtype_constraint)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_subtype_constraint))) && (isFirst)) {
 				AST tmp158_AST = null;
 				tmp158_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp158_AST);
@@ -3930,8 +3698,7 @@ public class ExpressParser extends antlr.LLkParser {
 				entity_ref();
 				astFactory.addASTChild(currentAST, returnAST);
 				match(ExpressParserTokenTypes.SEMI);
-				subtype_constraint_head_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_HEAD);
+				subtype_constraint_head_AST = parseAST(currentAST, ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_HEAD);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -3943,8 +3710,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = subtype_constraint_head_AST;
 	}
 
-	public final void subtype_constraint_body() throws RecognitionException,
-			TokenStreamException {
+	public final void subtype_constraint_body() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4018,8 +3784,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			subtype_constraint_body_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_BODY);
+			subtype_constraint_body_AST = parseAST(currentAST, ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_BODY);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_52);
@@ -4027,8 +3792,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = subtype_constraint_body_AST;
 	}
 
-	public final void subtype_constraint_id() throws RecognitionException,
-			TokenStreamException {
+	public final void subtype_constraint_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4044,8 +3808,7 @@ public class ExpressParser extends antlr.LLkParser {
 				id_AST = astFactory.create(id);
 				astFactory.addASTChild(currentAST, id_AST);
 				match(ExpressParserTokenTypes.IDENT);
-				addId(id.getText(),
-						ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_ID);
+				addId(id.getText(), ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_ID);
 				subtype_constraint_id_AST = (AST) currentAST.root;
 			} else if ((LA1Equals(ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_ID))) {
 				id2 = LT(1);
@@ -4053,8 +3816,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, id2_AST);
 				match(ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_ID);
 				id2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				subtype_constraint_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_ID);
+				subtype_constraint_id_AST = parseAST(currentAST, ExpressParserTokenTypes.SUBTYPE_CONSTRAINT_ID);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -4066,8 +3828,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = subtype_constraint_id_AST;
 	}
 
-	public final void abstract_supertype() throws RecognitionException,
-			TokenStreamException {
+	public final void abstract_supertype() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4077,8 +3838,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_abstract);
 			match(ExpressParserTokenTypes.LITERAL_supertype);
 			match(ExpressParserTokenTypes.SEMI);
-			abstract_supertype_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ABSTRACT_SUPERTYPE);
+			abstract_supertype_AST = parseAST(currentAST, ExpressParserTokenTypes.ABSTRACT_SUPERTYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_54);
@@ -4086,16 +3846,14 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = abstract_supertype_AST;
 	}
 
-	public final void total_over() throws RecognitionException,
-			TokenStreamException {
+	public final void total_over() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST total_over_AST = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_total_over)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_total_over))) && (isFirst)) {
 				AST tmp169_AST = null;
 				tmp169_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp169_AST);
@@ -4153,8 +3911,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				match(ExpressParserTokenTypes.LPAREN);
 				match(ExpressParserTokenTypes.SEMI);
-				total_over_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.TOTAL_OVER);
+				total_over_AST = parseAST(currentAST, ExpressParserTokenTypes.TOTAL_OVER);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -4166,8 +3923,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = total_over_AST;
 	}
 
-	public final void supertype_expression() throws RecognitionException,
-			TokenStreamException {
+	public final void supertype_expression() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4188,8 +3944,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			supertype_expression_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SUPERTYPE_EXPRESSION);
+			supertype_expression_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_EXPRESSION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_56);
@@ -4197,8 +3952,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = supertype_expression_AST;
 	}
 
-	public final void attribute_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void attribute_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4212,15 +3966,13 @@ public class ExpressParser extends antlr.LLkParser {
 			case IDENT: {
 				attribute_id();
 				astFactory.addASTChild(currentAST, returnAST);
-				attribute_decl_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_DECL);
+				attribute_decl_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_DECL);
 				break;
 			}
 			case LITERAL_self: {
 				redeclared_attribute();
 				astFactory.addASTChild(currentAST, returnAST);
-				attribute_decl_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_DECL);
+				attribute_decl_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_DECL);
 				break;
 			}
 			default: {
@@ -4234,8 +3986,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = attribute_decl_AST;
 	}
 
-	public final void attribute_id() throws RecognitionException,
-			TokenStreamException {
+	public final void attribute_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4257,8 +4008,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid1_AST);
 				match(ExpressParserTokenTypes.ATTRIBUTE_IDENT);
 				nid1_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				attribute_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_ID);
+				attribute_id_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_ID);
 				break;
 			}
 			case ENTITY_ATTR_IDENT: {
@@ -4267,8 +4017,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_ATTR_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				attribute_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_ID);
+				attribute_id_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_ID);
 				break;
 			}
 			case TYPE_ATTR_IDENT: {
@@ -4277,8 +4026,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.TYPE_ATTR_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				attribute_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_ID);
+				attribute_id_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_ID);
 				break;
 			}
 			default:
@@ -4300,8 +4048,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = attribute_id_AST;
 	}
 
-	public final void redeclared_attribute() throws RecognitionException,
-			TokenStreamException {
+	public final void redeclared_attribute() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4327,8 +4074,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			redeclared_attribute_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.REDECLARED_ATTRIBUTE);
+			redeclared_attribute_AST = parseAST(currentAST, ExpressParserTokenTypes.REDECLARED_ATTRIBUTE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_30);
@@ -4336,8 +4082,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = redeclared_attribute_AST;
 	}
 
-	public final void qualified_attribute() throws RecognitionException,
-			TokenStreamException {
+	public final void qualified_attribute() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4349,8 +4094,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, returnAST);
 			attribute_qualifier();
 			astFactory.addASTChild(currentAST, returnAST);
-			qualified_attribute_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.QUALIFIED_ATTRIBUTE);
+			qualified_attribute_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIED_ATTRIBUTE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_57);
@@ -4358,8 +4102,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = qualified_attribute_AST;
 	}
 
-	public final void group_qualifier() throws RecognitionException,
-			TokenStreamException {
+	public final void group_qualifier() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4380,8 +4123,7 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.BACKSLASH);
 				entity_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				group_qualifier_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GROUP_QUALIFIER);
+				group_qualifier_AST = parseAST(currentAST, ExpressParserTokenTypes.GROUP_QUALIFIER);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -4393,8 +4135,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = group_qualifier_AST;
 	}
 
-	public final void attribute_qualifier() throws RecognitionException,
-			TokenStreamException {
+	public final void attribute_qualifier() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4404,8 +4145,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.DOT);
 			global_ident();
 			astFactory.addASTChild(currentAST, returnAST);
-			attribute_qualifier_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ATTRIBUTE_QUALIFIER);
+			attribute_qualifier_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_QUALIFIER);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_58);
@@ -4413,8 +4153,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = attribute_qualifier_AST;
 	}
 
-	public final void derived_attr() throws RecognitionException,
-			TokenStreamException {
+	public final void derived_attr() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4430,8 +4169,7 @@ public class ExpressParser extends antlr.LLkParser {
 			expression();
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.SEMI);
-			derived_attr_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.DERIVED_ATTR);
+			derived_attr_AST = parseAST(currentAST, ExpressParserTokenTypes.DERIVED_ATTR);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_59);
@@ -4439,8 +4177,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = derived_attr_AST;
 	}
 
-	public final void inverse_attr() throws RecognitionException,
-			TokenStreamException {
+	public final void inverse_attr() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4475,8 +4212,7 @@ public class ExpressParser extends antlr.LLkParser {
 								break;
 							}
 							default: {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 							}
 						}
@@ -4491,8 +4227,7 @@ public class ExpressParser extends antlr.LLkParser {
 								break;
 							}
 							default: {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 							}
 						}
@@ -4552,8 +4287,7 @@ public class ExpressParser extends antlr.LLkParser {
 								break;
 							}
 							default: {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 							}
 						}
@@ -4568,8 +4302,7 @@ public class ExpressParser extends antlr.LLkParser {
 								break;
 							}
 							default: {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 							}
 						}
@@ -4593,8 +4326,7 @@ public class ExpressParser extends antlr.LLkParser {
 				global_ident();
 				astFactory.addASTChild(currentAST, returnAST);
 				match(ExpressParserTokenTypes.SEMI);
-				inverse_attr_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.INVERSE_ATTR);
+				inverse_attr_AST = parseAST(currentAST, ExpressParserTokenTypes.INVERSE_ATTR);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -4607,8 +4339,7 @@ public class ExpressParser extends antlr.LLkParser {
 	}
 
 	/**** special rule ****/
-	public final void global_ident() throws RecognitionException,
-			TokenStreamException {
+	public final void global_ident() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4653,8 +4384,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp205_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp205_AST);
 				match(ExpressParserTokenTypes.IDENT);
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case CONSTANT_IDENT: {
@@ -4663,8 +4393,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid1_AST);
 				match(ExpressParserTokenTypes.CONSTANT_IDENT);
 				nid1_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case ENTITY_IDENT: {
@@ -4673,8 +4402,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case FUNCTION_IDENT: {
@@ -4683,8 +4411,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.FUNCTION_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case PROCEDURE_IDENT: {
@@ -4693,8 +4420,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid4_AST);
 				match(ExpressParserTokenTypes.PROCEDURE_IDENT);
 				nid4_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case PARAMETER_IDENT: {
@@ -4703,8 +4429,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid5_AST);
 				match(ExpressParserTokenTypes.PARAMETER_IDENT);
 				nid5_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case SCHEMA_IDENT: {
@@ -4713,8 +4438,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid6_AST);
 				match(ExpressParserTokenTypes.SCHEMA_IDENT);
 				nid6_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case TYPE_IDENT: {
@@ -4723,8 +4447,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid7_AST);
 				match(ExpressParserTokenTypes.TYPE_IDENT);
 				nid7_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case VARIABLE_IDENT: {
@@ -4733,8 +4456,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid8_AST);
 				match(ExpressParserTokenTypes.VARIABLE_IDENT);
 				nid8_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case ENUMERATION_IDENT: {
@@ -4743,8 +4465,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid9_AST);
 				match(ExpressParserTokenTypes.ENUMERATION_IDENT);
 				nid9_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case ATTRIBUTE_IDENT: {
@@ -4753,8 +4474,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid10_AST);
 				match(ExpressParserTokenTypes.ATTRIBUTE_IDENT);
 				nid10_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case ENTITY_ATTR_IDENT: {
@@ -4763,8 +4483,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid11_AST);
 				match(ExpressParserTokenTypes.ENTITY_ATTR_IDENT);
 				nid11_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case TYPE_ATTR_IDENT: {
@@ -4773,8 +4492,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid12_AST);
 				match(ExpressParserTokenTypes.TYPE_ATTR_IDENT);
 				nid12_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case ENTITY_VAR_IDENT: {
@@ -4783,8 +4501,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid13_AST);
 				match(ExpressParserTokenTypes.ENTITY_VAR_IDENT);
 				nid13_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case TYPE_VAR_IDENT: {
@@ -4793,8 +4510,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid14_AST);
 				match(ExpressParserTokenTypes.TYPE_VAR_IDENT);
 				nid14_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case ENTITY_PARAM_IDENT: {
@@ -4803,8 +4519,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid15_AST);
 				match(ExpressParserTokenTypes.ENTITY_PARAM_IDENT);
 				nid15_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case TYPE_PARAM_IDENT: {
@@ -4813,8 +4528,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid16_AST);
 				match(ExpressParserTokenTypes.TYPE_PARAM_IDENT);
 				nid16_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				global_ident_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				global_ident_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			default: {
@@ -4828,16 +4542,14 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = global_ident_AST;
 	}
 
-	public final void unique_rule() throws RecognitionException,
-			TokenStreamException {
+	public final void unique_rule() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST unique_rule_AST = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.IDENT) || LA1Equals(ExpressParserTokenTypes.LITERAL_self)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.IDENT) || LA1Equals(ExpressParserTokenTypes.LITERAL_self))) && (isFirst)) {
 				{
 					switch (ExpressParserTokenTypes.getToken(LA(1))) {
 					case IDENT: {
@@ -4861,8 +4573,7 @@ public class ExpressParser extends antlr.LLkParser {
 								break;
 							}
 							default: {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 							}
 						}
@@ -4920,8 +4631,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 					} while (true);
 				}
-				unique_rule_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNIQUE_RULE);
+				unique_rule_AST = parseAST(currentAST, ExpressParserTokenTypes.UNIQUE_RULE);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -4933,8 +4643,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = unique_rule_AST;
 	}
 
-	public final void referenced_attribute() throws RecognitionException,
-			TokenStreamException {
+	public final void referenced_attribute() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4947,15 +4656,13 @@ public class ExpressParser extends antlr.LLkParser {
 			case TYPE_ATTR_IDENT: {
 				attribute_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				referenced_attribute_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REFERENCED_ATTRIBUTE);
+				referenced_attribute_AST = parseAST(currentAST, ExpressParserTokenTypes.REFERENCED_ATTRIBUTE);
 				break;
 			}
 			case LITERAL_self: {
 				qualified_attribute();
 				astFactory.addASTChild(currentAST, returnAST);
-				referenced_attribute_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REFERENCED_ATTRIBUTE);
+				referenced_attribute_AST = parseAST(currentAST, ExpressParserTokenTypes.REFERENCED_ATTRIBUTE);
 				break;
 			}
 			default:
@@ -4976,8 +4683,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = referenced_attribute_AST;
 	}
 
-	public final void attribute_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void attribute_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -4997,8 +4703,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid1_AST);
 				match(ExpressParserTokenTypes.ATTRIBUTE_IDENT);
 				nid1_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				attribute_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				attribute_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case ENTITY_ATTR_IDENT: {
@@ -5007,8 +4712,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_ATTR_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				attribute_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				attribute_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			case TYPE_ATTR_IDENT: {
@@ -5017,8 +4721,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.TYPE_ATTR_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				attribute_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ATTRIBUTE_REF);
+				attribute_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ATTRIBUTE_REF);
 				break;
 			}
 			default: {
@@ -5032,8 +4735,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = attribute_ref_AST;
 	}
 
-	public final void entity_constructor() throws RecognitionException,
-			TokenStreamException {
+	public final void entity_constructor() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5131,8 +4833,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			match(ExpressParserTokenTypes.RPAREN);
-			entity_constructor_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ENTITY_CONSTRUCTOR);
+			entity_constructor_AST = parseAST(currentAST, ExpressParserTokenTypes.ENTITY_CONSTRUCTOR);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_3);
@@ -5140,8 +4841,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = entity_constructor_AST;
 	}
 
-	public final void enumeration_reference() throws RecognitionException,
-			TokenStreamException {
+	public final void enumeration_reference() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5230,8 +4930,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				enumeration_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				enumeration_reference_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ENUMERATION_REFERENCE);
+				enumeration_reference_AST = parseAST(currentAST, ExpressParserTokenTypes.ENUMERATION_REFERENCE);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -5243,8 +4942,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = enumeration_reference_AST;
 	}
 
-	public final void type_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void type_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5266,8 +4964,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.TYPE_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				type_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.TYPE_REF);
+				type_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_REF);
 				break;
 			}
 			case TYPE_ATTR_IDENT: {
@@ -5276,8 +4973,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.TYPE_ATTR_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				type_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.TYPE_REF);
+				type_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_REF);
 				break;
 			}
 			case TYPE_VAR_IDENT: {
@@ -5286,8 +4982,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.TYPE_VAR_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				type_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.TYPE_REF);
+				type_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_REF);
 				break;
 			}
 			case TYPE_PARAM_IDENT: {
@@ -5296,8 +4991,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid4_AST);
 				match(ExpressParserTokenTypes.TYPE_PARAM_IDENT);
 				nid4_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				type_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.TYPE_REF);
+				type_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_REF);
 				break;
 			}
 			default: {
@@ -5311,8 +5005,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = type_ref_AST;
 	}
 
-	public final void enumeration_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void enumeration_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5326,8 +5019,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, nid_AST);
 			match(ExpressParserTokenTypes.ENUMERATION_IDENT);
 			nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-			enumeration_ref_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ENUMERATION_REF);
+			enumeration_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.ENUMERATION_REF);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_3);
@@ -5335,8 +5027,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = enumeration_ref_AST;
 	}
 
-	public final void escape_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void escape_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5345,8 +5036,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			match(ExpressParserTokenTypes.LITERAL_escape);
 			match(ExpressParserTokenTypes.SEMI);
-			escape_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ESCAPE_STMT);
+			escape_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.ESCAPE_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -5354,8 +5044,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = escape_stmt_AST;
 	}
 
-	public final void rel_op_extended() throws RecognitionException,
-			TokenStreamException {
+	public final void rel_op_extended() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5373,8 +5062,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case COLEQCOL: {
 				rel_op();
 				astFactory.addASTChild(currentAST, returnAST);
-				rel_op_extended_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP_EXTENDED);
+				rel_op_extended_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP_EXTENDED);
 				break;
 			}
 			case LITERAL_in: {
@@ -5382,8 +5070,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp221_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp221_AST);
 				match(ExpressParserTokenTypes.LITERAL_in);
-				rel_op_extended_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP_EXTENDED);
+				rel_op_extended_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP_EXTENDED);
 				break;
 			}
 			case LITERAL_like: {
@@ -5391,8 +5078,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp222_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp222_AST);
 				match(ExpressParserTokenTypes.LITERAL_like);
-				rel_op_extended_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP_EXTENDED);
+				rel_op_extended_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP_EXTENDED);
 				break;
 			}
 			default: {
@@ -5406,8 +5092,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = rel_op_extended_AST;
 	}
 
-	public final void factor() throws RecognitionException,
-			TokenStreamException {
+	public final void factor() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5472,8 +5157,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = factor_AST;
 	}
 
-	public final void simple_factor() throws RecognitionException,
-			TokenStreamException {
+	public final void simple_factor() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -5484,28 +5168,23 @@ public class ExpressParser extends antlr.LLkParser {
 			case LBRACK: {
 				aggregate_initializer();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_FACTOR);
+				simple_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_FACTOR);
 				break;
 			}
 			case LCURLY: {
 				interval();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_FACTOR);
+				simple_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_FACTOR);
 				break;
 			}
 			case LITERAL_query: {
 				query_expression();
 				astFactory.addASTChild(currentAST, returnAST);
-				simple_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SIMPLE_FACTOR);
+				simple_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_FACTOR);
 				break;
 			}
 			default:
-				if (((LA1Equals(ExpressParserTokenTypes.PLUS)
-						|| LA1Equals(ExpressParserTokenTypes.MINUS) || LA1Equals(ExpressParserTokenTypes.LITERAL_not)))
-						&& (isFirst)) {
+				if (((LA1Equals(ExpressParserTokenTypes.PLUS) || LA1Equals(ExpressParserTokenTypes.MINUS) || LA1Equals(ExpressParserTokenTypes.LITERAL_not))) && (isFirst)) {
 					unary_op();
 					astFactory.addASTChild(currentAST, returnAST);
 					{
@@ -5585,8 +5264,7 @@ public class ExpressParser extends antlr.LLkParser {
 						}
 					}
 					simple_factor_AST = (AST) currentAST.root;
-				} else if (((LA1Equals(ExpressParserTokenTypes.LPAREN)))
-						&& (isFirst)) {
+				} else if (((LA1Equals(ExpressParserTokenTypes.LPAREN))) && (isFirst)) {
 					AST tmp226_AST = null;
 					tmp226_AST = astFactory.create(LT(1));
 					astFactory.addASTChild(currentAST, tmp226_AST);
@@ -5602,16 +5280,12 @@ public class ExpressParser extends antlr.LLkParser {
 					literal();
 					astFactory.addASTChild(currentAST, returnAST);
 					simple_factor_AST = (AST) currentAST.root;
-				} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_const_e
-						.getIndex() && LA(1) <= ExpressParserTokenTypes.STAR
-						.getIndex())))
-						&& (isFirst)) {
+				} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_const_e.getIndex() && LA(1) <= ExpressParserTokenTypes.STAR.getIndex()))) && (isFirst)) {
 					built_in_constant();
 					astFactory.addASTChild(currentAST, returnAST);
 					{
 						_loop35832: do {
-							if ((LA1Equals(ExpressParserTokenTypes.LBRACK)
-									|| LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
+							if ((LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
 								qualifier();
 								astFactory.addASTChild(currentAST, returnAST);
 							} else {
@@ -5621,10 +5295,7 @@ public class ExpressParser extends antlr.LLkParser {
 						} while (true);
 					}
 					simple_factor_AST = (AST) currentAST.root;
-				} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_abs
-						.getIndex() && LA(1) <= ExpressParserTokenTypes.LITERAL_value_unique
-						.getIndex())))
-						&& (isFirst)) {
+				} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_abs.getIndex() && LA(1) <= ExpressParserTokenTypes.LITERAL_value_unique.getIndex()))) && (isFirst)) {
 					built_in_function();
 					astFactory.addASTChild(currentAST, returnAST);
 					{
@@ -5680,8 +5351,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 					{
 						_loop35835: do {
-							if ((LA1Equals(ExpressParserTokenTypes.LBRACK)
-									|| LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
+							if ((LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
 								qualifier();
 								astFactory.addASTChild(currentAST, returnAST);
 							} else {
@@ -5691,8 +5361,7 @@ public class ExpressParser extends antlr.LLkParser {
 						} while (true);
 					}
 					simple_factor_AST = (AST) currentAST.root;
-				} else if (((LA1Equals(ExpressParserTokenTypes.IDENT)))
-						&& (isFirst)) {
+				} else if (((LA1Equals(ExpressParserTokenTypes.IDENT))) && (isFirst)) {
 					AST tmp228_AST = null;
 					tmp228_AST = astFactory.create(LT(1));
 					astFactory.addASTChild(currentAST, tmp228_AST);
@@ -5768,20 +5437,16 @@ public class ExpressParser extends antlr.LLkParser {
 								case LITERAL_query:
 								case LITERAL_not: {
 									expression();
-									astFactory.addASTChild(currentAST,
-											returnAST);
+									astFactory.addASTChild(currentAST, returnAST);
 									{
 										_loop35839: do {
 											if ((LA1Equals(ExpressParserTokenTypes.COMMA))) {
 												AST tmp230_AST = null;
-												tmp230_AST = astFactory
-														.create(LT(1));
-												astFactory.addASTChild(
-														currentAST, tmp230_AST);
+												tmp230_AST = astFactory.create(LT(1));
+												astFactory.addASTChild(currentAST, tmp230_AST);
 												match(ExpressParserTokenTypes.COMMA);
 												expression();
-												astFactory.addASTChild(
-														currentAST, returnAST);
+												astFactory.addASTChild(currentAST, returnAST);
 											} else {
 												break _loop35839;
 											}
@@ -5794,8 +5459,7 @@ public class ExpressParser extends antlr.LLkParser {
 									break;
 								}
 								default: {
-									throw new NoViableAltException(LT(1),
-											getFilename());
+									throw new NoViableAltException(LT(1), getFilename());
 								}
 								}
 							}
@@ -5867,8 +5531,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 					{
 						_loop35842: do {
-							if ((LA1Equals(ExpressParserTokenTypes.LBRACK)
-									|| LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
+							if ((LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
 								qualifier();
 								astFactory.addASTChild(currentAST, returnAST);
 							} else {
@@ -5878,19 +5541,15 @@ public class ExpressParser extends antlr.LLkParser {
 						} while (true);
 					}
 					simple_factor_AST = (AST) currentAST.root;
-				} else if (((_tokenSet_67.member(LA(1))))
-						&& (LA(2) == ExpressParserTokenTypes.LPAREN.getIndex())) {
+				} else if (((_tokenSet_67.member(LA(1)))) && (LA(2) == ExpressParserTokenTypes.LPAREN.getIndex())) {
 					entity_constructor();
 					astFactory.addASTChild(currentAST, returnAST);
-					simple_factor_AST = parseAST(currentAST,
-							ExpressParserTokenTypes.SIMPLE_FACTOR);
+					simple_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_FACTOR);
 				} else if (((_tokenSet_68.member(LA(1))))
-						&& (LA1Equals(ExpressParserTokenTypes.ENUMERATION_IDENT) || LA(3) == ExpressParserTokenTypes.ENUMERATION_IDENT
-								.getIndex())) {
+						&& (LA1Equals(ExpressParserTokenTypes.ENUMERATION_IDENT) || LA(3) == ExpressParserTokenTypes.ENUMERATION_IDENT.getIndex())) {
 					enumeration_reference();
 					astFactory.addASTChild(currentAST, returnAST);
-					simple_factor_AST = parseAST(currentAST,
-							ExpressParserTokenTypes.SIMPLE_FACTOR);
+					simple_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_FACTOR);
 				} else if ((_tokenSet_69.member(LA(1)))) {
 					{
 						{
@@ -5958,8 +5617,7 @@ public class ExpressParser extends antlr.LLkParser {
 								break;
 							}
 							default: {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 							}
 						}
@@ -6029,14 +5687,12 @@ public class ExpressParser extends antlr.LLkParser {
 								break;
 							}
 							default: {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 							}
 						}
 					}
-					simple_factor_AST = parseAST(currentAST,
-							ExpressParserTokenTypes.SIMPLE_FACTOR);
+					simple_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_FACTOR);
 				} else {
 					throw new NoViableAltException(LT(1), getFilename());
 				}
@@ -6048,8 +5704,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = simple_factor_AST;
 	}
 
-	public final void formal_parameter() throws RecognitionException,
-			TokenStreamException {
+	public final void formal_parameter() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6073,8 +5728,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.COLON);
 			parameter_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			formal_parameter_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.FORMAL_PARAMETER);
+			formal_parameter_AST = parseAST(currentAST, ExpressParserTokenTypes.FORMAL_PARAMETER);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_70);
@@ -6082,8 +5736,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = formal_parameter_AST;
 	}
 
-	public final void parameter_id() throws RecognitionException,
-			TokenStreamException {
+	public final void parameter_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6105,8 +5758,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.PARAMETER_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				parameter_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_ID);
+				parameter_id_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_ID);
 				break;
 			}
 			case ENTITY_PARAM_IDENT: {
@@ -6115,8 +5767,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_PARAM_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				parameter_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_ID);
+				parameter_id_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_ID);
 				break;
 			}
 			case TYPE_PARAM_IDENT: {
@@ -6125,8 +5776,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.TYPE_PARAM_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				parameter_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_ID);
+				parameter_id_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_ID);
 				break;
 			}
 			default:
@@ -6148,8 +5798,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = parameter_id_AST;
 	}
 
-	public final void function_call() throws RecognitionException,
-			TokenStreamException {
+	public final void function_call() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6252,8 +5901,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			function_call_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.FUNCTION_CALL);
+			function_call_AST = parseAST(currentAST, ExpressParserTokenTypes.FUNCTION_CALL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_0);
@@ -6261,8 +5909,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = function_call_AST;
 	}
 
-	public final void function_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void function_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6276,8 +5923,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, nid_AST);
 			match(ExpressParserTokenTypes.FUNCTION_IDENT);
 			nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-			function_ref_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.FUNCTION_REF);
+			function_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.FUNCTION_REF);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_71);
@@ -6285,8 +5931,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = function_ref_AST;
 	}
 
-	public final void function_head() throws RecognitionException,
-			TokenStreamException {
+	public final void function_head() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6330,8 +5975,7 @@ public class ExpressParser extends antlr.LLkParser {
 			parameter_type();
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.SEMI);
-			function_head_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.FUNCTION_HEAD);
+			function_head_AST = parseAST(currentAST, ExpressParserTokenTypes.FUNCTION_HEAD);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_34);
@@ -6339,8 +5983,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = function_head_AST;
 	}
 
-	public final void function_id() throws RecognitionException,
-			TokenStreamException {
+	public final void function_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6364,8 +6007,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.FUNCTION_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				function_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.FUNCTION_ID);
+				function_id_AST = parseAST(currentAST, ExpressParserTokenTypes.FUNCTION_ID);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -6377,8 +6019,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = function_id_AST;
 	}
 
-	public final void general_aggregation_types() throws RecognitionException,
-			TokenStreamException {
+	public final void general_aggregation_types() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6389,29 +6030,25 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_array: {
 				general_array_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				general_aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
+				general_aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
 				break;
 			}
 			case LITERAL_bag: {
 				general_bag_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				general_aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
+				general_aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
 				break;
 			}
 			case LITERAL_list: {
 				general_list_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				general_aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
+				general_aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
 				break;
 			}
 			case LITERAL_set: {
 				general_set_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				general_aggregation_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
+				general_aggregation_types_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_AGGREGATION_TYPES);
 				break;
 			}
 			default: {
@@ -6425,8 +6062,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = general_aggregation_types_AST;
 	}
 
-	public final void generic_type() throws RecognitionException,
-			TokenStreamException {
+	public final void generic_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6452,8 +6088,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			generic_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.GENERIC_TYPE);
+			generic_type_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERIC_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -6461,8 +6096,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = generic_type_AST;
 	}
 
-	public final void generic_entity_type() throws RecognitionException,
-			TokenStreamException {
+	public final void generic_entity_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6470,8 +6104,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 		try {
 			match(ExpressParserTokenTypes.LITERAL_generic_entity);
-			generic_entity_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.GENERIC_ENTITY_TYPE);
+			generic_entity_type_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERIC_ENTITY_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -6479,8 +6112,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = generic_entity_type_AST;
 	}
 
-	public final void general_array_type() throws RecognitionException,
-			TokenStreamException {
+	public final void general_array_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6585,8 +6217,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			parameter_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			general_array_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.GENERAL_ARRAY_TYPE);
+			general_array_type_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_ARRAY_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -6594,8 +6225,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = general_array_type_AST;
 	}
 
-	public final void general_bag_type() throws RecognitionException,
-			TokenStreamException {
+	public final void general_bag_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6621,8 +6251,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_of);
 			parameter_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			general_bag_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.GENERAL_BAG_TYPE);
+			general_bag_type_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_BAG_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -6630,8 +6259,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = general_bag_type_AST;
 	}
 
-	public final void general_list_type() throws RecognitionException,
-			TokenStreamException {
+	public final void general_list_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6696,8 +6324,7 @@ public class ExpressParser extends antlr.LLkParser {
 			}
 			parameter_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			general_list_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.GENERAL_LIST_TYPE);
+			general_list_type_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_LIST_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -6705,8 +6332,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = general_list_type_AST;
 	}
 
-	public final void general_set_type() throws RecognitionException,
-			TokenStreamException {
+	public final void general_set_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6732,8 +6358,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_of);
 			parameter_type();
 			astFactory.addASTChild(currentAST, returnAST);
-			general_set_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.GENERAL_SET_TYPE);
+			general_set_type_AST = parseAST(currentAST, ExpressParserTokenTypes.GENERAL_SET_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -6741,8 +6366,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = general_set_type_AST;
 	}
 
-	public final void parameter_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void parameter_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6762,8 +6386,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.PARAMETER_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				parameter_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_REF);
+				parameter_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_REF);
 				break;
 			}
 			case ENTITY_PARAM_IDENT: {
@@ -6772,8 +6395,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_PARAM_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				parameter_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_REF);
+				parameter_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_REF);
 				break;
 			}
 			case TYPE_PARAM_IDENT: {
@@ -6782,8 +6404,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.TYPE_PARAM_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				parameter_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PARAMETER_REF);
+				parameter_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.PARAMETER_REF);
 				break;
 			}
 			default: {
@@ -6797,8 +6418,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = parameter_ref_AST;
 	}
 
-	public final void variable_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void variable_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6818,8 +6438,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.VARIABLE_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				variable_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.VARIABLE_REF);
+				variable_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.VARIABLE_REF);
 				break;
 			}
 			case ENTITY_VAR_IDENT: {
@@ -6828,8 +6447,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid2_AST);
 				match(ExpressParserTokenTypes.ENTITY_VAR_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				variable_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.VARIABLE_REF);
+				variable_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.VARIABLE_REF);
 				break;
 			}
 			case TYPE_VAR_IDENT: {
@@ -6838,8 +6456,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid3_AST);
 				match(ExpressParserTokenTypes.TYPE_VAR_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				variable_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.VARIABLE_REF);
+				variable_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.VARIABLE_REF);
 				break;
 			}
 			default: {
@@ -6853,8 +6470,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = variable_ref_AST;
 	}
 
-	public final void if_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void if_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6903,8 +6519,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = if_stmt_AST;
 	}
 
-	public final void else_clause() throws RecognitionException,
-			TokenStreamException {
+	public final void else_clause() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6925,8 +6540,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			else_clause_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ELSE_CLAUSE);
+			else_clause_AST = parseAST(currentAST, ExpressParserTokenTypes.ELSE_CLAUSE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_73);
@@ -6934,8 +6548,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = else_clause_AST;
 	}
 
-	public final void increment() throws RecognitionException,
-			TokenStreamException {
+	public final void increment() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6944,8 +6557,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			numeric_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			increment_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INCREMENT);
+			increment_AST = parseAST(currentAST, ExpressParserTokenTypes.INCREMENT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_74);
@@ -6953,8 +6565,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = increment_AST;
 	}
 
-	public final void increment_control() throws RecognitionException,
-			TokenStreamException {
+	public final void increment_control() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -6987,8 +6598,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			increment_control_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INCREMENT_CONTROL);
+			increment_control_AST = parseAST(currentAST, ExpressParserTokenTypes.INCREMENT_CONTROL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_74);
@@ -7013,8 +6623,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = index_AST;
 	}
 
-	public final void index_1() throws RecognitionException,
-			TokenStreamException {
+	public final void index_1() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7031,8 +6640,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = index_1_AST;
 	}
 
-	public final void index_2() throws RecognitionException,
-			TokenStreamException {
+	public final void index_2() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7049,8 +6657,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = index_2_AST;
 	}
 
-	public final void index_qualifier() throws RecognitionException,
-			TokenStreamException {
+	public final void index_qualifier() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7077,8 +6684,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			match(ExpressParserTokenTypes.RBRACK);
-			index_qualifier_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INDEX_QUALIFIER);
+			index_qualifier_AST = parseAST(currentAST, ExpressParserTokenTypes.INDEX_QUALIFIER);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_18);
@@ -7086,8 +6692,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = index_qualifier_AST;
 	}
 
-	public final void integer_type() throws RecognitionException,
-			TokenStreamException {
+	public final void integer_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7095,8 +6700,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 		try {
 			match(ExpressParserTokenTypes.LITERAL_integer);
-			integer_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INTEGER_TYPE);
+			integer_type_AST = parseAST(currentAST, ExpressParserTokenTypes.INTEGER_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -7104,8 +6708,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = integer_type_AST;
 	}
 
-	public final void interval() throws RecognitionException,
-			TokenStreamException {
+	public final void interval() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7124,8 +6727,7 @@ public class ExpressParser extends antlr.LLkParser {
 			interval_high();
 			astFactory.addASTChild(currentAST, returnAST);
 			match(ExpressParserTokenTypes.RCURLY);
-			interval_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INTERVAL);
+			interval_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERVAL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_3);
@@ -7133,8 +6735,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = interval_AST;
 	}
 
-	public final void interval_low() throws RecognitionException,
-			TokenStreamException {
+	public final void interval_low() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7143,8 +6744,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			simple_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			interval_low_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INTERVAL_LOW);
+			interval_low_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERVAL_LOW);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_77);
@@ -7152,8 +6752,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = interval_low_AST;
 	}
 
-	public final void interval_op() throws RecognitionException,
-			TokenStreamException {
+	public final void interval_op() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7166,8 +6765,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp272_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp272_AST);
 				match(ExpressParserTokenTypes.LT);
-				interval_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.INTERVAL_OP);
+				interval_op_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERVAL_OP);
 				break;
 			}
 			case LE: {
@@ -7175,8 +6773,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp273_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp273_AST);
 				match(ExpressParserTokenTypes.LE);
-				interval_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.INTERVAL_OP);
+				interval_op_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERVAL_OP);
 				break;
 			}
 			default: {
@@ -7190,8 +6787,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = interval_op_AST;
 	}
 
-	public final void interval_item() throws RecognitionException,
-			TokenStreamException {
+	public final void interval_item() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7200,8 +6796,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			simple_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			interval_item_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INTERVAL_ITEM);
+			interval_item_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERVAL_ITEM);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_77);
@@ -7209,8 +6804,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = interval_item_AST;
 	}
 
-	public final void interval_high() throws RecognitionException,
-			TokenStreamException {
+	public final void interval_high() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7219,8 +6813,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			simple_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			interval_high_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.INTERVAL_HIGH);
+			interval_high_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERVAL_HIGH);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_78);
@@ -7228,8 +6821,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = interval_high_AST;
 	}
 
-	public final void literal() throws RecognitionException,
-			TokenStreamException {
+	public final void literal() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7303,25 +6895,11 @@ public class ExpressParser extends antlr.LLkParser {
 				literal_AST = (AST) currentAST.root;
 				if (fl) {
 					f_AST.setText(i.getText() + f.getText());
-					literal_AST = (AST) astFactory.make((new ASTArray(2)).add(
-							astFactory.create(
-									ExpressParserTokenTypes.LITERAL.getIndex(),
-									"LITERAL")).add(
-							(AST) astFactory.make((new ASTArray(2)).add(
-									astFactory.create(
-											ExpressParserTokenTypes.REAL
-													.getIndex(), "REAL")).add(
-									f_AST))));
+					literal_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.LITERAL.getIndex(), "LITERAL")).add(
+							(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.REAL.getIndex(), "REAL")).add(f_AST))));
 				} else
-					literal_AST = (AST) astFactory.make((new ASTArray(2)).add(
-							astFactory.create(
-									ExpressParserTokenTypes.LITERAL.getIndex(),
-									"LITERAL")).add(
-							(AST) astFactory.make((new ASTArray(2)).add(
-									astFactory.create(
-											ExpressParserTokenTypes.INTEGER
-													.getIndex(), "INTEGER"))
-									.add(i_AST))));
+					literal_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.LITERAL.getIndex(), "LITERAL")).add(
+							(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.INTEGER.getIndex(), "INTEGER")).add(i_AST))));
 
 				currentAST.root = literal_AST;
 				currentAST.child = getChild(literal_AST);
@@ -7345,15 +6923,8 @@ public class ExpressParser extends antlr.LLkParser {
 				sl_AST = astFactory.create(sl);
 				match(ExpressParserTokenTypes.STRING);
 				literal_AST = (AST) currentAST.root;
-				literal_AST = (AST) astFactory.make((new ASTArray(2)).add(
-						astFactory.create(
-								ExpressParserTokenTypes.LITERAL.getIndex(),
-								"LITERAL")).add(
-						(AST) astFactory.make((new ASTArray(2)).add(
-								astFactory.create(
-										ExpressParserTokenTypes.STRING
-												.getIndex(), "STRING")).add(
-								sl_AST))));
+				literal_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.LITERAL.getIndex(), "LITERAL")).add(
+						(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.STRING.getIndex(), "STRING")).add(sl_AST))));
 				currentAST.root = literal_AST;
 				currentAST.child = getChild(literal_AST);
 				currentAST.advanceChildToEnd();
@@ -7370,8 +6941,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = literal_AST;
 	}
 
-	public final void logical() throws RecognitionException,
-			TokenStreamException {
+	public final void logical() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7384,8 +6954,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp274_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp274_AST);
 				match(ExpressParserTokenTypes.LITERAL_false);
-				logical_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.LOGICAL);
+				logical_AST = parseAST(currentAST, ExpressParserTokenTypes.LOGICAL);
 				break;
 			}
 			case LITERAL_true: {
@@ -7393,8 +6962,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp275_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp275_AST);
 				match(ExpressParserTokenTypes.LITERAL_true);
-				logical_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.LOGICAL);
+				logical_AST = parseAST(currentAST, ExpressParserTokenTypes.LOGICAL);
 				break;
 			}
 			case LITERAL_unknown: {
@@ -7402,8 +6970,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp276_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp276_AST);
 				match(ExpressParserTokenTypes.LITERAL_unknown);
-				logical_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.LOGICAL);
+				logical_AST = parseAST(currentAST, ExpressParserTokenTypes.LOGICAL);
 				break;
 			}
 			default: {
@@ -7417,8 +6984,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = logical_AST;
 	}
 
-	public final void local_variable() throws RecognitionException,
-			TokenStreamException {
+	public final void local_variable() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7459,8 +7025,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			match(ExpressParserTokenTypes.SEMI);
-			local_variable_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.LOCAL_VARIABLE);
+			local_variable_AST = parseAST(currentAST, ExpressParserTokenTypes.LOCAL_VARIABLE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_79);
@@ -7468,8 +7033,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = local_variable_AST;
 	}
 
-	public final void logical_type() throws RecognitionException,
-			TokenStreamException {
+	public final void logical_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7477,8 +7041,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 		try {
 			match(ExpressParserTokenTypes.LITERAL_logical);
-			logical_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.LOGICAL_TYPE);
+			logical_type_AST = parseAST(currentAST, ExpressParserTokenTypes.LOGICAL_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -7486,8 +7049,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = logical_type_AST;
 	}
 
-	public final void multiplication_like_op() throws RecognitionException,
-			TokenStreamException {
+	public final void multiplication_like_op() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7500,8 +7062,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp282_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp282_AST);
 				match(ExpressParserTokenTypes.STAR);
-				multiplication_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
+				multiplication_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
 				break;
 			}
 			case DIVSIGN: {
@@ -7509,8 +7070,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp283_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp283_AST);
 				match(ExpressParserTokenTypes.DIVSIGN);
-				multiplication_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
+				multiplication_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
 				break;
 			}
 			case LITERAL_div: {
@@ -7518,8 +7078,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp284_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp284_AST);
 				match(ExpressParserTokenTypes.LITERAL_div);
-				multiplication_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
+				multiplication_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
 				break;
 			}
 			case LITERAL_mod: {
@@ -7527,8 +7086,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp285_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp285_AST);
 				match(ExpressParserTokenTypes.LITERAL_mod);
-				multiplication_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
+				multiplication_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
 				break;
 			}
 			case LITERAL_and: {
@@ -7536,8 +7094,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp286_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp286_AST);
 				match(ExpressParserTokenTypes.LITERAL_and);
-				multiplication_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
+				multiplication_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
 				break;
 			}
 			case DOUBLEBAR: {
@@ -7545,8 +7102,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp287_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp287_AST);
 				match(ExpressParserTokenTypes.DOUBLEBAR);
-				multiplication_like_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
+				multiplication_like_op_AST = parseAST(currentAST, ExpressParserTokenTypes.MULTIPLICATION_LIKE_OP);
 				break;
 			}
 			default: {
@@ -7560,8 +7116,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = multiplication_like_op_AST;
 	}
 
-	public final void null_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void null_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7569,8 +7124,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 		try {
 			match(ExpressParserTokenTypes.SEMI);
-			null_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.NULL_STMT);
+			null_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.NULL_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -7578,8 +7132,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = null_stmt_AST;
 	}
 
-	public final void number_type() throws RecognitionException,
-			TokenStreamException {
+	public final void number_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7587,8 +7140,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 		try {
 			match(ExpressParserTokenTypes.LITERAL_number);
-			number_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.NUMBER_TYPE);
+			number_type_AST = parseAST(currentAST, ExpressParserTokenTypes.NUMBER_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -7596,8 +7148,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = number_type_AST;
 	}
 
-	public final void one_of() throws RecognitionException,
-			TokenStreamException {
+	public final void one_of() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7629,8 +7180,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = one_of_AST;
 	}
 
-	public final void population() throws RecognitionException,
-			TokenStreamException {
+	public final void population() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7639,8 +7189,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			entity_ref();
 			astFactory.addASTChild(currentAST, returnAST);
-			population_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.POPULATION);
+			population_AST = parseAST(currentAST, ExpressParserTokenTypes.POPULATION);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_0);
@@ -7648,8 +7197,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = population_AST;
 	}
 
-	public final void precision_spec() throws RecognitionException,
-			TokenStreamException {
+	public final void precision_spec() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7658,8 +7206,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			numeric_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			precision_spec_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.PRECISION_SPEC);
+			precision_spec_AST = parseAST(currentAST, ExpressParserTokenTypes.PRECISION_SPEC);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_81);
@@ -7667,8 +7214,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = precision_spec_AST;
 	}
 
-	public final void primary() throws RecognitionException,
-			TokenStreamException {
+	public final void primary() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7683,8 +7229,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_unknown: {
 				literal();
 				astFactory.addASTChild(currentAST, returnAST);
-				primary_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PRIMARY);
+				primary_AST = parseAST(currentAST, ExpressParserTokenTypes.PRIMARY);
 				break;
 			}
 			case CONSTANT_IDENT:
@@ -7738,8 +7283,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, returnAST);
 				{
 					_loop35744: do {
-						if ((LA1Equals(ExpressParserTokenTypes.LBRACK)
-								|| LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
+						if ((LA1Equals(ExpressParserTokenTypes.LBRACK) || LA1Equals(ExpressParserTokenTypes.DOT) || LA1Equals(ExpressParserTokenTypes.BACKSLASH))) {
 							qualifier();
 							astFactory.addASTChild(currentAST, returnAST);
 						} else {
@@ -7748,8 +7292,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 					} while (true);
 				}
-				primary_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PRIMARY);
+				primary_AST = parseAST(currentAST, ExpressParserTokenTypes.PRIMARY);
 				break;
 			}
 			default: {
@@ -7763,8 +7306,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = primary_AST;
 	}
 
-	public final void qualifiable_factor() throws RecognitionException,
-			TokenStreamException {
+	public final void qualifiable_factor() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7828,17 +7370,11 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 				}
 				qualifiable_factor_AST = (AST) currentAST.root;
-			} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_const_e
-					.getIndex() && LA(1) <= ExpressParserTokenTypes.STAR
-					.getIndex())))
-					&& (isFirst)) {
+			} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_const_e.getIndex() && LA(1) <= ExpressParserTokenTypes.STAR.getIndex()))) && (isFirst)) {
 				built_in_constant();
 				astFactory.addASTChild(currentAST, returnAST);
 				qualifiable_factor_AST = (AST) currentAST.root;
-			} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_abs
-					.getIndex() && LA(1) <= ExpressParserTokenTypes.LITERAL_value_unique
-					.getIndex())))
-					&& (isFirst)) {
+			} else if ((((LA(1) >= ExpressParserTokenTypes.LITERAL_abs.getIndex() && LA(1) <= ExpressParserTokenTypes.LITERAL_value_unique.getIndex()))) && (isFirst)) {
 				built_in_function();
 				astFactory.addASTChild(currentAST, returnAST);
 				{
@@ -7893,33 +7429,26 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 				}
 				qualifiable_factor_AST = (AST) currentAST.root;
-			} else if (((LA(1) >= ExpressParserTokenTypes.ATTRIBUTE_IDENT
-					.getIndex() && LA(1) <= ExpressParserTokenTypes.TYPE_ATTR_IDENT
-					.getIndex()))) {
+			} else if (((LA(1) >= ExpressParserTokenTypes.ATTRIBUTE_IDENT.getIndex() && LA(1) <= ExpressParserTokenTypes.TYPE_ATTR_IDENT.getIndex()))) {
 				attribute_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifiable_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
+				qualifiable_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
 			} else if ((_tokenSet_82.member(LA(1)))) {
 				constant_factor();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifiable_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
+				qualifiable_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
 			} else if ((_tokenSet_83.member(LA(1)))) {
 				function_call();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifiable_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
+				qualifiable_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
 			} else if ((_tokenSet_67.member(LA(1)))) {
 				population();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifiable_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
+				qualifiable_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
 			} else if ((_tokenSet_84.member(LA(1)))) {
 				general_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				qualifiable_factor_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
+				qualifiable_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.QUALIFIABLE_FACTOR);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -7931,8 +7460,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = qualifiable_factor_AST;
 	}
 
-	public final void procedure_call_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void procedure_call_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7973,8 +7501,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			match(ExpressParserTokenTypes.SEMI);
-			procedure_call_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.PROCEDURE_CALL_STMT);
+			procedure_call_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.PROCEDURE_CALL_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -7982,8 +7509,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = procedure_call_stmt_AST;
 	}
 
-	public final void procedure_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void procedure_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -7997,8 +7523,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, nid_AST);
 			match(ExpressParserTokenTypes.PROCEDURE_IDENT);
 			nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-			procedure_ref_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.PROCEDURE_REF);
+			procedure_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.PROCEDURE_REF);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_85);
@@ -8006,8 +7531,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = procedure_ref_AST;
 	}
 
-	public final void procedure_head() throws RecognitionException,
-			TokenStreamException {
+	public final void procedure_head() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8049,13 +7573,11 @@ public class ExpressParser extends antlr.LLkParser {
 							if ((LA1Equals(ExpressParserTokenTypes.SEMI))) {
 								match(ExpressParserTokenTypes.SEMI);
 								{
-									switch (ExpressParserTokenTypes
-											.getToken(LA(1))) {
+									switch (ExpressParserTokenTypes.getToken(LA(1))) {
 									case LITERAL_var: {
 										AST tmp300_AST = null;
 										tmp300_AST = astFactory.create(LT(1));
-										astFactory.addASTChild(currentAST,
-												tmp300_AST);
+										astFactory.addASTChild(currentAST, tmp300_AST);
 										match(ExpressParserTokenTypes.LITERAL_var);
 										break;
 									}
@@ -8066,8 +7588,7 @@ public class ExpressParser extends antlr.LLkParser {
 										break;
 									}
 									default: {
-										throw new NoViableAltException(LT(1),
-												getFilename());
+										throw new NoViableAltException(LT(1), getFilename());
 									}
 									}
 								}
@@ -8091,8 +7612,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			match(ExpressParserTokenTypes.SEMI);
-			procedure_head_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.PROCEDURE_HEAD);
+			procedure_head_AST = parseAST(currentAST, ExpressParserTokenTypes.PROCEDURE_HEAD);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_35);
@@ -8100,8 +7620,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = procedure_head_AST;
 	}
 
-	public final void procedure_id() throws RecognitionException,
-			TokenStreamException {
+	public final void procedure_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8125,8 +7644,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.PROCEDURE_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				procedure_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.PROCEDURE_ID);
+				procedure_id_AST = parseAST(currentAST, ExpressParserTokenTypes.PROCEDURE_ID);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -8138,8 +7656,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = procedure_id_AST;
 	}
 
-	public final void query_expression() throws RecognitionException,
-			TokenStreamException {
+	public final void query_expression() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8161,9 +7678,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.RPAREN);
 			query_expression_AST = (AST) currentAST.root;
 			upScope();
-			query_expression_AST = makeAST(
-					ExpressParserTokenTypes.QUERY_EXPRESSION,
-					query_expression_AST);
+			query_expression_AST = makeAST(ExpressParserTokenTypes.QUERY_EXPRESSION, query_expression_AST);
 
 			currentAST.root = query_expression_AST;
 			currentAST.child = getChild(query_expression_AST);
@@ -8176,8 +7691,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = query_expression_AST;
 	}
 
-	public final void real_type() throws RecognitionException,
-			TokenStreamException {
+	public final void real_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8204,8 +7718,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			real_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.REAL_TYPE);
+			real_type_AST = parseAST(currentAST, ExpressParserTokenTypes.REAL_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -8213,8 +7726,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = real_type_AST;
 	}
 
-	public final void reference_clause() throws RecognitionException,
-			TokenStreamException {
+	public final void reference_clause() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8225,8 +7737,7 @@ public class ExpressParser extends antlr.LLkParser {
 		ExternalId ei = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_reference)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_reference))) && (isFirst)) {
 				AST tmp311_AST = null;
 				tmp311_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp311_AST);
@@ -8255,12 +7766,10 @@ public class ExpressParser extends antlr.LLkParser {
 								if ((LA1Equals(ExpressParserTokenTypes.COMMA))) {
 									AST tmp314_AST = null;
 									tmp314_AST = astFactory.create(LT(1));
-									astFactory.addASTChild(currentAST,
-											tmp314_AST);
+									astFactory.addASTChild(currentAST, tmp314_AST);
 									match(ExpressParserTokenTypes.COMMA);
 									ei = resource_or_rename();
-									astFactory.addASTChild(currentAST,
-											returnAST);
+									astFactory.addASTChild(currentAST, returnAST);
 									ei.setSchema(id.getText());
 									addExternal(ei);
 								} else {
@@ -8306,8 +7815,7 @@ public class ExpressParser extends antlr.LLkParser {
 								if ((LA1Equals(ExpressParserTokenTypes.COMMA))) {
 									match(ExpressParserTokenTypes.COMMA);
 									resource_or_rename();
-									astFactory.addASTChild(currentAST,
-											returnAST);
+									astFactory.addASTChild(currentAST, returnAST);
 								} else {
 									break _loop35772;
 								}
@@ -8326,8 +7834,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 				}
 				match(ExpressParserTokenTypes.SEMI);
-				reference_clause_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REFERENCE_CLAUSE);
+				reference_clause_AST = parseAST(currentAST, ExpressParserTokenTypes.REFERENCE_CLAUSE);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -8339,8 +7846,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = reference_clause_AST;
 	}
 
-	public final ExternalId resource_or_rename() throws RecognitionException,
-			TokenStreamException {
+	public final ExternalId resource_or_rename() throws RecognitionException, TokenStreamException {
 		ExternalId ei;
 
 		returnAST = null;
@@ -8401,8 +7907,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 					}
 				}
-				resource_or_rename_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RESOURCE_OR_RENAME);
+				resource_or_rename_AST = parseAST(currentAST, ExpressParserTokenTypes.RESOURCE_OR_RENAME);
 			} else if ((_tokenSet_88.member(LA(1)))) {
 				global_ident();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -8423,8 +7928,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 					}
 				}
-				resource_or_rename_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RESOURCE_OR_RENAME);
+				resource_or_rename_AST = parseAST(currentAST, ExpressParserTokenTypes.RESOURCE_OR_RENAME);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -8437,8 +7941,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return ei;
 	}
 
-	public final void schema_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void schema_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8452,8 +7955,7 @@ public class ExpressParser extends antlr.LLkParser {
 			astFactory.addASTChild(currentAST, nid_AST);
 			match(ExpressParserTokenTypes.SCHEMA_IDENT);
 			nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-			schema_ref_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SCHEMA_REF);
+			schema_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.SCHEMA_REF);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_28);
@@ -8461,8 +7963,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = schema_ref_AST;
 	}
 
-	public final void rel_op() throws RecognitionException,
-			TokenStreamException {
+	public final void rel_op() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8475,8 +7976,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp326_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp326_AST);
 				match(ExpressParserTokenTypes.LT);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			case GT: {
@@ -8484,8 +7984,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp327_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp327_AST);
 				match(ExpressParserTokenTypes.GT);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			case LE: {
@@ -8493,8 +7992,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp328_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp328_AST);
 				match(ExpressParserTokenTypes.LE);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			case GE: {
@@ -8502,8 +8000,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp329_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp329_AST);
 				match(ExpressParserTokenTypes.GE);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			case LTGT: {
@@ -8511,8 +8008,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp330_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp330_AST);
 				match(ExpressParserTokenTypes.LTGT);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			case ASSIGN: {
@@ -8520,8 +8016,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp331_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp331_AST);
 				match(ExpressParserTokenTypes.ASSIGN);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			case COLLTGT: {
@@ -8529,8 +8024,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp332_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp332_AST);
 				match(ExpressParserTokenTypes.COLLTGT);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			case COLEQCOL: {
@@ -8538,8 +8032,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp333_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp333_AST);
 				match(ExpressParserTokenTypes.COLEQCOL);
-				rel_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.REL_OP);
+				rel_op_AST = parseAST(currentAST, ExpressParserTokenTypes.REL_OP);
 				break;
 			}
 			default: {
@@ -8553,8 +8046,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = rel_op_AST;
 	}
 
-	public final String rename_id() throws RecognitionException,
-			TokenStreamException {
+	public final String rename_id() throws RecognitionException, TokenStreamException {
 		String s;
 
 		returnAST = null;
@@ -8588,15 +8080,8 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.CONSTANT_IDENT);
 				nid1_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
 				rename_id_AST = (AST) currentAST.root;
-				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(
-						astFactory.create(
-								ExpressParserTokenTypes.RENAME_ID.getIndex(),
-								"RENAME_ID")).add(
-						(AST) astFactory.make((new ASTArray(2)).add(
-								astFactory.create(
-										ExpressParserTokenTypes.CONSTANT_ID
-												.getIndex(), "CONSTANT_ID"))
-								.add(nid1_AST))));
+				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.RENAME_ID.getIndex(), "RENAME_ID")).add(
+						(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.CONSTANT_ID.getIndex(), "CONSTANT_ID")).add(nid1_AST))));
 				currentAST.root = rename_id_AST;
 				currentAST.child = getChild(rename_id_AST);
 				currentAST.advanceChildToEnd();
@@ -8608,15 +8093,8 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.ENTITY_IDENT);
 				nid2_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
 				rename_id_AST = (AST) currentAST.root;
-				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(
-						astFactory.create(
-								ExpressParserTokenTypes.RENAME_ID.getIndex(),
-								"RENAME_ID")).add(
-						(AST) astFactory.make((new ASTArray(2)).add(
-								astFactory.create(
-										ExpressParserTokenTypes.ENTITY_ID
-												.getIndex(), "ENTITY_ID")).add(
-								nid2_AST))));
+				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.RENAME_ID.getIndex(), "RENAME_ID")).add(
+						(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.ENTITY_ID.getIndex(), "ENTITY_ID")).add(nid2_AST))));
 				currentAST.root = rename_id_AST;
 				currentAST.child = getChild(rename_id_AST);
 				currentAST.advanceChildToEnd();
@@ -8628,15 +8106,8 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.FUNCTION_IDENT);
 				nid3_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
 				rename_id_AST = (AST) currentAST.root;
-				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(
-						astFactory.create(
-								ExpressParserTokenTypes.RENAME_ID.getIndex(),
-								"RENAME_ID")).add(
-						(AST) astFactory.make((new ASTArray(2)).add(
-								astFactory.create(
-										ExpressParserTokenTypes.FUNCTION_ID
-												.getIndex(), "FUNCTION_ID"))
-								.add(nid3_AST))));
+				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.RENAME_ID.getIndex(), "RENAME_ID")).add(
+						(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.FUNCTION_ID.getIndex(), "FUNCTION_ID")).add(nid3_AST))));
 				currentAST.root = rename_id_AST;
 				currentAST.child = getChild(rename_id_AST);
 				currentAST.advanceChildToEnd();
@@ -8648,15 +8119,8 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.PROCEDURE_IDENT);
 				nid4_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
 				rename_id_AST = (AST) currentAST.root;
-				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(
-						astFactory.create(
-								ExpressParserTokenTypes.RENAME_ID.getIndex(),
-								"RENAME_ID")).add(
-						(AST) astFactory.make((new ASTArray(2)).add(
-								astFactory.create(
-										ExpressParserTokenTypes.PROCEDURE_ID
-												.getIndex(), "PROCEDURE_ID"))
-								.add(nid4_AST))));
+				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.RENAME_ID.getIndex(), "RENAME_ID")).add(
+						(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.PROCEDURE_ID.getIndex(), "PROCEDURE_ID")).add(nid4_AST))));
 				currentAST.root = rename_id_AST;
 				currentAST.child = getChild(rename_id_AST);
 				currentAST.advanceChildToEnd();
@@ -8668,15 +8132,8 @@ public class ExpressParser extends antlr.LLkParser {
 				match(ExpressParserTokenTypes.TYPE_IDENT);
 				nid5_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
 				rename_id_AST = (AST) currentAST.root;
-				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(
-						astFactory.create(
-								ExpressParserTokenTypes.RENAME_ID.getIndex(),
-								"RENAME_ID")).add(
-						(AST) astFactory.make((new ASTArray(2)).add(
-								astFactory.create(
-										ExpressParserTokenTypes.TYPE_ID
-												.getIndex(), "TYPE_ID")).add(
-								nid5_AST))));
+				rename_id_AST = (AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.RENAME_ID.getIndex(), "RENAME_ID")).add(
+						(AST) astFactory.make((new ASTArray(2)).add(astFactory.create(ExpressParserTokenTypes.TYPE_ID.getIndex(), "TYPE_ID")).add(nid5_AST))));
 				currentAST.root = rename_id_AST;
 				currentAST.child = getChild(rename_id_AST);
 				currentAST.advanceChildToEnd();
@@ -8694,8 +8151,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return s;
 	}
 
-	public final void repeat_control() throws RecognitionException,
-			TokenStreamException {
+	public final void repeat_control() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8753,8 +8209,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			repeat_control_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.REPEAT_CONTROL);
+			repeat_control_AST = parseAST(currentAST, ExpressParserTokenTypes.REPEAT_CONTROL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_37);
@@ -8762,8 +8217,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = repeat_control_AST;
 	}
 
-	public final void while_control() throws RecognitionException,
-			TokenStreamException {
+	public final void while_control() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8773,8 +8227,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_while);
 			logical_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			while_control_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.WHILE_CONTROL);
+			while_control_AST = parseAST(currentAST, ExpressParserTokenTypes.WHILE_CONTROL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_89);
@@ -8782,8 +8235,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = while_control_AST;
 	}
 
-	public final void until_control() throws RecognitionException,
-			TokenStreamException {
+	public final void until_control() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8793,8 +8245,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_until);
 			logical_expression();
 			astFactory.addASTChild(currentAST, returnAST);
-			until_control_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.UNTIL_CONTROL);
+			until_control_AST = parseAST(currentAST, ExpressParserTokenTypes.UNTIL_CONTROL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_37);
@@ -8802,8 +8253,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = until_control_AST;
 	}
 
-	public final void repeat_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void repeat_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8832,8 +8282,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_end_repeat);
 			upScope();
 			match(ExpressParserTokenTypes.SEMI);
-			repeat_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.REPEAT_STMT);
+			repeat_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.REPEAT_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -8841,8 +8290,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = repeat_stmt_AST;
 	}
 
-	public final void resource_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void resource_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8853,8 +8301,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case CONSTANT_IDENT: {
 				constant_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				resource_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RESOURCE_REF);
+				resource_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.RESOURCE_REF);
 				break;
 			}
 			case ENTITY_IDENT:
@@ -8863,22 +8310,19 @@ public class ExpressParser extends antlr.LLkParser {
 			case ENTITY_PARAM_IDENT: {
 				entity_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				resource_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RESOURCE_REF);
+				resource_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.RESOURCE_REF);
 				break;
 			}
 			case FUNCTION_IDENT: {
 				function_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				resource_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RESOURCE_REF);
+				resource_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.RESOURCE_REF);
 				break;
 			}
 			case PROCEDURE_IDENT: {
 				procedure_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				resource_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RESOURCE_REF);
+				resource_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.RESOURCE_REF);
 				break;
 			}
 			case TYPE_IDENT:
@@ -8887,8 +8331,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case TYPE_PARAM_IDENT: {
 				type_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				resource_ref_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RESOURCE_REF);
+				resource_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.RESOURCE_REF);
 				break;
 			}
 			default: {
@@ -8902,8 +8345,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = resource_ref_AST;
 	}
 
-	public final void return_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void return_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8929,8 +8371,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			match(ExpressParserTokenTypes.SEMI);
-			return_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.RETURN_STMT);
+			return_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.RETURN_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -8938,8 +8379,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = return_stmt_AST;
 	}
 
-	public final void rule_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void rule_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -8974,8 +8414,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LITERAL_end_rule);
 			upScope();
 			match(ExpressParserTokenTypes.SEMI);
-			rule_decl_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.RULE_DECL);
+			rule_decl_AST = parseAST(currentAST, ExpressParserTokenTypes.RULE_DECL);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_93);
@@ -8983,16 +8422,14 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = rule_decl_AST;
 	}
 
-	public final void rule_head() throws RecognitionException,
-			TokenStreamException {
+	public final void rule_head() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST rule_head_AST = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_rule)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_rule))) && (isFirst)) {
 				AST tmp346_AST = null;
 				tmp346_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp346_AST);
@@ -9060,8 +8497,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				match(ExpressParserTokenTypes.RPAREN);
 				match(ExpressParserTokenTypes.SEMI);
-				rule_head_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.RULE_HEAD);
+				rule_head_AST = parseAST(currentAST, ExpressParserTokenTypes.RULE_HEAD);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -9073,8 +8509,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = rule_head_AST;
 	}
 
-	public final void rule_id() throws RecognitionException,
-			TokenStreamException {
+	public final void rule_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9093,8 +8528,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = rule_id_AST;
 	}
 
-	public final String schema_id() throws RecognitionException,
-			TokenStreamException {
+	public final String schema_id() throws RecognitionException, TokenStreamException {
 		String s;
 
 		returnAST = null;
@@ -9116,8 +8550,7 @@ public class ExpressParser extends antlr.LLkParser {
 				schema_id_AST = (AST) currentAST.root;
 				s = id.getText();
 				addId(s, ExpressParserTokenTypes.SCHEMA_IDENT);
-				schema_id_AST = makeAST(ExpressParserTokenTypes.SCHEMA_ID,
-						schema_id_AST);
+				schema_id_AST = makeAST(ExpressParserTokenTypes.SCHEMA_ID, schema_id_AST);
 				currentAST.root = schema_id_AST;
 				currentAST.child = getChild(schema_id_AST);
 				currentAST.advanceChildToEnd();
@@ -9130,8 +8563,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.SCHEMA_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				schema_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SCHEMA_ID);
+				schema_id_AST = parseAST(currentAST, ExpressParserTokenTypes.SCHEMA_ID);
 				break;
 			}
 			default: {
@@ -9146,8 +8578,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return s;
 	}
 
-	public final void schema_body() throws RecognitionException,
-			TokenStreamException {
+	public final void schema_body() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9209,8 +8640,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 				} while (true);
 			}
-			schema_body_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SCHEMA_BODY);
+			schema_body_AST = parseAST(currentAST, ExpressParserTokenTypes.SCHEMA_BODY);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_95);
@@ -9218,8 +8648,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = schema_body_AST;
 	}
 
-	public final void interface_specification() throws RecognitionException,
-			TokenStreamException {
+	public final void interface_specification() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9230,15 +8659,13 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_reference: {
 				reference_clause();
 				astFactory.addASTChild(currentAST, returnAST);
-				interface_specification_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.INTERFACE_SPECIFICATION);
+				interface_specification_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERFACE_SPECIFICATION);
 				break;
 			}
 			case LITERAL_use: {
 				use_clause();
 				astFactory.addASTChild(currentAST, returnAST);
-				interface_specification_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.INTERFACE_SPECIFICATION);
+				interface_specification_AST = parseAST(currentAST, ExpressParserTokenTypes.INTERFACE_SPECIFICATION);
 				break;
 			}
 			default: {
@@ -9252,8 +8679,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = interface_specification_AST;
 	}
 
-	public final void schema_decl() throws RecognitionException,
-			TokenStreamException {
+	public final void schema_decl() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9287,8 +8713,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.SEMI);
 			schema_decl_AST = (AST) currentAST.root;
 			upScope();
-			schema_decl_AST = makeAST(ExpressParserTokenTypes.SCHEMA_DECL,
-					schema_decl_AST);
+			schema_decl_AST = makeAST(ExpressParserTokenTypes.SCHEMA_DECL, schema_decl_AST);
 			currentAST.root = schema_decl_AST;
 			currentAST.child = getChild(schema_decl_AST);
 			currentAST.advanceChildToEnd();
@@ -9300,8 +8725,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = schema_decl_AST;
 	}
 
-	public final void schema_version_id() throws RecognitionException,
-			TokenStreamException {
+	public final void schema_version_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9312,8 +8736,7 @@ public class ExpressParser extends antlr.LLkParser {
 			tmp365_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp365_AST);
 			match(ExpressParserTokenTypes.STRING);
-			schema_version_id_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SCHEMA_VERSION_ID);
+			schema_version_id_AST = parseAST(currentAST, ExpressParserTokenTypes.SCHEMA_VERSION_ID);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_37);
@@ -9321,8 +8744,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = schema_version_id_AST;
 	}
 
-	public final void use_clause() throws RecognitionException,
-			TokenStreamException {
+	public final void use_clause() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9362,12 +8784,10 @@ public class ExpressParser extends antlr.LLkParser {
 								if ((LA1Equals(ExpressParserTokenTypes.COMMA))) {
 									AST tmp369_AST = null;
 									tmp369_AST = astFactory.create(LT(1));
-									astFactory.addASTChild(currentAST,
-											tmp369_AST);
+									astFactory.addASTChild(currentAST, tmp369_AST);
 									match(ExpressParserTokenTypes.COMMA);
 									ei = named_type_or_rename();
-									astFactory.addASTChild(currentAST,
-											returnAST);
+									astFactory.addASTChild(currentAST, returnAST);
 									ei.setSchema(id.getText());
 									addExternal(ei);
 								} else {
@@ -9413,8 +8833,7 @@ public class ExpressParser extends antlr.LLkParser {
 								if ((LA1Equals(ExpressParserTokenTypes.COMMA))) {
 									match(ExpressParserTokenTypes.COMMA);
 									named_type_or_rename();
-									astFactory.addASTChild(currentAST,
-											returnAST);
+									astFactory.addASTChild(currentAST, returnAST);
 								} else {
 									break _loop35818;
 								}
@@ -9433,8 +8852,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 				}
 				match(ExpressParserTokenTypes.SEMI);
-				use_clause_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.USE_CLAUSE);
+				use_clause_AST = parseAST(currentAST, ExpressParserTokenTypes.USE_CLAUSE);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -9446,8 +8864,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = use_clause_AST;
 	}
 
-	public final ExternalId named_type_or_rename() throws RecognitionException,
-			TokenStreamException {
+	public final ExternalId named_type_or_rename() throws RecognitionException, TokenStreamException {
 		ExternalId ei;
 
 		returnAST = null;
@@ -9503,8 +8920,7 @@ public class ExpressParser extends antlr.LLkParser {
 								type_id();
 								astFactory.addASTChild(currentAST, returnAST);
 							} else {
-								throw new NoViableAltException(LT(1),
-										getFilename());
+								throw new NoViableAltException(LT(1), getFilename());
 							}
 
 						}
@@ -9519,8 +8935,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 					}
 				}
-				named_type_or_rename_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.NAMED_TYPE_OR_RENAME);
+				named_type_or_rename_AST = parseAST(currentAST, ExpressParserTokenTypes.NAMED_TYPE_OR_RENAME);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -9533,8 +8948,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return ei;
 	}
 
-	public final String type_id() throws RecognitionException,
-			TokenStreamException {
+	public final String type_id() throws RecognitionException, TokenStreamException {
 		String s;
 
 		returnAST = null;
@@ -9561,8 +8975,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.TYPE_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				type_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.TYPE_ID);
+				type_id_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_ID);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -9605,8 +9018,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = term_AST;
 	}
 
-	public final void unary_op() throws RecognitionException,
-			TokenStreamException {
+	public final void unary_op() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9619,8 +9031,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp380_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp380_AST);
 				match(ExpressParserTokenTypes.PLUS);
-				unary_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNARY_OP);
+				unary_op_AST = parseAST(currentAST, ExpressParserTokenTypes.UNARY_OP);
 				break;
 			}
 			case MINUS: {
@@ -9628,8 +9039,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp381_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp381_AST);
 				match(ExpressParserTokenTypes.MINUS);
-				unary_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNARY_OP);
+				unary_op_AST = parseAST(currentAST, ExpressParserTokenTypes.UNARY_OP);
 				break;
 			}
 			case LITERAL_not: {
@@ -9637,8 +9047,7 @@ public class ExpressParser extends antlr.LLkParser {
 				tmp382_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp382_AST);
 				match(ExpressParserTokenTypes.LITERAL_not);
-				unary_op_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNARY_OP);
+				unary_op_AST = parseAST(currentAST, ExpressParserTokenTypes.UNARY_OP);
 				break;
 			}
 			default: {
@@ -9652,8 +9061,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = unary_op_AST;
 	}
 
-	public final void string_type() throws RecognitionException,
-			TokenStreamException {
+	public final void string_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9678,8 +9086,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			string_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.STRING_TYPE);
+			string_type_AST = parseAST(currentAST, ExpressParserTokenTypes.STRING_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_7);
@@ -9687,8 +9094,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = string_type_AST;
 	}
 
-	public final void skip_stmt() throws RecognitionException,
-			TokenStreamException {
+	public final void skip_stmt() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9697,8 +9103,7 @@ public class ExpressParser extends antlr.LLkParser {
 		try {
 			match(ExpressParserTokenTypes.LITERAL_skip);
 			match(ExpressParserTokenTypes.SEMI);
-			skip_stmt_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SKIP_STMT);
+			skip_stmt_AST = parseAST(currentAST, ExpressParserTokenTypes.SKIP_STMT);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_16);
@@ -9706,8 +9111,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = skip_stmt_AST;
 	}
 
-	public final void supertype_factor() throws RecognitionException,
-			TokenStreamException {
+	public final void supertype_factor() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9728,8 +9132,7 @@ public class ExpressParser extends antlr.LLkParser {
 
 				} while (true);
 			}
-			supertype_factor_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SUPERTYPE_FACTOR);
+			supertype_factor_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_FACTOR);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_102);
@@ -9737,8 +9140,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = supertype_factor_AST;
 	}
 
-	public final void supertype_term() throws RecognitionException,
-			TokenStreamException {
+	public final void supertype_term() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9752,15 +9154,13 @@ public class ExpressParser extends antlr.LLkParser {
 			case ENTITY_PARAM_IDENT: {
 				entity_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				supertype_term_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUPERTYPE_TERM);
+				supertype_term_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_TERM);
 				break;
 			}
 			case LITERAL_oneof: {
 				one_of();
 				astFactory.addASTChild(currentAST, returnAST);
-				supertype_term_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUPERTYPE_TERM);
+				supertype_term_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_TERM);
 				break;
 			}
 			case LPAREN: {
@@ -9768,8 +9168,7 @@ public class ExpressParser extends antlr.LLkParser {
 				supertype_expression();
 				astFactory.addASTChild(currentAST, returnAST);
 				match(ExpressParserTokenTypes.RPAREN);
-				supertype_term_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SUPERTYPE_TERM);
+				supertype_term_AST = parseAST(currentAST, ExpressParserTokenTypes.SUPERTYPE_TERM);
 				break;
 			}
 			default:
@@ -9790,8 +9189,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = supertype_term_AST;
 	}
 
-	public final void syntax() throws RecognitionException,
-			TokenStreamException {
+	public final void syntax() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9840,8 +9238,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = syntax_AST;
 	}
 
-	public final void language_version_id() throws RecognitionException,
-			TokenStreamException {
+	public final void language_version_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -9851,8 +9248,7 @@ public class ExpressParser extends antlr.LLkParser {
 			match(ExpressParserTokenTypes.LCURLY);
 			match(ExpressParserTokenTypes.LANG_VERSION);
 			match(ExpressParserTokenTypes.RCURLY);
-			language_version_id_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.LANGUAGE_VERSION_ID);
+			language_version_id_AST = parseAST(currentAST, ExpressParserTokenTypes.LANGUAGE_VERSION_ID);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_104);
@@ -9860,8 +9256,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = language_version_id_AST;
 	}
 
-	public final EnumerationType underlying_type() throws RecognitionException,
-			TokenStreamException {
+	public final EnumerationType underlying_type() throws RecognitionException, TokenStreamException {
 		EnumerationType eids;
 
 		returnAST = null;
@@ -9877,8 +9272,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_select: {
 				eids = constructed_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				underlying_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNDERLYING_TYPE);
+				underlying_type_AST = parseAST(currentAST, ExpressParserTokenTypes.UNDERLYING_TYPE);
 				break;
 			}
 			case LITERAL_array:
@@ -9887,8 +9281,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_list: {
 				aggregation_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				underlying_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNDERLYING_TYPE);
+				underlying_type_AST = parseAST(currentAST, ExpressParserTokenTypes.UNDERLYING_TYPE);
 				break;
 			}
 			case LITERAL_binary:
@@ -9900,8 +9293,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case LITERAL_string: {
 				simple_types();
 				astFactory.addASTChild(currentAST, returnAST);
-				underlying_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNDERLYING_TYPE);
+				underlying_type_AST = parseAST(currentAST, ExpressParserTokenTypes.UNDERLYING_TYPE);
 				break;
 			}
 			case TYPE_IDENT:
@@ -9910,8 +9302,7 @@ public class ExpressParser extends antlr.LLkParser {
 			case TYPE_PARAM_IDENT: {
 				type_ref();
 				astFactory.addASTChild(currentAST, returnAST);
-				underlying_type_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.UNDERLYING_TYPE);
+				underlying_type_AST = parseAST(currentAST, ExpressParserTokenTypes.UNDERLYING_TYPE);
 				break;
 			}
 			default:
@@ -9933,8 +9324,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return eids;
 	}
 
-	public final EnumerationType constructed_types()
-			throws RecognitionException, TokenStreamException {
+	public final EnumerationType constructed_types() throws RecognitionException, TokenStreamException {
 		EnumerationType eids;
 
 		returnAST = null;
@@ -9944,18 +9334,14 @@ public class ExpressParser extends antlr.LLkParser {
 
 		try {
 			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_extensible) || LA1Equals(ExpressParserTokenTypes.LITERAL_enumeration)))
-					&& (LA1Equals(ExpressParserTokenTypes.LITERAL_enumeration) || LA(2) == ExpressParserTokenTypes.LITERAL_enumeration
-							.getIndex())) {
+					&& (LA1Equals(ExpressParserTokenTypes.LITERAL_enumeration) || LA(2) == ExpressParserTokenTypes.LITERAL_enumeration.getIndex())) {
 				eids = enumeration_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				constructed_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONSTRUCTED_TYPES);
-			} else if ((LA1Equals(ExpressParserTokenTypes.LITERAL_generic_entity)
-					|| LA1Equals(ExpressParserTokenTypes.LITERAL_extensible) || LA1Equals(ExpressParserTokenTypes.LITERAL_select))) {
+				constructed_types_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTRUCTED_TYPES);
+			} else if ((LA1Equals(ExpressParserTokenTypes.LITERAL_generic_entity) || LA1Equals(ExpressParserTokenTypes.LITERAL_extensible) || LA1Equals(ExpressParserTokenTypes.LITERAL_select))) {
 				select_type();
 				astFactory.addASTChild(currentAST, returnAST);
-				constructed_types_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.CONSTRUCTED_TYPES);
+				constructed_types_AST = parseAST(currentAST, ExpressParserTokenTypes.CONSTRUCTED_TYPES);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -9968,8 +9354,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return eids;
 	}
 
-	public final EnumerationType enumeration_type()
-			throws RecognitionException, TokenStreamException {
+	public final EnumerationType enumeration_type() throws RecognitionException, TokenStreamException {
 		EnumerationType eids;
 
 		returnAST = null;
@@ -10034,9 +9419,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 			}
 			enumeration_type_AST = (AST) currentAST.root;
-			enumeration_type_AST = makeAST(
-					ExpressParserTokenTypes.ENUMERATION_TYPE,
-					enumeration_type_AST);
+			enumeration_type_AST = makeAST(ExpressParserTokenTypes.ENUMERATION_TYPE, enumeration_type_AST);
 			if (eids == null)
 				eids = new EnumerationType();
 			eids.setExtensible(ext);
@@ -10053,8 +9436,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return eids;
 	}
 
-	public final void select_type() throws RecognitionException,
-			TokenStreamException {
+	public final void select_type() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -10128,8 +9510,7 @@ public class ExpressParser extends antlr.LLkParser {
 				}
 				}
 			}
-			select_type_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SELECT_TYPE);
+			select_type_AST = parseAST(currentAST, ExpressParserTokenTypes.SELECT_TYPE);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_37);
@@ -10137,8 +9518,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = select_type_AST;
 	}
 
-	public final EnumerationType enumeration_items()
-			throws RecognitionException, TokenStreamException {
+	public final EnumerationType enumeration_items() throws RecognitionException, TokenStreamException {
 		EnumerationType eids;
 
 		returnAST = null;
@@ -10172,8 +9552,7 @@ public class ExpressParser extends antlr.LLkParser {
 				} while (true);
 			}
 			match(ExpressParserTokenTypes.RPAREN);
-			enumeration_items_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.ENUMERATION_ITEMS);
+			enumeration_items_AST = parseAST(currentAST, ExpressParserTokenTypes.ENUMERATION_ITEMS);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_37);
@@ -10182,8 +9561,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return eids;
 	}
 
-	public final EnumerationType enumeration_extension()
-			throws RecognitionException, TokenStreamException {
+	public final EnumerationType enumeration_extension() throws RecognitionException, TokenStreamException {
 		EnumerationType eids;
 
 		returnAST = null;
@@ -10194,8 +9572,7 @@ public class ExpressParser extends antlr.LLkParser {
 		eids = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_based_on)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_based_on))) && (isFirst)) {
 				AST tmp403_AST = null;
 				tmp403_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp403_AST);
@@ -10247,8 +9624,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 					}
 				}
-				enumeration_extension_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ENUMERATION_EXTENSION);
+				enumeration_extension_AST = parseAST(currentAST, ExpressParserTokenTypes.ENUMERATION_EXTENSION);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -10261,8 +9637,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return eids;
 	}
 
-	public final String enumeration_id() throws RecognitionException,
-			TokenStreamException {
+	public final String enumeration_id() throws RecognitionException, TokenStreamException {
 		String eid;
 
 		returnAST = null;
@@ -10288,8 +9663,7 @@ public class ExpressParser extends antlr.LLkParser {
 				astFactory.addASTChild(currentAST, nid_AST);
 				match(ExpressParserTokenTypes.ENUMERATION_IDENT);
 				nid_AST.setType(ExpressParserTokenTypes.IDENT.getIndex());
-				enumeration_id_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.ENUMERATION_ID);
+				enumeration_id_AST = parseAST(currentAST, ExpressParserTokenTypes.ENUMERATION_ID);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -10302,8 +9676,7 @@ public class ExpressParser extends antlr.LLkParser {
 		return eid;
 	}
 
-	public final void select_list() throws RecognitionException,
-			TokenStreamException {
+	public final void select_list() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -10326,8 +9699,7 @@ public class ExpressParser extends antlr.LLkParser {
 				} while (true);
 			}
 			match(ExpressParserTokenTypes.RPAREN);
-			select_list_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SELECT_LIST);
+			select_list_AST = parseAST(currentAST, ExpressParserTokenTypes.SELECT_LIST);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_37);
@@ -10335,16 +9707,14 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = select_list_AST;
 	}
 
-	public final void select_extension() throws RecognitionException,
-			TokenStreamException {
+	public final void select_extension() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST select_extension_AST = null;
 
 		try {
-			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_based_on)))
-					&& (isFirst)) {
+			if (((LA1Equals(ExpressParserTokenTypes.LITERAL_based_on))) && (isFirst)) {
 				AST tmp410_AST = null;
 				tmp410_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp410_AST);
@@ -10393,8 +9763,7 @@ public class ExpressParser extends antlr.LLkParser {
 					}
 					}
 				}
-				select_extension_AST = parseAST(currentAST,
-						ExpressParserTokenTypes.SELECT_EXTENSION);
+				select_extension_AST = parseAST(currentAST, ExpressParserTokenTypes.SELECT_EXTENSION);
 			} else {
 				throw new NoViableAltException(LT(1), getFilename());
 			}
@@ -10406,8 +9775,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = select_extension_AST;
 	}
 
-	public final void type_label_id() throws RecognitionException,
-			TokenStreamException {
+	public final void type_label_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -10418,8 +9786,7 @@ public class ExpressParser extends antlr.LLkParser {
 			tmp415_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp415_AST);
 			match(ExpressParserTokenTypes.IDENT);
-			type_label_id_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.TYPE_LABEL_ID);
+			type_label_id_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_LABEL_ID);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_103);
@@ -10444,8 +9811,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = width_AST;
 	}
 
-	public final void simple_id() throws RecognitionException,
-			TokenStreamException {
+	public final void simple_id() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -10456,8 +9822,7 @@ public class ExpressParser extends antlr.LLkParser {
 			tmp416_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp416_AST);
 			match(ExpressParserTokenTypes.IDENT);
-			simple_id_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.SIMPLE_ID);
+			simple_id_AST = parseAST(currentAST, ExpressParserTokenTypes.SIMPLE_ID);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_103);
@@ -10465,8 +9830,7 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = simple_id_AST;
 	}
 
-	public final void type_label_ref() throws RecognitionException,
-			TokenStreamException {
+	public final void type_label_ref() throws RecognitionException, TokenStreamException {
 
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
@@ -10477,8 +9841,7 @@ public class ExpressParser extends antlr.LLkParser {
 			tmp417_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp417_AST);
 			match(ExpressParserTokenTypes.IDENT);
-			type_label_ref_AST = parseAST(currentAST,
-					ExpressParserTokenTypes.TYPE_LABEL_REF);
+			type_label_ref_AST = parseAST(currentAST, ExpressParserTokenTypes.TYPE_LABEL_REF);
 		} catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex, _tokenSet_103);
@@ -10486,101 +9849,42 @@ public class ExpressParser extends antlr.LLkParser {
 		returnAST = type_label_ref_AST;
 	}
 
-	public static final String[] _tokenNames = { "<0>", "EOF", "<2>",
-			"NULL_TREE_LOOKAHEAD", "CONSTANT_IDENT", "ENTITY_IDENT",
-			"FUNCTION_IDENT", "PROCEDURE_IDENT", "PARAMETER_IDENT",
-			"SCHEMA_IDENT", "TYPE_IDENT", "VARIABLE_IDENT",
-			"ENUMERATION_IDENT", "ATTRIBUTE_IDENT", "ENTITY_ATTR_IDENT",
-			"TYPE_ATTR_IDENT", "ENTITY_VAR_IDENT", "TYPE_VAR_IDENT",
-			"ENTITY_PARAM_IDENT", "TYPE_PARAM_IDENT", "SUBTYPE_CONSTRAINT_ID",
-			"ACTUAL_PARAMETER_LIST", "ADD_LIKE_OP", "AGGREGATE_INITIALIZER",
-			"AGGREGATE_SOURCE", "AGGREGATE_TYPE", "AGGREGATION_TYPES",
-			"ALGORITHM_HEAD", "ALIAS_STMT", "ARRAY_TYPE", "ASSIGNMENT_STMT",
-			"BAG_TYPE", "BASE_TYPE", "BINARY_TYPE", "BOOLEAN_TYPE", "BOUND_1",
-			"BOUND_2", "BOUND_SPEC", "BUILT_IN_CONSTANT", "BUILT_IN_FUNCTION",
-			"BUILT_IN_PROCEDURE", "CASE_ACTION", "CASE_LABEL", "CASE_STMT",
-			"COMPOUND_STMT", "CONSTANT_BODY", "CONSTANT_DECL",
-			"CONSTANT_FACTOR", "CONSTANT_ID", "DECLARATION", "DOMAIN_RULE",
-			"ELEMENT", "ENTITY_HEAD", "ENTITY_DECL", "ENTITY_BODY", "SUBSUPER",
-			"SUPERTYPE_CONSTRAINT", "ABSTRACT_SUPERTYPE_DECLARATION",
-			"SUBTYPE_DECLARATION", "EXPLICIT_ATTR", "ATTRIBUTE_DECL",
-			"ATTRIBUTE_ID", "QUALIFIED_ATTRIBUTE", "DERIVE_CLAUSE",
-			"DERIVED_ATTR", "INVERSE_CLAUSE", "INVERSE_ATTR", "UNIQUE_CLAUSE",
-			"UNIQUE_RULE", "REFERENCED_ATTRIBUTE", "ENTITY_CONSTRUCTOR",
-			"ENTITY_ID", "ENUMERATION_REFERENCE", "ESCAPE_STMT", "EXPRESSION",
-			"FACTOR", "FORMAL_PARAMETER", "ATTRIBUTE_QUALIFIER",
-			"FUNCTION_CALL", "FUNCTION_DECL", "FUNCTION_HEAD", "FUNCTION_ID",
-			"GENERALIZED_TYPES", "GENERAL_AGGREGATION_TYPES",
-			"GENERAL_ARRAY_TYPE", "GENERAL_BAG_TYPE", "GENERAL_LIST_TYPE",
-			"GENERAL_REF", "GENERAL_SET_TYPE", "GENERIC_TYPE",
-			"GROUP_QUALIFIER", "IF_STMT", "INCREMENT", "INCREMENT_CONTROL",
-			"INDEX", "INDEX_1", "INDEX_2", "INDEX_QUALIFIER", "INTEGER_TYPE",
-			"INTERVAL", "INTERVAL_HIGH", "INTERVAL_ITEM", "INTERVAL_LOW",
-			"INTERVAL_OP", "LABEL", "LIST_TYPE", "LITERAL", "REAL", "INTEGER",
-			"STRING", "LOCAL_DECL", "LOCAL_VARIABLE", "LOGICAL_EXPRESSION",
-			"LOGICAL", "LOGICAL_TYPE", "MULTIPLICATION_LIKE_OP", "NAMED_TYPES",
-			"NULL_STMT", "NUMBER_TYPE", "NUMERIC_EXPRESSION", "ONE_OF",
-			"PARAMETER", "PARAMETER_ID", "PARAMETER_TYPE", "POPULATION",
-			"PRECISION_SPEC", "PRIMARY", "PROCEDURE_CALL_STMT",
-			"PROCEDURE_DECL", "PROCEDURE_HEAD", "PROCEDURE_ID",
-			"QUALIFIABLE_FACTOR", "QUALIFIER", "QUERY_EXPRESSION", "REAL_TYPE",
-			"REFERENCE_CLAUSE", "REL_OP", "REL_OP_EXTENDED", "REPEAT_CONTROL",
-			"REPEAT_STMT", "REPETITION", "RESOURCE_OR_RENAME", "RESOURCE_REF",
-			"RETURN_STMT", "RULE_DECL", "RULE_HEAD", "RULE_ID", "SCHEMA_ID",
-			"SCHEMA_BODY", "SCHEMA_DECL", "INTERFACE_SPECIFICATION",
-			"USE_CLAUSE", "NAMED_TYPE_OR_RENAME", "SELECTOR", "SET_TYPE",
-			"SIMPLE_EXPRESSION", "SIMPLE_FACTOR", "SIMPLE_TYPES", "SKIP_STMT",
-			"STMT", "STRING_TYPE", "SUBTYPE_CONSTRAINT",
-			"SUPERTYPE_EXPRESSION", "SUPERTYPE_FACTOR", "SUPERTYPE_RULE",
-			"SUPERTYPE_TERM", "SYNTAX", "TERM", "TYPE_DECL", "UNDERLYING_TYPE",
-			"CONSTRUCTED_TYPES", "ENUMERATION_TYPE", "ENUMERATION_ID",
-			"SELECT_TYPE", "TYPE_ID", "TYPE_LABEL", "TYPE_LABEL_ID",
-			"UNARY_OP", "UNTIL_CONTROL", "VARIABLE_ID", "WHERE_CLAUSE",
-			"WHILE_CONTROL", "WIDTH", "WIDTH_SPEC", "ENTITY_REF", "TYPE_REF",
-			"ENUMERATION_REF", "ATTRIBUTE_REF", "CONSTANT_REF", "FUNCTION_REF",
-			"PARAMETER_REF", "VARIABLE_REF", "SCHEMA_REF", "TYPE_LABEL_REF",
-			"PROCEDURE_REF", "SIMPLE_ID", "ELSE_CLAUSE", "RENAME_ID",
-			"ENUMERATION_ITEMS", "ENUMERATION_EXTENSION", "SELECT_LIST",
-			"SELECT_EXTENSION", "REDECLARED_ATTRIBUTE",
-			"SUBTYPE_CONSTRAINT_DECL", "SUBTYPE_CONSTRAINT_HEAD",
-			"SUBTYPE_CONSTRAINT_BODY", "ABSTRACT_SUPERTYPE", "TOTAL_OVER",
-			"CONCRETE_TYPES", "GENERIC_ENTITY_TYPE", "SCHEMA_VERSION_ID",
-			"LANGUAGE_VERSION_ID", "(", ",", ")", "+", "-", "\"or\"",
-			"\"xor\"", "[", "]", "\"aggregate\"", ":", "\"of\"", "\"alias\"",
-			"\"for\"", "an identifer", ";", "\"end_alias\"", "\"array\"",
-			"\"optional\"", "\"unique\"", ":=", "\"bag\"", "\"binary\"",
-			"\"boolean\"", "\"const_e\"", "\"pi\"", "\"self\"", "?", "*",
-			"\"abs\"", "\"acos\"", "\"asin\"", "\"atan\"", "\"blength\"",
-			"\"cos\"", "\"exists\"", "\"exp\"", "\"format\"", "\"hibound\"",
-			"\"hiindex\"", "\"length\"", "\"lobound\"", "\"loindex\"",
-			"\"log\"", "\"log2\"", "\"log10\"", "\"nvl\"", "\"odd\"",
-			"\"rolesof\"", "\"sin\"", "\"sizeof\"", "\"sqrt\"", "\"tan\"",
-			"\"typeof\"", "\"usedin\"", "\"value\"", "\"value_in\"",
-			"\"value_unique\"", "\"insert\"", "\"remove\"", "\"case\"",
-			"\"otherwise\"", "\"end_case\"", "\"begin\"", "\"end\"",
-			"\"constant\"", "\"end_constant\"", "\"entity\"", "\"abstract\"",
-			"\"end_entity\"", "\"supertype\"", "\"subtype\"",
-			"\"end_subtype_constraint\"", "\"subtype_constraint\"",
-			"\"total_over\"", "\"renamed\"", "\"derive\"", "\"inverse\"",
-			"\"set\"", ".", "\"escape\"", "double star", "\"end_function\"",
-			"\"function\"", "\"list\"", "\"generic\"", "\"generic_entity\"",
-			"backslash", "\"if\"", "\"then\"", "\"end_if\"", "\"else\"",
-			"\"to\"", "\"by\"", "\"integer\"", "{", "}", "<", "<=",
-			"an integer value", "an floating point value", "a string literal",
-			"\"local\"", "\"end_local\"", "\"false\"", "\"true\"",
-			"\"unknown\"", "\"logical\"", "/", "\"div\"", "\"mod\"", "\"and\"",
-			"double bar", "\"number\"", "\"oneof\"", "\"end_procedure\"",
-			"\"procedure\"", "\"var\"", "\"query\"", "less than star", "|",
-			"\"real\"", "\"reference\"", "\"from\"", ">", ">=",
-			"less-than/greater-than thing", "=", ":<>:", ":=:", "\"in\"",
-			"\"like\"", "\"repeat\"", "\"end_repeat\"", "\"as\"", "\"return\"",
-			"\"end_rule\"", "\"rule\"", "\"schema\"", "\"end_schema\"",
-			"\"use\"", "\"skip\"", "\"string\"", "\"andor\"",
-			"language version id", "\"type\"", "\"end_type\"",
-			"\"extensible\"", "\"enumeration\"", "\"based_on\"", "\"with\"",
-			"\"select\"", "\"not\"", "\"until\"", "\"where\"", "\"while\"",
-			"\"fixed\"", "a comment", "a EXPRESS one line comment", "&", "@",
-			"white space", "a digit" };
+	public static final String[] _tokenNames = { "<0>", "EOF", "<2>", "NULL_TREE_LOOKAHEAD", "CONSTANT_IDENT", "ENTITY_IDENT", "FUNCTION_IDENT", "PROCEDURE_IDENT",
+			"PARAMETER_IDENT", "SCHEMA_IDENT", "TYPE_IDENT", "VARIABLE_IDENT", "ENUMERATION_IDENT", "ATTRIBUTE_IDENT", "ENTITY_ATTR_IDENT", "TYPE_ATTR_IDENT", "ENTITY_VAR_IDENT",
+			"TYPE_VAR_IDENT", "ENTITY_PARAM_IDENT", "TYPE_PARAM_IDENT", "SUBTYPE_CONSTRAINT_ID", "ACTUAL_PARAMETER_LIST", "ADD_LIKE_OP", "AGGREGATE_INITIALIZER",
+			"AGGREGATE_SOURCE", "AGGREGATE_TYPE", "AGGREGATION_TYPES", "ALGORITHM_HEAD", "ALIAS_STMT", "ARRAY_TYPE", "ASSIGNMENT_STMT", "BAG_TYPE", "BASE_TYPE", "BINARY_TYPE",
+			"BOOLEAN_TYPE", "BOUND_1", "BOUND_2", "BOUND_SPEC", "BUILT_IN_CONSTANT", "BUILT_IN_FUNCTION", "BUILT_IN_PROCEDURE", "CASE_ACTION", "CASE_LABEL", "CASE_STMT",
+			"COMPOUND_STMT", "CONSTANT_BODY", "CONSTANT_DECL", "CONSTANT_FACTOR", "CONSTANT_ID", "DECLARATION", "DOMAIN_RULE", "ELEMENT", "ENTITY_HEAD", "ENTITY_DECL",
+			"ENTITY_BODY", "SUBSUPER", "SUPERTYPE_CONSTRAINT", "ABSTRACT_SUPERTYPE_DECLARATION", "SUBTYPE_DECLARATION", "EXPLICIT_ATTR", "ATTRIBUTE_DECL", "ATTRIBUTE_ID",
+			"QUALIFIED_ATTRIBUTE", "DERIVE_CLAUSE", "DERIVED_ATTR", "INVERSE_CLAUSE", "INVERSE_ATTR", "UNIQUE_CLAUSE", "UNIQUE_RULE", "REFERENCED_ATTRIBUTE", "ENTITY_CONSTRUCTOR",
+			"ENTITY_ID", "ENUMERATION_REFERENCE", "ESCAPE_STMT", "EXPRESSION", "FACTOR", "FORMAL_PARAMETER", "ATTRIBUTE_QUALIFIER", "FUNCTION_CALL", "FUNCTION_DECL",
+			"FUNCTION_HEAD", "FUNCTION_ID", "GENERALIZED_TYPES", "GENERAL_AGGREGATION_TYPES", "GENERAL_ARRAY_TYPE", "GENERAL_BAG_TYPE", "GENERAL_LIST_TYPE", "GENERAL_REF",
+			"GENERAL_SET_TYPE", "GENERIC_TYPE", "GROUP_QUALIFIER", "IF_STMT", "INCREMENT", "INCREMENT_CONTROL", "INDEX", "INDEX_1", "INDEX_2", "INDEX_QUALIFIER", "INTEGER_TYPE",
+			"INTERVAL", "INTERVAL_HIGH", "INTERVAL_ITEM", "INTERVAL_LOW", "INTERVAL_OP", "LABEL", "LIST_TYPE", "LITERAL", "REAL", "INTEGER", "STRING", "LOCAL_DECL",
+			"LOCAL_VARIABLE", "LOGICAL_EXPRESSION", "LOGICAL", "LOGICAL_TYPE", "MULTIPLICATION_LIKE_OP", "NAMED_TYPES", "NULL_STMT", "NUMBER_TYPE", "NUMERIC_EXPRESSION", "ONE_OF",
+			"PARAMETER", "PARAMETER_ID", "PARAMETER_TYPE", "POPULATION", "PRECISION_SPEC", "PRIMARY", "PROCEDURE_CALL_STMT", "PROCEDURE_DECL", "PROCEDURE_HEAD", "PROCEDURE_ID",
+			"QUALIFIABLE_FACTOR", "QUALIFIER", "QUERY_EXPRESSION", "REAL_TYPE", "REFERENCE_CLAUSE", "REL_OP", "REL_OP_EXTENDED", "REPEAT_CONTROL", "REPEAT_STMT", "REPETITION",
+			"RESOURCE_OR_RENAME", "RESOURCE_REF", "RETURN_STMT", "RULE_DECL", "RULE_HEAD", "RULE_ID", "SCHEMA_ID", "SCHEMA_BODY", "SCHEMA_DECL", "INTERFACE_SPECIFICATION",
+			"USE_CLAUSE", "NAMED_TYPE_OR_RENAME", "SELECTOR", "SET_TYPE", "SIMPLE_EXPRESSION", "SIMPLE_FACTOR", "SIMPLE_TYPES", "SKIP_STMT", "STMT", "STRING_TYPE",
+			"SUBTYPE_CONSTRAINT", "SUPERTYPE_EXPRESSION", "SUPERTYPE_FACTOR", "SUPERTYPE_RULE", "SUPERTYPE_TERM", "SYNTAX", "TERM", "TYPE_DECL", "UNDERLYING_TYPE",
+			"CONSTRUCTED_TYPES", "ENUMERATION_TYPE", "ENUMERATION_ID", "SELECT_TYPE", "TYPE_ID", "TYPE_LABEL", "TYPE_LABEL_ID", "UNARY_OP", "UNTIL_CONTROL", "VARIABLE_ID",
+			"WHERE_CLAUSE", "WHILE_CONTROL", "WIDTH", "WIDTH_SPEC", "ENTITY_REF", "TYPE_REF", "ENUMERATION_REF", "ATTRIBUTE_REF", "CONSTANT_REF", "FUNCTION_REF", "PARAMETER_REF",
+			"VARIABLE_REF", "SCHEMA_REF", "TYPE_LABEL_REF", "PROCEDURE_REF", "SIMPLE_ID", "ELSE_CLAUSE", "RENAME_ID", "ENUMERATION_ITEMS", "ENUMERATION_EXTENSION", "SELECT_LIST",
+			"SELECT_EXTENSION", "REDECLARED_ATTRIBUTE", "SUBTYPE_CONSTRAINT_DECL", "SUBTYPE_CONSTRAINT_HEAD", "SUBTYPE_CONSTRAINT_BODY", "ABSTRACT_SUPERTYPE", "TOTAL_OVER",
+			"CONCRETE_TYPES", "GENERIC_ENTITY_TYPE", "SCHEMA_VERSION_ID", "LANGUAGE_VERSION_ID", "(", ",", ")", "+", "-", "\"or\"", "\"xor\"", "[", "]", "\"aggregate\"", ":",
+			"\"of\"", "\"alias\"", "\"for\"", "an identifer", ";", "\"end_alias\"", "\"array\"", "\"optional\"", "\"unique\"", ":=", "\"bag\"", "\"binary\"", "\"boolean\"",
+			"\"const_e\"", "\"pi\"", "\"self\"", "?", "*", "\"abs\"", "\"acos\"", "\"asin\"", "\"atan\"", "\"blength\"", "\"cos\"", "\"exists\"", "\"exp\"", "\"format\"",
+			"\"hibound\"", "\"hiindex\"", "\"length\"", "\"lobound\"", "\"loindex\"", "\"log\"", "\"log2\"", "\"log10\"", "\"nvl\"", "\"odd\"", "\"rolesof\"", "\"sin\"",
+			"\"sizeof\"", "\"sqrt\"", "\"tan\"", "\"typeof\"", "\"usedin\"", "\"value\"", "\"value_in\"", "\"value_unique\"", "\"insert\"", "\"remove\"", "\"case\"",
+			"\"otherwise\"", "\"end_case\"", "\"begin\"", "\"end\"", "\"constant\"", "\"end_constant\"", "\"entity\"", "\"abstract\"", "\"end_entity\"", "\"supertype\"",
+			"\"subtype\"", "\"end_subtype_constraint\"", "\"subtype_constraint\"", "\"total_over\"", "\"renamed\"", "\"derive\"", "\"inverse\"", "\"set\"", ".", "\"escape\"",
+			"double star", "\"end_function\"", "\"function\"", "\"list\"", "\"generic\"", "\"generic_entity\"", "backslash", "\"if\"", "\"then\"", "\"end_if\"", "\"else\"",
+			"\"to\"", "\"by\"", "\"integer\"", "{", "}", "<", "<=", "an integer value", "an floating point value", "a string literal", "\"local\"", "\"end_local\"", "\"false\"",
+			"\"true\"", "\"unknown\"", "\"logical\"", "/", "\"div\"", "\"mod\"", "\"and\"", "double bar", "\"number\"", "\"oneof\"", "\"end_procedure\"", "\"procedure\"",
+			"\"var\"", "\"query\"", "less than star", "|", "\"real\"", "\"reference\"", "\"from\"", ">", ">=", "less-than/greater-than thing", "=", ":<>:", ":=:", "\"in\"",
+			"\"like\"", "\"repeat\"", "\"end_repeat\"", "\"as\"", "\"return\"", "\"end_rule\"", "\"rule\"", "\"schema\"", "\"end_schema\"", "\"use\"", "\"skip\"", "\"string\"",
+			"\"andor\"", "language version id", "\"type\"", "\"end_type\"", "\"extensible\"", "\"enumeration\"", "\"based_on\"", "\"with\"", "\"select\"", "\"not\"", "\"until\"",
+			"\"where\"", "\"while\"", "\"fixed\"", "a comment", "a EXPRESS one line comment", "&", "@", "white space", "a digit" };
 
 	protected void buildTokenTypeASTClassMap() {
 		tokenTypeToASTClassMap = null;
