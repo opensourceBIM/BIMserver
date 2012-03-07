@@ -9,6 +9,7 @@
 		<antcall target="Emf" />
 		<antcall target="Plugins" />
 		<antcall target="Shared" />
+		<antcall target="Ifc"/>
 		<antcall target="BimServerClientLib"/>
 		<antcall target="Client"/>
 		<copy todir="builds/BuildClient">
