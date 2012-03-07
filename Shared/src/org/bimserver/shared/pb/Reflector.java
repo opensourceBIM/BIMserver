@@ -65,17 +65,18 @@ public class Reflector extends ProtocolBuffersConverter {
 	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, Object... args) throws ServerException, UserException {
 		try {
 			MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
+			SMethod sMethod = sService.getSMethod(methodName);
 			Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
 			Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
 			int i = 0;
 			for (FieldDescriptor field : inputDescriptor.getFields()) {
-				Object arg = args[i++];
+				Object arg = args[i];
 				if (field.getJavaType() == JavaType.ENUM) {
 					EnumDescriptor enumType = field.getEnumType();
 					builder.setField(field, enumType.findValueByName(arg.toString()));
 				} else {
 					if (arg instanceof SBase) {
-						builder.setField(field, convertSObjectToProtocolBuffersObject((SBase) arg, null));
+						builder.setField(field, convertSObjectToProtocolBuffersObject((SBase) arg, sMethod.getParameter(i).getType()));
 					} else if (arg instanceof DataHandler) {
 						DataHandler dataHandler = (DataHandler) arg;
 						ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -89,11 +90,12 @@ public class Reflector extends ProtocolBuffersConverter {
 						builder.setField(field, arg);
 					}
 				}
+				i++;
 			}
-			SMethod sMethod = sService.getSMethod(methodName);
 			DynamicMessage message = builder.build();
 			Message result = channel.callBlockingMethod(methodDescriptorContainer, message);
-			String errorMessage = (String) result.getField(methodDescriptorContainer.getOutputField("errorMessage"));
+			FieldDescriptor errorMessageField = methodDescriptorContainer.getOutputField("errorMessage");
+			String errorMessage = (String) result.getField(errorMessageField);
 			if (errorMessage.equals("OKE")) {
 				if (result.getDescriptorForType().getName().equals("VoidResponse")) {
 					return null;

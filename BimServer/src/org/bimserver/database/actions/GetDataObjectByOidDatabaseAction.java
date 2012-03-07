@@ -26,7 +26,6 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcLengthMeasure;
 import org.bimserver.models.ifc2x3.IfcRoot;
@@ -104,7 +103,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 		return dataObject;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void fillDataObject(BiMap<? extends Long, ? extends EObject> mapResult, EObject eObject, DataObject dataObject) {
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 			Object eGet = eObject.eGet(eStructuralFeature);

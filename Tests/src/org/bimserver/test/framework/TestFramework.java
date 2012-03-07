@@ -31,7 +31,6 @@ import org.bimserver.models.store.ServerState;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.tests.TestFile;
-import org.bimserver.tests.TestFileConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
