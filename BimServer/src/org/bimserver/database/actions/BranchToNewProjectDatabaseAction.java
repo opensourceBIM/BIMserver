@@ -23,7 +23,6 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.models.log.AccessMethod;
@@ -74,12 +73,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Integer>
 		final IfcModelInterface model = bimServer.getMergerFactory().createMerger().merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		model.resetOids();
 		final Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, currentUoid).execute();
-		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(getDatabaseSession(), getAccessMethod(), newProject.getOid(), currentUoid, model, comment);
-		ConcreteRevision revision = action.execute();
-		CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, bimServer.getDatabase().createSession(true), getAccessMethod(), model, currentUoid, revision.getOid(), false, true);
-		SCheckinResult result = new SCheckinResult();
-		result.setProjectId(revision.getProject().getOid());
-		// result.setProjectName(revision.getProject().getName());
+		CheckinDatabaseAction createCheckinAction = new CheckinDatabaseAction(bimServer, bimServer.getDatabase().createSession(true), getAccessMethod(), newProject.getOid(), currentUoid, model, comment, false, true);
 		LongCheckinAction longAction = new LongCheckinAction(bimServer, user, createCheckinAction);
 		try {
 			bimServer.getLongActionManager().start(longAction);

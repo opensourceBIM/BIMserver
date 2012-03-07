@@ -25,21 +25,21 @@ import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.utils.CollectionUtils;
 
-public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
+public class TestObjectIDMPlugin implements ObjectIDMPlugin {
 
-	private SchemaFieldIgnoreMap objectIDM;
+	private TestFieldIgnoreMap objectIDM;
 	private boolean initialized = false;
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		SchemaDefinition schema = pluginManager.requireSchemaDefinition();
-		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), schema);
+		objectIDM = new TestFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), schema);
 		initialized = true;
 	}
 
 	@Override
 	public String getDescription() {
-		return "SchemaFieldObjectIDMPlugin";
+		return "TestObjectIDMPlugin";
 	}
 
 	@Override
@@ -59,6 +59,6 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 
 	@Override
 	public String getDefaultObjectIDMName() {
-		return "default";
+		return "test";
 	}
 }

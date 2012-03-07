@@ -883,9 +883,11 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public void getMap(IfcModel ifcModel, int pid, int rid, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
+	public void getMap(IfcModel ifcModel, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
 		for (EClass eClass : database.getClasses()) {
-			getMap(eClass, pid, rid, ifcModel, deep, ObjectIDM);
+			if (!objectIDM.shouldIgnoreClass(eClass)) {
+				getMap(eClass, pid, rid, ifcModel, deep, objectIDM);
+			}
 		}
 	}
 
@@ -1152,7 +1154,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, IdEObject object, EStructuralFeature feature,
-			EClass eClass, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
+			EClass eClass, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return null;
@@ -1177,12 +1179,17 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								+ " (referenced from " + object.eClass().getName() + " with oid " + object.getOid() + " on field " + feature.getName() + ")");
 					}
 					if (referenceValue.length == 1 && referenceValue[0] == -1) {
-					} else if (referenceValue != null) {
-						ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);
-						IdEObject newObject = convertByteArrayToObject(originalQueryClass, eClass, oid, referenceBuffer, model, pid, rid, deep, ObjectIDM);
-						RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
-						putInCache(recordIdentifier, newObject);
-						return newObject;
+						// Deleted
+					} else {
+						if (objectIDM.shouldIgnoreClass(eClass)) {
+							return null;
+						} else {
+							ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);
+							IdEObject newObject = convertByteArrayToObject(originalQueryClass, eClass, oid, referenceBuffer, model, pid, rid, deep, objectIDM);
+							RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
+							putInCache(recordIdentifier, newObject);
+							return newObject;
+						}
 					}
 				} else {
 					IdEObject newObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
