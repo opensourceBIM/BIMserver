@@ -53,6 +53,8 @@ public interface BimDatabaseSession extends OidProvider {
 
 	void delete(IdEObject object) throws BimDeadlockException;
 
+	<T> T executeAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimDatabaseException, UserException;
+
 	<T> T executeAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException;
 
 	<T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException;

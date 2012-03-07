@@ -45,12 +45,9 @@ public class ClashDetectionLongAction extends LongAction {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClashDetectionLongAction.class);
 	private final long actingUoid;
 	private final long poid;
-	private final User user;
-	private final BimServer bimServer;
 
 	public ClashDetectionLongAction(BimServer bimServer, User user, long actingUoid, long poid) {
-		this.bimServer = bimServer;
-		this.user = user;
+		super(bimServer, user);
 		this.actingUoid = actingUoid;
 		this.poid = poid;
 	}
@@ -58,7 +55,7 @@ public class ClashDetectionLongAction extends LongAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void execute() {
-		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		BimDatabaseSession session = getBimServer().getDatabase().createSession(true);
 		long roid = -1;
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
@@ -74,13 +71,13 @@ public class ClashDetectionLongAction extends LongAction {
 		} finally {
 			session.close();
 		}
-		session = bimServer.getDatabase().createSession(true);
+		session = getBimServer().getDatabase().createSession(true);
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
-			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(bimServer, session, AccessMethod.INTERNAL, clashDetectionSettings, roid);
+			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, clashDetectionSettings, roid);
 			Set<? extends Clash> clashes = findClashesDatabaseAction.execute();
 			Revision revision = project.getLastRevision();
 // Temporarily disabled, should be enabled when lazy loading is working
@@ -101,14 +98,14 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(bimServer, session, AccessMethod.INTERNAL, actingUoid, poid, new SConverter().convertToSObject(clashDetectionSettings), emailAddresses);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, actingUoid, poid, new SConverter().convertToSObject(clashDetectionSettings), emailAddresses);
 				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			try {
-				BimDatabaseSession rollBackSession = bimServer.getDatabase().createSession(true);
+				BimDatabaseSession rollBackSession = getBimServer().getDatabase().createSession(true);
 				try {
 					Throwable throwable = e;
 					while (throwable.getCause() != null) {
@@ -134,12 +131,7 @@ public class ClashDetectionLongAction extends LongAction {
 
 	@Override
 	public String getDescription() {
-		return "ClashDetectionLongAction " + user.getName();
-	}
-
-	@Override
-	public User getUser() {
-		return user;
+		return "ClashDetectionLongAction " + getUser().getName();
 	}
 
 	@Override

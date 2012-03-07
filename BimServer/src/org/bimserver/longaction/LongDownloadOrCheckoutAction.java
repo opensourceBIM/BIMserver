@@ -55,12 +55,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	protected final long currentUoid;
 	protected ActionState state = ActionState.UNKNOWN;
 	protected SCheckoutResult checkoutResult;
-	protected User user;
-	private final BimServer bimServer;
 
-	protected LongDownloadOrCheckoutAction(BimServer bimServer, DownloadParameters downloadParameters, AccessMethod accessMethod, long currentUoid) {
-		super();
-		this.bimServer = bimServer;
+	protected LongDownloadOrCheckoutAction(BimServer bimServer, User user, DownloadParameters downloadParameters, AccessMethod accessMethod, long currentUoid) {
+		super(bimServer, user);
 		this.accessMethod = accessMethod;
 		this.downloadParameters = downloadParameters;
 		this.currentUoid = currentUoid;
@@ -71,10 +68,6 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	}
 
 	public abstract LongActionState getState();
-
-	public User getUser() {
-		return user;
-	}
 
 	protected SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters)
 			throws UserException, NoSerializerFoundException {
@@ -103,7 +96,6 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		} else {
 			IfcModelInterface ifcModel = null;
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false, null);
-			user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			revision.getProject().getGeoTag().load(); // Little hack to make sure this is lazily loaded, because after the executeAndCommitAction the session won't be usable
 			if (commit) {
 				ifcModel = session.executeAndCommitAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
@@ -119,7 +111,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				if (found != null) {
 					org.bimserver.models.store.IfcEngine ifcEngine = found.getIfcEngine();
 					if (ifcEngine != null) {
-						ifcEnginePlugin = (IfcEnginePlugin) bimServer.getPluginManager().getIfcEngine(ifcEngine.getClassName(), true);
+						ifcEnginePlugin = (IfcEnginePlugin) getBimServer().getPluginManager().getIfcEngine(ifcEngine.getClassName(), true);
 					}
 				}
 			} catch (BimDatabaseException e) {
@@ -139,15 +131,11 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				}
 			}
 			
-			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, ifcEngine, downloadParameters);
+			checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUser(), ifcModel, ifcEngine, downloadParameters);
 			if (checkoutResult != null) {
 				getBimServer().getDiskCacheManager().store(downloadParameters, checkoutResult.getFile());
 			}
 		}
 		done();
-	}
-
-	public BimServer getBimServer() {
-		return bimServer;
 	}
 }

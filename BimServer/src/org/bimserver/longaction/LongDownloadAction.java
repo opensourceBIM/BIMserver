@@ -37,6 +37,7 @@ import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -46,8 +47,8 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	private BimDatabaseAction<? extends IfcModelInterface> action;
 	private BimDatabaseSession session;
 
-	public LongDownloadAction(BimServer bimServer, DownloadParameters downloadParameters, long currentUoid, AccessMethod accessMethod) {
-		super(bimServer, downloadParameters, accessMethod, currentUoid);
+	public LongDownloadAction(BimServer bimServer, User user, DownloadParameters downloadParameters, long currentUoid, AccessMethod accessMethod) {
+		super(bimServer, user, downloadParameters, accessMethod, currentUoid);
 	}
 
 	public void execute() {
