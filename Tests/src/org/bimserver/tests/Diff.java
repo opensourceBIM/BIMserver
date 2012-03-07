@@ -445,9 +445,9 @@ public class Diff {
 			for (ModelObject modelObject : new ArrayList<ModelObject>(model1.getMatchedObjects())) {
 				valueMatches += testValues(modelObject);
 			}
-			addedByReferencesTo += testSingleOutgoingReferences(model1);
+//			addedByReferencesTo += testSingleOutgoingReferences(model1);
 			addedByReferencesFrom += testSingleIncomingReferences(model1);
-			addedBySingleInstance += testSingleOfType(model1, model2);
+//			addedBySingleInstance += testSingleOfType(model1, model2);
 			addedByHashMatch += testOutgoingReferences(model1, model2);
 			
 			lastMatchedObjects = matchedObjects;

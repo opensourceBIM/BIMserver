@@ -20,13 +20,15 @@ public class Licenser {
 	}
 
 	private void start() {
-		File workspace = new File("S:\\Workspaces\\BIMserver");
+		File workspace = new File("../");
 		for (File project : workspace.listFiles()) {
 			if (!project.getName().startsWith(".")) {
 				File srcFolder = new File(project, "src");
 				if (srcFolder.exists()) {
 					String license = getCommentedLicenseText(new File(project, "license.txt"));
-					process(srcFolder, license);
+					if (license != null) {
+						process(srcFolder, license);
+					}
 				}
 			}
 		}
@@ -50,6 +52,9 @@ public class Licenser {
 	}
 
 	public static String getCommentedLicenseText(File file) {
+		if (file.exists()) { 
+			return null;
+		}
 		try {
 			String content = FileUtils.readFileToString(file);
 			StringBuilder newContent = new StringBuilder();

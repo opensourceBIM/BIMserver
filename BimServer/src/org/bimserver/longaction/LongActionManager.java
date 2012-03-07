@@ -33,9 +33,7 @@ import com.google.common.collect.HashBiMap;
 public class LongActionManager {
 
 	private final BiMap<Integer, LongAction<?>> actions = HashBiMap.create();
-
 	private volatile boolean running = true;
-
 	private int actionNumberCounter = 0;
 
 	public synchronized void start(final LongAction<?> longAction) throws CannotBeScheduledException {
