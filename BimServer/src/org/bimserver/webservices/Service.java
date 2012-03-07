@@ -291,10 +291,9 @@ public class Service implements ServiceInterface {
 					throw new UserException(e);
 				}
 				IfcModelInterface model = deserializer.read(inputStream, fileName, false, fileSize);
-				GetUserByUoidDatabaseAction getUserByUoidDatabaseAction = new GetUserByUoidDatabaseAction(session, accessMethod, currentUoid);
-				User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
+				User user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, session, accessMethod, poid, currentUoid, model, comment, merge, true);
-				LongCheckinAction longAction = new LongCheckinAction(bimServer, userByUoid, checkinDatabaseAction);
+				LongCheckinAction longAction = new LongCheckinAction(bimServer, user, checkinDatabaseAction);
 				bimServer.getLongActionManager().start(longAction);
 				if (sync) {
 					longAction.waitForCompletion();
@@ -357,7 +356,14 @@ public class Service implements ServiceInterface {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
 		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerName, -1);
-		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, downloadParameters, currentUoid, accessMethod);
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		User user = null;
+		try {
+			user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+		} finally {
+			session.close();
+		}
+		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, user, downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
 		} catch (CannotBeScheduledException e) {
@@ -655,7 +661,14 @@ public class Service implements ServiceInterface {
 	}
 	
 	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
-		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, downloadParameters, currentUoid, accessMethod);
+		User user = null;
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+		} finally {
+			session.close();
+		}
+		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, user, downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
 		} catch (Exception e) {

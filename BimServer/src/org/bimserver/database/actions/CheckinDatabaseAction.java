@@ -39,6 +39,7 @@ import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
@@ -158,6 +159,16 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			}
 			concreteRevision.setState(CheckinState.DONE);
 			getDatabaseSession().store(concreteRevision);
+			
+//			for (Revision revision : createCheckinAction.getConcreteRevision(createCheckinAction.getCroid()).getRevisions()) {
+//				NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
+//				newRevisionAdded.setDate(new Date());
+//				newRevisionAdded.setExecutor(user);
+//				newRevisionAdded.setRevision(revision);
+//				newRevisionAdded.setAccessMethod(createCheckinAction.getAccessMethod());
+//
+//				bimServer.getNotificationsManager().notify(newRevisionAdded);
+//			}
 		} catch (Throwable e) {
 			if (e instanceof BimDeadlockException) {
 				// Let this one slide
@@ -192,5 +203,33 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 	public Project getProject() {
 		return project;
+	}
+
+	public void rollback(Throwable e) {
+		long croid = getCroid();
+		try {
+			BimDatabaseSession rollBackSession = bimServer.getDatabase().createSession(true);
+			try {
+				Throwable throwable = e;
+				while (throwable.getCause() != null) {
+					throwable = throwable.getCause();
+				}
+				ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
+				concreteRevision.setState(CheckinState.ERROR);
+				concreteRevision.setLastError(throwable.getMessage());
+				for (Revision revision : concreteRevision.getRevisions()) {
+					revision.setState(CheckinState.ERROR);
+					revision.setLastError(throwable.getMessage());
+				}
+				rollBackSession.store(concreteRevision);
+				rollBackSession.commit();
+			} finally {
+				rollBackSession.close();
+			}
+		} catch (BimDeadlockException e1) {
+			LOGGER.error("", e1);
+		} catch (BimDatabaseException e1) {
+			LOGGER.error("", e1);
+		}
 	}
 }

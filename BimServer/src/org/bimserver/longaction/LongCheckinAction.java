@@ -17,29 +17,13 @@ package org.bimserver.longaction;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinDatabaseAction;
-import org.bimserver.models.log.LogFactory;
-import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.CheckinResult;
-import org.bimserver.models.store.CheckinState;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,118 +31,31 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private final CheckinDatabaseAction createCheckinAction;
-	private final User user;
-	private int progress;
-	private final BimServer bimServer;
 
 	public LongCheckinAction(BimServer bimServer, User user, CheckinDatabaseAction createCheckinAction) {
-		this.user = user;
-		this.bimServer = bimServer;
+		super(bimServer, user);
 		this.createCheckinAction = createCheckinAction;
 	}
 
 	public void execute() {
-		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		BimDatabaseSession session = getBimServer().getDatabase().createSession(true);
 		try {
 			createCheckinAction.setDatabaseSession(session);
-			session.executeAndCommitAction(createCheckinAction, 10, new ProgressHandler() {
+			session.executeAction(createCheckinAction, 10, new ProgressHandler() {
 				@Override
 				public void progress(int current, int max) {
-					LongCheckinAction.this.progress = current * 100 / max;
+					updateProgress(current * 100 / max);
 				}
 			});
-			session.close();
-
-			BimDatabaseSession extraSession = bimServer.getDatabase().createSession(true);
-			try {
-				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false, null);
-				Map<Revision, Project> projects = new HashMap<Revision, Project>();
-				for (Revision r : concreteRevision.getRevisions()) {
-					projects.put(r, r.getProject());
-				}
-				for (Revision r : concreteRevision.getRevisions()) {
-					Revision latest = null;
-					Project project = projects.get(r);
-					if (project != null) {
-						for (Revision r2 : project.getRevisions()) {
-							if (latest == null || r2.getId() > latest.getId()) {
-								latest = r2;
-							}
-						}
-					}
-					if (latest != null) {
-						Project p = latest.getProject();
-						p.setLastRevision(latest);
-						extraSession.store(p);
-					}
-				}
-				extraSession.commit();
-			} finally {
-				extraSession.close();
-			}
-
-			session = bimServer.getDatabase().createReadOnlySession();
-			for (Revision revision : createCheckinAction.getConcreteRevision(createCheckinAction.getCroid()).getRevisions()) {
-				NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
-				newRevisionAdded.setDate(new Date());
-				newRevisionAdded.setExecutor(user);
-				newRevisionAdded.setRevision(revision);
-				newRevisionAdded.setAccessMethod(createCheckinAction.getAccessMethod());
-
-//				bimServer.getNotificationsManager().notify(newRevisionAdded);
-			}
-			startClashDetection(session);
 		} catch (OutOfMemoryError e) {
-			bimServer.getServerInfoManager().setOutOfMemory();
+			getBimServer().getServerInfoManager().setOutOfMemory();
 			return;
 		} catch (Exception e) {
 			LOGGER.error("", e);
-			long croid = createCheckinAction.getCroid();
-			try {
-				BimDatabaseSession rollBackSession = bimServer.getDatabase().createSession(true);
-				try {
-					Throwable throwable = e;
-					while (throwable.getCause() != null) {
-						throwable = throwable.getCause();
-					}
-					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
-					concreteRevision.setState(CheckinState.ERROR);
-					concreteRevision.setLastError(throwable.getMessage());
-					for (Revision revision : concreteRevision.getRevisions()) {
-						revision.setState(CheckinState.ERROR);
-						revision.setLastError(throwable.getMessage());
-					}
-					rollBackSession.store(concreteRevision);
-					rollBackSession.commit();
-				} finally {
-					rollBackSession.close();
-				}
-			} catch (BimDeadlockException e1) {
-				LOGGER.error("", e1);
-			} catch (BimDatabaseException e1) {
-				LOGGER.error("", e1);
-			}
+			createCheckinAction.rollback(e);
 		} finally {
 			session.close();
 			done();
-		}
-//		bimServer.getLongActionManager().remove(this);
-	}
-
-	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
-		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false, null);
-		Project project = concreteRevision.getProject();
-		Project mainProject = project;
-		while (mainProject.getParent() != null) {
-			mainProject = mainProject.getParent();
-		}
-		if (mainProject.getClashDetectionSettings().getEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(bimServer, user, createCheckinAction.getActingUid(), mainProject.getOid());
-			try {
-				bimServer.getLongActionManager().start(clashDetectionLongAction);
-			} catch (CannotBeScheduledException e) {
-				throw new UserException("Server is shutting down", e);
-			}
 		}
 	}
 
@@ -167,19 +64,11 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		return getClass().getSimpleName();
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public int getProgress() {
-		return progress;
-	}
-
 	public CheckinResult getCheckinResult() {
 		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
 		checkinResult.setProject(createCheckinAction.getProject());
 		checkinResult.setRevision(createCheckinAction.getConcreteRevision().getRevisions().get(0));
-		checkinResult.setProgress(progress);
+		checkinResult.setProgress(getProgress());
 		return checkinResult;
 	}
 	
