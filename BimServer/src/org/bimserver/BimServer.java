@@ -75,6 +75,7 @@ import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
+import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -115,7 +116,8 @@ public class BimServer {
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
-	private SService sService;
+	private SService serviceInterfaceService;
+	private SService notificationInterfaceService;
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
@@ -262,7 +264,8 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
-			sService = new SService(ServiceInterface.class);
+			serviceInterfaceService = new SService(ServiceInterface.class);
+			notificationInterfaceService = new SService(NotificationInterface.class);
 
 			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();
@@ -603,8 +606,8 @@ public class BimServer {
 		return serverInfoManager;
 	}
 
-	public SService getSService() {
-		return sService;
+	public SService getServiceInterfaceService() {
+		return serviceInterfaceService;
 	}
 
 	public ProtocolBuffersMetaData getProtocolBuffersMetaData() {
@@ -617,5 +620,9 @@ public class BimServer {
 
 	public EmbeddedWebServer getEmbeddedWebServer() {
 		return embeddedWebServer;
+	}
+	
+	public SService getNotificationInterfaceService() {
+		return notificationInterfaceService;
 	}
 }

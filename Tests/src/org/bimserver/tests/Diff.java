@@ -42,13 +42,25 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.utils.StringUtils;
 
 public class Diff {
-	private static final boolean IGNORE_INTEGER_ZERO_DOLLAR = false;
-	private static final boolean IGNORE_DOUBLE_ZERO_DOLLAR = false;
-	private static final boolean IGNORE_LIST_EMPTY_DOLLAR = false;
-	
 	private SchemaDefinition schema;
+	private final boolean ignoreIntegerZeroDollar;
+	private final boolean ignoreDoubleZeroDollar;
+	private final boolean ignoreListEmptyDollar;
 
-	public Diff() {
+	public static void main(String[] args) {
+		try {
+			new Diff(false, false, false).start();
+		} catch (CompareException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Diff(boolean ignoreIntegerZeroDollar, boolean ignoreDoubleZeroDollar, boolean ignoreListEmptyDollar) {
+		this.ignoreIntegerZeroDollar = ignoreIntegerZeroDollar;
+		this.ignoreDoubleZeroDollar = ignoreDoubleZeroDollar;
+		this.ignoreListEmptyDollar = ignoreListEmptyDollar;
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
 			schema = pluginManager.requireSchemaDefinition();
@@ -391,16 +403,6 @@ public class Diff {
 		}
 	}
 
-	public static void main(String[] args) {
-		try {
-			new Diff().start();
-		} catch (CompareException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-	}
-
 	private void start() throws CompareException, NoSuchAlgorithmException {
 		Model model1 = new Model(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Shared\\BIMserver\\geheime modellen van statsbygg\\SB_11873_6_ARK_PNN (Original).ifc"));
 		Model model2 = new Model(new File("C:\\Users\\Ruben de Laat\\Downloads\\test.1 (23).ifc"));
@@ -462,9 +464,9 @@ public class Diff {
 			for (ModelObject modelObject : new ArrayList<ModelObject>(model1.getMatchedObjects())) {
 				valueMatches += testValues(modelObject);
 			}
-//			addedByReferencesTo += testSingleOutgoingReferences(model1);
+			addedByReferencesTo += testSingleOutgoingReferences(model1);
 			addedByReferencesFrom += testSingleIncomingReferences(model1);
-//			addedBySingleInstance += testSingleOfType(model1, model2);
+			addedBySingleInstance += testSingleOfType(model1, model2);
 			addedByHashMatch += testOutgoingReferences(model1, model2);
 			
 			lastMatchedObjects = matchedObjects;
@@ -616,9 +618,6 @@ public class Diff {
 					sb.append("-1");
 				}
 			}
-//			for (ModelObject referenceTo : modelObject.getReferencesTo()) {
-//				sb.append(referenceTo.getType() + referenceTo.hashCode());
-//			}
 			remoteMarked.put(sb.toString(), modelObject);
 		}
 
@@ -659,14 +658,6 @@ public class Diff {
 						sb.append("-1");
 					}
 				}
-//				for (ModelObject referenceTo : modelObject.getReferencesTo()) {
-//					if (!referenceTo.isMatched()) {
-//						goodToGo = false;
-//						break;
-//					} else {
-//						sb.append(referenceTo.getMatchedObject().getType() + referenceTo.getMatchedObject().hashCode());
-//					}
-//				}
 				if (goodToGo) {
 					String s = sb.toString();
 					if (remoteMarked.containsKey(s)) {
@@ -695,9 +686,9 @@ public class Diff {
 		int result = 0;
 		if (value == null) {
 			if (remoteValue != null) {
-				if (IGNORE_INTEGER_ZERO_DOLLAR && remoteValue.equals("0")) {
-				} else if (IGNORE_LIST_EMPTY_DOLLAR && remoteValue instanceof List && ((List<?>)remoteValue).isEmpty()) {
-				} else if (IGNORE_DOUBLE_ZERO_DOLLAR && remoteValue.equals("0.0")) {
+				if (ignoreIntegerZeroDollar && remoteValue.equals("0")) {
+				} else if (ignoreListEmptyDollar && remoteValue instanceof List && ((List<?>)remoteValue).isEmpty()) {
+				} else if (ignoreDoubleZeroDollar && remoteValue.equals("0.0")) {
 				} else {
 					throw new CompareException("Remote value not null: " + remoteValue + " on " + modelObject + " / " + modelObject.getMatchedObject() + "." + index);
 				}
@@ -713,9 +704,9 @@ public class Diff {
 					}
 				}
 			} else {
-				if (IGNORE_INTEGER_ZERO_DOLLAR && value.equals("0")) {
-				} else if (IGNORE_LIST_EMPTY_DOLLAR && value instanceof List && ((List<?>)value).isEmpty()) {
-				} else if (IGNORE_DOUBLE_ZERO_DOLLAR && value.equals("0.0")) {
+				if (ignoreIntegerZeroDollar && value.equals("0")) {
+				} else if (ignoreListEmptyDollar && value instanceof List && ((List<?>)value).isEmpty()) {
+				} else if (ignoreDoubleZeroDollar && value.equals("0.0")) {
 				} else {
 					throw new CompareException("Remote value not of type String: " + remoteValue + " / " + value + " on " + modelObject + " / " + modelObject.getMatchedObject() + "." + index);
 				}
@@ -749,7 +740,7 @@ public class Diff {
 						j++;
 					}
 				}
-			} else if (IGNORE_LIST_EMPTY_DOLLAR && remoteValue == null && valueList.isEmpty()) {
+			} else if (ignoreListEmptyDollar && remoteValue == null && valueList.isEmpty()) {
 			} else {
 				throw new CompareException("Remote value not of type list on " + modelObject + " / " + modelObject.getMatchedObject());
 			}

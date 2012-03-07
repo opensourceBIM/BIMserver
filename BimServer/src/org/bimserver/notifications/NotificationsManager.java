@@ -39,7 +39,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.pb.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.NotificationInterface;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.pb.Reflector;
 import org.bimserver.shared.pb.SocketChannel;
 import org.slf4j.Logger;
@@ -88,7 +87,9 @@ public class NotificationsManager extends Thread {
 							}
 						}
 					}
-				} catch (ServiceException e) {
+				} catch (InterruptedException e) {
+					throw e;
+				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
 			}
@@ -112,7 +113,7 @@ public class NotificationsManager extends Thread {
 						try {
 							SocketChannel channel = new SocketChannel();
 							channel.connect(address);
-							register(user, new NotificationInterfaceReflectorImpl(new Reflector(bimServer.getProtocolBuffersMetaData(), bimServer.getSService(), channel)));
+							register(user, new NotificationInterfaceReflectorImpl(new Reflector(bimServer.getProtocolBuffersMetaData(), bimServer.getNotificationInterfaceService(), channel)));
 						} catch (IOException e) {
 							LOGGER.info("Notification host seems down: " + url);
 						}

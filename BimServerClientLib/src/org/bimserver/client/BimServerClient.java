@@ -45,7 +45,6 @@ import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcTextStyleFontModel;
 import org.bimserver.plugins.PluginException;
@@ -259,6 +258,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		return null;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public IfcModelInterface getModelAlternative(long roid) {
 		try {
 			List<SDataObject> dataObjects = getServiceInterface().getDataObjects(roid);

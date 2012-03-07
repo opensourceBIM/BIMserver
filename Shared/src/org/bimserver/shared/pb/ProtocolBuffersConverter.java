@@ -27,7 +27,6 @@ import java.util.List;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.models.ifc2x3.IfcRelAssociatesClassification;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -143,9 +142,6 @@ public class ProtocolBuffersConverter {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Message convertSObjectToProtocolBuffersObject(SBase object, SClass definedType) throws ConvertException {
-		if (object instanceof IfcRelAssociatesClassification) {
-			System.out.println();
-		}
 		Builder builder = null;
 		MessageDescriptorContainer messageDescriptor = protocolBuffersMetaData.getMessageDescriptor(definedType.getSimpleName());
 		if (messageDescriptor == null) {
