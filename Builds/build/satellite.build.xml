@@ -14,6 +14,7 @@
 		<antcall target="Plugins"/>
 		<antcall target="buildingSMARTLibrary"/>
 		<antcall target="Shared"/>
+		<antcall target="Ifc"/>
 		<antcall target="BimServerClientLib"/>
 		<antcall target="SatelliteServer"/>
 		<javac destdir="builds/BuildJar" debug="on" srcdir="../../SatelliteServer/expander"  includeantruntime="false"/>
