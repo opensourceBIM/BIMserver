@@ -20,7 +20,7 @@ public class Licenser {
 	}
 
 	private void start() {
-		File workspace = new File("../");
+		File workspace = new File("../").getAbsoluteFile();
 		for (File project : workspace.listFiles()) {
 			if (!project.getName().startsWith(".")) {
 				File srcFolder = new File(project, "src");
@@ -52,7 +52,7 @@ public class Licenser {
 	}
 
 	public static String getCommentedLicenseText(File file) {
-		if (file.exists()) { 
+		if (!file.exists()) { 
 			return null;
 		}
 		try {
