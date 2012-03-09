@@ -89,7 +89,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		concreteRevision.setProject(project);
 		concreteRevision.setState(checkinState);
 		project.setLastConcreteRevision(concreteRevision);
-		createNewVirtualRevision(session, project, concreteRevision, comment, date, user, size, checkinState);
+		Revision newRevision = createNewVirtualRevision(session, project, concreteRevision, comment, date, user, size, checkinState);
 
 		for (Checkout checkout : project.getCheckouts()) {
 			if (checkout.getUser() == user) {
@@ -98,6 +98,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 			}
 		}
 
+		project.setLastRevision(newRevision);
 		Project parent = project.getParent();
 		while (parent != null) {
 			Revision revision = StoreFactory.eINSTANCE.createRevision();
@@ -106,6 +107,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 			revision.setUser(getSystemUser());
 			revision.setProject(parent);
 			revision.setState(checkinState);
+			project.setLastRevision(revision);
 			if (parent.getLastRevision() != null) {
 				Revision lastRevision = parent.getLastRevision();
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {

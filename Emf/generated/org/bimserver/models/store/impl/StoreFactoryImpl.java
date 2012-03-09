@@ -269,6 +269,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createActionStateFromString(eDataType, initialValue);
 		case StorePackage.SERVER_STATE:
 			return createServerStateFromString(eDataType, initialValue);
+		case StorePackage.CHECKIN_STATUS:
+			return createCheckinStatusFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -302,6 +304,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertActionStateToString(eDataType, instanceValue);
 		case StorePackage.SERVER_STATE:
 			return convertServerStateToString(eDataType, instanceValue);
+		case StorePackage.CHECKIN_STATUS:
+			return convertCheckinStatusToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -1025,6 +1029,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertServerStateToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckinStatus createCheckinStatusFromString(EDataType eDataType, String initialValue) {
+		CheckinStatus result = CheckinStatus.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCheckinStatusToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

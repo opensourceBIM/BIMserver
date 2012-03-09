@@ -29,12 +29,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.web.LoginManager;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,19 +51,21 @@ public class UploadServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
-		if (loginManager == null) {
-			response.sendRedirect("login.jsp");
-			return;
-		}
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-		long poid = -1;
-		String comment = null;
-		String deserializerName = null;
-		if (isMultipart) {
-			factory.setSizeThreshold(1024 * 1024 * 500); // 500 MB
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			try {
+		JSONObject result = new JSONObject();
+		response.setContentType("text/json");
+		try {
+			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
+			if (loginManager == null) {
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+			long poid = -1;
+			String comment = null;
+			String deserializerName = null;
+			if (isMultipart) {
+				factory.setSizeThreshold(1024 * 1024 * 500); // 500 MB
+				ServletFileUpload upload = new ServletFileUpload(factory);
 				List<FileItem> items = (List<FileItem>) upload.parseRequest(request);
 				Iterator<FileItem> iter = items.iterator();
 				InputStream in = null;
@@ -93,29 +95,29 @@ public class UploadServlet extends HttpServlet {
 				}
 				if (poid != -1) {
 					if (size == 0) {
-						response.sendRedirect("project.jsp?poid=" + poid + "&message=Uploaded file empty, or no file uploaded at all");
+						result.put("error", "Uploaded file empty, or no file uploaded at all");
 					} else {
-						final InputStream realStream = in;
-						try {
-							InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
-							inputStreamDataSource.setName(name);
-							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
-							int checkinId = loginManager.getService().checkin(poid, comment, deserializerName, size, ifcFile, merge, false);
-							response.sendRedirect("project.jsp?poid=" + poid + "&checkinId=" + checkinId);
-						} catch (ServiceException e) {
-							if (e.getCause() != null) {
-								response.sendRedirect("project.jsp?poid=" + poid + "&message=" + e.getCause().getMessage());
-							} else {
-								response.sendRedirect("project.jsp?poid=" + poid + "&message=" + e.getUserMessage());
-							}
-						}
+						InputStream realStream = in;
+						InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
+						inputStreamDataSource.setName(name);
+						DataHandler ifcFile = new DataHandler(inputStreamDataSource);
+						int checkinId = loginManager.getService().checkin(poid, comment, deserializerName, size, ifcFile, merge, false);
+						result.put("checkinid", checkinId);
 					}
 				} else {
-					response.getWriter().println("ERROR no poid");
+					result.put("error", "No poid");
 				}
-			} catch (FileUploadException e) {
-				LOGGER.error("", e);
 			}
+		} catch (Exception e) {
+			try {
+				result.put("error", (e.getMessage() == null ? "Unknown error" : e.getMessage()));
+			} catch (JSONException e1) {
+			}
+		}
+		try {
+			result.write(response.getWriter());
+		} catch (JSONException e) {
+			LOGGER.error("", e);
 		}
 	}
 }

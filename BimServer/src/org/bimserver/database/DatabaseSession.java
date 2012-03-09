@@ -1371,9 +1371,4 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		}
 		return null;
 	}
-
-	@Override
-	public <T> T executeAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimDatabaseException, UserException {
-		return null;
-	}
 }

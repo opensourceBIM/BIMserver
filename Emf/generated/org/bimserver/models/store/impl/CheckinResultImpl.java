@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.CheckinResult;
+import org.bimserver.models.store.CheckinStatus;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getProgress <em>Progress</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getStatus <em>Status</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +122,24 @@ public class CheckinResultImpl extends IdEObjectImpl implements CheckinResult {
 	 */
 	public void setProgress(Integer newProgress) {
 		eSet(StorePackage.Literals.CHECKIN_RESULT__PROGRESS, newProgress);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckinStatus getStatus() {
+		return (CheckinStatus) eGet(StorePackage.Literals.CHECKIN_RESULT__STATUS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatus(CheckinStatus newStatus) {
+		eSet(StorePackage.Literals.CHECKIN_RESULT__STATUS, newStatus);
 	}
 
 } //CheckinResultImpl
