@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2011  BIMserver.org
+ * Copyright (C) 2009-2012  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -55,6 +55,9 @@ public class SCheckinResult implements SBase
 		if (sField.getName().equals("progress")) {
 			return getProgress();
 		}
+		if (sField.getName().equals("status")) {
+			return getStatus();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -73,6 +76,10 @@ public class SCheckinResult implements SBase
 			setProgress((Integer)val);
 			return;
 		}
+		if (sField.getName().equals("status")) {
+			setStatus((SCheckinStatus)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -83,6 +90,7 @@ public class SCheckinResult implements SBase
 	private long revisionId;
 	private long projectId;
 	private java.lang.Integer progress;
+	private SCheckinStatus status;
 	public long getRevisionId() {
 		return revisionId;
 	}
@@ -105,6 +113,13 @@ public class SCheckinResult implements SBase
 
 	public void setProgress(java.lang.Integer progress) {
 		this.progress = progress;
+	}
+	public SCheckinStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(SCheckinStatus status) {
+		this.status = status;
 	}
 	@Override
 	public int hashCode() {

@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2011  BIMserver.org
+ * Copyright (C) 2009-2012  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SEidClash.class, SGuidClash.class})
+@XmlSeeAlso(value={SGuidClash.class, SEidClash.class})
 public class SClash implements SBase
 {
 	private long oid = -1;

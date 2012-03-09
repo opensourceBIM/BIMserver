@@ -9,35 +9,17 @@
 %>
 <fieldset>
 <legend>Upload file</legend>
-<div id="uploadajaxloader">
-Uploading... <img src="images/ajax-loader.gif"/>
-</div>
-<form action="upload" method="post" enctype="multipart/form-data" id="uploadform">
-<table>
-<tr><td><label for="file">File</label></td><td><input id="file" type="file" name="file"/></td></tr>
-<tr><td><label for="deserializerName">Deserializer</label></td><td><select name="deserializerName">
+<div id="uploadStatus"></div>
+<div id="uploadProgressBar"></div>
+<table id="uploadTable">
+<tr><td><label for="file">File</label></td><td><input id="fileupload" type="file" name="data"/></td></tr>
+<tr><td><label for="deserializerName">Deserializer</label></td><td><select id="deserializerName" name="deserializerName">
 <%
 	for (SDeserializer deserializer : loginManager.getService().getAllDeserializers(true)) {
 		out.println("<option value=\"" + deserializer.getName() + "\">" + deserializer.getName() + "</option>");
 	}
 %>
 </select></td></tr>
-<!-- Pro features checkboxes -->
-<tr><td>
-<label for="checkbox">Validate Business Rules</label></td>
-<td><input name="checkbox" type="checkbox" onclick="$(this).is(':checked') && $('#idmchecked').slideDown('slow') || $('#idmchecked').slideUp('slow');" /></td>
-<p id="idmchecked" style="display: none; padding: 10px" >Sorry... Checking data against business rules is only available in a custom made release. It will be in the generic release soon!</p>
-</tr>
-
-<tr><td>
-<label for="checkbox">Check IFC validity</label></td>
-<td><input name="checkbox" type="checkbox" onclick="$(this).is(':checked') && $('#ifcchecked').slideDown('slow') || $('#ifcchecked').slideUp('slow');" /></td>
-<p id="ifcchecked" style="display: none; padding: 10px" >Sorry... Checking the validity of the IFC data is only available in a custom made release. It will be in the generic release soon!</p>
-</tr>
-
-
-
-<!-- Comment -->
 <tr><td><label for="comment">Comment</label></td><td><textarea id="comment" name="comment" cols="80" rows="4"></textarea></td></tr>
 <%
 	if (loginManager.getService().isSettingCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
@@ -47,10 +29,8 @@ Uploading... <img src="images/ajax-loader.gif"/>
 	}
 %>
 </table>
-<input type="hidden" name="poid" value="<%=poid %>"/>
-<input type="hidden" name="type" value="ifc"/>
-<input type="submit" name="upload" value="Upload"/>
-</form>
+<input id="poid" type="hidden" name="poid" value="<%=poid %>"/>
+<input id="uploadButton" type="button" name="upload" value="Upload"/>
 </fieldset>
 <script>
 	var lastVal = "";
@@ -69,9 +49,90 @@ Uploading... <img src="images/ajax-loader.gif"/>
 				lastVal = path;
 			}
 		});
-	});
-	$("#uploadform").submit(function(){
-		$("#uploadform").hide();
-		$("#uploadajaxloader").show();
+
+		var submitdata = null;
+		var shouldsend = false;
+		var currentCheckinId = null;
+
+		var refreshFunction = function() {
+			$.ajax({
+				url: "progress",
+				cache: false,
+				context: document.body,
+				type: "post",
+				dataType: "json",
+				data: {checkinid: currentCheckinId},
+				success: function(data){
+					if (data.error == null) {
+						$("#uploadProgressBar").progressbar({value: parseInt(data.progress, 10)});
+						if (data.status == "FINISHED") {
+							location.reload(true);
+						} else if (data.status == "STARTED" || data.status == "NONE") {
+							window.setTimeout(refreshFunction, 1000);
+						}
+					} else {
+						$("#uploadStatus").html("Error: " + data.error);
+					}
+				}, error: function(jqXHR, textStatus, errorThrown) {
+					$("#uploadStatus").html("Error: " + textStatus);
+				}
+			});
+		};
+		
+		$("#fileupload").fileupload({
+			dataType: "json",
+	        url: '/upload',
+			submit: function(e, data){
+				if (!shouldsend) {
+					shouldsend = false;
+			        submitdata = data;
+			        $("#uploadButton").show();
+			        return false;
+				}
+	        },
+			progress: function(e, data) {
+				$("#uploadProgressBar").progressbar({value: parseInt(data.loaded / data.total * 100, 10)});
+				if (data.loaded == data.total) {
+					$("#uploadStatus").html("Done uploading file...");
+				}
+			},
+			done: function(e, data) {
+				if (data.result.error == null) {
+					$("#uploadStatus").html("Processing file...");
+					$("#uploadProgressBar").progressbar({value: 0});
+					currentCheckinId = data.result.checkinid;
+					refreshFunction();
+				} else {
+					$("#uploadStatus").html("Error: " + data.result.error);
+					$("#uploadTable").show();
+					$("#uploadProgressBar").hide();
+				}
+			},
+			fail: function(e, data) {
+				$("#uploadStatus").html("Error: " + data.textStatus);
+				$("#uploadTable").show();
+				$("#uploadProgressBar").hide();
+			},
+			always: function() {
+			}
+	    });
+
+		$("#uploadButton").click(function(event){
+			shouldsend = true;
+			submitdata.formData = {
+				deserializerName: $("#deserializerName").val(),
+				comment: $("#comment").val(),
+				merge: $("#merge").val(),
+				poid: $("#poid").val()
+			};
+			$("#uploadTable").hide();
+			$("#uploadStatus").show();
+			$("#uploadButton").hide();
+			$("#uploadProgressBar").show();
+			$("#uploadStatus").html("Uploading file...");
+			$("#fileupload").fileupload('send', submitdata);
+			event.preventDefault();
+		});
+		$("#uploadButton").hide();
 	});
 </script>

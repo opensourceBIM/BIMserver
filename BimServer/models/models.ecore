@@ -267,6 +267,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="progress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#/0/CheckinStatus"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="DataHandler" instanceClassName="javax.activation.DataHandler"/>
     <eClassifiers xsi:type="ecore:EClass" name="DownloadResult">
@@ -479,6 +480,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginDescriptor">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="CheckinStatus">
+      <eLiterals name="NONE"/>
+      <eLiterals name="STARTED" value="1"/>
+      <eLiterals name="FINISHED" value="2"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">

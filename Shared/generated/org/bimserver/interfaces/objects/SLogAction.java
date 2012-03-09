@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2011  BIMserver.org
+ * Copyright (C) 2009-2012  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SClashDetectionSettingsUpdated.class, SSettingsSaved.class, SUserDeleted.class, SGeoTagUpdated.class, SNewUserAdded.class, SNewCheckoutAdded.class, SRevisionUpdated.class, SProjectUndeleted.class, SPasswordChanged.class, SPasswordReset.class, SUserChanged.class, SServerStarted.class, SDownload.class, SProjectDeleted.class, SNewProjectAdded.class, SNewRevisionAdded.class, SRevisionBranched.class, SUserAddedToProject.class, SNewObjectIDMUploaded.class, SUserUndeleted.class, SProjectUpdated.class, SDatabaseCreated.class, SUserRemovedFromProject.class})
+@XmlSeeAlso(value={SNewRevisionAdded.class, SProjectDeleted.class, SNewObjectIDMUploaded.class, SProjectUndeleted.class, SServerStarted.class, SUserAddedToProject.class, SUserUndeleted.class, SNewCheckoutAdded.class, SUserChanged.class, SRevisionUpdated.class, SNewUserAdded.class, SProjectUpdated.class, SUserDeleted.class, SPasswordChanged.class, SRevisionBranched.class, SUserRemovedFromProject.class, SDownload.class, SPasswordReset.class, SSettingsSaved.class, SGeoTagUpdated.class, SDatabaseCreated.class, SClashDetectionSettingsUpdated.class, SNewProjectAdded.class})
 public class SLogAction implements SBase
 {
 	private long oid = -1;

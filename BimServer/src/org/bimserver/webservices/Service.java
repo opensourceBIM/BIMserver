@@ -310,11 +310,10 @@ public class Service implements ServiceInterface {
 			throw e;
 		} catch (Throwable e) {
 			LOGGER.error("", e);
-			new ServerException("Unknown error", e);
+			throw new ServerException(e);
 		} finally {
 			session.close();
 		}
-		return -1;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2011  BIMserver.org
+ * Copyright (C) 2009-2012  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,16 +24,16 @@ public class NotificationInterfaceReflectorImpl implements org.bimserver.shared.
 private Reflector reflector;
 
 	public NotificationInterfaceReflectorImpl (Reflector reflector) {this.reflector = reflector;}
-	public void serverWillBeShutdown() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "serverWillBeShutdown", void.class);
+	public void newRevision(org.bimserver.interfaces.objects.SNewRevisionNotification arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("NotificationInterface", "newRevision", void.class, arg0);
 	}
 	public void newProject(org.bimserver.interfaces.objects.SNewProjectNotification arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "newProject", void.class, arg0);
 	}
-	public void newRevision(org.bimserver.interfaces.objects.SNewRevisionNotification arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "newRevision", void.class, arg0);
-	}
 	public void serverHasStarted() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "serverHasStarted", void.class);
+	}
+	public void serverWillBeShutdown() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("NotificationInterface", "serverWillBeShutdown", void.class);
 	}
 }

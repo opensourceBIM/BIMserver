@@ -1754,13 +1754,22 @@ public interface StorePackage extends EPackage {
 	int CHECKIN_RESULT__PROGRESS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_RESULT__STATUS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Checkin Result</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKIN_RESULT_FEATURE_COUNT = 3;
+	int CHECKIN_RESULT_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.DownloadResultImpl <em>Download Result</em>}' class.
@@ -3455,6 +3464,16 @@ public interface StorePackage extends EPackage {
 	int SERVER_STATE = 61;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.CheckinStatus
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
+	 * @generated
+	 */
+	int CHECKIN_STATUS = 62;
+
+	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3462,7 +3481,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 62;
+	int DATA_HANDLER = 63;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -5175,6 +5194,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getCheckinResult_Progress();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.CheckinResult#getStatus <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Status</em>'.
+	 * @see org.bimserver.models.store.CheckinResult#getStatus()
+	 * @see #getCheckinResult()
+	 * @generated
+	 */
+	EAttribute getCheckinResult_Status();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.DownloadResult <em>Download Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6593,6 +6623,16 @@ public interface StorePackage extends EPackage {
 	EEnum getServerState();
 
 	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Checkin Status</em>'.
+	 * @see org.bimserver.models.store.CheckinStatus
+	 * @generated
+	 */
+	EEnum getCheckinStatus();
+
+	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7916,6 +7956,14 @@ public interface StorePackage extends EPackage {
 		EAttribute CHECKIN_RESULT__PROGRESS = eINSTANCE.getCheckinResult_Progress();
 
 		/**
+		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHECKIN_RESULT__STATUS = eINSTANCE.getCheckinResult_Status();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DownloadResultImpl <em>Download Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9068,6 +9116,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SERVER_STATE = eINSTANCE.getServerState();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.CheckinStatus
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
+		 * @generated
+		 */
+		EEnum CHECKIN_STATUS = eINSTANCE.getCheckinStatus();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.

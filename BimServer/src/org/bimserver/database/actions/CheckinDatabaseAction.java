@@ -175,10 +175,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				throw (BimDeadlockException) e;
 			}
 			LOGGER.error("", e);
-			for (Revision revision : concreteRevision.getRevisions()) {
-				revision.setState(CheckinState.ERROR);
-				revision.setLastError(e.getMessage());
-			}
 			throw new UserException(e);
 		}
 

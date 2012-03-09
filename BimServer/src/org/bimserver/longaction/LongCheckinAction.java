@@ -22,6 +22,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.models.store.CheckinResult;
+import org.bimserver.models.store.CheckinStatus;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.slf4j.Logger;
@@ -31,6 +32,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private final CheckinDatabaseAction createCheckinAction;
+	private CheckinStatus status = CheckinStatus.NONE;
 
 	public LongCheckinAction(BimServer bimServer, User user, CheckinDatabaseAction createCheckinAction) {
 		super(bimServer, user);
@@ -38,10 +40,11 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	}
 
 	public void execute() {
+		status = CheckinStatus.STARTED;
 		BimDatabaseSession session = getBimServer().getDatabase().createSession(true);
 		try {
 			createCheckinAction.setDatabaseSession(session);
-			session.executeAction(createCheckinAction, 10, new ProgressHandler() {
+			session.executeAndCommitAction(createCheckinAction, 10, new ProgressHandler() {
 				@Override
 				public void progress(int current, int max) {
 					updateProgress(current * 100 / max);
@@ -58,6 +61,12 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			done();
 		}
 	}
+	
+	@Override
+	protected void done() {
+		super.done();
+		status = CheckinStatus.FINISHED;
+	}
 
 	@Override
 	public String getDescription() {
@@ -66,9 +75,8 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	public CheckinResult getCheckinResult() {
 		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
-		checkinResult.setProject(createCheckinAction.getProject());
-		checkinResult.setRevision(createCheckinAction.getConcreteRevision().getRevisions().get(0));
 		checkinResult.setProgress(getProgress());
+		checkinResult.setStatus(status );
 		return checkinResult;
 	}
 	

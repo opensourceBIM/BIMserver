@@ -29,6 +29,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.CheckinResult#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.CheckinResult#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.CheckinResult#getProgress <em>Progress</em>}</li>
+ *   <li>{@link org.bimserver.models.store.CheckinResult#getStatus <em>Status</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,5 +116,34 @@ public interface CheckinResult extends IdEObject {
 	 * @generated
 	 */
 	void setProgress(Integer value);
+
+	/**
+	 * Returns the value of the '<em><b>Status</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.CheckinStatus}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Status</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Status</em>' attribute.
+	 * @see org.bimserver.models.store.CheckinStatus
+	 * @see #setStatus(CheckinStatus)
+	 * @see org.bimserver.models.store.StorePackage#getCheckinResult_Status()
+	 * @model
+	 * @generated
+	 */
+	CheckinStatus getStatus();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.CheckinResult#getStatus <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Status</em>' attribute.
+	 * @see org.bimserver.models.store.CheckinStatus
+	 * @see #getStatus()
+	 * @generated
+	 */
+	void setStatus(CheckinStatus value);
 
 } // CheckinResult

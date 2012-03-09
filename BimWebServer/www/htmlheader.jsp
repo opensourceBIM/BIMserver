@@ -16,8 +16,10 @@
 	}
 %>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/jquery-1.6.2.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/jquery-ui-1.8.11.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.fileupload.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.ui.progressbar.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
 <link type="text/css" href="css/redmond/jquery-ui-1.8.11.custom.css" rel="stylesheet" />	
 <link rel="stylesheet" href="css/lightwindow.css" type="text/css" media="screen" />
