@@ -82,7 +82,7 @@ public class UploadServlet extends HttpServlet {
 							comment = item.getString();
 						}
 						if ("merge".equals(item.getFieldName())) {
-							merge = true;
+							merge = item.getString().equals("true");
 						}
 						if ("deserializerName".equals(item.getFieldName())) {
 							deserializerName = item.getString();

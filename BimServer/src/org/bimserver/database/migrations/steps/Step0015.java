@@ -28,9 +28,9 @@ public class Step0015 extends Migration {
 	@Override
 	public void migrate(Schema schema) {
 		EEnum checkintStatusEnum = schema.createEEnum(schema.getEPackage("store"), "CheckinStatus");
-		schema.createEEnumLiteral(checkintStatusEnum, "NONE");
-		schema.createEEnumLiteral(checkintStatusEnum, "STARTED");
-		schema.createEEnumLiteral(checkintStatusEnum, "FINISHED");
+		schema.createEEnumLiteral(checkintStatusEnum, "CH_NONE");
+		schema.createEEnumLiteral(checkintStatusEnum, "CH_STARTED");
+		schema.createEEnumLiteral(checkintStatusEnum, "CH_FINISHED");
 		
 		EClass checkinResultClass = schema.getEClass("store", "CheckinResult");
 		schema.createEAttribute(checkinResultClass, "status", checkintStatusEnum,  Multiplicity.SINGLE);

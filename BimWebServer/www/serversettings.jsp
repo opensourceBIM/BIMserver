@@ -33,7 +33,6 @@
 				service.setSettingCacheOutputFiles(request.getParameter("cacheOutputFiles") != null);
 				service.setSettingHideUserListForNonAdmin(request.getParameter("hideUserListForNonAdmin") != null);
 				service.setSettingIntelligentMerging(request.getParameter("intelligentMerging") != null);
-				service.setSettingAutoTestClashes(request.getParameter("autoTestClashes") != null);
 				service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
 				service.setSettingSiteAddress(request.getParameter("siteAddress"));
 				service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
@@ -120,12 +119,6 @@
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Other</td>
-	</tr>
-	<tr>
-		<td><label for="autoTestClashes">Automatic clash detection on main projects</label></td>
-		<td><input id="autoTestClashes" name="autoTestClashes"
-			type="checkbox"
-			<%=(request.getParameter("save") == null ? service.isSettingAutoTestClashes() : request.getParameter("autoTestClashes") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td><label for="protocolBuffersPort">Protocol Buffers Port</label></td>

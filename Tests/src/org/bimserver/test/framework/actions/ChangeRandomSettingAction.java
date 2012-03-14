@@ -41,9 +41,6 @@ public class ChangeRandomSettingAction extends Action {
 		case 1:
 			serviceInterface.setSettingAllowUsersToCreateTopLevelProjects(nextBoolean());
 			break;
-		case 2:
-			serviceInterface.setSettingAutoTestClashes(nextBoolean());
-			break;
 		case 3:
 			serviceInterface.setSettingCacheOutputFiles(nextBoolean());
 			break;

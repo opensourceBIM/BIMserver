@@ -29,14 +29,28 @@ import org.bimserver.interfaces.objects.SObjectRemoved;
 import org.bimserver.interfaces.objects.SProject;
 
 public class CompareWriter {
+	private static String formatCompareType(SCompareType sCompareType) {
+		if (sCompareType == SCompareType.ADD) {
+			return "Added";
+		} else if (sCompareType == SCompareType.ALL) {
+			return "All";
+		} else if (sCompareType == SCompareType.DELETE) {
+			return "Deleted";
+		} else if (sCompareType == SCompareType.MODIFY) {
+			return "Modified";
+		}
+		return sCompareType.name();
+	}
+	
 	public static String writeCompareResult(SCompareResult compareResult, int rid1, int rid2, SCompareType sCompareType, SProject project, boolean webPage) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<h1>Building Model Comparator</h1>");
 		builder.append("Compare results for revisions '" + rid1 + "' and '" + rid2 + "' of project '" + project.getName() + "'<br/>");
-		builder.append("Total number of differences: " + compareResult.getItems().size() + "<br/>");
-		if (compareResult.getItems().size() == 0) {
-			return builder.toString();
+		int total = 0;
+		for (SCompareContainer sCompareContainer : compareResult.getItems()) {
+			total += sCompareContainer.getItems().size();
 		}
+		builder.append("Total number of differences: " + total + "<br/>");
 		builder.append("<table class=\"formatted\">");
 		builder.append("<tr>");
 		builder.append("<th>Type</th>");
@@ -54,9 +68,9 @@ public class CompareWriter {
 			builder.append("<select id=\"typeselector\" name=\"type\">");
 			for (SCompareType cr : SCompareType.values()) {
 				if (cr == sCompareType) {
-					builder.append("<option selected=\"selected\" value=\"" + cr.name() + "\">" + cr.name() + "</option>");
+					builder.append("<option selected=\"selected\" value=\"" + cr.name() + "\">" + formatCompareType(cr) + "</option>");
 				} else {
-					builder.append("<option value=\"" + cr.name() + "\">" + cr.name() + "</option>");
+					builder.append("<option value=\"" + cr.name() + "\">" + formatCompareType(cr) + "</option>");
 				}
 			}
 			builder.append("</select>");

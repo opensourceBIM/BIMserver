@@ -787,7 +787,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "branchToNewProject")
-	Integer branchToNewProject(
+	SCheckinResult branchToNewProject(
 			@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
 			@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
 			@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment) throws ServerException, UserException;
@@ -801,7 +801,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "branchToExistingProject")
-	Integer branchToExistingProject(
+	SCheckinResult branchToExistingProject(
 			@WebParam(name = "roid", partName = "branchToExistingProject.roid") Long roid,
 			@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") Long destPoid,
 			@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment) throws ServerException, UserException;
@@ -1190,21 +1190,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "setSettingAllowUsersToCreateTopLevelProjects")
 	void setSettingAllowUsersToCreateTopLevelProjects(
 			@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException;
-
-	/**
-	 * @return Whether clash detection will be automatically performed after each checkin
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingAutoTestClashes")
-	Boolean isSettingAutoTestClashes() throws ServerException, UserException;
-
-	/**
-	 * @param autoTestClashes Set whether clash detection will be automatically performed after each checkin
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingAutoTestClashes")
-	void setSettingAutoTestClashes(
-			@WebParam(name = "autoTestClashes", partName = "setSettingAutoTestClashes.autoTestClashes") Boolean autoTestClashes) throws ServerException, UserException;
 
 	/**
 	 * @return Whether the BIMserver should do checkin merging (warning: this will alter your models)

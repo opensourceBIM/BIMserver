@@ -33,79 +33,75 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum CheckinStatus implements Enumerator {
 	/**
-	 * The '<em><b>NONE</b></em>' literal object.
+	 * The '<em><b>CH NONE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NONE_VALUE
+	 * @see #CH_NONE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NONE(0, "NONE", "NONE"),
+	CH_NONE(0, "CH_NONE", "CH_NONE"), /**
+										 * The '<em><b>CH STARTED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #CH_STARTED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	CH_STARTED(1, "CH_STARTED", "CH_STARTED"), /**
+												 * The '<em><b>CH FINISHED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CH_FINISHED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CH_FINISHED(2, "CH_FINISHED", "CH_FINISHED");
 
 	/**
-	 * The '<em><b>STARTED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STARTED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STARTED(1, "STARTED", "STARTED"),
-
-	/**
-	 * The '<em><b>FINISHED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINISHED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINISHED(2, "FINISHED", "FINISHED");
-
-	/**
-	 * The '<em><b>NONE</b></em>' literal value.
+	 * The '<em><b>CH NONE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NONE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CH NONE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NONE
+	 * @see #CH_NONE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NONE_VALUE = 0;
+	public static final int CH_NONE_VALUE = 0;
 
 	/**
-	 * The '<em><b>STARTED</b></em>' literal value.
+	 * The '<em><b>CH STARTED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STARTED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CH STARTED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STARTED
+	 * @see #CH_STARTED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STARTED_VALUE = 1;
+	public static final int CH_STARTED_VALUE = 1;
 
 	/**
-	 * The '<em><b>FINISHED</b></em>' literal value.
+	 * The '<em><b>CH FINISHED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FINISHED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CH FINISHED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FINISHED
+	 * @see #CH_FINISHED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINISHED_VALUE = 2;
+	public static final int CH_FINISHED_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Checkin Status</b></em>' enumerators.
@@ -113,7 +109,7 @@ public enum CheckinStatus implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final CheckinStatus[] VALUES_ARRAY = new CheckinStatus[] { NONE, STARTED, FINISHED, };
+	private static final CheckinStatus[] VALUES_ARRAY = new CheckinStatus[] { CH_NONE, CH_STARTED, CH_FINISHED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Checkin Status</b></em>' enumerators.
@@ -163,12 +159,12 @@ public enum CheckinStatus implements Enumerator {
 	 */
 	public static CheckinStatus get(int value) {
 		switch (value) {
-		case NONE_VALUE:
-			return NONE;
-		case STARTED_VALUE:
-			return STARTED;
-		case FINISHED_VALUE:
-			return FINISHED;
+		case CH_NONE_VALUE:
+			return CH_NONE;
+		case CH_STARTED_VALUE:
+			return CH_STARTED;
+		case CH_FINISHED_VALUE:
+			return CH_FINISHED;
 		}
 		return null;
 	}

@@ -107,7 +107,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 			revision.setUser(getSystemUser());
 			revision.setProject(parent);
 			revision.setState(checkinState);
-			project.setLastRevision(revision);
 			if (parent.getLastRevision() != null) {
 				Revision lastRevision = parent.getLastRevision();
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {

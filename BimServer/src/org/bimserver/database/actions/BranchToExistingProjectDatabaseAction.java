@@ -23,21 +23,19 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Integer> {
-	private static final Logger LOGGER = LoggerFactory.getLogger(BranchToExistingProjectDatabaseAction.class);
+public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<CheckinResult> {
 	private final Long roid;
 	private final Long destPoid;
 	private final String comment;
@@ -54,7 +52,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Int
 	}
 
 	@Override
-	public Integer execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public CheckinResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
@@ -71,14 +69,11 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Int
 		IfcModelInterface model = bimServer.getMergerFactory().createMerger()
 				.merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
 		model.resetOids();
-		try {
-			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment, false, true);
-			LongCheckinAction longAction = new LongCheckinAction(bimServer, user, checkinDatabaseAction);
-			bimServer.getLongActionManager().start(longAction);
-			return longAction.getId();
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		}
-		return null;
+		CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment, false, true);
+		ConcreteRevision execute = checkinDatabaseAction.execute();
+		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
+		checkinResult.setProject(oldProject);
+		checkinResult.setRevision(execute.getRevisions().get(0));
+		return checkinResult;
 	}
 }

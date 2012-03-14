@@ -155,10 +155,7 @@ public class DownloadServlet extends HttpServlet {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
 				}
 				response.setContentType("application/zip");
-				// String name = checkoutResult.getProjectName() + "." +
-				// checkoutResult.getRevisionNr() + "."
-				// + resultType.getDefaultExtension();
-				String name = checkoutResult.getProjectName();
+				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + serializer.getExtension();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
 				zipOutputStream.putNextEntry(new ZipEntry(name));
 				InputStream in = dataSource.getInputStream();
@@ -167,7 +164,7 @@ public class DownloadServlet extends HttpServlet {
 				zipOutputStream.finish();
 			} else {
 				response.setContentType(serializer.getContentType());
-				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + "." + serializer.getExtension() + "\"");
+				response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + serializer.getExtension() + "\"");
 				InputStream in = dataSource.getInputStream();
 				IOUtils.copy(in, response.getOutputStream());
 				in.close();
