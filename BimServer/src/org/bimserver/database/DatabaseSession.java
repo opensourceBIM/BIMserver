@@ -568,7 +568,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IdEObject> T get(short cid, long oid, int pid, int rid, IfcModel model, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
+	public <T extends IdEObject> T get(short cid, long oid, int pid, int rid, IfcModel model, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
 		if (objectsToCommit.containsValue(oid)) {
 			return (T) objectsToCommit.inverse().get(oid);
 		}
@@ -604,7 +604,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 							return null;
 							// deleted entity
 						} else {
-							T convertByteArrayToObject = (T) convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, model, pid, rid, deep, ObjectIDM);
+							T convertByteArrayToObject = (T) convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, model, pid, rid, deep, objectIDM);
 							putInCache(recordIdentifier, convertByteArrayToObject);
 							return convertByteArrayToObject;
 						}
@@ -619,8 +619,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public IfcModel getAllOfType(EClass eClass, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
-		return getAllOfType(eClass, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, deep, ObjectIDM);
+	public IfcModel getAllOfType(EClass eClass, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
+		return getAllOfType(eClass, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, deep, objectIDM);
 	}
 
 	public IfcModel getAllOfType(EClass eClass, int pid, int rid, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException {
@@ -885,7 +885,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	@Override
 	public void getMap(IfcModel ifcModel, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
 		for (EClass eClass : database.getClasses()) {
-			if (!objectIDM.shouldIgnoreClass(eClass)) {
+			if (objectIDM == null || !objectIDM.shouldIgnoreClass(eClass)) {
 				getMap(eClass, pid, rid, ifcModel, deep, objectIDM);
 			}
 		}
@@ -1181,7 +1181,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					if (referenceValue.length == 1 && referenceValue[0] == -1) {
 						// Deleted
 					} else {
-						if (objectIDM.shouldIgnoreClass(eClass)) {
+						if (objectIDM != null && objectIDM.shouldIgnoreClass(eClass)) {
 							return null;
 						} else {
 							ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);

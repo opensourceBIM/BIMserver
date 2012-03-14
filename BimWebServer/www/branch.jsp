@@ -10,8 +10,7 @@
 		if (action.equals("branchtonewproject")) {
 			String name = request.getParameter("name");
 			String comment = request.getParameter("comment");
-			Integer actionId = loginManager.getService().branchToNewProject(roid, name, comment);
-			SCheckinResult checkinResult = loginManager.getService().getCheckinState(actionId);
+			SCheckinResult checkinResult = loginManager.getService().branchToNewProject(roid, name, comment);
 			response.sendRedirect("project.jsp?poid=" + checkinResult.getProjectId());
 		} else if (action.equals("branchtoexistingproject")) {
 			long destPoid = Long.parseLong(request.getParameter("destpoid"));

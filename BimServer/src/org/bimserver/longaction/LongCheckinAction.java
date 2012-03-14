@@ -31,20 +31,20 @@ import org.slf4j.LoggerFactory;
 public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
-	private final CheckinDatabaseAction createCheckinAction;
-	private CheckinStatus status = CheckinStatus.NONE;
+	private final CheckinDatabaseAction checkinDatabaseAction;
+	private CheckinStatus status = CheckinStatus.CH_NONE;
 
 	public LongCheckinAction(BimServer bimServer, User user, CheckinDatabaseAction createCheckinAction) {
 		super(bimServer, user);
-		this.createCheckinAction = createCheckinAction;
+		this.checkinDatabaseAction = createCheckinAction;
 	}
 
 	public void execute() {
-		status = CheckinStatus.STARTED;
+		status = CheckinStatus.CH_STARTED;
 		BimDatabaseSession session = getBimServer().getDatabase().createSession(true);
 		try {
-			createCheckinAction.setDatabaseSession(session);
-			session.executeAndCommitAction(createCheckinAction, 10, new ProgressHandler() {
+			checkinDatabaseAction.setDatabaseSession(session);
+			session.executeAndCommitAction(checkinDatabaseAction, 10, new ProgressHandler() {
 				@Override
 				public void progress(int current, int max) {
 					updateProgress(current * 100 / max);
@@ -55,7 +55,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			return;
 		} catch (Exception e) {
 			LOGGER.error("", e);
-			createCheckinAction.rollback(e);
+			checkinDatabaseAction.rollback(e);
 		} finally {
 			session.close();
 			done();
@@ -65,7 +65,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	@Override
 	protected void done() {
 		super.done();
-		status = CheckinStatus.FINISHED;
+		status = CheckinStatus.CH_FINISHED;
 	}
 
 	@Override
@@ -86,10 +86,10 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	@Override
 	public LongCheckinActionKey getKey() {
-		return new LongCheckinActionKey(createCheckinAction.getCroid());
+		return new LongCheckinActionKey(checkinDatabaseAction.getCroid());
 	}
 	
 	public CheckinDatabaseAction getCreateCheckinAction() {
-		return createCheckinAction;
+		return checkinDatabaseAction;
 	}
 }

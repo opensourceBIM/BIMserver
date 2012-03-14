@@ -76,6 +76,9 @@
 %>
 <div class="sidebar">
 	<ul>
+		<% if (userHasCheckinRights) { %>
+		<li><a id="checkinlink" class="link">Checkin</a></li>
+		<% } %>
 		<%
 			if (hasEditRights) {
 		%>
@@ -101,7 +104,7 @@
 	</ul>
 	<br /><%=JspHelper.showProjectTree(project, loginManager.getService())%>
 </div>
-
+<div id="checkinpopup"></div>
 <div class="content">
 	<%
 		if (request.getParameter("message") != null) {
@@ -415,60 +418,6 @@
 						for (String warning : checkoutWarnings) {
 							out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
 						}
-						if (userHasCheckinRights) {
-			%>
-			<a href="#" id="uploadlink">Upload (note: Subprojects present)</a>
-			<div id="upload"><jsp:include page="upload.jsp"><jsp:param
-						name="poid" value="<%=poid %>" /></jsp:include>
-				<%
-					List<SProject> projects = loginManager.getService().getAllReadableProjects();
-								Collections.sort(projects, new SProjectNameComparator());
-								if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
-									boolean atLeastOne = false;
-									for (SProject sProject : projects) {
-										if (!sProject.getRevisions().isEmpty()) {
-											atLeastOne = true;
-											break;
-										}
-									}
-									if (atLeastOne) {
-				%>
-				<form method="post" action="branch.jsp">
-					<fieldset>
-						<legend>Checkin existing revision</legend>
-						<label>Project/Revision</label> <select name="roid">
-							<%
-								for (SProject sProject : projects) {
-														if (!sProject.getRevisions().isEmpty()) {
-							%>
-							<optgroup label="<%=sProject.getName()%>">
-								<%
-									List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
-																Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
-																for (SRevision sRevision : checkinRevisions) {
-								%>
-								<option value="<%=sRevision.getOid()%>"><%=sRevision.getId()%></option>
-								<%
-									}
-								%>
-							</optgroup>
-							<%
-								}
-													}
-							%>
-						</select> <label>Comment</label> <input type="text" name="comment" /> <input
-							type="submit" value="Checkin as new revision" /> <input
-							type="hidden" name="action" value="branchtoexistingproject" /> <input
-							type="hidden" name="destpoid" value="<%=poid%>" />
-					</fieldset>
-				</form>
-				<%
-					}
-								}
-				%>
-			</div>
-			<%
-				}
 						if (revisions.size() > 1) {
 			%>
 			<fieldset>
@@ -843,17 +792,6 @@
 			document.getElementById("projecttabber").tabber.tabShow(1);
 			return false;
 		});
-<%if (!loginManager.getService().getSubProjects(project.getOid()).isEmpty()) {%>
-			$("#uploadlink").show();
-			$("#uploadlink").click(function(){
-				$("#upload").show();
-				$("#uploadlink").hide();
-			});
-			$("#upload").hide();
-<%} else {%>
-			$("#upload").show();
-			$("#uploadlink").hide();
-<%}%>
 		var updateInactiveCheckouts = function(){
 			if ($('#showinactivecheckouts').is(':checked')) {
 				$(".inactivecheckoutrow").show();
@@ -975,6 +913,16 @@
 		$("#browserlink").click(function() {
 			showOverlay("Browser", "browser.jsp?roid=<%=project.getLastRevisionId()%>");
 			return false;
+		});
+		$("#checkinlink").click(function(event){
+			event.preventDefault();
+			$("#checkinpopup").dialog({
+				title: "Checkin new revision",
+				width: 600,
+				height: 400,
+				modal: true
+			});
+			$("#checkinpopup").load("upload.jsp?poid=<%=project.getOid()%>");
 		});
 		updateTreeSelectListeners();
 	});

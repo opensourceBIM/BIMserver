@@ -59,6 +59,7 @@ import org.bimserver.models.store.ObjectAdded;
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.ObjectRemoved;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
@@ -90,7 +91,9 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = getRevisionByRoid(roid1).getProject();
+		Revision revision1 = getRevisionByRoid(roid1);
+		Revision revision2 = getRevisionByRoid(roid2);
+		Project project = revision1.getProject();
 		Compare compare = new Compare(objectIDM);
 		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
 											// roid2, compareType,
@@ -106,6 +109,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 
 		Merger merger = bimServer.getMergerFactory().createMerger(compareIdentifier == CompareIdentifier.GUID_ID ? MergeIdentifier.GUID : MergeIdentifier.NAME);
 		IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), false);
+		mergedModel.setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
 		Set<Long> added = new HashSet<Long>();
 		Set<Long> modified = new HashSet<Long>();

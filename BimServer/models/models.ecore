@@ -482,9 +482,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CheckinStatus">
-      <eLiterals name="NONE"/>
-      <eLiterals name="STARTED" value="1"/>
-      <eLiterals name="FINISHED" value="2"/>
+      <eLiterals name="CH_NONE"/>
+      <eLiterals name="CH_STARTED" value="1"/>
+      <eLiterals name="CH_FINISHED" value="2"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">

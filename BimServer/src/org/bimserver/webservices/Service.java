@@ -1116,12 +1116,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer branchToNewProject(Long roid, String projectName, String comment) throws UserException {
+	public SCheckinResult branchToNewProject(Long roid, String projectName, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BranchToNewProjectDatabaseAction action = new BranchToNewProjectDatabaseAction(session, accessMethod, bimServer, currentUoid, roid, projectName, comment);
-			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
@@ -1131,12 +1131,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException {
+	public SCheckinResult branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		final BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BranchToExistingProjectDatabaseAction action = new BranchToExistingProjectDatabaseAction(session, accessMethod, bimServer, currentUoid, roid, destPoid, comment);
-			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
@@ -1535,19 +1535,6 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
-		bimServer.getSettingsManager().saveSettings();
-	}
-
-	@Override
-	public Boolean isSettingAutoTestClashes() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getAutoTestClashes();
-	}
-
-	@Override
-	public void setSettingAutoTestClashes(Boolean autoTestClashes) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setAutoTestClashes(autoTestClashes);
 		bimServer.getSettingsManager().saveSettings();
 	}
 

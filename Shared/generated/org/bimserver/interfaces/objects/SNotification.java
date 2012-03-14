@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SNewProjectNotification.class, SNewRevisionNotification.class})
+@XmlSeeAlso(value={SNewRevisionNotification.class, SNewProjectNotification.class})
 public class SNotification implements SBase
 {
 	private long oid = -1;

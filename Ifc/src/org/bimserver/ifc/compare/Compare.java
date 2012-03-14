@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
@@ -60,6 +61,13 @@ public class Compare {
 	private DataObject makeDataObject(IdEObject eObject) {
 		DataObject dataObject = StoreFactory.eINSTANCE.createDataObject();
 		dataObject.setOid(eObject.getOid());
+		if (eObject instanceof IfcRoot) {
+			IfcRoot ifcRoot = (IfcRoot)eObject;
+			dataObject.setName(ifcRoot.getName());
+			if (ifcRoot.getGlobalId() != null) {
+				dataObject.setGuid(ifcRoot.getGlobalId().getWrappedValue());
+			}
+		}
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 			Object val = eObject.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EReference) {

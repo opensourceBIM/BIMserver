@@ -9,7 +9,6 @@
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
-<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
 <%@ include file="header.jsp"%>
@@ -32,8 +31,6 @@
 		SProject sProject = loginManager.getService().getProjectByPoid(poid);
 		try {
 			SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
-			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(
-			sProject.getClashDetectionSettingsId());
 			if (request.getParameter("save") != null) {
 				try {
 					if (sProject.getParentId() == -1) {
@@ -44,9 +41,6 @@
 						sGeoTag.setDirectionAngle(Double.parseDouble(request.getParameter("directionAngle")));
 						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
 						loginManager.getService().updateGeoTag(sGeoTag);
-						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
-						sClashDetectionSettings.setMargin(Double.parseDouble(request.getParameter("margin")));
-						loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
 					}
 					sProject.setName(request.getParameter("name"));
 					sProject.setDescription(request.getParameter("description"));
@@ -88,18 +82,6 @@
 	<%
 		if (sProject.getParentId() == -1) {
 	%>
-	<tr>
-		<td class="first"><label for="clashdetection" class="checkbox">Automatic
-		clashdetection</label></td>
-		<td><input id="clashdetection" name="clashdetection"
-			class="checkbox" type="checkbox"
-			<%=sClashDetectionSettings.getEnabled() ? "checked=\"checked\"" : ""%> /></td>
-	</tr>
-	<tr class="clashdetectionrow">
-		<td class="indent first"><label for="margin">Margin</label></td>
-		<td class="indent"><input id="margin" type="text" name="margin"
-			value="<%=sClashDetectionSettings.getMargin()%>" /></td>
-	</tr>
 	<tr>
 		<td><label for="coordcheck" class="checkbox">Geolocate</label></label></td>
 		<td><input id="coordcheck" name="coordcheck" class="checkbox"
@@ -166,21 +148,11 @@ $(document).ready(function(){
 <%if (!sGeoTag.getEnabled()) {%>
 	$(".coordcheckrow").hide();
 <%}%>
-<%if (!sClashDetectionSettings.getEnabled()) {%>
-	$(".clashdetectionrow").hide();
-<%}%>
 	$("#coordcheck").click(function(){
 		if ($("#coordcheck").attr('checked')) {
 			$(".coordcheckrow").show();
 		} else {
 			$(".coordcheckrow").hide();
-		}
-	});
-	$("#clashdetection").click(function(){
-		if ($("#clashdetection").attr('checked')) {
-			$(".clashdetectionrow").show();
-		} else {
-			$(".clashdetectionrow").hide();
 		}
 	});
 });

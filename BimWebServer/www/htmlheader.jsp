@@ -21,7 +21,7 @@
 <script src="js/jquery.fileupload.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.ui.progressbar.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-<link type="text/css" href="css/redmond/jquery-ui-1.8.11.custom.css" rel="stylesheet" />	
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
 <link rel="stylesheet" href="css/lightwindow.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/thickbox.css" type="text/css" media="screen" />
 <script type="text/javascript">
