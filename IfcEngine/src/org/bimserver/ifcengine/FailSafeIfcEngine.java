@@ -60,7 +60,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 		this.classPath = classPath;
 	}
 
-	public void start() throws IfcEngineException {
+	public void init() throws IfcEngineException {
 		if (useSecondJvm) {
 			startJvm();
 		} else {

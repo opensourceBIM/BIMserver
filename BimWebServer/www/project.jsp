@@ -804,6 +804,19 @@
 			$("#showinactivecheckouts").change(updateInactiveCheckouts);
 		}
 		updateInactiveCheckouts();
+		
+		$("#checkinlink").click(function(event){
+			alert("test");
+			event.preventDefault();
+			$("#checkinpopup").dialog({
+				title: "Checkin new revision",
+				width: 600,
+				height: 400,
+				modal: true
+			});
+			$("#checkinpopup").load("upload.jsp?poid=<%=project.getOid()%>");
+		});
+		
 		<%="var checkinId = " + request.getParameter("checkinId") + ";"%>
 	});
 </script>
@@ -913,16 +926,6 @@
 		$("#browserlink").click(function() {
 			showOverlay("Browser", "browser.jsp?roid=<%=project.getLastRevisionId()%>");
 			return false;
-		});
-		$("#checkinlink").click(function(event){
-			event.preventDefault();
-			$("#checkinpopup").dialog({
-				title: "Checkin new revision",
-				width: 600,
-				height: 400,
-				modal: true
-			});
-			$("#checkinpopup").load("upload.jsp?poid=<%=project.getOid()%>");
 		});
 		updateTreeSelectListeners();
 	});

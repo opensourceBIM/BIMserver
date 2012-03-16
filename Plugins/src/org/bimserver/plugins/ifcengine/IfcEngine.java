@@ -25,4 +25,5 @@ public interface IfcEngine {
 	IfcEngineModel openModel(InputStream inputStream, int size) throws IfcEngineException;
 	IfcEngineModel openModel(byte[] bytes) throws IfcEngineException;
 	void close();
+	void init() throws IfcEngineException;
 }
