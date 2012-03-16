@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -33,19 +34,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.schema.Attribute;
-import org.bimserver.plugins.schema.EntityDefinition;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.utils.StringUtils;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 
 public class Diff {
-	private SchemaDefinition schema;
 	private final boolean ignoreIntegerZeroDollar;
 	private final boolean ignoreDoubleZeroDollar;
 	private final boolean ignoreListEmptyDollar;
+	private final Set<String> guidPositions = new HashSet<String>();
 
 	public static void main(String[] args) {
 		try {
@@ -61,11 +59,13 @@ public class Diff {
 		this.ignoreIntegerZeroDollar = ignoreIntegerZeroDollar;
 		this.ignoreDoubleZeroDollar = ignoreDoubleZeroDollar;
 		this.ignoreListEmptyDollar = ignoreListEmptyDollar;
-		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
-			schema = pluginManager.requireSchemaDefinition();
-		} catch (PluginException e) {
-			e.printStackTrace();
+		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				if (Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf(eClass)) {
+					guidPositions.add(eClass.getName().toUpperCase() + "_" + eClass.getEAllStructuralFeatures().indexOf(eClass.getEStructuralFeature("GlobalId")));
+				}
+			}
 		}
 	}
 	
@@ -147,16 +147,8 @@ public class Diff {
 				return null;
 			} else if (sub.startsWith("'") && sub.endsWith("'")) {
 				String str = sub.substring(1, sub.length() - 1);
-				EntityDefinition entityBN = schema.getEntityBN(getType());
-				if (entityBN != null) {
-					if (entityBN.getAttributes(true).size() > index) {
-						Attribute attribute = entityBN.getAttributes(true).get(index);
-						if (attribute != null) {
-							if (attribute.getName().equals("GlobalId")) {
-								setGuid(GuidCompressor.uncompressGuidString(str));
-							}
-						}
-					}
+				if (guidPositions.contains(getType() + "_" + index)) {
+					setGuid(GuidCompressor.uncompressGuidString(str));
 				}
 				return str;
 			} else if (sub.startsWith(".")) {
@@ -201,7 +193,7 @@ public class Diff {
 			return list;
 		}
 
-		public Long getId() {
+		public long getId() {
 			return id;
 		}
 
@@ -234,6 +226,7 @@ public class Diff {
 		private final Map<String, ModelObject> guids = new HashMap<String, Diff.ModelObject>();
 
 		public Model(File file) throws CompareException {
+			System.out.println("Reading model " + file.getName());
 			try {
 				BufferedReader reader = new BufferedReader(new FileReader(file));
 				String line = reader.readLine();
@@ -408,6 +401,7 @@ public class Diff {
 		Model model2 = new Model(new File("C:\\Users\\Ruben de  Laat\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //		Model model1 = new Model(new File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserverNewest\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //		Model model2 = new Model(new File("C:\\Users\\Ruben de Laat\\Downloads\\test.1 (10).ifc"));
+		System.out.println("Starting diff");
 		if (model1.getSize() != model2.getSize()) {
 			throw new CompareException("Models not of same size: " + model1.getSize() + " / " + model2.getSize());
 		}
@@ -458,14 +452,18 @@ public class Diff {
 			for (ModelObject modelObject : new ArrayList<ModelObject>(model1.getMatchedObjects())) {
 				valueMatches += expandModelObject(modelObject);
 			}
+			addedBySingleInstance += testSingleOfType(model1, model2);
 			addedByReferencesTo += testSingleOutgoingReferences(model1);
 			addedByReferencesFrom += testSingleIncomingReferences(model1);
-			addedBySingleInstance += testSingleOfType(model1, model2);
 			addedByHashMatch += testOutgoingReferences(model1, model2);
 			
 			lastMatchedObjects = matchedObjects;
 			matchedObjects = model1.getNrMatchedObjects();
 		}
+		
+		addedByHashMatch += testOutgoingReferences(model1, model2);
+
+		
 		System.out.println("nrGuids: " + model1.getGuids().size());
 		System.out.println("addedBySingleInstance: " + addedBySingleInstance);
 		System.out.println("addedByGuid:" + addedByGuid);
@@ -473,12 +471,10 @@ public class Diff {
 		System.out.println("addedByReferencesFrom: " + addedByReferencesFrom);
 		System.out.println("addedByHashMatch: " + addedByHashMatch);
 		System.out.println("addedByValue: " + valueMatches);
-		System.out.println("matched: " + model1.getNrMatchedObjects() + " / " + model1.getNrObjects());
+		System.out.println("matched: " + model1.getNrMatchedObjects() + " / " + model1.getNrObjects() + " which is " + DecimalFormat.getPercentInstance().format((float)model1.getNrMatchedObjects() / model1.getNrObjects()));
 		
 		for (ModelObject modelObject : model1.getUnmatchedObjects()) {
-			if (modelObject.getReferencesFrom().isEmpty()) {
-				System.out.println(modelObject);
-			}
+			System.out.println(modelObject);
 		}
 	}
 
@@ -505,10 +501,8 @@ public class Diff {
 			ModelObject in2 = findSingleUnmatched(referencesFromRemote);
 			if (in1 != null && in2 != null) {
 				if (in1.getType().equals(in2.getType())) {
-					if (!in1.isMatched()) {
-						addedByReferencesFrom++;
-						match(in1, in2);
-					}
+					addedByReferencesFrom++;
+					match(in1, in2);
 				} else {
 					throw new CompareException("Types different");
 				}
@@ -522,22 +516,15 @@ public class Diff {
 		for (ModelObject modelObject : new ArrayList<ModelObject>(model1.getMatchedObjects())) {
 			Set<ModelObject> referencesTo = modelObject.getReferencesTo();
 			Set<ModelObject> referencesToRemote = modelObject.getMatchedObject().getReferencesTo();
-			if (referencesTo.size() == referencesToRemote.size()) {
-				if (referencesTo.size() == 1) {
-					ModelObject r1 = referencesTo.iterator().next();
-					ModelObject r2 = referencesToRemote.iterator().next();
-					if (r1.getType().equals(r2.getType())) {
-						if (!r1.isMatched()) {
-							addedByReferencesTo++;
-							match(r1, r2);
-						}
-					} else {
-						throw new CompareException("Types different");
-					}
+			ModelObject in1 = findSingleUnmatched(referencesTo);
+			ModelObject in2 = findSingleUnmatched(referencesToRemote);
+			if (in1 != null && in2 != null) {
+				if (in1.getType().equals(in2.getType())) {
+					addedByReferencesTo++;
+					match(in1, in2);
+				} else {
+					throw new CompareException("Types different");
 				}
-			} else {
-				throw new CompareException("References to not equal: " + referencesTo.size() + " / " + referencesToRemote.size() + " on " + modelObject + " / "
-						+ modelObject.getMatchedObject());
 			}
 		}
 		return addedByReferencesTo;
@@ -618,9 +605,16 @@ public class Diff {
 					sb.append("-1");
 				}
 			}
-			remoteMarked.put(sb.toString(), modelObject);
+			String str = sb.toString();
+			if (!remoteMarked.containsKey(str)) {
+				remoteMarked.put(str, modelObject);
+			} else {
+				// If there are more than 1 with the same signature, we cannot match, so remove it
+				remoteMarked.remove(str);
+			}
 		}
 
+		Map<String, ModelObject> localMarked = new HashMap<String, Diff.ModelObject>();
 		for (ModelObject modelObject : new ArrayList<ModelObject>(model1.getUnmatchedObjects())) {
 			StringBuilder sb = new StringBuilder();
 			sb.append(modelObject.getType());
@@ -660,12 +654,19 @@ public class Diff {
 				}
 				if (goodToGo) {
 					String s = sb.toString();
-					if (remoteMarked.containsKey(s)) {
-						addedByHashMatch++;
-						ModelObject object = remoteMarked.get(s);
-						match(modelObject, object);
+					if (localMarked.containsKey(s)) {
+						localMarked.remove(s);
+					} else {
+						localMarked.put(s, modelObject);
 					}
 				}
+			}
+		}
+		for (String key : remoteMarked.keySet()) {
+			if (localMarked.containsKey(key)) {
+				addedByHashMatch++;
+				ModelObject object = remoteMarked.get(key);
+				match(localMarked.get(key), object);
 			}
 		}
 		return addedByHashMatch;
@@ -677,6 +678,9 @@ public class Diff {
 			Object remoteValue = modelObject2.getValue(i);
 			matchValue(i, modelObject1, modelObject2, value, remoteValue);
 			i++;
+		}
+		if (modelObject1.getId() != modelObject2.getId()) {
+			System.out.println(modelObject1.getId() + "/" + modelObject2.getId());
 		}
 		modelObject1.setMatchedObject(modelObject2);
 	}
@@ -796,8 +800,8 @@ public class Diff {
 						Object o2 = remoteList.get(j);
 						if (o1 instanceof ModelObject && o2 instanceof ModelObject) {
 							match((ModelObject)o1, (ModelObject)o2);
-							j++;
 						}
+						j++;
 					}
 				}
 			} else if (ignoreListEmptyDollar && remoteValue == null && valueList.isEmpty()) {
