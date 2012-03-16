@@ -404,8 +404,8 @@ public class Diff {
 	}
 
 	private void start() throws CompareException, NoSuchAlgorithmException {
-		Model model1 = new Model(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Shared\\BIMserver\\geheime modellen van statsbygg\\SB_11873_6_ARK_PNN (Original).ifc"));
-		Model model2 = new Model(new File("C:\\Users\\Ruben de Laat\\Downloads\\test.1 (23).ifc"));
+		Model model1 = new Model(new File("C:\\Users\\Ruben de  Laat\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
+		Model model2 = new Model(new File("C:\\Users\\Ruben de  Laat\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //		Model model1 = new Model(new File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserverNewest\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //		Model model2 = new Model(new File("C:\\Users\\Ruben de Laat\\Downloads\\test.1 (10).ifc"));
 		if (model1.getSize() != model2.getSize()) {
@@ -438,22 +438,16 @@ public class Diff {
 		for (String guid : model1.getGuids()) {
 			ModelObject o1 = model1.getByGuid(guid);
 			ModelObject o2 = model2.getByGuid(guid);
+			if (o2 == null) {
+				throw new CompareException("Guid " + guid + " not found in m2");
+			}
 			if (o1.getType().equals(o2.getType())) {
 				if (!o1.isMatched() && !o2.isMatched()) {
 					addedByGuid++;
-					o1.setMatchedObject(o2);
+					match(o1, o2);
 				}
 			} else {
 				throw new CompareException("Types");
-			}
-		}
-		for (String type : typesWithOneInstance) {
-			for (ModelObject modelObject : model1.getOfType(type)) {
-				ModelObject other = model2.getOfType(type).get(0);
-				if (!modelObject.isMatched() && !other.isMatched()) {
-					addedBySingleInstance++;
-					modelObject.setMatchedObject(other);
-				}
 			}
 		}
 		
@@ -462,7 +456,7 @@ public class Diff {
 		while (lastMatchedObjects != matchedObjects) {
 			System.out.println(matchedObjects);
 			for (ModelObject modelObject : new ArrayList<ModelObject>(model1.getMatchedObjects())) {
-				valueMatches += testValues(modelObject);
+				valueMatches += expandModelObject(modelObject);
 			}
 			addedByReferencesTo += testSingleOutgoingReferences(model1);
 			addedByReferencesFrom += testSingleIncomingReferences(model1);
@@ -513,7 +507,7 @@ public class Diff {
 				if (in1.getType().equals(in2.getType())) {
 					if (!in1.isMatched()) {
 						addedByReferencesFrom++;
-						in1.setMatchedObject(in2);
+						match(in1, in2);
 					}
 				} else {
 					throw new CompareException("Types different");
@@ -535,7 +529,7 @@ public class Diff {
 					if (r1.getType().equals(r2.getType())) {
 						if (!r1.isMatched()) {
 							addedByReferencesTo++;
-							r1.setMatchedObject(r2);
+							match(r1, r2);
 						}
 					} else {
 						throw new CompareException("Types different");
@@ -549,30 +543,36 @@ public class Diff {
 		return addedByReferencesTo;
 	}
 
-	private int testSingleOfType(Model model1, Model model2) {
+	private int testSingleOfType(Model model1, Model model2) throws CompareException {
 		int addedBySingleInstance = 0;
 		for (String type : model1.getDistinctTypes()) {
 			int a1 = model1.getNrObjectsOfType(type);
 			int a2 = model2.getNrObjectsOfType(type);
 			if (a1 == a2 && a1 == 1) {
-				ModelObject x = null;
-				ModelObject y = null;
 				List<ModelObject> ofType1 = model1.getOfType(type);
 				List<ModelObject> ofType2 = model2.getOfType(type);
+				ModelObject first1 = null;
 				for (ModelObject modelObject : ofType1) {
 					if (!modelObject.isMatched()) {
-						x = modelObject;
-						break;
+						if (first1 != null) {
+							first1 = modelObject;
+						} else {
+							first1 = null;
+						}
 					}
 				}
+				ModelObject first2 = null;
 				for (ModelObject modelObject : ofType2) {
 					if (!modelObject.isMatched()) {
-						y = modelObject;
-						break;
+						if (first2 != null) {
+							first2 = modelObject;
+						} else {
+							first2 = null;
+						}
 					}
 				}
-				if (x != null && y != null) {
-					x.setMatchedObject(y);
+				if (first1 != null && first2 != null) {
+					match(first1, first2);
 					addedBySingleInstance++;
 				}
 			}
@@ -580,7 +580,7 @@ public class Diff {
 		return addedBySingleInstance;
 	}
 
-	private int testOutgoingReferences(Model model1, Model model2) {
+	private int testOutgoingReferences(Model model1, Model model2) throws CompareException {
 		int addedByHashMatch = 0;
 		Map<String, ModelObject> remoteMarked = new HashMap<String, Diff.ModelObject>();
 		for (ModelObject modelObject : model2.getUnmatchedObjects()) {
@@ -663,7 +663,7 @@ public class Diff {
 					if (remoteMarked.containsKey(s)) {
 						addedByHashMatch++;
 						ModelObject object = remoteMarked.get(s);
-						modelObject.setMatchedObject(object);
+						match(modelObject, object);
 					}
 				}
 			}
@@ -671,26 +671,24 @@ public class Diff {
 		return addedByHashMatch;
 	}
 
-	private int testValues(ModelObject modelObject) throws CompareException {
+	public void match(ModelObject modelObject1, ModelObject modelObject2) throws CompareException {
 		int i = 0;
-		int matches = 0;
-		for (Object value : modelObject.getValues()) {
-			Object remoteValue = modelObject.getMatchedObject().getValue(i);
-			matches += processValue(i, modelObject, value, remoteValue);
+		for (Object value : modelObject1.getValues()) {
+			Object remoteValue = modelObject2.getValue(i);
+			matchValue(i, modelObject1, modelObject2, value, remoteValue);
 			i++;
 		}
-		return matches;
+		modelObject1.setMatchedObject(modelObject2);
 	}
-
-	private int processValue(int index, ModelObject modelObject, Object value, Object remoteValue) throws CompareException {
-		int result = 0;
+	
+	private void matchValue(int index, ModelObject modelObject1, ModelObject modelObject2, Object value, Object remoteValue) throws CompareException {
 		if (value == null) {
 			if (remoteValue != null) {
 				if (ignoreIntegerZeroDollar && remoteValue.equals("0")) {
 				} else if (ignoreListEmptyDollar && remoteValue instanceof List && ((List<?>)remoteValue).isEmpty()) {
 				} else if (ignoreDoubleZeroDollar && remoteValue.equals("0.0")) {
 				} else {
-					throw new CompareException("Remote value not null: " + remoteValue + " on " + modelObject + " / " + modelObject.getMatchedObject() + "." + index);
+					throw new CompareException("Remote value not null: " + remoteValue + " on " + modelObject1 + " / " + modelObject2 + "." + index);
 				}
 			}
 		} else if (value instanceof String) {
@@ -708,7 +706,7 @@ public class Diff {
 				} else if (ignoreListEmptyDollar && value instanceof List && ((List<?>)value).isEmpty()) {
 				} else if (ignoreDoubleZeroDollar && value.equals("0.0")) {
 				} else {
-					throw new CompareException("Remote value not of type String: " + remoteValue + " / " + value + " on " + modelObject + " / " + modelObject.getMatchedObject() + "." + index);
+					throw new CompareException("Remote value not of type String: " + remoteValue + " / " + value + " on " + modelObject1 + " / " + modelObject2 + "." + index);
 				}
 			}
 		} else if (value instanceof ModelObject) {
@@ -717,7 +715,67 @@ public class Diff {
 				ModelObject remoteValueObject = (ModelObject) remoteValue;
 				if ((remoteValueObject).getType().equals(valueObject.getType())) {
 					if (!valueObject.isMatched() && !remoteValueObject.isMatched()) {
-						valueObject.setMatchedObject(remoteValueObject);
+					} else if (valueObject.isMatched() && remoteValueObject.isMatched()){
+						if (valueObject.getMatchedObject() != remoteValueObject) {
+							throw new CompareException("Matched objects not the same");
+						}
+					} else {
+						throw new CompareException("One object matched, the other not");
+					}
+				} else {
+					throw new CompareException("Objects not of same type: " + valueObject.getType() + " / " + remoteValueObject.getType());
+				}
+			} else {
+				throw new CompareException("Remote object not a ModelObject");
+			}
+		} else if (value instanceof List) {
+			List<?> valueList = (List<?>) value;
+			if (remoteValue instanceof List) {
+				List<?> remoteList = (List<?>) remoteValue;
+				if (valueList.size() != remoteList.size()) {
+					throw new CompareException("List sizes not equal: " + valueList.size() + " / " + remoteList.size());
+				} else {
+					int j = 0;
+					for (Object o1 : valueList) {
+						Object o2 = remoteList.get(j);
+						if (o1 instanceof ModelObject && o2 instanceof ModelObject) {
+						} else {
+							matchValue(j, modelObject1, modelObject2, o1, o2);
+						}
+						j++;
+					}
+				}
+			} else if (ignoreListEmptyDollar && remoteValue == null && valueList.isEmpty()) {
+			} else {
+				throw new CompareException("Remote value not of type list on " + modelObject1 + " / " + modelObject2);
+			}
+		} else {
+			throw new CompareException("Unimplemented type " + value.getClass().getName());
+		}
+	}
+
+	private int expandModelObject(ModelObject modelObject) throws CompareException {
+		int i = 0;
+		int matches = 0;
+		for (Object value : modelObject.getValues()) {
+			Object remoteValue = modelObject.getMatchedObject().getValue(i);
+			matches += expandValue(i, modelObject, value, remoteValue);
+			i++;
+		}
+		return matches;
+	}
+
+	private int expandValue(int index, ModelObject modelObject, Object value, Object remoteValue) throws CompareException {
+		int result = 0;
+		if (value == null) {
+		} else if (value instanceof String) {
+		} else if (value instanceof ModelObject) {
+			ModelObject valueObject = (ModelObject) value;
+			if (remoteValue instanceof ModelObject) {
+				ModelObject remoteValueObject = (ModelObject) remoteValue;
+				if ((remoteValueObject).getType().equals(valueObject.getType())) {
+					if (!valueObject.isMatched() && !remoteValueObject.isMatched()) {
+						match(valueObject, remoteValueObject);
 						result++;
 					}
 				} else {
@@ -736,8 +794,10 @@ public class Diff {
 					int j = 0;
 					for (Object o1 : valueList) {
 						Object o2 = remoteList.get(j);
-						result += processValue(j, modelObject, o1, o2);
-						j++;
+						if (o1 instanceof ModelObject && o2 instanceof ModelObject) {
+							match((ModelObject)o1, (ModelObject)o2);
+							j++;
+						}
 					}
 				}
 			} else if (ignoreListEmptyDollar && remoteValue == null && valueList.isEmpty()) {
