@@ -235,8 +235,16 @@ BIMServer.Viewer = function() {
             var points = geometry.getVertices();
             var x = points[0].x;
             var y = points[0].y;
-            form.elements["x"].value = x.toFixed(2);
-            form.elements["y"].value = y.toFixed(2);
+            if (form.elements["epsg"].value == "EPSG:900913")
+            {
+            	form.elements["x"].value = x.toFixed(2);
+            	form.elements["y"].value = y.toFixed(2);
+            }
+            else
+            {
+            	form.elements["x"].value = x.toFixed(8);
+            	form.elements["y"].value = y.toFixed(8);
+            }
             form.elements["directionAngle"].value = this.calculateAngle(geometry);
         },
         getMap: function() {
