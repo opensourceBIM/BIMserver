@@ -36,6 +36,7 @@ public class Step0010 extends Migration {
 		schema.createEReference(checkinResultClass, "revision", schema.getEClass("store", "Revision"), Multiplicity.SINGLE);
 		schema.createEReference(checkinResultClass, "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
 		schema.createEAttribute(checkinResultClass, "progress", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(checkinResultClass, "lastError", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
 		EDataType dataHandler = schema.createEDataType(schema.getEPackage("store"), EcoreFactory.eINSTANCE.createEDataType());
 		dataHandler.setName("DataHandler");

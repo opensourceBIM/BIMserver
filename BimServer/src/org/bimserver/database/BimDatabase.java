@@ -23,7 +23,7 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.Migrator;
 
 public interface BimDatabase {
-	BimDatabaseSession createSession(boolean useTransactions);
+	BimDatabaseSession createSession();
 
 	BimDatabaseSession createReadOnlySession();
 

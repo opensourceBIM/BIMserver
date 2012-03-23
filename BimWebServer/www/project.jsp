@@ -77,7 +77,7 @@
 <div class="sidebar">
 	<ul>
 		<% if (userHasCheckinRights) { %>
-		<li><a id="checkinlink" class="link">Checkin</a></li>
+		<li><a class="checkinlink link" href="#">Checkin</a></li>
 		<% } %>
 		<%
 			if (hasEditRights) {
@@ -492,44 +492,11 @@
 					<td>
 						<div class="commentbox">
 							<div><%=revision.getComment()%></div>
-							<a href="#" class="morelink">more</a>
 						</div>
 					</td>
-					<%
-						if (project.getParentId() == -1 && sClashDetectionSettings.getEnabled()) {
-					%>
-					<td class="clashesfield"><img src="images/ajax-loader.gif"
-						align="left"
-						style="margin-right: 5px; display: <%=revision.getState() == SCheckinState.SEARCHING_CLASHES ? "block" : "none"%>" />
-						<span class="statusfield"> <%
- 	if (revision.getState() == SCheckinState.DONE) {
- 							out.print(revision.getLastClashes().size());
- 						} else if (revision.getState() == SCheckinState.SEARCHING_CLASHES) {
- 							out.print("Searching clashes...");
- 						} else if (revision.getState() == SCheckinState.CLASHES_ERROR) {
- 							out.print("Error: " + revision.getLastError());
- 						}
- %> </span></td>
-					<%
-						}
-					%>
-					<td class="sizefield"><%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.SEARCHING_CLASHES || revision.getState() == SCheckinState.CLASHES_ERROR) ? revision
-									.getSize() : ""%></td>
-					<td class="downloadfield"><img src="images/ajax-loader.gif"
-						align="left"
-						style="margin-right: 5px; display: <%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.ERROR
-									|| revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES) ? "none" : "block"%>" />
-						<div id="uploadProgressBar<%=revision.getOid()%>"></div> <span
-						class="statusfield"> <%
- 	if (revision.getState() == SCheckinState.ERROR) {
- 						out.print("Error: " + revision.getState().name().toLowerCase());
- 					} else if (revision.getState() == SCheckinState.STORING) {
- 						out.print("Storing...");
- 					}
- %> </span>
-						<div
-							class="<%=revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.CLASHES_ERROR
-									|| revision.getState() == SCheckinState.SEARCHING_CLASHES ? "" : "blockinvisible"%>">
+					<td class="sizefield"><%=revision.getSize()%></td>
+					<td>
+						<div>
 							<table class="cleantable">
 								<tr class="downloadframe">
 									<td><input type="hidden" name="roid"
@@ -568,15 +535,16 @@
 						</div>
 					</td>
 				</tr>
-				<%
+			<%
 					}
-				%>
-			</table>
+			%>
+						</table>
+			
 			<%
 				} else {
 			%>
 			<div class="none">
-				No revisions<%=userHasCheckinRights ? ", upload a file" : ""%></div>
+				No revisions<%=userHasCheckinRights ? ", <a class=\"checkinlink\" href=\"#\">checkin new revision</a>" : ""%></div>
 			<%
 				}
 			%>
@@ -805,8 +773,7 @@
 		}
 		updateInactiveCheckouts();
 		
-		$("#checkinlink").click(function(event){
-			alert("test");
+		$(".checkinlink").click(function(event){
 			event.preventDefault();
 			$("#checkinpopup").dialog({
 				title: "Checkin new revision",
@@ -892,13 +859,6 @@
 				$(element).parent().children("a").hide();
 			}
 		});
-		$(".commentbox .morelink").click(
-			function(event) {
-				$(event.target).parent().children("div").css("height", "auto");
-				$(event.target).parent().children("div").css("overflow", "visible");
-				$(event.target).hide();
-				return false;
-			});
 
 		var checkDetailsCheckoutButton = function() {
 			$("#detailscheckoutbutton").attr("disabled", $("#detailsdownloadcheckoutselect").val() != "Ifc2x3" && $("#detailsdownloadcheckoutselect").val() != "IfcXML");

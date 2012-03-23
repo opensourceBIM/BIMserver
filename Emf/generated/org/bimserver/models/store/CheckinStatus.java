@@ -56,7 +56,15 @@ public enum CheckinStatus implements Enumerator {
 												 * @generated
 												 * @ordered
 												 */
-	CH_FINISHED(2, "CH_FINISHED", "CH_FINISHED");
+	CH_FINISHED(2, "CH_FINISHED", "CH_FINISHED"), /**
+													 * The '<em><b>CH ERROR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CH_ERROR_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	CH_ERROR(3, "CH_ERROR", "CH_ERROR");
 
 	/**
 	 * The '<em><b>CH NONE</b></em>' literal value.
@@ -104,12 +112,27 @@ public enum CheckinStatus implements Enumerator {
 	public static final int CH_FINISHED_VALUE = 2;
 
 	/**
+	 * The '<em><b>CH ERROR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CH ERROR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CH_ERROR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CH_ERROR_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Checkin Status</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final CheckinStatus[] VALUES_ARRAY = new CheckinStatus[] { CH_NONE, CH_STARTED, CH_FINISHED, };
+	private static final CheckinStatus[] VALUES_ARRAY = new CheckinStatus[] { CH_NONE, CH_STARTED, CH_FINISHED, CH_ERROR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Checkin Status</b></em>' enumerators.
@@ -165,6 +188,8 @@ public enum CheckinStatus implements Enumerator {
 			return CH_STARTED;
 		case CH_FINISHED_VALUE:
 			return CH_FINISHED;
+		case CH_ERROR_VALUE:
+			return CH_ERROR;
 		}
 		return null;
 	}

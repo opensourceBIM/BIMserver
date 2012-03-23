@@ -28,7 +28,6 @@ import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.Project;
@@ -55,12 +54,11 @@ public class ClashDetectionLongAction extends LongAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void execute() {
-		BimDatabaseSession session = getBimServer().getDatabase().createSession(true);
+		BimDatabaseSession session = getBimServer().getDatabase().createSession();
 		long roid = -1;
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			Revision revision = project.getLastRevision();
-			revision.setState(CheckinState.SEARCHING_CLASHES);
 			roid = revision.getOid();
 			session.store(revision);
 			session.commit();
@@ -71,7 +69,7 @@ public class ClashDetectionLongAction extends LongAction {
 		} finally {
 			session.close();
 		}
-		session = getBimServer().getDatabase().createSession(true);
+		session = getBimServer().getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
@@ -86,7 +84,6 @@ public class ClashDetectionLongAction extends LongAction {
 //				session.store(clash);
 //			}
 			revision.setNrClashes(clashes.size());
-			revision.setState(CheckinState.DONE);
 			session.store(revision);
 
 			Set<String> emailAddresses = new HashSet<String>();
@@ -105,14 +102,13 @@ public class ClashDetectionLongAction extends LongAction {
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			try {
-				BimDatabaseSession rollBackSession = getBimServer().getDatabase().createSession(true);
+				BimDatabaseSession rollBackSession = getBimServer().getDatabase().createSession();
 				try {
 					Throwable throwable = e;
 					while (throwable.getCause() != null) {
 						throwable = throwable.getCause();
 					}
 					Revision revision = rollBackSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
-					revision.setState(CheckinState.CLASHES_ERROR);
 					revision.setLastError(throwable.getMessage());
 					rollBackSession.store(revision);
 					rollBackSession.commit();

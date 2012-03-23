@@ -790,22 +790,13 @@ public interface StorePackage extends EPackage {
 	int REVISION__PROJECT = 8;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REVISION__STATE = 9;
-
-	/**
 	 * The feature id for the '<em><b>Last Clashes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__LAST_CLASHES = 10;
+	int REVISION__LAST_CLASHES = 9;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -814,7 +805,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__TAG = 11;
+	int REVISION__TAG = 10;
 
 	/**
 	 * The feature id for the '<em><b>Last Error</b></em>' attribute.
@@ -823,7 +814,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__LAST_ERROR = 12;
+	int REVISION__LAST_ERROR = 11;
 
 	/**
 	 * The feature id for the '<em><b>Bmi</b></em>' attribute.
@@ -832,7 +823,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__BMI = 13;
+	int REVISION__BMI = 12;
 
 	/**
 	 * The feature id for the '<em><b>Nr Clashes</b></em>' attribute.
@@ -841,7 +832,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__NR_CLASHES = 14;
+	int REVISION__NR_CLASHES = 13;
 
 	/**
 	 * The feature id for the '<em><b>Laid</b></em>' attribute.
@@ -850,7 +841,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__LAID = 15;
+	int REVISION__LAID = 14;
 
 	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
@@ -859,7 +850,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 16;
+	int REVISION_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -890,22 +881,13 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__PROJECT = 1;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_REVISION__STATE = 2;
-
-	/**
 	 * The feature id for the '<em><b>Checksum</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__CHECKSUM = 3;
+	int CONCRETE_REVISION__CHECKSUM = 2;
 
 	/**
 	 * The feature id for the '<em><b>Revisions</b></em>' reference list.
@@ -914,7 +896,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__REVISIONS = 4;
+	int CONCRETE_REVISION__REVISIONS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -923,7 +905,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__SIZE = 5;
+	int CONCRETE_REVISION__SIZE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -932,7 +914,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__DATE = 6;
+	int CONCRETE_REVISION__DATE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Last Error</b></em>' attribute.
@@ -941,7 +923,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__LAST_ERROR = 7;
+	int CONCRETE_REVISION__LAST_ERROR = 6;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -950,7 +932,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__USER = 8;
+	int CONCRETE_REVISION__USER = 7;
 
 	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
@@ -959,7 +941,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 9;
+	int CONCRETE_REVISION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -1754,13 +1736,22 @@ public interface StorePackage extends EPackage {
 	int CHECKIN_RESULT__PROGRESS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Last Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_RESULT__LAST_ERROR = 3;
+
+	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKIN_RESULT__STATUS = 3;
+	int CHECKIN_RESULT__STATUS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Checkin Result</em>' class.
@@ -1769,7 +1760,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKIN_RESULT_FEATURE_COUNT = 4;
+	int CHECKIN_RESULT_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.DownloadResultImpl <em>Download Result</em>}' class.
@@ -3384,16 +3375,6 @@ public interface StorePackage extends EPackage {
 	int USER_TYPE = 53;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.CheckinState
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
-	 * @generated
-	 */
-	int CHECKIN_STATE = 54;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3401,7 +3382,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 55;
+	int SI_PREFIX = 54;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -3411,7 +3392,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 56;
+	int OBJECT_STATE = 55;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -3421,7 +3402,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 57;
+	int MERGE_IDENTIFIER = 56;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
@@ -3431,7 +3412,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 58;
+	int COMPARE_IDENTIFIER = 57;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -3441,7 +3422,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 59;
+	int COMPARE_TYPE = 58;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -3451,7 +3432,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 60;
+	int ACTION_STATE = 59;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -3461,7 +3442,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 61;
+	int SERVER_STATE = 60;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -3471,7 +3452,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 62;
+	int CHECKIN_STATUS = 61;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -3481,7 +3462,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 63;
+	int DATA_HANDLER = 62;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -4148,17 +4129,6 @@ public interface StorePackage extends EPackage {
 	EReference getRevision_Project();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Revision#getState <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see org.bimserver.models.store.Revision#getState()
-	 * @see #getRevision()
-	 * @generated
-	 */
-	EAttribute getRevision_State();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getLastClashes <em>Last Clashes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4255,17 +4225,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConcreteRevision_Project();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ConcreteRevision#getState <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see org.bimserver.models.store.ConcreteRevision#getState()
-	 * @see #getConcreteRevision()
-	 * @generated
-	 */
-	EAttribute getConcreteRevision_State();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ConcreteRevision#getChecksum <em>Checksum</em>}'.
@@ -5192,6 +5151,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCheckinResult_Progress();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.CheckinResult#getLastError <em>Last Error</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Error</em>'.
+	 * @see org.bimserver.models.store.CheckinResult#getLastError()
+	 * @see #getCheckinResult()
+	 * @generated
+	 */
+	EAttribute getCheckinResult_LastError();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.CheckinResult#getStatus <em>Status</em>}'.
@@ -6543,16 +6513,6 @@ public interface StorePackage extends EPackage {
 	EEnum getUserType();
 
 	/**
-	 * Returns the meta object for enum '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Checkin State</em>'.
-	 * @see org.bimserver.models.store.CheckinState
-	 * @generated
-	 */
-	EEnum getCheckinState();
-
-	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7168,14 +7128,6 @@ public interface StorePackage extends EPackage {
 		EReference REVISION__PROJECT = eINSTANCE.getRevision_Project();
 
 		/**
-		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REVISION__STATE = eINSTANCE.getRevision_State();
-
-		/**
 		 * The meta object literal for the '<em><b>Last Clashes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7248,14 +7200,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONCRETE_REVISION__PROJECT = eINSTANCE.getConcreteRevision_Project();
-
-		/**
-		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONCRETE_REVISION__STATE = eINSTANCE.getConcreteRevision_State();
 
 		/**
 		 * The meta object literal for the '<em><b>Checksum</b></em>' attribute feature.
@@ -7954,6 +7898,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CHECKIN_RESULT__PROGRESS = eINSTANCE.getCheckinResult_Progress();
+
+		/**
+		 * The meta object literal for the '<em><b>Last Error</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHECKIN_RESULT__LAST_ERROR = eINSTANCE.getCheckinResult_LastError();
 
 		/**
 		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
@@ -9036,16 +8988,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum USER_TYPE = eINSTANCE.getUserType();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.CheckinState
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
-		 * @generated
-		 */
-		EEnum CHECKIN_STATE = eINSTANCE.getCheckinState();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.

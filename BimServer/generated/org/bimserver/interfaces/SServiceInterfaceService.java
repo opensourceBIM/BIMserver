@@ -33,7 +33,6 @@ public class SServiceInterfaceService extends SService {
 		public void init() {
 			try {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SUserType")));
-		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCheckinState")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SSIPrefix")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SObjectState")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SProject")));

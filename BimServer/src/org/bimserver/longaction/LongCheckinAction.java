@@ -33,6 +33,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private final CheckinDatabaseAction checkinDatabaseAction;
 	private CheckinStatus status = CheckinStatus.CH_NONE;
+	private String lastError;
 
 	public LongCheckinAction(BimServer bimServer, User user, CheckinDatabaseAction createCheckinAction) {
 		super(bimServer, user);
@@ -41,7 +42,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	public void execute() {
 		status = CheckinStatus.CH_STARTED;
-		BimDatabaseSession session = getBimServer().getDatabase().createSession(true);
+		BimDatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
 			session.executeAndCommitAction(checkinDatabaseAction, 10, new ProgressHandler() {
@@ -51,11 +52,13 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				}
 			});
 		} catch (OutOfMemoryError e) {
+			lastError = e.getMessage();
+			status = CheckinStatus.CH_ERROR;
 			getBimServer().getServerInfoManager().setOutOfMemory();
-			return;
 		} catch (Exception e) {
+			lastError = e.getMessage();
+			status = CheckinStatus.CH_ERROR;
 			LOGGER.error("", e);
-			checkinDatabaseAction.rollback(e);
 		} finally {
 			session.close();
 			done();
@@ -65,7 +68,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	@Override
 	protected void done() {
 		super.done();
-		status = CheckinStatus.CH_FINISHED;
+		if (status != CheckinStatus.CH_ERROR) {
+			status = CheckinStatus.CH_FINISHED;
+		}
 	}
 
 	@Override
@@ -76,7 +81,8 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	public CheckinResult getCheckinResult() {
 		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
 		checkinResult.setProgress(getProgress());
-		checkinResult.setStatus(status );
+		checkinResult.setStatus(status);
+		checkinResult.setLastError(lastError);
 		return checkinResult;
 	}
 	

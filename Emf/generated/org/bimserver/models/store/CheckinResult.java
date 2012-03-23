@@ -29,6 +29,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.CheckinResult#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.CheckinResult#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.CheckinResult#getProgress <em>Progress</em>}</li>
+ *   <li>{@link org.bimserver.models.store.CheckinResult#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.CheckinResult#getStatus <em>Status</em>}</li>
  * </ul>
  * </p>
@@ -116,6 +117,32 @@ public interface CheckinResult extends IdEObject {
 	 * @generated
 	 */
 	void setProgress(Integer value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Error</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Error</em>' attribute.
+	 * @see #setLastError(String)
+	 * @see org.bimserver.models.store.StorePackage#getCheckinResult_LastError()
+	 * @model
+	 * @generated
+	 */
+	String getLastError();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.CheckinResult#getLastError <em>Last Error</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Error</em>' attribute.
+	 * @see #getLastError()
+	 * @generated
+	 */
+	void setLastError(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.

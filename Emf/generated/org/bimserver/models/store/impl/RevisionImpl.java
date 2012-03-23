@@ -19,7 +19,6 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ConcreteRevision;
@@ -46,7 +45,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastConcreteRevision <em>Last Concrete Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getCheckouts <em>Checkouts</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastClashes <em>Last Clashes</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastError <em>Last Error</em>}</li>
@@ -232,24 +230,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.REVISION__PROJECT, newProject);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CheckinState getState() {
-		return (CheckinState) eGet(StorePackage.Literals.REVISION__STATE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setState(CheckinState newState) {
-		eSet(StorePackage.Literals.REVISION__STATE, newState);
 	}
 
 	/**

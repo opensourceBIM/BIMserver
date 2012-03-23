@@ -175,14 +175,14 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject);
 		}
-		ObjectIDM ObjectIDM;
+		ObjectIDM objectIDM;
 		try {
-			ObjectIDM = bimServer.getPluginManager().requireObjectIDM();
+			objectIDM = bimServer.getPluginManager().requireObjectIDM();
 		} catch (ObjectIDMException e) {
 			throw new UserException(e);
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			if (!ObjectIDM.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
+			if (!objectIDM.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Double) {

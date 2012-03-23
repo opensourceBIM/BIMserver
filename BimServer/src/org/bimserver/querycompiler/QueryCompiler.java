@@ -74,7 +74,7 @@ public class QueryCompiler {
 	}
 
 	public RunResult run(String code, long roid, long uoid, BimServer bimServer) {
-		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		BimDatabaseSession session = bimServer.getDatabase().createSession();
 		RunResult runResult = StoreFactory.eINSTANCE.createRunResult();
 		runResult.setRunOke(true);
 		try {

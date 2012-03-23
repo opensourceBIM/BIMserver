@@ -18,10 +18,9 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
-import org.bimserver.models.store.CheckinState;
+import org.bimserver.models.store.CheckinStatus;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.Clash;
@@ -45,6 +44,7 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
@@ -253,8 +253,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 		switch (eDataType.getClassifierID()) {
 		case StorePackage.USER_TYPE:
 			return createUserTypeFromString(eDataType, initialValue);
-		case StorePackage.CHECKIN_STATE:
-			return createCheckinStateFromString(eDataType, initialValue);
 		case StorePackage.SI_PREFIX:
 			return createSIPrefixFromString(eDataType, initialValue);
 		case StorePackage.OBJECT_STATE:
@@ -288,8 +286,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 		switch (eDataType.getClassifierID()) {
 		case StorePackage.USER_TYPE:
 			return convertUserTypeToString(eDataType, instanceValue);
-		case StorePackage.CHECKIN_STATE:
-			return convertCheckinStateToString(eDataType, instanceValue);
 		case StorePackage.SI_PREFIX:
 			return convertSIPrefixToString(eDataType, instanceValue);
 		case StorePackage.OBJECT_STATE:
@@ -861,27 +857,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertUserTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CheckinState createCheckinStateFromString(EDataType eDataType, String initialValue) {
-		CheckinState result = CheckinState.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCheckinStateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

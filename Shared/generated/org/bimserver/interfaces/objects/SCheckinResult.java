@@ -55,6 +55,9 @@ public class SCheckinResult implements SBase
 		if (sField.getName().equals("progress")) {
 			return getProgress();
 		}
+		if (sField.getName().equals("lastError")) {
+			return getLastError();
+		}
 		if (sField.getName().equals("status")) {
 			return getStatus();
 		}
@@ -76,6 +79,10 @@ public class SCheckinResult implements SBase
 			setProgress((Integer)val);
 			return;
 		}
+		if (sField.getName().equals("lastError")) {
+			setLastError((String)val);
+			return;
+		}
 		if (sField.getName().equals("status")) {
 			setStatus((SCheckinStatus)val);
 			return;
@@ -90,6 +97,7 @@ public class SCheckinResult implements SBase
 	private long revisionId;
 	private long projectId;
 	private java.lang.Integer progress;
+	private java.lang.String lastError;
 	private SCheckinStatus status;
 	public long getRevisionId() {
 		return revisionId;
@@ -113,6 +121,13 @@ public class SCheckinResult implements SBase
 
 	public void setProgress(java.lang.Integer progress) {
 		this.progress = progress;
+	}
+	public java.lang.String getLastError() {
+		return lastError;
+	}
+
+	public void setLastError(java.lang.String lastError) {
+		this.lastError = lastError;
 	}
 	public SCheckinStatus getStatus() {
 		return status;

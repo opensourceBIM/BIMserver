@@ -8,6 +8,6 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-io-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.2.jar" sourcepath="/BimServer/libsrc/slf4j-api-1.6.4-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/logging/slf4j-log4j12-1.6.2.jar" sourcepath="/BimServer/libsrc/slf4j-log4j12-1.6.4-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-10.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-11.0.1.jar" sourcepath="/BimServer/libsrc/guava-11.0.1-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

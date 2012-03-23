@@ -24,7 +24,6 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -64,10 +63,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 					revisionId = revision.getId();
 				}
 			}
-			if (concreteRevision.getState() == CheckinState.ERROR) {
-				// When in error state, user usually tries the same file again, this should not give the 'duplicate model' error
-				return;
-			}
 			byte[] revisionChecksum = concreteRevision.getChecksum();
 			if (revisionChecksum != null && getModel().getChecksum() != null) {
 				if (Arrays.equals(revisionChecksum, getModel().getChecksum())) {
@@ -77,7 +72,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		}
 	}
 	
-	public ConcreteRevision createNewConcreteRevision(BimDatabaseSession session, long size, long poid, long uoid, String comment, CheckinState checkinState) throws BimDatabaseException, BimDeadlockException {
+	public ConcreteRevision createNewConcreteRevision(BimDatabaseSession session, long size, long poid, long uoid, String comment) throws BimDatabaseException, BimDeadlockException {
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
 		concreteRevision.setSize(size);
 		Date date = new Date();
@@ -87,9 +82,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		User user = getUserByUoid(uoid);
 		concreteRevision.setUser(user);
 		concreteRevision.setProject(project);
-		concreteRevision.setState(checkinState);
 		project.setLastConcreteRevision(concreteRevision);
-		Revision newRevision = createNewVirtualRevision(session, project, concreteRevision, comment, date, user, size, checkinState);
+		Revision newRevision = createNewVirtualRevision(session, project, concreteRevision, comment, date, user, size);
 
 		for (Checkout checkout : project.getCheckouts()) {
 			if (checkout.getUser() == user) {
@@ -106,7 +100,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 			revision.setDate(date);
 			revision.setUser(getSystemUser());
 			revision.setProject(parent);
-			revision.setState(checkinState);
 			if (parent.getLastRevision() != null) {
 				Revision lastRevision = parent.getLastRevision();
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {
@@ -137,7 +130,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		return concreteRevision;
 	}
 
-	private Revision createNewVirtualRevision(BimDatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size, CheckinState checkinState)
+	private Revision createNewVirtualRevision(BimDatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size)
 			throws BimDeadlockException, BimDatabaseException {
 		Revision revision = StoreFactory.eINSTANCE.createRevision();
 		revision.setLastConcreteRevision(concreteRevision);
@@ -145,7 +138,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		revision.setDate(date);
 		revision.setUser(user);
 		revision.setSize(size);
-		revision.setState(checkinState);
 		revision.setId(project.getRevisions().size() + 1);
 		revision.getConcreteRevisions().add(concreteRevision);
 		revision.setProject(project);

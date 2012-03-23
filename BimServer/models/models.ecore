@@ -9,15 +9,6 @@
       <eLiterals name="USER" value="2"/>
       <eLiterals name="READ_ONLY" value="3"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="CheckinState">
-      <eLiterals name="UPLOADING"/>
-      <eLiterals name="PARSING" value="1"/>
-      <eLiterals name="STORING" value="2"/>
-      <eLiterals name="SEARCHING_CLASHES" value="3"/>
-      <eLiterals name="DONE" value="4"/>
-      <eLiterals name="ERROR" value="5"/>
-      <eLiterals name="CLASHES_ERROR" value="6"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="SIPrefix">
       <eLiterals name="meter"/>
       <eLiterals name="attometer" value="-18"/>
@@ -128,7 +119,6 @@
           eType="#/0/Checkout" eOpposite="#/0/Checkout/revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
           eOpposite="#/0/Project/revisions"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/CheckinState"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="lastClashes" upperBound="-1"
           eType="#/0/Clash"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -141,7 +131,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
           eOpposite="#/0/Project/concreteRevisions"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/CheckinState"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="checksum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
           eType="#/0/Revision" eOpposite="#/0/Revision/concreteRevisions"/>
@@ -267,6 +256,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="progress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#/0/CheckinStatus"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="DataHandler" instanceClassName="javax.activation.DataHandler"/>
@@ -485,6 +475,7 @@
       <eLiterals name="CH_NONE"/>
       <eLiterals name="CH_STARTED" value="1"/>
       <eLiterals name="CH_FINISHED" value="2"/>
+      <eLiterals name="CH_ERROR" value="3"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">

@@ -59,21 +59,21 @@ public interface BimDatabaseSession extends OidProvider {
 
 	<T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimDatabaseException, UserException;
 
-	<T extends IdEObject> T get(EClass eClass, long oid, boolean deep, ObjectIDM ObjectIDM);
+	<T extends IdEObject> T get(EClass eClass, long oid, boolean deep, ObjectIDM objectIDM);
 
-	<T extends IdEObject> T get(EClass eClass, int pid, int rid, long oid, boolean deep, ObjectIDM ObjectIDM);
+	<T extends IdEObject> T get(EClass eClass, int pid, int rid, long oid, boolean deep, ObjectIDM objectIDM);
 
-	<T extends IdEObject> T get(short cid, long oid, boolean deep, ObjectIDM ObjectIDM) throws BimDeadlockException, BimDatabaseException;
+	<T extends IdEObject> T get(short cid, long oid, boolean deep, ObjectIDM objectIDM) throws BimDeadlockException, BimDatabaseException;
 
-	<T extends IdEObject> T  get(short cid, long oid, int pid, int rid, IfcModel model, boolean deep, ObjectIDM ObjectIDM) throws BimDeadlockException, BimDatabaseException;
+	<T extends IdEObject> T  get(short cid, long oid, int pid, int rid, IfcModel model, boolean deep, ObjectIDM objectIDM) throws BimDeadlockException, BimDatabaseException;
 
-	IfcModel getAllOfType(EClass eClass, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	IfcModel getAllOfType(EClass eClass, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
-	IfcModel getAllOfType(EClass eClass, int pid, int rid, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	IfcModel getAllOfType(EClass eClass, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
-	IfcModel getAllOfTypes(Set<EClass> eClasses, int pid, int rid, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	IfcModel getAllOfTypes(Set<EClass> eClasses, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
-	IfcModel getAllOfType(String className, int pid, int rid, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	IfcModel getAllOfType(String className, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
 	short getCid(EClass eClass) throws BimDatabaseException;
 
@@ -95,13 +95,13 @@ public interface BimDatabaseSession extends OidProvider {
 
 	EClass getEClassForName(String className);
 
-	void getMap(IfcModel ifcModel, int pid, int rid, boolean deep, ObjectIDM ObjectIDM) throws BimDeadlockException, BimDatabaseException;
+	void getMap(IfcModel ifcModel, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDeadlockException, BimDatabaseException;
 
-	IfcModel getMapWithObjectIdentifiers(int pid, int rid, Set<ObjectIdentifier> oids, boolean deep, ObjectIDM ObjectIDM) throws BimDeadlockException, BimDatabaseException;
+	IfcModel getMapWithObjectIdentifiers(int pid, int rid, Set<ObjectIdentifier> oids, boolean deep, ObjectIDM objectIDM) throws BimDeadlockException, BimDatabaseException;
 
-	IfcModel getMapWithOid(int pid, int rid, short cid, long oid, IfcModel model, boolean deep, ObjectIDM ObjectIDM) throws BimDeadlockException, BimDatabaseException;
+	IfcModel getMapWithOid(int pid, int rid, short cid, long oid, IfcModel model, boolean deep, ObjectIDM objectIDM) throws BimDeadlockException, BimDatabaseException;
 
-	void getMapWithOids(IfcModel ifcModel, int pid, int rid, Set<Long> oids, boolean deep, ObjectIDM ObjectIDM) throws BimDeadlockException, BimDatabaseException;
+	void getMapWithOids(IfcModel ifcModel, int pid, int rid, Set<Long> oids, boolean deep, ObjectIDM objectIDM) throws BimDeadlockException, BimDatabaseException;
 
 	MetaDataManager getMetaDataManager();
 
@@ -113,17 +113,15 @@ public interface BimDatabaseSession extends OidProvider {
 
 	int newPid();
 
-	BimDatabaseSession newSession(boolean useTransaction);
-
 	void putInCache(RecordIdentifier recordIdentifier, IdEObject object);
 
-	<T extends IdEObject> Map <Long, T> query(Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	<T extends IdEObject> Map <Long, T> query(Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
-	<T extends IdEObject> Map <Long, T> query(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	<T extends IdEObject> Map <Long, T> query(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
-	<T extends IdEObject> T querySingle(Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	<T extends IdEObject> T querySingle(Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
-	<T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM ObjectIDM) throws BimDatabaseException, BimDeadlockException;
+	<T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException;
 
 	void store(Collection<? extends IdEObject> values) throws BimDeadlockException, BimDatabaseException;
 
@@ -134,4 +132,8 @@ public interface BimDatabaseSession extends OidProvider {
 	long store(IdEObject eObject, int pid, int rid) throws BimDeadlockException, BimDatabaseException;
 
 	List<String> getAvailableClassesInRevision(int pid, int rid);
+
+	BimTransaction getBimTransaction();
+
+	boolean isReadOnly();
 }
