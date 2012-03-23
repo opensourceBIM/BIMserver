@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getProgress <em>Progress</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckinResultImpl#getStatus <em>Status</em>}</li>
  * </ul>
  * </p>
@@ -122,6 +123,24 @@ public class CheckinResultImpl extends IdEObjectImpl implements CheckinResult {
 	 */
 	public void setProgress(Integer newProgress) {
 		eSet(StorePackage.Literals.CHECKIN_RESULT__PROGRESS, newProgress);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLastError() {
+		return (String) eGet(StorePackage.Literals.CHECKIN_RESULT__LAST_ERROR, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastError(String newLastError) {
+		eSet(StorePackage.Literals.CHECKIN_RESULT__LAST_ERROR, newLastError);
 	}
 
 	/**

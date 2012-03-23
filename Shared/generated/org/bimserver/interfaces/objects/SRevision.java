@@ -76,9 +76,6 @@ public class SRevision implements SBase
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
 		}
-		if (sField.getName().equals("state")) {
-			return getState();
-		}
 		if (sField.getName().equals("lastClashes")) {
 			return getLastClashes();
 		}
@@ -140,10 +137,6 @@ public class SRevision implements SBase
 			setProjectId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("state")) {
-			setState((SCheckinState)val);
-			return;
-		}
 		if (sField.getName().equals("lastClashes")) {
 			setLastClashes((List<Long>)val);
 			return;
@@ -184,7 +177,6 @@ public class SRevision implements SBase
 	private long lastConcreteRevisionId;
 	private List<Long> checkouts = new ArrayList<Long>();
 	private long projectId;
-	private SCheckinState state;
 	private List<Long> lastClashes = new ArrayList<Long>();
 	private java.lang.String tag;
 	private java.lang.String lastError;
@@ -257,13 +249,6 @@ public class SRevision implements SBase
 		this.projectId = projectId;
 	}
 	
-	public SCheckinState getState() {
-		return state;
-	}
-
-	public void setState(SCheckinState state) {
-		this.state = state;
-	}
 	public List<Long> getLastClashes() {
 		return lastClashes;
 	}

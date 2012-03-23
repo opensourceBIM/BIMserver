@@ -51,13 +51,13 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 
-	public DownloadByGuidsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid, ObjectIDM ObjectIDM) {
+	public DownloadByGuidsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid, ObjectIDM objectIDM) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.guids = guids;
 		this.actingUoid = actingUoid;
-		this.objectIDM = ObjectIDM;
+		this.objectIDM = objectIDM;
 	}
 
 	@Override

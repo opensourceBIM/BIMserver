@@ -19,6 +19,7 @@ package org.bimserver.database.berkeley;
 
 import java.util.Arrays;
 
+import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
@@ -38,8 +39,10 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	private final Cursor cursor;
 	private final byte[] mustStartWith;
 	private byte[] nextStartSearchingAt;
+	private final BimDatabaseSession bimDatabaseSession;
 
-	public BerkeleySearchingRecordIterator(Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimDeadlockException {
+	public BerkeleySearchingRecordIterator(BimDatabaseSession bimDatabaseSession, Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimDeadlockException {
+		this.bimDatabaseSession = bimDatabaseSession;
 		this.cursor = cursor;
 		this.mustStartWith = mustStartWith;
 		this.nextStartSearchingAt = startSearchingAt;
@@ -50,7 +53,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		DatabaseEntry key = new DatabaseEntry(startSearchingAt);
 		DatabaseEntry value = new DatabaseEntry();
 		try {
-			OperationStatus next = cursor.getSearchKeyRange(key, value, LockMode.READ_UNCOMMITTED);
+			OperationStatus next = cursor.getSearchKeyRange(key, value, LockMode.DEFAULT);
 			if (next == OperationStatus.SUCCESS) {
 				byte[] firstBytes = new byte[mustStartWith.length];
 				System.arraycopy(key.getData(), 0, firstBytes, 0, mustStartWith.length);
@@ -74,7 +77,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		DatabaseEntry key = new DatabaseEntry();
 		DatabaseEntry value = new DatabaseEntry();
 		try {
-			OperationStatus next = cursor.getNext(key, value, LockMode.READ_UNCOMMITTED);
+			OperationStatus next = cursor.getNext(key, value, LockMode.DEFAULT);
 			if (next == OperationStatus.SUCCESS) {
 				byte[] firstBytes = new byte[mustStartWith.length];
 				System.arraycopy(key.getData(), 0, firstBytes, 0, mustStartWith.length);

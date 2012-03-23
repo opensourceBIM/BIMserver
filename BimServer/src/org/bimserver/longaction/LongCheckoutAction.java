@@ -66,7 +66,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	
 	@Override
 	public void init() {
-		session = getBimServer().getDatabase().createSession(true);
+		session = getBimServer().getDatabase().createSession();
 		action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
 	}
 

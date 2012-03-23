@@ -20,7 +20,8 @@ package org.bimserver.interfaces.objects;
 public enum SCheckinStatus {
 	CH_NONE(0),
 	CH_STARTED(1),
-	CH_FINISHED(2);
+	CH_FINISHED(2),
+	CH_ERROR(3);
 	int ordinal;
 
 	SCheckinStatus(int ordinal) {

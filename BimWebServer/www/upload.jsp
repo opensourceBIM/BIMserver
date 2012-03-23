@@ -1,9 +1,9 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SRevisionIdComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimserver.web.LoginManager"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
@@ -12,13 +12,15 @@
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject sProject = loginManager.getService().getProjectByPoid(poid);
 %>
-<a href="#" id="uploadlink">Upload (note: Subprojects present)</a>
+<a href="#" id="uploadlink">This project has subprojects, click here if you still want to checkin a new revision</a>
+<div id="uploads">
 <div id="upload">
 <div id="uploadStatus"></div>
 <div id="uploadProgressBar"></div>
 <table id="uploadTable">
 <tr><td><label for="file">File</label></td><td><input id="fileupload" type="file" name="data"/></td></tr>
 <tr><td><label for="deserializerName">Deserializer</label></td><td><select id="deserializerName" name="deserializerName">
+<option value="[NONE]">Select a deserializer</option>
 <%
 	for (SDeserializer deserializer : loginManager.getService().getAllDeserializers(true)) {
 		out.println("<option value=\"" + deserializer.getName() + "\">" + deserializer.getName() + "</option>");
@@ -35,8 +37,8 @@
 %>
 </table>
 <input id="poid" type="hidden" name="poid" value="<%=poid %>"/>
-<input id="uploadButton" type="button" name="upload" value="Upload"/>
-<a href="#" id="uploadbranchlink">Checkin existing revision</a>
+<input id="uploadButton" type="button" name="upload" value="Upload"/><br/>
+</div>
 <div id="uploadbranch">
 	<%
 		List<SProject> projects = loginManager.getService().getAllReadableProjects();
@@ -52,43 +54,58 @@
 						if (atLeastOne) {
 	%>
 	<form method="post" action="branch.jsp">
-		<fieldset>
-			<legend>Checkin existing revision</legend>
-			<label>Project/Revision</label> <select name="roid">
+		<label>Project/Revision</label> <select name="roid">
+			<%
+				for (SProject p : projects) {
+										if (!p.getRevisions().isEmpty()) {
+			%>
+			<optgroup label="<%=p.getName()%>">
 				<%
-					for (SProject p : projects) {
-											if (!p.getRevisions().isEmpty()) {
+					List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
+												Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
+												for (SRevision sRevision : checkinRevisions) {
 				%>
-				<optgroup label="<%=p.getName()%>">
-					<%
-						List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
-													Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
-													for (SRevision sRevision : checkinRevisions) {
-					%>
-					<option value="<%=sRevision.getOid()%>"><%=sRevision.getId()%></option>
-					<%
-						}
-					%>
-				</optgroup>
+				<option value="<%=sRevision.getOid()%>"><%=sRevision.getId()%></option>
 				<%
 					}
-				}
 				%>
-			</select> <label>Comment</label> <input type="text" name="comment" /> <input
-				type="submit" value="Checkin as new revision" /> <input
-				type="hidden" name="action" value="branchtoexistingproject" /> <input
-				type="hidden" name="destpoid" value="<%=poid%>" />
-		</fieldset>
+			</optgroup>
+			<%
+				}
+			}
+			%>
+		</select> <label>Comment</label> <input type="text" name="comment" /> <input
+			type="submit" value="Checkin as new revision" /> <input
+			type="hidden" name="action" value="branchtoexistingproject" /> <input
+			type="hidden" name="destpoid" value="<%=poid%>" />
 	</form>
+	<br/>
 	<%
 		}
 	}
 	%>
 </div>
+<a href="#" id="showuploadlink" class="initialhide">OR Checkin new revision</a>
+<a href="#" id="uploadbranchlink">OR Checkin existing revision</a>
 </div>
 <script>
 	var lastVal = "";
 
+	function hideUpload() {
+		$("#uploadbranchlink").hide();			
+		$("#uploadTable").hide();
+		$("#uploadProgressBar").show();
+		$("#uploadButton").hide();
+		$("#uploadStatus").show();
+	}
+
+	function showUpload() {
+		$("#uploadbranchlink").show();			
+		$("#uploadTable").show();
+		$("#uploadProgressBar").hide();
+		$("#uploadButton").show();
+	}
+	
 	$(document).ready(function(){
 		$("#uploadajaxloader").hide();
 
@@ -106,14 +123,20 @@
 				data: {checkinid: currentCheckinId},
 				success: function(data){
 					if (data.error == null) {
-						$("#uploadProgressBar").progressbar({value: parseInt(data.progress, 10)});
-						if (data.status == "CH_FINISHED") {
-							location.reload(true);
-						} else if (data.status == "CH_STARTED" || data.status == "CH_NONE") {
-							window.setTimeout(refreshFunction, 500);
+						if (data.status == "CH_ERROR") {
+							$("#uploadStatus").html("Error: " + data.lastError);
+							showUpload();
+						} else {
+							$("#uploadProgressBar").progressbar({value: parseInt(data.progress, 10)});
+							if (data.status == "CH_FINISHED") {
+								location.reload(true);
+							} else if (data.status == "CH_STARTED" || data.status == "CH_NONE") {
+								window.setTimeout(refreshFunction, 500);
+							}
 						}
 					} else {
 						$("#uploadStatus").html("Error: " + data.error);
+						showUpload();
 					}
 				}, error: function(jqXHR, textStatus, errorThrown) {
 					$("#uploadStatus").html("Error: " + textStatus);
@@ -146,6 +169,31 @@
 			        return false;
 				}
 	        },
+	        change: function(e, data) {
+	        	var path = null;
+				$.each(data.files, function (index, file) {
+					path = file.name;
+			    });
+			    var lastIndex = path.lastIndexOf(".");
+			    if (lastIndex != -1) {
+				    var extension = path.substring(path.lastIndexOf(".") + 1);
+					$.ajax({
+						url: "getbestdeserializer.jsp?extension=" + extension,
+						cache: false,
+						context: document.body,
+						success: function(data){
+							if (data.error == null) {
+								$("#deserializerName").val(data.trim());
+							} else {
+								$("#uploadStatus").html("Error: " + data.error);
+								showUpload();
+							}
+						}, error: function(jqXHR, textStatus, errorThrown) {
+							$("#uploadStatus").html("Error: " + textStatus);
+						}
+					});
+			    }
+	        },
 			progress: function(e, data) {
 				$("#uploadProgressBar").progressbar({value: parseInt(data.loaded / data.total * 100, 10)});
 				if (data.loaded == data.total) {
@@ -160,16 +208,12 @@
 					refreshFunction();
 				} else {
 					$("#uploadStatus").html("Error: " + data.result.error);
-					$("#uploadTable").show();
-					$("#uploadProgressBar").hide();
-					$("#uploadButton").show();
+					showUpload();
 				}
 			},
 			fail: function(e, data) {
 				$("#uploadStatus").html("Error: " + data.textStatus);
-				$("#uploadTable").show();
-				$("#uploadProgressBar").hide();
-				$("#uploadButton").show();
+				showUpload();
 			},
 			always: function() {
 			}
@@ -183,10 +227,7 @@
 				merge: $("#merge").is(':checked'),
 				poid: $("#poid").val()
 			};
-			$("#uploadTable").hide();
-			$("#uploadStatus").show();
-			$("#uploadButton").hide();
-			$("#uploadProgressBar").show();
+			hideUpload();
 			$("#uploadStatus").html("Uploading file...");
 			$("#fileupload").fileupload('send', submitdata);
 			event.preventDefault();
@@ -195,22 +236,33 @@
 		$("#uploadbranch").hide();
 		$("#uploadbranchlink").click(function(event){
 			event.preventDefault();
+			$("#upload").hide();
+			$("#showuploadlink").show();
 			$("#uploadbranch").show();
 			$("#uploadbranchlink").hide();
+			$("#checkinpopup").dialog("option", "title", "Checkin existing revision");
+		});
+		$("#showuploadlink").hide();
+		$("#showuploadlink").click(function(event){
+			event.preventDefault();
+			$("#upload").show();
+			$("#showuploadlink").hide();
+			$("#uploadbranch").hide();
+			$("#uploadbranchlink").show();
+			$("#checkinpopup").dialog("option", "title", "Checkin new revision");
 		});
 		
 		$("#uploadButton").hide();
 		<%if (!loginManager.getService().getSubProjects(poid).isEmpty()) {%>
 		$("#uploadlink").show();
 		$("#uploadlink").click(function(){
-			$("#upload").show();
+			$("#uploads").show();
 			$("#uploadlink").hide();
 		});
-		$("#upload").hide();
+		$("#uploads").hide();
 		<%} else {%>
-		$("#upload").show();
+		$("#uploads").show();
 		$("#uploadlink").hide();
 		<%}%>
-	
 	});
 </script>

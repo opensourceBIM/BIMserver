@@ -23,7 +23,6 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
@@ -33,13 +32,9 @@ import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
-import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
@@ -86,10 +81,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (getModel() != null) {
 				checkCheckSum(project);
 			}
-			if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size() - 1).getState() == CheckinState.STORING) {
-				throw new UserException("Another checkin on this project is currently running, please wait and try again");
-			}
-			concreteRevision = createNewConcreteRevision(getDatabaseSession(), getModel() == null ? 0 : getModel().getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
+			concreteRevision = createNewConcreteRevision(getDatabaseSession(), getModel() == null ? 0 : getModel().getSize(), poid, actingUid, comment.trim());
 			if (getModel() != null) {
 				concreteRevision.setChecksum(getModel().getChecksum());
 			}
@@ -98,42 +90,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			newRevisionAdded.setExecutor(user);
 			newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
 			newRevisionAdded.setAccessMethod(getAccessMethod());
-			getDatabaseSession().store(newRevisionAdded);
-			getDatabaseSession().store(concreteRevision);
-			getDatabaseSession().store(project);
 
 			Revision lastRevision = project.getLastRevision();
 			IfcModelInterface ifcModel = null;
 			if (merge && lastRevision != null) {
-				IfcModelSet ifcModelSet = new IfcModelSet();
-				for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
-					if (concreteRevision != subRevision) {
-						IfcModel subModel = new IfcModel();
-						getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
-						subModel.setDate(subRevision.getDate());
-						ifcModelSet.add(subModel);
-					}
-				}
-				IfcModelInterface newModel = new IfcModel();
-				newModel.setDate(new Date());
-				newModel.fixOids(getDatabaseSession());
-				IfcModelInterface oldModel = bimServer.getMergerFactory().createMerger()
-						.merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
-
-				oldModel.setObjectOids();
-				newModel.setObjectOids();
-				oldModel.indexGuids();
-				newModel.indexGuids();
-				newModel.fixOids(new IncrementingOidProvider(oldModel.getHighestOid() + 1));
-
-				RevisionMerger revisionMerger = new RevisionMerger(oldModel, (IfcModel) newModel);
-				ifcModel = revisionMerger.merge();
-				revisionMerger.cleanupUnmodified();
-
-				for (IdEObject idEObject : ifcModel.getValues()) {
-					idEObject.setRid(concreteRevision.getId());
-					idEObject.setPid(concreteRevision.getProject().getId());
-				}
+				ifcModel = checkinMerge(lastRevision);
 			} else {
 				ifcModel = getModel();
 			}
@@ -145,20 +106,20 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
 			}
-			for (final Revision revision : concreteRevision.getRevisions()) {
-				revision.setState(CheckinState.DONE);
-				getDatabaseSession().store(revision);
-				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
-					@Override
-					public void execute() throws UserException {
-						NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
-						newRevisionNotification.setRevision(revision);
-						bimServer.getNotificationsManager().notify(newRevisionNotification);
-					}
-				});
-			}
-			concreteRevision.setState(CheckinState.DONE);
+//			for (final Revision revision : concreteRevision.getRevisions()) {
+//				getDatabaseSession().store(revision);
+//				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+//					@Override
+//					public void execute() throws UserException {
+//						NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
+//						newRevisionNotification.setRevision(revision);
+//						bimServer.getNotificationsManager().notify(newRevisionNotification);
+//					}
+//				});
+//			}
 			getDatabaseSession().store(concreteRevision);
+			getDatabaseSession().store(newRevisionAdded);
+			getDatabaseSession().store(project);
 			
 //			for (Revision revision : createCheckinAction.getConcreteRevision(createCheckinAction.getCroid()).getRevisions()) {
 //				NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
@@ -177,8 +138,41 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			LOGGER.error("", e);
 			throw new UserException(e);
 		}
-
 		return concreteRevision;
+	}
+
+	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimDeadlockException, BimDatabaseException {
+		IfcModelInterface ifcModel;
+		IfcModelSet ifcModelSet = new IfcModelSet();
+		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
+			if (concreteRevision != subRevision) {
+				IfcModel subModel = new IfcModel();
+				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
+				subModel.setDate(subRevision.getDate());
+				ifcModelSet.add(subModel);
+			}
+		}
+		IfcModelInterface newModel = new IfcModel();
+		newModel.setDate(new Date());
+		newModel.fixOids(getDatabaseSession());
+		IfcModelInterface oldModel = bimServer.getMergerFactory().createMerger()
+				.merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
+
+		oldModel.setObjectOids();
+		newModel.setObjectOids();
+		oldModel.indexGuids();
+		newModel.indexGuids();
+		newModel.fixOids(new IncrementingOidProvider(oldModel.getHighestOid() + 1));
+
+		RevisionMerger revisionMerger = new RevisionMerger(oldModel, (IfcModel) newModel);
+		ifcModel = revisionMerger.merge();
+		revisionMerger.cleanupUnmodified();
+
+		for (IdEObject idEObject : ifcModel.getValues()) {
+			idEObject.setRid(concreteRevision.getId());
+			idEObject.setPid(concreteRevision.getProject().getId());
+		}
+		return ifcModel;
 	}
 
 	public ConcreteRevision getConcreteRevision() {
@@ -199,33 +193,5 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 	public Project getProject() {
 		return project;
-	}
-
-	public void rollback(Throwable e) {
-		long croid = getCroid();
-		try {
-			BimDatabaseSession rollBackSession = bimServer.getDatabase().createSession(true);
-			try {
-				Throwable throwable = e;
-				while (throwable.getCause() != null) {
-					throwable = throwable.getCause();
-				}
-				ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
-				concreteRevision.setState(CheckinState.ERROR);
-				concreteRevision.setLastError(throwable.getMessage());
-				for (Revision revision : concreteRevision.getRevisions()) {
-					revision.setState(CheckinState.ERROR);
-					revision.setLastError(throwable.getMessage());
-				}
-				rollBackSession.store(concreteRevision);
-				rollBackSession.commit();
-			} finally {
-				rollBackSession.close();
-			}
-		} catch (BimDeadlockException e1) {
-			LOGGER.error("", e1);
-		} catch (BimDatabaseException e1) {
-			LOGGER.error("", e1);
-		}
 	}
 }

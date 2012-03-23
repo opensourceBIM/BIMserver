@@ -19,7 +19,6 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -37,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getChecksum <em>Checksum</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getSize <em>Size</em>}</li>
@@ -113,24 +111,6 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 */
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__PROJECT, newProject);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CheckinState getState() {
-		return (CheckinState) eGet(StorePackage.Literals.CONCRETE_REVISION__STATE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setState(CheckinState newState) {
-		eSet(StorePackage.Literals.CONCRETE_REVISION__STATE, newState);
 	}
 
 	/**

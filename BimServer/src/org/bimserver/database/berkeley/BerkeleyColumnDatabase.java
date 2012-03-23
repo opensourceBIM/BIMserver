@@ -24,10 +24,10 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.BimTransaction;
 import org.bimserver.database.ColumnDatabase;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.bimserver.database.SearchingRecordIterator;
@@ -56,8 +56,6 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	private Environment environment;
 	private int writes;
 	private int reads;
-	private final DatabaseConfig dbConfig;
-	private final DatabaseConfig dbConfigAllowCreate;
 	private final Map<String, Database> tables = new HashMap<String, Database>();
 	private boolean isNew;
 	private TransactionConfig transactionConfig;
@@ -87,8 +85,6 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		envConfig.setTransactional(true);
 		envConfig.setTxnTimeout(5, TimeUnit.SECONDS);
 		envConfig.setLockTimeout(5, TimeUnit.SECONDS);
-		envConfig.setTxnSerializableIsolation(true);
-		dbConfig = new DatabaseConfig();
 		try {
 			environment = new Environment(dataDir, envConfig);
 		} catch (EnvironmentLockedException e) {
@@ -99,20 +95,12 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 			String message = "A database initialisation error has occured (" + e.getMessage() + ")";
 			throw new DatabaseInitException(message);
 		}
-		dbConfig.setAllowCreate(false);
-		dbConfig.setDeferredWrite(false);
-		dbConfig.setTransactional(false);
-		dbConfig.setSortedDuplicates(false);
-
-		dbConfigAllowCreate = dbConfig.clone();
-		dbConfigAllowCreate.setAllowCreate(true);
 		
 		transactionConfig = new TransactionConfig();
 		transactionConfig.setReadCommitted(true);
 
 		cursorConfig = new CursorConfig();
-		// cursorConfig.setReadCommitted(true);
-		cursorConfig.setReadUncommitted(true);
+		cursorConfig.setReadCommitted(true);
 	}
 
 	public boolean isNew() {
@@ -128,13 +116,13 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		return null;
 	}
 
-	public boolean createTable(String tableName, boolean useTransactions, DatabaseSession databaseSession) {
+	public boolean createTable(String tableName, BimDatabaseSession databaseSession) {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
 		databaseConfig.setDeferredWrite(false);
-		databaseConfig.setTransactional(useTransactions);
+		databaseConfig.setTransactional(true);
 		databaseConfig.setSortedDuplicates(false);
-		Database database = environment.openDatabase(getTransaction(databaseSession), tableName, databaseConfig);
+		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
 			return false;
 		}
@@ -142,14 +130,14 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		return true;
 	}
 
-	public boolean openTable(String tableName, boolean useTransactions) throws BimDatabaseException {
+	public boolean openTable(String tableName) throws BimDatabaseException {
 		if (tables.containsKey(tableName)) {
 			throw new BimDatabaseException("Table " + tableName + " already opened");
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
 		databaseConfig.setDeferredWrite(false);
-		databaseConfig.setTransactional(useTransactions);
+		databaseConfig.setTransactional(true);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		tables.put(tableName, database);
@@ -167,8 +155,8 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		return database;
 	}
 
-	private Transaction getTransaction(DatabaseSession databaseSession) {
-		if (databaseSession != null && databaseSession.getBimTransaction() != null) {
+	private Transaction getTransaction(BimDatabaseSession databaseSession) {
+		if (databaseSession != null) {
 			return ((BerkeleyTransaction) databaseSession.getBimTransaction()).getTransaction();
 		}
 		return null;
@@ -192,12 +180,11 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public byte[] get(String tableName, byte[] keyBytes, DatabaseSession databaseSession) throws BimDatabaseException {
+	public byte[] get(String tableName, byte[] keyBytes, BimDatabaseSession databaseSession) throws BimDatabaseException {
 		DatabaseEntry key = new DatabaseEntry(keyBytes);
 		DatabaseEntry value = new DatabaseEntry();
 		try {
-			Database database = getDatabase(tableName);
-			OperationStatus operationStatus = database.get(getTransaction(databaseSession), key, value, LockMode.READ_UNCOMMITTED);
+			OperationStatus operationStatus = getDatabase(tableName).get(getTransaction(databaseSession), key, value, LockMode.DEFAULT);
 			if (operationStatus == OperationStatus.SUCCESS) {
 				increaseReads();
 				return value.getData();
@@ -232,12 +219,11 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) throws BimDatabaseException {
+	public RecordIterator getRecordIterator(String tableName, BimDatabaseSession databaseSession) throws BimDatabaseException {
 		Cursor cursor = null;
 		try {
-			Database database = getDatabase(tableName);
-			cursor = database.openCursor(getTransaction(databaseSession), cursorConfig);
-			return new BerkeleyRecordIterator(cursor);
+			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
+			return new BerkeleyRecordIterator(databaseSession, cursor);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -245,12 +231,11 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
+	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, BimDatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		Cursor cursor = null;
 		try {
-			Database database = getDatabase(tableName);
-			cursor = database.openCursor(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, cursorConfig);
-			return new BerkeleySearchingRecordIterator(cursor, mustStartWith, startSearchingAt);
+			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
+			return new BerkeleySearchingRecordIterator(databaseSession, cursor, mustStartWith, startSearchingAt);
 		} catch (BimDeadlockException e) {
 			try {
 				cursor.close();
@@ -277,7 +262,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
+	public byte[] getFirstStartingWith(String tableName, byte[] key, BimDatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		SearchingRecordIterator recordIterator = getRecordIterator(tableName, key, key, databaseSession);
 		try {
 			Record record = recordIterator.next(key);
@@ -298,7 +283,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		}
 	}
 
-	public void delete(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException {
+	public void delete(String tableName, byte[] key, BimDatabaseSession databaseSession) throws BimDeadlockException {
 		DatabaseEntry entry = new DatabaseEntry(key);
 		try {
 			getDatabase(tableName).delete(getTransaction(databaseSession), entry);
@@ -344,12 +329,11 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public void commit(DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
+	public void commit(BimDatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		Transaction bdbTransaction = getTransaction(databaseSession);
 		try {
 			bdbTransaction.commit();
 		} catch (LockConflictException e) {
-			LOGGER.error("", e);
 			throw new BimDeadlockException(e);
 		} catch (DatabaseException e) {
 			throw new BimDatabaseException("", e);
@@ -357,13 +341,12 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimDatabaseException, BimDeadlockException {
+	public void store(String tableName, byte[] key, byte[] value, BimDatabaseSession databaseSession) throws BimDatabaseException, BimDeadlockException {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
 		DatabaseEntry dbValue = new DatabaseEntry(value);
 		try {
 			Database database = getDatabase(tableName);
-			Transaction transaction = getTransaction(databaseSession);
-			database.put(database.getConfig().getTransactional() ? transaction : null, dbKey, dbValue);
+			database.put(getTransaction(databaseSession), dbKey, dbValue);
 			increaseWrites();
 		} catch (LockConflictException e) {
 			throw new BimDeadlockException(e);

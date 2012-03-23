@@ -55,9 +55,6 @@ public class SConcreteRevision implements SBase
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
 		}
-		if (sField.getName().equals("state")) {
-			return getState();
-		}
 		if (sField.getName().equals("checksum")) {
 			return getChecksum();
 		}
@@ -89,10 +86,6 @@ public class SConcreteRevision implements SBase
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("state")) {
-			setState((SCheckinState)val);
 			return;
 		}
 		if (sField.getName().equals("checksum")) {
@@ -128,7 +121,6 @@ public class SConcreteRevision implements SBase
 	
 	private java.lang.Integer id;
 	private long projectId;
-	private SCheckinState state;
 	private byte[] checksum;
 	private List<Long> revisions = new ArrayList<Long>();
 	private java.lang.Long size;
@@ -150,13 +142,6 @@ public class SConcreteRevision implements SBase
 		this.projectId = projectId;
 	}
 	
-	public SCheckinState getState() {
-		return state;
-	}
-
-	public void setState(SCheckinState state) {
-		this.state = state;
-	}
 	public byte[] getChecksum() {
 		return checksum;
 	}

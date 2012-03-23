@@ -101,7 +101,7 @@ public class NotificationsManager extends Thread {
 	}
 
 	private void initConnections() {
-		BimDatabaseSession bimDatabaseSession = bimServer.getDatabase().createSession(true);
+		BimDatabaseSession bimDatabaseSession = bimServer.getDatabase().createSession();
 		try {
 			IfcModel allOfType = bimDatabaseSession.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
 			for (IdEObject idEObject : allOfType.getValues()) {

@@ -45,7 +45,6 @@ public class Step0000 extends Migration {
 	private EClass guidClashClass;
 	private EClass clashDetectionsSettingsClass;
 	private EClass eidClashClass;
-	private EEnum checkinStateEnum;
 	private EClass projectClass;
 	private EReference projectHasAuthorizedUsers;
 	private EReference projectConcreteRevisions;
@@ -74,7 +73,6 @@ public class Step0000 extends Migration {
 		storePackage = schema.createEPackage("store");
 		
 		createUserTypeEnum();
-		createCheckinStateEnum();
 		createSIPrefixEnum();
 		createObjectStateEnum();
 
@@ -130,17 +128,6 @@ public class Step0000 extends Migration {
 		projectSubProjects.setEOpposite(projectParentProject);
 	}
 	
-	private void createCheckinStateEnum() {
-		checkinStateEnum = schema.createEEnum(storePackage, "CheckinState");
-		schema.createEEnumLiteral(checkinStateEnum, "UPLOADING");
-		schema.createEEnumLiteral(checkinStateEnum, "PARSING");
-		schema.createEEnumLiteral(checkinStateEnum, "STORING");
-		schema.createEEnumLiteral(checkinStateEnum, "SEARCHING_CLASHES");
-		schema.createEEnumLiteral(checkinStateEnum, "DONE");
-		schema.createEEnumLiteral(checkinStateEnum, "ERROR");
-		schema.createEEnumLiteral(checkinStateEnum, "CLASHES_ERROR");
-	}
-
 	private void createSIPrefixEnum() {
 		siPrefixEnum = schema.createEEnum(storePackage, "SIPrefix");
 		schema.createEEnumLiteral(siPrefixEnum, "meter", 0);
@@ -213,7 +200,6 @@ public class Step0000 extends Migration {
 		schema.createEReference(revisionClass, "lastConcreteRevision", concreteRevisionClass, Multiplicity.SINGLE);
 		revisionCheckouts = schema.createEReference(revisionClass, "checkouts", checkoutClass, Multiplicity.MANY);
 		revisionProject = schema.createEReference(revisionClass, "project", projectClass, Multiplicity.SINGLE);
-		schema.createEAttribute(revisionClass, "state", checkinStateEnum, Multiplicity.SINGLE);
 		schema.createEReference(revisionClass, "lastClashes", clashClass, Multiplicity.MANY);
 		schema.createEAttribute(revisionClass, "tag", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "lastError", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -224,7 +210,6 @@ public class Step0000 extends Migration {
 	private void createConcreteRevisionClass() {
 		schema.createEAttribute(concreteRevisionClass, "id", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		concreteRevisionProject = schema.createEReference(concreteRevisionClass, "project", projectClass, Multiplicity.SINGLE);
-		schema.createEAttribute(concreteRevisionClass, "state", checkinStateEnum, Multiplicity.SINGLE);
 		schema.createEAttribute(concreteRevisionClass, "checksum", ecorePackage.getEByteArray(), Multiplicity.SINGLE);
 		concreteRevisionRevisions = schema.createEReference(concreteRevisionClass, "revisions", revisionClass, Multiplicity.MANY);
 		schema.createEAttribute(concreteRevisionClass, "size", ecorePackage.getELongObject(), Multiplicity.SINGLE);

@@ -507,3 +507,7 @@ p.explain {
 .disabledPlugin, .disabledSerializer, .disabledDeserializer, .disabledObjectIDM, .disabledIfcEngine {
 	background-color: #FFAAAA;
 }
+
+.initialhide {
+	display: none;
+}

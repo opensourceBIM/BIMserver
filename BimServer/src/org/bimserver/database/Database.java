@@ -34,15 +34,11 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
-import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
-import org.bimserver.models.store.CheckinState;
-import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
@@ -82,14 +78,11 @@ public class Database implements BimDatabase {
 	private final Registry registry;
 	private Date created;
 	private final Set<BimDatabaseSession> sessions = new HashSet<BimDatabaseSession>();
-	private final Set<EClass> transactionLessClasses = new HashSet<EClass>();
-
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
 	private MetaDataManager metaDataManager = new MetaDataManager();
 	private final BimServer bimServer;
-	
 
 	/*
 	 * This variable should be _incremented_ with every (released)
@@ -116,19 +109,19 @@ public class Database implements BimDatabase {
 	}
 
 	public void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException {
-		DatabaseSession databaseSession = createSession(true);
+		DatabaseSession databaseSession = createSession();
 		try {
 			if (getColumnDatabase().isNew()) {
-				columnDatabase.createTable(CLASS_LOOKUP_TABLE, true, null);
-				columnDatabase.createTable(Database.STORE_PROJECT_NAME, true, null);
-				columnDatabase.createTable(Registry.REGISTRY_TABLE, true, null);
+				columnDatabase.createTable(CLASS_LOOKUP_TABLE, null);
+				columnDatabase.createTable(Database.STORE_PROJECT_NAME, null);
+				columnDatabase.createTable(Registry.REGISTRY_TABLE, null);
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
 			} else {
-				columnDatabase.openTable(CLASS_LOOKUP_TABLE, true);
-				columnDatabase.openTable(Database.STORE_PROJECT_NAME, true);
-				columnDatabase.openTable(Registry.REGISTRY_TABLE, true);
+				columnDatabase.openTable(CLASS_LOOKUP_TABLE);
+				columnDatabase.openTable(Database.STORE_PROJECT_NAME);
+				columnDatabase.openTable(Registry.REGISTRY_TABLE);
 				created = registry.readDate(DATE_CREATED, databaseSession);
 				if (created == null) {
 					created = new Date();
@@ -175,7 +168,7 @@ public class Database implements BimDatabase {
 				initInternalStructure(databaseSession);
 				initOidCounter(databaseSession);
 				initPidCounter(databaseSession);
-				fixCheckinStates(databaseSession);
+//				fixCheckinStates(databaseSession);
 			}
 			for (EClass eClass : classifiers.keyBSet()) {
 				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
@@ -204,41 +197,41 @@ public class Database implements BimDatabase {
 	 * This method makes sure no revision states remain in "Uploading",
 	 * "Parsing", "Storing" or "Searching Clashes"
 	 */
-	private void fixCheckinStates(DatabaseSession databaseSession) {
-		try {
-			int fixed = 0;
-			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false, null);
-			for (IdEObject idEObject : model.getValues()) {
-				if (idEObject instanceof Revision) {
-					Revision revision = (Revision) idEObject;
-					if (revision.getState() == CheckinState.UPLOADING || revision.getState() == CheckinState.PARSING || revision.getState() == CheckinState.STORING) {
-						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR.getName() + " for revision " + revision.getOid());
-						revision.setState(CheckinState.ERROR);
-						if (revision.getLastConcreteRevision() != null) {
-							revision.getLastConcreteRevision().setState(CheckinState.ERROR);
-							revision.getLastConcreteRevision().setChecksum(null);
-						}
-						revision.setLastError("Server crash while uploading");
-						fixed++;
-					}
-					if (revision.getState() == CheckinState.SEARCHING_CLASHES) {
-						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.CLASHES_ERROR.getName() + " for revision " + revision.getOid());
-						revision.setState(CheckinState.CLASHES_ERROR);
-						revision.setLastError("Server crash while detecting clashes");
-						fixed++;
-					}
-					databaseSession.store(revision);
-				}
-			}
-			if (fixed > 0) {
-				LOGGER.info("Fixed broken checkin states (" + fixed + ")");
-			}
-		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
-			LOGGER.error("", e);
-		}
-	}
+//	private void fixCheckinStates(DatabaseSession databaseSession) {
+//		try {
+//			int fixed = 0;
+//			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false, null);
+//			for (IdEObject idEObject : model.getValues()) {
+//				if (idEObject instanceof Revision) {
+//					Revision revision = (Revision) idEObject;
+//					if (revision.getState() == CheckinState.UPLOADING || revision.getState() == CheckinState.PARSING || revision.getState() == CheckinState.STORING) {
+//						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR.getName() + " for revision " + revision.getOid());
+//						revision.setState(CheckinState.ERROR);
+//						if (revision.getLastConcreteRevision() != null) {
+//							revision.getLastConcreteRevision().setState(CheckinState.ERROR);
+//							revision.getLastConcreteRevision().setChecksum(null);
+//						}
+//						revision.setLastError("Server crash while uploading");
+//						fixed++;
+//					}
+//					if (revision.getState() == CheckinState.SEARCHING_CLASHES) {
+//						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.CLASHES_ERROR.getName() + " for revision " + revision.getOid());
+//						revision.setState(CheckinState.CLASHES_ERROR);
+//						revision.setLastError("Server crash while detecting clashes");
+//						fixed++;
+//					}
+//					databaseSession.store(revision);
+//				}
+//			}
+//			if (fixed > 0) {
+//				LOGGER.info("Fixed broken checkin states (" + fixed + ")");
+//			}
+//		} catch (BimDatabaseException e) {
+//			LOGGER.error("", e);
+//		} catch (BimDeadlockException e) {
+//			LOGGER.error("", e);
+//		}
+//	}
 
 	public void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
 		boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
@@ -328,7 +321,7 @@ public class Database implements BimDatabase {
 			while (record != null) {
 				String className = BinUtils.byteArrayToString(record.getValue());
 				EClass eClass = (EClass) getEClassifier(className);
-				columnDatabase.openTable(eClass.getName(), !transactionLessClasses.contains(eClass));
+				columnDatabase.openTable(eClass.getName());
 				Short cid = BinUtils.byteArrayToShort(record.getKey());
 				classifiers.put(cid, eClass);
 				record = recordIterator.next();
@@ -402,14 +395,14 @@ public class Database implements BimDatabase {
 		return realClasses;
 	}
 
-	public DatabaseSession createSession(boolean useTransactions) {
-		DatabaseSession databaseSession = new DatabaseSession(this, useTransactions ? columnDatabase.startTransaction() : null, false);
+	public DatabaseSession createSession() {
+		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), false);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
 
 	public BimDatabaseSession createReadOnlySession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, null, true);
+		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), true);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
@@ -460,12 +453,8 @@ public class Database implements BimDatabase {
 		return migrator;
 	}
 
-	public boolean useTransactionsFor(EClass eClass) {
-		return !transactionLessClasses.contains(eClass);
-	}
-
 	public void createTable(EClass eClass, DatabaseSession databaseSession) throws BimDeadlockException {
-		columnDatabase.createTable(eClass.getName(), !transactionLessClasses.contains(eClass), databaseSession);
+		columnDatabase.createTable(eClass.getName(), databaseSession);
 		tableId++;
 		try {
 			columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);

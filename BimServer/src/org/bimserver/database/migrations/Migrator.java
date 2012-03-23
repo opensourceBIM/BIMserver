@@ -82,7 +82,7 @@ public class Migrator {
 	}
 
 	public Schema migrate() throws MigrationException, InconsistentModelsException {
-		DatabaseSession session = database.createSession(true);
+		DatabaseSession session = database.createSession();
 		try {
 			Schema schema = migrate(session);
 			session.commit();

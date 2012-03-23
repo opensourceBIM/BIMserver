@@ -1946,4 +1946,11 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getServerLog")
 	String getServerLog() throws ServerException, UserException;
+	
+	/**
+	 * @return The name of the suggested deserializer
+	 * @throws ServerException 
+	 */
+	@WebMethod(action = "getSuggestedDeserializerForExtension")
+	String getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException;
 }

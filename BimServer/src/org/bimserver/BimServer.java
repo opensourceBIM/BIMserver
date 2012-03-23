@@ -176,7 +176,7 @@ public class BimServer {
 						// Reflect this change also in the database
 						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
 								.getName()));
-						BimDatabaseSession session = bimDatabase.createSession(true);
+						BimDatabaseSession session = bimDatabase.createSession();
 						try {
 							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
 							if (pluginsFound.size() == 0) {
@@ -331,7 +331,7 @@ public class BimServer {
 			serverStarted.setDate(new Date());
 			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
 			serverStarted.setExecutor(null);
-			BimDatabaseSession session = bimDatabase.createSession(true);
+			BimDatabaseSession session = bimDatabase.createSession();
 			try {
 				session.store(serverStarted);
 				session.commit();
@@ -355,7 +355,7 @@ public class BimServer {
 	 * both versions
 	 */
 	private void createDatabaseObjects() throws BimDeadlockException, BimDatabaseException, PluginException {
-		BimDatabaseSession session = bimDatabase.createSession(true);
+		BimDatabaseSession session = bimDatabase.createSession();
 		ObjectIDM defaultObjectIDM = null;
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
 			String name = objectIDMPlugin.getDefaultObjectIDMName();

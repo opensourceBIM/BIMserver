@@ -32,7 +32,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.models.store.ConcreteRevision#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getChecksum <em>Checksum</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSize <em>Size</em>}</li>
@@ -101,35 +100,6 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setProject(Project value);
-
-	/**
-	 * Returns the value of the '<em><b>State</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.bimserver.models.store.CheckinState}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>State</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' attribute.
-	 * @see org.bimserver.models.store.CheckinState
-	 * @see #setState(CheckinState)
-	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_State()
-	 * @model
-	 * @generated
-	 */
-	CheckinState getState();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getState <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' attribute.
-	 * @see org.bimserver.models.store.CheckinState
-	 * @see #getState()
-	 * @generated
-	 */
-	void setState(CheckinState value);
 
 	/**
 	 * Returns the value of the '<em><b>Checksum</b></em>' attribute.
