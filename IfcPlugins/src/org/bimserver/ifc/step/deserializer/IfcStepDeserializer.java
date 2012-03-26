@@ -75,22 +75,20 @@ import com.google.common.base.Charsets;
 public class IfcStepDeserializer extends EmfDeserializer {
 
 	private static final int AVERAGE_LINE_LENGTH = 58;
-
-	public enum Mode {
-		HEADER, DATA, FOOTER, DONE
-	}
-
+	private static final EPackage ePackage = Ifc2x3Package.eINSTANCE;
 	private static final String WRAPPED_VALUE = "wrappedValue";
 	private static final Map<String, EClassifier> classes = initClasses();
 
 	private final Map<Long, List<WaitingObject>> waitingObjects = new HashMap<Long, List<WaitingObject>>();
 	private SchemaDefinition schema;
-	private EPackage ePackage;
 	private Mode mode = Mode.HEADER;
 	private IfcModel model;
 
+	public enum Mode {
+		HEADER, DATA, FOOTER, DONE
+	}
+
 	public void init(SchemaDefinition schema) {
-		this.ePackage = Ifc2x3Package.eINSTANCE;
 		this.schema = schema;
 	}
 
