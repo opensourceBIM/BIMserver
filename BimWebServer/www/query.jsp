@@ -11,31 +11,17 @@
 %>
 <div class="tabber" id="querytab">
 <div class="tabbertab" title="Simple" id="simple">
-
 <table>
 <tr class="downloadframe">
 	<td width="120">Object ID</td>
 	<td width="320">
 		<input type="text" name="oids" id="oids"/>
 	</td>
-	<td>Type</td>
 	<td>
-		<select name="resultType">
-	<%
-		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-	%>
-	<option value="<%=serializer.getName()%>"
-		<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-	<%
-		}
-	%>
-		</select>
+		<input type="button" class="downloadCheckoutButton" value="Download"/>
 	</td>
 	<td>
-		<label for="queryoidzip_<%=roid %>">Zip </label>
-		<input type="checkbox" name="zip" id="queryoidzip_<%=roid %>"/>
 		<input type="hidden" name="roid" value="<%=roid %>"/>
-		<button id="queryoidsbutton" type="button" value="Query">Query</button>
 	</td>
 	<td>
 		<div class="downloadResult" style="display: none"></div>
@@ -49,24 +35,11 @@
 	<td width="320">
 		<input type="text" name="guids" id="guids"/>
 	</td>
-	<td>Type</td>
 	<td>
-		<select name="resultType">
-	<%
-		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-	%>
-	<option value="<%=serializer.getName()%>"
-		<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-	<%
-		}
-	%>
-		</select>
+		<input type="button" class="downloadCheckoutButton" value="Download"/>
 	</td>
 	<td> 
-		<label for="queryguidzip_<%=roid %>">Zip </label>
-		<input type="checkbox" name="zip" id="queryguidzip_<%=roid %>"/> 
 		<input type="hidden" name="roid" value="<%=roid %>"/>
-		<button id="queryguidsbutton" type="button" value="Query">Query</button>
 	</td>
 	<td>
 		<div class="downloadResult" style="display: none"></div>
@@ -89,24 +62,11 @@
 %>
 		</select>
 	</td>
-	<td>Type</td>
 	<td>
-		<select name="resultType">
-	<%
-		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-	%>
-	<option value="<%=serializer.getName()%>"
-		<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-	<%
-		}
-	%>
-		</select>
+		<input type="button" class="downloadCheckoutButton" value="Download"/>
 	</td>
 	<td>
 		<input type="hidden" name="roid" value="<%=roid %>"/>
-		<label for="querycidzip_<%=roid %>">Zip </label>
-		<input type="checkbox" name="zip" id="querycidzip_<%=roid %>"/>
-		<button id="queryclassbutton" type="button" value="Query">Query</button>
 	</td>
 	<td>
 		<div class="downloadResult" style="display: none"></div>
@@ -296,7 +256,21 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 </div>
 
 <script>
+	function showDownloadCheckoutPopup(roid) {
+		$("#downloadcheckoutpopup").dialog({
+			title: "Download/Checkout",
+			width: 600,
+			height: 300,
+			modal: true
+		});
+		$("#downloadcheckoutpopup").load("download.jsp?roid=" + roid);
+	}
+	
 	$(document).ready(function(){
+		$(".downloadCheckoutButton").click(function(event){
+			showDownloadCheckoutPopup($(this).attr("revisionoid"));
+		});
+		
 		$("#queryoidsbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
