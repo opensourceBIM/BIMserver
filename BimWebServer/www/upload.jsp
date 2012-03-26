@@ -42,26 +42,26 @@
 <div id="uploadbranch">
 	<%
 		List<SProject> projects = loginManager.getService().getAllReadableProjects();
-					Collections.sort(projects, new SProjectNameComparator());
-					if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
-						boolean atLeastOne = false;
-						for (SProject p : projects) {
-							if (!p.getRevisions().isEmpty()) {
-								atLeastOne = true;
-								break;
-							}
-						}
-						if (atLeastOne) {
+		Collections.sort(projects, new SProjectNameComparator());
+		if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
+			boolean atLeastOne = false;
+			for (SProject p : projects) {
+				if (!p.getRevisions().isEmpty()) {
+					atLeastOne = true;
+					break;
+				}
+			}
+			if (atLeastOne) {
 	%>
 	<form method="post" action="branch.jsp">
 		<label>Project/Revision</label> <select name="roid">
 			<%
 				for (SProject p : projects) {
-										if (!p.getRevisions().isEmpty()) {
+					if (!p.getRevisions().isEmpty()) {
 			%>
 			<optgroup label="<%=p.getName()%>">
 				<%
-					List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
+					List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(p.getOid());
 												Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
 												for (SRevision sRevision : checkinRevisions) {
 				%>
@@ -112,6 +112,7 @@
 		var submitdata = null;
 		var shouldsend = false;
 		var currentCheckinId = null;
+		var fileselected = false;
 
 		var refreshFunction = function() {
 			$.ajax({
@@ -144,6 +145,16 @@
 			});
 		};
 		
+		function updateSubmitButton() {
+	        if ($("#deserializerName").val() != "[NONE]" && fileselected) {
+		        $("#uploadButton").show();
+	        } else {
+		        $("#uploadButton").hide();
+	        }
+		}
+		
+		$("#deserializerName").change(updateSubmitButton);
+		
 		$("#fileupload").fileupload({
 			dataType: "json",
 	        url: '/upload',
@@ -152,7 +163,7 @@
 				if (!shouldsend) {
 					shouldsend = false;
 			        submitdata = data;
-			        $("#uploadButton").show();
+			        updateSubmitButton();
 					if ($("#comment").attr("value") == "" || $("#comment").attr("value") == lastVal) {
 						var path = null;
 						$.each(data.files, function (index, file) {
@@ -170,6 +181,7 @@
 				}
 	        },
 	        change: function(e, data) {
+	        	fileselected = true;
 	        	var path = null;
 				$.each(data.files, function (index, file) {
 					path = file.name;
@@ -184,6 +196,7 @@
 						success: function(data){
 							if (data.error == null) {
 								$("#deserializerName").val(data.trim());
+								updateSubmitButton();
 							} else {
 								$("#uploadStatus").html("Error: " + data.error);
 								showUpload();
@@ -197,13 +210,12 @@
 			progress: function(e, data) {
 				$("#uploadProgressBar").progressbar({value: parseInt(data.loaded / data.total * 100, 10)});
 				if (data.loaded == data.total) {
-					$("#uploadStatus").html("Done uploading file...");
+					$("#uploadStatus").html("Processing file...");
+					$("#uploadProgressBar").progressbar({value: 0});
 				}
 			},
 			done: function(e, data) {
 				if (data.result.error == null) {
-					$("#uploadStatus").html("Processing file...");
-					$("#uploadProgressBar").progressbar({value: 0});
 					currentCheckinId = data.result.checkinid;
 					refreshFunction();
 				} else {

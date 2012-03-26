@@ -778,7 +778,7 @@
 			$("#checkinpopup").dialog({
 				title: "Checkin new revision",
 				width: 600,
-				height: 400,
+				height: 300,
 				modal: true
 			});
 			$("#checkinpopup").load("upload.jsp?poid=<%=project.getOid()%>");
