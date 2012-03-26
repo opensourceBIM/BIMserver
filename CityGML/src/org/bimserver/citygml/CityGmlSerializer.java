@@ -140,7 +140,7 @@ public class CityGmlSerializer extends EmfSerializer {
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
 		serializer.init(ifcModel, getProjectInfo(), getPluginManager(), ifcEngine);
 		try {
-			ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
+			ifcEngine.init();
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 			ifcEngineModel.setPostProcessing(true);
 			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());

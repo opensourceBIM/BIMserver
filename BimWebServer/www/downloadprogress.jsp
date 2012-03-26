@@ -1,44 +1,15 @@
+<%@page import="org.codehaus.jettison.json.JSONObject"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SLongActionState"%>
 <%@page import="org.bimserver.interfaces.objects.SActionState"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<jsp:useBean id="loginManager" scope="session"
-	class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
-	LoggerFactory.getLogger("downloadprogress.jsp").info("Progress request");
-	int longActionId = Integer.parseInt(request.getParameter("longActionId"));
+	int laid = Integer.parseInt(request.getParameter("laid"));
 	String zip = request.getParameter("zip");
+	SLongActionState dls = loginManager.getService().getDownloadState(laid);
+	JSONObject result = new JSONObject();
+	result.put("progress", dls.getProgress());
+	result.put("state", dls.getState().toString());
+	result.write(out);
 %>
-<div id="downloadStateSpan">
-<%
-	SLongActionState dls = loginManager.getService().getDownloadState(longActionId);
-%>
-	<div id="progressbar" style="width: 100px; position: relative; border: 1px solid black;">
-		<div style="width: <%=dls.getProgress()%>px; background-color: #0000ff; position: absolute; top: 0; left: 0; height: 100%;"></div>
-		<div style="width: 100px; text-align: center; position: relative;"><%=dls.getProgress()%>%</div>
-	</div>
-<%
-	if (dls.getState() == SActionState.FINISHED) {
-%> 
-<a id="downloadlink" href="/download?longActionId=<%=longActionId%>&zip=<%=zip%>"><label id="downloadlinkclick" for="downloadlink">Download</label></a>
-
-<script>
-	window.clearInterval(downloadUpdateFunctionHandle);
-	$("#progressbar").hide();
-	$('button[value="Download"]').show();
-	$('button[value="Checkout"]').show();
-	$('button[value="Query"]').show();
-</script> 
-<%
-	}
-%>
-</div>
-
-<script>
-	$(document).ready(function() {
-		$("#downloadlinkclick").click(function() {
-			$("#downloadlink").hide();
-			$(".downloadResult").empty();
-		});
-	})
-</script>

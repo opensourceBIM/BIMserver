@@ -77,7 +77,7 @@
 <div class="sidebar">
 	<ul>
 		<% if (userHasCheckinRights) { %>
-		<li><a class="checkinlink link" href="#">Checkin</a></li>
+		<li><a class="checkinlink link" href="project.jsp?poid=<%=poid%>&action=checkin">Checkin</a></li>
 		<% } %>
 		<%
 			if (hasEditRights) {
@@ -105,6 +105,7 @@
 	<br /><%=JspHelper.showProjectTree(project, loginManager.getService())%>
 </div>
 <div id="checkinpopup"></div>
+<div id="downloadcheckoutpopup"></div>
 <div class="content">
 	<%
 		if (request.getParameter("message") != null) {
@@ -238,41 +239,8 @@
 			<p></p>
 			<div class="tabber" id="downloadtabber">
 				<div class="tabbertab" id="detailstab" title="Simple Download">
-					<table>
-						<tr class="downloadframe">
-							<td>Download:</td>
-							<td><select name="serializerName"
-								id="detailsdownloadcheckoutselect">
-									<%
-										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-									%>
-									<option value="<%=serializer.getName()%>"
-										<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-									<%
-										}
-									%>
-							</select></td>
-							<td><label for="simplezip_<%=lastRevision.getId()%>">Zip</label>
-							</td>
-							<td><input type="checkbox" name="zip"
-								id="simplezip_<%=lastRevision.getId()%>" />
-							</td>
-							<td><input type="hidden" name="roid"
-								value="<%=lastRevision.getOid()%>" />
-								<button value="Download" type="button">Download</button>
-							</td>
-							<%
-								if (userHasCheckinRights) {
-							%>
-							<td>
-								<button class="checkoutButton" id="detailscheckoutbutton"
-									type="button" value="Checkout">Checkout</button>
-							</td>
-							<%
-								}
-							%>
-						</tr>
-					</table>
+					This will simply download the latest revision<br/>
+					<input type="button" class="downloadCheckoutButton" revisionoid="<%=lastRevision.getOid()%>" value="Download"/>
 				</div>
 
 				<div class="tabbertab" id="" title="Advanced Download">
@@ -290,32 +258,7 @@
 						</tr>
 						<%=JspHelper.writeDownloadProjectTree("download", project, loginManager, 0, null)%>
 					</table>
-					<table>
-						<tr class="downloadframe">
-							<td>Download:</td>
-							<td><select name="serializerName">
-									<%
-										for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-									%>
-									<option value="<%=serializer.getName()%>"
-										<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-									<%
-										}
-									%>
-							</select>
-							</td>
-							<td><label for="advancedzip_<%=lastRevision.getId()%>">Zip
-							</label> <input type="checkbox" name="zip"
-								id="advancedzip_<%=lastRevision.getId()%>" />
-							</td>
-							<td><input type="hidden" name="multiple" value="true">
-								<input type="hidden" name="roid"
-								value="<%=lastRevision.getOid()%>">
-								<button value="Download" type="button">Download</button>
-							</td>
-						</tr>
-					</table>
-
+					<input type="button" class="downloadCheckoutButtonAdvanced" value="Download"/>
 				</div>
 			</div>
 			<%
@@ -356,18 +299,18 @@
 				</tr>
 				<%
 					Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
-								for (long subPoid : project.getSubProjects()) {
-									try {
-										SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
-										subProjects.add(subProject);
-									} catch (ServiceException e) {
-									}
-								}
-								for (SProject subProject : subProjects) {
-									SRevision lastSubProjectRevision = null;
-									if (subProject.getLastRevisionId() != -1) {
-										lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
-									}
+					for (long subPoid : project.getSubProjects()) {
+						try {
+							SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
+							subProjects.add(subProject);
+						} catch (ServiceException e) {
+						}
+					}
+					for (SProject subProject : subProjects) {
+						SRevision lastSubProjectRevision = null;
+						if (subProject.getLastRevisionId() != -1) {
+							lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
+						}
 				%>
 				<tr
 					<%=(loginManager.getService().userHasCheckinRights(subProject.getOid()) == true ? "" : " class=\"checkinrights\"")%>
@@ -410,16 +353,10 @@
 				}
 			%>
 		</div>
-
-		<div class="tabbertab" id="revisionstab"
-			title="Revisions<%=revisions.size() == 0 ? "" : " (" + revisions.size() + ")"%>">
-			<%
-				Set<String> checkoutWarnings = loginManager.getService().getCheckoutWarnings(project.getOid());
-						for (String warning : checkoutWarnings) {
-							out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
-						}
-						if (revisions.size() > 1) {
-			%>
+<%
+if (revisions.size() > 0) {
+%>
+		<div class="tabbertab" id="revisionstab" title="Revisions<%=revisions.size() == 0 ? "" : " (" + revisions.size() + ")"%>">
 			<fieldset>
 				<legend>Compare</legend>
 				<div id="compareajaxloader">
@@ -455,10 +392,6 @@
 					<button type="submit" name="compare" value="Compare">Compare</button>
 				</form>
 			</fieldset>
-			<%
-				}
-						if (revisions.size() > 0) {
-			%>
 			<table class="formatted">
 				<tr>
 					<th>Id</th>
@@ -473,12 +406,12 @@
 						}
 					%>
 					<th>Size</th>
-					<th>Status / Actions</th>
+					<th>Download/Checkout</th>
 				</tr>
 				<%
 					for (SRevision revision : revisions) {
-									SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
-									boolean isTagged = revision.getTag() != null;
+						SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
+						boolean isTagged = revision.getTag() != null;
 				%>
 				<tr <%=isTagged ? "class=\"tagged\"" : ""%>
 					id="rev<%=revision.getOid()%>"
@@ -496,59 +429,15 @@
 					</td>
 					<td class="sizefield"><%=revision.getSize()%></td>
 					<td>
-						<div>
-							<table class="cleantable">
-								<tr class="downloadframe">
-									<td><input type="hidden" name="roid"
-										value="<%=revision.getOid()%>" /> <select
-										name="serializerName" class="revisionsdownloadcheckoutselect">
-											<%
-												for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-											%>
-											<option value="<%=serializer.getName()%>"
-												<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-											<%
-												}
-											%>
-									</select></td>
-									<td><label for="revisionzip_<%=revision.getId()%>">Zip
-									</label></td>
-									<td><input type="checkbox" name="zip"
-										id="revisionzip_<%=revision.getId()%>" />
-									</td>
-									<td><input type="hidden" name="roid"
-										name="<%=revision.getOid()%>" />
-										<button type="button" value="Download">Download</button>
-									</td>
-									<%
-										if (userHasCheckinRights) {
-									%>
-									<td>
-										<button type="button" value="Checkout"
-											class="revisionscheckoutbutton">Checkout</button>
-									</td>
-									<%
-										}
-									%>
-								</tr>
-							</table>
-						</div>
+						<input type="button" revisionoid="<%=revision.getOid() %>" class="downloadCheckoutButton" value="Download"/>
 					</td>
 				</tr>
-			<%
-					}
-			%>
-						</table>
-			
-			<%
-				} else {
-			%>
-			<div class="none">
-				No revisions<%=userHasCheckinRights ? ", <a class=\"checkinlink\" href=\"#\">checkin new revision</a>" : ""%></div>
+<% } %>
+			</table>
+		</div>
 			<%
 				}
 			%>
-		</div>
 		<%
 			if (lastRevision != null) {
 		%>
@@ -592,7 +481,7 @@
 					<th>User</th>
 					<th>Date</th>
 					<th>Active</th>
-					<th>Status / Actions</th>
+					<th>Download/Checkout</th>
 				</tr>
 				<%
 					for (SCheckout checkout : checkouts) {
@@ -606,23 +495,7 @@
 					<td><%=dateFormat.format(checkout.getDate())%></td>
 					<td><%=checkout.getActive()%></td>
 					<td>
-						<form method="get" action="<%=request.getContextPath()%>/download">
-							<input type="hidden" name="roid"
-								value="<%=checkout.getRevisionId()%>" /> <select
-								name="serializerName">
-								<%
-									for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-								%>
-								<option value="<%=serializer.getName()%>"
-									<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-								<%
-									}
-								%>
-							</select> <label for="checkoutsdownloadzip_<%=checkout.getOid()%>">Zip</label>
-							<input type="checkbox" name="zip"
-								id="checkoutsdownloadzip_<%=checkout.getOid()%>" /> <input
-								name="download" type="submit" value="Download" />
-						</form>
+						<input type="button" class="downloadCheckoutButton" revisionoid="<%=checkout.getRevisionId() %>" value="Download"/>
 					</td>
 				</tr>
 				<%
@@ -736,6 +609,16 @@
 	var poid = <%=poid%>;
 	var lastRevisionOid = <%=lastRevision == null ? -1 : lastRevision.getOid()%>;
 	
+	function showDownloadCheckoutPopup(roid) {
+		$("#downloadcheckoutpopup").dialog({
+			title: "Download/Checkout",
+			width: 600,
+			height: 300,
+			modal: true
+		});
+		$("#downloadcheckoutpopup").load("download.jsp?roid=" + roid);
+	}
+	
 	$(document).ready(function(){
 		$("#inviteButton").click(function(){
 			call({
@@ -750,6 +633,21 @@
 					alert(data.error);
 				}
 			});
+		});
+		
+		$(".downloadCheckoutButtonAdvanced").click(function(){
+			$("#downloadcheckoutpopup").dialog({
+				title: "Download/Checkout",
+				width: 600,
+				height: 300,
+				modal: true
+			});
+			var x = "";
+			$(".treeselect").each(function(){
+				x += $(this).attr("name") + "=" + $(this).val() + "&";
+			});
+
+			$("#downloadcheckoutpopup").load("download.jsp?roid=-1&multiple=" + x);
 		});
 
 		$("#revisiontablink").click(function (){
@@ -773,17 +671,31 @@
 		}
 		updateInactiveCheckouts();
 		
-		$(".checkinlink").click(function(event){
-			event.preventDefault();
+		var showCheckinPopup = function() {
 			$("#checkinpopup").dialog({
 				title: "Checkin new revision",
 				width: 600,
 				height: 300,
 				modal: true
 			});
-			$("#checkinpopup").load("upload.jsp?poid=<%=project.getOid()%>");
+			$("#checkinpopup").load("checkin.jsp?poid=<%=project.getOid()%>");
+		} 
+		
+		$(".downloadCheckoutButton").click(function(event){
+			showDownloadCheckoutPopup($(this).attr("revisionoid"));
 		});
 		
+		$(".checkinlink").click(function(event){
+			event.preventDefault();
+			showCheckinPopup();
+		});
+		<%
+			if ("checkin".equals(request.getParameter("action"))) {
+				%>
+				showCheckinPopup();
+				<%
+			}
+		%>
 		<%="var checkinId = " + request.getParameter("checkinId") + ";"%>
 	});
 </script>
@@ -792,44 +704,6 @@
 	%>
 	<script>
 	$(document).ready(function(){
-		$('button[value="Download"]').click(function(event){
-			var progressDiv = $("<div class=\"progressdiv\">");
-			$(".progressdiv").remove();
-			$(this).parent().append(progressDiv);
-			var downloadframe = $(event.target).parent().parent();
-			var roid = downloadframe.find('input[name="roid"]');
-			var serializerName = downloadframe.find('select[name="serializerName"]');
-			var zipbox = downloadframe.find('input[name="zip"]');
-			var zip = "";
-			if (zipbox.attr('checked')) {
-				zip = "&zip=on";
-			}
-			var multiple = downloadframe.find('input[name="multiple"]');
-			if (multiple.size() == 0) {
-				progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&download=Download");
-			} else {
-				var x = "";
-				$(".treeselect").each(function(){
-					x += $(this).attr("name") + "=" + $(this).val() + "&";
-				});
-				progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&multiple=" + multiple.val() + "&download=Download&" + x);				
-			}
-		});
-		$('button[value="Checkout"]').click(function(){
-			var progressDiv = $("<div class=\"progressdiv\">");
-			$(".progressdiv").remove();
-			$(this).parent().append(progressDiv);
-			var downloadframe = $(event.target).parent().parent();
-			var roid = downloadframe.find('input[name="roid"]');
-			var serializerName = downloadframe.find('select[name="serializerName"]');
-			var zipbox = downloadframe.find('input[name="zip"]');
-			var zip = "";
-			if (zipbox.attr('checked')) {
-				zip = "&zip=on";
-			}
-			progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&checkout=Checkout");
-		});
-		
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
 <%String clashesUrl = "clashes.jsp?poid=" + poid;
@@ -850,14 +724,6 @@
 		$("#browserajaxlink").click(function() {
 			$("#browserajaxloader").show();
 			$("#browser").load("browser.jsp?roid=<%=lastRevision.getOid()%>");
-		});
-		$(".commentbox div").css("height", "18px");
-		$(".commentbox div").css("width", "200px");
-		$(".commentbox div").css("overflow", "hidden");
-		$(".commentbox div").each(function(index, element) {
-			if ($(element).attr("scrollHeight") == 18) {
-				$(element).parent().children("a").hide();
-			}
 		});
 
 		var checkDetailsCheckoutButton = function() {

@@ -19,14 +19,14 @@
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.comparators.SRevisionDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp" %>
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));
 	SUser user = loginManager.getService().getUserByUoid(uoid);
 	boolean allowEdit = (loginManager.getUserType() == SUserType.ADMIN && user.getUserType() != SUserType.SYSTEM) || uoid == loginManager.getUoid();
 %>
-
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%><div class="sidebar">
+<div class="sidebar">
  <ul>
 <% if (allowEdit) { %>
  <li><a href="edituser.jsp?uoid=<%=uoid%>">Edit</a></li>
@@ -36,6 +36,7 @@
  </ul>
 </div>
 <div class="content">
+<div id="downloadcheckoutpopup"></div>
 <%
 	if (loginManager.isLoggedIn()) {
 		try {
@@ -87,7 +88,7 @@ if (allowEdit) { %>
 	<th>Date</th>
 	<th>Comment</th>
 	<th>Size</th>
-	<th>Download / Checkout</th>
+	<th>Download/Checkout</th>
 </tr>
 <%
 		for (SRevision revision : revisions) {
@@ -100,25 +101,7 @@ if (allowEdit) { %>
 	<td><%=revision.getComment() %></td>
 	<td><%=revision.getSize() %></td>
 	<td>
-	<form method="get" action="<%=request.getContextPath() %>/download">
-	<input type="hidden" name="roid" value="<%=revision.getOid() %>"/>
-	<select name="resultType" class="revisionsdownloadcheckoutselect">
-	<%
-		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-	%>
-	<option value="<%=serializer.getName()%>"
-		<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-	<%
-		}
-	%>
-	</select> <label for="zip_<%=revision.getId() %>">Zip</label> <input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> 
-	<input name="download" type="submit" value="Download"/>
-<% 
-	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(sProject.getOid());
-if (userHasCheckinRights) { %>
-	<input name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton"/>
-<% } %>
-	</form>
+		<input type="button" class="downloadCheckoutButton" revisionoid="<%=revision.getOid() %>" value="Download"/>
 	</td>
 </tr>
 <%
@@ -142,7 +125,7 @@ if (userHasCheckinRights) { %>
 	<th>Project</th>
 	<th>Revision Id</th>
 	<th>Date</th>
-	<th>Download / Checkout</th>
+	<th>Download/Checkout</th>
 </tr>
 <%
 		for (SCheckout checkout : checkouts) {
@@ -154,19 +137,7 @@ if (userHasCheckinRights) { %>
 	<td><a href="revision.jsp?roid=<%=sRevision.getOid() %>"><%=sRevision.getId() %></a></td>
 	<td><%=dateFormat.format(checkout.getDate()) %></td>
 	<td>
-	<form method="get" action="<%=request.getContextPath() %>/download">
-	<input type="hidden" name="roid" value="<%=checkout.getRevisionId() %>"/>
-	<select name="resultType">
-	<%
-		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-	%>
-	<option value="<%=serializer.getName()%>"
-		<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-	<%
-		}
-	%>
-	</select> <label for="zip_<%=checkout.getOid() %>">Zip</label> <input type="checkbox" name="zip" id="zip_<%=checkout.getOid() %>"/> <input name="download" type="submit" value="Download"/>
-	</form>
+		<input type="button" class="downloadCheckoutButton" revisionoid="<%=checkout.getRevisionId() %>" value="Download"/>
 	</td>
 </tr>
 <%
@@ -234,11 +205,25 @@ if (userHasCheckinRights) { %>
 %>
 </div>
 <script>
-	$(document).ready(function(){
-		checkRevisionsCheckoutButton = function(event){
-			$(event.target).parent().children(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
-		};
-		$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
+function showDownloadCheckoutPopup(roid) {
+	$("#downloadcheckoutpopup").dialog({
+		title: "Download/Checkout",
+		width: 600,
+		height: 300,
+		modal: true
 	});
+	$("#downloadcheckoutpopup").load("download.jsp?roid=" + roid);
+}
+
+$(document).ready(function(){
+	$(".downloadCheckoutButton").click(function(event){
+		showDownloadCheckoutPopup($(this).attr("revisionoid"));
+	});
+	
+	checkRevisionsCheckoutButton = function(event){
+		$(event.target).parent().children(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
+	};
+	$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
+});
 </script>
 <%@ include file="footer.jsp" %>
