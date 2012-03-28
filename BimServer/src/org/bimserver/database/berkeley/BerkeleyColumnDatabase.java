@@ -97,10 +97,9 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		}
 		
 		transactionConfig = new TransactionConfig();
-		transactionConfig.setReadCommitted(true);
+		transactionConfig.setSerializableIsolation(true);
 
 		cursorConfig = new CursorConfig();
-		cursorConfig.setReadCommitted(true);
 	}
 
 	public boolean isNew() {

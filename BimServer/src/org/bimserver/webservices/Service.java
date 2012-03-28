@@ -60,6 +60,7 @@ import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddSerializerDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
+import org.bimserver.database.actions.AutologinDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.BranchToExistingProjectDatabaseAction;
 import org.bimserver.database.actions.BranchToNewProjectDatabaseAction;
@@ -117,6 +118,7 @@ import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
+import org.bimserver.database.actions.LoginDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.RequestPasswordChangeDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
@@ -200,7 +202,6 @@ import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
-import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
@@ -225,13 +226,11 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.Hashers;
 import org.bimserver.utils.MultiplexingInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Service implements ServiceInterface {
-	private static final Integer DEFAULT_LOGIN_ERROR_TIMEOUT = 3000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
 	public static final Integer DEADLOCK_RETRIES = 10;
 	private final ServiceInterfaceFactory serviceFactory;
@@ -562,27 +561,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean login(String username, String password) throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		BimDatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
-			User user = session.executeAction(action, DEADLOCK_RETRIES);
-			if (user != null && Hashers.getSha256Hash(password).equals(user.getPassword())) {
-				if (user.getState() == ObjectState.DELETED) {
-					throw new UserException("User account has been deleted");
-				} else if (user.getUserType() == UserType.SYSTEM) {
-					throw new UserException("System user cannot login");
-				}
-				this.currentUoid = user.getOid();
-				updateLastActive(user.getOid());
-				return true;
-			} else {
-				try {
-					Thread.sleep(DEFAULT_LOGIN_ERROR_TIMEOUT);
-				} catch (InterruptedException e) {
-					LOGGER.error("", e);
-				}
-				throw new UserException("Invalid username/password combination");
-			}
+			LoginDatabaseAction loginDatabaseAction = new LoginDatabaseAction(session, this, accessMethod, username, password);
+			return session.executeAndCommitAction(loginDatabaseAction, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 			return false;
@@ -1320,28 +1302,16 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean autologin(String username, String hash) throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		BimDatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
-			User user = session.executeAction(action, DEADLOCK_RETRIES);
-			if (user != null && hash.equals(Hashers.getSha256Hash(user.getUsername() + user.getPassword()))) {
-				if (user.getState() == ObjectState.DELETED) {
-					throw new UserException("User account has been deleted");
-				} else if (user.getUserType() == UserType.SYSTEM) {
-					throw new UserException("System user cannot login");
-				}
-				currentUoid = user.getOid();
-				updateLastActive(user.getOid());
-				return true;
-			} else {
-				return false;
-			}
+			AutologinDatabaseAction action = new AutologinDatabaseAction(session, this, accessMethod, username, hash);
+			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
-			return false;
 		} finally {
 			session.close();
 		}
+		return false;
 	}
 
 	@Override
@@ -1750,20 +1720,6 @@ public class Service implements ServiceInterface {
 		} catch (Exception e) {
 			handleException(e);
 			return null;
-		} finally {
-			session.close();
-		}
-	}
-
-	private void updateLastActive(Long uoid) throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
-			user.setLastSeen(new Date());
-			session.store(user);
-			session.commit();
-		} catch (Exception e) {
-			handleException(e);
 		} finally {
 			session.close();
 		}
@@ -2604,5 +2560,9 @@ public class Service implements ServiceInterface {
 			}
 		}
 		return null;
+	}
+
+	public void setCurrentUoid(long uoid) {
+		currentUoid = uoid;
 	}
 }
