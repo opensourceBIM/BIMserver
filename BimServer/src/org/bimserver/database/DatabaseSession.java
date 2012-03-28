@@ -956,6 +956,11 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				int ridOfRecord = -buffer.getInt();
 				if (ridOfRecord == rid && pid == pidOfRecord) {
 					ByteBuffer value = ByteBuffer.wrap(record.getValue());
+					
+					//Skip the unsettable part
+					byte unsettablesSize = value.get();
+					value.position(value.position() + unsettablesSize);
+
 					if (value.capacity() > 1) {
 						int stringLength = value.getInt();
 						if (stringLength == -1) {
