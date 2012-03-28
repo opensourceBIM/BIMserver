@@ -436,12 +436,11 @@ public class BimServer {
 			if (results.size() == 0) {
 				org.bimserver.models.store.Plugin pluginObject = StoreFactory.eINSTANCE.createPlugin();
 				pluginObject.setName(plugin.getClass().getName());
-				pluginObject.setEnabled(true); // New plugins are enabled by
-												// default
+				pluginObject.setEnabled(true); // New plugins are enabled by default
 				session.store(pluginObject);
 			} else if (results.size() == 1) {
 				org.bimserver.models.store.Plugin pluginObject = results.values().iterator().next();
-				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.getEnabled());
+				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.getEnabled(), false);
 			} else {
 				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getClass().getName());
 			}
