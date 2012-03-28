@@ -124,7 +124,6 @@ import org.slf4j.LoggerFactory;
 
 public class SceneJSSerializer extends EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJSSerializer.class);
-	private IfcEngine ifcEngine;
 
 	/**
 	 * Extents provides an axis-aligned bounding cuboid for geometric data, 
@@ -147,7 +146,7 @@ public class SceneJSSerializer extends EmfSerializer {
 		super.init(model, projectInfo, pluginManager, ifcEngine);
 		this.surfaceStyleIds = new ArrayList<String>();
 		try {
-			ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
+			ifcEngine.init();
 			EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
 			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
@@ -203,7 +202,7 @@ public class SceneJSSerializer extends EmfSerializer {
 			}
 			writer.flush();
 			setMode(Mode.FINISHED);
-			ifcEngine.close();
+			getIfcEngine().close();
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;

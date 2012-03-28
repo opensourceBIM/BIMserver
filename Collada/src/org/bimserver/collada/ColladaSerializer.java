@@ -92,7 +92,6 @@ import org.slf4j.LoggerFactory;
 
 public class ColladaSerializer extends EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
-	private IfcEngine ifcEngine;
 	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private SIPrefix lengthUnitPrefix;
 	private List<String> surfaceStyleIds;
@@ -101,7 +100,6 @@ public class ColladaSerializer extends EmfSerializer {
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		this.ifcEngine = ifcEngine;
 		super.init(model, projectInfo, pluginManager, ifcEngine);
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
 		this.surfaceStyleIds = new ArrayList<String>();
@@ -146,7 +144,7 @@ public class ColladaSerializer extends EmfSerializer {
 			}
 			writer.flush();
 			setMode(Mode.FINISHED);
-			ifcEngine.close();
+			getIfcEngine().close();
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;
