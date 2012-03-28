@@ -609,17 +609,7 @@ if (revisions.size() > 0) {
 	var poid = <%=poid%>;
 	var lastRevisionOid = <%=lastRevision == null ? -1 : lastRevision.getOid()%>;
 	
-	function showDownloadCheckoutPopup(roid) {
-		$("#downloadcheckoutpopup").dialog({
-			title: "Download/Checkout",
-			width: 600,
-			height: 300,
-			modal: true
-		});
-		$("#downloadcheckoutpopup").load("download.jsp?roid=" + roid);
-	}
-	
-	$(document).ready(function(){
+	$(function(){
 		$("#inviteButton").click(function(){
 			call({
 				action: "inviteuser",
@@ -646,8 +636,7 @@ if (revisions.size() > 0) {
 			$(".treeselect").each(function(){
 				x += $(this).attr("name") + "=" + $(this).val() + "&";
 			});
-
-			$("#downloadcheckoutpopup").load("download.jsp?roid=-1&multiple=" + x);
+			$("#downloadcheckoutpopup").load("download.jsp?multiple=true&" + x);
 		});
 
 		$("#revisiontablink").click(function (){
@@ -665,11 +654,6 @@ if (revisions.size() > 0) {
 				$(".inactivecheckoutrow").hide();
 			}
 		}
-		// Crappy MS browser does not understand change
-		if (!$.browser.msie) {
-			$("#showinactivecheckouts").change(updateInactiveCheckouts);
-		}
-		updateInactiveCheckouts();
 		
 		var showCheckinPopup = function() {
 			$("#checkinpopup").dialog({
@@ -682,7 +666,7 @@ if (revisions.size() > 0) {
 		} 
 		
 		$(".downloadCheckoutButton").click(function(event){
-			showDownloadCheckoutPopup($(this).attr("revisionoid"));
+			showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
 		});
 		
 		$(".checkinlink").click(function(event){
@@ -703,19 +687,19 @@ if (revisions.size() > 0) {
 		if (lastRevision != null) {
 	%>
 	<script>
-	$(document).ready(function(){
+	$(function(){
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
-<%String clashesUrl = "clashes.jsp?poid=" + poid;
-						if (request.getParameter("margin") != null) {
-							clashesUrl += "&margin=" + request.getParameter("margin");
-						}
-						if (request.getParameter("revisions") != null) {
-							clashesUrl += "&revisions=" + request.getParameter("revisions");
-						}
-						if (request.getParameter("ignored") != null) {
-							clashesUrl += "&ignored=" + request.getParameter("ignored");
-						}%>
+		<%String clashesUrl = "clashes.jsp?poid=" + poid;
+		if (request.getParameter("margin") != null) {
+			clashesUrl += "&margin=" + request.getParameter("margin");
+		}
+		if (request.getParameter("revisions") != null) {
+			clashesUrl += "&revisions=" + request.getParameter("revisions");
+		}
+		if (request.getParameter("ignored") != null) {
+			clashesUrl += "&ignored=" + request.getParameter("ignored");
+		}%>
 		$("#clashdetectiondiv").load("<%=clashesUrl%>");
 		$("#compareform").submit(function(){
 			$("#compareform").hide();
@@ -726,29 +710,6 @@ if (revisions.size() > 0) {
 			$("#browser").load("browser.jsp?roid=<%=lastRevision.getOid()%>");
 		});
 
-		var checkDetailsCheckoutButton = function() {
-			$("#detailscheckoutbutton").attr("disabled", $("#detailsdownloadcheckoutselect").val() != "Ifc2x3" && $("#detailsdownloadcheckoutselect").val() != "IfcXML");
-		};
-		
-		// Crappy MS browser does not understand change
-		if (!$.browser.msie) {
-			$("#detailsdownloadcheckoutselect").change(checkDetailsCheckoutButton);
-		}
-		checkDetailsCheckoutButton();
-
-		var checkRevisionsCheckoutButton = function(event) {
-			$(event.target).parent().parent().find(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "Ifc2x3" && $(event.target).val() != "IfcXML");
-		};
-		
-		// Crappy MS browser does not understand change
-		if (!$.browser.msie) {
-			$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
-		}
-		
-		$(".revisionsdownloadcheckoutselect").each(function(){
-			$(this).parent().parent().find(".revisionscheckoutbutton").attr("disabled", $(this).val() != "Ifc2x3" && $(this).val() != "IfcXML");
-		});
-		
 		$("#browserlink").click(function() {
 			showOverlay("Browser", "browser.jsp?roid=<%=project.getLastRevisionId()%>");
 			return false;

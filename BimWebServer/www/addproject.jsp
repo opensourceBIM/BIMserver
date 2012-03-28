@@ -138,7 +138,7 @@ Don't know the coordinates? <a href="#" onclick="BIMServer.Viewer.create({width:
 </fieldset>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
+$(function(){
 	document.form.name.focus();
 <% if (request.getParameter("coordcheck") == null) { %>
 	$(".coordcheckrow").hide();

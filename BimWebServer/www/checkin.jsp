@@ -106,7 +106,7 @@
 		$("#uploadButton").show();
 	}
 	
-	$(document).ready(function(){
+	$(function(){
 		$("#uploadajaxloader").hide();
 
 		var submitdata = null;

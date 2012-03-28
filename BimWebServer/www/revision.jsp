@@ -37,6 +37,7 @@
  <a id="browserlink" class="link">Browser</a></li>
 </ul>
 </div>
+<div id="downloadcheckoutpopup"></div>
 <div class="content">
 <%-- ------------------------------------------------------------------------ this page shows the REVISION Details --%>
 <h1>Revision details (Project: <%=project.getName()%>, Revision: <%=revision.getId()%>)</h1>
@@ -129,24 +130,8 @@
 <table class="formtable">
 	<tr>
 		<td class="first" width="100">Download:</td>
-		<td><select name="resultType" id="downloadcheckoutselect">
-			<%
-				for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-			%>
-			<option value="<%=serializer.getName()%>"
-				<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-			<%
-				}
-			%>
-		</select> <label for="zip_<%=revision.getId()%>">Zip</label> <input
-			type="checkbox" name="zip" id="zip_<%=revision.getId()%>" />
-			<input name="download" type="submit" value="Download">
-<%
-	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
-if (userHasCheckinRights) { %>
-			<input name="checkout" type="submit" value="Checkout" class="checkoutbutton">
-<% } %>
-			</td>
+		<td><input type="button" value="Download" revisionoid="<%=revision.getOid() %>" class="downloadCheckoutButton"/></td>
+	</tr>
 </table>
 </form>
 <br />
@@ -207,25 +192,22 @@ if (userHasCheckinRights) { %>
 %>
 </div>
 <script>
-	$(document).ready(function(){
+	$(function(){
 		$("#browserajaxloader").hide();
 		$("#browserajaxlink").click(function(){
 			$("#browserajaxlink").hide();
 			$("#browserajaxloader").show();
 			$("#browser").load("browser.jsp?roid=<%=roid%>");
 		});
-		var checkCheckoutButton = function(event){
-			$(".checkoutbutton").attr("disabled", $("#downloadcheckoutselect").val() != "Ifc2x3" && $("#downloadcheckoutselect").val() != "IfcXML");
-		};
-		// Crappy MS browser does not understand change
-		if (!$.browser.msie) {
-			$("#downloadcheckoutselect").change(checkCheckoutButton);
-		}
+		
+		$(".downloadCheckoutButton").click(function(event){
+			showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
+		});
+
 		$("#browserlink").click(function(){
 			showOverlay("Browser", "browser.jsp?roid=<%=revision.getOid() %>");
 			return false;
 		});
-		checkCheckoutButton();
 	});
 </script> <%
  	} catch (ServiceException e) {

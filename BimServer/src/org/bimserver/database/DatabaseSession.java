@@ -958,14 +958,19 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					ByteBuffer value = ByteBuffer.wrap(record.getValue());
 					if (value.capacity() > 1) {
 						int stringLength = value.getInt();
-						String s = BinUtils.readString(value, stringLength);
-						if (s.equals(guid)) {
-							short referenceCid = value.getShort();
-							// Read the next value, because this is the
-							// (manually added) IfcRoot field, pointing to the
-							// Object referring this Guid
-							long referencedOid = value.getLong();
-							return new ObjectIdentifier(referencedOid, referenceCid);
+						if (stringLength == -1) {
+							return null;
+						} else {
+							LOGGER.info("" + stringLength);
+							String s = BinUtils.readString(value, stringLength);
+							if (s.equals(guid)) {
+								short referenceCid = value.getShort();
+								// Read the next value, because this is the
+								// (manually added) IfcRoot field, pointing to the
+								// Object referring this Guid
+								long referencedOid = value.getLong();
+								return new ObjectIdentifier(referencedOid, referenceCid);
+							}
 						}
 					}
 				}

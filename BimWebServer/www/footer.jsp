@@ -10,7 +10,7 @@
 </div><!-- end footer --> 
 </div>
 <script>
-$(document).ready(function(){
+$(function(){
 	$(".focusme").focus();
 	instrumentBrowserLinks();
 

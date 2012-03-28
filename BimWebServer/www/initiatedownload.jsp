@@ -6,7 +6,10 @@
 <%@page import="org.slf4j.LoggerFactory"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
-	long roid = Long.parseLong(request.getParameter("roid"));
+	long roid = -1;
+	if (request.getParameter("roid") != null) {
+		roid = Long.parseLong(request.getParameter("roid"));
+	}
 	String serializerName = "Ifc2x3";
 	if (request.getParameter("serializerName") != null) {
 		serializerName = request.getParameter("serializerName");

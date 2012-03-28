@@ -18,7 +18,7 @@
 		<input type="text" name="oids" id="oids"/>
 	</td>
 	<td>
-		<input type="button" class="downloadCheckoutButton" value="Download"/>
+		<input type="button" id="queryoidsbutton" value="Download"/>
 	</td>
 	<td>
 		<input type="hidden" name="roid" value="<%=roid %>"/>
@@ -36,7 +36,7 @@
 		<input type="text" name="guids" id="guids"/>
 	</td>
 	<td>
-		<input type="button" class="downloadCheckoutButton" value="Download"/>
+		<input type="button" id="queryguidsbutton" value="Download"/>
 	</td>
 	<td> 
 		<input type="hidden" name="roid" value="<%=roid %>"/>
@@ -63,7 +63,7 @@
 		</select>
 	</td>
 	<td>
-		<input type="button" class="downloadCheckoutButton" value="Download"/>
+		<input type="button" id="queryclassesbutton" value="Download"/>
 	</td>
 	<td>
 		<input type="hidden" name="roid" value="<%=roid %>"/>
@@ -94,7 +94,7 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 <textarea cols="93" rows="16" id="console">
 </textarea>
 <script>
-	$(document).ready(function(){
+	$(function(){
 		if ($("#code").val() == "") {
 			$.ajax({
 				url: '<%=request.getContextPath() %>/queries/DefaultQuery.java',
@@ -256,62 +256,24 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 </div>
 
 <script>
-	function showDownloadCheckoutPopup(roid) {
-		$("#downloadcheckoutpopup").dialog({
-			title: "Download/Checkout",
-			width: 600,
-			height: 300,
-			modal: true
-		});
-		$("#downloadcheckoutpopup").load("download.jsp?roid=" + roid);
-	}
-	
-	$(document).ready(function(){
-		$(".downloadCheckoutButton").click(function(event){
-			showDownloadCheckoutPopup($(this).attr("revisionoid"));
-		});
-		
+	$(function(){
 		$("#queryoidsbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var oids = downloadframe.find('input[name="oids"]');
-			var resultType = downloadframe.find('select[name="resultType"]');
-			var zipbox = downloadframe.find('input[name="zip"]');
-			var zip = "";
-			if (zipbox.attr('checked')) {
-				zip = "&zip=on";
-			}
-			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.show();
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&oids=" + oids.val() + "&serializerName=" + resultType.val() + zip + "&download=Download");
+			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&oids=" + oids.val());
 		});
 		$("#queryguidsbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var guids = downloadframe.find('input[name="guids"]');
-			var resultType = downloadframe.find('select[name="resultType"]');
-			var zipbox = downloadframe.find('input[name="zip"]');
-			var zip = "";
-			if (zipbox.attr('checked')) {
-				zip = "&zip=on";
-			}
-			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.show();
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&guids=" + guids.val() + "&serializerName=" + resultType.val() + zip + "&download=Download");
+			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&guids=" + guids.val());
 		});
-		$("#queryclassbutton").click(function(){
+		$("#queryclassesbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var ifcClass = downloadframe.find("#cid");
-			var resultType = downloadframe.find('select[name="resultType"]');
-			var zipbox = downloadframe.find('input[name="zip"]');
-			var zip = "";
-			if (zipbox.attr('checked')) {
-				zip = "&zip=on";
-			}
-			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.show();
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&classes=" + ifcClass.val() + "&serializerName=" + resultType.val() + zip + "&download=Download");
+			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&classes=" + ifcClass.val());
 		});
 	});
 </script>

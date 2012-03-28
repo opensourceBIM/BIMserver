@@ -50,3 +50,13 @@ function call(request, callback) {
 		dataType: "json"
 	});
 }
+
+function showDownloadCheckoutPopup(url) {
+	$("#downloadcheckoutpopup").dialog({
+		title: "Download/Checkout",
+		width: 600,
+		height: 300,
+		modal: true
+	});
+	$("#downloadcheckoutpopup").load(url);
+}

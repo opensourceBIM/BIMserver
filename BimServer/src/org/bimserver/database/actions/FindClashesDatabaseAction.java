@@ -116,6 +116,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 				ifcSerializer.init(newModel, null, bimServer.getPluginManager(), bimServer.getPluginManager().requireIfcEngine().createIfcEngine());
 				byte[] bytes = ifcSerializer.getBytes();
 				IfcEngine ifcEngine = bimServer.getPluginManager().requireIfcEngine().createIfcEngine();
+				ifcEngine.init();
 				try {
 					IfcEngineModel ifcEngineModel = ifcEngine.openModel(bytes);
 					try {

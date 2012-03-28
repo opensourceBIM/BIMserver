@@ -37,6 +37,7 @@ public abstract class EmfSerializer {
 	private Mode mode;
 	private ProjectInfo projectInfo;
 	private PluginManager pluginManager;
+	private IfcEngine ifcEngine;
 
 	protected static enum Mode {
 		HEADER, BODY, FOOTER, FINISHED
@@ -45,10 +46,15 @@ public abstract class EmfSerializer {
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
+		this.ifcEngine = ifcEngine;
 		this.setPluginManager(pluginManager);
 		reset();
 	}
 
+	public IfcEngine getIfcEngine() {
+		return ifcEngine;
+	}
+	
 	public ProjectInfo getProjectInfo() {
 		return projectInfo;
 	}

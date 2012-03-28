@@ -95,6 +95,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length() - 1);
 		}
+		ifcModel.setName(projectName);
 		return ifcModel;
 	}
 
