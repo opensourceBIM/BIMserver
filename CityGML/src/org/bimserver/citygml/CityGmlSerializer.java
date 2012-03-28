@@ -113,7 +113,6 @@ import org.w3c.dom.Element;
 
 public class CityGmlSerializer extends EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);
-	private IfcEngine ifcEngine;
 	private GMLFactory gml;
 	private XALFactory xal;
 	private CityGMLFactory citygml;
@@ -214,7 +213,7 @@ public class CityGmlSerializer extends EmfSerializer {
 				LOGGER.error("", e);
 			}
 			setMode(Mode.FINISHED);
-			ifcEngine.close();
+			getIfcEngine().close();
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;
