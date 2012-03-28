@@ -250,7 +250,7 @@ public class PluginManager {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
 				if (pluginContext.getPlugin().getClass().getName().equals(name)) {
-					pluginContext.setEnabled(true);
+					pluginContext.setEnabled(true, true);
 				}
 			}
 		}
@@ -260,7 +260,7 @@ public class PluginManager {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
 				if (pluginContext.getPlugin().getClass().getName().equals(name)) {
-					pluginContext.setEnabled(false);
+					pluginContext.setEnabled(false, true);
 				}
 			}
 		}

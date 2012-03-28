@@ -48,9 +48,11 @@ public class PluginContext {
 		this.location = location;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(boolean enabled, boolean notify) {
 		this.enabled = enabled;
-		pluginManager.notifyPluginStateChange(this, enabled);
+		if (notify) {
+			pluginManager.notifyPluginStateChange(this, enabled);
+		}
 	}
 
 	public boolean isEnabled() {

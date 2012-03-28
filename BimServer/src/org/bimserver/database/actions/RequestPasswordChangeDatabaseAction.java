@@ -22,10 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -94,10 +92,8 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						msg.setContent(body, "text/html");
 						msg.setSubject(subject.trim());
 						Transport.send(msg);
-					} catch (AddressException e) {
+					} catch (Exception e) {
 						LOGGER.info("", e);
-					} catch (MessagingException e) {
-						LOGGER.error("", e);
 					}
 				}
 			}
