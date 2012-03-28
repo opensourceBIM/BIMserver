@@ -370,10 +370,14 @@ public class BimServer {
 				objectIDM.setName(name);
 				objectIDM.setClassName(objectIDMPlugin.getClass().getName());
 				objectIDM.setEnabled(true);
-				defaultObjectIDM = objectIDM;
+				if (objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
+					defaultObjectIDM = objectIDM;
+				}
 				session.store(objectIDM);
 			} else {
-				defaultObjectIDM = found;
+				if (objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
+					defaultObjectIDM = found;
+				}
 			}
 		}
 		IfcEngine defaultIfcEngine = null;
