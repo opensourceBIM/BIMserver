@@ -122,6 +122,8 @@ public class BimServer {
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
 
+	private CommandLine commandLine;
+
 	/**
 	 * Create a new BIMserver
 	 * 
@@ -340,8 +342,10 @@ public class BimServer {
 			} finally {
 				session.close();
 			}
-			CommandLine commandLine = new CommandLine(this);
-			commandLine.start();
+			if (config.isStartCommandLine()) {
+				commandLine = new CommandLine(this);
+				commandLine.start();
+			}
 			LOGGER.info("Done starting BIMserver");
 		} catch (Throwable e) {
 			serverInfoManager.setErrorMessage(e.getMessage());
@@ -548,6 +552,9 @@ public class BimServer {
 		}
 		if (protocolBuffersServer != null) {
 			protocolBuffersServer.shutdown();
+		}
+		if (commandLine != null) {
+			commandLine.shutdown();
 		}
 	}
 

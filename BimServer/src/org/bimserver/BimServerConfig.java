@@ -27,6 +27,7 @@ public class BimServerConfig {
 	private ResourceFetcher resourceFetcher;
 	private String classPath;
 	private int port;
+	private boolean startCommandLine = false;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -66,5 +67,13 @@ public class BimServerConfig {
 	
 	public int getPort() {
 		return port;
+	}
+
+	public boolean isStartCommandLine() {
+		return startCommandLine;
+	}
+
+	public void setStartCommandLine(boolean startCommandLine) {
+		this.startCommandLine = startCommandLine;
 	}
 }
