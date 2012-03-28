@@ -44,6 +44,7 @@ import org.slf4j.LoggerFactory;
 public class CommandLine extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommandLine.class);
 	private final BimServer bimServer;
+	private volatile boolean running;
 
 	public CommandLine(BimServer bimServer) {
 		this.bimServer = bimServer;
@@ -54,7 +55,8 @@ public class CommandLine extends Thread {
 	@Override
 	public void run() {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		while (true) {
+		running = true;
+		while (running) {
 			try {
 				String line = reader.readLine();
 				if (line == null) {
@@ -137,5 +139,10 @@ public class CommandLine extends Thread {
 				LOGGER.error("", e);
 			}
 		}
+	}
+
+	public void shutdown() {
+		running = false;
+		interrupt();
 	}
 }
