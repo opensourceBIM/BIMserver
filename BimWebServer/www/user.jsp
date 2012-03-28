@@ -205,25 +205,10 @@ if (allowEdit) { %>
 %>
 </div>
 <script>
-function showDownloadCheckoutPopup(roid) {
-	$("#downloadcheckoutpopup").dialog({
-		title: "Download/Checkout",
-		width: 600,
-		height: 300,
-		modal: true
-	});
-	$("#downloadcheckoutpopup").load("download.jsp?roid=" + roid);
-}
-
-$(document).ready(function(){
+$(function(){
 	$(".downloadCheckoutButton").click(function(event){
-		showDownloadCheckoutPopup($(this).attr("revisionoid"));
+		showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
 	});
-	
-	checkRevisionsCheckoutButton = function(event){
-		$(event.target).parent().children(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
-	};
-	$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
 });
 </script>
 <%@ include file="footer.jsp" %>

@@ -64,7 +64,7 @@ Download:
 </form>
 
 <script>
-	$(document).ready(function(){
+	$(function(){
 		$("#emailform").hide();
 		$("#emailajaxloader").hide();
 		$("#typeselector").change(function(){

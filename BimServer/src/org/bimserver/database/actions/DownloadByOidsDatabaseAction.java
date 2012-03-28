@@ -93,7 +93,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 			}
 		}
 		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
-		ifcModel.setName("Unknown");
+		ifcModel.setName("query");
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());

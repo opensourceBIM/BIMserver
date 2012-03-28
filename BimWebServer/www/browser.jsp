@@ -108,7 +108,7 @@ for (SRevision sRevision : revisionsInc) {
   	%>
 </div>
 <script>
-$(document).ready(function(){
+$(function(){
 	$("#roidchanger").change(function(){
 		<%
 			String urlAdd = "";

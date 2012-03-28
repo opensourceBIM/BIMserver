@@ -98,7 +98,7 @@
 	src="images/ajax-loader.gif" /></div>
 <div id="clashresults"></div>
 <script>
-$(document).ready(function(){
+$(function(){
 	var toLeft = function(event){
 		event.preventDefault();
 		var queried = document.getElementById("queried");
@@ -267,7 +267,7 @@ Download: <input type="hidden" name="clashes" value="true" /> <input
 </select> <label for="clasheszip_<%=lastRevision.getId()%>">Zip</label> <input type="checkbox" name="zip" id="clasheszip_<%=lastRevision.getId()%>" />
 <input name="download" type="submit" value="Download"></form>
 <script>
-$(document).ready(function(){
+$(function(){
 	$("#findclashesajaxloader").hide();
 	$("#emailclashesform").hide();
 	$("#emailclashesajaxloader").hide();

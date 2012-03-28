@@ -9,7 +9,10 @@
 <div class="progressbar"></div>
 <div class="fields">
 <%
-	long roid = Long.parseLong(request.getParameter("roid"));
+	long roid = -1;
+	if (request.getParameter("roid") != null) {
+		roid = Long.parseLong(request.getParameter("roid"));
+	}
 	SRevision revision = null;
 	if (roid != -1) {
 		revision = loginManager.getService().getRevision(roid);
@@ -45,7 +48,22 @@ function checkRevisionsCheckoutButton(event) {
 	$(".downloadpopup .checkoutButton").attr("disabled", val != "Ifc2x3" && val != "IfcXML");
 }
 
+var multiple = [];
+<%
+for (Object key : request.getParameterMap().keySet()) {
+	String keyString = (String) key;
+	if (keyString.startsWith("download_")) {
+		if (!request.getParameter(keyString).equals("[off]")) {
+			%>
+			multiple.push(<%=Long.parseLong(request.getParameter(keyString))%>);
+			<%
+		}
+	}
+}
+%>
+
 var laid;
+var roid = <%=roid%>;
 
 function update() {
 	$.ajax({
@@ -103,17 +121,47 @@ function start(url) {
 	});
 }
 
+function initCheckout() {
+	var url = createUrl();
+	url += "&checkout=Checkout";
+	start(url);
+}
+
+function initDownload() {
+	var url = createUrl();
+	url += "&download=Download";
+	start(url);
+}
+
+function createUrl() {
+	var url = "initiatedownload.jsp?a=1";
+	if (roid != -1) {
+		url += "&roid=" + roid;
+	}
+	url += "&serializerName=" + $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+<%
+	if (request.getParameter("classes") != null) {
+		%>url += "&classes=<%=request.getParameter("classes")%>&"<%
+	} else if (request.getParameter("guids") != null) {
+		%>url += "&guids=<%=request.getParameter("guids")%>&"<%
+	} else if (request.getParameter("oids") != null) {
+		%>url += "&oids=<%=request.getParameter("oids")%>&"<%
+	}
+%>
+	if (multiple.length > 0) {
+		url += "&multiple=true&";
+		for (index in multiple) {
+			url += "download_" + index + "=" + multiple[index] + "&";
+		}
+	}
+	return url;
+}
+
 $(function(){
 	$(".downloadpopup .revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
 
-	$(".downloadpopup .downloadButton").click(function(){
-		var serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-		start("initiatedownload.jsp?roid=<%=request.getParameter("roid")%>&serializerName=" + serializerName + "&download=Download" + "<%=multiple != null ? "&mutiple=" + multiple : ""%>");
-	});
-	$(".downloadpopup .checkoutButton").click(function(){
-		var serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-		start("initiatedownload.jsp?roid=<%=request.getParameter("roid")%>&serializerName=" + serializerName + "&checkout=Checkout" + "<%=multiple != null ? "&mutiple=" + multiple : ""%>");
-	});
+	$(".downloadpopup .downloadButton").click(initDownload);
+	$(".downloadpopup .checkoutButton").click(initCheckout);
 
 	checkRevisionsCheckoutButton();
 });

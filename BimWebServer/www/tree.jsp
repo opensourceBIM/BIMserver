@@ -6,7 +6,7 @@
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.models.ifc2x3.IfcOpeningElement"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%><script> 
-$(document).ready(function(){
+$(function(){
 	$(".root").css("padding-left", "5px");
 	$(".node").css("padding-left", "15px");
 	$(".showContent").click(function(event){
