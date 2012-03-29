@@ -636,7 +636,7 @@ if (revisions.size() > 0) {
 			$(".treeselect").each(function(){
 				x += $(this).attr("name") + "=" + $(this).val() + "&";
 			});
-			$("#downloadcheckoutpopup").load("download.jsp?multiple=true&" + x);
+			$("#downloadcheckoutpopup").load("download.jsp?poid=<%=poid%>&multiple=true&" + x);
 		});
 
 		$("#revisiontablink").click(function (){
@@ -667,7 +667,7 @@ if (revisions.size() > 0) {
 		
 		$(".downloadCheckoutButton").click(function(event){
 			event.preventDefault();
-			showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
+			showDownloadCheckoutPopup("download.jsp?poid=<%=poid%>&roid=" + $(this).attr("revisionoid"));
 		});
 		
 		$(".checkinlink").click(function(event){

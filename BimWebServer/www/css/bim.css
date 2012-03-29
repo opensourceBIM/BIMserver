@@ -273,10 +273,14 @@ div.error {
 
 div.warning {
 	margin-bottom: 1em;
-	padding: 3px;
+	padding: 5px;
 	background-color: #FFE69E;
 	border: 1px solid #C5832D;
-	margin-right: 22px;
+	height: 40px;
+}
+
+div.warning img {
+	float: left;
 }
 
 div.info {
@@ -413,6 +417,7 @@ tr.tagged {
 .maintable .seperator {
 	border: 0px solid blue;
 	height: 20px;
+	background-color: white;
 }
 
 .cleantable {

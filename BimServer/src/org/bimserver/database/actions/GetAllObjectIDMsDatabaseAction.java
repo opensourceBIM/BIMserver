@@ -52,7 +52,7 @@ public class GetAllObjectIDMsDatabaseAction extends GetAllDatabaseAction<ObjectI
 			Iterator<ObjectIDM> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				ObjectIDM objectIdm = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(objectIdm.getClassName())) {
+				if (!bimServer.getPluginManager().isEnabled(objectIdm.getClassName()) || !objectIdm.getEnabled()) {
 					iterator.remove();
 				}
 			}

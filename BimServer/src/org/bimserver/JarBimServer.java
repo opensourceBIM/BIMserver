@@ -76,6 +76,7 @@ public class JarBimServer {
 	 		bimServer.getEmbeddedWebServer().getContext().setResourceBase("www");
 	 		bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			bimServer.start();
+			LOGGER.info("Server started successfully");
 		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (ServerException e) {
@@ -87,7 +88,5 @@ public class JarBimServer {
 		} catch (DatabaseRestartRequiredException e) {
 			LOGGER.error("", e);
 		}
-		
-		LOGGER.info("Server started successfully");
 	}
 }

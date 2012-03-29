@@ -24,11 +24,11 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 
-public class UpdateDatabaseAction extends BimDatabaseAction<Void> {
+public class UpdateDatabaseAction<T extends IdEObject> extends BimDatabaseAction<Void> {
 
-	private final IdEObject idEObject;
+	private final T idEObject;
 
-	public UpdateDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IdEObject idEObject) {
+	public UpdateDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, T idEObject) {
 		super(bimDatabaseSession, accessMethod);
 		this.idEObject = idEObject;
 	}
@@ -37,5 +37,9 @@ public class UpdateDatabaseAction extends BimDatabaseAction<Void> {
 	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		getDatabaseSession().store(idEObject);
 		return null;
+	}
+	
+	public T getIdEObject() {
+		return idEObject;
 	}
 }

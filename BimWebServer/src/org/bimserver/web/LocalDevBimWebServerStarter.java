@@ -76,9 +76,9 @@ public class LocalDevBimWebServerStarter {
 
 		try {
 			server.start();
+			LOGGER.info("BIMWebServer started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
-		LOGGER.info("BIMWebServer started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 	}
 }

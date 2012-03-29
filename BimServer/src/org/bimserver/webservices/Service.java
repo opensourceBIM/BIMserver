@@ -93,6 +93,7 @@ import org.bimserver.database.actions.GetAllSerializersDatabaseAction;
 import org.bimserver.database.actions.GetAllUsersDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
+import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetClashDetectionSettingsDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByGuidDatabaseAction;
@@ -293,6 +294,9 @@ public class Service implements ServiceInterface {
 					throw new UserException(e);
 				}
 				IfcModelInterface model = deserializer.read(inputStream, fileName, false, fileSize);
+				if (model.size() == 0) {
+					throw new DeserializeException("Cannot checkin empty model");
+				}
 				User user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, null, accessMethod, poid, currentUoid, model, comment, merge, true);
 				LongCheckinAction longAction = new LongCheckinAction(bimServer, user, checkinDatabaseAction);
@@ -670,7 +674,6 @@ public class Service implements ServiceInterface {
 		if (longAction != null) {
 			longAction.waitForCompletion();
 			SCheckoutResult result = longAction.getCheckoutResult();
-			bimServer.getLongActionManager().remove(actionId);
 			return result;
 		} else {
 			throw new UserException("No data found for laid " + actionId);
@@ -692,7 +695,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<Boolean> action = new DeleteProjectDatabaseAction(session, accessMethod, poid, currentUoid);
+			BimDatabaseAction<Boolean> action = new DeleteProjectDatabaseAction(session, accessMethod, bimServer, poid, currentUoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -999,6 +1002,21 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	@Override
+	public Set<String> getCheckinWarnings(Long poid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			BimDatabaseAction<Set<String>> action = new GetCheckinWarningsDatabaseAction(session, accessMethod, poid, currentUoid);
+			return session.executeAction(action, DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public Boolean userHasRights(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
