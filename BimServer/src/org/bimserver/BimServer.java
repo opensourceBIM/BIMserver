@@ -391,9 +391,13 @@ public class BimServer {
 				ifcEngine.setEnabled(true);
 				ifcEngine.setActive(false);
 				session.store(ifcEngine);
-				defaultIfcEngine = ifcEngine;
+				if (ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+					defaultIfcEngine = ifcEngine;
+				}
 			} else {
-				defaultIfcEngine = found;
+				if (ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+					defaultIfcEngine = found;
+				}
 			}
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
