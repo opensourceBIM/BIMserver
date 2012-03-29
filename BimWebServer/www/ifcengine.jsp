@@ -70,11 +70,11 @@
 </tr>
 </table>
 </form>
+</fieldset>
 </div>
 <script>
 $(function(){
 	$("#name").focus();
 });
 </script>
-</fieldset>
 <%@ include file="footer.jsp"%>

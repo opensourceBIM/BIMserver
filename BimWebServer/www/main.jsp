@@ -32,21 +32,8 @@ try {
 <table class="formatted maintable">
 <%
 		for (SProject project : projects) {
-			if (project.getParentId() == -1 && project.getState() == SObjectState.ACTIVE) {
-				%>
-				<tr>
-					<th>Name</th>
-					<th>Last revision</th>
-					<th>Revisions</th>
-					<th>Checkouts</th>
-					<th>Authorized users</th>
-					<th>Actions</th>
-				</tr>
-				<%
-				out.write(JspHelper.writeProjectTree(project, loginManager, 0));
-				%>
-				<tr><td colspan="6" class="seperator"></td></tr>
-				<%
+			if (project.getParentId() == -1) {
+				out.write(JspHelper.writeProjectTree(project, loginManager, 0, true));
 			}
 		}
 %>

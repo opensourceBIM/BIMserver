@@ -1,77 +1,76 @@
 
-Û§
+©•
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
-Void"A
-#SetSettingIntelligentMergingRequest
-intelligentMerging ("+
+Void"%
+DeleteIfcEngineRequest
+iid ("+
 GetDownloadStateRequest
 actionId ("`
 SLongActionState-
-state (2.org.bimserver.pb.SActionState
-progress (
-oid ("c
+state (2.org.bimserver.pb.SActionState
+oid (
+progress ("c
 GetDownloadStateResponse
 errorMessage (	1
 value (2".org.bimserver.pb.SLongActionState"*
 (GetAllSerializerPluginDescriptorsRequest"é
-SSerializerPluginDescriptor
-pluginClassName (	
-defaultExtension (	
-oid (
-defaultName (	
-defaultContentType (	"
+SSerializerPluginDescriptor
+oid (
+defaultName (	
+defaultExtension (	
+defaultContentType (	
+pluginClassName (	"
 )GetAllSerializerPluginDescriptorsResponse
 errorMessage (	<
 value (2-.org.bimserver.pb.SSerializerPluginDescriptor""
 GetRevisionRequest
-roid ("’
-	SRevision
-	projectId (
-	checkouts (
+roid ("•
+	SRevision
+date (
+	nrClashes (
+tag (	
+	checkouts (
+laid (
+bmi (
 
-id (
-tag (	
-	lastError (	
-userId (
-bmi (
-size (
-concreteRevisions	 (
-	nrClashes
- (
-comment (	
-oid (
-lastClashes (
-lastConcreteRevisionId (
-date (.
-state (2.org.bimserver.pb.SCheckinState
-laid ("W
+id (
+	projectId (
+lastClashes	 (
+	lastError
+ (	
+userId (
+oid (
+lastConcreteRevisionId (
+size (
+concreteRevisions (
+comment (	"W
 GetRevisionResponse
 errorMessage (	*
 value (2.org.bimserver.pb.SRevision"
 GetAllProjectsRequest"œ
-SProject>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
-createdDate (
-hasAuthorizedUsers (
-parentId (
-subProjects (-
-state (2.org.bimserver.pb.SObjectState
-concreteRevisions (
-lastRevisionId (
-name	 (	
-oid
+SProject
+name (	 
+clashDetectionSettingsId (
+createdById (
+description (	
+	revisions (
+
+id (
+lastConcreteRevisionId (
+hasAuthorizedUsers (
+createdDate	 (
+lastRevisionId
  (
 geoTagId (
-description (	
-	revisions (
-createdById ( 
-clashDetectionSettingsId (
-lastConcreteRevisionId (
-
-id (
-	checkouts ("Y
+subProjects (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+	checkouts (
+concreteRevisions (
+oid (-
+state (2.org.bimserver.pb.SObjectState
+parentId ("Y
 GetAllProjectsResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"a
@@ -84,14 +83,14 @@
 roid (
 destPoid (
 comment (	"õ
-SCheckinResult0
-status (2 .org.bimserver.pb.SCheckinStatus
-progress (
-	projectId (
-	lastError (	
+SCheckinResult
+	projectId (0
+status (2 .org.bimserver.pb.SCheckinStatus
+oid (
 
-revisionId (
-oid ("h
+revisionId (
+progress (
+	lastError (	"h
 BranchToExistingProjectResponse
 errorMessage (	/
 value (2 .org.bimserver.pb.SCheckinResult"
@@ -121,40 +120,37 @@ revisionId (
 RequestPasswordChangeRequest
 username (	"G
 &SetSettingCheckinMergingEnabledRequest
-checkinMergingEnabled ("Ñ
-SClashDetectionSettings
-	revisions (
-enabled (
-ignoredClasses (	
-margin (
-projects (
-oid ("ü
-SendClashesEmailRequestJ
-sClashDetectionSettings (2).org.bimserver.pb.SClashDetectionSettings
-poid (*
-addressesTo (2.org.bimserver.pb.Set"Œ
+checkinMergingEnabled ("b
+AddIntegerAttributeRequest
+oid (
+	className (	
+attributeName (	
+value ("Œ
 SendCompareEmailRequest4
 sCompareType (2.org.bimserver.pb.SCompareType@
 sCompareIdentifier (2$.org.bimserver.pb.SCompareIdentifier
 poid (
 roid1 (
 roid2 (
-address (	"%
-#GetSettingEmailSenderAddressRequest"K
-$GetSettingEmailSenderAddressResponse
+address (	"f
+DownloadRevisionsRequest$
+roids (2.org.bimserver.pb.Set
+serializerName (	
+sync ("@
+DownloadRevisionsResponse
 errorMessage (	
-value (	"2
+value ("2
 GetObjectIDMByNameRequest
 objectIDMName (	"t
 
-SObjectIDM
-	className (	
-enabled (
-name (	
-serializers (
-oid (
+SObjectIDM
+name (	
+oid (
 
-settingsId ("_
+settingsId (
+	className (	
+serializers (
+enabled ("_
 GetObjectIDMByNameResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SObjectIDM"
@@ -181,39 +177,39 @@ smtpServer (	
 adminUsername (	
 adminPassword (	"
 GetActiveLongActionsRequest"4
-SLongCheckinAction
-	revisions (
-oid ("Ã
+SLongCheckinAction
+oid (
+	revisions ("Ã
 SLongAction
 __actual_type (	B
-__SLongCheckinAction (2$.org.bimserver.pb.SLongCheckinAction
-identification (	
-oid (
-start (
-username (	
-userId (
-name (	"b
+__SLongCheckinAction (2$.org.bimserver.pb.SLongCheckinAction
+userId (
+name (	
+username (	
+identification (	
+oid (
+start ("b
 GetActiveLongActionsResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SLongAction"$
 GetUserByUoidRequest
 uoid ("ÿ
-SUser
-	createdOn (
-name (	
-createdById (
-	revisions (
-hasRightsOn (
-notificationUrl (	
-oid (
-username (	
-lastSeen	 (
-validationToken
- (	-
-userType (2.org.bimserver.pb.SUserType
-validationTokenCreated (
-password (	-
-state (2.org.bimserver.pb.SObjectState"U
+SUser
+hasRightsOn (
+oid (
+validationToken (	-
+userType (2.org.bimserver.pb.SUserType
+	createdOn (
+username (	
+name (	
+password (	-
+state	 (2.org.bimserver.pb.SObjectState
+notificationUrl
+ (	
+validationTokenCreated (
+	revisions (
+createdById (
+lastSeen ("U
 GetUserByUoidResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"
@@ -225,22 +221,21 @@ smtpServer (	
 onlyEnabled ("Ñ
 
 SIfcEngine
-oid (
-serializers (
-	className (	
-active (
-enabled (
-name (	
+oid (
 
-settingsId ("]
+settingsId (
+enabled (
+name (	
+serializers (
+	className (	
+active ("]
 GetAllIfcEnginesResponse
 errorMessage (	+
-value (2.org.bimserver.pb.SIfcEngine"b
-AddIntegerAttributeRequest
-oid (
-	className (	
-attributeName (	
-value ("!
+value (2.org.bimserver.pb.SIfcEngine"%
+#GetSettingEmailSenderAddressRequest"K
+$GetSettingEmailSenderAddressResponse
+errorMessage (	
+value (	"!
 DeleteUserRequest
 uoid ("9
 DeleteUserResponse
@@ -261,12 +256,19 @@ settingsId ("]
 sync ("6
 CheckinResponse
 errorMessage (	
-value ("e
+value ("Ñ
+SClashDetectionSettings
+margin (
+enabled (
+	revisions (
+projects (
+ignoredClasses (	
+oid ("e
 FindClashesByEidRequestJ
 sClashDetectionSettings (2).org.bimserver.pb.SClashDetectionSettings"4
-	SEidClash
-oid (
-eid2 (
+	SEidClash
+eid2 (
+oid (
 eid1 ("\
 FindClashesByEidResponse
 errorMessage (	*
@@ -280,35 +282,35 @@ settingsId ("]
 ChangePasswordResponse
 errorMessage (	
 value ("î
-SDeserializer
+SDeserializer
+description (	
 
-settingsId (
-enabled (
-description (	
-oid (
-defaultDeserializer (
-	className (	
-name (	"R
+settingsId (
+oid (
+name (	
+enabled (
+	className (	
+defaultDeserializer ("R
 UpdateDeserializerRequest5
 deserializer (2.org.bimserver.pb.SDeserializer"(
 DeleteDeserializerRequest
 sid ("4
 GetSerializerByNameRequest
 serializerName (	"‚
-SSerializer
-ifcEngineId (
-objectIDMId (
-enabled (
-contentType (	
-	extension (	
+SSerializer
+	className (	
 
-settingsId (
-name (	
-	className (	
-oid	 (
-description
- (	
-defaultSerializer ("a
+settingsId (
+ifcEngineId (
+defaultSerializer (
+description (	
+objectIDMId (
+	extension (	
+contentType (	
+name	 (	
+oid
+ (
+enabled ("a
 GetSerializerByNameResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SSerializer"a
@@ -325,15 +327,15 @@ settingsId (
 roid (
 oid (
 	className (	"K
-SListDataValue
-oid (,
-values (2.org.bimserver.pb.SDataValue"4
-SSimpleDataValue
-oid (
-stringValue (	"B
-SReferenceDataValue
-typeName (	
-guid (	
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+oid ("4
+SSimpleDataValue
+stringValue (	
+oid ("B
+SReferenceDataValue
+guid (	
+typeName (	
 oid ("Ö
 
 SDataValue
@@ -343,12 +345,12 @@ SDataValue
 __SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
 	fieldName (	
 oid ("r
-SDataObject,
-values (2.org.bimserver.pb.SDataValue
-name (	
-oid (
-type (	
-guid (	"`
+SDataObject
+oid (
+type (	
+name (	
+guid (	,
+values (2.org.bimserver.pb.SDataValue"`
 GetDataObjectByOidResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SDataObject"8
@@ -362,10 +364,10 @@ SDataValue
 attributeName (	
 value ("
 GetServerInfoRequest"e
-SServerInfo
-oid (3
-serverState (2.org.bimserver.pb.SServerState
-errorMessage (	"[
+SServerInfo3
+serverState (2.org.bimserver.pb.SServerState
+errorMessage (	
+oid ("[
 GetServerInfoResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SServerInfo"#
@@ -378,10 +380,9 @@ SDataValue
 oid (
 	className (	
 attributeName (	
-value ("7
-SetHttpCallbackRequest
-uoid (
-address (	"!
+value ("K
+(SetSettingHideUserListForNonAdminRequest
+hideUserListForNonAdmin ("!
 GetSettingHeaderAdditionRequest"G
  GetSettingHeaderAdditionResponse
 errorMessage (	
@@ -399,30 +400,34 @@ SDataValue
 oid (
 	className (	
 referenceName (	
-index ("8
+index ("L
+UpdateSerializerRequest1
+
+serializer (2.org.bimserver.pb.SSerializer"8
 (GetAllNonAuthorizedProjectsOfUserRequest
 uoid ("l
 )GetAllNonAuthorizedProjectsOfUserResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"4
-2IsSettingAllowUsersToCreateTopLevelProjectsRequest"Z
-3IsSettingAllowUsersToCreateTopLevelProjectsResponse
-errorMessage (	
-value (")
-'GetAllObjectIDMPluginDescriptorsRequest"<
-SObjectIDMPluginDescriptor
+value (2.org.bimserver.pb.SProject"^
+RemoveAttributeRequest
 oid (
-	className (	"}
+	className (	
+attributeName (	
+index (")
+'GetAllObjectIDMPluginDescriptorsRequest"<
+SObjectIDMPluginDescriptor
+	className (	
+oid ("}
 (GetAllObjectIDMPluginDescriptorsResponse
 errorMessage (	;
 value (2,.org.bimserver.pb.SObjectIDMPluginDescriptor"
 GetAllPluginsRequest"f
-SPluginDescriptor
-name (	
-enabled (
-oid (
-description (	
-location (	"a
+SPluginDescriptor
+location (	
+name (	
+oid (
+enabled (
+description (	"a
 GetAllPluginsResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SPluginDescriptor"E
@@ -435,15 +440,15 @@ SDataValue
 value (",
 GetAllCheckoutsByUserRequest
 uoid ("Ä
-	SCheckout
-oid (
-	projectId (
-userId (
-date (
-active (
+	SCheckout
+userId (
+oid (
+date (
+active (
+	checkinId (
+	projectId (
 
-revisionId (
-	checkinId ("a
+revisionId ("a
 GetAllCheckoutsByUserResponse
 errorMessage (	*
 value (2.org.bimserver.pb.SCheckout"G
@@ -451,79 +456,79 @@ revisionId (
 allowSelfRegistration ("
 CompileRequest
 code (	"S
-SCompileResult
+SCompileResult
+errors (	
+warnings (	
+oid (
 
-compileOke (
-errors (	
-oid (
-warnings (	"X
+compileOke ("X
 CompileResponse
 errorMessage (	/
 value (2 .org.bimserver.pb.SCompileResult"
-GetLogsRequest"O
-SClashDetectionSettingsUpdated
-oid ( 
-clashDetectionSettingsId ("1
+GetLogsRequest"-
+SPasswordReset
+userId (
+oid ("O
+SClashDetectionSettingsUpdated 
+clashDetectionSettingsId (
+oid ("1
 SProjectDeleted
 	projectId (
 oid ("I
 SUserRemovedFromProject
+userId (
+	projectId (
+oid (",
+SNewUserAdded
 userId (
-oid (
-	projectId (",
-SNewUserAdded
-oid (
-userId ("+
-SUserDeleted
-oid (
-userId ("E
-SUserAddedToProject
-	projectId (
-oid (
+oid ("+
+SUserDeleted
+userId (
+oid ("E
+SUserAddedToProject
+oid (
+	projectId (
 userId ("N
 SRevisionBranched
-newrevisionId (
-oid (
-oldrevisionId ("
+oldrevisionId (
+newrevisionId (
+oid ("
 	SDownload
 oid ("3
 SRevisionUpdated
 oid (
 
 revisionId ("1
-SProjectUpdated
-oid (
-	projectId ("
+SProjectUpdated
+	projectId (
+oid ("
 SServerStarted
 oid ("4
-SNewCheckoutAdded
+SNewCheckoutAdded
+oid (
 
-checkoutId (
-oid ("4
-SNewRevisionAdded
-
-revisionId (
-oid ("+
-SUserChanged
-userId (
-oid ("/
-SPasswordChanged
-userId (
-oid ("K
-SNewProjectAdded
-	projectId (
-oid (
-parentProjectId ("/
-SGeoTagUpdated
-oid (
-geoTagId ("-
-SPasswordReset
+checkoutId ("+
+SUserChanged
 oid (
-userId (">
-SDatabaseCreated
-version (
-oid (
-path (	"3
+userId ("/
+SPasswordChanged
+oid (
+userId ("K
+SNewProjectAdded
+oid (
+parentProjectId (
+	projectId ("/
+SGeoTagUpdated
+geoTagId (
+oid ("4
+SNewRevisionAdded
+oid (
+
+revisionId (">
+SDatabaseCreated
+path (	
+oid (
+version ("3
 SProjectUndeleted
 	projectId (
 oid ("$
@@ -531,41 +536,41 @@ revisionId (
 oid ("
 SSettingsSaved
 oid ("-
-SUserUndeleted
-oid (
-userId ("œ
+SUserUndeleted
+userId (
+oid ("œ
 
 SLogAction
-__actual_type (	Z
- __SClashDetectionSettingsUpdated (20.org.bimserver.pb.SClashDetectionSettingsUpdated<
-__SProjectDeleted (2!.org.bimserver.pb.SProjectDeletedL
-__SUserRemovedFromProject (2).org.bimserver.pb.SUserRemovedFromProject8
-__SNewUserAdded (2.org.bimserver.pb.SNewUserAdded6
-__SUserDeleted (2.org.bimserver.pb.SUserDeletedD
-__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProject@
-__SRevisionBranched (2#.org.bimserver.pb.SRevisionBranched0
-__SDownload	 (2.org.bimserver.pb.SDownload>
-__SRevisionUpdated
- (2".org.bimserver.pb.SRevisionUpdated<
-__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated:
-__SServerStarted (2 .org.bimserver.pb.SServerStarted@
-__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded@
-__SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAdded6
+__actual_type (	:
+__SPasswordReset (2 .org.bimserver.pb.SPasswordResetZ
+ __SClashDetectionSettingsUpdated (20.org.bimserver.pb.SClashDetectionSettingsUpdated<
+__SProjectDeleted (2!.org.bimserver.pb.SProjectDeletedL
+__SUserRemovedFromProject (2).org.bimserver.pb.SUserRemovedFromProject8
+__SNewUserAdded (2.org.bimserver.pb.SNewUserAdded6
+__SUserDeleted (2.org.bimserver.pb.SUserDeletedD
+__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProject@
+__SRevisionBranched	 (2#.org.bimserver.pb.SRevisionBranched0
+__SDownload
+ (2.org.bimserver.pb.SDownload>
+__SRevisionUpdated (2".org.bimserver.pb.SRevisionUpdated<
+__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated:
+__SServerStarted (2 .org.bimserver.pb.SServerStarted@
+__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded6
 __SUserChanged (2.org.bimserver.pb.SUserChanged>
 __SPasswordChanged (2".org.bimserver.pb.SPasswordChanged>
 __SNewProjectAdded (2".org.bimserver.pb.SNewProjectAdded:
-__SGeoTagUpdated (2 .org.bimserver.pb.SGeoTagUpdated:
-__SPasswordReset (2 .org.bimserver.pb.SPasswordReset>
+__SGeoTagUpdated (2 .org.bimserver.pb.SGeoTagUpdated@
+__SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAdded>
 __SDatabaseCreated (2".org.bimserver.pb.SDatabaseCreated@
 __SProjectUndeleted (2#.org.bimserver.pb.SProjectUndeletedH
 __SNewObjectIDMUploaded (2'.org.bimserver.pb.SNewObjectIDMUploaded:
 __SSettingsSaved (2 .org.bimserver.pb.SSettingsSaved:
-__SUserUndeleted (2 .org.bimserver.pb.SUserUndeleted
-date (
+__SUserUndeleted (2 .org.bimserver.pb.SUserUndeleted
+oid (
+date (5
+accessMethod (2.org.bimserver.pb.SAccessMethod
 
-executorId (5
-accessMethod (2.org.bimserver.pb.SAccessMethod
-oid ("T
+executorId ("T
 GetLogsResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SLogAction"8
@@ -592,14 +597,12 @@ executorId (5
 poid ("f
 &GetAllAuthorizedUsersOfProjectResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser"f
-DownloadRevisionsRequest$
-roids (2.org.bimserver.pb.Set
-serializerName (	
-sync ("@
-DownloadRevisionsResponse
+value (2.org.bimserver.pb.SUser")
+GetCheckinWarningsRequest
+poid ("A
+GetCheckinWarningsResponse
 errorMessage (	
-value ("´
+value (	"´
 DownloadByTypesRequest$
 roids (2.org.bimserver.pb.Set)
 
@@ -630,11 +633,9 @@ $GetSerializerPluginDescriptorRequest
 type (	"{
 %GetSerializerPluginDescriptorResponse
 errorMessage (	<
-value (2-.org.bimserver.pb.SSerializerPluginDescriptor"N
-UnsetReferenceRequest
-oid (
-	className (	
-referenceName (	"
+value (2-.org.bimserver.pb.SSerializerPluginDescriptor"&
+StartTransactionRequest
+pid ("
 GetRemoteAddressRequest"?
 GetRemoteAddressResponse
 errorMessage (	
@@ -651,16 +652,16 @@ $GetSerializerPluginDescriptorRequest
 errorMessage (	+
 value (2.org.bimserver.pb.SIfcEngine"
 GetVersionRequest"î
-SVersion
-major (
-oid (
-revision (
-minor (
-supportEmail (	
-date (
-downloadUrl (	
+SVersion
 
-supportUrl (	"U
+supportUrl (	
+minor (
+oid (
+revision (
+major (
+date (
+supportEmail (	
+downloadUrl (	"U
 GetVersionResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SVersion"G
@@ -713,10 +714,10 @@ supportUrl (	"U
 sCompareType (2.org.bimserver.pb.SCompareType@
 sCompareIdentifier (2$.org.bimserver.pb.SCompareIdentifier"U
 SObjectModified
-	fieldName (	
-oldValue (	
-newValue (	
-oid ("
+	fieldName (	
+oid (
+newValue (	
+oldValue (	"
 SObjectAdded
 oid ("
 SObjectRemoved
@@ -729,10 +730,10 @@ supportUrl (	"U
 
 dataObject (2.org.bimserver.pb.SDataObject
 oid ("]
-SCompareContainer
-type (	-
-items (2.org.bimserver.pb.SCompareItem
-oid ("Q
+SCompareContainer
+oid (-
+items (2.org.bimserver.pb.SCompareItem
+type (	"Q
 SCompareResult
 oid (2
 items (2#.org.bimserver.pb.SCompareContainer"X
@@ -763,15 +764,15 @@ dataObject (2.org.bimserver.pb.SDataObject
 	className (	
 attributeName (	
 value ("Ä
-SGeoTag
-directionAngle (
-epsg (	
-y (	
-z (
-oid (	
-x (
-projects (
-enabled ("A
+SGeoTag	
+z (
+oid (
+enabled (	
+x (	
+y (
+directionAngle (
+epsg (
+projects ("A
 UpdateGeoTagRequest*
 sGeoTag (2.org.bimserver.pb.SGeoTag"
 GetLastDatabaseResetRequest"C
@@ -791,9 +792,11 @@ SGuidClash
 guid2 (	"^
 FindClashesByGuidResponse
 errorMessage (	+
-value (2.org.bimserver.pb.SGuidClash"&
-StartTransactionRequest
-pid ("=
+value (2.org.bimserver.pb.SGuidClash"
+GetActiveSinceRequest"=
+GetActiveSinceResponse
+errorMessage (	
+value ("=
 !SetSettingCacheOutputFilesRequest
 cacheOutputFiles ("
 GetCurrentUserRequest"V
@@ -804,9 +807,11 @@ SGuidClash
 actionID ("`
 GetCheckinStateResponse
 errorMessage (	/
-value (2 .org.bimserver.pb.SCheckinResult"%
-DeleteIfcEngineRequest
-iid ("T
+value (2 .org.bimserver.pb.SCheckinResult"ü
+SendClashesEmailRequestJ
+sClashDetectionSettings (2).org.bimserver.pb.SClashDetectionSettings
+poid (*
+addressesTo (2.org.bimserver.pb.Set"T
 ChangeUserTypeRequest
 uoid (-
 userType (2.org.bimserver.pb.SUserType"
@@ -869,17 +874,17 @@ SGuidClash
 errorMessage (	*
 value (2.org.bimserver.pb.SRevision"
 GetActiveUserSessionsRequest"Ì
-SUserSession
-remoteAddress (	
-name (	)
-type (2.org.bimserver.pb.SUserType5
-accessMethod (2.org.bimserver.pb.SAccessMethod
-username (	
+SUserSession
+oid (
+userId (
+name (	
+remoteAddress (	)
+type (2.org.bimserver.pb.SUserType
 activeSince (
 
-lastActive (
-userId (
-oid	 ("d
+lastActive (5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+username	 (	"d
 GetActiveUserSessionsResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SUserSession"'
@@ -887,16 +892,18 @@ lastActive (
 poid ("[
 GetProjectByPoidResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"K
-(SetSettingHideUserListForNonAdminRequest
-hideUserListForNonAdmin ("
+value (2.org.bimserver.pb.SProject"4
+2IsSettingAllowUsersToCreateTopLevelProjectsRequest"Z
+3IsSettingAllowUsersToCreateTopLevelProjectsResponse
+errorMessage (	
+value ("
 GetMigrationsRequest"P
 
-SMigration
-executed (
-oid (
-number (
-description (	"Z
+SMigration
+description (	
+number (
+executed (
+oid ("Z
 GetMigrationsResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SMigration"'
@@ -904,29 +911,31 @@ SMigration
 oid ("_
 GetSerializerByIdResponse
 errorMessage (	,
-value (2.org.bimserver.pb.SSerializer"&
-DeleteSerializerRequest
-sid ("*
+value (2.org.bimserver.pb.SSerializer"N
+UnsetReferenceRequest
+oid (
+	className (	
+referenceName (	"*
 GetDownloadDataRequest
 actionId ("
 SCheckoutResult
 oid ("™
 SDownloadResult
 __actual_type (	<
-__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
+__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
+projectName (	
 
-revisionNr (
-oid (
-file (
-projectName (	"a
+revisionNr (
+file (
+oid ("a
 GetDownloadDataResponse
 errorMessage (	0
 value (2!.org.bimserver.pb.SDownloadResult")
 'GetAllIfcEnginePluginDescriptorsRequest"W
-SIfcEnginePluginDescriptor
-pluginClassName (	
-defaultName (	
-oid ("}
+SIfcEnginePluginDescriptor
+oid (
+defaultName (	
+pluginClassName (	"}
 (GetAllIfcEnginePluginDescriptorsResponse
 errorMessage (	;
 value (2,.org.bimserver.pb.SIfcEnginePluginDescriptor"5
@@ -969,27 +978,24 @@ revisionNr (
 onlyEnabled ("]
 GetAllObjectIDMsResponse
 errorMessage (	+
-value (2.org.bimserver.pb.SObjectIDM"^
-RemoveAttributeRequest
-oid (
-	className (	
-attributeName (	
-index ("4
+value (2.org.bimserver.pb.SObjectIDM"&
+DeleteSerializerRequest
+sid ("4
 $SetSettingProtocolBuffersPortRequest
 port (")
 GetRevisionSummaryRequest
 roid ("@
-SRevisionSummaryType
-oid (
-count (
-name (	"m
-SRevisionSummaryContainer5
-types (2&.org.bimserver.pb.SRevisionSummaryType
-name (	
-oid ("Z
-SRevisionSummary
-oid (9
-list (2+.org.bimserver.pb.SRevisionSummaryContainer"e
+SRevisionSummaryType
+name (	
+oid (
+count ("m
+SRevisionSummaryContainer
+oid (5
+types (2&.org.bimserver.pb.SRevisionSummaryType
+name (	"Z
+SRevisionSummary9
+list (2+.org.bimserver.pb.SRevisionSummaryContainer
+oid ("e
 GetRevisionSummaryResponse
 errorMessage (	1
 value (2".org.bimserver.pb.SRevisionSummary"
@@ -997,10 +1003,10 @@ $SetSettingProtocolBuffersPortRequest
  IsSettingCacheOutputFilesRequest"H
 !IsSettingCacheOutputFilesResponse
 errorMessage (	
-value ("L
-UpdateSerializerRequest1
-
-serializer (2.org.bimserver.pb.SSerializer"I
+value ("7
+SetHttpCallbackRequest
+uoid (
+address (	"I
 AddSerializerRequest1
 
 serializer (2.org.bimserver.pb.SSerializer"?
@@ -1082,14 +1088,14 @@ $GetSettingProtocolBuffersPortRequest"L
 SClash
 __actual_type (	0
 __SEidClash (2.org.bimserver.pb.SEidClash2
-__SGuidClash (2.org.bimserver.pb.SGuidClash
-revision1Id (
-type1 (	
-name1 (	
-name2 (	
-revision2Id (
-oid	 (
-type2
+__SGuidClash (2.org.bimserver.pb.SGuidClash
+type2 (	
+oid (
+name2 (	
+type1 (	
+revision1Id (
+revision2Id	 (
+name1
  (	"W
 GetLastClashesResponse
 errorMessage (	'
@@ -1118,12 +1124,12 @@ smtpServer (	"
 roid (
 code (	"[
 
-SRunResult
-oid (
-runOke (
-warnings (	
-errors (	
-output (	"Z
+SRunResult
+runOke (
+output (	
+errors (	
+oid (
+warnings (	"Z
 CompileAndRunResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SRunResult"
@@ -1148,9 +1154,9 @@ identifier (2$.org.bimserver.pb.SCompareIdentifier,
 errorMessage (	
 value ("
 GetCurrentTokenRequest"-
-Token
-tokenString (	
-expires ("W
+Token
+expires (
+tokenString (	"W
 GetCurrentTokenResponse
 errorMessage (	&
 value (2.org.bimserver.pb.Token"4
@@ -1169,27 +1175,27 @@ $GetAvailableClassesInRevisionRequest
 emailSenderAddress (	"
 GetDatabaseInformationRequest"C
 SDatabaseInformationItem
-key (	
-value (	
-oid ("u
-SDatabaseInformationCategory
-oid (
-title (	9
-items (2*.org.bimserver.pb.SDatabaseInformationItem"≥
-SDatabaseInformationB
+key (	
+oid (
+value (	"u
+SDatabaseInformationCategory9
+items (2*.org.bimserver.pb.SDatabaseInformationItem
+oid (
+title (	"≥
+SDatabaseInformation
+numberOfUsers (
+schemaVersion (
+databaseSizeInBytes (
+type (	
+location (	B
 
-categories (2..org.bimserver.pb.SDatabaseInformationCategory
-databaseSizeInBytes (
-type (	
-numberOfUsers (
-oid (
-location (	
-numberOfRevisions (
-schemaVersion (
-numberOfProjects	 (
-numberOfCheckouts
- (
-created ("m
+categories (2..org.bimserver.pb.SDatabaseInformationCategory
+created (
+numberOfCheckouts (
+oid	 (
+numberOfRevisions
+ (
+numberOfProjects ("m
 GetDatabaseInformationResponse
 errorMessage (	5
 value (2&.org.bimserver.pb.SDatabaseInformation"
@@ -1238,21 +1244,19 @@ categories (2..org.bimserver.pb.SDatabaseInformationCategory
 errorMessage (	
 value ("9
 SetSettingHeaderAdditionRequest
-headerAddition (	"
-GetActiveSinceRequest"=
-GetActiveSinceResponse
-errorMessage (	
-value (")
+headerAddition (	"A
+#SetSettingIntelligentMergingRequest
+intelligentMerging (")
 GetAllDeserializersRequest
 oid ("c
 GetAllDeserializersResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SDeserializer",
 *GetAllDeserializerPluginDescriptorsRequest"Z
-SDeserializerPluginDescriptor
-pluginClassName (	
-defaultName (	
-oid ("É
+SDeserializerPluginDescriptor
+defaultName (	
+oid (
+pluginClassName (	"É
 +GetAllDeserializerPluginDescriptorsResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SDeserializerPluginDescriptor"F
@@ -1276,15 +1280,7 @@ categories (2..org.bimserver.pb.SDatabaseInformationCategory
 SActionState
 UNKNOWN 
 STARTED
-FINISHED*w
-SCheckinState
-	UPLOADING 
-PARSING
-STORING
-SEARCHING_CLASHES
-DONE	
-ERROR
-CLASHES_ERROR*ä
+FINISHED*ä
 	SSIPrefix	
 meter 
 	attometer
@@ -1351,9 +1347,9 @@ CH_STARTED
 PROTOCOL_BUFFERS*&
 SMergeIdentifier
 NAME 
-GUID2†•
-ServiceInterfaceu
-setSettingIntelligentMerging5.org.bimserver.pb.SetSettingIntelligentMergingRequest.org.bimserver.pb.VoidResponsei
+GUID2ë¶
+ServiceInterface[
+deleteIfcEngine(.org.bimserver.pb.DeleteIfcEngineRequest.org.bimserver.pb.VoidResponsei
 getDownloadState).org.bimserver.pb.GetDownloadStateRequest*.org.bimserver.pb.GetDownloadStateResponseú
 !getAllSerializerPluginDescriptors:.org.bimserver.pb.GetAllSerializerPluginDescriptorsRequest;.org.bimserver.pb.GetAllSerializerPluginDescriptorsResponseZ
 getRevision$.org.bimserver.pb.GetRevisionRequest%.org.bimserver.pb.GetRevisionResponsec
@@ -1365,10 +1361,10 @@ CH_STARTED
 commitTransaction*.org.bimserver.pb.CommitTransactionRequest+.org.bimserver.pb.CommitTransactionResponseu
 checkoutLastRevision-.org.bimserver.pb.CheckoutLastRevisionRequest..org.bimserver.pb.CheckoutLastRevisionResponseg
 requestPasswordChange..org.bimserver.pb.RequestPasswordChangeRequest.org.bimserver.pb.VoidResponse{
-setSettingCheckinMergingEnabled8.org.bimserver.pb.SetSettingCheckinMergingEnabledRequest.org.bimserver.pb.VoidResponse]
-sendClashesEmail).org.bimserver.pb.SendClashesEmailRequest.org.bimserver.pb.VoidResponse]
-sendCompareEmail).org.bimserver.pb.SendCompareEmailRequest.org.bimserver.pb.VoidResponseç
-getSettingEmailSenderAddress5.org.bimserver.pb.GetSettingEmailSenderAddressRequest6.org.bimserver.pb.GetSettingEmailSenderAddressResponseo
+setSettingCheckinMergingEnabled8.org.bimserver.pb.SetSettingCheckinMergingEnabledRequest.org.bimserver.pb.VoidResponsec
+addIntegerAttribute,.org.bimserver.pb.AddIntegerAttributeRequest.org.bimserver.pb.VoidResponse]
+sendCompareEmail).org.bimserver.pb.SendCompareEmailRequest.org.bimserver.pb.VoidResponsel
+downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponseo
 getObjectIDMByName+.org.bimserver.pb.GetObjectIDMByNameRequest,.org.bimserver.pb.GetObjectIDMByNameResponse{
 getProtocolBuffersFile/.org.bimserver.pb.GetProtocolBuffersFileRequest0.org.bimserver.pb.GetProtocolBuffersFileResponseo
 branchToNewProject+.org.bimserver.pb.BranchToNewProjectRequest,.org.bimserver.pb.BranchToNewProjectResponseô
@@ -1377,8 +1373,8 @@ CH_STARTED
 getActiveLongActions-.org.bimserver.pb.GetActiveLongActionsRequest..org.bimserver.pb.GetActiveLongActionsResponse`
 getUserByUoid&.org.bimserver.pb.GetUserByUoidRequest'.org.bimserver.pb.GetUserByUoidResponseo
 getServerStartTime+.org.bimserver.pb.GetServerStartTimeRequest,.org.bimserver.pb.GetServerStartTimeResponsei
-getAllIfcEngines).org.bimserver.pb.GetAllIfcEnginesRequest*.org.bimserver.pb.GetAllIfcEnginesResponsec
-addIntegerAttribute,.org.bimserver.pb.AddIntegerAttributeRequest.org.bimserver.pb.VoidResponseW
+getAllIfcEngines).org.bimserver.pb.GetAllIfcEnginesRequest*.org.bimserver.pb.GetAllIfcEnginesResponseç
+getSettingEmailSenderAddress5.org.bimserver.pb.GetSettingEmailSenderAddressRequest6.org.bimserver.pb.GetSettingEmailSenderAddressResponseW
 
 deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponse•
 $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponseN
@@ -1396,15 +1392,16 @@ $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserialize
 setIntegerAttribute,.org.bimserver.pb.SetIntegerAttributeRequest.org.bimserver.pb.VoidResponse`
 getServerInfo&.org.bimserver.pb.GetServerInfoRequest'.org.bimserver.pb.GetServerInfoResponse]
 undeleteUser%.org.bimserver.pb.UndeleteUserRequest&.org.bimserver.pb.UndeleteUserResponsea
-setDoubleAttribute+.org.bimserver.pb.SetDoubleAttributeRequest.org.bimserver.pb.VoidResponse[
-setHttpCallback(.org.bimserver.pb.SetHttpCallbackRequest.org.bimserver.pb.VoidResponseÅ
+setDoubleAttribute+.org.bimserver.pb.SetDoubleAttributeRequest.org.bimserver.pb.VoidResponse
+!setSettingHideUserListForNonAdmin:.org.bimserver.pb.SetSettingHideUserListForNonAdminRequest.org.bimserver.pb.VoidResponseÅ
 getSettingHeaderAddition1.org.bimserver.pb.GetSettingHeaderAdditionRequest2.org.bimserver.pb.GetSettingHeaderAdditionResponse]
 createObject%.org.bimserver.pb.CreateObjectRequest&.org.bimserver.pb.CreateObjectResponseá
 %setSettingShowVersionUpgradeAvailable>.org.bimserver.pb.SetSettingShowVersionUpgradeAvailableRequest.org.bimserver.pb.VoidResponseU
 addObjectIDM%.org.bimserver.pb.AddObjectIDMRequest.org.bimserver.pb.VoidResponse[
-removeReference(.org.bimserver.pb.RemoveReferenceRequest.org.bimserver.pb.VoidResponseú
-!getAllNonAuthorizedProjectsOfUser:.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserRequest;.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserResponse∫
-+isSettingAllowUsersToCreateTopLevelProjectsD.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsRequestE.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsResponseô
+removeReference(.org.bimserver.pb.RemoveReferenceRequest.org.bimserver.pb.VoidResponse]
+updateSerializer).org.bimserver.pb.UpdateSerializerRequest.org.bimserver.pb.VoidResponseú
+!getAllNonAuthorizedProjectsOfUser:.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserRequest;.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserResponse[
+removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseô
  getAllObjectIDMPluginDescriptors9.org.bimserver.pb.GetAllObjectIDMPluginDescriptorsRequest:.org.bimserver.pb.GetAllObjectIDMPluginDescriptorsResponse`
 getAllPlugins&.org.bimserver.pb.GetAllPluginsRequest'.org.bimserver.pb.GetAllPluginsResponseQ
 checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponsex
@@ -1416,15 +1413,15 @@ $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserialize
 deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponser
 getDeserializerById,.org.bimserver.pb.GetDeserializerByIdRequest-.org.bimserver.pb.GetDeserializerByIdResponseÑ
 getSettingMergeIdentifier2.org.bimserver.pb.GetSettingMergeIdentifierRequest3.org.bimserver.pb.GetSettingMergeIdentifierResponseì
-getAllAuthorizedUsersOfProject7.org.bimserver.pb.GetAllAuthorizedUsersOfProjectRequest8.org.bimserver.pb.GetAllAuthorizedUsersOfProjectResponsel
-downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponsef
+getAllAuthorizedUsersOfProject7.org.bimserver.pb.GetAllAuthorizedUsersOfProjectRequest8.org.bimserver.pb.GetAllAuthorizedUsersOfProjectResponseo
+getCheckinWarnings+.org.bimserver.pb.GetCheckinWarningsRequest,.org.bimserver.pb.GetCheckinWarningsResponsef
 downloadByTypes(.org.bimserver.pb.DownloadByTypesRequest).org.bimserver.pb.DownloadByTypesResponseU
 enablePlugin%.org.bimserver.pb.EnablePluginRequest.org.bimserver.pb.VoidResponsec
 getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponser
 getAvailableClasses,.org.bimserver.pb.GetAvailableClassesRequest-.org.bimserver.pb.GetAvailableClassesResponseú
 !getAllNonAuthorizedUsersOfProject:.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectRequest;.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectResponseê
-getSerializerPluginDescriptor6.org.bimserver.pb.GetSerializerPluginDescriptorRequest7.org.bimserver.pb.GetSerializerPluginDescriptorResponseY
-unsetReference'.org.bimserver.pb.UnsetReferenceRequest.org.bimserver.pb.VoidResponsei
+getSerializerPluginDescriptor6.org.bimserver.pb.GetSerializerPluginDescriptorRequest7.org.bimserver.pb.GetSerializerPluginDescriptorResponse]
+startTransaction).org.bimserver.pb.StartTransactionRequest.org.bimserver.pb.VoidResponsei
 getRemoteAddress).org.bimserver.pb.GetRemoteAddressRequest*.org.bimserver.pb.GetRemoteAddressResponsei
 addUserToProject).org.bimserver.pb.AddUserToProjectRequest*.org.bimserver.pb.AddUserToProjectResponsei
 getIfcEngineById).org.bimserver.pb.GetIfcEngineByIdRequest*.org.bimserver.pb.GetIfcEngineByIdResponseW
@@ -1449,12 +1446,12 @@ getVersion#.org.bimserver.pb.GetVersionRequest$.org.bimserver.pb.GetVersionRes
 getLastDatabaseReset-.org.bimserver.pb.GetLastDatabaseResetRequest..org.bimserver.pb.GetLastDatabaseResetResponseW
 
 isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponsel
-findClashesByGuid*.org.bimserver.pb.FindClashesByGuidRequest+.org.bimserver.pb.FindClashesByGuidResponse]
-startTransaction).org.bimserver.pb.StartTransactionRequest.org.bimserver.pb.VoidResponseq
+findClashesByGuid*.org.bimserver.pb.FindClashesByGuidRequest+.org.bimserver.pb.FindClashesByGuidResponsec
+getActiveSince'.org.bimserver.pb.GetActiveSinceRequest(.org.bimserver.pb.GetActiveSinceResponseq
 setSettingCacheOutputFiles3.org.bimserver.pb.SetSettingCacheOutputFilesRequest.org.bimserver.pb.VoidResponsec
 getCurrentUser'.org.bimserver.pb.GetCurrentUserRequest(.org.bimserver.pb.GetCurrentUserResponsef
-getCheckinState(.org.bimserver.pb.GetCheckinStateRequest).org.bimserver.pb.GetCheckinStateResponse[
-deleteIfcEngine(.org.bimserver.pb.DeleteIfcEngineRequest.org.bimserver.pb.VoidResponseY
+getCheckinState(.org.bimserver.pb.GetCheckinStateRequest).org.bimserver.pb.GetCheckinStateResponse]
+sendClashesEmail).org.bimserver.pb.SendClashesEmailRequest.org.bimserver.pb.VoidResponseY
 changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponsef
 getLoggedInUser(.org.bimserver.pb.GetLoggedInUserRequest).org.bimserver.pb.GetLoggedInUserResponseu
 userHasCheckinRights-.org.bimserver.pb.UserHasCheckinRightsRequest..org.bimserver.pb.UserHasCheckinRightsResponse[
@@ -1470,11 +1467,11 @@ isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInRes
 getAllSerializers*.org.bimserver.pb.GetAllSerializersRequest+.org.bimserver.pb.GetAllSerializersResponseÅ
 getAllRevisionsOfProject1.org.bimserver.pb.GetAllRevisionsOfProjectRequest2.org.bimserver.pb.GetAllRevisionsOfProjectResponsex
 getActiveUserSessions..org.bimserver.pb.GetActiveUserSessionsRequest/.org.bimserver.pb.GetActiveUserSessionsResponsei
-getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponse
-!setSettingHideUserListForNonAdmin:.org.bimserver.pb.SetSettingHideUserListForNonAdminRequest.org.bimserver.pb.VoidResponse`
+getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponse∫
++isSettingAllowUsersToCreateTopLevelProjectsD.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsRequestE.org.bimserver.pb.IsSettingAllowUsersToCreateTopLevelProjectsResponse`
 getMigrations&.org.bimserver.pb.GetMigrationsRequest'.org.bimserver.pb.GetMigrationsResponsel
-getSerializerById*.org.bimserver.pb.GetSerializerByIdRequest+.org.bimserver.pb.GetSerializerByIdResponse]
-deleteSerializer).org.bimserver.pb.DeleteSerializerRequest.org.bimserver.pb.VoidResponsef
+getSerializerById*.org.bimserver.pb.GetSerializerByIdRequest+.org.bimserver.pb.GetSerializerByIdResponseY
+unsetReference'.org.bimserver.pb.UnsetReferenceRequest.org.bimserver.pb.VoidResponsef
 getDownloadData(.org.bimserver.pb.GetDownloadDataRequest).org.bimserver.pb.GetDownloadDataResponseô
  getAllIfcEnginePluginDescriptors9.org.bimserver.pb.GetAllIfcEnginePluginDescriptorsRequest:.org.bimserver.pb.GetAllIfcEnginePluginDescriptorsResponseU
 removeObject%.org.bimserver.pb.RemoveObjectRequest.org.bimserver.pb.VoidResponseW
@@ -1486,13 +1483,13 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 getUsersProjects).org.bimserver.pb.GetUsersProjectsRequest*.org.bimserver.pb.GetUsersProjectsResponseì
 isSettingCheckinMergingEnabled7.org.bimserver.pb.IsSettingCheckinMergingEnabledRequest8.org.bimserver.pb.IsSettingCheckinMergingEnabledResponser
 hasActiveSerializer,.org.bimserver.pb.HasActiveSerializerRequest-.org.bimserver.pb.HasActiveSerializerResponsei
-getAllObjectIDMs).org.bimserver.pb.GetAllObjectIDMsRequest*.org.bimserver.pb.GetAllObjectIDMsResponse[
-removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponsew
+getAllObjectIDMs).org.bimserver.pb.GetAllObjectIDMsRequest*.org.bimserver.pb.GetAllObjectIDMsResponse]
+deleteSerializer).org.bimserver.pb.DeleteSerializerRequest.org.bimserver.pb.VoidResponsew
 setSettingProtocolBuffersPort6.org.bimserver.pb.SetSettingProtocolBuffersPortRequest.org.bimserver.pb.VoidResponseo
 getRevisionSummary+.org.bimserver.pb.GetRevisionSummaryRequest,.org.bimserver.pb.GetRevisionSummaryResponseI
 logout.org.bimserver.pb.LogoutRequest.org.bimserver.pb.VoidResponseÑ
-isSettingCacheOutputFiles2.org.bimserver.pb.IsSettingCacheOutputFilesRequest3.org.bimserver.pb.IsSettingCacheOutputFilesResponse]
-updateSerializer).org.bimserver.pb.UpdateSerializerRequest.org.bimserver.pb.VoidResponseW
+isSettingCacheOutputFiles2.org.bimserver.pb.IsSettingCacheOutputFilesRequest3.org.bimserver.pb.IsSettingCacheOutputFilesResponse[
+setHttpCallback(.org.bimserver.pb.SetHttpCallbackRequest.org.bimserver.pb.VoidResponseW
 addSerializer&.org.bimserver.pb.AddSerializerRequest.org.bimserver.pb.VoidResponses
 setSettingCustomLogoAddress4.org.bimserver.pb.SetSettingCustomLogoAddressRequest.org.bimserver.pb.VoidResponseä
 isSettingIntelligentMerging4.org.bimserver.pb.IsSettingIntelligentMergingRequest5.org.bimserver.pb.IsSettingIntelligentMergingResponseT
@@ -1538,8 +1535,8 @@ $isSettingShowVersionUpgradeAvailable=.org.bimserver.pb.IsSettingShowVersionUpg
 getSettingCustomLogoAddress4.org.bimserver.pb.GetSettingCustomLogoAddressRequest5.org.bimserver.pb.GetSettingCustomLogoAddressResponseY
 setRevisionTag'.org.bimserver.pb.SetRevisionTagRequest.org.bimserver.pb.VoidResponseQ
 download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponsem
-setSettingHeaderAddition1.org.bimserver.pb.SetSettingHeaderAdditionRequest.org.bimserver.pb.VoidResponsec
-getActiveSince'.org.bimserver.pb.GetActiveSinceRequest(.org.bimserver.pb.GetActiveSinceResponser
+setSettingHeaderAddition1.org.bimserver.pb.SetSettingHeaderAdditionRequest.org.bimserver.pb.VoidResponseu
+setSettingIntelligentMerging5.org.bimserver.pb.SetSettingIntelligentMergingRequest.org.bimserver.pb.VoidResponser
 getAllDeserializers,.org.bimserver.pb.GetAllDeserializersRequest-.org.bimserver.pb.GetAllDeserializersResponse¢
 #getAllDeserializerPluginDescriptors<.org.bimserver.pb.GetAllDeserializerPluginDescriptorsRequest=.org.bimserver.pb.GetAllDeserializerPluginDescriptorsResponseU
 addIfcEngine%.org.bimserver.pb.AddIfcEngineRequest.org.bimserver.pb.VoidResponse]

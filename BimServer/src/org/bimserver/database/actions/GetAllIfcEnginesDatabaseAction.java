@@ -53,7 +53,7 @@ public class GetAllIfcEnginesDatabaseAction extends GetAllDatabaseAction<IfcEngi
 			Iterator<IfcEngine> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				IfcEngine ifcEngine = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(ifcEngine.getClassName())) {
+				if (!bimServer.getPluginManager().isEnabled(ifcEngine.getClassName()) || !ifcEngine.getEnabled()) {
 					iterator.remove();
 				}
 			}

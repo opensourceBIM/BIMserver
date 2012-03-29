@@ -26,15 +26,16 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 
-public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<String>> {
+public class GetCheckinWarningsDatabaseAction extends BimDatabaseAction<Set<String>> {
 
 	private final long poid;
 	private final long uoid;
 
-	public GetCheckoutWarningsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long uoid) {
+	public GetCheckinWarningsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long uoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 		this.uoid = uoid;
@@ -45,42 +46,34 @@ public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<Str
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		Set<String> warnings = new HashSet<String>();
-		checkOtherUsersCheckouts(project, user, warnings);
+		checkInterleavingCommits(project, user, warnings);
+		new GetCheckoutWarningsDatabaseAction(getDatabaseSession(), getAccessMethod(), poid, uoid).checkOtherUsersCheckouts(project, user, warnings);
 		return warnings;
 	}
 
-	public void checkOtherUsersCheckouts(Project project, User user, Set<String> warnings) {
-		int activeCheckouts = 0;
-		for (Project p : getAllRelatedProjects(project)) {
-			for (Checkout checkout : p.getCheckouts()) {
-				if (checkout.getActive() && checkout.getUser() != user) {
-					activeCheckouts++;
-				}
+	private void checkInterleavingCommits(Project project, User user, Set<String> warnings) {
+		Checkout lastOwnActiveCheckout = null;
+		for (Checkout checkout : project.getCheckouts()) {
+			if (checkout.getUser() == user && checkout.getActive()) {
+				lastOwnActiveCheckout = checkout;
 			}
 		}
-		if (activeCheckouts == 1) {
-			warnings.add("Warning, another user is possibly working on this model because there is one active checkout");
-		} else if (activeCheckouts > 1) {
-			warnings.add("Warning, other users are possibly working on this model because there are " + activeCheckouts + " active checkouts");
-		}
-	}
-	
-	private Set<Project> getAllRelatedProjects(Project project) {
-		Set<Project> projects = new HashSet<Project>();
-		getAllRelatedProjects(projects, project);
-		return projects;
-	}
-	
-	private void getAllRelatedProjects(Set<Project> projects, Project project) {
-		if (projects.contains(project)) {
-			return;
-		}
-		projects.add(project);
-		if (project.getParent() != null) {
-			getAllRelatedProjects(projects, project.getParent());
-		}
-		for (Project subProject : project.getSubProjects()) {
-			getAllRelatedProjects(projects, subProject);
+		if (lastOwnActiveCheckout != null) {
+			Project mainProject = project;
+			while (mainProject.getParent() != null) {
+				mainProject = mainProject.getParent();
+			}
+			int newRevisionsAfterCheckout = 0;
+			for (Revision virtualRevision : mainProject.getRevisions()) {
+				if (lastOwnActiveCheckout.getDate().before(virtualRevision.getDate()) && lastOwnActiveCheckout.getRevision() != virtualRevision) {
+					newRevisionsAfterCheckout++;
+				}
+			}
+			if (newRevisionsAfterCheckout == 1) {
+				warnings.add("Warning, after your last checkout of this project (revision " + lastOwnActiveCheckout.getRevision().getId() + "), a new revision has been checked-in");
+			} else if (newRevisionsAfterCheckout > 1) {
+				warnings.add("Warning, after your last checkout of this project (revision " + lastOwnActiveCheckout.getRevision().getId() + "), " + newRevisionsAfterCheckout + " new revisions have been checked-in");
+			}
 		}
 	}
 }

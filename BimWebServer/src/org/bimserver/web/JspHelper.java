@@ -64,11 +64,21 @@ public class JspHelper {
 		return path;
 	}
 
-	public static String writeProjectTree(SProject project, LoginManager loginManager, int level) throws ServiceException {
+	public static String writeProjectTree(SProject project, LoginManager loginManager, int level, boolean includeHeaders) throws ServiceException {
 		StringBuilder result = new StringBuilder();
 		SRevision lastRevision = null;
 		if (project.getLastRevisionId() != -1) {
 			lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
+		}
+		if (includeHeaders) {
+			result.append("<tr class=\"" + (project.getState() == SObjectState.DELETED ? "deleted" : "") + "\">");
+			result.append("<th>Name</th>");
+			result.append("<th>Last revision</th>");
+			result.append("<th>Revisions</th>");
+			result.append("<th>Checkouts</th>");
+			result.append("<th>Authorized users</th>");
+			result.append("<th>Actions</th>");
+			result.append("</tr>");
 		}
 		result.append("<tr class=\"" + (loginManager.getService().userHasCheckinRights(project.getOid()) ? "" : "checkinrights")
 				+ (project.getState() == SObjectState.DELETED ? " deleted" : "") + "\">");
@@ -106,8 +116,11 @@ public class JspHelper {
 		for (SProject subProject : subProjects) {
 			if (loginManager.getService().userHasRights(subProject.getOid())
 					&& (loginManager.getService().getProjectByPoid(subProject.getOid()).getState() != SObjectState.DELETED) || loginManager.getUserType() == SUserType.ADMIN) {
-				result.append(writeProjectTree(subProject, loginManager, level + 1));
+				result.append(writeProjectTree(subProject, loginManager, level + 1, false));
 			}
+		}
+		if (includeHeaders) {
+			result.append("<tr class=\"separator " + (project.getState() == SObjectState.DELETED ? "deleted" : "") + "\"><td colspan=\"6\" class=\"seperator\"></td></tr>");
 		}
 		return result.toString();
 	}

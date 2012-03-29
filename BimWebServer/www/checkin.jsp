@@ -1,3 +1,4 @@
+<%@page import="java.util.Set"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SRevisionIdComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
@@ -14,6 +15,12 @@
 %>
 <a href="#" id="uploadlink">This project has subprojects, click here if you still want to checkin a new revision</a>
 <div id="uploads">
+<%
+	Set<String> checkoutWarnings = loginManager.getService().getCheckinWarnings(poid);
+	for (String warning : checkoutWarnings) {
+		out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" /><div>" + warning + "</div></div>");
+	}
+%>
 <div id="upload">
 <div id="uploadStatus"></div>
 <div id="uploadProgressBar"></div>

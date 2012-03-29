@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -35,9 +36,11 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long poid;
 	private final long actingUoid;
+	private final BimServer bimServer;
 
-	public DeleteProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long actingUoid) {
+	public DeleteProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, long poid, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.poid = poid;
 		this.actingUoid = actingUoid;
 	}
@@ -46,7 +49,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(poid);
-		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
+		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && bimServer.getSettingsManager().getSettings().isAllowUsersToCreateTopLevelProjects())) {
 			delete(project);
 			ProjectDeleted projectDeleted = LogFactory.eINSTANCE.createProjectDeleted();
 			projectDeleted.setAccessMethod(getAccessMethod());

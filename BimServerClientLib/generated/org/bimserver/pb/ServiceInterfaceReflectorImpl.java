@@ -24,8 +24,8 @@ public class ServiceInterfaceReflectorImpl implements org.bimserver.shared.Servi
 private Reflector reflector;
 
 	public ServiceInterfaceReflectorImpl (Reflector reflector) {this.reflector = reflector;}
-	public void setSettingIntelligentMerging(java.lang.Boolean intelligentMerging) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "setSettingIntelligentMerging", void.class, intelligentMerging);
+	public void deleteIfcEngine(java.lang.Long iid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "deleteIfcEngine", void.class, iid);
 	}
 	public org.bimserver.interfaces.objects.SLongActionState getDownloadState(java.lang.Integer actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SLongActionState) reflector.callMethod("ServiceInterface", "getDownloadState", org.bimserver.interfaces.objects.SLongActionState.class, actionId);
@@ -63,14 +63,14 @@ private Reflector reflector;
 	public void setSettingCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setSettingCheckinMergingEnabled", void.class, checkinMergingEnabled);
 	}
-	public void sendClashesEmail(org.bimserver.interfaces.objects.SClashDetectionSettings sClashDetectionSettings, java.lang.Long poid, java.util.Set<java.lang.String> addressesTo) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "sendClashesEmail", void.class, sClashDetectionSettings, poid, addressesTo);
+	public void addIntegerAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "addIntegerAttribute", void.class, oid, className, attributeName, value);
 	}
 	public void sendCompareEmail(org.bimserver.interfaces.objects.SCompareType sCompareType, org.bimserver.interfaces.objects.SCompareIdentifier sCompareIdentifier, java.lang.Long poid, java.lang.Long roid1, java.lang.Long roid2, java.lang.String address) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "sendCompareEmail", void.class, sCompareType, sCompareIdentifier, poid, roid1, roid2, address);
 	}
-	public java.lang.String getSettingEmailSenderAddress() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.String) reflector.callMethod("ServiceInterface", "getSettingEmailSenderAddress", java.lang.String.class);
+	public java.lang.Integer downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.String serializerName, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadRevisions", java.lang.Integer.class, roids, serializerName, sync);
 	}
 	public org.bimserver.interfaces.objects.SObjectIDM getObjectIDMByName(java.lang.String objectIDMName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SObjectIDM) reflector.callMethod("ServiceInterface", "getObjectIDMByName", org.bimserver.interfaces.objects.SObjectIDM.class, objectIDMName);
@@ -99,8 +99,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SIfcEngine> getAllIfcEngines(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SIfcEngine>) reflector.callMethod("ServiceInterface", "getAllIfcEngines", java.util.List.class, onlyEnabled);
 	}
-	public void addIntegerAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "addIntegerAttribute", void.class, oid, className, attributeName, value);
+	public java.lang.String getSettingEmailSenderAddress() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.String) reflector.callMethod("ServiceInterface", "getSettingEmailSenderAddress", java.lang.String.class);
 	}
 	public java.lang.Boolean deleteUser(java.lang.Long uoid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "deleteUser", java.lang.Boolean.class, uoid);
@@ -153,8 +153,8 @@ private Reflector reflector;
 	public void setDoubleAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Double value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setDoubleAttribute", void.class, oid, className, attributeName, value);
 	}
-	public void setHttpCallback(java.lang.Long uoid, java.lang.String address) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "setHttpCallback", void.class, uoid, address);
+	public void setSettingHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "setSettingHideUserListForNonAdmin", void.class, hideUserListForNonAdmin);
 	}
 	public java.lang.String getSettingHeaderAddition() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.String) reflector.callMethod("ServiceInterface", "getSettingHeaderAddition", java.lang.String.class);
@@ -171,11 +171,14 @@ private Reflector reflector;
 	public void removeReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName, java.lang.Integer index) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "removeReference", void.class, oid, className, referenceName, index);
 	}
+	public void updateSerializer(org.bimserver.interfaces.objects.SSerializer serializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "updateSerializer", void.class, serializer);
+	}
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllNonAuthorizedProjectsOfUser", java.util.List.class, uoid);
 	}
-	public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "isSettingAllowUsersToCreateTopLevelProjects", java.lang.Boolean.class);
+	public void removeAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer index) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "removeAttribute", void.class, oid, className, attributeName, index);
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllObjectIDMPluginDescriptors", java.util.List.class);
@@ -213,8 +216,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllAuthorizedUsersOfProject(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SUser>) reflector.callMethod("ServiceInterface", "getAllAuthorizedUsersOfProject", java.util.List.class, poid);
 	}
-	public java.lang.Integer downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.String serializerName, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadRevisions", java.lang.Integer.class, roids, serializerName, sync);
+	public java.util.Set<java.lang.String> getCheckinWarnings(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.Set<java.lang.String>) reflector.callMethod("ServiceInterface", "getCheckinWarnings", java.util.Set.class, poid);
 	}
 	public java.lang.Integer downloadByTypes(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> classNames, java.lang.String serializerName, java.lang.Boolean includeAllSubtypes, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadByTypes", java.lang.Integer.class, roids, classNames, serializerName, includeAllSubtypes, sync);
@@ -234,8 +237,8 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SSerializerPluginDescriptor getSerializerPluginDescriptor(java.lang.String type) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SSerializerPluginDescriptor) reflector.callMethod("ServiceInterface", "getSerializerPluginDescriptor", org.bimserver.interfaces.objects.SSerializerPluginDescriptor.class, type);
 	}
-	public void unsetReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "unsetReference", void.class, oid, className, referenceName);
+	public void startTransaction(java.lang.Integer pid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "startTransaction", void.class, pid);
 	}
 	public java.lang.String getRemoteAddress() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.String) reflector.callMethod("ServiceInterface", "getRemoteAddress", java.lang.String.class);
@@ -306,8 +309,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SGuidClash> findClashesByGuid(org.bimserver.interfaces.objects.SClashDetectionSettings sClashDetectionSettings) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SGuidClash>) reflector.callMethod("ServiceInterface", "findClashesByGuid", java.util.List.class, sClashDetectionSettings);
 	}
-	public void startTransaction(java.lang.Integer pid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "startTransaction", void.class, pid);
+	public java.util.Date getActiveSince() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.Date) reflector.callMethod("ServiceInterface", "getActiveSince", java.util.Date.class);
 	}
 	public void setSettingCacheOutputFiles(java.lang.Boolean cacheOutputFiles) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setSettingCacheOutputFiles", void.class, cacheOutputFiles);
@@ -318,8 +321,8 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SCheckinResult getCheckinState(java.lang.Integer actionID) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("ServiceInterface", "getCheckinState", org.bimserver.interfaces.objects.SCheckinResult.class, actionID);
 	}
-	public void deleteIfcEngine(java.lang.Long iid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "deleteIfcEngine", void.class, iid);
+	public void sendClashesEmail(org.bimserver.interfaces.objects.SClashDetectionSettings sClashDetectionSettings, java.lang.Long poid, java.util.Set<java.lang.String> addressesTo) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "sendClashesEmail", void.class, sClashDetectionSettings, poid, addressesTo);
 	}
 	public void changeUserType(java.lang.Long uoid, org.bimserver.interfaces.objects.SUserType userType) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "changeUserType", void.class, uoid, userType);
@@ -369,8 +372,8 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SProject getProjectByPoid(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SProject) reflector.callMethod("ServiceInterface", "getProjectByPoid", org.bimserver.interfaces.objects.SProject.class, poid);
 	}
-	public void setSettingHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "setSettingHideUserListForNonAdmin", void.class, hideUserListForNonAdmin);
+	public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "isSettingAllowUsersToCreateTopLevelProjects", java.lang.Boolean.class);
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SMigration> getMigrations() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SMigration>) reflector.callMethod("ServiceInterface", "getMigrations", java.util.List.class);
@@ -378,8 +381,8 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SSerializer getSerializerById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SSerializer) reflector.callMethod("ServiceInterface", "getSerializerById", org.bimserver.interfaces.objects.SSerializer.class, oid);
 	}
-	public void deleteSerializer(java.lang.Long sid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "deleteSerializer", void.class, sid);
+	public void unsetReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "unsetReference", void.class, oid, className, referenceName);
 	}
 	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Integer actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SDownloadResult) reflector.callMethod("ServiceInterface", "getDownloadData", org.bimserver.interfaces.objects.SDownloadResult.class, actionId);
@@ -414,8 +417,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SObjectIDM> getAllObjectIDMs(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SObjectIDM>) reflector.callMethod("ServiceInterface", "getAllObjectIDMs", java.util.List.class, onlyEnabled);
 	}
-	public void removeAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer index) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "removeAttribute", void.class, oid, className, attributeName, index);
+	public void deleteSerializer(java.lang.Long sid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "deleteSerializer", void.class, sid);
 	}
 	public void setSettingProtocolBuffersPort(java.lang.Integer port) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setSettingProtocolBuffersPort", void.class, port);
@@ -429,8 +432,8 @@ private Reflector reflector;
 	public java.lang.Boolean isSettingCacheOutputFiles() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "isSettingCacheOutputFiles", java.lang.Boolean.class);
 	}
-	public void updateSerializer(org.bimserver.interfaces.objects.SSerializer serializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "updateSerializer", void.class, serializer);
+	public void setHttpCallback(java.lang.Long uoid, java.lang.String address) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "setHttpCallback", void.class, uoid, address);
 	}
 	public void addSerializer(org.bimserver.interfaces.objects.SSerializer serializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addSerializer", void.class, serializer);
@@ -570,8 +573,8 @@ private Reflector reflector;
 	public void setSettingHeaderAddition(java.lang.String headerAddition) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setSettingHeaderAddition", void.class, headerAddition);
 	}
-	public java.util.Date getActiveSince() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.Date) reflector.callMethod("ServiceInterface", "getActiveSince", java.util.Date.class);
+	public void setSettingIntelligentMerging(java.lang.Boolean intelligentMerging) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "setSettingIntelligentMerging", void.class, intelligentMerging);
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SDeserializer> getAllDeserializers(java.lang.Boolean oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SDeserializer>) reflector.callMethod("ServiceInterface", "getAllDeserializers", java.util.List.class, oid);

@@ -5,9 +5,7 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%@page import="org.bimserver.web.LoginManager"%>
 <div class="downloadpopup">
-<div class="message"></div>
-<div class="progressbar"></div>
-<div class="fields">
+<div class="checkoutMessage"></div>
 <%
 	long roid = -1;
 	if (request.getParameter("roid") != null) {
@@ -21,8 +19,19 @@
 			out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
 		}
 	}
+	long poid = -1;
+	if (revision != null) {
+		poid = revision.getProjectId();
+	}
+	if (request.getParameter("poid") != null) {
+		poid = Long.parseLong(request.getParameter("poid"));
+	}
+	boolean userHasCheckinRights = poid == -1 || loginManager.getService().userHasCheckinRights(poid);
 	String multiple = request.getParameter("multiple");
 %>
+<div class="message"></div>
+<div class="progressbar"></div>
+<div class="fields">
 <table>
 <tr><td><label for="serializerName">Serializer</label></td>
 <td><select name="serializerName" class="revisionsdownloadcheckoutselect">
@@ -43,9 +52,18 @@
 </div>
 </div>
 <script>
+var userHasCheckinRights = <%=userHasCheckinRights%>;
+
 function checkRevisionsCheckoutButton(event) {
 	var val = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-	$(".downloadpopup .checkoutButton").attr("disabled", val != "Ifc2x3" && val != "IfcXML");
+	$(".downloadpopup .checkoutButton").attr("disabled", (val != "Ifc2x3" && val != "IfcXML") || !userHasCheckinRights);
+	if (!userHasCheckinRights) {
+		$(".checkoutMessage").html("Checkout unavailable because you have no rights on the project");
+	} else if (val != "Ifc2x3" && val != "IfcXML") {
+		$(".checkoutMessage").html("Checkout unavailable for formats other than Ifc2x3 and IfcXML");
+	} else {
+		$(".checkoutMessage").html("");
+	}
 }
 
 var multiple = [];
