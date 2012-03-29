@@ -192,11 +192,11 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				if (storePid) {
 					savePidCounter();
 				}
-				for (PostCommitAction postCommitAction : postCommitActions) {
-					postCommitAction.execute();
-				}
 				if (bimTransaction != null) {
 					bimTransaction.commit();
+				}
+				for (PostCommitAction postCommitAction : postCommitActions) {
+					postCommitAction.execute();
 				}
 			} catch (BimDatabaseException e) {
 				LOGGER.error("", e);
