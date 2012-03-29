@@ -693,9 +693,9 @@ public interface ServiceInterface {
 	 * @return A set of String containing possible warnings for this Project
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getShowCheckoutWarning")
+	@WebMethod(action = "getCheckoutWarnings")
 	Set<String> getCheckoutWarnings(
-			@WebParam(name = "poid", partName = "getShowCheckoutWarning.poid") Long poid) throws ServerException, UserException;
+			@WebParam(name = "poid", partName = "getCheckoutWarnings.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * @param poid ObjectID of the Project
@@ -1953,4 +1953,13 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
 	String getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException;
+
+	/**
+	 * Checkin warnings are given to users
+	 * @param poid ObjectID of the Project
+	 * @return A set of String containing possible warnings for this Project
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getCheckinWarnings")
+	Set<String> getCheckinWarnings(@WebParam(name = "poid", partName = "getCheckinWarnings.poid") Long poid) throws ServerException, UserException;
 }
