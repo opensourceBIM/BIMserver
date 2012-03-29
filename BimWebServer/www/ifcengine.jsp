@@ -22,7 +22,7 @@
 </ul>
 </div>
 <div class="content">
-<h1>Edit IFC Engine</h1>
+<h1>Edit Render Engine</h1>
 <fieldset>
 <%
 	String name = request.getParameter("name");
@@ -52,7 +52,7 @@
 	<td><input name="name" id="name" value="<%=name%>"></input></td>
 </tr>
 <tr>
-	<td><label for="className">IFC Engine</label></td>
+	<td><label for="className">Render Engine</label></td>
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%

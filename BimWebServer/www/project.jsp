@@ -131,9 +131,8 @@
 			%>
 			<div class="info">
 				<img src="images/warning.png" alt="warning" />There are no
-				revisions yet, click <a id="revisiontablink" href="#">on the
-					revisions tab</a> to add a first revision, or <a id="subprojecttablink"
-					href="#">add a subproject.</a>
+				revisions yet, click <a id="checkin" href="project.jsp?poid=<%=project.getOid()%>&action=checkin">on the
+					checkin link</a> to add a revision, or <a id="subprojecttablink" href="#">add a subproject.</a>
 			</div>
 			<%
 				}
