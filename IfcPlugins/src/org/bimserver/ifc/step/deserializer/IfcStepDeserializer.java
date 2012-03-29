@@ -154,6 +154,9 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				lineNumber++;
 			}
 			model.setChecksum(md.digest());
+			if (mode == Mode.HEADER) {
+				throw new DeserializeException("No valid IFC header found");
+			}
 		} catch (FileNotFoundException e) {
 			throw new DeserializeException(e);
 		} catch (IOException e) {

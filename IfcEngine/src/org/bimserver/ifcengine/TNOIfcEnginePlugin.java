@@ -40,9 +40,9 @@ import org.bimserver.plugins.schema.SchemaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CppIfcEnginePlugin implements IfcEnginePlugin {
+public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CppIfcEnginePlugin.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TNOIfcEnginePlugin.class);
 	private PluginManager pluginManager;
 	private boolean initialized = false;
 	private File nativeFolder;
@@ -110,6 +110,6 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 
 	@Override
 	public String getDefaultIfcEngineName() {
-		return "IFC Engine Peter Bonsma";
+		return "TNO Engine Series";
 	}
 }

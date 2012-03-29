@@ -226,8 +226,6 @@
 			fail: function(e, data) {
 				$("#uploadStatus").html("Error: " + data.textStatus);
 				showUpload();
-			},
-			always: function() {
 			}
 	    });
 
@@ -242,6 +240,7 @@
 			hideUpload();
 			$("#uploadStatus").html("Uploading file...");
 			$("#fileupload").fileupload('send', submitdata);
+			shouldsend = false;
 			event.preventDefault();
 		});
 

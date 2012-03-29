@@ -18,7 +18,7 @@
 		<input type="text" name="oids" id="oids"/>
 	</td>
 	<td>
-		<input type="button" id="queryoidsbutton" value="Download"/>
+		<a href="#" id="queryoidsbutton" value="">Download</a>
 	</td>
 	<td>
 		<input type="hidden" name="roid" value="<%=roid %>"/>
@@ -36,7 +36,7 @@
 		<input type="text" name="guids" id="guids"/>
 	</td>
 	<td>
-		<input type="button" id="queryguidsbutton" value="Download"/>
+		<a href="#" id="queryguidsbutton">Download</a>
 	</td>
 	<td> 
 		<input type="hidden" name="roid" value="<%=roid %>"/>
@@ -63,7 +63,7 @@
 		</select>
 	</td>
 	<td>
-		<input type="button" id="queryclassesbutton" value="Download"/>
+		<a href="#" id="queryclassesbutton">Download</a>
 	</td>
 	<td>
 		<input type="hidden" name="roid" value="<%=roid %>"/>
@@ -257,19 +257,22 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 
 <script>
 	$(function(){
-		$("#queryoidsbutton").click(function(){
+		$("#queryoidsbutton").click(function(event){
+			event.preventDefault();
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var oids = downloadframe.find('input[name="oids"]');
 			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&oids=" + oids.val());
 		});
-		$("#queryguidsbutton").click(function(){
+		$("#queryguidsbutton").click(function(event){
+			event.preventDefault();
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var guids = downloadframe.find('input[name="guids"]');
 			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&guids=" + guids.val());
 		});
-		$("#queryclassesbutton").click(function(){
+		$("#queryclassesbutton").click(function(event){
+			event.preventDefault();
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var ifcClass = downloadframe.find("#cid");

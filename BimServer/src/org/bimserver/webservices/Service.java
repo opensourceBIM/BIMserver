@@ -1713,7 +1713,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Date getLastDatabaseReset() throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
+		requireRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return session.getCreatedDate();
