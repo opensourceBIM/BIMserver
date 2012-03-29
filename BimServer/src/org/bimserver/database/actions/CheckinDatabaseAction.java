@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
@@ -33,8 +34,10 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
@@ -106,30 +109,17 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
 			}
-//			for (final Revision revision : concreteRevision.getRevisions()) {
-//				getDatabaseSession().store(revision);
-//				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
-//					@Override
-//					public void execute() throws UserException {
-//						NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
-//						newRevisionNotification.setRevision(revision);
-//						bimServer.getNotificationsManager().notify(newRevisionNotification);
-//					}
-//				});
-//			}
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
+					newRevisionNotification.setRevision(concreteRevision.getRevisions().get(0));
+					bimServer.getNotificationsManager().notify(newRevisionNotification);
+				}
+			});
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(newRevisionAdded);
 			getDatabaseSession().store(project);
-			
-//			for (Revision revision : createCheckinAction.getConcreteRevision(createCheckinAction.getCroid()).getRevisions()) {
-//				NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
-//				newRevisionAdded.setDate(new Date());
-//				newRevisionAdded.setExecutor(user);
-//				newRevisionAdded.setRevision(revision);
-//				newRevisionAdded.setAccessMethod(createCheckinAction.getAccessMethod());
-//
-//				bimServer.getNotificationsManager().notify(newRevisionAdded);
-//			}
 		} catch (Throwable e) {
 			if (e instanceof BimDeadlockException) {
 				// Let this one slide
