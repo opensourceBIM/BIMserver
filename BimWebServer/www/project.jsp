@@ -239,7 +239,7 @@
 			<div class="tabber" id="downloadtabber">
 				<div class="tabbertab" id="detailstab" title="Simple Download">
 					This will simply download the latest revision<br/>
-					<input type="button" class="downloadCheckoutButton" revisionoid="<%=lastRevision.getOid()%>" value="Download"/>
+					<a href="#" class="downloadCheckoutButton" revisionoid="<%=lastRevision.getOid()%>">Download</a>
 				</div>
 
 				<div class="tabbertab" id="" title="Advanced Download">
@@ -257,7 +257,7 @@
 						</tr>
 						<%=JspHelper.writeDownloadProjectTree("download", project, loginManager, 0, null)%>
 					</table>
-					<input type="button" class="downloadCheckoutButtonAdvanced" value="Download"/>
+					<a href="#" class="downloadCheckoutButtonAdvanced">Download</a>
 				</div>
 			</div>
 			<%
@@ -428,7 +428,7 @@ if (revisions.size() > 0) {
 					</td>
 					<td class="sizefield"><%=revision.getSize()%></td>
 					<td>
-						<input type="button" revisionoid="<%=revision.getOid() %>" class="downloadCheckoutButton" value="Download"/>
+						<a href="#" revisionoid="<%=revision.getOid() %>" class="downloadCheckoutButton">Download</a>
 					</td>
 				</tr>
 <% } %>
@@ -494,7 +494,7 @@ if (revisions.size() > 0) {
 					<td><%=dateFormat.format(checkout.getDate())%></td>
 					<td><%=checkout.getActive()%></td>
 					<td>
-						<input type="button" class="downloadCheckoutButton" revisionoid="<%=checkout.getRevisionId() %>" value="Download"/>
+						<a href="#" class="downloadCheckoutButton" revisionoid="<%=checkout.getRevisionId() %>">Download</a>
 					</td>
 				</tr>
 				<%
@@ -624,7 +624,8 @@ if (revisions.size() > 0) {
 			});
 		});
 		
-		$(".downloadCheckoutButtonAdvanced").click(function(){
+		$(".downloadCheckoutButtonAdvanced").click(function(event){
+			event.preventDefault();
 			$("#downloadcheckoutpopup").dialog({
 				title: "Download/Checkout",
 				width: 600,
@@ -665,6 +666,7 @@ if (revisions.size() > 0) {
 		} 
 		
 		$(".downloadCheckoutButton").click(function(event){
+			event.preventDefault();
 			showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
 		});
 		

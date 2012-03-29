@@ -130,7 +130,7 @@
 <table class="formtable">
 	<tr>
 		<td class="first" width="100">Download:</td>
-		<td><input type="button" value="Download" revisionoid="<%=revision.getOid() %>" class="downloadCheckoutButton"/></td>
+		<td><a href="#" revisionoid="<%=revision.getOid() %>" class="downloadCheckoutButton">Download</a></td>
 	</tr>
 </table>
 </form>
@@ -201,6 +201,7 @@
 		});
 		
 		$(".downloadCheckoutButton").click(function(event){
+			event.preventDefault();
 			showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
 		});
 

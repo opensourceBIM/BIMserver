@@ -101,7 +101,7 @@ if (allowEdit) { %>
 	<td><%=revision.getComment() %></td>
 	<td><%=revision.getSize() %></td>
 	<td>
-		<input type="button" class="downloadCheckoutButton" revisionoid="<%=revision.getOid() %>" value="Download"/>
+		<a class="downloadCheckoutButton" revisionoid="<%=revision.getOid() %>">Download</a>
 	</td>
 </tr>
 <%
@@ -137,7 +137,7 @@ if (allowEdit) { %>
 	<td><a href="revision.jsp?roid=<%=sRevision.getOid() %>"><%=sRevision.getId() %></a></td>
 	<td><%=dateFormat.format(checkout.getDate()) %></td>
 	<td>
-		<input type="button" class="downloadCheckoutButton" revisionoid="<%=checkout.getRevisionId() %>" value="Download"/>
+		<a href="#" class="downloadCheckoutButton" revisionoid="<%=checkout.getRevisionId() %>">Download</a>
 	</td>
 </tr>
 <%
@@ -207,6 +207,7 @@ if (allowEdit) { %>
 <script>
 $(function(){
 	$(".downloadCheckoutButton").click(function(event){
+		event.preventDefault();
 		showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
 	});
 });

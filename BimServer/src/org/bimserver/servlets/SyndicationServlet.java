@@ -119,6 +119,7 @@ public class SyndicationServlet extends HttpServlet {
 			List<SProject> allProjects = service.getAllProjects();
 			for (SProject sProject : allProjects) {
 				SyndEntry entry = new SyndEntryImpl();
+				entry.setAuthor(service.getUserByUoid(sProject.getCreatedById()).getName());
 				entry.setTitle(sProject.getName());
 				entry.setLink(request.getContextPath() + "/project.jsp?poid=" + sProject.getOid());
 				entry.setPublishedDate(sProject.getCreatedDate());
