@@ -19,7 +19,7 @@
 </ul>
 </div>
 <div class="content">
-<h1>Add IFC Engine</h1>
+<h1>Add Render Engine</h1>
 <fieldset>
 <%
 	ServiceInterface service = loginManager.getService();

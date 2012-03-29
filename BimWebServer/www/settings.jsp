@@ -63,8 +63,8 @@
 	}
 %>
 <div class="tabber" id="settingstabber">
-<div class="tabbertab" id="ifcenginestab" title="IFC Engines">
-<a href="addifcengine.jsp">Add IfcEngine</a>
+<div class="tabbertab" id="ifcenginestab" title="Render Engines">
+<a href="addifcengine.jsp">Add RenderEngine</a>
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>State</th><th>Actions</th></tr>
 <%
@@ -131,7 +131,7 @@
 <div class="tabbertab" id="serializerstab" title="Serializers">
 <a href="addserializer1.jsp">Add Serializer</a>
 <table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>Ignore file</th><th>IFC Engine</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>ObjectIDM</th><th>Render Engine</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
@@ -175,7 +175,7 @@
 <div class="tabbertab" id="deserializerstab" title="Deserializers">
 <a href="adddeserializer1.jsp">Add Deserializer</a>
 <table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Description</th><th>Type</th><th>ObjectIDM</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SDeserializer> deserializers = service.getAllDeserializers(false);
 	for (SDeserializer deserializer : deserializers) {

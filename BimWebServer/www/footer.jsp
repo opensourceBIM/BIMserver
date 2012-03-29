@@ -4,7 +4,7 @@
 <div class="footer">    
 	<%=((LoginManager)request.getSession().getAttribute("loginManager")).getService().getSettingFooterAddition() %>
 	<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
-        <div><a href="http://www.bimserver.org"><img src="images/footerlogo.gif" alt="Open Source BIMserver" /></a><br/>(C) GNU GPL v3
+        <div><a href="http://www.bimserver.org"><img src="images/footerlogo.gif" alt="Open Source BIMserver" /></a><br/><a href="http://www.bimserver.org/license/" target="_blank">(C) GNU Affero GPL v3 and others</a>
        <!--  <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog">Download Logfile</a>  -->
        </div> 
 </div><!-- end footer --> 

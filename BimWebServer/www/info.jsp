@@ -70,13 +70,33 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 	  <a href="http://www.gnu.org/licenses/agpl.html" target="_blank">http://www.gnu.org/licenses/agpl.html</a><br/>
 	  For more information mail to <a href="mailto:license@bimserver.org">license@bimserver.org</a><br/>
       <br/>
-      BIMserver software uses the IFC Engine DLL.<br/>
-      This Engine DLL is NOT open source. The IFC Engine DLL is a commercial product owned by TNO.<br/>
-	  The latest versions are available for download from <a href=" http://ifcengine.com" target="_blank">ifcengine.com</a>. <br/>
-      In case of none commercial use there is no license fee and redistribution is free as long as clearly mentioned that the IFC Engine DLL is used. <br/>
+      BIMserver software uses several external plugins.<br/>
+      Some plugins are NOT part of the BIMserver project.<br/>
+      Please note that some plugins may have different license models.<br/>
+      BIMserver distributes the following external plugins in the builds:<br/>
+      <br/>
+      <strong>TNO IFC Engine series</strong><br/>
+	  The TNO IFC Engine Series DLL is used as a geometry renderer for BIMserver serializers.<br/>
+	  This plugin is NOT open source. It is used in BIMserver according to the TNO IFC Engine series license.<br/>
+	  In case of none commercial use there is no license fee and redistribution is free as long as clearly mentioned that the IFC Engine DLL is used. <br/>
       This BIMserver software is non-commercial so users of the BIMserver software can use it free of charge.<br/>
-      Within the Open Source BIMserver there is one exception to the normal conditions:<br/>
-      A special version of the IFC Engine DLL is used that includes Clashdetection functionality, this version is not commercially available. For more information, please contact TNO.<br/>
+	  The latest versions are available for download from <a href=" http://ifcengine.com" target="_blank">ifcengine.com</a>.<br/>
+	  Many thanks and credits go to <a href="http://tno.nl/" target="_blank">TNO</a> for distributing this plugin with BIMserver.org.<br/>
+	  <br/>
+	  <strong>IfcOpenShell</strong><br/>
+	  The IfcOpenShell library is used as a geometry renderer for BIMserver serializers.<br/>
+	  This plugin is distributed under the GNU LGPL license.
+	  The latest versions are available for download from <a href="http://ifcopenshell.org" target="_blank">ifcopenshell.org</a>. <br/>
+	  Many thanks and credits go to <a href="http://thomaskrijnen.nl/" target="_blank">Thomas Krijnen</a> for developing this plugin.<br/>
+	  <br/>
+	  <strong>COBie serializer and deserializer</strong><br/>
+	  The COBie serializer and deserializer plugins are used to import and export COBie files.<br/>
+	  This plugin is distributed under the GNU Affero GPL license.
+	  The latest versions are available for download from <a href="https://github.com/bimserver/COBie-plugins" target="_blank">the github repository</a>. <br/>
+	  Many thanks and credits go to <a href="http://www.linkedin.com/pub/chris-bogen/3/b94/4bb" target="_blank">Chris Bogen</a> for developing these plugins.<br/>
+      <br/>
+      <strong>Other plugins and extensions:</strong><br/>
+	  More plugins and extensions can be found on <a href="http://extend.bimserver.org" target="_blank">http://extend.bimserver.org</a>.<br/>
       <br/>
 	</div>
 	<div class="tabbertab" id="systemtab" title="System">
