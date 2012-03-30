@@ -88,11 +88,13 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	private boolean storePid = false;
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 	private final ObjectsToCommit objectsToCommit = new ObjectsToCommit();
+	private StackTraceElement[] stackTrace;
 
 	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly) {
 		this.database = database;
 		this.bimTransaction = bimTransaction;
 		this.readOnly = readOnly;
+		stackTrace = Thread.currentThread().getStackTrace();
 	}
 
 	@Override
@@ -518,8 +520,17 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				clearCache();
 				objectsToCommit.clear();
 				bimTransaction = database.getColumnDatabase().startTransaction();
-				// LOGGER.error("", e);
 				LOGGER.info("Deadlock while executing " + action.getClass().getSimpleName() + " run (" + i + ")");
+				LOGGER.info("", e);
+				long[] ownerTxnIds = e.getLockException().getOwnerTxnIds();
+				for (long txnid : ownerTxnIds) {
+					BimDatabaseSession databaseSession = database.getDatabaseSession(txnid);
+					LOGGER.info("Owner: " + databaseSession);
+					StackTraceElement[] stackTraceElements = databaseSession.getStackTrace();
+					for (StackTraceElement stackTraceElement : stackTraceElements) {
+		                LOGGER.info("\tat " + stackTraceElement);
+					}
+				}
 			} catch (BimDatabaseException e) {
 				LOGGER.error("", e);
 				throw e;
@@ -966,7 +977,6 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 						if (stringLength == -1) {
 							return null;
 						} else {
-							LOGGER.info("" + stringLength);
 							String s = BinUtils.readString(value, stringLength);
 							if (s.equals(guid)) {
 								short referenceCid = value.getShort();
@@ -1373,5 +1383,14 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			LOGGER.error("", e);
 		}
 		return null;
+	}
+
+	@Override
+	public long getTransactionId() {
+		return bimTransaction.getId();
+	}
+	
+	public StackTraceElement[] getStackTrace() {
+		return stackTrace;
 	}
 }

@@ -34,10 +34,12 @@ import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.store.NewProjectNotification;
 import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Notification;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.pb.NotificationInterfaceReflectorImpl;
+import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.pb.Reflector;
 import org.bimserver.shared.pb.SocketChannel;
@@ -77,12 +79,15 @@ public class NotificationsManager extends Thread {
 						NotificationInterface notificationInterface = notificationContainer.getNotificationInterface();
 						boolean isAdmin = notificationContainer.getUser().getUserType() == UserType.ADMIN;
 						if (notification instanceof NewProjectNotification) {
-							if (isAdmin) {
+							NewProjectNotification newProjectNotification = (NewProjectNotification)notification;
+							Project project = newProjectNotification.getProject();
+							if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
 								notificationInterface.newProject(sConverter.convertToSObject((NewProjectNotification) notification));
 							}
 						} else if (notification instanceof NewRevisionNotification) {
 							NewRevisionNotification newRevisionNotification = (NewRevisionNotification) notification;
-							if (isAdmin || newRevisionNotification.getRevision().getProject().getHasAuthorizedUsers().contains(notificationContainer.getUser())) {
+							Project project = newRevisionNotification.getRevision().getProject();
+							if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
 								notificationInterface.newRevision(sConverter.convertToSObject(newRevisionNotification));
 							}
 						}

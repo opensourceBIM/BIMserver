@@ -30,7 +30,6 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
-import org.bimserver.tests.TestFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,10 +37,10 @@ public class TestFramework {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestFramework.class);
 	
 	private static final int NR_VIRTUAL_USERS = 1;
-	private static final int NR_RUNS_PER_VIRTUAL_USER = 1;
+	private static final int NR_RUNS_PER_VIRTUAL_USER = -1;
 	private static final File IFC_FILES_FOLDER = new File("../TestData/data");
 	private static final boolean START_EMBEDDED_BIMSERVER = true;
-	private static final boolean STOP_ON_EXCEPTION = true;
+	private static final boolean STOP_ON_EXCEPTION = false;
 	
 	private final List<File> files = new ArrayList<File>();
 	private final Set<VirtualUser> virtualUsers = new HashSet<VirtualUser>();
@@ -58,6 +57,7 @@ public class TestFramework {
 			bimServerConfig.setHomeDir(new File("home"));
 			bimServerConfig.setPort(8080);
 			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+			bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 			BimServer bimServer = new BimServer(bimServerConfig);
 			try {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
@@ -73,9 +73,8 @@ public class TestFramework {
 				LOGGER.error("", e);
 			}
 		}
-		files.add(TestFile.AC11.getFile());
-//		initFiles();
-		RandomBimServerClientFactory randomBimServerClientFactory = new RandomBimServerClientFactory(Type.PROTOCOL_BUFFERS);
+		initFiles();
+		RandomBimServerClientFactory randomBimServerClientFactory = new RandomBimServerClientFactory(Type.PROTOCOL_BUFFERS, Type.SOAP_HEADER, Type.SOAP_NO_HEADERS);
 		VirtualUserFactory virtualUserFactory = new VirtualUserFactory(this, randomBimServerClientFactory);
 		for (int i=0; i<NR_VIRTUAL_USERS; i++) {
 			VirtualUser virtualUser = virtualUserFactory.create("" + i);

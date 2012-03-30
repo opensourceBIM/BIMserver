@@ -33,6 +33,7 @@
 	boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 %>
 <div class="sidebar">
+<ul>
  <li>
  <a id="browserlink" class="link">Browser</a></li>
 </ul>
@@ -63,7 +64,7 @@
 	</tr>
 	<tr>
 		<td class="first">User</td>
-		<td><a href="user.jsp?id=<%=revision.getUserId()%>"><%=user.getUsername()%></a></td>
+		<td><a href="user.jsp?uoid=<%=revision.getUserId()%>"><%=user.getUsername()%></a></td>
 	</tr>
 	<tr>
 		<td class="first">Date</td>
@@ -150,36 +151,24 @@
 <%
 	if (checkouts.size() > 0) {
 %>
-<div class="tabbertab" id="checkoutstab"
-	title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + checkouts.size() + ")"%>">
+<div class="tabbertab" id="checkoutstab" title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + checkouts.size() + ")"%>">
 <table class="formatted">
 	<tr>
 		<th>User</th>
 		<th>Date</th>
+		<th>Active</th>
 		<th>Download</th>
 	</tr>
 	<%
 		for (SCheckout checkout : checkouts) {
-					SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
+			SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
 	%>
 	<tr>
 		<td><a href="user.jsp?id=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a></td>
 		<td><%=dateFormat.format(checkout.getDate())%></td>
+		<td><%=checkout.getActive()%></td>
 		<td>
-		<form method="get" action="<%=request.getContextPath()%>/download">
-		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
-		<select name="resultType">
-			<%
-				for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-			%>
-			<option value="<%=serializer.getName()%>"
-				<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-			<%
-				}
-			%>
-		</select> <label for="zip_<%=checkout.getOid()%>">Zip</label><input
-			type="checkbox" name="zip" id="zip_<%=checkout.getOid()%>" /> <input
-			type="submit" value="Download" /></form>
+			<a href="#" revisionoid="<%=checkout.getRevisionId() %>" class="downloadCheckoutButton">Download</a>
 		</td>
 	</tr>
 	<%
@@ -202,7 +191,12 @@
 		
 		$(".downloadCheckoutButton").click(function(event){
 			event.preventDefault();
-			showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
+			var params = {
+				downloadType: "single",
+				allowCheckouts: true,
+				roid: $(this).attr("revisionoid"),
+			};
+			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
 		});
 
 		$("#browserlink").click(function(){

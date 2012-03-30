@@ -266,9 +266,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 			for (SDataObject dataObject : dataObjects) {
 				EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(dataObject.getType());
 				IdEObject idEObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
-				if (idEObject instanceof IfcTextStyleFontModel) {
-					System.out.println();
-				}
 				idEObject.setOid(dataObject.getOid());
 				model.add(dataObject.getOid(), idEObject);
 				for (SDataValue dataValue : dataObject.getValues()) {

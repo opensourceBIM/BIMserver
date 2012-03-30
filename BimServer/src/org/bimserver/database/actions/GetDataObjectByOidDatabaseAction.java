@@ -183,9 +183,6 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 					if (eObject2 != null) {
 						if (eObject2 instanceof WrappedValue || eObject2 instanceof IfcGloballyUniqueId) {
 							EObject referenceEObject = (EObject) eGet;
-							if (referenceEObject instanceof IfcLengthMeasure) {
-								System.out.println();
-							}
 							SimpleDataValue e = StoreFactory.eINSTANCE.createSimpleDataValue();
 							EStructuralFeature wrappedValueFeature = referenceEObject.eClass().getEStructuralFeature("wrappedValue");
 							Object eGet2 = referenceEObject.eGet(wrappedValueFeature);

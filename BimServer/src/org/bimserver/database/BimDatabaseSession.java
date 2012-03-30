@@ -136,4 +136,8 @@ public interface BimDatabaseSession extends OidProvider {
 	BimTransaction getBimTransaction();
 
 	boolean isReadOnly();
+
+	long getTransactionId();
+
+	StackTraceElement[] getStackTrace();
 }

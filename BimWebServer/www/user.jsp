@@ -208,7 +208,12 @@ if (allowEdit) { %>
 $(function(){
 	$(".downloadCheckoutButton").click(function(event){
 		event.preventDefault();
-		showDownloadCheckoutPopup("download.jsp?roid=" + $(this).attr("revisionoid"));
+		var params = {
+			downloadType: "single",
+			allowCheckouts: true,
+			roid: $(this).attr("revisionoid"),
+		};
+		showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
 	});
 });
 </script>
