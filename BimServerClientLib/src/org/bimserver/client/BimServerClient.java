@@ -107,6 +107,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void connectDirect(ServiceInterface serviceInterface) {
 		DirectChannel directChannel = new DirectChannel();
+		disconnect();
 		this.channel = directChannel;
 		directChannel.registerConnectDisconnectListener(this);
 		directChannel.connect(serviceInterface);
@@ -116,6 +117,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		if (authenticationInfo == null) {
 			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
 		}
+		disconnect();
 		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData);
 		this.channel = protocolBuffersChannel;
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
@@ -130,6 +132,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		if (authenticationInfo == null) {
 			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
 		}
+		disconnect();
 		SoapChannel soapChannel = new SoapChannel();
 		this.channel = soapChannel;
 		soapChannel.registerConnectDisconnectListener(this);
@@ -157,7 +160,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	public ServiceInterface getServiceInterface() {
-		return channel.getServiceInterface();
+		if (channel != null) {
+			return channel.getServiceInterface();
+		}
+		return null;
 	}
 
 	public Session createSession() {
@@ -170,11 +176,15 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void disconnect() {
 		try {
-			getServiceInterface().close();
+			if (getServiceInterface() != null) {
+				getServiceInterface().close();
+			}
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
-		channel.disconnect();
+		if (channel != null) {
+			channel.disconnect();
+		}
 	}
 
 	@Override

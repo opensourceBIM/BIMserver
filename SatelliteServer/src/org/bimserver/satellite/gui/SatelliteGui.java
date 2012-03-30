@@ -59,6 +59,7 @@ public class SatelliteGui extends JFrame {
 	private JTextArea logTextArea;
 	private JTextArea notificationsTextArea;
 	private SatelliteSettings settings;
+	private NotificationLogger notificationsLogger;
 
 	public static void main(String[] args) {
 		SatelliteServer satelliteServer = new SatelliteServer();
@@ -137,6 +138,13 @@ public class SatelliteGui extends JFrame {
 			}
 		});
 
+		notificationsLogger = new NotificationLogger(new PrintWriter(new OutputStream() {
+			@Override
+			public void write(int b) throws IOException {
+				notificationsTextArea.append(new String(new char[] { (char) b }));
+			}
+		}));
+		
 		for (Activity activity : satelliteServer.getActivities()) {
 			final JTextArea activityTextArea = new JTextArea();
 			JScrollPane activityScroll = new JScrollPane(activityTextArea);
@@ -164,11 +172,6 @@ public class SatelliteGui extends JFrame {
 	}
 
 	public void connect(SatelliteSettings settings) throws ConnectionException {
-		satelliteServer.connect(settings, new NotificationLogger(new PrintWriter(new OutputStream() {
-			@Override
-			public void write(int b) throws IOException {
-				notificationsTextArea.append(new String(new char[] { (char) b }));
-			}
-		})));
+		satelliteServer.connect(settings, notificationsLogger);
 	}
 }
