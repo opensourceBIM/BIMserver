@@ -46,7 +46,6 @@ import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcTextStyleFontModel;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;

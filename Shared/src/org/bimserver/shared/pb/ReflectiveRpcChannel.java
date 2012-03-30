@@ -110,7 +110,6 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 							}
 						}
 					} else if (result instanceof List) {
-						Descriptor messageType = valueField.getMessageType();
 						List list = new ArrayList();
 						List originalList = (List) result;
 						for (Object object : originalList) {
@@ -118,7 +117,6 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 						}
 						builder.setField(valueField, list);
 					} else if (result instanceof Set) {
-						Descriptor messageType = valueField.getMessageType();
 						List list = new ArrayList();
 						Set originalSet = (Set) result;
 						for (Object object : originalSet) {
@@ -126,7 +124,6 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 						}
 						builder.setField(valueField, list);
 					} else {
-						Descriptor messageType = valueField.getMessageType();
 						builder.setField(valueField, convertSObjectToProtocolBuffersObject((SBase) result, sMethod.getBestReturnType()));
 					}
 				}

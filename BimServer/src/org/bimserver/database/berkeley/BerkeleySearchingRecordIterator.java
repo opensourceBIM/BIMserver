@@ -19,7 +19,6 @@ package org.bimserver.database.berkeley;
 
 import java.util.Arrays;
 
-import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
@@ -39,10 +38,8 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	private final Cursor cursor;
 	private final byte[] mustStartWith;
 	private byte[] nextStartSearchingAt;
-	private final BimDatabaseSession bimDatabaseSession;
 
-	public BerkeleySearchingRecordIterator(BimDatabaseSession bimDatabaseSession, Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimDeadlockException {
-		this.bimDatabaseSession = bimDatabaseSession;
+	public BerkeleySearchingRecordIterator(Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimDeadlockException {
 		this.cursor = cursor;
 		this.mustStartWith = mustStartWith;
 		this.nextStartSearchingAt = startSearchingAt;

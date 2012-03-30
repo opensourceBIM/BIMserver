@@ -18,6 +18,7 @@ public class TestFailSafe {
 			IfcEngine failSafeIfcEngine = new FailSafeIfcEngine(new File("../buildingSMARTLibrary/schema/IFC2X3_TC1.exp"), new File("lib/64"), new File("tmp"), System.getProperty("java.class.path"));
 			IfcEngineModel model = failSafeIfcEngine.openModel(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
+			System.out.println(geometry);
 			model.close();
 			failSafeIfcEngine.close();
 		} catch (IfcEngineException e) {

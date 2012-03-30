@@ -17,7 +17,6 @@ package org.bimserver.database.berkeley;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.slf4j.Logger;
@@ -32,10 +31,8 @@ import com.sleepycat.je.OperationStatus;
 public class BerkeleyRecordIterator implements RecordIterator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyRecordIterator.class);
 	private final Cursor cursor;
-	private final BimDatabaseSession bimDatabaseSession;
 
-	public BerkeleyRecordIterator(BimDatabaseSession bimDatabaseSession, Cursor cursor) {
-		this.bimDatabaseSession = bimDatabaseSession;
+	public BerkeleyRecordIterator(Cursor cursor) {
 		this.cursor = cursor;
 	}
 

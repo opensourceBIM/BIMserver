@@ -222,7 +222,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		Cursor cursor = null;
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
-			return new BerkeleyRecordIterator(databaseSession, cursor);
+			return new BerkeleyRecordIterator(cursor);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -234,7 +234,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		Cursor cursor = null;
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
-			return new BerkeleySearchingRecordIterator(databaseSession, cursor, mustStartWith, startSearchingAt);
+			return new BerkeleySearchingRecordIterator(cursor, mustStartWith, startSearchingAt);
 		} catch (BimDeadlockException e) {
 			try {
 				cursor.close();

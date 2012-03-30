@@ -48,10 +48,8 @@ import com.google.protobuf.Message.Builder;
 public class ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConverter.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final SService sService;
 
 	public ProtocolBuffersConverter(SService sService, ProtocolBuffersMetaData protocolBuffersMetaData) {
-		this.sService = sService;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 	}
 
