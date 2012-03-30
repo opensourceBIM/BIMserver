@@ -75,7 +75,7 @@ public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
 			if (inputStream != null) {
 				File tmpFolder = new File(pluginManager.getTempDir(), "tmp");
-				nativeFolder = new File(tmpFolder, "IfcEngineBonsma");
+				nativeFolder = new File(tmpFolder, "TNOEngineSeries");
 				try {
 					if (nativeFolder.exists()) {
 						FileUtils.deleteDirectory(nativeFolder);

@@ -254,7 +254,6 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 	}
 %>
 </div>
-
 <script>
 	$(function(){
 		$("#queryoidsbutton").click(function(event){
@@ -262,22 +261,39 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var oids = downloadframe.find('input[name="oids"]');
-			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&oids=" + oids.val());
+			var params = {
+				downloadType: "oids",
+				allowCheckout: false,
+				roid: roid.val(),
+				oids: [oids.val()]
+			};
+			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
 		});
 		$("#queryguidsbutton").click(function(event){
 			event.preventDefault();
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var guids = downloadframe.find('input[name="guids"]');
-			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&guids=" + guids.val());
+			var params = {
+				downloadType: "guids",
+				allowCheckout: false,
+				roid: roid.val(),
+				guids: [guids.val()]
+			};
+			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
 		});
 		$("#queryclassesbutton").click(function(event){
 			event.preventDefault();
 			var downloadframe = $(this).parents(".downloadframe");
 			var roid = downloadframe.find('input[name="roid"]');
 			var ifcClass = downloadframe.find("#cid");
-			showDownloadCheckoutPopup("download.jsp?roid=" + roid.val() + "&classes=" + ifcClass.val());
+			var params = {
+				downloadType: "classes",
+				allowCheckout: false,
+				roid: roid.val(),
+				classes: [ifcClass.val()]
+			};
+			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
 		});
 	});
 </script>
-		

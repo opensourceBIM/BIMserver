@@ -28,22 +28,22 @@ public class ActionFactory {
 	private final Random random = new Random();
 	
 	public ActionFactory(TestFramework testFramework) {
-//		add(new CompareAction(testFramework));
-//		add(new DownloadModelLowLevel(testFramework));
-//		add(new DumpDataObjects(testFramework));
-//		add(new AddUserToProjectAction(testFramework));
+		add(new CompareAction(testFramework));
+		add(new DownloadModelLowLevel(testFramework));
+		add(new DumpDataObjects(testFramework));
+		add(new AddUserToProjectAction(testFramework));
 		add(new CheckinAction(testFramework));
-//		add(new CheckoutAction(testFramework));
-//		add(new CreateProjectAction(testFramework));
-//		add(new CreateSubProjectAction(testFramework));
-//		add(new CreateUserAction(testFramework));
-//		add(new DownloadRevisionAction(testFramework));
-//		add(new LoginAction(testFramework));
-//		add(new LogoutAction(testFramework));
-//		add(new RemoveUserFromProjectAction(testFramework));
-//		add(new UpdateProjectAction(testFramework));
-//		add(new PingAction(testFramework));
-//		add(new UpdateRevisionAction(testFramework));
+		add(new CheckoutAction(testFramework));
+		add(new CreateProjectAction(testFramework));
+		add(new CreateSubProjectAction(testFramework));
+		add(new CreateUserAction(testFramework));
+		add(new DownloadRevisionAction(testFramework));
+		add(new LoginAction(testFramework));
+		add(new LogoutAction(testFramework));
+		add(new RemoveUserFromProjectAction(testFramework));
+		add(new UpdateProjectAction(testFramework));
+		add(new PingAction(testFramework));
+		add(new UpdateRevisionAction(testFramework));
 	}
 	
 	public Action createAction() {

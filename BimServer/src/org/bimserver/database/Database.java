@@ -466,4 +466,13 @@ public class Database implements BimDatabase {
 	public MetaDataManager getMetaDataManager() {
 		return metaDataManager;
 	}
+	
+	public BimDatabaseSession getDatabaseSession(long txnid) {
+		for (BimDatabaseSession databaseSession : sessions) {
+			if (databaseSession.getTransactionId() == txnid) {
+				return databaseSession;
+			}
+		}
+		return null;
+	}
 }

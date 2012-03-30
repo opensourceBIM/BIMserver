@@ -42,10 +42,12 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.ObjectIDMException;
+import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -113,51 +115,52 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
 			EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
 			try {
-				ifcSerializer.init(newModel, null, bimServer.getPluginManager(), bimServer.getPluginManager().requireIfcEngine().createIfcEngine());
-				byte[] bytes = ifcSerializer.getBytes();
-				IfcEngine ifcEngine = bimServer.getPluginManager().requireIfcEngine().createIfcEngine();
-				ifcEngine.init();
 				try {
-					IfcEngineModel ifcEngineModel = ifcEngine.openModel(bytes);
-					try {
-						Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(clashDetectionSettings.getMargin());
-						
-						Set<EidClash> eidClashes = new HashSet<EidClash>();
-						for (IfcEngineClash clash : clashes) {
-							EidClash eidClash = StoreFactory.eINSTANCE.createEidClash();
-							eidClash.setEid1(clash.getEid1());
-							eidClash.setEid2(clash.getEid2());
-							eidClash.setName1(clash.getName1());
-							eidClash.setName2(clash.getName2());
-							eidClash.setType1(clash.getType1());
-							eidClash.setType2(clash.getType2());
-							eidClashes.add(eidClash);
+					ifcSerializer.init(newModel, null, bimServer.getPluginManager(), bimServer.getPluginManager().requireIfcEngine().createIfcEngine());
+					byte[] bytes = ifcSerializer.getBytes();
+					Plugin plugin = bimServer.getPluginManager().getPlugin("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
+					if (plugin != null && plugin instanceof IfcEnginePlugin) {
+						IfcEnginePlugin ifcEnginePlugin = (IfcEnginePlugin)plugin;
+						IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine();
+						ifcEngine.init();
+						IfcEngineModel ifcEngineModel = ifcEngine.openModel(bytes);
+						try {
+							Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(clashDetectionSettings.getMargin());
+							
+							Set<EidClash> eidClashes = new HashSet<EidClash>();
+							for (IfcEngineClash clash : clashes) {
+								EidClash eidClash = StoreFactory.eINSTANCE.createEidClash();
+								eidClash.setEid1(clash.getEid1());
+								eidClash.setEid2(clash.getEid2());
+								eidClash.setName1(clash.getName1());
+								eidClash.setName2(clash.getName2());
+								eidClash.setType1(clash.getType1());
+								eidClash.setType2(clash.getType2());
+								eidClashes.add(eidClash);
+							}
+							
+							// Store in cache
+							bimServer.getClashDetectionCache().storeClashDetection(clashDetectionSettings, eidClashes);
+							
+							for (EidClash clash : eidClashes) {
+								IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
+								clash.setName1(object1.getName());
+								clash.setType1(object1.eClass().getName());
+								clash.setRevision1(oidToRoidMap.get(clash.getEid1()));
+								IfcRoot object2 = (IfcRoot) newModel.get(clash.getEid2());
+								clash.setName2(object2.getName());
+								clash.setType2(object2.eClass().getName());
+								clash.setRevision2(oidToRoidMap.get(clash.getEid2()));
+							}
+							return (Set<T>) eidClashes;
+						} finally {
+							ifcEngineModel.close();
+							ifcEngine.close();
 						}
-						
-						// Store in cache
-						bimServer.getClashDetectionCache().storeClashDetection(clashDetectionSettings, eidClashes);
-						
-						for (EidClash clash : eidClashes) {
-							IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
-							clash.setName1(object1.getName());
-							clash.setType1(object1.eClass().getName());
-							clash.setRevision1(oidToRoidMap.get(clash.getEid1()));
-							IfcRoot object2 = (IfcRoot) newModel.get(clash.getEid2());
-							clash.setName2(object2.getName());
-							clash.setType2(object2.eClass().getName());
-							clash.setRevision2(oidToRoidMap.get(clash.getEid2()));
-						}
-						return (Set<T>) eidClashes;
-					} finally {
-						ifcEngineModel.close();
 					}
 				} catch (PluginException e) {
 					LOGGER.error("", e);
-				} finally {
-					ifcEngine.close();
 				}
-			} catch (PluginException e) {
-				LOGGER.error("", e);
 			} catch (SerializerException e) {
 				LOGGER.error("", e);
 			}

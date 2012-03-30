@@ -26,4 +26,8 @@ public class BimDeadlockException extends Exception {
 	public BimDeadlockException(LockConflictException e) {
 		super(e);
 	}
+	
+	public LockConflictException getLockException() {
+		return (LockConflictException) getCause();
+	}
 }

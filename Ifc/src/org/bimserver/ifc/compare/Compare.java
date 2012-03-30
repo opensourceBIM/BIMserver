@@ -205,6 +205,9 @@ public class Compare {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
+		for (CompareContainer compareContainer : map.values()) {
+			result.getItems().add(compareContainer);
+		}
 		return result;
 	}
 

@@ -74,4 +74,9 @@ public class BerkeleyTransaction implements BimTransaction {
 			throw new BimDatabaseException(e);
 		}
 	}
+
+	@Override
+	public long getId() {
+		return transaction.getId();
+	}
 }

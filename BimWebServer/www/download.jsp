@@ -1,3 +1,5 @@
+<%@page import="org.codehaus.jettison.json.JSONTokener"%>
+<%@page import="org.codehaus.jettison.json.JSONObject"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
@@ -8,8 +10,9 @@
 <div class="checkoutMessage"></div>
 <%
 	long roid = -1;
-	if (request.getParameter("roid") != null) {
-		roid = Long.parseLong(request.getParameter("roid"));
+	JSONObject data = new JSONObject(new JSONTokener(request.getParameter("data")));
+	if (data.has("roid")) {
+		roid = data.getLong("roid");
 	}
 	SRevision revision = null;
 	if (roid != -1) {
@@ -23,11 +26,10 @@
 	if (revision != null) {
 		poid = revision.getProjectId();
 	}
-	if (request.getParameter("poid") != null) {
-		poid = Long.parseLong(request.getParameter("poid"));
+	if (request.getParameter("poid") != null && data.has("poid")) {
+		poid = data.getLong("poid");
 	}
 	boolean userHasCheckinRights = poid == -1 || loginManager.getService().userHasCheckinRights(poid);
-	String multiple = request.getParameter("multiple");
 %>
 <div class="message"></div>
 <div class="progressbar"></div>
@@ -53,8 +55,13 @@
 </div>
 <script>
 var userHasCheckinRights = <%=userHasCheckinRights%>;
+var data = eval('(<%=data%>)');
 
 function checkRevisionsCheckoutButton(event) {
+	if (!data.allowCheckouts) {
+		$(".checkoutButton").hide();
+		return;
+	}
 	var val = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	$(".downloadpopup .checkoutButton").attr("disabled", (val != "Ifc2x3" && val != "IfcXML") || !userHasCheckinRights);
 	if (!userHasCheckinRights) {
@@ -66,22 +73,7 @@ function checkRevisionsCheckoutButton(event) {
 	}
 }
 
-var multiple = [];
-<%
-for (Object key : request.getParameterMap().keySet()) {
-	String keyString = (String) key;
-	if (keyString.startsWith("download_")) {
-		if (!request.getParameter(keyString).equals("[off]")) {
-			%>
-			multiple.push(<%=Long.parseLong(request.getParameter(keyString))%>);
-			<%
-		}
-	}
-}
-%>
-
 var laid;
-var roid = <%=roid%>;
 
 function update() {
 	$.ajax({
@@ -140,44 +132,20 @@ function start(url) {
 }
 
 function initCheckout() {
-	var url = createUrl();
-	url += "&checkout=Checkout";
+	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	data.downloadType = "checkout";
+	var url = 'initiatedownload.jsp?data=' + JSON.stringify(data);
 	start(url);
 }
 
 function initDownload() {
-	var url = createUrl();
-	url += "&download=Download";
+	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	var url = 'initiatedownload.jsp?data=' + JSON.stringify(data);
 	start(url);
-}
-
-function createUrl() {
-	var url = "initiatedownload.jsp?a=1";
-	if (roid != -1) {
-		url += "&roid=" + roid;
-	}
-	url += "&serializerName=" + $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-<%
-	if (request.getParameter("classes") != null) {
-		%>url += "&classes=<%=request.getParameter("classes")%>&"<%
-	} else if (request.getParameter("guids") != null) {
-		%>url += "&guids=<%=request.getParameter("guids")%>&"<%
-	} else if (request.getParameter("oids") != null) {
-		%>url += "&oids=<%=request.getParameter("oids")%>&"<%
-	}
-%>
-	if (multiple.length > 0) {
-		url += "&multiple=true&";
-		for (index in multiple) {
-			url += "download_" + index + "=" + multiple[index] + "&";
-		}
-	}
-	return url;
 }
 
 $(function(){
 	$(".downloadpopup .revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
-
 	$(".downloadpopup .downloadButton").click(initDownload);
 	$(".downloadpopup .checkoutButton").click(initCheckout);
 

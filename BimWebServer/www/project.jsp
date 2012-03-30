@@ -106,7 +106,7 @@
 </div>
 <div id="checkinpopup"></div>
 <div id="downloadcheckoutpopup"></div>
-<div class="content">
+<div class="content project">
 	<%
 		if (request.getParameter("message") != null) {
 					out.println("<div class=\"error\">" + request.getParameter("message") + "</div>");
@@ -124,7 +124,7 @@
 		Project details (<%=project.getName()%>)
 	</h1>
 	<div class="tabber" id="projecttabber">
-		<div class="tabbertab" id="detailstab" title="Details">
+		<div class="tabbertab projectdetails" id="detailstab" title="Details">
 			<%
 				if (project.getRevisions().isEmpty()) {
 							if (userHasCheckinRights) {
@@ -632,11 +632,17 @@ if (revisions.size() > 0) {
 				height: 300,
 				modal: true
 			});
-			var x = "";
-			$(".treeselect").each(function(){
-				x += $(this).attr("name") + "=" + $(this).val() + "&";
+			var roids = [];
+			$(".projectdetails .treeselect").each(function(){
+				roids.push($(this).val());
 			});
-			$("#downloadcheckoutpopup").load("download.jsp?poid=<%=poid%>&multiple=true&" + x);
+
+			var params = {
+				downloadType: "multiple",
+				poid: <%=poid%>,
+				roids: roids
+			};
+			$("#downloadcheckoutpopup").load("download.jsp?data=" + JSON.stringify(params));
 		});
 
 		$("#revisiontablink").click(function (){
@@ -654,6 +660,8 @@ if (revisions.size() > 0) {
 				$(".inactivecheckoutrow").hide();
 			}
 		}
+		$("#showinactivecheckouts").click(updateInactiveCheckouts);
+		updateInactiveCheckouts();
 		
 		var showCheckinPopup = function() {
 			$("#checkinpopup").dialog({
@@ -667,7 +675,13 @@ if (revisions.size() > 0) {
 		
 		$(".downloadCheckoutButton").click(function(event){
 			event.preventDefault();
-			showDownloadCheckoutPopup("download.jsp?poid=<%=poid%>&roid=" + $(this).attr("revisionoid"));
+			var params = {
+				downloadType: "single",
+				allowCheckouts: true,
+				poid: <%=poid%>,
+				roid: $(this).attr("revisionoid")
+			};
+			showDownloadCheckoutPopup("download.jsp?data=" + encodeURIComponent(JSON.stringify(params)));
 		});
 		
 		$(".checkinlink").click(function(event){

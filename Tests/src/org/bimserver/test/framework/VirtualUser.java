@@ -60,7 +60,7 @@ public class VirtualUser extends Thread {
 		running = true;
 		int nrRuns = 0;
 		try {
-			while (running && nrRuns < this.nrRuns) {
+			while (running && (this.nrRuns == -1 || nrRuns < this.nrRuns)) {
 				try {
 					if (!bimServerClient.getServiceInterface().isLoggedIn()) {
 						new LoginAction(testFramework).execute(this);

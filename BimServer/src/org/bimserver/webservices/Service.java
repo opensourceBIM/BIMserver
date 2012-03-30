@@ -22,6 +22,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -281,7 +283,10 @@ public class Service implements ServiceInterface {
 				if (fileName.contains("\\")) {
 					fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 				}
-				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(new File(userDirIncoming, fileName)));
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+				fileName = dateFormat.format(new Date()) + "-" + fileName;
+				File file = new File(userDirIncoming, fileName);
+				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
 			}
 			try {
 				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerName);

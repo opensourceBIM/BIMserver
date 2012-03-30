@@ -24,6 +24,7 @@
 		SCompareIdentifier sCompareIdentifier = SCompareIdentifier.valueOf(request.getParameter("identifier"));
 		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
 %>
+<div id="downloadcheckoutpopup"></div>
 Back to 
 <a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
   <a href="#" id="emaillink">E-mail summary</a>
@@ -42,27 +43,7 @@ Back to
   	</form>
   </div>
 <%= CompareWriter.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, project, true) %>
-
-<form action="<%=request.getContextPath() %>/download" method="get">
-Download: 
-<input type="hidden" name="compare" value="true" />
-<input type="hidden" name="type" value="<%=request.getParameter("type") %>" />
-<input type="hidden" name="identifier" value="<%=request.getParameter("identifier") %>" />
-<input type="hidden" name="roid1" value="<%=request.getParameter("roid1") %>" />
-<input type="hidden" name="roid2" value="<%=request.getParameter("roid2") %>" />
-<select name="resultType">
-	<%
-		for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
-	%>
-	<option value="<%=serializer.getName()%>"
-		<%=serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
-	<%
-		}
-	%>
-</select> <label for="zip">Zip</label> <input type="checkbox" name="zip" id="zip" />
-		<input name="download" type="submit" value="Download">
-</form>
-
+<a href="#" class="downloadCheckoutButton">Download</a>
 <script>
 	$(function(){
 		$("#emailform").hide();
@@ -74,6 +55,24 @@ Download:
 			$("#emaillink").hide();
 			$("#emailform").show();
 			$("#address").focus();
+		});
+		$(".downloadCheckoutButton").click(function(event){
+			event.preventDefault();
+			$("#downloadcheckoutpopup").dialog({
+				title: "Download/Checkout",
+				width: 600,
+				height: 300,
+				modal: true
+			});
+			var params = {
+				downloadType: "compare",
+				type: '<%=request.getParameter("type")%>',
+				poid: <%=poid%>,
+				roid1: <%=roid1%>,
+				roid2: <%=roid2%>,
+				identifier: '<%=request.getParameter("identifier")%>'
+			};
+			$("#downloadcheckoutpopup").load("download.jsp?data=" + JSON.stringify(params));
 		});
 		$("#emailcompareform").submit(function(){
 			$("#emailcompareform").hide();
