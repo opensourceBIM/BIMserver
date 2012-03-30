@@ -27,7 +27,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcLengthMeasure;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.log.AccessMethod;

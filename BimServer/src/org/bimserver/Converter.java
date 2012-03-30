@@ -25,24 +25,19 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.xsd.XSDComplexTypeDefinition;
 import org.eclipse.xsd.XSDEnumerationFacet;
-import org.eclipse.xsd.XSDModelGroup;
-import org.eclipse.xsd.XSDParticle;
 import org.eclipse.xsd.XSDSchema;
 import org.eclipse.xsd.XSDSimpleTypeDefinition;
-import org.eclipse.xsd.XSDTerm;
 import org.eclipse.xsd.XSDTypeDefinition;
 import org.eclipse.xsd.util.XSDResourceFactoryImpl;
 import org.eclipse.xsd.util.XSDResourceImpl;
 
 public class Converter {
-	private EcorePackage ecorePackage = EcorePackage.eINSTANCE;
 	private EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
 	private EPackage ePackage;
 
@@ -115,11 +110,6 @@ public class Converter {
 
 	private void processComplexType(XSDComplexTypeDefinition xsdTypeDefinition) {
 		EClass eClass = ecoreFactory.createEClass();
-		XSDParticle xsdParticle = (XSDParticle) xsdTypeDefinition.getContent();
-		XSDModelGroup modelGroup = (XSDModelGroup) xsdParticle.getTerm();
-		for (XSDParticle particle : modelGroup.getParticles()) {
-			XSDTerm particleTerm = particle.getTerm();
-		}
 		eClass.setName(xsdTypeDefinition.getName());
 		ePackage.getEClassifiers().add(eClass);
 	}

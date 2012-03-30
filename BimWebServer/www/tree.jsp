@@ -27,11 +27,6 @@ Project <select id="projectSelect">
 	}
 %>
 </select>
-
-
-
-
-</select>
 <%
 	long roid = 83241;
 	String[] types = new String[]{"IfcSite", "IfcBuilding", "IfcBuildingStorey", "IfcWall", "IfcDoor", "IfcWallStandardCase", "IfcWindow", "IfcOpeningElement", "IfcSlab", "IfcRoof", "IfcSpace"};

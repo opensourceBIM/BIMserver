@@ -121,6 +121,6 @@
 </tr>
 </table>
 </form>
-</div>
 </fieldset>
+</div>
 <%@ include file="footer.jsp"%>

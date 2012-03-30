@@ -21,7 +21,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
 
-public class UpdateSerializerDatabaseAction extends UpdateDatabaseAction {
+public class UpdateSerializerDatabaseAction extends UpdateDatabaseAction<Serializer> {
 
 	public UpdateSerializerDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Serializer serializer) {
 		super(bimDatabaseSession, accessMethod, serializer);
