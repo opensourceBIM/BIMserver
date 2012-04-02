@@ -81,10 +81,12 @@
 	<td><input type="text" name="name" value="<%= request.getParameter("name") != null ? request.getParameter("name") : "" %>"/></td>
 </tr>
 <% if (request.getParameter("parentoid") == null) { %>
+<!--
 <tr>
 	<td><label for="clashdetection">Automatic clashdetection</label></td>
 	<td><input id="clashdetection" name="clashdetection" type="checkbox" class="checkbox" <%=request.getParameter("clashdetection") == null ? "" : "checked=\"checked\"" %>/></td>
 </tr>
+-->
 <tr class="clashdetectionrow">
 	<td class="indent first">Margin</td>
 	<td class="indent"><input type="text" name="margin" value="<%=request.getParameter("margin") != null ? request.getParameter("margin") : "0" %>"/></td>

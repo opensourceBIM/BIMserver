@@ -23,8 +23,29 @@
 <form>
 <table>
 	<tr>
-		<td>Margin</td>
-		<td><input type="text" id="margin" name="margin"
+		<td>
+			<h1>The clashdetection function of BIMserver is obsolete.</h1>
+			<p>A clash detection function is a typical function for analyzing a BIM model. The BIMserver team thinks 
+			this should not be a <strong>core</strong> function of a BIMserver. Therefore this function is not maintained. In the next release this function will be removed from the BIMserver core.<br/>
+			The BIMserver.org project is an open source project. We believe we can only take these kind of decisions with full commitment from our users. 
+			If you want to respond to this decision, please do so at <a href="http://support.bimserver.org/" target="_blank">our forum<a/>.<br/>
+			However, we strongly believe clashdetection (and many other BIM analyzes) should be performed server-side. 
+			Therefore the clashdetection function will become a server-side extension of BIMserver in one of the next releases.
+			For more information about extensions, please have a look at <a href="http://extend.bimserver.org" target="_blank">the plugins and extensions page<a/>.<br/>
+			<br/>
+			<small>In the meanwhile, for client-side, free of charge clashdection on IFC, we advice to use <a href="http://www.teklabimsight.com/" target="_blank">Tekla BIMsight<a/>.
+			We strongly believe a clashdetection function should be server-side and understand that a client side application is only a solution on the short term.</small>
+			</p>
+			<br/><br/>			
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h1>Clashdetection:</h1>
+		</td>
+	<tr>
+	<tr>
+		<td>Margin/overlap: <input type="text" id="margin" name="margin"
 			value="<%=request.getParameter("margin") != null ? request.getParameter("margin") : defaultClashDetectionSettings.getMargin()%>" /></td>
 	</tr>
 </table>
