@@ -449,7 +449,7 @@ if (revisions.size() > 0) {
 				<jsp:param name="poid" value="<%=poid %>" />
 				<jsp:param name="roid" value="<%=lastRevision.getOid() %>" />
 			</jsp:include></div>
-		<div id="clashes" class="tabbertab" title="Clashes">
+		<div id="clashes" class="tabbertab" title="Clashes (obsolete)">
 			<div id="clashdetectiondiv"></div>
 		</div>
 		<%
