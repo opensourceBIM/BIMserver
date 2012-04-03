@@ -23,6 +23,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
 import org.bimserver.interfaces.objects.SCheckinResult;
+import org.bimserver.interfaces.objects.SCheckinStatus;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -31,8 +32,11 @@ import org.bimserver.test.framework.VirtualUser;
 
 public class CheckinAction extends Action {
 
-	public CheckinAction(TestFramework testFramework) {
+	private final CheckinSettings settings;
+
+	public CheckinAction(TestFramework testFramework, CheckinSettings settings) {
 		super(testFramework);
+		this.settings = settings;
 	}
 
 	@Override
@@ -52,8 +56,8 @@ public class CheckinAction extends Action {
 		} else {
 			return;
 		}
-		boolean sync = getRandom().nextBoolean();
-		boolean merge = false;// getRandom().nextBoolean();
+		boolean sync = !settings.shouldAsync();
+		boolean merge = settings.shouldMerge();
 		virtualUser.getLogger().info("Checking in new revision on project " + project.getName() + " (" + randomFile.getName() + ") " + "sync: " + sync + ", merge: " + merge);
 		Integer checkinId = virtualUser.getBimServerClient().getServiceInterface()
 				.checkin(project.getOid(), randomString(), deserializerName, randomFile.length(), new DataHandler(dataSource), merge, sync);
@@ -62,7 +66,7 @@ public class CheckinAction extends Action {
 		} else {
 			while (true) {
 				SCheckinResult checkinState = virtualUser.getBimServerClient().getServiceInterface().getCheckinState(checkinId);
-				if (checkinState.getProgress() == 100) {
+				if (checkinState.getStatus() == SCheckinStatus.CH_FINISHED || checkinState.getStatus() == SCheckinStatus.CH_ERROR) {
 					break;
 				}
 				try {

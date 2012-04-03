@@ -25,7 +25,11 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bimserver.BimServer;
+import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -35,7 +39,12 @@ public class LongActionManager {
 	private final BiMap<Integer, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
 	private int actionNumberCounter = 0;
+	private final BimServer bimServer;
 
+	public LongActionManager(BimServer bimServer) {
+		this.bimServer = bimServer;
+	}
+	
 	public synchronized void start(final LongAction<?> longAction) throws CannotBeScheduledException {
 		if (running) {
 			Thread thread = new Thread(new Runnable() {
@@ -60,9 +69,11 @@ public class LongActionManager {
 	}
 
 	public synchronized List<org.bimserver.models.store.LongAction> getActiveLongActions() {
-		List<org.bimserver.models.store.LongAction> result = new ArrayList<org.bimserver.models.store.LongAction>();
-		for (LongAction<?> longAction : actions.values()) {
-			org.bimserver.models.store.LongAction storeLongAction = null;
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			List<org.bimserver.models.store.LongAction> result = new ArrayList<org.bimserver.models.store.LongAction>();
+			for (LongAction<?> longAction : actions.values()) {
+				org.bimserver.models.store.LongAction storeLongAction = null;
 //			if (longAction instanceof LongCheckinAction) {
 //				LongCheckinAction longCheckinAction = (LongCheckinAction)longAction;
 //				org.bimserver.models.store.LongCheckinAction storeLongCheckinAction = StoreFactory.eINSTANCE.createLongCheckinAction();
@@ -70,20 +81,24 @@ public class LongActionManager {
 //			} else {
 				storeLongAction = StoreFactory.eINSTANCE.createLongAction();
 //			}
-			storeLongAction.setIdentification(longAction.getDescription());
-			storeLongAction.setUser(longAction.getUser());
-			storeLongAction.setStart(longAction.getStart());
-			storeLongAction.setUsername(longAction.getUser().getUsername());
-			storeLongAction.setName(longAction.getUser().getName());
-			result.add(storeLongAction);
-		}
-		Collections.sort(result, new Comparator<org.bimserver.models.store.LongAction>() {
-			@Override
-			public int compare(org.bimserver.models.store.LongAction o1, org.bimserver.models.store.LongAction o2) {
-				return o1.getStart().compareTo(o2.getStart());
+				User user = session.get(StorePackage.eINSTANCE.getUser(), longAction.getUoid(), false, null);
+				storeLongAction.setIdentification(longAction.getDescription());
+				storeLongAction.setUser(user);
+				storeLongAction.setStart(longAction.getStart());
+				storeLongAction.setUsername(longAction.getUserUsername());
+				storeLongAction.setName(longAction.getUserName());
+				result.add(storeLongAction);
 			}
-		});
-		return result;
+			Collections.sort(result, new Comparator<org.bimserver.models.store.LongAction>() {
+				@Override
+				public int compare(org.bimserver.models.store.LongAction o1, org.bimserver.models.store.LongAction o2) {
+					return o1.getStart().compareTo(o2.getStart());
+				}
+			});
+			return result;
+		} finally {
+			session.close();
+		}
 	}
 
 	public synchronized LongAction<?> getLongAction(int id) {

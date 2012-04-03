@@ -525,10 +525,12 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				long[] ownerTxnIds = e.getLockException().getOwnerTxnIds();
 				for (long txnid : ownerTxnIds) {
 					BimDatabaseSession databaseSession = database.getDatabaseSession(txnid);
-					LOGGER.info("Owner: " + databaseSession);
-					StackTraceElement[] stackTraceElements = databaseSession.getStackTrace();
-					for (StackTraceElement stackTraceElement : stackTraceElements) {
-		                LOGGER.info("\tat " + stackTraceElement);
+					if (databaseSession != null) {
+						LOGGER.info("Owner: " + databaseSession);
+						StackTraceElement[] stackTraceElements = databaseSession.getStackTrace();
+						for (StackTraceElement stackTraceElement : stackTraceElements) {
+							LOGGER.info("\tat " + stackTraceElement);
+						}
 					}
 				}
 			} catch (BimDatabaseException e) {
