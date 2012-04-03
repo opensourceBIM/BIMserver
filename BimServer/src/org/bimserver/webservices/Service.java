@@ -262,7 +262,15 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer checkin(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		final BimDatabaseSession session = bimServer.getDatabase().createSession();
+		final BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		String username = "Unknown";
+		String userUsername = "Unknown";
+		try {
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+			username = user.getName();
+		} finally {
+			session.close();
+		}
 		try {
 			File homeDirIncoming = new File(bimServer.getHomeDir(), "incoming");
 			if (!homeDirIncoming.isDirectory()) {
@@ -299,12 +307,14 @@ public class Service implements ServiceInterface {
 					throw new UserException(e);
 				}
 				IfcModelInterface model = deserializer.read(inputStream, fileName, false, fileSize);
+				if (model == null) {
+					System.out.println();
+				}
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
 				}
-				User user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, null, accessMethod, poid, currentUoid, model, comment, merge, true);
-				LongCheckinAction longAction = new LongCheckinAction(bimServer, user, checkinDatabaseAction);
+				LongCheckinAction longAction = new LongCheckinAction(bimServer, username, userUsername, currentUoid, checkinDatabaseAction);
 				bimServer.getLongActionManager().start(longAction);
 				if (sync) {
 					longAction.waitForCompletion();
@@ -373,7 +383,7 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
-		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, user, downloadParameters, currentUoid, accessMethod);
+		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, user.getName(), user.getUsername(), downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
 		} catch (CannotBeScheduledException e) {
@@ -661,7 +671,7 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
-		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, user, downloadParameters, currentUoid, accessMethod);
+		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, user.getName(), user.getUsername(), downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
 		} catch (Exception e) {

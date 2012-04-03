@@ -231,7 +231,7 @@ public class BimServer {
 			pluginManager.initAllLoadedPlugins();
 			serverStartTime = new GregorianCalendar();
 
-			longActionManager = new LongActionManager();
+			longActionManager = new LongActionManager(this);
 
 			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
 			templateEngine = new TemplateEngine();

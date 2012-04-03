@@ -34,7 +34,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,8 +44,8 @@ public class ClashDetectionLongAction extends LongAction {
 	private final long actingUoid;
 	private final long poid;
 
-	public ClashDetectionLongAction(BimServer bimServer, User user, long actingUoid, long poid) {
-		super(bimServer, user);
+	public ClashDetectionLongAction(BimServer bimServer, String username, String userUsername, long actingUoid, long poid) {
+		super(bimServer, username, userUsername, actingUoid);
 		this.actingUoid = actingUoid;
 		this.poid = poid;
 	}
@@ -127,7 +126,7 @@ public class ClashDetectionLongAction extends LongAction {
 
 	@Override
 	public String getDescription() {
-		return "ClashDetectionLongAction " + getUser().getName();
+		return "ClashDetectionLongAction " + getUserName();
 	}
 
 	@Override

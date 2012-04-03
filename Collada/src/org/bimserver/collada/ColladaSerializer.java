@@ -19,10 +19,13 @@ package org.bimserver.collada;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -92,17 +95,50 @@ import org.slf4j.LoggerFactory;
 
 public class ColladaSerializer extends EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
-	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
+	private static final Map<Class<? extends IfcRoot>, Convertor<? extends IfcRoot>> convertors = new LinkedHashMap<Class<? extends IfcRoot>, Convertor<? extends IfcRoot>>();
+	private final Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private SIPrefix lengthUnitPrefix;
-	private List<String> surfaceStyleIds;
 	private IfcEngineModel ifcEngineModel;
 	private IfcEngineGeometry geometry;
+	private int idCounter;
 
+	private static <T extends IfcRoot> void addConvertor(Convertor<T> convertor) {
+		convertors.put(convertor.getCl(), convertor);
+	}
+	
+	static {
+		addConvertor(new Convertor<IfcRoof>(IfcRoof.class, new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f));
+		addConvertor(new Convertor<IfcSlab>(IfcSlab.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f){
+			@Override
+			public String getMaterialName(Object ifcSlab) {
+				if (ifcSlab == null || !(ifcSlab instanceof IfcSlab) || ((IfcSlab)ifcSlab).getPredefinedType() != IfcSlabTypeEnum.ROOF) {
+					return "IfcSlab";
+				} else {
+					return "IfcRoof";
+				}
+			}
+		});
+		addConvertor(new Convertor<IfcWindow>(IfcWindow.class, new double[] { 0.2f, 0.2f, 0.8f }, 0.2f));
+		addConvertor(new Convertor<IfcDoor>(IfcDoor.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
+		addConvertor(new Convertor<IfcWall>(IfcWall.class, new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f));
+		addConvertor(new Convertor<IfcStair>(IfcStair.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
+		addConvertor(new Convertor<IfcStairFlight>(IfcStairFlight.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
+		addConvertor(new Convertor<IfcFlowSegment>(IfcFlowSegment.class, new double[] { 0.6f, 0.4f, 0.5f }, 1.0f));
+		addConvertor(new Convertor<IfcFurnishingElement>(IfcFurnishingElement.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
+		addConvertor(new Convertor<IfcPlate>(IfcPlate.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
+		addConvertor(new Convertor<IfcMember>(IfcMember.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
+		addConvertor(new Convertor<IfcWallStandardCase>(IfcWallStandardCase.class, new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f));
+		addConvertor(new Convertor<IfcCurtainWall>(IfcCurtainWall.class, new double[] { 0.5f, 0.5f, 0.5f }, 0.5f));
+		addConvertor(new Convertor<IfcRailing>(IfcRailing.class, new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f));
+		addConvertor(new Convertor<IfcColumn>(IfcColumn.class, new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f));
+		addConvertor(new Convertor<IfcBuildingElementProxy>(IfcBuildingElementProxy.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
+		addConvertor(new Convertor<IfcRoot>(IfcRoot.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
+	}
+	
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, ifcEngine);
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
-		this.surfaceStyleIds = new ArrayList<String>();
 		try {
 			EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
 			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
@@ -125,8 +161,9 @@ public class ColladaSerializer extends EmfSerializer {
 		if (getMode() == Mode.BODY) {
 			PrintWriter writer = new UTF8PrintWriter(out);
 			try {
-				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 				writer.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
+//				writer.println("<COLLADA xmlns=\"http://www.collada.org/2008/03/COLLADASchema\" version=\"1.5.0\">");
 
 				writeAssets(writer);
 				writeCameras(writer);
@@ -155,13 +192,15 @@ public class ColladaSerializer extends EmfSerializer {
 	private void writeAssets(PrintWriter out) {
 		out.println("    <asset>");
 		out.println("        <contributor>");
-		out.println("            <author>" + getProjectInfo().getAuthorName() + "</author>");
+		out.println("            <author>" + (getProjectInfo() == null ? "" : getProjectInfo().getAuthorName()) + "</author>");
 		out.println("            <authoring_tool>BIMserver</authoring_tool>");
-		out.println("            <comments>" + getProjectInfo().getDescription() + "</comments>");
+		out.println("            <comments>" + (getProjectInfo() == null ? "" : getProjectInfo().getDescription()) + "</comments>");
 		out.println("            <copyright>Copyright</copyright>");
 		out.println("        </contributor>");
-		out.println("        <created>2006-06-21T21:23:22Z</created>");
-		out.println("        <modified>2006-06-21T21:23:22Z</modified>");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddThh:mm:ssZ");
+		String date = dateFormat.format(new Date());
+		out.println("        <created>" + date + "</created>");
+		out.println("        <modified>" + date + "</modified>");
 		if (lengthUnitPrefix == null) {
 			out.println("        <unit meter=\"1\" name=\"meter\"/>");
 		} else {
@@ -176,88 +215,27 @@ public class ColladaSerializer extends EmfSerializer {
 
 		Set<IfcRoot> convertedObjects = new HashSet<IfcRoot>();
 
-		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
-			convertedObjects.add(ifcRoof);
-			setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
-		}
-		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
-			convertedObjects.add(ifcSlab);
-			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
-			} else {
-				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
+		for (Class<? extends IfcRoot> cl : convertors.keySet()) {
+			Convertor<? extends IfcRoot> convertor = convertors.get(cl);
+			for (IfcRoot object : model.getAll(cl)) {
+				convertedObjects.add(object);
+				setGeometry(out, object, convertor.getMaterialName(object));
 			}
-		}
-		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
-			convertedObjects.add(ifcWindow);
-			setGeometry(out, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
-		}
-		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
-			convertedObjects.add(ifcDoor);
-			setGeometry(out, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
-		}
-		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
-			convertedObjects.add(ifcWall);
-			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
-		}
-		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
-			convertedObjects.add(ifcStair);
-			setGeometry(out, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
-		}
-		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
-			convertedObjects.add(ifcStairFlight);
-			setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
-		}
-		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
-			convertedObjects.add(ifcFlowSegment);
-			setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
-		}
-		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			convertedObjects.add(ifcFurnishingElement);
-			setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
-		}
-		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
-			convertedObjects.add(ifcPlate);
-			setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
-		}
-		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
-			convertedObjects.add(ifcMember);
-			setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
-		}
-		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
-			convertedObjects.add(ifcWall);
-			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
-		}
-		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
-			convertedObjects.add(ifcCurtainWall);
-			setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
-		}
-		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
-			convertedObjects.add(ifcRailing);
-			setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
-		}
-		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
-			convertedObjects.add(ifcColumn);
-			setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
-		}
-		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
-			convertedObjects.add(ifcBuildingElementProxy);
-			setGeometry(out, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
 		}
 		for (IfcRoot ifcRoot : model.getAll(IfcRoot.class)) {
 			if (!convertedObjects.contains(ifcRoot)) {
-				System.out.println("Converted as other: " + ifcRoot);
-				convertedObjects.add(ifcRoot);
-				setGeometry(out, ifcRoot, ifcRoot.getGlobalId().getWrappedValue(), "Other");
+				setGeometry(out, ifcRoot, "Other");
 			}
 		}
 		out.println("	</library_geometries>");
 	}
 
-	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String id, String material) throws IfcEngineException, SerializerException {
-
-		id = id.replace('$', '-'); // XML QNAME may not contain a $ character.
-		id = "_" + id; // XML QNAME may not start with a digit.
+	private String generateId() {
+		return "_" + (idCounter++);
+	}
+	
+	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String material) throws IfcEngineException, SerializerException {
+		String id = generateId();
 
 		boolean materialFound = false;
 		if (ifcRootObject instanceof IfcProduct) {
@@ -267,7 +245,7 @@ public class ColladaSerializer extends EmfSerializer {
 			for (IfcRelDecomposes dcmp : isDecomposedBy) {
 				EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
-					setGeometry(out, relatedObject, relatedObject.getGlobalId().getWrappedValue(), material);
+					setGeometry(out, relatedObject, material);
 				}
 			}
 			if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
@@ -294,7 +272,7 @@ public class ColladaSerializer extends EmfSerializer {
 						if (ifcMaterial != null) {
 							String name = ifcMaterial.getName();
 							String filterSpaces = fitNameForQualifiedName(name);
-							materialFound = surfaceStyleIds.contains(filterSpaces);
+							materialFound = converted.containsKey(filterSpaces);
 							if (materialFound) {
 								material = filterSpaces;
 							}
@@ -305,7 +283,7 @@ public class ColladaSerializer extends EmfSerializer {
 				IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
 				String name = ifcMaterial.getName();
 				String filterSpaces = fitNameForQualifiedName(name);
-				materialFound = surfaceStyleIds.contains(filterSpaces);
+				materialFound = converted.containsKey(filterSpaces);
 				if (materialFound) {
 					material = filterSpaces;
 				}
@@ -331,10 +309,10 @@ public class ColladaSerializer extends EmfSerializer {
 												IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
 												String name = ss.getName();
 												String filterSpaces = fitNameForQualifiedName(name);
-												materialFound = surfaceStyleIds.contains(filterSpaces);
-												if (materialFound) {
-													material = filterSpaces;
+												if (!converted.containsKey(filterSpaces)) {
+													converted.put(filterSpaces, new HashSet<String>());
 												}
+												converted.get(filterSpaces).add(id);
 											}
 										}
 									}
@@ -356,8 +334,8 @@ public class ColladaSerializer extends EmfSerializer {
 		out.println("	<geometry id=\"" + id + "\" name=\"" + id + "\">");
 		out.println("		<mesh>");
 
-		out.println("			<source id=\"positions\" name=\"positions\">");
-		out.print("				<float_array id=\"positions-array\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
+		out.println("			<source id=\"positions-" + id + "\" name=\"positions\">");
+		out.print("				<float_array id=\"positions-array-" + id + "\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
 
 		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i++) {
 			int index = geometry.getIndex(i) * 3;
@@ -368,7 +346,7 @@ public class ColladaSerializer extends EmfSerializer {
 
 		out.println("				</float_array>");
 		out.println("				<technique_common>");
-		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#positions-array\" stride=\"3\">");
+		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#positions-array-" + id + "\" stride=\"3\">");
 		out.println("						<param name=\"X\" type=\"float\"></param>");
 		out.println("						<param name=\"Y\" type=\"float\"></param>");
 		out.println("						<param name=\"Z\" type=\"float\"></param>");
@@ -376,8 +354,8 @@ public class ColladaSerializer extends EmfSerializer {
 		out.println("				</technique_common>");
 		out.println("			</source>");
 
-		out.println("			<source id=\"normals\" name=\"normals\">");
-		out.print("				<float_array id=\"normals-array\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
+		out.println("			<source id=\"normals-" + id + "\" name=\"normals\">");
+		out.print("				<float_array id=\"normals-array-" + id + "\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
 		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i++) {
 			// Normals will also be scaled in Google Earth ...
 			int index = geometry.getIndex(i) * 3;
@@ -387,7 +365,7 @@ public class ColladaSerializer extends EmfSerializer {
 		}
 		out.println("				</float_array>");
 		out.println("				<technique_common>");
-		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#normals-array\" stride=\"3\">");
+		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#normals-array-" + id + "\" stride=\"3\">");
 		out.println("						<param name=\"X\" type=\"float\"></param>");
 		out.println("						<param name=\"Y\" type=\"float\"></param>");
 		out.println("						<param name=\"Z\" type=\"float\"></param>");
@@ -395,13 +373,13 @@ public class ColladaSerializer extends EmfSerializer {
 		out.println("				</technique_common>");
 		out.println("			</source>");
 
-		out.println("			<vertices id=\"" + id + "-vertices\">");
-		out.println("				<input semantic=\"POSITION\" source=\"#positions\"/>");
-		out.println("				<input semantic=\"NORMAL\" source=\"#normals\"/>");
+		out.println("			<vertices id=\"vertices-" + id + "\">");
+		out.println("				<input semantic=\"POSITION\" source=\"#positions-" + id + "\"/>");
+		out.println("				<input semantic=\"NORMAL\" source=\"#normals-" + id + "\"/>");
 		out.println("			</vertices>");
 
 		out.println("			<triangles count=\"" + (visualisationProperties.getPrimitiveCount()) * 3 + "\" material=\"" + material + "SG\">");
-		out.println("				<input offset=\"0\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
+		out.println("				<input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + id + "\"/>");
 		out.print("				<p>");
 		for (int i = 0; i < visualisationProperties.getPrimitiveCount() * 3; i++) {
 			out.print(i + " ");
@@ -472,20 +450,9 @@ public class ColladaSerializer extends EmfSerializer {
 
 	private void writeEffects(PrintWriter out) {
 		out.println("	<library_effects>");
-		writeEffect(out, "Space", new double[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
-		writeEffect(out, "Roof", new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
-		writeEffect(out, "Slab", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeEffect(out, "Wall", new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
-		writeEffect(out, "Door", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeEffect(out, "Window", new double[] { 0.2f, 0.2f, 0.8f }, 0.2f);
-		writeEffect(out, "Railing", new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
-		writeEffect(out, "Column", new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
-		writeEffect(out, "FurnishingElement", new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
-		writeEffect(out, "CurtainWall", new double[] { 0.5f, 0.5f, 0.5f }, 0.5f);
-		writeEffect(out, "Stair", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeEffect(out, "BuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f);
-		writeEffect(out, "FlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
-		writeEffect(out, "Other", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
+		for (Convertor<? extends IfcRoot> convertor : convertors.values()) {
+			writeEffect(out, convertor.getMaterialName(null), convertor.getColors(), convertor.getOpacity());
+		}
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
 			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
@@ -498,8 +465,6 @@ public class ColladaSerializer extends EmfSerializer {
 						colour = (IfcColourRgb) surfaceColour;
 					}
 					String name = fitNameForQualifiedName(ss.getName());
-					surfaceStyleIds.add(name);
-
 					writeEffect(out, name, new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
 					break;
 				}
@@ -637,56 +602,16 @@ public class ColladaSerializer extends EmfSerializer {
 
 	private void writeMaterials(PrintWriter out) {
 		out.println("	<library_materials>");
-		out.println("		<material id=\"RoofMaterial\" name=\"RoofMaterial\">");
-		out.println("			<instance_effect url=\"#Roof-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"SpaceMaterial\" name=\"SpaceMaterial\">");
-		out.println("			<instance_effect url=\"#Space-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"SlabMaterial\" name=\"SlabMaterial\">");
-		out.println("			<instance_effect url=\"#Slab-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"WallMaterial\" name=\"WallMaterial\">");
-		out.println("			<instance_effect url=\"#Wall-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"WindowMaterial\" name=\"WindowMaterial\">");
-		out.println("			<instance_effect url=\"#Window-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"DoorMaterial\" name=\"DoorMaterial\">");
-		out.println("			<instance_effect url=\"#Door-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"RailingMaterial\" name=\"RailingMaterial\">");
-		out.println("			<instance_effect url=\"#Railing-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"ColumnMaterial\" name=\"ColumnMaterial\">");
-		out.println("			<instance_effect url=\"#Column-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"FurnishingElementMaterial\" name=\"FurnishingElementMaterial\">");
-		out.println("			<instance_effect url=\"#FurnishingElement-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"CurtainWallMaterial\" name=\"CurtainWallMaterial\">");
-		out.println("			<instance_effect url=\"#CurtainWall-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"StairMaterial\" name=\"StairMaterial\">");
-		out.println("			<instance_effect url=\"#Stair-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"FlowSegmentMaterial\" name=\"FlowSegmentMaterial\">");
-		out.println("			<instance_effect url=\"#FlowSegment-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"BuildingElementProxyMaterial\" name=\"BuildingElementProxyMaterial\">");
-		out.println("			<instance_effect url=\"#BuildingElementProxy-fx\"/>");
-		out.println("		</material>");
-		out.println("		<material id=\"OtherMaterial\" name=\"OtherMaterial\">");
-		out.println("			<instance_effect url=\"#Other-fx\"/>");
-		out.println("		</material>");
-
-		for (String surfaceStyleId : surfaceStyleIds) {
-			out.println("		<material id=\"" + surfaceStyleId + "Material\" name=\"" + surfaceStyleId + "Material\">");
-			out.println("			<instance_effect url=\"#" + surfaceStyleId + "-fx\"/>");
-			out.println("		</material>");
+		for (Convertor<? extends IfcRoot> convertor : convertors.values()) {
+			writeMaterial(out, convertor.getMaterialName(null));
 		}
-
 		out.println("	</library_materials>");
+	}
+
+	private void writeMaterial(PrintWriter out, String materialName) {
+		out.println("		<material id=\"" + materialName + "Material\" name=\"" + materialName + "Material\">");
+		out.println("			<instance_effect url=\"#" + materialName + "-fx\"/>");
+		out.println("		</material>");
 	}
 
 	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
@@ -696,67 +621,69 @@ public class ColladaSerializer extends EmfSerializer {
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcProject) {
 				IfcUnitAssignment unitsInContext = ((IfcProject) object).getUnitsInContext();
-				EList<IfcUnit> units = unitsInContext.getUnits();
-				for (IfcUnit unit : units) {
-					if (unit instanceof IfcSIUnit) {
-						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
-						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
-						if (unitType == IfcUnitEnum.LENGTHUNIT) {
-							prefixFound = true;
-							switch (ifcSIUnit.getPrefix()) {
-							case EXA:
-								lengthUnitPrefix = SIPrefix.EXAMETER;
-								break;
-							case PETA:
-								lengthUnitPrefix = SIPrefix.PETAMETER;
-								break;
-							case TERA:
-								lengthUnitPrefix = SIPrefix.TERAMETER;
-								break;
-							case GIGA:
-								lengthUnitPrefix = SIPrefix.GIGAMETER;
-								break;
-							case MEGA:
-								lengthUnitPrefix = SIPrefix.MEGAMETER;
-								break;
-							case KILO:
-								lengthUnitPrefix = SIPrefix.KILOMETER;
-								break;
-							case HECTO:
-								lengthUnitPrefix = SIPrefix.HECTOMETER;
-								break;
-							case DECA:
-								lengthUnitPrefix = SIPrefix.DECAMETER;
-								break;
-							case DECI:
-								lengthUnitPrefix = SIPrefix.DECIMETER;
-								break;
-							case CENTI:
-								lengthUnitPrefix = SIPrefix.CENTIMETER;
-								break;
-							case MILLI:
-								lengthUnitPrefix = SIPrefix.MILLIMETER;
-								break;
-							case MICRO:
-								lengthUnitPrefix = SIPrefix.MICROMETER;
-								break;
-							case NANO:
-								lengthUnitPrefix = SIPrefix.NANOMETER;
-								break;
-							case PICO:
-								lengthUnitPrefix = SIPrefix.PICOMETER;
-								break;
-							case FEMTO:
-								lengthUnitPrefix = SIPrefix.FEMTOMETER;
-								break;
-							case ATTO:
-								lengthUnitPrefix = SIPrefix.ATTOMETER;
-								break;
-							case NULL:
-								lengthUnitPrefix = SIPrefix.METER;
+				if (unitsInContext != null) {
+					EList<IfcUnit> units = unitsInContext.getUnits();
+					for (IfcUnit unit : units) {
+						if (unit instanceof IfcSIUnit) {
+							IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
+							IfcUnitEnum unitType = ifcSIUnit.getUnitType();
+							if (unitType == IfcUnitEnum.LENGTHUNIT) {
+								prefixFound = true;
+								switch (ifcSIUnit.getPrefix()) {
+								case EXA:
+									lengthUnitPrefix = SIPrefix.EXAMETER;
+									break;
+								case PETA:
+									lengthUnitPrefix = SIPrefix.PETAMETER;
+									break;
+								case TERA:
+									lengthUnitPrefix = SIPrefix.TERAMETER;
+									break;
+								case GIGA:
+									lengthUnitPrefix = SIPrefix.GIGAMETER;
+									break;
+								case MEGA:
+									lengthUnitPrefix = SIPrefix.MEGAMETER;
+									break;
+								case KILO:
+									lengthUnitPrefix = SIPrefix.KILOMETER;
+									break;
+								case HECTO:
+									lengthUnitPrefix = SIPrefix.HECTOMETER;
+									break;
+								case DECA:
+									lengthUnitPrefix = SIPrefix.DECAMETER;
+									break;
+								case DECI:
+									lengthUnitPrefix = SIPrefix.DECIMETER;
+									break;
+								case CENTI:
+									lengthUnitPrefix = SIPrefix.CENTIMETER;
+									break;
+								case MILLI:
+									lengthUnitPrefix = SIPrefix.MILLIMETER;
+									break;
+								case MICRO:
+									lengthUnitPrefix = SIPrefix.MICROMETER;
+									break;
+								case NANO:
+									lengthUnitPrefix = SIPrefix.NANOMETER;
+									break;
+								case PICO:
+									lengthUnitPrefix = SIPrefix.PICOMETER;
+									break;
+								case FEMTO:
+									lengthUnitPrefix = SIPrefix.FEMTOMETER;
+									break;
+								case ATTO:
+									lengthUnitPrefix = SIPrefix.ATTOMETER;
+									break;
+								case NULL:
+									lengthUnitPrefix = SIPrefix.METER;
+									break;
+								}
 								break;
 							}
-							break;
 						}
 					}
 				}

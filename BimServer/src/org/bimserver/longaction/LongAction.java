@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 
 import org.bimserver.BimServer;
-import org.bimserver.models.store.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,14 +32,26 @@ public abstract class LongAction<T extends LongActionKey> {
 	private int progress;
 	private final CountDownLatch latch = new CountDownLatch(1);
 	private final BimServer bimServer;
-	private final User user;
+	private final String username;
+	private final String userUsername;
+	private final long uoid;
 
-	public LongAction(BimServer bimServer, User user) {
+	public LongAction(BimServer bimServer, String username, String userUsername, long uoid) {
 		start = new Date();
+		this.userUsername = userUsername;
+		this.uoid = uoid;
+		this.username = username;
 		this.bimServer = bimServer;
-		this.user = user;
 	}
 
+	public String getUserUsername() {
+		return userUsername;
+	}
+	
+	public long getUoid() {
+		return uoid;
+	}
+	
 	public BimServer getBimServer() {
 		return bimServer;
 	}
@@ -55,8 +66,8 @@ public abstract class LongAction<T extends LongActionKey> {
 		return id;
 	}
 
-	public User getUser() {
-		return user;
+	public String getUserName() {
+		return username;
 	}
 
 	protected void done() {

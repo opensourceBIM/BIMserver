@@ -24,7 +24,6 @@ import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinStatus;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,8 +34,8 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	private CheckinStatus status = CheckinStatus.CH_NONE;
 	private String lastError;
 
-	public LongCheckinAction(BimServer bimServer, User user, CheckinDatabaseAction createCheckinAction) {
-		super(bimServer, user);
+	public LongCheckinAction(BimServer bimServer, String username, String userUsername, long uoid, CheckinDatabaseAction createCheckinAction) {
+		super(bimServer, username, userUsername, uoid);
 		this.checkinDatabaseAction = createCheckinAction;
 	}
 

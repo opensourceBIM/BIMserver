@@ -28,8 +28,8 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.actions.Action;
-import org.bimserver.test.framework.actions.ActionFactory;
 import org.bimserver.test.framework.actions.CheckinAction;
+import org.bimserver.test.framework.actions.CheckinSettings;
 import org.bimserver.test.framework.actions.CreateProjectAction;
 import org.bimserver.test.framework.actions.CreateUserAction;
 import org.bimserver.test.framework.actions.LoginAction;
@@ -41,15 +41,11 @@ public class VirtualUser extends Thread {
 	private final BimServerClient bimServerClient;
 	private final TestFramework testFramework;
 	private final Random random = new Random();
-	private final ActionFactory actionFactory;
 	private volatile boolean running;
 	private final List<String> usernames = new ArrayList<String>();
-	private boolean stopOnException;
-	private int nrRuns;
 
-	public VirtualUser(TestFramework testFramework, BimServerClient bimServerClient, ActionFactory actionFactory, String name) {
+	public VirtualUser(TestFramework testFramework, BimServerClient bimServerClient, String name) {
 		setName(name);
-		this.actionFactory = actionFactory;
 		this.testFramework = testFramework;
 		this.bimServerClient = bimServerClient;
 		LOGGER = LoggerFactory.getLogger(name);
@@ -60,20 +56,31 @@ public class VirtualUser extends Thread {
 		running = true;
 		int nrRuns = 0;
 		try {
-			while (running && (this.nrRuns == -1 || nrRuns < this.nrRuns)) {
+			int nrRunsPerVirtualUser = this.testFramework.getTestConfiguration().getNrRunsPerVirtualUser();
+			while (running && (nrRunsPerVirtualUser == -1 || nrRuns < nrRunsPerVirtualUser)) {
 				try {
 					if (!bimServerClient.getServiceInterface().isLoggedIn()) {
 						new LoginAction(testFramework).execute(this);
 					} else {
-						Action action = actionFactory.createAction();
+						Action action = testFramework.getTestConfiguration().getActionFactory().createAction();
 						action.execute(this);
+					}
+				} catch (UserException e) {
+					e.printStackTrace();
+					LOGGER.info(e.getMessage());
+					if (this.testFramework.getTestConfiguration().isStopOnUserException()) {
+						break;
+					}
+				} catch (ServerException e) {
+					e.printStackTrace();
+					LOGGER.info(e.getMessage());
+					if (this.testFramework.getTestConfiguration().isStopOnServerException()) {
+						break;
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					LOGGER.info(e.getMessage());
-					if (stopOnException) {
-						break;
-					}
+					break;
 				}
 				nrRuns++;
 			}
@@ -105,7 +112,7 @@ public class VirtualUser extends Thread {
 	public SProject getRandomProject() {
 		try {
 			List<SProject> allProjects = bimServerClient.getServiceInterface().getAllProjects();
-			if (allProjects.isEmpty()) {
+			if (allProjects == null || allProjects.isEmpty()) {
 				CreateProjectAction createProjectAction = new CreateProjectAction(testFramework);
 				createProjectAction.execute(this);
 			}
@@ -144,7 +151,7 @@ public class VirtualUser extends Thread {
 	public SRevision getRandomRevision() throws ServerException, UserException {
 		SProject project = getRandomProject();
 		if (project.getLastRevisionId() == -1) {
-			CheckinAction checkinAction = new CheckinAction(testFramework);
+			CheckinAction checkinAction = new CheckinAction(testFramework, new CheckinSettings());
 			checkinAction.execute(this);
 		}
 		project = getBimServerClient().getServiceInterface().getProjectByPoid(project.getOid());
@@ -152,13 +159,5 @@ public class VirtualUser extends Thread {
 			return bimServerClient.getServiceInterface().getRevision(project.getLastRevisionId());
 		}
 		return null;
-	}
-
-	public void setStopOnException(boolean stopOnException) {
-		this.stopOnException = stopOnException;
-	}
-
-	public void setNrRuns(int nrRuns) {
-		this.nrRuns = nrRuns;
 	}
 }

@@ -93,7 +93,7 @@ public class EmfSerializerFactory {
 		return null;
 	}
 	
-	public EmfSerializer create(Project project, User user, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
+	public EmfSerializer create(Project project, String username, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
 		EmfSerializer serializer = get(downloadParameters.getSerializerName());
 		if (serializer != null) {
 			try {
@@ -107,7 +107,7 @@ public class EmfSerializerFactory {
 					projectInfo.setZ(geoTag.getZ());
 					projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
 				}
-				projectInfo.setAuthorName(user.getName());
+				projectInfo.setAuthorName(username);
 				serializer.init(model, projectInfo, pluginManager, ifcEngine);
 			} catch (NullPointerException e) {
 				e.printStackTrace();

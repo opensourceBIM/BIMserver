@@ -17,21 +17,28 @@ package org.bimserver.test.framework;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.ConnectionException;
+import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
-import org.bimserver.test.framework.actions.ActionFactory;
+import org.bimserver.shared.exceptions.ServiceException;
 
 public class VirtualUserFactory {
-	private final RandomBimServerClientFactory randomBimServerClientFactory;
+	private final BimServerClientFactory randomBimServerClientFactory;
 	private final TestFramework testFramework;
-	private ActionFactory actionFactory;
 
-	public VirtualUserFactory(TestFramework testFramework, RandomBimServerClientFactory randomBimServerClientFactory) {
+	public VirtualUserFactory(TestFramework testFramework, BimServerClientFactory randomBimServerClientFactory) {
 		this.testFramework = testFramework;
 		this.randomBimServerClientFactory = randomBimServerClientFactory;
-		this.actionFactory = new ActionFactory(testFramework);
 	}
 
 	public VirtualUser create(String name) {
-		return new VirtualUser(testFramework, randomBimServerClientFactory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"), "localhost"), actionFactory, name);
+		try {
+			return new VirtualUser(testFramework, randomBimServerClientFactory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"), "localhost"), name);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (ConnectionException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
