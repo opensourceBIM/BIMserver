@@ -54,17 +54,17 @@ public class JarBimWebServer {
 			if (arg.startsWith("address=")) {
 				address = arg.substring(8);
 				if (address.startsWith("\"") && address.endsWith("\"")) {
-					address = address.substring(1, address.length() - 2);
+					address = address.substring(1, address.length() - 1);
 				}
 			} else if (arg.startsWith("port=")) {
 				port = arg.substring(5);
 				if (port.startsWith("\"") && port.endsWith("\"")) {
-					port = port.substring(1, port.length() - 2);
+					port = port.substring(1, port.length() - 1);
 				}
 			} else if (arg.startsWith("homedir=")) {
 				homedir = arg.substring(8);
 				if (homedir.startsWith("\"") && homedir.endsWith("\"")) {
-					homedir = homedir.substring(1, homedir.length() - 2);
+					homedir = homedir.substring(1, homedir.length() - 1);
 				}
 			}
 		}
