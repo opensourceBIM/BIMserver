@@ -91,7 +91,7 @@
 			if (lastRevision != null) {
 		%>
 		<li><a id="browserlink" class="link">Browser</a></li>
-		<li><a id="bimsurferlink" class="link">BIMsurfer</a></li>
+<!--		<li><a id="bimsurferlink" class="link">BIMsurfer</a></li>  -->
 		<%
 			}
 		%>
