@@ -91,6 +91,7 @@
 			if (lastRevision != null) {
 		%>
 		<li><a id="browserlink" class="link">Browser</a></li>
+		<li><a id="bimsurferlink" class="link">BIMsurfer</a></li>
 		<%
 			}
 		%>
@@ -634,7 +635,9 @@ if (revisions.size() > 0) {
 			});
 			var roids = [];
 			$(".projectdetails .treeselect").each(function(){
-				roids.push($(this).val());
+				if ($(this).val() != "[off]") {
+					roids.push($(this).val());
+				}
 			});
 
 			var params = {
@@ -727,6 +730,11 @@ if (revisions.size() > 0) {
 
 		$("#browserlink").click(function() {
 			showOverlay("Browser", "browser.jsp?roid=<%=project.getLastRevisionId()%>");
+			return false;
+		});
+
+		$("#bimsurferlink").click(function() {
+			showOverlay("BIMsurfer", "bimsurfer.jsp?roid=<%=project.getLastRevisionId()%>");
 			return false;
 		});
 		updateTreeSelectListeners();

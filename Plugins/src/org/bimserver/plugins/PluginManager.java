@@ -446,8 +446,8 @@ public class PluginManager {
 		return null;
 	}
 
-	public IfcEnginePlugin getIfcEngine(String className, boolean b) {
-		Collection<IfcEnginePlugin> allIfcEngines = getAllIfcEnginePlugins(true);
+	public IfcEnginePlugin getIfcEngine(String className, boolean onlyEnabled) {
+		Collection<IfcEnginePlugin> allIfcEngines = getAllIfcEnginePlugins(onlyEnabled);
 		for (IfcEnginePlugin ifcEnginePlugin : allIfcEngines) {
 			if (ifcEnginePlugin.getClass().getName().equals(className)) {
 				return ifcEnginePlugin;

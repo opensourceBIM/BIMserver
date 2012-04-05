@@ -21,7 +21,6 @@
 		SServerInfo serverInfo = loginManager.getService().getServerInfo();		
 		if (serverInfo.getServerState() == SServerState.RUNNING) {
 			SVersion version = loginManager.getService().getVersion();
-			boolean redirected = false;
 			if (request.getParameter("login") != null) {
 				try {
 					AuthenticationInfo authenticationInfo = new UsernamePasswordAuthenticationInfo(request.getParameter("username"), request.getParameter("password"));
@@ -39,8 +38,8 @@
 							response.sendRedirect(request.getParameter("origurl"));
 						} else {
 							response.sendRedirect("main.jsp");
+							return;
 						}
-						redirected = true;
 					} else {
 						errorMessages.add("Login unsuccessful");
 					}
@@ -62,11 +61,10 @@
 						} else {
 							response.sendRedirect(request.getContextPath() + "/main.jsp");
 						}
-						redirected = true;
+						return;
 					}
 				}
 			}
-			if (!redirected) {
 %>
 <div class="loginwrapper">
 <div class="header">
@@ -103,6 +101,10 @@ if (loginManager.getService().isSettingAllowSelfRegistration()) {
 <a href="resetpassword.jsp">Forgot your password?</a>
 </div>
 <script type="text/javascript">
+$(function(){
+	if ($.browser.msie) {
+		$(".loginwindow").prepend("<span style=\"color: red\">Warning, Internet Explorer is not supported</span>");
+	}
 <%
 	if (request.getParameter("username") != null && !request.getParameter("username").equals("")) {
 		out.println("document.loginForm.password.focus();");		
@@ -110,21 +112,25 @@ if (loginManager.getService().isSettingAllowSelfRegistration()) {
 		out.println("document.loginForm.username.focus();");		
 	}
 %>
+});
 </script>
 <%
-		}
  	} else if (serverInfo.getServerState() == SServerState.NOT_SETUP) {
  		response.sendRedirect("setup.jsp");
+ 		return;
  	} else if (serverInfo.getServerState() == SServerState.MIGRATION_REQUIRED || serverInfo.getServerState() == SServerState.MIGRATION_IMPOSSIBLE) {
  		response.sendRedirect("migrations.jsp");
+ 		return;
  	} else if (serverInfo.getServerState() == SServerState.FATAL_ERROR || serverInfo.getServerState() == SServerState.UNDEFINED) {
  		response.sendRedirect("error.jsp");
+ 		return;
  	} else if (serverInfo.getServerState() == SServerState.FATAL_ERROR) {
  		response.sendRedirect("error.jsp");
+ 		return;
  	}
-	} catch (Exception e) {
-		LoggerFactory.getLogger("login.jsp").error("", e);
-		out.println(e.getMessage());
-	}
+} catch (Exception e) {
+	LoggerFactory.getLogger("login.jsp").error("", e);
+	out.println(e.getMessage());
+}
 %>
 <jsp:include page="footer.jsp" />

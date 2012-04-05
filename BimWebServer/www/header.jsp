@@ -59,19 +59,24 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  					if (request.getQueryString() == null || request.getQueryString().trim().isEmpty()) {
 	 					response.sendRedirect(request.getContextPath() + "/login.jsp?origurl="
 	 							+ URLEncoder.encode(request.getRequestURI(), "UTF-8"));
+	 					return;
  					} else {
 	 					response.sendRedirect(request.getContextPath() + "/login.jsp?origurl="
 	 							+ URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
+	 					return;
  					}
  				}
  			}
  		}
  	} else if (serverInfo.getServerState() == SServerState.NOT_SETUP) {
  		response.sendRedirect("setup.jsp");
+ 		return;
  	} else if (serverInfo.getServerState() == SServerState.MIGRATION_REQUIRED || serverInfo.getServerState() == SServerState.MIGRATION_IMPOSSIBLE) {
  		response.sendRedirect("migrations.jsp");
+ 		return;
  	} else if (serverInfo.getServerState() == SServerState.FATAL_ERROR || serverInfo.getServerState() == SServerState.UNDEFINED) {
  		response.sendRedirect("error.jsp");
+ 		return;
 	}
 %>
 </div>

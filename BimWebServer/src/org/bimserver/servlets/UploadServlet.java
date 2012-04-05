@@ -109,6 +109,7 @@ public class UploadServlet extends HttpServlet {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			try {
 				result.put("error", (e.getMessage() == null ? "Unknown error" : e.getMessage()));
 			} catch (JSONException e1) {

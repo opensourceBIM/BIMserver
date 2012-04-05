@@ -34,7 +34,6 @@ import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;

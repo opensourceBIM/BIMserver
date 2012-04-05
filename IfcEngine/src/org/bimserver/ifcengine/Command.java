@@ -27,7 +27,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Command {
-	CHECK_CONNECTION, OPEN_MODEL, OPEN_MODEL_STREAMING, SET_POSTPROCESSING, FINALIZE_MODELLING, INITIALIZE_MODELLING, GET_INSTANCES, GET_VISUALISATION_PROPERTIES, CLOSE_MODEL, FIND_CLASHES_BY_GUID, FIND_CLASHES_BY_EID, CLOSE, GET_INSTANCE_FROM_EXPRESSID;
+	/*
+	 * DO NOT CHANGE ORDER!!!
+	 */
+	
+	CHECK_CONNECTION, 
+	OPEN_MODEL, 
+	OPEN_MODEL_STREAMING, 
+	SET_POSTPROCESSING, 
+	FINALIZE_MODELLING, 
+	INITIALIZE_MODELLING, 
+	GET_INSTANCES, 
+	GET_VISUALISATION_PROPERTIES, 
+	CLOSE_MODEL, 
+	FIND_CLASHES_BY_GUID, 
+	FIND_CLASHES_BY_EID, 
+	CLOSE, 
+	GET_INSTANCE_FROM_EXPRESSID;
 
 	private static final Map<Byte, Command> map = initMap();
 	private byte id;
@@ -46,7 +62,7 @@ public enum Command {
 	public static Command getCommand(byte id) {
 		return map.get(id);
 	}
-	
+
 	public byte getId() {
 		return id;
 	}
