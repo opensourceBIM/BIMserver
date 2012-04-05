@@ -14,15 +14,15 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
-public class TestCollada {
+public class TestCityGML {
 	public static void main(String[] args) {
-		new TestCollada().start();
+		new TestCityGML().start();
 	}
 
 	private void start() {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
-			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/collada", true);
+			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/gml", true);
 			if (!plugins.isEmpty()) {
 				SerializerPlugin plugin = plugins.iterator().next();
 				EmfSerializer serializer = plugin.createSerializer();
@@ -31,9 +31,9 @@ public class TestCollada {
 					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 					EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(TestFile.AC11.getFile(), true);
+					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\Eindhoven - TUe_model - RevitArch.ifc"), true);
 					serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
-					serializer.writeToFile(new File("output/ac11.dae"));
+					serializer.writeToFile(new File("output/ac11.gml"));
 				}
 			}
 		} catch (PluginException e) {

@@ -25,7 +25,7 @@ import org.bimserver.plugins.PluginManager;
 public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager) throws PluginException {
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcEngine"));
-		pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
+//		pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../SceneJS"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
@@ -33,11 +33,15 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedObjectIDM"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Report1Serializer"));
+		loadIfExists(pluginManager, new File("C:\\Users\\Ruben de Laat\\git\\COBie-plugins"));
+		loadIfExists(pluginManager, new File("../IfcOpenShellPlugin"));
+		loadIfExists(pluginManager, new File("../geobim"));
+	}
+	
+	private static void loadIfExists(PluginManager pluginManager, File file) {
 		try {
-			pluginManager.loadPluginsFromEclipseProject(new File("C:\\Users\\Ruben de Laat\\git\\COBie-plugins"));
-			pluginManager.loadPluginsFromEclipseProject(new File("../IfcOpenShellPlugin"));
-		} catch (Exception e) {
-			// Ignore
+			pluginManager.loadPluginsFromEclipseProject(file);
+		} catch (PluginException e) {
 		}
 	}
 	

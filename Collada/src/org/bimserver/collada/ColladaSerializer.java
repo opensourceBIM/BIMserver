@@ -24,52 +24,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.IfcBuildingElementProxy;
-import org.bimserver.models.ifc2x3.IfcColourOrFactor;
-import org.bimserver.models.ifc2x3.IfcColourRgb;
 import org.bimserver.models.ifc2x3.IfcColumn;
 import org.bimserver.models.ifc2x3.IfcCurtainWall;
 import org.bimserver.models.ifc2x3.IfcDoor;
 import org.bimserver.models.ifc2x3.IfcFlowSegment;
 import org.bimserver.models.ifc2x3.IfcFurnishingElement;
-import org.bimserver.models.ifc2x3.IfcMaterial;
-import org.bimserver.models.ifc2x3.IfcMaterialLayer;
-import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
-import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
-import org.bimserver.models.ifc2x3.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3.IfcMember;
-import org.bimserver.models.ifc2x3.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3.IfcPlate;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
-import org.bimserver.models.ifc2x3.IfcProduct;
-import org.bimserver.models.ifc2x3.IfcProductDefinitionShape;
-import org.bimserver.models.ifc2x3.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRailing;
-import org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial;
-import org.bimserver.models.ifc2x3.IfcRelDecomposes;
-import org.bimserver.models.ifc2x3.IfcRepresentation;
-import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcRoof;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.IfcSIUnit;
-import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3.IfcStair;
 import org.bimserver.models.ifc2x3.IfcStairFlight;
-import org.bimserver.models.ifc2x3.IfcStyledItem;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
 import org.bimserver.models.ifc2x3.IfcUnit;
 import org.bimserver.models.ifc2x3.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3.IfcUnitEnum;
@@ -197,7 +173,7 @@ public class ColladaSerializer extends EmfSerializer {
 		out.println("            <comments>" + (getProjectInfo() == null ? "" : getProjectInfo().getDescription()) + "</comments>");
 		out.println("            <copyright>Copyright</copyright>");
 		out.println("        </contributor>");
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddThh:mm:ssZ");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
 		String date = dateFormat.format(new Date());
 		out.println("        <created>" + date + "</created>");
 		out.println("        <modified>" + date + "</modified>");
@@ -231,110 +207,113 @@ public class ColladaSerializer extends EmfSerializer {
 	}
 
 	private String generateId() {
-		return "_" + (idCounter++);
+		return "" + (idCounter++);
 	}
 	
 	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String material) throws IfcEngineException, SerializerException {
 		String id = generateId();
 
-		boolean materialFound = false;
-		if (ifcRootObject instanceof IfcProduct) {
-			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
-
-			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
-			for (IfcRelDecomposes dcmp : isDecomposedBy) {
-				EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
-				for (IfcObjectDefinition relatedObject : relatedObjects) {
-					setGeometry(out, relatedObject, material);
-				}
+//		boolean materialFound = false;
+//		boolean added = false;
+//		if (ifcRootObject instanceof IfcProduct) {
+//			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
+//
+//			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
+//			for (IfcRelDecomposes dcmp : isDecomposedBy) {
+//				EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
+//				for (IfcObjectDefinition relatedObject : relatedObjects) {
+//					setGeometry(out, relatedObject, material);
+//				}
+//			}
+//			if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
+//				return;
+//			}
+//
+//			Iterator<IfcRelAssociatesMaterial> ramIter = model.getAll(IfcRelAssociatesMaterial.class).iterator();
+//			boolean found = false;
+//			IfcMaterialSelect relatingMaterial = null;
+//			while (!found && ramIter.hasNext()) {
+//				IfcRelAssociatesMaterial ram = ramIter.next();
+//				if (ram.getRelatedObjects().contains(ifcProduct)) {
+//					found = true;
+//					relatingMaterial = ram.getRelatingMaterial();
+//				}
+//			}
+//			if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
+//				IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
+//				IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
+//				if (forLayerSet != null) {
+//					EList<IfcMaterialLayer> materialLayers = forLayerSet.getMaterialLayers();
+//					for (IfcMaterialLayer ml : materialLayers) {
+//						IfcMaterial ifcMaterial = ml.getMaterial();
+//						if (ifcMaterial != null) {
+//							String name = ifcMaterial.getName();
+//							String filterSpaces = fitNameForQualifiedName(name);
+//							materialFound = converted.containsKey(filterSpaces);
+//							if (materialFound) {
+//								material = filterSpaces;
+//							}
+//						}
+//					}
+//				}
+//			} else if (found && relatingMaterial instanceof IfcMaterial) {
+//				IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
+//				String name = ifcMaterial.getName();
+//				String filterSpaces = fitNameForQualifiedName(name);
+//				materialFound = converted.containsKey(filterSpaces);
+//				if (materialFound) {
+//					material = filterSpaces;
+//				}
+//			}
+//
+//			if (!materialFound) {
+//				IfcProductRepresentation representation = ifcProduct.getRepresentation();
+//				if (representation instanceof IfcProductDefinitionShape) {
+//					IfcProductDefinitionShape pds = (IfcProductDefinitionShape) representation;
+//					EList<IfcRepresentation> representations = pds.getRepresentations();
+//					for (IfcRepresentation rep : representations) {
+//						if (rep instanceof IfcShapeRepresentation) {
+//							IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
+//							EList<IfcRepresentationItem> items = sRep.getItems();
+//							for (IfcRepresentationItem item : items) {
+//								EList<IfcStyledItem> styledByItem = item.getStyledByItem();
+//								for (IfcStyledItem sItem : styledByItem) {
+//									EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
+//									for (IfcPresentationStyleAssignment sa : styles) {
+//										EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
+//										for (IfcPresentationStyleSelect pss : styles2) {
+//											if (pss instanceof IfcSurfaceStyle) {
+//												IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
+//												String name = ss.getName();
+//												String filterSpaces = fitNameForQualifiedName(name);
+//												added = true;
+//												if (!converted.containsKey(filterSpaces)) {
+//													converted.put(filterSpaces, new HashSet<String>());
+//												}
+//												converted.get(filterSpaces).add(id);
+//											}
+//										}
+//									}
+//								}
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//
+//		if (!added) {
+			if (!converted.containsKey(material)) {
+				converted.put(material, new HashSet<String>());
 			}
-			if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
-				return;
-			}
-
-			Iterator<IfcRelAssociatesMaterial> ramIter = model.getAll(IfcRelAssociatesMaterial.class).iterator();
-			boolean found = false;
-			IfcMaterialSelect relatingMaterial = null;
-			while (!found && ramIter.hasNext()) {
-				IfcRelAssociatesMaterial ram = ramIter.next();
-				if (ram.getRelatedObjects().contains(ifcProduct)) {
-					found = true;
-					relatingMaterial = ram.getRelatingMaterial();
-				}
-			}
-			if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
-				IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
-				IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
-				if (forLayerSet != null) {
-					EList<IfcMaterialLayer> materialLayers = forLayerSet.getMaterialLayers();
-					for (IfcMaterialLayer ml : materialLayers) {
-						IfcMaterial ifcMaterial = ml.getMaterial();
-						if (ifcMaterial != null) {
-							String name = ifcMaterial.getName();
-							String filterSpaces = fitNameForQualifiedName(name);
-							materialFound = converted.containsKey(filterSpaces);
-							if (materialFound) {
-								material = filterSpaces;
-							}
-						}
-					}
-				}
-			} else if (found && relatingMaterial instanceof IfcMaterial) {
-				IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
-				String name = ifcMaterial.getName();
-				String filterSpaces = fitNameForQualifiedName(name);
-				materialFound = converted.containsKey(filterSpaces);
-				if (materialFound) {
-					material = filterSpaces;
-				}
-			}
-
-			if (!materialFound) {
-				IfcProductRepresentation representation = ifcProduct.getRepresentation();
-				if (representation instanceof IfcProductDefinitionShape) {
-					IfcProductDefinitionShape pds = (IfcProductDefinitionShape) representation;
-					EList<IfcRepresentation> representations = pds.getRepresentations();
-					for (IfcRepresentation rep : representations) {
-						if (rep instanceof IfcShapeRepresentation) {
-							IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
-							EList<IfcRepresentationItem> items = sRep.getItems();
-							for (IfcRepresentationItem item : items) {
-								EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-								for (IfcStyledItem sItem : styledByItem) {
-									EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
-									for (IfcPresentationStyleAssignment sa : styles) {
-										EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
-										for (IfcPresentationStyleSelect pss : styles2) {
-											if (pss instanceof IfcSurfaceStyle) {
-												IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
-												String name = ss.getName();
-												String filterSpaces = fitNameForQualifiedName(name);
-												if (!converted.containsKey(filterSpaces)) {
-													converted.put(filterSpaces, new HashSet<String>());
-												}
-												converted.get(filterSpaces).add(id);
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		if (!converted.containsKey(material)) {
-			converted.put(material, new HashSet<String>());
-		}
-		converted.get(material).add(id);
+			converted.get(material).add(id);
+//		}
 
 		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int)ifcRootObject.getOid());
 		IfcEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
-		out.println("	<geometry id=\"" + id + "\" name=\"" + id + "\">");
+		out.println("	<geometry id=\"geom-" + id + "\" name=\"geom-" + id + "\">");
 		out.println("		<mesh>");
-
-		out.println("			<source id=\"positions-" + id + "\" name=\"positions\">");
+		out.println("			<source id=\"positions-" + id + "\" name=\"positions-" + id + "\">");
 		out.print("				<float_array id=\"positions-array-" + id + "\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
 
 		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i++) {
@@ -344,7 +323,7 @@ public class ColladaSerializer extends EmfSerializer {
 			out.print(geometry.getVertex(index + 1) + " ");
 		}
 
-		out.println("				</float_array>");
+		out.println("</float_array>");
 		out.println("				<technique_common>");
 		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#positions-array-" + id + "\" stride=\"3\">");
 		out.println("						<param name=\"X\" type=\"float\"></param>");
@@ -354,7 +333,7 @@ public class ColladaSerializer extends EmfSerializer {
 		out.println("				</technique_common>");
 		out.println("			</source>");
 
-		out.println("			<source id=\"normals-" + id + "\" name=\"normals\">");
+		out.println("			<source id=\"normals-" + id + "\" name=\"normals-" + id + "\">");
 		out.print("				<float_array id=\"normals-array-" + id + "\" count=\"" + visualisationProperties.getPrimitiveCount() * 3 + "\">");
 		for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i++) {
 			// Normals will also be scaled in Google Earth ...
@@ -363,7 +342,7 @@ public class ColladaSerializer extends EmfSerializer {
 			out.print(geometry.getNormal(index + 2) * 1000.0f + " ");
 			out.print(geometry.getNormal(index + 1) * 1000.0f + " ");
 		}
-		out.println("				</float_array>");
+		out.println("</float_array>");
 		out.println("				<technique_common>");
 		out.println("					<accessor count=\"" + (visualisationProperties.getPrimitiveCount()) + "\" offset=\"0\" source=\"#normals-array-" + id + "\" stride=\"3\">");
 		out.println("						<param name=\"X\" type=\"float\"></param>");
@@ -384,7 +363,7 @@ public class ColladaSerializer extends EmfSerializer {
 		for (int i = 0; i < visualisationProperties.getPrimitiveCount() * 3; i++) {
 			out.print(i + " ");
 		}
-		out.println("				</p>");
+		out.println("</p>");
 		out.println("			</triangles>");
 		out.println("		</mesh>");
 		out.println("	</geometry>");
@@ -416,11 +395,11 @@ public class ColladaSerializer extends EmfSerializer {
 		for (String material : converted.keySet()) {
 			Set<String> ids = converted.get(material);
 			for (String id : ids) {
-				out.println("            <node id=\"" + id + "-node\" name=\"" + id + "-node\">");
+				out.println("            <node id=\"node-" + id + "\" name=\"node-" + id + "\">");
 				out.println("                <rotate sid=\"rotateX\">1 0 0 90</rotate>");
 				out.println("                <rotate sid=\"rotateY\">0 1 0 180</rotate>");
 				out.println("                <rotate sid=\"rotateZ\">0 0 1 90</rotate>");
-				out.println("                <instance_geometry url=\"#" + id + "\">");
+				out.println("                <instance_geometry url=\"#geom-" + id + "\">");
 				out.println("                    <bind_material>");
 				out.println("                        <technique_common>");
 				out.println("                            <instance_material symbol=\"" + material + "SG\" target=\"#" + material + "Material\"/>");
@@ -453,54 +432,53 @@ public class ColladaSerializer extends EmfSerializer {
 		for (Convertor<? extends IfcRoot> convertor : convertors.values()) {
 			writeEffect(out, convertor.getMaterialName(null), convertor.getColors(), convertor.getOpacity());
 		}
-		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
-		for (IfcSurfaceStyle ss : listSurfaceStyles) {
-			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
-			for (IfcSurfaceStyleElementSelect style : styles) {
-				if (style instanceof IfcSurfaceStyleRendering) {
-					IfcSurfaceStyleRendering ssr = (IfcSurfaceStyleRendering) style;
-					IfcColourRgb colour = null;
-					IfcColourOrFactor surfaceColour = ssr.getSurfaceColour();
-					if (surfaceColour instanceof IfcColourRgb) {
-						colour = (IfcColourRgb) surfaceColour;
-					}
-					String name = fitNameForQualifiedName(ss.getName());
-					writeEffect(out, name, new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
-					break;
-				}
-			}
-		}
-
+//		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
+//		for (IfcSurfaceStyle ss : listSurfaceStyles) {
+//			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
+//			for (IfcSurfaceStyleElementSelect style : styles) {
+//				if (style instanceof IfcSurfaceStyleRendering) {
+//					IfcSurfaceStyleRendering ssr = (IfcSurfaceStyleRendering) style;
+//					IfcColourRgb colour = null;
+//					IfcColourOrFactor surfaceColour = ssr.getSurfaceColour();
+//					if (surfaceColour instanceof IfcColourRgb) {
+//						colour = (IfcColourRgb) surfaceColour;
+//					}
+//					String name = fitNameForQualifiedName(ss.getName());
+//					writeEffect(out, name, new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
+//					break;
+//				}
+//			}
+//		}
 		out.println("    </library_effects>");
 	}
 
-	private String fitNameForQualifiedName(String name) {
-		if (name == null) {
-			return "";
-		}
-		StringBuilder builder = new StringBuilder(name);
-		int indexOfSpace = builder.indexOf(" ");
-		while (indexOfSpace >= 0) {
-			builder.deleteCharAt(indexOfSpace);
-			indexOfSpace = builder.indexOf(" ");
-		}
-		indexOfSpace = builder.indexOf(",");
-		while (indexOfSpace >= 0) {
-			builder.setCharAt(indexOfSpace, '_');
-			indexOfSpace = builder.indexOf(",");
-		}
-		indexOfSpace = builder.indexOf("/");
-		while (indexOfSpace >= 0) {
-			builder.setCharAt(indexOfSpace, '_');
-			indexOfSpace = builder.indexOf("/");
-		}
-		indexOfSpace = builder.indexOf("*");
-		while (indexOfSpace >= 0) {
-			builder.setCharAt(indexOfSpace, '_');
-			indexOfSpace = builder.indexOf("/");
-		}
-		return builder.toString();
-	}
+	// private String fitNameForQualifiedName(String name) {
+	// if (name == null) {
+	// return "";
+	// }
+	// StringBuilder builder = new StringBuilder(name);
+	// int indexOfSpace = builder.indexOf(" ");
+	// while (indexOfSpace >= 0) {
+	// builder.deleteCharAt(indexOfSpace);
+	// indexOfSpace = builder.indexOf(" ");
+	// }
+	// indexOfSpace = builder.indexOf(",");
+	// while (indexOfSpace >= 0) {
+	// builder.setCharAt(indexOfSpace, '_');
+	// indexOfSpace = builder.indexOf(",");
+	// }
+	// indexOfSpace = builder.indexOf("/");
+	// while (indexOfSpace >= 0) {
+	// builder.setCharAt(indexOfSpace, '_');
+	// indexOfSpace = builder.indexOf("/");
+	// }
+	// indexOfSpace = builder.indexOf("*");
+	// while (indexOfSpace >= 0) {
+	// builder.setCharAt(indexOfSpace, '_');
+	// indexOfSpace = builder.indexOf("/");
+	// }
+	// return builder.toString();
+	// }
 
 	private void writeEffect(PrintWriter out, String name, double[] colors, double transparency) {
 		out.println("        <effect id=\"" + name + "-fx\">");
