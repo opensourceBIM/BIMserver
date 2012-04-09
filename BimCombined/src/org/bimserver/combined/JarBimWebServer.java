@@ -34,7 +34,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.servlets.DownloadServlet;
-import org.bimserver.servlets.JsonServlet;
+import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.ProgressServlet;
 import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
@@ -98,7 +98,7 @@ public class JarBimWebServer {
 		 	embeddedWebServer.getContext().addServlet(DownloadServlet.class, "/download/*");
 		 	embeddedWebServer.getContext().addServlet(ProgressServlet.class, "/progress/*");
 		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
-		 	embeddedWebServer.getContext().addServlet(JsonServlet.class, "/json/*");
+		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().addServlet(CompileServlet.class, "/compile/*");
 		 	embeddedWebServer.getContext().setResourceBase("www");
 			bimServer.start();
