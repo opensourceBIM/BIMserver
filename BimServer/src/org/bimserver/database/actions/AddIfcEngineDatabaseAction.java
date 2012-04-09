@@ -21,7 +21,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.IfcEngine;
 
-public class AddIfcEngineDatabaseAction extends AddDatabaseAction {
+public class AddIfcEngineDatabaseAction extends AddDatabaseAction<IfcEngine> {
 
 	public AddIfcEngineDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcEngine ifcEngine) {
 		super(bimDatabaseSession, accessMethod, ifcEngine);

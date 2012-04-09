@@ -94,4 +94,14 @@
 		<servlet-name>CompileServlet</servlet-name>
 		<url-pattern>/compile/*</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>JsonApiServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.JsonApiServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JsonApiServlet</servlet-name>
+		<url-pattern>/jsonapi/*</url-pattern>
+	</servlet-mapping>
 </web-app>

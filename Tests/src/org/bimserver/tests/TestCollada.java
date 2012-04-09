@@ -9,6 +9,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -27,12 +28,15 @@ public class TestCollada {
 				SerializerPlugin plugin = plugins.iterator().next();
 				EmfSerializer serializer = plugin.createSerializer();
 				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
+				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
+//				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 				if (!allDeserializerPlugins.isEmpty()) {
 					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 					EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(TestFile.AC11.getFile(), true);
-					serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+//					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\m1-bevinding\\M1_project.ifc"), true);
+					IfcModelInterface model = deserializer.read(new File("test.1.ifc"), true);
+					serializer.init(model, null, pluginManager, ifcEngine.createIfcEngine());
 					serializer.writeToFile(new File("output/ac11.dae"));
 				}
 			}
@@ -41,6 +45,8 @@ public class TestCollada {
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -19,6 +19,7 @@ package nl.tue.buildingsmart.emf;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.Thread.UncaughtExceptionHandler;
 
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
@@ -28,9 +29,18 @@ import org.slf4j.LoggerFactory;
 
 public class SchemaLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaLoader.class);
-	public static final File DEFAULT_SCHEMA_FILE = new File((".." + File.separator + "BimServer" + File.separator + "build" + File.separator + "targets" + File.separator
-			+ "shared" + File.separator + "IFC2X3_TC1.exp"));
+	public static final File DEFAULT_SCHEMA_FILE = new File("schema" + File.separator + "IFC2X3_TC1.exp");
 
+	public static void main(String[] args) {
+		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+			@Override
+			public void uncaughtException(Thread arg0, Throwable arg1) {
+				arg1.printStackTrace();
+			}
+		});
+		loadDefaultSchema();
+	}
+	
 	private SchemaLoader() {
 	}
 

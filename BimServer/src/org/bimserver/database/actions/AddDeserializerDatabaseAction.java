@@ -21,7 +21,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Deserializer;
 
-public class AddDeserializerDatabaseAction extends AddDatabaseAction {
+public class AddDeserializerDatabaseAction extends AddDatabaseAction<Deserializer> {
 
 	public AddDeserializerDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Deserializer deserializer) {
 		super(bimDatabaseSession, accessMethod, deserializer);
