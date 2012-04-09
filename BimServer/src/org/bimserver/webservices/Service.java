@@ -1875,9 +1875,6 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Serializer convert = converter.convertFromSObject(serializer, session);
-			if (convert.getObjectIDM() != null) {
-				session.store(convert.getObjectIDM());
-			}
 			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);

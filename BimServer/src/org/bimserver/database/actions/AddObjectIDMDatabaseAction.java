@@ -21,7 +21,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectIDM;
 
-public class AddObjectIDMDatabaseAction extends AddDatabaseAction {
+public class AddObjectIDMDatabaseAction extends AddDatabaseAction<ObjectIDM> {
 
 	public AddObjectIDMDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ObjectIDM objectIDM) {
 		super(bimDatabaseSession, accessMethod, objectIDM);

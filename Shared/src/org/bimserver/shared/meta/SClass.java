@@ -21,6 +21,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -141,8 +142,8 @@ public class SClass {
 		return instanceClass;
 	}
 	
-	public Set<SField> getFields() {
-		return new HashSet<SField>(fields.values());
+	public List<SField> getFields() {
+		return new ArrayList<SField>(fields.values());
 	}
 	
 	public SBase newInstance() {
@@ -173,6 +174,14 @@ public class SClass {
 		return instanceClass.isEnum();
 	}
 
+	public List<String> getEnumValues() {
+		List<String> results = new ArrayList<String>();
+		for (Object cl : instanceClass.getEnumConstants()) {
+			results.add(cl.toString());
+		}
+		return results;
+	}
+	
 	public boolean isSet() {
 		return instanceClass.isAssignableFrom(Set.class);
 	}

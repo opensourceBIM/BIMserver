@@ -119,6 +119,10 @@ public class FailSafeIfcEngine implements IfcEngine {
 				command.append(" -Xmx" + memoryInMegaBytes + "m");
 				command.append(" -Xms" + memoryInMegaBytes + "m");
 			}
+			
+			// THIS IS ONLY A TEMPORARY FIX FOR Eclipse 3.7.2/Java7
+			command.append(" -XX:-UseSplitVerifier");
+			
 			command.append(" org.bimserver.ifcengine.jvm.IfcEngineServer");
 			if (schemaFile.getAbsolutePath().contains(" ")) {
 				command.append(" \"" + schemaFile.getAbsolutePath() + "\"");
