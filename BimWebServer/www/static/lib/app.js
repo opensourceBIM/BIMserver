@@ -5,16 +5,13 @@
 "use strict";
 
 (function() {
-  var bimserverImport, bimserverImportDialogClearMessages, bimserverImportDialogLoad, bimserverImportDialogLogin, bimserverImportDialogRefresh, bimserverImportDialogSelect, bimserverImportDialogShow, bimserverImportDialogShowTab1, bimserverImportDialogShowTab2, bimserverImportDialogToggleTab2, canvasCaptureThumbnail, canvasInit, constants, controlsInit, controlsNavigateLink, controlsPropertiesSelectObject, controlsShowProperties, controlsToggleLayer, controlsToggleTreeOpen, controlsToggleTreeVisibility, controlsTreeSelectObject, fileImportDialogLoad, fileImportDialogShow, helpShortcuts, helpShortcutsHide, helpStatus, helpStatusClear, hideDialog, ifcTreeInit, keyDown, lerpLookAt, lerpLookAtNode, loadScene, lookAtNodePanRelative, lookAtPanRelative, lookAtToQuaternion, mainmenuViewsReset, modifySubAttr, mouseCoordsWithinElement, mouseDown, mouseMove, mouseUp, mouseWheel, orbitLookAt, orbitLookAtNode, recordToVec3, recordToVec4, registerControlEvents, registerDOMEvents, sceneInit, snapshotsDelete, snapshotsPlay, snapshotsPush, snapshotsToggle, state, topmenuHelp, topmenuImportBimserver, topmenuImportSceneJS, topmenuModeAdvanced, topmenuModeBasic, topmenuPerformancePerformance, topmenuPerformanceQuality, vec3ToRecord, vec4ToRecord, viewportInit, windowResize, zoomLookAt, zoomLookAtNode;
-  var __indexOf = Array.prototype.indexOf || function(item) {
-    for (var i = 0, l = this.length; i < l; i++) {
-      if (this[i] === item) return i;
-    }
-    return -1;
-  };
+  var bimserverImport, bimserverImportDialogClearMessages, bimserverImportDialogLoad, bimserverImportDialogLogin, bimserverImportDialogRefresh, bimserverImportDialogSelect, bimserverImportDialogShow, bimserverImportDialogShowTab1, bimserverImportDialogShowTab2, bimserverImportDialogToggleTab2, canvasCaptureThumbnail, canvasInit, constants, controlsInit, controlsNavigateLink, controlsPropertiesSelectObject, controlsShowProperties, controlsToggleLayer, controlsToggleTreeOpen, controlsToggleTreeVisibility, controlsTreeSelectObject, fileImportDialogLoad, fileImportDialogShow, helpShortcuts, helpShortcutsHide, helpStatus, helpStatusClear, hideDialog, ifcTreeInit, initLoadModel, keyDown, lerpLookAt, lerpLookAtNode, loadScene, lookAtNodePanRelative, lookAtPanRelative, lookAtToQuaternion, mainmenuViewsReset, modifySubAttr, mouseCoordsWithinElement, mouseDown, mouseMove, mouseUp, mouseWheel, orbitLookAt, orbitLookAtNode, parseQueryArguments, recordToVec3, recordToVec4, registerControlEvents, registerDOMEvents, sceneInit, snapshotsDelete, snapshotsPlay, snapshotsPush, snapshotsToggle, state, topmenuHelp, topmenuImportBimserver, topmenuImportSceneJS, topmenuModeAdvanced, topmenuModeBasic, topmenuPerformancePerformance, topmenuPerformanceQuality, vec3ToRecord, vec4ToRecord, viewportInit, windowResize, zoomLookAt, zoomLookAtNode,
+    __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
   RegExp.escape = function(str) {
     return str.replace(/[[\]\\$().{},?*+|^-]/g, "\\$&");
   };
+
   canvasCaptureThumbnail = function(srcCanvas, srcWidth, srcHeight, destWidth, destHeight) {
     var clipHeight, clipWidth, clipX, clipY, h, imgURI, thumbCanvas, thumbCtx, w;
     thumbCanvas = document.createElement('canvas');
@@ -31,18 +28,22 @@
     imgURI = thumbCanvas.toDataURL('image/png');
     return imgURI;
   };
+
   modifySubAttr = function(node, attr, subAttr, value) {
     var attrRecord;
     attrRecord = node.get(attr);
     attrRecord[subAttr] = value;
     return node.set(attr, attrRecord);
   };
+
   recordToVec3 = function(record) {
     return [record.x, record.y, record.z];
   };
+
   recordToVec4 = function(record) {
     return [record.x, record.y, record.z, record.w];
   };
+
   vec3ToRecord = function(vec) {
     return {
       x: vec[0],
@@ -50,6 +51,7 @@
       z: vec[2]
     };
   };
+
   vec4ToRecord = function(vec) {
     return {
       x: vec[0],
@@ -58,6 +60,7 @@
       w: vec[3]
     };
   };
+
   lookAtToQuaternion = function(lookAt) {
     var eye, look, up, x, y, z;
     eye = recordToVec3(lookAt.eye);
@@ -74,6 +77,7 @@
     SceneJS_math_normalizeVec3(z);
     return SceneJS_math_newQuaternionFromMat3(x.concat(y, z));
   };
+
   orbitLookAt = function(dAngles, orbitUp, lookAt) {
     var axes, axesNorm, dAngle, eye0, eye1, look, result, rotAxis, rotMat, tangent1, tangentError, transformedX, transformedZ, up0, up1;
     if (dAngles[0] === 0.0 && dAngles[1] === 0.0) {
@@ -112,6 +116,7 @@
       up: vec3ToRecord(up1)
     };
   };
+
   orbitLookAtNode = function(node, dAngles, orbitUp) {
     return node.set(orbitLookAt(dAngles, orbitUp, {
       eye: node.get('eye'),
@@ -119,6 +124,7 @@
       up: node.get('up')
     }));
   };
+
   zoomLookAt = function(distance, limits, lookAt) {
     var eye0, eye0len, eye1, eye1len, look, result;
     eye0 = recordToVec3(lookAt.eye);
@@ -133,6 +139,7 @@
       up: lookAt.up
     };
   };
+
   zoomLookAtNode = function(node, distance, limits) {
     return node.set(zoomLookAt(distance, limits, {
       eye: node.get('eye'),
@@ -140,6 +147,7 @@
       up: node.get('up')
     }));
   };
+
   lookAtPanRelative = function(dPosition, lookAt) {
     var axes, dPositionProj, eye, look, result, up;
     if (dPosition[0] === 0.0 && dPosition[1] === 0.0) {
@@ -168,6 +176,7 @@
       up: lookAt.up
     };
   };
+
   lookAtNodePanRelative = function(node, dPosition) {
     return node.set(lookAtPanRelative(dPosition, {
       eye: node.get('eye'),
@@ -175,6 +184,7 @@
       up: node.get('up')
     }));
   };
+
   lerpLookAt = function(t, lookAt0, lookAt1) {
     var q, q0, q1, result;
     q0 = lookAtToQuaternion(lookAt0);
@@ -186,14 +196,19 @@
       up: vec3ToRecord(SceneJS_math_newUpVec3FromQuaternion(q))
     };
   };
+
   lerpLookAtNode = function(node, t, lookAt0, lookAt1) {
     return node.set(lerpLookAt(t, lookAt0, lookAt1));
   };
+
   SceneJS.FX = {};
+
   SceneJS.FX.Tween = {};
+
   SceneJS.FX.TweenSpline = (function() {
     var TweenSpline, _dt, _intervalID, _r, _tick, _tweens;
     TweenSpline = (function() {
+
       function TweenSpline(lookAtNode, play) {
         this._target = lookAtNode;
         this._sequence = [];
@@ -201,11 +216,11 @@
         this._play = play != null ? play : true;
         this._t = 0.0;
       }
+
       TweenSpline.prototype.tick = function(dt) {
-        if (this._play) {
-          return this._t += dt;
-        }
+        if (this._play) return this._t += dt;
       };
+
       TweenSpline.prototype.start = function(lookAt) {
         this._sequence = [
           lookAt != null ? lookAt : {
@@ -217,54 +232,48 @@
         this._timeline = [0.0];
         return this._t = 0.0;
       };
+
       TweenSpline.prototype.push = function(lookAt, dt) {
         var dt_prime;
-        if (this._sequence.length === 0) {
-          this._t = 0.0;
-        }
+        if (this._sequence.length === 0) this._t = 0.0;
         dt_prime = dt != null ? dt : 5000;
-        if (this._timeline.length === 0) {
-          dt_prime = 0.0;
-        }
+        if (this._timeline.length === 0) dt_prime = 0.0;
         this._timeline.push(this.totalTime() + dt_prime);
         return this._sequence.push(lookAt);
       };
+
       TweenSpline.prototype.sequence = function(lookAts, dt) {
         var dt_prime, lookAt, _i, _len;
-        if (this._sequence.length === 0) {
-          this._t = 0.0;
-        }
+        if (this._sequence.length === 0) this._t = 0.0;
         for (_i = 0, _len = lookAts.length; _i < _len; _i++) {
           lookAt = lookAts[_i];
           dt_prime = dt != null ? dt : 5000;
-          if (this._timeline.length === 0) {
-            dt_prime = 0.0;
-          }
+          if (this._timeline.length === 0) dt_prime = 0.0;
           this._timeline.push(this.totalTime() + dt_prime);
           this._sequence.push(lookAt);
         }
         return null;
       };
+
       TweenSpline.prototype.pause = function() {
         return this._play = false;
       };
+
       TweenSpline.prototype.play = function() {
         return this._play = true;
       };
+
       TweenSpline.prototype.totalTime = function() {
         if (this._timeline.length > 0) {
           return this._timeline[this._timeline.length - 1];
         }
         return 0;
       };
+
       TweenSpline.prototype.update = function() {
         var dt, i;
-        if (this._sequence.length === 0) {
-          return false;
-        }
-        if (!this._play) {
-          return true;
-        }
+        if (this._sequence.length === 0) return false;
+        if (!this._play) return true;
         if (this._t >= this.totalTime() || this._sequence.length === 1) {
           this._target.set(this._sequence[this._sequence.length - 1]);
           return false;
@@ -277,7 +286,9 @@
         lerpLookAtNode(this._target, (this._t - this._timeline[i - 1]) / dt, this._sequence[i - 1], this._sequence[i]);
         return true;
       };
+
       return TweenSpline;
+
     })();
     _tweens = [];
     _intervalID = null;
@@ -293,9 +304,7 @@
     _r = function(lookAtNode, interval) {
       var tween;
       _dt = interval || 50;
-      if (_intervalID !== null) {
-        clearInterval(_intervalID);
-      }
+      if (_intervalID !== null) clearInterval(_intervalID);
       _intervalID = setInterval(_tick, _dt);
       tween = new TweenSpline(lookAtNode);
       _tweens.push(tween);
@@ -307,16 +316,22 @@
       _results = [];
       while (i < _tweens.length) {
         tween = _tweens[i];
-        _results.push(!tween.update() ? _tweens.splice(i, 1) : i += 1);
+        if (!tween.update()) {
+          _results.push(_tweens.splice(i, 1));
+        } else {
+          _results.push(i += 1);
+        }
       }
       return _results;
     };
     return _r;
   })();
+
   SceneJS.FX.idle = function() {
     SceneJS.FX.TweenSpline.update();
     return null;
   };
+
   constants = {
     camera: {
       maxOrbitSpeed: Math.PI * 0.1,
@@ -346,9 +361,11 @@
       }
     }
   };
+
   Math.clamp = function(s, min, max) {
     return Math.min(Math.max(s, min), max);
   };
+
   state = {
     scene: (function() {
       try {
@@ -374,6 +391,7 @@
         pickRecord: null
       }
     },
+    queryArgs: {},
     camera: {
       distanceLimits: [0.0, 0.0]
     },
@@ -403,6 +421,7 @@
       initialized: false
     }
   };
+
   mouseCoordsWithinElement = function(event) {
     var coords, element, totalOffsetLeft, totalOffsetTop;
     coords = [0, 0];
@@ -422,6 +441,7 @@
     }
     return coords;
   };
+
   windowResize = function() {
     var cameraNode, cameraOptics;
     switch (state.settings.performance) {
@@ -440,11 +460,10 @@
       return cameraNode.set('optics', cameraOptics);
     }
   };
+
   mouseDown = function(event) {
     var coords;
-    if (!(state.scene != null)) {
-      return;
-    }
+    if (!(state.scene != null)) return;
     state.viewport.mouse.last = [event.clientX, event.clientY];
     switch (event.which) {
       case 1:
@@ -458,10 +477,9 @@
       return state.viewport.mouse.pickRecord = state.scene.pick(coords[0], coords[1]);
     }
   };
+
   mouseUp = function(event) {
-    if (!(state.scene != null)) {
-      return;
-    }
+    if (!(state.scene != null)) return;
     if (event.which === 1 && state.viewport.mouse.leftDragDistance < constants.mouse.pickDragThreshold) {
       if (state.viewport.mouse.pickRecord != null) {
         controlsTreeSelectObject(state.viewport.mouse.pickRecord.name);
@@ -480,6 +498,7 @@
         return state.viewport.mouse.middleDragDistance = 0;
     }
   };
+
   mouseMove = function(event) {
     var delta, deltaLength, orbitAngles, panVector;
     delta = [event.clientX - state.viewport.mouse.last[0], event.clientY - state.viewport.mouse.last[1]];
@@ -508,27 +527,30 @@
     }
     return state.viewport.mouse.last = [event.clientX, event.clientY];
   };
+
   mouseWheel = function(event) {
     var delta, zoomDistance;
-    if (!(state.scene != null)) {
-      return;
-    }
+    if (!(state.scene != null)) return;
     delta = event.wheelDelta != null ? event.wheelDelta / -120.0 : Math.clamp(event.detail, -1.0, 1.0);
     zoomDistance = delta * state.camera.distanceLimits[1] * constants.camera.zoomSpeedFactor;
     return zoomLookAtNode(state.scene.findNode('main-lookAt'), zoomDistance, state.camera.distanceLimits);
   };
+
   keyDown = function(event) {
     switch (event.which) {
       case 72:
         return topmenuHelp();
     }
   };
+
   helpStatus = function(str) {
     return ($('#main-view-help')).html(str);
   };
+
   helpStatusClear = function() {
     return ($('#main-view-help')).html("");
   };
+
   helpShortcuts = function() {
     var postfix, _i, _len, _results;
     ($('.shortcut')).hide();
@@ -539,6 +561,7 @@
     }
     return _results;
   };
+
   helpShortcutsHide = function() {
     var postfix, _i, _len, _results;
     _results = [];
@@ -548,12 +571,15 @@
     }
     return _results;
   };
+
   topmenuImportBimserver = function(event) {
     return bimserverImportDialogShow();
   };
+
   topmenuImportSceneJS = function(event) {
     return fileImportDialogShow();
   };
+
   topmenuPerformanceQuality = function(event) {
     ($(event.target)).addClass('top-menu-activated');
     ($('#top-menu-performance-performance')).removeClass('top-menu-activated');
@@ -561,6 +587,7 @@
     state.settings.performance = 'quality';
     return windowResize();
   };
+
   topmenuPerformancePerformance = function(event) {
     ($(event.target)).addClass('top-menu-activated');
     ($('#top-menu-performance-quality')).removeClass('top-menu-activated');
@@ -568,21 +595,25 @@
     state.settings.performance = 'performance';
     return windowResize();
   };
+
   topmenuModeBasic = function(event) {
     ($(event.target)).addClass('top-menu-activated');
     ($('#top-menu-mode-advanced')).removeClass('top-menu-activated');
     return state.settings.mode = 'basic';
   };
+
   topmenuModeAdvanced = function(event) {
     ($(event.target)).addClass('top-menu-activated');
     ($('#top-menu-mode-basic')).removeClass('top-menu-activated');
     return state.settings.mode = 'performance';
   };
+
   topmenuHelp = function() {
     ($('#top-menu-help')).toggleClass('top-menu-activated');
     ($('#main-view-help')).toggle();
     return ($('#main-view-keys')).toggle();
   };
+
   mainmenuViewsReset = function(event) {
     var lookAtNode;
     if (state.scene != null) {
@@ -592,6 +623,7 @@
       return lookAtNode.set('up', state.lookAt.defaultParameters.up);
     }
   };
+
   controlsPropertiesSelectObject = function(id) {
     var html, key, keyStack, objectProperties, properties, tableItem, tableItemObject, value, _i, _len;
     properties = state.scene.data().properties;
@@ -628,9 +660,7 @@
       if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {} else if (Array.isArray(value)) {
         for (i = 0, _ref = value.length; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
           arrayValue = value[i];
-          if (i > 0) {
-            html += ",<br>";
-          }
+          if (i > 0) html += ",<br>";
           if (typeof arrayValue === 'string' || typeof arrayValue === 'number' || typeof arrayValue === 'boolean') {
             html += arrayValue;
           } else if (typeof value === 'object') {
@@ -648,9 +678,7 @@
       return html += "</li>";
     };
     html = "<ul class='controls-table'>";
-    if (keyStack.length === 1) {
-      html += tableItem('Global Id', id);
-    }
+    if (keyStack.length === 1) html += tableItem('Global Id', id);
     if (objectProperties != null) {
       for (key in objectProperties) {
         value = objectProperties[key];
@@ -663,6 +691,7 @@
     }
     return ($('#controls-properties')).html(html);
   };
+
   controlsToggleTreeOpen = function(event) {
     var $parent, id;
     $parent = ($(event.target)).parent();
@@ -671,6 +700,7 @@
     controlsTreeSelectObject(id);
     return controlsPropertiesSelectObject(id);
   };
+
   controlsToggleTreeVisibility = function(event) {
     var $parent, collectNodes, disableNode, disableTagJson, disabledNodes, ids, node, parentId, parentNode, tag, tagNode, _i, _j, _k, _len, _len2, _len3, _ref, _ref2;
     $parent = ($(event.target)).closest('.controls-tree-rel');
@@ -718,14 +748,13 @@
     }
     return false;
   };
+
   controlsTreeSelectObject = function(id) {
     var $treeItem, node, oldHighlight, parentEl;
     ($('.controls-tree-selected')).removeClass('controls-tree-selected');
     ($('.controls-tree-selected-parent')).removeClass('controls-tree-selected-parent');
     oldHighlight = state.scene.findNode(constants.highlightMaterial.id);
-    if (oldHighlight != null) {
-      oldHighlight.splice();
-    }
+    if (oldHighlight != null) oldHighlight.splice();
     if (id != null) {
       parentEl = document.getElementById(id);
       $treeItem = ($(parentEl)).children('.controls-tree-item');
@@ -742,17 +771,18 @@
       }
     }
   };
+
   controlsShowProperties = function(event) {
-    if ((event != null) && event.target.nodeName === 'INPUT') {
-      return;
-    }
+    if ((event != null) && event.target.nodeName === 'INPUT') return;
     ($('#controls-accordion')).accordion('activate', 1);
     return helpShortcutsHide('inspection');
   };
+
   controlsNavigateLink = function(event) {
     controlsPropertiesSelectObject((($(event.target)).attr('href')).slice(1));
     return false;
   };
+
   controlsToggleLayer = function(event) {
     var el, elements, tags;
     elements = ($('#controls-layers input:checked')).toArray();
@@ -767,11 +797,10 @@
     })();
     return state.scene.set('tagMask', '^(' + (tags.join('|')) + ')$');
   };
+
   snapshotsPush = function() {
     var imgURI, node, thumbSize;
-    if (!(state.scene != null)) {
-      return;
-    }
+    if (!(state.scene != null)) return;
     if ($.browser.webkit) {
       state.scene.renderFrame({
         force: true
@@ -787,21 +816,23 @@
     });
     return ($('#snapshots')).append("<div class='snapshot'><div class='snapshot-thumb'><a href='#' class='snapshot-delete'>x</a><img width='" + thumbSize[0] + "px' height='" + thumbSize[1] + "px' src='" + imgURI + "'></div></div>");
   };
+
   snapshotsDelete = function(event) {
     var $parent;
     $parent = ($(event.target)).parent();
     state.snapshots.lookAts.splice($parent.index() + 1, 1);
     return $parent.remove();
   };
+
   snapshotsToggle = function(event) {
     if (!(state.scene != null)) {}
   };
+
   snapshotsPlay = function(event) {
-    if (!(state.scene != null)) {
-      return;
-    }
+    if (!(state.scene != null)) return;
     return (SceneJS.FX.TweenSpline(state.scene.findNode('main-lookAt'))).sequence(state.snapshots.lookAts);
   };
+
   bimserverImport = function(url, oid) {
     var downloadDone, getDownloadDataDone, pwd, user;
     if (typeof console !== "undefined" && console !== null) {
@@ -822,9 +853,7 @@
         helpStatusClear();
       } catch (error) {
         if (typeof console !== "undefined" && console !== null) {
-          if (typeof console.log === "function") {
-            console.log(error);
-          }
+          if (typeof console.log === "function") console.log(error);
         }
       }
     };
@@ -848,9 +877,7 @@
         data: 'actionId=' + data
       })).done(getDownloadDataDone)).fail(function(jqXHR, textStatus, errorThrown) {
         if (typeof console !== "undefined" && console !== null) {
-          if (typeof console.log === "function") {
-            console.log(textStatus);
-          }
+          if (typeof console.log === "function") console.log(textStatus);
         }
         return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log("...BIMserver import failed") : void 0 : void 0;
       });
@@ -861,28 +888,30 @@
       type: 'GET',
       url: url + 'rest/download',
       dataType: 'text',
-      data: "roid=" + oid + "&serializerName=SceneJS&showOwn=true&sync=true"
+      data: "roid=" + oid + "&serializerName=SceneJS&sync=true"
     })).done(downloadDone)).fail(function(jqXHR, textStatus, errorThrown) {
       if (typeof console !== "undefined" && console !== null) {
-        if (typeof console.log === "function") {
-          console.log(textStatus);
-        }
+        if (typeof console.log === "function") console.log(textStatus);
       }
       return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log("...BIMserver import failed") : void 0 : void 0;
     });
   };
+
   hideDialog = function() {
     return ($('#dialog-background,#dialog-bimserver-import,#dialog-file-import')).hide();
   };
+
   bimserverImportDialogClearMessages = function() {
     ($('#bimserver-import-message-info')).html('');
     ($('#bimserver-import-message-error')).html('');
     return ($('.error')).removeClass('error');
   };
+
   bimserverImportDialogShow = function() {
     bimserverImportDialogShowTab1();
     return ($('#dialog-background,#dialog-bimserver-import')).show();
   };
+
   bimserverImportDialogShowTab1 = function() {
     var $stepElements;
     bimserverImportDialogClearMessages();
@@ -892,6 +921,7 @@
     ($('#dialog-tab-bimserver1')).show();
     return ($('#dialog-tab-bimserver2')).hide();
   };
+
   bimserverImportDialogShowTab2 = function() {
     var $stepElements;
     bimserverImportDialogClearMessages();
@@ -901,9 +931,11 @@
     ($('#dialog-tab-bimserver1')).hide();
     return ($('#dialog-tab-bimserver2')).show();
   };
+
   bimserverImportDialogToggleTab2 = function() {
     return bimserverImportDialogShowTab2();
   };
+
   bimserverImportDialogLogin = function() {
     var pwd, url, user, valid;
     bimserverImportDialogClearMessages();
@@ -929,9 +961,7 @@
       return false;
     }
     ($('#dialog-tab-bimserver1 input, #dialog-tab-bimserver1 button')).attr('disabled', 'disabled');
-    if (url[url.length - 1] !== '/') {
-      url += '/';
-    }
+    if (url[url.length - 1] !== '/') url += '/';
     ($('#bimserver-import-message-info')).html("Sending login request...");
     ($.ajax({
       username: encodeURIComponent(user),
@@ -939,7 +969,9 @@
       url: url + 'login.jsp',
       data: 'username=' + (encodeURIComponent(user)) + '&password=' + (encodeURIComponent(pwd))
     })).done(function(data, textStatus, jqXHR) {
-      return ($('#bimserver-import-message-info')).html("Login request succeeded", bimserverImportDialogShowTab2(), bimserverImportDialogRefresh());
+      ($('#bimserver-import-message-info')).html("Login request succeeded");
+      bimserverImportDialogShowTab2();
+      return bimserverImportDialogRefresh();
     }).fail(function(jqXHR, textStatus, errorThrown) {
       ($('#bimserver-import-message-info')).html("");
       return ($('#bimserver-import-message-error')).html("Login request failed");
@@ -949,12 +981,11 @@
     pwd = null;
     return true;
   };
+
   bimserverImportDialogRefresh = function() {
     var $projectList, url;
     url = ($('#bimserver-login-url')).val();
-    if (url[url.length - 1] !== '/') {
-      url += '/';
-    }
+    if (url[url.length - 1] !== '/') url += '/';
     ($('#dialog-tab-bimserver2 button')).attr('disabled', 'disabled');
     ($('#bimserver-projects-submit')).attr('disabled', 'disabled');
     $projectList = $('#bimserver-projects');
@@ -971,11 +1002,13 @@
       return ($('#dialog-tab-bimserver2 button')).removeAttr('disabled');
     });
   };
+
   bimserverImportDialogSelect = function(event) {
     ($('.bimserver-project-selected')).removeClass('bimserver-project-selected');
     ($(event.target)).addClass('bimserver-project-selected');
     return ($('#bimserver-projects-submit')).removeAttr('disabled');
   };
+
   bimserverImportDialogLoad = function() {
     var $selectedProject, url;
     $selectedProject = $('.bimserver-project-selected');
@@ -984,15 +1017,15 @@
     } else {
       hideDialog();
       url = ($('#bimserver-login-url')).val();
-      if (url[url.length - 1] !== '/') {
-        url += '/';
-      }
+      if (url[url.length - 1] !== '/') url += '/';
       return bimserverImport(url, $selectedProject.attr('bimserverroid'));
     }
   };
+
   fileImportDialogShow = function(event) {
     return ($('#dialog-background,#dialog-file-import')).show();
   };
+
   fileImportDialogLoad = function(event) {
     var file, reader, _ref;
     reader = new FileReader();
@@ -1002,9 +1035,7 @@
         return helpStatusClear();
       } catch (error) {
         if (typeof console !== "undefined" && console !== null) {
-          if (typeof console.log === "function") {
-            console.log(error);
-          }
+          if (typeof console.log === "function") console.log(error);
         }
       }
     };
@@ -1017,6 +1048,7 @@
       return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log("No file selected") : void 0 : void 0;
     }
   };
+
   registerDOMEvents = function() {
     ($(state.viewport.domElement)).mousedown(mouseDown);
     ($(state.viewport.domElement)).mouseup(mouseUp);
@@ -1026,6 +1058,7 @@
     document.addEventListener('keydown', keyDown, true);
     return window.addEventListener('resize', windowResize, true);
   };
+
   registerControlEvents = function() {
     ($('#upload-form')).submit(fileImportDialogLoad);
     ($('.dialog-close')).click(hideDialog);
@@ -1054,9 +1087,11 @@
     ($('#snapshots-play')).click(snapshotsPlay);
     return ($(state.viewport.domElement)).dblclick(controlsShowProperties);
   };
+
   canvasInit = function() {
     return windowResize();
   };
+
   sceneInit = function() {
     var lookAtNode, sceneDiameter, tag, tags;
     modifySubAttr(state.scene.findNode('main-camera'), 'optics', 'aspect', state.canvas.width / state.canvas.height);
@@ -1078,6 +1113,7 @@
     state.lookAt.defaultParameters.look = lookAtNode.get('look');
     return state.lookAt.defaultParameters.up = lookAtNode.get('up');
   };
+
   controlsInit = function() {
     var ifcType, layersHtml, sceneData;
     sceneData = state.scene.data();
@@ -1098,9 +1134,11 @@
     });
     return ($('#main-view-controls')).removeAttr('style');
   };
+
   viewportInit = function() {
     return $('#scenejsCanvas').toggleClass('bimsurfer-empty-watermark', !(state.scene != null));
   };
+
   ifcTreeInit = function() {
     var ifcContains, ifcDecomposedBy, ifcDefinedBy, ifcObjectDescription, ifcProject, ifcRelationships, project, sceneData, treeHtml, _i, _len, _ref;
     sceneData = state.scene.data();
@@ -1143,14 +1181,52 @@
     treeHtml += "</ul>";
     return ($('#controls-relationships')).html(treeHtml);
   };
+
   canvasInit();
+
   if (state.scene != null) {
     sceneInit();
     state.scene.start({
       idleFunc: SceneJS.FX.idle
     });
   }
+
+  parseQueryArguments = function() {
+    var arg, argKeyVal, args, argsParts, part, _i, _len;
+    args = {};
+    argsParts = (document.location.search.substring(1)).split('&');
+    for (_i = 0, _len = argsParts.length; _i < _len; _i++) {
+      part = argsParts[_i];
+      arg = unescape(part);
+      if ((arg.indexOf('=')) === -1) {
+        args[arg.trim()] = true;
+      } else {
+        argKeyVal = arg.split('=');
+        args[argKeyVal[0].trim()] = argKeyVal[1].trim();
+      }
+    }
+    if ((args.model != null) && (args.model.substr(-1)) === '/') {
+      args.model = args.model.substr(0, args.model.length - 1);
+    }
+    return args;
+  };
+
+  initLoadModel = function(modelUrl) {
+    ($.get(modelUrl, void 0, void 0, 'json')).done(function(data, textStatus, jqXHR) {
+      try {
+        return loadScene(data);
+      } catch (error) {
+        return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log(error) : void 0 : void 0;
+      }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      if (typeof console !== "undefined" && console !== null) {
+        if (typeof console.log === "function") console.log(textStatus);
+      }
+    });
+  };
+
   $(function() {
+    state.queryArgs = parseQueryArguments();
     viewportInit();
     if (state.scene != null) {
       controlsInit();
@@ -1162,8 +1238,11 @@
     }
     registerDOMEvents();
     registerControlEvents();
-    return state.application.initialized = true;
+    state.application.initialized = true;
+    
+    return initLoadModel(modelurl);
   });
+
   loadScene = function(scene) {
     if (state.scene != null) {
       state.scene.destroy();
@@ -1171,9 +1250,7 @@
     }
     try {
       if (typeof console !== "undefined" && console !== null) {
-        if (typeof console.log === "function") {
-          console.log('Create scene...');
-        }
+        if (typeof console.log === "function") console.log('Create scene...');
       }
       SceneJS.createScene(scene);
       state.scene = SceneJS.scene('Scene');
@@ -1186,9 +1263,7 @@
         }
         sceneInit();
         if (typeof console !== "undefined" && console !== null) {
-          if (typeof console.log === "function") {
-            console.log('Start scene...');
-          }
+          if (typeof console.log === "function") console.log('Start scene...');
         }
         state.scene.start({
           idleFunc: SceneJS.FX.idle
@@ -1207,25 +1282,20 @@
         ifcTreeInit();
         helpShortcuts('standard', 'navigation');
         if (typeof console !== "undefined" && console !== null) {
-          if (typeof console.log === "function") {
-            console.log('...Done');
-          }
+          if (typeof console.log === "function") console.log('...Done');
         }
         return state.scene;
       }
     } catch (error) {
       if (typeof console !== "undefined" && console !== null) {
-        if (typeof console.log === "function") {
-          console.log(error);
-        }
+        if (typeof console.log === "function") console.log(error);
       }
       if (typeof console !== "undefined" && console !== null) {
-        if (typeof console.log === "function") {
-          console.log('...Errors occured');
-        }
+        if (typeof console.log === "function") console.log('...Errors occured');
       }
     }
     helpShortcuts('standard');
     return null;
   };
+
 }).call(this);
