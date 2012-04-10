@@ -91,7 +91,6 @@
 			if (lastRevision != null) {
 		%>
 		<li><a id="browserlink" class="link">Browser</a></li>
-<!--		<li><a id="bimsurferlink" class="link">BIMsurfer</a></li>  -->
 		<%
 			}
 		%>
@@ -705,6 +704,7 @@ if (revisions.size() > 0) {
 		if (lastRevision != null) {
 	%>
 	<script>
+	var modelurl = null;
 	$(function(){
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
@@ -733,10 +733,41 @@ if (revisions.size() > 0) {
 			return false;
 		});
 
-		$("#bimsurferlink").click(function() {
-			showOverlay("BIMsurfer", "bimsurfer.jsp?roid=<%=project.getLastRevisionId()%>");
-			return false;
+		var lastFour = [0, 0, 0, 0];
+		
+		$(document).keypress(function(event){
+			for (var i=0; i<3; i++) {
+				lastFour[i] = lastFour[i+1];
+			}
+			lastFour[3] = event.keyCode;
+			if (lastFour.compare([115, 117, 114, 102])) {
+				var dialog = $("<div>");
+				$(window).append(dialog);
+				dialog.dialog({
+					width: $(document).width() * 0.7,
+					height: Math.min($(document).height(), $(window).height()) * 0.8,
+					title: "BIMSurfer"
+				});
+				dialog.append("Loading...");
+				var data = {};
+				data.roid = <%=project.getLastRevisionId()%>;
+				data.downloadType = "single";
+				data.serializerName = "SceneJS";
+				data.sync = true;
+				$.ajax("initiatedownload.jsp?data=" + JSON.stringify(data), {
+					dataType: "json",
+					success: function(result, textStatus, jqXHR){
+						modelurl = "/download?longActionId=" + result.laid + "&serializerName=SceneJS";
+						dialog.load("bimsurfer.jsp?format=scenejson", function(){
+							dialog.each(function(){
+								$(this).addClass("unselectable");
+							});
+						});
+					}
+				});
+			}
 		});
+		
 		updateTreeSelectListeners();
 	});
 

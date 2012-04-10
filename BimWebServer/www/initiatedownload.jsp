@@ -19,10 +19,14 @@
 	if (data.has("serializerName")) {
 		serializerName = data.getString("serializerName");
 	}
+	boolean sync = false;
+	if (data.has("sync") && data.getBoolean("sync")) {
+		sync = true;
+	}
 	int longActionId = -1;
 	String downloadType = data.getString("downloadType");
 	if (downloadType.equals("checkout")) {
-		longActionId = loginManager.getService().checkout(roid, serializerName, false);
+		longActionId = loginManager.getService().checkout(roid, serializerName, sync);
 	} else if (downloadType.equals("guids")) {
 		JSONArray jsonGuids = data.getJSONArray("guids");
 		Set<String> guids = new HashSet<String>();
@@ -31,7 +35,7 @@
 		}
 		Set<Long> roids = new HashSet<Long>();
 		roids.add(roid);
-		longActionId = loginManager.getService().downloadByGuids(roids, guids, serializerName, false);
+		longActionId = loginManager.getService().downloadByGuids(roids, guids, serializerName, sync);
 	} else if (downloadType.equals("oids")) {
 		Set<Long> oids = new HashSet<Long>();
 		JSONArray jsonOids = data.getJSONArray("oids");
@@ -40,7 +44,7 @@
 		}
 		Set<Long> roids = new HashSet<Long>();
 		roids.add(roid);
-		longActionId = loginManager.getService().downloadByOids(roids, oids, serializerName, false);
+		longActionId = loginManager.getService().downloadByOids(roids, oids, serializerName, sync);
 	} else if (downloadType.equals("classes")) {
 		Set<String> classes = new HashSet<String>();
 		JSONArray jsonClasses = data.getJSONArray("classes");
@@ -49,22 +53,22 @@
 		}
 		Set<Long> roids = new HashSet<Long>();
 		roids.add(roid);
-		longActionId = loginManager.getService().downloadByTypes(roids, classes, serializerName, false, false);
+		longActionId = loginManager.getService().downloadByTypes(roids, classes, serializerName, false, sync);
 	} else if (downloadType.equals("multiple")) {
 		Set<Long> roids = new HashSet<Long>();
 		JSONArray jsonRoids = data.getJSONArray("roids");
 		for (int i=0; i<jsonRoids.length(); i++) {
 			roids.add(jsonRoids.getLong(i));
 		}
-		longActionId = loginManager.getService().downloadRevisions(roids, serializerName, false);
+		longActionId = loginManager.getService().downloadRevisions(roids, serializerName, sync);
 	} else if (downloadType.equals("compare")) {
 		SCompareType sCompareType = SCompareType.valueOf(data.getString("type"));
 		SCompareIdentifier sCompareIdentifier = SCompareIdentifier.valueOf(data.getString("identifier"));
 		Long roid1 = data.getLong("roid1");
 		Long roid2 = data.getLong("roid2");
-		longActionId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, sCompareIdentifier, sCompareType, false);
+		longActionId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, sCompareIdentifier, sCompareType, sync);
 	} else {
-		longActionId = loginManager.getService().download(roid, serializerName, true, false);
+		longActionId = loginManager.getService().download(roid, serializerName, true, sync);
 	}
 	JSONObject result = new JSONObject();
 	result.put("laid", longActionId);
