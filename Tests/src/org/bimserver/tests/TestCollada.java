@@ -28,8 +28,8 @@ public class TestCollada {
 				SerializerPlugin plugin = plugins.iterator().next();
 				EmfSerializer serializer = plugin.createSerializer();
 				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
-//				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
-				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
+				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
+//				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 				if (!allDeserializerPlugins.isEmpty()) {
 					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 					EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
