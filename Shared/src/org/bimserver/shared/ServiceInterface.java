@@ -192,7 +192,7 @@ public interface ServiceInterface {
 	 *
 	 * @param poid Project ObjectID
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
-	 * @param syncWhether to return immediately (async) or wait for completion (sync)
+	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
 	 */
@@ -466,7 +466,7 @@ public interface ServiceInterface {
 	 * Available as REST call
 	 * 
 	 * Get a list of all Projects the user is authorized for to read from
-	 * @return
+	 * @return A list of all projects that are readable for the current user
 	 * @throws ServerException, UserException
 	 */
 	@GET
@@ -646,7 +646,7 @@ public interface ServiceInterface {
 	/**
 	 * Undelete a previously deleted User, Users can be deleted with the deleteUser method
 	 * @param uoid
-	 * @return
+	 * @return Whether the deletion was successfull
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "undeleteUser")
@@ -861,7 +861,7 @@ public interface ServiceInterface {
 
 	/**
 	 * @param poid
-	 * @return
+	 * @return A list of all users authorized on the given project
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllAuthorizedUsersOfProject")
@@ -870,7 +870,7 @@ public interface ServiceInterface {
 
 	/**
 	 * @param uoid
-	 * @return
+	 * @return A list of projects a user has been authorized for
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getUsersProjects")
@@ -879,7 +879,7 @@ public interface ServiceInterface {
 
 	/**
 	 * @param name
-	 * @return
+	 * @return A list of projects with the given name (can be multiple because subprojects are also returned)
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getProjectsByName")
@@ -898,7 +898,7 @@ public interface ServiceInterface {
 
 	/**
 	 * @param poid
-	 * @return
+	 * @return A list of all subprojects of the given project
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getSubProjects")
@@ -953,7 +953,7 @@ public interface ServiceInterface {
 
 	/**
 	 * Request a password change, an e-mail will be send with a validation url
-	 * @param uoid The ObjectID of the User for which to change the password
+	 * @param username The username of the user to change tot password for
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "requestPasswordChange")
@@ -1894,7 +1894,7 @@ public interface ServiceInterface {
 	
 	/**
 	 * Thsi will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
-	 * @return
+	 * @return Returns a serialized version of the .proto file for the ServiceInterface
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getProtocolBuffersFile")
