@@ -41,7 +41,12 @@ try {
 <%
 	} else {
 %>
-No projects<br/><br/>
+There are no projects yet.<br/><br/>
+<% if (loginManager.getUserType() == SUserType.ADMIN ) { %>
+ Please take a moment to register yourself as a BIMserver manager.<br/>
+ <a href="https://docs.google.com/spreadsheet/embeddedform?formkey=dG5DYUNyVnA0Mk5DWnN0eHFueDlMR2c6MQ" target="_blank">Click here to register. We promise you will feel better afterwards.</a><br/>
+<% } %>
+
 <%
 		}
 	} else {
