@@ -81,6 +81,13 @@
 		If you don't want this, you can remove the code under 'server settings' in the box 'footer addition'.</p>
 	</td>
 </tr>
+<tr>
+	<td colspan="2">
+	   <p class="explain">Please also take the time to register yourself as a BIMserver manager. 
+	   <a href="https://docs.google.com/spreadsheet/embeddedform?formkey=dG5DYUNyVnA0Mk5DWnN0eHFueDlMR2c6MQ" target="_blank">Click here to register yourself at bimserver.org</a>.
+	   </p>
+    </td>
+</tr>
 
 </table>
 <input type="submit" name="setup" value="Setup"/>

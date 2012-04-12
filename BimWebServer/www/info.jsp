@@ -170,6 +170,9 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 			<tr><td class="firstcolumn">Revisions</td><td><%=databaseInformation.getNumberOfRevisions() %></td></tr>
 			<tr><td class="firstcolumn">Checkouts</td><td><%=databaseInformation.getNumberOfCheckouts() %></td></tr>
 			<tr><td colspan="2" class="tabletitle">Other</td></tr>
+			<tr><td>BIMserver managers registration</td><td> Please take a moment to register yourself as a BIMserver manager.<br/>
+			<a href="https://docs.google.com/spreadsheet/embeddedform?formkey=dG5DYUNyVnA0Mk5DWnN0eHFueDlMR2c6MQ" target="_blank">
+			Click here to register</a>.</td></tr>
 			<tr><td>Server log</td><td><a href="<%=getServletContext().getContextPath()%>/files?file=serverlog">Download server Logfile</a></td></tr>
 			<tr><td class="firstcolumn">Server started at</td><td><%=dateFormat.format(loginManager.getService().getServerStartTime()) %></td></tr>
 			<%
