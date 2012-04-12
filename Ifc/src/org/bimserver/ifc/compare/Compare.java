@@ -218,7 +218,7 @@ public class Compare {
 		EClass eClass = eObject1.eClass();
 		if (sCompareType == CompareType.ALL || sCompareType == CompareType.MODIFY) {
 			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-				if (!objectIDM.shouldIgnoreField(originalQueryClass, eClass, eStructuralFeature)) {
+				if (objectIDM.shouldFollowReference(originalQueryClass, eClass, eStructuralFeature)) {
 					if (eStructuralFeature.getName().endsWith("AsString")) {
 						continue;
 					}

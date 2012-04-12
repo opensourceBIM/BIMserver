@@ -2,7 +2,7 @@ package org.bimserver.tools.generators;
 
 import org.eclipse.emf.ecore.*;
 import org.bimserver.utils.*;
-import org.bimserver.MetaDataManager;
+import org.bimserver.emf.MetaDataManager;
 import java.io.File;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.StringUtils;

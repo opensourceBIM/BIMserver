@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import org.bimserver.plugins.objectidms.FieldIgnoreMap;
+import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
@@ -28,7 +29,7 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EPackage;
 
 public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
-	
+
 	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema) {
 		super(packages);
 		ArrayList<EntityDefinition> entities = schema.getEntities();
@@ -39,7 +40,7 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 						// Exception: http://code.google.com/p/bimserver/issues/detail?id=303
 						// Addition: Leon says this should be done for all types
 					} else {
-						generalSet.add(new StructuralFeatureIdentifier(entity.getName(), attribute.getName()));
+						addToGeneralIgnoreSet(new StructuralFeatureIdentifier(entity.getName(), attribute.getName()));
 					}
 				}
 			}

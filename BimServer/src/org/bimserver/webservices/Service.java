@@ -665,7 +665,7 @@ public class Service implements ServiceInterface {
 	
 	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
 		User user = null;
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 		} finally {

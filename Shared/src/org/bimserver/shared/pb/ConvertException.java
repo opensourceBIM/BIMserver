@@ -18,6 +18,8 @@ package org.bimserver.shared.pb;
  *****************************************************************************/
 
 public class ConvertException extends Exception {
+	private static final long serialVersionUID = 5294959937321055907L;
+
 	public ConvertException(String message) {
 		super(message);
 	}

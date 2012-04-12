@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.emf;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

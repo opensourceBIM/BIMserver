@@ -186,7 +186,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 			throw new UserException(e);
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			if (!objectIDM.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
+			if (objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Double) {

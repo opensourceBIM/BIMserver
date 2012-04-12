@@ -27,70 +27,26 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class FieldIgnoreMap implements ObjectIDM {
-	public static class StructuralFeatureIdentifier {
-		private final String eClass;
-		private final String eStructuralFeature;
-		
-		public StructuralFeatureIdentifier(String eClass, String eStructuralFeature) {
-			this.eClass = eClass;
-			this.eStructuralFeature = eStructuralFeature;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((eClass == null) ? 0 : eClass.hashCode());
-			result = prime * result + ((eStructuralFeature == null) ? 0 : eStructuralFeature.hashCode());
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			StructuralFeatureIdentifier other = (StructuralFeatureIdentifier) obj;
-			if (eClass == null) {
-				if (other.eClass != null)
-					return false;
-			} else if (!eClass.equals(other.eClass))
-				return false;
-			if (eStructuralFeature == null) {
-				if (other.eStructuralFeature != null)
-					return false;
-			} else if (!eStructuralFeature.equals(other.eStructuralFeature))
-				return false;
-			return true;
-		}
-	}
-	
-	protected final Set<StructuralFeatureIdentifier> generalSet = new HashSet<StructuralFeatureIdentifier>();
-	protected final Map<EClass, Set<StructuralFeatureIdentifier>> specificMap = new HashMap<EClass, Set<StructuralFeatureIdentifier>>();
+	private final Set<StructuralFeatureIdentifier> generalIgnoreSet = new HashSet<StructuralFeatureIdentifier>();
+	private final Map<EClass, Set<StructuralFeatureIdentifier>> specificIncludeMap = new HashMap<EClass, Set<StructuralFeatureIdentifier>>();
 	private final Set<? extends EPackage> packages;
 
 	public FieldIgnoreMap(Set<? extends EPackage> ePackages) {
 		packages = ePackages;
-//		for (EPackage ePackage : ePackages) {
-//			for (EClassifier classifier : ePackage.getEClassifiers()) {
-//				if (classifier instanceof EClass) {
-//					EClass eClass = (EClass) classifier;
-//					for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-//						String name = feature.getName();
-//						if (name.equals("ProvidesBoundaries") || name.equals("ContainedInStructure") || name.equals("FillsVoids") || name.equals("IsDecomposedBy")
-//								|| name.equals("Decomposes") || name.equals("RelatedObjects") || name.equals("IsDefinedBy") || name.equals("ReferencedBy")
-//								|| name.equals("HasAssociations") || name.equals("HasAssignments") || name.equals("ReferencedByPlacements") || name.equals("ConnectedTo")
-//								|| name.equals("HasCoverings") || name.equals("HasProjections") || name.equals("HasStructuralMember") || name.equals("ReferencedInStructures")
-//								|| name.equals("VoidsElements") || name.equals("ConnectedFrom")) {
-//							set.add(feature);
-//						}
-//					}
-//				}
-//			}
-//		}
+	}
+	
+	protected void addToGeneralIgnoreSet(StructuralFeatureIdentifier structuralFeatureIdentifier) {
+		generalIgnoreSet.add(structuralFeatureIdentifier);
+	}
+
+	protected void addToSpecificIncludeMap(EClass eClass, StructuralFeatureIdentifier structuralFeatureIdentifier) {
+		if (specificIncludeMap.containsKey(eClass)) {
+			specificIncludeMap.get(eClass).add(structuralFeatureIdentifier);
+		} else {
+			HashSet<StructuralFeatureIdentifier> hashSet = new HashSet<StructuralFeatureIdentifier>();
+			specificIncludeMap.put(eClass, hashSet);
+			specificIncludeMap.put(eClass, hashSet);
+		}
 	}
 	
 	protected EClass getEClass(String className) {
@@ -112,21 +68,21 @@ public class FieldIgnoreMap implements ObjectIDM {
 		return null;
 	}
 
-	public boolean shouldIgnoreField(EClass originalQueryClass, EClass eClass, EStructuralFeature eStructuralFeature) {
+	public boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature eStructuralFeature) {
 		StructuralFeatureIdentifier o = new StructuralFeatureIdentifier(eClass.getName(), eStructuralFeature.getName());
-		boolean generalAnswer = generalSet.contains(o);
-		if (generalAnswer == true) {
+		boolean generalShouldIgnoreAnswer = generalIgnoreSet.contains(o);
+		if (generalShouldIgnoreAnswer) {
 			// If the general ignore file says ignore, we should check for a specific override
-			if (specificMap.containsKey(originalQueryClass)) {
-				return !specificMap.get(originalQueryClass).contains(o);
+			if (specificIncludeMap.containsKey(originalQueryClass)) {
+				return specificIncludeMap.get(originalQueryClass).contains(o);
 			}
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
-	public boolean shouldIgnoreClass(EClass eClass) {
-		return false;
+	public boolean shouldIncludeClass(EClass eClass) {
+		return true;
 	}
 }

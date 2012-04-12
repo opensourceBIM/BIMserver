@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PackageDefinition name="Ifc2x3">
+    <ClassDefinition followNonInverses="true" followInverses="false" include="true" name="Object"/>
+    <ClassDefinition followNonInverses="true" followInverses="false" include="true" name="IfcElement">
+        <FieldDefinition follow="true" name="HasOpenings"/>
+    </ClassDefinition>
+    <ClassDefinition origin="IfcBuildingStorey" followNonInverses="true" followInverses="false" include="true" name="IfcObjectDefinition">
+        <FieldDefinition follow="true" name="IsDecomposedBy"/>
+    </ClassDefinition>
+    <ClassDefinition origin="IfcBuildingStorey" followNonInverses="true" followInverses="false" include="true" name="IfcSpatialStructureElement">
+        <FieldDefinition follow="true" name="ContainsElements"/>
+    </ClassDefinition>
+</PackageDefinition>

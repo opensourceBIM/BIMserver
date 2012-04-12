@@ -31,12 +31,12 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import org.bimserver.MetaDataManager;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.LazyLoader;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -255,7 +255,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			if (feature.isUnsettable() && (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0) {
 				idEObject.eUnset(feature);
 			} else {
-				if (objectIDM != null && objectIDM.shouldIgnoreField(originalQueryClass, eClass, feature)) {
+				if (objectIDM != null && !objectIDM.shouldFollowReference(originalQueryClass, eClass, feature)) {
 					// we have to do some reading to maintain a correct index
 					database.fakeRead(buffer, feature);
 				} else {
@@ -896,7 +896,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	@Override
 	public void getMap(IfcModel ifcModel, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
 		for (EClass eClass : database.getClasses()) {
-			if (objectIDM == null || !objectIDM.shouldIgnoreClass(eClass)) {
+			if (objectIDM == null || objectIDM.shouldIncludeClass(eClass)) {
 				getMap(eClass, pid, rid, ifcModel, deep, objectIDM);
 			}
 		}
@@ -1196,7 +1196,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					if (referenceValue.length == 1 && referenceValue[0] == -1) {
 						// Deleted
 					} else {
-						if (objectIDM != null && objectIDM.shouldIgnoreClass(eClass)) {
+						if (objectIDM != null && !objectIDM.shouldIncludeClass(eClass)) {
 							return null;
 						} else {
 							ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);
