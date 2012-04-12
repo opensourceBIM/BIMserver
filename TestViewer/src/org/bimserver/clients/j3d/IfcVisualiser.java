@@ -461,7 +461,7 @@ public class IfcVisualiser extends JFrame {
 			newModel.add(newObject.getOid(), newObject, true);
 		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
-			if (!objectIDM.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
+			if (objectIDM.shouldFollowReference(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
 				Object get = ifcRootObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {

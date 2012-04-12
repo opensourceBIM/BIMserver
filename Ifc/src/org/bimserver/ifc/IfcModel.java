@@ -174,7 +174,7 @@ public class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	public void sortAllAggregates(ObjectIDM objectIDM, IfcRoot ifcRoot) {
 		for (EStructuralFeature eStructuralFeature : ifcRoot.eClass().getEAllStructuralFeatures()) {
-			if (!objectIDM.shouldIgnoreField(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
+			if (objectIDM.shouldFollowReference(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
 				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
 					if (eStructuralFeature.getEType() instanceof EClass) {
 						if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
@@ -206,7 +206,7 @@ public class IfcModel implements IfcModelInterface {
 			public int compare(EObject o1, EObject o2) {
 				int i=1;
 				for (EStructuralFeature eStructuralFeature : type.getEAllStructuralFeatures()) {
-					if (!objectIDM.shouldIgnoreField(originalQueryClass, type, eStructuralFeature)) {
+					if (objectIDM.shouldFollowReference(originalQueryClass, type, eStructuralFeature)) {
 						Object val1 = o1.eGet(eStructuralFeature);
 						Object val2 = o2.eGet(eStructuralFeature);
 						if (val1 != null && val2 != null) {

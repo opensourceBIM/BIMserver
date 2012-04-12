@@ -18,7 +18,6 @@ package org.bimserver.objectidms;
  *****************************************************************************/
 
 import java.net.URL;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
@@ -28,6 +27,7 @@ import javax.xml.bind.Unmarshaller;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.objectidms.FieldIgnoreMap;
+import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -49,7 +49,7 @@ public class FileBasedObjectIDM extends FieldIgnoreMap {
 			PackageDefinition packageDefinition = (PackageDefinition) unmarshaller.unmarshal(ignoreFile);
 			for (ClassDefinition classDefinition : packageDefinition.getClassDefinitions()) {
 				for (FieldDefinition fieldDefinition : classDefinition.getFieldDefinitions()) {
-					generalSet.add(new StructuralFeatureIdentifier(classDefinition.getName(), fieldDefinition.getName()));
+					addToGeneralIgnoreSet(new StructuralFeatureIdentifier(classDefinition.getName(), fieldDefinition.getName()));
 				}
 			}
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
@@ -70,11 +70,9 @@ public class FileBasedObjectIDM extends FieldIgnoreMap {
 		LOGGER.info("Reading specific non-ignore list for " + eClass.getName() + " from \"" + StringUtils.getPrettyFileUrl(resource) + "\"");
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 		PackageDefinition packageDefinition = (PackageDefinition) unmarshaller.unmarshal(resource);
-		HashSet<StructuralFeatureIdentifier> hashSet = new HashSet<StructuralFeatureIdentifier>();
-		specificMap.put(eClass, hashSet);
 		for (ClassDefinition classDefinition : packageDefinition.getClassDefinitions()) {
 			for (FieldDefinition fieldDefinition : classDefinition.getFieldDefinitions()) {
-				hashSet.add(new StructuralFeatureIdentifier(classDefinition.getName(), fieldDefinition.getName()));
+				addToSpecificIncludeMap(eClass, new StructuralFeatureIdentifier(classDefinition.getName(), fieldDefinition.getName()));
 			}
 		}
 	}

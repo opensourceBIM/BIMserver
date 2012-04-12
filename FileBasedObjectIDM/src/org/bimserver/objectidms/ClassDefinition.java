@@ -27,12 +27,24 @@ import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ClassDefinition {
+	@XmlAttribute(name="name")
+	private String name;
+
+	@XmlAttribute(name="include")
+	private boolean include = true;
+
+	@XmlAttribute(name="followInverses")
+	private boolean followInverses = false;
+	
+	@XmlAttribute(name="followNonInverses")
+	private boolean followNonInverses = true;
+	
+	@XmlAttribute(name="origin")
+	private String origin;
+	
 	@XmlElement(name="FieldDefinition")
 	private List<FieldDefinition> fieldDefinitions = new ArrayList<FieldDefinition>();
 
-	@XmlAttribute(name="name")
-	private String name;
-	
 	public ClassDefinition() {
 	}
 
@@ -50,5 +62,37 @@ public class ClassDefinition {
 
 	public void setFieldDefinitions(List<FieldDefinition> fieldDefinitions) {
 		this.fieldDefinitions = fieldDefinitions;
+	}
+
+	public boolean isInclude() {
+		return include;
+	}
+
+	public void setInclude(boolean include) {
+		this.include = include;
+	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
+	public boolean isFollowNonInverses() {
+		return followNonInverses;
+	}
+
+	public void setFollowNonInverses(boolean followNonInverses) {
+		this.followNonInverses = followNonInverses;
+	}
+
+	public boolean isFollowInverses() {
+		return followInverses;
+	}
+
+	public void setFollowInverses(boolean followInverses) {
+		this.followInverses = followInverses;
 	}
 }

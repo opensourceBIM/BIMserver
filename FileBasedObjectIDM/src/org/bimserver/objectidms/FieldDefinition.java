@@ -23,9 +23,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FieldDefinition {
-	@XmlAttribute(name="name")
+	@XmlAttribute(name = "name")
 	private String name;
-	
+
+	@XmlAttribute(name = "follow")
+	private boolean follow = true;
+
 	public FieldDefinition() {
 	}
 
@@ -35,5 +38,13 @@ public class FieldDefinition {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isFollow() {
+		return follow;
+	}
+
+	public void setFollow(boolean follow) {
+		this.follow = follow;
 	}
 }

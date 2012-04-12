@@ -322,12 +322,11 @@ public class ColladaSerializer extends EmfSerializer {
 			int count = visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex();
 			for (int i = visualisationProperties.getStartIndex(); i < count; i++) {
 				int index = geometry.getIndex(i) * 3;
-				out.print(geometry.getVertex(index) + " ");
-				out.print(geometry.getVertex(index + 2) + " ");
+				out.print(geometry.getVertex(index + 0) + " ");
+				out.print(geometry.getVertex(index + 1) + " ");
+				out.print(geometry.getVertex(index + 2));
 				if (i != count - 1) {
-					out.print(geometry.getVertex(index + 1) + " ");
-				} else {
-					out.print(geometry.getVertex(index + 1));
+					out.print(" ");
 				}
 			}
 			
@@ -346,12 +345,11 @@ public class ColladaSerializer extends EmfSerializer {
 			for (int i = visualisationProperties.getStartIndex(); i < count; i++) {
 				// Normals will also be scaled in Google Earth ...
 				int index = geometry.getIndex(i) * 3;
-				out.print(geometry.getNormal(index) * 1000.0f + " ");
-				out.print(geometry.getNormal(index + 2) * 1000.0f + " ");
+				out.print(geometry.getNormal(index + 0) * 1000.0f + " ");
+				out.print(geometry.getNormal(index + 1) * 1000.0f + " ");
+				out.print(geometry.getNormal(index + 2) * 1000.0f);
 				if (i != count - 1) {
-					out.print((geometry.getNormal(index + 1) * 1000.0f) + " ");
-				} else {
-					out.print(geometry.getNormal(index + 1) * 1000.0f);
+					out.print(" ");
 				}
 			}
 			out.println("</float_array>");
@@ -374,10 +372,9 @@ public class ColladaSerializer extends EmfSerializer {
 			out.print("				<p>");
 			count = visualisationProperties.getPrimitiveCount() * 3;
 			for (int i = 0; i < count; i++) {
-				if (i == count - 1) {
-					out.print(i);
-				} else {
-					out.print(i + " ");
+				out.print(i);
+				if (i != count - 1) {
+					out.print(" ");
 				}
 			}
 			out.println("</p>");
@@ -427,20 +424,20 @@ public class ColladaSerializer extends EmfSerializer {
 				out.println("            </node>");
 			}
 		}
-		out.println("            <node id=\"testCamera\" name=\"testCamera\">");
-		out.println("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <instance_camera url=\"#testCameraShape\"/>");
-		out.println("            </node>");
-		out.println("            <node id=\"pointLight1\" name=\"pointLight1\">");
-		out.println("                <translate sid=\"translate\">3 4 10</translate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
-		out.println("                <instance_light url=\"#pointLightShape1-lib\"/>");
-		out.println("            </node>");
+//		out.println("            <node id=\"testCamera\" name=\"testCamera\">");
+//		out.println("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
+//		out.println("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
+//		out.println("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
+//		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
+//		out.println("                <instance_camera url=\"#testCameraShape\"/>");
+//		out.println("            </node>");
+//		out.println("            <node id=\"pointLight1\" name=\"pointLight1\">");
+//		out.println("                <translate sid=\"translate\">3 4 10</translate>");
+//		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
+//		out.println("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
+//		out.println("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
+//		out.println("                <instance_light url=\"#pointLightShape1-lib\"/>");
+//		out.println("            </node>");
 		out.println("        </visual_scene>");
 		out.println("    </library_visual_scenes>");
 	}

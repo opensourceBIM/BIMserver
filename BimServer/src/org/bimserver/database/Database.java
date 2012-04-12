@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.MetaDataManager;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProjectDatabaseAction;
@@ -34,6 +33,7 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;

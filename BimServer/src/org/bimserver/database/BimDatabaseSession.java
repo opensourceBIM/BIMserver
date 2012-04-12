@@ -23,10 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.MetaDataManager;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.plugins.objectidms.ObjectIDM;

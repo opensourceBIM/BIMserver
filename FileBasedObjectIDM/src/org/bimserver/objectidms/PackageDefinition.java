@@ -17,6 +17,7 @@ package org.bimserver.objectidms;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,15 +25,20 @@ import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "PackageDefinition")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PackageDefinition {
+	@XmlAttribute(name = "name")
+	private String name;
+	
 	@XmlElement(name = "ClassDefinition")
 	private List<ClassDefinition> classDefinitions = new ArrayList<ClassDefinition>();
 
@@ -56,11 +62,34 @@ public class PackageDefinition {
 		return false;
 	}
 
+	public void writeToFile(File file) throws JAXBException {
+		JAXBContext jc = JAXBContext.newInstance(PackageDefinition.class);
+		Marshaller marshaller = jc.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		marshaller.marshal(this, file);
+	}
+	
+	public static PackageDefinition readFromFile(File file) throws JAXBException {
+		JAXBContext jc = JAXBContext.newInstance(PackageDefinition.class);
+		Unmarshaller unmarshaller = jc.createUnmarshaller();
+		Object unmarshal = unmarshaller.unmarshal(file);
+		PackageDefinition settings = (PackageDefinition) unmarshal;
+		return settings;
+	}
+	
 	public static PackageDefinition readFromFile(URL resource) throws JAXBException, IOException {
 		JAXBContext jc = JAXBContext.newInstance(PackageDefinition.class);
 		Unmarshaller unmarshaller = jc.createUnmarshaller();
 		Object unmarshal = unmarshaller.unmarshal(resource.openStream());
 		PackageDefinition settings = (PackageDefinition) unmarshal;
 		return settings;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
