@@ -33,6 +33,7 @@ import org.bimserver.models.ifc2x3.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3.IfcColumn;
 import org.bimserver.models.ifc2x3.IfcCurtainWall;
 import org.bimserver.models.ifc2x3.IfcDoor;
+import org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction;
 import org.bimserver.models.ifc2x3.IfcFlowSegment;
 import org.bimserver.models.ifc2x3.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3.IfcMember;
@@ -44,6 +45,7 @@ import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.IfcSIUnit;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
+import org.bimserver.models.ifc2x3.IfcSpace;
 import org.bimserver.models.ifc2x3.IfcStair;
 import org.bimserver.models.ifc2x3.IfcStairFlight;
 import org.bimserver.models.ifc2x3.IfcUnit;
@@ -95,6 +97,7 @@ public class ColladaSerializer extends EmfSerializer {
 			}
 		});
 		addConvertor(new Convertor<IfcWindow>(IfcWindow.class, new double[] { 0.2f, 0.2f, 0.8f }, 0.2f));
+		addConvertor(new Convertor<IfcSpace>(IfcSpace.class, new double[] { 0.5f, 0.4f, 0.1f }, 0.2f));
 		addConvertor(new Convertor<IfcDoor>(IfcDoor.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
 		addConvertor(new Convertor<IfcStair>(IfcStair.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
 		addConvertor(new Convertor<IfcStairFlight>(IfcStairFlight.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
@@ -300,6 +303,12 @@ public class ColladaSerializer extends EmfSerializer {
 //		if (!added) {
 //		}
 
+		if (ifcRootObject instanceof IfcFeatureElementSubtraction) {
+			// Mostly just skips IfcOpeningElements which one would probably not
+			// want to end up in the Collada file.
+			return;
+		}
+		
 		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int)ifcRootObject.getOid());
 		IfcEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
 		if (visualisationProperties.getPrimitiveCount() > 0) {
