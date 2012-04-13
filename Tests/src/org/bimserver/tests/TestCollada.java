@@ -28,13 +28,13 @@ public class TestCollada {
 				SerializerPlugin plugin = plugins.iterator().next();
 				EmfSerializer serializer = plugin.createSerializer();
 				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
-				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
-//				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
+//				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
+				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 				if (!allDeserializerPlugins.isEmpty()) {
 					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 					EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\m1-bevinding\\M1_project.ifc"), true);
+					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\m1-bevinding\\M1_project.ifc"), true);
 //					IfcModelInterface model = deserializer.read(TestFile.ADTHAUS.getFile(), true);
 					serializer.init(model, null, pluginManager, ifcEngine.createIfcEngine());
 					serializer.writeToFile(new File("output/ac11.dae"));
