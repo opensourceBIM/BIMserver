@@ -45,24 +45,24 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	private final Set<Change> changes;
 	private final long currentUoid;
 	private final String comment;
-	private final int pid;
 	private Revision revision;
+	private final long poid;
 
-	public CommitTransactionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Change> changes, long currentUoid, int pid,
+	public CommitTransactionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Change> changes, long currentUoid, long poid,
 			String comment) {
 		super(bimDatabaseSession, accessMethod, null);
 		this.changes = changes;
 		this.currentUoid = currentUoid;
-		this.pid = pid;
+		this.poid = poid;
 		this.comment = comment;
 	}
 
 	@Override
 	public ConcreteRevision execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = getProjectById(pid);
+		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(currentUoid);
 		if (project == null) {
-			throw new UserException("Project with pid " + pid + " not found");
+			throw new UserException("Project with poid " + poid + " not found");
 		}
 		if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
 			throw new UserException("User has no rights to checkin models to this project");
@@ -96,13 +96,13 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
 		for (Change change : changes) {
 			if (change instanceof CreateObjectChange) {
-				change.execute(pid, concreteRevision.getId(), getDatabaseSession(), created);
+				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
 			}
 		}
 		// Then do the rest
 		for (Change change : changes) {
 			if (!(change instanceof CreateObjectChange)) {
-				change.execute(pid, concreteRevision.getId(), getDatabaseSession(), created);
+				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
 			}
 		}
 		getDatabaseSession().store(newRevisionAdded);

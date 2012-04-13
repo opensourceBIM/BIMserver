@@ -130,10 +130,10 @@ public class TestLowLevelChanges {
 		return -1;
 	}
 
-	private int createProject() {
+	private long createProject() {
 		try {
 			SProject project = service.addProject("Project " + new Random().nextInt());
-			return project.getId();
+			return project.getOid();
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
@@ -152,8 +152,8 @@ public class TestLowLevelChanges {
 	
 	public void testCreateObject() {
 		try {
-			int pid = createProject();
-			service.startTransaction(pid);
+			long poid = createProject();
+			service.startTransaction(poid);
 			long wallOid = service.createObject("IfcWall");
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
@@ -174,8 +174,8 @@ public class TestLowLevelChanges {
 
 	public void testSetStringAttribute() {
 		try {
-			int pid = createProject();
-			service.startTransaction(pid);
+			long poid = createProject();
+			service.startTransaction(poid);
 			long windowOid = service.createObject("IfcWindow");
 			String name = "TestX";
 			service.setStringAttribute(windowOid, "IfcWindow", "Name", name);
@@ -202,8 +202,8 @@ public class TestLowLevelChanges {
 
 	public void testSetFloatAttribute() {
 		try {
-			int pid = createProject();
-			service.startTransaction(pid);
+			long poid = createProject();
+			service.startTransaction(poid);
 			long windowOid = service.createObject("IfcWindow");
 			double overallHeight = 200.5;
 			service.setDoubleAttribute(windowOid, "IfcWindow", "OverallHeight", overallHeight);
@@ -230,8 +230,8 @@ public class TestLowLevelChanges {
 
 	public void testSetReference() {
 		try {
-			int pid = createProject();
-			service.startTransaction(pid);
+			long poid = createProject();
+			service.startTransaction(poid);
 			long siteId = service.createObject("IfcSite");
 			long ownerHistoryId = service.createObject("IfcOwnerHistory");
 			service.setReference(siteId, "IfcSite", "OwnerHistory", ownerHistoryId, "IfcOwnerHistory");
@@ -260,8 +260,8 @@ public class TestLowLevelChanges {
 
 	public void testAddFloatAttribute() {
 		try {
-			int pid = createProject();
-			service.startTransaction(pid);
+			long poid = createProject();
+			service.startTransaction(poid);
 			long cartesianPointId = service.createObject("IfcCartesianPoint");
 			double firstVal = 5.1;
 			service.addDoubleAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", firstVal);
@@ -291,11 +291,11 @@ public class TestLowLevelChanges {
 	
 	public void testRemoveObject() {
 		try {
-			int pid = createProject();
-			service.startTransaction(pid);
+			long poid = createProject();
+			service.startTransaction(poid);
 			long windowId = service.createObject("IfcWindow");
 			service.commitTransaction("test");
-			service.startTransaction(pid);
+			service.startTransaction(poid);
 			service.removeObject("IfcWindow", windowId);
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);

@@ -114,6 +114,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				public void execute() throws UserException {
 					NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
 					newRevisionNotification.setRevision(concreteRevision.getRevisions().get(0));
+					newRevisionNotification.setProject(concreteRevision.getProject());
 					bimServer.getNotificationsManager().notify(newRevisionNotification);
 				}
 			});

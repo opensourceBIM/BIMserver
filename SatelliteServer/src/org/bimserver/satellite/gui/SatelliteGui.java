@@ -43,7 +43,7 @@ import org.bimserver.client.notifications.NotificationLogger;
 import org.bimserver.satellite.SatelliteServer;
 import org.bimserver.satellite.SatelliteSettings;
 import org.bimserver.satellite.activities.Activity;
-import org.bimserver.satellite.activities.ExploderActivity;
+import org.bimserver.satellite.activities.NameChangeActivity;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.utils.SwingUtil;
 import org.slf4j.Logger;
@@ -63,7 +63,8 @@ public class SatelliteGui extends JFrame {
 
 	public static void main(String[] args) {
 		SatelliteServer satelliteServer = new SatelliteServer();
-		satelliteServer.registerActivity(new ExploderActivity());
+//		satelliteServer.registerActivity(new ExploderActivity());
+		satelliteServer.registerActivity(new NameChangeActivity());
 		new SatelliteGui(satelliteServer);
 	}
 

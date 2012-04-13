@@ -344,7 +344,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	private Object convertStringValue(EStructuralFeature eStructuralFeature, String stringValue) {
-		System.out.println(eStructuralFeature.getName() + ": " + stringValue);
 		EClassifier eType = eStructuralFeature.getEType();
 		EcorePackage einstance = EcorePackage.eINSTANCE;
 		if (eType == einstance.getEString()) {
@@ -397,5 +396,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public PluginManager getPluginManager() {
 		return pluginManager;
+	}
+
+	public void unregisterNotificationListener(NotificationInterface notificationInterface) {
+		notificationsClient.unregisterNotifictionListener(notificationInterface);
 	}
 }

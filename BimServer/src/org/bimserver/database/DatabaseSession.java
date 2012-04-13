@@ -896,7 +896,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	@Override
 	public void getMap(IfcModel ifcModel, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimDatabaseException, BimDeadlockException {
 		for (EClass eClass : database.getClasses()) {
-			if (objectIDM == null || objectIDM.shouldIncludeClass(eClass)) {
+			if (objectIDM == null || objectIDM.shouldIncludeClass(eClass, eClass)) {
 				getMap(eClass, pid, rid, ifcModel, deep, objectIDM);
 			}
 		}
@@ -1196,7 +1196,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					if (referenceValue.length == 1 && referenceValue[0] == -1) {
 						// Deleted
 					} else {
-						if (objectIDM != null && !objectIDM.shouldIncludeClass(eClass)) {
+						if (objectIDM != null && !objectIDM.shouldIncludeClass(originalQueryClass, eClass)) {
 							return null;
 						} else {
 							ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);

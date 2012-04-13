@@ -76,20 +76,24 @@ public class NotificationsManager extends Thread {
 				try {
 					Notification notification = queue.take();
 					for (NotificationContainer notificationContainer : listeners) {
-						NotificationInterface notificationInterface = notificationContainer.getNotificationInterface();
-						boolean isAdmin = notificationContainer.getUser().getUserType() == UserType.ADMIN;
-						if (notification instanceof NewProjectNotification) {
-							NewProjectNotification newProjectNotification = (NewProjectNotification)notification;
-							Project project = newProjectNotification.getProject();
-							if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
-								notificationInterface.newProject(sConverter.convertToSObject((NewProjectNotification) notification));
+						try {
+							NotificationInterface notificationInterface = notificationContainer.getNotificationInterface();
+							boolean isAdmin = notificationContainer.getUser().getUserType() == UserType.ADMIN;
+							if (notification instanceof NewProjectNotification) {
+								NewProjectNotification newProjectNotification = (NewProjectNotification)notification;
+								Project project = newProjectNotification.getProject();
+								if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
+									notificationInterface.newProject(sConverter.convertToSObject((NewProjectNotification) notification));
+								}
+							} else if (notification instanceof NewRevisionNotification) {
+								NewRevisionNotification newRevisionNotification = (NewRevisionNotification) notification;
+								Project project = newRevisionNotification.getRevision().getProject();
+								if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
+									notificationInterface.newRevision(sConverter.convertToSObject(newRevisionNotification));
+								}
 							}
-						} else if (notification instanceof NewRevisionNotification) {
-							NewRevisionNotification newRevisionNotification = (NewRevisionNotification) notification;
-							Project project = newRevisionNotification.getRevision().getProject();
-							if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
-								notificationInterface.newRevision(sConverter.convertToSObject(newRevisionNotification));
-							}
+						} catch (Exception e) {
+							LOGGER.error("", e);
 						}
 					}
 				} catch (InterruptedException e) {

@@ -24,6 +24,7 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.slf4j.Logger;
@@ -94,5 +95,9 @@ public class SocketNotificationsClient extends NotificationsClient {
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
+	}
+
+	public void unregisterNotifictionListener(NotificationInterface notificationInterface) {
+		
 	}
 }

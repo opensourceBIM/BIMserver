@@ -38,10 +38,10 @@ import org.bimserver.models.ifc2x3.IfcFlowSegment;
 import org.bimserver.models.ifc2x3.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3.IfcMember;
 import org.bimserver.models.ifc2x3.IfcPlate;
+import org.bimserver.models.ifc2x3.IfcProduct;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRailing;
 import org.bimserver.models.ifc2x3.IfcRoof;
-import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.IfcSIUnit;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
@@ -73,14 +73,14 @@ import org.slf4j.LoggerFactory;
 
 public class ColladaSerializer extends EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
-	private static final Map<Class<? extends IfcRoot>, Convertor<? extends IfcRoot>> convertors = new LinkedHashMap<Class<? extends IfcRoot>, Convertor<? extends IfcRoot>>();
+	private static final Map<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>> convertors = new LinkedHashMap<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>>();
 	private final Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private SIPrefix lengthUnitPrefix;
 	private IfcEngineModel ifcEngineModel;
 	private IfcEngineGeometry geometry;
 	private int idCounter;
 
-	private static <T extends IfcRoot> void addConvertor(Convertor<T> convertor) {
+	private static <T extends IfcProduct> void addConvertor(Convertor<T> convertor) {
 		convertors.put(convertor.getCl(), convertor);
 	}
 	
@@ -111,7 +111,7 @@ public class ColladaSerializer extends EmfSerializer {
 		addConvertor(new Convertor<IfcRailing>(IfcRailing.class, new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f));
 		addConvertor(new Convertor<IfcColumn>(IfcColumn.class, new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f));
 		addConvertor(new Convertor<IfcBuildingElementProxy>(IfcBuildingElementProxy.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
-		addConvertor(new Convertor<IfcRoot>(IfcRoot.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
+		addConvertor(new Convertor<IfcProduct>(IfcProduct.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
 	}
 	
 	@Override
@@ -192,11 +192,11 @@ public class ColladaSerializer extends EmfSerializer {
 	private void writeGeometries(PrintWriter out) throws IfcEngineException, SerializerException {
 		out.println("	<library_geometries>");
 
-		Set<IfcRoot> convertedObjects = new HashSet<IfcRoot>();
+		Set<IfcProduct> convertedObjects = new HashSet<IfcProduct>();
 
-		for (Class<? extends IfcRoot> cl : convertors.keySet()) {
-			Convertor<? extends IfcRoot> convertor = convertors.get(cl);
-			for (IfcRoot object : model.getAllWithSubTypes(cl)) {
+		for (Class<? extends IfcProduct> cl : convertors.keySet()) {
+			Convertor<? extends IfcProduct> convertor = convertors.get(cl);
+			for (IfcProduct object : model.getAllWithSubTypes(cl)) {
 				if (!convertedObjects.contains(object)) {
 					convertedObjects.add(object);
 					setGeometry(out, object, convertor.getMaterialName(object));
@@ -210,7 +210,7 @@ public class ColladaSerializer extends EmfSerializer {
 		return "" + (idCounter++);
 	}
 	
-	private void setGeometry(PrintWriter out, IfcRoot ifcRootObject, String material) throws IfcEngineException, SerializerException {
+	private void setGeometry(PrintWriter out, IfcProduct ifcProductObject, String material) throws IfcEngineException, SerializerException {
 //		boolean materialFound = false;
 //		boolean added = false;
 //		if (ifcRootObject instanceof IfcProduct) {
@@ -303,13 +303,13 @@ public class ColladaSerializer extends EmfSerializer {
 //		if (!added) {
 //		}
 
-		if (ifcRootObject instanceof IfcFeatureElementSubtraction) {
+		if (ifcProductObject instanceof IfcFeatureElementSubtraction) {
 			// Mostly just skips IfcOpeningElements which one would probably not
 			// want to end up in the Collada file.
 			return;
 		}
 		
-		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int)ifcRootObject.getOid());
+		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int)ifcProductObject.getOid());
 		IfcEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
 		if (visualisationProperties.getPrimitiveCount() > 0) {
 			String id = generateId();
@@ -319,8 +319,8 @@ public class ColladaSerializer extends EmfSerializer {
 			converted.get(material).add(id);
 
 			String name = "Unknown";
-			if (ifcRootObject.getGlobalId() != null && ifcRootObject.getGlobalId().getWrappedValue() != null) {
-				name = ifcRootObject.getGlobalId().getWrappedValue();
+			if (ifcProductObject.getGlobalId() != null && ifcProductObject.getGlobalId().getWrappedValue() != null) {
+				name = ifcProductObject.getGlobalId().getWrappedValue();
 			}
 			
 			out.println("	<geometry id=\"geom-" + id + "\" name=\"" + name + "\">");
@@ -453,7 +453,7 @@ public class ColladaSerializer extends EmfSerializer {
 
 	private void writeEffects(PrintWriter out) {
 		out.println("	<library_effects>");
-		for (Convertor<? extends IfcRoot> convertor : convertors.values()) {
+		for (Convertor<? extends IfcProduct> convertor : convertors.values()) {
 			writeEffect(out, convertor.getMaterialName(null), convertor.getColors(), convertor.getOpacity());
 		}
 //		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
@@ -604,7 +604,7 @@ public class ColladaSerializer extends EmfSerializer {
 
 	private void writeMaterials(PrintWriter out) {
 		out.println("	<library_materials>");
-		for (Convertor<? extends IfcRoot> convertor : convertors.values()) {
+		for (Convertor<? extends IfcProduct> convertor : convertors.values()) {
 			writeMaterial(out, convertor.getMaterialName(null));
 		}
 		out.println("	</library_materials>");

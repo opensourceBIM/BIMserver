@@ -63,6 +63,6 @@ public class SetReferenceChange implements Change {
 			throw new UserException("Referenced object of type " + referencedClassName + " with oid " + referenceOid + " not found");
 		}
 		idEObject.eSet(eReference, referencedObject);
-		bimDatabaseSession.store(idEObject);
+		bimDatabaseSession.store(idEObject, pid, rid);
 	}
 }

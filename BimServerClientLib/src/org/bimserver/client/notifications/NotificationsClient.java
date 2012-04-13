@@ -31,6 +31,10 @@ public abstract class NotificationsClient {
 		connectDisconnectListeners.add(connectDisconnectListener);
 	}
 	
+	public void unregisterConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
+		connectDisconnectListeners.remove(connectDisconnectListener);
+	}
+	
 	public void notifyConnect() {
 		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
 			connectDisconnectListener.connected();
@@ -45,5 +49,9 @@ public abstract class NotificationsClient {
 	
 	public void registerNotifictionListener(NotificationInterface notificationInterface) {
 		multiCastNotificationImpl.add(notificationInterface);
+	}
+	
+	public void unregisterNotificationListener(NotificationInterface notificationInterface) {
+		multiCastNotificationImpl.remove(notificationInterface);
 	}
 }

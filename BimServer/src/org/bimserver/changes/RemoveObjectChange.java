@@ -49,6 +49,6 @@ public class RemoveObjectChange implements Change {
 		if (idEObject == null) {
 			throw new UserException("Object with oid " + oid + " not found");
 		}
-		bimDatabaseSession.delete(idEObject);
+		bimDatabaseSession.store(idEObject, pid, rid);
 	}
 }

@@ -1,5 +1,6 @@
 package org.bimserver.plugins;
 
+
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
  * 
@@ -23,5 +24,9 @@ public class ObjectIDMException extends Exception {
 
 	public ObjectIDMException(String message) {
 		super(message);
+	}
+
+	public ObjectIDMException(Exception e) {
+		super(e);
 	}
 }

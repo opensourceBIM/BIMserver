@@ -107,7 +107,7 @@ public class MetaDataManager {
 		}
 		return null;
 	}
-
+	
 	public EReference getEReference(String className, String referenceName) {
 		for (EPackage ePackage : ePackages.values()) {
 			EClassifier eClassifier = ePackage.getEClassifier(className);
