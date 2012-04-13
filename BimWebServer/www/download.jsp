@@ -87,7 +87,7 @@ function update() {
 				$(".downloadpopup .progressbar").progressbar({value: data.progress});
 				if (data.state == "FINISHED") {
 					$(".downloadpopup .progressbar").hide();
-					$(".downloadpopup .fields").show();
+					$(".downloadpopup .fields, .downloadpopup .checkoutMessage").show();
 					var zip = $("#downloadCheckoutZip").attr('checked') == undefined ? "" : "&zip=on";
 					var serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 					var url = "<%=request.getContextPath()%>/download?longActionId=" + laid + zip + "&serializerName=" + serializerName;
@@ -97,11 +97,11 @@ function update() {
 					setTimeout(update, 500);
 				}
 			} else {
-				$(".downloadpopup .fields").show();
+				$(".downloadpopup .fields, .downloadpopup .checkoutMessage").show();
 				$(".downloadpopup .message").html("Error: " + data.error);
 			}
 		}, error: function(jqXHR, textStatus, errorThrown) {
-			$(".downloadpopup .fields").show();
+			$(".downloadpopup .fields, .downloadpopup .checkoutMessage").show();
 			$(".downloadpopup .message").html("Error: " + textStatus);
 		}
 	});
@@ -111,6 +111,7 @@ function start(url) {
 	$(".downloadpopup .message").html("Preparing download...");
 	$(".downloadpopup .progressbar").show();
 	$(".downloadpopup .fields").hide();
+	$(".downloadpopup .checkoutMessage").hide();
 	$.ajax({
 		url: url,
 		cache: false,
@@ -127,6 +128,7 @@ function start(url) {
 			}
 		}, error: function(jqXHR, textStatus, errorThrown) {
 			$(".downloadpopup .message").html("Error: " + textStatus);
+			$(".downloadpopup .checkoutMessage").show();
 		}
 	});
 }

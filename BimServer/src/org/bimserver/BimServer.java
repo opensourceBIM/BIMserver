@@ -171,7 +171,7 @@ public class BimServer {
 			versionChecker = new VersionChecker(config.getResourceFetcher());
 
 			try {
-				pluginManager = new PluginManager(config.getHomeDir(), config.getClassPath());
+				pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath());
 				pluginManager.addPluginChangeListener(new PluginChangeListener() {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
