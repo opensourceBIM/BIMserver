@@ -164,7 +164,7 @@
 		
 		$("#fileupload").fileupload({
 			dataType: "json",
-	        url: '/upload',
+	        url: '<%=request.getContextPath()%>/upload',
 			replaceFileInput: false,
 			submit: function(e, data){
 				if (!shouldsend) {
