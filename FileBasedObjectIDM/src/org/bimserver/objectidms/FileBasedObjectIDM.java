@@ -86,7 +86,6 @@ public class FileBasedObjectIDM extends AbstractObjectIDM {
 		} catch (IOException e) {
 			throw new ObjectIDMException(e);
 		}
-		System.out.println(toString());
 	}
 
 	private void processClassDefinition(AbstractObjectIDM abstractObjectIDM, ClassDefinition classDefinition, EClass eClass) throws ObjectIDMException {

@@ -100,7 +100,7 @@ public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 
 	@Override
 	public IfcEngine createIfcEngine() throws IfcEngineException {
-		return new FailSafeIfcEngine(schemaFile, nativeFolder, new File(pluginManager.getTempDir(), "tmp"), pluginManager.getCompleteClassPath());
+		return new FailSafeIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
 	}
 
 	@Override
