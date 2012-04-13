@@ -33,14 +33,26 @@ public class TestDeserializer {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
-			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition());
-			deserializer.read(new File("../TestData/data/FJK-Project-Final.ifc"), true);
+			final PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+
+			for (int i=0; i<6; i++) {
+				new Thread(){
+					@Override
+					public void run() {
+						try {
+							EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+							deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition());
+							deserializer.read(TestFile.HITOS_SOURCE_FILE.getFile(), true);
+						} catch (PluginException e) {
+							e.printStackTrace();
+						} catch (DeserializeException e) {
+							e.printStackTrace();
+						}
+					}
+				}.start();
+			}
 		} catch (PluginException e) {
-			e.printStackTrace();
-		} catch (DeserializeException e) {
 			e.printStackTrace();
 		}
 	}
