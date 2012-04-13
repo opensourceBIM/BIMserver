@@ -132,9 +132,4 @@ public class ClashDetectionLongAction extends LongAction {
 	@Override
 	public void init() {
 	}
-
-	@Override
-	public LongActionKey getKey() {
-		return new ClashDetectionLongActionKey(poid);
-	}
 }

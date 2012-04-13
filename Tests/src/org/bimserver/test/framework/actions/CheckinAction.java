@@ -42,7 +42,7 @@ public class CheckinAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SProject project = virtualUser.getRandomProject();
-		File randomFile = getTestFramework().getRandomFile();
+		File randomFile = getTestFramework().getTestFile();
 		FileDataSource dataSource = new FileDataSource(randomFile);
 		String deserializerName = null;
 		if (randomFile.getName().endsWith(".ifc")) {

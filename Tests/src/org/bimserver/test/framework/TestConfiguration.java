@@ -12,11 +12,11 @@ public class TestConfiguration {
 	private boolean cleanEnvironmentFirst = true;
 	private boolean stopOnUserException = false;
 	private boolean stopOnServerException = true;
-	private File ifcFilesFolder;
 	private ActionFactory actionFactory;
 	private File outputFolder;
 	private BimServerClientFactory bimServerClientFactory;
 	private File homeDir = new File("home");
+	private TestFileProvider testFileProvider;
 	
 	public int getNrVirtualUsers() {
 		return nrVirtualUsers;
@@ -66,14 +66,6 @@ public class TestConfiguration {
 		this.stopOnServerException = stopOnServerException;
 	}
 
-	public File getIfcFiles() {
-		return ifcFilesFolder;
-	}
-
-	public void setIfcFilesFolder(File ifcFilesFolder) {
-		this.ifcFilesFolder = ifcFilesFolder;
-	}
-
 	public ActionFactory getActionFactory() {
 		return actionFactory;
 	}
@@ -104,5 +96,13 @@ public class TestConfiguration {
 
 	public void setHomeDir(File homeDir) {
 		this.homeDir = homeDir;
+	}
+
+	public void setTestFileProvider(TestFileProvider testFileProvider) {
+		this.testFileProvider = testFileProvider;
+	}
+	
+	public TestFileProvider getTestFileProvider() {
+		return testFileProvider;
 	}
 }

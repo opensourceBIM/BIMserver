@@ -28,6 +28,7 @@ import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
 import org.bimserver.database.actions.DownloadCompareDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
+import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -41,7 +42,7 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 
-public class LongDownloadAction extends LongDownloadOrCheckoutAction {
+public class LongDownloadAction extends LongDownloadOrCheckoutAction implements ProgressListener {
 
 	private BimDatabaseAction<? extends IfcModelInterface> action;
 	private BimDatabaseSession session;
@@ -111,6 +112,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getCompareIdentifier(), downloadParameters.getCompareType(), currentUoid, objectIDM);
 			break;
 		}
+		action.addProgressListener(this);
 	}
 
 	@Override
@@ -121,23 +123,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			ds.setProgress(100);
 			return ds;
 		}
-		switch (downloadParameters.getDownloadType()) {
-		case DOWNLOAD_REVISION:
-			ds.setProgress(((DownloadDatabaseAction) action).getProgress());
-			break;
-		case DOWNLOAD_BY_OIDS:
-			ds.setProgress(((DownloadByOidsDatabaseAction) action).getProgress());
-			break;
-		case DOWNLOAD_BY_GUIDS:
-			ds.setProgress(((DownloadByGuidsDatabaseAction) action).getProgress());
-			break;
-		case DOWNLOAD_OF_TYPE:
-			ds.setProgress(((DownloadByTypesDatabaseAction) action).getProgress());
-			break;
-		case DOWNLOAD_PROJECTS:
-			ds.setProgress(((DownloadProjectsDatabaseAction) action).getProgress());
-			break;
-		}
+		ds.setProgress(getProgress());
 		ds.setState(state);
 		if (state == ActionState.FINISHED) {
 			ds.setProgress(100);
@@ -149,9 +135,12 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	public String getDescription() {
 		return "Download";
 	}
-
+	
 	@Override
-	public DownloadParameters getKey() {
-		return downloadParameters;
+	protected void done() {
+		super.done();
+		// This is very important! The LongDownloadAction will probably live another 30 minutes 
+		// before it will be cleaned up (this is useful for clients asking for the progress/status of this download)
+		action = null;
 	}
 }

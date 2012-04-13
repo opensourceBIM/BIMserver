@@ -126,6 +126,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				// Let this one slide
 				throw (BimDeadlockException) e;
 			}
+			if (e instanceof UserException) {
+				throw (UserException)e;
+			}
 			LOGGER.error("", e);
 			throw new UserException(e);
 		}
