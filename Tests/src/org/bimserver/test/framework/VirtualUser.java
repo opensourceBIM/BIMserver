@@ -159,4 +159,9 @@ public class VirtualUser extends Thread {
 		}
 		return null;
 	}
+
+	public void shutdown() {
+		running = false;
+		interrupt();
+	}
 }

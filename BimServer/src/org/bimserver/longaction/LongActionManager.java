@@ -105,19 +105,6 @@ public class LongActionManager {
 		return actions.get(id);
 	}
 
-	@SuppressWarnings("unchecked")
-	public synchronized <T extends LongAction<?>> T getLongAction(Class<T> clazz, LongActionKey key) {
-		for (LongAction<?> longAction : actions.values()) {
-			if (clazz.isInstance(longAction)) {
-				LongActionKey longActionKey = longAction.getKey();
-				if (longActionKey.equals(key)) {
-					return (T) longAction;
-				}
-			}
-		}
-		return null;
-	}
-
 	public synchronized void cleanup() {
 		Iterator<Integer> iterator = actions.keySet().iterator();
 		GregorianCalendar now = new GregorianCalendar();

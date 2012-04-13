@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
-	private final CheckinDatabaseAction checkinDatabaseAction;
+	private CheckinDatabaseAction checkinDatabaseAction;
 	private CheckinStatus status = CheckinStatus.CH_NONE;
 	private String lastError;
 
@@ -74,6 +74,10 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		if (status != CheckinStatus.CH_ERROR) {
 			status = CheckinStatus.CH_FINISHED;
 		}
+
+		// This is very important! The LongCheckinAction will probably live another 30 minutes 
+		// before it will be cleaned up (this is useful for clients asking for the progress/status of this checkin)
+		checkinDatabaseAction = null;
 	}
 
 	@Override
@@ -91,14 +95,5 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	
 	@Override
 	public void init() {
-	}
-
-	@Override
-	public LongCheckinActionKey getKey() {
-		return new LongCheckinActionKey(checkinDatabaseAction.getCroid());
-	}
-	
-	public CheckinDatabaseAction getCreateCheckinAction() {
-		return checkinDatabaseAction;
 	}
 }

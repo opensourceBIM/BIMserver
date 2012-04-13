@@ -19,10 +19,7 @@ package org.bimserver.test.framework;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
@@ -37,9 +34,7 @@ import org.slf4j.LoggerFactory;
 public class TestFramework {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestFramework.class);
 	
-	private final List<File> files = new ArrayList<File>();
 	private final Set<VirtualUser> virtualUsers = new HashSet<VirtualUser>();
-	private final Random random = new Random();
 	private final TestConfiguration testConfiguration;
 
 	private BimServer bimServer;
@@ -83,7 +78,6 @@ public class TestFramework {
 		if (!testConfiguration.getOutputFolder().exists()) {
 			testConfiguration.getOutputFolder().mkdir();
 		}
-		initFiles();
 		VirtualUserFactory virtualUserFactory = new VirtualUserFactory(this, testConfiguration.getBimServerClientFactory());
 		for (int i=0; i<testConfiguration.getNrVirtualUsers(); i++) {
 			VirtualUser virtualUser = virtualUserFactory.create("" + i);
@@ -92,35 +86,34 @@ public class TestFramework {
 		for (VirtualUser virtualUser : virtualUsers) {
 			virtualUser.start();
 		}
+		CommandLine commandLine = new CommandLine(this);
+		commandLine.start();
 	}
 
-	private void initFiles() {
-		File ifcFiles = testConfiguration.getIfcFiles();
-		if (ifcFiles.isDirectory()) {
-			for (File file : ifcFiles.listFiles()) {
-				if (file.isFile() && !file.getName().contains(".svn")) {
-					files.add(file);
-				}
-			}
-		} else {
-			files.add(ifcFiles);
-		}
-	}
-
-	public synchronized File getRandomFile() {
-		return files.get(random.nextInt(files.size()));
+	public synchronized File getTestFile() {
+		return testConfiguration.getTestFileProvider().getNewFile();
 	}
 
 	public synchronized void unsubsribe(VirtualUser virtualUser) {
 		virtualUsers.remove(virtualUser);
-		if (virtualUsers.isEmpty()) {
-			if (testConfiguration.isStartEmbeddedBimServer()) {
-				bimServer.stop();
-			}
-		}
 	}
 
 	public TestConfiguration getTestConfiguration() {
 		return testConfiguration;
+	}
+
+	public void stop() {
+		for (VirtualUser virtualUser : virtualUsers) {
+			virtualUser.shutdown();
+		}
+		if (testConfiguration.isStartEmbeddedBimServer()) {
+			bimServer.stop();
+		}
+	}
+
+	public void standby() {
+		for (VirtualUser virtualUser : virtualUsers) {
+			virtualUser.shutdown();
+		}
 	}
 }

@@ -89,8 +89,6 @@ public abstract class LongAction<T extends LongActionKey> {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public abstract T getKey();
 	
 	public void updateProgress(int progress) {
 		this.progress = progress;

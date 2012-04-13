@@ -17,6 +17,7 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
@@ -37,6 +38,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
 public abstract class BimDatabaseAction<T> {
+	private final Set<ProgressListener> progressListeners = new HashSet<ProgressListener>();
 	private BimDatabaseSession bimDatabaseSession;
 	private final AccessMethod accessMethod;
 
@@ -67,6 +69,14 @@ public abstract class BimDatabaseAction<T> {
 		return getUserByUserName("admin");
 	}
 
+	public void addProgressListener(ProgressListener progressListener) {
+		progressListeners.add(progressListener);
+	}
+	
+	public void removeProgressListener(ProgressListener progressListener) {
+		progressListeners.remove(progressListener);
+	}
+	
 	public User getSystemUser() throws BimDatabaseException, BimDeadlockException {
 		return getUserByUserName("system");
 	}
