@@ -61,7 +61,7 @@ public class SlabOpening implements QueryInterface {
 	public static void main(String[] args) {
 		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager();
+			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("ifc");
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());

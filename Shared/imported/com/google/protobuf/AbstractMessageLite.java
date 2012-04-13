@@ -209,6 +209,7 @@ public abstract class AbstractMessageLite implements MessageLite {
         final ExtensionRegistryLite extensionRegistry)
         throws IOException {
       final CodedInputStream codedInput = CodedInputStream.newInstance(input);
+      codedInput.setSizeLimit(300 * 1024 * 1024); // Make it 300MB
       mergeFrom(codedInput, extensionRegistry);
       codedInput.checkLastTagWas(0);
       return (BuilderType) this;

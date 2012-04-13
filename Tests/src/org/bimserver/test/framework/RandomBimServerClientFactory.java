@@ -39,8 +39,10 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RandomBimServerClientFactory.class);
 	private int current = 0;
 	private final Type[] types;
+	private final TestFramework testFramework;
 	
-	public RandomBimServerClientFactory(Type... types) {
+	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
+		this.testFramework = testFramework;
 		if (types.length == 0) {
 			this.types = Type.values();
 		} else {
@@ -50,7 +52,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	
 	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager());
+			BimServerClient bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(testFramework.getTestConfiguration().getHomeDir()));
 			bimServerClient.setAuthentication(authenticationInfo);
 			Type type = types[current];
 			if (type == Type.PROTOCOL_BUFFERS) {

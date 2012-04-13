@@ -32,6 +32,8 @@ import org.bimserver.test.framework.VirtualUser;
 
 public class DumpDataObjects extends Action {
 
+	private boolean verbose = false;
+	
 	public DumpDataObjects(TestFramework testFramework) {
 		super(testFramework);
 	}
@@ -40,10 +42,13 @@ public class DumpDataObjects extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SRevision revision = virtualUser.getRandomRevision();
 		List<SDataObject> dataObjects = virtualUser.getBimServerClient().getServiceInterface().getDataObjects(revision.getOid());
-		for (SDataObject dataObject : dataObjects) {
-			virtualUser.getLogger().info(dataObject.getType() + " " + dataObject.getOid());
-			for (SDataValue dataValue : dataObject.getValues()) {
-				dumpValue(virtualUser, dataValue);
+		virtualUser.getLogger().info(dataObjects.size() + " dataobjects");
+		if (verbose) {
+			for (SDataObject dataObject : dataObjects) {
+				virtualUser.getLogger().info(dataObject.getType() + " " + dataObject.getOid());
+				for (SDataValue dataValue : dataObject.getValues()) {
+					dumpValue(virtualUser, dataValue);
+				}
 			}
 		}
 	}

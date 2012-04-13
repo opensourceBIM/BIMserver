@@ -42,7 +42,7 @@ public class TestClientEmfModelCheckinRemoteSoap {
 	@BeforeClass
 	public static void setup() throws ConnectionException {
 		try {
-			bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager());
+			bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(new File("home")));
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
 			bimServerClient.connectSoap("http://localhost/soap", true);

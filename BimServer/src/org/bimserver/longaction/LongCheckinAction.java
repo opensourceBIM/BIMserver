@@ -24,6 +24,7 @@ import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinStatus;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,9 +56,12 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			status = CheckinStatus.CH_ERROR;
 			getBimServer().getServerInfoManager().setOutOfMemory();
 		} catch (Exception e) {
+			if (e instanceof UserException) {
+			} else {
+				LOGGER.error("", e);
+			}
 			lastError = e.getMessage();
 			status = CheckinStatus.CH_ERROR;
-			LOGGER.error("", e);
 		} finally {
 			session.close();
 			done();

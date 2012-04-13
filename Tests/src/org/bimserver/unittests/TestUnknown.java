@@ -17,6 +17,7 @@ package org.bimserver.unittests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.util.List;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -34,7 +35,7 @@ public class TestUnknown {
 	@Test
 	public void test() {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager());
+			BimServerClient bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(new File("home")));
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 			Long roid = 47L;

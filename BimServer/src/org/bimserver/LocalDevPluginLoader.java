@@ -45,8 +45,8 @@ public class LocalDevPluginLoader {
 		}
 	}
 	
-	public static PluginManager createPluginManager() throws PluginException {
-		PluginManager pluginManager = new PluginManager(new File("home/tmp"), System.getProperty("java.class.path"));
+	public static PluginManager createPluginManager(File home) throws PluginException {
+		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"));
 		loadPlugins(pluginManager);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;

@@ -6,16 +6,17 @@ import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.test.framework.actions.ActionFactory;
 
 public class TestConfiguration {
-	private int nrVirtualUsers;
-	private int nrRunsPerVirtualUser;
-	private boolean startEmbeddedBimServer;
-	private boolean cleanEnvironmentFirst;
-	private boolean stopOnUserException;
-	private boolean stopOnServerException;
+	private int nrVirtualUsers = 1;
+	private int nrRunsPerVirtualUser = -1;
+	private boolean startEmbeddedBimServer = true;
+	private boolean cleanEnvironmentFirst = true;
+	private boolean stopOnUserException = false;
+	private boolean stopOnServerException = true;
 	private File ifcFilesFolder;
 	private ActionFactory actionFactory;
 	private File outputFolder;
 	private BimServerClientFactory bimServerClientFactory;
+	private File homeDir = new File("home");
 	
 	public int getNrVirtualUsers() {
 		return nrVirtualUsers;
@@ -95,5 +96,13 @@ public class TestConfiguration {
 
 	public void setBimServerClientFactory(BimServerClientFactory bimServerClientFactory) {
 		this.bimServerClientFactory = bimServerClientFactory;
+	}
+	
+	public File getHomeDir() {
+		return homeDir;
+	}
+
+	public void setHomeDir(File homeDir) {
+		this.homeDir = homeDir;
 	}
 }

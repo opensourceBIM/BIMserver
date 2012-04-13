@@ -301,7 +301,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 						List list = (List) idEObject.eGet(eStructuralFeature);
 						for (SDataValue listValue : listDataValue.getValues()) {
 							if (listValue instanceof SSimpleDataValue) {
-								list.add(convertStringValue(eStructuralFeature, ((SSimpleDataValue) listValue).getStringValue()));
+								Object value = convertStringValue(eStructuralFeature, ((SSimpleDataValue) listValue).getStringValue());
+								if (value != null) {
+									list.add(value);
+								}
 							}
 						}
 					}

@@ -23,7 +23,7 @@ public class TestCollada {
 		testConfiguration.setIfcFilesFolder(TestFileConstants.DATA_FOLDER);
 		testConfiguration.setActionFactory(new FixedActionFactory(new CheckinAction(testFramework, new CheckinSettings()), new DownloadRevisionAction(testFramework, "Collada")));
 		testConfiguration.setOutputFolder(new File("output"));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(Type.SOAP_NO_HEADERS));
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP_NO_HEADERS));
 
 		testFramework.start();
 	}

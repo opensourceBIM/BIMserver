@@ -21,7 +21,7 @@ public class TestCityGML {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/gml", true);
 			if (!plugins.isEmpty()) {
 				SerializerPlugin plugin = plugins.iterator().next();

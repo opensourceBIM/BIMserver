@@ -1,5 +1,6 @@
 package org.bimserver.tests;
 
+import java.io.File;
 import java.util.Set;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -13,7 +14,7 @@ import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 public class TestClashdetection {
 	public static void main(String[] args) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 			IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine();
 			ifcEngine.init();

@@ -57,7 +57,7 @@ public class Visualise extends JFrame {
 	public static void main(String[] args) {
 		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager();
+			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("application/ifc");
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());

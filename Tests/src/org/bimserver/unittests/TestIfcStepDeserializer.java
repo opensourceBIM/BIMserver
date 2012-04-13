@@ -17,6 +17,8 @@ package org.bimserver.unittests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
+
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -30,7 +32,7 @@ public class TestIfcStepDeserializer {
 	@Test
 	public void testSpaceEndOfLineBeforeSemiColon() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());

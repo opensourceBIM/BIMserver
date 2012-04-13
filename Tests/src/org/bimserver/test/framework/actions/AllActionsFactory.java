@@ -23,11 +23,11 @@ import java.util.Random;
 
 import org.bimserver.test.framework.TestFramework;
 
-public class AllActionFactory implements ActionFactory {
+public class AllActionsFactory implements ActionFactory {
 	private final List<Action> actions = new ArrayList<Action>();
 	private final Random random = new Random();
 	
-	public AllActionFactory(TestFramework testFramework) {
+	public AllActionsFactory(TestFramework testFramework) {
 		add(new CompareAction(testFramework));
 		add(new DownloadModelLowLevel(testFramework));
 		add(new DumpDataObjects(testFramework));
