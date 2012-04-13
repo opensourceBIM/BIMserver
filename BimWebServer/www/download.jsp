@@ -90,7 +90,7 @@ function update() {
 					$(".downloadpopup .fields").show();
 					var zip = $("#downloadCheckoutZip").attr('checked') == undefined ? "" : "&zip=on";
 					var serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-					var url = "/download?longActionId=" + laid + zip + "&serializerName=" + serializerName;
+					var url = "<%=request.getContextPath()%>/download?longActionId=" + laid + zip + "&serializerName=" + serializerName;
 					$(".downloadpopup .message").html("Prepare complete, initiating download, click <a href=\"" + url + "\">here</a> if the download does not start automatically<br/><br/>");
 					window.location = url;
 				} else {
