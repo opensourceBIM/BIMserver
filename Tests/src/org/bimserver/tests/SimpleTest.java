@@ -17,6 +17,7 @@ package org.bimserver.tests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -40,7 +41,7 @@ public class SimpleTest {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());

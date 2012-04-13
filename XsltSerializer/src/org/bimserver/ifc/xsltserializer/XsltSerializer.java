@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.xml.transform.ErrorListener;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -37,12 +36,9 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class XsltSerializer extends EmfSerializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(XsltSerializer.class);
 	private URL xsltUrl;
 	private Set<XsltParameter> parameters = new HashSet<XsltParameter>();
 
@@ -75,22 +71,22 @@ public class XsltSerializer extends EmfSerializer {
 					for (XsltParameter xsltParameter : parameters) {
 						transformer.setParameter(xsltParameter.getKey(), xsltParameter.getValue());
 					}
-					transformer.setErrorListener(new ErrorListener() {
-
-						@Override
-						public void warning(TransformerException e) throws TransformerException {
-						}
-
-						@Override
-						public void fatalError(TransformerException e) throws TransformerException {
-							LOGGER.error("", e);
-						}
-
-						@Override
-						public void error(TransformerException e) throws TransformerException {
-							LOGGER.error("", e);
-						}
-					});
+//					transformer.setErrorListener(new ErrorListener() {
+//
+//						@Override
+//						public void warning(TransformerException e) throws TransformerException {
+//						}
+//
+//						@Override
+//						public void fatalError(TransformerException e) throws TransformerException {
+//							LOGGER.warn("", e);
+//						}
+//
+//						@Override
+//						public void error(TransformerException e) throws TransformerException {
+//							LOGGER.warn("", e);
+//						}
+//					});
 
 					StreamSource in = new StreamSource(ifcXmlSerializer.getInputStream());
 					StreamResult out = new StreamResult(outputStream);

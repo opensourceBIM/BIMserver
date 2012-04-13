@@ -48,7 +48,7 @@ public class IfcRioleringTest {
 		File src = TestFile.RIOLERING_TEST.getFile();
 		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager();
+			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());

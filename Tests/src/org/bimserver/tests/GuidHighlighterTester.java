@@ -78,7 +78,7 @@ public class GuidHighlighterTester {
 	private IfcModelInterface readModel(File file) {
 		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager();
+			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(schema);

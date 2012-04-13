@@ -50,17 +50,18 @@ public class TestFramework {
 	
 	public void start() {
 		if (testConfiguration.isStartEmbeddedBimServer()) {
-			File home = new File("home");
 			if (testConfiguration.isCleanEnvironmentFirst()) {
 				try {
-					FileUtils.forceDelete(home);
+					if (testConfiguration.getHomeDir().isDirectory()) {
+						FileUtils.forceDelete(testConfiguration.getHomeDir());
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 			BimServerConfig bimServerConfig = new BimServerConfig();
 			bimServerConfig.setStartEmbeddedWebServer(true);
-			bimServerConfig.setHomeDir(home);
+			bimServerConfig.setHomeDir(testConfiguration.getHomeDir());
 			bimServerConfig.setPort(8080);
 			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 			bimServerConfig.setClassPath(System.getProperty("java.class.path"));

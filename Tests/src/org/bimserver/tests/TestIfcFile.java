@@ -37,7 +37,7 @@ public class TestIfcFile {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());

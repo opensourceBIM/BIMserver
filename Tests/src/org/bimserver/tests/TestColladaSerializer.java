@@ -40,7 +40,7 @@ public class TestColladaSerializer {
 		try {
 			File testFiles = new File("../TestData/data");
 			File output = new File("output");
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			
 			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			

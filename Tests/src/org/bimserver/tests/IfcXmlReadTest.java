@@ -40,7 +40,7 @@ public class IfcXmlReadTest {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifcxml", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			try {

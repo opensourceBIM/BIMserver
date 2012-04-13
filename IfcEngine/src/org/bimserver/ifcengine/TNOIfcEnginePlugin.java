@@ -74,14 +74,18 @@ public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 			}
 			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
 			if (inputStream != null) {
-				File tmpFolder = new File(pluginManager.getTempDir(), "tmp");
+				File tmpFolder = pluginManager.getTempDir();
 				nativeFolder = new File(tmpFolder, "TNOEngineSeries");
 				try {
+					File file = new File(nativeFolder, libraryName);
 					if (nativeFolder.exists()) {
-						FileUtils.deleteDirectory(nativeFolder);
+						try {
+							FileUtils.deleteDirectory(nativeFolder);
+						} catch (IOException e) {
+							// Ignore
+						}
 					}
 					FileUtils.forceMkdir(nativeFolder);
-					File file = new File(nativeFolder, libraryName);
 					IOUtils.copy(inputStream, new FileOutputStream(file));
 					initialized = true;
 				} catch (IOException e) {

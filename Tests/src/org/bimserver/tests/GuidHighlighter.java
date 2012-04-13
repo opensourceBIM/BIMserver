@@ -48,7 +48,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 public class GuidHighlighter {
 	public GuidHighlighter(SchemaDefinition schema, IfcModelInterface model, File outputFile, Set<String> highlightedGuids) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			highlightGuids(model, highlightedGuids);
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();

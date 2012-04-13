@@ -202,7 +202,7 @@ public class IfcVisualiser extends JFrame {
 		sharedGroup = new SharedGroup();
 
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager();
+			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			objectIDM = pluginManager.requireObjectIDM();
 		} catch (PluginException e) {
 			LOGGER.error("", e);

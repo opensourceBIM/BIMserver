@@ -43,7 +43,7 @@ public class YetAnotherTest {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			BimServerClient bimServerClient = new BimServerClient(pluginManager);
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.connectProtocolBuffers("localhost", 8020);

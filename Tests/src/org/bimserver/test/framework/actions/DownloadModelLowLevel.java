@@ -19,6 +19,7 @@ package org.bimserver.test.framework.actions;
 
 import java.io.File;
 
+import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
@@ -38,17 +39,20 @@ public class DownloadModelLowLevel extends Action {
 
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
-		IfcModelInterface model = virtualUser.getBimServerClient().getModelAlternative(virtualUser.getRandomRevision().getOid());
-		PluginManager pluginManager = virtualUser.getBimServerClient().getPluginManager();
-		try {
-			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-			EmfSerializer serializer = serializerPlugin.createSerializer();
-			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
-			serializer.writeToFile(new File("test.ifc"));
-		} catch (PluginException e) {
-			e.printStackTrace();
-		} catch (SerializerException e) {
-			e.printStackTrace();
+		SRevision randomRevision = virtualUser.getRandomRevision();
+		if (randomRevision != null) {
+			IfcModelInterface model = virtualUser.getBimServerClient().getModelAlternative(randomRevision.getOid());
+			PluginManager pluginManager = virtualUser.getBimServerClient().getPluginManager();
+			try {
+				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+				EmfSerializer serializer = serializerPlugin.createSerializer();
+				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"));
+			} catch (PluginException e) {
+				e.printStackTrace();
+			} catch (SerializerException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -32,11 +32,6 @@
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
-	<logger name="org.mortbay">
-		<level value="error" />
-		<appender-ref ref="ErrorConsole" />
-		<appender-ref ref="OutConsole" />
-	</logger>
 	<logger name="org.eclipse.jetty">
 		<level value="error" />
 		<appender-ref ref="ErrorConsole" />

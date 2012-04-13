@@ -66,8 +66,7 @@ public class VirtualUser extends Thread {
 						action.execute(this);
 					}
 				} catch (UserException e) {
-					e.printStackTrace();
-					LOGGER.info(e.getMessage());
+					LOGGER.info("UserException: " + e.getMessage());
 					if (this.testFramework.getTestConfiguration().isStopOnUserException()) {
 						break;
 					}

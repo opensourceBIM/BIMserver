@@ -19,6 +19,7 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.util.Random;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -40,7 +41,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 	@BeforeClass
 	public static void setup() {
 		try {
-			bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager());
+			bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(new File("home")));
 			try {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 				bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
