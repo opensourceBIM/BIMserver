@@ -25,6 +25,7 @@ package org.bimserver.models.store;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.NewRevisionNotification#getRevision <em>Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewRevisionNotification#getProject <em>Project</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,5 +59,31 @@ public interface NewRevisionNotification extends Notification {
 	 * @generated
 	 */
 	void setRevision(Revision value);
+
+	/**
+	 * Returns the value of the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Project</em>' reference.
+	 * @see #setProject(Project)
+	 * @see org.bimserver.models.store.StorePackage#getNewRevisionNotification_Project()
+	 * @model
+	 * @generated
+	 */
+	Project getProject();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.NewRevisionNotification#getProject <em>Project</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project</em>' reference.
+	 * @see #getProject()
+	 * @generated
+	 */
+	void setProject(Project value);
 
 } // NewRevisionNotification

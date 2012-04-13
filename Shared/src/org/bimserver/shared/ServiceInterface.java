@@ -1569,7 +1569,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "startTransaction")
 	void startTransaction(
-			@WebParam(name = "pid", partName = "startTransaction.pid") Integer pid) throws ServerException, UserException;
+			@WebParam(name = "poid", partName = "startTransaction.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Commit the current transaction, changes will be saved, a transaction must be started by startTransaction first

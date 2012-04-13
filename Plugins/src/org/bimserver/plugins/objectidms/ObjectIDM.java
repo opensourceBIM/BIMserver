@@ -23,5 +23,5 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public interface ObjectIDM {
 
 	boolean shouldFollowReference(EClass originalClass, EClass eClass, EStructuralFeature eStructuralFeature);
-	boolean shouldIncludeClass(EClass eClass);
+	boolean shouldIncludeClass(EClass originalClass, EClass eClass);
 }

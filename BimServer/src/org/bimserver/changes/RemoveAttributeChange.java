@@ -60,6 +60,6 @@ public class RemoveAttributeChange implements Change {
 		}
 		List list = (List) idEObject.eGet(eAttribute);
 		list.remove(index);
-		bimDatabaseSession.store(idEObject);
+		bimDatabaseSession.store(idEObject, pid, rid);
 	}
 }

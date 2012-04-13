@@ -66,6 +66,6 @@ public class AddReferenceChange implements Change {
 		}
 		List list = (List) idEObject.eGet(eReference);
 		list.add(referencedObject);
-		bimDatabaseSession.store(idEObject);
+		bimDatabaseSession.store(idEObject, pid, rid);
 	}
 }

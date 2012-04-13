@@ -60,6 +60,6 @@ public class RemoveReferenceChange implements Change {
 		}
 		List list = (List) idEObject.eGet(eReference);
 		list.remove(index);
-		bimDatabaseSession.store(idEObject);
+		bimDatabaseSession.store(idEObject, pid, rid);
 	}
 }

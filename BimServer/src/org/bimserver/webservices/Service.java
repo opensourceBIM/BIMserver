@@ -248,7 +248,7 @@ public class Service implements ServiceInterface {
 	private Date activeSince;
 	private Date lastActive;
 	private Token token;
-	private Integer transactionPid;
+	private long transactionPoid;
 
 	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, ServiceInterfaceFactory serviceFactory) {
 		this.accessMethod = accessMethod;
@@ -2172,10 +2172,10 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void startTransaction(Integer pid) throws UserException {
+	public void startTransaction(Long poid) throws UserException {
 		requireAuthenticationAndRunningServer();
 		changes = new LinkedHashSet<Change>();
-		transactionPid = pid;
+		transactionPoid = poid;
 	}
 
 	@Override
@@ -2183,7 +2183,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		requireOpenTransaction();
 		BimDatabaseSession session = bimServer.getDatabase().createSession();
-		CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(session, accessMethod, changes, currentUoid, transactionPid, comment);
+		CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(session, accessMethod, changes, currentUoid, transactionPoid, comment);
 		try {
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			return action.getRevision().getOid();

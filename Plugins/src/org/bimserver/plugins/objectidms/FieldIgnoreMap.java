@@ -82,7 +82,7 @@ public class FieldIgnoreMap implements ObjectIDM {
 	}
 
 	@Override
-	public boolean shouldIncludeClass(EClass eClass) {
+	public boolean shouldIncludeClass(EClass originalClass, EClass eClass) {
 		return true;
 	}
 }

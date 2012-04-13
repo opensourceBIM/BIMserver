@@ -48,11 +48,11 @@ public class SetAttributeChange implements Change {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
-			throw new UserException("No object of type " + className + " with oid " + oid + " found in project with pid " + pid);
+			throw new UserException("No object of type \"" + className + "\" with oid " + oid + " found in project with pid " + pid);
 		}
 		EAttribute eAttribute = bimDatabaseSession.getMetaDataManager().getEAttribute(className, attributeName);
 		if (eAttribute == null) {
-			throw new UserException("No attribute with the name " + attributeName + " found in class " + className);
+			throw new UserException("No attribute with the name \"" + attributeName + "\" found in class \"" + className + "\"");
 		}
 		if (eAttribute.isMany()) {
 			throw new UserException("Attribute is not of type 'single'");
@@ -66,6 +66,6 @@ public class SetAttributeChange implements Change {
 		if (value instanceof Double) {
 			idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
 		}
-		bimDatabaseSession.store(idEObject);
+		bimDatabaseSession.store(idEObject, pid, rid);
 	}
 }

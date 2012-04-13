@@ -423,6 +423,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NewRevisionNotification" eSuperTypes="#//Notification">
     <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#//Revision"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompileResult">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="compileOke" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>

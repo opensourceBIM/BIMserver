@@ -4,8 +4,4 @@
 		<interfaceClass>org.bimserver.plugins.objectidms.ObjectIDMPlugin</interfaceClass>
 		<implementationClass>org.bimserver.objectidms.FileBasedObjectIDMPlugin</implementationClass>
 	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.objectidms.ObjectIDMPlugin</interfaceClass>
-		<implementationClass>org.bimserver.objectidms.NewFileBasedObjectIDMPlugin</implementationClass>
-	</PluginImplementation>
 </PluginDescriptor>

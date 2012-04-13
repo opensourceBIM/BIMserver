@@ -65,4 +65,8 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 	public void add(NotificationInterface notificationInterface) {
 		notificationInterfaces.add(notificationInterface);
 	}
+
+	public void remove(NotificationInterface notificationInterface) {
+		notificationInterfaces.remove(notificationInterface);
+	}
 }

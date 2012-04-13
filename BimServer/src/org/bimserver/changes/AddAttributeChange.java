@@ -60,6 +60,6 @@ public class AddAttributeChange implements Change {
 		}
 		List list = (List) idEObject.eGet(eAttribute);
 		list.add(value);
-		bimDatabaseSession.store(idEObject);
+		bimDatabaseSession.store(idEObject, pid, rid);
 	}
 }

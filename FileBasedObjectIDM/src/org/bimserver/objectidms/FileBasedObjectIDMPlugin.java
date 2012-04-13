@@ -17,12 +17,11 @@ package org.bimserver.objectidms;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
-import org.bimserver.utils.CollectionUtils;
 
 public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 
@@ -31,7 +30,11 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		fileBasedObjectIDM = new FileBasedObjectIDM(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), pluginManager.getPluginContext(this));
+		try {
+			fileBasedObjectIDM = new FileBasedObjectIDM(pluginManager.requireSchemaDefinition(), pluginManager.getPluginContext(this));
+		} catch (ObjectIDMException e) {
+			e.printStackTrace();
+		}
 		initialized = true;
 	}
 

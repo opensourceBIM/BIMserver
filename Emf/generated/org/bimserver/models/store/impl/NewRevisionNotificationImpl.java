@@ -17,6 +17,7 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.NewRevisionNotification;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EClass;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.NewRevisionNotificationImpl#getRevision <em>Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewRevisionNotificationImpl#getProject <em>Project</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,6 +72,24 @@ public class NewRevisionNotificationImpl extends NotificationImpl implements New
 	 */
 	public void setRevision(Revision newRevision) {
 		eSet(StorePackage.Literals.NEW_REVISION_NOTIFICATION__REVISION, newRevision);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project getProject() {
+		return (Project) eGet(StorePackage.Literals.NEW_REVISION_NOTIFICATION__PROJECT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProject(Project newProject) {
+		eSet(StorePackage.Literals.NEW_REVISION_NOTIFICATION__PROJECT, newProject);
 	}
 
 } //NewRevisionNotificationImpl

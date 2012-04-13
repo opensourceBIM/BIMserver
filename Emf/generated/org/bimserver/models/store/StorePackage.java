@@ -3099,13 +3099,22 @@ public interface StorePackage extends EPackage {
 	int NEW_REVISION_NOTIFICATION__REVISION = NOTIFICATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_REVISION_NOTIFICATION__PROJECT = NOTIFICATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>New Revision Notification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_NOTIFICATION_FEATURE_COUNT = NOTIFICATION_FEATURE_COUNT + 1;
+	int NEW_REVISION_NOTIFICATION_FEATURE_COUNT = NOTIFICATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.CompileResultImpl <em>Compile Result</em>}' class.
@@ -6255,6 +6264,17 @@ public interface StorePackage extends EPackage {
 	EReference getNewRevisionNotification_Revision();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewRevisionNotification#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.store.NewRevisionNotification#getProject()
+	 * @see #getNewRevisionNotification()
+	 * @generated
+	 */
+	EReference getNewRevisionNotification_Project();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.CompileResult <em>Compile Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8784,6 +8804,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference NEW_REVISION_NOTIFICATION__REVISION = eINSTANCE.getNewRevisionNotification_Revision();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_REVISION_NOTIFICATION__PROJECT = eINSTANCE.getNewRevisionNotification_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CompileResultImpl <em>Compile Result</em>}' class.

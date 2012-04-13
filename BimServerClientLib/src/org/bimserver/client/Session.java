@@ -66,9 +66,9 @@ public class Session {
 		return (T) eObject;
 	}
 
-	public void startTransaction(int pid) {
+	public void startTransaction(long poid) {
 		try {
-			serviceInterface.startTransaction(pid);
+			serviceInterface.startTransaction(poid);
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
