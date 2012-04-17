@@ -33,7 +33,7 @@ public class CreateSubProjectAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SProject parentProject = virtualUser.getRandomProject();
 		String name = "Project " + randomString();
-		virtualUser.getLogger().info("Creating new project: " + name + " as subproject of " + parentProject.getName());
+		getActionResults().setText("Creating new project: " + name + " as subproject of " + parentProject.getName());
 		virtualUser.getBimServerClient().getServiceInterface().addProjectAsSubProject(name, parentProject.getOid());
 	}
 }

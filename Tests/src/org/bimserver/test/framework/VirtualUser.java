@@ -28,6 +28,7 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.actions.Action;
+import org.bimserver.test.framework.actions.ActionResults;
 import org.bimserver.test.framework.actions.CheckinAction;
 import org.bimserver.test.framework.actions.CheckinSettings;
 import org.bimserver.test.framework.actions.CreateProjectAction;
@@ -58,20 +59,25 @@ public class VirtualUser extends Thread {
 		try {
 			int nrRunsPerVirtualUser = this.testFramework.getTestConfiguration().getNrRunsPerVirtualUser();
 			while (running && (nrRunsPerVirtualUser == -1 || nrRuns < nrRunsPerVirtualUser)) {
+				Action action = null;
 				try {
 					if (!bimServerClient.getServiceInterface().isLoggedIn()) {
 						new LoginAction(testFramework).execute(this);
 					} else {
-						Action action = testFramework.getTestConfiguration().getActionFactory().createAction();
+						action = testFramework.getTestConfiguration().getActionFactory().createAction();
 						action.execute(this);
+						ActionResults actionResults = action.getActionResults(); 
+						testFramework.getResults().addResult(this, action, actionResults);
 					}
 				} catch (UserException e) {
 					LOGGER.info("UserException: " + e.getMessage());
+					testFramework.getResults().addResult(this, action, e);
 					if (this.testFramework.getTestConfiguration().isStopOnUserException()) {
 						break;
 					}
 				} catch (ServerException e) {
 					e.printStackTrace();
+					testFramework.getResults().addResult(this, action, e);
 					LOGGER.info(e.getMessage());
 					if (this.testFramework.getTestConfiguration().isStopOnServerException()) {
 						break;

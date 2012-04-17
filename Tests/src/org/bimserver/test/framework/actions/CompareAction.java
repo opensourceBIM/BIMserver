@@ -23,6 +23,7 @@ public class CompareAction extends Action {
 		SCompareIdentifier sCompareIdentifier = SCompareIdentifier.values()[nextInt(SCompareIdentifier.values().length)];
 		SRevision revision1 = virtualUser.getRandomRevision();
 		SRevision revision2 = virtualUser.getRandomRevision();
+		getActionResults().setText("Comparing " + revision1.getId() + " with " + revision2.getId());
 		if (revision1 != null && revision2 != null) {
 			SCompareResult sCompareResult = virtualUser.getBimServerClient().getServiceInterface().compare(revision1.getOid(), revision2.getOid(), sCompareType, sCompareIdentifier);
 			for (SCompareContainer sCompareContainer : sCompareResult.getItems()) {

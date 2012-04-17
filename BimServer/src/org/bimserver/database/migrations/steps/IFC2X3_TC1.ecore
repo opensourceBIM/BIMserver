@@ -46,7 +46,7 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcBoolean" eSuperTypes="//WrappedValue //IfcValue">
+  <eClassifiers xsi:type="ecore:EClass" name="IfcBoolean" eSuperTypes="//WrappedValue //IfcSimpleValue //IfcValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" eType="//Tristate" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcContextDependentMeasure" eSuperTypes="//WrappedValue //IfcMeasureValue">
@@ -1730,7 +1730,7 @@
     <eLiterals name="COUPLING" value="4" literal="COUPLING"/>
     <eLiterals name="DIRECTDRIVE" value="5" literal="DIRECTDRIVE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="IfcNullStyle">
+  <eClassifiers xsi:type="ecore:EEnum" name="IfcNullStyleEnum">
     <eLiterals name="NULL" literal="NULL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcObjectTypeEnum">
@@ -7753,6 +7753,22 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcZone" eSuperTypes="//IfcGroup"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IfcComplexNumber" eSuperTypes="//WrappedValue //IfcMeasureValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" upperBound="2" unsettable="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValueAsString" upperBound="2" unsettable="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfcCompoundPlaneAngleMeasure" eSuperTypes="//WrappedValue //IfcDerivedMeasureValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" upperBound="4" unsettable="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfcNullStyle" eSuperTypes="//WrappedValue //IfcPresentationStyleSelect">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" eType="//IfcNullStyleEnum"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcActorSelect" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcAppliedValueSelect" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcAxis2Placement" abstract="true" interface="true"/>

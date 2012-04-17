@@ -1,0 +1,70 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<style>
+.left {width: 200px; float: left}
+.right {float: left;}
+.row {clear: both; height: 30px}
+
+.enabled {font-weight: bold}
+
+.button {border: 1px solid black; display: inline; padding: 2px; margin-left: 2px; cursor: pointer;}
+.type_all {background-color: white}
+.type_oke {background-color: #00FF00}
+.type_warn {background-color: orange}
+.type_error {background-color: red}
+
+.action_all {background-color: white}
+
+.user_all {background-color: white}
+
+.body {clear: both}
+</style>
+</head>
+<body>
+<div class="head">
+	<div class="row types">
+		<div class="left">Types</div>
+		<div class="right">
+			<div type="all" class="button type enabled type_all">All</div>
+		</div>
+	</div>
+	
+	<div class="row actions">
+		<div class="left">Actions</div>
+		<div class="right">
+			<div action="all" class="button action enabled action_all">All</div>
+		</div>
+	</div>
+	
+	<div class="row users">
+		<div class="left">Users</div>
+		<div class="right">
+			<div user="all" class="button user enabled user_all">All</div>
+		</div>
+	</div>
+</div>
+<div class="body">
+	<table>
+		<tr type="oke" user="1" action="CreateProjectAction">
+			<td>1.</td>
+			<td>1</td>
+			<td>CreateProjectAction</td>
+			<td class="type_oke">OKE</td>
+			<td>Creating new project Project 437142679</td>
+		</tr>
+		<tr type="warn" user="2" action="CreateProjectAction">
+			<td>2.</td>
+			<td>2</td>
+			<td>CreateProjectAction</td>
+			<td class="type_warn">WARN</td>
+			<td>Creating new project Project 437142679</td>
+		</tr>
+		<tr type="error" user="2" action="CheckinAction">
+			<td>3.</td>
+			<td>2</td>
+			<td>CheckinAction</td>
+			<td class="type_error">ERROR</td>
+			<td>Creating new project Project 437142679</td>
+		</tr>
+	</table>

@@ -58,7 +58,7 @@ public class CheckinAction extends Action {
 		}
 		boolean sync = !settings.shouldAsync();
 		boolean merge = settings.shouldMerge();
-		virtualUser.getLogger().info("Checking in new revision on project " + project.getName() + " (" + randomFile.getName() + ") " + "sync: " + sync + ", merge: " + merge);
+		getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + randomFile.getName() + ") " + "sync: " + sync + ", merge: " + merge);
 		Integer checkinId = virtualUser.getBimServerClient().getServiceInterface()
 				.checkin(project.getOid(), randomString(), deserializerName, randomFile.length(), new DataHandler(dataSource), merge, sync);
 		if (sync) {
@@ -77,7 +77,7 @@ public class CheckinAction extends Action {
 			}
 		}
 	}
-
+	
 	@Override
 	public int getWeight() {
 		return 10;

@@ -6795,6 +6795,33 @@ public interface Ifc2x3Factory extends EFactory {
 	IfcZone createIfcZone();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Complex Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Complex Number</em>'.
+	 * @generated
+	 */
+	IfcComplexNumber createIfcComplexNumber();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Compound Plane Angle Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Compound Plane Angle Measure</em>'.
+	 * @generated
+	 */
+	IfcCompoundPlaneAngleMeasure createIfcCompoundPlaneAngleMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Null Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Null Style</em>'.
+	 * @generated
+	 */
+	IfcNullStyle createIfcNullStyle();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
