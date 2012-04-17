@@ -41,6 +41,7 @@ import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -235,6 +236,8 @@ public class IfcStepSerializer extends IfcSerializer {
 			}
 			out.print(sb.toString());
 			out.print(SINGLE_QUOTE);
+		} else if (val instanceof Enumerator) {
+			out.print("." + val + ".");
 		} else {
 			out.print(val == null ? "$" : val.toString());
 		}
@@ -293,6 +296,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		if (referencedObject instanceof WrappedValue || referencedObject instanceof IfcGloballyUniqueId) {
 			writeWrappedValue(out, object, feature, ((EObject)referencedObject).eClass());
 		} else {
+			// TODO move up
 			SchemaDefinition schema;
 			try {
 				schema = getPluginManager().requireSchemaDefinition();

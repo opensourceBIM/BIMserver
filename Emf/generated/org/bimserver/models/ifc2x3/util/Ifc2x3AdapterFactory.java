@@ -3841,6 +3841,21 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcComplexNumber(IfcComplexNumber object) {
+			return createIfcComplexNumberAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcCompoundPlaneAngleMeasure(IfcCompoundPlaneAngleMeasure object) {
+			return createIfcCompoundPlaneAngleMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcNullStyle(IfcNullStyle object) {
+			return createIfcNullStyleAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcActorSelect(IfcActorSelect object) {
 			return createIfcActorSelectAdapter();
 		}
@@ -14614,6 +14629,48 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcZoneAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3.IfcComplexNumber <em>Ifc Complex Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3.IfcComplexNumber
+	 * @generated
+	 */
+	public Adapter createIfcComplexNumberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3.IfcCompoundPlaneAngleMeasure <em>Ifc Compound Plane Angle Measure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3.IfcCompoundPlaneAngleMeasure
+	 * @generated
+	 */
+	public Adapter createIfcCompoundPlaneAngleMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3.IfcNullStyle <em>Ifc Null Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3.IfcNullStyle
+	 * @generated
+	 */
+	public Adapter createIfcNullStyleAdapter() {
 		return null;
 	}
 

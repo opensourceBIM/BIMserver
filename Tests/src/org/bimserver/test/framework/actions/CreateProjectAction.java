@@ -31,7 +31,7 @@ public class CreateProjectAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		String name = "Project " + randomString();
-		virtualUser.getLogger().info("Creating new project: " + name);
+		getActionResults().setText("Creating new project " + name);
 		virtualUser.getBimServerClient().getServiceInterface().addProject(name);
 	}
 }

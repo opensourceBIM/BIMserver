@@ -12,7 +12,7 @@ public class FolderWalker implements TestFileProvider {
 	}
 
 	@Override
-	public File getNewFile() {
+	public synchronized File getNewFile() {
 		if (current >= listFiles.length) {
 			return null;
 		}

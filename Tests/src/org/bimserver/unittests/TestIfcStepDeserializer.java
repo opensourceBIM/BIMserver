@@ -17,6 +17,8 @@ package org.bimserver.unittests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import static org.junit.Assert.fail;
+
 import java.io.File;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -25,7 +27,10 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.tests.TestFile;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.junit.Test;
 
 public class TestIfcStepDeserializer {
@@ -36,10 +41,19 @@ public class TestIfcStepDeserializer {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			deserializer.read(TestFile.WALL_ONLY_ADDED_SPACE.getFile(), true);
+			IfcModelInterface modelInterface = deserializer.read(new File("../TestData/data/WallStandardCase-01A.ifc"), true);
+			
+			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+			EmfSerializer serializer = serializerPlugin.createSerializer();
+			serializer.init(modelInterface, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+			serializer.writeToFile(new File("output/test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();
+			fail(e.getMessage());
 		} catch (DeserializeException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		} catch (SerializerException e) {
 			e.printStackTrace();
 		}
 	}

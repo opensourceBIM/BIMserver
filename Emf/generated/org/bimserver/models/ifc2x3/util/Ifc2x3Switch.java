@@ -158,6 +158,8 @@ public class Ifc2x3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = caseWrappedValue(ifcBoolean);
 			if (result == null)
+				result = caseIfcSimpleValue(ifcBoolean);
+			if (result == null)
 				result = caseIfcValue(ifcBoolean);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -11100,6 +11102,43 @@ public class Ifc2x3Switch<T> extends Switch<T> {
 				result = caseIfcObjectDefinition(ifcZone);
 			if (result == null)
 				result = caseIfcRoot(ifcZone);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3Package.IFC_COMPLEX_NUMBER: {
+			IfcComplexNumber ifcComplexNumber = (IfcComplexNumber) theEObject;
+			T result = caseIfcComplexNumber(ifcComplexNumber);
+			if (result == null)
+				result = caseWrappedValue(ifcComplexNumber);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcComplexNumber);
+			if (result == null)
+				result = caseIfcValue(ifcComplexNumber);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3Package.IFC_COMPOUND_PLANE_ANGLE_MEASURE: {
+			IfcCompoundPlaneAngleMeasure ifcCompoundPlaneAngleMeasure = (IfcCompoundPlaneAngleMeasure) theEObject;
+			T result = caseIfcCompoundPlaneAngleMeasure(ifcCompoundPlaneAngleMeasure);
+			if (result == null)
+				result = caseWrappedValue(ifcCompoundPlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcCompoundPlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcCompoundPlaneAngleMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3Package.IFC_NULL_STYLE: {
+			IfcNullStyle ifcNullStyle = (IfcNullStyle) theEObject;
+			T result = caseIfcNullStyle(ifcNullStyle);
+			if (result == null)
+				result = caseWrappedValue(ifcNullStyle);
+			if (result == null)
+				result = caseIfcPresentationStyleSelect(ifcNullStyle);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -22722,6 +22761,51 @@ public class Ifc2x3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcZone(IfcZone object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcComplexNumber(IfcComplexNumber object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Compound Plane Angle Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Compound Plane Angle Measure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcCompoundPlaneAngleMeasure(IfcCompoundPlaneAngleMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcNullStyle(IfcNullStyle object) {
 		return null;
 	}
 

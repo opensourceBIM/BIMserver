@@ -102,6 +102,7 @@ public class Express2EMF {
 		addEnumerations();
 		addClasses();
 		addSupertypes();
+		addHackedTypes();
 		addSelects();
 		addAttributes();
 		addInverses();
@@ -118,6 +119,53 @@ public class Express2EMF {
 
 		doRealDerivedAttributes();
 		clean();
+	}
+
+	private void addHackedTypes() {
+		Iterator<DefinedType> typeIter = schema.getTypes().iterator();
+		while (typeIter.hasNext()) {
+			DefinedType type = typeIter.next();
+			if (type.getName().equals("IfcCompoundPlaneAngleMeasure")) {
+				// IfcCompoundPlaneAngleMeasure is a type of LIST [3..4] OF INTEGER (http://www.steptools.com/support/stdev_docs/express/ifc2x3/html/t_ifcco-03.html)
+				// We model this by using a wrapper class
+				EClass ifcCompoundPlaneAngleMeasure = eFactory.createEClass();
+				ifcCompoundPlaneAngleMeasure.setName(type.getName());
+				schemaPack.getEClassifiers().add(ifcCompoundPlaneAngleMeasure);
+				DefinedType integerType = new DefinedType("Integer");
+				integerType.setDomain(new IntegerType());
+				EAttribute attribute = modifySimpleType(integerType, ifcCompoundPlaneAngleMeasure);
+				attribute.setUpperBound(4);
+				ifcCompoundPlaneAngleMeasure.getESuperTypes().add(wrappedValueSuperClass);
+			} else if (type.getName().equals("IfcComplexNumber")) {
+				// IfcComplexNumber is a type of ARRAY [1..2] OF REAL (http://www.steptools.com/support/stdev_docs/express/ifc2x3/html/t_ifcco-07.html)
+				// We model this by using a wrapper class
+				EClass ifcComplexNumber = eFactory.createEClass();
+				ifcComplexNumber.setName(type.getName());
+				schemaPack.getEClassifiers().add(ifcComplexNumber);
+				DefinedType realType = new DefinedType("Real");
+				realType.setDomain(new RealType());
+				EAttribute attribute = modifySimpleType(realType, ifcComplexNumber);
+				ifcComplexNumber.getEStructuralFeature("wrappedValueAsString").setUpperBound(2);
+				attribute.setUpperBound(2);
+				ifcComplexNumber.getESuperTypes().add(wrappedValueSuperClass);
+			} else if (type.getName().equals("IfcNullStyle")) {
+				// IfcNullStyle is a type of ENUMERATION OF NULL (http://www.steptools.com/support/stdev_docs/express/ifc2x3/html/t_ifcnu-02.html)
+				// We cannot simply make this an enum because it is defined as a subtype(select) of IfcPresentationStyleSelect, so we use a wrapper here, both the wrapper and
+				EClassifier ifcNullStyleEnum = schemaPack.getEClassifier("IfcNullStyle");
+				ifcNullStyleEnum.setName("IfcNullStyleEnum");
+				
+				EClass ifcNullStyleWrapper = eFactory.createEClass();
+				ifcNullStyleWrapper.setName(type.getName());
+				schemaPack.getEClassifiers().add(ifcNullStyleWrapper);
+				
+				EAttribute wrappedValue = eFactory.createEAttribute();
+				wrappedValue.setName("wrappedValue");
+				wrappedValue.setEType(ifcNullStyleEnum);
+				ifcNullStyleWrapper.getEStructuralFeatures().add(wrappedValue);
+				
+				ifcNullStyleWrapper.getESuperTypes().add(wrappedValueSuperClass);
+			}
+		}
 	}
 
 	private void clean() {
@@ -196,14 +244,7 @@ public class Express2EMF {
 								EReference eReference = eFactory.createEReference();
 								eReference.setName(attributeName.getName());
 								eReference.setDerived(true);
-								// Hardcoded hack to fix multiplicity for
-								// IfcSpatialStructureElement which references
-								// RefLatitude and RefLongitude
-								// eRef.setUnsettable(((ExplicitAttribute)
-								// attrib).isOptional());
-								eReference.setUnsettable(true); // TODO find out
-																// if its
-																// optional
+								eReference.setUnsettable(true);
 								eReference.setEType(eType);
 								eClass.getEStructuralFeatures().add(eReference);
 							}
@@ -487,6 +528,8 @@ public class Express2EMF {
 				// TODO this is not yet implmented in simpelSDAI
 				// eAttrib.setLowerBound(((nl.tue.buildingsmart.express.dictionary
 				// .ArrayType)domain).getLower_index());
+
+				// One fix for this has been implemented in addHackedTypes
 			}
 		} else {
 			EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());
@@ -581,6 +624,14 @@ public class Express2EMF {
 								EClass choice = (EClass) schemaPack.getEClassifier(nt.getName());
 								choice.getESuperTypes().add(selectType);
 							}
+						} else if (nt instanceof SelectType) {
+						} else {
+							if (nt.getName().equals("IfcComplexNumber") || nt.getName().equals("IfcCompoundPlaneAngleMeasure") || nt.getName().equals("IfcBoolean") || nt.getName().equals("IfcNullStyle")) {
+								EClass choice = (EClass) schemaPack.getEClassifier(nt.getName());
+								choice.getESuperTypes().add(selectType);
+							} else {
+								System.out.println("The domain is null for " + selectType.getName() + " " + nt.getName());
+							}
 						}
 					}
 				}
@@ -603,7 +654,7 @@ public class Express2EMF {
 		}
 	}
 
-	private void modifySimpleType(DefinedType type, EClass testType) {
+	private EAttribute modifySimpleType(DefinedType type, EClass testType) {
 		EAttribute wrapperAttrib = eFactory.createEAttribute();
 		wrapperAttrib.setName("wrappedValue");
 		if (type.getDomain() instanceof IntegerType) {
@@ -619,16 +670,16 @@ public class Express2EMF {
 		} else if (type.getDomain() instanceof LogicalType) {
 			wrapperAttrib.setEType(schemaPack.getEClassifier("Tristate"));
 		}
-		wrapperAttrib.setUnsettable(true); // TODO find out if its optional
+		wrapperAttrib.setUnsettable(true);
 		testType.getEStructuralFeatures().add(wrapperAttrib);
 		if (wrapperAttrib.getEType() == ePackage.getEDouble()) {
 			EAttribute doubleStringAttribute = eFactory.createEAttribute();
 			doubleStringAttribute.setEType(ePackage.getEString());
 			doubleStringAttribute.setName("wrappedValueAsString");
-			doubleStringAttribute.setUnsettable(true); // TODO find out if its
-														// optional
+			doubleStringAttribute.setUnsettable(true);
 			testType.getEStructuralFeatures().add(doubleStringAttribute);
 		}
+		return wrapperAttrib;
 	}
 
 	private void addSimpleTypes() {
@@ -676,6 +727,8 @@ public class Express2EMF {
 			 * 
 			 * I am skipping this for now, it only occurs once in the model
 			 * future versions should definitely find an answer to this
+			 * 
+			 * A fix for this has been implemented in addHackedTypes
 			 */
 			if (type.getName().equalsIgnoreCase("IfcCompoundPlaneAngleMeasure")) {
 				EClass testType = eFactory.createEClass();

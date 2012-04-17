@@ -78,6 +78,14 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private static final EPackage ePackage = Ifc2x3Package.eINSTANCE;
 	private static final String WRAPPED_VALUE = "wrappedValue";
 	private static final Map<String, EClassifier> classes = initClasses();
+	
+	/*
+	 * The following hacks are present
+	 * 
+	 *   - For every feature of type double there is an extra feature (name appended with "AsString") of type String to keep the original String version
+	 *   	this is also done for aggregate features
+	 *   - WrappedValues for all for derived primitive types and enums that are used in a "select"
+	 */
 
 	private final Map<Long, List<WaitingObject>> waitingObjects = new HashMap<Long, List<WaitingObject>>();
 	private SchemaDefinition schema;
@@ -512,15 +520,20 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		if (value.indexOf("(") != -1) {
 			String typeName = value.substring(0, value.indexOf("(")).trim();
 			String v = value.substring(value.indexOf("(") + 1, value.length() - 1);
-			EClass cl = (EClass) classes.get(typeName);
-			if (cl == null) {
-				DefinedType typeBN = schema.getTypeBN(typeName);
-				if (typeBN == null) {
-					throw new DeserializeException(typeName + " is not an existing IFC entity");
+			EClassifier eClassifier = classes.get(typeName);
+			if (eClassifier instanceof EClass) {
+				EClass cl = (EClass) classes.get(typeName);
+				if (cl == null) {
+					DefinedType typeBN = schema.getTypeBN(typeName);
+					if (typeBN == null) {
+						throw new DeserializeException(typeName + " is not an existing IFC entity");
+					}
+					return convertSimpleValue(typeBN.getDomain(), v);
+				} else {
+					return convert(cl, v);
 				}
-				return convertSimpleValue(typeBN.getDomain(), v);
 			} else {
-				return convert(cl, v);
+				throw new DeserializeException(typeName + " is not an existing IFC entity");
 			}
 		} else {
 			return convertSimpleValue(classifier.getInstanceClass(), value);

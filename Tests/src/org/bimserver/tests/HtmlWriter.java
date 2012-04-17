@@ -39,8 +39,10 @@ public class HtmlWriter {
 		for (String value : values) {
 			if (value.equals("true") || value.equals("OKE")) {
 				out.println("<td style=\"background-color: #00FF00\">" + value + "</td>");
-			} else if (value.equals("false") || value.equals("SERVER_COMMIT_ERROR") || value.equals("OTHER_SERVER_ERROR")) {
+			} else if (value.equals("false") || value.equals("ERROR")) {
 				out.println("<td style=\"background-color: red\">" + value + "</td>");
+			} else if (value.equals("false") || value.equals("WARN")) {
+				out.println("<td style=\"background-color: orange\">" + value + "</td>");
 			} else {
 				out.println("<td>" + value + "</td>");
 			}
@@ -48,6 +50,10 @@ public class HtmlWriter {
 		out.println("</tr>");
 		out.flush();
 		rowNr++;
+	}
+	
+	public void write(String text) {
+		out.write(text);
 	}
 
 	public void startTable(String... headers) {

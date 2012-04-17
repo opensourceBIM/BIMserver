@@ -76,8 +76,10 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Charsets;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements BimDatabaseSession, LazyLoader {
+	private static final boolean DEBUG_CONCURRENCY = true;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private final BiMap<RecordIdentifier, IdEObject> cache = HashBiMap.create();
 	private final Database database;
@@ -520,16 +522,19 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				clearCache();
 				objectsToCommit.clear();
 				bimTransaction = database.getColumnDatabase().startTransaction();
-				LOGGER.info("Deadlock while executing " + action.getClass().getSimpleName() + " run (" + i + ")");
-				LOGGER.info("", e);
-				long[] ownerTxnIds = e.getLockException().getOwnerTxnIds();
-				for (long txnid : ownerTxnIds) {
-					BimDatabaseSession databaseSession = database.getDatabaseSession(txnid);
-					if (databaseSession != null) {
-						LOGGER.info("Owner: " + databaseSession);
-						StackTraceElement[] stackTraceElements = databaseSession.getStackTrace();
-						for (StackTraceElement stackTraceElement : stackTraceElements) {
-							LOGGER.info("\tat " + stackTraceElement);
+				if (DEBUG_CONCURRENCY) {
+					TransactionTimeoutException tte = (TransactionTimeoutException)e.getLockException();
+					LOGGER.info("Lock while executing " + action.getClass().getSimpleName() + " run (" + i + ")");
+					LOGGER.info("", e);
+					long[] ownerTxnIds = e.getLockException().getOwnerTxnIds();
+					for (long txnid : ownerTxnIds) {
+						BimDatabaseSession databaseSession = database.getDatabaseSession(txnid);
+						if (databaseSession != null) {
+							LOGGER.info("Owner: " + databaseSession);
+							StackTraceElement[] stackTraceElements = databaseSession.getStackTrace();
+							for (StackTraceElement stackTraceElement : stackTraceElements) {
+								LOGGER.info("\tat " + stackTraceElement);
+							}
 						}
 					}
 				}
@@ -1163,6 +1168,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		} else if (classifier == Ifc2x3Package.eINSTANCE.getTristate()) {
 			int ordinal = buffer.getInt();
 			return Tristate.get(ordinal);
+		} else if (classifier instanceof EEnum) {
+			int ordinal = buffer.getInt();
+			EEnum eEnum = (EEnum)classifier;
+			return eEnum.getEEnumLiteral(ordinal).getInstance();
 		} else {
 			throw new RuntimeException("Unsupported type " + classifier.getName());
 		}
@@ -1323,6 +1332,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				buffer.putLong(((Date) value).getTime());
 			}
 		} else if (type == Ifc2x3Package.eINSTANCE.getTristate()) {
+			Enumerator eEnumLiteral = (Enumerator) value;
+			buffer.putInt(eEnumLiteral.getValue());
+		} else if (value instanceof Enumerator) {
 			Enumerator eEnumLiteral = (Enumerator) value;
 			buffer.putInt(eEnumLiteral.getValue());
 		} else if (type == EcorePackage.eINSTANCE.getEByteArray()) {

@@ -1572,6 +1572,12 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 			return (EObject) createIfcZShapeProfileDef();
 		case Ifc2x3Package.IFC_ZONE:
 			return (EObject) createIfcZone();
+		case Ifc2x3Package.IFC_COMPLEX_NUMBER:
+			return (EObject) createIfcComplexNumber();
+		case Ifc2x3Package.IFC_COMPOUND_PLANE_ANGLE_MEASURE:
+			return (EObject) createIfcCompoundPlaneAngleMeasure();
+		case Ifc2x3Package.IFC_NULL_STYLE:
+			return (EObject) createIfcNullStyle();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1767,8 +1773,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 			return createIfcMemberTypeEnumFromString(eDataType, initialValue);
 		case Ifc2x3Package.IFC_MOTOR_CONNECTION_TYPE_ENUM:
 			return createIfcMotorConnectionTypeEnumFromString(eDataType, initialValue);
-		case Ifc2x3Package.IFC_NULL_STYLE:
-			return createIfcNullStyleFromString(eDataType, initialValue);
+		case Ifc2x3Package.IFC_NULL_STYLE_ENUM:
+			return createIfcNullStyleEnumFromString(eDataType, initialValue);
 		case Ifc2x3Package.IFC_OBJECT_TYPE_ENUM:
 			return createIfcObjectTypeEnumFromString(eDataType, initialValue);
 		case Ifc2x3Package.IFC_OBJECTIVE_ENUM:
@@ -2110,8 +2116,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 			return convertIfcMemberTypeEnumToString(eDataType, instanceValue);
 		case Ifc2x3Package.IFC_MOTOR_CONNECTION_TYPE_ENUM:
 			return convertIfcMotorConnectionTypeEnumToString(eDataType, instanceValue);
-		case Ifc2x3Package.IFC_NULL_STYLE:
-			return convertIfcNullStyleToString(eDataType, instanceValue);
+		case Ifc2x3Package.IFC_NULL_STYLE_ENUM:
+			return convertIfcNullStyleEnumToString(eDataType, instanceValue);
 		case Ifc2x3Package.IFC_OBJECT_TYPE_ENUM:
 			return convertIfcObjectTypeEnumToString(eDataType, instanceValue);
 		case Ifc2x3Package.IFC_OBJECTIVE_ENUM:
@@ -9778,6 +9784,36 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcComplexNumber createIfcComplexNumber() {
+		IfcComplexNumberImpl ifcComplexNumber = new IfcComplexNumberImpl();
+		return ifcComplexNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcCompoundPlaneAngleMeasure createIfcCompoundPlaneAngleMeasure() {
+		IfcCompoundPlaneAngleMeasureImpl ifcCompoundPlaneAngleMeasure = new IfcCompoundPlaneAngleMeasureImpl();
+		return ifcCompoundPlaneAngleMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcNullStyle createIfcNullStyle() {
+		IfcNullStyleImpl ifcNullStyle = new IfcNullStyleImpl();
+		return ifcNullStyle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Tristate createTristateFromString(EDataType eDataType, String initialValue) {
 		Tristate result = Tristate.get(initialValue);
 		if (result == null)
@@ -11689,8 +11725,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcNullStyle createIfcNullStyleFromString(EDataType eDataType, String initialValue) {
-		IfcNullStyle result = IfcNullStyle.get(initialValue);
+	public IfcNullStyleEnum createIfcNullStyleEnumFromString(EDataType eDataType, String initialValue) {
+		IfcNullStyleEnum result = IfcNullStyleEnum.get(initialValue);
 		if (result == null)
 			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11701,7 +11737,7 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcNullStyleToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcNullStyleEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -36,7 +36,7 @@ public class TestFramework {
 	
 	private final Set<VirtualUser> virtualUsers = new HashSet<VirtualUser>();
 	private final TestConfiguration testConfiguration;
-
+	private final TestResults testResults = new TestResults();
 	private BimServer bimServer;
 	
 	public TestFramework(TestConfiguration testConfiguration) {
@@ -69,7 +69,7 @@ public class TestFramework {
 					bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin");
 				}
 				
-				// Change a setting to normal users can create projects
+				// Change a setting so normal users can create projects
 				bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -115,5 +115,9 @@ public class TestFramework {
 		for (VirtualUser virtualUser : virtualUsers) {
 			virtualUser.shutdown();
 		}
+	}
+
+	public TestResults getResults() {
+		return testResults;
 	}
 }
