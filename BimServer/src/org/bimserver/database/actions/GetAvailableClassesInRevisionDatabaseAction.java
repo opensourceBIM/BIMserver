@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.List;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
@@ -30,13 +30,13 @@ public class GetAvailableClassesInRevisionDatabaseAction extends BimDatabaseActi
 
 	private final long roid;
 
-	public GetAvailableClassesInRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAvailableClassesInRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
+		super(databaseSession, accessMethod);
 		this.roid = roid;
 	}
 
 	@Override
-	public List<String> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public List<String> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		return getDatabaseSession().getAvailableClassesInRevision(revision.getProject().getId(), revision.getId());
 	}

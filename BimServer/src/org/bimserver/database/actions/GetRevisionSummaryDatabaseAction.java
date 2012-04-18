@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
@@ -44,13 +44,13 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 	private RevisionSummaryContainer revisionSummaryContainerOther;
 	private Map<EClass, Integer> map = new HashMap<EClass, Integer>();
 
-	public GetRevisionSummaryDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetRevisionSummaryDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
+		super(databaseSession, accessMethod);
 		this.roid = roid;
 	}
 
 	@Override
-	public RevisionSummary execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public RevisionSummary execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		RevisionSummary revisionSummary = StoreFactory.eINSTANCE.createRevisionSummary();
 		revisionSummaryContainerEntities = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerEntities.setName("IFC Entities");

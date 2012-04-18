@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -38,14 +38,14 @@ public class GetAllIfcEnginesDatabaseAction extends GetAllDatabaseAction<IfcEngi
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
-	public GetAllIfcEnginesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(bimDatabaseSession, accessMethod, IfcEngine.class, StorePackage.eINSTANCE.getIfcEngine());
+	public GetAllIfcEnginesDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
+		super(databaseSession, accessMethod, IfcEngine.class, StorePackage.eINSTANCE.getIfcEngine());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<IfcEngine> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public List<IfcEngine> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getIfcEngine());
 		Map<Long, IfcEngine> result = getDatabaseSession().query(condition, IfcEngine.class, false, null);
 		List<IfcEngine> mapToList = CollectionUtils.mapToList(result);

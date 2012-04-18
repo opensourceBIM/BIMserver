@@ -19,9 +19,9 @@ package org.bimserver.changes;
 
 import java.util.Map;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EReference;
@@ -43,26 +43,26 @@ public class SetReferenceChange implements Change {
 	}
 
 	@Override
-	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession, Map<Long, IdEObject> created) throws UserException, BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), pid, rid, oid, false, null);
+	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+		IdEObject idEObject = databaseSession.get(databaseSession.getEClassForName(className), pid, rid, oid, false, null);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
 			throw new UserException("No object of type " + className + " with oid " + oid + " found in project with pid " + pid);
 		}
-		EReference eReference = bimDatabaseSession.getMetaDataManager().getEReference(className, referenceName);
+		EReference eReference = databaseSession.getMetaDataManager().getEReference(className, referenceName);
 		if (eReference == null) {
 			throw new UserException("No reference with the name " + referenceName + " found in class " + className);
 		}
 		if (eReference.isMany()) {
 			throw new UserException("Reference is not of type 'single'");
 		}
-		IdEObject referencedObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(referencedClassName), pid, rid, referenceOid, false, null);
+		IdEObject referencedObject = databaseSession.get(databaseSession.getEClassForName(referencedClassName), pid, rid, referenceOid, false, null);
 		if (referencedObject == null) {
 			throw new UserException("Referenced object of type " + referencedClassName + " with oid " + referenceOid + " not found");
 		}
 		idEObject.eSet(eReference, referencedObject);
-		bimDatabaseSession.store(idEObject, pid, rid);
+		databaseSession.store(idEObject, pid, rid);
 	}
 }

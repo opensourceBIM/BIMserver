@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ProjectUndeleted;
@@ -36,14 +36,14 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long actingUoid;
 	private final long poid;
 
-	public UndeleteProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long actingUoid) {
-		super(bimDatabaseSession, accessMethod);
+	public UndeleteProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, long actingUoid) {
+		super(databaseSession, accessMethod);
 		this.poid = poid;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(poid);
 		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {

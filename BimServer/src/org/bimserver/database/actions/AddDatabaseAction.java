@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
@@ -28,14 +28,14 @@ public class AddDatabaseAction<T extends IdEObject> extends BimDatabaseAction<Vo
 
 	private final T idEObject;
 
-	public AddDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, T idEObject) {
-		super(bimDatabaseSession, accessMethod);
+	public AddDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, T idEObject) {
+		super(databaseSession, accessMethod);
 		this.idEObject = idEObject;
 	}
 
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		getDatabaseSession().store(idEObject);
 		return null;
 	}

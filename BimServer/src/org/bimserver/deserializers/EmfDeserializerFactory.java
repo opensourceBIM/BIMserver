@@ -18,9 +18,9 @@ package org.bimserver.deserializers;
  *****************************************************************************/
 
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -44,7 +44,7 @@ public class EmfDeserializerFactory {
 	}
 	
 	public EmfDeserializer createDeserializer(String deserializerName) {
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		DatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getDeserializer_Name(), new StringLiteral(deserializerName));
 			Deserializer found = session.querySingle(condition, Deserializer.class, false, null);
@@ -56,9 +56,7 @@ public class EmfDeserializerFactory {
 					return deserializer;
 				}
 			}
-		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} catch (PluginException e) {
 			LOGGER.error("", e);

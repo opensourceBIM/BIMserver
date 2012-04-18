@@ -29,9 +29,9 @@ import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
 import org.bimserver.SettingsManager;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -58,8 +58,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	private boolean createSystemUser = false;
 	private final BimServer bimServer;
 
-	public AddUserDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
-		super(bimDatabaseSession, accessMethod);
+	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.name = name;
 		this.username = username;
@@ -69,8 +69,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.password = null;
 	}
 
-	public AddUserDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
-		super(bimDatabaseSession, accessMethod);
+	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.password = password;
 		this.name = name;
@@ -80,7 +80,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.selfRegistration = selfRegistration;
 	}
 
-	public User execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public User execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
 		String trimmedUserName = username.trim();
 		String trimmedName = name.trim();
 		if (userType == UserType.SYSTEM && !createSystemUser) {

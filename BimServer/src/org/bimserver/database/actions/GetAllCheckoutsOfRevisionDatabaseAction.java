@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -36,13 +36,13 @@ public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<S
 
 	private final long roid;
 
-	public GetAllCheckoutsOfRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllCheckoutsOfRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
+		super(databaseSession, accessMethod);
 		this.roid = roid;
 	}
 
 	@Override
-	public Set<Checkout> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<Checkout> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision revision = getVirtualRevision(roid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
 		return CollectionUtils.mapToSet((Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false, null));

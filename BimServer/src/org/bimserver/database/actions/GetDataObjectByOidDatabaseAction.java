@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.List;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -55,8 +55,8 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 	private final long roid;
 	private final BimServer bimServer;
 
-	public GetDataObjectByOidDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long oid, short cid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, short cid) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.oid = oid;
@@ -64,13 +64,13 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 	}
 
 	@Override
-	public DataObject execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public DataObject execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			IfcModel subModel = new IfcModel();
-			eObject = getDatabaseSession().get(cid, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel, false, null);
+			eObject = getDatabaseSession().get(cid, null, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel, false, null);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 			if (eObject != null) {

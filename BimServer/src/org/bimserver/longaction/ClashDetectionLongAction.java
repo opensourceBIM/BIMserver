@@ -21,9 +21,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
 import org.bimserver.interfaces.SConverter;
@@ -53,7 +53,7 @@ public class ClashDetectionLongAction extends LongAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void execute() {
-		BimDatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
 		long roid = -1;
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
@@ -61,9 +61,9 @@ public class ClashDetectionLongAction extends LongAction {
 			roid = revision.getOid();
 			session.store(revision);
 			session.commit();
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDeadlockException e) {
 			LOGGER.error("", e);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
@@ -101,7 +101,7 @@ public class ClashDetectionLongAction extends LongAction {
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			try {
-				BimDatabaseSession rollBackSession = getBimServer().getDatabase().createSession();
+				DatabaseSession rollBackSession = getBimServer().getDatabase().createSession();
 				try {
 					Throwable throwable = e;
 					while (throwable.getCause() != null) {
@@ -114,9 +114,9 @@ public class ClashDetectionLongAction extends LongAction {
 				} finally {
 					rollBackSession.close();
 				}
-			} catch (BimDeadlockException e1) {
+			} catch (BimserverDeadlockException e1) {
 				LOGGER.error("", e1);
-			} catch (BimDatabaseException e1) {
+			} catch (BimserverDatabaseException e1) {
 				LOGGER.error("", e1);
 			}
 		} finally {

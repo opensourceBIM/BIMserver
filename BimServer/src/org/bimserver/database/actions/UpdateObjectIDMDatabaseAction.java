@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectIDM;
 
 public class UpdateObjectIDMDatabaseAction extends UpdateDatabaseAction<ObjectIDM> {
 
-	public UpdateObjectIDMDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod, objectIDM);
+	public UpdateObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ObjectIDM objectIDM) {
+		super(databaseSession, accessMethod, objectIDM);
 	}
 }

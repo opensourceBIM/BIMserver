@@ -22,9 +22,9 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
@@ -47,8 +47,8 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 
-	public DownloadByOidsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long actingUoid, ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod);
+	public DownloadByOidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long actingUoid, ObjectIDM objectIDM) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.oids = oids;
@@ -57,7 +57,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
@@ -85,7 +85,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 				ifcModelSet.add(subModel);
 				// for (Long oid : oids) {
 				// IfcModel subModel =
-				// bimDatabaseSession.getMapWithOids(concreteRevision.getProject().getId(),
+				// databaseSession.getMapWithOids(concreteRevision.getProject().getId(),
 				// concreteRevision.getId(), oid);
 				// subModel.setDate(concreteRevision.getDate());
 				// ifcModels.add(subModel);

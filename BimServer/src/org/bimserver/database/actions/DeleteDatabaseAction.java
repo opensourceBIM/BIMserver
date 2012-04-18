@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
@@ -30,14 +30,14 @@ public class DeleteDatabaseAction extends BimDatabaseAction<Void> {
 	private final long oid;
 	private final EClass eClass;
 
-	public DeleteDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, EClass eClass, long oid) {
-		super(bimDatabaseSession, accessMethod);
+	public DeleteDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, EClass eClass, long oid) {
+		super(databaseSession, accessMethod);
 		this.eClass = eClass;
 		this.oid = oid;
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		IdEObject object = getDatabaseSession().get(eClass, oid, false, null);
 		if (object == null) {
 			throw new UserException("Object with oid " + oid + " not found");

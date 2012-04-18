@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
@@ -40,13 +40,13 @@ public class GetAllUsersDatabaseAction extends BimDatabaseAction<Set<User>> {
 
 	private final long actingUoid;
 
-	public GetAllUsersDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllUsersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Set<User> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<User> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getUser());
 		condition = condition.and(new Not(new AttributeCondition(StorePackage.eINSTANCE.getUser_UserType(), new EnumLiteral(UserType.SYSTEM))));

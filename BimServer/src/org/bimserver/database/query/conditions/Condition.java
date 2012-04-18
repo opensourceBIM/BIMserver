@@ -19,14 +19,14 @@ package org.bimserver.database.query.conditions;
 
 import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 public abstract class Condition {
 
 	public abstract void getEClassRequirements(Set<EClass> classRequirements);
 
-	public abstract boolean matches(EObject object);
+	public abstract boolean matches(IdEObject object);
 
 	public AndCondition and(Condition otherCondition) {
 		return new AndCondition(this, otherCondition);

@@ -18,9 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -34,15 +34,15 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObj
 	private final long roid;
 	private final BimServer bimServer;
 
-	public GetDataObjectByGuidDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String guid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetDataObjectByGuidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String guid) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.guid = guid;
 	}
 	
 	@Override
-	public DataObject execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public DataObject execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		ObjectIdentifier objectIdentifier = null;
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {

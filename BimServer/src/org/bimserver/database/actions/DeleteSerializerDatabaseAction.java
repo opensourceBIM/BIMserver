@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.StorePackage;
 
 public class DeleteSerializerDatabaseAction extends DeleteDatabaseAction {
 
-	public DeleteSerializerDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long sid) {
-		super(bimDatabaseSession, accessMethod, StorePackage.eINSTANCE.getSerializer(), sid);
+	public DeleteSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long sid) {
+		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getSerializer(), sid);
 	}
 }

@@ -26,7 +26,7 @@ package org.bimserver.notifications;
 //
 //import org.bimserver.BimServer;
 //import org.bimserver.database.BimDatabaseException;
-//import org.bimserver.database.BimDatabaseSession;
+//import org.bimserver.database.DatabaseSession;
 //import org.bimserver.database.BimDeadlockException;
 //import org.bimserver.emf.IdEObject;
 //import org.bimserver.ifc.IfcModel;
@@ -60,7 +60,7 @@ package org.bimserver.notifications;
 //
 //	@Override
 //	public void notify(LogAction notificationMessage) {
-//		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+//		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 //		try {
 //			IfcModel allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false);
 //			for (IdEObject idEObject : allOfType.getValues()) {

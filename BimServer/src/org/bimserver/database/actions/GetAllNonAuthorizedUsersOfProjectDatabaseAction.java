@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.AndCondition;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -41,13 +41,13 @@ public class GetAllNonAuthorizedUsersOfProjectDatabaseAction extends BimDatabase
 
 	private final long poid;
 
-	public GetAllNonAuthorizedUsersOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllNonAuthorizedUsersOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid) {
+		super(databaseSession, accessMethod);
 		this.poid = poid;
 	}
 	
 	@Override
-	public Set<User> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<User> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Condition condition = 
 			new AndCondition(
 				new AndCondition(

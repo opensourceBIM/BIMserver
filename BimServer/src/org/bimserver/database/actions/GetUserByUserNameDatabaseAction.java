@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -32,13 +32,13 @@ public class GetUserByUserNameDatabaseAction extends BimDatabaseAction<User> {
 
 	private final String username;
 
-	public GetUserByUserNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username) {
-		super(bimDatabaseSession, accessMethod);
+	public GetUserByUserNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String username) {
+		super(databaseSession, accessMethod);
 		this.username = username;
 	}
 
 	@Override
-	public User execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public User execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
 		return getDatabaseSession().querySingle(condition, User.class, false, null);
 	}

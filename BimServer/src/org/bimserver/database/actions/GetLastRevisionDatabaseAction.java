@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -29,13 +29,13 @@ public class GetLastRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 
 	private final int pid;
 
-	public GetLastRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, int pid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetLastRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, int pid) {
+		super(databaseSession, accessMethod);
 		this.pid = pid;
 	}
 
 	@Override
-	public Revision execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Revision execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Project project = getProjectById(pid);
 		if (project != null) {
 			return project.getLastRevision();

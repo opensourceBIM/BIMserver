@@ -21,6 +21,97 @@
 .body {clear: both}
 </style>
 </head>
+<script>
+var types = {};
+var actions = {};
+var users = {};
+var typesAvailable = {};
+var actionsAvailable = {};
+var usersAvailable = {};
+
+function toggleRows(action) {
+	if ($(this).hasClass("enabled")) {
+		$(this).removeClass("enabled");
+	} else {
+		$(this).addClass("enabled");
+	}
+
+	updateMaps();
+
+	$(".body").find("tr").each(function(){
+		var tr = $(this);
+		var type = tr.attr("type");
+		var action = tr.attr("action");
+		var user = tr.attr("user");
+		if ((types["all"] != null || types[type] != null) && (actions["all"] != null || actions[action] != null) && (users["all"] != null || users[user] != null)) {
+			tr.show();
+		} else {
+			tr.hide();
+		}
+	});
+}
+
+function updateMaps() {
+	types = {};
+	actions = {};
+	users = {};
+	$(".head .types .enabled").each(function(){
+		types[$(this).attr("type")] = true;
+	});
+	$(".head .actions .enabled").each(function(){
+		actions[$(this).attr("action")] = true;
+	});
+	$(".head .users .enabled").each(function(){
+		users[$(this).attr("user")] = true;
+	});
+}
+
+function updateAvailableMaps() {
+	typesAvailable = {};
+	$(".body").find("[type]").each(function(index, data){
+		var type = $(this).attr("type");
+		if (types[type] == null) {
+			typesAvailable[type] = true;
+		}
+	});
+	
+	actionsAvailable = {};
+	$(".body").find("[action]").each(function(index, data){
+		var action = $(this).attr("action");
+		if (actions[action] == null) {
+			actionsAvailable[action] = true;
+		}
+	});
+	
+	usersAvailable = {};
+	$(".body").find("[user]").each(function(index, data){
+		var user = $(this).attr("user");
+		if (users[user] == null) {
+			usersAvailable[user] = true;
+		}
+	});
+}
+
+$(function(){
+	$(".head .button").click(toggleRows);
+	updateAvailableMaps();
+	for (t in typesAvailable) {
+		var u = $("<div type=\"" + t + "\" class=\"button type type_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".types .right").append(u);
+	}
+	for (t in actionsAvailable) {
+		var u = $("<div action=\"" + t + "\" class=\"button action action_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".actions .right").append(u);
+	}
+	for (t in usersAvailable) {
+		var u = $("<div user=\"" + t + "\" class=\"button user user_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".users .right").append(u);
+	}
+});
+</script>
 <body>
 <div class="head">
 	<div class="row types">
@@ -45,26 +136,3 @@
 	</div>
 </div>
 <div class="body">
-	<table>
-		<tr type="oke" user="1" action="CreateProjectAction">
-			<td>1.</td>
-			<td>1</td>
-			<td>CreateProjectAction</td>
-			<td class="type_oke">OKE</td>
-			<td>Creating new project Project 437142679</td>
-		</tr>
-		<tr type="warn" user="2" action="CreateProjectAction">
-			<td>2.</td>
-			<td>2</td>
-			<td>CreateProjectAction</td>
-			<td class="type_warn">WARN</td>
-			<td>Creating new project Project 437142679</td>
-		</tr>
-		<tr type="error" user="2" action="CheckinAction">
-			<td>3.</td>
-			<td>2</td>
-			<td>CheckinAction</td>
-			<td class="type_error">ERROR</td>
-			<td>Creating new project Project 437142679</td>
-		</tr>
-	</table>

@@ -25,7 +25,7 @@ package org.bimserver.tests;
 //import org.bimserver.ServerInitializer;
 //import org.bimserver.database.BimDatabase;
 //import org.bimserver.database.BimDatabaseException;
-//import org.bimserver.database.BimDatabaseSession;
+//import org.bimserver.database.DatabaseSession;
 //import org.bimserver.database.BimDeadlockException;
 //import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 //import org.bimserver.database.store.ConcreteRevision;
@@ -72,16 +72,16 @@ package org.bimserver.tests;
 //
 //	private void start2() {
 //		BimDatabase database = ServerInitializer.getDatabase();
-//		BimDatabaseSession bimDatabaseSession = database.createSession();
+//		DatabaseSession databaseSession = database.createSession();
 //
 //		try {
-//			Project project = bimDatabaseSession.getProjectById(2);
+//			Project project = databaseSession.getProjectById(2);
 //			System.out.println(project.getName());
 //			// VirtualRevision virtualRevision =
 //			// project.getLastVirtualRevision();
 //			// List<VirtualRevision> revisions = project.getVirtualRevisions();
 //			// System.out.println(revisions.size());
-//			User user = bimDatabaseSession.getUserById(1);
+//			User user = databaseSession.getUserById(1);
 //
 //			System.out.println(project.getName());
 //
@@ -89,7 +89,7 @@ package org.bimserver.tests;
 //				System.out.println("virtuele revisie " + vrevision.getId() + " van :" + project.getName());
 ////				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(project.getId(), vrevision.getId(), user.getId());
 //				DownloadOfTypeDatabaseAction downloadDatabaseAction = new DownloadOfTypeDatabaseAction(AccessMethod.INTERNAL, project.getId(), vrevision.getId(), "IfcWall", user.getId());
-//				IfcModel IfcModel = bimDatabaseSession.executeAction(downloadDatabaseAction, 3);
+//				IfcModel IfcModel = databaseSession.executeAction(downloadDatabaseAction, 3);
 //				new IfcDatabase<Long>(IfcModel, null);
 //
 //				// vrevision.getLastRevision().getSize();
@@ -123,7 +123,7 @@ package org.bimserver.tests;
 //			e.printStackTrace();
 //		}
 //
-//		bimDatabaseSession.close();
+//		databaseSession.close();
 //		System.out.println("klaar");
 //	}
 //

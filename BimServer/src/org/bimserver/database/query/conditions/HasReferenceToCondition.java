@@ -19,17 +19,17 @@ package org.bimserver.database.query.conditions;
 
 import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 public class HasReferenceToCondition extends Condition {
 
-	private final EObject referencingObject;
+	private final IdEObject referencingObject;
 	private final EReference reference;
 
-	public HasReferenceToCondition(EReference reference, EObject referencingObject) {
+	public HasReferenceToCondition(EReference reference, IdEObject referencingObject) {
 		this.reference = reference;
 		this.referencingObject = referencingObject;
 	}
@@ -40,13 +40,14 @@ public class HasReferenceToCondition extends Condition {
 	}
 
 	@Override
-	public boolean matches(EObject object) {
+	public boolean matches(IdEObject object) {
 		if (object.eClass().isSuperTypeOf(reference.getEContainingClass())) {
 			Object other = object.eGet(reference);
 			if (other instanceof EList<?>) {
 				EList<?> list = (EList<?>)other;
 				for (Object eObject : list) {
-					if (eObject == referencingObject) {
+					// TODO Actually the first test should suffice (object id), the second should always return the same because caching of the objects should allow only 1 per database session
+					if (eObject == referencingObject || ((IdEObject)eObject).getOid() == referencingObject.getOid()) {
 						return true;
 					}
 				}

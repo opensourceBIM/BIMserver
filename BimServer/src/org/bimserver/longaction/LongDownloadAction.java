@@ -18,9 +18,9 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
@@ -45,7 +45,7 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 public class LongDownloadAction extends LongDownloadOrCheckoutAction implements ProgressListener {
 
 	private BimDatabaseAction<? extends IfcModelInterface> action;
-	private BimDatabaseSession session;
+	private DatabaseSession session;
 
 	public LongDownloadAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, long currentUoid, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, currentUoid);
@@ -83,9 +83,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 					}
 				}
 			}
-		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();

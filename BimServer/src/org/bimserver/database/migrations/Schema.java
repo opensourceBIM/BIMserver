@@ -26,8 +26,8 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.common.util.URI;
@@ -222,13 +222,13 @@ public class Schema {
 				change.change(database, databaseSession);
 			} catch (NotImplementedException e) {
 				LOGGER.error("", e);
-			} catch (BimDatabaseException e) {
+			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 			}
 		}
 		try {
 			database.setDatabaseVersion(version, databaseSession);
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDeadlockException e) {
 			LOGGER.error("", e);
 		}
 	}

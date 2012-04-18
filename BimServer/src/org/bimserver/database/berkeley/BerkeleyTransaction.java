@@ -17,8 +17,8 @@ package org.bimserver.database.berkeley;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.BimTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,14 +64,14 @@ public class BerkeleyTransaction implements BimTransaction {
 	}
 
 	@Override
-	public void commit() throws BimDeadlockException, BimDatabaseException {
+	public void commit() throws BimserverDeadlockException, BimserverDatabaseException {
 		try {
 			transaction.commit();
 			transactionAlive = false;
 		} catch (LockConflictException e) {
-			throw new BimDeadlockException(e);
+			throw new BimserverDeadlockException(e);
 		} catch (DatabaseException e) {
-			throw new BimDatabaseException(e);
+			throw new BimserverDatabaseException(e);
 		}
 	}
 

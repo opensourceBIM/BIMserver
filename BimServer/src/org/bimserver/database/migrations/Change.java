@@ -17,11 +17,11 @@ package org.bimserver.database.migrations;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 
 public interface Change {
 
-	void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimDatabaseException;
+	void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException;
 }

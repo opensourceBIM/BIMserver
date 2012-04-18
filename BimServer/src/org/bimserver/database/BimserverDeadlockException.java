@@ -17,19 +17,17 @@ package org.bimserver.database;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class BimDatabaseException extends Exception {
+import com.sleepycat.je.LockConflictException;
 
-	private static final long serialVersionUID = 3947604679506343680L;
+public class BimserverDeadlockException extends BimserverDatabaseException {
 
-	public BimDatabaseException(String message, Throwable e) {
-		super(message, e);
-	}
+	private static final long serialVersionUID = 9043339658520339789L;
 
-	public BimDatabaseException(String message) {
-		super(message);
+	public BimserverDeadlockException(LockConflictException e) {
+		super(e);
 	}
 	
-	public BimDatabaseException(Throwable e) {
-		super(e);
+	public LockConflictException getLockException() {
+		return (LockConflictException) getCause();
 	}
 }

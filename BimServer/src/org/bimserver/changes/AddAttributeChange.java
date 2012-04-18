@@ -20,9 +20,9 @@ package org.bimserver.changes;
 import java.util.List;
 import java.util.Map;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
@@ -43,15 +43,15 @@ public class AddAttributeChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession, Map<Long, IdEObject> created) throws UserException, BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), pid, rid, oid, false, null);
+	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+		IdEObject idEObject = databaseSession.get(databaseSession.getEClassForName(className), pid, rid, oid, false, null);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
 			throw new UserException("No object of type " + className + " with oid " + oid + " found in project with pid " + pid);
 		}
-		EAttribute eAttribute = bimDatabaseSession.getMetaDataManager().getEAttribute(className, attributeName);
+		EAttribute eAttribute = databaseSession.getMetaDataManager().getEAttribute(className, attributeName);
 		if (eAttribute == null) {
 			throw new UserException("No attribute with the name " + attributeName + " found in class " + className);
 		}
@@ -60,6 +60,6 @@ public class AddAttributeChange implements Change {
 		}
 		List list = (List) idEObject.eGet(eAttribute);
 		list.add(value);
-		bimDatabaseSession.store(idEObject, pid, rid);
+		databaseSession.store(idEObject, pid, rid);
 	}
 }

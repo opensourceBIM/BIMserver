@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.StorePackage;
 
 public class DeleteIfcEngineDatabaseAction extends DeleteDatabaseAction {
 
-	public DeleteIfcEngineDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long iid) {
-		super(bimDatabaseSession, accessMethod, StorePackage.eINSTANCE.getIfcEngine(), iid);
+	public DeleteIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long iid) {
+		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getIfcEngine(), iid);
 	}
 }

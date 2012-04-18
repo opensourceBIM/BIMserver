@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.Project;
@@ -33,14 +33,14 @@ public class GetClashDetectionSettingsDatabaseAction extends BimDatabaseAction<C
 	private final long cdsoid;
 	private final long actingUoid;
 
-	public GetClashDetectionSettingsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long cdsoid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetClashDetectionSettingsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long cdsoid) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.cdsoid = cdsoid;
 	}
 
 	@Override
-	public ClashDetectionSettings execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public ClashDetectionSettings execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) getDatabaseSession().get(StorePackage.eINSTANCE.getClashDetectionSettings(), cdsoid, false, null);
 		boolean hasRights = false;

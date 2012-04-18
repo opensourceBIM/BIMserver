@@ -33,8 +33,8 @@ import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.models.log.AccessMethod;
@@ -74,7 +74,7 @@ public class QueryCompiler {
 	}
 
 	public RunResult run(String code, long roid, long uoid, BimServer bimServer) {
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		RunResult runResult = StoreFactory.eINSTANCE.createRunResult();
 		runResult.setRunOke(true);
 		try {
@@ -85,7 +85,7 @@ public class QueryCompiler {
 			queryInterface.query(IfcModel, new PrintWriter(out));
 			runResult.setOutput("Executing...\n\n" + out + "\n" + "Execution complete");
 			runResult.setRunOke(true);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			runResult.setRunOke(false);
 			runResult.getErrors().add(e.getMessage());
 		} catch (ServiceException e) {

@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -36,13 +36,13 @@ public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<Set<C
 
 	private final long uoid;
 
-	public GetAllCheckoutsByUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllCheckoutsByUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid) {
+		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Set<Checkout> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<Checkout> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_User(), user);
 //		condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getCheckout_Active(), new BooleanLiteral(true)));

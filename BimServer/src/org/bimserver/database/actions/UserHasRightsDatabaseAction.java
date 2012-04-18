@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
@@ -31,14 +31,14 @@ public class UserHasRightsDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long poid;
 	private final long uoid;
 
-	public UserHasRightsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long poid) {
-		super(bimDatabaseSession, accessMethod);
+	public UserHasRightsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long poid) {
+		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 		this.poid = poid;
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Boolean execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		return RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project);

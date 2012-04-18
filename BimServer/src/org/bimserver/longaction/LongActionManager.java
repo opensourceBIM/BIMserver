@@ -26,7 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -69,7 +69,7 @@ public class LongActionManager {
 	}
 
 	public synchronized List<org.bimserver.models.store.LongAction> getActiveLongActions() {
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			List<org.bimserver.models.store.LongAction> result = new ArrayList<org.bimserver.models.store.LongAction>();
 			for (LongAction<?> longAction : actions.values()) {

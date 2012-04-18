@@ -19,7 +19,7 @@ package org.bimserver.database.berkeley;
 
 import java.util.Arrays;
 
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.slf4j.Logger;
@@ -39,13 +39,13 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	private final byte[] mustStartWith;
 	private byte[] nextStartSearchingAt;
 
-	public BerkeleySearchingRecordIterator(Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimDeadlockException {
+	public BerkeleySearchingRecordIterator(Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimserverDeadlockException {
 		this.cursor = cursor;
 		this.mustStartWith = mustStartWith;
 		this.nextStartSearchingAt = startSearchingAt;
 	}
 
-	private Record getFirstNext(byte[] startSearchingAt) throws BimDeadlockException {
+	private Record getFirstNext(byte[] startSearchingAt) throws BimserverDeadlockException {
 		this.nextStartSearchingAt = null;
 		DatabaseEntry key = new DatabaseEntry(startSearchingAt);
 		DatabaseEntry value = new DatabaseEntry();
@@ -59,7 +59,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 				}
 			}
 		} catch (LockConflictException e) {
-			throw new BimDeadlockException(e);
+			throw new BimserverDeadlockException(e);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -67,7 +67,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	}
 
 	@Override
-	public Record next() throws BimDeadlockException {
+	public Record next() throws BimserverDeadlockException {
 		if (nextStartSearchingAt != null) {
 			return getFirstNext(nextStartSearchingAt);
 		}
@@ -83,7 +83,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 				}
 			}
 		} catch (LockConflictException e) {
-			throw new BimDeadlockException(e);
+			throw new BimserverDeadlockException(e);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -100,7 +100,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	}
 
 	@Override
-	public Record next(byte[] startSearchingAt) throws BimDeadlockException {
+	public Record next(byte[] startSearchingAt) throws BimserverDeadlockException {
 		return getFirstNext(startSearchingAt);
 	}
 }

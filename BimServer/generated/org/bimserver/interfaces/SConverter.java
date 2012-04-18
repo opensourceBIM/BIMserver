@@ -21,7 +21,7 @@ import org.bimserver.interfaces.objects.*;
 import java.util.*;
 import org.bimserver.models.log.*;
 import org.bimserver.models.store.*;
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 
 public class SConverter {
 		public SUserType convertToSObject(UserType input) {
@@ -54,7 +54,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Project> convertFromSSetProject(Collection<SProject> input, BimDatabaseSession session) {
+	public Set<Project> convertFromSSetProject(Collection<SProject> input, DatabaseSession session) {
 		Set<Project> result = new HashSet<Project>();
 		for (SProject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -70,7 +70,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Project> convertFromSListProject(Collection<SProject> input, BimDatabaseSession session) {
+	public List<Project> convertFromSListProject(Collection<SProject> input, DatabaseSession session) {
 		List<Project> result = new ArrayList<Project>();
 		for (SProject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -131,7 +131,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Project convertFromSObject(SProject input, BimDatabaseSession session) {
+	public Project convertFromSObject(SProject input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -180,7 +180,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<User> convertFromSSetUser(Collection<SUser> input, BimDatabaseSession session) {
+	public Set<User> convertFromSSetUser(Collection<SUser> input, DatabaseSession session) {
 		Set<User> result = new HashSet<User>();
 		for (SUser o : input) {
 			result.add(convertFromSObject(o, session));
@@ -196,7 +196,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<User> convertFromSListUser(Collection<SUser> input, BimDatabaseSession session) {
+	public List<User> convertFromSListUser(Collection<SUser> input, DatabaseSession session) {
 		List<User> result = new ArrayList<User>();
 		for (SUser o : input) {
 			result.add(convertFromSObject(o, session));
@@ -236,7 +236,7 @@ public class SConverter {
 		return result;
 	}
 
-	public User convertFromSObject(SUser input, BimDatabaseSession session) {
+	public User convertFromSObject(SUser input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -272,7 +272,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Clash> convertFromSSetClash(Collection<SClash> input, BimDatabaseSession session) {
+	public Set<Clash> convertFromSSetClash(Collection<SClash> input, DatabaseSession session) {
 		Set<Clash> result = new HashSet<Clash>();
 		for (SClash o : input) {
 			result.add(convertFromSObject(o, session));
@@ -288,7 +288,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Clash> convertFromSListClash(Collection<SClash> input, BimDatabaseSession session) {
+	public List<Clash> convertFromSListClash(Collection<SClash> input, DatabaseSession session) {
 		List<Clash> result = new ArrayList<Clash>();
 		for (SClash o : input) {
 			result.add(convertFromSObject(o, session));
@@ -320,7 +320,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Clash convertFromSObject(SClash input, BimDatabaseSession session) {
+	public Clash convertFromSObject(SClash input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -343,7 +343,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<EidClash> convertFromSSetEidClash(Collection<SEidClash> input, BimDatabaseSession session) {
+	public Set<EidClash> convertFromSSetEidClash(Collection<SEidClash> input, DatabaseSession session) {
 		Set<EidClash> result = new HashSet<EidClash>();
 		for (SEidClash o : input) {
 			result.add(convertFromSObject(o, session));
@@ -359,7 +359,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<EidClash> convertFromSListEidClash(Collection<SEidClash> input, BimDatabaseSession session) {
+	public List<EidClash> convertFromSListEidClash(Collection<SEidClash> input, DatabaseSession session) {
 		List<EidClash> result = new ArrayList<EidClash>();
 		for (SEidClash o : input) {
 			result.add(convertFromSObject(o, session));
@@ -387,7 +387,7 @@ public class SConverter {
 		return result;
 	}
 
-	public EidClash convertFromSObject(SEidClash input, BimDatabaseSession session) {
+	public EidClash convertFromSObject(SEidClash input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -412,7 +412,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<GuidClash> convertFromSSetGuidClash(Collection<SGuidClash> input, BimDatabaseSession session) {
+	public Set<GuidClash> convertFromSSetGuidClash(Collection<SGuidClash> input, DatabaseSession session) {
 		Set<GuidClash> result = new HashSet<GuidClash>();
 		for (SGuidClash o : input) {
 			result.add(convertFromSObject(o, session));
@@ -428,7 +428,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<GuidClash> convertFromSListGuidClash(Collection<SGuidClash> input, BimDatabaseSession session) {
+	public List<GuidClash> convertFromSListGuidClash(Collection<SGuidClash> input, DatabaseSession session) {
 		List<GuidClash> result = new ArrayList<GuidClash>();
 		for (SGuidClash o : input) {
 			result.add(convertFromSObject(o, session));
@@ -456,7 +456,7 @@ public class SConverter {
 		return result;
 	}
 
-	public GuidClash convertFromSObject(SGuidClash input, BimDatabaseSession session) {
+	public GuidClash convertFromSObject(SGuidClash input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -481,7 +481,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ClashDetectionSettings> convertFromSSetClashDetectionSettings(Collection<SClashDetectionSettings> input, BimDatabaseSession session) {
+	public Set<ClashDetectionSettings> convertFromSSetClashDetectionSettings(Collection<SClashDetectionSettings> input, DatabaseSession session) {
 		Set<ClashDetectionSettings> result = new HashSet<ClashDetectionSettings>();
 		for (SClashDetectionSettings o : input) {
 			result.add(convertFromSObject(o, session));
@@ -497,7 +497,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ClashDetectionSettings> convertFromSListClashDetectionSettings(Collection<SClashDetectionSettings> input, BimDatabaseSession session) {
+	public List<ClashDetectionSettings> convertFromSListClashDetectionSettings(Collection<SClashDetectionSettings> input, DatabaseSession session) {
 		List<ClashDetectionSettings> result = new ArrayList<ClashDetectionSettings>();
 		for (SClashDetectionSettings o : input) {
 			result.add(convertFromSObject(o, session));
@@ -528,7 +528,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ClashDetectionSettings convertFromSObject(SClashDetectionSettings input, BimDatabaseSession session) {
+	public ClashDetectionSettings convertFromSObject(SClashDetectionSettings input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -556,7 +556,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Revision> convertFromSSetRevision(Collection<SRevision> input, BimDatabaseSession session) {
+	public Set<Revision> convertFromSSetRevision(Collection<SRevision> input, DatabaseSession session) {
 		Set<Revision> result = new HashSet<Revision>();
 		for (SRevision o : input) {
 			result.add(convertFromSObject(o, session));
@@ -572,7 +572,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Revision> convertFromSListRevision(Collection<SRevision> input, BimDatabaseSession session) {
+	public List<Revision> convertFromSListRevision(Collection<SRevision> input, DatabaseSession session) {
 		List<Revision> result = new ArrayList<Revision>();
 		for (SRevision o : input) {
 			result.add(convertFromSObject(o, session));
@@ -620,7 +620,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Revision convertFromSObject(SRevision input, BimDatabaseSession session) {
+	public Revision convertFromSObject(SRevision input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -661,7 +661,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ConcreteRevision> convertFromSSetConcreteRevision(Collection<SConcreteRevision> input, BimDatabaseSession session) {
+	public Set<ConcreteRevision> convertFromSSetConcreteRevision(Collection<SConcreteRevision> input, DatabaseSession session) {
 		Set<ConcreteRevision> result = new HashSet<ConcreteRevision>();
 		for (SConcreteRevision o : input) {
 			result.add(convertFromSObject(o, session));
@@ -677,7 +677,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ConcreteRevision> convertFromSListConcreteRevision(Collection<SConcreteRevision> input, BimDatabaseSession session) {
+	public List<ConcreteRevision> convertFromSListConcreteRevision(Collection<SConcreteRevision> input, DatabaseSession session) {
 		List<ConcreteRevision> result = new ArrayList<ConcreteRevision>();
 		for (SConcreteRevision o : input) {
 			result.add(convertFromSObject(o, session));
@@ -709,7 +709,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ConcreteRevision convertFromSObject(SConcreteRevision input, BimDatabaseSession session) {
+	public ConcreteRevision convertFromSObject(SConcreteRevision input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -737,7 +737,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<GeoTag> convertFromSSetGeoTag(Collection<SGeoTag> input, BimDatabaseSession session) {
+	public Set<GeoTag> convertFromSSetGeoTag(Collection<SGeoTag> input, DatabaseSession session) {
 		Set<GeoTag> result = new HashSet<GeoTag>();
 		for (SGeoTag o : input) {
 			result.add(convertFromSObject(o, session));
@@ -753,7 +753,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<GeoTag> convertFromSListGeoTag(Collection<SGeoTag> input, BimDatabaseSession session) {
+	public List<GeoTag> convertFromSListGeoTag(Collection<SGeoTag> input, DatabaseSession session) {
 		List<GeoTag> result = new ArrayList<GeoTag>();
 		for (SGeoTag o : input) {
 			result.add(convertFromSObject(o, session));
@@ -782,7 +782,7 @@ public class SConverter {
 		return result;
 	}
 
-	public GeoTag convertFromSObject(SGeoTag input, BimDatabaseSession session) {
+	public GeoTag convertFromSObject(SGeoTag input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -809,7 +809,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Checkout> convertFromSSetCheckout(Collection<SCheckout> input, BimDatabaseSession session) {
+	public Set<Checkout> convertFromSSetCheckout(Collection<SCheckout> input, DatabaseSession session) {
 		Set<Checkout> result = new HashSet<Checkout>();
 		for (SCheckout o : input) {
 			result.add(convertFromSObject(o, session));
@@ -825,7 +825,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Checkout> convertFromSListCheckout(Collection<SCheckout> input, BimDatabaseSession session) {
+	public List<Checkout> convertFromSListCheckout(Collection<SCheckout> input, DatabaseSession session) {
 		List<Checkout> result = new ArrayList<Checkout>();
 		for (SCheckout o : input) {
 			result.add(convertFromSObject(o, session));
@@ -853,7 +853,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Checkout convertFromSObject(SCheckout input, BimDatabaseSession session) {
+	public Checkout convertFromSObject(SCheckout input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -876,7 +876,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Settings> convertFromSSetSettings(Collection<SSettings> input, BimDatabaseSession session) {
+	public Set<Settings> convertFromSSetSettings(Collection<SSettings> input, DatabaseSession session) {
 		Set<Settings> result = new HashSet<Settings>();
 		for (SSettings o : input) {
 			result.add(convertFromSObject(o, session));
@@ -892,7 +892,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Settings> convertFromSListSettings(Collection<SSettings> input, BimDatabaseSession session) {
+	public List<Settings> convertFromSListSettings(Collection<SSettings> input, DatabaseSession session) {
 		List<Settings> result = new ArrayList<Settings>();
 		for (SSettings o : input) {
 			result.add(convertFromSObject(o, session));
@@ -954,7 +954,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Settings convertFromSObject(SSettings input, BimDatabaseSession session) {
+	public Settings convertFromSObject(SSettings input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1010,7 +1010,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Serializer> convertFromSSetSerializer(Collection<SSerializer> input, BimDatabaseSession session) {
+	public Set<Serializer> convertFromSSetSerializer(Collection<SSerializer> input, DatabaseSession session) {
 		Set<Serializer> result = new HashSet<Serializer>();
 		for (SSerializer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1026,7 +1026,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Serializer> convertFromSListSerializer(Collection<SSerializer> input, BimDatabaseSession session) {
+	public List<Serializer> convertFromSListSerializer(Collection<SSerializer> input, DatabaseSession session) {
 		List<Serializer> result = new ArrayList<Serializer>();
 		for (SSerializer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1057,7 +1057,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Serializer convertFromSObject(SSerializer input, BimDatabaseSession session) {
+	public Serializer convertFromSObject(SSerializer input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1084,7 +1084,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ObjectIDM> convertFromSSetObjectIDM(Collection<SObjectIDM> input, BimDatabaseSession session) {
+	public Set<ObjectIDM> convertFromSSetObjectIDM(Collection<SObjectIDM> input, DatabaseSession session) {
 		Set<ObjectIDM> result = new HashSet<ObjectIDM>();
 		for (SObjectIDM o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1100,7 +1100,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ObjectIDM> convertFromSListObjectIDM(Collection<SObjectIDM> input, BimDatabaseSession session) {
+	public List<ObjectIDM> convertFromSListObjectIDM(Collection<SObjectIDM> input, DatabaseSession session) {
 		List<ObjectIDM> result = new ArrayList<ObjectIDM>();
 		for (SObjectIDM o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1128,7 +1128,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ObjectIDM convertFromSObject(SObjectIDM input, BimDatabaseSession session) {
+	public ObjectIDM convertFromSObject(SObjectIDM input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1160,7 +1160,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<IfcEngine> convertFromSSetIfcEngine(Collection<SIfcEngine> input, BimDatabaseSession session) {
+	public Set<IfcEngine> convertFromSSetIfcEngine(Collection<SIfcEngine> input, DatabaseSession session) {
 		Set<IfcEngine> result = new HashSet<IfcEngine>();
 		for (SIfcEngine o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1176,7 +1176,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<IfcEngine> convertFromSListIfcEngine(Collection<SIfcEngine> input, BimDatabaseSession session) {
+	public List<IfcEngine> convertFromSListIfcEngine(Collection<SIfcEngine> input, DatabaseSession session) {
 		List<IfcEngine> result = new ArrayList<IfcEngine>();
 		for (SIfcEngine o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1205,7 +1205,7 @@ public class SConverter {
 		return result;
 	}
 
-	public IfcEngine convertFromSObject(SIfcEngine input, BimDatabaseSession session) {
+	public IfcEngine convertFromSObject(SIfcEngine input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1231,7 +1231,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Plugin> convertFromSSetPlugin(Collection<SPlugin> input, BimDatabaseSession session) {
+	public Set<Plugin> convertFromSSetPlugin(Collection<SPlugin> input, DatabaseSession session) {
 		Set<Plugin> result = new HashSet<Plugin>();
 		for (SPlugin o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1247,7 +1247,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Plugin> convertFromSListPlugin(Collection<SPlugin> input, BimDatabaseSession session) {
+	public List<Plugin> convertFromSListPlugin(Collection<SPlugin> input, DatabaseSession session) {
 		List<Plugin> result = new ArrayList<Plugin>();
 		for (SPlugin o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1269,7 +1269,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Plugin convertFromSObject(SPlugin input, BimDatabaseSession session) {
+	public Plugin convertFromSObject(SPlugin input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1289,7 +1289,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Deserializer> convertFromSSetDeserializer(Collection<SDeserializer> input, BimDatabaseSession session) {
+	public Set<Deserializer> convertFromSSetDeserializer(Collection<SDeserializer> input, DatabaseSession session) {
 		Set<Deserializer> result = new HashSet<Deserializer>();
 		for (SDeserializer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1305,7 +1305,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Deserializer> convertFromSListDeserializer(Collection<SDeserializer> input, BimDatabaseSession session) {
+	public List<Deserializer> convertFromSListDeserializer(Collection<SDeserializer> input, DatabaseSession session) {
 		List<Deserializer> result = new ArrayList<Deserializer>();
 		for (SDeserializer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1330,7 +1330,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Deserializer convertFromSObject(SDeserializer input, BimDatabaseSession session) {
+	public Deserializer convertFromSObject(SDeserializer input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1353,7 +1353,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<CheckinResult> convertFromSSetCheckinResult(Collection<SCheckinResult> input, BimDatabaseSession session) {
+	public Set<CheckinResult> convertFromSSetCheckinResult(Collection<SCheckinResult> input, DatabaseSession session) {
 		Set<CheckinResult> result = new HashSet<CheckinResult>();
 		for (SCheckinResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1369,7 +1369,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<CheckinResult> convertFromSListCheckinResult(Collection<SCheckinResult> input, BimDatabaseSession session) {
+	public List<CheckinResult> convertFromSListCheckinResult(Collection<SCheckinResult> input, DatabaseSession session) {
 		List<CheckinResult> result = new ArrayList<CheckinResult>();
 		for (SCheckinResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1394,7 +1394,7 @@ public class SConverter {
 		return result;
 	}
 
-	public CheckinResult convertFromSObject(SCheckinResult input, BimDatabaseSession session) {
+	public CheckinResult convertFromSObject(SCheckinResult input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1416,7 +1416,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DownloadResult> convertFromSSetDownloadResult(Collection<SDownloadResult> input, BimDatabaseSession session) {
+	public Set<DownloadResult> convertFromSSetDownloadResult(Collection<SDownloadResult> input, DatabaseSession session) {
 		Set<DownloadResult> result = new HashSet<DownloadResult>();
 		for (SDownloadResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1432,7 +1432,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DownloadResult> convertFromSListDownloadResult(Collection<SDownloadResult> input, BimDatabaseSession session) {
+	public List<DownloadResult> convertFromSListDownloadResult(Collection<SDownloadResult> input, DatabaseSession session) {
 		List<DownloadResult> result = new ArrayList<DownloadResult>();
 		for (SDownloadResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1456,7 +1456,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DownloadResult convertFromSObject(SDownloadResult input, BimDatabaseSession session) {
+	public DownloadResult convertFromSObject(SDownloadResult input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1476,7 +1476,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<CheckoutResult> convertFromSSetCheckoutResult(Collection<SCheckoutResult> input, BimDatabaseSession session) {
+	public Set<CheckoutResult> convertFromSSetCheckoutResult(Collection<SCheckoutResult> input, DatabaseSession session) {
 		Set<CheckoutResult> result = new HashSet<CheckoutResult>();
 		for (SCheckoutResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1492,7 +1492,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<CheckoutResult> convertFromSListCheckoutResult(Collection<SCheckoutResult> input, BimDatabaseSession session) {
+	public List<CheckoutResult> convertFromSListCheckoutResult(Collection<SCheckoutResult> input, DatabaseSession session) {
 		List<CheckoutResult> result = new ArrayList<CheckoutResult>();
 		for (SCheckoutResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1513,7 +1513,7 @@ public class SConverter {
 		return result;
 	}
 
-	public CheckoutResult convertFromSObject(SCheckoutResult input, BimDatabaseSession session) {
+	public CheckoutResult convertFromSObject(SCheckoutResult input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1533,7 +1533,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DataValue> convertFromSSetDataValue(Collection<SDataValue> input, BimDatabaseSession session) {
+	public Set<DataValue> convertFromSSetDataValue(Collection<SDataValue> input, DatabaseSession session) {
 		Set<DataValue> result = new HashSet<DataValue>();
 		for (SDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1549,7 +1549,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DataValue> convertFromSListDataValue(Collection<SDataValue> input, BimDatabaseSession session) {
+	public List<DataValue> convertFromSListDataValue(Collection<SDataValue> input, DatabaseSession session) {
 		List<DataValue> result = new ArrayList<DataValue>();
 		for (SDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1577,7 +1577,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DataValue convertFromSObject(SDataValue input, BimDatabaseSession session) {
+	public DataValue convertFromSObject(SDataValue input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1595,7 +1595,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DataObject> convertFromSSetDataObject(Collection<SDataObject> input, BimDatabaseSession session) {
+	public Set<DataObject> convertFromSSetDataObject(Collection<SDataObject> input, DatabaseSession session) {
 		Set<DataObject> result = new HashSet<DataObject>();
 		for (SDataObject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1611,7 +1611,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DataObject> convertFromSListDataObject(Collection<SDataObject> input, BimDatabaseSession session) {
+	public List<DataObject> convertFromSListDataObject(Collection<SDataObject> input, DatabaseSession session) {
 		List<DataObject> result = new ArrayList<DataObject>();
 		for (SDataObject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1637,7 +1637,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DataObject convertFromSObject(SDataObject input, BimDatabaseSession session) {
+	public DataObject convertFromSObject(SDataObject input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1661,7 +1661,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<UserSession> convertFromSSetUserSession(Collection<SUserSession> input, BimDatabaseSession session) {
+	public Set<UserSession> convertFromSSetUserSession(Collection<SUserSession> input, DatabaseSession session) {
 		Set<UserSession> result = new HashSet<UserSession>();
 		for (SUserSession o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1677,7 +1677,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<UserSession> convertFromSListUserSession(Collection<SUserSession> input, BimDatabaseSession session) {
+	public List<UserSession> convertFromSListUserSession(Collection<SUserSession> input, DatabaseSession session) {
 		List<UserSession> result = new ArrayList<UserSession>();
 		for (SUserSession o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1704,7 +1704,7 @@ public class SConverter {
 		return result;
 	}
 
-	public UserSession convertFromSObject(SUserSession input, BimDatabaseSession session) {
+	public UserSession convertFromSObject(SUserSession input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1729,7 +1729,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Migration> convertFromSSetMigration(Collection<SMigration> input, BimDatabaseSession session) {
+	public Set<Migration> convertFromSSetMigration(Collection<SMigration> input, DatabaseSession session) {
 		Set<Migration> result = new HashSet<Migration>();
 		for (SMigration o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1745,7 +1745,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Migration> convertFromSListMigration(Collection<SMigration> input, BimDatabaseSession session) {
+	public List<Migration> convertFromSListMigration(Collection<SMigration> input, DatabaseSession session) {
 		List<Migration> result = new ArrayList<Migration>();
 		for (SMigration o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1766,7 +1766,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Migration convertFromSObject(SMigration input, BimDatabaseSession session) {
+	public Migration convertFromSObject(SMigration input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1786,7 +1786,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ReferenceDataValue> convertFromSSetReferenceDataValue(Collection<SReferenceDataValue> input, BimDatabaseSession session) {
+	public Set<ReferenceDataValue> convertFromSSetReferenceDataValue(Collection<SReferenceDataValue> input, DatabaseSession session) {
 		Set<ReferenceDataValue> result = new HashSet<ReferenceDataValue>();
 		for (SReferenceDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1802,7 +1802,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ReferenceDataValue> convertFromSListReferenceDataValue(Collection<SReferenceDataValue> input, BimDatabaseSession session) {
+	public List<ReferenceDataValue> convertFromSListReferenceDataValue(Collection<SReferenceDataValue> input, DatabaseSession session) {
 		List<ReferenceDataValue> result = new ArrayList<ReferenceDataValue>();
 		for (SReferenceDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1823,7 +1823,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ReferenceDataValue convertFromSObject(SReferenceDataValue input, BimDatabaseSession session) {
+	public ReferenceDataValue convertFromSObject(SReferenceDataValue input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1843,7 +1843,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ListDataValue> convertFromSSetListDataValue(Collection<SListDataValue> input, BimDatabaseSession session) {
+	public Set<ListDataValue> convertFromSSetListDataValue(Collection<SListDataValue> input, DatabaseSession session) {
 		Set<ListDataValue> result = new HashSet<ListDataValue>();
 		for (SListDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1859,7 +1859,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ListDataValue> convertFromSListListDataValue(Collection<SListDataValue> input, BimDatabaseSession session) {
+	public List<ListDataValue> convertFromSListListDataValue(Collection<SListDataValue> input, DatabaseSession session) {
 		List<ListDataValue> result = new ArrayList<ListDataValue>();
 		for (SListDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1883,7 +1883,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ListDataValue convertFromSObject(SListDataValue input, BimDatabaseSession session) {
+	public ListDataValue convertFromSObject(SListDataValue input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1905,7 +1905,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<SimpleDataValue> convertFromSSetSimpleDataValue(Collection<SSimpleDataValue> input, BimDatabaseSession session) {
+	public Set<SimpleDataValue> convertFromSSetSimpleDataValue(Collection<SSimpleDataValue> input, DatabaseSession session) {
 		Set<SimpleDataValue> result = new HashSet<SimpleDataValue>();
 		for (SSimpleDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1921,7 +1921,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<SimpleDataValue> convertFromSListSimpleDataValue(Collection<SSimpleDataValue> input, BimDatabaseSession session) {
+	public List<SimpleDataValue> convertFromSListSimpleDataValue(Collection<SSimpleDataValue> input, DatabaseSession session) {
 		List<SimpleDataValue> result = new ArrayList<SimpleDataValue>();
 		for (SSimpleDataValue o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1941,7 +1941,7 @@ public class SConverter {
 		return result;
 	}
 
-	public SimpleDataValue convertFromSObject(SSimpleDataValue input, BimDatabaseSession session) {
+	public SimpleDataValue convertFromSObject(SSimpleDataValue input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -1960,7 +1960,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DatabaseInformationItem> convertFromSSetDatabaseInformationItem(Collection<SDatabaseInformationItem> input, BimDatabaseSession session) {
+	public Set<DatabaseInformationItem> convertFromSSetDatabaseInformationItem(Collection<SDatabaseInformationItem> input, DatabaseSession session) {
 		Set<DatabaseInformationItem> result = new HashSet<DatabaseInformationItem>();
 		for (SDatabaseInformationItem o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1976,7 +1976,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DatabaseInformationItem> convertFromSListDatabaseInformationItem(Collection<SDatabaseInformationItem> input, BimDatabaseSession session) {
+	public List<DatabaseInformationItem> convertFromSListDatabaseInformationItem(Collection<SDatabaseInformationItem> input, DatabaseSession session) {
 		List<DatabaseInformationItem> result = new ArrayList<DatabaseInformationItem>();
 		for (SDatabaseInformationItem o : input) {
 			result.add(convertFromSObject(o, session));
@@ -1996,7 +1996,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DatabaseInformationItem convertFromSObject(SDatabaseInformationItem input, BimDatabaseSession session) {
+	public DatabaseInformationItem convertFromSObject(SDatabaseInformationItem input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2015,7 +2015,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DatabaseInformationCategory> convertFromSSetDatabaseInformationCategory(Collection<SDatabaseInformationCategory> input, BimDatabaseSession session) {
+	public Set<DatabaseInformationCategory> convertFromSSetDatabaseInformationCategory(Collection<SDatabaseInformationCategory> input, DatabaseSession session) {
 		Set<DatabaseInformationCategory> result = new HashSet<DatabaseInformationCategory>();
 		for (SDatabaseInformationCategory o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2031,7 +2031,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DatabaseInformationCategory> convertFromSListDatabaseInformationCategory(Collection<SDatabaseInformationCategory> input, BimDatabaseSession session) {
+	public List<DatabaseInformationCategory> convertFromSListDatabaseInformationCategory(Collection<SDatabaseInformationCategory> input, DatabaseSession session) {
 		List<DatabaseInformationCategory> result = new ArrayList<DatabaseInformationCategory>();
 		for (SDatabaseInformationCategory o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2055,7 +2055,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DatabaseInformationCategory convertFromSObject(SDatabaseInformationCategory input, BimDatabaseSession session) {
+	public DatabaseInformationCategory convertFromSObject(SDatabaseInformationCategory input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2077,7 +2077,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DatabaseInformation> convertFromSSetDatabaseInformation(Collection<SDatabaseInformation> input, BimDatabaseSession session) {
+	public Set<DatabaseInformation> convertFromSSetDatabaseInformation(Collection<SDatabaseInformation> input, DatabaseSession session) {
 		Set<DatabaseInformation> result = new HashSet<DatabaseInformation>();
 		for (SDatabaseInformation o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2093,7 +2093,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DatabaseInformation> convertFromSListDatabaseInformation(Collection<SDatabaseInformation> input, BimDatabaseSession session) {
+	public List<DatabaseInformation> convertFromSListDatabaseInformation(Collection<SDatabaseInformation> input, DatabaseSession session) {
 		List<DatabaseInformation> result = new ArrayList<DatabaseInformation>();
 		for (SDatabaseInformation o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2125,7 +2125,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DatabaseInformation convertFromSObject(SDatabaseInformation input, BimDatabaseSession session) {
+	public DatabaseInformation convertFromSObject(SDatabaseInformation input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2155,7 +2155,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<SerializerPluginDescriptor> convertFromSSetSerializerPluginDescriptor(Collection<SSerializerPluginDescriptor> input, BimDatabaseSession session) {
+	public Set<SerializerPluginDescriptor> convertFromSSetSerializerPluginDescriptor(Collection<SSerializerPluginDescriptor> input, DatabaseSession session) {
 		Set<SerializerPluginDescriptor> result = new HashSet<SerializerPluginDescriptor>();
 		for (SSerializerPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2171,7 +2171,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<SerializerPluginDescriptor> convertFromSListSerializerPluginDescriptor(Collection<SSerializerPluginDescriptor> input, BimDatabaseSession session) {
+	public List<SerializerPluginDescriptor> convertFromSListSerializerPluginDescriptor(Collection<SSerializerPluginDescriptor> input, DatabaseSession session) {
 		List<SerializerPluginDescriptor> result = new ArrayList<SerializerPluginDescriptor>();
 		for (SSerializerPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2193,7 +2193,7 @@ public class SConverter {
 		return result;
 	}
 
-	public SerializerPluginDescriptor convertFromSObject(SSerializerPluginDescriptor input, BimDatabaseSession session) {
+	public SerializerPluginDescriptor convertFromSObject(SSerializerPluginDescriptor input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2214,7 +2214,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DeserializerPluginDescriptor> convertFromSSetDeserializerPluginDescriptor(Collection<SDeserializerPluginDescriptor> input, BimDatabaseSession session) {
+	public Set<DeserializerPluginDescriptor> convertFromSSetDeserializerPluginDescriptor(Collection<SDeserializerPluginDescriptor> input, DatabaseSession session) {
 		Set<DeserializerPluginDescriptor> result = new HashSet<DeserializerPluginDescriptor>();
 		for (SDeserializerPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2230,7 +2230,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DeserializerPluginDescriptor> convertFromSListDeserializerPluginDescriptor(Collection<SDeserializerPluginDescriptor> input, BimDatabaseSession session) {
+	public List<DeserializerPluginDescriptor> convertFromSListDeserializerPluginDescriptor(Collection<SDeserializerPluginDescriptor> input, DatabaseSession session) {
 		List<DeserializerPluginDescriptor> result = new ArrayList<DeserializerPluginDescriptor>();
 		for (SDeserializerPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2250,7 +2250,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DeserializerPluginDescriptor convertFromSObject(SDeserializerPluginDescriptor input, BimDatabaseSession session) {
+	public DeserializerPluginDescriptor convertFromSObject(SDeserializerPluginDescriptor input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2269,7 +2269,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<RevisionSummaryType> convertFromSSetRevisionSummaryType(Collection<SRevisionSummaryType> input, BimDatabaseSession session) {
+	public Set<RevisionSummaryType> convertFromSSetRevisionSummaryType(Collection<SRevisionSummaryType> input, DatabaseSession session) {
 		Set<RevisionSummaryType> result = new HashSet<RevisionSummaryType>();
 		for (SRevisionSummaryType o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2285,7 +2285,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<RevisionSummaryType> convertFromSListRevisionSummaryType(Collection<SRevisionSummaryType> input, BimDatabaseSession session) {
+	public List<RevisionSummaryType> convertFromSListRevisionSummaryType(Collection<SRevisionSummaryType> input, DatabaseSession session) {
 		List<RevisionSummaryType> result = new ArrayList<RevisionSummaryType>();
 		for (SRevisionSummaryType o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2305,7 +2305,7 @@ public class SConverter {
 		return result;
 	}
 
-	public RevisionSummaryType convertFromSObject(SRevisionSummaryType input, BimDatabaseSession session) {
+	public RevisionSummaryType convertFromSObject(SRevisionSummaryType input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2324,7 +2324,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<RevisionSummaryContainer> convertFromSSetRevisionSummaryContainer(Collection<SRevisionSummaryContainer> input, BimDatabaseSession session) {
+	public Set<RevisionSummaryContainer> convertFromSSetRevisionSummaryContainer(Collection<SRevisionSummaryContainer> input, DatabaseSession session) {
 		Set<RevisionSummaryContainer> result = new HashSet<RevisionSummaryContainer>();
 		for (SRevisionSummaryContainer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2340,7 +2340,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<RevisionSummaryContainer> convertFromSListRevisionSummaryContainer(Collection<SRevisionSummaryContainer> input, BimDatabaseSession session) {
+	public List<RevisionSummaryContainer> convertFromSListRevisionSummaryContainer(Collection<SRevisionSummaryContainer> input, DatabaseSession session) {
 		List<RevisionSummaryContainer> result = new ArrayList<RevisionSummaryContainer>();
 		for (SRevisionSummaryContainer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2364,7 +2364,7 @@ public class SConverter {
 		return result;
 	}
 
-	public RevisionSummaryContainer convertFromSObject(SRevisionSummaryContainer input, BimDatabaseSession session) {
+	public RevisionSummaryContainer convertFromSObject(SRevisionSummaryContainer input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2386,7 +2386,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<RevisionSummary> convertFromSSetRevisionSummary(Collection<SRevisionSummary> input, BimDatabaseSession session) {
+	public Set<RevisionSummary> convertFromSSetRevisionSummary(Collection<SRevisionSummary> input, DatabaseSession session) {
 		Set<RevisionSummary> result = new HashSet<RevisionSummary>();
 		for (SRevisionSummary o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2402,7 +2402,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<RevisionSummary> convertFromSListRevisionSummary(Collection<SRevisionSummary> input, BimDatabaseSession session) {
+	public List<RevisionSummary> convertFromSListRevisionSummary(Collection<SRevisionSummary> input, DatabaseSession session) {
 		List<RevisionSummary> result = new ArrayList<RevisionSummary>();
 		for (SRevisionSummary o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2425,7 +2425,7 @@ public class SConverter {
 		return result;
 	}
 
-	public RevisionSummary convertFromSObject(SRevisionSummary input, BimDatabaseSession session) {
+	public RevisionSummary convertFromSObject(SRevisionSummary input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2446,7 +2446,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<PluginDescriptor> convertFromSSetPluginDescriptor(Collection<SPluginDescriptor> input, BimDatabaseSession session) {
+	public Set<PluginDescriptor> convertFromSSetPluginDescriptor(Collection<SPluginDescriptor> input, DatabaseSession session) {
 		Set<PluginDescriptor> result = new HashSet<PluginDescriptor>();
 		for (SPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2462,7 +2462,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<PluginDescriptor> convertFromSListPluginDescriptor(Collection<SPluginDescriptor> input, BimDatabaseSession session) {
+	public List<PluginDescriptor> convertFromSListPluginDescriptor(Collection<SPluginDescriptor> input, DatabaseSession session) {
 		List<PluginDescriptor> result = new ArrayList<PluginDescriptor>();
 		for (SPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2484,7 +2484,7 @@ public class SConverter {
 		return result;
 	}
 
-	public PluginDescriptor convertFromSObject(SPluginDescriptor input, BimDatabaseSession session) {
+	public PluginDescriptor convertFromSObject(SPluginDescriptor input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2505,7 +2505,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<LongAction> convertFromSSetLongAction(Collection<SLongAction> input, BimDatabaseSession session) {
+	public Set<LongAction> convertFromSSetLongAction(Collection<SLongAction> input, DatabaseSession session) {
 		Set<LongAction> result = new HashSet<LongAction>();
 		for (SLongAction o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2521,7 +2521,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<LongAction> convertFromSListLongAction(Collection<SLongAction> input, BimDatabaseSession session) {
+	public List<LongAction> convertFromSListLongAction(Collection<SLongAction> input, DatabaseSession session) {
 		List<LongAction> result = new ArrayList<LongAction>();
 		for (SLongAction o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2548,7 +2548,7 @@ public class SConverter {
 		return result;
 	}
 
-	public LongAction convertFromSObject(SLongAction input, BimDatabaseSession session) {
+	public LongAction convertFromSObject(SLongAction input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2570,7 +2570,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<LongCheckinAction> convertFromSSetLongCheckinAction(Collection<SLongCheckinAction> input, BimDatabaseSession session) {
+	public Set<LongCheckinAction> convertFromSSetLongCheckinAction(Collection<SLongCheckinAction> input, DatabaseSession session) {
 		Set<LongCheckinAction> result = new HashSet<LongCheckinAction>();
 		for (SLongCheckinAction o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2586,7 +2586,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<LongCheckinAction> convertFromSListLongCheckinAction(Collection<SLongCheckinAction> input, BimDatabaseSession session) {
+	public List<LongCheckinAction> convertFromSListLongCheckinAction(Collection<SLongCheckinAction> input, DatabaseSession session) {
 		List<LongCheckinAction> result = new ArrayList<LongCheckinAction>();
 		for (SLongCheckinAction o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2615,7 +2615,7 @@ public class SConverter {
 		return result;
 	}
 
-	public LongCheckinAction convertFromSObject(SLongCheckinAction input, BimDatabaseSession session) {
+	public LongCheckinAction convertFromSObject(SLongCheckinAction input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2641,7 +2641,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ObjectIDMPluginDescriptor> convertFromSSetObjectIDMPluginDescriptor(Collection<SObjectIDMPluginDescriptor> input, BimDatabaseSession session) {
+	public Set<ObjectIDMPluginDescriptor> convertFromSSetObjectIDMPluginDescriptor(Collection<SObjectIDMPluginDescriptor> input, DatabaseSession session) {
 		Set<ObjectIDMPluginDescriptor> result = new HashSet<ObjectIDMPluginDescriptor>();
 		for (SObjectIDMPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2657,7 +2657,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ObjectIDMPluginDescriptor> convertFromSListObjectIDMPluginDescriptor(Collection<SObjectIDMPluginDescriptor> input, BimDatabaseSession session) {
+	public List<ObjectIDMPluginDescriptor> convertFromSListObjectIDMPluginDescriptor(Collection<SObjectIDMPluginDescriptor> input, DatabaseSession session) {
 		List<ObjectIDMPluginDescriptor> result = new ArrayList<ObjectIDMPluginDescriptor>();
 		for (SObjectIDMPluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2676,7 +2676,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ObjectIDMPluginDescriptor convertFromSObject(SObjectIDMPluginDescriptor input, BimDatabaseSession session) {
+	public ObjectIDMPluginDescriptor convertFromSObject(SObjectIDMPluginDescriptor input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2708,7 +2708,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<CompareItem> convertFromSSetCompareItem(Collection<SCompareItem> input, BimDatabaseSession session) {
+	public Set<CompareItem> convertFromSSetCompareItem(Collection<SCompareItem> input, DatabaseSession session) {
 		Set<CompareItem> result = new HashSet<CompareItem>();
 		for (SCompareItem o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2724,7 +2724,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<CompareItem> convertFromSListCompareItem(Collection<SCompareItem> input, BimDatabaseSession session) {
+	public List<CompareItem> convertFromSListCompareItem(Collection<SCompareItem> input, DatabaseSession session) {
 		List<CompareItem> result = new ArrayList<CompareItem>();
 		for (SCompareItem o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2753,7 +2753,7 @@ public class SConverter {
 		return result;
 	}
 
-	public CompareItem convertFromSObject(SCompareItem input, BimDatabaseSession session) {
+	public CompareItem convertFromSObject(SCompareItem input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2771,7 +2771,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ObjectAdded> convertFromSSetObjectAdded(Collection<SObjectAdded> input, BimDatabaseSession session) {
+	public Set<ObjectAdded> convertFromSSetObjectAdded(Collection<SObjectAdded> input, DatabaseSession session) {
 		Set<ObjectAdded> result = new HashSet<ObjectAdded>();
 		for (SObjectAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2787,7 +2787,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ObjectAdded> convertFromSListObjectAdded(Collection<SObjectAdded> input, BimDatabaseSession session) {
+	public List<ObjectAdded> convertFromSListObjectAdded(Collection<SObjectAdded> input, DatabaseSession session) {
 		List<ObjectAdded> result = new ArrayList<ObjectAdded>();
 		for (SObjectAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2807,7 +2807,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ObjectAdded convertFromSObject(SObjectAdded input, BimDatabaseSession session) {
+	public ObjectAdded convertFromSObject(SObjectAdded input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2825,7 +2825,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ObjectRemoved> convertFromSSetObjectRemoved(Collection<SObjectRemoved> input, BimDatabaseSession session) {
+	public Set<ObjectRemoved> convertFromSSetObjectRemoved(Collection<SObjectRemoved> input, DatabaseSession session) {
 		Set<ObjectRemoved> result = new HashSet<ObjectRemoved>();
 		for (SObjectRemoved o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2841,7 +2841,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ObjectRemoved> convertFromSListObjectRemoved(Collection<SObjectRemoved> input, BimDatabaseSession session) {
+	public List<ObjectRemoved> convertFromSListObjectRemoved(Collection<SObjectRemoved> input, DatabaseSession session) {
 		List<ObjectRemoved> result = new ArrayList<ObjectRemoved>();
 		for (SObjectRemoved o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2861,7 +2861,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ObjectRemoved convertFromSObject(SObjectRemoved input, BimDatabaseSession session) {
+	public ObjectRemoved convertFromSObject(SObjectRemoved input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2879,7 +2879,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ObjectModified> convertFromSSetObjectModified(Collection<SObjectModified> input, BimDatabaseSession session) {
+	public Set<ObjectModified> convertFromSSetObjectModified(Collection<SObjectModified> input, DatabaseSession session) {
 		Set<ObjectModified> result = new HashSet<ObjectModified>();
 		for (SObjectModified o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2895,7 +2895,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ObjectModified> convertFromSListObjectModified(Collection<SObjectModified> input, BimDatabaseSession session) {
+	public List<ObjectModified> convertFromSListObjectModified(Collection<SObjectModified> input, DatabaseSession session) {
 		List<ObjectModified> result = new ArrayList<ObjectModified>();
 		for (SObjectModified o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2918,7 +2918,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ObjectModified convertFromSObject(SObjectModified input, BimDatabaseSession session) {
+	public ObjectModified convertFromSObject(SObjectModified input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -2939,7 +2939,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<CompareContainer> convertFromSSetCompareContainer(Collection<SCompareContainer> input, BimDatabaseSession session) {
+	public Set<CompareContainer> convertFromSSetCompareContainer(Collection<SCompareContainer> input, DatabaseSession session) {
 		Set<CompareContainer> result = new HashSet<CompareContainer>();
 		for (SCompareContainer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2955,7 +2955,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<CompareContainer> convertFromSListCompareContainer(Collection<SCompareContainer> input, BimDatabaseSession session) {
+	public List<CompareContainer> convertFromSListCompareContainer(Collection<SCompareContainer> input, DatabaseSession session) {
 		List<CompareContainer> result = new ArrayList<CompareContainer>();
 		for (SCompareContainer o : input) {
 			result.add(convertFromSObject(o, session));
@@ -2979,7 +2979,7 @@ public class SConverter {
 		return result;
 	}
 
-	public CompareContainer convertFromSObject(SCompareContainer input, BimDatabaseSession session) {
+	public CompareContainer convertFromSObject(SCompareContainer input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3001,7 +3001,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<CompareResult> convertFromSSetCompareResult(Collection<SCompareResult> input, BimDatabaseSession session) {
+	public Set<CompareResult> convertFromSSetCompareResult(Collection<SCompareResult> input, DatabaseSession session) {
 		Set<CompareResult> result = new HashSet<CompareResult>();
 		for (SCompareResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3017,7 +3017,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<CompareResult> convertFromSListCompareResult(Collection<SCompareResult> input, BimDatabaseSession session) {
+	public List<CompareResult> convertFromSListCompareResult(Collection<SCompareResult> input, DatabaseSession session) {
 		List<CompareResult> result = new ArrayList<CompareResult>();
 		for (SCompareResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3040,7 +3040,7 @@ public class SConverter {
 		return result;
 	}
 
-	public CompareResult convertFromSObject(SCompareResult input, BimDatabaseSession session) {
+	public CompareResult convertFromSObject(SCompareResult input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3068,7 +3068,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<LongActionState> convertFromSSetLongActionState(Collection<SLongActionState> input, BimDatabaseSession session) {
+	public Set<LongActionState> convertFromSSetLongActionState(Collection<SLongActionState> input, DatabaseSession session) {
 		Set<LongActionState> result = new HashSet<LongActionState>();
 		for (SLongActionState o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3084,7 +3084,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<LongActionState> convertFromSListLongActionState(Collection<SLongActionState> input, BimDatabaseSession session) {
+	public List<LongActionState> convertFromSListLongActionState(Collection<SLongActionState> input, DatabaseSession session) {
 		List<LongActionState> result = new ArrayList<LongActionState>();
 		for (SLongActionState o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3104,7 +3104,7 @@ public class SConverter {
 		return result;
 	}
 
-	public LongActionState convertFromSObject(SLongActionState input, BimDatabaseSession session) {
+	public LongActionState convertFromSObject(SLongActionState input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3123,7 +3123,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Notification> convertFromSSetNotification(Collection<SNotification> input, BimDatabaseSession session) {
+	public Set<Notification> convertFromSSetNotification(Collection<SNotification> input, DatabaseSession session) {
 		Set<Notification> result = new HashSet<Notification>();
 		for (SNotification o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3139,7 +3139,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Notification> convertFromSListNotification(Collection<SNotification> input, BimDatabaseSession session) {
+	public List<Notification> convertFromSListNotification(Collection<SNotification> input, DatabaseSession session) {
 		List<Notification> result = new ArrayList<Notification>();
 		for (SNotification o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3163,7 +3163,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Notification convertFromSObject(SNotification input, BimDatabaseSession session) {
+	public Notification convertFromSObject(SNotification input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3180,7 +3180,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<NewProjectNotification> convertFromSSetNewProjectNotification(Collection<SNewProjectNotification> input, BimDatabaseSession session) {
+	public Set<NewProjectNotification> convertFromSSetNewProjectNotification(Collection<SNewProjectNotification> input, DatabaseSession session) {
 		Set<NewProjectNotification> result = new HashSet<NewProjectNotification>();
 		for (SNewProjectNotification o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3196,7 +3196,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<NewProjectNotification> convertFromSListNewProjectNotification(Collection<SNewProjectNotification> input, BimDatabaseSession session) {
+	public List<NewProjectNotification> convertFromSListNewProjectNotification(Collection<SNewProjectNotification> input, DatabaseSession session) {
 		List<NewProjectNotification> result = new ArrayList<NewProjectNotification>();
 		for (SNewProjectNotification o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3216,7 +3216,7 @@ public class SConverter {
 		return result;
 	}
 
-	public NewProjectNotification convertFromSObject(SNewProjectNotification input, BimDatabaseSession session) {
+	public NewProjectNotification convertFromSObject(SNewProjectNotification input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3234,7 +3234,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<NewRevisionNotification> convertFromSSetNewRevisionNotification(Collection<SNewRevisionNotification> input, BimDatabaseSession session) {
+	public Set<NewRevisionNotification> convertFromSSetNewRevisionNotification(Collection<SNewRevisionNotification> input, DatabaseSession session) {
 		Set<NewRevisionNotification> result = new HashSet<NewRevisionNotification>();
 		for (SNewRevisionNotification o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3250,7 +3250,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<NewRevisionNotification> convertFromSListNewRevisionNotification(Collection<SNewRevisionNotification> input, BimDatabaseSession session) {
+	public List<NewRevisionNotification> convertFromSListNewRevisionNotification(Collection<SNewRevisionNotification> input, DatabaseSession session) {
 		List<NewRevisionNotification> result = new ArrayList<NewRevisionNotification>();
 		for (SNewRevisionNotification o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3272,7 +3272,7 @@ public class SConverter {
 		return result;
 	}
 
-	public NewRevisionNotification convertFromSObject(SNewRevisionNotification input, BimDatabaseSession session) {
+	public NewRevisionNotification convertFromSObject(SNewRevisionNotification input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3291,7 +3291,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<CompileResult> convertFromSSetCompileResult(Collection<SCompileResult> input, BimDatabaseSession session) {
+	public Set<CompileResult> convertFromSSetCompileResult(Collection<SCompileResult> input, DatabaseSession session) {
 		Set<CompileResult> result = new HashSet<CompileResult>();
 		for (SCompileResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3307,7 +3307,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<CompileResult> convertFromSListCompileResult(Collection<SCompileResult> input, BimDatabaseSession session) {
+	public List<CompileResult> convertFromSListCompileResult(Collection<SCompileResult> input, DatabaseSession session) {
 		List<CompileResult> result = new ArrayList<CompileResult>();
 		for (SCompileResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3328,7 +3328,7 @@ public class SConverter {
 		return result;
 	}
 
-	public CompileResult convertFromSObject(SCompileResult input, BimDatabaseSession session) {
+	public CompileResult convertFromSObject(SCompileResult input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3348,7 +3348,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<RunResult> convertFromSSetRunResult(Collection<SRunResult> input, BimDatabaseSession session) {
+	public Set<RunResult> convertFromSSetRunResult(Collection<SRunResult> input, DatabaseSession session) {
 		Set<RunResult> result = new HashSet<RunResult>();
 		for (SRunResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3364,7 +3364,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<RunResult> convertFromSListRunResult(Collection<SRunResult> input, BimDatabaseSession session) {
+	public List<RunResult> convertFromSListRunResult(Collection<SRunResult> input, DatabaseSession session) {
 		List<RunResult> result = new ArrayList<RunResult>();
 		for (SRunResult o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3386,7 +3386,7 @@ public class SConverter {
 		return result;
 	}
 
-	public RunResult convertFromSObject(SRunResult input, BimDatabaseSession session) {
+	public RunResult convertFromSObject(SRunResult input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3414,7 +3414,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ServerInfo> convertFromSSetServerInfo(Collection<SServerInfo> input, BimDatabaseSession session) {
+	public Set<ServerInfo> convertFromSSetServerInfo(Collection<SServerInfo> input, DatabaseSession session) {
 		Set<ServerInfo> result = new HashSet<ServerInfo>();
 		for (SServerInfo o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3430,7 +3430,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ServerInfo> convertFromSListServerInfo(Collection<SServerInfo> input, BimDatabaseSession session) {
+	public List<ServerInfo> convertFromSListServerInfo(Collection<SServerInfo> input, DatabaseSession session) {
 		List<ServerInfo> result = new ArrayList<ServerInfo>();
 		for (SServerInfo o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3450,7 +3450,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ServerInfo convertFromSObject(SServerInfo input, BimDatabaseSession session) {
+	public ServerInfo convertFromSObject(SServerInfo input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3469,7 +3469,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Version> convertFromSSetVersion(Collection<SVersion> input, BimDatabaseSession session) {
+	public Set<Version> convertFromSSetVersion(Collection<SVersion> input, DatabaseSession session) {
 		Set<Version> result = new HashSet<Version>();
 		for (SVersion o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3485,7 +3485,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Version> convertFromSListVersion(Collection<SVersion> input, BimDatabaseSession session) {
+	public List<Version> convertFromSListVersion(Collection<SVersion> input, DatabaseSession session) {
 		List<Version> result = new ArrayList<Version>();
 		for (SVersion o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3510,7 +3510,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Version convertFromSObject(SVersion input, BimDatabaseSession session) {
+	public Version convertFromSObject(SVersion input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3534,7 +3534,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<IfcEnginePluginDescriptor> convertFromSSetIfcEnginePluginDescriptor(Collection<SIfcEnginePluginDescriptor> input, BimDatabaseSession session) {
+	public Set<IfcEnginePluginDescriptor> convertFromSSetIfcEnginePluginDescriptor(Collection<SIfcEnginePluginDescriptor> input, DatabaseSession session) {
 		Set<IfcEnginePluginDescriptor> result = new HashSet<IfcEnginePluginDescriptor>();
 		for (SIfcEnginePluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3550,7 +3550,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<IfcEnginePluginDescriptor> convertFromSListIfcEnginePluginDescriptor(Collection<SIfcEnginePluginDescriptor> input, BimDatabaseSession session) {
+	public List<IfcEnginePluginDescriptor> convertFromSListIfcEnginePluginDescriptor(Collection<SIfcEnginePluginDescriptor> input, DatabaseSession session) {
 		List<IfcEnginePluginDescriptor> result = new ArrayList<IfcEnginePluginDescriptor>();
 		for (SIfcEnginePluginDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3570,7 +3570,7 @@ public class SConverter {
 		return result;
 	}
 
-	public IfcEnginePluginDescriptor convertFromSObject(SIfcEnginePluginDescriptor input, BimDatabaseSession session) {
+	public IfcEnginePluginDescriptor convertFromSObject(SIfcEnginePluginDescriptor input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3603,7 +3603,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<LogAction> convertFromSSetLogAction(Collection<SLogAction> input, BimDatabaseSession session) {
+	public Set<LogAction> convertFromSSetLogAction(Collection<SLogAction> input, DatabaseSession session) {
 		Set<LogAction> result = new HashSet<LogAction>();
 		for (SLogAction o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3619,7 +3619,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<LogAction> convertFromSListLogAction(Collection<SLogAction> input, BimDatabaseSession session) {
+	public List<LogAction> convertFromSListLogAction(Collection<SLogAction> input, DatabaseSession session) {
 		List<LogAction> result = new ArrayList<LogAction>();
 		for (SLogAction o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3710,7 +3710,7 @@ public class SConverter {
 		return result;
 	}
 
-	public LogAction convertFromSObject(SLogAction input, BimDatabaseSession session) {
+	public LogAction convertFromSObject(SLogAction input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3730,7 +3730,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ServerLog> convertFromSSetServerLog(Collection<SServerLog> input, BimDatabaseSession session) {
+	public Set<ServerLog> convertFromSSetServerLog(Collection<SServerLog> input, DatabaseSession session) {
 		Set<ServerLog> result = new HashSet<ServerLog>();
 		for (SServerLog o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3746,7 +3746,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ServerLog> convertFromSListServerLog(Collection<SServerLog> input, BimDatabaseSession session) {
+	public List<ServerLog> convertFromSListServerLog(Collection<SServerLog> input, DatabaseSession session) {
 		List<ServerLog> result = new ArrayList<ServerLog>();
 		for (SServerLog o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3769,7 +3769,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ServerLog convertFromSObject(SServerLog input, BimDatabaseSession session) {
+	public ServerLog convertFromSObject(SServerLog input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3790,7 +3790,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<NewUserAdded> convertFromSSetNewUserAdded(Collection<SNewUserAdded> input, BimDatabaseSession session) {
+	public Set<NewUserAdded> convertFromSSetNewUserAdded(Collection<SNewUserAdded> input, DatabaseSession session) {
 		Set<NewUserAdded> result = new HashSet<NewUserAdded>();
 		for (SNewUserAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3806,7 +3806,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<NewUserAdded> convertFromSListNewUserAdded(Collection<SNewUserAdded> input, BimDatabaseSession session) {
+	public List<NewUserAdded> convertFromSListNewUserAdded(Collection<SNewUserAdded> input, DatabaseSession session) {
 		List<NewUserAdded> result = new ArrayList<NewUserAdded>();
 		for (SNewUserAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3830,7 +3830,7 @@ public class SConverter {
 		return result;
 	}
 
-	public NewUserAdded convertFromSObject(SNewUserAdded input, BimDatabaseSession session) {
+	public NewUserAdded convertFromSObject(SNewUserAdded input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3851,7 +3851,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<NewProjectAdded> convertFromSSetNewProjectAdded(Collection<SNewProjectAdded> input, BimDatabaseSession session) {
+	public Set<NewProjectAdded> convertFromSSetNewProjectAdded(Collection<SNewProjectAdded> input, DatabaseSession session) {
 		Set<NewProjectAdded> result = new HashSet<NewProjectAdded>();
 		for (SNewProjectAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3867,7 +3867,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<NewProjectAdded> convertFromSListNewProjectAdded(Collection<SNewProjectAdded> input, BimDatabaseSession session) {
+	public List<NewProjectAdded> convertFromSListNewProjectAdded(Collection<SNewProjectAdded> input, DatabaseSession session) {
 		List<NewProjectAdded> result = new ArrayList<NewProjectAdded>();
 		for (SNewProjectAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3893,7 +3893,7 @@ public class SConverter {
 		return result;
 	}
 
-	public NewProjectAdded convertFromSObject(SNewProjectAdded input, BimDatabaseSession session) {
+	public NewProjectAdded convertFromSObject(SNewProjectAdded input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3915,7 +3915,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<RevisionBranched> convertFromSSetRevisionBranched(Collection<SRevisionBranched> input, BimDatabaseSession session) {
+	public Set<RevisionBranched> convertFromSSetRevisionBranched(Collection<SRevisionBranched> input, DatabaseSession session) {
 		Set<RevisionBranched> result = new HashSet<RevisionBranched>();
 		for (SRevisionBranched o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3931,7 +3931,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<RevisionBranched> convertFromSListRevisionBranched(Collection<SRevisionBranched> input, BimDatabaseSession session) {
+	public List<RevisionBranched> convertFromSListRevisionBranched(Collection<SRevisionBranched> input, DatabaseSession session) {
 		List<RevisionBranched> result = new ArrayList<RevisionBranched>();
 		for (SRevisionBranched o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3957,7 +3957,7 @@ public class SConverter {
 		return result;
 	}
 
-	public RevisionBranched convertFromSObject(SRevisionBranched input, BimDatabaseSession session) {
+	public RevisionBranched convertFromSObject(SRevisionBranched input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -3979,7 +3979,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<NewRevisionAdded> convertFromSSetNewRevisionAdded(Collection<SNewRevisionAdded> input, BimDatabaseSession session) {
+	public Set<NewRevisionAdded> convertFromSSetNewRevisionAdded(Collection<SNewRevisionAdded> input, DatabaseSession session) {
 		Set<NewRevisionAdded> result = new HashSet<NewRevisionAdded>();
 		for (SNewRevisionAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -3995,7 +3995,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<NewRevisionAdded> convertFromSListNewRevisionAdded(Collection<SNewRevisionAdded> input, BimDatabaseSession session) {
+	public List<NewRevisionAdded> convertFromSListNewRevisionAdded(Collection<SNewRevisionAdded> input, DatabaseSession session) {
 		List<NewRevisionAdded> result = new ArrayList<NewRevisionAdded>();
 		for (SNewRevisionAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4019,7 +4019,7 @@ public class SConverter {
 		return result;
 	}
 
-	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input, BimDatabaseSession session) {
+	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4040,7 +4040,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<NewCheckoutAdded> convertFromSSetNewCheckoutAdded(Collection<SNewCheckoutAdded> input, BimDatabaseSession session) {
+	public Set<NewCheckoutAdded> convertFromSSetNewCheckoutAdded(Collection<SNewCheckoutAdded> input, DatabaseSession session) {
 		Set<NewCheckoutAdded> result = new HashSet<NewCheckoutAdded>();
 		for (SNewCheckoutAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4056,7 +4056,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<NewCheckoutAdded> convertFromSListNewCheckoutAdded(Collection<SNewCheckoutAdded> input, BimDatabaseSession session) {
+	public List<NewCheckoutAdded> convertFromSListNewCheckoutAdded(Collection<SNewCheckoutAdded> input, DatabaseSession session) {
 		List<NewCheckoutAdded> result = new ArrayList<NewCheckoutAdded>();
 		for (SNewCheckoutAdded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4080,7 +4080,7 @@ public class SConverter {
 		return result;
 	}
 
-	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input, BimDatabaseSession session) {
+	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4101,7 +4101,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<SettingsSaved> convertFromSSetSettingsSaved(Collection<SSettingsSaved> input, BimDatabaseSession session) {
+	public Set<SettingsSaved> convertFromSSetSettingsSaved(Collection<SSettingsSaved> input, DatabaseSession session) {
 		Set<SettingsSaved> result = new HashSet<SettingsSaved>();
 		for (SSettingsSaved o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4117,7 +4117,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<SettingsSaved> convertFromSListSettingsSaved(Collection<SSettingsSaved> input, BimDatabaseSession session) {
+	public List<SettingsSaved> convertFromSListSettingsSaved(Collection<SSettingsSaved> input, DatabaseSession session) {
 		List<SettingsSaved> result = new ArrayList<SettingsSaved>();
 		for (SSettingsSaved o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4139,7 +4139,7 @@ public class SConverter {
 		return result;
 	}
 
-	public SettingsSaved convertFromSObject(SSettingsSaved input, BimDatabaseSession session) {
+	public SettingsSaved convertFromSObject(SSettingsSaved input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4159,7 +4159,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<UserAddedToProject> convertFromSSetUserAddedToProject(Collection<SUserAddedToProject> input, BimDatabaseSession session) {
+	public Set<UserAddedToProject> convertFromSSetUserAddedToProject(Collection<SUserAddedToProject> input, DatabaseSession session) {
 		Set<UserAddedToProject> result = new HashSet<UserAddedToProject>();
 		for (SUserAddedToProject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4175,7 +4175,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<UserAddedToProject> convertFromSListUserAddedToProject(Collection<SUserAddedToProject> input, BimDatabaseSession session) {
+	public List<UserAddedToProject> convertFromSListUserAddedToProject(Collection<SUserAddedToProject> input, DatabaseSession session) {
 		List<UserAddedToProject> result = new ArrayList<UserAddedToProject>();
 		for (SUserAddedToProject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4201,7 +4201,7 @@ public class SConverter {
 		return result;
 	}
 
-	public UserAddedToProject convertFromSObject(SUserAddedToProject input, BimDatabaseSession session) {
+	public UserAddedToProject convertFromSObject(SUserAddedToProject input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4223,7 +4223,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<NewObjectIDMUploaded> convertFromSSetNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, BimDatabaseSession session) {
+	public Set<NewObjectIDMUploaded> convertFromSSetNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, DatabaseSession session) {
 		Set<NewObjectIDMUploaded> result = new HashSet<NewObjectIDMUploaded>();
 		for (SNewObjectIDMUploaded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4239,7 +4239,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<NewObjectIDMUploaded> convertFromSListNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, BimDatabaseSession session) {
+	public List<NewObjectIDMUploaded> convertFromSListNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, DatabaseSession session) {
 		List<NewObjectIDMUploaded> result = new ArrayList<NewObjectIDMUploaded>();
 		for (SNewObjectIDMUploaded o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4261,7 +4261,7 @@ public class SConverter {
 		return result;
 	}
 
-	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input, BimDatabaseSession session) {
+	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4281,7 +4281,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<Download> convertFromSSetDownload(Collection<SDownload> input, BimDatabaseSession session) {
+	public Set<Download> convertFromSSetDownload(Collection<SDownload> input, DatabaseSession session) {
 		Set<Download> result = new HashSet<Download>();
 		for (SDownload o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4297,7 +4297,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<Download> convertFromSListDownload(Collection<SDownload> input, BimDatabaseSession session) {
+	public List<Download> convertFromSListDownload(Collection<SDownload> input, DatabaseSession session) {
 		List<Download> result = new ArrayList<Download>();
 		for (SDownload o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4319,7 +4319,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Download convertFromSObject(SDownload input, BimDatabaseSession session) {
+	public Download convertFromSObject(SDownload input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4339,7 +4339,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<UserRemovedFromProject> convertFromSSetUserRemovedFromProject(Collection<SUserRemovedFromProject> input, BimDatabaseSession session) {
+	public Set<UserRemovedFromProject> convertFromSSetUserRemovedFromProject(Collection<SUserRemovedFromProject> input, DatabaseSession session) {
 		Set<UserRemovedFromProject> result = new HashSet<UserRemovedFromProject>();
 		for (SUserRemovedFromProject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4355,7 +4355,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<UserRemovedFromProject> convertFromSListUserRemovedFromProject(Collection<SUserRemovedFromProject> input, BimDatabaseSession session) {
+	public List<UserRemovedFromProject> convertFromSListUserRemovedFromProject(Collection<SUserRemovedFromProject> input, DatabaseSession session) {
 		List<UserRemovedFromProject> result = new ArrayList<UserRemovedFromProject>();
 		for (SUserRemovedFromProject o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4381,7 +4381,7 @@ public class SConverter {
 		return result;
 	}
 
-	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input, BimDatabaseSession session) {
+	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4403,7 +4403,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ProjectDeleted> convertFromSSetProjectDeleted(Collection<SProjectDeleted> input, BimDatabaseSession session) {
+	public Set<ProjectDeleted> convertFromSSetProjectDeleted(Collection<SProjectDeleted> input, DatabaseSession session) {
 		Set<ProjectDeleted> result = new HashSet<ProjectDeleted>();
 		for (SProjectDeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4419,7 +4419,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ProjectDeleted> convertFromSListProjectDeleted(Collection<SProjectDeleted> input, BimDatabaseSession session) {
+	public List<ProjectDeleted> convertFromSListProjectDeleted(Collection<SProjectDeleted> input, DatabaseSession session) {
 		List<ProjectDeleted> result = new ArrayList<ProjectDeleted>();
 		for (SProjectDeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4443,7 +4443,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ProjectDeleted convertFromSObject(SProjectDeleted input, BimDatabaseSession session) {
+	public ProjectDeleted convertFromSObject(SProjectDeleted input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4464,7 +4464,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<UserDeleted> convertFromSSetUserDeleted(Collection<SUserDeleted> input, BimDatabaseSession session) {
+	public Set<UserDeleted> convertFromSSetUserDeleted(Collection<SUserDeleted> input, DatabaseSession session) {
 		Set<UserDeleted> result = new HashSet<UserDeleted>();
 		for (SUserDeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4480,7 +4480,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<UserDeleted> convertFromSListUserDeleted(Collection<SUserDeleted> input, BimDatabaseSession session) {
+	public List<UserDeleted> convertFromSListUserDeleted(Collection<SUserDeleted> input, DatabaseSession session) {
 		List<UserDeleted> result = new ArrayList<UserDeleted>();
 		for (SUserDeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4504,7 +4504,7 @@ public class SConverter {
 		return result;
 	}
 
-	public UserDeleted convertFromSObject(SUserDeleted input, BimDatabaseSession session) {
+	public UserDeleted convertFromSObject(SUserDeleted input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4525,7 +4525,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<PasswordReset> convertFromSSetPasswordReset(Collection<SPasswordReset> input, BimDatabaseSession session) {
+	public Set<PasswordReset> convertFromSSetPasswordReset(Collection<SPasswordReset> input, DatabaseSession session) {
 		Set<PasswordReset> result = new HashSet<PasswordReset>();
 		for (SPasswordReset o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4541,7 +4541,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<PasswordReset> convertFromSListPasswordReset(Collection<SPasswordReset> input, BimDatabaseSession session) {
+	public List<PasswordReset> convertFromSListPasswordReset(Collection<SPasswordReset> input, DatabaseSession session) {
 		List<PasswordReset> result = new ArrayList<PasswordReset>();
 		for (SPasswordReset o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4565,7 +4565,7 @@ public class SConverter {
 		return result;
 	}
 
-	public PasswordReset convertFromSObject(SPasswordReset input, BimDatabaseSession session) {
+	public PasswordReset convertFromSObject(SPasswordReset input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4586,7 +4586,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<DatabaseCreated> convertFromSSetDatabaseCreated(Collection<SDatabaseCreated> input, BimDatabaseSession session) {
+	public Set<DatabaseCreated> convertFromSSetDatabaseCreated(Collection<SDatabaseCreated> input, DatabaseSession session) {
 		Set<DatabaseCreated> result = new HashSet<DatabaseCreated>();
 		for (SDatabaseCreated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4602,7 +4602,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<DatabaseCreated> convertFromSListDatabaseCreated(Collection<SDatabaseCreated> input, BimDatabaseSession session) {
+	public List<DatabaseCreated> convertFromSListDatabaseCreated(Collection<SDatabaseCreated> input, DatabaseSession session) {
 		List<DatabaseCreated> result = new ArrayList<DatabaseCreated>();
 		for (SDatabaseCreated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4626,7 +4626,7 @@ public class SConverter {
 		return result;
 	}
 
-	public DatabaseCreated convertFromSObject(SDatabaseCreated input, BimDatabaseSession session) {
+	public DatabaseCreated convertFromSObject(SDatabaseCreated input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4648,7 +4648,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ServerStarted> convertFromSSetServerStarted(Collection<SServerStarted> input, BimDatabaseSession session) {
+	public Set<ServerStarted> convertFromSSetServerStarted(Collection<SServerStarted> input, DatabaseSession session) {
 		Set<ServerStarted> result = new HashSet<ServerStarted>();
 		for (SServerStarted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4664,7 +4664,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ServerStarted> convertFromSListServerStarted(Collection<SServerStarted> input, BimDatabaseSession session) {
+	public List<ServerStarted> convertFromSListServerStarted(Collection<SServerStarted> input, DatabaseSession session) {
 		List<ServerStarted> result = new ArrayList<ServerStarted>();
 		for (SServerStarted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4686,7 +4686,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ServerStarted convertFromSObject(SServerStarted input, BimDatabaseSession session) {
+	public ServerStarted convertFromSObject(SServerStarted input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4706,7 +4706,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ProjectUpdated> convertFromSSetProjectUpdated(Collection<SProjectUpdated> input, BimDatabaseSession session) {
+	public Set<ProjectUpdated> convertFromSSetProjectUpdated(Collection<SProjectUpdated> input, DatabaseSession session) {
 		Set<ProjectUpdated> result = new HashSet<ProjectUpdated>();
 		for (SProjectUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4722,7 +4722,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ProjectUpdated> convertFromSListProjectUpdated(Collection<SProjectUpdated> input, BimDatabaseSession session) {
+	public List<ProjectUpdated> convertFromSListProjectUpdated(Collection<SProjectUpdated> input, DatabaseSession session) {
 		List<ProjectUpdated> result = new ArrayList<ProjectUpdated>();
 		for (SProjectUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4746,7 +4746,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ProjectUpdated convertFromSObject(SProjectUpdated input, BimDatabaseSession session) {
+	public ProjectUpdated convertFromSObject(SProjectUpdated input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4767,7 +4767,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<UserUndeleted> convertFromSSetUserUndeleted(Collection<SUserUndeleted> input, BimDatabaseSession session) {
+	public Set<UserUndeleted> convertFromSSetUserUndeleted(Collection<SUserUndeleted> input, DatabaseSession session) {
 		Set<UserUndeleted> result = new HashSet<UserUndeleted>();
 		for (SUserUndeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4783,7 +4783,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<UserUndeleted> convertFromSListUserUndeleted(Collection<SUserUndeleted> input, BimDatabaseSession session) {
+	public List<UserUndeleted> convertFromSListUserUndeleted(Collection<SUserUndeleted> input, DatabaseSession session) {
 		List<UserUndeleted> result = new ArrayList<UserUndeleted>();
 		for (SUserUndeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4807,7 +4807,7 @@ public class SConverter {
 		return result;
 	}
 
-	public UserUndeleted convertFromSObject(SUserUndeleted input, BimDatabaseSession session) {
+	public UserUndeleted convertFromSObject(SUserUndeleted input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4828,7 +4828,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ProjectUndeleted> convertFromSSetProjectUndeleted(Collection<SProjectUndeleted> input, BimDatabaseSession session) {
+	public Set<ProjectUndeleted> convertFromSSetProjectUndeleted(Collection<SProjectUndeleted> input, DatabaseSession session) {
 		Set<ProjectUndeleted> result = new HashSet<ProjectUndeleted>();
 		for (SProjectUndeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4844,7 +4844,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ProjectUndeleted> convertFromSListProjectUndeleted(Collection<SProjectUndeleted> input, BimDatabaseSession session) {
+	public List<ProjectUndeleted> convertFromSListProjectUndeleted(Collection<SProjectUndeleted> input, DatabaseSession session) {
 		List<ProjectUndeleted> result = new ArrayList<ProjectUndeleted>();
 		for (SProjectUndeleted o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4868,7 +4868,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ProjectUndeleted convertFromSObject(SProjectUndeleted input, BimDatabaseSession session) {
+	public ProjectUndeleted convertFromSObject(SProjectUndeleted input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4889,7 +4889,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<RevisionUpdated> convertFromSSetRevisionUpdated(Collection<SRevisionUpdated> input, BimDatabaseSession session) {
+	public Set<RevisionUpdated> convertFromSSetRevisionUpdated(Collection<SRevisionUpdated> input, DatabaseSession session) {
 		Set<RevisionUpdated> result = new HashSet<RevisionUpdated>();
 		for (SRevisionUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4905,7 +4905,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<RevisionUpdated> convertFromSListRevisionUpdated(Collection<SRevisionUpdated> input, BimDatabaseSession session) {
+	public List<RevisionUpdated> convertFromSListRevisionUpdated(Collection<SRevisionUpdated> input, DatabaseSession session) {
 		List<RevisionUpdated> result = new ArrayList<RevisionUpdated>();
 		for (SRevisionUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4929,7 +4929,7 @@ public class SConverter {
 		return result;
 	}
 
-	public RevisionUpdated convertFromSObject(SRevisionUpdated input, BimDatabaseSession session) {
+	public RevisionUpdated convertFromSObject(SRevisionUpdated input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -4950,7 +4950,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<GeoTagUpdated> convertFromSSetGeoTagUpdated(Collection<SGeoTagUpdated> input, BimDatabaseSession session) {
+	public Set<GeoTagUpdated> convertFromSSetGeoTagUpdated(Collection<SGeoTagUpdated> input, DatabaseSession session) {
 		Set<GeoTagUpdated> result = new HashSet<GeoTagUpdated>();
 		for (SGeoTagUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4966,7 +4966,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<GeoTagUpdated> convertFromSListGeoTagUpdated(Collection<SGeoTagUpdated> input, BimDatabaseSession session) {
+	public List<GeoTagUpdated> convertFromSListGeoTagUpdated(Collection<SGeoTagUpdated> input, DatabaseSession session) {
 		List<GeoTagUpdated> result = new ArrayList<GeoTagUpdated>();
 		for (SGeoTagUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -4990,7 +4990,7 @@ public class SConverter {
 		return result;
 	}
 
-	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input, BimDatabaseSession session) {
+	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -5011,7 +5011,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<ClashDetectionSettingsUpdated> convertFromSSetClashDetectionSettingsUpdated(Collection<SClashDetectionSettingsUpdated> input, BimDatabaseSession session) {
+	public Set<ClashDetectionSettingsUpdated> convertFromSSetClashDetectionSettingsUpdated(Collection<SClashDetectionSettingsUpdated> input, DatabaseSession session) {
 		Set<ClashDetectionSettingsUpdated> result = new HashSet<ClashDetectionSettingsUpdated>();
 		for (SClashDetectionSettingsUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -5027,7 +5027,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<ClashDetectionSettingsUpdated> convertFromSListClashDetectionSettingsUpdated(Collection<SClashDetectionSettingsUpdated> input, BimDatabaseSession session) {
+	public List<ClashDetectionSettingsUpdated> convertFromSListClashDetectionSettingsUpdated(Collection<SClashDetectionSettingsUpdated> input, DatabaseSession session) {
 		List<ClashDetectionSettingsUpdated> result = new ArrayList<ClashDetectionSettingsUpdated>();
 		for (SClashDetectionSettingsUpdated o : input) {
 			result.add(convertFromSObject(o, session));
@@ -5051,7 +5051,7 @@ public class SConverter {
 		return result;
 	}
 
-	public ClashDetectionSettingsUpdated convertFromSObject(SClashDetectionSettingsUpdated input, BimDatabaseSession session) {
+	public ClashDetectionSettingsUpdated convertFromSObject(SClashDetectionSettingsUpdated input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -5072,7 +5072,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<PasswordChanged> convertFromSSetPasswordChanged(Collection<SPasswordChanged> input, BimDatabaseSession session) {
+	public Set<PasswordChanged> convertFromSSetPasswordChanged(Collection<SPasswordChanged> input, DatabaseSession session) {
 		Set<PasswordChanged> result = new HashSet<PasswordChanged>();
 		for (SPasswordChanged o : input) {
 			result.add(convertFromSObject(o, session));
@@ -5088,7 +5088,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<PasswordChanged> convertFromSListPasswordChanged(Collection<SPasswordChanged> input, BimDatabaseSession session) {
+	public List<PasswordChanged> convertFromSListPasswordChanged(Collection<SPasswordChanged> input, DatabaseSession session) {
 		List<PasswordChanged> result = new ArrayList<PasswordChanged>();
 		for (SPasswordChanged o : input) {
 			result.add(convertFromSObject(o, session));
@@ -5112,7 +5112,7 @@ public class SConverter {
 		return result;
 	}
 
-	public PasswordChanged convertFromSObject(SPasswordChanged input, BimDatabaseSession session) {
+	public PasswordChanged convertFromSObject(SPasswordChanged input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}
@@ -5133,7 +5133,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<UserChanged> convertFromSSetUserChanged(Collection<SUserChanged> input, BimDatabaseSession session) {
+	public Set<UserChanged> convertFromSSetUserChanged(Collection<SUserChanged> input, DatabaseSession session) {
 		Set<UserChanged> result = new HashSet<UserChanged>();
 		for (SUserChanged o : input) {
 			result.add(convertFromSObject(o, session));
@@ -5149,7 +5149,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<UserChanged> convertFromSListUserChanged(Collection<SUserChanged> input, BimDatabaseSession session) {
+	public List<UserChanged> convertFromSListUserChanged(Collection<SUserChanged> input, DatabaseSession session) {
 		List<UserChanged> result = new ArrayList<UserChanged>();
 		for (SUserChanged o : input) {
 			result.add(convertFromSObject(o, session));
@@ -5173,7 +5173,7 @@ public class SConverter {
 		return result;
 	}
 
-	public UserChanged convertFromSObject(SUserChanged input, BimDatabaseSession session) {
+	public UserChanged convertFromSObject(SUserChanged input, DatabaseSession session) {
 		if (input == null) {
 			return null;
 		}

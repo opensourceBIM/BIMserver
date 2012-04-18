@@ -21,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.store.StoreFactory;
@@ -87,9 +86,7 @@ public class Migrator {
 			Schema schema = migrate(session);
 			session.commit();
 			return schema;
-		} catch (BimDeadlockException e) {
-			throw new MigrationException(e);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			throw new MigrationException(e);
 		} finally {
 			session.close();

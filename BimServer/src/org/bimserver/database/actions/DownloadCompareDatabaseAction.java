@@ -22,9 +22,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.compare.Compare;
@@ -76,9 +76,9 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final CompareType compareType;
 	private final CompareIdentifier compareIdentifier;
 
-	public DownloadCompareDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids,
+	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids,
 			CompareIdentifier compareIdentifier, CompareType compareType, long actingUoid, ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod);
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		Iterator<Long> iterator = roids.iterator();
 		this.roid1 = iterator.next();
@@ -90,7 +90,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision revision1 = getRevisionByRoid(roid1);
 		Revision revision2 = getRevisionByRoid(roid2);
 		Project project = revision1.getProject();

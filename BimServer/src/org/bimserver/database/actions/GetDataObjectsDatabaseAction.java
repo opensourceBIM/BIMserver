@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.IfcRoot;
@@ -41,14 +41,14 @@ public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObj
 	private final long roid;
 	private final BimServer bimServer;
 
-	public GetDataObjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, long roid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetDataObjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long roid) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 	}
 
 	@Override
-	public List<DataObject> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public List<DataObject> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {

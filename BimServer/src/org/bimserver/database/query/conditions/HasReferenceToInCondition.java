@@ -19,6 +19,7 @@ package org.bimserver.database.query.conditions;
 
 import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -40,7 +41,7 @@ public class HasReferenceToInCondition extends Condition {
 	}
 
 	@Override
-	public boolean matches(EObject object) {
+	public boolean matches(IdEObject object) {
 		if (object.eClass().isSuperTypeOf(reference.getEContainingClass())) {
 			Object other = object.eGet(reference);
 			if (other instanceof EList<?>) {

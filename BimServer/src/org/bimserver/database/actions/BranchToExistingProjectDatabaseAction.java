@@ -18,9 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.log.AccessMethod;
@@ -42,8 +42,8 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 	private final BimServer bimServer;
 	private final Long currentUoid;
 	
-	public BranchToExistingProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, Long currentUoid, Long roid, Long destPoid, String comment) {
-		super(bimDatabaseSession, accessMethod);
+	public BranchToExistingProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, Long currentUoid, Long roid, Long destPoid, String comment) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.currentUoid = currentUoid;
 		this.roid = roid;
@@ -52,7 +52,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 	}
 
 	@Override
-	public CheckinResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public CheckinResult execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);

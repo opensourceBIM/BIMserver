@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
@@ -31,14 +31,14 @@ public class DeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long actingUoid;
 	private final long uoid;
 
-	public DeleteUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long uoid) {
-		super(bimDatabaseSession, accessMethod);
+	public DeleteUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long uoid) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
 		User actingUser = getUserByUoid(actingUoid);
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only administrators can delete users accounts");

@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -32,13 +32,13 @@ public class GetObjectIDMByNameDatabaseAction extends BimDatabaseAction<ObjectID
 
 	private final String ObjectIDMName;
 
-	public GetObjectIDMByNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String ObjectIDMName) {
-		super(bimDatabaseSession, accessMethod);
+	public GetObjectIDMByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String ObjectIDMName) {
+		super(databaseSession, accessMethod);
 		this.ObjectIDMName = ObjectIDMName;
 	}
 
 	@Override
-	public ObjectIDM execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public ObjectIDM execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getObjectIDM_Name(), new StringLiteral(ObjectIDMName));
 		return getDatabaseSession().querySingle(condition, ObjectIDM.class, false, null);
 	}

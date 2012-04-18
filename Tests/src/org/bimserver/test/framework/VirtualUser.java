@@ -66,18 +66,22 @@ public class VirtualUser extends Thread {
 					} else {
 						action = testFramework.getTestConfiguration().getActionFactory().createAction();
 						action.execute(this);
-						ActionResults actionResults = action.getActionResults(); 
-						testFramework.getResults().addResult(this, action, actionResults);
+						action.getActionResults().setType("OKE");
+						testFramework.getResults().addRow(action.getActionResults(), this, action);
 					}
 				} catch (UserException e) {
 					LOGGER.info("UserException: " + e.getMessage());
-					testFramework.getResults().addResult(this, action, e);
+					action.getActionResults().setType("WARN");
+					action.getActionResults().setText(e.getMessage());
+					testFramework.getResults().addRow(action.getActionResults(), this, action);
 					if (this.testFramework.getTestConfiguration().isStopOnUserException()) {
 						break;
 					}
 				} catch (ServerException e) {
 					e.printStackTrace();
-					testFramework.getResults().addResult(this, action, e);
+					action.getActionResults().setText(e.getMessage());
+					action.getActionResults().setType("ERROR");
+					testFramework.getResults().addRow(action.getActionResults(), this, action);
 					LOGGER.info(e.getMessage());
 					if (this.testFramework.getTestConfiguration().isStopOnServerException()) {
 						break;

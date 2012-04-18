@@ -17,7 +17,7 @@ package org.bimserver.database.migrations;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.ecore.EClass;
@@ -38,7 +38,7 @@ public class NewClassChange implements Change {
 		LOGGER.info("Creating table: " + getEClass().getName());
 		try {
 			database.createTable(getEClass(), databaseSession);
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDeadlockException e) {
 			LOGGER.error("", e);
 		}
 	}

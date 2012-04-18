@@ -18,7 +18,7 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.models.store.CheckinResult;
@@ -42,7 +42,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	public void execute() {
 		status = CheckinStatus.CH_STARTED;
-		BimDatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
 			session.executeAndCommitAction(checkinDatabaseAction, 10, new ProgressHandler() {

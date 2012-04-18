@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserRemovedFromProject;
@@ -37,16 +37,16 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 	private final long poid;
 	private final long actingUoid;
 
-	public RemoveUserFromProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long poid,
+	public RemoveUserFromProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long poid,
 			long actingUoid) {
-		super(bimDatabaseSession, accessMethod);
+		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 		this.poid = poid;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		User actingUser = getUserByUoid(actingUoid);

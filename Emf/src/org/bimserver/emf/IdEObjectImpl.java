@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
-	private static enum State {
+	public static enum State {
 		NONE,
 		LOADING,
 		LOADED
@@ -137,5 +137,9 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	@Override
 	public void setLoading() {
 		state = State.LOADING;
+	}
+	
+	public State getLoadingState() {
+		return state;
 	}
 }

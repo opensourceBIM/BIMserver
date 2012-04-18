@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -44,12 +44,12 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	private final long parentPoid;
 	private final BimServer bimServer;
 
-	public AddProjectDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String name, long owningUoid) {
-		this(bimServer, bimDatabaseSession, accessMethod, name, -1, owningUoid);
+	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String name, long owningUoid) {
+		this(bimServer, databaseSession, accessMethod, name, -1, owningUoid);
 	}
 
-	public AddProjectDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String projectName, long parentPoid, long owningUoid) {
-		super(bimDatabaseSession, accessMethod);
+	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String projectName, long parentPoid, long owningUoid) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.name = projectName;
 		this.parentPoid = parentPoid;
@@ -57,7 +57,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	}
 
 	@Override
-	public Project execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public Project execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
 		User actingUser = getUserByUoid(owningUoid);
 		String trimmedName = name.trim();
 		if (trimmedName.equals("")) {
@@ -133,6 +133,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			getDatabaseSession().store(geoTag);
 		}
 		getDatabaseSession().store(project);
+		getDatabaseSession().store(actingUser);
 		getDatabaseSession().store(newProjectAdded);
 		return project;
 	}

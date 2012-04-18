@@ -25,9 +25,9 @@ import java.util.Set;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
 import org.bimserver.changes.RemoveObjectChange;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -48,9 +48,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	private Revision revision;
 	private final long poid;
 
-	public CommitTransactionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Change> changes, long currentUoid, long poid,
+	public CommitTransactionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Set<Change> changes, long currentUoid, long poid,
 			String comment) {
-		super(bimDatabaseSession, accessMethod, null);
+		super(databaseSession, accessMethod, null);
 		this.changes = changes;
 		this.currentUoid = currentUoid;
 		this.poid = poid;
@@ -58,7 +58,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	}
 
 	@Override
-	public ConcreteRevision execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public ConcreteRevision execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(currentUoid);
 		if (project == null) {

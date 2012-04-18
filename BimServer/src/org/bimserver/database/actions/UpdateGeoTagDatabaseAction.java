@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.GeoTagUpdated;
@@ -38,14 +38,14 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 	private final SGeoTag sGeoTag;
 	private final long actingUoid;
 
-	public UpdateGeoTagDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SGeoTag sGeoTag) {
-		super(bimDatabaseSession, accessMethod);
+	public UpdateGeoTagDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, SGeoTag sGeoTag) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sGeoTag = sGeoTag;
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), sGeoTag.getOid(), false, null);
 		boolean hasRights = false;

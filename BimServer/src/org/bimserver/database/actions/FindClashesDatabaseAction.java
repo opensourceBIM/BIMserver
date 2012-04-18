@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
@@ -70,8 +70,8 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 	private final ClashDetectionSettings clashDetectionSettings;
 	private final BimServer bimServer;
 
-	public FindClashesDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings,  long actingUoid) {
-		super(bimDatabaseSession, accessMethod);
+	public FindClashesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings,  long actingUoid) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.clashDetectionSettings = clashDetectionSettings;
 		this.actingUoid = actingUoid;
@@ -79,7 +79,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<T> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<T> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
 
 		// Look in the cache

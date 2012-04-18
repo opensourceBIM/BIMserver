@@ -22,9 +22,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToInCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -39,14 +39,14 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 	private final long poid;
 	private final boolean checkSubProjects;
 
-	public GetAllCheckoutsOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, boolean checkSubProjects) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllCheckoutsOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, boolean checkSubProjects) {
+		super(databaseSession, accessMethod);
 		this.poid = poid;
 		this.checkSubProjects = checkSubProjects;
 	}
 
 	@Override
-	public Set<Checkout> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<Checkout> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		Set<Project> projects = new HashSet<Project>();
 		if (checkSubProjects) {

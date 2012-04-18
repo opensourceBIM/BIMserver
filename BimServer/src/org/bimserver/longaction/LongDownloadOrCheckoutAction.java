@@ -20,9 +20,9 @@ package org.bimserver.longaction;
 import javax.activation.DataHandler;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -87,8 +87,8 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		return checkoutResult;
 	}
 
-	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, BimDatabaseSession session,
-			boolean commit) throws BimDatabaseException, UserException, NoSerializerFoundException {
+	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, DatabaseSession session,
+			boolean commit) throws BimserverDatabaseException, UserException, NoSerializerFoundException {
 		if (action == null) {
 			checkoutResult = new SCheckoutResult();
 			checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
@@ -102,7 +102,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
 			}
 
-			BimDatabaseSession newSession = getBimServer().getDatabase().createReadOnlySession();
+			DatabaseSession newSession = getBimServer().getDatabase().createReadOnlySession();
 			IfcEnginePlugin ifcEnginePlugin  = null;
 			try {
 				Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
@@ -113,9 +113,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 						ifcEnginePlugin = (IfcEnginePlugin) getBimServer().getPluginManager().getIfcEngine(ifcEngine.getClassName(), true);
 					}
 				}
-			} catch (BimDatabaseException e) {
-				LOGGER.error("", e);
-			} catch (BimDeadlockException e) {
+			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 			} finally {
 				newSession.close();

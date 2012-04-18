@@ -17,21 +17,21 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.shared.exceptions.UserException;
 
 public class GetDatabaseInformationAction extends BimDatabaseAction<DatabaseInformation> {
 
-	public GetDatabaseInformationAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
-		super(bimDatabaseSession, accessMethod);
+	public GetDatabaseInformationAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
+		super(databaseSession, accessMethod);
 	}
 
 	@Override
-	public DatabaseInformation execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public DatabaseInformation execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		return getDatabaseSession().getDatabaseInformation();
 	}
 }

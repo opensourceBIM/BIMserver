@@ -18,9 +18,9 @@ package org.bimserver;
  *****************************************************************************/
 
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.Settings;
@@ -69,13 +69,13 @@ public class SettingsManager {
 	}
 	
 	public synchronized void saveSettings() {
-		BimDatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession();
 		try {
 			session.store(settings);
 			session.commit();
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDeadlockException e) {
 			LOGGER.error("", e);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
@@ -84,7 +84,7 @@ public class SettingsManager {
 
 	public synchronized Settings getSettings() {
 		if (settings == null) {
-			BimDatabaseSession session = database.createReadOnlySession();
+			DatabaseSession session = database.createReadOnlySession();
 			try {
 				IfcModel model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
 				if (model.size() == 1) {
@@ -93,9 +93,7 @@ public class SettingsManager {
 						settings = (Settings) idEObject;
 					}
 				}
-			} catch (BimDatabaseException e) {
-				LOGGER.error("", e);
-			} catch (BimDeadlockException e) {
+			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 			} finally {
 				session.close();

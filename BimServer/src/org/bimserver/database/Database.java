@@ -65,7 +65,6 @@ public class Database implements BimDatabase {
 	private static final String CLASS_LOOKUP_TABLE = "INT-ClassLookup";
 	public static final String STORE_PROJECT_NAME = "INT-Store";
 	public static final int STORE_PROJECT_ID = 1;
-	public static final int STORE_PROJECT_REVISION_ID = -1;
 	public static final String WRAPPED_VALUE = "wrappedValue";
 	public static final String SCHEMA_VERSION = "SCHEMA_VERSION";
 	private static final String DATE_CREATED = "DATE_CREATED";
@@ -77,7 +76,7 @@ public class Database implements BimDatabase {
 	private volatile int pidCounter = 1;
 	private final Registry registry;
 	private Date created;
-	private final Set<BimDatabaseSession> sessions = new HashSet<BimDatabaseSession>();
+	private final Set<DatabaseSession> sessions = new HashSet<DatabaseSession>();
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
@@ -176,15 +175,11 @@ public class Database implements BimDatabase {
 				}
 			}
 			databaseSession.commit();
-		} catch (BimDeadlockException e) {
-			LOGGER.error("", e);
-			close();
-			throw new DatabaseInitException(e.getMessage());
 		} catch (UserException e) {
 			LOGGER.error("", e);
 			close();
 			throw new DatabaseInitException(e.getMessage());
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 			close();
 			throw new DatabaseInitException(e.getMessage());
@@ -314,7 +309,7 @@ public class Database implements BimDatabase {
 		return null;
 	}
 
-	public void initInternalStructure(DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
+	public void initInternalStructure(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
 		RecordIterator recordIterator = columnDatabase.getRecordIterator(CLASS_LOOKUP_TABLE, databaseSession);
 		try {
 			Record record = recordIterator.next();
@@ -331,11 +326,11 @@ public class Database implements BimDatabase {
 		}
 	}
 
-	public void initOidCounter(DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
+	public void initOidCounter(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
 		oidCounter = registry.readLong(OID_COUNTER, databaseSession);
 	}
 
-	public void initPidCounter(DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
+	public void initPidCounter(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
 		pidCounter = registry.readInt(PID_COUNTER, databaseSession);
 	}
 
@@ -401,7 +396,7 @@ public class Database implements BimDatabase {
 		return databaseSession;
 	}
 
-	public BimDatabaseSession createReadOnlySession() {
+	public DatabaseSession createReadOnlySession() {
 		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), true);
 		sessions.add(databaseSession);
 		return databaseSession;
@@ -443,7 +438,7 @@ public class Database implements BimDatabase {
 		sessions.remove(databaseSession);
 	}
 
-	public void setDatabaseVersion(int version, DatabaseSession databaseSession) throws BimDeadlockException {
+	public void setDatabaseVersion(int version, DatabaseSession databaseSession) throws BimserverDeadlockException {
 		databaseSchemaVersion = version;
 		registry.save(SCHEMA_VERSION, version, databaseSession);
 	}
@@ -453,12 +448,12 @@ public class Database implements BimDatabase {
 		return migrator;
 	}
 
-	public void createTable(EClass eClass, DatabaseSession databaseSession) throws BimDeadlockException {
+	public void createTable(EClass eClass, DatabaseSession databaseSession) throws BimserverDeadlockException {
 		columnDatabase.createTable(eClass.getName(), databaseSession);
 		tableId++;
 		try {
 			columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		}
 	}
@@ -467,8 +462,8 @@ public class Database implements BimDatabase {
 		return metaDataManager;
 	}
 	
-	public BimDatabaseSession getDatabaseSession(long txnid) {
-		for (BimDatabaseSession databaseSession : sessions) {
+	public DatabaseSession getDatabaseSession(long txnid) {
+		for (DatabaseSession databaseSession : sessions) {
 			if (databaseSession.getTransactionId() == txnid) {
 				return databaseSession;
 			}

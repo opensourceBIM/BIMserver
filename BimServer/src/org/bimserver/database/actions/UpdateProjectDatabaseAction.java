@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -37,14 +37,14 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 	private final SProject sProject;
 	private final long actingUoid;
 
-	public UpdateProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SProject sProject) {
-		super(bimDatabaseSession, accessMethod);
+	public UpdateProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, SProject sProject) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sProject = sProject;
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(sProject.getOid());
 		if (project == null) {

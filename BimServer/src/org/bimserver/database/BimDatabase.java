@@ -23,9 +23,9 @@ import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.MetaDataManager;
 
 public interface BimDatabase {
-	BimDatabaseSession createSession();
+	DatabaseSession createSession();
 
-	BimDatabaseSession createReadOnlySession();
+	DatabaseSession createReadOnlySession();
 
 	void close();
 

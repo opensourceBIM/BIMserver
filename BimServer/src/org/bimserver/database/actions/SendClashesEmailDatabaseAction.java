@@ -32,9 +32,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -53,8 +53,8 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	private final Set<String> addressesTo;
 	private final BimServer bimServer;
 
-	public SendClashesEmailDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
-		super(bimDatabaseSession, accessMethod);
+	public SendClashesEmailDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.actingUoid = actingUoid;
 		this.poid = poid;
@@ -63,7 +63,7 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		try {
 			User user = getUserByUoid(actingUoid);
 			String senderAddress = bimServer.getSettingsManager().getSettings().getEmailSenderAddress();

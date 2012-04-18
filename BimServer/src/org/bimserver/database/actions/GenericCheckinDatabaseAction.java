@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Arrays;
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
@@ -37,8 +37,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 	private final IfcModelInterface model;
 
-	public GenericCheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface model) {
-		super(bimDatabaseSession, accessMethod);
+	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface model) {
+		super(databaseSession, accessMethod);
 		this.model = model;
 	}
 
@@ -72,7 +72,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		}
 	}
 	
-	public ConcreteRevision createNewConcreteRevision(BimDatabaseSession session, long size, long poid, long uoid, String comment) throws BimDatabaseException, BimDeadlockException {
+	public ConcreteRevision createNewConcreteRevision(DatabaseSession session, long size, long poid, long uoid, String comment) throws BimserverDatabaseException, BimserverDeadlockException {
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
 		concreteRevision.setSize(size);
 		Date date = new Date();
@@ -130,8 +130,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		return concreteRevision;
 	}
 
-	private Revision createNewVirtualRevision(BimDatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size)
-			throws BimDeadlockException, BimDatabaseException {
+	private Revision createNewVirtualRevision(DatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size)
+			throws BimserverDeadlockException, BimserverDatabaseException {
 		Revision revision = StoreFactory.eINSTANCE.createRevision();
 		revision.setLastConcreteRevision(concreteRevision);
 		revision.setComment(comment);

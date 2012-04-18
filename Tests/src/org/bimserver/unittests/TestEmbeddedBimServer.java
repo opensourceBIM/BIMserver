@@ -27,9 +27,9 @@ import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -88,7 +88,7 @@ public class TestEmbeddedBimServer {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
 			e.printStackTrace();
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		} catch (DatabaseRestartRequiredException e) {
 			e.printStackTrace();
@@ -146,7 +146,7 @@ public class TestEmbeddedBimServer {
 			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL, "internal");
 			service.login(username, password);
 			BimDatabase database = bimServer.getDatabase();
-			BimDatabaseSession session = database.createReadOnlySession();
+			DatabaseSession session = database.createReadOnlySession();
 			SProject firstProjectWithRevisions = null;
 			for (SProject project : service.getAllProjects()) {
 				System.out.println(project.getName());
@@ -164,9 +164,7 @@ public class TestEmbeddedBimServer {
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
-		} catch (BimDatabaseException e) {
-			e.printStackTrace();
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		}
 	}

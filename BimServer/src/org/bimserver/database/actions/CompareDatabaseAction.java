@@ -18,9 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareIdentifier;
@@ -40,8 +40,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	private final CompareIdentifier sCompareIdentifier;
 	private final BimServer bimServer;
 
-	public CompareDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier) {
-		super(bimDatabaseSession, accessMethod);
+	public CompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.actingUoid = actingUoid;
 		this.roid1 = roid1;
@@ -51,7 +51,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	}
 
 	@Override
-	public CompareResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public CompareResult execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		ObjectIDM objectIDM;
 		try {
 			objectIDM = bimServer.getPluginManager().requireObjectIDM();

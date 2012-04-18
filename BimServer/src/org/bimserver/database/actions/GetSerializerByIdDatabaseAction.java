@@ -17,14 +17,14 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
 
 public class GetSerializerByIdDatabaseAction extends GetByIdDatabaseAction<Serializer> {
 
-	public GetSerializerByIdDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long oid) {
-		super(bimDatabaseSession, accessMethod, oid, StorePackage.eINSTANCE.getSerializer());
+	public GetSerializerByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
+		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getSerializer());
 	}
 }

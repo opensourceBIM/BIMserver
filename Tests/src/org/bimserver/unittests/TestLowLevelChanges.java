@@ -30,7 +30,7 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.emf.IdEObject;
@@ -98,7 +98,7 @@ public class TestLowLevelChanges {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
 			e.printStackTrace();
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		} catch (DatabaseRestartRequiredException e) {
 			e.printStackTrace();

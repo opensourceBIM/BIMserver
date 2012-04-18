@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -37,14 +37,14 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 	private final SRevision sRevision;
 	private final long actingUoid;
 
-	public UpdateRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SRevision sRevision) {
-		super(bimDatabaseSession, accessMethod);
+	public UpdateRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, SRevision sRevision) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sRevision = sRevision;
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Revision revision = getRevisionByRoid(sRevision.getOid());
 		if (revision == null) {

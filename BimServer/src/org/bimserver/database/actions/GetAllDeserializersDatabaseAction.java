@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -38,14 +38,14 @@ public class GetAllDeserializersDatabaseAction extends GetAllDatabaseAction<Dese
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
-	public GetAllDeserializersDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(bimDatabaseSession, accessMethod, Deserializer.class, StorePackage.eINSTANCE.getSerializer());
+	public GetAllDeserializersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
+		super(databaseSession, accessMethod, Deserializer.class, StorePackage.eINSTANCE.getSerializer());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<Deserializer> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public List<Deserializer> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getDeserializer());
 		Map<Long, Deserializer> result = getDatabaseSession().query(condition, Deserializer.class, false, null);
 		List<Deserializer> mapToList = CollectionUtils.mapToList(result);

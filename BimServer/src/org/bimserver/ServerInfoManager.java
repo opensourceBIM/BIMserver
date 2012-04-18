@@ -20,9 +20,8 @@ package org.bimserver;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.ServerInfo;
@@ -58,7 +57,7 @@ public class ServerInfoManager {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
 			Settings settings = bimServer.getSettingsManager().getSettings();
-			BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+			DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 			boolean adminFound = false;
 			try {
 				IfcModel users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
@@ -71,9 +70,7 @@ public class ServerInfoManager {
 						}
 					}
 				}
-			} catch (BimDatabaseException e) {
-				LOGGER.error("", e);
-			} catch (BimDeadlockException e) {
+			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 			} finally {
 				session.close();

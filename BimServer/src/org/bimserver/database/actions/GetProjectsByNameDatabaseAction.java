@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -36,14 +36,14 @@ public class GetProjectsByNameDatabaseAction extends BimDatabaseAction<List<Proj
 	private final long actionUoid;
 	private final String name;
 
-	public GetProjectsByNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String name, long actionUoid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetProjectsByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name, long actionUoid) {
+		super(databaseSession, accessMethod);
 		this.name = name;
 		this.actionUoid = actionUoid;
 	}
 
 	@Override
-	public List<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public List<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Set<Project> projects = getProjectsByName(name);
 		List<Project> result = new ArrayList<Project>();
 		User user = getUserByUoid(actionUoid);

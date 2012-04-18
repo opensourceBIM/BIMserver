@@ -18,7 +18,7 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
@@ -28,7 +28,7 @@ import org.bimserver.models.store.StoreFactory;
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	private CheckoutDatabaseAction action;
-	private BimDatabaseSession session;
+	private DatabaseSession session;
 
 	public LongCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, long currentUoid, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, currentUoid);
