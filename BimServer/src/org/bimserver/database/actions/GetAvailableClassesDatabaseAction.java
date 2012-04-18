@@ -19,20 +19,20 @@ package org.bimserver.database.actions;
 
 import java.util.List;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 
 public class GetAvailableClassesDatabaseAction extends BimDatabaseAction<List<String>> {
 
-	public GetAvailableClassesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAvailableClassesDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
+		super(databaseSession, accessMethod);
 	}
 
 	@Override
-	public List<String> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public List<String> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		return getDatabaseSession().getClassList();
 	}
 }

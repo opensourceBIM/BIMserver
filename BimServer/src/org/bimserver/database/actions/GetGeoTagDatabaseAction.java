@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
@@ -33,14 +33,14 @@ public class GetGeoTagDatabaseAction extends BimDatabaseAction<GeoTag> {
 	private final long goid;
 	private final long actingUoid;
 
-	public GetGeoTagDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long goid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetGeoTagDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long goid) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.goid = goid;
 	}
 
 	@Override
-	public GeoTag execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public GeoTag execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), goid, false, null);
 		boolean hasRights = false;

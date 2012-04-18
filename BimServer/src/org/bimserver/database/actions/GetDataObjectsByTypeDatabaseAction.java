@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.IfcRoot;
@@ -43,15 +43,15 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 	private final long roid;
 	private final BimServer bimServer;
 
-	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String className) {
-		super(bimDatabaseSession, accessMethod);
+	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.className = className;
 	}
 
 	@Override
-	public List<DataObject> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public List<DataObject> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		EClass eClass = getDatabaseSession().getEClassForName(className);
 		Revision virtualRevision = getVirtualRevision(roid);
 		if (virtualRevision == null) {

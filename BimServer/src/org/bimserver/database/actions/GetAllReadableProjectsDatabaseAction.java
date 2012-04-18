@@ -20,10 +20,9 @@ package org.bimserver.database.actions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
@@ -39,15 +38,15 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 
 	private final long actingUoid;
 
-	public GetAllReadableProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllReadableProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
-		IfcModel projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false, null);
+		IfcModel projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), false, null);
 		Set<Project> result = new HashSet<Project>();
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {

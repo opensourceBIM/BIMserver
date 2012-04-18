@@ -19,9 +19,9 @@ package org.bimserver.changes;
 
 import java.util.Map;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -37,18 +37,18 @@ public class RemoveObjectChange implements Change {
 	}
 
 	@Override
-	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession, Map<Long, IdEObject> created) throws UserException, BimDeadlockException, BimDatabaseException {
-		EClass eClass = bimDatabaseSession.getEClassForName(className);
+	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+		EClass eClass = databaseSession.getEClassForName(className);
 		if (eClass == null) {
 			throw new UserException("Unknown classname " + className);
 		}
-		IdEObject idEObject = bimDatabaseSession.get(eClass, pid, rid-1, oid, false, null);
+		IdEObject idEObject = databaseSession.get(eClass, pid, rid-1, oid, false, null);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
 			throw new UserException("Object with oid " + oid + " not found");
 		}
-		bimDatabaseSession.store(idEObject, pid, rid);
+		databaseSession.store(idEObject, pid, rid);
 	}
 }

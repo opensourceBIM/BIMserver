@@ -33,12 +33,13 @@ import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
+import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.query.conditions.AttributeCondition;
@@ -178,7 +179,7 @@ public class BimServer {
 						// Reflect this change also in the database
 						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
 								.getName()));
-						BimDatabaseSession session = bimDatabase.createSession();
+						DatabaseSession session = bimDatabase.createSession();
 						try {
 							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
 							if (pluginsFound.size() == 0) {
@@ -191,9 +192,7 @@ public class BimServer {
 								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
 							}
 							session.commit();
-						} catch (BimDatabaseException e) {
-							LOGGER.error("", e);
-						} catch (BimDeadlockException e) {
+						} catch (BimserverDatabaseException e) {
 							LOGGER.error("", e);
 						} finally {
 							session.close();
@@ -219,7 +218,7 @@ public class BimServer {
 		}
 	}
 
-	public void start() throws DatabaseInitException, BimDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
+	public void start() throws DatabaseInitException, BimserverDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
 			SVersion localVersion = versionChecker.getLocalVersion();
 			if (localVersion != null) {
@@ -286,7 +285,7 @@ public class BimServer {
 						if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
 							try {
 								initDatabaseDependantItems();
-							} catch (BimDatabaseException e) {
+							} catch (BimserverDatabaseException e) {
 								LOGGER.error("", e);
 							}
 						}
@@ -332,12 +331,12 @@ public class BimServer {
 			serverStarted.setDate(new Date());
 			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
 			serverStarted.setExecutor(null);
-			BimDatabaseSession session = bimDatabase.createSession();
+			DatabaseSession session = bimDatabase.createSession();
 			try {
 				session.store(serverStarted);
 				session.commit();
-			} catch (BimDeadlockException e) {
-				throw new BimDatabaseException(e);
+			} catch (BimserverDeadlockException e) {
+				throw new BimserverDatabaseException(e);
 			} finally {
 				session.close();
 			}
@@ -357,8 +356,8 @@ public class BimServer {
 	 * objects in the database for configuration purposes, this methods syncs
 	 * both versions
 	 */
-	private void createDatabaseObjects() throws BimDeadlockException, BimDatabaseException, PluginException {
-		BimDatabaseSession session = bimDatabase.createSession();
+	private void createDatabaseObjects() throws BimserverDeadlockException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
+		DatabaseSession session = bimDatabase.createSession();
 		ObjectIDM defaultObjectIDM = null;
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
 			String name = objectIDMPlugin.getDefaultObjectIDMName();
@@ -451,15 +450,15 @@ public class BimServer {
 		session.commit();
 	}
 
-	private void initDatabaseDependantItems() throws BimDatabaseException {
+	private void initDatabaseDependantItems() throws BimserverDatabaseException {
 		getEmfSerializerFactory().init(pluginManager, bimDatabase);
 		getEmfDeserializerFactory().init(pluginManager, bimDatabase);
 		try {
 			createDatabaseObjects();
-		} catch (BimDeadlockException e) {
-			throw new BimDatabaseException(e);
+		} catch (BimserverDeadlockException e) {
+			throw new BimserverDatabaseException(e);
 		} catch (PluginException e) {
-			throw new BimDatabaseException(e);
+			throw new BimserverDatabaseException(e);
 		}
 	}
 

@@ -21,9 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -72,7 +71,7 @@ public class EmfSerializerFactory {
 	}
 
 	public EmfSerializer get(String name) {
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		DatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);
@@ -82,9 +81,7 @@ public class EmfSerializerFactory {
 					return serializerPlugin.createSerializer();
 				}
 			}
-		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
@@ -130,16 +127,14 @@ public class EmfSerializerFactory {
 	}
 
 	public String getExtension(String serializerName) {
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		DatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(serializerName));
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found != null) {
 				return found.getExtension();
 			}
-		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();

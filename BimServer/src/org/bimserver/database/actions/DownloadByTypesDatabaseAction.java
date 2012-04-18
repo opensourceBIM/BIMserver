@@ -22,9 +22,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -49,8 +49,8 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, long actingUoid, ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod);
+	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, long actingUoid, ObjectIDM objectIDM) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.includeAllSubtypes = includeAllSubtypes;
@@ -60,7 +60,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		User user = getUserByUoid(actingUoid);
 		Project project = null;

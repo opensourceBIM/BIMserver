@@ -25,9 +25,9 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
@@ -51,8 +51,8 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 
-	public DownloadByGuidsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid, ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod);
+	public DownloadByGuidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid, ObjectIDM objectIDM) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.guids = guids;
@@ -61,7 +61,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		Set<String> foundGuids = new HashSet<String>();
 		IfcModelSet ifcModelSet = new IfcModelSet();

@@ -25,9 +25,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.SConverter;
@@ -110,9 +110,9 @@ public class NotificationsManager extends Thread {
 	}
 
 	private void initConnections() {
-		BimDatabaseSession bimDatabaseSession = bimServer.getDatabase().createSession();
+		DatabaseSession databaseSession = bimServer.getDatabase().createSession();
 		try {
-			IfcModel allOfType = bimDatabaseSession.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
+			IfcModel allOfType = databaseSession.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
 			for (IdEObject idEObject : allOfType.getValues()) {
 				if (idEObject instanceof User) {
 					User user = (User) idEObject;
@@ -129,13 +129,11 @@ public class NotificationsManager extends Thread {
 					}
 				}
 			}
-			bimDatabaseSession.commit();
-		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
+			databaseSession.commit();
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
-			bimDatabaseSession.close();
+			databaseSession.close();
 		}
 	}
 

@@ -19,10 +19,10 @@ package org.bimserver.database.query.conditions;
 
 import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 
 public class AttributeCondition extends Condition {
 	private final EAttribute attribute;
@@ -53,7 +53,7 @@ public class AttributeCondition extends Condition {
 	}
 
 	@Override
-	public boolean matches(EObject object) {
+	public boolean matches(IdEObject object) {
 		if (!attribute.getEContainingClass().isSuperTypeOf(object.eClass())) {
 			return false;
 		} else {

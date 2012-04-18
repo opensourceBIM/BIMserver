@@ -27,7 +27,7 @@ import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
-import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
@@ -93,7 +93,7 @@ public class LocalDevBimCombinedServerStarter {
 			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
 			LOGGER.error("", e);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
 			LOGGER.error("", e);

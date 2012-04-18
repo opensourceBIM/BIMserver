@@ -28,9 +28,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -48,14 +48,14 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 	private final BimServer bimServer;
 	private final String username;
 
-	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, String username) {
-		super(bimDatabaseSession, accessMethod);
+	public RequestPasswordChangeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String username) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.username = username;
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		final User user = getUserByUserName(username);
 		if (user == null) {
 			throw new UserException("User with username " + username + " not found");

@@ -17,21 +17,21 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.shared.exceptions.UserException;
 
 public class AddSerializerDatabaseAction extends AddDatabaseAction<Serializer> {
 
-	public AddSerializerDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Serializer serializer) {
-		super(bimDatabaseSession, accessMethod, serializer);
+	public AddSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Serializer serializer) {
+		super(databaseSession, accessMethod, serializer);
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Void execute = super.execute();
 		// Make sure the backreferences are stored as well, someday this should be automatic
 		if (getIdEObject().getIfcEngine() != null) {

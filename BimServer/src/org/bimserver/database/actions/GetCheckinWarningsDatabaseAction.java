@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
@@ -35,14 +35,14 @@ public class GetCheckinWarningsDatabaseAction extends BimDatabaseAction<Set<Stri
 	private final long poid;
 	private final long uoid;
 
-	public GetCheckinWarningsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long uoid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetCheckinWarningsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, long uoid) {
+		super(databaseSession, accessMethod);
 		this.poid = poid;
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Set<String> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<String> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		Set<String> warnings = new HashSet<String>();

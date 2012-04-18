@@ -52,9 +52,8 @@ import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.changes.RemoveReferenceChange;
 import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetReferenceChange;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
 import org.bimserver.database.actions.AddIfcEngineDatabaseAction;
 import org.bimserver.database.actions.AddObjectIDMDatabaseAction;
@@ -245,6 +244,7 @@ public class Service implements ServiceInterface {
 	private Set<Change> changes = null;
 
 	private Long currentUoid = -1L;
+	private UserType currentUserType = null;
 	private Date activeSince;
 	private Date lastActive;
 	private Token token;
@@ -262,12 +262,13 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer checkin(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		final BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		final DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			username = user.getName();
+			userUsername = user.getUsername();
 		} finally {
 			session.close();
 		}
@@ -276,7 +277,7 @@ public class Service implements ServiceInterface {
 			if (!homeDirIncoming.isDirectory()) {
 				homeDirIncoming.mkdir();
 			}
-			File userDirIncoming = new File(homeDirIncoming, getCurrentUser().getUsername());
+			File userDirIncoming = new File(homeDirIncoming, userUsername);
 			if (!userDirIncoming.exists()) {
 				userDirIncoming.mkdir();
 			}
@@ -356,7 +357,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer checkoutLastRevision(Long poid, String formatIdentifier, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			return checkout(project.getLastRevision().getOid(), formatIdentifier, sync);
@@ -376,7 +377,7 @@ public class Service implements ServiceInterface {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
 		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerName, -1);
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		User user = null;
 		try {
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
@@ -402,7 +403,7 @@ public class Service implements ServiceInterface {
 		} else if (!bimServer.getSettingsManager().getSettings().getAllowSelfRegistration()) {
 			requireSelfregistrationAllowed();
 		}
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(bimServer, session, accessMethod, username, name, converter.convertFromSObject(type), currentUoid,
 					selfRegistration);
@@ -421,7 +422,7 @@ public class Service implements ServiceInterface {
 		} else if (e instanceof ServerException) {
 			LOGGER.error("", e);
 			throw (ServerException) e;
-		} else if (e instanceof BimDatabaseException) {
+		} else if (e instanceof BimserverDatabaseException) {
 			LOGGER.error("", e);
 			throw new ServerException("Database error", e);
 		}
@@ -432,7 +433,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SProject addProject(String projectName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(bimServer, session, accessMethod, projectName, currentUoid);
 			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
@@ -447,7 +448,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean addUserToProject(Long uoid, Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new AddUserToProjectDatabaseAction(session, accessMethod, currentUoid, uoid, poid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -462,7 +463,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SProject> getAllProjects() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllProjectsDatabaseAction(session, accessMethod, currentUoid);
 			return converter.convertToSListProject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -506,7 +507,7 @@ public class Service implements ServiceInterface {
 		if (currentUoid == -1) {
 			throw new UserException("Authentication required for this call");
 		}
-		if (getCurrentUser().getUserType() != SUserType.ADMIN && getCurrentUser().getUserType() != SUserType.SYSTEM) {
+		if (currentUserType != UserType.ADMIN && currentUserType != UserType.SYSTEM) {
 			throw new UserException("Administrator rights required for this call");
 		}
 	}
@@ -521,7 +522,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SRevision> getAllRevisionsOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsOfProjectDatabaseAction(session, accessMethod, poid);
 			return converter.convertToSListRevision(session.executeAction(action, DEADLOCK_RETRIES));
@@ -536,7 +537,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SCheckout> getAllCheckoutsOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, accessMethod, poid, false);
 			return converter.convertToSListCheckout(session.executeAction(action, DEADLOCK_RETRIES));
@@ -551,7 +552,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, accessMethod, poid, true);
 			return converter.convertToSListCheckout(session.executeAction(action, DEADLOCK_RETRIES));
@@ -566,7 +567,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SUser> getAllUsers() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllUsersDatabaseAction(session, accessMethod, currentUoid);
 			return converter.convertToSListUser(session.executeAction(action, DEADLOCK_RETRIES));
@@ -580,7 +581,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean login(String username, String password) throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			LoginDatabaseAction loginDatabaseAction = new LoginDatabaseAction(session, this, accessMethod, username, password);
 			return session.executeAndCommitAction(loginDatabaseAction, DEADLOCK_RETRIES);
@@ -595,7 +596,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SCheckout> getAllCheckoutsByUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsByUserDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSListCheckout(session.executeAction(action, DEADLOCK_RETRIES));
@@ -610,7 +611,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SRevision> getAllRevisionsByUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsByUserDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSListRevision(session.executeAction(action, DEADLOCK_RETRIES));
@@ -625,7 +626,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SRevision getRevision(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Revision> action = new GetRevisionDatabaseAction(session, accessMethod, roid, currentUoid);
 			return converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -640,7 +641,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SCheckout> getAllCheckoutsOfRevision(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(session, accessMethod, roid);
 			return converter.convertToSListCheckout(session.executeAction(action, DEADLOCK_RETRIES));
@@ -665,7 +666,7 @@ public class Service implements ServiceInterface {
 	
 	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
 		User user = null;
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 		} finally {
@@ -708,7 +709,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean deleteProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new DeleteProjectDatabaseAction(session, accessMethod, bimServer, poid, currentUoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -723,7 +724,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean deleteUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new DeleteUserDatabaseAction(session, accessMethod, currentUoid, uoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -738,7 +739,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean removeUserFromProject(Long uoid, Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new RemoveUserFromProjectDatabaseAction(session, accessMethod, uoid, poid, currentUoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -765,7 +766,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<String> getAvailableClasses() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<List<String>> action = new GetAvailableClassesDatabaseAction(session, accessMethod);
 			return session.executeAction(action, DEADLOCK_RETRIES);
@@ -780,7 +781,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SDatabaseInformation getDatabaseInformation() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<DatabaseInformation> action = new GetDatabaseInformationAction(session, accessMethod);
 			return converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -807,7 +808,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SProject> getAllNonAuthorizedProjectsOfUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllNonAuthorizedProjectsOfUserDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSListProject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -828,7 +829,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean changePassword(Long uoid, String oldPassword, String newPassword) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new ChangePasswordDatabaseAction(session, accessMethod, uoid, oldPassword, newPassword, currentUoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -843,7 +844,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SUser getUserByUserName(String username) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
 			SUser convert = converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -864,7 +865,7 @@ public class Service implements ServiceInterface {
 	 * login as system
 	 */
 	public Boolean loginAsSystem() throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, "system");
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
@@ -885,7 +886,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean undeleteProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new UndeleteProjectDatabaseAction(session, accessMethod, poid, currentUoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -900,7 +901,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean undeleteUser(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new UndeleteUserDatabaseAction(session, accessMethod, currentUoid, uoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -915,7 +916,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SProject addProjectAsSubProject(String projectName, Long parentPoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(bimServer, session, accessMethod, projectName, parentPoid, currentUoid);
 			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
@@ -930,7 +931,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateProject(SProject sProject) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateProjectDatabaseAction(session, accessMethod, currentUoid, sProject);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -944,7 +945,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateRevision(SRevision sRevision) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateRevisionDatabaseAction(session, accessMethod, currentUoid, sRevision);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -958,7 +959,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SCompareResult compare(Long roid1, Long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, currentUoid, roid1, roid2,
 					converter.convertFromSObject(sCompareType), converter.convertFromSObject(sCompareIdentifier));
@@ -974,7 +975,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SRevisionSummary getRevisionSummary(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<RevisionSummary> action = new GetRevisionSummaryDatabaseAction(session, accessMethod, roid);
 			RevisionSummary revisionSummary = session.executeAction(action, DEADLOCK_RETRIES);
@@ -990,7 +991,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean userHasCheckinRights(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Boolean> action = new UserHasCheckinRightsDatabaseAction(session, accessMethod, currentUoid, poid);
 			return session.executeAction(action, DEADLOCK_RETRIES);
@@ -1005,7 +1006,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Set<String> getCheckoutWarnings(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<String>> action = new GetCheckoutWarningsDatabaseAction(session, accessMethod, poid, currentUoid);
 			return session.executeAction(action, DEADLOCK_RETRIES);
@@ -1020,7 +1021,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Set<String> getCheckinWarnings(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<String>> action = new GetCheckinWarningsDatabaseAction(session, accessMethod, poid, currentUoid);
 			return session.executeAction(action, DEADLOCK_RETRIES);
@@ -1035,9 +1036,9 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean userHasRights(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(session, accessMethod, getCurrentUser().getOid(), poid);
+			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(session, accessMethod, getCurrentUser(session).getOid(), poid);
 			return session.executeAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -1056,7 +1057,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SDataObject getDataObjectByOid(Long roid, Long oid, String className) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<DataObject> action = new GetDataObjectByOidDatabaseAction(bimServer, session, accessMethod, roid, oid, session.getCidForClassName(className));
 			SDataObject dataObject = converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -1072,7 +1073,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SDataObject getDataObjectByGuid(Long roid, String guid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<DataObject> action = new GetDataObjectByGuidDatabaseAction(bimServer, session, accessMethod, roid, guid);
 			SDataObject dataObject = converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -1088,7 +1089,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SDataObject> getDataObjectsByType(Long roid, String className) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(bimServer, session, accessMethod, roid, className);
 		try {
 			List<DataObject> dataObjects = session.executeAction(action, DEADLOCK_RETRIES);
@@ -1104,7 +1105,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SGuidClash> findClashesByGuid(SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter.convertToSListGuidClash(session.executeAction(
 					new FindClashesDatabaseAction<GuidClash>(bimServer, session, accessMethod, converter.convertFromSObject(sClashDetectionSettings, session), currentUoid),
@@ -1120,7 +1121,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SEidClash> findClashesByEid(SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter.convertToSListEidClash(session.executeAction(
 					new FindClashesDatabaseAction<EidClash>(bimServer, session, accessMethod, converter.convertFromSObject(sClashDetectionSettings, session), currentUoid),
@@ -1136,11 +1137,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public SCheckinResult branchToNewProject(Long roid, String projectName, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToNewProjectDatabaseAction action = new BranchToNewProjectDatabaseAction(session, accessMethod, bimServer, currentUoid, roid, projectName, comment);
 			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
@@ -1151,11 +1152,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public SCheckinResult branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
-		final BimDatabaseSession session = bimServer.getDatabase().createSession();
+		final DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToExistingProjectDatabaseAction action = new BranchToExistingProjectDatabaseAction(session, accessMethod, bimServer, currentUoid, roid, destPoid, comment);
 			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
@@ -1166,7 +1167,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SLogAction> getLogs() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<List<LogAction>> action = new GetLogsDatabaseAction(session, accessMethod, currentUoid);
 			List<LogAction> logs = session.executeAction(action, DEADLOCK_RETRIES);
@@ -1182,7 +1183,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SGeoTag getGeoTag(Long goid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<GeoTag> action = new GetGeoTagDatabaseAction(session, accessMethod, currentUoid, goid);
 			return converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -1197,7 +1198,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateGeoTag(SGeoTag sGeoTag) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateGeoTagDatabaseAction(session, accessMethod, currentUoid, sGeoTag);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1211,7 +1212,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SClashDetectionSettings getClashDetectionSettings(Long cdsoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<ClashDetectionSettings> action = new GetClashDetectionSettingsDatabaseAction(session, accessMethod, currentUoid, cdsoid);
 			return converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -1226,7 +1227,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateClashDetectionSettings(SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateClashDetectionSettingsDatabaseAction(session, accessMethod, currentUoid, sClashDetectionSettings);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1246,7 +1247,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SUser getUserByUoid(Long uoid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			GetUserByUoidDatabaseAction action = new GetUserByUoidDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -1261,7 +1262,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SProject getProjectByPoid(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, accessMethod, poid, currentUoid);
 			return converter.convertToSObject(action.execute());
@@ -1280,7 +1281,7 @@ public class Service implements ServiceInterface {
 
 	public List<SUser> getAllNonAuthorizedUsersOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllNonAuthorizedUsersOfProjectDatabaseAction(session, accessMethod, poid);
 			return new ArrayList<SUser>(converter.convertToSSetUser((session.executeAction(action, DEADLOCK_RETRIES))));
@@ -1295,7 +1296,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SUser> getAllAuthorizedUsersOfProject(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllAuthorizedUsersOfProjectDatabaseAction(session, accessMethod, poid);
 			return new ArrayList<SUser>(converter.convertToSSetUser(session.executeAction(action, DEADLOCK_RETRIES)));
@@ -1310,7 +1311,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SProject> getUsersProjects(Long uoid) throws UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 			return new ArrayList<SProject>(converter.convertToSSetProject(user.getHasRightsOn()));
@@ -1322,11 +1323,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SProject> getProjectsByName(String name) throws UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			GetProjectsByNameDatabaseAction action = new GetProjectsByNameDatabaseAction(session, accessMethod, name, currentUoid);
 			return (List<SProject>) converter.convertToSListProject(session.executeAction(action, DEADLOCK_RETRIES));
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			throw new UserException(e);
 		} finally {
 			session.close();
@@ -1335,7 +1336,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean autologin(String username, String hash) throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			AutologinDatabaseAction action = new AutologinDatabaseAction(session, this, accessMethod, username, hash);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1350,7 +1351,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void setRevisionTag(Long roid, String tag) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<String> action = new SetRevisionTagDatabaseAction(session, accessMethod, roid, tag);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1364,7 +1365,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SProject> getSubProjects(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetSubProjectsDatabaseAction(session, accessMethod, currentUoid, poid);
 			return converter.convertToSListProject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -1379,7 +1380,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void changeUserType(Long uoid, SUserType userType) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new ChangeUserTypeDatabaseAction(session, accessMethod, currentUoid, uoid, userType);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1390,12 +1391,20 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	private SUser getCurrentUser(DatabaseSession databaseSession) throws UserException {
+		if (currentUoid == -1) {
+			return null;
+		}
+		User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+		return converter.convertToSObject(user);
+	}
+	
 	@Override
 	public SUser getCurrentUser() throws UserException {
 		if (currentUoid == -1) {
 			return null;
 		}
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			return converter.convertToSObject(user);
@@ -1641,9 +1650,9 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void sendCompareEmail(SCompareType sCompareType, SCompareIdentifier sCompareIdentifier, Long poid, Long roid1, Long roid2, String address) throws ServerException, UserException {
-		SUser currentUser = getCurrentUser();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
+			SUser currentUser = getCurrentUser(session);
 			Revision revision1 = session.get(StorePackage.eINSTANCE.getRevision(), roid1, false, null);
 			Revision revision2 = session.get(StorePackage.eINSTANCE.getRevision(), roid2, false, null);
 			String senderName = currentUser.getName();
@@ -1684,7 +1693,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void requestPasswordChange(String username) throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, bimServer, username);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1698,7 +1707,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void sendClashesEmail(SClashDetectionSettings sClashDetectionSettings, Long poid, Set<String> addressesTo) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(bimServer, session, accessMethod, currentUoid, poid, sClashDetectionSettings, addressesTo);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1711,7 +1720,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SUser validateAccount(Long uoid, String token, String password) throws ServerException, UserException {
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<User> action = new ValidateUserDatabaseAction(session, accessMethod, uoid, token, password);
 			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
@@ -1732,7 +1741,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SProject> getAllReadableProjects() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllReadableProjectsDatabaseAction(session, accessMethod, currentUoid);
 			return converter.convertToSListProject(session.executeAction(action, DEADLOCK_RETRIES));
@@ -1747,7 +1756,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Date getLastDatabaseReset() throws ServerException, UserException {
 		requireRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return session.getCreatedDate();
 		} catch (Exception e) {
@@ -1771,13 +1780,11 @@ public class Service implements ServiceInterface {
 			throw new UserException("Admin Password cannot be empty");
 		}
 
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			new AddUserDatabaseAction(bimServer, session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
 			session.commit();
-		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
@@ -1810,7 +1817,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SSerializer> getAllSerializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			List<SSerializer> serializers = converter.convertToSListSerializer(session.executeAction(new GetAllSerializersDatabaseAction(session, accessMethod, bimServer,
 					onlyEnabled), DEADLOCK_RETRIES));
@@ -1827,7 +1834,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SDeserializer> getAllDeserializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			List<SDeserializer> deserializers = converter.convertToSListDeserializer(session.executeAction(new GetAllDeserializersDatabaseAction(session, accessMethod, bimServer,
 					onlyEnabled), DEADLOCK_RETRIES));
@@ -1844,7 +1851,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void addSerializer(SSerializer serializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Serializer convert = converter.convertFromSObject(serializer, session);
 			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
@@ -1858,7 +1865,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void addDeserializer(SDeserializer deserializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Deserializer convert = converter.convertFromSObject(deserializer, session);
 			session.executeAndCommitAction(new AddDeserializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
@@ -1872,7 +1879,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateSerializer(SSerializer serializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Serializer convert = converter.convertFromSObject(serializer, session);
 			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
@@ -1886,7 +1893,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateDeserializer(SDeserializer deserializer) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Deserializer convert = converter.convertFromSObject(deserializer, session);
 			session.executeAndCommitAction(new UpdateDeserializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
@@ -1900,7 +1907,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SObjectIDM> getAllObjectIDMs(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSListObjectIDM(session.executeAction(new GetAllObjectIDMsDatabaseAction(session, accessMethod, bimServer, onlyEnabled), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -1914,7 +1921,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void addObjectIDM(SObjectIDM objectIDM) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			session.executeAndCommitAction(new AddObjectIDMDatabaseAction(session, accessMethod, converter.convertFromSObject(objectIDM, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
@@ -1927,7 +1934,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateObjectIDM(SObjectIDM objectIDM) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			session.executeAndCommitAction(new UpdateObjectIDMDatabaseAction(session, accessMethod, converter.convertFromSObject(objectIDM, session)),
 					DEADLOCK_RETRIES);
@@ -1941,7 +1948,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SSerializer getSerializerById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetSerializerByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -1955,7 +1962,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SDeserializer getDeserializerById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetDeserializerByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -1969,7 +1976,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SObjectIDM getObjectIDMById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetObjectIDMByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -1989,7 +1996,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void deleteObjectIDM(Long ifid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new DeleteObjectIDMDatabaseAction(session, accessMethod, ifid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -2003,7 +2010,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void deleteSerializer(Long sid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new DeleteSerializerDatabaseAction(session, accessMethod, sid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -2017,7 +2024,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void deleteDeserializer(Long sid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new DeleteDeserializerDatabaseAction(session, accessMethod, sid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -2074,7 +2081,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SSerializer getSerializerByName(String serializerName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetSerializerByNameDatabaseAction(session, accessMethod, serializerName), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -2088,7 +2095,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SObjectIDM getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetObjectIDMByNameDatabaseAction(session, accessMethod, ObjectIDMName), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -2102,7 +2109,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SDeserializer getDeserializerByName(String deserializerName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetDeserializerByNameDatabaseAction(session, accessMethod, deserializerName), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -2116,7 +2123,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SSerializer getSerializerByContentType(String contentType) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetSerializerByContentTypeDatabaseAction(session, accessMethod, contentType), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -2182,12 +2189,12 @@ public class Service implements ServiceInterface {
 	public Long commitTransaction(String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		requireOpenTransaction();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(session, accessMethod, changes, currentUoid, transactionPoid, comment);
 		try {
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			return action.getRevision().getOid();
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
@@ -2357,11 +2364,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public void setHttpCallback(Long uoid, String address) throws UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			SetHttpCallbackUrlDatabaseAction action = new SetHttpCallbackUrlDatabaseAction(session, accessMethod, bimServer, currentUoid, uoid, address);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 		} finally {
 			session.close();
 		}
@@ -2432,11 +2439,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<String> getAvailableClassesInRevision(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<List<String>> action = new GetAvailableClassesInRevisionDatabaseAction(session, accessMethod, roid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
 			session.close();
@@ -2447,11 +2454,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SDataObject> getDataObjects(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<List<DataObject>> action = new GetDataObjectsDatabaseAction(session, accessMethod, bimServer, roid);
 			return converter.convertToSListDataObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
 			session.close();
@@ -2484,7 +2491,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SIfcEngine> getAllIfcEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			List<SIfcEngine> ifcEngines = converter.convertToSListIfcEngine(session.executeAction(new GetAllIfcEnginesDatabaseAction(session, accessMethod, bimServer,
 					onlyEnabled), DEADLOCK_RETRIES));
@@ -2501,7 +2508,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void updateIfcEngine(SIfcEngine ifcEngine) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
 			session.executeAndCommitAction(new UpdateIfcEngineDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
@@ -2515,7 +2522,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void deleteIfcEngine(Long iid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Void> action = new DeleteIfcEngineDatabaseAction(session, accessMethod, iid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -2529,7 +2536,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SIfcEngine getIfcEngineByName(String name) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetIfcEngineByNameDatabaseAction(session, accessMethod, name), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -2543,7 +2550,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SIfcEngine getIfcEngineById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return converter.convertToSObject(session.executeAction(new GetIfcEngineByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES));
 		} catch (Exception e) {
@@ -2557,7 +2564,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void addIfcEngine(SIfcEngine ifcEngine) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
 			session.executeAndCommitAction(new AddIfcEngineDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
@@ -2573,17 +2580,15 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
 			if (deserializerPlugin.canHandleExtension(extension)) {
-				BimDatabaseSession session = bimServer.getDatabase().createSession();
+				DatabaseSession session = bimServer.getDatabase().createSession();
 				try {
 					Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getDeserializer_ClassName(), new StringLiteral(deserializerPlugin.getClass().getName()));
 					Deserializer deserializer = session.querySingle(condition, Deserializer.class, false, null);
 					if (deserializer != null) {
 						return deserializer.getName();
 					}
-				} catch (BimDatabaseException e) {
-					e.printStackTrace();
-				} catch (BimDeadlockException e) {
-					e.printStackTrace();
+				} catch (BimserverDatabaseException e) {
+					LOGGER.error("", e);
 				} finally {
 					session.close();
 				}
@@ -2592,7 +2597,8 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	public void setCurrentUoid(long uoid) {
-		currentUoid = uoid;
+	public void setCurrentUser(User user) {
+		currentUserType = user.getUserType();
+		currentUoid = user.getOid();
 	}
 }

@@ -17,6 +17,7 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.eclipse.emf.ecore.EObject;
 
 public interface IdEObject extends EObject {
@@ -31,4 +32,5 @@ public interface IdEObject extends EObject {
 	void load();
 	boolean isLoadedOrLoading();
 	void setLoading();
+	State getLoadingState();
 }

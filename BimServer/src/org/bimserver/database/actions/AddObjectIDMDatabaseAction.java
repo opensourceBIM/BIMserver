@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectIDM;
 
 public class AddObjectIDMDatabaseAction extends AddDatabaseAction<ObjectIDM> {
 
-	public AddObjectIDMDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod, objectIDM);
+	public AddObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ObjectIDM objectIDM) {
+		super(databaseSession, accessMethod, objectIDM);
 	}
 }

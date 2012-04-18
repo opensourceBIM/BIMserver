@@ -19,26 +19,28 @@ package org.bimserver.database;
 
 import java.util.Set;
 
+import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
+
 public interface ColumnDatabase {
 
 	boolean containsTable(String tableName);
 
-	boolean createTable(String tableName, BimDatabaseSession databaseSession);
+	boolean createTable(String tableName, DatabaseSession databaseSession);
 
-	boolean openTable(String tableName) throws BimDatabaseException;
+	boolean openTable(String tableName) throws BimserverDatabaseException;
 
-	void store(String tableName, byte[] key, byte[] value, BimDatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
+	void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException;
 
-	RecordIterator getRecordIterator(String tableName, BimDatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
+	RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException;
 
-	SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, BimDatabaseSession databaseSession) throws BimDeadlockException,
-			BimDatabaseException;
+	SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimserverDeadlockException,
+			BimserverDatabaseException;
 
 	long count(String tableName);
 
-	byte[] get(String tableName, byte[] key, BimDatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
+	byte[] get(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException;
 
-	byte[] getFirstStartingWith(String tableName, byte[] key, BimDatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
+	byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException;
 
 	void sync();
 
@@ -46,7 +48,7 @@ public interface ColumnDatabase {
 
 	boolean isNew();
 
-	void delete(String tableName, byte[] key, BimDatabaseSession databaseSession) throws BimDeadlockException;
+	void delete(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverDeadlockException;
 
 	String getLocation();
 
@@ -54,11 +56,13 @@ public interface ColumnDatabase {
 
 	BimTransaction startTransaction();
 
-	void commit(BimDatabaseSession databaseSession) throws BimDatabaseException, BimDeadlockException;
+	void commit(DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverDeadlockException;
 
 	String getType();
 
 	long getDatabaseSizeInBytes();
 
 	Set<String> getAllTableNames();
+
+	void storeNoOverwrite(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverDeadlockException, BimserverConcurrentModificationDatabaseException;
 }

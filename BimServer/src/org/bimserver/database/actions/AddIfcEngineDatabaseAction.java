@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.IfcEngine;
 
 public class AddIfcEngineDatabaseAction extends AddDatabaseAction<IfcEngine> {
 
-	public AddIfcEngineDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcEngine ifcEngine) {
-		super(bimDatabaseSession, accessMethod, ifcEngine);
+	public AddIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcEngine ifcEngine) {
+		super(databaseSession, accessMethod, ifcEngine);
 	}
 }

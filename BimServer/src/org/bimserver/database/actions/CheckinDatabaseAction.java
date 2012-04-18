@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
@@ -57,8 +57,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final boolean clean;
 	private Project project;
 
-	public CheckinDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long actingUid, IfcModelInterface model, String comment, boolean merge, boolean clean) {
-		super(bimDatabaseSession, accessMethod, model);
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, long actingUid, IfcModelInterface model, String comment, boolean merge, boolean clean) {
+		super(databaseSession, accessMethod, model);
 		this.bimServer = bimServer;
 		this.poid = poid;
 		this.actingUid = actingUid;
@@ -68,9 +68,10 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 
 	@Override
-	public ConcreteRevision execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public ConcreteRevision execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		try {
 			project = getProjectByPoid(poid);
+			int nrConcreteRevisionsBefore = project.getConcreteRevisions().size();
 			User user = getUserByUoid(actingUid);
 			if (project == null) {
 				throw new UserException("Project with poid " + poid + " not found");
@@ -101,10 +102,10 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			} else {
 				ifcModel = getModel();
 			}
-			if (project.getConcreteRevisions().size() != 0 && !merge && clean) {
+			if (nrConcreteRevisionsBefore != 0 && !merge && clean) {
 				// There already was a revision, lets delete it (only when not
 				// merging)
-				getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
+				getDatabaseSession().planClearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
@@ -122,9 +123,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().store(newRevisionAdded);
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
-			if (e instanceof BimDeadlockException) {
+			if (e instanceof BimserverDeadlockException) {
 				// Let this one slide
-				throw (BimDeadlockException) e;
+				throw (BimserverDeadlockException) e;
 			}
 			if (e instanceof UserException) {
 				throw (UserException)e;
@@ -135,7 +136,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return concreteRevision;
 	}
 
-	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimDeadlockException, BimDatabaseException {
+	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverDeadlockException, BimserverDatabaseException {
 		IfcModelInterface ifcModel;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {

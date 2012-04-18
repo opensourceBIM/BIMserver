@@ -19,8 +19,8 @@ package org.bimserver.database.query.conditions;
 
 import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 public abstract class LiteralCondition extends Condition {
 	public abstract Object getValue();
@@ -30,7 +30,7 @@ public abstract class LiteralCondition extends Condition {
 	}
 	
 	@Override
-	public boolean matches(EObject object) {
+	public boolean matches(IdEObject object) {
 		return false;
 	}
 }

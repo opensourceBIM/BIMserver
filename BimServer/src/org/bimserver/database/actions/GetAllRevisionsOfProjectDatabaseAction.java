@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -32,13 +32,13 @@ public class GetAllRevisionsOfProjectDatabaseAction extends BimDatabaseAction<Se
 
 	private final long poid;
 
-	public GetAllRevisionsOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllRevisionsOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid) {
+		super(databaseSession, accessMethod);
 		this.poid = poid;
 	}
 
 	@Override
-	public Set<Revision> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<Revision> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		return new HashSet<Revision>(project.getRevisions());
 	}

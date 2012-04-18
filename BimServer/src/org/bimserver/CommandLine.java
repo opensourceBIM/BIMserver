@@ -24,9 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.ColumnDatabase;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.DownloadDatabaseAction;
@@ -73,9 +73,9 @@ public class CommandLine extends Thread {
 				} else if (line.startsWith("dumpmodel")) {
 					try {
 						long roid = Long.parseLong(line.substring(9).trim());
-						BimDatabaseSession bimDatabaseSession = bimServer.getDatabase().createReadOnlySession();	
+						DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession();	
 						try {
-							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, bimDatabaseSession, AccessMethod.INTERNAL, roid, -1, bimServer.getSystemService().getCurrentUser().getOid(), null);
+							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, bimServer.getSystemService().getCurrentUser().getOid(), null);
 							IfcModelInterface model = downloadDatabaseAction.execute();
 							LOGGER.info("Model size: " + model.size());
 							
@@ -92,12 +92,12 @@ public class CommandLine extends Thread {
 							LOGGER.error("", e);
 						} catch (ServerException e) {
 							LOGGER.error("", e);
-						} catch (BimDeadlockException e) {
+						} catch (BimserverDeadlockException e) {
 							LOGGER.error("", e);
-						} catch (BimDatabaseException e) {
+						} catch (BimserverDatabaseException e) {
 							LOGGER.error("", e);
 						} finally {
-							bimDatabaseSession.close();
+							databaseSession.close();
 						}
 					} catch (Exception e) {
 						LOGGER.error("", e);

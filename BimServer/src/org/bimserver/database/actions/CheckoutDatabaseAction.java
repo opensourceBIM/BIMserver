@@ -22,9 +22,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -41,14 +41,14 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long roid;
 	private int progress;
 
-	public CheckoutDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long roid) {
-		super(bimDatabaseSession, accessMethod);
+	public CheckoutDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long roid) {
+		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 		this.roid = roid;
 	}
 
 	@Override
-	public IfcModel execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public IfcModel execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		User user = getUserByUoid(uoid);
 		Revision revision = getVirtualRevision(roid);
@@ -88,7 +88,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 		}
 	}
 
-	private IfcModel realCheckout(Project project, Revision revision, BimDatabaseSession bimDatabaseSession, User user) throws BimDeadlockException, BimDatabaseException {
+	private IfcModel realCheckout(Project project, Revision revision, DatabaseSession databaseSession, User user) throws BimserverDeadlockException, BimserverDatabaseException {
 		final long totalSize = revision.getSize();
 		final AtomicLong total = new AtomicLong();
 		IfcModel ifcModel = new IfcModel();
@@ -99,7 +99,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 				progress = Math.round(100L * total.get() / totalSize);
 			}
 		});
-		bimDatabaseSession.getMap(ifcModel, project.getId(), revision.getLastConcreteRevision().getId(), true, null);
+		databaseSession.getMap(ifcModel, project.getId(), revision.getLastConcreteRevision().getId(), true, null);
 		ifcModel.setName(project.getName() + "." + revision.getId());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());

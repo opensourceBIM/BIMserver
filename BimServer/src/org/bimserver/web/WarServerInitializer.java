@@ -25,7 +25,7 @@ import javax.servlet.ServletContextListener;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
-import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
@@ -71,7 +71,7 @@ public class WarServerInitializer implements ServletContextListener {
 			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
 			LOGGER.error("", e);
-		} catch (BimDatabaseException e) {
+		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} catch (PluginException e) {
 			LOGGER.error("", e);

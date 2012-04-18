@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.StorePackage;
@@ -29,13 +29,13 @@ public class UpdateIfcEngineDatabaseAction extends UpdateDatabaseAction<IfcEngin
 
 	private final IfcEngine ifcEngine;
 
-	public UpdateIfcEngineDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcEngine ifcEngine) {
-		super(bimDatabaseSession, accessMethod, ifcEngine);
+	public UpdateIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcEngine ifcEngine) {
+		super(databaseSession, accessMethod, ifcEngine);
 		this.ifcEngine = ifcEngine;
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		IfcEngine oldIfcEngine = getDatabaseSession().get(StorePackage.eINSTANCE.getIfcEngine(), ifcEngine.getOid(), false, null);
 		if (oldIfcEngine.getActive() == true && ifcEngine.getActive() == false && !oldIfcEngine.getSerializers().isEmpty()) {
 			throw new UserException("Cannot disable render engine with serializers");

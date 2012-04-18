@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
@@ -45,9 +45,9 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
 
-	public DownloadDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long actingUoid,
+	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long actingUoid,
 			ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod);
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.ignoreUoid = ignoreUoid;
@@ -56,7 +56,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision revision = getVirtualRevision(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");

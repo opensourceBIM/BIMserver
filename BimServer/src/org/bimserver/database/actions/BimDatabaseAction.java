@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
@@ -39,13 +39,13 @@ import org.bimserver.utils.CollectionUtils;
 
 public abstract class BimDatabaseAction<T> {
 	private final Set<ProgressListener> progressListeners = new HashSet<ProgressListener>();
-	private BimDatabaseSession bimDatabaseSession;
+	private DatabaseSession databaseSession;
 	private final AccessMethod accessMethod;
 
-	public abstract T execute() throws UserException, BimDeadlockException, BimDatabaseException;
+	public abstract T execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException;
 
-	public BimDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
-		this.bimDatabaseSession = bimDatabaseSession;
+	public BimDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
+		this.databaseSession = databaseSession;
 		this.accessMethod = accessMethod;
 	}
 
@@ -53,19 +53,19 @@ public abstract class BimDatabaseAction<T> {
 		return accessMethod;
 	}
 	
-	public BimDatabaseSession getDatabaseSession() {
-		return bimDatabaseSession;
+	public DatabaseSession getDatabaseSession() {
+		return databaseSession;
 	}
 	
 	public Project getProjectByPoid(long poid) {
-		return (Project) bimDatabaseSession.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
+		return (Project) databaseSession.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 	}
 
 	public User getUserByUoid(long uoid) {
-		return (User) bimDatabaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
+		return (User) databaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 	}
 	
-	public User getAdminUser() throws BimDatabaseException, BimDeadlockException {
+	public User getAdminUser() throws BimserverDatabaseException, BimserverDeadlockException {
 		return getUserByUserName("admin");
 	}
 
@@ -77,39 +77,39 @@ public abstract class BimDatabaseAction<T> {
 		progressListeners.remove(progressListener);
 	}
 	
-	public User getSystemUser() throws BimDatabaseException, BimDeadlockException {
+	public User getSystemUser() throws BimserverDatabaseException, BimserverDeadlockException {
 		return getUserByUserName("system");
 	}
 	
-	public Project getProjectById(int pid) throws BimDatabaseException, BimDeadlockException {
+	public Project getProjectById(int pid) throws BimserverDatabaseException, BimserverDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(pid));
-		return bimDatabaseSession.querySingle(condition, Project.class, false, null);
+		return databaseSession.querySingle(condition, Project.class, false, null);
 	}
 
-	public Set<Project> getProjectsByName(String projectName) throws BimDatabaseException, BimDeadlockException {
+	public Set<Project> getProjectsByName(String projectName) throws BimserverDatabaseException, BimserverDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(projectName));
-		return CollectionUtils.mapToSet(bimDatabaseSession.query(condition, Project.class, false, null));
+		return CollectionUtils.mapToSet(databaseSession.query(condition, Project.class, false, null));
 	}
 
-	public User getUserByUserName(String username) throws BimDatabaseException, BimDeadlockException {
+	public User getUserByUserName(String username) throws BimserverDatabaseException, BimserverDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return bimDatabaseSession.querySingle(condition, User.class, false, null);
+		return databaseSession.querySingle(condition, User.class, false, null);
 	}
 
-	public Revision getVirtualRevision(long roid) throws BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = bimDatabaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+	public Revision getVirtualRevision(long roid) throws BimserverDeadlockException, BimserverDatabaseException {
+		IdEObject idEObject = databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		return (Revision) idEObject;
 	}
 
 	public Revision getRevisionByRoid(long roid) {
-		return (Revision) bimDatabaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 	}
 
-	public ConcreteRevision getConcreteRevision(long croid) throws BimDeadlockException, BimDatabaseException {
-		return (ConcreteRevision) bimDatabaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
+	public ConcreteRevision getConcreteRevision(long croid) throws BimserverDeadlockException, BimserverDatabaseException {
+		return (ConcreteRevision) databaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
 	}
 
-	public void setDatabaseSession(BimDatabaseSession session) {
-		this.bimDatabaseSession = session;
+	public void setDatabaseSession(DatabaseSession session) {
+		this.databaseSession = session;
 	}
 }

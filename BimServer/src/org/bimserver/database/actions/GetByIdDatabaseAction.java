@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -29,15 +29,15 @@ public class GetByIdDatabaseAction<T> extends BimDatabaseAction<T> {
 	private final EClass eClass;
 	private final long oid;
 
-	public GetByIdDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long oid, EClass eClass) {
-		super(bimDatabaseSession, accessMethod);
+	public GetByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid, EClass eClass) {
+		super(databaseSession, accessMethod);
 		this.oid = oid;
 		this.eClass = eClass;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public T execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		return (T) getDatabaseSession().get(eClass, oid, false, null);
 	}
 }

@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -39,13 +39,13 @@ public class GetAllNonAuthorizedProjectsOfUserDatabaseAction extends BimDatabase
 
 	private final long uoid;
 
-	public GetAllNonAuthorizedProjectsOfUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllNonAuthorizedProjectsOfUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid) {
+		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), getUserByUoid(uoid))).and(
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME))));
 		return CollectionUtils.mapToSet((Map<Long, Project>) getDatabaseSession().query(condition, Project.class, false, null));

@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
@@ -30,12 +30,12 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class CreateBaseProjectDatabaseAction extends BimDatabaseAction<Project>{
 
-	public CreateBaseProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
-		super(bimDatabaseSession, accessMethod);
+	public CreateBaseProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
+		super(databaseSession, accessMethod);
 	}
 
 	@Override
-	public Project execute() throws UserException, BimDatabaseException, BimDeadlockException {
+	public Project execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
 		final Project project = StoreFactory.eINSTANCE.createProject();
 		project.setName(Database.STORE_PROJECT_NAME);
 		project.setCreatedDate(new Date());

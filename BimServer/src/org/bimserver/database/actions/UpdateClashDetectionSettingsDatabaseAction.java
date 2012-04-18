@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ClashDetectionSettingsUpdated;
@@ -38,14 +38,14 @@ public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseActio
 	private final SClashDetectionSettings sClashDetectionSettings;
 	private final long actingUoid;
 
-	public UpdateClashDetectionSettingsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SClashDetectionSettings sClashDetectionSettings) {
-		super(bimDatabaseSession, accessMethod);
+	public UpdateClashDetectionSettingsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, SClashDetectionSettings sClashDetectionSettings) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sClashDetectionSettings = sClashDetectionSettings;
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) getDatabaseSession().get(StorePackage.eINSTANCE.getClashDetectionSettings(), sClashDetectionSettings.getOid(), false, null);
 		

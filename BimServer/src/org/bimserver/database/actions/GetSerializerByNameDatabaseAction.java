@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -32,13 +32,13 @@ public class GetSerializerByNameDatabaseAction extends BimDatabaseAction<Seriali
 
 	private final String name;
 
-	public GetSerializerByNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String name) {
-		super(bimDatabaseSession, accessMethod);
+	public GetSerializerByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
+		super(databaseSession, accessMethod);
 		this.name = name;
 	}
 
 	@Override
-	public Serializer execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Serializer execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
 		return getDatabaseSession().querySingle(condition, Serializer.class, false, null);
 	}

@@ -21,9 +21,9 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
@@ -45,8 +45,8 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 
-	public DownloadProjectsDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, long actingUoid, ObjectIDM objectIDM) {
-		super(bimDatabaseSession, accessMethod);
+	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long actingUoid, ObjectIDM objectIDM) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.actingUoid = actingUoid;
@@ -54,7 +54,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		Project project = null;
 		String projectName = "";

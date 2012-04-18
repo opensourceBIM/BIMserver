@@ -17,14 +17,14 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.StorePackage;
 
 public class GetObjectIDMByIdDatabaseAction extends GetByIdDatabaseAction<ObjectIDM> {
 
-	public GetObjectIDMByIdDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long oid) {
-		super(bimDatabaseSession, accessMethod, oid, StorePackage.eINSTANCE.getObjectIDM());
+	public GetObjectIDMByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
+		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getObjectIDM());
 	}
 }

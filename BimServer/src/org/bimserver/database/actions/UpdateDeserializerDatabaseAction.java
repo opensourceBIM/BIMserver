@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Deserializer;
 
 public class UpdateDeserializerDatabaseAction extends UpdateDatabaseAction<Deserializer> {
 
-	public UpdateDeserializerDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Deserializer deserializer) {
-		super(bimDatabaseSession, accessMethod, deserializer);
+	public UpdateDeserializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Deserializer deserializer) {
+		super(databaseSession, accessMethod, deserializer);
 	}
 }

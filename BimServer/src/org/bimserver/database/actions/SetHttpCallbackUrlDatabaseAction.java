@@ -21,9 +21,9 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
@@ -43,8 +43,8 @@ public class SetHttpCallbackUrlDatabaseAction extends BimDatabaseAction<Void> {
 	private final long actingUoid;
 	private final BimServer bimServer;
 
-	public SetHttpCallbackUrlDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, long actingUoid, long uoid, String url) {
-		super(bimDatabaseSession, accessMethod);
+	public SetHttpCallbackUrlDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long actingUoid, long uoid, String url) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.actingUoid = actingUoid;
 		this.uoid = uoid;
@@ -52,7 +52,7 @@ public class SetHttpCallbackUrlDatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		if (actingUoid != uoid) {
 			if (actingUser.getUserType() != UserType.ADMIN && actingUser.getUserType() != UserType.SYSTEM) {

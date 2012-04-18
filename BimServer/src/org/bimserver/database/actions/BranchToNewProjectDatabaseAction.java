@@ -18,9 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.log.AccessMethod;
@@ -42,7 +42,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<CheckinR
 	private final String projectName;
 	private final String comment;
 	
-	public BranchToNewProjectDatabaseAction(BimDatabaseSession session, AccessMethod accessMethod, BimServer bimServer, Long currentUoid, Long roid, String projectName,
+	public BranchToNewProjectDatabaseAction(DatabaseSession session, AccessMethod accessMethod, BimServer bimServer, Long currentUoid, Long roid, String projectName,
 			String comment) {
 		super(session, accessMethod);
 		this.bimServer = bimServer;
@@ -53,7 +53,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<CheckinR
 	}
 
 	@Override
-	public CheckinResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public CheckinResult execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
 		final User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);

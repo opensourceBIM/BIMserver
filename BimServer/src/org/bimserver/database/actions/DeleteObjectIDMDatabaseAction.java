@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.StorePackage;
 
 public class DeleteObjectIDMDatabaseAction extends DeleteDatabaseAction {
 
-	public DeleteObjectIDMDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long ifid) {
-		super(bimDatabaseSession, accessMethod, StorePackage.eINSTANCE.getObjectIDM(), ifid);
+	public DeleteObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long ifid) {
+		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getObjectIDM(), ifid);
 	}
 }

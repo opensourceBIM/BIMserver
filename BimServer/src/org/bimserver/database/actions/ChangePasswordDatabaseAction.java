@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.PasswordChanged;
@@ -37,8 +37,8 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long uoid;
 	private final long actingUoid;
 
-	public ChangePasswordDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, long actingUoid) {
-		super(bimDatabaseSession, accessMethod);
+	public ChangePasswordDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, long actingUoid) {
+		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 		this.oldPassword = oldPassword;
 		this.newPassword = newPassword;
@@ -46,7 +46,7 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Boolean execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		User user = getUserByUoid(uoid);
 		if (user.getUserType() == UserType.SYSTEM) {
@@ -63,7 +63,7 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 		}
 	}
 
-	private boolean changePassword(BimDatabaseSession bimDatabaseSession, User actingUser, boolean skipCheck) throws BimDeadlockException, BimDatabaseException, UserException {
+	private boolean changePassword(DatabaseSession databaseSession, User actingUser, boolean skipCheck) throws BimserverDeadlockException, BimserverDatabaseException, UserException {
 		User user = getUserByUoid(uoid);
 		if (skipCheck || Hashers.getSha256Hash(oldPassword).equals(user.getPassword())) {
 			user.setPassword(Hashers.getSha256Hash(newPassword));
@@ -72,8 +72,8 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 			passwordchanged.setDate(new Date());
 			passwordchanged.setExecutor(actingUser);
 			passwordchanged.setUser(user);
-			bimDatabaseSession.store(user);
-			bimDatabaseSession.store(passwordchanged);
+			databaseSession.store(user);
+			databaseSession.store(passwordchanged);
 			return true;
 		} else {
 			throw new UserException("Old password does not match user's password");

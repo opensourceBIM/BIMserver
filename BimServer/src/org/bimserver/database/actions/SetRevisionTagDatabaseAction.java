@@ -17,9 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -31,14 +31,14 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 	private final Long roid;
 	private final String tag;
 
-	public SetRevisionTagDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Long roid, String tag) {
-		super(bimDatabaseSession, accessMethod);
+	public SetRevisionTagDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, String tag) {
+		super(databaseSession, accessMethod);
 		this.roid = roid;
 		this.tag = tag;
 	}
 
 	@Override
-	public String execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public String execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		String trimmedTag = tag.trim();
 		Project project = revision.getProject();

@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -35,14 +35,14 @@ public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 	private final long actingUoid;
 	private final long poid;
 
-	public GetSubProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long poid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetSubProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long poid) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.poid = poid;
 	}
 
 	@Override
-	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		Project project = getProjectByPoid(poid);
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {

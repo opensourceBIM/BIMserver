@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
@@ -32,13 +32,13 @@ public class GetAllAuthorizedUsersOfProjectDatabaseAction extends BimDatabaseAct
 
 	private final long poid;
 
-	public GetAllAuthorizedUsersOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid) {
-		super(bimDatabaseSession, accessMethod);
+	public GetAllAuthorizedUsersOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid) {
+		super(databaseSession, accessMethod);
 		this.poid = poid;
 	}
 	
 	@Override
-	public Set<User> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<User> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		EList<User> users = getProjectByPoid(poid).getHasAuthorizedUsers();
 		return new HashSet<User>(users);
 	}

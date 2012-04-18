@@ -19,8 +19,8 @@ package org.bimserver.database.migrations;
 
 import java.nio.ByteBuffer;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.ColumnDatabase;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -46,7 +46,7 @@ public class NewAttributeChange implements Change {
 	}
 
 	@Override
-	public void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimDatabaseException {
+	public void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException {
 		EClass eClass = eAttribute.getEContainingClass();
 		ColumnDatabase columnDatabase = database.getColumnDatabase();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
@@ -88,12 +88,12 @@ public class NewAttributeChange implements Change {
 						columnDatabase.store(subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
 						record = recordIterator.next();
 					}
-				} catch (BimDatabaseException e) {
+				} catch (BimserverDatabaseException e) {
 					LOGGER.error("", e);
 				} finally {
 					recordIterator.close();
 				}
-			} catch (BimDeadlockException e) {
+			} catch (BimserverDeadlockException e) {
 				LOGGER.error("", e);
 			}
 		}

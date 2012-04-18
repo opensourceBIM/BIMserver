@@ -19,9 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -36,15 +36,15 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 	private final long uoid;
 	private final SUserType userType;
 
-	public ChangeUserTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long uoid, SUserType userType) {
-		super(bimDatabaseSession, accessMethod);
+	public ChangeUserTypeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long uoid, SUserType userType) {
+		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.uoid = uoid;
 		this.userType = userType;
 	}
 
 	@Override
-	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can change other user's types");

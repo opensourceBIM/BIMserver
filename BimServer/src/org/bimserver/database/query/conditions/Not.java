@@ -19,8 +19,8 @@ package org.bimserver.database.query.conditions;
 
 import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 public class Not extends Condition {
 
@@ -36,7 +36,7 @@ public class Not extends Condition {
 	}
 
 	@Override
-	public boolean matches(EObject object) {
+	public boolean matches(IdEObject object) {
 		return !condition.matches(object);
 	}
 }
