@@ -62,7 +62,7 @@
 				<include name="*.png" />
 			</fileset>
 		</copy>
-		<java classname="org.bimserver.test.framework.RemoteTest">
+		<java classname="org.bimserver.test.framework.RemoteTest" fork="true" maxmemory="4g">
 			<classpath>
 				<path>
 					<fileset refid="lib" />
