@@ -18,7 +18,11 @@ public class WriteShellScript {
 				if (!project.getName().startsWith(".")) {
 					File srcFolder = new File(project, "src");
 					if (srcFolder.exists()) {
-						out.println(project.getName() + "/" + srcFolder.getName() + File.pathSeparator);
+						out.print(project.getName() + "/" + srcFolder.getName() + File.pathSeparator);
+					}
+					File generatedFolder = new File(project, "generated");
+					if (generatedFolder.exists()) {
+						out.println(project.getName() + "/" + generatedFolder.getName() + File.pathSeparator);
 					}
 					File libFolder = new File(project, "lib");
 					if (libFolder.exists()) {
@@ -29,7 +33,7 @@ public class WriteShellScript {
 								for (File f : lib.listFiles()) {
 									if (f.getName().endsWith(".jar")) {
 										out.print(project.getName() + "/" + libFolder.getName() + "/" + lib.getName() + "/" + f.getName() + File.pathSeparator);
-									}									
+									}
 								}
 							}
 						}
