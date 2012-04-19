@@ -62,7 +62,7 @@
 				<include name="*.png" />
 			</fileset>
 		</copy>
-		<java classname="org.bimserver.test.framework.RemoteTest" fork="true" maxmemory="4g">
+		<java classname="org.bimserver.test.framework.RemoteTest" fork="true" maxmemory="4g" dir="../">
 			<classpath>
 				<path>
 					<fileset refid="lib" />
@@ -71,6 +71,6 @@
 				</path>
 			</classpath>
 		</java>
-		<delete dir="builds/BuildJar" failonerror="false" />
+		<delete dir="builds/BuildJar" failonerror="false"/>
 	</target>
 </project>
