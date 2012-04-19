@@ -96,6 +96,11 @@ public class TestFramework {
 
 	public synchronized void unsubsribe(VirtualUser virtualUser) {
 		virtualUsers.remove(virtualUser);
+		if (virtualUsers.isEmpty() && testConfiguration.isStopNoVirtualUsers()) {
+			if (testConfiguration.isStartEmbeddedBimServer()) {
+				bimServer.stop();
+			}
+		}
 	}
 
 	public TestConfiguration getTestConfiguration() {

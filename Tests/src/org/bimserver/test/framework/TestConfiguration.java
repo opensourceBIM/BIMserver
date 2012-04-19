@@ -12,6 +12,7 @@ public class TestConfiguration {
 	private boolean cleanEnvironmentFirst = true;
 	private boolean stopOnUserException = false;
 	private boolean stopOnServerException = true;
+	private boolean stopNoVirtualUsers = true;
 	private ActionFactory actionFactory;
 	private File outputFolder;
 	private BimServerClientFactory bimServerClientFactory;
@@ -104,5 +105,13 @@ public class TestConfiguration {
 	
 	public TestFileProvider getTestFileProvider() {
 		return testFileProvider;
+	}
+
+	public boolean isStopNoVirtualUsers() {
+		return stopNoVirtualUsers;
+	}
+
+	public void setStopNoVirtualUsers(boolean stopNoVirtualUsers) {
+		this.stopNoVirtualUsers = stopNoVirtualUsers;
 	}
 }

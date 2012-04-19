@@ -50,34 +50,36 @@ public class DownloadRevisionAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SProject project = virtualUser.getRandomProject();
-		if (project.getLastRevisionId() != -1) {
-			SSerializer serializer = null;
-			if (serializerName != null) {
-				serializer = virtualUser.getBimServerClient().getServiceInterface().getSerializerByName(serializerName);
-			} else {
-				List<SSerializer> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);
-				serializer = allSerializers.get(nextInt(allSerializers.size()));
-			}
-			boolean sync = nextBoolean();
-			getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
-			SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(project.getLastRevisionId());
-			Integer download = virtualUser.getBimServerClient().getServiceInterface().download(project.getLastRevisionId(), serializer.getName(), true, sync);
-			while (virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download).getState() != SActionState.FINISHED) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
+		if (project != null) {
+			if (project.getLastRevisionId() != -1) {
+				SSerializer serializer = null;
+				if (serializerName != null) {
+					serializer = virtualUser.getBimServerClient().getServiceInterface().getSerializerByName(serializerName);
+				} else {
+					List<SSerializer> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);
+					serializer = allSerializers.get(nextInt(allSerializers.size()));
 				}
-			}
-			virtualUser.getLogger().info("Done preparing download, downloading");
-			SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);
-			try {
-				String filename = project.getName() + "." + revision.getId() + "." + serializer.getExtension();
-				FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
-				IOUtils.copy(downloadData.getFile().getInputStream(), fos);
-				virtualUser.getLogger().info(filename + " downloaded");
-				fos.close();
-			} catch (IOException e) {
-				virtualUser.getLogger().error("", e);
+				boolean sync = nextBoolean();
+				getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
+				SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(project.getLastRevisionId());
+				Integer download = virtualUser.getBimServerClient().getServiceInterface().download(project.getLastRevisionId(), serializer.getName(), true, sync);
+				while (virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download).getState() != SActionState.FINISHED) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+					}
+				}
+				virtualUser.getLogger().info("Done preparing download, downloading");
+				SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);
+				try {
+					String filename = project.getName() + "." + revision.getId() + "." + serializer.getExtension();
+					FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
+					IOUtils.copy(downloadData.getFile().getInputStream(), fos);
+					virtualUser.getLogger().info(filename + " downloaded");
+					fos.close();
+				} catch (IOException e) {
+					virtualUser.getLogger().error("", e);
+				}
 			}
 		}
 	}
