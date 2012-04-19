@@ -21,7 +21,7 @@ import java.nio.ByteBuffer;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverDeadlockException;
-import org.bimserver.database.ColumnDatabase;
+import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Record;
@@ -45,7 +45,7 @@ public class NewReferenceChange implements Change {
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException {
 		EClass eClass = eReference.getEContainingClass();
-		ColumnDatabase columnDatabase = database.getColumnDatabase();
+		KeyValueStore columnDatabase = database.getColumnDatabase();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
 				RecordIterator recordIterator = columnDatabase.getRecordIterator(subClass.getName(), databaseSession);

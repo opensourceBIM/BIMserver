@@ -38,7 +38,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
-import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
+import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -236,13 +236,13 @@ public class BimServer {
 			templateEngine = new TemplateEngine();
 			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
 			File databaseDir = new File(config.getHomeDir(), "database");
-			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
+			BerkeleyKeyValueStore columnDatabase = new BerkeleyKeyValueStore(databaseDir);
 			bimDatabase = new Database(this, packages, columnDatabase);
 			try {
 				bimDatabase.init();
 			} catch (DatabaseRestartRequiredException e) {
 				bimDatabase.close();
-				columnDatabase = new BerkeleyColumnDatabase(databaseDir);
+				columnDatabase = new BerkeleyKeyValueStore(databaseDir);
 				bimDatabase = new Database(this, packages, columnDatabase);
 				try {
 					bimDatabase.init();

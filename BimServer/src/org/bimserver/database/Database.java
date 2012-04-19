@@ -69,7 +69,7 @@ public class Database implements BimDatabase {
 	public static final String SCHEMA_VERSION = "SCHEMA_VERSION";
 	private static final String DATE_CREATED = "DATE_CREATED";
 	private final Set<EPackage> emfPackages = new LinkedHashSet<EPackage>();
-	private final ColumnDatabase columnDatabase;
+	private final KeyValueStore columnDatabase;
 	private final DoubleHashMap<Short, EClass> classifiers = new DoubleHashMap<Short, EClass>();
 	private final List<String> realClasses = new ArrayList<String>();
 	private volatile long oidCounter;
@@ -90,7 +90,7 @@ public class Database implements BimDatabase {
 	 */
 	public static final int APPLICATION_SCHEMA_VERSION = 16;
 
-	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
+	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore columnDatabase) throws DatabaseInitException {
 		this.bimServer = bimServer;
 		this.columnDatabase = columnDatabase;
 		this.emfPackages.add(StorePackage.eINSTANCE);
@@ -402,7 +402,7 @@ public class Database implements BimDatabase {
 		return databaseSession;
 	}
 
-	public ColumnDatabase getColumnDatabase() {
+	public KeyValueStore getColumnDatabase() {
 		return columnDatabase;
 	}
 

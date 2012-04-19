@@ -83,7 +83,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				size--;
 			}
 		}
-		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), size, project.getOid(), currentUoid, comment.trim());
+		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 		revision = concreteRevision.getRevisions().get(0);
 		project.setLastRevision(revision);
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();

@@ -21,7 +21,7 @@ import java.util.Set;
 
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 
-public interface ColumnDatabase {
+public interface KeyValueStore {
 
 	boolean containsTable(String tableName);
 

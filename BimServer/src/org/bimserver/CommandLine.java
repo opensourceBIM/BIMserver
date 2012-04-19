@@ -27,7 +27,7 @@ import java.util.Set;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
-import org.bimserver.database.ColumnDatabase;
+import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.models.ifc2x3.IfcProject;
@@ -123,7 +123,7 @@ public class CommandLine extends Thread {
 						LOGGER.error("", e);
 					}
 				} else if (line.startsWith("showall")) {
-					ColumnDatabase columnDatabase = ((Database) bimServer.getDatabase()).getColumnDatabase();
+					KeyValueStore columnDatabase = ((Database) bimServer.getDatabase()).getColumnDatabase();
 					Set<String> allTableNames = columnDatabase.getAllTableNames();
 					long total = 0;
 					for (String tableName : allTableNames) {
