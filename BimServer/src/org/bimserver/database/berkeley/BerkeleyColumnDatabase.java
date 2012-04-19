@@ -18,17 +18,16 @@ package org.bimserver.database.berkeley;
  *****************************************************************************/
 
 import java.io.File;
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.BimTransaction;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.ColumnDatabase;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.bimserver.database.SearchingRecordIterator;
