@@ -124,7 +124,6 @@ public class SchemaDefinition implements Schema {
 								rels = entityRelations.get(ent);
 							}
 							rels.add((EntityDefinition) bt);
-							System.out.println("added " + ent.getName() + ":" + bt.toString());
 						}
 
 					}

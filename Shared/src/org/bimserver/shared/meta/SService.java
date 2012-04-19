@@ -156,8 +156,6 @@ public class SService {
 			if (name.contains(".")) {
 				name = name.substring(name.lastIndexOf(".") + 1);
 				return getSType(name);
-			} else {
-				System.out.println("Type not found: " + name);
 			}
 		}
 		return sType;

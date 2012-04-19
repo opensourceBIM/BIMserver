@@ -191,7 +191,7 @@ public class CityGmlSerializer extends EmfSerializer {
 			for (EObject eObject : model.getValues()) {
 				if (eObject instanceof IfcProduct) {
 					if (!convertedObjects.containsKey(eObject)) {
-						System.out.println("Not converted: " + eObject);
+//						System.out.println("Not converted: " + eObject);
 					}
 				}
 			}
@@ -523,7 +523,6 @@ public class CityGmlSerializer extends EmfSerializer {
 			List<Element> processProduct = processProduct(ifcElement);
 			if (processProduct != null) {
 				for (Element element : processProduct) {
-					System.out.println(element);
 					room.addGenericADEComponent(new ADEComponent(element));
 				}
 			}
