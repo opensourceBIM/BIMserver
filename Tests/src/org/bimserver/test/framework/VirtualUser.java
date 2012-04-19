@@ -28,7 +28,6 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.actions.Action;
-import org.bimserver.test.framework.actions.ActionResults;
 import org.bimserver.test.framework.actions.CheckinAction;
 import org.bimserver.test.framework.actions.CheckinSettings;
 import org.bimserver.test.framework.actions.CreateProjectAction;
