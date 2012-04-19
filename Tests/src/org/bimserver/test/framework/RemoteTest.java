@@ -13,9 +13,8 @@ public class RemoteTest {
 		testConfiguration.setHomeDir(new File("/opt/bimservertest"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.values()));
-		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
-//		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
-		testConfiguration.setOutputFolder(new File("output"));
+		testConfiguration.setTestFileProvider(new FolderWalker(new File("/mnt/sata1/ifcselected")));
+		testConfiguration.setOutputFolder(new File("/opt/output"));
 		testConfiguration.setNrVirtualUsers(4);
 		
 		testFramework.start();
