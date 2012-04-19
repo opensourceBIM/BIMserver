@@ -30,8 +30,6 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
-import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
-
 public class RevisionMergeTest {
 	public static void main(String[] args) {
 		new RevisionMergeTest().start();
@@ -55,8 +53,6 @@ public class RevisionMergeTest {
 			EmfSerializer serializer = serializerPlugin.createSerializer();
 			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine());
 			serializer.writeToFile(new File("merged.ifc"));
-		} catch (DeserializationException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

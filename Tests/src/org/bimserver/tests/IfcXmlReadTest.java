@@ -31,8 +31,6 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
-import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
-
 public class IfcXmlReadTest {
 	public static void main(String[] args) {
 		new IfcXmlReadTest().start();
@@ -61,8 +59,6 @@ public class IfcXmlReadTest {
 				EmfDeserializer deserializer2 = deserializerPlugin2.createDeserializer();
 				deserializer2.init(pluginManager.requireSchemaDefinition());
 				deserializer2.read(outFile, true);
-			} catch (DeserializationException e2) {
-				e2.printStackTrace();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (Exception e) {

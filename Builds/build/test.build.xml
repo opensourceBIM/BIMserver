@@ -1,0 +1,76 @@
+<project name="Test">
+	<import file="common.build.xml"/>
+	<target name="Test">
+		<property name="target" value="jar"/>
+		<delete dir="builds"/>
+		<mkdir dir="builds" />
+		<copy todir="builds/BuildJar">
+			<fileset file="${buildtargets}/shared/license.txt" />
+		</copy>
+		<copy todir="builds/BuildJar/www">
+			<fileset dir="../../BimServer/www" />
+		</copy>
+		<copy todir="builds/BuildJar/config" overwrite="true">
+			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
+			<fileset file="${buildtargets}/shared/version.xml" />
+			<fileset file="${buildtargets}/shared/web.xml" />
+			<fileset file="${buildtargets}/shared/service.proto" />
+			<fileset file="${buildtargets}/shared/notification.proto" />
+			<fileset file="${buildtargets}/shared/service.desc" />
+			<fileset file="${buildtargets}/shared/notification.desc" />
+		</copy>
+		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
+			<fileset file="${buildtargets}/shared/context.xml" />
+		</copy>
+		<mkdir dir="builds/BuildJar/home/logs" />
+		<mkdir dir="builds/BuildJar/home/tmp" />
+		<copy todir="builds/BuildJar/home/templates" overwrite="true" failonerror="false">
+			<fileset dir="${defaultsettings}/${target}/templates" />
+		</copy>
+		<copy todir="builds/BuildJar/www" overwrite="true" failonerror="false">
+			<fileset dir="${buildtargets}/${target}/jsp" />
+		</copy>
+		<copy todir="builds/BuildJar/www/images" overwrite="true" failonerror="false">
+			<fileset dir="${buildtargets}/${target}/images" />
+		</copy>
+		<replace file="builds/BuildJar/config/version.xml" token="@MAJOR@" value="${majorversion}" />
+		<replace file="builds/BuildJar/config/version.xml" token="@MINOR@" value="${minorversion}" />
+		<replace file="builds/BuildJar/config/version.xml" token="@REVISION@" value="${revisionversion}" />
+		<replace file="builds/BuildJar/config/version.xml" token="@DATE@" value="${revisiondate}" />
+		<replace file="builds/BuildJar/config/web.xml" token="@VERSION@" value="${version}" />
+		<copy todir="builds/BuildJar/lib">
+			<fileset file="${defaultsettings}/${target}/log4j.xml" />
+		</copy>
+		<copy todir="builds/BuildJar/lib" flatten="true">
+			<fileset dir="../../BimServer/lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<mkdir dir="builds/BuildJar/classes" />
+		<antcall target="Build"/>
+		<copy todir="builds/BuildJar/lib">
+			<fileset dir="builds/lib" />
+		</copy>
+		<copy todir="builds/BuildJar/plugins">
+			<fileset dir="builds/pluginlibs" />
+			<fileset dir="../plugins" />
+		</copy>
+		<delete dir="builds/BuildJar/classes" />
+		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander"  includeantruntime="false"/>
+		<copy todir="builds/BuildJar/org/bimserver">
+			<fileset dir="../../BimWebServer/expander/org/bimserver">
+				<include name="*.png" />
+			</fileset>
+		</copy>
+		<java classname="org.bimserver.test.framework.RemoteTest">
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+					<fileset dir="builds/pluginlibs"/>
+				</path>
+			</classpath>
+		</java>
+		<delete dir="builds/BuildJar" failonerror="false" />
+	</target>
+</project>

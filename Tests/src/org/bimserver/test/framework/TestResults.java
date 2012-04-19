@@ -2,11 +2,15 @@ package org.bimserver.test.framework;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bimserver.test.framework.actions.Action;
 import org.bimserver.test.framework.actions.ActionResults;
+
+import com.google.common.base.Charsets;
 
 public class TestResults {
 	private PrintWriter out;
@@ -15,7 +19,10 @@ public class TestResults {
 	public TestResults() {
 		try {
 			out = new PrintWriter(new File("results.html"));
-			out.write(FileUtils.readFileToString(new File("static/header.html")));
+			InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("static/header.html");
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			IOUtils.copy(resourceAsStream, byteArrayOutputStream);
+			out.write(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

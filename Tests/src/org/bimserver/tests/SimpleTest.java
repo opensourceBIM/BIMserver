@@ -32,8 +32,6 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 
-import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
-
 public class SimpleTest {
 	public static void main(String[] args) {
 		new SimpleTest().start();
@@ -64,8 +62,6 @@ public class SimpleTest {
                 	}
                 }
             }
-		} catch (DeserializationException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

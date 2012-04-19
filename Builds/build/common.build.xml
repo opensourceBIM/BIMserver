@@ -24,10 +24,10 @@
 		<antcall target="IfcEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
-		<antcall target="Tests" />
 		<antcall target="buildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
 		<antcall target="Report1Serializer" />
+		<antcall target="Tests" />
 	</target>
 	<target name="BimCombinedServer">
 		<mkdir dir="builds/bimcombined" />
@@ -83,9 +83,13 @@
 				<path>
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
+					<fileset dir="builds/pluginlibs"/>
 				</path>
 			</classpath>
 		</javac>
+		<copy todir="builds/tests/static">
+			<fileset dir="../../Tests/static"></fileset>
+		</copy>
 		<jar destfile="builds/lib/bimserver-${version}-tests.jar">
 			<fileset dir="builds/tests"/>
 		</jar>
