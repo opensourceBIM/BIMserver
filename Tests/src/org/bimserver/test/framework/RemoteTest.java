@@ -5,13 +5,12 @@ import java.io.File;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.actions.AllActionsFactory;
 
-public class TestCheckin {
+public class RemoteTest {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
 		TestFramework testFramework = new TestFramework(testConfiguration);
 
-		testConfiguration.setHomeDir(new File("C:\\Testing"));
-//		testConfiguration.setActionFactory(new FixedActionFactory(new CreateProjectAction(testFramework), new CheckinAction(testFramework, new CheckinSettings())));
+		testConfiguration.setHomeDir(new File("/opt/bimservertest"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.values()));
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));

@@ -22,29 +22,13 @@ public class TestResults {
 		startTable("Virtual User", "Action", "Result", "Message");
 	}
 
-//	public void addResult(VirtualUser virtualUser, Action action, Exception e) {
-//		String type = "ERROR";
-//		if (e instanceof UserException) {
-//			type = "WARN";
-//		}
-//		addRow(virtualUser.getName() + "", action.getClass().getSimpleName(), type, e.getMessage());
-//	}
-//
-//	public void addResult(VirtualUser virtualUser, Action action) {
-//		addRow(virtualUser.getName() + "", action.getClass().getSimpleName(), "OKE", "");
-//	}
-//
-//	public void addResult(VirtualUser virtualUser, Action action, ActionResults actionResults) {
-//		addRow(virtualUser.getName() + "", action.getClass().getSimpleName(), "OKE", actionResults.getText());
-//	}
-	
 	public synchronized void addRow(ActionResults actionResults, VirtualUser virtualUser, Action action, String... values) {
 		String type = actionResults.getType();
 		out.println("<tr user=\"" + virtualUser.getName() + "\" action=\"" + action.getClass().getSimpleName() + "\" type=\"" + type + "\">");
 		out.println("<td>" + rowNr + ".</td>");
 		out.println("<td>" + virtualUser.getName() + "</td>");
 		out.println("<td>" + action.getClass().getSimpleName() + "</td>");
-		out.println("<td>" + type + "</td>");
+		out.println("<td class=\"type_" + type + "\">" + type + "</td>");
 		out.println("<td>" + actionResults.getText() + "</td>");
 		out.println("</tr>");
 		out.flush();
