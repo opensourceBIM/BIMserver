@@ -28,9 +28,9 @@ import com.google.common.base.Charsets;
 public class Registry {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Registry.class);
 	public static final String REGISTRY_TABLE = "INT-Registry";
-	private final ColumnDatabase columnDatabase;
+	private final KeyValueStore columnDatabase;
 
-	public Registry(ColumnDatabase columnDatabase) {
+	public Registry(KeyValueStore columnDatabase) {
 		this.columnDatabase = columnDatabase;
 	}
 

@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 import org.bimserver.database.BimTransaction;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverDeadlockException;
-import org.bimserver.database.ColumnDatabase;
+import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
@@ -50,9 +50,9 @@ import com.sleepycat.je.OperationStatus;
 import com.sleepycat.je.Transaction;
 import com.sleepycat.je.TransactionConfig;
 
-public class BerkeleyColumnDatabase implements ColumnDatabase {
+public class BerkeleyKeyValueStore implements KeyValueStore {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyColumnDatabase.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyKeyValueStore.class);
 	private Environment environment;
 	private int writes;
 	private int reads;
@@ -61,7 +61,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	private TransactionConfig transactionConfig;
 	private CursorConfig cursorConfig;
 
-	public BerkeleyColumnDatabase(File dataDir) throws DatabaseInitException {
+	public BerkeleyKeyValueStore(File dataDir) throws DatabaseInitException {
 		if (dataDir.isDirectory()) {
 			if (dataDir.listFiles().length > 0) {
 				LOGGER.info("Non-empty database directory found \"" + dataDir.getAbsolutePath() + "\"");

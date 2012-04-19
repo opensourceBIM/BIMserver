@@ -42,28 +42,16 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		this.model = model;
 	}
 
-	private ConcreteRevision getLastConcreteRevision(Project project) {
-		Date lastDate = new Date();
-		ConcreteRevision lastRevision = null;
-		for (ConcreteRevision concreteRevision : project.getConcreteRevisions()) {
-			if (concreteRevision.getDate().after(lastDate) || lastRevision == null) {
-				lastDate = concreteRevision.getDate();
-				lastRevision = concreteRevision;
-			}
-		}
-		return lastRevision; 
-	}
-	
 	protected void checkCheckSum(Project project) throws UserException {
-		if (!project.getConcreteRevisions().isEmpty()) {
-			ConcreteRevision concreteRevision = getLastConcreteRevision(project);
+		ConcreteRevision lastConcreteRevision = project.getLastConcreteRevision();
+		if (lastConcreteRevision != null) {
 			int revisionId = -1;
-			for (Revision revision : concreteRevision.getRevisions()) {
+			for (Revision revision : lastConcreteRevision.getRevisions()) {
 				if (revision.getProject() == project) {
 					revisionId = revision.getId();
 				}
 			}
-			byte[] revisionChecksum = concreteRevision.getChecksum();
+			byte[] revisionChecksum = lastConcreteRevision.getChecksum();
 			if (revisionChecksum != null && getModel().getChecksum() != null) {
 				if (Arrays.equals(revisionChecksum, getModel().getChecksum())) {
 					throw new UserException("Uploaded model is the same as last revision (" + revisionId + "), duplicate model not stored");
@@ -72,14 +60,12 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		}
 	}
 	
-	public ConcreteRevision createNewConcreteRevision(DatabaseSession session, long size, long poid, long uoid, String comment) throws BimserverDatabaseException, BimserverDeadlockException {
+	public ConcreteRevision createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverDeadlockException {
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
 		concreteRevision.setSize(size);
 		Date date = new Date();
 		concreteRevision.setDate(date);
-		Project project = getProjectByPoid(poid);
 		concreteRevision.setId(project.getConcreteRevisions().size() + 1);
-		User user = getUserByUoid(uoid);
 		concreteRevision.setUser(user);
 		concreteRevision.setProject(project);
 		project.setLastConcreteRevision(concreteRevision);

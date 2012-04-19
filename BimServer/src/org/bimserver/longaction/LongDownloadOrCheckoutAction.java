@@ -96,9 +96,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false, null);
 			revision.getProject().getGeoTag().load(); // Little hack to make sure this is lazily loaded, because after the executeAndCommitAction the session won't be usable
 			if (commit) {
-				ifcModel = session.executeAndCommitAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+				ifcModel = session.executeAndCommitAction(action);
 			} else {
-				ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+				ifcModel = session.executeAction(action);
 			}
 
 			DatabaseSession newSession = getBimServer().getDatabase().createReadOnlySession();

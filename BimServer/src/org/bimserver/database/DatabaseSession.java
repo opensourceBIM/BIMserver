@@ -77,16 +77,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import com.sleepycat.je.LockConflictException;
 import com.sleepycat.je.LockTimeoutException;
 import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider {
-	private static final boolean DEVELOPER_DEBUG = true;
+	public static final int DEFAULT_DEADLOCK_RETRIES = 10;
+	private static final boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
-	private final BiMap<RecordIdentifier, IdEObject> cache = HashBiMap.create();
 	private final Database database;
 	private BimTransaction bimTransaction;
 	private final boolean readOnly;
@@ -97,6 +95,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	private final ObjectsToCommit objectsToCommit = new ObjectsToCommit();
 	private StackTraceElement[] stackTrace;
 	private ClearProjectPlan clearProjectPlan = null;
+	private final ObjectCache objectCache = new ObjectCache();
 
 	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly) {
 		this.database = database;
@@ -118,18 +117,6 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			throw new BimserverDatabaseException("Cannot store object with oid -1");
 		}
 		objectsToCommit.put(idEObject, idEObject.getOid());
-	}
-
-	public boolean cacheContains(EObject object) {
-		return cache.inverse().containsKey(object);
-	}
-
-	public boolean cacheContains(RecordIdentifier pidOidPair) {
-		return cache.containsKey(pidOidPair);
-	}
-
-	public void clearCache() {
-		cache.clear();
 	}
 
 	public void clearProject() throws BimserverDeadlockException, BimserverDatabaseException {
@@ -243,12 +230,13 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			return model.get(oid);
 		}
 		RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
-		if (cache.containsKey(recordIdentifier)) {
-			return cache.get(recordIdentifier);
+		if (objectCache.contains(recordIdentifier)) {
+			return objectCache.get(recordIdentifier);
 		}
 		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setOid(oid);
 		object.setPid(pid);
+		// TODO remove this
 		if (rid == Integer.MAX_VALUE) {
 			throw new RuntimeException("This is not oke");
 		}
@@ -278,6 +266,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			if (rid == Integer.MAX_VALUE) {
 				throw new RuntimeException("This is not oke");
 			}
+			idEObject.setRid(rid);
+		} else {
 			idEObject.setRid(rid);
 		}
 
@@ -385,7 +375,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 								// positive cid means value is reference to
 								// other record
 								EClass referenceClass = database.getEClassForCid(cid);
-								newValue = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep, objectIDM);
+								newValue = readReference(originalQueryClass, buffer, model, pid, this.perRecordVersioning(idEObject) ? Integer.MAX_VALUE : rid, idEObject, feature, referenceClass, deep, objectIDM);
 								// if (eReference.getEOpposite() != null &&
 								// ((IdEObject) newValue).isLoadedOrLoading()) {
 								// newValue = null;
@@ -516,6 +506,10 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return true;
 	}
 
+	public <T> T executeAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException {
+		return executeAction(action, DEFAULT_DEADLOCK_RETRIES);
+	}
+	
 	public <T> T executeAction(BimDatabaseAction<T> action, int retries) throws BimserverDatabaseException, UserException {
 		for (int i = 0; i < retries; i++) {
 			try {
@@ -544,6 +538,10 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return executeAndCommitAction(action, retries, null);
 	}
 
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException {
+		return executeAndCommitAction(action, DEFAULT_DEADLOCK_RETRIES, null);
+	}
+
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException {
 		for (int i = 0; i < retries; i++) {
 			try {
@@ -552,12 +550,12 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 				return result;
 			} catch (BimserverConcurrentModificationDatabaseException e) {
 				bimTransaction.rollback();
-				clearCache();
+				objectCache.clear();
 				objectsToCommit.clear();
 				bimTransaction = database.getColumnDatabase().startTransaction();
 			} catch (BimserverDeadlockException e) {
 				bimTransaction.rollback();
-				clearCache();
+				objectCache.clear();
 				objectsToCommit.clear();
 				bimTransaction = database.getColumnDatabase().startTransaction();
 				if (DEVELOPER_DEBUG) {
@@ -653,8 +651,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			int keyRid = -keyBuffer.getInt();
 			if (keyRid <= rid) {
 				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, keyOid, keyRid);
-				if (cacheContains(recordIdentifier) && getObject(recordIdentifier).getLoadingState() == State.LOADED) {
-					return (T) getObject(recordIdentifier);
+				if (objectCache.contains(recordIdentifier) && objectCache.get(recordIdentifier).getLoadingState() == State.LOADED) {
+					return (T) objectCache.get(recordIdentifier);
 				} else {
 					if (model.contains(keyOid)) {
 						return (T) model.get(keyOid);
@@ -665,7 +663,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 							// deleted entity
 						} else {
 							T convertByteArrayToObject = (T) convertByteArrayToObject(idEObject, eClass, eClass, keyOid, valueBuffer, model, pid, rid == Integer.MAX_VALUE ? keyRid : rid, deep, objectIDM);
-							putInCache(recordIdentifier, convertByteArrayToObject);
+							objectCache.put(recordIdentifier, convertByteArrayToObject);
 							return convertByteArrayToObject;
 						}
 					}
@@ -702,10 +700,6 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 	public BimTransaction getBimTransaction() {
 		return bimTransaction;
-	}
-
-	public long getCachedOid(EObject referencedObject) {
-		return cache.inverse().get(referencedObject).getOid();
 	}
 
 	public short getCid(EClass eClass) throws BimserverDatabaseException {
@@ -874,8 +868,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		if (keyPid == pid) {
 			if (keyRid <= rid) {
 				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, keyOid, keyRid);
-				if (cacheContains(recordIdentifier)) {
-					IdEObject object = getObject(recordIdentifier);
+				if (objectCache.contains(recordIdentifier)) {
+					IdEObject object = objectCache.get(recordIdentifier);
 					if (!model.contains(keyOid) && !(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
 						model.add(keyOid, object);
 					}
@@ -894,7 +888,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 						}
 					}
 					if (object != null) {
-						putInCache(recordIdentifier, object);
+						objectCache.put(recordIdentifier, object);
 						return 1;
 					}
 				}
@@ -954,7 +948,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		if (eClass == null) {
 			return model;
 		}
-		clearCache();
+		// TODO check why clearCache??
+		objectCache.clear();
 		ByteBuffer key = createKeyBuffer(pid, oid, rid);
 		byte[] value = database.getColumnDatabase().get(eClass.getName(), key.array(), this);
 		if (value == null) {
@@ -980,17 +975,9 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return database.getMetaDataManager();
 	}
 
-	public IdEObject getObject(RecordIdentifier pidOidPair) {
-		return cache.get(pidOidPair);
-	}
-
 	private int getObjectCount(Class<? extends IdEObject> clazz, boolean deep) throws BimserverDatabaseException, BimserverDeadlockException {
 		Condition condition = new IsOfTypeCondition((EClass) StorePackage.eINSTANCE.getEClassifier(clazz.getSimpleName()));
 		return query(condition, clazz, deep, null).size();
-	}
-
-	public long getOid(IdEObject object) {
-		return cache.inverse().get(object).getOid();
 	}
 
 	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimserverDeadlockException, BimserverDatabaseException {
@@ -1120,12 +1107,6 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return database.newPid();
 	}
 
-	public void putInCache(RecordIdentifier pidOidPair, IdEObject object) {
-		if (!cache.containsValue(object)) {
-			cache.put(pidOidPair, object);
-		}
-	}
-
 	public <T extends IdEObject> Map<Long, T> query(Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException, BimserverDeadlockException {
 		return query(Database.STORE_PROJECT_ID, Integer.MAX_VALUE, condition, clazz, deep, objectIDM);
 	}
@@ -1211,8 +1192,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			return null;
 		}
 		long oid = buffer.getLong();
-		if (cacheContains(new RecordIdentifier(pid, oid, rid))) {
-			return getObject(new RecordIdentifier(pid, oid, rid));
+		if (objectCache.contains(new RecordIdentifier(pid, oid, rid))) {
+			return objectCache.get(new RecordIdentifier(pid, oid, rid));
 		} else {
 			if (model.contains(oid)) {
 				return model.get(oid);
@@ -1238,7 +1219,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 							ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);
 							IdEObject newObject = convertByteArrayToObject(originalQueryClass, eClass, oid, referenceBuffer, model, pid, rid, deep, objectIDM);
 							RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
-							putInCache(recordIdentifier, newObject);
+							objectCache.put(recordIdentifier, newObject);
 							return newObject;
 						}
 					}
@@ -1249,7 +1230,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 					newObject.setPid(pid);
 					newObject.setRid(perRecordVersioning(newObject) ? Integer.MAX_VALUE : rid);
 					RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
-					putInCache(recordIdentifier, newObject);
+					objectCache.put(recordIdentifier, newObject);
 					if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
 						model.add(oid, newObject);
 					}

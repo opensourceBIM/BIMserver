@@ -73,6 +73,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 		}
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
+		System.out.println(revision.getId());
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			if (subRevision.getUser().getOid() != ignoreUoid) {
 				IfcModel subModel = new IfcModel();
