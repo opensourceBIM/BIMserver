@@ -55,11 +55,11 @@ public class BuildingCreator {
 	public void doMain() throws Exception {
 		SimpleDateFormat df = new SimpleDateFormat("[HH:mm:ss] "); 
 
-		System.out.println(df.format(new Date()) + "setting up citygml4j context and JAXB builder");
+//		System.out.println(df.format(new Date()) + "setting up citygml4j context and JAXB builder");
 		CityGMLContext ctx = new CityGMLContext();
 		JAXBBuilder builder = ctx.createJAXBBuilder();
 
-		System.out.println(df.format(new Date()) + "creating LOD2 building as citygml4j in-memory object tree");
+//		System.out.println(df.format(new Date()) + "creating LOD2 building as citygml4j in-memory object tree");
 		GMLGeometryFactory geom = new GMLGeometryFactory();
 		citygml = new CityGMLFactory();
 		gml = new GMLFactory();
@@ -116,7 +116,7 @@ public class BuildingCreator {
 		cityModel.setBoundedBy(building.calcBoundedBy(false));
 		cityModel.addCityObjectMember(citygml.createCityObjectMember(building));
 
-		System.out.println(df.format(new Date()) + "writing citygml4j object tree");
+//		System.out.println(df.format(new Date()) + "writing citygml4j object tree");
 		CityGMLOutputFactory out = builder.createCityGMLOutputFactory(CityGMLVersion.v1_0_0);
 		CityGMLWriter writer = out.createCityGMLWriter(new File("LOD2_Building_v100.xml"));
 
@@ -126,8 +126,8 @@ public class BuildingCreator {
 		writer.write(cityModel);
 		writer.close();	
 		
-		System.out.println(df.format(new Date()) + "CityGML file LOD2_Building_v100.xml written");
-		System.out.println(df.format(new Date()) + "sample citygml4j application successfully finished");
+//		System.out.println(df.format(new Date()) + "CityGML file LOD2_Building_v100.xml written");
+//		System.out.println(df.format(new Date()) + "sample citygml4j application successfully finished");
 	}
 
 	private BoundarySurfaceProperty createBoundarySurface(CityGMLClass type, Polygon geometry) {
