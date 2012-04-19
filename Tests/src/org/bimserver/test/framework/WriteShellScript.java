@@ -12,7 +12,7 @@ public class WriteShellScript {
 	private void start() {
 		try {
 			PrintWriter out = new PrintWriter(new File("test.sh"));
-			out.println("java -classpath ");
+			out.print("java -classpath ");
 			File workspace = new File("..");
 			for (File project : workspace.listFiles()) {
 				if (!project.getName().startsWith(".")) {
@@ -22,7 +22,7 @@ public class WriteShellScript {
 					}
 					File generatedFolder = new File(project, "generated");
 					if (generatedFolder.exists()) {
-						out.println(project.getName() + "/" + generatedFolder.getName() + File.pathSeparator);
+						out.print(project.getName() + "/" + generatedFolder.getName() + File.pathSeparator);
 					}
 					File libFolder = new File(project, "lib");
 					if (libFolder.exists()) {

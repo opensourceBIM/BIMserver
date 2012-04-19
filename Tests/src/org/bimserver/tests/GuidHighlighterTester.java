@@ -38,8 +38,6 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 
-import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
-
 public class GuidHighlighterTester {
 	private SchemaDefinition schema;
 
@@ -85,8 +83,6 @@ public class GuidHighlighterTester {
 			try {
 				IfcModelInterface model = deserializer.read(file, true);
 				return model;
-			} catch (DeserializationException e) {
-				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
