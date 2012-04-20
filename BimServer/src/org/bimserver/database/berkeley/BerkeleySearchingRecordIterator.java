@@ -103,4 +103,28 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	public Record next(byte[] startSearchingAt) throws BimserverDeadlockException {
 		return getFirstNext(startSearchingAt);
 	}
+
+	@Override
+	public Record last() throws BimserverDeadlockException {
+		if (nextStartSearchingAt != null) {
+			return getFirstNext(nextStartSearchingAt);
+		}
+		DatabaseEntry key = new DatabaseEntry();
+		DatabaseEntry value = new DatabaseEntry();
+		try {
+			OperationStatus next = cursor.getLast(key, value, LockMode.DEFAULT);
+			if (next == OperationStatus.SUCCESS) {
+				byte[] firstBytes = new byte[mustStartWith.length];
+				System.arraycopy(key.getData(), 0, firstBytes, 0, mustStartWith.length);
+				if (Arrays.equals(firstBytes, mustStartWith)) {
+					return new BerkeleyRecord(key, value);
+				}
+			}
+		} catch (LockConflictException e) {
+			throw new BimserverDeadlockException(e);
+		} catch (DatabaseException e) {
+			LOGGER.error("", e);
+		}
+		return null;
+	}
 }

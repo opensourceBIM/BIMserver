@@ -3,10 +3,6 @@ package org.bimserver.test.framework;
 import java.io.File;
 
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
-import org.bimserver.test.framework.actions.CheckinAction;
-import org.bimserver.test.framework.actions.CheckinSettings;
-import org.bimserver.test.framework.actions.DownloadRevisionAction;
-import org.bimserver.test.framework.actions.RandomActionFactory;
 
 public class TestCollada {
 	public static void main(String[] args) {

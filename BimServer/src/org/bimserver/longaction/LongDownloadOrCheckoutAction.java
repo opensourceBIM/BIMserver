@@ -29,8 +29,6 @@ import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Serializer;
@@ -51,7 +49,6 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	protected final AccessMethod accessMethod;
 	protected final DownloadParameters downloadParameters;
 	protected final long currentUoid;
-	protected ActionState state = ActionState.UNKNOWN;
 	protected SCheckoutResult checkoutResult;
 
 	protected LongDownloadOrCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, AccessMethod accessMethod, long currentUoid) {
@@ -64,8 +61,6 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	public SCheckoutResult getCheckoutResult() {
 		return checkoutResult;
 	}
-
-	public abstract LongActionState getState();
 
 	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters)
 			throws UserException, NoSerializerFoundException {
@@ -95,13 +90,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			IfcModelInterface ifcModel = null;
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false, null);
 			revision.getProject().getGeoTag().load(); // Little hack to make sure this is lazily loaded, because after the executeAndCommitAction the session won't be usable
-			if (commit) {
-				ifcModel = session.executeAndCommitAction(action);
-			} else {
-				ifcModel = session.executeAction(action);
-			}
+			ifcModel = session.executeAndCommitAction(action);
 
-			DatabaseSession newSession = getBimServer().getDatabase().createReadOnlySession();
+			DatabaseSession newSession = getBimServer().getDatabase().createSession();
 			IfcEnginePlugin ifcEnginePlugin  = null;
 			try {
 				Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));

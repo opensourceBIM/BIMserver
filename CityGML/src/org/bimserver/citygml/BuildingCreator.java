@@ -18,9 +18,7 @@ package org.bimserver.citygml;
  *****************************************************************************/
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.citygml4j.CityGMLContext;
@@ -53,7 +51,7 @@ public class BuildingCreator {
 	}
 
 	public void doMain() throws Exception {
-		SimpleDateFormat df = new SimpleDateFormat("[HH:mm:ss] "); 
+//		SimpleDateFormat df = new SimpleDateFormat("[HH:mm:ss] "); 
 
 //		System.out.println(df.format(new Date()) + "setting up citygml4j context and JAXB builder");
 		CityGMLContext ctx = new CityGMLContext();

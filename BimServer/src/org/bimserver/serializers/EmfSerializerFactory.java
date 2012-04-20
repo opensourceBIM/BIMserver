@@ -71,7 +71,7 @@ public class EmfSerializerFactory {
 	}
 
 	public EmfSerializer get(String name) {
-		DatabaseSession session = bimDatabase.createReadOnlySession();
+		DatabaseSession session = bimDatabase.createSession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);
@@ -127,7 +127,7 @@ public class EmfSerializerFactory {
 	}
 
 	public String getExtension(String serializerName) {
-		DatabaseSession session = bimDatabase.createReadOnlySession();
+		DatabaseSession session = bimDatabase.createSession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(serializerName));
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);

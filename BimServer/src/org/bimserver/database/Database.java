@@ -47,25 +47,16 @@ import org.bimserver.utils.BinUtils;
 import org.bimserver.utils.DoubleHashMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Database implements BimDatabase {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Database.class);
-	public static final String OID_COUNTER = "OID_COUNTER";
-	public static final String PID_COUNTER = "PID_COUNTER";
 	private static final String CLASS_LOOKUP_TABLE = "INT-ClassLookup";
 	public static final String STORE_PROJECT_NAME = "INT-Store";
 	public static final int STORE_PROJECT_ID = 1;
-	public static final String WRAPPED_VALUE = "wrappedValue";
 	public static final String SCHEMA_VERSION = "SCHEMA_VERSION";
 	private static final String DATE_CREATED = "DATE_CREATED";
 	private final Set<EPackage> emfPackages = new LinkedHashSet<EPackage>();
@@ -127,9 +118,9 @@ public class Database implements BimDatabase {
 					registry.save(DATE_CREATED, created, databaseSession);
 				}
 			}
-
+			
 			databaseSchemaVersion = registry.readInt(SCHEMA_VERSION, databaseSession, -1);
-
+			
 			migrator = new Migrator(this);
 
 			if (getColumnDatabase().isNew()) {
@@ -143,8 +134,7 @@ public class Database implements BimDatabase {
 				throw new DatabaseRestartRequiredException();
 			} else if (registry.readBoolean("isnew", true, databaseSession)) {
 				initInternalStructure(databaseSession);
-				initOidCounter(databaseSession);
-				initPidCounter(databaseSession);
+				initCounters(databaseSession);
 
 				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
@@ -165,9 +155,7 @@ public class Database implements BimDatabase {
 				registry.save("isnew", false, databaseSession);
 			} else {
 				initInternalStructure(databaseSession);
-				initOidCounter(databaseSession);
-				initPidCounter(databaseSession);
-//				fixCheckinStates(databaseSession);
+				initCounters(databaseSession);
 			}
 			for (EClass eClass : classifiers.keyBSet()) {
 				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
@@ -185,114 +173,6 @@ public class Database implements BimDatabase {
 			throw new DatabaseInitException(e.getMessage());
 		} finally {
 			databaseSession.close();
-		}
-	}
-
-	/*
-	 * This method makes sure no revision states remain in "Uploading",
-	 * "Parsing", "Storing" or "Searching Clashes"
-	 */
-//	private void fixCheckinStates(DatabaseSession databaseSession) {
-//		try {
-//			int fixed = 0;
-//			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false, null);
-//			for (IdEObject idEObject : model.getValues()) {
-//				if (idEObject instanceof Revision) {
-//					Revision revision = (Revision) idEObject;
-//					if (revision.getState() == CheckinState.UPLOADING || revision.getState() == CheckinState.PARSING || revision.getState() == CheckinState.STORING) {
-//						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR.getName() + " for revision " + revision.getOid());
-//						revision.setState(CheckinState.ERROR);
-//						if (revision.getLastConcreteRevision() != null) {
-//							revision.getLastConcreteRevision().setState(CheckinState.ERROR);
-//							revision.getLastConcreteRevision().setChecksum(null);
-//						}
-//						revision.setLastError("Server crash while uploading");
-//						fixed++;
-//					}
-//					if (revision.getState() == CheckinState.SEARCHING_CLASHES) {
-//						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.CLASHES_ERROR.getName() + " for revision " + revision.getOid());
-//						revision.setState(CheckinState.CLASHES_ERROR);
-//						revision.setLastError("Server crash while detecting clashes");
-//						fixed++;
-//					}
-//					databaseSession.store(revision);
-//				}
-//			}
-//			if (fixed > 0) {
-//				LOGGER.info("Fixed broken checkin states (" + fixed + ")");
-//			}
-//		} catch (BimDatabaseException e) {
-//			LOGGER.error("", e);
-//		} catch (BimDeadlockException e) {
-//			LOGGER.error("", e);
-//		}
-//	}
-
-	public void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
-		boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
-		if (feature.getUpperBound() > 1 || feature.getUpperBound() == -1) {
-			if (feature.getEType() instanceof EEnum) {
-			} else if (feature.getEType() instanceof EClass) {
-				if (buffer.capacity() == 1 && buffer.get(0) == -1) {
-					buffer.position(buffer.position() + 1);
-				} else {
-					int listSize = buffer.getInt();
-					for (int i = 0; i < listSize; i++) {
-						short cid = buffer.getShort();
-						if (cid != -1) {
-							if (wrappedValue) {
-								EClass eClass = (EClass) feature.getEType();
-								fakePrimitiveRead(eClass.getEStructuralFeature("wrappedValue").getEType(), buffer);
-							} else {
-								buffer.position(buffer.position() + 8);
-							}
-						}
-					}
-				}
-			} else if (feature.getEType() instanceof EDataType) {
-				int listSize = buffer.getInt();
-				for (int i = 0; i < listSize; i++) {
-					fakePrimitiveRead(feature.getEType(), buffer);
-				}
-			}
-		} else {
-			if (feature.getEType() instanceof EEnum) {
-				buffer.position(buffer.position() + 4);
-			} else if (feature.getEType() instanceof EClass) {
-				if (buffer.capacity() == 1 && buffer.get(0) == -1) {
-					buffer.position(buffer.position() + 1);
-				} else {
-					short cid = buffer.getShort();
-					if (wrappedValue) {
-						fakePrimitiveRead(feature.getEType(), buffer);
-					} else {
-						if (cid != -1) {
-							buffer.position(buffer.position() + 8);
-						}
-					}
-				}
-			} else if (feature.getEType() instanceof EDataType) {
-				fakePrimitiveRead(feature.getEType(), buffer);
-			}
-		}
-	}
-
-	private void fakePrimitiveRead(EClassifier classifier, ByteBuffer buffer) {
-		if (classifier == EcorePackage.eINSTANCE.getEString()) {
-			short length = buffer.getShort();
-			buffer.position(buffer.position() + length);
-		} else if (classifier == EcorePackage.eINSTANCE.getEInt()) {
-			buffer.position(buffer.position() + 4);
-		} else if (classifier == EcorePackage.eINSTANCE.getELong()) {
-			buffer.position(buffer.position() + 8);
-		} else if (classifier == EcorePackage.eINSTANCE.getEFloat()) {
-			buffer.position(buffer.position() + 4);
-		} else if (classifier == EcorePackage.eINSTANCE.getEDouble()) {
-			buffer.position(buffer.position() + 8);
-		} else if (classifier == EcorePackage.eINSTANCE.getEBoolean()) {
-			buffer.position(buffer.position() + 1);
-		} else if (classifier == EcorePackage.eINSTANCE.getEDate()) {
-			buffer.position(buffer.position() + 8);
 		}
 	}
 
@@ -326,12 +206,32 @@ public class Database implements BimDatabase {
 		}
 	}
 
-	public void initOidCounter(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
-		oidCounter = registry.readLong(OID_COUNTER, databaseSession);
-	}
-
-	public void initPidCounter(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
-		pidCounter = registry.readInt(PID_COUNTER, databaseSession);
+	public void initCounters(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+		DatabaseSession session = createSession();
+		try {
+			for (EClass eClass : classifiers.keyBSet()) {
+				RecordIterator iterator = columnDatabase.getRecordIterator(eClass.getName(), databaseSession);
+				try {
+					Record record = iterator.last();
+					if (record != null) {
+						ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
+						int pid = buffer.getInt();
+						long oid = buffer.getLong();
+						if (oid > oidCounter) {
+							oidCounter = oid;
+						}
+						if (pid > pidCounter) {
+							pidCounter = pid;
+						}
+					}
+				} finally {
+					iterator.close();
+				}
+			}
+		} finally {
+			session.close();
+		}
+		LOGGER.info("Inititialising oid as " + oidCounter + ", pid as " + pidCounter);
 	}
 
 	public synchronized int newPid() {
@@ -351,53 +251,12 @@ public class Database implements BimDatabase {
 		return null;
 	}
 
-	public Object convert(EClassifier classifier, String value) {
-		if (classifier != null) {
-			if (classifier instanceof EClassImpl) {
-				if (null != ((EClassImpl) classifier).getEStructuralFeature(WRAPPED_VALUE)) {
-					EObject create = classifier.getEPackage().getEFactoryInstance().create((EClass) classifier);
-					Class<?> instanceClass = create.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
-					if (value.equals("")) {
-
-					} else {
-						if (instanceClass == Double.class || instanceClass == double.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Double.parseDouble(value));
-						} else if (instanceClass == Integer.class || instanceClass == int.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Integer.parseInt(value));
-						} else if (instanceClass == Long.class || instanceClass == long.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
-						} else if (instanceClass == Boolean.class || instanceClass == boolean.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Boolean.parseBoolean(value));
-						} else if (instanceClass == Float.class || instanceClass == float.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Float.parseFloat(value));
-						} else if (instanceClass == String.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), value);
-						}
-					}
-					return create;
-				} else {
-					// return processInline(classifier, value);
-				}
-			} else if (classifier instanceof EDataType) {
-				// return convertSimpleValue(classifier.getInstanceClass(),
-				// value);
-			}
-		}
-		return null;
-	}
-
 	public List<String> getAvailableClasses() {
 		return realClasses;
 	}
 
 	public DatabaseSession createSession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), false);
-		sessions.add(databaseSession);
-		return databaseSession;
-	}
-
-	public DatabaseSession createReadOnlySession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), true);
+		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction());
 		sessions.add(databaseSession);
 		return databaseSession;
 	}

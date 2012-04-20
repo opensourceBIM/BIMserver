@@ -33,9 +33,7 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Serializer;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
@@ -51,7 +49,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 	}
 
 	public void execute() {
-		state = ActionState.STARTED;
+		changeActionState(ActionState.STARTED);
 		try {
 			executeAction(action, downloadParameters, session, false);
  		} catch (Exception e) {
@@ -60,8 +58,8 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			if (session != null) {
 				session.close();
 			}
+			changeActionState(ActionState.FINISHED);
 		}
-		state = ActionState.FINISHED;
 	}
 
 	public void init() {
@@ -69,7 +67,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			return;
 		}
 		ObjectIDM objectIDM = null;
-		session = getBimServer().getDatabase().createReadOnlySession();
+		session = getBimServer().getDatabase().createSession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
 			Serializer serializer = session.querySingle(condition, Serializer.class, false, null);
@@ -88,7 +86,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			session.close();
 		}
 		
-		session = getBimServer().getDatabase().createReadOnlySession();
+		session = getBimServer().getDatabase().createSession();
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_REVISION:
 			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), currentUoid, objectIDM);
@@ -110,22 +108,6 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			break;
 		}
 		action.addProgressListener(this);
-	}
-
-	@Override
-	public synchronized LongActionState getState() {
-		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
-		if (action == null) {
-			ds.setState(state);
-			ds.setProgress(100);
-			return ds;
-		}
-		ds.setProgress(getProgress());
-		ds.setState(state);
-		if (state == ActionState.FINISHED) {
-			ds.setProgress(100);
-		}
-		return ds;
 	}
 
 	@Override

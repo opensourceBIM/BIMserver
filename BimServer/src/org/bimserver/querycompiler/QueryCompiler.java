@@ -79,7 +79,7 @@ public class QueryCompiler {
 		runResult.setRunOke(true);
 		try {
 			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, uoid, null);
-			IfcModelInterface IfcModel = session.executeAndCommitAction(action, 10);
+			IfcModelInterface IfcModel = session.executeAndCommitAction(action);
 			StringWriter out = new StringWriter();
 			QueryInterface queryInterface = createQueryInterface(code);
 			queryInterface.query(IfcModel, new PrintWriter(out));

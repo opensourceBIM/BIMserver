@@ -20,22 +20,26 @@ package org.bimserver.longaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class LongActionManager {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
+	private static final int FIVE_MINUTES_IN_MS = 5;
 	private final BiMap<Integer, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
 	private int actionNumberCounter = 0;
@@ -69,7 +73,7 @@ public class LongActionManager {
 	}
 
 	public synchronized List<org.bimserver.models.store.LongAction> getActiveLongActions() {
-		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<org.bimserver.models.store.LongAction> result = new ArrayList<org.bimserver.models.store.LongAction>();
 			for (LongAction<?> longAction : actions.values()) {
@@ -84,7 +88,7 @@ public class LongActionManager {
 				User user = session.get(StorePackage.eINSTANCE.getUser(), longAction.getUoid(), false, null);
 				storeLongAction.setIdentification(longAction.getDescription());
 				storeLongAction.setUser(user);
-				storeLongAction.setStart(longAction.getStart());
+				storeLongAction.setStart(longAction.getStart().getTime());
 				storeLongAction.setUsername(longAction.getUserUsername());
 				storeLongAction.setName(longAction.getUserName());
 				result.add(storeLongAction);
@@ -111,9 +115,12 @@ public class LongActionManager {
 		while (iterator.hasNext()) {
 			int id = iterator.next();
 			LongAction<?> longAction = actions.get(id);
-			Date start = longAction.getStart();
-			if (now.getTimeInMillis() - start.getTime() > 60 * 60 * 1000) {
-				iterator.remove();
+			if (longAction.getActionState() == ActionState.FINISHED) {
+				GregorianCalendar stop = longAction.getStop();
+				if (now.getTimeInMillis() - stop.getTimeInMillis() > FIVE_MINUTES_IN_MS) {
+					LOGGER.info("Cleaning up long running action: " + longAction.getDescription());
+					iterator.remove();
+				}
 			}
 		}
 	}

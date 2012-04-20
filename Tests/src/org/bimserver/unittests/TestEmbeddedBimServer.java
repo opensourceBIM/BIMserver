@@ -145,7 +145,7 @@ public class TestEmbeddedBimServer {
 			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL, "internal");
 			service.login(username, password);
 			BimDatabase database = bimServer.getDatabase();
-			DatabaseSession session = database.createReadOnlySession();
+			DatabaseSession session = database.createSession();
 			SProject firstProjectWithRevisions = null;
 			for (SProject project : service.getAllProjects()) {
 				System.out.println(project.getName());
