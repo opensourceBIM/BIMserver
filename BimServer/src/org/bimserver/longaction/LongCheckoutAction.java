@@ -22,8 +22,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.LongActionState;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.shared.exceptions.UserException;
 
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
@@ -37,7 +35,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	@Override
 	public void execute() {
-		state = ActionState.STARTED;
+		changeActionState(ActionState.STARTED);
 		try {
 			executeAction(action, downloadParameters, session, true);
 		} catch (Exception e) {
@@ -48,19 +46,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 			}
 		} finally {
 			session.close();
-			state = ActionState.FINISHED;
+			changeActionState(ActionState.FINISHED);
 		}
-	}
-
-	@Override
-	public synchronized LongActionState getState() {
-		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
-		ds.setProgress(action.getProgress());
-		if (state == ActionState.FINISHED) {
-			ds.setProgress(100);
-		}
-		ds.setState(state);
-		return ds;
 	}
 
 	@Override

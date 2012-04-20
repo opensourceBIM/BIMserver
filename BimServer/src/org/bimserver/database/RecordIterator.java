@@ -20,4 +20,5 @@ package org.bimserver.database;
 public interface RecordIterator {
 	Record next() throws BimserverDeadlockException;
 	void close();
+	Record last() throws BimserverDeadlockException;
 }

@@ -17,6 +17,7 @@ package org.bimserver.database.berkeley;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.slf4j.Logger;
@@ -58,5 +59,21 @@ public class BerkeleyRecordIterator implements RecordIterator {
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
+	}
+
+	@Override
+	public Record last() throws BimserverDeadlockException {
+		DatabaseEntry key = new DatabaseEntry();
+		DatabaseEntry value = new DatabaseEntry();
+		try {
+			OperationStatus next = cursor.getLast(key, value, LockMode.DEFAULT);
+			if (next == OperationStatus.SUCCESS) {
+				return new BerkeleyRecord(key, value);
+			} else {
+				return null;
+			}
+		} catch (DatabaseException e) {
+		}
+		return null;
 	}
 }

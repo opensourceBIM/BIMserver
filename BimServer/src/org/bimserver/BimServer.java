@@ -122,7 +122,6 @@ public class BimServer {
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
-
 	private CommandLine commandLine;
 
 	/**

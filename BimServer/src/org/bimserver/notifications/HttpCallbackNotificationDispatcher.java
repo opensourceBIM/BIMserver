@@ -60,7 +60,7 @@ package org.bimserver.notifications;
 //
 //	@Override
 //	public void notify(LogAction notificationMessage) {
-//		DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+//		DatabaseSession session = bimServer.getDatabase().createSession();
 //		try {
 //			IfcModel allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false);
 //			for (IdEObject idEObject : allOfType.getValues()) {

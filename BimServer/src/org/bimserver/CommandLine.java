@@ -73,7 +73,7 @@ public class CommandLine extends Thread {
 				} else if (line.startsWith("dumpmodel")) {
 					try {
 						long roid = Long.parseLong(line.substring(9).trim());
-						DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession();	
+						DatabaseSession databaseSession = bimServer.getDatabase().createSession();	
 						try {
 							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, bimServer.getSystemService().getCurrentUser().getOid(), null);
 							IfcModelInterface model = downloadDatabaseAction.execute();

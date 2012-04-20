@@ -36,7 +36,7 @@ public class JobScheduler {
 	private static final int TOKEN_CLEAN_INTERVAL_MILLIS = 60 * 60 * 1000; // 1 hour
 	private static final int CLASH_DETECTION_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
 	private static final int COMPARE_RESULT_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
-	private static final int LONG_ACTION_MANAGER_CLEANUP_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
+	private static final int LONG_ACTION_MANAGER_CLEANUP_INTERVAL_MILLIS = 1 * 60 * 1000; // 1 minute
 	private SchedulerFactory sf;
 	private Scheduler sched;
 

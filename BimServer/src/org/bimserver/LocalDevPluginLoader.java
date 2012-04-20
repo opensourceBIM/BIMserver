@@ -33,9 +33,9 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedObjectIDM"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Report1Serializer"));
-		loadIfExists(pluginManager, new File("C:\\Users\\Ruben de Laat\\git\\COBie-plugins"));
-		loadIfExists(pluginManager, new File("../IfcOpenShellPlugin"));
-		loadIfExists(pluginManager, new File("../geobim"));
+//		loadIfExists(pluginManager, new File("C:\\Users\\Ruben de Laat\\git\\COBie-plugins"));
+//		loadIfExists(pluginManager, new File("../IfcOpenShellPlugin"));
+//		loadIfExists(pluginManager, new File("../geobim"));
 	}
 	
 	private static void loadIfExists(PluginManager pluginManager, File file) {

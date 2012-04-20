@@ -21,6 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinDatabaseAction;
+import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinStatus;
 import org.bimserver.models.store.StoreFactory;
@@ -41,6 +42,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	}
 
 	public void execute() {
+		changeActionState(ActionState.STARTED);
 		status = CheckinStatus.CH_STARTED;
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -65,6 +67,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		} finally {
 			session.close();
 			done();
+			changeActionState(ActionState.FINISHED);
 		}
 	}
 	

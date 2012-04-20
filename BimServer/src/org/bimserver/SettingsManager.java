@@ -84,7 +84,7 @@ public class SettingsManager {
 
 	public synchronized Settings getSettings() {
 		if (settings == null) {
-			DatabaseSession session = database.createReadOnlySession();
+			DatabaseSession session = database.createSession();
 			try {
 				IfcModel model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
 				if (model.size() == 1) {
