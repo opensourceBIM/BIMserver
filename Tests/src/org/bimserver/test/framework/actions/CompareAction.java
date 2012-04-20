@@ -13,6 +13,8 @@ import org.bimserver.test.framework.VirtualUser;
 
 public class CompareAction extends Action {
 
+	private static final boolean VERBOSE = false;
+	
 	public CompareAction(TestFramework testFramework) {
 		super(testFramework);
 	}
@@ -26,12 +28,14 @@ public class CompareAction extends Action {
 		if (revision1 != null && revision2 != null) {
 			getActionResults().setText("Comparing " + revision1.getId() + " with " + revision2.getId());
 			SCompareResult sCompareResult = virtualUser.getBimServerClient().getServiceInterface().compare(revision1.getOid(), revision2.getOid(), sCompareType, sCompareIdentifier);
-			for (SCompareContainer sCompareContainer : sCompareResult.getItems()) {
-				virtualUser.getLogger().info(sCompareContainer.getType());
-				for (SCompareItem sCompareItem : sCompareContainer.getItems()) {
-					virtualUser.getLogger().info("\t" + sCompareItem);
+			if (VERBOSE) {
+				for (SCompareContainer sCompareContainer : sCompareResult.getItems()) {
+					virtualUser.getLogger().info(sCompareContainer.getType());
+					for (SCompareItem sCompareItem : sCompareContainer.getItems()) {
+						virtualUser.getLogger().info("\t" + sCompareItem);
+					}
 				}
-			}
+			}			
 		}
 	}
 }

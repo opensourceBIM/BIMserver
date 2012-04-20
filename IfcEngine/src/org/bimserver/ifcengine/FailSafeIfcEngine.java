@@ -111,14 +111,17 @@ public class FailSafeIfcEngine implements IfcEngine {
 				command.append(classPath + File.pathSeparator);
 			}
 			command.append("\"");
+			String mem = "512m";
 			if (Runtime.getRuntime().maxMemory() == Long.MAX_VALUE) {
-				command.append(" -Xmx512m");
-				command.append(" -Xms512m");
 			} else {
-				int memoryInMegaBytes = (int) (Runtime.getRuntime().maxMemory() / 2000000);
-				command.append(" -Xmx" + memoryInMegaBytes + "m");
-				command.append(" -Xms" + memoryInMegaBytes + "m");
+				int megs = (int) (Runtime.getRuntime().maxMemory() / 2000000);
+				if (megs > 1024) {
+					megs = 1024;
+				}
+				mem = String.valueOf(megs + "m");
 			}
+			command.append(" -Xmx" + mem);
+			command.append(" -Xms" + mem);
 			
 			// THIS IS ONLY A TEMPORARY FIX FOR Eclipse 3.7.2/Java7
 			command.append(" -XX:-UseSplitVerifier");

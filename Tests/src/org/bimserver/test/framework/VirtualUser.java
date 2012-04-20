@@ -49,6 +49,12 @@ public class VirtualUser extends Thread {
 		this.testFramework = testFramework;
 		this.bimServerClient = bimServerClient;
 		LOGGER = LoggerFactory.getLogger(name);
+		setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+			@Override
+			public void uncaughtException(Thread t, Throwable e) {
+				getLogger().error("", e);
+			}
+		});
 	}
 
 	@Override
@@ -61,7 +67,8 @@ public class VirtualUser extends Thread {
 				Action action = null;
 				try {
 					if (!bimServerClient.getServiceInterface().isLoggedIn()) {
-						new LoginAction(testFramework).execute(this);
+						action = new LoginAction(testFramework);
+						action.execute(this);
 					} else {
 						action = testFramework.getTestConfiguration().getActionFactory().createAction();
 						action.execute(this);

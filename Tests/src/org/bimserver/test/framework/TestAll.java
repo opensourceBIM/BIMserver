@@ -12,10 +12,10 @@ public class TestAll {
 
 		testConfiguration.setHomeDir(new File("G:\\Test"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.values()));
-		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP_HEADER));
+		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected"), testFramework));
 		testConfiguration.setOutputFolder(new File("output"));
-		testConfiguration.setNrVirtualUsers(1);
+		testConfiguration.setNrVirtualUsers(6);
 		
 		testFramework.start();
 	}

@@ -1,6 +1,7 @@
 package org.bimserver.test.framework;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -19,9 +20,14 @@ public class TestResults {
 	public TestResults() {
 		try {
 			out = new PrintWriter(new File("results.html"));
-			InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("static/header.html");
+			File f = new File("static/header.html");
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			IOUtils.copy(resourceAsStream, byteArrayOutputStream);
+			if (f.exists()) {
+				IOUtils.copy(new FileInputStream(f), byteArrayOutputStream);
+			} else {
+				InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("static/header.html");
+				IOUtils.copy(resourceAsStream, byteArrayOutputStream);
+			}
 			out.write(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
 		} catch (IOException e) {
 			e.printStackTrace();

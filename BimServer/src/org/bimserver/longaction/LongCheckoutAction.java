@@ -24,6 +24,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.shared.exceptions.UserException;
 
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
@@ -40,7 +41,11 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 		try {
 			executeAction(action, downloadParameters, session, true);
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			if (e instanceof UserException) {
+				//
+			} else {
+				LOGGER.error("", e);
+			}
 		} finally {
 			session.close();
 			state = ActionState.FINISHED;

@@ -1,0 +1,1951 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<style>
+.left {width: 200px; float: left}
+.right {float: left;}
+.row {clear: both; height: 30px}
+
+.enabled {font-weight: bold}
+
+.button {border: 1px solid black; display: inline; padding: 2px; margin-left: 2px; cursor: pointer;}
+.type_all {background-color: white}
+.type_oke {background-color: #00FF00}
+.type_warn {background-color: orange}
+.type_error {background-color: red}
+
+.action_all {background-color: white}
+
+.user_all {background-color: white}
+
+.body {clear: both}
+</style>
+</head>
+<script>
+var types = {};
+var actions = {};
+var users = {};
+var typesAvailable = {};
+var actionsAvailable = {};
+var usersAvailable = {};
+
+function toggleRows(action) {
+	if ($(this).hasClass("enabled")) {
+		$(this).removeClass("enabled");
+	} else {
+		$(this).addClass("enabled");
+	}
+
+	updateMaps();
+
+	$(".body").find("tr").each(function(){
+		var tr = $(this);
+		var type = tr.attr("type");
+		var action = tr.attr("action");
+		var user = tr.attr("user");
+		if ((types["all"] != null || types[type] != null) && (actions["all"] != null || actions[action] != null) && (users["all"] != null || users[user] != null)) {
+			tr.show();
+		} else {
+			tr.hide();
+		}
+	});
+}
+
+function updateMaps() {
+	types = {};
+	actions = {};
+	users = {};
+	$(".head .types .enabled").each(function(){
+		types[$(this).attr("type")] = true;
+	});
+	$(".head .actions .enabled").each(function(){
+		actions[$(this).attr("action")] = true;
+	});
+	$(".head .users .enabled").each(function(){
+		users[$(this).attr("user")] = true;
+	});
+}
+
+function updateAvailableMaps() {
+	typesAvailable = {};
+	$(".body").find("[type]").each(function(index, data){
+		var type = $(this).attr("type");
+		if (types[type] == null) {
+			typesAvailable[type] = true;
+		}
+	});
+	
+	actionsAvailable = {};
+	$(".body").find("[action]").each(function(index, data){
+		var action = $(this).attr("action");
+		if (actions[action] == null) {
+			actionsAvailable[action] = true;
+		}
+	});
+	
+	usersAvailable = {};
+	$(".body").find("[user]").each(function(index, data){
+		var user = $(this).attr("user");
+		if (users[user] == null) {
+			usersAvailable[user] = true;
+		}
+	});
+}
+
+$(function(){
+	$(".head .button").click(toggleRows);
+	updateAvailableMaps();
+	for (t in typesAvailable) {
+		var u = $("<div type=\"" + t + "\" class=\"button type type_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".types .right").append(u);
+	}
+	for (t in actionsAvailable) {
+		var u = $("<div action=\"" + t + "\" class=\"button action action_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".actions .right").append(u);
+	}
+	for (t in usersAvailable) {
+		var u = $("<div user=\"" + t + "\" class=\"button user user_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".users .right").append(u);
+	}
+});
+</script>
+<body>
+<div class="head">
+	<div class="row types">
+		<div class="left">Types</div>
+		<div class="right">
+			<div type="all" class="button type enabled type_all">All</div>
+		</div>
+	</div>
+	
+	<div class="row actions">
+		<div class="left">Actions</div>
+		<div class="right">
+			<div action="all" class="button action enabled action_all">All</div>
+		</div>
+	</div>
+	
+	<div class="row users">
+		<div class="left">Users</div>
+		<div class="right">
+			<div user="all" class="button user enabled user_all">All</div>
+		</div>
+	</div>
+</div>
+<div class="body"><table>
+<tr>
+<th>#</th>
+<th>Virtual User</td>
+<th>Action</td>
+<th>Result</td>
+<th>Message</td>
+</tr>
+<tr user="2" action="CheckinAction" type="WARN">
+<td>0.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 153 (IFC_DOORLININGPROPERTIES is not a known entity) #161=IFC_DOORLININGPROPERTIES('2uYllRMJvCeOb8cUtlgTW5',#24,'Single-Flush:36" x 84" - 2" Inset:36" x 84" - 2" Inset:131666',$,$,$,$,$,$,$,$,$,$,$,$);</td>
+</tr>
+<tr user="1" action="CheckinAction" type="WARN">
+<td>1.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 50 (IFChBEAM is not a known entity) #31 = IFChBEAM ('08BvUqqpL3x8WGGDEENRtN', #6, $, $, $, #48, #45, $);</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>2.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1756652386</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>3.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CreateUserAction" type="WARN">
+<td>4.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>5.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (001.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>6.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (000.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="LoginAction" type="WARN">
+<td>7.</td>
+<td>1</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="1" action="CreateProjectAction" type="OKE">
+<td>8.</td>
+<td>1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 777727987</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>9.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (01-01-01-BasicSpaces-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>10.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (01-01-01-BasicSpaces-ADT-fix2.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="WARN">
+<td>11.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 127017 (IFCAIRTERMINAL is not a known entity) #205852= IFCAIRTERMINAL('0vW44fiFr01uw_VTYkTFuy',#205878,$,$,$,#205863,#205868,$,.FLUIDFLOW.,.SUPPLYAIR.,$,$,$,$,$,$,$,$,$,$);</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>12.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (003-T-Block-v20024.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>13.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>14.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-01-01_layer_number_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>15.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-01-01-LayerNumber-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="LogoutAction" type="OKE">
+<td>16.</td>
+<td>3</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>17.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (01-01-02-ArcAxis-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>18.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (01-01-02-BREPWall-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>19.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-01-02_brep_walls_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>20.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (01-01-01_wall-layered_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>21.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (01-01-02_walls_circular_axis_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>22.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 777727987 (01-01-02_walls_poly_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>23.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 777727987 (01-01-02_wall_circular_axis_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="OKE">
+<td>24.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1549968923@bimserver.org</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>25.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-01-03-Clipping-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>26.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (01-01-03-Clipping-Restricted-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>27.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (01-01-03-SpacesVoids-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>28.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-01-03-WallClipping_LayerClipping_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>29.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1050738017</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>30.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user Administrator to project Project 1756652386</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>31.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-01-03-WallClipping_LayerClipping_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>32.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-01-03-WallClipping_RestrictedClipping_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>33.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (01-01-03-WallClipping_RestrictedClipping_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>34.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1198835623</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>35.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-01-03_clipping_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>36.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 777727987 (01-01-03_walls_circular_axis_clipping_1peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="WARN">
+<td>37.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>38.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 604290842 to project Project 818336575</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="OKE">
+<td>39.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 432396778@bimserver.org</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>40.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user Administrator to project Project 1364873643</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>41.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-01-03_walls_circular_axis_clipping_2peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>42.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (01-01-03_walls_circular_axis_clipping_general_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>43.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (01-01-03_walls_curved_topbottom_clipping_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>44.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-01-03_walls_straight_bottom_clipping_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="OKE">
+<td>45.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1161480426@bimserver.org</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>46.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 777727987 (01-01-03_walls_straight_clipping_1peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>47.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-01-03_walls_straight_clipping_2peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>48.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (01-01-03_walls_straight_clipping_general_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>49.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-01-03_walls_straight_topbottom_clipping_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>50.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (01-01-04-WallComponents-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>51.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-01-04-WallNonUniformComponents-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>52.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (01-01-04-WallNonUniformComponentsBasic-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>53.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 993382374 to project Project 818336575</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>54.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>55.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-01-04_non-vertical_walls_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>56.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-02-01-OpeningsStandard-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>57.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>58.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-02-01_round_clipped_wall_with_openings_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>59.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>60.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 993382374 to project Project 1229581746</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>61.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (01-02-01_round_wall_with_openings_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LoginAction" type="OKE">
+<td>62.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>63.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>64.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (01-02-01_wall_opening1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>65.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user Administrator to project Project 1872028799</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>66.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-02-01_wall_openings2_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>67.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (01-02-01_wall_openings_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>68.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-02-02-VerticalExtrusions_StandardOpenings_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="OKE">
+<td>69.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1393073088@bimserver.org</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>70.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-02-02-VerticalExtrusions_StandardOpenings_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>71.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (01-02-04-BrepShapeOpenings_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>72.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-02-04-PolyBREPOpenings-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>73.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (01-03-03-RecessesWithBrepGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>74.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>75.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (01-03-03-RecessesWithBrepGeometry_rev_1_old.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>76.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-04-01-L-ShapeConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>77.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (01-01-02_circular_axis_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>78.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-04-01-L-ShapeConnections_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>79.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>80.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (01-04-01_L-shape_connection_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="AddUserToProjectAction" type="OKE">
+<td>81.</td>
+<td>3</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user Administrator to project Project 1082002540</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>82.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (01-04-01_walls-L-connection_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>83.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-04-02-T-ShapeConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>84.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (01-04-02_T-shape_connection_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>85.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (01-04-02_walls-T-connection_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>86.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01-04-03-X-ShapeConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CreateUserAction" type="OKE">
+<td>87.</td>
+<td>3</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1114729244@bimserver.org</td>
+</tr>
+<tr user="3" action="CreateUserAction" type="WARN">
+<td>88.</td>
+<td>3</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>89.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (01-04-03-X-ShapeConnections_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>90.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (01-04-04-3-WallConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>91.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (01-04-04-ThreeConnectingWalls_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>92.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (01-04-04-ThreeConnectingWalls_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>93.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (011.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="WARN">
+<td>94.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 85 (IFC_WALLSTANDARDCASE is not a known entity) #27=IFC_WALLSTANDARDCASE('Aier3CYltMi000001_grtG',#20,'WALL | Standard(1)','','',#33,#84,$);</td>
+</tr>
+<tr user="3" action="CheckinAction" type="WARN">
+<td>95.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 49 (IFC_TEMPSTANDARDCASE is not a known entity) #268437125= IFC_TEMPSTANDARDCASE('2MOapIg4D75eLUUsi31gXK',#268437024,'IFC_TEMP-9',$,$,#268437122,#268437212,$);</td>
+</tr>
+<tr user="3" action="AddUserToProjectAction" type="OKE">
+<td>96.</td>
+<td>3</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 993382374 to project Project 777727987</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>97.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (01_wall_opening_tek.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>98.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (02-01-01_beams_basic_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CreateUserAction" type="WARN">
+<td>99.</td>
+<td>3</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="3" action="LogoutAction" type="OKE">
+<td>100.</td>
+<td>3</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>101.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (01-01-01-BasicSpaces-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CreateProjectAction" type="OKE">
+<td>102.</td>
+<td>1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1367909325</td>
+</tr>
+<tr user="2" action="LoginAction" type="WARN">
+<td>103.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>104.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 993382374 to project Project 1872028799</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>105.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (02-01-01_beam_profile_basic_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>106.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (02-01-01_beam_profile_para_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="OKE">
+<td>107.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 635986702@bimserver.org</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>108.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (02-01-01_profile_basic_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>109.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 797640293</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>110.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (02-01-01_profile_para_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>111.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 587978777 to project Project 1082002540</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>112.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 714703505 to project Project 1872028799</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>113.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 604290842 to project Project 1872028799</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>114.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 777727987 (02-01-03-BeamClipping-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>115.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (02-01-03_beam_profile_basic_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>116.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (02-01-03_beam_profile_para_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>117.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1994099923</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>118.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (02-01-04-BeamBREP-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="LoginAction" type="WARN">
+<td>119.</td>
+<td>3</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>120.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (02-01-04-BeamsWithBrepGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="AddUserToProjectAction" type="OKE">
+<td>121.</td>
+<td>3</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1428914549 to project Project 647954699</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>122.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (02-01-04_arbitrary_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="LoginAction" type="WARN">
+<td>123.</td>
+<td>1</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>124.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (02-01-04_curved_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>125.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (02-01-04_haunch_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CreateUserAction" type="WARN">
+<td>126.</td>
+<td>1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>127.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1367909325 (02-01-04_straight_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>128.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (02-01-04_steel_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>129.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1994099923 (02-01-05-BeamProfile-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>130.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (02-01-06-BeamSpecific-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>131.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (02-01-06-SpecificBeams_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>132.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (02-02-01-OpeningsInExtrudedBeams_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>133.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (02-02-01_beams_openings_general_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>134.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (02-01-06_beams_specific_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>135.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (03-01-01_col_profile_basic_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="AddUserToProjectAction" type="OKE">
+<td>136.</td>
+<td>3</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 604290842 to project Project 647954699</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>137.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (03-01-01_col_profile_para_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CreateUserAction" type="WARN">
+<td>138.</td>
+<td>3</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only admin users can create other users</td>
+</tr>
+<tr user="3" action="CreateUserAction" type="WARN">
+<td>139.</td>
+<td>3</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>140.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (03-01-01_profile_basic_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LoginAction" type="WARN">
+<td>141.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>142.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1050738017 (03-01-01_profile_para_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>143.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (03-01-03-ColumnClipping-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>144.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>145.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (02_beam_with_clipping_tek.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>146.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (03-01-03_col_profile_basic_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>147.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (03-01-03_col_profile_para_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>148.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (03-01-04-ColumnBREP-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CreateProjectAction" type="OKE">
+<td>149.</td>
+<td>1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 224955354</td>
+</tr>
+<tr user="1" action="LogoutAction" type="OKE">
+<td>150.</td>
+<td>1</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>151.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (03-01-04_arbitrary_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>152.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 224955354 (03-01-04_ColumnWithBrepGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>153.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (03-01-04_curved_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>154.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (03-01-04_haunch_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>155.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (03-01-04_straight_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CreateProjectAction" type="OKE">
+<td>156.</td>
+<td>1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 610392310</td>
+</tr>
+<tr user="1" action="CreateUserAction" type="OKE">
+<td>157.</td>
+<td>1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 993262625@bimserver.org</td>
+</tr>
+<tr user="2" action="LoginAction" type="WARN">
+<td>158.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="1" action="LoginAction" type="WARN">
+<td>159.</td>
+<td>1</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="3" action="LoginAction" type="WARN">
+<td>160.</td>
+<td>3</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>161.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (03-01-05-ColumnProfile-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="WARN">
+<td>162.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="2" action="CreateUserAction" type="WARN">
+<td>163.</td>
+<td>2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only admin users can create other users</td>
+</tr>
+<tr user="2" action="LoginAction" type="OKE">
+<td>164.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>165.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (03-02-01_columns_openings_general_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>166.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1135268380</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>167.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (03-01-06_spec_column1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CreateProjectAction" type="OKE">
+<td>168.</td>
+<td>3</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1337045585</td>
+</tr>
+<tr user="3" action="CheckinAction" type="WARN">
+<td>169.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 43 (IFC_RELVOIDSELEMENT is not a known entity) #26=IFC_RELVOIDSELEMENT('03E02cgpfBCeTRG5eqIAoK',#14,$,$,#50,#28);</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>170.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (03-02-01_OpeningsInExtrudedColumns_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>171.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (04-01-01-SlabComponents-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>172.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1135268380 (04-01-01_layer_number_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>173.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>174.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (04-01-02-SlabProfiles-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="LogoutAction" type="OKE">
+<td>175.</td>
+<td>3</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>176.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (04-01-02_slabs_profiles1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>177.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (04-01-02_slab_profiles_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LoginAction" type="OKE">
+<td>178.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>179.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (04-01-02_slab_profiles_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>180.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (04-01-03-SlabExtrusions-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>181.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (04-01-03_slabs_extrudes2_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>182.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1459421200</td>
+</tr>
+<tr user="2" action="CreateProjectAction" type="OKE">
+<td>183.</td>
+<td>2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1784188858</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>184.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (04-01-05-SpecificSlabs-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>185.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1784188858 (04-01-05-SpecificSlabs-ADT_Fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>186.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (04-01-03_slabs_extrudes1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>187.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (04-01-05_SpecificSlabs_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>188.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (04-02_SlabObjectTypes_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>189.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (04-03-01_OpeningsInExtrudedSlabs_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>190.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (04-03-01_slab_opening_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>191.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (04-03-01_slab_openings_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>192.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (04-04-01_RecessesInExtrudedSlabs_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>193.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (03-01-06_spec_column2_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>194.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (040123_TF_Teil_Halle_A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>195.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (040123_TF_Teil_Halle_A3.ORIGINAL.CONTAINS BUGS.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="WARN">
+<td>196.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 64 (IFC_WALLSTANDARDCASE is not a known entity) #62 = IFC_WALLSTANDARDCASE ('0qOGKmIiP3Hvt9QyjZXdgh', #6, 'Wand-007', $, $, #61, #58, $);</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>197.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (040126_ADT_Teil_Halle_A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>198.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (003-T-Block-v20025.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>199.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (040127_AC_Teil_Halle_A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="AddUserToProjectAction" type="OKE">
+<td>200.</td>
+<td>3</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 135250336 to project Project 1337045585</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>201.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1784188858 (040127_AP_2004_Teil_Halle_A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>202.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 604290842 to project Project 1784188858</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>203.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 69535353 to project Project 1784188858</td>
+</tr>
+<tr user="2" action="AddUserToProjectAction" type="OKE">
+<td>204.</td>
+<td>2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 135250336 to project Project 1459421200</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>205.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1367909325 (040209_ADT_Teil Halle A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CreateUserAction" type="OKE">
+<td>206.</td>
+<td>0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 415957022@bimserver.org</td>
+</tr>
+<tr user="0" action="LogoutAction" type="OKE">
+<td>207.</td>
+<td>0</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="0" action="LoginAction" type="WARN">
+<td>208.</td>
+<td>0</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="0" action="LoginAction" type="WARN">
+<td>209.</td>
+<td>0</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>210.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (040211_AC_Teil_Halle A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="LoginAction" type="WARN">
+<td>211.</td>
+<td>0</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="0" action="LoginAction" type="WARN">
+<td>212.</td>
+<td>0</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>213.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1082002540 (040127_AP_Teil_Halle_A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="WARN">
+<td>214.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 894 (IFCFURNITURE is not a known entity) #487=IFCFURNITURE('1nN0JWOon23vI_yCh6Artj',#152,'',$,$,#104054,#97384,$);</td>
+</tr>
+<tr user="1" action="AddUserToProjectAction" type="OKE">
+<td>215.</td>
+<td>1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 135250336 to project Project 818336575</td>
+</tr>
+<tr user="1" action="CheckinAction" type="WARN">
+<td>216.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 894 (IFCFURNITURE is not a known entity) #487=IFCFURNITURE('1nN0JWOon23vI_yCh6Artj',#152,'',$,$,#104054,#97384,$);</td>
+</tr>
+<tr user="0" action="LoginAction" type="WARN">
+<td>217.</td>
+<td>0</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>218.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (04_slab_tek.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>219.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (04_V3_Erdgeschoss_ADT2008 SP1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>220.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 224955354 (04_V3_Erdgeschoss_ADT2008-fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>221.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (04_V3_Erdgeschoss_ADT2008.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>222.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1135268380 (05-01-01-DoorGeometry-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="LoginAction" type="WARN">
+<td>223.</td>
+<td>1</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>224.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (040225_TF_Teil_Halle A3.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>225.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (040225_TF_Teil_Halle A3.ORIGINAL.CONTAINS BUGS.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>226.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1459421200 (05-01-03-ExplicitDoorGeom-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>227.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (05-01-02-AdditionalDoorGeom-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>228.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 610392310 (05-01-03-ExplicitDoorGeom-ADT_fix_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>229.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (05-01-03-ExplicitDoorGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>230.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (05-01-02-AdditionalDoorGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>231.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1229581746 (05-01-03_ExplicitGeometry_rev_2.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LogoutAction" type="OKE">
+<td>232.</td>
+<td>2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>233.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (05-01-01-DoorGeometry-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>234.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1784188858 (05-01-03_ExplicitGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>235.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1459421200 (05-01-03_garage_door_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="AddUserToProjectAction" type="OKE">
+<td>236.</td>
+<td>0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user Administrator to project Project 1994099923</td>
+</tr>
+<tr user="2" action="LoginAction" type="WARN">
+<td>237.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>238.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1872028799 (05-01-04-Door2DGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>239.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1756652386 (05-02-01-DoorOperations-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="AddUserToProjectAction" type="OKE">
+<td>240.</td>
+<td>0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 993382374 to project Project 1082002540</td>
+</tr>
+<tr user="0" action="CreateUserAction" type="OKE">
+<td>241.</td>
+<td>0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1716101948@bimserver.org</td>
+</tr>
+<tr user="0" action="CreateUserAction" type="OKE">
+<td>242.</td>
+<td>0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1388493382@bimserver.org</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>243.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1784188858 (05-02-01-DoorOperations-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LoginAction" type="WARN">
+<td>244.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_WARN">WARN</td>
+<td>Invalid username/password combination</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>245.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (05-01-03_ExplicitGeometry_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>246.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1135268380 (05-02-01_DoorOperationsPlacementInsideWall_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>247.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 818336575 (05-02-01_DoorOperations_rev_2.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="LoginAction" type="OKE">
+<td>248.</td>
+<td>2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>249.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 797640293 (05-02-02-DoorPlacement-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>250.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1784188858 (05-03-01_doors_in_round_wall_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="AddUserToProjectAction" type="OKE">
+<td>251.</td>
+<td>0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 604290842 to project Project 797640293</td>
+</tr>
+<tr user="0" action="AddUserToProjectAction" type="OKE">
+<td>252.</td>
+<td>0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1428914549 to project Project 647954699</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>253.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1337045585 (05-01-04-Door2DGeom-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="0" action="CheckinAction" type="OKE">
+<td>254.</td>
+<td>0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1198835623 (05-03-03_doors-standalone_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="1" action="CheckinAction" type="OKE">
+<td>255.</td>
+<td>1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1364873643 (06-01-01-WindowGeometry-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="3" action="CheckinAction" type="OKE">
+<td>256.</td>
+<td>3</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 647954699 (05-02-02-DoorPlacement-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="2" action="CheckinAction" type="OKE">
+<td>257.</td>
+<td>2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1367909325 (05-03-01_DoorsInStraightRoundWalls_rev_1.ifc) sync: true, merge: false</td>
+</tr>
