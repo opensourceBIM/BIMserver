@@ -68,7 +68,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 
 	@Override
-	public ConcreteRevision execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
 			project = getProjectByPoid(poid);
 			int nrConcreteRevisionsBefore = project.getConcreteRevisions().size();
@@ -124,9 +124,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().store(newRevisionAdded);
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
-			if (e instanceof BimserverDeadlockException) {
+			if (e instanceof BimserverDatabaseException) {
 				// Let this one slide
-				throw (BimserverDeadlockException) e;
+				throw (BimserverDatabaseException) e;
 			}
 			if (e instanceof UserException) {
 				throw (UserException)e;

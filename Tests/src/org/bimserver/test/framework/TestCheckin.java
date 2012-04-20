@@ -20,7 +20,7 @@ public class TestCheckin {
 		TestConfiguration testConfiguration = new TestConfiguration();
 		final TestFramework testFramework = new TestFramework(testConfiguration);
 		testConfiguration.setStopNoVirtualUsers(false);
-		testConfiguration.setNrRunsPerVirtualUser(30);
+//		testConfiguration.setNrRunsPerVirtualUser(30);
 
 		testConfiguration.setHomeDir(new File("G:\\Testing"));
 		testConfiguration.setActionFactory(new RandomActionFactory(
@@ -54,7 +54,7 @@ public class TestCheckin {
 					return new CreateSubProjectAction(testFramework);
 				}
 			}, 
-			new ActionCreater(10){
+			new ActionCreater(6){
 				public Action create() {
 					return new CheckinAction(testFramework, new CheckinSettings());
 				}
@@ -65,7 +65,7 @@ public class TestCheckin {
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected"), testFramework));
 //		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
 		testConfiguration.setOutputFolder(new File("output"));
-		testConfiguration.setNrVirtualUsers(1);
+		testConfiguration.setNrVirtualUsers(8);
 		
 		testFramework.start();
 	}
