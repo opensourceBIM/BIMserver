@@ -6,7 +6,7 @@ import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.actions.CheckinAction;
 import org.bimserver.test.framework.actions.CheckinSettings;
 import org.bimserver.test.framework.actions.DownloadRevisionAction;
-import org.bimserver.test.framework.actions.FixedActionFactory;
+import org.bimserver.test.framework.actions.RandomActionFactory;
 
 public class TestCollada {
 	public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class TestCollada {
 		testConfiguration.setStartEmbeddedBimServer(true);
 		testConfiguration.setStopOnServerException(true);
 		testConfiguration.setStopOnUserException(false);
-		testConfiguration.setActionFactory(new FixedActionFactory(new CheckinAction(testFramework, new CheckinSettings()), new DownloadRevisionAction(testFramework, "Collada")));
+//		testConfiguration.setActionFactory(new RandomActionFactory(new CheckinAction(testFramework, new CheckinSettings()), new DownloadRevisionAction(testFramework, "Collada")));
 		testConfiguration.setOutputFolder(new File("output"));
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP_NO_HEADERS));
 

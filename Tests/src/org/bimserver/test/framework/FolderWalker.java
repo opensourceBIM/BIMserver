@@ -6,14 +6,17 @@ public class FolderWalker implements TestFileProvider {
 
 	private int current = 0;
 	private File[] listFiles;
+	private final TestFramework testFramework;
 
-	public FolderWalker(File folder) {
+	public FolderWalker(File folder, TestFramework testFramework) {
+		this.testFramework = testFramework;
 		listFiles = folder.listFiles();
 	}
 
 	@Override
 	public synchronized File getNewFile() {
 		if (current >= listFiles.length) {
+			testFramework.stop();
 			return null;
 		}
 		File next = listFiles[current++];
