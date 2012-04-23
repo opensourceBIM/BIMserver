@@ -349,10 +349,10 @@ public class IfcStepSerializer extends IfcSerializer {
 				writeEmbedded(out, (EObject) ref);
 			} else if (feature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
 				Object stringValue = object.eGet(object.eClass().getEStructuralFeature(feature.getName() + "AsString"));
-				if (stringValue != null) {
+				if (stringValue != null && model.isUseDoubleStrings()) {
 					out.print(stringValue);
 				} else {
-					out.print(ref);
+					writePrimitive(out, ref);
 				}
 			} else {
 				writePrimitive(out, ref);
@@ -369,7 +369,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			Object realVal = eObject.eGet(structuralFeature);
 			if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
 				Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
-				if (stringVal != null) {
+				if (stringVal != null && model.isUseDoubleStrings()) {
 					out.print(stringVal);
 				} else {
 					if (((Double)realVal).isInfinite() || (((Double)realVal).isNaN())) {
@@ -389,7 +389,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private void writeList(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		List<?> list = (List<?>) object.eGet(feature);
 		List<?> doubleStingList = null;
-		if (feature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+		if (feature.getEType() == EcorePackage.eINSTANCE.getEDouble() && model.isUseDoubleStrings()) {
 			EStructuralFeature doubleStringFeature = feature.getEContainingClass().getEStructuralFeature(feature.getName() + "AsString");
 			if (doubleStringFeature == null) {
 				throw new SerializerException("Field " + feature.getName() + "AsString" + " not found");
@@ -423,7 +423,7 @@ public class IfcStepSerializer extends IfcSerializer {
 							Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
 							if (realVal instanceof Double) {
 								Object stringVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValueAsString"));
-								if (stringVal != null) {
+								if (stringVal != null && model.isUseDoubleStrings()) {
 									out.print(stringVal);									
 								} else {
 									out.print(realVal);
@@ -441,7 +441,7 @@ public class IfcStepSerializer extends IfcSerializer {
 								out.print(OPEN_PAREN);
 								if (realVal instanceof Double) {
 									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
-									if (stringVal != null) {
+									if (stringVal != null && model.isUseDoubleStrings()) {
 										out.print(stringVal);
 									} else {
 										out.print(realVal);
@@ -491,7 +491,7 @@ public class IfcStepSerializer extends IfcSerializer {
 						out.print(BOOLEAN_UNDEFINED);
 					} else if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
 						Object stringVal = betweenObject.eGet(betweenObject.eClass().getEStructuralFeature("wrappedValueAsString"));
-						if (stringVal != null) {
+						if (stringVal != null && model.isUseDoubleStrings()) {
 							out.print(stringVal);							
 						} else {
 							out.print(val);
