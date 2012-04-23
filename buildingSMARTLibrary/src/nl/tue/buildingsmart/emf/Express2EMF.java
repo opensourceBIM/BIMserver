@@ -29,6 +29,7 @@ import org.bimserver.plugins.schema.AggregationType;
 import org.bimserver.plugins.schema.ArrayType;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.BaseType;
+import org.bimserver.plugins.schema.BinaryType;
 import org.bimserver.plugins.schema.BooleanType;
 import org.bimserver.plugins.schema.DefinedType;
 import org.bimserver.plugins.schema.DerivedAttribute2;
@@ -75,19 +76,13 @@ public class Express2EMF {
 	private EClass wrappedValueSuperClass;
 	private EEnum tristate;
 
-	public static void main(String[] args) {
-		Express2EMF express2EMF = new Express2EMF(".." + File.separator + "Builds" + File.separator + "build" + File.separator + "targets" + File.separator + "shared"
-				+ File.separator + "IFC2X3_TC1.exp", "ifc2x3");
-		express2EMF.writeEMF("../BimServer/src/org/bimserver/database/migrations/steps/" + "IFC2X3_TC1.ecore");
-	}
-
-	public Express2EMF(String schemaFileName, String modelName) {
-		schema = new SchemaLoader(schemaFileName).getSchema();
+	public Express2EMF(File schemaFileName, String modelName) {
+		schema = new SchemaLoader(schemaFileName.getAbsolutePath()).getSchema();
 		eFactory = EcoreFactory.eINSTANCE;
 		ePackage = EcorePackage.eINSTANCE;
 		schemaPack = eFactory.createEPackage();
 		try {
-			new DerivedReader(new File(schemaFileName), schema);
+			new DerivedReader(schemaFileName, schema);
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 		}
@@ -568,8 +563,14 @@ public class Express2EMF {
 				eAttribute.setName(attrib.getName());
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 				cls.getEStructuralFeatures().add(eAttribute);
+			} else if (domain instanceof BinaryType) {
+				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(expAttrib.isOptional());
+				eAttribute.setName(attrib.getName());
+				eAttribute.setEType(EcorePackage.eINSTANCE.getEByteArray());
+				cls.getEStructuralFeatures().add(eAttribute);
 			} else {
-				throw new RuntimeException("");
+				throw new RuntimeException("Unknown type: " + domain);
 			}
 		}
 	}

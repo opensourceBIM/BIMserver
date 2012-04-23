@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.google.common.collect.BiMap;
 
-public interface IfcModelInterface {
+public interface IfcModelInterface extends Iterable<IdEObject> {
 
 	void add(long oid, IdEObject newObject);
 	Map<Long, IdEObject> getObjects();
