@@ -23,6 +23,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -65,6 +66,7 @@ public class SettingsManager {
 		settings.setHideUserListForNonAdmin(true);
 		settings.setShowVersionUpgradeAvailable(false);
 		settings.setCacheOutputFiles(false);
+		settings.setMergeIdentifier(MergeIdentifier.GUID);
 		return settings;
 	}
 	
