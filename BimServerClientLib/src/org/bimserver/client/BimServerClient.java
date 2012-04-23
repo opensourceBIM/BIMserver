@@ -114,9 +114,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	public void connectProtocolBuffers(String address, int port) throws ConnectionException {
-		if (authenticationInfo == null) {
-			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
-		}
+//		if (authenticationInfo == null) {
+//			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
+//		}
 		disconnect();
 		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData);
 		this.channel = protocolBuffersChannel;

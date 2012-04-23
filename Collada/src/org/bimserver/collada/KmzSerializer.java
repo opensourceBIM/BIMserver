@@ -80,7 +80,7 @@ public class KmzSerializer extends EmfSerializer {
 	private void writeKmlFile(OutputStream out) {
 		PrintWriter writer = new PrintWriter(out);
 		writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		writer.println("<kml xmlns=\"http://earth.google.com/kml/2.1\">");
+		writer.println("<kml xmlns=\"http://www.opengis.net/kml/2.2\">");
 		writer.println("<Placemark>");
 		writer.println("	<name>" + getProjectInfo().getName() + "</name>");
 		writer.println("	<description>" + getProjectInfo().getDescription() + "</description>");

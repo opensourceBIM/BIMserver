@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -87,7 +88,18 @@ public class Reflector extends ProtocolBuffersConverter {
 						}
 						builder.setField(field, ByteString.copyFrom(baos.toByteArray()));
 					} else {
-						builder.setField(field, arg);
+						if (arg != null) {
+							if (arg instanceof Collection) {
+								Collection col = (Collection)arg;
+								Iterator iterator = col.iterator();
+								while (iterator.hasNext()) {
+									Object o = iterator.next();
+									builder.addRepeatedField(field, o);
+								}
+							} else {
+								builder.setField(field, arg);
+							}
+						}
 					}
 				}
 				i++;

@@ -376,13 +376,15 @@ public class ColladaSerializer extends EmfSerializer {
 			out.println("				<input semantic=\"NORMAL\" source=\"#normals-" + id + "\"/>");
 			out.println("			</vertices>");
 			
-			out.println("			<triangles count=\"" + (visualisationProperties.getPrimitiveCount()) * 3 + "\" material=\"" + material + "SG\">");
+			out.println("			<triangles count=\"" + (visualisationProperties.getPrimitiveCount()) * 3 + "\" material=\"Material-" + id + "\">");
 			out.println("				<input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + id + "\"/>");
 			out.print("				<p>");
 			count = visualisationProperties.getPrimitiveCount() * 3;
-			for (int i = 0; i < count; i++) {
+			for (int i = 0; i < count; i+=3) {
 				out.print(i);
-				if (i != count - 1) {
+				out.print(i+2);
+				out.print(i+1);
+				if (i + 3 != count) {
 					out.print(" ");
 				}
 			}
@@ -426,7 +428,7 @@ public class ColladaSerializer extends EmfSerializer {
 				out.println("                <instance_geometry url=\"#geom-" + id + "\">");
 				out.println("                    <bind_material>");
 				out.println("                        <technique_common>");
-				out.println("                            <instance_material symbol=\"" + material + "SG\" target=\"#" + material + "Material\"/>");
+				out.println("                            <instance_material symbol=\"Material-" + id + "\" target=\"#" + material + "Material\"/>");
 				out.println("                        </technique_common>");
 				out.println("                    </bind_material>");
 				out.println("                </instance_geometry>");

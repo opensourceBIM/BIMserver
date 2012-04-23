@@ -121,7 +121,7 @@ public class VersionChecker {
 			if (localVersion.getMinor() < onlineVersion.getMinor()) {
 				return true;
 			} else if (localVersion.getMinor() == onlineVersion.getMinor()) {
-				if (localVersion.getRevision() < onlineVersion.getRevision()) {
+				if (onlineVersion.getRevision() != null && localVersion.getRevision() < onlineVersion.getRevision()) {
 					return true;
 				}
 			}
