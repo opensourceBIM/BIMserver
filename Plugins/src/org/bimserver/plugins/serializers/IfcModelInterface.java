@@ -73,4 +73,6 @@ public interface IfcModelInterface {
 	long add(IdEObject eObject);
 	IfcRoot get(String guid);
 	void fixOidCounter();
+	void setUseDoubleStrings(boolean useDoubleStrings);
+	boolean isUseDoubleStrings();
 }
