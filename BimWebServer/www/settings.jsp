@@ -180,7 +180,7 @@
 <div class="tabbertab" id="deserializerstab" title="Deserializers">
 <a href="adddeserializer1.jsp">Add Deserializer</a>
 <table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>ObjectIDM</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Description</th><th>Type</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SDeserializer> deserializers = service.getAllDeserializers(false);
 	for (SDeserializer deserializer : deserializers) {

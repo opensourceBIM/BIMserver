@@ -20,7 +20,9 @@ package org.bimserver.shared.pb;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -85,6 +87,15 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 					arguments[i] = dataHandler;
 				} else if (value instanceof DynamicMessage) {
 					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value, null, sParameter.getType());
+				} else if (value instanceof Collection) {
+					Collection col = (Collection)value;
+					if (sParameter.getType().isList()) {
+						List list = new ArrayList(col);
+						arguments[i] = list;
+					} else if (sParameter.getType().isSet()) {
+						Set set = new HashSet(col);
+						arguments[i] = set;
+					}
 				} else {
 					arguments[i] = value;
 				}

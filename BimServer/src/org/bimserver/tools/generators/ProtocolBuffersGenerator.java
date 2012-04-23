@@ -536,6 +536,9 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private void createRequestMessage(StringBuilder builder, SMethod method, String messageName) {
+		if (messageName.equals("DownloadRevisionsRequest")) {
+			System.out.println();
+		}
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");
 		int counter = 1;
@@ -546,7 +549,7 @@ public class ProtocolBuffersGenerator {
 			} else {
 				messageBuilder.append("optional ");
 			}
-			messageBuilder.append(createMessage(builder, sParameter.getType()) + " " + sParameter.getName() + " = " + (counter++) + ";\n");
+			messageBuilder.append(createMessage(builder, sParameter.getBestType()) + " " + sParameter.getName() + " = " + (counter++) + ";\n");
 		}
 		messageBuilder.append("}\n\n");
 		builder.append(messageBuilder);
