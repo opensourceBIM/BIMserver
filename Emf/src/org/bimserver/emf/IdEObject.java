@@ -17,20 +17,11 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.emf.IdEObjectImpl.State;
 import org.eclipse.emf.ecore.EObject;
 
 public interface IdEObject extends EObject {
-	void setOid(long oid);
 	long getOid();
-	void setRid(int rid);
 	int getRid();
-	void setPid(int pid);
 	int getPid();
-	void setLazyLoader(LazyLoader lazyLoader);
-	void setLoaded();
 	void load();
-	boolean isLoadedOrLoading();
-	void setLoading();
-	State getLoadingState();
 }
