@@ -69,6 +69,7 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, Map<String, IdEObject>> guidIndex;
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
+	private boolean useDoubleStrings = true;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -739,5 +740,14 @@ public class IfcModel implements IfcModelInterface {
 
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public void setUseDoubleStrings(boolean useDoubleStrings) {
+		this.useDoubleStrings  = useDoubleStrings;
+	}
+	
+	public boolean isUseDoubleStrings() {
+		return useDoubleStrings;
 	}
 }
