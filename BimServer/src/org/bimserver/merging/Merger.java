@@ -307,6 +307,7 @@ public class Merger {
 			}
 		} else {
 			LOGGER.info("Merging scales");
+			endModel.setUseDoubleStrings(false);
 			SIPrefix prefix = project.getExportLengthMeasurePrefix();
 			for (IfcModelInterface ifcModel : ifcModels) {
 				float scale = (float) (getLengthUnitPrefix(ifcModel) / Math.pow(10.0, prefix.getValue()));
