@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.store.CompareContainer;
@@ -60,7 +61,7 @@ public class Compare {
 
 	private DataObject makeDataObject(IdEObject eObject) {
 		DataObject dataObject = StoreFactory.eINSTANCE.createDataObject();
-		dataObject.setOid(eObject.getOid());
+		((IdEObjectImpl)dataObject).setOid(eObject.getOid());
 		if (eObject instanceof IfcRoot) {
 			IfcRoot ifcRoot = (IfcRoot)eObject;
 			dataObject.setName(ifcRoot.getName());
@@ -80,7 +81,7 @@ public class Compare {
 						IdEObject ref = (IdEObject)v;
 						ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
 						referenceDataValue.setTypeName(eReference.getEType().getName());
-						referenceDataValue.setOid(ref.getOid());
+						((IdEObjectImpl)referenceDataValue).setOid(ref.getOid());
 						values.add(referenceDataValue);
 					}
 					dataObject.getValues().add(listDataValue);
@@ -92,7 +93,7 @@ public class Compare {
 						ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
 						referenceDataValue.setFieldName(eReference.getName());
 						referenceDataValue.setTypeName(eReference.getEType().getName());
-						referenceDataValue.setOid(ref.getOid());
+						((IdEObjectImpl)referenceDataValue).setOid(ref.getOid());
 						dataObject.getValues().add(referenceDataValue);
 					}
 				}

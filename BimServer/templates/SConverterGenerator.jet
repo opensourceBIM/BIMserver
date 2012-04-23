@@ -21,6 +21,7 @@ package org.bimserver.interfaces;
 
 <%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.interfaces.objects.*;
 import java.util.*;
 import org.bimserver.models.log.*;
@@ -146,7 +147,7 @@ public class SConverter {
 			return null;
 		}
 		<%=eClass.getName()%> result = <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 <%
 	for (EAttribute eAttribute : eClass.getEAllAttributes()) {
 		if (eAttribute.getEType() instanceof EEnum) {

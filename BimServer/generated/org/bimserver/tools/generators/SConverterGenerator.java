@@ -22,7 +22,7 @@ public class SConverterGenerator
   protected final String TEXT_1 = "package org.bimserver.interfaces;";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "" + NL + "public class SConverter {";
+  protected final String TEXT_4 = NL + NL + "import org.bimserver.emf.IdEObjectImpl;" + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "" + NL + "public class SConverter {";
   protected final String TEXT_5 = NL + NL + "\tpublic Set<S";
   protected final String TEXT_6 = "> convertToSSet";
   protected final String TEXT_7 = "(Collection<";
@@ -101,7 +101,7 @@ public class SConverterGenerator
   protected final String TEXT_80 = " input, DatabaseSession session) {" + NL + "\t\tif (input == null) {" + NL + "\t\t\treturn null;" + NL + "\t\t}" + NL + "\t\t";
   protected final String TEXT_81 = " result = ";
   protected final String TEXT_82 = "Factory.eINSTANCE.create";
-  protected final String TEXT_83 = "();" + NL + "\t\tresult.setOid(input.getOid());";
+  protected final String TEXT_83 = "();" + NL + "\t\t((IdEObjectImpl)result).setOid(input.getOid());";
   protected final String TEXT_84 = NL + "\t\tresult.set";
   protected final String TEXT_85 = "(";
   protected final String TEXT_86 = ".values()[input.get";

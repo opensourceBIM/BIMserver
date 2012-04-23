@@ -25,6 +25,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.mail.MailSystem;
@@ -165,8 +166,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		revisionMerger.cleanupUnmodified();
 
 		for (IdEObject idEObject : ifcModel.getValues()) {
-			idEObject.setRid(concreteRevision.getId());
-			idEObject.setPid(concreteRevision.getProject().getId());
+			((IdEObjectImpl)idEObject).setRid(concreteRevision.getId());
+			((IdEObjectImpl)idEObject).setPid(concreteRevision.getProject().getId());
 		}
 		return ifcModel;
 	}

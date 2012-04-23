@@ -17,6 +17,7 @@ package org.bimserver.interfaces;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.interfaces.objects.*;
 import java.util.*;
 import org.bimserver.models.log.*;
@@ -152,7 +153,7 @@ public class SConverter {
 			return null;
 		}
 		LogAction result = LogFactory.eINSTANCE.createLogAction();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -211,7 +212,7 @@ public class SConverter {
 			return null;
 		}
 		ServerLog result = LogFactory.eINSTANCE.createServerLog();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		List<LogAction> listactions = result.getActions();
 		for (long oid : input.getActions()) {
 			listactions.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, false, null));
@@ -272,7 +273,7 @@ public class SConverter {
 			return null;
 		}
 		NewUserAdded result = LogFactory.eINSTANCE.createNewUserAdded();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -335,7 +336,7 @@ public class SConverter {
 			return null;
 		}
 		NewProjectAdded result = LogFactory.eINSTANCE.createNewProjectAdded();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -399,7 +400,7 @@ public class SConverter {
 			return null;
 		}
 		RevisionBranched result = LogFactory.eINSTANCE.createRevisionBranched();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -461,7 +462,7 @@ public class SConverter {
 			return null;
 		}
 		NewRevisionAdded result = LogFactory.eINSTANCE.createNewRevisionAdded();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -522,7 +523,7 @@ public class SConverter {
 			return null;
 		}
 		NewCheckoutAdded result = LogFactory.eINSTANCE.createNewCheckoutAdded();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -581,7 +582,7 @@ public class SConverter {
 			return null;
 		}
 		SettingsSaved result = LogFactory.eINSTANCE.createSettingsSaved();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -643,7 +644,7 @@ public class SConverter {
 			return null;
 		}
 		UserAddedToProject result = LogFactory.eINSTANCE.createUserAddedToProject();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -703,7 +704,7 @@ public class SConverter {
 			return null;
 		}
 		NewObjectIDMUploaded result = LogFactory.eINSTANCE.createNewObjectIDMUploaded();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -761,7 +762,7 @@ public class SConverter {
 			return null;
 		}
 		Download result = LogFactory.eINSTANCE.createDownload();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -823,7 +824,7 @@ public class SConverter {
 			return null;
 		}
 		UserRemovedFromProject result = LogFactory.eINSTANCE.createUserRemovedFromProject();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -885,7 +886,7 @@ public class SConverter {
 			return null;
 		}
 		ProjectDeleted result = LogFactory.eINSTANCE.createProjectDeleted();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -946,7 +947,7 @@ public class SConverter {
 			return null;
 		}
 		UserDeleted result = LogFactory.eINSTANCE.createUserDeleted();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1007,7 +1008,7 @@ public class SConverter {
 			return null;
 		}
 		PasswordReset result = LogFactory.eINSTANCE.createPasswordReset();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1068,7 +1069,7 @@ public class SConverter {
 			return null;
 		}
 		DatabaseCreated result = LogFactory.eINSTANCE.createDatabaseCreated();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setPath(input.getPath());
@@ -1128,7 +1129,7 @@ public class SConverter {
 			return null;
 		}
 		ServerStarted result = LogFactory.eINSTANCE.createServerStarted();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1188,7 +1189,7 @@ public class SConverter {
 			return null;
 		}
 		ProjectUpdated result = LogFactory.eINSTANCE.createProjectUpdated();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1249,7 +1250,7 @@ public class SConverter {
 			return null;
 		}
 		UserUndeleted result = LogFactory.eINSTANCE.createUserUndeleted();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1310,7 +1311,7 @@ public class SConverter {
 			return null;
 		}
 		ProjectUndeleted result = LogFactory.eINSTANCE.createProjectUndeleted();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1371,7 +1372,7 @@ public class SConverter {
 			return null;
 		}
 		RevisionUpdated result = LogFactory.eINSTANCE.createRevisionUpdated();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1432,7 +1433,7 @@ public class SConverter {
 			return null;
 		}
 		GeoTagUpdated result = LogFactory.eINSTANCE.createGeoTagUpdated();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1493,7 +1494,7 @@ public class SConverter {
 			return null;
 		}
 		ClashDetectionSettingsUpdated result = LogFactory.eINSTANCE.createClashDetectionSettingsUpdated();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1554,7 +1555,7 @@ public class SConverter {
 			return null;
 		}
 		PasswordChanged result = LogFactory.eINSTANCE.createPasswordChanged();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1615,7 +1616,7 @@ public class SConverter {
 			return null;
 		}
 		UserChanged result = LogFactory.eINSTANCE.createUserChanged();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -1734,7 +1735,7 @@ public class SConverter {
 			return null;
 		}
 		Project result = StoreFactory.eINSTANCE.createProject();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setId(input.getId());
 		result.setName(input.getName());
 		result.setState(ObjectState.values()[input.getState().ordinal()]);
@@ -1839,7 +1840,7 @@ public class SConverter {
 			return null;
 		}
 		User result = StoreFactory.eINSTANCE.createUser();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setPassword(input.getPassword());
 		result.setState(ObjectState.values()[input.getState().ordinal()]);
@@ -1923,7 +1924,7 @@ public class SConverter {
 			return null;
 		}
 		Clash result = StoreFactory.eINSTANCE.createClash();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName1(input.getName1());
 		result.setName2(input.getName2());
 		result.setType1(input.getType1());
@@ -1990,7 +1991,7 @@ public class SConverter {
 			return null;
 		}
 		EidClash result = StoreFactory.eINSTANCE.createEidClash();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName1(input.getName1());
 		result.setName2(input.getName2());
 		result.setType1(input.getType1());
@@ -2059,7 +2060,7 @@ public class SConverter {
 			return null;
 		}
 		GuidClash result = StoreFactory.eINSTANCE.createGuidClash();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName1(input.getName1());
 		result.setName2(input.getName2());
 		result.setType1(input.getType1());
@@ -2131,7 +2132,7 @@ public class SConverter {
 			return null;
 		}
 		ClashDetectionSettings result = StoreFactory.eINSTANCE.createClashDetectionSettings();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setEnabled(input.getEnabled());
 		result.setMargin(input.getMargin());
 		result.getIgnoredClasses().addAll(input.getIgnoredClasses());
@@ -2223,7 +2224,7 @@ public class SConverter {
 			return null;
 		}
 		Revision result = StoreFactory.eINSTANCE.createRevision();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setId(input.getId());
 		result.setDate(input.getDate());
 		result.setComment(input.getComment());
@@ -2312,7 +2313,7 @@ public class SConverter {
 			return null;
 		}
 		ConcreteRevision result = StoreFactory.eINSTANCE.createConcreteRevision();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setId(input.getId());
 		result.setChecksum(input.getChecksum());
 		result.setSize(input.getSize());
@@ -2385,7 +2386,7 @@ public class SConverter {
 			return null;
 		}
 		GeoTag result = StoreFactory.eINSTANCE.createGeoTag();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setEnabled(input.getEnabled());
 		result.setX(input.getX());
 		result.setY(input.getY());
@@ -2456,7 +2457,7 @@ public class SConverter {
 			return null;
 		}
 		Checkout result = StoreFactory.eINSTANCE.createCheckout();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
 		result.setActive(input.getActive());
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
@@ -2557,7 +2558,7 @@ public class SConverter {
 			return null;
 		}
 		Settings result = StoreFactory.eINSTANCE.createSettings();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setShowVersionUpgradeAvailable(input.getShowVersionUpgradeAvailable());
 		result.setSendConfirmationEmailAfterRegistration(input.isSendConfirmationEmailAfterRegistration());
 		result.setUseCaching(input.getUseCaching());
@@ -2660,7 +2661,7 @@ public class SConverter {
 			return null;
 		}
 		Serializer result = StoreFactory.eINSTANCE.createSerializer();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setDescription(input.getDescription());
 		result.setExtension(input.getExtension());
@@ -2731,7 +2732,7 @@ public class SConverter {
 			return null;
 		}
 		ObjectIDM result = StoreFactory.eINSTANCE.createObjectIDM();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setClassName(input.getClassName());
 		result.setEnabled(input.getEnabled());
@@ -2808,7 +2809,7 @@ public class SConverter {
 			return null;
 		}
 		IfcEngine result = StoreFactory.eINSTANCE.createIfcEngine();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setActive(input.getActive());
 		result.setClassName(input.getClassName());
@@ -2872,7 +2873,7 @@ public class SConverter {
 			return null;
 		}
 		Plugin result = StoreFactory.eINSTANCE.createPlugin();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
@@ -2933,7 +2934,7 @@ public class SConverter {
 			return null;
 		}
 		Deserializer result = StoreFactory.eINSTANCE.createDeserializer();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
@@ -2997,7 +2998,7 @@ public class SConverter {
 			return null;
 		}
 		CheckinResult result = StoreFactory.eINSTANCE.createCheckinResult();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProgress(input.getProgress());
 		result.setLastError(input.getLastError());
 		result.setStatus(CheckinStatus.values()[input.getStatus().ordinal()]);
@@ -3059,7 +3060,7 @@ public class SConverter {
 			return null;
 		}
 		DownloadResult result = StoreFactory.eINSTANCE.createDownloadResult();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProjectName(input.getProjectName());
 		result.setRevisionNr(input.getRevisionNr());
 		result.setFile(input.getFile());
@@ -3116,7 +3117,7 @@ public class SConverter {
 			return null;
 		}
 		CheckoutResult result = StoreFactory.eINSTANCE.createCheckoutResult();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProjectName(input.getProjectName());
 		result.setRevisionNr(input.getRevisionNr());
 		result.setFile(input.getFile());
@@ -3180,7 +3181,7 @@ public class SConverter {
 			return null;
 		}
 		DataValue result = StoreFactory.eINSTANCE.createDataValue();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
 		return result;
 	}
@@ -3240,7 +3241,7 @@ public class SConverter {
 			return null;
 		}
 		DataObject result = StoreFactory.eINSTANCE.createDataObject();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setType(input.getType());
 		result.setGuid(input.getGuid());
 		result.setName(input.getName());
@@ -3307,7 +3308,7 @@ public class SConverter {
 			return null;
 		}
 		UserSession result = StoreFactory.eINSTANCE.createUserSession();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setUsername(input.getUsername());
 		result.setName(input.getName());
 		result.setType(UserType.values()[input.getType().ordinal()]);
@@ -3369,7 +3370,7 @@ public class SConverter {
 			return null;
 		}
 		Migration result = StoreFactory.eINSTANCE.createMigration();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setNumber(input.getNumber());
 		result.setDescription(input.getDescription());
 		result.setExecuted(input.getExecuted());
@@ -3426,7 +3427,7 @@ public class SConverter {
 			return null;
 		}
 		ReferenceDataValue result = StoreFactory.eINSTANCE.createReferenceDataValue();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
 		result.setTypeName(input.getTypeName());
 		result.setGuid(input.getGuid());
@@ -3486,7 +3487,7 @@ public class SConverter {
 			return null;
 		}
 		ListDataValue result = StoreFactory.eINSTANCE.createListDataValue();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
 		List<DataValue> listvalues = result.getValues();
 		for (SDataValue v : input.getValues()) {
@@ -3544,7 +3545,7 @@ public class SConverter {
 			return null;
 		}
 		SimpleDataValue result = StoreFactory.eINSTANCE.createSimpleDataValue();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
 		result.setStringValue(input.getStringValue());
 		return result;
@@ -3599,7 +3600,7 @@ public class SConverter {
 			return null;
 		}
 		DatabaseInformationItem result = StoreFactory.eINSTANCE.createDatabaseInformationItem();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setKey(input.getKey());
 		result.setValue(input.getValue());
 		return result;
@@ -3658,7 +3659,7 @@ public class SConverter {
 			return null;
 		}
 		DatabaseInformationCategory result = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setTitle(input.getTitle());
 		List<DatabaseInformationItem> listitems = result.getItems();
 		for (SDatabaseInformationItem v : input.getItems()) {
@@ -3728,7 +3729,7 @@ public class SConverter {
 			return null;
 		}
 		DatabaseInformation result = StoreFactory.eINSTANCE.createDatabaseInformation();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setNumberOfProjects(input.getNumberOfProjects());
 		result.setNumberOfUsers(input.getNumberOfUsers());
 		result.setNumberOfRevisions(input.getNumberOfRevisions());
@@ -3796,7 +3797,7 @@ public class SConverter {
 			return null;
 		}
 		SerializerPluginDescriptor result = StoreFactory.eINSTANCE.createSerializerPluginDescriptor();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDefaultName(input.getDefaultName());
 		result.setDefaultExtension(input.getDefaultExtension());
@@ -3853,7 +3854,7 @@ public class SConverter {
 			return null;
 		}
 		DeserializerPluginDescriptor result = StoreFactory.eINSTANCE.createDeserializerPluginDescriptor();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDefaultName(input.getDefaultName());
 		return result;
@@ -3908,7 +3909,7 @@ public class SConverter {
 			return null;
 		}
 		RevisionSummaryType result = StoreFactory.eINSTANCE.createRevisionSummaryType();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setCount(input.getCount());
 		return result;
@@ -3967,7 +3968,7 @@ public class SConverter {
 			return null;
 		}
 		RevisionSummaryContainer result = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		List<RevisionSummaryType> listtypes = result.getTypes();
 		for (SRevisionSummaryType v : input.getTypes()) {
@@ -4028,7 +4029,7 @@ public class SConverter {
 			return null;
 		}
 		RevisionSummary result = StoreFactory.eINSTANCE.createRevisionSummary();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		List<RevisionSummaryContainer> listlist = result.getList();
 		for (SRevisionSummaryContainer v : input.getList()) {
 			listlist.add(convertFromSObject(v, session));
@@ -4087,7 +4088,7 @@ public class SConverter {
 			return null;
 		}
 		PluginDescriptor result = StoreFactory.eINSTANCE.createPluginDescriptor();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setDescription(input.getDescription());
 		result.setLocation(input.getLocation());
@@ -4151,7 +4152,7 @@ public class SConverter {
 			return null;
 		}
 		LongAction result = StoreFactory.eINSTANCE.createLongAction();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setIdentification(input.getIdentification());
 		result.setStart(input.getStart());
 		result.setUsername(input.getUsername());
@@ -4218,7 +4219,7 @@ public class SConverter {
 			return null;
 		}
 		LongCheckinAction result = StoreFactory.eINSTANCE.createLongCheckinAction();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setIdentification(input.getIdentification());
 		result.setStart(input.getStart());
 		result.setUsername(input.getUsername());
@@ -4279,7 +4280,7 @@ public class SConverter {
 			return null;
 		}
 		ObjectIDMPluginDescriptor result = StoreFactory.eINSTANCE.createObjectIDMPluginDescriptor();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setClassName(input.getClassName());
 		return result;
 	}
@@ -4356,7 +4357,7 @@ public class SConverter {
 			return null;
 		}
 		CompareItem result = StoreFactory.eINSTANCE.createCompareItem();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
 		return result;
 	}
@@ -4410,7 +4411,7 @@ public class SConverter {
 			return null;
 		}
 		ObjectAdded result = StoreFactory.eINSTANCE.createObjectAdded();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
 		return result;
 	}
@@ -4464,7 +4465,7 @@ public class SConverter {
 			return null;
 		}
 		ObjectRemoved result = StoreFactory.eINSTANCE.createObjectRemoved();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
 		return result;
 	}
@@ -4521,7 +4522,7 @@ public class SConverter {
 			return null;
 		}
 		ObjectModified result = StoreFactory.eINSTANCE.createObjectModified();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
 		result.setOldValue(input.getOldValue());
 		result.setNewValue(input.getNewValue());
@@ -4582,7 +4583,7 @@ public class SConverter {
 			return null;
 		}
 		CompareContainer result = StoreFactory.eINSTANCE.createCompareContainer();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setType(input.getType());
 		List<CompareItem> listitems = result.getItems();
 		for (SCompareItem v : input.getItems()) {
@@ -4643,7 +4644,7 @@ public class SConverter {
 			return null;
 		}
 		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		List<CompareContainer> listitems = result.getItems();
 		for (SCompareContainer v : input.getItems()) {
 			listitems.add(convertFromSObject(v, session));
@@ -4707,7 +4708,7 @@ public class SConverter {
 			return null;
 		}
 		LongActionState result = StoreFactory.eINSTANCE.createLongActionState();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProgress(input.getProgress());
 		result.setState(ActionState.values()[input.getState().ordinal()]);
 		return result;
@@ -4766,7 +4767,7 @@ public class SConverter {
 			return null;
 		}
 		Notification result = StoreFactory.eINSTANCE.createNotification();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		return result;
 	}
 
@@ -4819,7 +4820,7 @@ public class SConverter {
 			return null;
 		}
 		NewProjectNotification result = StoreFactory.eINSTANCE.createNewProjectNotification();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), false, null));
 		return result;
 	}
@@ -4875,7 +4876,7 @@ public class SConverter {
 			return null;
 		}
 		NewRevisionNotification result = StoreFactory.eINSTANCE.createNewRevisionNotification();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), false, null));
 		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), false, null));
 		return result;
@@ -4931,7 +4932,7 @@ public class SConverter {
 			return null;
 		}
 		CompileResult result = StoreFactory.eINSTANCE.createCompileResult();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setCompileOke(input.getCompileOke());
 		result.getWarnings().addAll(input.getWarnings());
 		result.getErrors().addAll(input.getErrors());
@@ -4989,7 +4990,7 @@ public class SConverter {
 			return null;
 		}
 		RunResult result = StoreFactory.eINSTANCE.createRunResult();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setRunOke(input.getRunOke());
 		result.getWarnings().addAll(input.getWarnings());
 		result.getErrors().addAll(input.getErrors());
@@ -5053,7 +5054,7 @@ public class SConverter {
 			return null;
 		}
 		ServerInfo result = StoreFactory.eINSTANCE.createServerInfo();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setServerState(ServerState.values()[input.getServerState().ordinal()]);
 		result.setErrorMessage(input.getErrorMessage());
 		return result;
@@ -5113,7 +5114,7 @@ public class SConverter {
 			return null;
 		}
 		Version result = StoreFactory.eINSTANCE.createVersion();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setMajor(input.getMajor());
 		result.setMinor(input.getMinor());
 		result.setRevision(input.getRevision());
@@ -5173,7 +5174,7 @@ public class SConverter {
 			return null;
 		}
 		IfcEnginePluginDescriptor result = StoreFactory.eINSTANCE.createIfcEnginePluginDescriptor();
-		result.setOid(input.getOid());
+		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDefaultName(input.getDefaultName());
 		return result;

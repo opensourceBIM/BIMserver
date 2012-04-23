@@ -25,7 +25,7 @@ public class NameChangeActivity extends Activity {
 
 	@Override
 	public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
-		IfcModelInterface model = satelliteServer.getBimServerClient().getModelAlternative(newRevisionNotification.getRevisionId());
+		IfcModelInterface model = satelliteServer.getBimServerClient().getModel(newRevisionNotification.getRevisionId());
 		ServiceInterface serviceInterface = satelliteServer.getBimServerClient().getServiceInterface();
 		SRevision revision = serviceInterface.getRevision(newRevisionNotification.getRevisionId());
 		if (!revision.getComment().contains(COMMENT_TAG)) {

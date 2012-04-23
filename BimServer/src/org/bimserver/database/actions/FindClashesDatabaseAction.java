@@ -28,6 +28,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
@@ -174,7 +175,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 			return converted.get(original);
 		}
 		IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
-		newObject.setOid(original.getOid());
+		((IdEObjectImpl)newObject).setOid(original.getOid());
 		converted.put(original, newObject);
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject);

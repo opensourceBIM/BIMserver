@@ -34,6 +34,7 @@ import org.bimserver.client.factories.AutologinAuthenticationInfo;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SDataObject;
@@ -79,7 +80,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private Channel channel;
 	private SocketNotificationsClient notificationsClient;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
-	private SchemaDefinition schema;
+//	private SchemaDefinition schema;
 	private final PluginManager pluginManager;
 	private boolean connected = false;
 	private AuthenticationInfo authenticationInfo;
@@ -94,11 +95,11 @@ public class BimServerClient implements ConnectDisconnectListener {
 			LOGGER.error("", e);
 		}
 		notificationsClient = new SocketNotificationsClient();
-		try {
-			schema = pluginManager.requireSchemaDefinition();
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		}
+//		try {
+//			schema = pluginManager.requireSchemaDefinition();
+//		} catch (PluginException e) {
+//			LOGGER.error("", e);
+//		}
 	}
 
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
@@ -244,38 +245,38 @@ public class BimServerClient implements ConnectDisconnectListener {
 		}
 	}
 
-	public IfcModelInterface getModel(long roid) {
-		try {
-			SSerializer serializer = getServiceInterface().getSerializerByContentType("application/ifc");
-			Integer downloadId = getServiceInterface().download(roid, serializer.getName(), true, true);
-			SDownloadResult downloadData = getServiceInterface().getDownloadData(downloadId);
-			DataHandler file = downloadData.getFile();
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
-			deserializer.init(schema);
-			IfcModelInterface model = deserializer.read(file.getInputStream(), "", true, 0);
-			return model;
-		} catch (ServiceException e) {
-			LOGGER.error("", e);
-		} catch (DeserializeException e) {
-			LOGGER.error("", e);
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		}
-		return null;
-	}
+//	public IfcModelInterface getModel(long roid) {
+//		try {
+//			SSerializer serializer = getServiceInterface().getSerializerByContentType("application/ifc");
+//			Integer downloadId = getServiceInterface().download(roid, serializer.getName(), true, true);
+//			SDownloadResult downloadData = getServiceInterface().getDownloadData(downloadId);
+//			DataHandler file = downloadData.getFile();
+//			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+//			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+//			deserializer.init(schema);
+//			IfcModelInterface model = deserializer.read(file.getInputStream(), "", true, 0);
+//			return model;
+//		} catch (ServiceException e) {
+//			LOGGER.error("", e);
+//		} catch (DeserializeException e) {
+//			LOGGER.error("", e);
+//		} catch (IOException e) {
+//			LOGGER.error("", e);
+//		} catch (PluginException e) {
+//			LOGGER.error("", e);
+//		}
+//		return null;
+//	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public IfcModelInterface getModelAlternative(long roid) {
+	public IfcModelInterface getModel(long roid) {
 		try {
 			List<SDataObject> dataObjects = getServiceInterface().getDataObjects(roid);
 			IfcModelInterface model = new IfcModel(dataObjects.size());
 			for (SDataObject dataObject : dataObjects) {
 				EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(dataObject.getType());
 				IdEObject idEObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
-				idEObject.setOid(dataObject.getOid());
+				((IdEObjectImpl)idEObject).setOid(dataObject.getOid());
 				model.add(dataObject.getOid(), idEObject);
 				for (SDataValue dataValue : dataObject.getValues()) {
 					if (dataValue instanceof SSimpleDataValue) {

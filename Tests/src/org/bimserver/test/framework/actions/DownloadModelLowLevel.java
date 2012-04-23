@@ -41,7 +41,7 @@ public class DownloadModelLowLevel extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SRevision randomRevision = virtualUser.getRandomRevision();
 		if (randomRevision != null) {
-			IfcModelInterface model = virtualUser.getBimServerClient().getModelAlternative(randomRevision.getOid());
+			IfcModelInterface model = virtualUser.getBimServerClient().getModel(randomRevision.getOid());
 			PluginManager pluginManager = virtualUser.getBimServerClient().getPluginManager();
 			try {
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);

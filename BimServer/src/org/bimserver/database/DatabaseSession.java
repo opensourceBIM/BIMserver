@@ -36,6 +36,7 @@ import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseEx
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.LazyLoader;
 import org.bimserver.emf.MetaDataManager;
@@ -250,7 +251,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		if (objectCache.contains(recordIdentifier)) {
 			return objectCache.get(recordIdentifier);
 		}
-		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setOid(oid);
 		object.setPid(pid);
 		// TODO remove this
@@ -278,14 +279,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 		if (idEObject == null) {
 			idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
-			idEObject.setOid(oid);
-			idEObject.setPid(pid);
+			((IdEObjectImpl)idEObject).setOid(oid);
+			((IdEObjectImpl)idEObject).setPid(pid);
 			if (rid == Integer.MAX_VALUE) {
 				throw new RuntimeException("This is not oke");
 			}
-			idEObject.setRid(rid);
+			((IdEObjectImpl)idEObject).setRid(rid);
 		} else {
-			idEObject.setRid(rid);
+			((IdEObjectImpl)idEObject).setRid(rid);
 		}
 
 		if (DEVELOPER_DEBUG && StorePackage.eINSTANCE == idEObject.eClass().getEPackage()) {
@@ -410,7 +411,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			}
 			fieldCounter++;
 		}
-		idEObject.setLoaded();
+		((IdEObjectImpl)idEObject).setLoaded();
 		return idEObject;
 	}
 
@@ -1280,7 +1281,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 						}
 					}
 				} else {
-					IdEObject newObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+					IdEObjectImpl newObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 					newObject.setLazyLoader(this);
 					newObject.setOid(oid);
 					newObject.setPid(pid);
@@ -1323,14 +1324,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		if (!objectsToCommit.containsObject(object)) {
 			if (object.getOid() == -1) {
 				long newOid = newOid();
-				object.setOid(newOid);
+				((IdEObjectImpl)object).setOid(newOid);
 			}
 			object.load();
-			object.setPid(pid);
+			((IdEObjectImpl)object).setPid(pid);
 			if (rid == Integer.MAX_VALUE) {
-				object.setRid(object.getRid() + 1);
+				((IdEObjectImpl)object).setRid(object.getRid() + 1);
 			} else {
-				object.setRid(rid);
+				((IdEObjectImpl)object).setRid(rid);
 			}
 			addToObjectsToCommit(object);
 		}
@@ -1427,7 +1428,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
 		if (wrappedValue instanceof IfcGloballyUniqueId) {
 			if (wrappedValue.getOid() == -1) {
-				wrappedValue.setOid(newOid());
+				((IdEObjectImpl)wrappedValue).setOid(newOid());
 			}
 			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue);
 			ByteBuffer createKeyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);

@@ -24,6 +24,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcRoot;
@@ -331,7 +333,7 @@ public class IfcModel implements IfcModelInterface {
 
 	public long add(IdEObject eObject) {
 		long oid = oidCounter++;
-		eObject.setOid(oid);
+		((IdEObjectImpl)eObject).setOid(oid);
 		add(oid, eObject, false);
 		return oid;
 	}
@@ -571,7 +573,7 @@ public class IfcModel implements IfcModelInterface {
 		if (temp.containsValue(idEObject)) {
 			return;
 		}
-		idEObject.setOid(oidProvider.newOid());
+		((IdEObjectImpl)idEObject).setOid(oidProvider.newOid());
 		if (objects.containsValue(idEObject)) {
 			temp.put(idEObject.getOid(), idEObject);
 		}
@@ -590,7 +592,7 @@ public class IfcModel implements IfcModelInterface {
 	
 	public void setObjectOids() {
 		for (long oid : objects.keySet()) {
-			objects.get(oid).setOid(oid);
+			((IdEObjectImpl)objects.get(oid)).setOid(oid);
 		}
 	}
 
@@ -715,7 +717,7 @@ public class IfcModel implements IfcModelInterface {
 		if (done.contains(idEObject)) {
 			return;
 		}
-		idEObject.setOid(-1);
+		((IdEObjectImpl)idEObject).setOid(-1);
 		done.add(idEObject);
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			Object val = idEObject.eGet(eReference);
@@ -749,5 +751,10 @@ public class IfcModel implements IfcModelInterface {
 	
 	public boolean isUseDoubleStrings() {
 		return useDoubleStrings;
+	}
+
+	@Override
+	public Iterator<IdEObject> iterator() {
+		return objects.values().iterator();
 	}
 }

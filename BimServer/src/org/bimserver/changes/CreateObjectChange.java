@@ -23,6 +23,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 
@@ -30,7 +31,7 @@ public class CreateObjectChange implements Change {
 
 	private final long oid;
 	private final String type;
-	private IdEObject eObject;
+	private IdEObjectImpl eObject;
 
 	public CreateObjectChange(String type, long oid) {
 		this.type = type;
@@ -43,7 +44,7 @@ public class CreateObjectChange implements Change {
 		if (eClass == null) {
 			throw new UserException("Type " + type + " does not exist");
 		}
-		eObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		eObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		eObject.setOid(oid);
 		eObject.setPid(pid);
 		eObject.setRid(rid);
