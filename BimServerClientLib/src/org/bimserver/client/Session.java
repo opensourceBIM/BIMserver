@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
@@ -59,7 +60,7 @@ public class Session {
 		try {
 			Long oid = serviceInterface.createObject(cl.getSimpleName());
 			newObjects.add(eObject);
-			eObject.setOid(oid);
+			((IdEObjectImpl)eObject).setOid(oid);
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}

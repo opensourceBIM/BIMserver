@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -88,13 +89,13 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 			String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
 			dataObject = StoreFactory.eINSTANCE.createDataObject();
 			dataObject.setType(eObject.eClass().getName());
-			dataObject.setOid(oid);
+			((IdEObjectImpl)dataObject).setOid(oid);
 			dataObject.setGuid(guid);
 			dataObject.setName(name);
 		} else {
 			dataObject = StoreFactory.eINSTANCE.createDataObject();
 			dataObject.setType(eObject.eClass().getName());
-			dataObject.setOid(oid);
+			((IdEObjectImpl)dataObject).setOid(oid);
 			dataObject.setName("");
 			dataObject.setGuid("");
 		}
@@ -171,7 +172,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 								String guid = getGuid(item);
 								ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
 								referenceDataValue.setTypeName(item.eClass().getName());
-								referenceDataValue.setOid(oid);
+								((IdEObjectImpl)referenceDataValue).setOid(oid);
 								referenceDataValue.setGuid(guid);
 								dataValue.getValues().add(referenceDataValue);
 							}
@@ -201,7 +202,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 							String guid = getGuid(eObject2);
 							ReferenceDataValue reference = StoreFactory.eINSTANCE.createReferenceDataValue();
 							reference.setTypeName(eObject2.eClass().getName());
-							reference.setOid(oid);
+							((IdEObjectImpl)reference).setOid(oid);
 							reference.setGuid(guid);
 							reference.setFieldName(eStructuralFeature.getName());
 							dataObject.getValues().add(reference);

@@ -1,23 +1,24 @@
 package org.bimserver.database;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class ObjectCache {
-	private final BiMap<RecordIdentifier, IdEObject> cache = HashBiMap.create();
-	private final BiMap<Long, IdEObject> oidCache = HashBiMap.create();
+	private final BiMap<RecordIdentifier, IdEObjectImpl> cache = HashBiMap.create();
+	private final BiMap<Long, IdEObjectImpl> oidCache = HashBiMap.create();
 
 	public void put(RecordIdentifier recordIdentifier, IdEObject object) {
 		if (useRecordLevelVersioning(object)) {
 			if (!oidCache.containsValue(object)) {
-				oidCache.put(recordIdentifier.getOid(), object);
+				oidCache.put(recordIdentifier.getOid(), (IdEObjectImpl) object);
 			}
 		} else {
 			if (!cache.containsValue(object)) {
-				cache.put(recordIdentifier, object);
+				cache.put(recordIdentifier, (IdEObjectImpl) object);
 			}
 		}
 	}
@@ -26,7 +27,7 @@ public class ObjectCache {
 		return idEObject.eClass().getEPackage() != Ifc2x3Package.eINSTANCE;
 	}
 	
-	public IdEObject get(RecordIdentifier recordIdentifier) {
+	public IdEObjectImpl get(RecordIdentifier recordIdentifier) {
 		if (recordIdentifier.getPid() == Database.STORE_PROJECT_ID) {
 			return oidCache.get(recordIdentifier.getOid());
 		} else {

@@ -37,6 +37,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -259,7 +260,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			IdEObject object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(classifier);
 			model.add(recordNumber, object);
 			if (setOids) {
-				object.setOid(recordNumber);
+				((IdEObjectImpl)object).setOid(recordNumber);
 			}
 			String realData = line.substring(indexOfFirstParen + 1, indexOfLastParen);
 			int lastIndex = 0;

@@ -24,6 +24,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.IfcRoot;
@@ -75,13 +76,13 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 					String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
 					dataObject = StoreFactory.eINSTANCE.createDataObject();
 					dataObject.setType(eObject.eClass().getName());
-					dataObject.setOid(oid);
+					((IdEObjectImpl)dataObject).setOid(oid);
 					dataObject.setGuid(guid);
 					dataObject.setName(name);
 				} else {
 					dataObject = StoreFactory.eINSTANCE.createDataObject();
 					dataObject.setType(eObject.eClass().getName());
-					dataObject.setOid(oid);
+					((IdEObjectImpl)dataObject).setOid(oid);
 					dataObject.setGuid("");
 					dataObject.setName("");
 				}

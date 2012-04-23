@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.TracingGarbageCollector;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
@@ -221,7 +222,7 @@ public class RevisionMerger {
 			return target.get(idEObject.getOid());
 		}
 		IdEObject newObject = (IdEObject) idEObject.eClass().getEPackage().getEFactoryInstance().create(idEObject.eClass());
-		newObject.setOid(idEObject.getOid());
+		((IdEObjectImpl)newObject).setOid(idEObject.getOid());
 		if (newObject.getOid() != -1) {
 			target.add(newObject.getOid(), newObject);
 		}
@@ -350,7 +351,7 @@ public class RevisionMerger {
 				} else {
 //					LOGGER.info("Adding new GUID object " + idEObject.eClass().getName() + " " + guid);
 					IdEObject newObject = (IdEObject) idEObject.eClass().getEPackage().getEFactoryInstance().create(idEObject.eClass());
-					newObject.setOid(idEObject.getOid());
+					((IdEObjectImpl)newObject).setOid(idEObject.getOid());
 					((IfcRoot) newObject).setGlobalId(newGuid(guid));
 					for (EAttribute eAttribute : newObject.eClass().getEAllAttributes()) {
 						newObject.eSet(eAttribute, idEObject.eGet(eAttribute));

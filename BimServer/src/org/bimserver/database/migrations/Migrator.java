@@ -24,6 +24,7 @@ import org.apache.commons.lang.StringUtils;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.StoreFactory;
 
 public class Migrator {
@@ -130,7 +131,7 @@ public class Migrator {
 			Migration migration = getMigration(i);
 			if (migration != null) {
 				org.bimserver.models.store.Migration migrationObject = StoreFactory.eINSTANCE.createMigration();
-				migrationObject.setOid(i);
+				((IdEObjectImpl)migrationObject).setOid(i);
 				migrationObject.setNumber(i);
 				migrationObject.setExecuted(i <= databaseSchemaVersion);
 				migrationObject.setDescription(migration.getDescription());
