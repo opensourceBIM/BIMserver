@@ -39,7 +39,6 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		return oid;
 	}
 
-	@Override
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
@@ -54,12 +53,10 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		return rid;
 	}
 
-	@Override
 	public void setPid(int pid) {
 		this.pid = pid;
 	}
 
-	@Override
 	public void setRid(int rid) {
 		this.rid = rid;
 	}
@@ -120,12 +117,10 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		}
 	}
 
-	@Override
 	public void setLazyLoader(LazyLoader lazyLoader) {
 		this.lazyLoader = lazyLoader;
 	}
 
-	@Override
 	public void setLoaded() {
 		this.state = State.LOADED;
 	}
@@ -134,7 +129,6 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		return lazyLoader == null || state != State.NONE;
 	}
 
-	@Override
 	public void setLoading() {
 		state = State.LOADING;
 	}
