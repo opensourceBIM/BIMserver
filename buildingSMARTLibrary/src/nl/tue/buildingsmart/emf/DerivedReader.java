@@ -73,8 +73,11 @@ public class DerivedReader {
 						type = type.substring(0, type.indexOf(":=")).trim();
 						BaseType entityBN2 = null;
 						boolean collection = false;
-						if (type.startsWith("LIST") || type.startsWith("ARRAY")) {
+						if (type.startsWith("LIST") || type.startsWith("ARRAY") || type.startsWith("SET")) {
 							type = type.substring(type.indexOf(" OF ") + 4).trim();
+							if (type.startsWith("LIST") || type.startsWith("ARRAY") || type.startsWith("SET")) {
+								type = type.substring(type.indexOf(" OF ") + 4).trim();
+							}
 							collection = true;
 						}
 						entityBN2 = schema.getEntityBN(type);
@@ -82,7 +85,7 @@ public class DerivedReader {
 							entityBN2 = schema.getBaseTypeBN(type);
 						}
 						if (entityBN2 == null) {
-							System.out.println("Not found");
+							System.out.println("Not found: " + type);
 						}
 						DerivedAttribute2 derivedAttribute2 = new DerivedAttribute2(derivedName, entityBN2, expressCode, collection);
 						EntityDefinition entityBN = schema.getEntityBN(entityName);
