@@ -61,6 +61,7 @@ import javax.vecmath.Vector3f;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.clients.j3d.behavior.OrbitBehaviorInterim;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
@@ -455,7 +456,7 @@ public class IfcVisualiser extends JFrame {
 	@SuppressWarnings("unchecked")
 	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModel newModel, Map<EObject, EObject> converted) {
 		IdEObject newObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(ifcRootObject.eClass());
-		newObject.setOid(ifcRootObject.getOid());
+		((IdEObjectImpl)newObject).setOid(ifcRootObject.getOid());
 		converted.put(ifcRootObject, newObject);
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject, true);
