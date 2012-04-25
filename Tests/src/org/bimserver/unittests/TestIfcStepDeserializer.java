@@ -41,7 +41,7 @@ public class TestIfcStepDeserializer {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface modelInterface = deserializer.read(new File("../TestData/data/WallStandardCase-01A.ifc"), true);
+			IfcModelInterface modelInterface = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\210_King_Merged.ifc"), true);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();
