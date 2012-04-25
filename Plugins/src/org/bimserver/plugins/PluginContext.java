@@ -17,6 +17,9 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -60,7 +63,18 @@ public class PluginContext {
 	}
 
 	public InputStream getResourceAsInputStream(String name) {
-		return plugin.getClass().getClassLoader().getResourceAsStream(name);
+		InputStream resourceAsStream = plugin.getClass().getClassLoader().getResourceAsStream(name);
+		if (resourceAsStream == null) {
+			File file = new File(location + File.separator + name);
+			if (file.exists()) {
+				try {
+					return new FileInputStream(file);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return resourceAsStream;
 	}
 
 	public URL getResourceAsUrl(String name) {

@@ -321,10 +321,10 @@ public class PluginManager {
 		return schemaPlugin.getSchemaDefinition();
 	}
 	
-	public DeserializerPlugin requireDeserializer(String type) throws DeserializeException {
-		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(type, true);
+	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
+		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(extension, true);
 		if (allDeserializerPlugins.size() == 0) {
-			throw new DeserializeException("No deserializers found for type '" + type + "'");
+			throw new DeserializeException("No deserializers found for type '" + extension + "'");
 		} else {
 			return allDeserializerPlugins.iterator().next();
 		}
