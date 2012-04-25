@@ -20,11 +20,15 @@ package org.bimserver.ifc.step.serializer;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.geronimo.mail.util.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -55,6 +59,7 @@ import com.google.common.base.Charsets;
 
 public class IfcStepSerializer extends IfcSerializer {
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepSerializer.class);
+	private boolean useIso8859_1 = false;
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
 	private static final String NULL = "NULL";
 	private static final String OPEN_CLOSE_PAREN = "()";
@@ -190,7 +195,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		// out.println("//This is free software, and you are welcome to redistribute it under certain conditions. See www.bimserver.org <http://www.bimserver.org>");
 	}
 
-	private void writePrimitive(PrintWriter out, Object val) {
+	private void writePrimitive(PrintWriter out, Object val) throws SerializerException {
 		if (val instanceof Tristate) {
 			Tristate bool = (Tristate) val;
 			if (bool == Tristate.TRUE) {
@@ -222,19 +227,49 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else if (val instanceof String) {
 			out.print(SINGLE_QUOTE);
 			String stringVal = (String)val;
-			StringBuilder sb = new StringBuilder();
 			for (int i=0; i<stringVal.length(); i++) {
 				char c = stringVal.charAt(i);
 				if (c <= 126) {
-					sb.append(c);
 					// ISO 8859-1
+					out.print(c);
+				} else if (c < 255) {
+					//  ISO 10646 and ISO 8859-1 are the same < 255 , using ISO_8859_1
+					out.write("\\X\\" + new String(Hex.encode(Charsets.ISO_8859_1.encode(CharBuffer.wrap(new char[]{(char) c})).array()), Charsets.UTF_8));
 				} else {
-					// ISO 8859-1 with -128 offset
-					ByteBuffer encode = Charsets.ISO_8859_1.encode(new String(new char[]{(char) (c - 128)}));
-					sb.append("\\S\\" + (char)encode.get());
+					if (useIso8859_1) {
+						// ISO 8859-1 with -128 offset
+						ByteBuffer encode = Charsets.ISO_8859_1.encode(new String(new char[]{(char) (c - 128)}));
+						out.write("\\S\\" + (char)encode.get());
+					} else {
+						// The following code has not been tested (2012-04-25)
+						// Use UCS-2 or UCS-4
+						
+						// TODO when multiple sequential characters should be encoded in UCS2 or UCS4, we don't really need to add all those \X0\ \X2\ and \X4\ chars
+						if (Character.isLowSurrogate(c)) {
+							throw new SerializerException("Unexpected low surrogate range char");
+						} else if (Character.isHighSurrogate(c)) {
+							// We need UCS-4, this is probably never happening
+							if (i + 1 < stringVal.length()) {
+								char low = stringVal.charAt(i + 1);
+								if (!Character.isLowSurrogate(low)) {
+									throw new SerializerException("High surrogate char should be followed by char in low surrogate range");
+								}
+								try {
+									out.write("\\X4\\" + new String(Hex.encode(Charset.forName("UTF-32").encode(new String(new char[]{c, low})).array()), Charsets.UTF_8) + "\\X0\\");
+								} catch (UnsupportedCharsetException e) {
+									throw new SerializerException(e);
+								}
+								i++;
+							} else {
+								throw new SerializerException("High surrogate char should be followed by char in low surrogate range, but end of string reached");
+							}
+						} else {
+							// UCS-2 will do
+							out.write("\\X2\\" + new String(Hex.encode(Charsets.UTF_16.encode(CharBuffer.wrap(new char[]{c})).array()), Charsets.UTF_8) + "\\X0\\");
+						}
+					}
 				}
 			}
-			out.print(sb.toString());
 			out.print(SINGLE_QUOTE);
 		} else if (val instanceof Enumerator) {
 			out.print("." + val + ".");
@@ -296,13 +331,6 @@ public class IfcStepSerializer extends IfcSerializer {
 		if (referencedObject instanceof WrappedValue || referencedObject instanceof IfcGloballyUniqueId) {
 			writeWrappedValue(out, object, feature, ((EObject)referencedObject).eClass());
 		} else {
-			// TODO move up
-			SchemaDefinition schema;
-			try {
-				schema = getPluginManager().requireSchemaDefinition();
-			} catch (PluginException e) {
-				throw new SerializerException(e);
-			}
 			EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 			if (referencedObject instanceof EObject && model.contains((IdEObject) referencedObject)) {
 				out.print(DASH);
@@ -319,7 +347,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void writeObject(PrintWriter out, EObject object, EStructuralFeature feature) {
+	private void writeObject(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		Object ref = object.eGet(feature);
 		if (ref == null || (feature.isUnsettable() && !object.eIsSet(feature))) {
 			EClassifier type = feature.getEType();
@@ -360,7 +388,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void writeEmbedded(PrintWriter out, EObject eObject) {
+	private void writeEmbedded(PrintWriter out, EObject eObject) throws SerializerException {
 		EClass class1 = eObject.eClass();
 		out.print(upperCases.get(class1));
 		out.print(OPEN_PAREN);
@@ -552,7 +580,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void writeEnum(PrintWriter out, EObject object, EStructuralFeature feature) {
+	private void writeEnum(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		Object val = object.eGet(feature);
 		if (feature.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
 			writePrimitive(out, val);

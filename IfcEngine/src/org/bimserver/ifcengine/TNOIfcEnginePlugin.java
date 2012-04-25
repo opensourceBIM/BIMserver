@@ -86,7 +86,9 @@ public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 						}
 					}
 					FileUtils.forceMkdir(nativeFolder);
-					IOUtils.copy(inputStream, new FileOutputStream(file));
+					FileOutputStream fileOutputStream = new FileOutputStream(file);
+					IOUtils.copy(inputStream, fileOutputStream);
+					fileOutputStream.close();
 					initialized = true;
 				} catch (IOException e) {
 					LOGGER.error("", e);

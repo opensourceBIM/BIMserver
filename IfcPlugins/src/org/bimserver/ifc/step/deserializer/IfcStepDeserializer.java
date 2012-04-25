@@ -26,6 +26,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
@@ -454,8 +458,41 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						CharBuffer decode = Charsets.ISO_8859_1.decode(b);
 						result = result.substring(0, index) + decode.get() + result.substring(index + 5);
 					}
-					if (result.contains("\\X0\\") || result.contains("\\X2\\") || result.contains("\\X4\\")) {
-						throw new DeserializeException("Unsupported string encoding: ISO 10646");
+					while (result.contains("\\X2\\")) {
+						int index = result.indexOf("\\X2\\");
+						int indexOfEnd = result.indexOf("\\X0\\");
+						if (indexOfEnd == -1) {
+							throw new DeserializeException("\\X2\\ not closed with \\X0\\");
+						}
+						if ((indexOfEnd - index) % 4 != 0) {
+							throw new DeserializeException("Number of hex chars in \\X2\\ definition not divisible by 4");
+						}
+						try {
+							ByteBuffer buffer = ByteBuffer.wrap(Hex.decodeHex(result.substring(index + 4, indexOfEnd).toCharArray()));
+							CharBuffer decode = Charsets.UTF_16.decode(buffer);
+							result = result.substring(0, index) + decode.toString() + result.substring(indexOfEnd + 4);
+						} catch (DecoderException e) {
+							throw new DeserializeException(e);
+						}
+					}
+					while (result.contains("\\X4\\")) {
+						int index = result.indexOf("\\X4\\");
+						int indexOfEnd = result.indexOf("\\X0\\");
+						if (indexOfEnd == -1) {
+							throw new DeserializeException("\\X4\\ not closed with \\X0\\");
+						}
+						if ((indexOfEnd - index) % 8 != 0) {
+							throw new DeserializeException("Number of hex chars in \\X4\\ definition not divisible by 8");
+						}
+						try {
+							ByteBuffer buffer = ByteBuffer.wrap(Hex.decodeHex(result.substring(index + 4, indexOfEnd).toCharArray()));
+							CharBuffer decode = Charset.forName("UTF-32").decode(buffer);
+							result = result.substring(0, index) + decode.toString() + result.substring(indexOfEnd + 4);
+						} catch (DecoderException e) {
+							throw new DeserializeException(e);
+						} catch (UnsupportedCharsetException e) {
+							throw new DeserializeException("UTF-32 is not supported on your system" , e);
+						}
 					}
 					return result;
 				} else {
