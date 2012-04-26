@@ -17,6 +17,7 @@ package org.bimserver.database.migrations;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -34,10 +35,13 @@ public class NewClassChange implements Change {
 	}
 
 	@Override
-	public void change(Database database, DatabaseSession databaseSession) {
+	public void change(Database database, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		LOGGER.info("Creating table: " + getEClass().getName());
 		try {
-			database.createTable(getEClass(), databaseSession);
+			boolean created = database.createTable(getEClass(), databaseSession);
+			if (!created) {
+				throw new BimserverDatabaseException("Could not create table " + getEClass().getName());
+			}
 		} catch (BimserverDeadlockException e) {
 			LOGGER.error("", e);
 		}
