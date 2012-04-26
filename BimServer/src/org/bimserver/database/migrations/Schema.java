@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.common.util.URI;
@@ -228,7 +228,7 @@ public class Schema {
 		}
 		try {
 			database.setDatabaseVersion(version, databaseSession);
-		} catch (BimserverDeadlockException e) {
+		} catch (BimserverLockConflictException e) {
 			LOGGER.error("", e);
 		}
 	}

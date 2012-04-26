@@ -101,7 +101,7 @@ public class Database implements BimDatabase {
 	public void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException {
 		DatabaseSession databaseSession = createSession();
 		try {
-			if (getColumnDatabase().isNew()) {
+			if (getKeyValueStore().isNew()) {
 				keyValueStore.createTable(CLASS_LOOKUP_TABLE, null);
 				keyValueStore.createTable(Database.STORE_PROJECT_NAME, null);
 				keyValueStore.createTable(Registry.REGISTRY_TABLE, null);
@@ -123,7 +123,7 @@ public class Database implements BimDatabase {
 			
 			migrator = new Migrator(this);
 
-			if (getColumnDatabase().isNew()) {
+			if (getKeyValueStore().isNew()) {
 				try {
 					migrator.migrate(databaseSession);
 				} catch (MigrationException e) {
@@ -141,7 +141,7 @@ public class Database implements BimDatabase {
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
 				databaseCreated.setExecutor(null);
 				databaseCreated.setDate(new Date());
-				databaseCreated.setPath(getColumnDatabase().getLocation());
+				databaseCreated.setPath(getKeyValueStore().getLocation());
 				databaseCreated.setVersion(databaseSchemaVersion);
 				databaseSession.store(databaseCreated);
 
@@ -190,7 +190,7 @@ public class Database implements BimDatabase {
 		return null;
 	}
 
-	public void initInternalStructure(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public void initInternalStructure(DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		RecordIterator recordIterator = keyValueStore.getRecordIterator(CLASS_LOOKUP_TABLE, databaseSession);
 		try {
 			Record record = recordIterator.next();
@@ -207,7 +207,7 @@ public class Database implements BimDatabase {
 		}
 	}
 
-	public void initCounters(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public void initCounters(DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		DatabaseSession session = createSession();
 		try {
 			for (EClass eClass : classifiers.keyBSet()) {
@@ -262,7 +262,7 @@ public class Database implements BimDatabase {
 		return databaseSession;
 	}
 
-	public KeyValueStore getColumnDatabase() {
+	public KeyValueStore getKeyValueStore() {
 		return keyValueStore;
 	}
 
@@ -298,7 +298,7 @@ public class Database implements BimDatabase {
 		sessions.remove(databaseSession);
 	}
 
-	public void setDatabaseVersion(int version, DatabaseSession databaseSession) throws BimserverDeadlockException {
+	public void setDatabaseVersion(int version, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		databaseSchemaVersion = version;
 		registry.save(SCHEMA_VERSION, version, databaseSession);
 	}

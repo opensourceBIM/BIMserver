@@ -34,7 +34,7 @@ import javax.mail.internet.MimeMessage;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -63,7 +63,7 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	@Override
-	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		try {
 			User user = getUserByUoid(actingUoid);
 			String senderAddress = bimServer.getSettingsManager().getSettings().getEmailSenderAddress();

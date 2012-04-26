@@ -22,7 +22,7 @@ import java.util.Date;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ProjectDeleted;
@@ -46,7 +46,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
+	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(poid);
 		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && bimServer.getSettingsManager().getSettings().isAllowUsersToCreateTopLevelProjects())) {

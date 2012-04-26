@@ -18,7 +18,7 @@ package org.bimserver.database.berkeley;
  *****************************************************************************/
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.BimTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,12 +64,12 @@ public class BerkeleyTransaction implements BimTransaction {
 	}
 
 	@Override
-	public void commit() throws BimserverDeadlockException, BimserverDatabaseException {
+	public void commit() throws BimserverLockConflictException, BimserverDatabaseException {
 		try {
 			transaction.commit();
 			transactionAlive = false;
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			throw new BimserverDatabaseException(e);
 		}

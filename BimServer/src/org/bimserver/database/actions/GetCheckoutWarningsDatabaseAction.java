@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
@@ -41,7 +41,7 @@ public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<Str
 	}
 
 	@Override
-	public Set<String> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		Set<String> warnings = new HashSet<String>();

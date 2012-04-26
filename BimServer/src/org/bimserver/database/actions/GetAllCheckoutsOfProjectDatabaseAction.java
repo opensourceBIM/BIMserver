@@ -24,7 +24,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToInCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -46,7 +46,7 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 	}
 
 	@Override
-	public Set<Checkout> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		Set<Project> projects = new HashSet<Project>();
 		if (checkSubProjects) {

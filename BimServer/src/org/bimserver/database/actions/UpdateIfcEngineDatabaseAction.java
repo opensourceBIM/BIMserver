@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.StorePackage;
@@ -35,7 +35,7 @@ public class UpdateIfcEngineDatabaseAction extends UpdateDatabaseAction<IfcEngin
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IfcEngine oldIfcEngine = getDatabaseSession().get(StorePackage.eINSTANCE.getIfcEngine(), ifcEngine.getOid(), false, null);
 		if (oldIfcEngine.getActive() == true && ifcEngine.getActive() == false && !oldIfcEngine.getSerializers().isEmpty()) {
 			throw new UserException("Cannot disable render engine with serializers");

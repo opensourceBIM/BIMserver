@@ -34,7 +34,7 @@ public class Registry {
 		this.keyValueStore = keyValueStore;
 	}
 
-	public void save(String key, long value, DatabaseSession databaseSession) throws BimserverDeadlockException {
+	public void save(String key, long value, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		try {
 			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.longToByteArray(value), databaseSession);
 		} catch (BimserverDatabaseException e) {
@@ -42,7 +42,7 @@ public class Registry {
 		}
 	}
 
-	public void save(String key, boolean value, DatabaseSession databaseSession) throws BimserverDeadlockException {
+	public void save(String key, boolean value, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		try {
 			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.booleanToByteArray(value), databaseSession);
 		} catch (BimserverDatabaseException e) {
@@ -50,7 +50,7 @@ public class Registry {
 		}
 	}
 
-	public void save(String key, int value, DatabaseSession databaseSession) throws BimserverDeadlockException {
+	public void save(String key, int value, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		try {
 			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.intToByteArray(value), databaseSession);
 		} catch (BimserverDatabaseException e) {
@@ -58,7 +58,7 @@ public class Registry {
 		}
 	}
 
-	public long readLong(String key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public long readLong(String key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return 1;
@@ -67,7 +67,7 @@ public class Registry {
 		}
 	}
 
-	public int readInt(String key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public int readInt(String key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return 1;
@@ -76,7 +76,7 @@ public class Registry {
 		}
 	}
 
-	public int readInt(String key, DatabaseSession databaseSession, int defaultValue) throws BimserverDeadlockException, BimserverDatabaseException {
+	public int readInt(String key, DatabaseSession databaseSession, int defaultValue) throws BimserverLockConflictException, BimserverDatabaseException {
 		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return defaultValue;
@@ -85,7 +85,7 @@ public class Registry {
 		}
 	}
 
-	public Date readDate(String key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public Date readDate(String key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		long readLong = readLong(key, databaseSession);
 		if (readLong == -1) {
 			return null;
@@ -93,11 +93,11 @@ public class Registry {
 		return new Date(readLong);
 	}
 
-	public void save(String key, Date date, DatabaseSession databaseSession) throws BimserverDeadlockException {
+	public void save(String key, Date date, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		save(key, date.getTime(), databaseSession);
 	}
 
-	public boolean readBoolean(String key, boolean defaultValue, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public boolean readBoolean(String key, boolean defaultValue, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return defaultValue;

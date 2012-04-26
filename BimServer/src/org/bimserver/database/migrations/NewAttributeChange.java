@@ -20,7 +20,7 @@ package org.bimserver.database.migrations;
 import java.nio.ByteBuffer;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -48,10 +48,10 @@ public class NewAttributeChange implements Change {
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException {
 		EClass eClass = eAttribute.getEContainingClass();
-		KeyValueStore columnDatabase = database.getColumnDatabase();
+		KeyValueStore keyValueStore = database.getKeyValueStore();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
-				RecordIterator recordIterator = columnDatabase.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
+				RecordIterator recordIterator = keyValueStore.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
 				try {
 					Record record = recordIterator.next();
 					while (record != null) {
@@ -85,7 +85,7 @@ public class NewAttributeChange implements Change {
 								throw new NotImplementedException("Type " + eAttribute.getEType().getName() + " has not been implemented");
 							}
 						}
-						columnDatabase.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
+						keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
 						record = recordIterator.next();
 					}
 				} catch (BimserverDatabaseException e) {
@@ -93,7 +93,7 @@ public class NewAttributeChange implements Change {
 				} finally {
 					recordIterator.close();
 				}
-			} catch (BimserverDeadlockException e) {
+			} catch (BimserverLockConflictException e) {
 				LOGGER.error("", e);
 			}
 		}

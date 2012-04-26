@@ -22,6 +22,6 @@ public interface BimTransaction {
 	void setName(String string);
 	void close();
 	void rollback();
-	void commit() throws BimserverDeadlockException, BimserverDatabaseException;
+	void commit() throws BimserverLockConflictException, BimserverDatabaseException;
 	long getId();
 }

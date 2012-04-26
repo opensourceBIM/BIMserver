@@ -20,7 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -42,7 +42,7 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObj
 	}
 	
 	@Override
-	public DataObject execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public DataObject execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		ObjectIdentifier objectIdentifier = null;
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {

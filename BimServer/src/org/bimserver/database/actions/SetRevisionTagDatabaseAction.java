@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -38,7 +38,7 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 	}
 
 	@Override
-	public String execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public String execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		String trimmedTag = tag.trim();
 		Project project = revision.getProject();

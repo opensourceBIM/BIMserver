@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.shared.exceptions.UserException;
@@ -31,7 +31,7 @@ public class AddSerializerDatabaseAction extends AddDatabaseAction<Serializer> {
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Void execute = super.execute();
 		// Make sure the backreferences are stored as well, someday this should be automatic
 		if (getIdEObject().getIfcEngine() != null) {

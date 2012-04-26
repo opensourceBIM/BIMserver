@@ -23,7 +23,7 @@ import java.util.List;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
@@ -49,7 +49,7 @@ public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObj
 	}
 
 	@Override
-	public List<DataObject> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {

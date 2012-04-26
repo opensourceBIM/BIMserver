@@ -19,11 +19,11 @@ package org.bimserver.database;
 
 import com.sleepycat.je.LockConflictException;
 
-public class BimserverDeadlockException extends BimserverDatabaseException {
+public class BimserverLockConflictException extends BimserverDatabaseException {
 
 	private static final long serialVersionUID = 9043339658520339789L;
 
-	public BimserverDeadlockException(LockConflictException e) {
+	public BimserverLockConflictException(LockConflictException e) {
 		super(e);
 	}
 	

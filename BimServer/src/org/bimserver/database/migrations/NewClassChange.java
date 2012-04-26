@@ -18,7 +18,7 @@ package org.bimserver.database.migrations;
  *****************************************************************************/
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.ecore.EClass;
@@ -43,7 +43,7 @@ public class NewClassChange implements Change {
 			if (!created) {
 				throw new BimserverDatabaseException("Could not create table " + tableName);
 			}
-		} catch (BimserverDeadlockException e) {
+		} catch (BimserverLockConflictException e) {
 			LOGGER.error("", e);
 		}
 	}

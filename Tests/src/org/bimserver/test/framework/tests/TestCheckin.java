@@ -69,7 +69,7 @@ public class TestCheckin {
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected"), testFramework));
 //		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
 		testConfiguration.setOutputFolder(new File("output"));
-		testConfiguration.setNrVirtualUsers(8);
+		testConfiguration.setNrVirtualUsers(2);
 		
 		testFramework.start();
 	}

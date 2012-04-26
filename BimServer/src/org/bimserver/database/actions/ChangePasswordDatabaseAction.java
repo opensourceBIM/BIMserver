@@ -21,7 +21,7 @@ import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.PasswordChanged;
@@ -46,7 +46,7 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Boolean execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		User user = getUserByUoid(uoid);
 		if (user.getUserType() == UserType.SYSTEM) {
@@ -63,7 +63,7 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 		}
 	}
 
-	private boolean changePassword(DatabaseSession databaseSession, User actingUser, boolean skipCheck) throws BimserverDeadlockException, BimserverDatabaseException, UserException {
+	private boolean changePassword(DatabaseSession databaseSession, User actingUser, boolean skipCheck) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
 		User user = getUserByUoid(uoid);
 		if (skipCheck || Hashers.getSha256Hash(oldPassword).equals(user.getPassword())) {
 			user.setPassword(Hashers.getSha256Hash(newPassword));

@@ -24,7 +24,7 @@ import java.util.Set;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.compare.Compare;
@@ -90,7 +90,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision1 = getRevisionByRoid(roid1);
 		Revision revision2 = getRevisionByRoid(roid2);
 		Project project = revision1.getProject();

@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -38,7 +38,7 @@ public class GetSerializerByNameDatabaseAction extends BimDatabaseAction<Seriali
 	}
 
 	@Override
-	public Serializer execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Serializer execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
 		return getDatabaseSession().querySingle(condition, Serializer.class, false, null);
 	}

@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
@@ -57,7 +57,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;

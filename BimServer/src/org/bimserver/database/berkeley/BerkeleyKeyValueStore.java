@@ -25,9 +25,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.database.BimTransaction;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverDeadlockException;
-import org.bimserver.database.KeyValueStore;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.bimserver.database.SearchingRecordIterator;
@@ -86,7 +86,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		envConfig.setAllowCreate(true);
 		envConfig.setTransactional(true);
 		envConfig.setTxnTimeout(5, TimeUnit.SECONDS);
-		envConfig.setLockTimeout(5, TimeUnit.SECONDS);
+		envConfig.setLockTimeout(100, TimeUnit.MILLISECONDS);
 		try {
 			environment = new Environment(dataDir, envConfig);
 		} catch (EnvironmentLockedException e) {
@@ -234,12 +234,12 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 
 	@Override
-	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		Cursor cursor = null;
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
 			return new BerkeleySearchingRecordIterator(cursor, mustStartWith, startSearchingAt);
-		} catch (BimserverDeadlockException e) {
+		} catch (BimserverLockConflictException e) {
 			try {
 				cursor.close();
 				throw e;
@@ -265,7 +265,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 
 	@Override
-	public byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		SearchingRecordIterator recordIterator = getRecordIterator(tableName, key, key, databaseSession);
 		try {
 			Record record = recordIterator.next(key);
@@ -278,12 +278,12 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 	}
 
-	public void delete(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverDeadlockException {
+	public void delete(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		DatabaseEntry entry = new DatabaseEntry(key);
 		try {
 			getDatabase(tableName).delete(getTransaction(databaseSession), entry);
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		} catch (UnsupportedOperationException e) {
@@ -316,33 +316,33 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 
 	@Override
-	public void commit(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
+	public void commit(DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		Transaction bdbTransaction = getTransaction(databaseSession);
 		try {
 			bdbTransaction.commit();
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			throw new BimserverDatabaseException("", e);
 		}
 	}
 
 	@Override
-	public void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverDeadlockException {
+	public void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
 		DatabaseEntry dbValue = new DatabaseEntry(value);
 		try {
 			Database database = getDatabase(tableName);
 			database.put(getTransaction(databaseSession), dbKey, dbValue);
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			throw new BimserverDatabaseException("", e);
 		}
 	}
 
 	@Override
-	public void storeNoOverwrite(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverDeadlockException, BimserverConcurrentModificationDatabaseException {
+	public void storeNoOverwrite(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException, BimserverConcurrentModificationDatabaseException {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
 		DatabaseEntry dbValue = new DatabaseEntry(value);
 		try {
@@ -352,7 +352,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 				throw new BimserverConcurrentModificationDatabaseException("Key exists");
 			}
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			throw new BimserverDatabaseException("", e);
 		}

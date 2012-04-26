@@ -26,7 +26,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.DownloadDatabaseAction;
@@ -92,7 +92,7 @@ public class CommandLine extends Thread {
 							LOGGER.error("", e);
 						} catch (ServerException e) {
 							LOGGER.error("", e);
-						} catch (BimserverDeadlockException e) {
+						} catch (BimserverLockConflictException e) {
 							LOGGER.error("", e);
 						} catch (BimserverDatabaseException e) {
 							LOGGER.error("", e);
@@ -123,11 +123,11 @@ public class CommandLine extends Thread {
 						LOGGER.error("", e);
 					}
 				} else if (line.startsWith("showall")) {
-					KeyValueStore columnDatabase = ((Database) bimServer.getDatabase()).getColumnDatabase();
-					Set<String> allTableNames = columnDatabase.getAllTableNames();
+					KeyValueStore keyValueStore = ((Database) bimServer.getDatabase()).getKeyValueStore();
+					Set<String> allTableNames = keyValueStore.getAllTableNames();
 					long total = 0;
 					for (String tableName : allTableNames) {
-						long size = columnDatabase.count(tableName);
+						long size = keyValueStore.count(tableName);
 						total += size;
 						if (size != 0) {
 							LOGGER.info(tableName + " " + size);

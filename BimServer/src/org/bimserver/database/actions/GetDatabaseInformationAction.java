@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.shared.exceptions.UserException;
@@ -31,7 +31,7 @@ public class GetDatabaseInformationAction extends BimDatabaseAction<DatabaseInfo
 	}
 
 	@Override
-	public DatabaseInformation execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public DatabaseInformation execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		return getDatabaseSession().getDatabaseInformation();
 	}
 }

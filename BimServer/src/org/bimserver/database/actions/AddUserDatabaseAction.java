@@ -31,7 +31,7 @@ import org.bimserver.BimServer;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -80,7 +80,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.selfRegistration = selfRegistration;
 	}
 
-	public User execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
+	public User execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		String trimmedUserName = username.trim();
 		String trimmedName = name.trim();
 		if (userType == UserType.SYSTEM && !createSystemUser) {

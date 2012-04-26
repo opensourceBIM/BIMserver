@@ -20,7 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareIdentifier;
@@ -51,7 +51,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	}
 
 	@Override
-	public CompareResult execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public CompareResult execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		ObjectIDM objectIDM;
 		try {
 			objectIDM = bimServer.getPluginManager().requireObjectIDM();

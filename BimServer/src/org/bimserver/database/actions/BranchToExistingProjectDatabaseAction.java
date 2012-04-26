@@ -20,7 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.log.AccessMethod;
@@ -52,7 +52,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 	}
 
 	@Override
-	public CheckinResult execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public CheckinResult execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);

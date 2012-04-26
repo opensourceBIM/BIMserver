@@ -23,7 +23,7 @@ import java.util.Set;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
 import org.bimserver.interfaces.SConverter;
@@ -61,7 +61,7 @@ public class ClashDetectionLongAction extends LongAction {
 			roid = revision.getOid();
 			session.store(revision);
 			session.commit();
-		} catch (BimserverDeadlockException e) {
+		} catch (BimserverLockConflictException e) {
 			LOGGER.error("", e);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
@@ -114,7 +114,7 @@ public class ClashDetectionLongAction extends LongAction {
 				} finally {
 					rollBackSession.close();
 				}
-			} catch (BimserverDeadlockException e1) {
+			} catch (BimserverLockConflictException e1) {
 				LOGGER.error("", e1);
 			} catch (BimserverDatabaseException e1) {
 				LOGGER.error("", e1);

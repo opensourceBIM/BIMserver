@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
@@ -44,7 +44,7 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 	}
 
 	@Override
-	public Set<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		IfcModel projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), false, null);
 		Set<Project> result = new HashSet<Project>();

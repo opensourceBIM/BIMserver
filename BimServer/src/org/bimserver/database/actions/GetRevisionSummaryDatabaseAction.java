@@ -22,7 +22,7 @@ import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
@@ -50,7 +50,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 	}
 
 	@Override
-	public RevisionSummary execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public RevisionSummary execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		RevisionSummary revisionSummary = StoreFactory.eINSTANCE.createRevisionSummary();
 		revisionSummaryContainerEntities = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerEntities.setName("IFC Entities");
