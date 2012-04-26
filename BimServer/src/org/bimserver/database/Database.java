@@ -131,6 +131,7 @@ public class Database implements BimDatabase {
 				}
 				registry.save("isnew", true, databaseSession);
 				databaseSession.commit();
+				databaseSession.close();
 				throw new DatabaseRestartRequiredException();
 			} else if (registry.readBoolean("isnew", true, databaseSession)) {
 				initInternalStructure(databaseSession);
@@ -307,14 +308,18 @@ public class Database implements BimDatabase {
 		return migrator;
 	}
 
-	public void createTable(EClass eClass, DatabaseSession databaseSession) throws BimserverDeadlockException {
-		columnDatabase.createTable(eClass.getName(), databaseSession);
-		tableId++;
-		try {
-			columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
+	public boolean createTable(EClass eClass, DatabaseSession databaseSession) throws BimserverDeadlockException {
+		boolean createTable = columnDatabase.createTable(eClass.getName(), databaseSession);
+		if (createTable) {
+			tableId++;
+			try {
+				columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);
+			} catch (BimserverDatabaseException e) {
+				LOGGER.error("", e);
+			}
+			return true;
 		}
+		return false;
 	}
 
 	public MetaDataManager getMetaDataManager() {
