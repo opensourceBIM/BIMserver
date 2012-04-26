@@ -43,11 +43,11 @@ import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcBoolean;
-import org.bimserver.models.ifc2x3.IfcLogical;
-import org.bimserver.models.ifc2x3.Tristate;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcBoolean;
+import org.bimserver.models.ifc2x3tc1.IfcLogical;
+import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.Attribute;
@@ -80,7 +80,7 @@ import com.google.common.base.Charsets;
 public class IfcStepDeserializer extends EmfDeserializer {
 
 	private static final int AVERAGE_LINE_LENGTH = 58;
-	private static final EPackage ePackage = Ifc2x3Package.eINSTANCE;
+	private static final EPackage ePackage = Ifc2x3tc1Package.eINSTANCE;
 	private static final String WRAPPED_VALUE = "wrappedValue";
 	private static final Map<String, EClassifier> classes = initClasses();
 	
@@ -203,8 +203,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	}
 
 	private static Map<String, EClassifier> initClasses() {
-		HashMap<String, EClassifier> classes = new HashMap<String, EClassifier>(Ifc2x3Package.eINSTANCE.getEClassifiers().size());
-		for (EClassifier classifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+		HashMap<String, EClassifier> classes = new HashMap<String, EClassifier>(Ifc2x3tc1Package.eINSTANCE.getEClassifiers().size());
+		for (EClassifier classifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 			classes.put(classifier.getName().toUpperCase(), classifier);
 		}
 		return classes;
@@ -261,7 +261,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		String name = line.substring(equalSignLocation + 1, indexOfFirstParen).trim();
 		EClass classifier = (EClass) classes.get(name);
 		if (classifier != null) {
-			IdEObject object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(classifier);
+			IdEObject object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(classifier);
 			model.add(recordNumber, object);
 			if (setOids) {
 				((IdEObjectImpl)object).setOid(recordNumber);
@@ -595,40 +595,40 @@ public class IfcStepDeserializer extends EmfDeserializer {
 
 	private void readEnum(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializeException {
 		if (val.equals(".T.")) {
-			if (structuralFeature.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
+			if (structuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
 				object.eSet(structuralFeature, Tristate.TRUE);
 			} else if (structuralFeature.getEType().getName().equals("IfcBoolean")) {
-				IfcBoolean createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcBoolean();
+				IfcBoolean createIfcBoolean = Ifc2x3tc1Factory.eINSTANCE.createIfcBoolean();
 				createIfcBoolean.setWrappedValue(Tristate.TRUE);
 				object.eSet(structuralFeature, createIfcBoolean);
 			} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 				object.eSet(structuralFeature, true);
 			} else {
-				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
+				IfcLogical createIfcBoolean = Ifc2x3tc1Factory.eINSTANCE.createIfcLogical();
 				createIfcBoolean.setWrappedValue(Tristate.TRUE);
 				object.eSet(structuralFeature, createIfcBoolean);
 			}
 		} else if (val.equals(".F.")) {
-			if (structuralFeature.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
+			if (structuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
 				object.eSet(structuralFeature, Tristate.FALSE);
 			} else if (structuralFeature.getEType().getName().equals("IfcBoolean")) {
-				IfcBoolean createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcBoolean();
+				IfcBoolean createIfcBoolean = Ifc2x3tc1Factory.eINSTANCE.createIfcBoolean();
 				createIfcBoolean.setWrappedValue(Tristate.FALSE);
 				object.eSet(structuralFeature, createIfcBoolean);
 			} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 				object.eSet(structuralFeature, false);
 			} else {
-				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
+				IfcLogical createIfcBoolean = Ifc2x3tc1Factory.eINSTANCE.createIfcLogical();
 				createIfcBoolean.setWrappedValue(Tristate.FALSE);
 				object.eSet(structuralFeature, createIfcBoolean);
 			}
 		} else if (val.equals(".U.")) {
-			if (structuralFeature.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
+			if (structuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
 				object.eSet(structuralFeature, Tristate.UNDEFINED);
 			} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 				object.eUnset(structuralFeature);
 			} else {
-				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
+				IfcLogical createIfcBoolean = Ifc2x3tc1Factory.eINSTANCE.createIfcLogical();
 				createIfcBoolean.setWrappedValue(Tristate.UNDEFINED);
 				object.eSet(structuralFeature, createIfcBoolean);
 			}

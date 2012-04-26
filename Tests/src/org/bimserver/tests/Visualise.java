@@ -36,7 +36,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
-import org.bimserver.models.ifc2x3.IfcProject;
+import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;

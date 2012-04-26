@@ -39,7 +39,7 @@ package org.bimserver.tests;
 //import org.bimserver.emf.IfcModel;
 //import org.bimserver.emf.EmfSerializer;
 //import org.bimserver.ifc.FileFieldIgnoreMap;
-//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3tc1Package;
 //import org.bimserver.ifc.file.writer.IfcStepSerializer;
 //import org.bimserver.services.TokenManager;
 //import org.bimserver.shared.ResourceFetcher;
@@ -54,7 +54,7 @@ package org.bimserver.tests;
 //	}
 //
 //	private void start() {
-//		HashSet<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
+//		HashSet<Ifc2x3tc1Package> packages = CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE);
 //		ResourceFetcher resourceFetcher = new ResourceFetcher() {
 //			@Override
 //			public URL getResource(String name) {

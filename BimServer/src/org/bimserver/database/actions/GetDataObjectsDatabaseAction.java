@@ -27,7 +27,7 @@ import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;

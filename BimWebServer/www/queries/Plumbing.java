@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.models.ifc2x3.*;
+import org.bimserver.models.ifc2x3tc1.*;
 
 public class Query implements QueryInterface {
 

@@ -46,7 +46,7 @@ package org.bimserver.tests;
 //import org.bimserver.emf2codb.RecordIterator;
 //import org.bimserver.emf2codb.berkeley.BerkeleyColumnDatabase;
 //import org.bimserver.emf2codb.store.StorePackage;
-//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3tc1Package;
 //import org.bimserver.utils.BinUtils;
 //import org.bimserver.utils.DoubleHashMap;
 //import org.bimserver.utils.SwingUtil;
@@ -74,7 +74,7 @@ package org.bimserver.tests;
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //
 //		this.emfPackages.add(StorePackage.eINSTANCE);
-//		this.emfPackages.add(Ifc2x3Package.eINSTANCE);
+//		this.emfPackages.add(Ifc2x3tc1Package.eINSTANCE);
 //		
 //		try {
 //			fieldIgnoreMap = new FileFieldIgnoreMap(emfPackages, new File("../BimServer/www/WEB-INF/ignore.xml").toURI().toURL());

@@ -20,7 +20,7 @@ package org.bimserver.ifc;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class IfcSerializer extends EmfSerializer {
 
-	protected static final Ifc2x3Package IFC_PACKAGE_INSTANCE = Ifc2x3Package.eINSTANCE;
+	protected static final Ifc2x3tc1Package IFC_PACKAGE_INSTANCE = Ifc2x3tc1Package.eINSTANCE;
 	protected static final Map<EClassifier, String> upperCases = initUpperCases();
 	private static final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
 

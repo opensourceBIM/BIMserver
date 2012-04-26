@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -27,11 +27,11 @@ public class FileBasedObjectIDM extends AbstractObjectIDM {
 			if (!packageDefinition.getName().equals("Ifc2x3")) {
 				throw new ObjectIDMException("Package must be Ifc2x3");
 			}
-			final Ifc2x3Package ifc2x3Package = Ifc2x3Package.eINSTANCE;
+			final Ifc2x3tc1Package ifc2x3tc1Package = Ifc2x3tc1Package.eINSTANCE;
 			List<ClassDefinition> classes = new ArrayList<ClassDefinition>(packageDefinition.getClassDefinitions());
 			for (ClassDefinition classDefinition : classes) {
 				if (!classDefinition.getName().equals("Object")) {
-					EClassifier eClassifier = ifc2x3Package.getEClassifier(classDefinition.getName());
+					EClassifier eClassifier = ifc2x3tc1Package.getEClassifier(classDefinition.getName());
 					if (eClassifier == null) {
 						throw new ObjectIDMException(classDefinition.getName() + " not found");
 					} else if (!(eClassifier instanceof EClass)) {
@@ -39,7 +39,7 @@ public class FileBasedObjectIDM extends AbstractObjectIDM {
 					}
 				}
 				if (classDefinition.getOrigin() != null) {
-					EClassifier eClassifier = ifc2x3Package.getEClassifier(classDefinition.getOrigin());
+					EClassifier eClassifier = ifc2x3tc1Package.getEClassifier(classDefinition.getOrigin());
 					if (eClassifier == null) {
 						throw new ObjectIDMException(classDefinition.getName() + " not found");
 					} else if (!(eClassifier instanceof EClass)) {
@@ -55,8 +55,8 @@ public class FileBasedObjectIDM extends AbstractObjectIDM {
 					} else if (o2.getName().equals("Object")) {
 						return 1;
 					}
-					EClass eClass1 = (EClass) ifc2x3Package.getEClassifier(o1.getName());
-					EClass eClass2 = (EClass) ifc2x3Package.getEClassifier(o2.getName());
+					EClass eClass1 = (EClass) ifc2x3tc1Package.getEClassifier(o1.getName());
+					EClass eClass2 = (EClass) ifc2x3tc1Package.getEClassifier(o2.getName());
 					if (eClass1.isSuperTypeOf(eClass2)) {
 						return 1;
 					} else if (eClass2.isSuperTypeOf(eClass1)) {
@@ -68,17 +68,17 @@ public class FileBasedObjectIDM extends AbstractObjectIDM {
 			for (ClassDefinition classDefinition : classes) {
 				if (classDefinition.getOrigin() == null) {
 					if (classDefinition.getName().equals("Object")) {
-						for (EClassifier eClassifier : ifc2x3Package.getEClassifiers()) {
+						for (EClassifier eClassifier : ifc2x3tc1Package.getEClassifiers()) {
 							if (eClassifier instanceof EClass) {
 								processClassDefinition(this, classDefinition, (EClass) eClassifier);
 							}
 						}
 					} else {
-						processClassDefinition(this, classDefinition, (EClass) ifc2x3Package.getEClassifier(classDefinition.getName()));
+						processClassDefinition(this, classDefinition, (EClass) ifc2x3tc1Package.getEClassifier(classDefinition.getName()));
 					}
 				} else {
-					EClass originClass = (EClass) ifc2x3Package.getEClassifier(classDefinition.getOrigin());
-					processClassDefinition(getOrigin(originClass), classDefinition, (EClass) ifc2x3Package.getEClassifier(classDefinition.getName()));
+					EClass originClass = (EClass) ifc2x3tc1Package.getEClassifier(classDefinition.getOrigin());
+					processClassDefinition(getOrigin(originClass), classDefinition, (EClass) ifc2x3tc1Package.getEClassifier(classDefinition.getName()));
 				}
 			}
 		} catch (JAXBException e) {

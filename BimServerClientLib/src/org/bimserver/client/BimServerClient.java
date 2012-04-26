@@ -44,9 +44,9 @@ import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -274,8 +274,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 			List<SDataObject> dataObjects = getServiceInterface().getDataObjects(roid);
 			IfcModelInterface model = new IfcModel(dataObjects.size());
 			for (SDataObject dataObject : dataObjects) {
-				EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(dataObject.getType());
-				IdEObject idEObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+				EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(dataObject.getType());
+				IdEObject idEObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 				((IdEObjectImpl)idEObject).setOid(dataObject.getOid());
 				model.add(dataObject.getOid(), idEObject);
 				for (SDataValue dataValue : dataObject.getValues()) {
@@ -365,7 +365,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 			return eEnum.getEEnumLiteral(stringValue).getInstance();
 		} else if (eType instanceof EClass) {
 			if (eType.getName().equals("IfcGloballyUniqueId")) {
-				IfcGloballyUniqueId ifcGloballyUniqueId = Ifc2x3Factory.eINSTANCE.createIfcGloballyUniqueId();
+				IfcGloballyUniqueId ifcGloballyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
 				ifcGloballyUniqueId.setWrappedValue(stringValue);
 				return ifcGloballyUniqueId;
 			} else {

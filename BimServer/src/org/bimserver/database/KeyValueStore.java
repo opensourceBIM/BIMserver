@@ -25,7 +25,7 @@ public interface KeyValueStore {
 
 	boolean containsTable(String tableName);
 
-	boolean createTable(String tableName, DatabaseSession databaseSession);
+	boolean createTable(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException;
 
 	boolean openTable(String tableName) throws BimserverDatabaseException;
 

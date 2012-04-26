@@ -39,6 +39,6 @@ public class Step0015 extends Migration {
 
 	@Override
 	public String getDescription() {
-		return "Add IfcEnginePluginDescriptor and IfcEngine";
+		return "Add CheckinStatus enum and reference to it from CheckinResult";
 	}
 }

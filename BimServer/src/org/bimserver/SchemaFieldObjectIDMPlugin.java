@@ -17,7 +17,7 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -33,7 +33,7 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		SchemaDefinition schema = pluginManager.requireSchemaDefinition();
-		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), schema);
+		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), schema);
 		initialized = true;
 	}
 

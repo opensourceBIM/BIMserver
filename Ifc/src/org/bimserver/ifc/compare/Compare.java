@@ -23,8 +23,8 @@ import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
@@ -133,8 +133,8 @@ public class Compare {
 	public CompareResult compareOnGuids(IfcModelInterface model1, IfcModelInterface model2, CompareType compareType) {
 		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
 		try {
-			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
-				if (eClassifier instanceof EClass && Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
+			for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
+				if (eClassifier instanceof EClass && Ifc2x3tc1Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
 					EClass eClass = (EClass) eClassifier;
 					for (String guid : model1.getGuids(eClass)) {
 						IdEObject eObject1 = model1.getByGuid(eClass, guid);
@@ -174,8 +174,8 @@ public class Compare {
 	public CompareResult compareOnNames(IfcModelInterface model1, IfcModelInterface model2, CompareType compareType) {
 		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
 		try {
-			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
-				if (eClassifier instanceof EClass && Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
+			for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
+				if (eClassifier instanceof EClass && Ifc2x3tc1Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
 					EClass eClass = (EClass) eClassifier;
 					for (String name : model1.getNames(eClass)) {
 						IdEObject eObject1 = model1.getByName(eClass, name);
@@ -231,7 +231,7 @@ public class Compare {
 							if (value1 == null && value2 == null) {
 							} else if (value1 == null && value2 != null) {
 								EClass value2Class = ((EObject) value2).eClass();
-								if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value2Class)) {
+								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value2Class)) {
 									Object realVal2 = ((EObject) value2).eGet(value2Class.getEStructuralFeature("wrappedValue"));
 									ObjectModified objectModified = StoreFactory.eINSTANCE.createObjectModified();
 									objectModified.setDataObject(makeDataObject(eObject1));
@@ -242,7 +242,7 @@ public class Compare {
 								}
 							} else if (value1 != null && value2 == null) {
 								EClass value1Class = ((EObject) value1).eClass();
-								if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value1Class)) {
+								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value1Class)) {
 									Object realVal1 = ((EObject) value1).eGet(value1Class.getEStructuralFeature("wrappedValue"));
 									ObjectModified objectModified = StoreFactory.eINSTANCE.createObjectModified();
 									objectModified.setDataObject(makeDataObject(eObject1));
@@ -253,7 +253,7 @@ public class Compare {
 								}
 							} else {
 								EClass value1Class = ((EObject) value1).eClass();
-								if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((EObject) value1).eClass())) {
+								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((EObject) value1).eClass())) {
 									Object realVal1 = ((EObject) value1).eGet(value1Class.getEStructuralFeature("wrappedValue"));
 									Object realVal2 = ((EObject) value2).eGet(value1Class.getEStructuralFeature("wrappedValue"));
 									if (!realVal1.equals(realVal2)) {

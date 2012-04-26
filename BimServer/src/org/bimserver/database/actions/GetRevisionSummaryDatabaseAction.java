@@ -24,7 +24,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
@@ -73,11 +73,11 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		}
 		for (EClass eClass : map.keySet()) {
 			RevisionSummaryContainer subMap = null;
-			if (Ifc2x3Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerEntities;
-			} else if (Ifc2x3Package.eINSTANCE.getIfcRelationship().isSuperTypeOf(eClass)) {
+			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRelationship().isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerRelations;
-			} else if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
+			} else if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerPrimitives;
 			} else {
 				subMap = revisionSummaryContainerOther;

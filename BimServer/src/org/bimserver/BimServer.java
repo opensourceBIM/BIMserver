@@ -50,7 +50,7 @@ import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
@@ -231,7 +231,7 @@ public class BimServer {
 
 			longActionManager = new LongActionManager(this);
 
-			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
+			Set<Ifc2x3tc1Package> packages = CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE);
 			templateEngine = new TemplateEngine();
 			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
 			File databaseDir = new File(config.getHomeDir(), "database");

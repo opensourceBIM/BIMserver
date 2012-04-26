@@ -24,7 +24,7 @@ package org.bimserver.tests;
 //import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 //import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 //
-//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3tc1Package;
 //import org.bimserver.ifc.file.reader.IfcFileReader;
 //import org.bimserver.tests.DbWriteTest.DatabaseEngine;
 //import org.eclipse.emf.common.util.EList;
@@ -111,7 +111,7 @@ package org.bimserver.tests;
 ////		props.setProperty(PersistenceOptions.USE_MAPPING_FILE, "true");
 //		
 //		HbDataStore hbds = HbHelper.INSTANCE.createRegisterDataStore(hbName);
-//		hbds.setEPackages(new EPackage[]{Ifc2x3Package.eINSTANCE});
+//		hbds.setEPackages(new EPackage[]{Ifc2x3tc1Package.eINSTANCE});
 //		hbds.setProperties(props);
 //		hbds.initialize();
 //		session = hbds.getSessionFactory().openSession();

@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 

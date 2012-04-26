@@ -29,8 +29,8 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -148,7 +148,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 
 	private IdEObject parseObject(XMLStreamReader reader) throws DeserializeException {
 		String className = reader.getLocalName();
-		EClassifier eClassifier = Ifc2x3Package.eINSTANCE.getEClassifier(className);
+		EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(className);
 		if (eClassifier == null || !(eClassifier instanceof EClass)) {
 			throw new DeserializeException("No class with name " + className + " was found");
 		}
@@ -165,7 +165,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 		if (model.contains(oid)) {
 			object = model.get(oid);
 		} else {
-			object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+			object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 			model.add(oid, object);
 		}
 		try {
@@ -213,7 +213,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 						IdEObject reference = null;
 						if (!model.contains(refId)) {
 							String referenceType = reader.getLocalName();
-							reference = (IdEObject) Ifc2x3Factory.eINSTANCE.create((EClass) Ifc2x3Package.eINSTANCE.getEClassifier(referenceType));
+							reference = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(referenceType));
 							model.add(refId, reference);
 						} else {
 							reference = model.get(refId);
@@ -239,7 +239,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 						}
 					} else {
 						String realTypeString = reader.getLocalName();
-						realType = Ifc2x3Package.eINSTANCE.getEClassifier(realTypeString);
+						realType = Ifc2x3tc1Package.eINSTANCE.getEClassifier(realTypeString);
 					}
 				} else if (reader.getEventType() == XMLStreamReader.END_ELEMENT) {
 					if (reader.getLocalName().equalsIgnoreCase(fieldName)) {
@@ -267,8 +267,8 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 							}
 							if (realType instanceof EClass) {
 								EClass eClass = (EClass) realType;
-								if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
-									IdEObject wrappedObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
+									IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 									// model.add(wrappedObject);
 									EStructuralFeature wrappedValueFeature = eClass.getEStructuralFeature("wrappedValue");
 									wrappedObject.eSet(wrappedValueFeature, parsePrimitive(wrappedValueFeature.getEType(), text));

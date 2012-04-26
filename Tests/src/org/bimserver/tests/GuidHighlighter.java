@@ -23,20 +23,20 @@ import java.util.Set;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.IfcColourRgb;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcPresentationLayerAssignment;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
-import org.bimserver.models.ifc2x3.IfcProduct;
-import org.bimserver.models.ifc2x3.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3.IfcRepresentation;
-import org.bimserver.models.ifc2x3.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcStyledItem;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -65,7 +65,7 @@ public class GuidHighlighter {
 	
 	private void highlightGuids(IfcModelInterface model, Set<String> highlightedGuids) {
 		Set<IdEObject> newObjects = new HashSet<IdEObject>();
-		IfcColourRgb gray = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
+		IfcColourRgb gray = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
 		newObjects.add(gray);
 		gray.setRed(0.5f);
 		gray.setGreen(0.5f);
@@ -78,12 +78,12 @@ public class GuidHighlighter {
 			}
 		}
 		
-		IfcPresentationLayerAssignment notSelectedLayer = Ifc2x3Factory.eINSTANCE.createIfcPresentationLayerAssignment();
+		IfcPresentationLayerAssignment notSelectedLayer = Ifc2x3tc1Factory.eINSTANCE.createIfcPresentationLayerAssignment();
 		notSelectedLayer.setName("Not Selected");
 		notSelectedLayer.setIdentifier("Not Selected");
 		newObjects.add(notSelectedLayer);
 
-		IfcPresentationLayerAssignment selectedLayer = Ifc2x3Factory.eINSTANCE.createIfcPresentationLayerAssignment();
+		IfcPresentationLayerAssignment selectedLayer = Ifc2x3tc1Factory.eINSTANCE.createIfcPresentationLayerAssignment();
 		selectedLayer.setName("Selected");
 		selectedLayer.setIdentifier("Selected");
 		newObjects.add(selectedLayer);

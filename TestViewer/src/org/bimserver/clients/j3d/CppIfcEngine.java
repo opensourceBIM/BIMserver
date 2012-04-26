@@ -31,7 +31,7 @@ package org.bimserver.clients.j3d;
 //
 //import org.bimserver.ifc.IfcModel;
 //import org.bimserver.ifc.file.writer.IfcStepSerializer;
-//import org.bimserver.models.ifc2x3.IfcRoot;
+//import org.bimserver.models.ifc2x3tc1.IfcRoot;
 //import org.bimserver.plugins.ifcengine.IfcEngineException;
 //import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 //import org.bimserver.plugins.ifcengine.IfcEngineInstance;

@@ -2,7 +2,7 @@ package org.bimserver.database;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -24,7 +24,7 @@ public class ObjectCache {
 	}
 	
 	private boolean useRecordLevelVersioning(IdEObject idEObject) {
-		return idEObject.eClass().getEPackage() != Ifc2x3Package.eINSTANCE;
+		return idEObject.eClass().getEPackage() != Ifc2x3tc1Package.eINSTANCE;
 	}
 	
 	public IdEObjectImpl get(RecordIdentifier recordIdentifier) {

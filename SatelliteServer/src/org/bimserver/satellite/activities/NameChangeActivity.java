@@ -2,7 +2,7 @@ package org.bimserver.satellite.activities;
 
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.models.ifc2x3.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.satellite.SatelliteServer;
 import org.bimserver.shared.ServiceInterface;

@@ -29,24 +29,24 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.merging.Merger;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.IfcCharacterStyleSelect;
-import org.bimserver.models.ifc2x3.IfcColourRgb;
-import org.bimserver.models.ifc2x3.IfcCurveStyle;
-import org.bimserver.models.ifc2x3.IfcFillAreaStyle;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
-import org.bimserver.models.ifc2x3.IfcProduct;
-import org.bimserver.models.ifc2x3.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3.IfcRepresentation;
-import org.bimserver.models.ifc2x3.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcStyledItem;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
-import org.bimserver.models.ifc2x3.IfcSymbolStyle;
-import org.bimserver.models.ifc2x3.IfcTextStyle;
-import org.bimserver.models.ifc2x3.IfcTextStyleForDefinedFont;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
+import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
+import org.bimserver.models.ifc2x3tc1.IfcCurveStyle;
+import org.bimserver.models.ifc2x3tc1.IfcFillAreaStyle;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
+import org.bimserver.models.ifc2x3tc1.IfcSymbolStyle;
+import org.bimserver.models.ifc2x3tc1.IfcTextStyle;
+import org.bimserver.models.ifc2x3tc1.IfcTextStyleForDefinedFont;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareIdentifier;
@@ -128,21 +128,21 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 			}
 		}
 
-		IfcColourRgb red = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
+		IfcColourRgb red = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
 		red.setName("red");
 		mergedModel.add(red);
 		red.setRed(0.5);
 		red.setGreen(0.0);
 		red.setBlue(0.0);
 
-		IfcColourRgb green = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
+		IfcColourRgb green = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
 		green.setName("green");
 		mergedModel.add(green);
 		green.setRed(0);
 		green.setGreen(0.5);
 		green.setBlue(0);
 
-		IfcColourRgb blue = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
+		IfcColourRgb blue = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
 		blue.setName("blue");
 		mergedModel.add(blue);
 		blue.setRed(0);
@@ -253,7 +253,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	}
 
 	private void createSurfaceStyleStyles(IfcModelInterface model, Set<IdEObject> newObjects, String representationIdentifier, IfcSurfaceStyle ifcSurfaceStyle, IfcColourRgb color) {
-		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = Ifc2x3Factory.eINSTANCE.createIfcSurfaceStyleRendering();
+		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = Ifc2x3tc1Factory.eINSTANCE.createIfcSurfaceStyleRendering();
 		newObjects.add(ifcSurfaceStyleRendering);
 		ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
 		if (color != null) {
@@ -270,7 +270,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, Set<IdEObject> newObjects, String representationIdentifier,
 			IfcPresentationStyleAssignment ifcPresentationStyleAssignment, IfcColourRgb color) {
 		if (representationIdentifier.equals("Body")) {
-			IfcSurfaceStyle ifcPresentationStyleSelect = Ifc2x3Factory.eINSTANCE.createIfcSurfaceStyle();
+			IfcSurfaceStyle ifcPresentationStyleSelect = Ifc2x3tc1Factory.eINSTANCE.createIfcSurfaceStyle();
 			newObjects.add(ifcPresentationStyleSelect);
 			ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
 			createSurfaceStyleStyles(model, newObjects, representationIdentifier, ifcPresentationStyleSelect, color);
@@ -281,14 +281,14 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 
 	private void createStyledByItems(IfcModelInterface model, Set<IdEObject> newObjects, IfcRepresentationItem ifcRepresentationItem, String representationIdentifier,
 			IfcColourRgb color) {
-		IfcStyledItem ifcStyledItem = Ifc2x3Factory.eINSTANCE.createIfcStyledItem();
+		IfcStyledItem ifcStyledItem = Ifc2x3tc1Factory.eINSTANCE.createIfcStyledItem();
 		newObjects.add(ifcStyledItem);
 		ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
 		createStyledItemStyles(model, newObjects, representationIdentifier, ifcStyledItem, color);
 	}
 
 	private void createStyledItemStyles(IfcModelInterface model, Set<IdEObject> newObjects, String representationIdentifier, IfcStyledItem ifcStyledItem, IfcColourRgb color) {
-		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = Ifc2x3Factory.eINSTANCE.createIfcPresentationStyleAssignment();
+		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = Ifc2x3tc1Factory.eINSTANCE.createIfcPresentationStyleAssignment();
 		newObjects.add(ifcPresentationStyleAssignment);
 		ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
 		createPresentationStyleAssignmentStyles(model, newObjects, representationIdentifier, ifcPresentationStyleAssignment, color);
