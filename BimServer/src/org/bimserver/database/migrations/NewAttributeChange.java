@@ -51,7 +51,7 @@ public class NewAttributeChange implements Change {
 		KeyValueStore columnDatabase = database.getColumnDatabase();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
-				RecordIterator recordIterator = columnDatabase.getRecordIterator(subClass.getName(), databaseSession);
+				RecordIterator recordIterator = columnDatabase.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
 				try {
 					Record record = recordIterator.next();
 					while (record != null) {
@@ -85,7 +85,7 @@ public class NewAttributeChange implements Change {
 								throw new NotImplementedException("Type " + eAttribute.getEType().getName() + " has not been implemented");
 							}
 						}
-						columnDatabase.store(subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
+						columnDatabase.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
 						record = recordIterator.next();
 					}
 				} catch (BimserverDatabaseException e) {

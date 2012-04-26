@@ -28,15 +28,15 @@ import com.google.common.base.Charsets;
 public class Registry {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Registry.class);
 	public static final String REGISTRY_TABLE = "INT-Registry";
-	private final KeyValueStore columnDatabase;
+	private final KeyValueStore keyValueStore;
 
-	public Registry(KeyValueStore columnDatabase) {
-		this.columnDatabase = columnDatabase;
+	public Registry(KeyValueStore keyValueStore) {
+		this.keyValueStore = keyValueStore;
 	}
 
 	public void save(String key, long value, DatabaseSession databaseSession) throws BimserverDeadlockException {
 		try {
-			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.longToByteArray(value), databaseSession);
+			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.longToByteArray(value), databaseSession);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -44,7 +44,7 @@ public class Registry {
 
 	public void save(String key, boolean value, DatabaseSession databaseSession) throws BimserverDeadlockException {
 		try {
-			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.booleanToByteArray(value), databaseSession);
+			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.booleanToByteArray(value), databaseSession);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -52,14 +52,14 @@ public class Registry {
 
 	public void save(String key, int value, DatabaseSession databaseSession) throws BimserverDeadlockException {
 		try {
-			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.intToByteArray(value), databaseSession);
+			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.intToByteArray(value), databaseSession);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		}
 	}
 
 	public long readLong(String key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
-		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return 1;
 		} else {
@@ -68,7 +68,7 @@ public class Registry {
 	}
 
 	public int readInt(String key, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
-		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return 1;
 		} else {
@@ -77,7 +77,7 @@ public class Registry {
 	}
 
 	public int readInt(String key, DatabaseSession databaseSession, int defaultValue) throws BimserverDeadlockException, BimserverDatabaseException {
-		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return defaultValue;
 		} else {
@@ -98,7 +98,7 @@ public class Registry {
 	}
 
 	public boolean readBoolean(String key, boolean defaultValue, DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
-		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		byte[] bytes = keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return defaultValue;
 		} else {
