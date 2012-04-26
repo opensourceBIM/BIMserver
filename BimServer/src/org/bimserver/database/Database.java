@@ -60,7 +60,7 @@ public class Database implements BimDatabase {
 	public static final String SCHEMA_VERSION = "SCHEMA_VERSION";
 	private static final String DATE_CREATED = "DATE_CREATED";
 	private final Set<EPackage> emfPackages = new LinkedHashSet<EPackage>();
-	private final KeyValueStore columnDatabase;
+	private final KeyValueStore keyValueStore;
 	private final DoubleHashMap<Short, EClass> classifiers = new DoubleHashMap<Short, EClass>();
 	private final List<String> realClasses = new ArrayList<String>();
 	private volatile long oidCounter;
@@ -81,13 +81,13 @@ public class Database implements BimDatabase {
 	 */
 	public static final int APPLICATION_SCHEMA_VERSION = 16;
 
-	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore columnDatabase) throws DatabaseInitException {
+	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore) throws DatabaseInitException {
 		this.bimServer = bimServer;
-		this.columnDatabase = columnDatabase;
+		this.keyValueStore = keyValueStore;
 		this.emfPackages.add(StorePackage.eINSTANCE);
 		this.emfPackages.add(LogPackage.eINSTANCE);
 		this.emfPackages.addAll(emfPackages);
-		this.registry = new Registry(columnDatabase);
+		this.registry = new Registry(keyValueStore);
 	}
 
 	public int getApplicationSchemaVersion() {
@@ -102,16 +102,16 @@ public class Database implements BimDatabase {
 		DatabaseSession databaseSession = createSession();
 		try {
 			if (getColumnDatabase().isNew()) {
-				columnDatabase.createTable(CLASS_LOOKUP_TABLE, null);
-				columnDatabase.createTable(Database.STORE_PROJECT_NAME, null);
-				columnDatabase.createTable(Registry.REGISTRY_TABLE, null);
+				keyValueStore.createTable(CLASS_LOOKUP_TABLE, null);
+				keyValueStore.createTable(Database.STORE_PROJECT_NAME, null);
+				keyValueStore.createTable(Registry.REGISTRY_TABLE, null);
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
 			} else {
-				columnDatabase.openTable(CLASS_LOOKUP_TABLE);
-				columnDatabase.openTable(Database.STORE_PROJECT_NAME);
-				columnDatabase.openTable(Registry.REGISTRY_TABLE);
+				keyValueStore.openTable(CLASS_LOOKUP_TABLE);
+				keyValueStore.openTable(Database.STORE_PROJECT_NAME);
+				keyValueStore.openTable(Registry.REGISTRY_TABLE);
 				created = registry.readDate(DATE_CREATED, databaseSession);
 				if (created == null) {
 					created = new Date();
@@ -191,13 +191,13 @@ public class Database implements BimDatabase {
 	}
 
 	public void initInternalStructure(DatabaseSession databaseSession) throws BimserverDeadlockException, BimserverDatabaseException {
-		RecordIterator recordIterator = columnDatabase.getRecordIterator(CLASS_LOOKUP_TABLE, databaseSession);
+		RecordIterator recordIterator = keyValueStore.getRecordIterator(CLASS_LOOKUP_TABLE, databaseSession);
 		try {
 			Record record = recordIterator.next();
 			while (record != null) {
 				String className = BinUtils.byteArrayToString(record.getValue());
 				EClass eClass = (EClass) getEClassifier(className);
-				columnDatabase.openTable(eClass.getName());
+				keyValueStore.openTable(eClass.getEPackage().getName() + "_" + eClass.getName());
 				Short cid = BinUtils.byteArrayToShort(record.getKey());
 				classifiers.put(cid, eClass);
 				record = recordIterator.next();
@@ -211,7 +211,7 @@ public class Database implements BimDatabase {
 		DatabaseSession session = createSession();
 		try {
 			for (EClass eClass : classifiers.keyBSet()) {
-				RecordIterator iterator = columnDatabase.getRecordIterator(eClass.getName(), databaseSession);
+				RecordIterator iterator = keyValueStore.getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
 				try {
 					Record record = iterator.last();
 					if (record != null) {
@@ -240,7 +240,7 @@ public class Database implements BimDatabase {
 	}
 
 	public void close() {
-		columnDatabase.close();
+		keyValueStore.close();
 	}
 
 	public EClass getEClassForName(String className) {
@@ -257,13 +257,13 @@ public class Database implements BimDatabase {
 	}
 
 	public DatabaseSession createSession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction());
+		DatabaseSession databaseSession = new DatabaseSession(this, keyValueStore.startTransaction());
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
 
 	public KeyValueStore getColumnDatabase() {
-		return columnDatabase;
+		return keyValueStore;
 	}
 
 	public Set<EClass> getClasses() {
@@ -309,11 +309,11 @@ public class Database implements BimDatabase {
 	}
 
 	public boolean createTable(EClass eClass, DatabaseSession databaseSession) throws BimserverDatabaseException {
-		boolean createTable = columnDatabase.createTable(eClass.getName(), databaseSession);
+		boolean createTable = keyValueStore.createTable(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
 		if (createTable) {
 			tableId++;
 			try {
-				columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);
+				keyValueStore.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 			}
@@ -333,5 +333,13 @@ public class Database implements BimDatabase {
 			}
 		}
 		return null;
+	}
+
+	public void incrementCommittedWrites(int committedWrites) {
+		keyValueStore.incrementCommittedWrites(committedWrites);
+	}
+
+	public void incrementReads(int reads) {
+		keyValueStore.incrementReads(reads);
 	}
 }

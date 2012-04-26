@@ -36,11 +36,12 @@ public class NewClassChange implements Change {
 
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws BimserverDatabaseException {
-		LOGGER.info("Creating table: " + getEClass().getName());
+		String tableName = getEClass().getEPackage().getName() + "_" + getEClass().getName();
+		LOGGER.info("Creating table: " + tableName);
 		try {
 			boolean created = database.createTable(getEClass(), databaseSession);
 			if (!created) {
-				throw new BimserverDatabaseException("Could not create table " + getEClass().getName());
+				throw new BimserverDatabaseException("Could not create table " + tableName);
 			}
 		} catch (BimserverDeadlockException e) {
 			LOGGER.error("", e);

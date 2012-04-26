@@ -48,7 +48,7 @@ public class NewReferenceChange implements Change {
 		KeyValueStore columnDatabase = database.getColumnDatabase();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
-				RecordIterator recordIterator = columnDatabase.getRecordIterator(subClass.getName(), databaseSession);
+				RecordIterator recordIterator = columnDatabase.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
 				try {
 					Record record = recordIterator.next();
 					while (record != null) {
@@ -58,7 +58,7 @@ public class NewReferenceChange implements Change {
 						} else {
 							buffer.putShort((short)-1);
 						}
-						columnDatabase.store(subClass.getName(), record.getKey(), buffer.array(), databaseSession);
+						columnDatabase.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), buffer.array(), databaseSession);
 						record = recordIterator.next();
 					}
 				} catch (BimserverDatabaseException e) {

@@ -54,12 +54,14 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyKeyValueStore.class);
 	private Environment environment;
-	private int writes;
+	private int committedWrites;
 	private int reads;
 	private final Map<String, Database> tables = new HashMap<String, Database>();
 	private boolean isNew;
 	private TransactionConfig transactionConfig;
 	private CursorConfig cursorConfig;
+	private long lastPrintedReads = 0;
+	private long lastPrintedCommittedWrites = 0;
 
 	public BerkeleyKeyValueStore(File dataDir) throws DatabaseInitException {
 		if (dataDir.isDirectory()) {
@@ -188,7 +190,6 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		try {
 			OperationStatus operationStatus = getDatabase(tableName).get(getTransaction(databaseSession), key, value, LockMode.DEFAULT);
 			if (operationStatus == OperationStatus.SUCCESS) {
-				increaseReads();
 				return value.getData();
 			}
 		} catch (DatabaseException e) {
@@ -198,7 +199,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 
 	public int getTotalWrites() {
-		return writes;
+		return committedWrites;
 	}
 
 	public void sync() {
@@ -271,17 +272,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			if (record == null) {
 				return null;
 			}
-			increaseReads();
 			return record.getValue();
 		} finally {
 			recordIterator.close();
-		}
-	}
-
-	private synchronized void increaseReads() {
-		reads++;
-		if (reads % 100000 == 0) {
-			LOGGER.info("reads: " + reads);
 		}
 	}
 
@@ -289,7 +282,6 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseEntry entry = new DatabaseEntry(key);
 		try {
 			getDatabase(tableName).delete(getTransaction(databaseSession), entry);
-			increaseWrites();
 		} catch (LockConflictException e) {
 			throw new BimserverDeadlockException(e);
 		} catch (DatabaseException e) {
@@ -300,13 +292,6 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			LOGGER.error("", e);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
-		}
-	}
-
-	private synchronized void increaseWrites() {
-		writes++;
-		if (writes % 100000 == 0) {
-			LOGGER.info("writes: " + writes);
 		}
 	}
 
@@ -349,7 +334,6 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		try {
 			Database database = getDatabase(tableName);
 			database.put(getTransaction(databaseSession), dbKey, dbValue);
-			increaseWrites();
 		} catch (LockConflictException e) {
 			throw new BimserverDeadlockException(e);
 		} catch (DatabaseException e) {
@@ -367,7 +351,6 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			if (putNoOverwrite == OperationStatus.KEYEXIST) {
 				throw new BimserverConcurrentModificationDatabaseException("Key exists");
 			}
-			increaseWrites();
 		} catch (LockConflictException e) {
 			throw new BimserverDeadlockException(e);
 		} catch (DatabaseException e) {
@@ -396,5 +379,22 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	
 	public Set<String> getAllTableNames() {
 		return tables.keySet();
+	}
+	
+	public synchronized void incrementReads(int reads) {
+		this.reads += reads;
+		if (this.reads / 100000 != lastPrintedReads) {
+			LOGGER.info("reads: " + this.reads);
+			lastPrintedReads = this.reads / 100000;
+		}
+	}
+	
+	@Override
+	public synchronized void incrementCommittedWrites(int committedWrites) {
+		this.committedWrites += committedWrites;
+		if (this.committedWrites / 100000 != lastPrintedCommittedWrites) {
+			LOGGER.info("writes: " + this.committedWrites);
+			lastPrintedCommittedWrites = this.committedWrites / 100000;
+		}
 	}
 }

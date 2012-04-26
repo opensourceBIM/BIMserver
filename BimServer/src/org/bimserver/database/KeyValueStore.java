@@ -65,4 +65,8 @@ public interface KeyValueStore {
 	Set<String> getAllTableNames();
 
 	void storeNoOverwrite(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverDeadlockException, BimserverConcurrentModificationDatabaseException;
+
+	void incrementCommittedWrites(int committedWrites);
+
+	void incrementReads(int reads);
 }
