@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
@@ -38,7 +38,7 @@ public class UserHasRightsDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Boolean execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		return RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project);

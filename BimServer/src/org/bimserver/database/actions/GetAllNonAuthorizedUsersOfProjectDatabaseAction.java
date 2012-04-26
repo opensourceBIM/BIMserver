@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.AndCondition;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -47,7 +47,7 @@ public class GetAllNonAuthorizedUsersOfProjectDatabaseAction extends BimDatabase
 	}
 	
 	@Override
-	public Set<User> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<User> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = 
 			new AndCondition(
 				new AndCondition(

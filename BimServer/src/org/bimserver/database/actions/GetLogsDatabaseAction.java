@@ -23,7 +23,7 @@ import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
@@ -42,7 +42,7 @@ public class GetLogsDatabaseAction extends BimDatabaseAction<List<LogAction>> {
 	}
 
 	@Override
-	public List<LogAction> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public List<LogAction> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		if (user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can retrieve log");

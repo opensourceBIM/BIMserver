@@ -21,6 +21,7 @@ import java.io.File;
 import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.plugins.PluginManager;
@@ -67,7 +68,14 @@ public class LocalDevBimWebServerStarter {
 		LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
-				return new BimServerClient(pluginManager);
+				BimServerClient bimServerClient = new BimServerClient(pluginManager);
+				bimServerClient.setAuthentication(authenticationInfo);
+				try {
+					bimServerClient.connectSoap("http://localhost:8080/soap", false);
+				} catch (ConnectionException e) {
+					e.printStackTrace();
+				}
+				return bimServerClient;
 			}
 		};
 		

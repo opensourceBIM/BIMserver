@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -40,7 +40,7 @@ public class GetProjectsOfUserDatabaseAction extends BimDatabaseAction<List<Proj
 	}
 
 	@Override
-	public List<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public List<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		if (user != null) {
 			List<Project> result = new ArrayList<Project>();

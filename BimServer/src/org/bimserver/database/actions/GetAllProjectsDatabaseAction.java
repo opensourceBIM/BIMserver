@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -50,7 +50,7 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 	}
 
 	@Override
-	public Set<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		Not notStoreProject = new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)));
 		HasReferenceToCondition authorized = new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user);

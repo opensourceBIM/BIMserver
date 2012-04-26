@@ -124,9 +124,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	public void connectSoap(final String address, boolean useSoapHeaderSessions) throws ConnectionException {
-		if (authenticationInfo == null) {
-			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
-		}
+//		if (authenticationInfo == null) {
+//			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
+//		}
 		disconnect();
 		SoapChannel soapChannel = new SoapChannel();
 		this.channel = soapChannel;

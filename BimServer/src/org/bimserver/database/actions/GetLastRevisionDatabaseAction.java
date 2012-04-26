@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -35,7 +35,7 @@ public class GetLastRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 	}
 
 	@Override
-	public Revision execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Revision execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectById(pid);
 		if (project != null) {
 			return project.getLastRevision();

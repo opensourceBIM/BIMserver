@@ -22,7 +22,7 @@ import java.util.Date;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -57,7 +57,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	}
 
 	@Override
-	public Project execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
+	public Project execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		User actingUser = getUserByUoid(owningUoid);
 		String trimmedName = name.trim();
 		if (trimmedName.equals("")) {

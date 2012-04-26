@@ -21,7 +21,7 @@ import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserUndeleted;
@@ -42,7 +42,7 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 
 	@Override
-	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
+	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		User actingUser = getUserByUoid(actingUoid);
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only administrators can undelete users");

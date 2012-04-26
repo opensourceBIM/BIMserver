@@ -24,7 +24,7 @@ import java.util.Set;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -60,7 +60,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		User user = getUserByUoid(actingUoid);
 		Project project = null;

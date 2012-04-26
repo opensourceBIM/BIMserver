@@ -20,7 +20,7 @@ package org.bimserver.database.migrations;
 import java.nio.ByteBuffer;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -45,10 +45,10 @@ public class NewReferenceChange implements Change {
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException {
 		EClass eClass = eReference.getEContainingClass();
-		KeyValueStore columnDatabase = database.getColumnDatabase();
+		KeyValueStore keyValueStore = database.getKeyValueStore();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
-				RecordIterator recordIterator = columnDatabase.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
+				RecordIterator recordIterator = keyValueStore.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
 				try {
 					Record record = recordIterator.next();
 					while (record != null) {
@@ -58,7 +58,7 @@ public class NewReferenceChange implements Change {
 						} else {
 							buffer.putShort((short)-1);
 						}
-						columnDatabase.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), buffer.array(), databaseSession);
+						keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), buffer.array(), databaseSession);
 						record = recordIterator.next();
 					}
 				} catch (BimserverDatabaseException e) {
@@ -66,7 +66,7 @@ public class NewReferenceChange implements Change {
 				} finally {
 					recordIterator.close();
 				}
-			} catch (BimserverDeadlockException e) {
+			} catch (BimserverLockConflictException e) {
 				LOGGER.error("", e);
 			}
 		}

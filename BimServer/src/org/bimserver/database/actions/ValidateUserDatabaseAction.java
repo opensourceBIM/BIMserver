@@ -21,7 +21,7 @@ import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
@@ -42,7 +42,7 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<User> {
 	}
 
 	@Override
-	public User execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public User execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(uoid);
 		if (user.getValidationToken() == null) {
 			throw new UserException("This account is already validated");

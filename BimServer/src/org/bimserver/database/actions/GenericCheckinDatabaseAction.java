@@ -22,7 +22,7 @@ import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
@@ -60,7 +60,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		}
 	}
 	
-	public ConcreteRevision createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverDeadlockException {
+	public ConcreteRevision createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
 		concreteRevision.setSize(size);
 		Date date = new Date();
@@ -117,7 +117,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 	}
 
 	private Revision createNewVirtualRevision(DatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size)
-			throws BimserverDeadlockException, BimserverDatabaseException {
+			throws BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = StoreFactory.eINSTANCE.createRevision();
 		revision.setLastConcreteRevision(concreteRevision);
 		revision.setComment(comment);

@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
@@ -34,7 +34,7 @@ public class UpdateDatabaseAction<T extends IdEObject> extends BimDatabaseAction
 	}
 
 	@Override
-	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		getDatabaseSession().store(idEObject);
 		return null;
 	}

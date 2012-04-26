@@ -20,7 +20,7 @@ package org.bimserver;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.MergeIdentifier;
@@ -75,7 +75,7 @@ public class SettingsManager {
 		try {
 			session.store(settings);
 			session.commit();
-		} catch (BimserverDeadlockException e) {
+		} catch (BimserverLockConflictException e) {
 			LOGGER.error("", e);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);

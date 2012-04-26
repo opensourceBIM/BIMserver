@@ -22,7 +22,7 @@ import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.emf.IdEObject;
@@ -43,7 +43,7 @@ public class GetAllDatabaseAction<T extends IdEObject> extends BimDatabaseAction
 	}
 
 	@Override
-	public List<T> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public List<T> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(eClass);
 		Map<Long, T> result = getDatabaseSession().query(condition, clazz, false, null);
 		return CollectionUtils.mapToList(result);

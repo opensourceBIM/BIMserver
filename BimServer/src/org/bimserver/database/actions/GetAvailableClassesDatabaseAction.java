@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -32,7 +32,7 @@ public class GetAvailableClassesDatabaseAction extends BimDatabaseAction<List<St
 	}
 
 	@Override
-	public List<String> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public List<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		return getDatabaseSession().getClassList();
 	}
 }

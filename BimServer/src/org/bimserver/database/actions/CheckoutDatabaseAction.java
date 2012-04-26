@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -48,7 +48,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	}
 
 	@Override
-	public IfcModel execute() throws UserException, BimserverDatabaseException, BimserverDeadlockException {
+	public IfcModel execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		User user = getUserByUoid(uoid);
 		Revision revision = getVirtualRevision(roid);
@@ -88,7 +88,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 		}
 	}
 
-	private IfcModel realCheckout(Project project, Revision revision, DatabaseSession databaseSession, User user) throws BimserverDeadlockException, BimserverDatabaseException {
+	private IfcModel realCheckout(Project project, Revision revision, DatabaseSession databaseSession, User user) throws BimserverLockConflictException, BimserverDatabaseException {
 		final long totalSize = revision.getSize();
 		final AtomicLong total = new AtomicLong();
 		IfcModel ifcModel = new IfcModel();

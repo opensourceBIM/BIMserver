@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.Project;
@@ -40,7 +40,7 @@ public class GetClashDetectionSettingsDatabaseAction extends BimDatabaseAction<C
 	}
 
 	@Override
-	public ClashDetectionSettings execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public ClashDetectionSettings execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) getDatabaseSession().get(StorePackage.eINSTANCE.getClashDetectionSettings(), cdsoid, false, null);
 		boolean hasRights = false;

@@ -31,6 +31,7 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.tests.TestFile;
 import org.junit.Test;
 
 public class TestIfcStepDeserializer {
@@ -41,7 +42,7 @@ public class TestIfcStepDeserializer {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface modelInterface = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\210_King_Merged.ifc"), true);
+			IfcModelInterface modelInterface = deserializer.read(TestFile.AC11.getFile(), true);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();

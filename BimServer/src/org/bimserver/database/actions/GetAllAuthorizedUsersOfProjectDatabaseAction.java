@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
@@ -38,7 +38,7 @@ public class GetAllAuthorizedUsersOfProjectDatabaseAction extends BimDatabaseAct
 	}
 	
 	@Override
-	public Set<User> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<User> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		EList<User> users = getProjectByPoid(poid).getHasAuthorizedUsers();
 		return new HashSet<User>(users);
 	}

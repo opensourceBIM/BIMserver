@@ -24,7 +24,7 @@ import java.util.Map;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -45,7 +45,7 @@ public class GetAllIfcEnginesDatabaseAction extends GetAllDatabaseAction<IfcEngi
 	}
 
 	@Override
-	public List<IfcEngine> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public List<IfcEngine> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getIfcEngine());
 		Map<Long, IfcEngine> result = getDatabaseSession().query(condition, IfcEngine.class, false, null);
 		List<IfcEngine> mapToList = CollectionUtils.mapToList(result);

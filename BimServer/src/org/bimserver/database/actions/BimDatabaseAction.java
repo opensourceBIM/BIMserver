@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
@@ -42,7 +42,7 @@ public abstract class BimDatabaseAction<T> {
 	private DatabaseSession databaseSession;
 	private final AccessMethod accessMethod;
 
-	public abstract T execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException;
+	public abstract T execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException;
 
 	public BimDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
 		this.databaseSession = databaseSession;
@@ -65,7 +65,7 @@ public abstract class BimDatabaseAction<T> {
 		return (User) databaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 	}
 	
-	public User getAdminUser() throws BimserverDatabaseException, BimserverDeadlockException {
+	public User getAdminUser() throws BimserverDatabaseException, BimserverLockConflictException {
 		return getUserByUserName("admin");
 	}
 
@@ -77,26 +77,26 @@ public abstract class BimDatabaseAction<T> {
 		progressListeners.remove(progressListener);
 	}
 	
-	public User getSystemUser() throws BimserverDatabaseException, BimserverDeadlockException {
+	public User getSystemUser() throws BimserverDatabaseException, BimserverLockConflictException {
 		return getUserByUserName("system");
 	}
 	
-	public Project getProjectById(int pid) throws BimserverDatabaseException, BimserverDeadlockException {
+	public Project getProjectById(int pid) throws BimserverDatabaseException, BimserverLockConflictException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(pid));
 		return databaseSession.querySingle(condition, Project.class, false, null);
 	}
 
-	public Set<Project> getProjectsByName(String projectName) throws BimserverDatabaseException, BimserverDeadlockException {
+	public Set<Project> getProjectsByName(String projectName) throws BimserverDatabaseException, BimserverLockConflictException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(projectName));
 		return CollectionUtils.mapToSet(databaseSession.query(condition, Project.class, false, null));
 	}
 
-	public User getUserByUserName(String username) throws BimserverDatabaseException, BimserverDeadlockException {
+	public User getUserByUserName(String username) throws BimserverDatabaseException, BimserverLockConflictException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
 		return databaseSession.querySingle(condition, User.class, false, null);
 	}
 
-	public Revision getVirtualRevision(long roid) throws BimserverDeadlockException, BimserverDatabaseException {
+	public Revision getVirtualRevision(long roid) throws BimserverLockConflictException, BimserverDatabaseException {
 		IdEObject idEObject = databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		return (Revision) idEObject;
 	}
@@ -105,7 +105,7 @@ public abstract class BimDatabaseAction<T> {
 		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 	}
 
-	public ConcreteRevision getConcreteRevision(long croid) throws BimserverDeadlockException, BimserverDatabaseException {
+	public ConcreteRevision getConcreteRevision(long croid) throws BimserverLockConflictException, BimserverDatabaseException {
 		return (ConcreteRevision) databaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
 	}
 

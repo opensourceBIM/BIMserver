@@ -19,7 +19,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -40,7 +40,7 @@ public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
 	}
 
 	@Override
-	public Project execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Project execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		if (project == null) {
 			throw new UserException("Project does not exist");

@@ -21,7 +21,7 @@ import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ClashDetectionSettingsUpdated;
@@ -45,7 +45,7 @@ public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseActio
 	}
 
 	@Override
-	public Void execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) getDatabaseSession().get(StorePackage.eINSTANCE.getClashDetectionSettings(), sClashDetectionSettings.getOid(), false, null);
 		

@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -42,7 +42,7 @@ public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 	}
 
 	@Override
-	public Set<Project> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		Project project = getProjectByPoid(poid);
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {

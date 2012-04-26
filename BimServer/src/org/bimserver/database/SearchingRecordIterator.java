@@ -18,5 +18,5 @@ package org.bimserver.database;
  *****************************************************************************/
 
 public interface SearchingRecordIterator extends RecordIterator {
-	Record next(byte[] nextKeyStart) throws BimserverDeadlockException;
+	Record next(byte[] nextKeyStart) throws BimserverLockConflictException;
 }

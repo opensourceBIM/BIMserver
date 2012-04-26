@@ -18,7 +18,7 @@ package org.bimserver.database;
  *****************************************************************************/
 
 public interface RecordIterator {
-	Record next() throws BimserverDeadlockException;
+	Record next() throws BimserverLockConflictException;
 	void close();
-	Record last() throws BimserverDeadlockException;
+	Record last() throws BimserverLockConflictException;
 }

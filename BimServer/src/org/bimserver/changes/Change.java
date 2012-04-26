@@ -21,11 +21,11 @@ import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
 
 public interface Change {
 
-	void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverDeadlockException, BimserverDatabaseException;
+	void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException;
 }

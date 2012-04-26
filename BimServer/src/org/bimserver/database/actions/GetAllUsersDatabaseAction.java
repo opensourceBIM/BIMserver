@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
@@ -46,7 +46,7 @@ public class GetAllUsersDatabaseAction extends BimDatabaseAction<Set<User>> {
 	}
 
 	@Override
-	public Set<User> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public Set<User> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getUser());
 		condition = condition.and(new Not(new AttributeCondition(StorePackage.eINSTANCE.getUser_UserType(), new EnumLiteral(UserType.SYSTEM))));

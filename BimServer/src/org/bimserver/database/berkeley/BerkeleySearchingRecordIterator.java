@@ -19,7 +19,7 @@ package org.bimserver.database.berkeley;
 
 import java.util.Arrays;
 
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.slf4j.Logger;
@@ -39,13 +39,13 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	private final byte[] mustStartWith;
 	private byte[] nextStartSearchingAt;
 
-	public BerkeleySearchingRecordIterator(Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimserverDeadlockException {
+	public BerkeleySearchingRecordIterator(Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimserverLockConflictException {
 		this.cursor = cursor;
 		this.mustStartWith = mustStartWith;
 		this.nextStartSearchingAt = startSearchingAt;
 	}
 
-	private Record getFirstNext(byte[] startSearchingAt) throws BimserverDeadlockException {
+	private Record getFirstNext(byte[] startSearchingAt) throws BimserverLockConflictException {
 		this.nextStartSearchingAt = null;
 		DatabaseEntry key = new DatabaseEntry(startSearchingAt);
 		DatabaseEntry value = new DatabaseEntry();
@@ -59,7 +59,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 				}
 			}
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -67,7 +67,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	}
 
 	@Override
-	public Record next() throws BimserverDeadlockException {
+	public Record next() throws BimserverLockConflictException {
 		if (nextStartSearchingAt != null) {
 			return getFirstNext(nextStartSearchingAt);
 		}
@@ -83,7 +83,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 				}
 			}
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -100,12 +100,12 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	}
 
 	@Override
-	public Record next(byte[] startSearchingAt) throws BimserverDeadlockException {
+	public Record next(byte[] startSearchingAt) throws BimserverLockConflictException {
 		return getFirstNext(startSearchingAt);
 	}
 
 	@Override
-	public Record last() throws BimserverDeadlockException {
+	public Record last() throws BimserverLockConflictException {
 		if (nextStartSearchingAt != null) {
 			return getFirstNext(nextStartSearchingAt);
 		}
@@ -121,7 +121,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 				}
 			}
 		} catch (LockConflictException e) {
-			throw new BimserverDeadlockException(e);
+			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}

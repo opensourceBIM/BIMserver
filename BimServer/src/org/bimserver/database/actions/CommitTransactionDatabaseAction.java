@@ -27,7 +27,7 @@ import org.bimserver.changes.CreateObjectChange;
 import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -58,7 +58,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	}
 
 	@Override
-	public ConcreteRevision execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public ConcreteRevision execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(currentUoid);
 		if (project == null) {

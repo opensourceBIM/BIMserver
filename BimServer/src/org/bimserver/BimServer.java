@@ -35,7 +35,7 @@ import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
@@ -235,14 +235,14 @@ public class BimServer {
 			templateEngine = new TemplateEngine();
 			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
 			File databaseDir = new File(config.getHomeDir(), "database");
-			BerkeleyKeyValueStore columnDatabase = new BerkeleyKeyValueStore(databaseDir);
-			bimDatabase = new Database(this, packages, columnDatabase);
+			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
+			bimDatabase = new Database(this, packages, keyValueStore);
 			try {
 				bimDatabase.init();
 			} catch (DatabaseRestartRequiredException e) {
 				bimDatabase.close();
-				columnDatabase = new BerkeleyKeyValueStore(databaseDir);
-				bimDatabase = new Database(this, packages, columnDatabase);
+				keyValueStore = new BerkeleyKeyValueStore(databaseDir);
+				bimDatabase = new Database(this, packages, keyValueStore);
 				try {
 					bimDatabase.init();
 				} catch (InconsistentModelsException e1) {
@@ -334,7 +334,7 @@ public class BimServer {
 			try {
 				session.store(serverStarted);
 				session.commit();
-			} catch (BimserverDeadlockException e) {
+			} catch (BimserverLockConflictException e) {
 				throw new BimserverDatabaseException(e);
 			} finally {
 				session.close();
@@ -355,7 +355,7 @@ public class BimServer {
 	 * objects in the database for configuration purposes, this methods syncs
 	 * both versions
 	 */
-	private void createDatabaseObjects() throws BimserverDeadlockException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
+	private void createDatabaseObjects() throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
 		DatabaseSession session = bimDatabase.createSession();
 		ObjectIDM defaultObjectIDM = null;
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
@@ -454,7 +454,7 @@ public class BimServer {
 		getEmfDeserializerFactory().init(pluginManager, bimDatabase);
 		try {
 			createDatabaseObjects();
-		} catch (BimserverDeadlockException e) {
+		} catch (BimserverLockConflictException e) {
 			throw new BimserverDatabaseException(e);
 		} catch (PluginException e) {
 			throw new BimserverDatabaseException(e);

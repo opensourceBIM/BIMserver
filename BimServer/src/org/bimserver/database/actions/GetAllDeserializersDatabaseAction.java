@@ -24,7 +24,7 @@ import java.util.Map;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDeadlockException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -45,7 +45,7 @@ public class GetAllDeserializersDatabaseAction extends GetAllDatabaseAction<Dese
 	}
 
 	@Override
-	public List<Deserializer> execute() throws UserException, BimserverDeadlockException, BimserverDatabaseException {
+	public List<Deserializer> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getDeserializer());
 		Map<Long, Deserializer> result = getDatabaseSession().query(condition, Deserializer.class, false, null);
 		List<Deserializer> mapToList = CollectionUtils.mapToList(result);
