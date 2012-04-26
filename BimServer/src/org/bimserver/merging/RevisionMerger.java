@@ -26,10 +26,10 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.TracingGarbageCollector;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcProject;
-import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.IfcProject;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
@@ -363,7 +363,7 @@ public class RevisionMerger {
 	}
 
 	private IfcGloballyUniqueId newGuid(String guid) {
-		IfcGloballyUniqueId ifcGuid = Ifc2x3Factory.eINSTANCE.createIfcGloballyUniqueId();
+		IfcGloballyUniqueId ifcGuid = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
 		ifcGuid.setWrappedValue(guid);
 		return ifcGuid;
 	}

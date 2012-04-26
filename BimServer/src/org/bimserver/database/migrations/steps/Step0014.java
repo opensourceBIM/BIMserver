@@ -34,6 +34,6 @@ public class Step0014 extends Migration {
 
 	@Override
 	public String getDescription() {
-		return "Add IfcEnginePluginDescriptor and IfcEngine";
+		return "Add IfcEnginePluginDescriptor";
 	}
 }

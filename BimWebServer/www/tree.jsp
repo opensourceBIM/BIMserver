@@ -4,7 +4,6 @@
 <%@ include file="header.jsp"%>
 
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.models.ifc2x3.IfcOpeningElement"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%><script> 
 $(function(){
 	$(".root").css("padding-left", "5px");

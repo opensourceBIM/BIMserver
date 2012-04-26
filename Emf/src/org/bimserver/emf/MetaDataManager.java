@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EAttribute;
@@ -44,7 +44,7 @@ public class MetaDataManager {
 	}
 	
 	public MetaDataManager() {
-		addEPackage(Ifc2x3Package.eINSTANCE);
+		addEPackage(Ifc2x3tc1Package.eINSTANCE);
 		addEPackage(StorePackage.eINSTANCE);
 		addEPackage(LogPackage.eINSTANCE);
 	}

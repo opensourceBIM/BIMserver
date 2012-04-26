@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 
@@ -61,10 +61,10 @@ public class Diff {
 		this.ignoreIntegerZeroDollar = ignoreIntegerZeroDollar;
 		this.ignoreDoubleZeroDollar = ignoreDoubleZeroDollar;
 		this.ignoreListEmptyDollar = ignoreListEmptyDollar;
-		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass) eClassifier;
-				if (Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf(eClass)) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcRoot().isSuperTypeOf(eClass)) {
 					guidPositions.add(eClass.getName().toUpperCase() + "_" + eClass.getEAllStructuralFeatures().indexOf(eClass.getEStructuralFeature("GlobalId")));
 				}
 			}

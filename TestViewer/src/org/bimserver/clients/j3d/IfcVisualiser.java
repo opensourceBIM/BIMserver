@@ -64,26 +64,26 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.IfcBeam;
-import org.bimserver.models.ifc2x3.IfcColumn;
-import org.bimserver.models.ifc2x3.IfcDistributionFlowElement;
-import org.bimserver.models.ifc2x3.IfcDoor;
-import org.bimserver.models.ifc2x3.IfcFlowTerminalType;
-import org.bimserver.models.ifc2x3.IfcFurnishingElement;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcOpeningElement;
-import org.bimserver.models.ifc2x3.IfcRailing;
-import org.bimserver.models.ifc2x3.IfcRoof;
-import org.bimserver.models.ifc2x3.IfcRoot;
-import org.bimserver.models.ifc2x3.IfcSite;
-import org.bimserver.models.ifc2x3.IfcSlab;
-import org.bimserver.models.ifc2x3.IfcSpace;
-import org.bimserver.models.ifc2x3.IfcStair;
-import org.bimserver.models.ifc2x3.IfcWall;
-import org.bimserver.models.ifc2x3.IfcWallStandardCase;
-import org.bimserver.models.ifc2x3.IfcWindow;
-import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.IfcBeam;
+import org.bimserver.models.ifc2x3tc1.IfcColumn;
+import org.bimserver.models.ifc2x3tc1.IfcDistributionFlowElement;
+import org.bimserver.models.ifc2x3tc1.IfcDoor;
+import org.bimserver.models.ifc2x3tc1.IfcFlowTerminalType;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.IfcOpeningElement;
+import org.bimserver.models.ifc2x3tc1.IfcRailing;
+import org.bimserver.models.ifc2x3tc1.IfcRoof;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.IfcSite;
+import org.bimserver.models.ifc2x3tc1.IfcSlab;
+import org.bimserver.models.ifc2x3tc1.IfcSpace;
+import org.bimserver.models.ifc2x3tc1.IfcStair;
+import org.bimserver.models.ifc2x3tc1.IfcWall;
+import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
+import org.bimserver.models.ifc2x3tc1.IfcWindow;
+import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -455,7 +455,7 @@ public class IfcVisualiser extends JFrame {
 
 	@SuppressWarnings("unchecked")
 	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModel newModel, Map<EObject, EObject> converted) {
-		IdEObject newObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(ifcRootObject.eClass());
+		IdEObject newObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(ifcRootObject.eClass());
 		((IdEObjectImpl)newObject).setOid(ifcRootObject.getOid());
 		converted.put(ifcRootObject, newObject);
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {

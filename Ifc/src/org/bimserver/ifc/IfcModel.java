@@ -33,10 +33,10 @@ import java.util.TreeMap;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcRoot;
-import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.OidProvider;
@@ -79,7 +79,7 @@ public class IfcModel implements IfcModelInterface {
 	
 	private static BiMap<EClass, Class<?>> initEClassClassMap() {
 		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
-		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass)eClassifier;
 				eClassClassMap.put(eClass, eClass.getInstanceClass());
@@ -99,7 +99,7 @@ public class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
 		index = new HashMap<EClass, List<? extends EObject>>();
-		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				index.put((EClass) eClassifier, new ArrayList<EObject>());
 			}
@@ -114,7 +114,7 @@ public class IfcModel implements IfcModelInterface {
 
 	private void buildIndexWithSubTypes() {
 		indexWithSubTypes = new HashMap<EClass, List<? extends EObject>>();
-		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				indexWithSubTypes.put((EClass) eClassifier, new ArrayList<EObject>());
 			}
@@ -180,7 +180,7 @@ public class IfcModel implements IfcModelInterface {
 			if (objectIDM.shouldFollowReference(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
 				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
 					if (eStructuralFeature.getEType() instanceof EClass) {
-						if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
+						if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
 							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
 							sortPrimitiveList(list);
 						} else {
@@ -214,7 +214,7 @@ public class IfcModel implements IfcModelInterface {
 						Object val2 = o2.eGet(eStructuralFeature);
 						if (val1 != null && val2 != null) {
 							if (eStructuralFeature.getEType() instanceof EClass) {
-								if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
+								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
 									int compare = comparePrimitives((EObject) val1, (EObject) val2);
 									if (compare != 0) {
 										return compare * i;

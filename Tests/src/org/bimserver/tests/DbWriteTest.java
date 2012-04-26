@@ -19,7 +19,7 @@ package org.bimserver.tests;
 
 //import java.util.Properties;
 //
-//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3tc1Package;
 //import org.eclipse.emf.ecore.EPackage;
 //import org.eclipse.emf.teneo.PersistenceOptions;
 //import org.eclipse.emf.teneo.hibernate.HbDataStore;
@@ -69,7 +69,7 @@ package org.bimserver.tests;
 //		HbDataStore hbds = HbHelper.INSTANCE.createRegisterDataStore(hbName);
 //
 //		// sets its epackages stored in this datastore
-//		hbds.setEPackages(new EPackage[]{Ifc2x3Package.eINSTANCE});
+//		hbds.setEPackages(new EPackage[]{Ifc2x3tc1Package.eINSTANCE});
 //
 //		// set the relational database to use and other properties
 //		hbds.setProperties(props);
@@ -84,19 +84,19 @@ package org.bimserver.tests;
 //		// start a transaction, create a library and make it persistent
 //		tx.begin();
 //
-////		IfcWall wall = Ifc2x3Factory.eINSTANCE.createIfcWall();
-////		IfcText description = Ifc2x3Factory.eINSTANCE.createIfcText();
+////		IfcWall wall = Ifc2x3tc1Factory.eINSTANCE.createIfcWall();
+////		IfcText description = Ifc2x3tc1Factory.eINSTANCE.createIfcText();
 ////		session.save(description);
 ////		description.setWrappedValue("test");
 ////		wall.setDescription(description );
-////		IfcLabel label = Ifc2x3Factory.eINSTANCE.createIfcLabel();
+////		IfcLabel label = Ifc2x3tc1Factory.eINSTANCE.createIfcLabel();
 ////		label.setWrappedValue("test");
 ////		session.save(label);
 ////		wall.setName(label);
 ////		session.save(wall);
 //		
-////		IfcRoot ifcRoot = Ifc2x3Factory.eINSTANCE.createIfcRoot();
-////		IfcText createIfcText = Ifc2x3Factory.eINSTANCE.createIfcText();
+////		IfcRoot ifcRoot = Ifc2x3tc1Factory.eINSTANCE.createIfcRoot();
+////		IfcText createIfcText = Ifc2x3tc1Factory.eINSTANCE.createIfcText();
 ////		createIfcText.setWrappedValue("Test");
 ////		ifcRoot.setDescription(createIfcText);
 ////		session.save(ifcRoot);

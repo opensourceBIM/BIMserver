@@ -27,7 +27,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -68,7 +68,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 		for (String className : classNames) {
 			eClasses.add(getDatabaseSession().getEClassForName(className));
 			if (includeAllSubtypes) {
-				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)Ifc2x3Package.eINSTANCE.getEClassifier(className)));
+				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)Ifc2x3tc1Package.eINSTANCE.getEClassifier(className)));
 			}
 		}
 		String name = "";

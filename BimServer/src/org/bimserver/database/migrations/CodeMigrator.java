@@ -71,7 +71,7 @@ public class CodeMigrator {
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper();
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		for (EPackage ePackage : schema.getEPackages()) {
-			if (!ePackage.getName().equals("ifc2x3")) {
+			if (!ePackage.getName().equals("ifc2x3tc1")) {
 				ePackages.add(ePackage);
 			}
 		}

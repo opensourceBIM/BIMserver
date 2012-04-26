@@ -6,7 +6,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.TreeSet"%>
-<%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
 <%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>

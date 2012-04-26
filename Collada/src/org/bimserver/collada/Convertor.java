@@ -1,6 +1,6 @@
 package org.bimserver.collada;
 
-import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
 
 public class Convertor<T extends IfcRoot> {
 	private final Class<T> cl;

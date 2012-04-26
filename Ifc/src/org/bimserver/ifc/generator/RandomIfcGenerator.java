@@ -23,11 +23,11 @@ import java.util.Random;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcProject;
-import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.IfcProject;
+import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 public class RandomIfcGenerator {
 	private List<IdEObject> objects;
-	private final ExtendedMetaModel metaModel = new ExtendedMetaModel(Ifc2x3Package.eINSTANCE);
+	private final ExtendedMetaModel metaModel = new ExtendedMetaModel(Ifc2x3tc1Package.eINSTANCE);
 	private final Random random = new Random();
 	
 	public static void main(String[] args) {
@@ -46,7 +46,7 @@ public class RandomIfcGenerator {
 	
 	public void generate(int nrObjects) {
 		objects = new ArrayList<IdEObject>(nrObjects);
-		IfcProject ifcProject = Ifc2x3Factory.eINSTANCE.createIfcProject();
+		IfcProject ifcProject = Ifc2x3tc1Factory.eINSTANCE.createIfcProject();
 		objects.add(ifcProject);
 		for (int i=1; i<nrObjects; i++) {
 			if (!createObject()) {
@@ -67,8 +67,8 @@ public class RandomIfcGenerator {
 		if (!eAllReferences.isEmpty()) {
 			EReference eReference = eAllReferences.get(random.nextInt(eAllReferences.size()));
 			EClass randomInstantiableSubClassOrSelf = metaModel.getRandomInstantiableSubClassOrSelf((EClass) eReference.getEType());
-			IdEObject idEObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(randomInstantiableSubClassOrSelf);
-			if (randomInstantiableSubClassOrSelf == Ifc2x3Package.eINSTANCE.getIfcPixelTexture()) {
+			IdEObject idEObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(randomInstantiableSubClassOrSelf);
+			if (randomInstantiableSubClassOrSelf == Ifc2x3tc1Package.eINSTANCE.getIfcPixelTexture()) {
 				return false;
 			}
 			if (eReference.isMany()) {

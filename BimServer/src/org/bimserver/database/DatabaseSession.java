@@ -41,11 +41,11 @@ import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.LazyLoader;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.Tristate;
-import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.Tristate;
+import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
@@ -442,7 +442,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 								buffer.putShort((short) -1);
 							} else {
 								IdEObject listObject = (IdEObject) o;
-								boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(listObject.eClass());
+								boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(listObject.eClass());
 								if (wrappedValue) {
 									writeWrappedValue(object.getPid(), object.getRid(), o, buffer);
 								} else {
@@ -478,7 +478,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 						} else {
 							IdEObject referencedObject = (IdEObject) value;
 							EClass referencedClass = referencedObject.eClass();
-							boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(referencedClass);
+							boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(referencedClass);
 							if (wrappedValue) {
 								writeWrappedValue(object.getPid(), object.getRid(), value, buffer);
 							} else {
@@ -1046,7 +1046,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	private int getWrappedValueSize(Object val) {
 		if (val instanceof EObject) {
 			EObject eObject = (EObject) val;
-			boolean isWrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eObject.eClass());
+			boolean isWrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eObject.eClass());
 			int refSize = 10;
 			if (isWrappedValue) {
 				WrappedValue wrappedValue = (WrappedValue) val;
@@ -1064,7 +1064,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public boolean perRecordVersioning(IdEObject idEObject) {
-		return idEObject.eClass().getEPackage() != Ifc2x3Package.eINSTANCE;
+		return idEObject.eClass().getEPackage() != Ifc2x3tc1Package.eINSTANCE;
 	}
 
 	public IdEObject lazyLoad(IdEObject idEObject, int pid, int rid, ObjectIDM objectIDM) throws BimserverDeadlockException, BimserverDatabaseException {
@@ -1162,7 +1162,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			byte[] result = new byte[size];
 			buffer.get(result);
 			return result;
-		} else if (classifier == Ifc2x3Package.eINSTANCE.getTristate()) {
+		} else if (classifier == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
 			int ordinal = buffer.getInt();
 			return Tristate.get(ordinal);
 		} else if (classifier instanceof EEnum) {
@@ -1175,7 +1175,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 	
 	public void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
-		boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
+		boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
 		if (feature.getUpperBound() > 1 || feature.getUpperBound() == -1) {
 			if (feature.getEType() instanceof EEnum) {
 			} else if (feature.getEType() instanceof EClass) {
@@ -1301,7 +1301,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	private IdEObject readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
 		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
-		IdEObject eObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+		IdEObject eObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 		eObject.eSet(eStructuralFeature, primitiveValue);
 		return eObject;
 	}
@@ -1388,7 +1388,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			} else {
 				buffer.putLong(((Date) value).getTime());
 			}
-		} else if (type == Ifc2x3Package.eINSTANCE.getTristate()) {
+		} else if (type == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
 			Enumerator eEnumLiteral = (Enumerator) value;
 			buffer.putInt(eEnumLiteral.getValue());
 		} else if (value instanceof Enumerator) {

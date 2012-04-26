@@ -44,7 +44,7 @@ package org.bimserver.tests;
 //import org.bimserver.database.store.log.AccessMethod;
 //import org.bimserver.ifc.FieldIgnoreMap;
 //import org.bimserver.ifc.FileFieldIgnoreMap;
-//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+//import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3tc1Package;
 //import org.bimserver.ifcengine.FailSafeIfcEngine;
 //import org.bimserver.interfaces.objects.SProject;
 //import org.bimserver.services.TokenManager;
@@ -63,7 +63,7 @@ package org.bimserver.tests;
 //
 //	private void start() {
 //		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-//		Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
+//		Set<Ifc2x3tc1Package> packages = CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE);
 //		FieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(packages, resourceFetcher);
 //		try {
 //			File dataDir = new File("database_tmp");

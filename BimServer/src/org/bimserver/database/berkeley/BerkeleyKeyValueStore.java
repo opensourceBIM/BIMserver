@@ -115,7 +115,10 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return null;
 	}
 
-	public boolean createTable(String tableName, DatabaseSession databaseSession) {
+	public boolean createTable(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException {
+		if (tables.containsKey(tableName)) {
+			throw new BimserverDatabaseException("Table " + tableName + " already created");
+		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
 		databaseConfig.setDeferredWrite(false);
@@ -139,10 +142,10 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		databaseConfig.setTransactional(true);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
-		tables.put(tableName, database);
 		if (database == null) {
 			throw new BimserverDatabaseException("Table " + tableName + " not found in database");
 		}
+		tables.put(tableName, database);
 		return true;
 	}
 	

@@ -34,7 +34,7 @@ import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.models.ifc2x3.IfcWall;
+import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;

@@ -31,10 +31,10 @@ import java.util.List;
 import org.apache.geronimo.mail.util.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.Tristate;
-import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.Tristate;
+import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -446,7 +446,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					if (listObject == null) {
 						out.print(DOLLAR);
 					} else {
-						if (listObject instanceof WrappedValue && Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType())) {
+						if (listObject instanceof WrappedValue && Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType())) {
 							IdEObject eObject = (IdEObject) listObject;
 							Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
 							if (realVal instanceof Double) {
@@ -506,10 +506,10 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeWrappedValue(PrintWriter out, EObject object, EStructuralFeature feature, EClass ec) throws SerializerException {
 		Object get = object.eGet(feature);
-		boolean isWrapped = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(ec) || ec == Ifc2x3Package.eINSTANCE.getIfcGloballyUniqueId();
+		boolean isWrapped = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(ec) || ec == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
 		EStructuralFeature structuralFeature = ec.getEStructuralFeature(WRAPPED_VALUE);
 		if (get instanceof EObject) {
-			boolean isDefinedWrapped = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType()) || feature.getEType() == Ifc2x3Package.eINSTANCE.getIfcGloballyUniqueId();
+			boolean isDefinedWrapped = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType()) || feature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
 			EObject betweenObject = (EObject) get;
 			if (betweenObject != null) {
 				if (isWrapped && isDefinedWrapped) {
@@ -582,7 +582,7 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeEnum(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		Object val = object.eGet(feature);
-		if (feature.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
+		if (feature.getEType() == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
 			writePrimitive(out, val);
 		} else {
 			if (val == null) {

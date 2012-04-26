@@ -28,8 +28,8 @@ import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
-import org.bimserver.models.ifc2x3.Ifc2x3Factory;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -55,8 +55,8 @@ public class Session {
 
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T create(Class<T> cl) {
-		EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(cl.getSimpleName());
-		IdEObject eObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+		EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(cl.getSimpleName());
+		IdEObject eObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 		try {
 			Long oid = serviceInterface.createObject(cl.getSimpleName());
 			newObjects.add(eObject);
@@ -139,8 +139,8 @@ public class Session {
 		try {
 			List<SDataObject> dataObjects = serviceInterface.getDataObjects(roid);
 			for (SDataObject dataObject : dataObjects) {
-				EClass eClass = (EClass) Ifc2x3Package.eINSTANCE.getEClassifier(dataObject.getType());
-				EObject eObject = Ifc2x3Factory.eINSTANCE.create(eClass);
+				EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(dataObject.getType());
+				EObject eObject = Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 				for (SDataValue dataValue : dataObject.getValues()) {
 					EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(dataValue.getFieldName());
 					if (dataValue instanceof SSimpleDataValue) {

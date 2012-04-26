@@ -22,7 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -49,11 +49,11 @@ public class StructureAnalyzer {
 			e.printStackTrace();
 		}
 		int i=0;
-//		Ifc2x3Package einstance = Ifc2x3Package.eINSTANCE;
-//		System.out.println(printClassifier("root", Ifc2x3Package.eINSTANCE.getEClassifier("IfcWall"), new ArrayList<EClassifier>(), 0));
-//		EList<EClassifier> classifiers = Ifc2x3Package.eINSTANCE.getEClassifiers();
+//		Ifc2x3tc1Package einstance = Ifc2x3tc1Package.eINSTANCE;
+//		System.out.println(printClassifier("root", Ifc2x3tc1Package.eINSTANCE.getEClassifier("IfcWall"), new ArrayList<EClassifier>(), 0));
+//		EList<EClassifier> classifiers = Ifc2x3tc1Package.eINSTANCE.getEClassifiers();
 		EList<EClassifier> classifiers = new BasicEList<EClassifier>();
-		classifiers.add(Ifc2x3Package.eINSTANCE.getEClassifier("IfcWall"));
+		classifiers.add(Ifc2x3tc1Package.eINSTANCE.getEClassifier("IfcWall"));
 		for (EClassifier ecl : classifiers) {
 			try {
 				out2 = new PrintWriter(new File("structure/" + ecl.getName() + ".txt"));

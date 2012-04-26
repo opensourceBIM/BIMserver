@@ -34,7 +34,7 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.MetaDataManager;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogFactory;
@@ -159,7 +159,7 @@ public class Database implements BimDatabase {
 				initCounters(databaseSession);
 			}
 			for (EClass eClass : classifiers.keyBSet()) {
-				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
+				if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE && eClass != Ifc2x3tc1Package.eINSTANCE.getWrappedValue()) {
 					realClasses.add(eClass.getName());
 				}
 			}
@@ -308,7 +308,7 @@ public class Database implements BimDatabase {
 		return migrator;
 	}
 
-	public boolean createTable(EClass eClass, DatabaseSession databaseSession) throws BimserverDeadlockException {
+	public boolean createTable(EClass eClass, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		boolean createTable = columnDatabase.createTable(eClass.getName(), databaseSession);
 		if (createTable) {
 			tableId++;

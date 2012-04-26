@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.MetaDataManager;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.schema.Attribute;
@@ -31,7 +31,7 @@ public class AbstractObjectIDM implements ObjectIDM {
 	}
 	
 	public void includeAllClasses() {
-		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				includedClasses.add((EClass)eClassifier);
 			}
@@ -66,7 +66,7 @@ public class AbstractObjectIDM implements ObjectIDM {
 	}
 	
 	protected boolean isInverse(EStructuralFeature eStructuralFeature) throws ObjectIDMException {
-		if (eStructuralFeature instanceof EReference && !(Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eStructuralFeature.getEContainingClass()))) {
+		if (eStructuralFeature instanceof EReference && !(Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eStructuralFeature.getEContainingClass()))) {
 			EntityDefinition entityBN = schema.getEntityBN(eStructuralFeature.getEContainingClass().getName());
 			if (entityBN == null) {
 				throw new ObjectIDMException(eStructuralFeature.getEContainingClass().getName() + " not found");
