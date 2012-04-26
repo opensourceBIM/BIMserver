@@ -234,7 +234,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					out.print(c);
 				} else if (c < 255) {
 					//  ISO 10646 and ISO 8859-1 are the same < 255 , using ISO_8859_1
-					out.write("\\X\\" + new String(Hex.encode(Charsets.ISO_8859_1.encode(CharBuffer.wrap(new char[]{(char) c})).array()), Charsets.UTF_8));
+					out.write("\\X\\" + new String(Hex.encode(Charsets.ISO_8859_1.encode(CharBuffer.wrap(new char[]{(char) c})).array()), Charsets.UTF_8).toUpperCase());
 				} else {
 					if (useIso8859_1) {
 						// ISO 8859-1 with -128 offset
@@ -255,7 +255,7 @@ public class IfcStepSerializer extends IfcSerializer {
 									throw new SerializerException("High surrogate char should be followed by char in low surrogate range");
 								}
 								try {
-									out.write("\\X4\\" + new String(Hex.encode(Charset.forName("UTF-32").encode(new String(new char[]{c, low})).array()), Charsets.UTF_8) + "\\X0\\");
+									out.write("\\X4\\" + new String(Hex.encode(Charset.forName("UTF-32").encode(new String(new char[]{c, low})).array()), Charsets.UTF_8).toUpperCase() + "\\X0\\");
 								} catch (UnsupportedCharsetException e) {
 									throw new SerializerException(e);
 								}
@@ -265,7 +265,7 @@ public class IfcStepSerializer extends IfcSerializer {
 							}
 						} else {
 							// UCS-2 will do
-							out.write("\\X2\\" + new String(Hex.encode(Charsets.UTF_16.encode(CharBuffer.wrap(new char[]{c})).array()), Charsets.UTF_8) + "\\X0\\");
+							out.write("\\X2\\" + new String(Hex.encode(Charsets.UTF_16.encode(CharBuffer.wrap(new char[]{c})).array()), Charsets.UTF_8).toUpperCase() + "\\X0\\");
 						}
 					}
 				}
