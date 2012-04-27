@@ -23,6 +23,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -54,6 +55,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBmi <em>Bmi</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getNrClashes <em>Nr Clashes</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLaid <em>Laid</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
  * </p>
  *
@@ -333,6 +335,16 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setLaid(Long newLaid) {
 		eSet(StorePackage.Literals.REVISION__LAID, newLaid);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ExtendedData> getExtendedData() {
+		return (EList<ExtendedData>) eGet(StorePackage.Literals.REVISION__EXTENDED_DATA, true);
 	}
 
 } //RevisionImpl

@@ -93,6 +93,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	private BimTransaction bimTransaction;
 	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
 	private final ObjectsToCommit objectsToCommit = new ObjectsToCommit();
+	private final ObjectsToDelete objectsToDelete = new ObjectsToDelete();
 	private StackTraceElement[] stackTrace;
 	private ClearProjectPlan clearProjectPlan = null;
 	private final ObjectCache objectCache = new ObjectCache();
@@ -123,7 +124,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		if (idEObject.getOid() == -1) {
 			throw new BimserverDatabaseException("Cannot store object with oid -1");
 		}
-		objectsToCommit.put(idEObject, idEObject.getOid());
+		objectsToCommit.put(idEObject);
 	}
 
 	public void clearProject() throws BimserverLockConflictException, BimserverDatabaseException {
@@ -147,7 +148,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 					} else if (foundRid > clearProjectPlan.getOldRid()) {
 						// skip, we probably just added it
 					} else if (clearProjectPlan.getOldRid() == foundRid) {
-						delete(eClass, clearProjectPlan.getPid(), clearProjectPlan.getNewRid(), foundOid);
+						objectsToDelete.put(eClass, clearProjectPlan.getPid(), clearProjectPlan.getNewRid(), foundOid);
 					}
 					searchKeyBuffer.position(0);
 					searchKeyBuffer.putInt(clearProjectPlan.getPid());
@@ -186,6 +187,10 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 				clearProject();
 			}
 			int writes = 0;
+			for (RecordIdentifierPlusType recordIdentifier : objectsToDelete) {
+				ByteBuffer buffer = createKeyBuffer(recordIdentifier.getPid(), recordIdentifier.getOid(), recordIdentifier.getRid());
+				database.getKeyValueStore().storeNoOverwrite(recordIdentifier.getPackageName() + "_" + recordIdentifier.getClassName(), buffer.array(), new byte[] { -1 }, this);
+			}
 			for (IdEObject object : objectsToCommit) {
 				if (object.getOid() == -1) {
 					throw new BimserverDatabaseException("Cannot store object with oid -1");
@@ -514,14 +519,11 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public void delete(IdEObject object) throws BimserverConcurrentModificationDatabaseException, BimserverDatabaseException {
-		ByteBuffer buffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
-		database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), buffer.array(), new byte[] { -1 }, this);
-	}
-
-	private boolean delete(EClass eClass, int pid, int rid, long oid) throws BimserverConcurrentModificationDatabaseException, BimserverDatabaseException {
-		ByteBuffer buffer = createKeyBuffer(pid, oid, rid);
-		database.getKeyValueStore().storeNoOverwrite(eClass.getEPackage().getName() + "_" + eClass.getName(), buffer.array(), new byte[] { -1 }, this);
-		return true;
+		if (perRecordVersioning(object)) {
+			objectsToDelete.put(object.eClass(), object.getPid(), object.getRid() + 1, object.getOid());
+		} else {
+			throw new BimserverDatabaseException("This is not supported");
+		}
 	}
 
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException {
@@ -532,13 +534,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		for (int i = 0; i < retries; i++) {
 			try {
 				T result = action.execute();
-				if (objectsToCommit.size() > 0) {
+				if (objectsToCommit.size() > 0 || objectsToDelete.size() > 0) {
 					commit(progressHandler);
 				}
 				return result;
 			} catch (BimserverConcurrentModificationDatabaseException e) {
 				bimTransaction.rollback();
 				objectCache.clear();
+				objectsToDelete.clear();
 				objectsToCommit.clear();
 				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverLockConflictException e) {
@@ -593,8 +596,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return get(eClass, null, pid, rid, oid, deep, objectIDM);
 	}
 
-	public <T extends IdEObject> T get(EClass eClass, long poid, boolean deep, ObjectIDM objectIDM) {
-		return get(eClass, null, poid, deep, objectIDM);
+	public <T extends IdEObject> T get(EClass eClass, long oid, boolean deep, ObjectIDM objectIDM) {
+		return get(eClass, null, oid, deep, objectIDM);
 	}
 
 	private void checkOpen() throws BimserverDatabaseException {

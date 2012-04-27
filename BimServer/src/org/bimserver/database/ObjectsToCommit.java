@@ -13,8 +13,8 @@ public class ObjectsToCommit implements Iterable<IdEObject> {
 	private final BiMap<IdEObject, Long> objectsToCommitFirst = HashBiMap.create();
 	private final BiMap<IdEObject, Long> objectsToCommitSecond = HashBiMap.create();
 
-	public void put(IdEObject idEObject, long oid) {
-		getMap(idEObject).forcePut(idEObject, oid);
+	public void put(IdEObject idEObject) {
+		getMap(idEObject).forcePut(idEObject, idEObject.getOid());
 	}
 
 	public int size() {

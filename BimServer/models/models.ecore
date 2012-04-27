@@ -60,6 +60,8 @@
           eType="#/0/ClashDetectionSettings" eOpposite="#/0/ClashDetectionSettings/projects"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exportLengthMeasurePrefix"
           eType="#/0/SIPrefix"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
+          eType="#/0/ExtendedData"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="User">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -78,6 +80,10 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationTokenCreated"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
+          eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/users"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
+          eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/user"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Clash">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -126,6 +132,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrClashes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="laid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
+          eType="#/0/ExtendedData"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -197,6 +205,8 @@
           eType="#/0/Plugin" eOpposite="#/0/Plugin/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="deserializers" upperBound="-1"
           eType="#/0/Deserializer" eOpposite="#/0/Deserializer/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
+          eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/settings"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Serializer">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -477,6 +487,32 @@
       <eLiterals name="CH_STARTED" value="1"/>
       <eLiterals name="CH_FINISHED" value="2"/>
       <eLiterals name="CH_ERROR" value="3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ExtendedDataSchemaType">
+      <eLiterals name="XSD"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendedDataSchema">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#/0/ExtendedDataSchemaType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
+          eOpposite="#/0/Settings/schemas"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
+          eType="#/0/User" eOpposite="#/0/User/schemas"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
+          eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/schema"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendedData">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="added" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"
+          eOpposite="#/0/User/extendedData"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#/0/ExtendedDataSchema"
+          eOpposite="#/0/ExtendedDataSchema/extendedData"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="ifc2x3tc1" nsURI="http:///buildingsmart.ifc.ecore" nsPrefix="iai">

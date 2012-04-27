@@ -24,17 +24,14 @@ option java_outer_classname = "NotificationInterfaceImpl";
 option optimize_for = SPEED;
 
 service NotificationInterface {
-	rpc serverWillBeShutdown (ServerWillBeShutdownRequest) returns (VoidResponse);
-
 	rpc newProject (NewProjectRequest) returns (VoidResponse);
 
 	rpc serverHasStarted (ServerHasStartedRequest) returns (VoidResponse);
 
+	rpc serverWillBeShutdown (ServerWillBeShutdownRequest) returns (VoidResponse);
+
 	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
 
-}
-
-message ServerWillBeShutdownRequest {
 }
 
 message SNewProjectNotification {
@@ -47,6 +44,9 @@ message NewProjectRequest {
 }
 
 message ServerHasStartedRequest {
+}
+
+message ServerWillBeShutdownRequest {
 }
 
 message SNewRevisionNotification {

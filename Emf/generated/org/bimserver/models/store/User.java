@@ -43,6 +43,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getValidationTokenCreated <em>Validation Token Created</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getNotificationUrl <em>Notification Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getSchemas <em>Schemas</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
  * </p>
  *
@@ -377,5 +379,41 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	void setNotificationUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Schemas</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ExtendedDataSchema}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Schemas</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schemas</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUser_Schemas()
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getUsers
+	 * @model opposite="users"
+	 * @generated
+	 */
+	EList<ExtendedDataSchema> getSchemas();
+
+	/**
+	 * Returns the value of the '<em><b>Extended Data</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ExtendedData}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExtendedData#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extended Data</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extended Data</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUser_ExtendedData()
+	 * @see org.bimserver.models.store.ExtendedData#getUser
+	 * @model opposite="user"
+	 * @generated
+	 */
+	EList<ExtendedData> getExtendedData();
 
 } // User

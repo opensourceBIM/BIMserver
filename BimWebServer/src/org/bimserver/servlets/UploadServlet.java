@@ -46,6 +46,7 @@ public class UploadServlet extends HttpServlet {
 
 	public UploadServlet() {
 		factory = new DiskFileItemFactory();
+		factory.setSizeThreshold(1024 * 1024 * 500); // 500 MB
 	}
 
 	@SuppressWarnings("unchecked")
@@ -64,7 +65,6 @@ public class UploadServlet extends HttpServlet {
 			String comment = null;
 			String deserializerName = null;
 			if (isMultipart) {
-				factory.setSizeThreshold(1024 * 1024 * 500); // 500 MB
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				List<FileItem> items = (List<FileItem>) upload.parseRequest(request);
 				Iterator<FileItem> iter = items.iterator();

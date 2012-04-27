@@ -1,3 +1,10 @@
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="org.bimserver.interfaces.objects.SExtendedDataSchemaType"%>
+<%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
+<%@page import="org.bimserver.interfaces.objects.SExtendedData"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SCheckoutDateComparator"%>
 <%@page import="java.util.List"%>
@@ -17,9 +24,36 @@
 <%@ include file="header.jsp"%>
 <%
 	if (loginManager.isLoggedIn()) {
+		long roid = Long.parseLong(request.getParameter("roid"));
 		try {
+			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+			if (isMultipart) {
+				SExtendedData extendedData = new SExtendedData();
+				DiskFileItemFactory factory = new DiskFileItemFactory();
+				factory.setSizeThreshold(1024 * 1024 * 500);
+				ServletFileUpload upload = new ServletFileUpload(factory);
+				List<FileItem> items = (List<FileItem>) upload.parseRequest(request);
+				Iterator<FileItem> iter = items.iterator();
+				while (iter.hasNext()) {
+					FileItem next = iter.next();
+					if (!next.isFormField()) {
+						extendedData.setData(next.get());
+					} else {
+						String fieldName = next.getFieldName();
+						if ("title".equals(fieldName)) {
+							extendedData.setTitle(next.getString());
+						} else if ("schema".equals(fieldName)) {
+							extendedData.setSchemaId(Long.parseLong(next.getString()));
+						} else if ("url".equals(fieldName)) {
+							extendedData.setUrl(next.getString());
+						}
+					}
+				}
+				loginManager.getService().addExtendedDataToRevision(roid, extendedData);
+				response.sendRedirect("revision.jsp?roid=" + roid);
+			}
+			
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-	long roid = Long.parseLong(request.getParameter("roid"));
 	SRevision revision = loginManager.getService().getRevision(roid);
 	boolean isTagged = revision.getTag() != null;
 	SProject project = loginManager.getService().getProjectByPoid(revision.getProjectId());
@@ -179,6 +213,62 @@
 <%
 	}
 %>
+<div class="tabbertab" id="extendeddatatab" title="Extended Data">
+<form enctype="multipart/form-data" method="post">
+<table>
+<tr>
+	<td><label for="type"></label></td>
+	<td><select>
+<%
+	for (SExtendedDataSchema extendedDataSchema : loginManager.getService().getAllExtendedDataSchemas()) {
+		out.println("<option value=\"" + extendedDataSchema.getOid() + "\">" + extendedDataSchema.getName() + "</option>");
+	}
+%>
+	</select></td>
+</tr>
+<tr>
+	<td><label for="title">Title</label></td>
+	<td><input type="text" id="title"/></td>
+</tr>
+<tr>
+	<td><label for="url">URL</label></td>
+	<td><input type="text" id="url"/></td>
+</tr>
+<tr>
+	<td></td>
+	<td> OR</td>
+</tr>
+<tr>
+	<td><label for="data">Data</label></td>
+	<td><input type="file" id="data"/></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="addextendeddata"/>
+<input type="hidden" name="roid" value="<%=roid%>"/>
+<input type="submit" value="Add"/>
+</form>
+<%
+	if (!revision.getExtendedData().isEmpty()) {
+%>
+<table>
+<tr><th>Title</th><th>URL/Data</th><th>Date</th></tr>
+<%
+	for (long edoid : revision.getExtendedData()) {
+		SExtendedData sExtendedData = loginManager.getService().getExtendedData(edoid);
+		out.println("<tr>");
+		out.println("<td>" + sExtendedData.getTitle() + "</td>");
+		if (sExtendedData.getData() != null && sExtendedData.getData().length > 0) {
+		} else {
+			out.println("<a href=\"\">" + sExtendedData.getUrl() + "</a>");
+		}
+		out.println("<td>" + dateFormat.format(sExtendedData.getAdded()) + "</td>");
+		out.println("</tr>");
+	}
+%>
+</table>
+<%
+}%>
+</div>
 </div>
 <script>
 	$(function(){

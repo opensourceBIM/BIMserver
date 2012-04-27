@@ -455,6 +455,9 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private String createMessage(StringBuilder sb, SClass sType) {
+		if (sType == null) {
+			return "VoidResponse";
+		}
 		Class<?> clazz = sType.getInstanceClass();
 		if (generatedClasses.containsKey(clazz)) {
 			return generatedClasses.get(clazz);
@@ -536,9 +539,6 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private void createRequestMessage(StringBuilder builder, SMethod method, String messageName) {
-		if (messageName.equals("DownloadRevisionsRequest")) {
-			System.out.println();
-		}
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");
 		int counter = 1;

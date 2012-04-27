@@ -178,6 +178,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createVersion();
 		case StorePackage.IFC_ENGINE_PLUGIN_DESCRIPTOR:
 			return (EObject) createIfcEnginePluginDescriptor();
+		case StorePackage.EXTENDED_DATA_SCHEMA:
+			return (EObject) createExtendedDataSchema();
+		case StorePackage.EXTENDED_DATA:
+			return (EObject) createExtendedData();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -209,6 +213,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createServerStateFromString(eDataType, initialValue);
 		case StorePackage.CHECKIN_STATUS:
 			return createCheckinStatusFromString(eDataType, initialValue);
+		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
+			return createExtendedDataSchemaTypeFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -242,6 +248,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertServerStateToString(eDataType, instanceValue);
 		case StorePackage.CHECKIN_STATUS:
 			return convertCheckinStatusToString(eDataType, instanceValue);
+		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
+			return convertExtendedDataSchemaTypeToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -784,6 +792,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ExtendedDataSchema createExtendedDataSchema() {
+		ExtendedDataSchemaImpl extendedDataSchema = new ExtendedDataSchemaImpl();
+		return extendedDataSchema;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtendedData createExtendedData() {
+		ExtendedDataImpl extendedData = new ExtendedDataImpl();
+		return extendedData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null)
@@ -965,6 +993,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertCheckinStatusToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtendedDataSchemaType createExtendedDataSchemaTypeFromString(EDataType eDataType, String initialValue) {
+		ExtendedDataSchemaType result = ExtendedDataSchemaType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertExtendedDataSchemaTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
