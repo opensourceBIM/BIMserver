@@ -94,6 +94,9 @@ public class SServiceInterfaceService extends SService {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SVersion")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCheckinStatus")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchema")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExtendedData")));
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

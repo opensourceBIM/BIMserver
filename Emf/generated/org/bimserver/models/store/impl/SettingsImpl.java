@@ -19,10 +19,12 @@ package org.bimserver.models.store.impl;
 import org.bimserver.emf.IdEObjectImpl;
 
 import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Plugin;
+import org.bimserver.models.store.Schema;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
@@ -62,6 +64,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIfcEngines <em>Ifc Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDeserializers <em>Deserializers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSchemas <em>Schemas</em>}</li>
  * </ul>
  * </p>
  *
@@ -487,6 +490,16 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	@SuppressWarnings("unchecked")
 	public EList<Deserializer> getDeserializers() {
 		return (EList<Deserializer>) eGet(StorePackage.Literals.SETTINGS__DESERIALIZERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ExtendedDataSchema> getSchemas() {
+		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.SETTINGS__SCHEMAS, true);
 	}
 
 } //SettingsImpl

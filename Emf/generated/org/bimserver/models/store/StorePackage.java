@@ -235,13 +235,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT__EXPORT_LENGTH_MEASURE_PREFIX = 16;
 
 	/**
+	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__EXTENDED_DATA = 17;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 17;
+	int PROJECT_FEATURE_COUNT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -371,13 +380,31 @@ public interface StorePackage extends EPackage {
 	int USER__NOTIFICATION_URL = 12;
 
 	/**
+	 * The feature id for the '<em><b>Schemas</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__SCHEMAS = 13;
+
+	/**
+	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__EXTENDED_DATA = 14;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 13;
+	int USER_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ClashImpl <em>Clash</em>}' class.
@@ -844,13 +871,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__LAID = 14;
 
 	/**
+	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__EXTENDED_DATA = 15;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 15;
+	int REVISION_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -1325,13 +1361,22 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__DESERIALIZERS = 23;
 
 	/**
+	 * The feature id for the '<em><b>Schemas</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__SCHEMAS = 24;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 24;
+	int SETTINGS_FEATURE_COUNT = 25;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -3374,6 +3419,170 @@ public interface StorePackage extends EPackage {
 	int IFC_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl <em>Extended Data Schema</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ExtendedDataSchemaImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchema()
+	 * @generated
+	 */
+	int EXTENDED_DATA_SCHEMA = 53;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__URL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__DATA = 2;
+
+	/**
+	 * The feature id for the '<em><b>Validate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__VALIDATE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__TYPE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__SETTINGS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Users</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__USERS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 7;
+
+	/**
+	 * The number of structural features of the '<em>Extended Data Schema</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 8;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataImpl <em>Extended Data</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ExtendedDataImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedData()
+	 * @generated
+	 */
+	int EXTENDED_DATA = 54;
+
+	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__URL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__DATA = 1;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__TITLE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Added</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__ADDED = 3;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__USER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Schema</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__SCHEMA = 5;
+
+	/**
+	 * The number of structural features of the '<em>Extended Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_FEATURE_COUNT = 6;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3381,7 +3590,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 53;
+	int USER_TYPE = 55;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -3391,7 +3600,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 54;
+	int SI_PREFIX = 56;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -3401,7 +3610,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 55;
+	int OBJECT_STATE = 57;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -3411,7 +3620,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 56;
+	int MERGE_IDENTIFIER = 58;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
@@ -3421,7 +3630,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 57;
+	int COMPARE_IDENTIFIER = 59;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -3431,7 +3640,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 58;
+	int COMPARE_TYPE = 60;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -3441,7 +3650,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 59;
+	int ACTION_STATE = 61;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -3451,7 +3660,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 60;
+	int SERVER_STATE = 62;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -3461,7 +3670,17 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 61;
+	int CHECKIN_STATUS = 63;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.ExtendedDataSchemaType
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
+	 * @generated
+	 */
+	int EXTENDED_DATA_SCHEMA_TYPE = 64;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -3471,7 +3690,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 62;
+	int DATA_HANDLER = 65;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -3671,6 +3890,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getProject_ExportLengthMeasurePrefix();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Project#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.store.Project#getExtendedData()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_ExtendedData();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3822,6 +4052,28 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getUser_NotificationUrl();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getSchemas <em>Schemas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Schemas</em>'.
+	 * @see org.bimserver.models.store.User#getSchemas()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_Schemas();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.store.User#getExtendedData()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_ExtendedData();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Clash <em>Clash</em>}'.
@@ -4202,6 +4454,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevision_Laid();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.store.Revision#getExtendedData()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_ExtendedData();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
@@ -4737,6 +5000,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSettings_Deserializers();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getSchemas <em>Schemas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Schemas</em>'.
+	 * @see org.bimserver.models.store.Settings#getSchemas()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_Schemas();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
@@ -6523,6 +6797,180 @@ public interface StorePackage extends EPackage {
 	EAttribute getIfcEnginePluginDescriptor_DefaultName();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ExtendedDataSchema <em>Extended Data Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extended Data Schema</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema
+	 * @generated
+	 */
+	EClass getExtendedDataSchema();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getName()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EAttribute getExtendedDataSchema_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getUrl()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EAttribute getExtendedDataSchema_Url();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getData()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EAttribute getExtendedDataSchema_Data();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#isValidate <em>Validate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Validate</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#isValidate()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EAttribute getExtendedDataSchema_Validate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getType()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EAttribute getExtendedDataSchema_Type();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedDataSchema#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getSettings()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EReference getExtendedDataSchema_Settings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Users</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getUsers()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EReference getExtendedDataSchema_Users();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ExtendedDataSchema#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getExtendedData()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EReference getExtendedDataSchema_ExtendedData();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.store.ExtendedData
+	 * @generated
+	 */
+	EClass getExtendedData();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getUrl()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EAttribute getExtendedData_Url();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getData()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EAttribute getExtendedData_Data();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getTitle <em>Title</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Title</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getTitle()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EAttribute getExtendedData_Title();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getAdded <em>Added</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Added</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getAdded()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EAttribute getExtendedData_Added();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedData#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getUser()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EReference getExtendedData_User();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedData#getSchema <em>Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Schema</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getSchema()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EReference getExtendedData_Schema();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6611,6 +7059,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getCheckinStatus();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Extended Data Schema Type</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchemaType
+	 * @generated
+	 */
+	EEnum getExtendedDataSchemaType();
 
 	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
@@ -6792,6 +7250,14 @@ public interface StorePackage extends EPackage {
 		EAttribute PROJECT__EXPORT_LENGTH_MEASURE_PREFIX = eINSTANCE.getProject_ExportLengthMeasurePrefix();
 
 		/**
+		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__EXTENDED_DATA = eINSTANCE.getProject_ExtendedData();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6904,6 +7370,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute USER__NOTIFICATION_URL = eINSTANCE.getUser_NotificationUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Schemas</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__SCHEMAS = eINSTANCE.getUser_Schemas();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__EXTENDED_DATA = eINSTANCE.getUser_ExtendedData();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ClashImpl <em>Clash</em>}' class.
@@ -7194,6 +7676,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__LAID = eINSTANCE.getRevision_Laid();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__EXTENDED_DATA = eINSTANCE.getRevision_ExtendedData();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -7594,6 +8084,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SETTINGS__DESERIALIZERS = eINSTANCE.getSettings_Deserializers();
+
+		/**
+		 * The meta object literal for the '<em><b>Schemas</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__SCHEMAS = eINSTANCE.getSettings_Schemas();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -9008,6 +9506,138 @@ public interface StorePackage extends EPackage {
 		EAttribute IFC_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = eINSTANCE.getIfcEnginePluginDescriptor_DefaultName();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl <em>Extended Data Schema</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ExtendedDataSchemaImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchema()
+		 * @generated
+		 */
+		EClass EXTENDED_DATA_SCHEMA = eINSTANCE.getExtendedDataSchema();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA_SCHEMA__NAME = eINSTANCE.getExtendedDataSchema_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA_SCHEMA__URL = eINSTANCE.getExtendedDataSchema_Url();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA_SCHEMA__DATA = eINSTANCE.getExtendedDataSchema_Data();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA_SCHEMA__VALIDATE = eINSTANCE.getExtendedDataSchema_Validate();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA_SCHEMA__TYPE = eINSTANCE.getExtendedDataSchema_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_SCHEMA__SETTINGS = eINSTANCE.getExtendedDataSchema_Settings();
+
+		/**
+		 * The meta object literal for the '<em><b>Users</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_SCHEMA__USERS = eINSTANCE.getExtendedDataSchema_Users();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_SCHEMA__EXTENDED_DATA = eINSTANCE.getExtendedDataSchema_ExtendedData();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExtendedDataImpl <em>Extended Data</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ExtendedDataImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedData()
+		 * @generated
+		 */
+		EClass EXTENDED_DATA = eINSTANCE.getExtendedData();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA__URL = eINSTANCE.getExtendedData_Url();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA__DATA = eINSTANCE.getExtendedData_Data();
+
+		/**
+		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA__TITLE = eINSTANCE.getExtendedData_Title();
+
+		/**
+		 * The meta object literal for the '<em><b>Added</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA__ADDED = eINSTANCE.getExtendedData_Added();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA__USER = eINSTANCE.getExtendedData_User();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA__SCHEMA = eINSTANCE.getExtendedData_Schema();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9096,6 +9726,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum CHECKIN_STATUS = eINSTANCE.getCheckinStatus();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.ExtendedDataSchemaType
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
+		 * @generated
+		 */
+		EEnum EXTENDED_DATA_SCHEMA_TYPE = eINSTANCE.getExtendedDataSchemaType();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.

@@ -513,6 +513,24 @@ public interface StoreFactory extends EFactory {
 	IfcEnginePluginDescriptor createIfcEnginePluginDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Extended Data Schema</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extended Data Schema</em>'.
+	 * @generated
+	 */
+	ExtendedDataSchema createExtendedDataSchema();
+
+	/**
+	 * Returns a new object of class '<em>Extended Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extended Data</em>'.
+	 * @generated
+	 */
+	ExtendedData createExtendedData();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

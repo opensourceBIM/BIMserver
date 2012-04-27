@@ -52,6 +52,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getIfcEngines <em>Ifc Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getDeserializers <em>Deserializers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getSchemas <em>Schemas</em>}</li>
  * </ul>
  * </p>
  *
@@ -647,5 +648,23 @@ public interface Settings extends IdEObject {
 	 * @generated
 	 */
 	EList<Deserializer> getDeserializers();
+
+	/**
+	 * Returns the value of the '<em><b>Schemas</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ExtendedDataSchema}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExtendedDataSchema#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Schemas</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schemas</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_Schemas()
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getSettings
+	 * @model opposite="settings"
+	 * @generated
+	 */
+	EList<ExtendedDataSchema> getSchemas();
 
 } // Settings

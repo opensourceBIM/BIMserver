@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
@@ -204,6 +205,26 @@
 %>
 			<a href="deletedeserializer.jsp?sid=<%=deserializer.getOid()%>">Delete</a>
 		</td>
+	</tr>
+<%
+	}
+%>
+</table>
+</div>
+<div class="tabbertab" id="extendeddataschemastab" title="Extended Data Schemas">
+<a href="addextendeddataschema.jsp">Add Extended Data Schema</a>
+<table class="formatted">
+<tr><th>Name</th><th>URL/Data</th><th>Validate</th><th>Type</th><th>Used</th></tr>
+<%
+	List<SExtendedDataSchema> extendedDataSchemas = service.getAllExtendedDataSchemas();
+	for (SExtendedDataSchema extendedDataSchema : extendedDataSchemas) {
+%>
+	<tr>
+		<td><a href="extendeddataschema.jsp?id=<%=extendedDataSchema.getOid()%>"><%=extendedDataSchema.getName() %></a></td>
+		<td><%=(extendedDataSchema.getData() != null && extendedDataSchema.getData().length > 0) ? (extendedDataSchema.getData().length + " bytes") : extendedDataSchema.getUrl() %></td>
+		<td><%=extendedDataSchema.isValidate() %></td>
+		<td><%=extendedDataSchema.getType().name() %></td>
+		<td><%=extendedDataSchema.getExtendedData().size() %></td>
 	</tr>
 <%
 	}

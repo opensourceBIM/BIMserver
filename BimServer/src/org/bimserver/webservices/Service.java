@@ -55,11 +55,15 @@ import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
+import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
+import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
+import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
 import org.bimserver.database.actions.AddIfcEngineDatabaseAction;
 import org.bimserver.database.actions.AddObjectIDMDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddSerializerDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
+import org.bimserver.database.actions.AddUserToExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
 import org.bimserver.database.actions.AutologinDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -82,6 +86,7 @@ import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
 import org.bimserver.database.actions.GetAllDeserializersDatabaseAction;
+import org.bimserver.database.actions.GetAllExtendedDataSchemasDatabaseAction;
 import org.bimserver.database.actions.GetAllIfcEnginesDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
@@ -104,6 +109,8 @@ import org.bimserver.database.actions.GetDataObjectsDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
+import org.bimserver.database.actions.GetExtendedDataByIdDatabaseAction;
+import org.bimserver.database.actions.GetExtendedDataSchemaByIdDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetIfcEngineByIdDatabaseAction;
 import org.bimserver.database.actions.GetIfcEngineByNameDatabaseAction;
@@ -121,6 +128,7 @@ import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
 import org.bimserver.database.actions.LoginDatabaseAction;
+import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.RequestPasswordChangeDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
@@ -162,6 +170,8 @@ import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
+import org.bimserver.interfaces.objects.SExtendedData;
+import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SIfcEngine;
@@ -200,6 +210,8 @@ import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.IfcEngine;
@@ -2593,5 +2605,118 @@ public class Service implements ServiceInterface {
 	public void setCurrentUser(User user) {
 		currentUserType = user.getUserType();
 		currentUoid = user.getOid();
+	}
+
+	@Override
+	public void addExtendedDataSchema(SExtendedDataSchema extendedDataSchema) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ExtendedDataSchema convert = converter.convertFromSObject(extendedDataSchema, session);
+			session.executeAndCommitAction(new AddExtendedDataSchemaDatabaseAction(session, accessMethod, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addUserToExtendedDataSchema(Long uoid, Long edsid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new AddUserToExtendedDataSchemaDatabaseAction(session, accessMethod, uoid, edsid);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void removeUserFromExtendedDataSchema(Long uoid, Long edsid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new RemoveUserFromExtendedDataSchemaDatabaseAction(session, accessMethod, uoid, edsid);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addExtendedDataToRevision(Long roid, SExtendedData extendedData) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ExtendedData convert = converter.convertFromSObject(extendedData, session);
+			session.executeAndCommitAction(new AddExtendedDataToRevisionDatabaseAction(session, accessMethod, roid, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addExtendedDataToProject(Long poid, SExtendedData extendedData) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ExtendedData convert = converter.convertFromSObject(extendedData, session);
+			session.executeAndCommitAction(new AddExtendedDataToProjectDatabaseAction(session, accessMethod, poid, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SExtendedDataSchema getExtendedDataSchemaById(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetExtendedDataSchemaByIdDatabaseAction(session, accessMethod, oid)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SExtendedData getExtendedData(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetExtendedDataByIdDatabaseAction(session, accessMethod, oid)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<SExtendedDataSchema> getAllExtendedDataSchemas() throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			List<SExtendedDataSchema> serializers = converter.convertToSListExtendedDataSchema(session.executeAndCommitAction(new GetAllExtendedDataSchemasDatabaseAction(session, accessMethod)));
+			return serializers;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 }

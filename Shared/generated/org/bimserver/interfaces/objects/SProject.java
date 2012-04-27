@@ -100,6 +100,9 @@ public class SProject implements SBase
 		if (sField.getName().equals("exportLengthMeasurePrefix")) {
 			return getExportLengthMeasurePrefix();
 		}
+		if (sField.getName().equals("extendedData")) {
+			return getExtendedData();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -175,6 +178,10 @@ public class SProject implements SBase
 			setExportLengthMeasurePrefix((SSIPrefix)val);
 			return;
 		}
+		if (sField.getName().equals("extendedData")) {
+			setExtendedData((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -199,6 +206,7 @@ public class SProject implements SBase
 	private java.lang.String description;
 	private long clashDetectionSettingsId;
 	private SSIPrefix exportLengthMeasurePrefix;
+	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.Integer getId() {
 		return id;
 	}
@@ -323,6 +331,13 @@ public class SProject implements SBase
 
 	public void setExportLengthMeasurePrefix(SSIPrefix exportLengthMeasurePrefix) {
 		this.exportLengthMeasurePrefix = exportLengthMeasurePrefix;
+	}
+	public List<Long> getExtendedData() {
+		return extendedData;
+	}
+
+	public void setExtendedData(List<Long> extendedData) {
+		this.extendedData = extendedData;
 	}
 	@Override
 	public int hashCode() {

@@ -88,6 +88,12 @@ public class SUser implements SBase
 		if (sField.getName().equals("notificationUrl")) {
 			return getNotificationUrl();
 		}
+		if (sField.getName().equals("schemas")) {
+			return getSchemas();
+		}
+		if (sField.getName().equals("extendedData")) {
+			return getExtendedData();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -147,6 +153,14 @@ public class SUser implements SBase
 			setNotificationUrl((String)val);
 			return;
 		}
+		if (sField.getName().equals("schemas")) {
+			setSchemas((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("extendedData")) {
+			setExtendedData((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -167,6 +181,8 @@ public class SUser implements SBase
 	private java.lang.String validationToken;
 	private java.util.Date validationTokenCreated;
 	private java.lang.String notificationUrl;
+	private List<Long> schemas = new ArrayList<Long>();
+	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.String getName() {
 		return name;
 	}
@@ -258,6 +274,20 @@ public class SUser implements SBase
 
 	public void setNotificationUrl(java.lang.String notificationUrl) {
 		this.notificationUrl = notificationUrl;
+	}
+	public List<Long> getSchemas() {
+		return schemas;
+	}
+
+	public void setSchemas(List<Long> schemas) {
+		this.schemas = schemas;
+	}
+	public List<Long> getExtendedData() {
+		return extendedData;
+	}
+
+	public void setExtendedData(List<Long> extendedData) {
+		this.extendedData = extendedData;
 	}
 	@Override
 	public int hashCode() {

@@ -50,6 +50,8 @@ import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
+import org.bimserver.interfaces.objects.SExtendedData;
+import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SIfcEngine;
@@ -1309,7 +1311,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllSerializers")
 	List<SSerializer> getAllSerializers(
 			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-	
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled IFC engines
@@ -1328,6 +1329,25 @@ public interface ServiceInterface {
 	@WebMethod(action = "getSerializerById")
 	SSerializer getSerializerById(
 			@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the ExtendedDataSchema
+	 * @return ExtendedDataSchema
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getExtendedDataSchemaById")
+	SExtendedDataSchema getExtendedDataSchemaById(
+			@WebParam(name = "oid", partName = "getExtendedDataSchemaById.oid") Long oid) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the ExtendedData
+	 * @return ExtendedData
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getExtendedData")
+	SExtendedData getExtendedData(
+			@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
+
 	
 	/**
 	 * @param oid ObjectID of the Serializer
@@ -1354,6 +1374,56 @@ public interface ServiceInterface {
 	@WebMethod(action = "addSerializer")
 	void addSerializer(
 			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializer serializer) throws ServerException, UserException;
+
+	/**
+	 * @param extendedDataSchema ExtendedDataSchema to add
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addExtendedDataSchema")
+	void addExtendedDataSchema(
+			@WebParam(name = "extendedDataSchema", partName = "addExtendedDataSchema.extendedDataSchema") SExtendedDataSchema extendedDataSchema) throws ServerException, UserException;
+
+	/**
+	 * @param uoid ObjectID of the User
+	 * @param edsid ObjectID of the ExtendedDataSchema
+	 * @throws UserException 
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addUserToExtendedDataSchema")
+	void addUserToExtendedDataSchema(
+			@WebParam(name = "uoid", partName = "addUserToExtendedDataSchema.uoid") Long uoid,
+			@WebParam(name = "edsid", partName = "addUserToExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
+	
+	/**
+	 * @param uoid ObjectID of the User
+	 * @param edsid ObjectID of the ExtendedDataSchema
+	 * @throws UserException 
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "removeUserFromExtendedDataSchema")
+	void removeUserFromExtendedDataSchema(
+			@WebParam(name = "uoid", partName = "removeUserFromExtendedDataSchema.uoid") Long uoid,
+			@WebParam(name = "edsid", partName = "removeUserFromExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
+	
+	/**
+	 * @param roid ObjectID of the Revision
+	 * @param extendedData ExtendedData to add
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addExtendedDataToRevision")
+	void addExtendedDataToRevision(
+			@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
+			@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
+
+	/**
+	 * @param roid ObjectID of the Revision
+	 * @param extendedData ExtendedData to add
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addExtendedDataToProject")
+	void addExtendedDataToProject(
+			@WebParam(name = "poid", partName = "addExtendedDataToProject.poid") Long poid,
+			@WebParam(name = "extendedData", partName = "addExtendedDataToProject.extendedData") SExtendedData extendedData) throws ServerException, UserException;
 	
 	/**
 	 * @param ifcEngine IfcEngine to add
@@ -1962,4 +2032,11 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getCheckinWarnings")
 	Set<String> getCheckinWarnings(@WebParam(name = "poid", partName = "getCheckinWarnings.poid") Long poid) throws ServerException, UserException;
+	
+	/**
+	 * @return A list of ExtendedDataSchemas
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllExtendedSchemas")
+	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 }

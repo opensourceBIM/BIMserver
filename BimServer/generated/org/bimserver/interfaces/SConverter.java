@@ -70,74 +70,74 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof RevisionBranched) {
-			return convertToSObject((RevisionBranched)input);
-		}
-		else if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
-		}
-		else if (input instanceof NewCheckoutAdded) {
-			return convertToSObject((NewCheckoutAdded)input);
+		if (input instanceof UserAddedToProject) {
+			return convertToSObject((UserAddedToProject)input);
 		}
 		else if (input instanceof NewRevisionAdded) {
 			return convertToSObject((NewRevisionAdded)input);
 		}
-		else if (input instanceof NewUserAdded) {
-			return convertToSObject((NewUserAdded)input);
-		}
 		else if (input instanceof SettingsSaved) {
 			return convertToSObject((SettingsSaved)input);
 		}
-		else if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof ServerStarted) {
-			return convertToSObject((ServerStarted)input);
-		}
-		else if (input instanceof ProjectDeleted) {
-			return convertToSObject((ProjectDeleted)input);
-		}
-		else if (input instanceof NewProjectAdded) {
-			return convertToSObject((NewProjectAdded)input);
-		}
-		else if (input instanceof ClashDetectionSettingsUpdated) {
-			return convertToSObject((ClashDetectionSettingsUpdated)input);
+		else if (input instanceof ProjectUndeleted) {
+			return convertToSObject((ProjectUndeleted)input);
 		}
 		else if (input instanceof PasswordReset) {
 			return convertToSObject((PasswordReset)input);
 		}
-		else if (input instanceof UserUndeleted) {
-			return convertToSObject((UserUndeleted)input);
+		else if (input instanceof ServerStarted) {
+			return convertToSObject((ServerStarted)input);
 		}
-		else if (input instanceof GeoTagUpdated) {
-			return convertToSObject((GeoTagUpdated)input);
+		else if (input instanceof ClashDetectionSettingsUpdated) {
+			return convertToSObject((ClashDetectionSettingsUpdated)input);
 		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof UserAddedToProject) {
-			return convertToSObject((UserAddedToProject)input);
-		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
-		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
 		}
 		else if (input instanceof NewObjectIDMUploaded) {
 			return convertToSObject((NewObjectIDMUploaded)input);
 		}
-		else if (input instanceof Download) {
-			return convertToSObject((Download)input);
-		}
 		else if (input instanceof UserChanged) {
 			return convertToSObject((UserChanged)input);
+		}
+		else if (input instanceof UserUndeleted) {
+			return convertToSObject((UserUndeleted)input);
 		}
 		else if (input instanceof RevisionUpdated) {
 			return convertToSObject((RevisionUpdated)input);
 		}
-		else if (input instanceof ProjectUndeleted) {
-			return convertToSObject((ProjectUndeleted)input);
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
+		}
+		else if (input instanceof GeoTagUpdated) {
+			return convertToSObject((GeoTagUpdated)input);
+		}
+		else if (input instanceof Download) {
+			return convertToSObject((Download)input);
+		}
+		else if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
+		}
+		else if (input instanceof NewProjectAdded) {
+			return convertToSObject((NewProjectAdded)input);
+		}
+		else if (input instanceof NewCheckoutAdded) {
+			return convertToSObject((NewCheckoutAdded)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
+		}
+		else if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof ProjectDeleted) {
+			return convertToSObject((ProjectDeleted)input);
+		}
+		else if (input instanceof NewUserAdded) {
+			return convertToSObject((NewUserAdded)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());
@@ -1727,6 +1727,11 @@ public class SConverter {
 		result.setParentId(parentVal == null ? -1 : parentVal.getOid());
 		ClashDetectionSettings clashDetectionSettingsVal = input.getClashDetectionSettings();
 		result.setClashDetectionSettingsId(clashDetectionSettingsVal == null ? -1 : clashDetectionSettingsVal.getOid());
+		List<Long> listextendedData = new ArrayList<Long>();
+		for (ExtendedData v : input.getExtendedData()) {
+			listextendedData.add(v.getOid());
+		}
+		result.setExtendedData(listextendedData);
 		return result;
 	}
 
@@ -1768,6 +1773,10 @@ public class SConverter {
 		}
 		result.setParent((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentId(), false, null));
 		result.setClashDetectionSettings((ClashDetectionSettings)session.get(StorePackage.eINSTANCE.getClashDetectionSettings(), input.getClashDetectionSettingsId(), false, null));
+		List<ExtendedData> listextendedData = result.getExtendedData();
+		for (long oid : input.getExtendedData()) {
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, false, null));
+		}
 		return result;
 	}
 
@@ -1832,6 +1841,16 @@ public class SConverter {
 		result.setRevisions(listrevisions);
 		User createdByVal = input.getCreatedBy();
 		result.setCreatedById(createdByVal == null ? -1 : createdByVal.getOid());
+		List<Long> listschemas = new ArrayList<Long>();
+		for (ExtendedDataSchema v : input.getSchemas()) {
+			listschemas.add(v.getOid());
+		}
+		result.setSchemas(listschemas);
+		List<Long> listextendedData = new ArrayList<Long>();
+		for (ExtendedData v : input.getExtendedData()) {
+			listextendedData.add(v.getOid());
+		}
+		result.setExtendedData(listextendedData);
 		return result;
 	}
 
@@ -1860,6 +1879,14 @@ public class SConverter {
 			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, false, null));
 		}
 		result.setCreatedBy((User)session.get(StorePackage.eINSTANCE.getUser(), input.getCreatedById(), false, null));
+		List<ExtendedDataSchema> listschemas = result.getSchemas();
+		for (long oid : input.getSchemas()) {
+			listschemas.add((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), oid, false, null));
+		}
+		List<ExtendedData> listextendedData = result.getExtendedData();
+		for (long oid : input.getExtendedData()) {
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, false, null));
+		}
 		return result;
 	}
 
@@ -2216,6 +2243,11 @@ public class SConverter {
 			listlastClashes.add(v.getOid());
 		}
 		result.setLastClashes(listlastClashes);
+		List<Long> listextendedData = new ArrayList<Long>();
+		for (ExtendedData v : input.getExtendedData()) {
+			listextendedData.add(v.getOid());
+		}
+		result.setExtendedData(listextendedData);
 		return result;
 	}
 
@@ -2248,6 +2280,10 @@ public class SConverter {
 		List<Clash> listlastClashes = result.getLastClashes();
 		for (long oid : input.getLastClashes()) {
 			listlastClashes.add((Clash)session.get(StorePackage.eINSTANCE.getClash(), oid, false, null));
+		}
+		List<ExtendedData> listextendedData = result.getExtendedData();
+		for (long oid : input.getExtendedData()) {
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, false, null));
 		}
 		return result;
 	}
@@ -2550,6 +2586,11 @@ public class SConverter {
 			listdeserializers.add(v.getOid());
 		}
 		result.setDeserializers(listdeserializers);
+		List<Long> listschemas = new ArrayList<Long>();
+		for (ExtendedDataSchema v : input.getSchemas()) {
+			listschemas.add(v.getOid());
+		}
+		result.setSchemas(listschemas);
 		return result;
 	}
 
@@ -2597,6 +2638,10 @@ public class SConverter {
 		List<Deserializer> listdeserializers = result.getDeserializers();
 		for (long oid : input.getDeserializers()) {
 			listdeserializers.add((Deserializer)session.get(StorePackage.eINSTANCE.getDeserializer(), oid, false, null));
+		}
+		List<ExtendedDataSchema> listschemas = result.getSchemas();
+		for (long oid : input.getSchemas()) {
+			listschemas.add((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), oid, false, null));
 		}
 		return result;
 	}
@@ -3161,11 +3206,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ReferenceDataValue) {
-			return convertToSObject((ReferenceDataValue)input);
-		}
-		else if (input instanceof ListDataValue) {
+		if (input instanceof ListDataValue) {
 			return convertToSObject((ListDataValue)input);
+		}
+		else if (input instanceof ReferenceDataValue) {
+			return convertToSObject((ReferenceDataValue)input);
 		}
 		else if (input instanceof SimpleDataValue) {
 			return convertToSObject((SimpleDataValue)input);
@@ -4336,14 +4381,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ObjectModified) {
+		if (input instanceof ObjectRemoved) {
+			return convertToSObject((ObjectRemoved)input);
+		}
+		else if (input instanceof ObjectModified) {
 			return convertToSObject((ObjectModified)input);
 		}
 		else if (input instanceof ObjectAdded) {
 			return convertToSObject((ObjectAdded)input);
-		}
-		else if (input instanceof ObjectRemoved) {
-			return convertToSObject((ObjectRemoved)input);
 		}
 		SCompareItem result = new SCompareItem();
 		result.setOid(input.getOid());
@@ -4751,11 +4796,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof NewRevisionNotification) {
-			return convertToSObject((NewRevisionNotification)input);
-		}
-		else if (input instanceof NewProjectNotification) {
+		if (input instanceof NewProjectNotification) {
 			return convertToSObject((NewProjectNotification)input);
+		}
+		else if (input instanceof NewRevisionNotification) {
+			return convertToSObject((NewRevisionNotification)input);
 		}
 		SNotification result = new SNotification();
 		result.setOid(input.getOid());
@@ -5186,4 +5231,158 @@ public class SConverter {
 		public CheckinStatus convertFromSObject(SCheckinStatus input) {
 			return CheckinStatus.values()[input.ordinal()];
 		}
+		public SExtendedDataSchemaType convertToSObject(ExtendedDataSchemaType input) {
+			return SExtendedDataSchemaType.values()[input.ordinal()];
+		}
+		
+		public ExtendedDataSchemaType convertFromSObject(SExtendedDataSchemaType input) {
+			return ExtendedDataSchemaType.values()[input.ordinal()];
+		}
+
+	public Set<SExtendedDataSchema> convertToSSetExtendedDataSchema(Collection<ExtendedDataSchema> input) {
+		Set<SExtendedDataSchema> result = new HashSet<SExtendedDataSchema>();
+		for (ExtendedDataSchema o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ExtendedDataSchema> convertFromSSetExtendedDataSchema(Collection<SExtendedDataSchema> input, DatabaseSession session) {
+		Set<ExtendedDataSchema> result = new HashSet<ExtendedDataSchema>();
+		for (SExtendedDataSchema o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SExtendedDataSchema> convertToSListExtendedDataSchema(Collection<ExtendedDataSchema> input) {
+		List<SExtendedDataSchema> result = new ArrayList<SExtendedDataSchema>();
+		for (ExtendedDataSchema o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ExtendedDataSchema> convertFromSListExtendedDataSchema(Collection<SExtendedDataSchema> input, DatabaseSession session) {
+		List<ExtendedDataSchema> result = new ArrayList<ExtendedDataSchema>();
+		for (SExtendedDataSchema o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SExtendedDataSchema convertToSObject(ExtendedDataSchema input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SExtendedDataSchema result = new SExtendedDataSchema();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		result.setUrl(input.getUrl());
+		result.setData(input.getData());
+		result.setValidate(input.isValidate());
+		result.setType(SExtendedDataSchemaType.values()[input.getType().ordinal()]);
+		Settings settingsVal = input.getSettings();
+		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		List<Long> listusers = new ArrayList<Long>();
+		for (User v : input.getUsers()) {
+			listusers.add(v.getOid());
+		}
+		result.setUsers(listusers);
+		List<Long> listextendedData = new ArrayList<Long>();
+		for (ExtendedData v : input.getExtendedData()) {
+			listextendedData.add(v.getOid());
+		}
+		result.setExtendedData(listextendedData);
+		return result;
+	}
+
+	public ExtendedDataSchema convertFromSObject(SExtendedDataSchema input, DatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ExtendedDataSchema result = StoreFactory.eINSTANCE.createExtendedDataSchema();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setName(input.getName());
+		result.setUrl(input.getUrl());
+		result.setData(input.getData());
+		result.setValidate(input.isValidate());
+		result.setType(ExtendedDataSchemaType.values()[input.getType().ordinal()]);
+		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
+		List<User> listusers = result.getUsers();
+		for (long oid : input.getUsers()) {
+			listusers.add((User)session.get(StorePackage.eINSTANCE.getUser(), oid, false, null));
+		}
+		List<ExtendedData> listextendedData = result.getExtendedData();
+		for (long oid : input.getExtendedData()) {
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, false, null));
+		}
+		return result;
+	}
+
+	public Set<SExtendedData> convertToSSetExtendedData(Collection<ExtendedData> input) {
+		Set<SExtendedData> result = new HashSet<SExtendedData>();
+		for (ExtendedData o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ExtendedData> convertFromSSetExtendedData(Collection<SExtendedData> input, DatabaseSession session) {
+		Set<ExtendedData> result = new HashSet<ExtendedData>();
+		for (SExtendedData o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SExtendedData> convertToSListExtendedData(Collection<ExtendedData> input) {
+		List<SExtendedData> result = new ArrayList<SExtendedData>();
+		for (ExtendedData o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ExtendedData> convertFromSListExtendedData(Collection<SExtendedData> input, DatabaseSession session) {
+		List<ExtendedData> result = new ArrayList<ExtendedData>();
+		for (SExtendedData o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SExtendedData convertToSObject(ExtendedData input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SExtendedData result = new SExtendedData();
+		result.setOid(input.getOid());
+		result.setUrl(input.getUrl());
+		result.setData(input.getData());
+		result.setTitle(input.getTitle());
+		result.setAdded(input.getAdded());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		ExtendedDataSchema schemaVal = input.getSchema();
+		result.setSchemaId(schemaVal == null ? -1 : schemaVal.getOid());
+		return result;
+	}
+
+	public ExtendedData convertFromSObject(SExtendedData input, DatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ExtendedData result = StoreFactory.eINSTANCE.createExtendedData();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setUrl(input.getUrl());
+		result.setData(input.getData());
+		result.setTitle(input.getTitle());
+		result.setAdded(input.getAdded());
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
+		result.setSchema((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getSchemaId(), false, null));
+		return result;
+	}
 }

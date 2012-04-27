@@ -20,9 +20,12 @@ import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
 
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.Schema;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -51,6 +54,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationTokenCreated <em>Validation Token Created</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getNotificationUrl <em>Notification Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSchemas <em>Schemas</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
  * </p>
  *
@@ -302,6 +307,26 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	public void setNotificationUrl(String newNotificationUrl) {
 		eSet(StorePackage.Literals.USER__NOTIFICATION_URL, newNotificationUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ExtendedDataSchema> getSchemas() {
+		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.USER__SCHEMAS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ExtendedData> getExtendedData() {
+		return (EList<ExtendedData>) eGet(StorePackage.Literals.USER__EXTENDED_DATA, true);
 	}
 
 } //UserImpl

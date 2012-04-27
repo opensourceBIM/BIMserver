@@ -94,6 +94,9 @@ public class SRevision implements SBase
 		if (sField.getName().equals("laid")) {
 			return getLaid();
 		}
+		if (sField.getName().equals("extendedData")) {
+			return getExtendedData();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -161,6 +164,10 @@ public class SRevision implements SBase
 			setLaid((Long)val);
 			return;
 		}
+		if (sField.getName().equals("extendedData")) {
+			setExtendedData((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -183,6 +190,7 @@ public class SRevision implements SBase
 	private java.lang.Integer bmi;
 	private java.lang.Integer nrClashes;
 	private java.lang.Long laid;
+	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.Integer getId() {
 		return id;
 	}
@@ -290,6 +298,13 @@ public class SRevision implements SBase
 
 	public void setLaid(java.lang.Long laid) {
 		this.laid = laid;
+	}
+	public List<Long> getExtendedData() {
+		return extendedData;
+	}
+
+	public void setExtendedData(List<Long> extendedData) {
+		this.extendedData = extendedData;
 	}
 	@Override
 	public int hashCode() {
