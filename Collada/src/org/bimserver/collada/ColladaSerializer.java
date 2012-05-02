@@ -335,7 +335,7 @@ public class ColladaSerializer extends EmfSerializer {
 			out.println("                      <mesh>");
 			out.println("                                     <source id=\"positions-" + id + "\" name=\"positions-" + id + "\">");
 			out.print("                                                         <float_array id=\"positions-array-" + id + "\" count=\""
-					+ visualisationProperties.getPrimitiveCount() * 3 + "\">");
+					+ visualisationProperties.getPrimitiveCount() * 3 * 3 + "\">");
 
 			int count = visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex();
 			for (int i = visualisationProperties.getStartIndex(); i < count; i++) {
@@ -350,7 +350,7 @@ public class ColladaSerializer extends EmfSerializer {
 
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (visualisationProperties.getPrimitiveCount())
+			out.println("                                                                     <accessor count=\"" + (visualisationProperties.getPrimitiveCount() * 3)
 					+ "\" offset=\"0\" source=\"#positions-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
@@ -361,7 +361,7 @@ public class ColladaSerializer extends EmfSerializer {
 
 			out.println("                                     <source id=\"normals-" + id + "\" name=\"normals-" + id + "\">");
 			out.print("                                                         <float_array id=\"normals-array-" + id + "\" count=\""
-					+ visualisationProperties.getPrimitiveCount() * 3 + "\">");
+					+ visualisationProperties.getPrimitiveCount() * 3 * 3 + "\">");
 			for (int i = visualisationProperties.getStartIndex(); i < count; i++) {
 				// Normals will also be scaled in Google Earth ...
 				int index = geometry.getIndex(i) * 3;
@@ -374,7 +374,7 @@ public class ColladaSerializer extends EmfSerializer {
 			}
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (visualisationProperties.getPrimitiveCount())
+			out.println("                                                                     <accessor count=\"" + (visualisationProperties.getPrimitiveCount() * 3)
 					+ "\" offset=\"0\" source=\"#normals-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
