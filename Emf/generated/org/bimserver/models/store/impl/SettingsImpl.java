@@ -17,20 +17,16 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Plugin;
-import org.bimserver.models.store.Schema;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

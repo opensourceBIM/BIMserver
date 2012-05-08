@@ -1,4 +1,4 @@
-package org.bimserver.objectidms;
+package org.bimserver.plugins.objectidms;
 
 import java.util.HashMap;
 import java.util.HashSet;

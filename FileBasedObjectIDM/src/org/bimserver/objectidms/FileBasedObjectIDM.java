@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBException;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginContext;
+import org.bimserver.plugins.objectidms.AbstractObjectIDM;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
