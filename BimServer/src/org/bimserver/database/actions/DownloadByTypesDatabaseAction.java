@@ -65,6 +65,9 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 		User user = getUserByUoid(actingUoid);
 		Project project = null;
 		Set<EClass> eClasses = new HashSet<EClass>();
+//		eClasses.add(getDatabaseSession().getEClassForName("IfcProject"));
+//		eClasses.add(getDatabaseSession().getEClassForName("IfcUnitAssignment"));
+//		eClasses.add(getDatabaseSession().getEClassForName("IfcSIUnit"));
 		for (String className : classNames) {
 			eClasses.add(getDatabaseSession().getEClassForName(className));
 			if (includeAllSubtypes) {

@@ -266,10 +266,6 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setOid(oid);
 		object.setPid(pid);
-		// TODO remove this
-		if (rid == Integer.MAX_VALUE) {
-			throw new RuntimeException("This is not oke");
-		}
 		object.setRid(rid);
 		if (!deep) {
 			object.setLazyLoader(this);
