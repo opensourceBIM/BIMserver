@@ -1,0 +1,10 @@
+<ivy-module version="2.0">
+  <info organisation="org.bimserver" module="bimserver-ifcplugins"/>
+  <publications>
+    <artifact name="bimserver-ifcplugins" ext="jar" type="jar"/>
+  </publications>
+  <dependencies>
+    <dependency org="org.bimserver" name="bimserver-ifc" rev="1.1RC3"/>
+    <dependency org="org.bimserver" name="bimserver-utils" rev="1.1RC3"/>
+  </dependencies>
+</ivy-module>

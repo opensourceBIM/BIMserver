@@ -1,0 +1,15 @@
+<ivy-module version="2.0">
+  <info organisation="org.bimserver" module="bimserver-utils"/>
+  <publications>
+    <artifact name="bimserver-utils" ext="jar" type="jar"/>
+  </publications>
+  <dependencies>
+    <dependency org="joda-time" name="joda-time" rev="1.6"/>
+    <dependency org="commons-io" name="commons-io" rev="1.4" />
+    <dependency org="commons-codec" name="commons-codec" rev="1.3"/>
+    <dependency org="log4j" name="log4j" rev="1.2.16"/>    
+    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.2"/>
+    <dependency org="org.slf4j" name="slf4j-api" rev="1.6.2"/>
+    <dependency org="com.google.guava" name="guava" rev="11.0.1"/>
+  </dependencies>
+</ivy-module>

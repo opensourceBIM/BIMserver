@@ -1,0 +1,16 @@
+<ivy-module version="2.0">
+  <info organisation="org.bimserver" module="bimserver-emf"/>
+  <publications>
+    <artifact name="bimserver-emf" ext="jar" type="jar"/>
+  </publications>
+  <dependencies>
+    <dependency org="bundle" name="org.eclipse.emf.codegen.ecore" rev="2.7.+"/>
+    <dependency org="bundle" name="org.eclipse.emf.codegen" rev="2.6.+"/>
+    <dependency org="bundle" name="org.eclipse.emf.common" rev="2.7.+"/>
+    <dependency org="bundle" name="org.eclipse.emf.compare" rev="1.2.+"/>
+    <dependency org="bundle" name="org.eclipse.emf.ecore.xmi" rev="2.7.+"/>
+    <dependency org="bundle" name="org.eclipse.emf.ecore" rev="2.7.+"/>
+    <dependency org="bundle" name="org.eclipse.emf" rev="2.6.+"/>
+    <dependency org="bundle" name="org.eclipse.xsd" rev="2.7.+"/>
+  </dependencies>
+</ivy-module>
