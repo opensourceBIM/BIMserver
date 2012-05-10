@@ -1,4 +1,5 @@
 <project name="BIMserver Common">
+	<import file="one-jar-ant-task.xml" />
 	<fileset id="lib" dir="../../BimServer">
 		<include name="**/*.jar" />
 	</fileset>
@@ -445,7 +446,4 @@
 
 	<property name="buildtargets" value="../build/targets" />
 	<property name="defaultsettings" value="../defaultsettings" />
-
-
-	<import file="one-jar-ant-task.xml" />
 </project>
