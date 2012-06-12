@@ -21,7 +21,13 @@
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-${version}.war" />
 		</ftp>
-		
+
+		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-${version}.war" targetfilename="bimserver-without_GUI-1.1.0-final.war" summary="A WAR file to deploy and start a BIMserver WITHOUT a GUI in (ie) Tomcat.
+
+			Basic installation instructions can be found on http://code.google.com/p/bimserver/wiki/Installation 
+
+			View know issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="Featured, Type-Package, OpSys-All" />
+
 		<ant antfile="bimserver.build.xml" target="Build Jar"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-${version}.jar" />
@@ -32,31 +38,45 @@
 			<fileset file="builds/bimserver-combined-${version}.war" />
 		</ftp>
 
+		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-combined-${version}.war" targetfilename="bimserver-including_GUI-1.1.0-final.war" summary="A WAR file to deploy a BIMserver + a BIMWebServer GUI in (ie) Tomcat. 
+			We recommend this release for enterprise use.
+
+			Basic installation instructions can be found on http://code.google.com/p/bimserver/wiki/Installation 
+
+			View known issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="Featured, Type-Package, OpSys-All" />
+		
 		<ant antfile="combined.build.xml" target="Build CombinedJar"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-combined-${version}.jar" />
 		</ftp>
-
 		
-<!--		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-combined-${version}.jar" targetfilename="bimserver-including_GUI-${version}.jar" summary="A runnable JAR file that deploys and starts a BIMserver + a BIMWebServer GUI. 
+		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-combined-${version}.jar" targetfilename="bimserver-including_GUI-${version}.jar" summary="A runnable JAR file that deploys and starts a BIMserver + a BIMWebServer GUI. 
 
 			Make sure you have java installed on your computer.
 			Download, double click and run.
 			Basic installation instructions can be found on http://gettingstarted.bimserver.org 
 
 			View know issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="Featured, Type-Package, OpSys-All" />
--->
-
 		
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-client-lib-${version}.zip" />
 		</ftp>
+		
+		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-client-lib-${version}.zip" targetfilename="bimserver-client-lib-1.1.0-final.zip" summary="Client library, usable for projects that want to connect their client to a BIMserver.
+			Please note the open source license issues." labels="Featured, Type-Package, OpSys-All" />
 
 		<ant antfile="satellite.build.xml" target="Build SatelliteJar"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-satellite-${version}.jar" />
 		</ftp>
+
+		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-satellite-${version}.jar" targetfilename="bimserver-satellite-${version}.jar" summary="A runnable JAR file that deploys and starts a Satellite server to respond to BIMserver notifications.
+			This is a framework (example) for BIMserver extensions.
+
+			Please read the documentation before you ask questions about this on our forum.
+
+			More info can be found on http://extend.bimserver.org, or  http://code.google.com/p/bimserver/wiki/NotificationsDesign" labels="Featured, Type-Package, OpSys-All" />
 
 		<ant antfile="satellite.build.xml" target="Build SatelliteWar"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
@@ -67,6 +87,9 @@
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-lib-${version}.zip" />
 		</ftp>
+		
+		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-lib-${version}.zip" targetfilename="bimserver-lib-1.1.0-final.zip" summary="Server library, useable for Java developers that want to embed a BIMserver in their own application.
+			Please note the open source license issues." labels="Featured, Type-Package, OpSys-All" />
 
 		<ant antfile="client.build.xml" target="Build Client"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
