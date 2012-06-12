@@ -59,7 +59,7 @@ public class CompileServlet extends HttpServlet {
 			if (action.equals("compile")) {
 				try {
 					SCompileResult compileResult = loginManager.getService().compile(code);
-					if (compileResult.getCompileOke()) {
+					if (compileResult.getCompileOke() == true) {
 						root.put("output", "Compilation successfull");
 					} else {
 						for (String warning : compileResult.getWarnings()) {

@@ -206,6 +206,7 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.CompileResult;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
@@ -2382,7 +2383,9 @@ public class Service implements ServiceInterface {
 	@Override
 	public SCompileResult compile(String code) throws ServerException, UserException {
 		QueryCompiler queryCompiler = new QueryCompiler();
-		return converter.convertToSObject(queryCompiler.compile(code));
+		CompileResult compile = queryCompiler.compile(code);
+		SCompileResult convertToSObject = converter.convertToSObject(compile);
+		return convertToSObject;
 	}
 
 	@Override
