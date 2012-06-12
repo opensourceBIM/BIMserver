@@ -2,6 +2,8 @@
 	<tstamp>
 		<format property="builddate" pattern="yyyy-MM-dd" />
 	</tstamp>
+	
+	<taskdef classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpath="antlibs/ant-googlecode-0.0.3.jar" name="gcupload"/>
 
 	<property name="majorversion" value="1"/>
 	<property name="minorversion" value="1"/>
@@ -34,7 +36,15 @@
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-combined-${version}.jar" />
 		</ftp>
+		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-combined-${version}.jar" targetfilename="bimserver-including_GUI-${version}.jar" summary="A runnable JAR file that deploys and starts a BIMserver + a BIMWebServer GUI. 
 
+			Make sure you have java installed on your computer.
+			Download, double click and run.
+			Basic installation instructions can be found on http://gettingstarted.bimserver.org 
+
+			View know issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="Featured, Type-Package, OpSys-All" />
+
+		
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.1/${version}">
 			<fileset file="builds/bimserver-client-lib-${version}.zip" />
