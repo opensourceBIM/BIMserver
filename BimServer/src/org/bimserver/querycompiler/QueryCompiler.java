@@ -155,6 +155,7 @@ public class QueryCompiler {
 		CompileResult compileResult = StoreFactory.eINSTANCE.createCompileResult();
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		if (compiler == null) {
+			compileResult.setCompileOke(false);
 			compileResult.getErrors().add("JDK needed for compile tasks");
 			return compileResult;
 		}

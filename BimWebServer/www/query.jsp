@@ -152,10 +152,11 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 				for (var i=0; i<data.compileErrors.length; i++) {
 					$("#console").val(data.compileErrors[i]);
 				}
-			}
-			if (data.output != null) {
-				$("#console").removeClass("compile_error");
-				$("#console").val(data.output);
+			} else {
+				if (data.output != null) {
+					$("#console").removeClass("compile_error");
+					$("#console").val(data.output);
+				}
 			}
 		}
 		
