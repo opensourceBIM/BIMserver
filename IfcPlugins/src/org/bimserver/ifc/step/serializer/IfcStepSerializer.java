@@ -229,7 +229,11 @@ public class IfcStepSerializer extends IfcSerializer {
 			String stringVal = (String)val;
 			for (int i=0; i<stringVal.length(); i++) {
 				char c = stringVal.charAt(i);
-				if (c <= 126) {
+				if (c == '\'') {
+					out.print("\'\'");
+				} else if (c == '\\') {
+					out.print("\\\\");
+				} else if (c >= 32 && c <= 126) {
 					// ISO 8859-1
 					out.print(c);
 				} else if (c < 255) {
@@ -244,7 +248,7 @@ public class IfcStepSerializer extends IfcSerializer {
 						// The following code has not been tested (2012-04-25)
 						// Use UCS-2 or UCS-4
 						
-						// TODO when multiple sequential characters should be encoded in UCS2 or UCS4, we don't really need to add all those \X0\ \X2\ and \X4\ chars
+						// TODO when multiple sequential characters should be encoded in UCS-2 or UCS-4, we don't really need to add all those \X0\ \X2\ and \X4\ chars
 						if (Character.isLowSurrogate(c)) {
 							throw new SerializerException("Unexpected low surrogate range char");
 						} else if (Character.isHighSurrogate(c)) {
