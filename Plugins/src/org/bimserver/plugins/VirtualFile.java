@@ -19,6 +19,7 @@ package org.bimserver.plugins;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 import java.util.jar.JarOutputStream;
 
 import javax.lang.model.element.Modifier;
@@ -378,5 +380,29 @@ public class VirtualFile implements JavaFileObject {
 
 	public byte[] getData() {
 		return data;
+	}
+
+	public static VirtualFile fromJar(File file) {
+		VirtualFile result = new VirtualFile(null, null);
+		try {
+			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
+			JarEntry jarEntry = jarInputStream.getNextJarEntry();
+			while (jarEntry != null) {
+				VirtualFile newFile = result.createFile(jarEntry.getName());
+				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+				IOUtils.copy(jarInputStream, byteArrayOutputStream);
+				newFile.setData(byteArrayOutputStream.toByteArray());
+				jarEntry = jarInputStream.getNextJarEntry();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	private void setData(byte[] data) {
+		this.data = data;
 	}
 }

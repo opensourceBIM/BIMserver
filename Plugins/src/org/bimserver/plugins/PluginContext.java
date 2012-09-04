@@ -115,7 +115,7 @@ public class PluginContext {
 			this.javaFileManager = systemJavaCompiler.getStandardFileManager(null, null, null);
 			break;
 		case JAR_FILE:
-//			this.javaFileManager = new JarPluginFileManager(ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null), classLoader);
+			this.javaFileManager = new VirtualFileManager(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, VirtualFile.fromJar(new File(location)));
 			break;
 		default:
 			break;
