@@ -1,4 +1,4 @@
-package org.bimserver.plugins;
+package org.bimserver.plugins.classloaders;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

@@ -37,6 +37,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.bimserver.plugins.classloaders.DelegatingClassLoader;
+import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
+import org.bimserver.plugins.classloaders.JarClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -386,7 +389,6 @@ public class PluginManager {
 		pluginContext.setPlugin(plugin);
 		pluginContext.setLocation(location);
 		pluginContext.setClassLocation(classLocation);
-		pluginContext.init();
 		set.add(pluginContext);
 	}
 	

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.migrations.Schema;
+import org.bimserver.plugins.VirtualFile;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
