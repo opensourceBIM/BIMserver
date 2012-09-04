@@ -23,6 +23,7 @@ import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Plugin;
+import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
@@ -61,6 +62,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDeserializers <em>Deserializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSchemas <em>Schemas</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getQueryengines <em>Queryengines</em>}</li>
  * </ul>
  * </p>
  *
@@ -496,6 +498,16 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedDataSchema> getSchemas() {
 		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.SETTINGS__SCHEMAS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<QueryEngine> getQueryengines() {
+		return (EList<QueryEngine>) eGet(StorePackage.Literals.SETTINGS__QUERYENGINES, true);
 	}
 
 } //SettingsImpl

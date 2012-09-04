@@ -123,6 +123,9 @@ public class SSettings implements SBase
 		if (sField.getName().equals("schemas")) {
 			return getSchemas();
 		}
+		if (sField.getName().equals("queryengines")) {
+			return getQueryengines();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -230,6 +233,10 @@ public class SSettings implements SBase
 			setSchemas((List<Long>)val);
 			return;
 		}
+		if (sField.getName().equals("queryengines")) {
+			setQueryengines((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -262,6 +269,7 @@ public class SSettings implements SBase
 	private List<Long> plugins = new ArrayList<Long>();
 	private List<Long> deserializers = new ArrayList<Long>();
 	private List<Long> schemas = new ArrayList<Long>();
+	private List<Long> queryengines = new ArrayList<Long>();
 	public java.lang.Boolean getShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
 	}
@@ -436,6 +444,13 @@ public class SSettings implements SBase
 
 	public void setSchemas(List<Long> schemas) {
 		this.schemas = schemas;
+	}
+	public List<Long> getQueryengines() {
+		return queryengines;
+	}
+
+	public void setQueryengines(List<Long> queryengines) {
+		this.queryengines = queryengines;
 	}
 	@Override
 	public int hashCode() {

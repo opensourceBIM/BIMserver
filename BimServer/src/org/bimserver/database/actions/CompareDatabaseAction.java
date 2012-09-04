@@ -26,8 +26,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareIdentifier;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
-import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
 

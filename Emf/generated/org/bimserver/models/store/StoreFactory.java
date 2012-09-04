@@ -531,6 +531,24 @@ public interface StoreFactory extends EFactory {
 	ExtendedData createExtendedData();
 
 	/**
+	 * Returns a new object of class '<em>Query Engine Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Engine Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	QueryEnginePluginDescriptor createQueryEnginePluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Query Engine</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Engine</em>'.
+	 * @generated
+	 */
+	QueryEngine createQueryEngine();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

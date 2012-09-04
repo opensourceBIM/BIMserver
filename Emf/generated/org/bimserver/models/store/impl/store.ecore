@@ -203,6 +203,8 @@
         eType="#//Deserializer" eOpposite="#//Deserializer/settings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
         eType="#//ExtendedDataSchema" eOpposite="#//ExtendedDataSchema/settings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="queryengines" upperBound="-1"
+        eType="#//QueryEngine" eOpposite="#//QueryEngine/settings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Serializer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -505,5 +507,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User" eOpposite="#//User/extendedData"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#//ExtendedDataSchema"
         eOpposite="#//ExtendedDataSchema/extendedData"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryEngine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//Settings"
+        eOpposite="#//Settings/queryengines"/>
   </eClassifiers>
 </ecore:EPackage>

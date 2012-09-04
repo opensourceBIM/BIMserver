@@ -1,4 +1,4 @@
-package org.bimserver.querycompiler;
+package org.bimserver.database.actions;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -17,10 +17,13 @@ package org.bimserver.querycompiler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.PrintWriter;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.StorePackage;
 
-import org.bimserver.plugins.serializers.IfcModelInterface;
+public class DeleteQueryEngineDatabaseAction extends DeleteDatabaseAction {
 
-public interface QueryInterface {
-	void query(IfcModelInterface model, PrintWriter out);
+	public DeleteQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long iid) {
+		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getQueryEngine(), iid);
+	}
 }

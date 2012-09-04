@@ -40,6 +40,11 @@ public class EclipsePluginClassloader extends ClassLoader {
 		this.projectFolder = projectFolder;
 		this.classFolder = new File(projectFolder, "bin");
 	}
+	
+	@Override
+	public String toString() {
+		return projectFolder.getAbsolutePath();
+	}
 
 	@Override
 	protected URL findResource(String name) {

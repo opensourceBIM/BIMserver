@@ -1370,13 +1370,22 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__SCHEMAS = 24;
 
 	/**
+	 * The feature id for the '<em><b>Queryengines</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__QUERYENGINES = 25;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 25;
+	int SETTINGS_FEATURE_COUNT = 26;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -3583,6 +3592,107 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_FEATURE_COUNT = 6;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl <em>Query Engine Plugin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginDescriptor()
+	 * @generated
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR = 55;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Query Engine Plugin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.QueryEngineImpl <em>Query Engine</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.QueryEngineImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEngine()
+	 * @generated
+	 */
+	int QUERY_ENGINE = 56;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE__CLASS_NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE__ENABLED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE__SETTINGS = 4;
+
+	/**
+	 * The number of structural features of the '<em>Query Engine</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_FEATURE_COUNT = 5;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3590,7 +3700,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 55;
+	int USER_TYPE = 57;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -3600,7 +3710,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 56;
+	int SI_PREFIX = 58;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -3610,7 +3720,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 57;
+	int OBJECT_STATE = 59;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -3620,7 +3730,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 58;
+	int MERGE_IDENTIFIER = 60;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
@@ -3630,7 +3740,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
 	 * @generated
 	 */
-	int COMPARE_IDENTIFIER = 59;
+	int COMPARE_IDENTIFIER = 61;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -3640,7 +3750,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 60;
+	int COMPARE_TYPE = 62;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -3650,7 +3760,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 61;
+	int ACTION_STATE = 63;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -3660,7 +3770,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 62;
+	int SERVER_STATE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -3670,7 +3780,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 63;
+	int CHECKIN_STATUS = 65;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -3680,7 +3790,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 64;
+	int EXTENDED_DATA_SCHEMA_TYPE = 66;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -3690,7 +3800,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 65;
+	int DATA_HANDLER = 67;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -5011,6 +5121,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSettings_Schemas();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getQueryengines <em>Queryengines</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Queryengines</em>'.
+	 * @see org.bimserver.models.store.Settings#getQueryengines()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_Queryengines();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
@@ -6971,6 +7092,103 @@ public interface StorePackage extends EPackage {
 	EReference getExtendedData_Schema();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.QueryEnginePluginDescriptor <em>Query Engine Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Query Engine Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.QueryEnginePluginDescriptor
+	 * @generated
+	 */
+	EClass getQueryEnginePluginDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.QueryEnginePluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Class Name</em>'.
+	 * @see org.bimserver.models.store.QueryEnginePluginDescriptor#getPluginClassName()
+	 * @see #getQueryEnginePluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getQueryEnginePluginDescriptor_PluginClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.QueryEnginePluginDescriptor#getDefaultName <em>Default Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Name</em>'.
+	 * @see org.bimserver.models.store.QueryEnginePluginDescriptor#getDefaultName()
+	 * @see #getQueryEnginePluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getQueryEnginePluginDescriptor_DefaultName();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.QueryEngine <em>Query Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Query Engine</em>'.
+	 * @see org.bimserver.models.store.QueryEngine
+	 * @generated
+	 */
+	EClass getQueryEngine();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.QueryEngine#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.QueryEngine#getName()
+	 * @see #getQueryEngine()
+	 * @generated
+	 */
+	EAttribute getQueryEngine_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.QueryEngine#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.QueryEngine#getDescription()
+	 * @see #getQueryEngine()
+	 * @generated
+	 */
+	EAttribute getQueryEngine_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.QueryEngine#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.bimserver.models.store.QueryEngine#getClassName()
+	 * @see #getQueryEngine()
+	 * @generated
+	 */
+	EAttribute getQueryEngine_ClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.QueryEngine#getEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.QueryEngine#getEnabled()
+	 * @see #getQueryEngine()
+	 * @generated
+	 */
+	EAttribute getQueryEngine_Enabled();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.QueryEngine#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.QueryEngine#getSettings()
+	 * @see #getQueryEngine()
+	 * @generated
+	 */
+	EReference getQueryEngine_Settings();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8092,6 +8310,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SETTINGS__SCHEMAS = eINSTANCE.getSettings_Schemas();
+
+		/**
+		 * The meta object literal for the '<em><b>Queryengines</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__QUERYENGINES = eINSTANCE.getSettings_Queryengines();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -9636,6 +9862,82 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDED_DATA__SCHEMA = eINSTANCE.getExtendedData_Schema();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl <em>Query Engine Plugin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginDescriptor()
+		 * @generated
+		 */
+		EClass QUERY_ENGINE_PLUGIN_DESCRIPTOR = eINSTANCE.getQueryEnginePluginDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = eINSTANCE.getQueryEnginePluginDescriptor_PluginClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = eINSTANCE.getQueryEnginePluginDescriptor_DefaultName();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.QueryEngineImpl <em>Query Engine</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.QueryEngineImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEngine()
+		 * @generated
+		 */
+		EClass QUERY_ENGINE = eINSTANCE.getQueryEngine();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_ENGINE__NAME = eINSTANCE.getQueryEngine_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_ENGINE__DESCRIPTION = eINSTANCE.getQueryEngine_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_ENGINE__CLASS_NAME = eINSTANCE.getQueryEngine_ClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_ENGINE__ENABLED = eINSTANCE.getQueryEngine_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_ENGINE__SETTINGS = eINSTANCE.getQueryEngine_Settings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

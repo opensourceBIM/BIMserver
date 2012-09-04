@@ -1,3 +1,5 @@
+<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
+<%@page import="org.bimserver.models.store.QueryEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
@@ -78,50 +80,34 @@
 </div>
 <%
 	if (loginManager.getUserType() == SUserType.ADMIN) {
+		for (SQueryEngine queryEngine : loginManager.getService().getAllQueryEngines(true)) {
 %>
-<div class="tabbertab" title="Advanced" id="advanced">
-Examples: <a href="#" id="defaultbutton">Default</a> <a href="#" id="plumbingbutton">Plumbing</a> <a href="#" id="doorsbutton">Doors</a><br/>
-Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Querys or share yours with others</a><br/>
+<div class="tabbertab" title="<%=queryEngine.getName()%>" id="<%=queryEngine.getOid() %>">
+Examples: <%
+	for (String key : loginManager.getService().getQueryEngineExampleKeys(queryEngine.getOid())) {
+%><a href="#" qeid="<%=queryEngine.getOid() %>" key="<%=key%>" class="examplebutton"><%=key%></a> <%
+	}
+%>
 <textarea cols="93" rows="16" id="code">
 </textarea>
 <div style="float: right">
 	<span id="ajaxloader">
 	<span id="ajaxloadertext"></span> <img src="images/ajax-loader.gif"/>
 	</span>
-	<button id="compilebutton">Compile</button>
-	<button id="compileandrunbutton">Compile &amp; Run</button>
+	<button class="querybutton" qeid="<%=queryEngine.getOid()%>">Query</button>
 </div>
 <textarea cols="93" rows="16" id="console">
 </textarea>
+</div>
+<%
+		}
+%>
 <script>
 	$(function(){
-		if ($("#code").val() == "") {
+		$(".examplebutton").click(function(event){
+			event.preventDefault();
 			$.ajax({
-				url: '<%=request.getContextPath() %>/queries/DefaultQuery.java',
-				success: function(data) {
-					$("#code").val(data);
-				}
-			});
-		}
-		$("#defaultbutton").click(function(){
-			$.ajax({
-				url: '<%=request.getContextPath() %>/queries/DefaultQuery.java',
-				success: function(data) {
-					$("#code").val(data);
-				}
-			});
-		});
-		$("#plumbingbutton").click(function(){
-			$.ajax({
-				url: '<%=request.getContextPath() %>/queries/Plumbing.java',
-				success: function(data) {
-					$("#code").val(data);
-				}
-			});
-		});
-		$("#doorsbutton").click(function(){
-			$.ajax({
-				url: '<%=request.getContextPath() %>/queries/Doors.java',
+				url: '<%=request.getContextPath() %>/compile?action=example&key=' + $(event.target).attr("key") + '&qeid=' + $(event.target).attr("qeid"),
 				success: function(data) {
 					$("#code").val(data);
 				}
@@ -160,25 +146,14 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 			}
 		}
 		
-		$("#compilebutton").click(function(){
+		$(".querybutton").click(function(){
 			$("#ajaxloader").show();
-			$("#ajaxloadertext").text("Compiling...");
-			$.ajax({
-				url: "<%=request.getContextPath() %>/compile", 
-				type: "POST",
-				dataType: "json",
-				data: {roid:<%=roid%>, action: "compile", code:$("#code").val()},
-				success: success
-			});
-		});
-		$("#compileandrunbutton").click(function(){
-			$("#ajaxloader").show();
-			$("#ajaxloadertext").text("Compiling & Running...");
+			$("#ajaxloadertext").text("Querying...");
 			$.ajax({
 				url: "<%=request.getContextPath() %>/compile",
 				type: "POST",
 				dataType: "json",
-				data: {roid:<%=roid%>, action: "compileandrun", code:$("#code").val()},
+				data: {roid:<%=roid%>, action: "query", code:$("#code").val(), qeid: $(this).attr("qeid")},
 				success: success
 			});
 		});
@@ -250,7 +225,6 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 		}
 	});
 </script>
-</div>
 <%
 	}
 %>

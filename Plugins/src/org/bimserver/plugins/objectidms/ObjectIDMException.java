@@ -1,4 +1,5 @@
-package org.bimserver.querycompiler;
+package org.bimserver.plugins.objectidms;
+
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -17,11 +18,15 @@ package org.bimserver.querycompiler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class CompileException extends Exception {
+public class ObjectIDMException extends Exception {
 
-	private static final long serialVersionUID = -918260832129457485L;
+	private static final long serialVersionUID = -2702814390930893588L;
 
-	public CompileException(String message) {
+	public ObjectIDMException(String message) {
 		super(message);
+	}
+
+	public ObjectIDMException(Exception e) {
+		super(e);
 	}
 }

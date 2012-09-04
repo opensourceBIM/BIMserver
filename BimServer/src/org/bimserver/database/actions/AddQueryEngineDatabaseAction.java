@@ -1,5 +1,4 @@
-package org.bimserver.plugins;
-
+package org.bimserver.database.actions;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -18,15 +17,13 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class ObjectIDMException extends Exception {
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.QueryEngine;
 
-	private static final long serialVersionUID = -2702814390930893588L;
+public class AddQueryEngineDatabaseAction extends AddDatabaseAction<QueryEngine> {
 
-	public ObjectIDMException(String message) {
-		super(message);
-	}
-
-	public ObjectIDMException(Exception e) {
-		super(e);
+	public AddQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, QueryEngine queryEngine) {
+		super(databaseSession, accessMethod, queryEngine);
 	}
 }
