@@ -22,5 +22,5 @@ import java.io.PrintWriter;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 
 public interface QueryInterface {
-	void query(IfcModelInterface model, PrintWriter out);
+	void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out);
 }

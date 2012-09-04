@@ -19,9 +19,9 @@ public class Query implements QueryInterface {
 	private PrintWriter out;
 
 	@Override
-	public void query(IfcModelInterface model, PrintWriter out) {
+	public void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out) {
 		out.println("Running doors example");
-        List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
+        List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
         Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
         for (IfcBuildingStorey storey : stories) {
             orderedStories.put(storey.getElevation(), storey);
@@ -34,6 +34,7 @@ public class Query implements QueryInterface {
             			IfcDoor ifcDoor = (IfcDoor)product;
                         if (ifcDoor.getOverallHeight() > 2) {
                             out.println(ifcDoor.getName() + " " + ifcDoor.getOverallHeight());
+                            dest.add(ifcDoor);
                         }
             		}
             	}

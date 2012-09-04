@@ -12,9 +12,9 @@ public class Query implements QueryInterface {
 	private PrintWriter out;
 
 	@Override
-	public void query(IfcModelInterface model, PrintWriter out) {
+	public void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out) {
 		out.println("Running plumbing example");
-		this.model = model;
+		this.model = source;
 		this.out = out;
 		step1();
 	}

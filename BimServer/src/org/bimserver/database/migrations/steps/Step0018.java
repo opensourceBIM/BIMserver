@@ -44,6 +44,9 @@ public class Step0018 extends Migration {
 		
 		queryEngineSettingsReference.setEOpposite(settingsQueryEnginesReference);
 		settingsQueryEnginesReference.setEOpposite(queryEngineSettingsReference);
+		
+		EClass runResultClass = schema.getEClass("store", "RunResult");
+		schema.createEAttribute(runResultClass, "downloadId", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
 	}
 
 	@Override
