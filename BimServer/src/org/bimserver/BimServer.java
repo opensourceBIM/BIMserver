@@ -445,7 +445,9 @@ public class BimServer {
 			}
 		}
 		session.store(defaultObjectIDM);
-		session.store(defaultIfcEngine);
+		if (defaultIfcEngine != null) {
+			session.store(defaultIfcEngine);
+		}
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getClass().getName()));
