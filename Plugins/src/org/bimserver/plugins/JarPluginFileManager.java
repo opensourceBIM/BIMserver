@@ -1,21 +1,4 @@
-package org.bimserver.querycompiler;
-
-/******************************************************************************
- * Copyright (C) 2009-2012  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
+package org.bimserver.plugins;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,24 +8,20 @@ import java.util.Set;
 import javax.tools.FileObject;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
+import javax.tools.JavaFileManager.Location;
 import javax.tools.JavaFileObject.Kind;
 
-public class VirtualFileManager implements JavaFileManager {
-	private final VirtualFile baseDir;
+public class JarPluginFileManager implements JavaFileManager {
 	private final JavaFileManager fallbackFileManager;
 	private final ClassLoader classLoader;
 
-	public VirtualFileManager(JavaFileManager fallbackFileManager, ClassLoader classLoader, VirtualFile baseDir) {
+	public JarPluginFileManager(JavaFileManager fallbackFileManager, ClassLoader classLoader) {
 		this.fallbackFileManager = fallbackFileManager;
 		this.classLoader = classLoader;
-		this.baseDir = baseDir;
 	}
 
 	@Override
 	public boolean isSameFile(FileObject a, FileObject b) {
-		if (a instanceof VirtualFile || b instanceof VirtualFile) {
-			return a.toUri().equals(b.toUri());
-		}
 		return fallbackFileManager.isSameFile(a, b);
 	}
 

@@ -54,99 +54,7 @@ import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.actions.AddDeserializerDatabaseAction;
-import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
-import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
-import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
-import org.bimserver.database.actions.AddIfcEngineDatabaseAction;
-import org.bimserver.database.actions.AddObjectIDMDatabaseAction;
-import org.bimserver.database.actions.AddProjectDatabaseAction;
-import org.bimserver.database.actions.AddSerializerDatabaseAction;
-import org.bimserver.database.actions.AddUserDatabaseAction;
-import org.bimserver.database.actions.AddUserToExtendedDataSchemaDatabaseAction;
-import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
-import org.bimserver.database.actions.AutologinDatabaseAction;
-import org.bimserver.database.actions.BimDatabaseAction;
-import org.bimserver.database.actions.BranchToExistingProjectDatabaseAction;
-import org.bimserver.database.actions.BranchToNewProjectDatabaseAction;
-import org.bimserver.database.actions.ChangePasswordDatabaseAction;
-import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
-import org.bimserver.database.actions.CheckinDatabaseAction;
-import org.bimserver.database.actions.CommitTransactionDatabaseAction;
-import org.bimserver.database.actions.CompareDatabaseAction;
-import org.bimserver.database.actions.DeleteDeserializerDatabaseAction;
-import org.bimserver.database.actions.DeleteIfcEngineDatabaseAction;
-import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
-import org.bimserver.database.actions.DeleteProjectDatabaseAction;
-import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
-import org.bimserver.database.actions.DeleteUserDatabaseAction;
-import org.bimserver.database.actions.FindClashesDatabaseAction;
-import org.bimserver.database.actions.GetAllAuthorizedUsersOfProjectDatabaseAction;
-import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
-import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
-import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
-import org.bimserver.database.actions.GetAllDeserializersDatabaseAction;
-import org.bimserver.database.actions.GetAllExtendedDataSchemasDatabaseAction;
-import org.bimserver.database.actions.GetAllIfcEnginesDatabaseAction;
-import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
-import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
-import org.bimserver.database.actions.GetAllObjectIDMsDatabaseAction;
-import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
-import org.bimserver.database.actions.GetAllReadableProjectsDatabaseAction;
-import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
-import org.bimserver.database.actions.GetAllRevisionsOfProjectDatabaseAction;
-import org.bimserver.database.actions.GetAllSerializersDatabaseAction;
-import org.bimserver.database.actions.GetAllUsersDatabaseAction;
-import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
-import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
-import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
-import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
-import org.bimserver.database.actions.GetClashDetectionSettingsDatabaseAction;
-import org.bimserver.database.actions.GetDataObjectByGuidDatabaseAction;
-import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
-import org.bimserver.database.actions.GetDataObjectsByTypeDatabaseAction;
-import org.bimserver.database.actions.GetDataObjectsDatabaseAction;
-import org.bimserver.database.actions.GetDatabaseInformationAction;
-import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
-import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
-import org.bimserver.database.actions.GetExtendedDataByIdDatabaseAction;
-import org.bimserver.database.actions.GetExtendedDataSchemaByIdDatabaseAction;
-import org.bimserver.database.actions.GetGeoTagDatabaseAction;
-import org.bimserver.database.actions.GetIfcEngineByIdDatabaseAction;
-import org.bimserver.database.actions.GetIfcEngineByNameDatabaseAction;
-import org.bimserver.database.actions.GetLogsDatabaseAction;
-import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
-import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
-import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
-import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
-import org.bimserver.database.actions.GetRevisionDatabaseAction;
-import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
-import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
-import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
-import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
-import org.bimserver.database.actions.LoginDatabaseAction;
-import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
-import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
-import org.bimserver.database.actions.RequestPasswordChangeDatabaseAction;
-import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
-import org.bimserver.database.actions.SetHttpCallbackUrlDatabaseAction;
-import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
-import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
-import org.bimserver.database.actions.UndeleteUserDatabaseAction;
-import org.bimserver.database.actions.UpdateClashDetectionSettingsDatabaseAction;
-import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
-import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
-import org.bimserver.database.actions.UpdateIfcEngineDatabaseAction;
-import org.bimserver.database.actions.UpdateObjectIDMDatabaseAction;
-import org.bimserver.database.actions.UpdateProjectDatabaseAction;
-import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
-import org.bimserver.database.actions.UpdateSerializerDatabaseAction;
-import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
-import org.bimserver.database.actions.UserHasRightsDatabaseAction;
-import org.bimserver.database.actions.ValidateUserDatabaseAction;
+import org.bimserver.database.actions.*;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
@@ -163,7 +71,6 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
-import org.bimserver.interfaces.objects.SCompileResult;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
@@ -185,6 +92,8 @@ import org.bimserver.interfaces.objects.SObjectIDM;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SQueryEngine;
+import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRunResult;
@@ -206,7 +115,6 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.CompareResult;
-import org.bimserver.models.store.CompileResult;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
@@ -218,6 +126,7 @@ import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.Serializer;
@@ -233,9 +142,9 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.shared.CompareWriter;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
@@ -2381,24 +2290,29 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCompileResult compile(String code) throws ServerException, UserException {
-		QueryCompiler queryCompiler = new QueryCompiler();
-		CompileResult compile = queryCompiler.compile(code);
-		SCompileResult convertToSObject = converter.convertToSObject(compile);
-		return convertToSObject;
-	}
-
-	@Override
-	public SRunResult compileAndRun(Long roid, String code) throws ServerException, UserException {
-		QueryCompiler queryCompiler = new QueryCompiler();
-		return converter.convertToSObject(queryCompiler.run(code, roid, currentUoid, bimServer));
-	}
-
-	@Override
-	public Integer compileAndDownload(Long roid, String code) throws ServerException, UserException {
-//		QueryCompiler queryCompiler = new QueryCompiler();
-//		RunResult runResult = queryCompiler.run(code, roid, currentUoid, bimServer);
-		return -1;
+	public SRunResult query(Long roid, Long qeid, String code) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, currentUoid, null);
+			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
+			QueryEngine queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEngine(), qeid, false, null);
+			if (queryEngineObject != null) {
+				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getClassName(), true);
+				if (queryEnginePlugin != null) {
+					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine();
+					return converter.convertToSObject(queryEngine.query(ifcModel, code));
+				} else {
+					throw new UserException("No Query Engine found " + queryEngineObject.getClassName());
+				}
+			} else {
+				throw new UserException("No configured query engine found with qeid " + qeid);
+			}
+		} catch (BimserverDatabaseException e) {
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 
 	@Override
@@ -2497,6 +2411,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return bimServer.getEmfSerializerFactory().getAllQueryEnginePluginDescriptors();
+	}
+
+	@Override
 	public List<SIfcEngine> getAllIfcEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -2505,6 +2425,23 @@ public class Service implements ServiceInterface {
 					onlyEnabled)));
 			Collections.sort(ifcEngines, new SIfcEngineComparator());
 			return ifcEngines;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<SQueryEngine> getAllQueryEngines(Boolean onlyEnabled) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			List<SQueryEngine> queryEngines = converter.convertToSListQueryEngine(session.executeAndCommitAction(new GetAllQueryEnginesDatabaseAction(session, accessMethod, bimServer,
+					onlyEnabled)));
+			Collections.sort(queryEngines, new SQueryEngineComparator());
+			return queryEngines;
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2528,6 +2465,20 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public void updateQueryEngine(SQueryEngine queryEngine) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			QueryEngine convert = converter.convertFromSObject(queryEngine, session);
+			session.executeAndCommitAction(new UpdateQueryEngineDatabaseAction(session, accessMethod, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public void deleteIfcEngine(Long iid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -2542,11 +2493,39 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public void deleteQueryEngine(Long iid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new DeleteQueryEngineDatabaseAction(session, accessMethod, iid);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public SIfcEngine getIfcEngineByName(String name) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter.convertToSObject(session.executeAndCommitAction(new GetIfcEngineByNameDatabaseAction(session, accessMethod, name)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SQueryEngine getQueryEngineByName(String name) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetQueryEngineByNameDatabaseAction(session, accessMethod, name)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2570,12 +2549,40 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public SQueryEngine getQueryEngineById(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetQueryEngineByIdDatabaseAction(session, accessMethod, oid)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
 	public void addIfcEngine(SIfcEngine ifcEngine) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
 			session.executeAndCommitAction(new AddIfcEngineDatabaseAction(session, accessMethod, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addQueryEngine(SQueryEngine queryEngine) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			QueryEngine convert = converter.convertFromSObject(queryEngine, session);
+			session.executeAndCommitAction(new AddQueryEngineDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2721,5 +2728,19 @@ public class Service implements ServiceInterface {
 			session.close();
 		}
 		return null;
+	}
+	
+	@Override
+	public String getQueryEngineExample(Long qeid, String key) throws ServerException, UserException {
+		SQueryEngine queryEngineById = getQueryEngineById(qeid);
+		QueryEnginePlugin queryEngine = bimServer.getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+		return queryEngine.getExample(key);
+	}
+
+	@Override
+	public List<String> getQueryEngineExampleKeys(Long qeid) throws ServerException, UserException {
+		SQueryEngine queryEngineById = getQueryEngineById(qeid);
+		QueryEnginePlugin queryEngine = bimServer.getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+		return new ArrayList<String>(queryEngine.getExampleKeys());
 	}
 }

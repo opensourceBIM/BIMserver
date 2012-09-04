@@ -17,10 +17,10 @@ package org.bimserver.objectidms;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 
 public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {

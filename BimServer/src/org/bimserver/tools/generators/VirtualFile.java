@@ -1,4 +1,4 @@
-package org.bimserver.querycompiler;
+package org.bimserver.tools.generators;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

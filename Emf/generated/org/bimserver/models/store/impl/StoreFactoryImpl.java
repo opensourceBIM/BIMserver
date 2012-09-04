@@ -182,6 +182,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createExtendedDataSchema();
 		case StorePackage.EXTENDED_DATA:
 			return (EObject) createExtendedData();
+		case StorePackage.QUERY_ENGINE_PLUGIN_DESCRIPTOR:
+			return (EObject) createQueryEnginePluginDescriptor();
+		case StorePackage.QUERY_ENGINE:
+			return (EObject) createQueryEngine();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -805,6 +809,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ExtendedData createExtendedData() {
 		ExtendedDataImpl extendedData = new ExtendedDataImpl();
 		return extendedData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QueryEnginePluginDescriptor createQueryEnginePluginDescriptor() {
+		QueryEnginePluginDescriptorImpl queryEnginePluginDescriptor = new QueryEnginePluginDescriptorImpl();
+		return queryEnginePluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QueryEngine createQueryEngine() {
+		QueryEngineImpl queryEngine = new QueryEngineImpl();
+		return queryEngine;
 	}
 
 	/**

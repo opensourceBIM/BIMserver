@@ -23,6 +23,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 
+import javax.tools.JavaFileManager;
+import javax.tools.ToolProvider;
+
 public class PluginContext {
 
 	private Plugin plugin;
@@ -30,11 +33,16 @@ public class PluginContext {
 	private boolean enabled = true;
 	private final PluginManager pluginManager;
 	private String classLocation;
+	private final PluginType pluginType;
+	private JavaFileManager javaFileManager;
+	private final ClassLoader classLoader;
 
-	public PluginContext(PluginManager pluginManager) {
+	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginType pluginType) {
 		this.pluginManager = pluginManager;
+		this.classLoader = classLoader;
+		this.pluginType = pluginType;
 	}
-	
+
 	public void setPlugin(Plugin plugin) {
 		this.plugin = plugin;
 	}
@@ -49,6 +57,22 @@ public class PluginContext {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public void init() {
+		switch (pluginType) {
+		case ECLIPSE_PROJECT:
+			this.javaFileManager = new EclipseProjectPluginFileManager(ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null), classLoader);
+			break;
+		case INTERNAL:
+			this.javaFileManager = ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null);
+			break;
+		case JAR_FILE:
+			this.javaFileManager = new JarPluginFileManager(ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null), classLoader);
+			break;
+		default:
+			break;
+		}
 	}
 
 	public void setEnabled(boolean enabled, boolean notify) {
@@ -80,12 +104,20 @@ public class PluginContext {
 	public URL getResourceAsUrl(String name) {
 		return plugin.getClass().getClassLoader().getResource(name);
 	}
-	
+
 	public void setClassLocation(String classLocation) {
 		this.classLocation = classLocation;
 	}
-	
+
 	public String getClassLocation() {
 		return classLocation;
+	}
+
+	public ClassLoader getClassLoader() {
+		return plugin.getClass().getClassLoader();
+	}
+
+	public JavaFileManager getFileManager() {
+		return javaFileManager;
 	}
 }

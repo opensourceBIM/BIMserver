@@ -42,7 +42,9 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
@@ -94,7 +96,7 @@ public class PluginManager {
 				}
 			}
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
-			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor);
+			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor, PluginType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -103,7 +105,7 @@ public class PluginManager {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void loadPlugins(ClassLoader classLoader, String location, String classLocation, PluginDescriptor pluginDescriptor) throws PluginException {
+	private void loadPlugins(ClassLoader classLoader, String location, String classLocation, PluginDescriptor pluginDescriptor, PluginType pluginType) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			String interfaceClassName = pluginImplementation.getInterfaceClass();
 			try {
@@ -112,7 +114,7 @@ public class PluginManager {
 				try {
 					Class implementationClass = classLoader.loadClass(implementationClassName);
 					Plugin plugin = (Plugin) implementationClass.newInstance();
-					loadPlugin(interfaceClass, location, classLocation, plugin);
+					loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType);
 				} catch (ClassNotFoundException e) {
 					throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 				} catch (InstantiationException e) {
@@ -156,7 +158,7 @@ public class PluginManager {
 			JarClassLoader jarClassLoader = new JarClassLoader(getClass().getClassLoader(), file);
 			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
-			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor);
+			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginType.JAR_FILE);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		}
@@ -183,6 +185,10 @@ public class PluginManager {
 
 	public Collection<IfcEnginePlugin> getAllIfcEnginePlugins(boolean onlyEnabled) {
 		return getPlugins(IfcEnginePlugin.class, onlyEnabled);
+	}
+
+	public Collection<QueryEnginePlugin> getAllQueryEnginePlugins(boolean onlyEnabled) {
+		return getPlugins(QueryEnginePlugin.class, onlyEnabled);
 	}
 
 	public Collection<SerializerPlugin> getAllSerializerPlugins(boolean onlyEnabled) {
@@ -235,7 +241,7 @@ public class PluginManager {
 				URL url = resources.nextElement();
 				LOGGER.info("Loading " + url);
 				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor);
+				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginType.INTERNAL);
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
@@ -368,7 +374,7 @@ public class PluginManager {
 		return tempDir;
 	}
 
-	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin) throws PluginException {
+	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginType pluginType) throws PluginException {
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
 		}
@@ -376,10 +382,11 @@ public class PluginManager {
 			implementations.put(interfaceClass, new LinkedHashSet<PluginContext>());
 		}
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
-		PluginContext pluginContext = new PluginContext(this);
+		PluginContext pluginContext = new PluginContext(this, classLoader, pluginType);
 		pluginContext.setPlugin(plugin);
 		pluginContext.setLocation(location);
 		pluginContext.setClassLocation(classLocation);
+		pluginContext.init();
 		set.add(pluginContext);
 	}
 	
@@ -454,5 +461,31 @@ public class PluginManager {
 			}
 		}
 		return null;
+	}
+
+	public QueryEnginePlugin getQueryEngine(String className, boolean onlyEnabled) {
+		Collection<QueryEnginePlugin> allQueryEngines = getAllQueryEnginePlugins(onlyEnabled);
+		for (QueryEnginePlugin queryEnginePlugin : allQueryEngines) {
+			if (queryEnginePlugin.getClass().getName().equals(className)) {
+				return queryEnginePlugin;
+			}
+		}
+		return null;
+	}
+
+	public void loadAllPluginsFromEclipseWorkspace(File file) {
+		for (File project : file.listFiles()) {
+			File pluginDir = new File(project, "plugin");
+			if (pluginDir.exists()) {
+				File pluginFile = new File(pluginDir, "plugin.xml");
+				if (pluginFile.exists()) {
+					try {
+						loadPluginsFromEclipseProject(project);
+					} catch (PluginException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 	}
 }

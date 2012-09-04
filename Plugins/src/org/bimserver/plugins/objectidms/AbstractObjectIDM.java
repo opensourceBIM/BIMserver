@@ -7,7 +7,6 @@ import java.util.Set;
 
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.plugins.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;

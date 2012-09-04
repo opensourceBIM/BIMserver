@@ -26,7 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.interfaces.objects.SCompileResult;
 import org.bimserver.interfaces.objects.SRunResult;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
@@ -56,26 +58,39 @@ public class CompileServlet extends HttpServlet {
 			LOGGER.error("", e);
 		}
 		try {
-			if (action.equals("compile")) {
+			if (action.equals("example")) {
 				try {
-					SCompileResult compileResult = loginManager.getService().compile(code);
-					if (compileResult.getCompileOke() == true) {
-						root.put("output", "Compilation successfull");
-					} else {
-						for (String warning : compileResult.getWarnings()) {
-							warnings.put(warning);
-						}
-						for (String error : compileResult.getErrors()) {
-							errors.put(error);
-						}
-					}
-				} catch (ServiceException e) {
-					root.put("output", e.getMessage());
+					String exampleCode = loginManager.getService().getQueryEngineExample(Long.parseLong(request.getParameter("qeid")), request.getParameter("key"));
+					response.getWriter().print(exampleCode);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (ServerException e) {
+					e.printStackTrace();
+				} catch (UserException e) {
+					e.printStackTrace();
 				}
-			} else if (action.equals("compileandrun")) {
+			} else
+//			if (action.equals("compile")) {
+//				try {
+//					SCompileResult compileResult = loginManager.getService().compile(code);
+//					if (compileResult.getCompileOke() == true) {
+//						root.put("output", "Compilation successfull");
+//					} else {
+//						for (String warning : compileResult.getWarnings()) {
+//							warnings.put(warning);
+//						}
+//						for (String error : compileResult.getErrors()) {
+//							errors.put(error);
+//						}
+//					}
+//				} catch (ServiceException e) {
+//					root.put("output", e.getMessage());
+//				}
+			if (action.equals("query")) {
 				long roid = Long.parseLong(request.getParameter("roid"));
+				long qeid = Long.parseLong(request.getParameter("qeid"));
 				try {
-					SRunResult compileAndRun = loginManager.getService().compileAndRun(roid, code);
+					SRunResult compileAndRun = loginManager.getService().query(roid, qeid, code);
 					if (compileAndRun.getRunOke()) {
 						root.put("output", compileAndRun.getOutput());
 					} else {
@@ -89,12 +104,12 @@ public class CompileServlet extends HttpServlet {
 				} catch (ServiceException e) {
 					root.put("output", e.getMessage());
 				}
+				try {
+					root.write(response.getWriter());
+				} catch (JSONException e) {
+					LOGGER.error("", e);
+				}
 			}
-		} catch (JSONException e) {
-			LOGGER.error("", e);
-		}
-		try {
-			root.write(response.getWriter());
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		}

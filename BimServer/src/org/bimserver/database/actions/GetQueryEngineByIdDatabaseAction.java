@@ -1,4 +1,4 @@
-package org.bimserver.querycompiler;
+package org.bimserver.database.actions;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -17,25 +17,14 @@ package org.bimserver.querycompiler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class VirtualClassLoader extends ClassLoader {
-	private final VirtualFile baseDir;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.StorePackage;
 
-	public VirtualClassLoader(ClassLoader parent, VirtualFile baseDir) {
-		super(parent);
-		this.baseDir = baseDir;
-	}
+public class GetQueryEngineByIdDatabaseAction extends GetByIdDatabaseAction<QueryEngine> {
 
-	@Override
-	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		VirtualFile virtualFile = baseDir.get(name);
-		if (virtualFile != null) {
-			byte[] bytes = virtualFile.getData();
-			return defineClass(name, bytes, 0, bytes.length);
-		}
-		if (name.equals("org.bimserver.querycompiler.QueryInterface")) {
-			return super.findClass(name);
-		} else {
-			throw new ClassNotFoundException();
-		}
+	public GetQueryEngineByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
+		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getQueryEngine());
 	}
 }

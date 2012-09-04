@@ -65,6 +65,8 @@ import org.bimserver.interfaces.objects.SObjectIDM;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SQueryEngine;
+import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRunResult;
@@ -1322,6 +1324,34 @@ public interface ServiceInterface {
 			@WebParam(name = "onlyEnabled", partName = "getAllIfcEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
+	 * @param onlyEnabled Whether to only include enabled query engines
+	 * @return A list of QueryEngines
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllQueryEngines")
+	List<SQueryEngine> getAllQueryEngines(
+			@WebParam(name = "onlyEnabled", partName = "getAllQueryEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled query engines
+	 * @return A list of QueryEngines
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getQueryEngineExampleKeys")
+	List<String> getQueryEngineExampleKeys(
+			@WebParam(name = "qeid", partName = "getQueryEngineExampleKeys.qeid") Long qeid) throws ServerException, UserException;
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled query engines
+	 * @return A list of QueryEngines
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getQueryEngineExample")
+	String getQueryEngineExample(
+			@WebParam(name = "qeid", partName = "getQueryEngineExample.qeid") Long qeid,
+			@WebParam(name = "key", partName = "getQueryEngineExample.key") String key) throws ServerException, UserException;
+	
+	/**
 	 * @param oid ObjectID of the Serializer
 	 * @return Serializer
 	 * @throws ServerException, UserException
@@ -1348,15 +1378,23 @@ public interface ServiceInterface {
 	SExtendedData getExtendedData(
 			@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
 
-	
 	/**
-	 * @param oid ObjectID of the Serializer
-	 * @return Serializer
+	 * @param oid ObjectID of the IfcEngine
+	 * @return IfcEngine
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getIfcEngineById")
 	SIfcEngine getIfcEngineById(
 			@WebParam(name = "oid", partName = "getIfcEngineById.oid") Long oid) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the QueryEngine
+	 * @return QueryEngine
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getQueryEngineById")
+	SQueryEngine getQueryEngineById(
+			@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the Deserializer
@@ -1434,6 +1472,14 @@ public interface ServiceInterface {
 			@WebParam(name = "ifcEngine", partName = "addIfcEngine.ifcEngine") SIfcEngine ifcEngine) throws ServerException, UserException;
 
 	/**
+	 * @param queryEngine QueryEngine to add
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addQueryEngine")
+	void addQueryEngine(
+			@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEngine queryEngine) throws ServerException, UserException;
+	
+	/**
 	 * @param deserializer Deserializer to add
 	 * @throws ServerException, UserException
 	 */
@@ -1456,6 +1502,14 @@ public interface ServiceInterface {
 	@WebMethod(action = "updateIfcEngine")
 	void updateIfcEngine(
 			@WebParam(name = "ifcEngine", partName = "updateIfcEngine.ifcEngine") SIfcEngine ifcEngine) throws ServerException, UserException;
+
+	/**
+	 * @param queryEngine QueryEngine to update
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "updateQueryEngine")
+	void updateQueryEngine(
+			@WebParam(name = "queryEngine", partName = "updateQueryEngine.queryEngine") SQueryEngine queryEngine) throws ServerException, UserException;
 
 	/**
 	 * @param deserializer Deserializer to update
@@ -1522,7 +1576,15 @@ public interface ServiceInterface {
 	@WebMethod(action = "deleteIfcEngine")
 	void deleteIfcEngine(
 			@WebParam(name = "iid", partName = "deleteIfcEngine.iid") Long iid) throws ServerException, UserException;
-	
+
+	/**
+	 * @param iid ObjectID of the QueryEngine to delete
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "deleteQueryEngine")
+	void deleteQueryEngine(
+			@WebParam(name = "iid", partName = "deleteQueryEngine.iid") Long iid) throws ServerException, UserException;
+
 	/**
 	 * @param sid ObjectID of the Deserializer to delete
 	 * @throws ServerException, UserException
@@ -1549,8 +1611,15 @@ public interface ServiceInterface {
 	 * @return List of all DeserializerPluginDescriptors
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getAllDeserializerClassNames")
+	@WebMethod(action = "getAllDeserializerPluginDescriptors")
 	List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException;
+
+	/**
+	 * @return List of all QueryEnginePluginDescriptors
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllQueryEnginePluginDescriptors")
+	List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return A settings that determines how to merge
@@ -1575,7 +1644,16 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getIfcEngineByName")
 	SIfcEngine getIfcEngineByName(
-			@WebParam(name = "serializerName", partName = "getIfcEngineByName.name") String name) throws ServerException, UserException;
+			@WebParam(name = "name", partName = "getIfcEngineByName.name") String name) throws ServerException, UserException;
+
+	/**
+	 * @param name Name of the QueryEngine
+	 * @return QueryEngine
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getQueryEngineByName")
+	SQueryEngine getQueryEngineByName(
+			@WebParam(name = "name", partName = "getQueryEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param objectIDMName Name of the ObjectIDM
@@ -1932,36 +2010,17 @@ public interface ServiceInterface {
 			@WebParam(name = "address", partName = "setHttpCallback.address") String address) throws ServerException, UserException;
 	
 	/**
-	 * @param code The Java code, should be an implementation of the QueryInterface interface
-	 * @return SCompileResult
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "compile")
-	SCompileResult compile(
-			@WebParam(name = "code", partName = "compile.code") String code) throws ServerException, UserException;
-
-	/**
 	 * @param roid ObjectID of the Revision to perform this query on
 	 * @param code The Java code, should be an implementation of the QueryInterface interface
 	 * @return SRunResult
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "compileAndRun")
-	SRunResult compileAndRun(
+	@WebMethod(action = "query")
+	SRunResult query(
 			@WebParam(name = "roid", partName = "compileAndRun.roid") Long roid, 
+			@WebParam(name = "qeid", partName = "compileAndRun.qeid") Long qeid, 
 			@WebParam(name = "code", partName = "compileAndRun.code") String code) throws ServerException, UserException;
 
-	/**
-	 * @param roid ObjectID of the Revision to perform this query on
-	 * @param code The Java code, should be an implementation of the QueryInterface interface
-	 * @return A download id, which can be used in getDownloadState and getDownloadData
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "compileAndDownload")
-	Integer compileAndDownload(
-			@WebParam(name = "roid", partName = "compileAndDownload.roid") Long roid, 
-			@WebParam(name = "code", partName = "compileAndDownload.code") String code) throws ServerException, UserException;
-	
 	/**
 	 * Thsi will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
 	 * @return Returns a serialized version of the .proto file for the ServiceInterface

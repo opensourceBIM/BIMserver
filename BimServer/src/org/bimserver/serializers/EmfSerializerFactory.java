@@ -27,6 +27,7 @@ import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
+import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
@@ -36,6 +37,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -148,6 +150,17 @@ public class EmfSerializerFactory {
 			SIfcEnginePluginDescriptor descriptor = new SIfcEnginePluginDescriptor();
 			descriptor.setDefaultName(ifcEnginePlugin.getDefaultIfcEngineName());
 			descriptor.setPluginClassName(ifcEnginePlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
+	}
+
+	public List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() {
+		List<SQueryEnginePluginDescriptor> descriptors = new ArrayList<SQueryEnginePluginDescriptor>();
+		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
+			SQueryEnginePluginDescriptor descriptor = new SQueryEnginePluginDescriptor();
+			descriptor.setDefaultName(queryEnginePlugin.getDefaultQueryEngineName());
+			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
 		return descriptors;
