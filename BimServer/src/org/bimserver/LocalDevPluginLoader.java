@@ -24,9 +24,9 @@ import org.bimserver.plugins.PluginManager;
 
 public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager) throws PluginException {
-//		pluginManager.loadAllPluginsFromEclipseWorkspace(new File(".."));
-		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
+		pluginManager.loadAllPluginsFromEclipseWorkspace(new File(".."));
+//		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+//		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
 	}
 	
 	private static void loadIfExists(PluginManager pluginManager, File file) {

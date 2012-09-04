@@ -52,16 +52,16 @@ public class SlabOpening implements QueryInterface {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void query(IfcModelInterface model, PrintWriter out) {
+	public void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out) {
 
 		/*
 		 * Checking how many element quantity is present in the given model. To
 		 * ensure the model has element quantity
 		 */
-		List<IfcElementQuantity> qty = model.getAll(IfcElementQuantity.class);
+		List<IfcElementQuantity> qty = source.getAll(IfcElementQuantity.class);
 		out.println("Total Element quantity in the model are " + qty.size());
 
-		List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
+		List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
 		List<IfcFeatureElementSubtraction> Opening_subjectToArea = new ArrayList<IfcFeatureElementSubtraction>();
 
 		if (!(stories.isEmpty())) {

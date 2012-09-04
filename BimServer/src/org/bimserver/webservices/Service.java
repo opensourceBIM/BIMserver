@@ -143,6 +143,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.queryengine.QueryResult;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.CompareWriter;
@@ -2301,7 +2302,13 @@ public class Service implements ServiceInterface {
 				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine();
-					return converter.convertToSObject(queryEngine.query(ifcModel, code));
+					QueryResult queryResult = queryEngine.query(ifcModel, code);
+					SRunResult sRunResult = new SRunResult();
+					sRunResult.setRunOke(queryResult.isRunOke());
+					sRunResult.setErrors(queryResult.getErrors());
+					sRunResult.setWarnings(queryResult.getWarnings());
+					sRunResult.setOutput(queryResult.getOutput());
+					return sRunResult;
 				} else {
 					throw new UserException("No Query Engine found " + queryEngineObject.getClassName());
 				}
