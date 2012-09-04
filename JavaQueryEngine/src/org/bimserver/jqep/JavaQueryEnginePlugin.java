@@ -28,7 +28,7 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 
 	private void initExamples(PluginManager pluginManager) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
-		String[] keys = new String[]{"DefaultQuery.java", "Doors.java", "Plumbing.java"};
+		String[] keys = new String[]{"DefaultQuery.java", "Doors.java", "Plumbing.java", "SlabOpening.java"};
 		for (String key : keys) {
 			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream("examples/" + key);
 			StringWriter sw = new StringWriter();
