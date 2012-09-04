@@ -34,10 +34,10 @@ import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -57,6 +57,7 @@ import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerState;
@@ -75,6 +76,7 @@ import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.NotificationInterface;
@@ -397,6 +399,19 @@ public class BimServer {
 				if (ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
 					defaultIfcEngine = found;
 				}
+			}
+		}
+		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
+			String name = queryEnginePlugin.getDefaultQueryEngineName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getQueryEngine_Name(), new StringLiteral(name));
+			QueryEngine found = session.querySingle(condition, QueryEngine.class, false, null);
+			if (found == null) {
+				QueryEngine queryEngine = StoreFactory.eINSTANCE.createQueryEngine();
+				queryEngine.setClassName(queryEnginePlugin.getClass().getName());
+				queryEngine.setName(name);
+				queryEngine.setEnabled(true);
+				session.store(queryEngine);
+			} else {
 			}
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {

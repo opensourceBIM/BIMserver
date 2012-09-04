@@ -1,4 +1,4 @@
-package org.bimserver.jqep;
+package org.bimserver.plugins;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

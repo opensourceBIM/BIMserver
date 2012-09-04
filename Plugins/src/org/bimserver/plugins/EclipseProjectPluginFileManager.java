@@ -2,7 +2,6 @@ package org.bimserver.plugins;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
@@ -10,7 +9,6 @@ import java.util.Set;
 import javax.tools.FileObject;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
-import javax.tools.JavaFileManager.Location;
 import javax.tools.JavaFileObject.Kind;
 
 public class EclipseProjectPluginFileManager implements JavaFileManager {
@@ -26,6 +24,9 @@ public class EclipseProjectPluginFileManager implements JavaFileManager {
 
 	@Override
 	public boolean isSameFile(FileObject a, FileObject b) {
+		if (a instanceof PhysicalJavaFileObject || b instanceof PhysicalJavaFileObject) {
+			return a.toUri().equals(b.toUri());
+		}
 		return fallbackFileManager.isSameFile(a, b);
 	}
 
@@ -90,7 +91,21 @@ public class EclipseProjectPluginFileManager implements JavaFileManager {
 
 	@Override
 	public Iterable<JavaFileObject> list(Location location, final String packageName, Set<Kind> kinds, boolean recurse) throws IOException {
-		final Iterator<File> arrayList = (Iterator<File>) Arrays.asList(classDir.listFiles()).iterator();
+		File file = new File(classDir, packageName.replace(".", File.separator));
+		final Iterator<File> arrayList = file.isDirectory() ? (Iterator<File>) Arrays.asList(file.listFiles()).iterator() : new Iterator<File>(){
+			@Override
+			public boolean hasNext() {
+				return false;
+			}
+
+			@Override
+			public File next() {
+				return null;
+			}
+
+			@Override
+			public void remove() {
+			}};
 		Iterable<JavaFileObject> base = fallbackFileManager.list(location, packageName, kinds, recurse);
 		if (!arrayList.hasNext()) {
 			return base;
@@ -105,12 +120,13 @@ public class EclipseProjectPluginFileManager implements JavaFileManager {
 
 			@Override
 			public JavaFileObject next() {
+				JavaFileObject next = null;
 				if (baseIterator.hasNext()) {
-					return baseIterator.next();
+					next = baseIterator.next();
 				} else if (arrayList.hasNext()) {
-					return new PhysicalJavaFileObject(arrayList.next());
+					next = new PhysicalJavaFileObject(arrayList.next());
 				}
-				return null;
+				return next;
 			}
 
 			@Override

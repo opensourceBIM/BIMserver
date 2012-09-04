@@ -53,7 +53,7 @@ import org.slf4j.LoggerFactory;
 
 public class CodeMigrator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CodeMigrator.class);
-	
+
 	public static void main(String[] args) {
 		new CodeMigrator().start();
 	}

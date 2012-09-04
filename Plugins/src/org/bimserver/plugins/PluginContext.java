@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 
+import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager;
 import javax.tools.ToolProvider;
 
@@ -57,22 +58,6 @@ public class PluginContext {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public void init() {
-		switch (pluginType) {
-		case ECLIPSE_PROJECT:
-			this.javaFileManager = new EclipseProjectPluginFileManager(ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null), classLoader);
-			break;
-		case INTERNAL:
-			this.javaFileManager = ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null);
-			break;
-		case JAR_FILE:
-			this.javaFileManager = new JarPluginFileManager(ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null), classLoader);
-			break;
-		default:
-			break;
-		}
 	}
 
 	public void setEnabled(boolean enabled, boolean notify) {
@@ -118,6 +103,23 @@ public class PluginContext {
 	}
 
 	public JavaFileManager getFileManager() {
+		JavaCompiler systemJavaCompiler = ToolProvider.getSystemJavaCompiler();
+		if (systemJavaCompiler == null) {
+			throw new RuntimeException("JDK needed");
+		}
+		switch (pluginType) {
+		case ECLIPSE_PROJECT:
+			this.javaFileManager = new EclipseProjectPluginFileManager(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, new File(location, "bin"));
+			break;
+		case INTERNAL:
+			this.javaFileManager = systemJavaCompiler.getStandardFileManager(null, null, null);
+			break;
+		case JAR_FILE:
+//			this.javaFileManager = new JarPluginFileManager(ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null), classLoader);
+			break;
+		default:
+			break;
+		}
 		return javaFileManager;
 	}
 }
