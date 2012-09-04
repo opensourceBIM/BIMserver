@@ -388,7 +388,10 @@ public class VirtualFile implements JavaFileObject {
 			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
 			JarEntry jarEntry = jarInputStream.getNextJarEntry();
 			while (jarEntry != null) {
-				VirtualFile newFile = result.createFile(jarEntry.getName());
+				String n = jarEntry.getName();
+				n = n.replace("/", File.separator);
+				n = n.replace("\\", File.separator);
+				VirtualFile newFile = result.createFile(n);
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				newFile.setData(byteArrayOutputStream.toByteArray());
