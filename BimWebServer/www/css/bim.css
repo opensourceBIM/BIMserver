@@ -524,3 +524,16 @@ p.explain {
 	-o-user-select: none;
 	user-select: none;
 }
+
+.buttons {
+	bottom: 0;
+	position: absolute;
+	right: 0;
+	left: 0;
+	padding: 10px;
+}
+
+.resultsarea {
+	color: red;
+	padding: 5px;
+}

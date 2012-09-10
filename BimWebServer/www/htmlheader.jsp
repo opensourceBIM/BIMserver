@@ -16,8 +16,8 @@
 	}
 %>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-1.8.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-ui-1.8.23.custom.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.iframe.transport.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/String.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/base64.js" type="text/javascript" charset="utf-8"></script>

@@ -53,9 +53,11 @@
 </td></tr>
 </table>
 <div class="resultsarea"></div>
+<div class="buttons">
 <input type="button" class="downloadButton" value="Download"/>
 <input type="button" class="downloadTextButton" value="Download (text)"/>
 <input type="button" class="checkoutButton" value="Checkout"/>
+</div>
 </div>
 </div>
 <script>
@@ -70,7 +72,11 @@ function checkRevisionsCheckoutButton(event) {
 		return;
 	}
 	var val = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-	$(".downloadpopup .checkoutButton").attr("disabled", (val != "Ifc2x3" && val != "IfcXML") || !userHasCheckinRights);
+	if ((val != "Ifc2x3" && val != "IfcXML") || !userHasCheckinRights) {
+		$(".downloadpopup .checkoutButton").button("disable");
+	} else {
+		$(".downloadpopup .checkoutButton").button("enable");
+	}
 	if (!userHasCheckinRights) {
 		$(".checkoutMessage").html("Checkout unavailable because you have no rights on the project");
 	} else if (val != "Ifc2x3" && val != "IfcXML") {
@@ -98,7 +104,13 @@ function update() {
 					data.errors.map(function(error){
 						$(".downloadpopup .resultsarea").append(error + "<br/>");
 					});
+					$(".downloadpopup .message").html("");
 				} else if (data.state == "FINISHED") {
+					if (data.warnings.length > 0) {
+						data.warnings.map(function(warning){
+							$(".downloadpopup .resultsarea").append(warning + "<br/>");
+						});
+					}
 					$(".downloadpopup .progressbar").hide();
 					$(".downloadpopup .fields, .downloadpopup .checkoutMessage").show();
 					var zip = $("#downloadCheckoutZip").attr('checked') == undefined ? "" : "&zip=on";
@@ -179,12 +191,13 @@ $(function(){
 
 	$("#downloadCheckoutZip").change(function(){
 		if ($(this).is(":checked")) {
-			$(".downloadpopup .downloadTextButton").hide();
+			$(".downloadpopup .downloadTextButton").button("disable");
 		} else {
-			$(".downloadpopup .downloadTextButton").show();
+			$(".downloadpopup .downloadTextButton").button("enable");
 		}	
 	});
 	
+	$(".downloadpopup input[type=\"button\"]").button();
 	checkRevisionsCheckoutButton();
 });
 </script>
