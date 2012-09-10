@@ -9,7 +9,7 @@ public class QueryResult {
 	private boolean isRunOke;
 	private final List<String> warnings = new ArrayList<String>();
 	private final List<String> errors = new ArrayList<String>();
-	private String output;
+	private String output = "";
 	private IfcModelInterface model;
 
 	public void addWarning(String warning) {

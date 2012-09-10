@@ -24,6 +24,7 @@ import java.util.Set;
 import org.bimserver.BimServer;
 import org.bimserver.models.store.CompareIdentifier;
 import org.bimserver.models.store.CompareType;
+import org.springframework.http.HttpStatus.Series;
 
 import com.google.common.collect.Sets;
 
@@ -34,7 +35,8 @@ public class DownloadParameters extends LongActionKey {
 		DOWNLOAD_BY_GUIDS, 
 		DOWNLOAD_OF_TYPE, 
 		DOWNLOAD_PROJECTS,
-		DOWNLOAD_COMPARE
+		DOWNLOAD_COMPARE,
+		DOWNLOAD_QUERY
 	};
 
 	private Set<Long> roids;
@@ -48,6 +50,8 @@ public class DownloadParameters extends LongActionKey {
 	private CompareIdentifier compareIdentifier;
 	private CompareType compareType;
 	private long ignoreUoid = -1;
+	private String code;
+	private long qeid;
 
 	public DownloadParameters(BimServer bimServer, long roid, String serializerName, long ignoreUoid) {
 		this.bimServer = bimServer;
@@ -331,5 +335,31 @@ public class DownloadParameters extends LongActionKey {
 
 	public void setIncludeAllSubtypes(boolean includeAllSubtypes) {
 		this.includeAllSubtypes = includeAllSubtypes;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public long getQeid() {
+		return qeid;
+	}
+
+	public void setQeid(long qeid) {
+		this.qeid = qeid;
+	}
+
+	public static DownloadParameters fromQuery(Long roid, Long qeid, String code, String serializerName) {
+		DownloadParameters downloadParameters = new DownloadParameters();
+		downloadParameters.setRoid(roid);
+		downloadParameters.setQeid(qeid);
+		downloadParameters.setCode(code);
+		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_QUERY);
+		downloadParameters.setSerializerName(serializerName);
+		return downloadParameters;
 	}
 }

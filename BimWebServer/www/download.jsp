@@ -1,3 +1,6 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="com.google.common.base.Charsets"%>
+<%@page import="org.apache.commons.codec.binary.Base64"%>
 <%@page import="org.codehaus.jettison.json.JSONTokener"%>
 <%@page import="org.codehaus.jettison.json.JSONObject"%>
 <%@page import="java.util.Set"%>
@@ -10,7 +13,7 @@
 <div class="checkoutMessage"></div>
 <%
 	long roid = -1;
-	JSONObject data = new JSONObject(new JSONTokener(request.getParameter("data")));
+	JSONObject data = new JSONObject(new JSONTokener(new String(Base64.decodeBase64(request.getParameter("data").getBytes(Charsets.UTF_8)), Charsets.UTF_8)));
 	if (data.has("roid")) {
 		roid = data.getLong("roid");
 	}
@@ -55,7 +58,8 @@
 </div>
 <script>
 var userHasCheckinRights = <%=userHasCheckinRights%>;
-var data = eval('(<%=data%>)');
+var json = Base64.decode('<%=request.getParameter("data")%>');
+var data = JSON.parse(json);
 
 function checkRevisionsCheckoutButton(event) {
 	if (!data.allowCheckouts) {
@@ -136,13 +140,13 @@ function start(url) {
 function initCheckout() {
 	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	data.downloadType = "checkout";
-	var url = 'initiatedownload.jsp?data=' + JSON.stringify(data);
+	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
 	start(url);
 }
 
 function initDownload() {
 	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-	var url = 'initiatedownload.jsp?data=' + JSON.stringify(data);
+	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
 	start(url);
 }
 

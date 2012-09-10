@@ -2323,6 +2323,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public Integer downloadQuery(Long roid, Long qeid, String code, Boolean sync, String serializerName) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return download(DownloadParameters.fromQuery(roid, qeid, code, serializerName), sync);
+	}
+	
+	@Override
 	public String getProtocolBuffersFile() throws ServerException, UserException {
 		File file = bimServer.getResourceFetcher().getFile("service.proto");
 		try {

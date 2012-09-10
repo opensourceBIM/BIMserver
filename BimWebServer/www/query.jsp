@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.models.store.QueryEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -8,6 +9,7 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
+	SRevision revision = loginManager.getService().getRevision(roid);
 	List<String> classes = loginManager.getService().getAvailableClasses();
 	Collections.sort(classes);
 %>
@@ -88,15 +90,16 @@ Examples: <%
 %><a href="#" qeid="<%=queryEngine.getOid() %>" key="<%=key%>" class="examplebutton"><%=key%></a> <%
 	}
 %>
-<textarea cols="93" rows="16" id="code">
+<textarea cols="93" rows="16" class="code">
 </textarea>
 <div style="float: right">
-	<span id="ajaxloader">
-	<span id="ajaxloadertext"></span> <img src="images/ajax-loader.gif"/>
+	<span class="ajaxloader">
+	<span class="ajaxloadertext"></span> <img src="images/ajax-loader.gif"/>
 	</span>
-	<button class="querybutton" qeid="<%=queryEngine.getOid()%>">Query</button>
+	<button class="querybutton" qeid="<%=queryEngine.getOid()%>">Run</button>
+	<button class="downloadbutton" qeid="<%=queryEngine.getOid()%>">Download</button>
 </div>
-<textarea cols="93" rows="16" id="console">
+<textarea cols="93" rows="16" class="console">
 </textarea>
 </div>
 <%
@@ -108,56 +111,54 @@ Examples: <%
 			event.preventDefault();
 			$.ajax({
 				url: '<%=request.getContextPath() %>/compile?action=example&key=' + $(event.target).attr("key") + '&qeid=' + $(event.target).attr("qeid"),
+				context: $(this).parent().parent(),
 				success: function(data) {
-					$("#code").val(data);
+					$(this).find(".code").val(data);
 				}
 			});
 		});
-		$("#ajaxloader").hide();
-		$("#advancedquerylink").click(function(){
-			$("#simplequery").hide();
-			$("#advancedquery").show();
-			$("#advancedquerylink").addClass("linkactive");
-			$("#simplequerylink").removeClass("linkactive");
-		});
-		$("#simplequerylink").click(function(){
-			$("#advancedquery").hide();
-			$("#simplequery").show();
-			$("#simplequerylink").addClass("linkactive");
-			$("#advancedquerylink").removeClass("linkactive");
-		});
-		$("#simplequerylink").addClass("linkactive");
-		$("#simplequery").show();
-		$("#advancedquery").hide();
+		$(".ajaxloader").hide();
 		
 		function success(data) {
-			$("#ajaxloader").hide();
-			$("#console").val("");
+			$(this).find(".ajaxloader").hide();
+			$(this).find(".console").val("");
 			if (data.compileErrors != null && data.compileErrors.length > 0) {
-				$("#console").addClass("compile_error");
+				$(this).find(".console").addClass("compile_error");
 				for (var i=0; i<data.compileErrors.length; i++) {
-					$("#console").val(data.compileErrors[i]);
+					$(this).find(".console").val(data.compileErrors[i]);
 				}
 			} else {
 				if (data.output != null) {
-					$("#console").removeClass("compile_error");
-					$("#console").val(data.output);
+					$(this).find(".console").removeClass("compile_error");
+					$(this).find(".console").val(data.output);
 				}
 			}
 		}
 		
 		$(".querybutton").click(function(){
-			$("#ajaxloader").show();
-			$("#ajaxloadertext").text("Querying...");
+			$(this).parent().find(".ajaxloader").show();
+			$(this).parent().find(".ajaxloadertext").text("Querying...");
 			$.ajax({
 				url: "<%=request.getContextPath() %>/compile",
 				type: "POST",
 				dataType: "json",
-				data: {roid:<%=roid%>, action: "query", code:$("#code").val(), qeid: $(this).attr("qeid")},
+				data: {roid:<%=roid%>, action: "query", code:$(this).parent().parent().find(".code").val(), qeid: $(this).attr("qeid")},
+				context: $(this).parent().parent(),
 				success: success
 			});
 		});
 
+		$(".downloadbutton").click(function(){
+			var params = {
+				downloadType: "query",
+				qeid: $(this).attr("qeid"),
+				code: $(this).parent().parent().find(".code").val(),
+				poid: "<%=revision.getProjectId()%>",
+				roid: <%=roid%>
+			};
+			showDownloadCheckoutPopup("download.jsp?data=" + encodeURIComponent(Base64.encode(JSON.stringify(params))));
+		});
+		
 		$("textarea").keydown(checkTab);
 		 
 		// Set desired tab- defaults to four space softtab

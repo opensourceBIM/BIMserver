@@ -2022,6 +2022,20 @@ public interface ServiceInterface {
 			@WebParam(name = "code", partName = "compileAndRun.code") String code) throws ServerException, UserException;
 
 	/**
+	 * @param roid ObjectID of the Revision to perform this query on
+	 * @param code The Java code, should be an implementation of the QueryInterface interface
+	 * @return SRunResult
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "downloadQuery")
+	Integer downloadQuery(
+			@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
+			@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
+			@WebParam(name = "code", partName = "downloadQuery.code") String code,
+			@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
+			@WebParam(name = "serializerName", partName = "downloadQuery.serializerName") String serializerName) throws ServerException, UserException;
+
+	/**
 	 * Thsi will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
 	 * @return Returns a serialized version of the .proto file for the ServiceInterface
 	 * @throws ServerException, UserException

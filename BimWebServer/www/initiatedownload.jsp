@@ -1,3 +1,5 @@
+<%@page import="com.google.common.base.Charsets"%>
+<%@page import="org.apache.commons.codec.binary.Base64"%>
 <%@page import="org.codehaus.jettison.json.JSONArray"%>
 <%@page import="org.codehaus.jettison.json.JSONTokener"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareIdentifier"%>
@@ -8,7 +10,8 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session"
+	class="org.bimserver.web.LoginManager" />
 <%
 	try {
 		JSONObject data = new JSONObject(new JSONTokener(request.getParameter("data")));
@@ -31,7 +34,7 @@
 		} else if (downloadType.equals("guids")) {
 			JSONArray jsonGuids = data.getJSONArray("guids");
 			Set<String> guids = new HashSet<String>();
-			for (int i=0; i<jsonGuids.length(); i++) {
+			for (int i = 0; i < jsonGuids.length(); i++) {
 				guids.add(jsonGuids.getString(i));
 			}
 			Set<Long> roids = new HashSet<Long>();
@@ -40,7 +43,7 @@
 		} else if (downloadType.equals("oids")) {
 			Set<Long> oids = new HashSet<Long>();
 			JSONArray jsonOids = data.getJSONArray("oids");
-			for (int i=0; i<jsonOids.length(); i++) {
+			for (int i = 0; i < jsonOids.length(); i++) {
 				oids.add(jsonOids.getLong(i));
 			}
 			Set<Long> roids = new HashSet<Long>();
@@ -49,7 +52,7 @@
 		} else if (downloadType.equals("classes")) {
 			Set<String> classes = new HashSet<String>();
 			JSONArray jsonClasses = data.getJSONArray("classes");
-			for (int i=0; i<jsonClasses.length(); i++) {
+			for (int i = 0; i < jsonClasses.length(); i++) {
 				classes.add(jsonClasses.getString(i));
 			}
 			Set<Long> roids = new HashSet<Long>();
@@ -58,7 +61,7 @@
 		} else if (downloadType.equals("multiple")) {
 			Set<Long> roids = new HashSet<Long>();
 			JSONArray jsonRoids = data.getJSONArray("roids");
-			for (int i=0; i<jsonRoids.length(); i++) {
+			for (int i = 0; i < jsonRoids.length(); i++) {
 				roids.add(jsonRoids.getLong(i));
 			}
 			longActionId = loginManager.getService().downloadRevisions(roids, serializerName, sync);
@@ -68,6 +71,8 @@
 			Long roid1 = data.getLong("roid1");
 			Long roid2 = data.getLong("roid2");
 			longActionId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, sCompareIdentifier, sCompareType, sync);
+		} else if (downloadType.equals("query")) {
+			longActionId = loginManager.getService().downloadQuery(roid, data.getLong("qeid"), data.getString("code"), sync, serializerName);
 		} else {
 			longActionId = loginManager.getService().download(roid, serializerName, true, sync);
 		}
