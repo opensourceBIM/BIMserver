@@ -163,8 +163,12 @@ public class DownloadServlet extends HttpServlet {
 				in.close();
 				zipOutputStream.finish();
 			} else {
-				response.setContentType(serializer.getContentType());
-				response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + serializer.getExtension() + "\"");
+				if (request.getParameter("mime") == null) {
+					response.setContentType(serializer.getContentType());
+					response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + serializer.getExtension() + "\"");
+				} else {
+					response.setContentType(request.getParameter("mime"));
+				}
 				InputStream in = dataSource.getInputStream();
 				IOUtils.copy(in, response.getOutputStream());
 				in.close();

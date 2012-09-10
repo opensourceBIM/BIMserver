@@ -22,6 +22,7 @@ import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StorePackage;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,6 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getProgress <em>Progress</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getState <em>State</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getErrors <em>Errors</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getWarnings <em>Warnings</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,6 +105,26 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 */
 	public void setState(ActionState newState) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__STATE, newState);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getErrors() {
+		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__ERRORS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getWarnings() {
+		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__WARNINGS, true);
 	}
 
 } //LongActionStateImpl

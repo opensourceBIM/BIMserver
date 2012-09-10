@@ -52,7 +52,9 @@
 <label for="downloadCheckoutZip">Zip </label><input id="downloadCheckoutZip" type="checkbox" name="zip">
 </td></tr>
 </table>
+<div class="resultsarea"></div>
 <input type="button" class="downloadButton" value="Download"/>
+<input type="button" class="downloadTextButton" value="Download (text)"/>
 <input type="button" class="checkoutButton" value="Checkout"/>
 </div>
 </div>
@@ -60,6 +62,7 @@
 var userHasCheckinRights = <%=userHasCheckinRights%>;
 var json = Base64.decode('<%=request.getParameter("data")%>');
 var data = JSON.parse(json);
+var mimeTypeOverride = null;
 
 function checkRevisionsCheckoutButton(event) {
 	if (!data.allowCheckouts) {
@@ -89,12 +92,21 @@ function update() {
 		success: function(data){
 			if (data.error == null) {
 				$(".downloadpopup .progressbar").progressbar({value: data.progress});
-				if (data.state == "FINISHED") {
+				if (data.errors.length > 0) {
+					$(".downloadpopup .fields, .downloadpopup .checkoutMessage").show();
+					$(".downloadpopup .progressbar").hide();
+					data.errors.map(function(error){
+						$(".downloadpopup .resultsarea").append(error + "<br/>");
+					});
+				} else if (data.state == "FINISHED") {
 					$(".downloadpopup .progressbar").hide();
 					$(".downloadpopup .fields, .downloadpopup .checkoutMessage").show();
 					var zip = $("#downloadCheckoutZip").attr('checked') == undefined ? "" : "&zip=on";
 					var serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 					var url = "<%=request.getContextPath()%>/download?longActionId=" + laid + zip + "&serializerName=" + serializerName;
+					if (mimeTypeOverride != null) {
+						url += "&mime=" + mimeTypeOverride;
+					}
 					$(".downloadpopup .message").html("Prepare complete, initiating download, click <a href=\"" + url + "\">here</a> if the download does not start automatically<br/><br/>");
 					window.location = url;
 				} else {
@@ -139,6 +151,7 @@ function start(url) {
 
 function initCheckout() {
 	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	mimeTypeOverride = null;
 	data.downloadType = "checkout";
 	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
 	start(url);
@@ -146,6 +159,14 @@ function initCheckout() {
 
 function initDownload() {
 	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	mimeTypeOverride = null;
+	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
+	start(url);
+}
+
+function initTextDownload() {
+	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	mimeTypeOverride = "text/plain";
 	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
 	start(url);
 }
@@ -153,8 +174,17 @@ function initDownload() {
 $(function(){
 	$(".downloadpopup .revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
 	$(".downloadpopup .downloadButton").click(initDownload);
+	$(".downloadpopup .downloadTextButton").click(initTextDownload);
 	$(".downloadpopup .checkoutButton").click(initCheckout);
 
+	$("#downloadCheckoutZip").change(function(){
+		if ($(this).is(":checked")) {
+			$(".downloadpopup .downloadTextButton").hide();
+		} else {
+			$(".downloadpopup .downloadTextButton").show();
+		}	
+	});
+	
 	checkRevisionsCheckoutButton();
 });
 </script>

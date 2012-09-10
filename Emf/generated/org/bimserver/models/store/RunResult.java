@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.RunResult#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.RunResult#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.RunResult#getOutput <em>Output</em>}</li>
+ *   <li>{@link org.bimserver.models.store.RunResult#getDownloadId <em>Download Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -124,5 +125,31 @@ public interface RunResult extends IdEObject {
 	 * @generated
 	 */
 	void setOutput(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Download Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Download Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Download Id</em>' attribute.
+	 * @see #setDownloadId(Integer)
+	 * @see org.bimserver.models.store.StorePackage#getRunResult_DownloadId()
+	 * @model
+	 * @generated
+	 */
+	Integer getDownloadId();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.RunResult#getDownloadId <em>Download Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Download Id</em>' attribute.
+	 * @see #getDownloadId()
+	 * @generated
+	 */
+	void setDownloadId(Integer value);
 
 } // RunResult

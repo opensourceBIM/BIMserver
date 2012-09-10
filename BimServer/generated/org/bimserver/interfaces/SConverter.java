@@ -3156,6 +3156,8 @@ public class SConverter {
 		result.setOid(input.getOid());
 		result.setProgress(input.getProgress());
 		result.setState(SActionState.values()[input.getState().ordinal()]);
+		result.getErrors().addAll(input.getErrors());
+		result.getWarnings().addAll(input.getWarnings());
 		return result;
 	}
 
@@ -3167,6 +3169,8 @@ public class SConverter {
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProgress(input.getProgress());
 		result.setState(ActionState.values()[input.getState().ordinal()]);
+		result.getErrors().addAll(input.getErrors());
+		result.getWarnings().addAll(input.getWarnings());
 		return result;
 	}
 

@@ -72,7 +72,7 @@ Back to
 				roid2: <%=roid2%>,
 				identifier: '<%=request.getParameter("identifier")%>'
 			};
-			$("#downloadcheckoutpopup").load("download.jsp?data=" + JSON.stringify(params));
+			$("#downloadcheckoutpopup").load("download.jsp?data=" + encodeURIComponent(Base64.encode(JSON.stringify(params))));
 		});
 		$("#emailcompareform").submit(function(){
 			$("#emailcompareform").hide();

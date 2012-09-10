@@ -16,6 +16,8 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -52,11 +54,18 @@ public class SLongActionState implements SBase
 		if (sField.getName().equals("state")) {
 			return getState();
 		}
+		if (sField.getName().equals("errors")) {
+			return getErrors();
+		}
+		if (sField.getName().equals("warnings")) {
+			return getWarnings();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("progress")) {
 			setProgress((Integer)val);
@@ -64,6 +73,14 @@ public class SLongActionState implements SBase
 		}
 		if (sField.getName().equals("state")) {
 			setState((SActionState)val);
+			return;
+		}
+		if (sField.getName().equals("errors")) {
+			setErrors((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("warnings")) {
+			setWarnings((List<String>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -75,6 +92,8 @@ public class SLongActionState implements SBase
 	
 	private java.lang.Integer progress;
 	private SActionState state;
+	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
+	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
 	public java.lang.Integer getProgress() {
 		return progress;
 	}
@@ -88,6 +107,22 @@ public class SLongActionState implements SBase
 
 	public void setState(SActionState state) {
 		this.state = state;
+	}
+
+	public List<java.lang.String> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<java.lang.String> errors) {
+		this.errors = errors;
+	}
+
+	public List<java.lang.String> getWarnings() {
+		return warnings;
+	}
+
+	public void setWarnings(List<java.lang.String> warnings) {
+		this.warnings = warnings;
 	}
 	@Override
 	public int hashCode() {

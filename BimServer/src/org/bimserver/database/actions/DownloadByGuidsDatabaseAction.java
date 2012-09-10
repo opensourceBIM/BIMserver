@@ -37,6 +37,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
@@ -50,14 +51,16 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
+	private final Reporter reporter;
 
-	public DownloadByGuidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid, ObjectIDM objectIDM) {
+	public DownloadByGuidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.guids = guids;
 		this.actingUoid = actingUoid;
 		this.objectIDM = objectIDM;
+		this.reporter = reporter;
 	}
 
 	@Override

@@ -17,6 +17,9 @@ package org.bimserver.longaction;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.activation.DataHandler;
 
 import org.bimserver.BimServer;
@@ -33,6 +36,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
@@ -44,7 +48,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadParameters> {
+public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadParameters> implements Reporter {
 	protected static final Logger LOGGER = LoggerFactory.getLogger(LongDownloadAction.class);
 	protected final AccessMethod accessMethod;
 	protected final DownloadParameters downloadParameters;

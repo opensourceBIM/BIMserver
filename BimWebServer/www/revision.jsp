@@ -286,7 +286,7 @@
 				allowCheckouts: true,
 				roid: $(this).attr("revisionoid"),
 			};
-			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
+			showDownloadCheckoutPopup("download.jsp?data=" + encodeURIComponent(Base64.encode(JSON.stringify(params))));
 		});
 
 		$("#browserlink").click(function(){

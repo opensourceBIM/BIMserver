@@ -1,7 +1,13 @@
+<%@page import="org.bimserver.interfaces.objects.SServerState"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<%
+if (loginManager.getService().getServerInfo().getServerState() != SServerState.NOT_SETUP) {
+	response.sendRedirect(request.getContextPath());
+}
+%>
 <jsp:include page="htmlheader.jsp" />
 <body>
 <div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 20px">
