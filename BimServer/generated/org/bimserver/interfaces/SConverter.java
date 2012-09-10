@@ -3438,6 +3438,7 @@ public class SConverter {
 		result.getWarnings().addAll(input.getWarnings());
 		result.getErrors().addAll(input.getErrors());
 		result.setOutput(input.getOutput());
+		result.setDownloadId(input.getDownloadId());
 		return result;
 	}
 
@@ -3451,6 +3452,7 @@ public class SConverter {
 		result.getWarnings().addAll(input.getWarnings());
 		result.getErrors().addAll(input.getErrors());
 		result.setOutput(input.getOutput());
+		result.setDownloadId(input.getDownloadId());
 		return result;
 	}
 		public SServerState convertToSObject(ServerState input) {

@@ -53,6 +53,7 @@ public class JavaQueryEngine implements QueryEngine {
 			queryResult.setOutput("Executing...\n\n" + out + "\n" + "Execution complete");
 			queryResult.setRunOke(true);
 		} catch (CompileException e) {
+			LOGGER.error("", e);
 			queryResult.setRunOke(false);
 			queryResult.addError(e.getMessage());
 		}

@@ -110,7 +110,7 @@ public class CompileServlet extends HttpServlet {
 					LOGGER.error("", e);
 				}
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}

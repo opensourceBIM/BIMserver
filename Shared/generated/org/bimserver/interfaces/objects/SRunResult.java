@@ -60,6 +60,9 @@ public class SRunResult implements SBase
 		if (sField.getName().equals("output")) {
 			return getOutput();
 		}
+		if (sField.getName().equals("downloadId")) {
+			return getDownloadId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -83,6 +86,10 @@ public class SRunResult implements SBase
 			setOutput((String)val);
 			return;
 		}
+		if (sField.getName().equals("downloadId")) {
+			setDownloadId((Integer)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -94,6 +101,7 @@ public class SRunResult implements SBase
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
 	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
 	private java.lang.String output;
+	private java.lang.Integer downloadId;
 	public java.lang.Boolean getRunOke() {
 		return runOke;
 	}
@@ -123,6 +131,13 @@ public class SRunResult implements SBase
 
 	public void setOutput(java.lang.String output) {
 		this.output = output;
+	}
+	public java.lang.Integer getDownloadId() {
+		return downloadId;
+	}
+
+	public void setDownloadId(java.lang.Integer downloadId) {
+		this.downloadId = downloadId;
 	}
 	@Override
 	public int hashCode() {

@@ -20,6 +20,7 @@
 <script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.iframe.transport.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/String.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/base64.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.fileupload.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.ui.progressbar.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>

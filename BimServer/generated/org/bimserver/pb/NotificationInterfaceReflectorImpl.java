@@ -24,9 +24,6 @@ public class NotificationInterfaceReflectorImpl implements org.bimserver.shared.
 private Reflector reflector;
 
 	public NotificationInterfaceReflectorImpl (Reflector reflector) {this.reflector = reflector;}
-	public void serverWillBeShutdown() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "serverWillBeShutdown", void.class);
-	}
 	public void newProject(org.bimserver.interfaces.objects.SNewProjectNotification arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "newProject", void.class, arg0);
 	}
@@ -35,5 +32,8 @@ private Reflector reflector;
 	}
 	public void serverHasStarted() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "serverHasStarted", void.class);
+	}
+	public void serverWillBeShutdown() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("NotificationInterface", "serverWillBeShutdown", void.class);
 	}
 }
