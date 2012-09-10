@@ -90,17 +90,14 @@ Examples: <%
 %><a href="#" qeid="<%=queryEngine.getOid() %>" key="<%=key%>" class="examplebutton"><%=key%></a> <%
 	}
 %>
-<textarea cols="93" rows="16" class="code">
+<textarea cols="93" rows="25" class="code">
 </textarea>
 <div style="float: right">
 	<span class="ajaxloader">
 	<span class="ajaxloadertext"></span> <img src="images/ajax-loader.gif"/>
 	</span>
-	<button class="querybutton" qeid="<%=queryEngine.getOid()%>">Run</button>
 	<button class="downloadbutton" qeid="<%=queryEngine.getOid()%>">Download</button>
 </div>
-<textarea cols="93" rows="16" class="console">
-</textarea>
 </div>
 <%
 		}
@@ -111,7 +108,7 @@ Examples: <%
 			event.preventDefault();
 			$.ajax({
 				url: '<%=request.getContextPath() %>/compile?action=example&key=' + $(event.target).attr("key") + '&qeid=' + $(event.target).attr("qeid"),
-				context: $(this).parent().parent(),
+				context: $(this).parent(),
 				success: function(data) {
 					$(this).find(".code").val(data);
 				}

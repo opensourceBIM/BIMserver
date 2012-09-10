@@ -435,6 +435,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="LongActionState">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="progress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/ActionState"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="errors" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="warnings" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Notification"/>
     <eClassifiers xsi:type="ecore:EClass" name="NewProjectNotification" eSuperTypes="#/0/Notification">

@@ -96,7 +96,6 @@ import org.bimserver.interfaces.objects.SQueryEngine;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
-import org.bimserver.interfaces.objects.SRunResult;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
@@ -143,7 +142,6 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.queryengine.QueryResult;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.CompareWriter;
@@ -2288,38 +2286,6 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
-	}
-
-	@Override
-	public SRunResult query(Long roid, Long qeid, String code) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, currentUoid, null);
-			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
-			QueryEngine queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEngine(), qeid, false, null);
-			if (queryEngineObject != null) {
-				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getClassName(), true);
-				if (queryEnginePlugin != null) {
-					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine();
-					QueryResult queryResult = queryEngine.query(ifcModel, code);
-					SRunResult sRunResult = new SRunResult();
-					sRunResult.setRunOke(queryResult.isRunOke());
-					sRunResult.setErrors(queryResult.getErrors());
-					sRunResult.setWarnings(queryResult.getWarnings());
-					sRunResult.setOutput(queryResult.getOutput());
-					return sRunResult;
-				} else {
-					throw new UserException("No Query Engine found " + queryEngineObject.getClassName());
-				}
-			} else {
-				throw new UserException("No configured query engine found with qeid " + qeid);
-			}
-		} catch (BimserverDatabaseException e) {
-		} finally {
-			session.close();
-		}
-		return null;
 	}
 
 	@Override

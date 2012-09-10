@@ -89,21 +89,21 @@ public class CompileServlet extends HttpServlet {
 			if (action.equals("query")) {
 				long roid = Long.parseLong(request.getParameter("roid"));
 				long qeid = Long.parseLong(request.getParameter("qeid"));
-				try {
-					SRunResult compileAndRun = loginManager.getService().query(roid, qeid, code);
-					if (compileAndRun.getRunOke()) {
-						root.put("output", compileAndRun.getOutput());
-					} else {
-						for (String warning : compileAndRun.getWarnings()) {
-							warnings.put(warning);
-						}
-						for (String error : compileAndRun.getErrors()) {
-							errors.put(error);
-						}
-					}
-				} catch (ServiceException e) {
-					root.put("output", e.getMessage());
-				}
+//				try {
+//					SRunResult compileAndRun = loginManager.getService().query(roid, qeid, code);
+//					if (compileAndRun.getRunOke()) {
+//						root.put("output", compileAndRun.getOutput());
+//					} else {
+//						for (String warning : compileAndRun.getWarnings()) {
+//							warnings.put(warning);
+//						}
+//						for (String error : compileAndRun.getErrors()) {
+//							errors.put(error);
+//						}
+//					}
+//				} catch (ServiceException e) {
+//					root.put("output", e.getMessage());
+//				}
 				try {
 					root.write(response.getWriter());
 				} catch (JSONException e) {

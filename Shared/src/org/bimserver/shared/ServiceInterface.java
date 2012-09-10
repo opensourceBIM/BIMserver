@@ -43,7 +43,6 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
-import org.bimserver.interfaces.objects.SCompileResult;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
@@ -69,7 +68,6 @@ import org.bimserver.interfaces.objects.SQueryEngine;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
-import org.bimserver.interfaces.objects.SRunResult;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
@@ -2009,18 +2007,6 @@ public interface ServiceInterface {
 			@WebParam(name = "uoid", partName = "setHttpCallback.uoid") Long uoid, 
 			@WebParam(name = "address", partName = "setHttpCallback.address") String address) throws ServerException, UserException;
 	
-	/**
-	 * @param roid ObjectID of the Revision to perform this query on
-	 * @param code The Java code, should be an implementation of the QueryInterface interface
-	 * @return SRunResult
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "query")
-	SRunResult query(
-			@WebParam(name = "roid", partName = "compileAndRun.roid") Long roid, 
-			@WebParam(name = "qeid", partName = "compileAndRun.qeid") Long qeid, 
-			@WebParam(name = "code", partName = "compileAndRun.code") String code) throws ServerException, UserException;
-
 	/**
 	 * @param roid ObjectID of the Revision to perform this query on
 	 * @param code The Java code, should be an implementation of the QueryInterface interface

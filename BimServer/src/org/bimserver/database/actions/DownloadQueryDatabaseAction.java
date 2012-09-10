@@ -24,9 +24,9 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.queryengine.QueryResult;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -39,8 +39,9 @@ public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInter
 	private final long qeid;
 	private final String code;
 	private final long roid;
+	private final Reporter reporter;
 
-	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, String code, long actingUoid, ObjectIDM objectIDM) {
+	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, String code, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
@@ -48,21 +49,21 @@ public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInter
 		this.code = code;
 		this.actingUoid = actingUoid;
 		this.objectIDM = objectIDM;
+		this.reporter = reporter;
 	}
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, actingUoid, null);
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, actingUoid, null, reporter);
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 			QueryEngine queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEngine(), qeid, false, null);
 			if (queryEngineObject != null) {
 				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine();
-					QueryResult queryResult = queryEngine.query(ifcModel, code);
-					return queryResult.getModel();
+					return queryEngine.query(ifcModel, code, reporter);
 				} else {
 					throw new UserException("No Query Engine found " + queryEngineObject.getClassName());
 				}

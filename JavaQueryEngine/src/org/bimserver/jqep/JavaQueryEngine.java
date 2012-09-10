@@ -18,11 +18,11 @@ import javax.tools.ToolProvider;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.CompileResult;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.VirtualClassLoader;
 import org.bimserver.plugins.VirtualFile;
 import org.bimserver.plugins.VirtualFileManager;
 import org.bimserver.plugins.queryengine.QueryEngine;
-import org.bimserver.plugins.queryengine.QueryResult;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,23 +41,18 @@ public class JavaQueryEngine implements QueryEngine {
 	}
 
 	@Override
-	public QueryResult query(IfcModelInterface model, String code) {
-		QueryResult queryResult = new QueryResult();
-		queryResult.setRunOke(true);
+	public IfcModelInterface query(IfcModelInterface model, String code, Reporter reporter) {
 		try {
 			StringWriter out = new StringWriter();
 			QueryInterface queryInterface = createQueryInterface(code);
 			IfcModelInterface dest = new IfcModel();
 			queryInterface.query(model, dest, new PrintWriter(out));
-			queryResult.setModel(dest);
-			queryResult.setOutput("Executing...\n\n" + out + "\n" + "Execution complete");
-			queryResult.setRunOke(true);
+			return dest;
 		} catch (CompileException e) {
 			LOGGER.error("", e);
-			queryResult.setRunOke(false);
-			queryResult.addError(e.getMessage());
+			reporter.error(e.getMessage());
 		}
-		return queryResult;
+		return null;
 	}
 
 	public static void addJarFolder(File libDir) {

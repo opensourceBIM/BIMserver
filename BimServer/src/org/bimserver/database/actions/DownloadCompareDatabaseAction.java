@@ -23,8 +23,8 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.compare.Compare;
@@ -60,6 +60,7 @@ import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.ObjectRemoved;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
@@ -75,11 +76,13 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final ObjectIDM objectIDM;
 	private final CompareType compareType;
 	private final CompareIdentifier compareIdentifier;
+	private final Reporter reporter;
 
 	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids,
-			CompareIdentifier compareIdentifier, CompareType compareType, long actingUoid, ObjectIDM objectIDM) {
+			CompareIdentifier compareIdentifier, CompareType compareType, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
+		this.reporter = reporter;
 		Iterator<Long> iterator = roids.iterator();
 		this.roid1 = iterator.next();
 		this.roid2 = iterator.next();
@@ -98,8 +101,8 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
 											// roid2, compareType,
 											// compareIdentifier);
-		IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, actingUoid, null).execute();
-		IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, actingUoid, null).execute();
+		IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, actingUoid, null, reporter).execute();
+		IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, actingUoid, null, reporter).execute();
 		if (compareIdentifier == CompareIdentifier.GUID_ID) {
 			compareResults = compare.compareOnGuids(model1, model2, compareType);
 		} else if (compareIdentifier == CompareIdentifier.NAME_ID) {

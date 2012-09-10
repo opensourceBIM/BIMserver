@@ -17,17 +17,20 @@ package org.bimserver.longaction;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import org.bimserver.BimServer;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.Reporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class LongAction<T extends LongActionKey> {
+public abstract class LongAction<T extends LongActionKey> implements Reporter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
 	private final GregorianCalendar start;
@@ -40,6 +43,8 @@ public abstract class LongAction<T extends LongActionKey> {
 	private final long uoid;
 	private ActionState actionState = ActionState.UNKNOWN;
 	private GregorianCalendar stop;
+	private final List<String> errors = new ArrayList<String>();
+	private final List<String> warnings = new ArrayList<String>();
 
 	public LongAction(BimServer bimServer, String username, String userUsername, long uoid) {
 		start = new GregorianCalendar();
@@ -122,9 +127,21 @@ public abstract class LongAction<T extends LongActionKey> {
 		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
 		ds.setProgress(getProgress());
 		ds.setState(getActionState());
+		ds.getErrors().addAll(errors);
+		ds.getWarnings().addAll(warnings);
 		if (getActionState() == ActionState.FINISHED) {
 			ds.setProgress(100);
 		}
 		return ds;
+	}
+	
+	@Override
+	public void error(String error) {
+		errors.add(error);
+	}
+	
+	@Override
+	public void warning(String warning) {
+		warnings.add(warning);
 	}
 }

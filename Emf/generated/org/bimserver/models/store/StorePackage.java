@@ -3078,13 +3078,31 @@ public interface StorePackage extends EPackage {
 	int LONG_ACTION_STATE__STATE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Errors</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__ERRORS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Warnings</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__WARNINGS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Long Action State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE_FEATURE_COUNT = 2;
+	int LONG_ACTION_STATE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.NotificationImpl <em>Notification</em>}' class.
@@ -3263,13 +3281,22 @@ public interface StorePackage extends EPackage {
 	int RUN_RESULT__OUTPUT = 3;
 
 	/**
+	 * The feature id for the '<em><b>Download Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RUN_RESULT__DOWNLOAD_ID = 4;
+
+	/**
 	 * The number of structural features of the '<em>Run Result</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RUN_RESULT_FEATURE_COUNT = 4;
+	int RUN_RESULT_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -6607,6 +6634,28 @@ public interface StorePackage extends EPackage {
 	EAttribute getLongActionState_State();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.LongActionState#getErrors <em>Errors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Errors</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getErrors()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_Errors();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.LongActionState#getWarnings <em>Warnings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Warnings</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getWarnings()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_Warnings();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Notification <em>Notification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6765,6 +6814,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRunResult_Output();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.RunResult#getDownloadId <em>Download Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Download Id</em>'.
+	 * @see org.bimserver.models.store.RunResult#getDownloadId()
+	 * @see #getRunResult()
+	 * @generated
+	 */
+	EAttribute getRunResult_DownloadId();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServerInfo <em>Server Info</em>}'.
@@ -9484,6 +9544,22 @@ public interface StorePackage extends EPackage {
 		EAttribute LONG_ACTION_STATE__STATE = eINSTANCE.getLongActionState_State();
 
 		/**
+		 * The meta object literal for the '<em><b>Errors</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__ERRORS = eINSTANCE.getLongActionState_Errors();
+
+		/**
+		 * The meta object literal for the '<em><b>Warnings</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__WARNINGS = eINSTANCE.getLongActionState_Warnings();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NotificationImpl <em>Notification</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9612,6 +9688,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RUN_RESULT__OUTPUT = eINSTANCE.getRunResult_Output();
+
+		/**
+		 * The meta object literal for the '<em><b>Download Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RUN_RESULT__DOWNLOAD_ID = eINSTANCE.getRunResult_DownloadId();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.

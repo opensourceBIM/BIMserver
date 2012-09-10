@@ -33,6 +33,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
@@ -48,8 +49,9 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
+	private final Reporter reporter;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, long actingUoid, ObjectIDM objectIDM) {
+	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
@@ -57,6 +59,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 		this.actingUoid = actingUoid;
 		this.classNames = classNames;
 		this.objectIDM = objectIDM;
+		this.reporter = reporter;
 	}
 
 	@Override

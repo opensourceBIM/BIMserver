@@ -17,6 +17,7 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +29,8 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.LongActionState#getProgress <em>Progress</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getState <em>State</em>}</li>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getErrors <em>Errors</em>}</li>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getWarnings <em>Warnings</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,5 +94,37 @@ public interface LongActionState extends IdEObject {
 	 * @generated
 	 */
 	void setState(ActionState value);
+
+	/**
+	 * Returns the value of the '<em><b>Errors</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Errors</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Errors</em>' attribute list.
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_Errors()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getErrors();
+
+	/**
+	 * Returns the value of the '<em><b>Warnings</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Warnings</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Warnings</em>' attribute list.
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_Warnings()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getWarnings();
 
 } // LongActionState

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getOutput <em>Output</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RunResultImpl#getDownloadId <em>Download Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -125,6 +126,24 @@ public class RunResultImpl extends IdEObjectImpl implements RunResult {
 	 */
 	public void setOutput(String newOutput) {
 		eSet(StorePackage.Literals.RUN_RESULT__OUTPUT, newOutput);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Integer getDownloadId() {
+		return (Integer) eGet(StorePackage.Literals.RUN_RESULT__DOWNLOAD_ID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDownloadId(Integer newDownloadId) {
+		eSet(StorePackage.Literals.RUN_RESULT__DOWNLOAD_ID, newDownloadId);
 	}
 
 } //RunResultImpl
