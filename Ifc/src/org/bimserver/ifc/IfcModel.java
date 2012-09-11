@@ -33,13 +33,14 @@ import java.util.TreeMap;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.OidProvider;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.plugins.serializers.OidProvider;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -331,24 +332,36 @@ public class IfcModel implements IfcModelInterface {
 		return objects.values();
 	}
 
-	public long add(IdEObject eObject) {
+	public long add(IdEObject eObject) throws IfcModelInterfaceException {
 		long oid = oidCounter++;
 		((IdEObjectImpl)eObject).setOid(oid);
-		add(oid, eObject, false);
+		((IdEObjectImpl)eObject).setModel(this);
+		add(oid, eObject, false, false);
 		return oid;
 	}
 	
-	public void add(long key, IdEObject eObject) {
-		add(key, eObject, false);
+	public void add(long key, IdEObject eObject) throws IfcModelInterfaceException {
+		add(key, eObject, false, false);
+	}
+
+	@Override
+	public void addAllowMultiModel(long oid, IdEObject eObject) throws IfcModelInterfaceException {
+		add(oid, eObject, false, true);
 	}
 	
-	public void add(Long key, IdEObject eObject, boolean ignoreDuplicateOids) {
+	public void add(Long key, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
+		if (eObject.hasModel() && !allowMultiModel) {
+			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + eObject.getModel());
+		}
 		if (objects.containsKey(key)) {
 			if (!ignoreDuplicateOids) {
-				throw new RuntimeException("Oid already stored: " + key + " " + eObject + " (old: " + objects.get(key));
+				throw new IfcModelInterfaceException("Oid already stored: " + key + " " + eObject + " (old: " + objects.get(key));
 			}
 		} else {
 			objects.put(key, eObject);
+			if (!eObject.hasModel() || !allowMultiModel) {
+				((IdEObjectImpl)eObject).setModel(this);
+			}
 			if (guidIndexed != null) {
 				indexGuid(eObject);
 			}
@@ -608,14 +621,14 @@ public class IfcModel implements IfcModelInterface {
 
 	public IfcRoot get(String guid) {
 		if (guidIndexed == null) {
-			throw new RuntimeException("Not indexed on guids");
+			indexGuids();
 		}
 		return guidIndexed.get(guid);
 	}
 
 	public boolean contains(String guid) {
 		if (guidIndexed == null) {
-			throw new RuntimeException("Not indexed on guids");
+			indexGuids();
 		}
 		return guidIndexed.containsKey(guid);
 	}
