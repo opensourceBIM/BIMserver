@@ -1388,22 +1388,67 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__MODELMERGERS = 26;
 
 	/**
-	 * The feature id for the '<em><b>Default Model Merger</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SETTINGS__DEFAULT_MODEL_MERGER = 27;
-
-	/**
 	 * The feature id for the '<em><b>Modelcompares</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS__MODELCOMPARES = 28;
+	int SETTINGS__MODELCOMPARES = 27;
+
+	/**
+	 * The feature id for the '<em><b>Default Model Merger</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__DEFAULT_MODEL_MERGER = 28;
+
+	/**
+	 * The feature id for the '<em><b>Default Model Compare</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__DEFAULT_MODEL_COMPARE = 29;
+
+	/**
+	 * The feature id for the '<em><b>Default Query Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__DEFAULT_QUERY_ENGINE = 30;
+
+	/**
+	 * The feature id for the '<em><b>Default Ifc Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__DEFAULT_IFC_ENGINE = 31;
+
+	/**
+	 * The feature id for the '<em><b>Default Serializer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__DEFAULT_SERIALIZER = 32;
+
+	/**
+	 * The feature id for the '<em><b>Default Object IDM</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__DEFAULT_OBJECT_IDM = 33;
 
 	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
@@ -1412,7 +1457,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 29;
+	int SETTINGS_FEATURE_COUNT = 34;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -5421,6 +5466,61 @@ public interface StorePackage extends EPackage {
 	EReference getSettings_DefaultModelMerger();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Settings#getDefaultModelCompare <em>Default Model Compare</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Model Compare</em>'.
+	 * @see org.bimserver.models.store.Settings#getDefaultModelCompare()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_DefaultModelCompare();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Settings#getDefaultQueryEngine <em>Default Query Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Query Engine</em>'.
+	 * @see org.bimserver.models.store.Settings#getDefaultQueryEngine()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_DefaultQueryEngine();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Settings#getDefaultIfcEngine <em>Default Ifc Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Ifc Engine</em>'.
+	 * @see org.bimserver.models.store.Settings#getDefaultIfcEngine()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_DefaultIfcEngine();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Settings#getDefaultSerializer <em>Default Serializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Serializer</em>'.
+	 * @see org.bimserver.models.store.Settings#getDefaultSerializer()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_DefaultSerializer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Settings#getDefaultObjectIDM <em>Default Object IDM</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Object IDM</em>'.
+	 * @see org.bimserver.models.store.Settings#getDefaultObjectIDM()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_DefaultObjectIDM();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getModelcompares <em>Modelcompares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8870,6 +8970,46 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SETTINGS__DEFAULT_MODEL_MERGER = eINSTANCE.getSettings_DefaultModelMerger();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Model Compare</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__DEFAULT_MODEL_COMPARE = eINSTANCE.getSettings_DefaultModelCompare();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Query Engine</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__DEFAULT_QUERY_ENGINE = eINSTANCE.getSettings_DefaultQueryEngine();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Ifc Engine</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__DEFAULT_IFC_ENGINE = eINSTANCE.getSettings_DefaultIfcEngine();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Serializer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__DEFAULT_SERIALIZER = eINSTANCE.getSettings_DefaultSerializer();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Object IDM</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__DEFAULT_OBJECT_IDM = eINSTANCE.getSettings_DefaultObjectIDM();
 
 		/**
 		 * The meta object literal for the '<em><b>Modelcompares</b></em>' reference list feature.

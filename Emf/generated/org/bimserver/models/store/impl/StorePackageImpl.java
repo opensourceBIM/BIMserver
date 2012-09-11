@@ -1782,7 +1782,52 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSettings_DefaultModelMerger() {
-		return (EReference) getSettings().getEStructuralFeatures().get(27);
+		return (EReference) getSettings().getEStructuralFeatures().get(28);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSettings_DefaultModelCompare() {
+		return (EReference) getSettings().getEStructuralFeatures().get(29);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSettings_DefaultQueryEngine() {
+		return (EReference) getSettings().getEStructuralFeatures().get(30);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSettings_DefaultIfcEngine() {
+		return (EReference) getSettings().getEStructuralFeatures().get(31);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSettings_DefaultSerializer() {
+		return (EReference) getSettings().getEStructuralFeatures().get(32);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSettings_DefaultObjectIDM() {
+		return (EReference) getSettings().getEStructuralFeatures().get(33);
 	}
 
 	/**
@@ -1791,7 +1836,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSettings_Modelcompares() {
-		return (EReference) getSettings().getEStructuralFeatures().get(28);
+		return (EReference) getSettings().getEStructuralFeatures().get(27);
 	}
 
 	/**

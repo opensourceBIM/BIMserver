@@ -42,8 +42,6 @@ public class Step0019 extends Migration {
 		EReference modelMergerSettingsReference = schema.createEReference(modelMergerClass, "settings", settingsClass, Multiplicity.SINGLE);
 		EReference settingsModelMergersReference = schema.createEReference(settingsClass, "modelmergers", modelMergerClass, Multiplicity.MANY);
 		
-		schema.createEReference(settingsClass, "defaultModelMerger", modelMergerClass, Multiplicity.SINGLE);
-		
 		modelMergerSettingsReference.setEOpposite(settingsModelMergersReference);
 		settingsModelMergersReference.setEOpposite(modelMergerSettingsReference);
 	}

@@ -69,7 +69,6 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
-import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDataObject;
@@ -104,6 +103,7 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SSettings;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
@@ -2917,5 +2917,24 @@ public class Service implements ServiceInterface {
 		SQueryEngine queryEngineById = getQueryEngineById(qeid);
 		QueryEnginePlugin queryEngine = bimServer.getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
 		return new ArrayList<String>(queryEngine.getExampleKeys());
+	}
+	
+	@Override
+	public SSettings getSettings() throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
+			Settings settings = (Settings) allOfType.getValues().iterator().next();
+			return converter.convertToSObject(settings);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	@Override
+	public void setSettings(SSettings settings) throws ServerException, UserException {
 	}
 }

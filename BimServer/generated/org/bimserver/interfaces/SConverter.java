@@ -1003,13 +1003,23 @@ public class SConverter {
 			listmodelmergers.add(v.getOid());
 		}
 		result.setModelmergers(listmodelmergers);
-		ModelMerger defaultModelMergerVal = input.getDefaultModelMerger();
-		result.setDefaultModelMergerId(defaultModelMergerVal == null ? -1 : defaultModelMergerVal.getOid());
 		List<Long> listmodelcompares = new ArrayList<Long>();
 		for (ModelCompare v : input.getModelcompares()) {
 			listmodelcompares.add(v.getOid());
 		}
 		result.setModelcompares(listmodelcompares);
+		ModelMerger defaultModelMergerVal = input.getDefaultModelMerger();
+		result.setDefaultModelMergerId(defaultModelMergerVal == null ? -1 : defaultModelMergerVal.getOid());
+		ModelCompare defaultModelCompareVal = input.getDefaultModelCompare();
+		result.setDefaultModelCompareId(defaultModelCompareVal == null ? -1 : defaultModelCompareVal.getOid());
+		QueryEngine defaultQueryEngineVal = input.getDefaultQueryEngine();
+		result.setDefaultQueryEngineId(defaultQueryEngineVal == null ? -1 : defaultQueryEngineVal.getOid());
+		IfcEngine defaultIfcEngineVal = input.getDefaultIfcEngine();
+		result.setDefaultIfcEngineId(defaultIfcEngineVal == null ? -1 : defaultIfcEngineVal.getOid());
+		Serializer defaultSerializerVal = input.getDefaultSerializer();
+		result.setDefaultSerializerId(defaultSerializerVal == null ? -1 : defaultSerializerVal.getOid());
+		ObjectIDM defaultObjectIDMVal = input.getDefaultObjectIDM();
+		result.setDefaultObjectIDMId(defaultObjectIDMVal == null ? -1 : defaultObjectIDMVal.getOid());
 		return result;
 	}
 
@@ -1070,11 +1080,16 @@ public class SConverter {
 		for (long oid : input.getModelmergers()) {
 			listmodelmergers.add((ModelMerger)session.get(StorePackage.eINSTANCE.getModelMerger(), oid, false, null));
 		}
-		result.setDefaultModelMerger((ModelMerger)session.get(StorePackage.eINSTANCE.getModelMerger(), input.getDefaultModelMergerId(), false, null));
 		List<ModelCompare> listmodelcompares = result.getModelcompares();
 		for (long oid : input.getModelcompares()) {
 			listmodelcompares.add((ModelCompare)session.get(StorePackage.eINSTANCE.getModelCompare(), oid, false, null));
 		}
+		result.setDefaultModelMerger((ModelMerger)session.get(StorePackage.eINSTANCE.getModelMerger(), input.getDefaultModelMergerId(), false, null));
+		result.setDefaultModelCompare((ModelCompare)session.get(StorePackage.eINSTANCE.getModelCompare(), input.getDefaultModelCompareId(), false, null));
+		result.setDefaultQueryEngine((QueryEngine)session.get(StorePackage.eINSTANCE.getQueryEngine(), input.getDefaultQueryEngineId(), false, null));
+		result.setDefaultIfcEngine((IfcEngine)session.get(StorePackage.eINSTANCE.getIfcEngine(), input.getDefaultIfcEngineId(), false, null));
+		result.setDefaultSerializer((Serializer)session.get(StorePackage.eINSTANCE.getSerializer(), input.getDefaultSerializerId(), false, null));
+		result.setDefaultObjectIDM((ObjectIDM)session.get(StorePackage.eINSTANCE.getObjectIDM(), input.getDefaultObjectIDMId(), false, null));
 		return result;
 	}
 

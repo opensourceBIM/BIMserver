@@ -3,14 +3,18 @@ package org.bimserver.ifc.compare;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.modelcompare.ModelCompare;
+import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.plugins.objectidms.ObjectIDMException;
 
 public class NameBasedModelComparePlugin implements ModelComparePlugin {
 
 	private boolean initialized;
+	private PluginManager pluginManager;
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
+		this.pluginManager = pluginManager;
 		initialized = true;
 	}
 
@@ -35,7 +39,11 @@ public class NameBasedModelComparePlugin implements ModelComparePlugin {
 	}
 
 	@Override
-	public ModelCompare createModelCompare() {
-		return new NameBasedModelCompare(null);
+	public ModelCompare createModelCompare() throws ModelCompareException {
+		try {
+			return new NameBasedModelCompare(pluginManager.requireObjectIDM());
+		} catch (ObjectIDMException e) {
+			throw new ModelCompareException(e);
+		}
 	}
 }

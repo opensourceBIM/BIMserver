@@ -66,8 +66,13 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getQueryengines <em>Queryengines</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getModelmergers <em>Modelmergers</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultModelMerger <em>Default Model Merger</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getModelcompares <em>Modelcompares</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultModelMerger <em>Default Model Merger</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultModelCompare <em>Default Model Compare</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultQueryEngine <em>Default Query Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultIfcEngine <em>Default Ifc Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  * </ul>
  * </p>
  *
@@ -541,6 +546,96 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 */
 	public void setDefaultModelMerger(ModelMerger newDefaultModelMerger) {
 		eSet(StorePackage.Literals.SETTINGS__DEFAULT_MODEL_MERGER, newDefaultModelMerger);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCompare getDefaultModelCompare() {
+		return (ModelCompare) eGet(StorePackage.Literals.SETTINGS__DEFAULT_MODEL_COMPARE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultModelCompare(ModelCompare newDefaultModelCompare) {
+		eSet(StorePackage.Literals.SETTINGS__DEFAULT_MODEL_COMPARE, newDefaultModelCompare);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QueryEngine getDefaultQueryEngine() {
+		return (QueryEngine) eGet(StorePackage.Literals.SETTINGS__DEFAULT_QUERY_ENGINE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultQueryEngine(QueryEngine newDefaultQueryEngine) {
+		eSet(StorePackage.Literals.SETTINGS__DEFAULT_QUERY_ENGINE, newDefaultQueryEngine);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcEngine getDefaultIfcEngine() {
+		return (IfcEngine) eGet(StorePackage.Literals.SETTINGS__DEFAULT_IFC_ENGINE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultIfcEngine(IfcEngine newDefaultIfcEngine) {
+		eSet(StorePackage.Literals.SETTINGS__DEFAULT_IFC_ENGINE, newDefaultIfcEngine);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Serializer getDefaultSerializer() {
+		return (Serializer) eGet(StorePackage.Literals.SETTINGS__DEFAULT_SERIALIZER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultSerializer(Serializer newDefaultSerializer) {
+		eSet(StorePackage.Literals.SETTINGS__DEFAULT_SERIALIZER, newDefaultSerializer);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectIDM getDefaultObjectIDM() {
+		return (ObjectIDM) eGet(StorePackage.Literals.SETTINGS__DEFAULT_OBJECT_IDM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultObjectIDM(ObjectIDM newDefaultObjectIDM) {
+		eSet(StorePackage.Literals.SETTINGS__DEFAULT_OBJECT_IDM, newDefaultObjectIDM);
 	}
 
 	/**

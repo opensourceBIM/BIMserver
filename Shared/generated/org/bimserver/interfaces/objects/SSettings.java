@@ -129,11 +129,26 @@ public class SSettings implements SBase
 		if (sField.getName().equals("modelmergers")) {
 			return getModelmergers();
 		}
+		if (sField.getName().equals("modelcompares")) {
+			return getModelcompares();
+		}
 		if (sField.getName().equals("defaultModelMergerId")) {
 			return getDefaultModelMergerId();
 		}
-		if (sField.getName().equals("modelcompares")) {
-			return getModelcompares();
+		if (sField.getName().equals("defaultModelCompareId")) {
+			return getDefaultModelCompareId();
+		}
+		if (sField.getName().equals("defaultQueryEngineId")) {
+			return getDefaultQueryEngineId();
+		}
+		if (sField.getName().equals("defaultIfcEngineId")) {
+			return getDefaultIfcEngineId();
+		}
+		if (sField.getName().equals("defaultSerializerId")) {
+			return getDefaultSerializerId();
+		}
+		if (sField.getName().equals("defaultObjectIDMId")) {
+			return getDefaultObjectIDMId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -250,12 +265,32 @@ public class SSettings implements SBase
 			setModelmergers((List<Long>)val);
 			return;
 		}
+		if (sField.getName().equals("modelcompares")) {
+			setModelcompares((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("defaultModelMergerId")) {
 			setDefaultModelMergerId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("modelcompares")) {
-			setModelcompares((List<Long>)val);
+		if (sField.getName().equals("defaultModelCompareId")) {
+			setDefaultModelCompareId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("defaultQueryEngineId")) {
+			setDefaultQueryEngineId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("defaultIfcEngineId")) {
+			setDefaultIfcEngineId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("defaultSerializerId")) {
+			setDefaultSerializerId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("defaultObjectIDMId")) {
+			setDefaultObjectIDMId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -292,8 +327,13 @@ public class SSettings implements SBase
 	private List<Long> schemas = new ArrayList<Long>();
 	private List<Long> queryengines = new ArrayList<Long>();
 	private List<Long> modelmergers = new ArrayList<Long>();
-	private long defaultModelMergerId;
 	private List<Long> modelcompares = new ArrayList<Long>();
+	private long defaultModelMergerId;
+	private long defaultModelCompareId;
+	private long defaultQueryEngineId;
+	private long defaultIfcEngineId;
+	private long defaultSerializerId;
+	private long defaultObjectIDMId;
 	public java.lang.Boolean getShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
 	}
@@ -483,6 +523,13 @@ public class SSettings implements SBase
 	public void setModelmergers(List<Long> modelmergers) {
 		this.modelmergers = modelmergers;
 	}
+	public List<Long> getModelcompares() {
+		return modelcompares;
+	}
+
+	public void setModelcompares(List<Long> modelcompares) {
+		this.modelcompares = modelcompares;
+	}
 	public long getDefaultModelMergerId() {
 		return defaultModelMergerId;
 	}
@@ -491,13 +538,46 @@ public class SSettings implements SBase
 		this.defaultModelMergerId = defaultModelMergerId;
 	}
 	
-	public List<Long> getModelcompares() {
-		return modelcompares;
+	public long getDefaultModelCompareId() {
+		return defaultModelCompareId;
 	}
 
-	public void setModelcompares(List<Long> modelcompares) {
-		this.modelcompares = modelcompares;
+	public void setDefaultModelCompareId(long defaultModelCompareId) {
+		this.defaultModelCompareId = defaultModelCompareId;
 	}
+	
+	public long getDefaultQueryEngineId() {
+		return defaultQueryEngineId;
+	}
+
+	public void setDefaultQueryEngineId(long defaultQueryEngineId) {
+		this.defaultQueryEngineId = defaultQueryEngineId;
+	}
+	
+	public long getDefaultIfcEngineId() {
+		return defaultIfcEngineId;
+	}
+
+	public void setDefaultIfcEngineId(long defaultIfcEngineId) {
+		this.defaultIfcEngineId = defaultIfcEngineId;
+	}
+	
+	public long getDefaultSerializerId() {
+		return defaultSerializerId;
+	}
+
+	public void setDefaultSerializerId(long defaultSerializerId) {
+		this.defaultSerializerId = defaultSerializerId;
+	}
+	
+	public long getDefaultObjectIDMId() {
+		return defaultObjectIDMId;
+	}
+
+	public void setDefaultObjectIDMId(long defaultObjectIDMId) {
+		this.defaultObjectIDMId = defaultObjectIDMId;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

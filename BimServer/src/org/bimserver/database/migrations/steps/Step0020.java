@@ -44,6 +44,13 @@ public class Step0020 extends Migration {
 
 		modelCompareSettingsReference.setEOpposite(settingsModelComparesReference);
 		settingsModelComparesReference.setEOpposite(modelCompareSettingsReference);
+		
+		schema.createEReference(settingsClass, "defaultModelMerger", schema.getEClass("store", "ModelMerger"), Multiplicity.SINGLE);
+		schema.createEReference(settingsClass, "defaultModelCompare", schema.getEClass("store", "ModelCompare"), Multiplicity.SINGLE);
+		schema.createEReference(settingsClass, "defaultQueryEngine", schema.getEClass("store", "QueryEngine"), Multiplicity.SINGLE);
+		schema.createEReference(settingsClass, "defaultIfcEngine", schema.getEClass("store", "IfcEngine"), Multiplicity.SINGLE);
+		schema.createEReference(settingsClass, "defaultSerializer", schema.getEClass("store", "Serializer"), Multiplicity.SINGLE);
+		schema.createEReference(settingsClass, "defaultObjectIDM", schema.getEClass("store", "ObjectIDM"), Multiplicity.SINGLE);
 	}
 
 	@Override

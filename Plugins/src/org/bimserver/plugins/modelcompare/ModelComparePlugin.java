@@ -4,5 +4,5 @@ import org.bimserver.plugins.Plugin;
 
 public interface ModelComparePlugin extends Plugin {
 	String getDefaultModelCompareName();
-	ModelCompare createModelCompare();
+	ModelCompare createModelCompare() throws ModelCompareException;
 }
