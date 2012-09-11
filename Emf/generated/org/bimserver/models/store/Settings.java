@@ -54,6 +54,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getDeserializers <em>Deserializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getQueryengines <em>Queryengines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getModelmergers <em>Modelmergers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getDefaultModelMerger <em>Default Model Merger</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getModelcompares <em>Modelcompares</em>}</li>
  * </ul>
  * </p>
  *
@@ -685,5 +688,67 @@ public interface Settings extends IdEObject {
 	 * @generated
 	 */
 	EList<QueryEngine> getQueryengines();
+
+	/**
+	 * Returns the value of the '<em><b>Modelmergers</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ModelMerger}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ModelMerger#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Modelmergers</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Modelmergers</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_Modelmergers()
+	 * @see org.bimserver.models.store.ModelMerger#getSettings
+	 * @model opposite="settings"
+	 * @generated
+	 */
+	EList<ModelMerger> getModelmergers();
+
+	/**
+	 * Returns the value of the '<em><b>Default Model Merger</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Model Merger</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Model Merger</em>' reference.
+	 * @see #setDefaultModelMerger(ModelMerger)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_DefaultModelMerger()
+	 * @model
+	 * @generated
+	 */
+	ModelMerger getDefaultModelMerger();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getDefaultModelMerger <em>Default Model Merger</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Model Merger</em>' reference.
+	 * @see #getDefaultModelMerger()
+	 * @generated
+	 */
+	void setDefaultModelMerger(ModelMerger value);
+
+	/**
+	 * Returns the value of the '<em><b>Modelcompares</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ModelCompare}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ModelCompare#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Modelcompares</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Modelcompares</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_Modelcompares()
+	 * @see org.bimserver.models.store.ModelCompare#getSettings
+	 * @model opposite="settings"
+	 * @generated
+	 */
+	EList<ModelCompare> getModelcompares();
 
 } // Settings

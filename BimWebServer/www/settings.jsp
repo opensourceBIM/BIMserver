@@ -1,7 +1,9 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
+<%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
 <%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
@@ -20,13 +22,21 @@
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
+<li><a href="serializers.jsp">Serializers</a></li>
+<li><a href="deserializers.jsp">Deserializers</a></li>
+<li><a href="objectidms.jsp">Object IDMs</a></li>
+<li><a href="renderengines.jsp">Render Engines</a></li>
+<li><a href="queryengines.jsp">Query Engines</a></li>
+<li><a href="modelmergers.jsp">Model Mergers</a></li>
+<li><a href="modelcompares.jsp">Model Compares</a></li>
+<li><a href="extendeddataschemas.jsp">Extended Data Schemas</a></li>
 </ul>
 </div>
 <div class="content">
-<h1>Settings</h1>
 <%
+	ServiceInterface service = null;
 	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
-	ServiceInterface service = loginManager.getService();
+	service = loginManager.getService();
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("disableSerializer")) {
@@ -61,217 +71,35 @@
 			SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
 			ifcEngine.setEnabled(true);
 			loginManager.getService().updateIfcEngine(ifcEngine);
-		} else if (action.equals("enableIfcEngine")) {
+		} else if (action.equals("enableQueryEngine")) {
 			SQueryEngine queryEngine = loginManager.getService().getQueryEngineByName(request.getParameter("queryEngine"));
 			queryEngine.setEnabled(true);
 			loginManager.getService().updateQueryEngine(queryEngine);
-		} else if (action.equals("enableIfcEngine")) {
+		} else if (action.equals("disableQueryEngine")) {
 			SQueryEngine queryEngine = loginManager.getService().getQueryEngineByName(request.getParameter("queryEngine"));
-			queryEngine.setEnabled(true);
+			queryEngine.setEnabled(false);
 			loginManager.getService().updateQueryEngine(queryEngine);
+		} else if (action.equals("enableModelMerger")) {
+			SModelMerger modelMerger = loginManager.getService().getModelMergerByName(request.getParameter("modelMerger"));
+			modelMerger.setEnabled(true);
+			loginManager.getService().updateModelMerger(modelMerger);
+		} else if (action.equals("disableModelMerger")) {
+			SModelMerger modelMerger = loginManager.getService().getModelMergerByName(request.getParameter("modelMerger"));
+			modelMerger.setEnabled(false);
+			loginManager.getService().updateModelMerger(modelMerger);
+		} else if (action.equals("enableModelCompare")) {
+			SModelCompare modelCompare = loginManager.getService().getModelCompareByName(request.getParameter("modelCompare"));
+			modelCompare.setEnabled(true);
+			loginManager.getService().updateModelCompare(modelCompare);
+		} else if (action.equals("disableModelCompare")) {
+			SModelCompare modelCompare = loginManager.getService().getModelCompareByName(request.getParameter("modelCompare"));
+			modelCompare.setEnabled(false);
+			loginManager.getService().updateModelCompare(modelCompare);
 		}
 	}
 %>
-<div class="tabber" id="settingstabber">
-<div class="tabbertab" id="ifcenginestab" title="Render Engines">
-<a href="addifcengine.jsp">Add RenderEngine</a>
-<table class="formatted">
-<tr><th>Name</th><th>Classname</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
-<%
-	List<SIfcEngine> ifcEngines = service.getAllIfcEngines(false);
-	for (SIfcEngine ifcEngine : ifcEngines) {
-%>
-	<tr>
-		<td><a href="ifcengine.jsp?id=<%=ifcEngine.getOid()%>"><%=ifcEngine.getName() %></a></td>
-		<td><%=ifcEngine.getClassName() %></td>
-		<td><%=ifcEngine.getSerializers().size() %></td>
-		<td class="<%=ifcEngine.getEnabled() ? "enabledIfcEngine" : "disabledIfcEngine" %>"> <%=ifcEngine.getEnabled() ? "Enabled" : "Disabled" %></td>
-		<td>
-		<%
-	if (!ifcEngine.getEnabled()) {
-%>
-<a href="settings.jsp?action=enableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Enable</a>
-<%
-	} else if (ifcEngine.getSerializers().isEmpty()) {
-%>
-<a href="settings.jsp?action=disableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Disable</a>
-<%
-	}
-	if (ifcEngine.getSerializers().isEmpty()) {
-%>
-			<a href="deleteifcengine.jsp?ifid=<%=ifcEngine.getOid()%>">Delete</a>
-<% } %>
-		</td>
-	</tr>
-<%
-	}
-%>
-</table>
-</div>
-<div class="tabbertab" id="queryenginestab" title="Query Engines">
-<a href="addqueryengine.jsp">Add Query Engine</a>
-<table class="formatted">
-<tr><th>Name</th><th>Classname</th><th>State</th><th>Actions</th></tr>
-<%
-	List<SQueryEngine> queryEngines = service.getAllQueryEngines(false);
-	for (SQueryEngine queryEngine : queryEngines) {
-%>
-	<tr>
-		<td><a href="queryengine.jsp?id=<%=queryEngine.getOid()%>"><%=queryEngine.getName() %></a></td>
-		<td><%=queryEngine.getClassName() %></td>
-		<td class="<%=queryEngine.getEnabled() ? "enabledIfcEngine" : "disabledIfcEngine" %>"> <%=queryEngine.getEnabled() ? "Enabled" : "Disabled" %></td>
-		<td>
-		<%
-	if (!queryEngine.getEnabled()) {
-%>
-<a href="settings.jsp?action=enableQueryEngine&ifcEngine=<%=queryEngine.getName() %>">Enable</a>
-<%
-	}
-%>
-		<a href="deletequeryengine.jsp?ifid=<%=queryEngine.getOid()%>">Delete</a>
-		</td>
-	</tr>
-<%
-	}
-%>
-</table>
-</div>
-<div class="tabbertab" id="ignorefilestab" title="Object IDMs">
-<a href="addobjectidm.jsp">Add ObjectIDM</a>
-<table class="formatted">
-<tr><th>Name</th><th>Classname</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
-<%
-	List<SObjectIDM> objectIDMs = service.getAllObjectIDMs(false);
-	for (SObjectIDM objectIDM : objectIDMs) {
-%>
-	<tr>
-		<td><a href="objectidm.jsp?id=<%=objectIDM.getOid()%>"><%=objectIDM.getName() %></a></td>
-		<td><%=objectIDM.getClassName() %></td>
-		<td><%=objectIDM.getSerializers().size() %></td>
-		<td class="<%=objectIDM.getEnabled() ? "enabledObjectIDM" : "disabledObjectIDM" %>"> <%=objectIDM.getEnabled() ? "Enabled" : "Disabled" %></td>
-		<td>
-		<%
-	if (!objectIDM.getEnabled()) {
-%>
-<a href="settings.jsp?action=enableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Enable</a>
-<%
-	} else if (objectIDM.getSerializers().isEmpty()) {
-%>
-<a href="settings.jsp?action=disableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Disable</a>
-<%
-	}
-	if (objectIDM.getSerializers().isEmpty()) {
-%>
-			<a href="deleteobjectidm.jsp?ifid=<%=objectIDM.getOid()%>">Delete</a>
-<%} %>
-		</td>
-	</tr>
-<%
-	}
-%>
-</table>
-</div>
-<div class="tabbertab" id="serializerstab" title="Serializers">
-<a href="addserializer1.jsp">Add Serializer</a>
-<table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>ObjectIDM</th><th>Render Engine</th><th>State</th><th>Actions</th></tr>
-<%
-	List<SSerializer> serializers = service.getAllSerializers(false);
-	for (SSerializer serializer : serializers) {
-		SObjectIDM objectIDM = null;
-		if (serializer.getObjectIDMId() != -1) {
-			objectIDM = service.getObjectIDMById(serializer.getObjectIDMId());
-		}
-		SIfcEngine ifcEngine = null;
-		if (serializer.getIfcEngineId() != -1) {
-			ifcEngine = service.getIfcEngineById(serializer.getIfcEngineId());
-		}
-%>
-	<tr>
-		<td><a href="serializer.jsp?id=<%=serializer.getOid()%>"><%=serializer.getName() %></a></td>
-		<td><%=serializer.getDescription() %></td>
-		<td><%=serializer.getClassName() %></td>
-		<td><%=serializer.getContentType() %></td>
-		<td><%=objectIDM == null ? "none" : objectIDM.getName() %></td>
-		<td><%=ifcEngine == null ? "none" : ifcEngine.getName() %></td>
-		<td class="<%=serializer.getEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.getEnabled() ? "Enabled" : "Disabled" %></td>
-		<td>
-<%
-	if (serializer.getEnabled()) {
-%>
-<a href="settings.jsp?action=disableSerializer&serializer=<%=serializer.getName() %>">Disable</a>
-<%
-	} else {
-%>
-<a href="settings.jsp?action=enableSerializer&serializer=<%=serializer.getName() %>">Enable</a>
-<%
-	}
-%>
-			<a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a>
-		</td>
-	</tr>
-<%
-	}
-%>
-</table>
-</div>
-<div class="tabbertab" id="deserializerstab" title="Deserializers">
-<a href="adddeserializer1.jsp">Add Deserializer</a>
-<table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>State</th><th>Actions</th></tr>
-<%
-	List<SDeserializer> deserializers = service.getAllDeserializers(false);
-	for (SDeserializer deserializer : deserializers) {
-%>
-	<tr>
-		<td><a href="deserializer.jsp?id=<%=deserializer.getOid()%>"><%=deserializer.getName() %></a></td>
-		<td><%=deserializer.getDescription() %></td>
-		<td><%=deserializer.getClassName() %></td>
-		<td class="<%=deserializer.getEnabled() ? "enabledDeserializer" : "disabledDeserializer" %>"> <%=deserializer.getEnabled() ? "Enabled" : "Disabled" %></td>
-		<td>
-<%
-	if (deserializer.getEnabled()) {
-%>
-<a href="settings.jsp?action=disableDeserializer&deserializer=<%=deserializer.getName() %>">Disable</a>
-<%
-	} else {
-%>
-<a href="settings.jsp?action=enableDeserializer&deserializer=<%=deserializer.getName() %>">Enable</a>
-<%
-	}
-%>
-			<a href="deletedeserializer.jsp?sid=<%=deserializer.getOid()%>">Delete</a>
-		</td>
-	</tr>
-<%
-	}
-%>
-</table>
-</div>
-<div class="tabbertab" id="extendeddataschemastab" title="Extended Data Schemas">
-<a href="addextendeddataschema.jsp">Add Extended Data Schema</a>
-<table class="formatted">
-<tr><th>Name</th><th>URL/Data</th><th>Validate</th><th>Type</th><th>Used</th></tr>
-<%
-	List<SExtendedDataSchema> extendedDataSchemas = service.getAllExtendedDataSchemas();
-	for (SExtendedDataSchema extendedDataSchema : extendedDataSchemas) {
-%>
-	<tr>
-		<td><a href="extendeddataschema.jsp?id=<%=extendedDataSchema.getOid()%>"><%=extendedDataSchema.getName() %></a></td>
-		<td><%=(extendedDataSchema.getData() != null && extendedDataSchema.getData().length > 0) ? (extendedDataSchema.getData().length + " bytes") : extendedDataSchema.getUrl() %></td>
-		<td><%=extendedDataSchema.isValidate() %></td>
-		<td><%=extendedDataSchema.getType().name() %></td>
-		<td><%=extendedDataSchema.getExtendedData().size() %></td>
-	</tr>
-<%
-	}
-%>
-</table>
-</div>
-</div>
 <%
 	} else {
 		out.println("Insufficient rights");
 	}
 %>
-<%@ include file="footer.jsp"%>

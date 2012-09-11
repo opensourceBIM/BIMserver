@@ -19,10 +19,10 @@ package org.bimserver.database.actions;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.ConcreteRevision;
@@ -31,7 +31,8 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -66,8 +67,13 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface model = bimServer.getMergerFactory().createMerger()
-				.merge(oldRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
+		IfcModelInterface model;
+		try {
+			model = bimServer.getMergerFactory().createMerger()
+					.merge(oldRevision.getProject(), ifcModelSet);
+		} catch (MergeException e) {
+			throw new UserException(e);
+		}
 		model.resetOids();
 		CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment, false, true);
 		ConcreteRevision execute = checkinDatabaseAction.execute();

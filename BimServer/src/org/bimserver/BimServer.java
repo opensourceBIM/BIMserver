@@ -56,6 +56,8 @@ import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelMerger;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.Serializer;
@@ -75,6 +77,8 @@ import org.bimserver.plugins.PluginType;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -306,7 +310,7 @@ public class BimServer {
 
 			diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
 
-			mergerFactory = new MergerFactory(settingsManager);
+			mergerFactory = new MergerFactory(this, settingsManager);
 			setSystemService(serviceFactory.newService(AccessMethod.INTERNAL, "internal"));
 			try {
 				if (!((Service) getSystemService()).loginAsSystem()) {
@@ -411,6 +415,32 @@ public class BimServer {
 				queryEngine.setName(name);
 				queryEngine.setEnabled(true);
 				session.store(queryEngine);
+			} else {
+			}
+		}
+		for (ModelMergerPlugin modelMergerPlugin : pluginManager.getAllModelMergerPlugins(true)) {
+			String name = modelMergerPlugin.getDefaultModelMergerName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getModelMerger_Name(), new StringLiteral(name));
+			ModelMerger found = session.querySingle(condition, ModelMerger.class, false, null);
+			if (found == null) {
+				ModelMerger modelMerger = StoreFactory.eINSTANCE.createModelMerger();
+				modelMerger.setClassName(modelMergerPlugin.getClass().getName());
+				modelMerger.setName(name);
+				modelMerger.setEnabled(true);
+				session.store(modelMerger);
+			} else {
+			}
+		}
+		for (ModelComparePlugin modelComparePlugin : pluginManager.getAllModelComparePlugins(true)) {
+			String name = modelComparePlugin.getDefaultModelCompareName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getModelCompare_Name(), new StringLiteral(name));
+			ModelCompare found = session.querySingle(condition, ModelCompare.class, false, null);
+			if (found == null) {
+				ModelCompare modelcompare = StoreFactory.eINSTANCE.createModelCompare();
+				modelcompare.setClassName(modelComparePlugin.getClass().getName());
+				modelcompare.setName(name);
+				modelcompare.setEnabled(true);
+				session.store(modelcompare);
 			} else {
 			}
 		}

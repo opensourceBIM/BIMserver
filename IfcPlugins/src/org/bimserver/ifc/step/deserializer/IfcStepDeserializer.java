@@ -42,6 +42,8 @@ import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -60,7 +62,6 @@ import org.bimserver.plugins.schema.RealType;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.schema.UnderlyingType;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.BasicEList;
@@ -262,7 +263,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		EClass classifier = (EClass) classes.get(name);
 		if (classifier != null) {
 			IdEObject object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(classifier);
-			model.add(recordNumber, object);
+			try {
+				model.add(recordNumber, object);
+			} catch (IfcModelInterfaceException e) {
+				throw new DeserializeException(e);
+			}
 			if (setOids) {
 				((IdEObjectImpl)object).setOid(recordNumber);
 			}

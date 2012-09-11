@@ -60,6 +60,10 @@ import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
+import org.bimserver.interfaces.objects.SModelCompare;
+import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
+import org.bimserver.interfaces.objects.SModelMerger;
+import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectIDM;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
@@ -244,7 +248,7 @@ public interface ServiceInterface {
 			@WebParam(name = "serializerName", partName = "downloadByOids.serializerName") String serializerName,
 			@WebParam(name = "roid1", partName = "downloadByOids.roid1") Long roid1,
 			@WebParam(name = "roid2", partName = "downloadByOids.roid2") Long roid2,
-			@WebParam(name = "identifier", partName = "downloadByOids.identifier") SCompareIdentifier identifier,
+			@WebParam(name = "mcid", partName = "downloadByOids.mcid") Long mcid,
 			@WebParam(name = "type", partName = "downloadByOids.type") SCompareType type,
 			@WebParam(name = "sync", partName = "downloadByOids.sync") Boolean sync) throws ServerException, UserException;
 
@@ -669,7 +673,7 @@ public interface ServiceInterface {
 			@WebParam(name = "roid1", partName = "compare.roid1") Long roid1,
 			@WebParam(name = "roid2", partName = "compare.roid2") Long roid2,
 			@WebParam(name = "sCompareType", partName = "compare.sCompareType") SCompareType sCompareType, 
-			@WebParam(name = "sCompareIdentifier", partName = "compare.sCompareIdentifier") SCompareIdentifier sCompareIdentifier) throws ServerException, UserException;
+			@WebParam(name = "mcid", partName = "compare.mcid") Long mcid) throws ServerException, UserException;
 
 	/**
 	 * @param roid ObjectID of the Revision
@@ -1001,7 +1005,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "sendCompareEmail")
 	void sendCompareEmail(
 			@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
-			@WebParam(name = "sCompareIdentifier", partName = "sendClashesEmail.sCompareIdentifier") SCompareIdentifier sCompareIdentifier,
+			@WebParam(name = "mcid", partName = "sendClashesEmail.mcid") Long mcid,
 			@WebParam(name = "poid", partName = "sendClashesEmail.poid") Long poid,
 			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") Long roid1,
 			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") Long roid2,
@@ -1329,7 +1333,25 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllQueryEngines")
 	List<SQueryEngine> getAllQueryEngines(
 			@WebParam(name = "onlyEnabled", partName = "getAllQueryEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-
+	
+	/**
+	 * @param onlyEnabled Whether to only include enabled model mergers
+	 * @return A list of SModelMerger
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllModelMergers")
+	List<SModelMerger> getAllModelMergers(
+			@WebParam(name = "onlyEnabled", partName = "getAllModelMergers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+	
+	/**
+	 * @param onlyEnabled Whether to only include enabled model compare
+	 * @return A list of SModelCompare
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllModelCompares")
+	List<SModelCompare> getAllModelCompares(
+			@WebParam(name = "onlyEnabled", partName = "getAllModelCompares.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+	
 	/**
 	 * @param onlyEnabled Whether to only include enabled query engines
 	 * @return A list of QueryEngines
@@ -1394,6 +1416,24 @@ public interface ServiceInterface {
 	SQueryEngine getQueryEngineById(
 			@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
 
+	/**
+	 * @param oid ObjectID of the ModelMerger
+	 * @return SModelMerger
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getModelMergerById")
+	SModelMerger getModelMergerById(
+			@WebParam(name = "oid", partName = "getModelMergerById.oid") Long oid) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the ModelCompare
+	 * @return SModelCompare
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getModelCompareById")
+	SModelCompare getModelCompareById(
+			@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
+	
 	/**
 	 * @param oid ObjectID of the Deserializer
 	 * @return Deserializer
@@ -1476,7 +1516,23 @@ public interface ServiceInterface {
 	@WebMethod(action = "addQueryEngine")
 	void addQueryEngine(
 			@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEngine queryEngine) throws ServerException, UserException;
-	
+
+	/**
+	 * @param modelMerger ModelMerger to add
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addModelMerger")
+	void addModelMerger(
+			@WebParam(name = "modelMerger", partName = "addModelMerger.modelMerger") SModelMerger modelMerger) throws ServerException, UserException;
+
+	/**
+	 * @param modelCompare ModelCompare to add
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addModelCompare")
+	void addModelCompare(
+			@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelCompare modelCompare) throws ServerException, UserException;
+
 	/**
 	 * @param deserializer Deserializer to add
 	 * @throws ServerException, UserException
@@ -1508,6 +1564,22 @@ public interface ServiceInterface {
 	@WebMethod(action = "updateQueryEngine")
 	void updateQueryEngine(
 			@WebParam(name = "queryEngine", partName = "updateQueryEngine.queryEngine") SQueryEngine queryEngine) throws ServerException, UserException;
+
+	/**
+	 * @param modelMerger ModelMerger to update
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "updateModelMerger")
+	void updateModelMerger(
+			@WebParam(name = "modelMerger", partName = "updateModelMerger.modelMerger") SModelMerger modelMerger) throws ServerException, UserException;
+
+	/**
+	 * @param modelCompare ModelCompare to update
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "updateModelCompare")
+	void updateModelCompare(
+			@WebParam(name = "modelCompare", partName = "updateModelCompare.modelCompare") SModelCompare modelCompare) throws ServerException, UserException;
 
 	/**
 	 * @param deserializer Deserializer to update
@@ -1576,6 +1648,22 @@ public interface ServiceInterface {
 			@WebParam(name = "iid", partName = "deleteIfcEngine.iid") Long iid) throws ServerException, UserException;
 
 	/**
+	 * @param iid ObjectID of the ModelMerger to delete
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "deleteModelMerger")
+	void deleteModelMerger(
+			@WebParam(name = "iid", partName = "deleteModelMerger.iid") Long iid) throws ServerException, UserException;
+
+	/**
+	 * @param iid ObjectID of the ModelCompare to delete
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "deleteModelCompare")
+	void deleteModelCompare(
+			@WebParam(name = "iid", partName = "deleteModelCompare.iid") Long iid) throws ServerException, UserException;
+
+	/**
 	 * @param iid ObjectID of the QueryEngine to delete
 	 * @throws ServerException, UserException
 	 */
@@ -1620,6 +1708,20 @@ public interface ServiceInterface {
 	List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
+	 * @return List of all SModelComparePluginDescriptor
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllModelComparePluginDescriptors")
+	List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException;
+
+	/**
+	 * @return List of all SModelMergerPluginDescriptor
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllModelMergerPluginDescriptors")
+	List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException;
+	
+	/**
 	 * @return A settings that determines how to merge
 	 * @throws ServerException, UserException
 	 */
@@ -1652,6 +1754,24 @@ public interface ServiceInterface {
 	@WebMethod(action = "getQueryEngineByName")
 	SQueryEngine getQueryEngineByName(
 			@WebParam(name = "name", partName = "getQueryEngineByName.name") String name) throws ServerException, UserException;
+
+	/**
+	 * @param name Name of the ModelMerger
+	 * @return SModelMerger
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getModelMergerByName")
+	SModelMerger getModelMergerByName(
+			@WebParam(name = "name", partName = "getModelMergerByName.name") String name) throws ServerException, UserException;
+
+	/**
+	 * @param name Name of the ModelCompare
+	 * @return SModelCompare
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getModelCompareByName")
+	SModelCompare getModelCompareByName(
+			@WebParam(name = "name", partName = "getModelCompareByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param objectIDMName Name of the ObjectIDM

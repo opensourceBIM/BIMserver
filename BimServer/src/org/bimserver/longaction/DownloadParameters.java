@@ -22,9 +22,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.models.store.CompareIdentifier;
 import org.bimserver.models.store.CompareType;
-import org.springframework.http.HttpStatus.Series;
 
 import com.google.common.collect.Sets;
 
@@ -47,7 +45,7 @@ public class DownloadParameters extends LongActionKey {
 	private String serializerName;
 	private DownloadType downloadType;
 	private BimServer bimServer;
-	private CompareIdentifier compareIdentifier;
+	private long modelCompareIdentifier;
 	private CompareType compareType;
 	private long ignoreUoid = -1;
 	private String code;
@@ -68,20 +66,16 @@ public class DownloadParameters extends LongActionKey {
 		return ignoreUoid;
 	}
 	
-	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, CompareIdentifier identifier, String serializerName) {
+	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, long modelCompareIdentifier, String serializerName) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_COMPARE);
 		downloadParameters.setRoids(Sets.newHashSet(roid1, roid2));
 		downloadParameters.setCompareType(type);
-		downloadParameters.setCompareIdentifier(identifier);
+		downloadParameters.setModelCompareIdentifier(modelCompareIdentifier);
 		downloadParameters.setSerializerName(serializerName);
 		return downloadParameters;
 	}
 	
-	private void setCompareIdentifier(CompareIdentifier compareIdentifier) {
-		this.compareIdentifier = compareIdentifier;
-	}
-
 	private void setCompareType(CompareType compareType) {
 		this.compareType = compareType;
 	}
@@ -163,8 +157,8 @@ public class DownloadParameters extends LongActionKey {
 		this.oids = oids;
 	}
 
-	public CompareIdentifier getCompareIdentifier() {
-		return compareIdentifier;
+	public long getModelCompareIdentifier() {
+		return modelCompareIdentifier;
 	}
 	
 	public CompareType getCompareType() {
@@ -361,5 +355,9 @@ public class DownloadParameters extends LongActionKey {
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_QUERY);
 		downloadParameters.setSerializerName(serializerName);
 		return downloadParameters;
+	}
+
+	public void setModelCompareIdentifier(long modelCompareIdentifier) {
+		this.modelCompareIdentifier = modelCompareIdentifier;
 	}
 }

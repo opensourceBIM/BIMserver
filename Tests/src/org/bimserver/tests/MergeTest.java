@@ -20,15 +20,14 @@ package org.bimserver.tests;
 import java.io.File;
 
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.merging.IncrementingOidProvider;
-import org.bimserver.merging.Merger;
-import org.bimserver.merging.Merger.GuidMergeIdentifier;
+import org.bimserver.merging.IntelligentGuidBasedModelMerger;
+import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class MergeTest {
@@ -56,7 +55,7 @@ public class MergeTest {
 			model2.indexGuids();
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModelSet ifcModelSet = new IfcModelSet(model1, model2);
-			IfcModelInterface merged = new Merger(new GuidMergeIdentifier()).merge(null, ifcModelSet, true);
+			IfcModelInterface merged = new IntelligentGuidBasedModelMerger().merge(null, ifcModelSet);
 			merged.checkDoubleOidsPlusReferences();
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();

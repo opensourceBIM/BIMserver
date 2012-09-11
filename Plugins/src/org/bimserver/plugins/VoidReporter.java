@@ -10,4 +10,7 @@ public class VoidReporter implements Reporter {
 	public void warning(String warning) {
 	}
 
+	@Override
+	public void info(String info) {
+	}
 }

@@ -13,7 +13,7 @@
 <div class="checkoutMessage"></div>
 <%
 	long roid = -1;
-	JSONObject data = new JSONObject(new JSONTokener(new String(Base64.decodeBase64(request.getParameter("data").getBytes(Charsets.UTF_8)), Charsets.UTF_8)));
+	JSONObject data = new JSONObject(new JSONTokener(request.getParameter("data")));
 	if (data.has("roid")) {
 		roid = data.getLong("roid");
 	}
@@ -62,7 +62,7 @@
 </div>
 <script>
 var userHasCheckinRights = <%=userHasCheckinRights%>;
-var json = Base64.decode('<%=request.getParameter("data")%>');
+var json = Base64.decode('<%=new String(Base64.encodeBase64(data.toString().getBytes(Charsets.UTF_8)), Charsets.UTF_8)%>');
 var data = JSON.parse(json);
 var mimeTypeOverride = null;
 
@@ -118,9 +118,11 @@ function update() {
 					var url = "<%=request.getContextPath()%>/download?longActionId=" + laid + zip + "&serializerName=" + serializerName;
 					if (mimeTypeOverride != null) {
 						url += "&mime=" + mimeTypeOverride;
+						window.open(url);
+					} else {
+						window.location = url;
 					}
 					$(".downloadpopup .message").html("Prepare complete, initiating download, click <a href=\"" + url + "\">here</a> if the download does not start automatically<br/><br/>");
-					window.location = url;
 				} else {
 					setTimeout(update, 500);
 				}
@@ -135,7 +137,7 @@ function update() {
 	});
 }
 
-function start(url) {
+function start(url, data) {
 	$(".downloadpopup .message").html("Preparing download...");
 	$(".downloadpopup .progressbar").show();
 	$(".downloadpopup .fields").hide();
@@ -143,8 +145,9 @@ function start(url) {
 	$.ajax({
 		url: url,
 		cache: false,
+		data: {data: JSON.stringify(data)},
 		context: document.body,
-		type: "get",
+		type: "post",
 		dataType: "json",
 		success: function(data){
 			if (data.error == null) {
@@ -165,22 +168,19 @@ function initCheckout() {
 	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	mimeTypeOverride = null;
 	data.downloadType = "checkout";
-	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
-	start(url);
+	start('initiatedownload.jsp', data);
 }
 
 function initDownload() {
 	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	mimeTypeOverride = null;
-	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
-	start(url);
+	start('initiatedownload.jsp', data);
 }
 
 function initTextDownload() {
 	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	mimeTypeOverride = "text/plain";
-	var url = 'initiatedownload.jsp?data=' + encodeURIComponent(JSON.stringify(data));
-	start(url);
+	start('initiatedownload.jsp', data);
 }
 
 $(function(){

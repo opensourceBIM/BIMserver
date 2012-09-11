@@ -19,10 +19,10 @@ package org.bimserver;
 
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
@@ -88,7 +88,7 @@ public class SettingsManager {
 		if (settings == null) {
 			DatabaseSession session = database.createSession();
 			try {
-				IfcModel model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
+				IfcModelInterface model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
 				if (model.size() == 1) {
 					IdEObject idEObject = model.getValues().iterator().next();
 					if (idEObject instanceof Settings) {

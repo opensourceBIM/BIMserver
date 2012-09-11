@@ -23,19 +23,19 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -89,17 +89,27 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				IfcModel subModel = getDatabaseSession().getAllOfTypes(eClasses, concreteRevision.getProject().getId(), concreteRevision.getId(), true, objectIDM);
+				IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, concreteRevision.getProject().getId(), concreteRevision.getId(), true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
+			IfcModelInterface ifcModel;
+			try {
+				ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet);
+			} catch (MergeException e) {
+				throw new UserException(e);
+			}
 			ifcModel.setName("Unknown");
 			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 			ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 			ifcModel.setDate(virtualRevision.getDate());
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
+		IfcModelInterface ifcModel;
+		try {
+			ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet);
+		} catch (MergeException e) {
+			throw new UserException(e);
+		}
 		if (name.endsWith("-")) {
 			name = name.substring(0, name.length()-1);
 		}

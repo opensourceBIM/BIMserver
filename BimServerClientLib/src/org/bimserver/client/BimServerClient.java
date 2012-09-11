@@ -35,6 +35,8 @@ import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SDataObject;
@@ -49,7 +51,6 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.ConnectDisconnectListener;
@@ -336,6 +337,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (IfcModelInterfaceException e) {
 			e.printStackTrace();
 		}
 		return null;

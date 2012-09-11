@@ -7,7 +7,7 @@
 		try {
 			long sid = Long.parseLong(request.getParameter("sid"));
 			loginManager.getService().deleteDeserializer(sid);
-			response.sendRedirect("settings.jsp");
+			response.sendRedirect("deserializers.jsp");
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}

@@ -126,6 +126,15 @@ public class SSettings implements SBase
 		if (sField.getName().equals("queryengines")) {
 			return getQueryengines();
 		}
+		if (sField.getName().equals("modelmergers")) {
+			return getModelmergers();
+		}
+		if (sField.getName().equals("defaultModelMergerId")) {
+			return getDefaultModelMergerId();
+		}
+		if (sField.getName().equals("modelcompares")) {
+			return getModelcompares();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -237,6 +246,18 @@ public class SSettings implements SBase
 			setQueryengines((List<Long>)val);
 			return;
 		}
+		if (sField.getName().equals("modelmergers")) {
+			setModelmergers((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("defaultModelMergerId")) {
+			setDefaultModelMergerId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("modelcompares")) {
+			setModelcompares((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -270,6 +291,9 @@ public class SSettings implements SBase
 	private List<Long> deserializers = new ArrayList<Long>();
 	private List<Long> schemas = new ArrayList<Long>();
 	private List<Long> queryengines = new ArrayList<Long>();
+	private List<Long> modelmergers = new ArrayList<Long>();
+	private long defaultModelMergerId;
+	private List<Long> modelcompares = new ArrayList<Long>();
 	public java.lang.Boolean getShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
 	}
@@ -451,6 +475,28 @@ public class SSettings implements SBase
 
 	public void setQueryengines(List<Long> queryengines) {
 		this.queryengines = queryengines;
+	}
+	public List<Long> getModelmergers() {
+		return modelmergers;
+	}
+
+	public void setModelmergers(List<Long> modelmergers) {
+		this.modelmergers = modelmergers;
+	}
+	public long getDefaultModelMergerId() {
+		return defaultModelMergerId;
+	}
+
+	public void setDefaultModelMergerId(long defaultModelMergerId) {
+		this.defaultModelMergerId = defaultModelMergerId;
+	}
+	
+	public List<Long> getModelcompares() {
+		return modelcompares;
+	}
+
+	public void setModelcompares(List<Long> modelcompares) {
+		this.modelcompares = modelcompares;
 	}
 	@Override
 	public int hashCode() {

@@ -1,3 +1,9 @@
+<%@page import="org.bimserver.interfaces.objects.SModelComparePluginDescriptor"%>
+<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
+<%@page import="org.bimserver.interfaces.objects.SModelMergerPluginDescriptor"%>
+<%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
+<%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"%>
+<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -19,17 +25,17 @@
 </ul>
 </div>
 <div class="content">
-<h1>Add Render Engine</h1>
+<h1>Add Model Compare</h1>
 <fieldset>
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("add") != null) {
-		SIfcEngine ifcEngine = new SIfcEngine();
-		ifcEngine.setName(request.getParameter("name"));
-		ifcEngine.setClassName(request.getParameter("className"));
-		ifcEngine.setEnabled(true);
-		loginManager.getService().addIfcEngine(ifcEngine);
-		response.sendRedirect("settings.jsp");
+		SModelCompare modelCompare = new SModelCompare();
+		modelCompare.setName(request.getParameter("name"));
+		modelCompare.setClassName(request.getParameter("className"));
+		modelCompare.setEnabled(true);
+		loginManager.getService().addModelCompare(modelCompare);
+		response.sendRedirect("modelcompares.jsp");
 	}
 %>
 <form>
@@ -42,7 +48,7 @@
 	<td><label for="className">Class</label></td>
 	<td><select name="className" id="className">
 <%
-	for (SIfcEnginePluginDescriptor iepd : loginManager.getService().getAllIfcEnginePluginDescriptors()) {
+	for (SModelComparePluginDescriptor iepd : loginManager.getService().getAllModelComparePluginDescriptors()) {
 		out.print("<option value=\"" + iepd.getPluginClassName() + "\">" + iepd.getPluginClassName() + "</option>");
 	}
 %>

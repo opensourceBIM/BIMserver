@@ -28,7 +28,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.store.NewProjectNotification;
 import org.bimserver.models.store.NewRevisionNotification;
@@ -111,7 +111,7 @@ public class NotificationsManager extends Thread {
 	private void initConnections() {
 		DatabaseSession databaseSession = bimServer.getDatabase().createSession();
 		try {
-			IfcModel allOfType = databaseSession.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
+			IfcModelInterface allOfType = databaseSession.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
 			for (IdEObject idEObject : allOfType.getValues()) {
 				if (idEObject instanceof User) {
 					User user = (User) idEObject;

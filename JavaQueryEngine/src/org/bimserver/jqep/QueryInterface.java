@@ -17,10 +17,10 @@ package org.bimserver.jqep;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.PrintWriter;
-
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.Reporter;
 
 public interface QueryInterface {
-	void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out);
+	void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, QueryEngineHelper queryEngineHelper);
 }

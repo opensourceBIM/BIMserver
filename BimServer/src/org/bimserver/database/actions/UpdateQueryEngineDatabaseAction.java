@@ -17,21 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEngine;
-import org.bimserver.shared.exceptions.UserException;
 
 public class UpdateQueryEngineDatabaseAction extends UpdateDatabaseAction<QueryEngine> {
 
 	public UpdateQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, QueryEngine queryEngine) {
 		super(databaseSession, accessMethod, queryEngine);
-	}
-	
-	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		return super.execute();
 	}
 }

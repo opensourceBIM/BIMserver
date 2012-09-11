@@ -38,7 +38,7 @@
 		deserializer.setClassName(type);
 		try {
 			service.addDeserializer(deserializer);
-			response.sendRedirect("settings.jsp");
+			response.sendRedirect("deserializers.jsp");
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}

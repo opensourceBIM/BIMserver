@@ -9,18 +9,20 @@
 package org.bimserver.jqep;
 
 import java.io.PrintWriter;
-import org.bimserver.plugins.serializers.IfcModelInterface;
+
+import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.Reporter;
+import org.bimserver.emf.IfcModelInterface;
 import java.util.*;
 import org.bimserver.models.ifc2x3tc1.*;
 
 public class Query implements QueryInterface {
 
 	private IfcModelInterface model;
-	private PrintWriter out;
 
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out) {
-		out.println("Running doors example");
+	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, QueryEngineHelper queryEngineHelper) {
+		reporter.info("Running doors example");
         List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
         Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
         for (IfcBuildingStorey storey : stories) {
@@ -33,8 +35,8 @@ public class Query implements QueryInterface {
             		if (product instanceof IfcDoor) {
             			IfcDoor ifcDoor = (IfcDoor)product;
                         if (ifcDoor.getOverallHeight() > 2) {
-                            out.println(ifcDoor.getName() + " " + ifcDoor.getOverallHeight());
-                            dest.add(ifcDoor);
+                        	reporter.info(ifcDoor.getName() + " " + ifcDoor.getOverallHeight());
+                        	queryEngineHelper.copy(ifcDoor, dest);
                         }
             		}
             	}

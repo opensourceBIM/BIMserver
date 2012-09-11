@@ -366,6 +366,26 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseModelMergerPluginDescriptor(ModelMergerPluginDescriptor object) {
+			return createModelMergerPluginDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseModelMerger(ModelMerger object) {
+			return createModelMergerAdapter();
+		}
+
+		@Override
+		public Adapter caseModelComparePluginDescriptor(ModelComparePluginDescriptor object) {
+			return createModelComparePluginDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseModelCompare(ModelCompare object) {
+			return createModelCompareAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1179,6 +1199,62 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createQueryEngineAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelMergerPluginDescriptor <em>Model Merger Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelMergerPluginDescriptor
+	 * @generated
+	 */
+	public Adapter createModelMergerPluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelMerger <em>Model Merger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelMerger
+	 * @generated
+	 */
+	public Adapter createModelMergerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelComparePluginDescriptor <em>Model Compare Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelComparePluginDescriptor
+	 * @generated
+	 */
+	public Adapter createModelComparePluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCompare <em>Model Compare</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelCompare
+	 * @generated
+	 */
+	public Adapter createModelCompareAdapter() {
 		return null;
 	}
 

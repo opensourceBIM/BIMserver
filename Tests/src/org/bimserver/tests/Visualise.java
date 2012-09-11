@@ -33,6 +33,8 @@ import javax.swing.tree.TreeNode;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
@@ -43,7 +45,6 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.utils.SwingUtil;
@@ -85,6 +86,8 @@ public class Visualise extends JFrame {
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {
+			e.printStackTrace();
+		} catch (IfcModelInterfaceException e) {
 			e.printStackTrace();
 		}
 	}

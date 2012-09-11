@@ -49,7 +49,7 @@
 		serializer.setObjectIDMId(objectIDMId);
 		serializer.setIfcEngineId(ifcEngineId);
 		loginManager.getService().updateSerializer(serializer);
-		response.sendRedirect("settings.jsp");
+		response.sendRedirect("serializers.jsp");
 	} else {
 		SSerializer serializer = loginManager.getService().getSerializerById(id);
 		name = serializer.getName();

@@ -26,9 +26,8 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.ifc.compare.Compare;
-import org.bimserver.merging.Merger;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
@@ -49,20 +48,24 @@ import org.bimserver.models.ifc2x3tc1.IfcTextStyle;
 import org.bimserver.models.ifc2x3tc1.IfcTextStyleForDefinedFont;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareContainer;
-import org.bimserver.models.store.CompareIdentifier;
 import org.bimserver.models.store.CompareItem;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.ModelCompare;
 import org.bimserver.models.store.ObjectAdded;
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.ObjectRemoved;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.plugins.modelcompare.ModelCompareException;
+import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.plugins.modelmerger.MergeException;
+import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.EList;
 
@@ -75,103 +78,124 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final CompareType compareType;
-	private final CompareIdentifier compareIdentifier;
 	private final Reporter reporter;
+	private final long mcid;
 
-	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids,
-			CompareIdentifier compareIdentifier, CompareType compareType, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long mcid,
+			CompareType compareType, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
+		this.mcid = mcid;
 		this.reporter = reporter;
 		Iterator<Long> iterator = roids.iterator();
 		this.roid1 = iterator.next();
 		this.roid2 = iterator.next();
 		this.compareType = compareType;
-		this.compareIdentifier = compareIdentifier;
 		this.actingUoid = actingUoid;
 		this.objectIDM = objectIDM;
+	}
+	
+	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException {
+		ModelCompare modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelCompare(), mcid, false, null);
+		if (modelCompareObject != null) {
+			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getClassName(), true);
+			if (modelComparePlugin != null) {
+				org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare();
+				return modelCompare;
+			} else {
+				throw new ModelCompareException("No Model Compare found " + modelCompareObject.getClassName());
+			}
+		} else {
+			throw new ModelCompareException("No configured Model Compare found");
+		}
 	}
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision revision1 = getRevisionByRoid(roid1);
-		Revision revision2 = getRevisionByRoid(roid2);
-		Project project = revision1.getProject();
-		Compare compare = new Compare(objectIDM);
-		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
-											// roid2, compareType,
-											// compareIdentifier);
-		IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, actingUoid, null, reporter).execute();
-		IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, actingUoid, null, reporter).execute();
-		if (compareIdentifier == CompareIdentifier.GUID_ID) {
-			compareResults = compare.compareOnGuids(model1, model2, compareType);
-		} else if (compareIdentifier == CompareIdentifier.NAME_ID) {
-			compareResults = compare.compareOnNames(model1, model2, compareType);
-		}
-		bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
+		try {
+			Revision revision1 = getRevisionByRoid(roid1);
+			Revision revision2 = getRevisionByRoid(roid2);
+			Project project = revision1.getProject();
+			CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
+												// roid2, compareType,
+												// compareIdentifier);
+			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, actingUoid, null, reporter).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, actingUoid, null, reporter).execute();
 
-		Merger merger = bimServer.getMergerFactory().createMerger(compareIdentifier == CompareIdentifier.GUID_ID ? MergeIdentifier.GUID : MergeIdentifier.NAME);
-		IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), false);
-		mergedModel.setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
+			try {
+				compareResults = getModelCompare().compare(model1, model2, compareType);
+			} catch (ModelCompareException e) {
+				throw new UserException(e);
+			}
+//			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
 
-		Set<Long> added = new HashSet<Long>();
-		Set<Long> modified = new HashSet<Long>();
-		Set<Long> deleted = new HashSet<Long>();
+			ModelMerger merger = bimServer.getMergerFactory().createMerger();
+			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2));
+			mergedModel.setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
-		for (CompareContainer compareContainer : compareResults.getItems()) {
-			for (CompareItem compareItem : compareContainer.getItems()) {
-				DataObject dataObject = compareItem.getDataObject();
-				if (compareItem instanceof ObjectAdded) {
-					added.add(dataObject.getOid());
-				} else if (compareItem instanceof ObjectModified) {
-					modified.add(dataObject.getOid());
-				} else if (compareItem instanceof ObjectRemoved) {
-					deleted.add(dataObject.getOid());
+			Set<Long> added = new HashSet<Long>();
+			Set<Long> modified = new HashSet<Long>();
+			Set<Long> deleted = new HashSet<Long>();
+
+			for (CompareContainer compareContainer : compareResults.getItems()) {
+				for (CompareItem compareItem : compareContainer.getItems()) {
+					DataObject dataObject = compareItem.getDataObject();
+					if (compareItem instanceof ObjectAdded) {
+						added.add(dataObject.getOid());
+					} else if (compareItem instanceof ObjectModified) {
+						modified.add(dataObject.getOid());
+					} else if (compareItem instanceof ObjectRemoved) {
+						deleted.add(dataObject.getOid());
+					}
 				}
 			}
-		}
 
-		IfcColourRgb red = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
-		red.setName("red");
-		mergedModel.add(red);
-		red.setRed(0.5);
-		red.setGreen(0.0);
-		red.setBlue(0.0);
+			IfcColourRgb red = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
+			red.setName("red");
+			mergedModel.add(red);
+			red.setRed(0.5);
+			red.setGreen(0.0);
+			red.setBlue(0.0);
 
-		IfcColourRgb green = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
-		green.setName("green");
-		mergedModel.add(green);
-		green.setRed(0);
-		green.setGreen(0.5);
-		green.setBlue(0);
+			IfcColourRgb green = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
+			green.setName("green");
+			mergedModel.add(green);
+			green.setRed(0);
+			green.setGreen(0.5);
+			green.setBlue(0);
 
-		IfcColourRgb blue = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
-		blue.setName("blue");
-		mergedModel.add(blue);
-		blue.setRed(0);
-		blue.setGreen(0);
-		blue.setBlue(0.5);
+			IfcColourRgb blue = Ifc2x3tc1Factory.eINSTANCE.createIfcColourRgb();
+			blue.setName("blue");
+			mergedModel.add(blue);
+			blue.setRed(0);
+			blue.setGreen(0);
+			blue.setBlue(0.5);
 
-		HashSet<IdEObject> newObjects = new HashSet<IdEObject>();
-		for (IdEObject idEObject : mergedModel.getValues()) {
-			if (idEObject instanceof IfcProduct) {
-				IfcProduct product = (IfcProduct) idEObject;
-				IfcColourRgb color = null;
-				if (added.contains(product.getOid())) {
-					color = green;
-				} else if (deleted.contains(product.getOid())) {
-					color = red;
-				} else if (modified.contains(product.getOid())) {
-					color = blue;
+			HashSet<IdEObject> newObjects = new HashSet<IdEObject>();
+			for (IdEObject idEObject : mergedModel.getValues()) {
+				if (idEObject instanceof IfcProduct) {
+					IfcProduct product = (IfcProduct) idEObject;
+					IfcColourRgb color = null;
+					if (added.contains(product.getOid())) {
+						color = green;
+					} else if (deleted.contains(product.getOid())) {
+						color = red;
+					} else if (modified.contains(product.getOid())) {
+						color = blue;
+					}
+					setColor(mergedModel, newObjects, product, color);
 				}
-				setColor(mergedModel, newObjects, product, color);
 			}
+			mergedModel.fixOidCounter();
+			for (IdEObject newObject : newObjects) {
+				mergedModel.add(newObject);
+			}
+			return mergedModel;
+		} catch (IfcModelInterfaceException e) {
+			throw new UserException(e);
+		} catch (MergeException e) {
+			throw new UserException(e);
 		}
-		mergedModel.fixOidCounter();
-		for (IdEObject newObject : newObjects) {
-			mergedModel.add(newObject);
-		}
-		return mergedModel;
 	}
 
 	private void setColor(IfcModelInterface model, Set<IdEObject> newObjects, IfcProduct product, IfcColourRgb color) {

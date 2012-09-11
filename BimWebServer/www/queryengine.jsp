@@ -35,7 +35,7 @@
 		queryEngine.setName(name);
 		queryEngine.setClassName(className);
 		loginManager.getService().updateQueryEngine(queryEngine);
-		response.sendRedirect("settings.jsp");
+		response.sendRedirect("queryengines.jsp");
 	} else {
 		SQueryEngine queryEngine = loginManager.getService().getQueryEngineById(id);
 		if (name == null) {

@@ -27,16 +27,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.merging.IncrementingOidProvider;
-import org.bimserver.merging.Merger;
-import org.bimserver.merging.Merger.GuidMergeIdentifier;
+import org.bimserver.merging.IntelligentGuidBasedModelMerger;
+import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.modelmerger.MergeException;
+import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 
 public class GuidHighlighterTester {
 	private SchemaDefinition schema;
@@ -98,12 +99,17 @@ public class GuidHighlighterTester {
 		System.out.println(highlightedGuids.size() + " GUIDs");
 		File inputFile1 = new File(lars, "2440_ARK_Alt4.ifc");
 		File inputFile2 = new File(lars, "612252_RIV_Alt4.ifc");
-		Merger merger = new Merger(new GuidMergeIdentifier());
+		ModelMerger merger = new IntelligentGuidBasedModelMerger();
 		IfcModelInterface model1 = readModel(inputFile1);
 		IfcModelInterface model2 = readModel(inputFile2);
 		model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 		IfcModelSet modelSet = new IfcModelSet(model1, model2);
-		IfcModelInterface mergedModel = merger.merge(null, modelSet, true);
-		new GuidHighlighter(schema, mergedModel, new File(lars, "output.ifc"), highlightedGuids);
+		IfcModelInterface mergedModel;
+		try {
+			mergedModel = merger.merge(null, modelSet);
+			new GuidHighlighter(schema, mergedModel, new File(lars, "output.ifc"), highlightedGuids);
+		} catch (MergeException e) {
+			e.printStackTrace();
+		}
 	}
 }

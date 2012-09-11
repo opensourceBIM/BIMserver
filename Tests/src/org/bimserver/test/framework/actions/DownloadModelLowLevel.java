@@ -19,11 +19,11 @@ package org.bimserver.test.framework.actions;
 
 import java.io.File;
 
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;

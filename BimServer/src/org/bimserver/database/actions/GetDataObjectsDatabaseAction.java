@@ -22,18 +22,19 @@ import java.util.List;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EObject;
 
@@ -58,7 +59,12 @@ public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObj
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
+		IfcModelInterface ifcModel;
+		try {
+			ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet);
+		} catch (MergeException e) {
+			throw new UserException(e);
+		}
 		List<DataObject> dataObjects = new ArrayList<DataObject>();
 		for (Long oid : ifcModel.keySet()) {
 			EObject eObject = ifcModel.get(oid);

@@ -30,13 +30,13 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.DownloadDatabaseAction;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcSlab;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.Reporter;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
@@ -81,6 +81,10 @@ public class CommandLine extends Thread {
 								public void error(String error) {
 								}
 
+								@Override
+								public void info(String info) {
+								}
+								
 								@Override
 								public void warning(String warning) {
 								}});

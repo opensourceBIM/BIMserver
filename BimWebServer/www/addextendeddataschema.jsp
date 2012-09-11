@@ -57,7 +57,7 @@
 			}
 		}
 		loginManager.getService().addExtendedDataSchema(extendedDataSchema);
-		response.sendRedirect("settings.jsp");
+		response.sendRedirect("extendeddataschemas.jsp");
 	}
 %>
 <form enctype="multipart/form-data" method="post">

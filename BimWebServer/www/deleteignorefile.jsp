@@ -7,7 +7,7 @@
 		try {
 	long ifid = Long.parseLong(request.getParameter("ifid"));
 	loginManager.getService().deleteObjectIDM(ifid);
-	response.sendRedirect("settings.jsp");
+	response.sendRedirect("ignorefiles.jsp");
 		} catch (ServiceException e) {
 	JspHelper.showException(out, e);
 		}

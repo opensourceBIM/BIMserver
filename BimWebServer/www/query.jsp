@@ -153,7 +153,7 @@ Examples: <%
 				poid: "<%=revision.getProjectId()%>",
 				roid: <%=roid%>
 			};
-			showDownloadCheckoutPopup("download.jsp?data=" + encodeURIComponent(Base64.encode(JSON.stringify(params))));
+			showDownloadCheckoutPopup(params);
 		});
 		
 		$("textarea").keydown(checkTab);
@@ -240,7 +240,7 @@ Examples: <%
 				roid: roid.val(),
 				oids: [oids.val()]
 			};
-			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
+			showDownloadCheckoutPopup(params);
 		});
 		$("#queryguidsbutton").click(function(event){
 			event.preventDefault();
@@ -253,7 +253,7 @@ Examples: <%
 				roid: roid.val(),
 				guids: [guids.val()]
 			};
-			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
+			showDownloadCheckoutPopup(params);
 		});
 		$("#queryclassesbutton").click(function(event){
 			event.preventDefault();
@@ -266,7 +266,7 @@ Examples: <%
 				roid: roid.val(),
 				classes: [ifcClass.val()]
 			};
-			showDownloadCheckoutPopup("download.jsp?data=" + JSON.stringify(params));
+			showDownloadCheckoutPopup(params);
 		});
 	});
 </script>

@@ -27,7 +27,8 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		LOADING,
 		LOADED
 	}
-	
+
+	private IfcModelInterface model;
 	private long oid = -1;
 	private int rid;
 	private int pid;
@@ -41,6 +42,13 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public void setModel(IfcModelInterface model) throws IfcModelInterfaceException {
+		if (this.model != null) {
+			throw new IfcModelInterfaceException("This object already has a model");
+		}
+		this.model = model;
 	}
 
 	@Override
@@ -135,5 +143,15 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	
 	public State getLoadingState() {
 		return state;
+	}
+	
+	@Override
+	public IfcModelInterface getModel() {
+		return model;
+	}
+	
+	@Override
+	public boolean hasModel() {
+		return getModel() != null;
 	}
 }

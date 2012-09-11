@@ -3,19 +3,21 @@ package org.bimserver.jqep;
 import java.io.PrintWriter;
 import java.util.List;
 
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.Reporter;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.*;
 
 public class Query implements QueryInterface {
 
 	private IfcModelInterface model;
-	private PrintWriter out;
+	private Reporter reporter;
 
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out) {
-		out.println("Running plumbing example");
+	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, QueryEngineHelper queryEngineHelper) {
+		reporter.info("Running plumbing example");
+		this.reporter = reporter;
 		this.model = source;
-		this.out = out;
 		step1();
 	}
 
@@ -23,7 +25,7 @@ public class Query implements QueryInterface {
 		List<IfcDistributionPort> ports = model.getAll(IfcDistributionPort.class);
 		for (IfcDistributionPort port : ports) {
 			if (port.getConnectedTo().size() == 0 && port.getConnectedFrom().size() == 0) {
-				out.println("Step 1: DistributionPort = " + port.getName());
+				reporter.info("Step 1: DistributionPort = " + port.getName());
 				step2(port);
 			}
 		}
@@ -31,7 +33,7 @@ public class Query implements QueryInterface {
 
 	private void step2(IfcDistributionPort distributionPort) {
 		IfcElement relatedElement = distributionPort.getContainedIn().getRelatedElement();
-		out.println("Step 2: FlowSegment = " + relatedElement.getName());
+		reporter.info("Step 2: FlowSegment = " + relatedElement.getName());
 		step3(relatedElement, distributionPort);
 	}
 
@@ -45,21 +47,21 @@ public class Query implements QueryInterface {
 			} else {
 				String name = distributionPort.getName();
 				relevantPortsFound++;
-				out.println("Step 3: Port= " + relevantPortsFound + "DistributionPort = " + name);
+				reporter.info("Step 3: Port= " + relevantPortsFound + "DistributionPort = " + name);
 				step4((IfcDistributionPort) distributionPort);
 			}
 		}
 		if (originalPortsFound != 1) {
-			out.println("Step3: originalPortsFound != 1");
+			reporter.info("Step3: originalPortsFound != 1");
 		}
 		if (relevantPortsFound != 1) {
-			out.println("Step3: relevantPortsFound != 1");
+			reporter.info("Step3: relevantPortsFound != 1");
 		}
 	}
 
 	private void step4(IfcDistributionPort distributionPort) {
 		IfcPort relatingPort = distributionPort.getConnectedFrom().get(0).getRelatingPort();
-		out.println("Step 4: RelatingDistributionPort = " + relatingPort.getName());
+		reporter.info("Step 4: RelatingDistributionPort = " + relatingPort.getName());
 		step5((IfcDistributionPort) relatingPort);
 	}
 
@@ -67,15 +69,15 @@ public class Query implements QueryInterface {
 		IfcElement unknown = distributionPort.getContainedIn().getRelatedElement();
 		String name = unknown.getName();
 		if (unknown instanceof IfcFlowSegment) {
-			out.println("Step 5: FlowSegment = " + name);
+			reporter.info("Step 5: FlowSegment = " + name);
 			step3(unknown, distributionPort);
 		} else if (unknown instanceof IfcFlowFitting) {
-			out.println("Step 5: FlowFitting = " + name);
+			reporter.info("Step 5: FlowFitting = " + name);
 			step6((IfcFlowFitting) unknown, distributionPort);
 		} else if (unknown instanceof IfcFlowTerminal) {
-			out.println("Step 5: Endpoint (terminal) = " + name);
+			reporter.info("Step 5: Endpoint (terminal) = " + name);
 		} else {
-			out.println("Step5: Incorrect entity found");
+			reporter.info("Step5: Incorrect entity found");
 		}
 	}
 
@@ -88,16 +90,16 @@ public class Query implements QueryInterface {
 				originalPortsFound++;
 			} else {
 				String name = distributionPort.getName();
-				out.println("Step 6: Port = " + relevantPortsFound + " DistributionPort = " + name);
+				reporter.info("Step 6: Port = " + relevantPortsFound + " DistributionPort = " + name);
 				step4(distributionPort);
 				relevantPortsFound++;
 			}
 		}
 		if (originalPortsFound != 1) {
-			out.println("Step 6: originalPortsFound != 1");
+			reporter.info("Step 6: originalPortsFound != 1");
 		}
 		if (relevantPortsFound != 1) {
-			out.println("Step 6: relevantPortsFound != 1");
+			reporter.info("Step 6: relevantPortsFound != 1");
 		}
 	}
 }

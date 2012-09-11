@@ -26,7 +26,10 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
+import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
+import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
@@ -37,9 +40,10 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -160,6 +164,28 @@ public class EmfSerializerFactory {
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			SQueryEnginePluginDescriptor descriptor = new SQueryEnginePluginDescriptor();
 			descriptor.setDefaultName(queryEnginePlugin.getDefaultQueryEngineName());
+			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
+	}
+	
+	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() {
+		List<SModelMergerPluginDescriptor> descriptors = new ArrayList<SModelMergerPluginDescriptor>();
+		for (ModelMergerPlugin queryEnginePlugin : pluginManager.getAllModelMergerPlugins(true)) {
+			SModelMergerPluginDescriptor descriptor = new SModelMergerPluginDescriptor();
+			descriptor.setDefaultName(queryEnginePlugin.getDefaultModelMergerName());
+			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
+	}
+
+	public List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() {
+		List<SModelComparePluginDescriptor> descriptors = new ArrayList<SModelComparePluginDescriptor>();
+		for (ModelComparePlugin queryEnginePlugin : pluginManager.getAllModelComparePlugins(true)) {
+			SModelComparePluginDescriptor descriptor = new SModelComparePluginDescriptor();
+			descriptor.setDefaultName(queryEnginePlugin.getDefaultModelCompareName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}

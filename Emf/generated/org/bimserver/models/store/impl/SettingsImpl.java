@@ -21,6 +21,8 @@ import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelMerger;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Plugin;
 import org.bimserver.models.store.QueryEngine;
@@ -63,6 +65,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDeserializers <em>Deserializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getQueryengines <em>Queryengines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getModelmergers <em>Modelmergers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDefaultModelMerger <em>Default Model Merger</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getModelcompares <em>Modelcompares</em>}</li>
  * </ul>
  * </p>
  *
@@ -508,6 +513,44 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	@SuppressWarnings("unchecked")
 	public EList<QueryEngine> getQueryengines() {
 		return (EList<QueryEngine>) eGet(StorePackage.Literals.SETTINGS__QUERYENGINES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ModelMerger> getModelmergers() {
+		return (EList<ModelMerger>) eGet(StorePackage.Literals.SETTINGS__MODELMERGERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelMerger getDefaultModelMerger() {
+		return (ModelMerger) eGet(StorePackage.Literals.SETTINGS__DEFAULT_MODEL_MERGER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultModelMerger(ModelMerger newDefaultModelMerger) {
+		eSet(StorePackage.Literals.SETTINGS__DEFAULT_MODEL_MERGER, newDefaultModelMerger);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ModelCompare> getModelcompares() {
+		return (EList<ModelCompare>) eGet(StorePackage.Literals.SETTINGS__MODELCOMPARES, true);
 	}
 
 } //SettingsImpl

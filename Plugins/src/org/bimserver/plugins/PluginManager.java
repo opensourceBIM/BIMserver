@@ -44,6 +44,8 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
@@ -489,5 +491,33 @@ public class PluginManager {
 				}
 			}
 		}
+	}
+
+	public Collection<ModelMergerPlugin> getAllModelMergerPlugins(boolean onlyEnabled) {
+		return getPlugins(ModelMergerPlugin.class, onlyEnabled);
+	}
+
+	public Collection<ModelComparePlugin> getAllModelComparePlugins(boolean onlyEnabled) {
+		return getPlugins(ModelComparePlugin.class, onlyEnabled);
+	}
+
+	public ModelMergerPlugin getModelMergerPlugin(String className, boolean onlyEnabled) {
+		Collection<ModelMergerPlugin> allModelMergers = getAllModelMergerPlugins(onlyEnabled);
+		for (ModelMergerPlugin modelMergerPlugin : allModelMergers) {
+			if (modelMergerPlugin.getClass().getName().equals(className)) {
+				return modelMergerPlugin;
+			}
+		}
+		return null;
+	}
+
+	public ModelComparePlugin getModelComparePlugin(String className, boolean onlyEnabled) {
+		Collection<ModelComparePlugin> allModelComparePlugins = getAllModelComparePlugins(onlyEnabled);
+		for (ModelComparePlugin modelComparePlugin : allModelComparePlugins) {
+			if (modelComparePlugin.getClass().getName().equals(className)) {
+				return modelComparePlugin;
+			}
+		}
+		return null;
 	}
 }

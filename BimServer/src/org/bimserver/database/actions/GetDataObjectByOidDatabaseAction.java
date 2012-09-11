@@ -21,11 +21,11 @@ import java.util.List;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -38,7 +38,8 @@ import org.bimserver.models.store.ReferenceDataValue;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SimpleDataValue;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -78,7 +79,12 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 				break;
 			}
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
+		IfcModelInterface ifcModel;
+		try {
+			ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet);
+		} catch (MergeException e) {
+			throw new UserException(e);
+		}
 		if (eObject == null) {
 			throw new UserException("Object not found in this project/revision");
 		}

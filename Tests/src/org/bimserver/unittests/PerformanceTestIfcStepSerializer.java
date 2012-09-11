@@ -8,6 +8,7 @@ import java.util.Random;
 import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -43,7 +44,11 @@ public class PerformanceTestIfcStepSerializer {
 							}
 						}
 					}
-					model.add(eObject);
+					try {
+						model.add(eObject);
+					} catch (IfcModelInterfaceException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());

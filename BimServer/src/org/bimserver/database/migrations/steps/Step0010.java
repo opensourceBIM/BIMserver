@@ -184,6 +184,7 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(longActionStateClass, "state", actionStateEnum, Multiplicity.SINGLE);
 		schema.createEAttribute(longActionStateClass, "errors", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(longActionStateClass, "warnings", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
+		schema.createEAttribute(longActionStateClass, "infos", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		
 		EEnum accessMethodEnum = schema.getEEnum("log", "AccessMethod");
 		schema.createEEnumLiteral(accessMethodEnum, "PROTOCOL_BUFFERS");
