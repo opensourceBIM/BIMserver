@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getWarnings <em>Warnings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getInfos <em>Infos</em>}</li>
  * </ul>
  * </p>
  *
@@ -125,6 +126,16 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	@SuppressWarnings("unchecked")
 	public EList<String> getWarnings() {
 		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__WARNINGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getInfos() {
+		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__INFOS, true);
 	}
 
 } //LongActionStateImpl

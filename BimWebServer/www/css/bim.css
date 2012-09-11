@@ -505,11 +505,11 @@ p.explain {
 	height: 14px;
 }
 
-.enabledPlugin, .enabledSerializer, .enabledDeserializer, .enabledObjectIDM, .enabledIfcEngine {
+.enabledPlugin, .enabledSerializer, .enabledDeserializer, .enabledObjectIDM, .enabledIfcEngine, .enabledModelMerger, .enabledModelCompare {
 	background-color: #AAFFAA;
 }
 
-.disabledPlugin, .disabledSerializer, .disabledDeserializer, .disabledObjectIDM, .disabledIfcEngine {
+.disabledPlugin, .disabledSerializer, .disabledDeserializer, .disabledObjectIDM, .disabledIfcEngine, .disabledModelMerger, .disabledModelCompare {
 	background-color: #FFAAAA;
 }
 

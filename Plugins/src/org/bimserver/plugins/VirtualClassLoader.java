@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import org.slf4j.LoggerFactory;
+
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
  * 
@@ -35,6 +37,7 @@ public class VirtualClassLoader extends ClassLoader {
 		if (name.equals("org.bimserver.jqep.QueryInterface")) {
 			return super.findClass(name);
 		} else {
+			LoggerFactory.getLogger(VirtualClassLoader.class).info(name);
 			throw new ClassNotFoundException();
 		}
 	}

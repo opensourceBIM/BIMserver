@@ -31,7 +31,7 @@
 		objectIDM.setName(name);
 		objectIDM.setClassName(className);
 		loginManager.getService().updateObjectIDM(objectIDM);
-		response.sendRedirect("settings.jsp");
+		response.sendRedirect("objectidms.jsp");
 	} else {
 		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(id);
 		if (name == null) {

@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.LongActionState#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getWarnings <em>Warnings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getInfos <em>Infos</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,5 +127,21 @@ public interface LongActionState extends IdEObject {
 	 * @generated
 	 */
 	EList<String> getWarnings();
+
+	/**
+	 * Returns the value of the '<em><b>Infos</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Infos</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Infos</em>' attribute list.
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_Infos()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getInfos();
 
 } // LongActionState

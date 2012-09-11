@@ -28,13 +28,14 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -166,7 +167,11 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 			object = model.get(oid);
 		} else {
 			object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
-			model.add(oid, object);
+			try {
+				model.add(oid, object);
+			} catch (IfcModelInterfaceException e) {
+				throw new DeserializeException(e);
+			}
 		}
 		try {
 			while (reader.hasNext()) {
@@ -214,7 +219,11 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 						if (!model.contains(refId)) {
 							String referenceType = reader.getLocalName();
 							reference = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(referenceType));
-							model.add(refId, reference);
+							try {
+								model.add(refId, reference);
+							} catch (IfcModelInterfaceException e) {
+								throw new DeserializeException(e);
+							}
 						} else {
 							reference = model.get(refId);
 						}

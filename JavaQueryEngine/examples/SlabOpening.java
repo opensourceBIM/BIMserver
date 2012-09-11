@@ -46,20 +46,22 @@ import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSlab;
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.Reporter;
+import org.bimserver.emf.IfcModelInterface;
 
-public class SlabOpening implements QueryInterface {
+public class Query implements QueryInterface {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, PrintWriter out) {
+	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, QueryEngineHelper queryEngineHelper) {
 
 		/*
 		 * Checking how many element quantity is present in the given model. To
 		 * ensure the model has element quantity
 		 */
 		List<IfcElementQuantity> qty = source.getAll(IfcElementQuantity.class);
-		out.println("Total Element quantity in the model are " + qty.size());
+		reporter.info("Total Element quantity in the model are " + qty.size());
 
 		List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
 		List<IfcFeatureElementSubtraction> Opening_subjectToArea = new ArrayList<IfcFeatureElementSubtraction>();
@@ -79,11 +81,11 @@ public class SlabOpening implements QueryInterface {
 				}
 			}
 		} else {
-			out.println("Building stories not available...");
+			reporter.info("Building stories not available...");
 		}
 
 		if (!(Opening_subjectToArea.isEmpty())) {
-			out.println("Total Opening Element in the model which are associated to slabs are " + Opening_subjectToArea.size());
+			reporter.info("Total Opening Element in the model which are associated to slabs are " + Opening_subjectToArea.size());
 			Iterator OE_it = Opening_subjectToArea.iterator();
 			while (OE_it.hasNext()) {
 				IfcOpeningElement openingElement = (IfcOpeningElement) OE_it.next();
@@ -100,7 +102,7 @@ public class SlabOpening implements QueryInterface {
 								if (sweptArea instanceof IfcRectangleProfileDef) {
 									IfcRectangleProfileDef rectangleProfileDef = (IfcRectangleProfileDef)sweptArea;
 									double area = rectangleProfileDef.getXDim() * rectangleProfileDef.getYDim();
-									System.out.println("Area calculated from geometry: " + area);
+									reporter.info("Area calculated from geometry: " + area);
 								}
 							}
 						}
@@ -118,7 +120,7 @@ public class SlabOpening implements QueryInterface {
 									IfcPropertySingleValue ifcPropertySingleValue = (IfcPropertySingleValue)ifcProperty;
 									if (ifcPropertySingleValue.getNominalValue() instanceof IfcAreaMeasure) {
 										IfcAreaMeasure ifcAreaMeasure = (IfcAreaMeasure)ifcPropertySingleValue.getNominalValue();
-										System.out.println("Area from semantic: " + ifcAreaMeasure.getWrappedValue());
+										reporter.info("Area from semantic: " + ifcAreaMeasure.getWrappedValue());
 									}
 								}
 							}
@@ -127,8 +129,7 @@ public class SlabOpening implements QueryInterface {
 				}
 			}
 		} else {
-			out.println("No match for Opening element incorporated to slab");
+			reporter.info("No match for Opening element incorporated to slab");
 		}
-		out.flush();
 	}
 }

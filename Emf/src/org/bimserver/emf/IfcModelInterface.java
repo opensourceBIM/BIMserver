@@ -1,4 +1,4 @@
-package org.bimserver.plugins.serializers;
+package org.bimserver.emf;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +31,8 @@ import com.google.common.collect.BiMap;
 
 public interface IfcModelInterface extends Iterable<IdEObject> {
 
-	void add(long oid, IdEObject newObject);
+	void add(long oid, IdEObject newObject) throws IfcModelInterfaceException;
+	void addAllowMultiModel(long oid, IdEObject newObject) throws IfcModelInterfaceException;
 	Map<Long, IdEObject> getObjects();
 	EObject getMainObject();
 	<T extends EObject> List<T> getAll(Class<T> clazz);
@@ -70,7 +70,7 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	<T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass);
 	void setChecksum(byte[] digest);
 	boolean contains(long oid);
-	long add(IdEObject eObject);
+	long add(IdEObject eObject) throws IfcModelInterfaceException;
 	IfcRoot get(String guid);
 	void fixOidCounter();
 	void setUseDoubleStrings(boolean useDoubleStrings);

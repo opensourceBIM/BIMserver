@@ -643,7 +643,7 @@ if (revisions.size() > 0) {
 				poid: <%=poid%>,
 				roids: roids
 			};
-			$("#downloadcheckoutpopup").load("download.jsp?data=" + encodeURIComponent(Base64.encode(JSON.stringify(params))));
+			$("#downloadcheckoutpopup").load("download.jsp", {data: JSON.stringify(params)});
 		});
 
 		$("#revisiontablink").click(function (){
@@ -682,7 +682,7 @@ if (revisions.size() > 0) {
 				poid: <%=poid%>,
 				roid: $(this).attr("revisionoid")
 			};
-			showDownloadCheckoutPopup("download.jsp?data=" + encodeURIComponent(Base64.encode(JSON.stringify(params))));
+			showDownloadCheckoutPopup(params);
 		});
 		
 		$(".checkinlink").click(function(event){

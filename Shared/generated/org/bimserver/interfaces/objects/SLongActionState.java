@@ -60,6 +60,9 @@ public class SLongActionState implements SBase
 		if (sField.getName().equals("warnings")) {
 			return getWarnings();
 		}
+		if (sField.getName().equals("infos")) {
+			return getInfos();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -83,6 +86,10 @@ public class SLongActionState implements SBase
 			setWarnings((List<String>)val);
 			return;
 		}
+		if (sField.getName().equals("infos")) {
+			setInfos((List<String>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -94,6 +101,7 @@ public class SLongActionState implements SBase
 	private SActionState state;
 	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
+	private List<java.lang.String> infos = new ArrayList<java.lang.String>();
 	public java.lang.Integer getProgress() {
 		return progress;
 	}
@@ -123,6 +131,14 @@ public class SLongActionState implements SBase
 
 	public void setWarnings(List<java.lang.String> warnings) {
 		this.warnings = warnings;
+	}
+
+	public List<java.lang.String> getInfos() {
+		return infos;
+	}
+
+	public void setInfos(List<java.lang.String> infos) {
+		this.infos = infos;
 	}
 	@Override
 	public int hashCode() {

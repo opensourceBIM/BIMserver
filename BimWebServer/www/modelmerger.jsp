@@ -1,3 +1,9 @@
+<%@page import="org.bimserver.interfaces.objects.SModelMergerPluginDescriptor"%>
+<%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
+<%@page import="org.bimserver.interfaces.objects.SModelComparePluginDescriptor"%>
+<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
+<%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"%>
+<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -22,25 +28,25 @@
 </ul>
 </div>
 <div class="content">
-<h1>Edit Render Engine</h1>
+<h1>Edit Model Merger</h1>
 <fieldset>
 <%
 	String name = request.getParameter("name");
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineById(id);
-		ifcEngine.setName(name);
-		ifcEngine.setClassName(className);
-		loginManager.getService().updateIfcEngine(ifcEngine);
-		response.sendRedirect("settings.jsp");
+		SModelMerger modelMerger = loginManager.getService().getModelMergerById(id);
+		modelMerger.setName(name);
+		modelMerger.setClassName(className);
+		loginManager.getService().updateModelMerger(modelMerger);
+		response.sendRedirect("modelmergers.jsp");
 	} else {
-		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineById(id);
+		SModelMerger modelMerger = loginManager.getService().getModelMergerById(id);
 		if (name == null) {
-			name = ifcEngine.getName();
+			name = modelMerger.getName();
 		}
 		if (className == null) {
-			className = ifcEngine.getClassName();
+			className = modelMerger.getClassName();
 		}
 	}
 %>
@@ -52,11 +58,11 @@
 	<td><input name="name" id="name" value="<%=name%>"></input></td>
 </tr>
 <tr>
-	<td><label for="className">Render Engine</label></td>
+	<td><label for="className">Model Merger</label></td>
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%
-	for (SIfcEnginePluginDescriptor iepd : loginManager.getService().getAllIfcEnginePluginDescriptors()) {
+	for (SModelMergerPluginDescriptor iepd : loginManager.getService().getAllModelMergerPluginDescriptors()) {
 %>
 	<option value="<%=iepd.getPluginClassName()%>"<%=(iepd.getPluginClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=iepd.getPluginClassName()%></option>
 <%

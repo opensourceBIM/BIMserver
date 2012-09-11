@@ -45,6 +45,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 	private GregorianCalendar stop;
 	private final List<String> errors = new ArrayList<String>();
 	private final List<String> warnings = new ArrayList<String>();
+	private final List<String> infos = new ArrayList<String>();
 
 	public LongAction(BimServer bimServer, String username, String userUsername, long uoid) {
 		start = new GregorianCalendar();
@@ -143,5 +144,10 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 	@Override
 	public void warning(String warning) {
 		warnings.add(warning);
+	}
+	
+	@Override
+	public void info(String info) {
+		infos.add(info);
 	}
 }

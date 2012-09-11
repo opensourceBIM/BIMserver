@@ -549,6 +549,42 @@ public interface StoreFactory extends EFactory {
 	QueryEngine createQueryEngine();
 
 	/**
+	 * Returns a new object of class '<em>Model Merger Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Merger Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	ModelMergerPluginDescriptor createModelMergerPluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Model Merger</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Merger</em>'.
+	 * @generated
+	 */
+	ModelMerger createModelMerger();
+
+	/**
+	 * Returns a new object of class '<em>Model Compare Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Compare Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	ModelComparePluginDescriptor createModelComparePluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Model Compare</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Compare</em>'.
+	 * @generated
+	 */
+	ModelCompare createModelCompare();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,4 +1,4 @@
-package org.bimserver.plugins.serializers;
+package org.bimserver.database.actions;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -17,6 +17,14 @@ package org.bimserver.plugins.serializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public interface OidProvider {
-	long newOid();
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.QueryEngine;
+
+public class UpdateModelCompareDatabaseAction extends UpdateDatabaseAction<ModelCompare> {
+
+	public UpdateModelCompareDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelCompare modelCompare) {
+		super(databaseSession, accessMethod, modelCompare);
+	}
 }

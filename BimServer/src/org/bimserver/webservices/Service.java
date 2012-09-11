@@ -61,6 +61,7 @@ import org.bimserver.database.migrations.Migrator;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckinResult;
@@ -88,6 +89,10 @@ import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
+import org.bimserver.interfaces.objects.SModelCompare;
+import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
+import org.bimserver.interfaces.objects.SModelMerger;
+import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectIDM;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
@@ -124,6 +129,8 @@ import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelMerger;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.Revision;
@@ -143,7 +150,6 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.CompareWriter;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
@@ -180,7 +186,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkin(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
+	public Integer checkin(final Long poid, final String comment, String deserializerName, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync)
+			throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = bimServer.getDatabase().createSession();
 		String username = "Unknown";
@@ -270,7 +277,7 @@ public class Service implements ServiceInterface {
 			throw new UserException(e);
 		}
 	}
-	
+
 	@Override
 	public Integer checkoutLastRevision(Long poid, String formatIdentifier, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
@@ -576,11 +583,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadCompareResults(String serializerName, Long roid1, Long roid2, SCompareIdentifier identifier, SCompareType type, Boolean sync) throws ServerException, UserException {
+	public Integer downloadCompareResults(String serializerName, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException,
+			UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromCompare(roid1, roid2, converter.convertFromSObject(type), converter.convertFromSObject(identifier), serializerName), sync);
+		return download(DownloadParameters.fromCompare(roid1, roid2, converter.convertFromSObject(type), mcid, serializerName), sync);
 	}
-	
+
 	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
 		User user = null;
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -874,12 +882,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCompareResult compare(Long roid1, Long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) throws ServerException, UserException {
+	public SCompareResult compare(Long roid1, Long roid2, SCompareType sCompareType, Long mcid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, currentUoid, roid1, roid2,
-					converter.convertFromSObject(sCompareType), converter.convertFromSObject(sCompareIdentifier));
+					converter.convertFromSObject(sCompareType), mcid);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
 			handleException(e);
@@ -949,7 +957,7 @@ public class Service implements ServiceInterface {
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public Boolean userHasRights(Long poid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
@@ -1024,8 +1032,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			return converter.convertToSListGuidClash(session.executeAndCommitAction(
-					new FindClashesDatabaseAction<GuidClash>(bimServer, session, accessMethod, converter.convertFromSObject(sClashDetectionSettings, session), currentUoid)));
+			return converter.convertToSListGuidClash(session.executeAndCommitAction(new FindClashesDatabaseAction<GuidClash>(bimServer, session, accessMethod, converter
+					.convertFromSObject(sClashDetectionSettings, session), currentUoid)));
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1039,8 +1047,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			return converter.convertToSListEidClash(session.executeAndCommitAction(
-					new FindClashesDatabaseAction<EidClash>(bimServer, session, accessMethod, converter.convertFromSObject(sClashDetectionSettings, session), currentUoid)));
+			return converter.convertToSListEidClash(session.executeAndCommitAction(new FindClashesDatabaseAction<EidClash>(bimServer, session, accessMethod, converter
+					.convertFromSObject(sClashDetectionSettings, session), currentUoid)));
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1313,7 +1321,7 @@ public class Service implements ServiceInterface {
 		User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 		return converter.convertToSObject(user);
 	}
-	
+
 	@Override
 	public SUser getCurrentUser() throws UserException {
 		if (currentUoid == -1) {
@@ -1438,7 +1446,7 @@ public class Service implements ServiceInterface {
 	public Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException {
 		return bimServer.getSettingsManager().getSettings().getHideUserListForNonAdmin();
 	}
-	
+
 	@Override
 	public void setSettingHideUserListForNonAdmin(Boolean hideUserListForNonAdmin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
@@ -1446,7 +1454,7 @@ public class Service implements ServiceInterface {
 		settings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
 		bimServer.getSettingsManager().saveSettings();
 	}
-	
+
 	@Override
 	public void setSettingAllowSelfRegistration(Boolean allowSelfRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
@@ -1564,7 +1572,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void sendCompareEmail(SCompareType sCompareType, SCompareIdentifier sCompareIdentifier, Long poid, Long roid1, Long roid2, String address) throws ServerException, UserException {
+	public void sendCompareEmail(SCompareType sCompareType, Long mcid, Long poid, Long roid1, Long roid2, String address) throws ServerException,
+			UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			SUser currentUser = getCurrentUser(session);
@@ -1590,7 +1599,7 @@ public class Service implements ServiceInterface {
 				msg.setRecipients(Message.RecipientType.TO, addressTo);
 
 				msg.setSubject("BIMserver Model Comparator");
-				SCompareResult compareResult = compare(roid1, roid2, sCompareType, sCompareIdentifier);
+				SCompareResult compareResult = compare(roid1, roid2, sCompareType, mcid);
 				String html = CompareWriter.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, getProjectByPoid(poid), false);
 				msg.setContent(html, "text/html");
 				Transport.send(msg);
@@ -1751,8 +1760,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SDeserializer> deserializers = converter.convertToSListDeserializer(session.executeAndCommitAction(new GetAllDeserializersDatabaseAction(session, accessMethod, bimServer,
-					onlyEnabled)));
+			List<SDeserializer> deserializers = converter.convertToSListDeserializer(session.executeAndCommitAction(new GetAllDeserializersDatabaseAction(session, accessMethod,
+					bimServer, onlyEnabled)));
 			Collections.sort(deserializers, new SDeserializerComparator());
 			return deserializers;
 		} catch (Exception e) {
@@ -2293,7 +2302,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromQuery(roid, qeid, code, serializerName), sync);
 	}
-	
+
 	@Override
 	public String getProtocolBuffersFile() throws ServerException, UserException {
 		File file = bimServer.getResourceFetcher().getFile("service.proto");
@@ -2366,7 +2375,7 @@ public class Service implements ServiceInterface {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public String getRemoteAddress() throws ServerException, UserException {
 		return remoteAddress;
@@ -2396,6 +2405,18 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return bimServer.getEmfSerializerFactory().getAllModelComparePluginDescriptors();
+	}
+
+	@Override
+	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return bimServer.getEmfSerializerFactory().getAllModelMergerPluginDescriptors();
+	}
+
+	@Override
 	public List<SIfcEngine> getAllIfcEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -2417,10 +2438,44 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SQueryEngine> queryEngines = converter.convertToSListQueryEngine(session.executeAndCommitAction(new GetAllQueryEnginesDatabaseAction(session, accessMethod, bimServer,
-					onlyEnabled)));
+			List<SQueryEngine> queryEngines = converter.convertToSListQueryEngine(session.executeAndCommitAction(new GetAllQueryEnginesDatabaseAction(session, accessMethod,
+					bimServer, onlyEnabled)));
 			Collections.sort(queryEngines, new SQueryEngineComparator());
 			return queryEngines;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<SModelCompare> getAllModelCompares(Boolean onlyEnabled) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			List<SModelCompare> modelCompares = converter.convertToSListModelCompare(session.executeAndCommitAction(new GetAllModelComparesDatabaseAction(session, accessMethod,
+					bimServer, onlyEnabled)));
+			Collections.sort(modelCompares, new SModelCompareComparator());
+			return modelCompares;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<SModelMerger> getAllModelMergers(Boolean onlyEnabled) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			List<SModelMerger> modelMergers = converter.convertToSListModelMerger(session.executeAndCommitAction(new GetAllModelMergersDatabaseAction(session, accessMethod,
+					bimServer, onlyEnabled)));
+			Collections.sort(modelMergers, new SModelMergerComparator());
+			return modelMergers;
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2458,6 +2513,34 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public void updateModelCompare(SModelCompare modelCompare) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ModelCompare convert = converter.convertFromSObject(modelCompare, session);
+			session.executeAndCommitAction(new UpdateModelCompareDatabaseAction(session, accessMethod, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void updateModelMerger(SModelMerger modelMerger) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ModelMerger convert = converter.convertFromSObject(modelMerger, session);
+			session.executeAndCommitAction(new UpdateModelMergerDatabaseAction(session, accessMethod, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public void deleteIfcEngine(Long iid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -2484,7 +2567,35 @@ public class Service implements ServiceInterface {
 			session.close();
 		}
 	}
-	
+
+	@Override
+	public void deleteModelCompare(Long iid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new DeleteModelCompareDatabaseAction(session, accessMethod, iid);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void deleteModelMerger(Long iid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new DeleteModelMergerDatabaseAction(session, accessMethod, iid);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
 	@Override
 	public SIfcEngine getIfcEngineByName(String name) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
@@ -2505,6 +2616,62 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter.convertToSObject(session.executeAndCommitAction(new GetQueryEngineByNameDatabaseAction(session, accessMethod, name)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SModelMerger getModelMergerById(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetModelMergerByIdDatabaseAction(session, accessMethod, oid)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SModelCompare getModelCompareById(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetModelCompareByIdDatabaseAction(session, accessMethod, oid)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SModelCompare getModelCompareByName(String name) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetModelCompareByNameDatabaseAction(session, accessMethod, name)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SModelMerger getModelMergerByName(String name) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetModelMergerByNameDatabaseAction(session, accessMethod, name)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2562,6 +2729,34 @@ public class Service implements ServiceInterface {
 		try {
 			QueryEngine convert = converter.convertFromSObject(queryEngine, session);
 			session.executeAndCommitAction(new AddQueryEngineDatabaseAction(session, accessMethod, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addModelCompare(SModelCompare modelCompare) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ModelCompare convert = converter.convertFromSObject(modelCompare, session);
+			session.executeAndCommitAction(new AddModelCompareDatabaseAction(session, accessMethod, convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addModelMerger(SModelMerger modelMerger) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ModelMerger convert = converter.convertFromSObject(modelMerger, session);
+			session.executeAndCommitAction(new AddModelMergerDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2699,7 +2894,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SExtendedDataSchema> serializers = converter.convertToSListExtendedDataSchema(session.executeAndCommitAction(new GetAllExtendedDataSchemasDatabaseAction(session, accessMethod)));
+			List<SExtendedDataSchema> serializers = converter.convertToSListExtendedDataSchema(session.executeAndCommitAction(new GetAllExtendedDataSchemasDatabaseAction(session,
+					accessMethod)));
 			return serializers;
 		} catch (Exception e) {
 			handleException(e);
@@ -2708,7 +2904,7 @@ public class Service implements ServiceInterface {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public String getQueryEngineExample(Long qeid, String key) throws ServerException, UserException {
 		SQueryEngine queryEngineById = getQueryEngineById(qeid);

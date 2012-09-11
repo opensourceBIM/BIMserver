@@ -21,13 +21,14 @@ import java.util.Date;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
@@ -40,7 +41,8 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
@@ -138,7 +140,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return concreteRevision;
 	}
 
-	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException {
+	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
 		IfcModelInterface ifcModel;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
@@ -152,8 +154,13 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		IfcModelInterface newModel = new IfcModel();
 		newModel.setDate(new Date());
 		newModel.fixOids(getDatabaseSession());
-		IfcModelInterface oldModel = bimServer.getMergerFactory().createMerger()
-				.merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().getIntelligentMerging());
+		IfcModelInterface oldModel;
+		try {
+			oldModel = bimServer.getMergerFactory().createMerger()
+					.merge(project, ifcModelSet);
+		} catch (MergeException e) {
+			throw new UserException(e);
+		}
 
 		oldModel.setObjectOids();
 		newModel.setObjectOids();
@@ -162,7 +169,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		newModel.fixOids(new IncrementingOidProvider(oldModel.getHighestOid() + 1));
 
 		RevisionMerger revisionMerger = new RevisionMerger(oldModel, (IfcModel) newModel);
-		ifcModel = revisionMerger.merge();
+		try {
+			ifcModel = revisionMerger.merge();
+		} catch (IfcModelInterfaceException e) {
+			throw new UserException(e);
+		}
 		revisionMerger.cleanupUnmodified();
 
 		for (IdEObject idEObject : ifcModel.getValues()) {

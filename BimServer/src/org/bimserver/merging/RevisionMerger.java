@@ -24,18 +24,22 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.TracingGarbageCollector;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RevisionMerger {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(RevisionMerger.class);
 	private IfcModelInterface oldModel;
 	private IfcModelInterface newModel;
 	private IfcModel resultModel;
@@ -46,7 +50,7 @@ public class RevisionMerger {
 		resultModel = new IfcModel((int)oldModel.size());
 	}
 	
-	public IfcModel merge() {
+	public IfcModel merge() throws IfcModelInterfaceException {
 		for (IdEObject idEObject : oldModel.getValues()) {
 			copy(resultModel, idEObject, false);
 		}
@@ -134,7 +138,7 @@ public class RevisionMerger {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void fixNonGuidObjects() {
+	private void fixNonGuidObjects() throws IfcModelInterfaceException {
 		Set<List> clearedLists = new HashSet<List>();
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
@@ -217,7 +221,7 @@ public class RevisionMerger {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private IdEObject copy(IfcModel target, IdEObject idEObject, boolean limitToNonGuids) {
+	private IdEObject copy(IfcModel target, IdEObject idEObject, boolean limitToNonGuids) throws IfcModelInterfaceException {
 		if (target.contains(idEObject.getOid())) {
 			return target.get(idEObject.getOid());
 		}
@@ -336,7 +340,7 @@ public class RevisionMerger {
 		}
 	}
 
-	private void copyAttributesGuidObjectsAndAddNewObjects() {
+	private void copyAttributesGuidObjectsAndAddNewObjects() throws IfcModelInterfaceException {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) idEObject;

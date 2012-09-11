@@ -30,7 +30,7 @@
 		objectIDM.setClassName(request.getParameter("className"));
 		objectIDM.setEnabled(true);
 		loginManager.getService().addObjectIDM(objectIDM);
-		response.sendRedirect("settings.jsp");
+		response.sendRedirect("objectidms.jsp");
 	}
 %>
 <form>

@@ -7,7 +7,7 @@
 		try {
 			long ifid = Long.parseLong(request.getParameter("ifid"));
 			loginManager.getService().deleteQueryEngine(ifid);
-			response.sendRedirect("settings.jsp");
+			response.sendRedirect("queryengines.jsp");
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}

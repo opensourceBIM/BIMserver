@@ -23,6 +23,8 @@ import java.util.Set;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
@@ -41,7 +43,6 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -147,7 +148,11 @@ public class GuidHighlighter {
 			model.remove(toDeleteObject);
 		}
 		for (IdEObject newObject : newObjects) {
-			model.add(model.getHighestOid() + 1, newObject);
+			try {
+				model.add(model.getHighestOid() + 1, newObject);
+			} catch (IfcModelInterfaceException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

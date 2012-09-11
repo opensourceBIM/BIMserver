@@ -24,9 +24,9 @@
 <h1>Edit deserializer</h1>
 <fieldset>
 <%
+	long id = Long.parseLong(request.getParameter("id"));
 	String description = "";
 	String name = request.getParameter("name");
-	String className = request.getParameter("className");
 	ServiceInterface service = loginManager.getService();
 	
 	if (request.getParameter("update") != null) {
@@ -34,17 +34,16 @@
 		description = request.getParameter("description");
 		deserializer.setName(name);
 		deserializer.setDescription(description);
-		deserializer.setClassName(className);
 		loginManager.getService().updateDeserializer(deserializer);
-		response.sendRedirect("settings.jsp");
+		response.sendRedirect("deserializers.jsp");
 	} else {
 		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = deserializer.getDescription();
 		name = deserializer.getName();
-		className = deserializer.getClassName();
 	}
 %>
 <form>
+<input type="hidden" name="id" value="<%=id%>"/>
 <input type="hidden" name="name" value="<%=name%>"/>
 <table>
 <tr>

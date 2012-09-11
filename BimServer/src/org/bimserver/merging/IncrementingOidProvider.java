@@ -17,7 +17,7 @@ package org.bimserver.merging;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.plugins.serializers.OidProvider;
+import org.bimserver.emf.OidProvider;
 
 public class IncrementingOidProvider implements OidProvider {
 

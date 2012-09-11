@@ -22,12 +22,12 @@ import java.util.List;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class LargeFileTest {

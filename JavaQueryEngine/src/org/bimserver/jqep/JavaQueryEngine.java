@@ -15,15 +15,16 @@ import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.CompileResult;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.QueryEngineHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.VirtualClassLoader;
 import org.bimserver.plugins.VirtualFile;
 import org.bimserver.plugins.VirtualFileManager;
 import org.bimserver.plugins.queryengine.QueryEngine;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,12 +42,11 @@ public class JavaQueryEngine implements QueryEngine {
 	}
 
 	@Override
-	public IfcModelInterface query(IfcModelInterface model, String code, Reporter reporter) {
+	public IfcModelInterface query(IfcModelInterface model, String code, Reporter reporter, QueryEngineHelper queryEngineHelper) {
 		try {
-			StringWriter out = new StringWriter();
 			QueryInterface queryInterface = createQueryInterface(code);
 			IfcModelInterface dest = new IfcModel();
-			queryInterface.query(model, dest, new PrintWriter(out));
+			queryInterface.query(model, dest, reporter, queryEngineHelper);
 			return dest;
 		} catch (CompileException e) {
 			LOGGER.error("", e);

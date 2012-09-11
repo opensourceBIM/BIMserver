@@ -205,6 +205,11 @@
         eType="#//ExtendedDataSchema" eOpposite="#//ExtendedDataSchema/settings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryengines" upperBound="-1"
         eType="#//QueryEngine" eOpposite="#//QueryEngine/settings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelmergers" upperBound="-1"
+        eType="#//ModelMerger" eOpposite="#//ModelMerger/settings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelMerger" eType="#//ModelMerger"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelcompares" upperBound="-1"
+        eType="#//ModelCompare" eOpposite="#//ModelCompare/settings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Serializer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -432,6 +437,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="warnings" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="infos" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Notification"/>
   <eClassifiers xsi:type="ecore:EClass" name="NewProjectNotification" eSuperTypes="#//Notification">
@@ -524,5 +531,29 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//Settings"
         eOpposite="#//Settings/queryengines"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelMerger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//Settings"
+        eOpposite="#//Settings/modelmergers"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelCompare">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//Settings"
+        eOpposite="#//Settings/modelcompares"/>
   </eClassifiers>
 </ecore:EPackage>

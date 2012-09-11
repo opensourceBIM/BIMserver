@@ -51,14 +51,14 @@ function call(request, callback) {
 	});
 }
 
-function showDownloadCheckoutPopup(url) {
+function showDownloadCheckoutPopup(params) {
 	$("#downloadcheckoutpopup").dialog({
 		title: "Download/Checkout",
 		width: 600,
 		height: 300,
 		modal: true
 	});
-	$("#downloadcheckoutpopup").load(url);
+	$("#downloadcheckoutpopup").load("download.jsp", {data: JSON.stringify(params)});
 }
 
 Array.prototype.compare = function(testArr) {

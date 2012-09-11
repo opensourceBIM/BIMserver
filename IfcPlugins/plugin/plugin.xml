@@ -17,4 +17,13 @@
 		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifc.step.deserializer.IfcStepDeserializerPlugin</implementationClass>
 	</PluginImplementation>
+
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.modelcompare.ModelComparePlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.compare.NameBasedModelComparePlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.modelcompare.ModelComparePlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.compare.GuidBasedModelComparePlugin</implementationClass>
+	</PluginImplementation>
 </PluginDescriptor>

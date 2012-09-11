@@ -32,6 +32,7 @@ import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.Serializer;
@@ -39,7 +40,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction implements ProgressListener {
 
@@ -107,7 +107,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid, objectIDM, reporter);
 			break;
 		case DOWNLOAD_COMPARE:
-			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getCompareIdentifier(), downloadParameters.getCompareType(), currentUoid, objectIDM, reporter);
+			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), currentUoid, objectIDM, reporter);
 			break;
 		case DOWNLOAD_QUERY:
 			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getCode(), currentUoid, objectIDM, reporter);

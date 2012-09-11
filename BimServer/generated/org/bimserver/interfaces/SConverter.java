@@ -329,11 +329,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof GuidClash) {
-			return convertToSObject((GuidClash)input);
-		}
-		else if (input instanceof EidClash) {
+		if (input instanceof EidClash) {
 			return convertToSObject((EidClash)input);
+		}
+		else if (input instanceof GuidClash) {
+			return convertToSObject((GuidClash)input);
 		}
 		SClash result = new SClash();
 		result.setOid(input.getOid());
@@ -998,6 +998,18 @@ public class SConverter {
 			listqueryengines.add(v.getOid());
 		}
 		result.setQueryengines(listqueryengines);
+		List<Long> listmodelmergers = new ArrayList<Long>();
+		for (ModelMerger v : input.getModelmergers()) {
+			listmodelmergers.add(v.getOid());
+		}
+		result.setModelmergers(listmodelmergers);
+		ModelMerger defaultModelMergerVal = input.getDefaultModelMerger();
+		result.setDefaultModelMergerId(defaultModelMergerVal == null ? -1 : defaultModelMergerVal.getOid());
+		List<Long> listmodelcompares = new ArrayList<Long>();
+		for (ModelCompare v : input.getModelcompares()) {
+			listmodelcompares.add(v.getOid());
+		}
+		result.setModelcompares(listmodelcompares);
 		return result;
 	}
 
@@ -1053,6 +1065,15 @@ public class SConverter {
 		List<QueryEngine> listqueryengines = result.getQueryengines();
 		for (long oid : input.getQueryengines()) {
 			listqueryengines.add((QueryEngine)session.get(StorePackage.eINSTANCE.getQueryEngine(), oid, false, null));
+		}
+		List<ModelMerger> listmodelmergers = result.getModelmergers();
+		for (long oid : input.getModelmergers()) {
+			listmodelmergers.add((ModelMerger)session.get(StorePackage.eINSTANCE.getModelMerger(), oid, false, null));
+		}
+		result.setDefaultModelMerger((ModelMerger)session.get(StorePackage.eINSTANCE.getModelMerger(), input.getDefaultModelMergerId(), false, null));
+		List<ModelCompare> listmodelcompares = result.getModelcompares();
+		for (long oid : input.getModelcompares()) {
+			listmodelcompares.add((ModelCompare)session.get(StorePackage.eINSTANCE.getModelCompare(), oid, false, null));
 		}
 		return result;
 	}
@@ -1617,14 +1638,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ReferenceDataValue) {
+		if (input instanceof SimpleDataValue) {
+			return convertToSObject((SimpleDataValue)input);
+		}
+		else if (input instanceof ReferenceDataValue) {
 			return convertToSObject((ReferenceDataValue)input);
 		}
 		else if (input instanceof ListDataValue) {
 			return convertToSObject((ListDataValue)input);
-		}
-		else if (input instanceof SimpleDataValue) {
-			return convertToSObject((SimpleDataValue)input);
 		}
 		SDataValue result = new SDataValue();
 		result.setOid(input.getOid());
@@ -2792,14 +2813,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ObjectAdded) {
-			return convertToSObject((ObjectAdded)input);
-		}
-		else if (input instanceof ObjectModified) {
+		if (input instanceof ObjectModified) {
 			return convertToSObject((ObjectModified)input);
 		}
 		else if (input instanceof ObjectRemoved) {
 			return convertToSObject((ObjectRemoved)input);
+		}
+		else if (input instanceof ObjectAdded) {
+			return convertToSObject((ObjectAdded)input);
 		}
 		SCompareItem result = new SCompareItem();
 		result.setOid(input.getOid());
@@ -3158,6 +3179,7 @@ public class SConverter {
 		result.setState(SActionState.values()[input.getState().ordinal()]);
 		result.getErrors().addAll(input.getErrors());
 		result.getWarnings().addAll(input.getWarnings());
+		result.getInfos().addAll(input.getInfos());
 		return result;
 	}
 
@@ -3171,6 +3193,7 @@ public class SConverter {
 		result.setState(ActionState.values()[input.getState().ordinal()]);
 		result.getErrors().addAll(input.getErrors());
 		result.getWarnings().addAll(input.getWarnings());
+		result.getInfos().addAll(input.getInfos());
 		return result;
 	}
 
@@ -3919,6 +3942,240 @@ public class SConverter {
 		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
 		return result;
 	}
+
+	public Set<SModelMergerPluginDescriptor> convertToSSetModelMergerPluginDescriptor(Collection<ModelMergerPluginDescriptor> input) {
+		Set<SModelMergerPluginDescriptor> result = new HashSet<SModelMergerPluginDescriptor>();
+		for (ModelMergerPluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ModelMergerPluginDescriptor> convertFromSSetModelMergerPluginDescriptor(Collection<SModelMergerPluginDescriptor> input, DatabaseSession session) {
+		Set<ModelMergerPluginDescriptor> result = new HashSet<ModelMergerPluginDescriptor>();
+		for (SModelMergerPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SModelMergerPluginDescriptor> convertToSListModelMergerPluginDescriptor(Collection<ModelMergerPluginDescriptor> input) {
+		List<SModelMergerPluginDescriptor> result = new ArrayList<SModelMergerPluginDescriptor>();
+		for (ModelMergerPluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ModelMergerPluginDescriptor> convertFromSListModelMergerPluginDescriptor(Collection<SModelMergerPluginDescriptor> input, DatabaseSession session) {
+		List<ModelMergerPluginDescriptor> result = new ArrayList<ModelMergerPluginDescriptor>();
+		for (SModelMergerPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SModelMergerPluginDescriptor convertToSObject(ModelMergerPluginDescriptor input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SModelMergerPluginDescriptor result = new SModelMergerPluginDescriptor();
+		result.setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		return result;
+	}
+
+	public ModelMergerPluginDescriptor convertFromSObject(SModelMergerPluginDescriptor input, DatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ModelMergerPluginDescriptor result = StoreFactory.eINSTANCE.createModelMergerPluginDescriptor();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		return result;
+	}
+
+	public Set<SModelMerger> convertToSSetModelMerger(Collection<ModelMerger> input) {
+		Set<SModelMerger> result = new HashSet<SModelMerger>();
+		for (ModelMerger o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ModelMerger> convertFromSSetModelMerger(Collection<SModelMerger> input, DatabaseSession session) {
+		Set<ModelMerger> result = new HashSet<ModelMerger>();
+		for (SModelMerger o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SModelMerger> convertToSListModelMerger(Collection<ModelMerger> input) {
+		List<SModelMerger> result = new ArrayList<SModelMerger>();
+		for (ModelMerger o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ModelMerger> convertFromSListModelMerger(Collection<SModelMerger> input, DatabaseSession session) {
+		List<ModelMerger> result = new ArrayList<ModelMerger>();
+		for (SModelMerger o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SModelMerger convertToSObject(ModelMerger input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SModelMerger result = new SModelMerger();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		result.setDescription(input.getDescription());
+		result.setClassName(input.getClassName());
+		result.setEnabled(input.getEnabled());
+		Settings settingsVal = input.getSettings();
+		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		return result;
+	}
+
+	public ModelMerger convertFromSObject(SModelMerger input, DatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ModelMerger result = StoreFactory.eINSTANCE.createModelMerger();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setName(input.getName());
+		result.setDescription(input.getDescription());
+		result.setClassName(input.getClassName());
+		result.setEnabled(input.getEnabled());
+		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
+		return result;
+	}
+
+	public Set<SModelComparePluginDescriptor> convertToSSetModelComparePluginDescriptor(Collection<ModelComparePluginDescriptor> input) {
+		Set<SModelComparePluginDescriptor> result = new HashSet<SModelComparePluginDescriptor>();
+		for (ModelComparePluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ModelComparePluginDescriptor> convertFromSSetModelComparePluginDescriptor(Collection<SModelComparePluginDescriptor> input, DatabaseSession session) {
+		Set<ModelComparePluginDescriptor> result = new HashSet<ModelComparePluginDescriptor>();
+		for (SModelComparePluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SModelComparePluginDescriptor> convertToSListModelComparePluginDescriptor(Collection<ModelComparePluginDescriptor> input) {
+		List<SModelComparePluginDescriptor> result = new ArrayList<SModelComparePluginDescriptor>();
+		for (ModelComparePluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ModelComparePluginDescriptor> convertFromSListModelComparePluginDescriptor(Collection<SModelComparePluginDescriptor> input, DatabaseSession session) {
+		List<ModelComparePluginDescriptor> result = new ArrayList<ModelComparePluginDescriptor>();
+		for (SModelComparePluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SModelComparePluginDescriptor convertToSObject(ModelComparePluginDescriptor input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SModelComparePluginDescriptor result = new SModelComparePluginDescriptor();
+		result.setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		return result;
+	}
+
+	public ModelComparePluginDescriptor convertFromSObject(SModelComparePluginDescriptor input, DatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ModelComparePluginDescriptor result = StoreFactory.eINSTANCE.createModelComparePluginDescriptor();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		return result;
+	}
+
+	public Set<SModelCompare> convertToSSetModelCompare(Collection<ModelCompare> input) {
+		Set<SModelCompare> result = new HashSet<SModelCompare>();
+		for (ModelCompare o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ModelCompare> convertFromSSetModelCompare(Collection<SModelCompare> input, DatabaseSession session) {
+		Set<ModelCompare> result = new HashSet<ModelCompare>();
+		for (SModelCompare o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SModelCompare> convertToSListModelCompare(Collection<ModelCompare> input) {
+		List<SModelCompare> result = new ArrayList<SModelCompare>();
+		for (ModelCompare o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ModelCompare> convertFromSListModelCompare(Collection<SModelCompare> input, DatabaseSession session) {
+		List<ModelCompare> result = new ArrayList<ModelCompare>();
+		for (SModelCompare o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SModelCompare convertToSObject(ModelCompare input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SModelCompare result = new SModelCompare();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		result.setDescription(input.getDescription());
+		result.setClassName(input.getClassName());
+		result.setEnabled(input.getEnabled());
+		Settings settingsVal = input.getSettings();
+		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		return result;
+	}
+
+	public ModelCompare convertFromSObject(SModelCompare input, DatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ModelCompare result = StoreFactory.eINSTANCE.createModelCompare();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setName(input.getName());
+		result.setDescription(input.getDescription());
+		result.setClassName(input.getClassName());
+		result.setEnabled(input.getEnabled());
+		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false, null));
+		return result;
+	}
 		public SAccessMethod convertToSObject(AccessMethod input) {
 			return SAccessMethod.values()[input.ordinal()];
 		}
@@ -3964,74 +4221,74 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
-		}
-		else if (input instanceof SettingsSaved) {
-			return convertToSObject((SettingsSaved)input);
-		}
-		else if (input instanceof PasswordChanged) {
+		if (input instanceof PasswordChanged) {
 			return convertToSObject((PasswordChanged)input);
 		}
-		else if (input instanceof UserAddedToProject) {
-			return convertToSObject((UserAddedToProject)input);
-		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
-		}
-		else if (input instanceof ClashDetectionSettingsUpdated) {
-			return convertToSObject((ClashDetectionSettingsUpdated)input);
-		}
-		else if (input instanceof PasswordReset) {
-			return convertToSObject((PasswordReset)input);
-		}
-		else if (input instanceof UserUndeleted) {
-			return convertToSObject((UserUndeleted)input);
-		}
-		else if (input instanceof Download) {
-			return convertToSObject((Download)input);
-		}
-		else if (input instanceof GeoTagUpdated) {
-			return convertToSObject((GeoTagUpdated)input);
-		}
-		else if (input instanceof NewUserAdded) {
-			return convertToSObject((NewUserAdded)input);
+		else if (input instanceof NewProjectAdded) {
+			return convertToSObject((NewProjectAdded)input);
 		}
 		else if (input instanceof ServerStarted) {
 			return convertToSObject((ServerStarted)input);
 		}
-		else if (input instanceof NewObjectIDMUploaded) {
-			return convertToSObject((NewObjectIDMUploaded)input);
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
 		}
-		else if (input instanceof ProjectUndeleted) {
-			return convertToSObject((ProjectUndeleted)input);
-		}
-		else if (input instanceof RevisionUpdated) {
-			return convertToSObject((RevisionUpdated)input);
-		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof NewCheckoutAdded) {
-			return convertToSObject((NewCheckoutAdded)input);
-		}
-		else if (input instanceof UserChanged) {
-			return convertToSObject((UserChanged)input);
-		}
-		else if (input instanceof ProjectDeleted) {
-			return convertToSObject((ProjectDeleted)input);
-		}
-		else if (input instanceof RevisionBranched) {
-			return convertToSObject((RevisionBranched)input);
+		else if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
 		}
 		else if (input instanceof NewRevisionAdded) {
 			return convertToSObject((NewRevisionAdded)input);
 		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
+		else if (input instanceof Download) {
+			return convertToSObject((Download)input);
 		}
-		else if (input instanceof NewProjectAdded) {
-			return convertToSObject((NewProjectAdded)input);
+		else if (input instanceof PasswordReset) {
+			return convertToSObject((PasswordReset)input);
+		}
+		else if (input instanceof UserChanged) {
+			return convertToSObject((UserChanged)input);
+		}
+		else if (input instanceof NewUserAdded) {
+			return convertToSObject((NewUserAdded)input);
+		}
+		else if (input instanceof RevisionUpdated) {
+			return convertToSObject((RevisionUpdated)input);
+		}
+		else if (input instanceof NewCheckoutAdded) {
+			return convertToSObject((NewCheckoutAdded)input);
+		}
+		else if (input instanceof NewObjectIDMUploaded) {
+			return convertToSObject((NewObjectIDMUploaded)input);
+		}
+		else if (input instanceof GeoTagUpdated) {
+			return convertToSObject((GeoTagUpdated)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
+		}
+		else if (input instanceof UserUndeleted) {
+			return convertToSObject((UserUndeleted)input);
+		}
+		else if (input instanceof SettingsSaved) {
+			return convertToSObject((SettingsSaved)input);
+		}
+		else if (input instanceof ProjectUndeleted) {
+			return convertToSObject((ProjectUndeleted)input);
+		}
+		else if (input instanceof UserAddedToProject) {
+			return convertToSObject((UserAddedToProject)input);
+		}
+		else if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof ClashDetectionSettingsUpdated) {
+			return convertToSObject((ClashDetectionSettingsUpdated)input);
+		}
+		else if (input instanceof ProjectDeleted) {
+			return convertToSObject((ProjectDeleted)input);
+		}
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());

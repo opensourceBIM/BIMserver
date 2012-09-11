@@ -55,7 +55,7 @@
 		serializer.setClassName(request.getParameter("type"));
 		try {
 			service.addSerializer(serializer);
-			response.sendRedirect("settings.jsp");
+			response.sendRedirect("serializers.jsp");
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}

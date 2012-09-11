@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -29,7 +30,6 @@ import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.satellite.SatelliteServer;
 import org.bimserver.shared.exceptions.ServiceException;
 

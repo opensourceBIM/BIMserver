@@ -21,13 +21,14 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.QueryEngineHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
 
 public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
@@ -63,7 +64,7 @@ public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInter
 				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine();
-					return queryEngine.query(ifcModel, code, reporter);
+					return queryEngine.query(ifcModel, code, reporter, new QueryEngineHelper(objectIDM));
 				} else {
 					throw new UserException("No Query Engine found " + queryEngineObject.getClassName());
 				}

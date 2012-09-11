@@ -29,8 +29,9 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.WrappedValue;
@@ -42,16 +43,17 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.UserException;
@@ -103,12 +105,17 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 				}
 			}
 		}
-		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, false);
+		IfcModelInterface ifcModel;
+		try {
+			ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet);
+		} catch (MergeException e) {
+			throw new UserException(e);
+		}
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
 			if (!clashDetectionSettings.getIgnoredClasses().contains(idEObject.eClass().getName())) {
-				cleanupModel(idEObject.eClass(), idEObject, newModel, ifcModel, converted);
+				cleanupModel(idEObject.eClass(), idEObject, newModel, converted);
 			}
 		}
 		Collection<SerializerPlugin> allSerializerPlugins = bimServer.getPluginManager().getAllSerializerPlugins("application/ifc", true);
@@ -170,7 +177,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 	}
 
 	@SuppressWarnings("unchecked")
-	private IdEObject cleanupModel(EClass originalEClass, IdEObject original, IfcModelInterface newModel, IfcModelInterface ifcModel, Map<IdEObject, IdEObject> converted) throws UserException {
+	private IdEObject cleanupModel(EClass originalEClass, IdEObject original, IfcModelInterface newModel, Map<IdEObject, IdEObject> converted) throws UserException {
 		if (converted.containsKey(original)) {
 			return converted.get(original);
 		}
@@ -178,7 +185,11 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 		((IdEObjectImpl)newObject).setOid(original.getOid());
 		converted.put(original, newObject);
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
-			newModel.add(newObject.getOid(), newObject);
+			try {
+				newModel.add(newObject.getOid(), newObject);
+			} catch (IfcModelInterfaceException e) {
+				throw new UserException(e);
+			}
 		}
 		ObjectIDM objectIDM;
 		try {
@@ -211,7 +222,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 								if (converted.containsKey(o)) {
 									toList.addUnique(converted.get(o));
 								} else {
-									IdEObject result = cleanupModel(originalEClass, (IdEObject) o, newModel, ifcModel, converted);
+									IdEObject result = cleanupModel(originalEClass, (IdEObject) o, newModel, converted);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -221,7 +232,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 							if (converted.containsKey(get)) {
 								newObject.eSet(eStructuralFeature, converted.get(get));
 							} else {
-								newObject.eSet(eStructuralFeature, cleanupModel(originalEClass, (IdEObject) get, newModel, ifcModel, converted));
+								newObject.eSet(eStructuralFeature, cleanupModel(originalEClass, (IdEObject) get, newModel, converted));
 							}
 						}
 					}

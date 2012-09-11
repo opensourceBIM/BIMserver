@@ -21,10 +21,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -46,7 +46,7 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 	@Override
 	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(actingUoid);
-		IfcModel projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), false, null);
+		IfcModelInterface projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), false, null);
 		Set<Project> result = new HashSet<Project>();
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {

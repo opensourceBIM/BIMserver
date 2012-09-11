@@ -102,6 +102,10 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SExtendedData");
 		Class.forName("org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SQueryEngine");
+		Class.forName("org.bimserver.interfaces.objects.SModelMergerPluginDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SModelMerger");
+		Class.forName("org.bimserver.interfaces.objects.SModelComparePluginDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SModelCompare");
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");

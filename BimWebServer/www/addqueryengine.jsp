@@ -31,7 +31,7 @@
 		queryEngine.setClassName(request.getParameter("className"));
 		queryEngine.setEnabled(true);
 		loginManager.getService().addQueryEngine(queryEngine);
-		response.sendRedirect("settings.jsp");
+		response.sendRedirect("queryengines.jsp");
 	}
 %>
 <form>

@@ -33,7 +33,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
-import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
@@ -87,10 +86,9 @@ public class DownloadServlet extends HttpServlet {
 				downloadId = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids, serializerName, true);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
-				SCompareIdentifier sCompareIdentifier = SCompareIdentifier.valueOf(request.getParameter("identifier"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
 				Long roid2 = Long.parseLong(request.getParameter("roid2"));
-				downloadId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, sCompareIdentifier, sCompareType, true);
+				downloadId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {

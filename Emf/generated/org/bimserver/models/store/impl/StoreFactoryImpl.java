@@ -186,6 +186,14 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createQueryEnginePluginDescriptor();
 		case StorePackage.QUERY_ENGINE:
 			return (EObject) createQueryEngine();
+		case StorePackage.MODEL_MERGER_PLUGIN_DESCRIPTOR:
+			return (EObject) createModelMergerPluginDescriptor();
+		case StorePackage.MODEL_MERGER:
+			return (EObject) createModelMerger();
+		case StorePackage.MODEL_COMPARE_PLUGIN_DESCRIPTOR:
+			return (EObject) createModelComparePluginDescriptor();
+		case StorePackage.MODEL_COMPARE:
+			return (EObject) createModelCompare();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -829,6 +837,46 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public QueryEngine createQueryEngine() {
 		QueryEngineImpl queryEngine = new QueryEngineImpl();
 		return queryEngine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelMergerPluginDescriptor createModelMergerPluginDescriptor() {
+		ModelMergerPluginDescriptorImpl modelMergerPluginDescriptor = new ModelMergerPluginDescriptorImpl();
+		return modelMergerPluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelMerger createModelMerger() {
+		ModelMergerImpl modelMerger = new ModelMergerImpl();
+		return modelMerger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelComparePluginDescriptor createModelComparePluginDescriptor() {
+		ModelComparePluginDescriptorImpl modelComparePluginDescriptor = new ModelComparePluginDescriptorImpl();
+		return modelComparePluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCompare createModelCompare() {
+		ModelCompareImpl modelCompare = new ModelCompareImpl();
+		return modelCompare;
 	}
 
 	/**
