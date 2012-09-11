@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterface;
 import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
