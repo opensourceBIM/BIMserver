@@ -211,9 +211,15 @@
           eType="#/0/QueryEngine" eOpposite="#/0/QueryEngine/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelmergers" upperBound="-1"
           eType="#/0/ModelMerger" eOpposite="#/0/ModelMerger/settings"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelMerger" eType="#/0/ModelMerger"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelcompares" upperBound="-1"
           eType="#/0/ModelCompare" eOpposite="#/0/ModelCompare/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelMerger" eType="#/0/ModelMerger"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelCompare"
+          eType="#/0/ModelCompare"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultQueryEngine" eType="#/0/QueryEngine"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultIfcEngine" eType="#/0/IfcEngine"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultSerializer" eType="#/0/Serializer"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#/0/ObjectIDM"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Serializer">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

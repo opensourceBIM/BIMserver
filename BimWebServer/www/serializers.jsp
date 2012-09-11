@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
@@ -5,8 +6,9 @@
 <h1>Serializers</h1>
 <a href="addserializer1.jsp">Add Serializer</a>
 <table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>ObjectIDM</th><th>Render Engine</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>ObjectIDM</th><th>Render Engine</th><th>Default</th><th>State</th><th>Actions</th></tr>
 <%
+	SSettings settings = loginManager.getService().getSettings();
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("disableSerializer")) {
@@ -37,6 +39,7 @@
 		<td><%=serializer.getContentType() %></td>
 		<td><%=objectIDM == null ? "none" : objectIDM.getName() %></td>
 		<td><%=ifcEngine == null ? "none" : ifcEngine.getName() %></td>
+		<td><%=settings.getDefaultIfcEngineId() == ifcEngine.getOid() ? "default" : "make default" %></td>
 		<td class="<%=serializer.getEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%

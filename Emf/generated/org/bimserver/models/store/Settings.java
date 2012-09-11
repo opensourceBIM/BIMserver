@@ -55,8 +55,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getQueryengines <em>Queryengines</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getModelmergers <em>Modelmergers</em>}</li>
- *   <li>{@link org.bimserver.models.store.Settings#getDefaultModelMerger <em>Default Model Merger</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getModelcompares <em>Modelcompares</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getDefaultModelMerger <em>Default Model Merger</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getDefaultModelCompare <em>Default Model Compare</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getDefaultQueryEngine <em>Default Query Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getDefaultIfcEngine <em>Default Ifc Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getDefaultSerializer <em>Default Serializer</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  * </ul>
  * </p>
  *
@@ -732,6 +737,136 @@ public interface Settings extends IdEObject {
 	 * @generated
 	 */
 	void setDefaultModelMerger(ModelMerger value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Model Compare</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Model Compare</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Model Compare</em>' reference.
+	 * @see #setDefaultModelCompare(ModelCompare)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_DefaultModelCompare()
+	 * @model
+	 * @generated
+	 */
+	ModelCompare getDefaultModelCompare();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getDefaultModelCompare <em>Default Model Compare</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Model Compare</em>' reference.
+	 * @see #getDefaultModelCompare()
+	 * @generated
+	 */
+	void setDefaultModelCompare(ModelCompare value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Query Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Query Engine</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Query Engine</em>' reference.
+	 * @see #setDefaultQueryEngine(QueryEngine)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_DefaultQueryEngine()
+	 * @model
+	 * @generated
+	 */
+	QueryEngine getDefaultQueryEngine();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getDefaultQueryEngine <em>Default Query Engine</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Query Engine</em>' reference.
+	 * @see #getDefaultQueryEngine()
+	 * @generated
+	 */
+	void setDefaultQueryEngine(QueryEngine value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Ifc Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Ifc Engine</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Ifc Engine</em>' reference.
+	 * @see #setDefaultIfcEngine(IfcEngine)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_DefaultIfcEngine()
+	 * @model
+	 * @generated
+	 */
+	IfcEngine getDefaultIfcEngine();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getDefaultIfcEngine <em>Default Ifc Engine</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Ifc Engine</em>' reference.
+	 * @see #getDefaultIfcEngine()
+	 * @generated
+	 */
+	void setDefaultIfcEngine(IfcEngine value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Serializer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Serializer</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Serializer</em>' reference.
+	 * @see #setDefaultSerializer(Serializer)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_DefaultSerializer()
+	 * @model
+	 * @generated
+	 */
+	Serializer getDefaultSerializer();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getDefaultSerializer <em>Default Serializer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Serializer</em>' reference.
+	 * @see #getDefaultSerializer()
+	 * @generated
+	 */
+	void setDefaultSerializer(Serializer value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Object IDM</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Object IDM</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Object IDM</em>' reference.
+	 * @see #setDefaultObjectIDM(ObjectIDM)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_DefaultObjectIDM()
+	 * @model
+	 * @generated
+	 */
+	ObjectIDM getDefaultObjectIDM();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getDefaultObjectIDM <em>Default Object IDM</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Object IDM</em>' reference.
+	 * @see #getDefaultObjectIDM()
+	 * @generated
+	 */
+	void setDefaultObjectIDM(ObjectIDM value);
 
 	/**
 	 * Returns the value of the '<em><b>Modelcompares</b></em>' reference list.

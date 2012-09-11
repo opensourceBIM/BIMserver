@@ -234,7 +234,11 @@ public class Schema {
 	}
 
 	public EClass getEClass(String packageName, String name) {
-		return (EClass) packages.get(packageName).getEClassifier(name);
+		EClass eClassifier = (EClass) packages.get(packageName).getEClassifier(name);
+		if (eClassifier == null) {
+			throw new RuntimeException("Class " + name + " not found in " + packageName);
+		}
+		return eClassifier;
 	}
 
 	public void clearUpdates() {
