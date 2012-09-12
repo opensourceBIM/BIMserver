@@ -40,6 +40,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.WrappedValue;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -47,6 +48,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -55,7 +57,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class IfcModel implements IfcModelInterface {
-	
+
 	private BiMap<Long, IdEObject> objects;
 	private byte[] checksum;
 	private IdEObject eObject;
@@ -77,13 +79,15 @@ public class IfcModel implements IfcModelInterface {
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
 	}
-	
+
 	private static BiMap<EClass, Class<?>> initEClassClassMap() {
 		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
-		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass)eClassifier;
-				eClassClassMap.put(eClass, eClass.getInstanceClass());
+		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE }) {
+			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+				if (eClassifier instanceof EClass) {
+					EClass eClass = (EClass) eClassifier;
+					eClassClassMap.put(eClass, eClass.getInstanceClass());
+				}
 			}
 		}
 		return eClassClassMap;
@@ -96,13 +100,15 @@ public class IfcModel implements IfcModelInterface {
 	public IfcModel(int size) {
 		this.objects = HashBiMap.create(size);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
 		index = new HashMap<EClass, List<? extends EObject>>();
-		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
-			if (eClassifier instanceof EClass) {
-				index.put((EClass) eClassifier, new ArrayList<EObject>());
+		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE }) {
+			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+				if (eClassifier instanceof EClass) {
+					index.put((EClass) eClassifier, new ArrayList<EObject>());
+				}
 			}
 		}
 		for (Long key : objects.keySet()) {
@@ -127,7 +133,7 @@ public class IfcModel implements IfcModelInterface {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void buildIndexWithSuperTypes(IdEObject eObject, EClass eClass) {
 		((List<EObject>) indexWithSubTypes.get(eClass)).add(eObject);
@@ -137,7 +143,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public void buildGuidIndex() {
-		guidIndex = new HashMap<EClass, Map<String,IdEObject>>();
+		guidIndex = new HashMap<EClass, Map<String, IdEObject>>();
 		if (objects.isEmpty()) {
 			return;
 		}
@@ -157,7 +163,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public void buildNameIndex() {
-		nameIndex = new HashMap<EClass, Map<String,IdEObject>>();
+		nameIndex = new HashMap<EClass, Map<String, IdEObject>>();
 		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
@@ -208,7 +214,7 @@ public class IfcModel implements IfcModelInterface {
 		ECollections.sort(list, new Comparator<EObject>() {
 			@Override
 			public int compare(EObject o1, EObject o2) {
-				int i=1;
+				int i = 1;
 				for (EStructuralFeature eStructuralFeature : type.getEAllStructuralFeatures()) {
 					if (objectIDM.shouldFollowReference(originalQueryClass, type, eStructuralFeature)) {
 						Object val1 = o1.eGet(eStructuralFeature);
@@ -257,11 +263,10 @@ public class IfcModel implements IfcModelInterface {
 			return (List<T>) list;
 		}
 	}
-	
+
 	public <T extends EObject> List<T> getAll(Class<T> interfaceClass) {
 		return getAll(eClassClassMap.inverse().get(interfaceClass));
 	}
-
 
 	@SuppressWarnings("unchecked")
 	public <T extends EObject> List<T> getAllWithSubTypes(EClass eClass) {
@@ -275,7 +280,7 @@ public class IfcModel implements IfcModelInterface {
 			return (List<T>) list;
 		}
 	}
-	
+
 	public <T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass) {
 		return getAllWithSubTypes(eClassClassMap.inverse().get(interfaceClass));
 	}
@@ -304,7 +309,7 @@ public class IfcModel implements IfcModelInterface {
 		}
 		return nameIndex.get(eClass).get(name);
 	}
-	
+
 	public IdEObject getByGuid(EClass eClass, String guid) {
 		if (guidIndex == null) {
 			indexGuids();
@@ -334,12 +339,12 @@ public class IfcModel implements IfcModelInterface {
 
 	public long add(IdEObject eObject) throws IfcModelInterfaceException {
 		long oid = oidCounter++;
-		((IdEObjectImpl)eObject).setOid(oid);
-		((IdEObjectImpl)eObject).setModel(this);
+		((IdEObjectImpl) eObject).setOid(oid);
+		((IdEObjectImpl) eObject).setModel(this);
 		add(oid, eObject, false, false);
 		return oid;
 	}
-	
+
 	public void add(long key, IdEObject eObject) throws IfcModelInterfaceException {
 		add(key, eObject, false, false);
 	}
@@ -348,7 +353,7 @@ public class IfcModel implements IfcModelInterface {
 	public void addAllowMultiModel(long oid, IdEObject eObject) throws IfcModelInterfaceException {
 		add(oid, eObject, false, true);
 	}
-	
+
 	public void add(Long key, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
 		if (eObject.hasModel() && !allowMultiModel) {
 			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + eObject.getModel());
@@ -360,7 +365,7 @@ public class IfcModel implements IfcModelInterface {
 		} else {
 			objects.put(key, eObject);
 			if (!eObject.hasModel() || !allowMultiModel) {
-				((IdEObjectImpl)eObject).setModel(this);
+				((IdEObjectImpl) eObject).setModel(this);
 			}
 			if (guidIndexed != null) {
 				indexGuid(eObject);
@@ -372,7 +377,7 @@ public class IfcModel implements IfcModelInterface {
 			}
 		}
 	}
-	
+
 	public Map<Long, IdEObject> getObjects() {
 		return objects;
 	}
@@ -422,7 +427,7 @@ public class IfcModel implements IfcModelInterface {
 
 	private void indexGuid(IdEObject idEObject) {
 		if (idEObject instanceof IfcRoot) {
-			IfcRoot ifcRoot = (IfcRoot)idEObject;
+			IfcRoot ifcRoot = (IfcRoot) idEObject;
 			if (ifcRoot.getGlobalId() != null) {
 				guidIndexed.put(ifcRoot.getGlobalId().getWrappedValue(), ifcRoot);
 			}
@@ -444,7 +449,7 @@ public class IfcModel implements IfcModelInterface {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
@@ -452,7 +457,7 @@ public class IfcModel implements IfcModelInterface {
 	public void setAuthorizedUser(String authorizedUser) {
 		this.authorizedUser = authorizedUser;
 	}
-	
+
 	public void setRevisionNr(int revisionNr) {
 		this.revisionNr = revisionNr;
 	}
@@ -460,7 +465,7 @@ public class IfcModel implements IfcModelInterface {
 	public void dumpObject(IdEObject idEObject) {
 		dumpObject(idEObject, 0, new HashSet<IdEObject>());
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private void dumpObject(IdEObject idEObject, int indention, Set<IdEObject> printed) {
 		if (printed.contains(idEObject)) {
@@ -481,7 +486,7 @@ public class IfcModel implements IfcModelInterface {
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			Object referencedObject = idEObject.eGet(eReference);
 			if (eReference.isMany()) {
-				List list = (List)referencedObject;
+				List list = (List) referencedObject;
 				if (list.size() > 0) {
 					printIndention(indention + 1);
 					System.out.println(eReference.getName() + ": ");
@@ -500,11 +505,11 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	private void printIndention(int indention) {
-		for (int i=0; i<indention; i++) {
+		for (int i = 0; i < indention; i++) {
 			System.out.print("  ");
 		}
 	}
-	
+
 	public void dumpSummary() {
 		Map<EClass, Integer> counts = new TreeMap<EClass, Integer>(new Comparator<EClass>() {
 			@Override
@@ -523,7 +528,7 @@ public class IfcModel implements IfcModelInterface {
 			System.out.println(eClass.getName() + ": " + counts.get(eClass));
 		}
 	}
-	
+
 	public void dump() {
 		System.out.println("Dumping IFC Model");
 		for (Long key : objects.keySet()) {
@@ -538,7 +543,7 @@ public class IfcModel implements IfcModelInterface {
 			dumpPlusReferences(done, objects.get(key));
 		}
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private void dumpPlusReferences(Set<IdEObject> done, IdEObject idEObject) {
 		if (idEObject == null) {
@@ -552,7 +557,7 @@ public class IfcModel implements IfcModelInterface {
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			Object val = idEObject.eGet(eReference);
 			if (eReference.isMany()) {
-				List list = (List)val;
+				List list = (List) val;
 				for (Object o : list) {
 					dumpPlusReferences(done, (IdEObject) o);
 				}
@@ -577,7 +582,7 @@ public class IfcModel implements IfcModelInterface {
 		}
 		objects = temp;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private void fixOids(IdEObject idEObject, OidProvider oidProvider, BiMap<Long, IdEObject> temp) {
 		if (idEObject == null) {
@@ -586,14 +591,14 @@ public class IfcModel implements IfcModelInterface {
 		if (temp.containsValue(idEObject)) {
 			return;
 		}
-		((IdEObjectImpl)idEObject).setOid(oidProvider.newOid());
+		((IdEObjectImpl) idEObject).setOid(oidProvider.newOid());
 		if (objects.containsValue(idEObject)) {
 			temp.put(idEObject.getOid(), idEObject);
 		}
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			Object val = idEObject.eGet(eReference);
 			if (eReference.isMany()) {
-				List list = (List)val;
+				List list = (List) val;
 				for (Object o : list) {
 					fixOids((IdEObject) o, oidProvider, temp);
 				}
@@ -602,10 +607,10 @@ public class IfcModel implements IfcModelInterface {
 			}
 		}
 	}
-	
+
 	public void setObjectOids() {
 		for (long oid : objects.keySet()) {
-			((IdEObjectImpl)objects.get(oid)).setOid(oid);
+			((IdEObjectImpl) objects.get(oid)).setOid(oid);
 		}
 	}
 
@@ -651,11 +656,11 @@ public class IfcModel implements IfcModelInterface {
 			oids.add(idEObject.getOid());
 		}
 	}
-	
+
 	public void fixOidCounter() {
 		oidCounter = getHighestOid() + 1;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private void checkDoubleOidsPlusReferences(BiMap<IdEObject, Long> done, IdEObject idEObject) {
 		if (idEObject == null) {
@@ -676,7 +681,7 @@ public class IfcModel implements IfcModelInterface {
 		done.put(idEObject, idEObject.getOid());
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			if (eReference.isMany()) {
-				List list = (List)idEObject.eGet(eReference);
+				List list = (List) idEObject.eGet(eReference);
 				for (Object o : list) {
 					checkDoubleOidsPlusReferences(done, (IdEObject) o);
 				}
@@ -685,14 +690,14 @@ public class IfcModel implements IfcModelInterface {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public void showBackReferences(IdEObject idEObject) {
 		System.out.println("Showing back references to: " + idEObject);
 		for (IdEObject object : getValues()) {
 			for (EReference eReference : object.eClass().getEAllReferences()) {
 				if (eReference.isMany()) {
-					List list = (List)object.eGet(eReference);
+					List list = (List) object.eGet(eReference);
 					for (Object o : list) {
 						if (o == idEObject) {
 							System.out.println(object.eClass().getName() + "." + eReference.getName() + " " + object);
@@ -721,7 +726,7 @@ public class IfcModel implements IfcModelInterface {
 			resetOids(idEObject, done);
 		}
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public void resetOids(IdEObject idEObject, Set<IdEObject> done) {
 		if (idEObject == null) {
@@ -730,12 +735,12 @@ public class IfcModel implements IfcModelInterface {
 		if (done.contains(idEObject)) {
 			return;
 		}
-		((IdEObjectImpl)idEObject).setOid(-1);
+		((IdEObjectImpl) idEObject).setOid(-1);
 		done.add(idEObject);
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			Object val = idEObject.eGet(eReference);
 			if (eReference.isMany()) {
-				List list = (List)val;
+				List list = (List) val;
 				for (Object o : list) {
 					resetOids((IdEObject) o, done);
 				}
@@ -744,7 +749,7 @@ public class IfcModel implements IfcModelInterface {
 			}
 		}
 	}
-	
+
 	public void addChangeListener(IfcModelChangeListener listener) {
 		changeListeners.add(listener);
 	}
@@ -759,9 +764,9 @@ public class IfcModel implements IfcModelInterface {
 
 	@Override
 	public void setUseDoubleStrings(boolean useDoubleStrings) {
-		this.useDoubleStrings  = useDoubleStrings;
+		this.useDoubleStrings = useDoubleStrings;
 	}
-	
+
 	public boolean isUseDoubleStrings() {
 		return useDoubleStrings;
 	}

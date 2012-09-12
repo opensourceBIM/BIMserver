@@ -24,32 +24,100 @@ public class JsonApiServlet extends HttpServlet {
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		writeDocumentation(request, response);
+		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+		writeDocumentation(request, response, bimServer);
 	}
 
-	private void writeDocumentation(HttpServletRequest request, HttpServletResponse response) {
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+	private void writeDocumentation(HttpServletRequest request, HttpServletResponse response, BimServer bimServer) {
 		SService sService = bimServer.getServiceInterfaceService();
 		response.setHeader("Content-Type", "text/html");
 		try {
 			PrintWriter writer = response.getWriter();
 			
+			
 			if (request.getParameter("doc") != null) {
+				writeHeader(writer);
+				writer.println("<h1>BIMserver JSON API Documentation</h1>");
+				writeMenu(writer, sService);
+				writer.println("<div class=\"main\">");
 				String show = request.getParameter("show");
 				if (show == null) {
-					writeAllMethodsDocumentation(writer, sService);
+					writeAllMethodsDocumentation(writer, request, sService, bimServer);
 				} else if (show.equals("method")) {
-					writeMethodDocumentation(writer, sService.getSMethod(request.getParameter("name")));
+					writeMethodDocumentation(writer, request, sService.getSMethod(request.getParameter("name")), bimServer);
 				} else if (show.equals("type")) {
-					writeTypeDocumentation(writer, sService.getSType(request.getParameter("name")));
+					writeTypeDocumentation(writer, sService.getSType(request.getParameter("name")), bimServer);
 				}
+				writer.println("</div>");
+				writeFooter(writer);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private void writeTypeDocumentation(PrintWriter writer, SClass sType) {
+	private void writeMenu(PrintWriter writer, SService sService) {
+		writer.println("<div class=\"menu\">");
+		List<SMethod> methods = new ArrayList<SMethod>(sService.getMethods());
+		Collections.sort(methods, new Comparator<SMethod>(){
+			@Override
+			public int compare(SMethod o1, SMethod o2) {
+				return o1.getName().compareTo(o2.getName());
+			}});
+		writer.println("<h2>Methods</h2>");
+		writer.println("<ul>");
+		for (SMethod sMethod : methods) {
+			writer.println("<li>");
+			writer.println("<a href=\"#" + sMethod.getName() + "\">" + sMethod.getName() + "</a>");
+			writer.println("</li>");
+		}
+		writer.println("</ul>");
+		writer.println("<h2>Objects</h2>");
+		writer.println("<ul>");
+		for (SClass sType : sService.getTypes()) {
+			if (sType.getName().contains("org.bimserver")) {
+				writer.println("<li>");
+				writer.println("<a href=\"#" + sType.getName() + "\">" + sType.getSimpleName() + "</a>");
+				writer.println("</li>");
+			}
+		}
+		writer.println("</ul>");
+		writer.println("</div>");
+	}
+
+	private void writeHeader(PrintWriter writer) {
+		writer.println("<html>");
+		writer.println("<head>");
+		writer.println("<title>BIMserver JSON API Documentation</title>");
+		writer.println("<style>");
+		writer.println("* {font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #333}");
+		writer.println(".jsondoc {width: 900px; margin-left: auto; margin-right: auto}");
+		writer.println("th {text-align: left}");
+		writer.println(".method {border-bottom: 1px solid #eeeeee; margin-bottom: 20px}");
+		writer.println("h1 {font-size: 3em}");
+		writer.println("h2 {font-size: 2em}");
+		writer.println("h3 {font-size: 1em; font-weight: bold; margin: 0}");
+		writer.println("a {text-decoration: none}");
+		writer.println(".menu {float: left; width: 300px; overflow: hidden}");
+		writer.println(".main {float: left; width: 600px}");
+		writer.println(".menu ul {padding-left: 5px}");
+		writer.println(".menu li {list-style: none}");
+		writer.println(".method table {width: 100%}");
+		writer.println(".method td:first-child {width: 30%}");
+		writer.println(".method td:last-child {width: 70%}");
+		writer.println(".method td {border-top: 1px solid #eeeeee; padding-top: 10px; padding-bottom: 10px}");
+		writer.println("</style>");
+		writer.println("</head>");
+		writer.println("<body>");
+		writer.println("<div class=\"jsondoc\">");
+	}
+
+	private void writeFooter(PrintWriter writer) {
+		writer.println("</div>");
+		writer.println("</body>");
+	}
+	
+	private void writeTypeDocumentation(PrintWriter writer, SClass sType, BimServer bimServer) {
 		writer.println("<pre>");
 		if (sType.isEnum()) {
 			writer.println(sType.getSimpleName() + " (Enum): ");
@@ -87,7 +155,7 @@ public class JsonApiServlet extends HttpServlet {
 		writer.println("</pre>");
 	}
 
-	private void writeAllMethodsDocumentation(PrintWriter writer, SService sService) {
+	private void writeAllMethodsDocumentation(PrintWriter writer, HttpServletRequest request, SService sService, BimServer bimServer) {
 		List<SMethod> methods = new ArrayList<SMethod>(sService.getMethods());
 		Collections.sort(methods, new Comparator<SMethod>(){
 			@Override
@@ -95,31 +163,39 @@ public class JsonApiServlet extends HttpServlet {
 				return o1.getName().compareTo(o2.getName());
 			}});
 		for (SMethod sMethod : methods) {
-			writeMethodDocumentation(writer, sMethod);
+			writeMethodDocumentation(writer, request, sMethod, bimServer);
 		}
 	}
 
-	private void writeMethodDocumentation(PrintWriter writer, SMethod sMethod) {
-		writer.println("<div>");
-		writer.println("<a href=\"?doc&show=method&name=" + sMethod.getName() + "\">" + sMethod.getName() + "</a>");
-		writer.println("<pre>");
-		writer.println("request: {");
-		for (SParameter sParameter : sMethod.getParameters()) {
-			writer.print("  " + sParameter.getName() + ": " + getJsonTypeName(sParameter.getType()));
-			if (sParameter != sMethod.getParameters().get(sMethod.getParameters().size()-1)) {
-				writer.println(", ");
-			} else {
-				writer.println();
+	private void writeMethodDocumentation(PrintWriter writer, HttpServletRequest request, SMethod sMethod, BimServer bimServer) {
+		writer.println("<div class=\"method\">");
+		writer.println("<a name=\"" + sMethod.getName() + "\" href=\"#" + sMethod.getName() + "\"><h1>GET " + sMethod.getName() + "</h1></a>");
+//		writer.println("<h1>GET " + sMethod.getName() + "</h1>");
+		writer.println(sMethod.getDoc());
+		writer.println("<h2>Resource URL</h2>");
+		writer.println(bimServer.getSettingsManager().getSettings().getSiteAddress() + request.getServletPath() + "/" + sMethod.getName());
+		writer.println("<h2>Parameters</h2>");
+		if (sMethod.getParameters().isEmpty()) {
+			writer.println("No parameters");
+		} else {
+			writer.println("<table>");
+			writer.println("<tr><th>Name</th><th>Description</th></tr>");
+			for (SParameter sParameter : sMethod.getParameters()) {
+				writer.print("<tr><td><h3>" + sParameter.getName() + "</h3>" + getJsonTypeName(sParameter.getType()) + "</td><td>" + sParameter.getDoc() + "</td></tr>");
 			}
+			writer.println("</table>");
 		}
-		writer.println("}");
-		writer.println("</pre>");
 		
-		writer.println("<pre>");
-		writer.print("response: ");
-		SClass returnType = sMethod.getReturnType();
-		writer.println(getJsonTypeName(returnType));
-		writer.println("</pre>");
+		writer.println("<h2>Response</h2>");
+		if (sMethod.getReturnType() == null || sMethod.getReturnType().getName().equals("void")) {
+			writer.println("No response");
+		} else {
+			writer.println("<pre>");
+			writer.print("response: ");
+			SClass returnType = sMethod.getReturnType();
+			writer.println(getJsonTypeName(returnType));
+			writer.println("</pre>");
+		}
 
 		writer.println("</div>");
 	}
@@ -132,6 +208,8 @@ public class JsonApiServlet extends HttpServlet {
 			return "int";
 		} else if (javaTypeName.equals("java.lang.Boolean")) {
 			return "boolean";
+		} else if (javaTypeName.equals("java.lang.Double")) {
+			return "double";
 		} else if (javaTypeName.equals("java.lang.String")) {
 			return "String";
 		} else if (javaTypeName.equals("java.util.Date")) {
@@ -139,7 +217,7 @@ public class JsonApiServlet extends HttpServlet {
 		} else if (javaTypeName.equals("void")) {
 			return "void";
 		} else {
-			return "<a href=\"?doc&show=type&name=" + javaTypeName + "\">" + javaTypeName + "</a>";
+			return "<a href=\"?doc&show=type&name=" + javaTypeName + "\">" + sClass.getSimpleName() + "</a>";
 		}
 	}
 }

@@ -272,8 +272,8 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
-			serviceInterfaceService = new SService(ServiceInterface.class);
-			notificationInterfaceService = new SService(NotificationInterface.class);
+			serviceInterfaceService = new SService(new File("../Shared/src/org/bimserver/shared/ServiceInterface.java"), ServiceInterface.class);
+			notificationInterfaceService = new SService(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java"), NotificationInterface.class);
 
 			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();
@@ -327,8 +327,8 @@ public class BimServer {
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, settingsManager.getSettings().getProtocolBuffersPort());
-				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, new SService(ServiceInterface.class)));
+				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaceService, settingsManager.getSettings().getProtocolBuffersPort());
+				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, serviceInterfaceService));
 				protocolBuffersServer.start();
 			} catch (Exception e) {
 				LOGGER.error("", e);

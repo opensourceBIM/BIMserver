@@ -17,6 +17,8 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
+
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -89,11 +91,9 @@ public class SettingsManager {
 			DatabaseSession session = database.createSession();
 			try {
 				IfcModelInterface model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
-				if (model.size() == 1) {
-					IdEObject idEObject = model.getValues().iterator().next();
-					if (idEObject instanceof Settings) {
-						settings = (Settings) idEObject;
-					}
+				List<Settings> allSettings = model.getAll(Settings.class);
+				if (allSettings.size() == 1) {
+					settings = allSettings.get(0);
 				}
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);

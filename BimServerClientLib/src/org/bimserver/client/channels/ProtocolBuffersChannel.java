@@ -32,15 +32,17 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 
 	private SocketChannel channel;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
+	private final SService sService;
 
-	public ProtocolBuffersChannel(ProtocolBuffersMetaData protocolBuffersMetaData) {
+	public ProtocolBuffersChannel(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService) {
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
+		this.sService = sService;
 	}
 	
 	public void connect(String address, int port) throws IOException {
 		channel = new SocketChannel();
 		channel.registerConnectDisconnectListener(this);
-		Reflector reflector = new Reflector(protocolBuffersMetaData, new SService(ServiceInterface.class), channel);
+		Reflector reflector = new Reflector(protocolBuffersMetaData, sService, channel);
 		setServiceInterface(new ServiceInterfaceReflectorImpl(reflector));
 		channel.connect(new InetSocketAddress(address, port));
 	}

@@ -4,6 +4,7 @@ package org.bimserver.interfaces;
 import org.bimserver.shared.meta.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.io.File;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -26,8 +27,8 @@ import org.slf4j.LoggerFactory;
 public class SServiceInterfaceService extends SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SServiceInterfaceService.class);
 
-	public SServiceInterfaceService(Class<?> cl) {
-		super(cl);
+	public SServiceInterfaceService(File sourceFile, Class<?> cl) {
+		super(sourceFile, cl);
 	}
 	
 		public void init() {
