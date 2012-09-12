@@ -24,6 +24,7 @@
 		<antcall target="SceneJS" />
 		<antcall target="IfcEngine" />
 		<antcall target="Mergers" />
+		<antcall target="JavaQueryEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
 		<antcall target="buildingSMARTLibrary" />
@@ -254,6 +255,25 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-ifcplugins.jar">
 			<fileset dir="builds/ifcplugins"/>
+		</jar>
+	</target>
+	<target name="JavaQueryEngine">
+		<mkdir dir="builds/javaqueryengine" />
+		<javac destdir="builds/javaqueryengine" debug="on" includeantruntime="false">
+			<src path="../../JavaQueryEngine/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/javaqueryengine/plugin"/>
+		<copy todir="builds/javaqueryengine/plugin">
+			<fileset dir="../../JavaQueryEngine/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-javaqueryengine.jar">
+			<fileset dir="builds/javaqueryengine"/>
 		</jar>
 	</target>
 	<target name="Mergers">
