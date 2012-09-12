@@ -28,15 +28,10 @@ import java.util.Set;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.merging.IncrementingOidProvider;
-import org.bimserver.merging.IntelligentGuidBasedModelMerger;
-import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.modelmerger.MergeException;
-import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.schema.SchemaDefinition;
 
 public class GuidHighlighterTester {
@@ -94,22 +89,22 @@ public class GuidHighlighterTester {
 	}
 
 	private void start() {
-		File lars = new File("C:\\Users\\Ruben\\Documents\\My Dropbox\\Logic Labs\\Projecten\\BIMserver\\Lars\\");
-		Set<String> highlightedGuids = readGuidsFromFile(new File(lars, "missing.csv"));
-		System.out.println(highlightedGuids.size() + " GUIDs");
-		File inputFile1 = new File(lars, "2440_ARK_Alt4.ifc");
-		File inputFile2 = new File(lars, "612252_RIV_Alt4.ifc");
-		ModelMerger merger = new IntelligentGuidBasedModelMerger();
-		IfcModelInterface model1 = readModel(inputFile1);
-		IfcModelInterface model2 = readModel(inputFile2);
-		model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
-		IfcModelSet modelSet = new IfcModelSet(model1, model2);
-		IfcModelInterface mergedModel;
-		try {
-			mergedModel = merger.merge(null, modelSet);
-			new GuidHighlighter(schema, mergedModel, new File(lars, "output.ifc"), highlightedGuids);
-		} catch (MergeException e) {
-			e.printStackTrace();
-		}
+//		File lars = new File("C:\\Users\\Ruben\\Documents\\My Dropbox\\Logic Labs\\Projecten\\BIMserver\\Lars\\");
+//		Set<String> highlightedGuids = readGuidsFromFile(new File(lars, "missing.csv"));
+//		System.out.println(highlightedGuids.size() + " GUIDs");
+//		File inputFile1 = new File(lars, "2440_ARK_Alt4.ifc");
+//		File inputFile2 = new File(lars, "612252_RIV_Alt4.ifc");
+//		ModelMerger merger = new IntelligentGuidBasedModelMerger();
+//		IfcModelInterface model1 = readModel(inputFile1);
+//		IfcModelInterface model2 = readModel(inputFile2);
+//		model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
+//		IfcModelSet modelSet = new IfcModelSet(model1, model2);
+//		IfcModelInterface mergedModel;
+//		try {
+//			mergedModel = merger.merge(null, modelSet);
+//			new GuidHighlighter(schema, mergedModel, new File(lars, "output.ifc"), highlightedGuids);
+//		} catch (MergeException e) {
+//			e.printStackTrace();
+//		}
 	}
 }
