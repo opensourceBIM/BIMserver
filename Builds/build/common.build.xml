@@ -23,6 +23,7 @@
 		<antcall target="Collada" />
 		<antcall target="SceneJS" />
 		<antcall target="IfcEngine" />
+		<antcall target="Mergers" />
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
 		<antcall target="buildingSMARTLibrary" />
@@ -253,6 +254,25 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-ifcplugins.jar">
 			<fileset dir="builds/ifcplugins"/>
+		</jar>
+	</target>
+	<target name="Mergers">
+		<mkdir dir="builds/mergers" />
+		<javac destdir="builds/mergers" debug="on" includeantruntime="false">
+			<src path="../../Mergers/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/mergers/plugin"/>
+		<copy todir="builds/mergers/plugin">
+			<fileset dir="../../Mergers/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-mergers.jar">
+			<fileset dir="builds/mergers"/>
 		</jar>
 	</target>
 	<target name="MiscSerializers">
