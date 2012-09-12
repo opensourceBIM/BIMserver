@@ -28,9 +28,9 @@ service NotificationInterface {
 
 	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
 
-	rpc newProject (NewProjectRequest) returns (VoidResponse);
-
 	rpc serverHasStarted (ServerHasStartedRequest) returns (VoidResponse);
+
+	rpc newProject (NewProjectRequest) returns (VoidResponse);
 
 }
 
@@ -47,6 +47,9 @@ message NewRevisionRequest {
 	optional SNewRevisionNotification arg0 = 1;
 }
 
+message ServerHasStartedRequest {
+}
+
 message SNewProjectNotification {
 	optional int64 oid = 1;
 	optional int64 projectId = 2;
@@ -54,8 +57,5 @@ message SNewProjectNotification {
 
 message NewProjectRequest {
 	optional SNewProjectNotification arg0 = 1;
-}
-
-message ServerHasStartedRequest {
 }
 

@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SUserNameComparator"%>
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
@@ -383,9 +384,14 @@ if (revisions.size() > 0) {
 						<option value="ADD">Added</option>
 						<option value="MODIFY">Modified</option>
 						<option value="DELETE">Deleted</option>
-					</select> Based on <select name="identifier">
-						<option value="GUID_ID">GUID</option>
-						<option value="NAME_ID">Name</option>
+					</select> Compare Engine <select name="mcid">
+<%
+for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(true)) {
+%>
+						<option value="<%=modelCompare.getOid()%>" <%=loginManager.getService().getDefaultModelCompare() != null && loginManager.getService().getDefaultModelCompare().getOid() == modelCompare.getOid() ? "selected=\"selected\"" : ""%>><%=modelCompare.getName() %></option>
+<%
+}
+%>
 					</select>
 					<button type="submit" name="compare" value="Compare">Compare</button>
 				</form>

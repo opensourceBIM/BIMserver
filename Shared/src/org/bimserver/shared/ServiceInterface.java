@@ -2219,6 +2219,27 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllExtendedSchemas")
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 	
-	SSettings getSettings() throws ServerException, UserException;
-	void setSettings(SSettings settings) throws ServerException, UserException;
+	SIfcEngine getDefaultIfcEngine() throws ServerException, UserException;
+
+	SQueryEngine getDefaultQueryEngine() throws ServerException, UserException;
+
+	SModelCompare getDefaultModelCompare() throws ServerException, UserException;
+
+	SModelMerger getDefaultModelMerger() throws ServerException, UserException;
+
+	SSerializer getDefaultSerializer() throws ServerException, UserException;
+
+	SObjectIDM getDefaultObjectIDM() throws ServerException, UserException;
+
+	void setDefaultIfcEngine(long oid) throws UserException, ServerException;
+
+	void setDefaultQueryEngine(long oid) throws UserException, ServerException;
+
+	void setDefaultModelCompare(long oid) throws UserException, ServerException;
+
+	void setDefaultModelMerger(long oid) throws UserException, ServerException;
+
+	void setDefaultSerializer(long oid) throws UserException, ServerException;
+
+	void setDefaultObjectIDM(long oid) throws UserException, ServerException;
 }

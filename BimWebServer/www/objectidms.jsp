@@ -4,7 +4,7 @@
 <h1>Object IDMs</h1>
 <a href="addobjectidm.jsp">Add ObjectIDM</a>
 <table class="formatted">
-<tr><th>Name</th><th>Classname</th><th>Serializers</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Classname</th><th>Serializers</th><th>Default</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SObjectIDM> objectIDMs = service.getAllObjectIDMs(false);
 	for (SObjectIDM objectIDM : objectIDMs) {
@@ -13,6 +13,7 @@
 		<td><a href="objectidm.jsp?id=<%=objectIDM.getOid()%>"><%=objectIDM.getName() %></a></td>
 		<td><%=objectIDM.getClassName() %></td>
 		<td><%=objectIDM.getSerializers().size() %></td>
+		<td><input type="radio" name="default" oid="<%=objectIDM.getOid()%>" <%=service.getDefaultObjectIDM() != null && service.getDefaultObjectIDM().getOid() == objectIDM.getOid() ? "checked" : "" %>/></td>
 		<td class="<%=objectIDM.getEnabled() ? "enabledObjectIDM" : "disabledObjectIDM" %>"> <%=objectIDM.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
@@ -35,3 +36,10 @@
 	}
 %>
 </table>
+<script>
+$(function(){
+	$("input[name=\"default\"]").change(function(){
+		$.ajax("setdefaultobjectidm.jsp?oid=" + $(this).attr("oid"));
+	});
+});
+</script>

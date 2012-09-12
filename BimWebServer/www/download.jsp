@@ -44,7 +44,7 @@
 	for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getName()%>"
-		<%=serializer.getDefaultSerializer() != null && serializer.getDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+		<%=loginManager.getService().getDefaultSerializer() != null && loginManager.getService().getDefaultSerializer().getOid() == serializer.getOid() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 	<%
 	}
 	%>
