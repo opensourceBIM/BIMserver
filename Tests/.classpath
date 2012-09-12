@@ -43,6 +43,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/BimWebServer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GeneratedProtocolBuffersClient"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimCombined"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Mergers"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
