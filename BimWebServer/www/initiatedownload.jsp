@@ -67,10 +67,9 @@
 			longActionId = loginManager.getService().downloadRevisions(roids, serializerName, sync);
 		} else if (downloadType.equals("compare")) {
 			SCompareType sCompareType = SCompareType.valueOf(data.getString("type"));
-			SCompareIdentifier sCompareIdentifier = SCompareIdentifier.valueOf(data.getString("identifier"));
 			Long roid1 = data.getLong("roid1");
 			Long roid2 = data.getLong("roid2");
-			longActionId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, sCompareIdentifier, sCompareType, sync);
+			longActionId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, data.getLong("mcid"), sCompareType, sync);
 		} else if (downloadType.equals("query")) {
 			longActionId = loginManager.getService().downloadQuery(roid, data.getLong("qeid"), data.getString("code"), sync, serializerName);
 		} else {

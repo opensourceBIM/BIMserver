@@ -63,6 +63,7 @@ import org.bimserver.models.store.QueryEngine;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerState;
+import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.notifications.NotificationsManager;
@@ -364,46 +365,53 @@ public class BimServer {
 	 */
 	private void createDatabaseObjects() throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
 		DatabaseSession session = bimDatabase.createSession();
-		ObjectIDM defaultObjectIDM = null;
+		Settings settings = getSettingsManager().getSettings();
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
 			String name = objectIDMPlugin.getDefaultObjectIDMName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getObjectIDM_Name(), new StringLiteral(name));
 			ObjectIDM found = session.querySingle(condition, ObjectIDM.class, false, null);
 			if (found == null) {
 				ObjectIDM objectIDM = StoreFactory.eINSTANCE.createObjectIDM();
+				settings.getObjectIDMs().add(objectIDM);
 				objectIDM.setName(name);
 				objectIDM.setClassName(objectIDMPlugin.getClass().getName());
 				objectIDM.setEnabled(true);
-				if (objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
-					defaultObjectIDM = objectIDM;
+				if (settings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
+					settings.setDefaultObjectIDM(objectIDM);
 				}
 				session.store(objectIDM);
 			} else {
-				if (objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
-					defaultObjectIDM = found;
+				if (settings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
+					settings.setDefaultObjectIDM(found);
 				}
 			}
 		}
-		IfcEngine defaultIfcEngine = null;
+		if (settings.getDefaultObjectIDM() == null && !settings.getObjectIDMs().isEmpty()) {
+			settings.setDefaultObjectIDM(settings.getObjectIDMs().get(0));
+		}
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getDefaultIfcEngineName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
 			IfcEngine found = session.querySingle(condition, IfcEngine.class, false, null);
 			if (found == null) {
 				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
+				settings.getIfcEngines().add(ifcEngine);
 				ifcEngine.setClassName(ifcEnginePlugin.getClass().getName());
 				ifcEngine.setName(name);
 				ifcEngine.setEnabled(true);
 				ifcEngine.setActive(false);
 				session.store(ifcEngine);
-				if (ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					defaultIfcEngine = ifcEngine;
+				if (settings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+					settings.setDefaultIfcEngine(ifcEngine);
 				}
 			} else {
-				if (ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					defaultIfcEngine = found;
+				if (settings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+					settings.setDefaultIfcEngine(found);
 				}
 			}
+		}
+		if (settings.getDefaultIfcEngine() == null && !settings.getIfcEngines().isEmpty()) {
+			settings.setDefaultIfcEngine(settings.getIfcEngines().get(0));
 		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			String name = queryEnginePlugin.getDefaultQueryEngineName();
@@ -411,12 +419,22 @@ public class BimServer {
 			QueryEngine found = session.querySingle(condition, QueryEngine.class, false, null);
 			if (found == null) {
 				QueryEngine queryEngine = StoreFactory.eINSTANCE.createQueryEngine();
+				settings.getQueryengines().add(queryEngine);
 				queryEngine.setClassName(queryEnginePlugin.getClass().getName());
 				queryEngine.setName(name);
 				queryEngine.setEnabled(true);
+				if (settings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
+					settings.setDefaultQueryEngine(queryEngine);
+				}
 				session.store(queryEngine);
 			} else {
+				if (settings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
+					settings.setDefaultQueryEngine(found);
+				}
 			}
+		}
+		if (settings.getDefaultQueryEngine() == null && !settings.getQueryengines().isEmpty()) {
+			settings.setDefaultQueryEngine(settings.getQueryengines().get(0));
 		}
 		for (ModelMergerPlugin modelMergerPlugin : pluginManager.getAllModelMergerPlugins(true)) {
 			String name = modelMergerPlugin.getDefaultModelMergerName();
@@ -424,12 +442,22 @@ public class BimServer {
 			ModelMerger found = session.querySingle(condition, ModelMerger.class, false, null);
 			if (found == null) {
 				ModelMerger modelMerger = StoreFactory.eINSTANCE.createModelMerger();
+				settings.getModelmergers().add(modelMerger);
 				modelMerger.setClassName(modelMergerPlugin.getClass().getName());
 				modelMerger.setName(name);
 				modelMerger.setEnabled(true);
+				if (settings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
+					settings.setDefaultModelMerger(modelMerger);
+				}
 				session.store(modelMerger);
 			} else {
+				if (settings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
+					settings.setDefaultModelMerger(found);
+				}
 			}
+		}
+		if (settings.getDefaultModelMerger() == null && !settings.getModelmergers().isEmpty()) {
+			settings.setDefaultModelMerger(settings.getModelmergers().get(0));
 		}
 		for (ModelComparePlugin modelComparePlugin : pluginManager.getAllModelComparePlugins(true)) {
 			String name = modelComparePlugin.getDefaultModelCompareName();
@@ -437,12 +465,22 @@ public class BimServer {
 			ModelCompare found = session.querySingle(condition, ModelCompare.class, false, null);
 			if (found == null) {
 				ModelCompare modelcompare = StoreFactory.eINSTANCE.createModelCompare();
+				settings.getModelcompares().add(modelcompare);
 				modelcompare.setClassName(modelComparePlugin.getClass().getName());
 				modelcompare.setName(name);
 				modelcompare.setEnabled(true);
+				if (settings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
+					settings.setDefaultModelCompare(modelcompare);
+				}
 				session.store(modelcompare);
 			} else {
+				if (settings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
+					settings.setDefaultModelCompare(found);
+				}
 			}
+		}
+		if (settings.getDefaultModelCompare() == null && !settings.getModelcompares().isEmpty()) {
+			settings.setDefaultModelCompare(settings.getModelcompares().get(0));
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultSerializerName();
@@ -450,16 +488,27 @@ public class BimServer {
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found == null) {
 				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
+				settings.getSerializers().add(serializer);
 				serializer.setClassName(serializerPlugin.getClass().getName());
 				serializer.setName(name);
 				serializer.setEnabled(true);
 				serializer.setDescription(serializerPlugin.getDescription());
 				serializer.setContentType(serializerPlugin.getDefaultContentType());
 				serializer.setExtension(serializerPlugin.getDefaultExtension());
-				serializer.setObjectIDM(defaultObjectIDM);
-				serializer.setIfcEngine(defaultIfcEngine);
+				serializer.setObjectIDM(settings.getDefaultObjectIDM());
+				serializer.setIfcEngine(settings.getDefaultIfcEngine());
+				if (settings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
+					settings.setDefaultSerializer(serializer);
+				}
 				session.store(serializer);
+			} else {
+				if (settings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
+					settings.setDefaultSerializer(found);
+				}
 			}
+		}
+		if (settings.getDefaultSerializer() == null && !settings.getSerializers().isEmpty()) {
+			settings.setDefaultSerializer(settings.getSerializers().get(0));
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
 			String name = deserializerPlugin.getDefaultDeserializerName();
@@ -467,16 +516,13 @@ public class BimServer {
 			Deserializer found = session.querySingle(condition, Deserializer.class, false, null);
 			if (found == null) {
 				Deserializer deserializer = StoreFactory.eINSTANCE.createDeserializer();
+				settings.getDeserializers().add(deserializer);
 				deserializer.setClassName(deserializerPlugin.getClass().getName());
 				deserializer.setName(name);
 				deserializer.setEnabled(true);
 				deserializer.setDescription(deserializerPlugin.getDescription());
 				session.store(deserializer);
 			}
-		}
-		session.store(defaultObjectIDM);
-		if (defaultIfcEngine != null) {
-			session.store(defaultIfcEngine);
 		}
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
@@ -494,6 +540,7 @@ public class BimServer {
 				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getClass().getName());
 			}
 		}
+		getSettingsManager().saveSettings();
 		session.commit();
 	}
 

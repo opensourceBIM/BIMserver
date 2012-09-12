@@ -21,8 +21,7 @@
 		SRevision revision1 = loginManager.getService().getRevision(roid1);
 		SRevision revision2 = loginManager.getService().getRevision(roid2);
 		SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
-		SCompareIdentifier sCompareIdentifier = SCompareIdentifier.valueOf(request.getParameter("identifier"));
-		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
+		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, Long.parseLong(request.getParameter("mcid")));
 %>
 <div id="downloadcheckoutpopup"></div>
 Back to 
@@ -38,7 +37,7 @@ Back to
   		<input type="hidden" name="roid1" value="<%=roid1 %>"/>
   		<input type="hidden" name="roid2" value="<%=roid2 %>"/>
   		<input type="hidden" name="type" value="<%=request.getParameter("type") %>"/>
-  		<input type="hidden" name="identifier" value="<%=request.getParameter("identifier") %>"/>
+  		<input type="hidden" name="mcid" value="<%=request.getParameter("mcid") %>"/>
   		<input type="submit" name="email" value="Send"/>
   	</form>
   </div>
@@ -70,14 +69,14 @@ Back to
 				poid: <%=poid%>,
 				roid1: <%=roid1%>,
 				roid2: <%=roid2%>,
-				identifier: '<%=request.getParameter("identifier")%>'
+				mcid: '<%=request.getParameter("mcid")%>'
 			};
 			$("#downloadcheckoutpopup").load("download.jsp", {data: JSON.stringify(params)});
 		});
 		$("#emailcompareform").submit(function(){
 			$("#emailcompareform").hide();
 			$("#emailajaxloader").show();
-			$("#emailform").load("sendcompareemail.jsp?type=<%=request.getParameter("type")%>&poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val() + '&identifier=<%=request.getParameter("identifier")%>');
+			$("#emailform").load("sendcompareemail.jsp?type=<%=request.getParameter("type")%>&poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val() + '&mcid=<%=request.getParameter("mcid")%>');
 			return false;
 		});
 	});

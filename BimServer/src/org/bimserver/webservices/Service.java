@@ -61,6 +61,7 @@ import org.bimserver.database.migrations.Migrator;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
@@ -2919,22 +2920,78 @@ public class Service implements ServiceInterface {
 		return new ArrayList<String>(queryEngine.getExampleKeys());
 	}
 	
-	@Override
-	public SSettings getSettings() throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
-			Settings settings = (Settings) allOfType.getValues().iterator().next();
-			return converter.convertToSObject(settings);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
+	private <T extends IdEObject> T find(List<T> list, long oid) {
+		for (T t : list) {
+			if (t.getOid() == oid) {
+				return t;
+			}
 		}
 		return null;
 	}
+
+	public SIfcEngine getDefaultIfcEngine() throws ServerException, UserException{
+		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultIfcEngine());
+	}
+
+	public SQueryEngine getDefaultQueryEngine() throws ServerException, UserException{
+		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultQueryEngine());
+	}
+
+	public SModelCompare getDefaultModelCompare() throws ServerException, UserException{
+		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultModelCompare());
+	}
+
+	public SModelMerger getDefaultModelMerger() throws ServerException, UserException{
+		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultModelMerger());
+	}
+
+	public SSerializer getDefaultSerializer() throws ServerException, UserException {
+		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultSerializer());
+	}
+
+	public SObjectIDM getDefaultObjectIDM() throws ServerException, UserException {
+		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultObjectIDM());
+	}
+
+	public void setDefaultIfcEngine(long oid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setDefaultIfcEngine(find(settings.getIfcEngines(), oid));
+		bimServer.getSettingsManager().saveSettings();
+	}
 	
-	@Override
-	public void setSettings(SSettings settings) throws ServerException, UserException {
+	public void setDefaultQueryEngine(long oid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setDefaultQueryEngine(find(settings.getQueryengines(), oid));
+		bimServer.getSettingsManager().saveSettings();
+	}
+
+	public void setDefaultModelCompare(long oid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setDefaultModelCompare(find(settings.getModelcompares(), oid));
+		bimServer.getSettingsManager().saveSettings();
+	}
+	
+	public void setDefaultModelMerger(long oid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setDefaultModelMerger(find(settings.getModelmergers(), oid));
+		bimServer.getSettingsManager().saveSettings();
+	}
+	
+	public void setDefaultSerializer(long oid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setDefaultSerializer(find(settings.getSerializers(), oid));
+		bimServer.getSettingsManager().saveSettings();
+	}
+	
+	public void setDefaultObjectIDM(long oid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		Settings settings = bimServer.getSettingsManager().getSettings();
+		settings.setDefaultObjectIDM(find(settings.getObjectIDMs(), oid));
+		bimServer.getSettingsManager().saveSettings();
 	}
 }
