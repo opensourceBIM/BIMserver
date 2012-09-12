@@ -46,10 +46,12 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	private DataInputStream dataInputStream;
 	private final ProtocolBuffersServer protocolBuffersServer;
 	private final Map<String, Object> services = new HashMap<String, Object>();
+	private final SService sService;
 
-	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer) {
+	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, SService sService) {
 		this.socket = socket;
 		this.protocolBuffersServer = protocolBuffersServer;
+		this.sService = sService;
 		setName("ProtocolBuffersConnectionHandler");
 		try {
 			dataInputStream = new DataInputStream(socket.getInputStream());
@@ -69,7 +71,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				if (!services.containsKey(serviceName)) {
 					services.put(serviceName, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newService(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()));
 				}
-				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(services.get(serviceName), protocolBuffersMetaData, new SService(ServiceInterface.class));
+				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(services.get(serviceName), protocolBuffersMetaData, sService);
 				MethodDescriptorContainer method = protocolBuffersMetaData.getMethod(serviceName, methodName);
 				Builder requestBuilder = DynamicMessage.getDefaultInstance(method.getInputDescriptor()).newBuilderForType();
 				requestBuilder.mergeDelimitedFrom(dataInputStream);

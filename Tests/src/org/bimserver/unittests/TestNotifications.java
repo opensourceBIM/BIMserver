@@ -82,7 +82,7 @@ public class TestNotifications {
 //				countDownLatch.countDown();
 //			}
 //		};
-		socketNotificationsClient.connect(protocolBuffersMetaData, new SService(NotificationInterface.class), new InetSocketAddress("localhost", 8055));
+		socketNotificationsClient.connect(protocolBuffersMetaData, new SService(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java"), NotificationInterface.class), new InetSocketAddress("localhost", 8055));
 		socketNotificationsClient.start();
 		
 		BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());

@@ -22,6 +22,14 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-io-1.4.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-11.0.1.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.contenttype_3.4.100.v20110423-0524.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.jobs_3.5.101.v20120113-1953.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.resources_3.7.101.v20120125-1505.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.runtime_3.7.0.v20110110.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.equinox.common_3.6.0.v20110523.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.equinox.preferences_3.4.2.v20120111-2020.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.jdt.core_3.7.3.v20120119-1537.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jdt/org.eclipse.osgi_3.7.2.v20120110-1415.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 </classpath>

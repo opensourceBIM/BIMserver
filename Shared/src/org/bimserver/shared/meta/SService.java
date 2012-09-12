@@ -17,6 +17,8 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -27,36 +29,137 @@ import java.util.Set;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
+import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTParser;
+import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.Javadoc;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.SimpleName;
+import org.eclipse.jdt.core.dom.TagElement;
+import org.eclipse.jdt.core.dom.TextElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SService.class);
 	private final Map<String, SMethod> methods = new HashMap<String, SMethod>();
 	private final Map<String, SClass> types = new HashMap<String, SClass>();
 	private final String name;
 	private final Class<?> clazz;
+	private final File sourceFile;
 
 	public static void main(String[] args) {
-		SService sService = new SService(ServiceInterface.class);
-		System.out.println(sService.getMethods().size());
-		for (SClass type : sService.getTypes()) {
+		SService sService = new SService(new File("../Shared/src/org/bimserver/shared/ServiceInterface.java"), ServiceInterface.class);
+		sService.dump();
+	}
+
+	public void dump() {
+		System.out.println(getMethods().size());
+		for (SMethod method : getMethods()) {
+			System.out.println(method.getName() + ": " + method.getReturnType().getName() + " (" + method.getDoc() + ")");
+			for (SParameter parameter : method.getParameters()) {
+				System.out.println("\t" + parameter.getName() + " " + parameter.getType().getName() + " (" + parameter.getDoc() + ")");
+			}
+			System.out.println();
+		}
+		for (SClass type : getTypes()) {
 			System.out.println(type.getName());
 			if (type instanceof SClass) {
-				SClass sClass = (SClass)type;
+				SClass sClass = (SClass) type;
 				for (SField sField : sClass.getFields()) {
-					System.out.println("\t" + sField.getName() + " " + sField.getType().getName());
+					SClass type2 = sField.getType();
+					if (type2 == null) {
+						System.err.println("type for " + sField.getName() + " = null");
+					}
+					System.out.println("\t" + sField.getName() + " " + type2.getName());
 				}
 			}
 			System.out.println();
 		}
 	}
-	
-	public SService(Class<?> clazz) {
+
+	public SService(File sourceFile, Class<?> clazz) {
+		this.sourceFile = sourceFile;
 		this.clazz = clazz;
 		this.name = clazz.getSimpleName();
 		init();
+		extractJavaDoc();
 	}
 
+	private void extractJavaDoc() {
+		ASTParser parser = ASTParser.newParser(AST.JLS3);
+		try {
+			String src = FileUtils.readFileToString(sourceFile);
+			parser.setSource(src.toCharArray());
+			parser.setKind(ASTParser.K_COMPILATION_UNIT);
+			final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
+			cu.accept(new ASTVisitor() {
+				MethodDeclaration currentMethod = null;
+
+				public boolean visit(Javadoc javaDoc) {
+					if (currentMethod != null) {
+						SMethod method = getSMethod(currentMethod.getName().getIdentifier());
+						if (method == null) {
+							LOGGER.error("Method " + currentMethod.getName().getIdentifier() + " not found in class");
+						} else {
+							for (Object tag : javaDoc.tags()) {
+								if (tag instanceof TagElement) {
+									TagElement tagElement = (TagElement) tag;
+									if ("@param".equals(tagElement.getTagName())) {
+										SParameter parameter = null;
+										for (int i = 0; i < tagElement.fragments().size(); i++) {
+											Object fragment = tagElement.fragments().get(i);
+											if (i == 0 && fragment instanceof SimpleName) {
+												parameter = method.getParameter(((SimpleName) fragment).getIdentifier());
+											} else if (i == 1 && parameter != null && fragment instanceof TextElement) {
+												parameter.setDoc(((TextElement) fragment).getText());
+											}
+										}
+									} else if ("@return".equals(tagElement.getTagName())) {
+										method.setReturnDoc(extractFullText(tagElement));
+									} else if ("@throws".equals(tagElement.getTagName())) {
+									} else {
+										method.setDoc(extractFullText(tagElement));
+									}
+								}
+							}
+						}
+					}
+					return super.visit(javaDoc);
+				}
+
+				@Override
+				public boolean visit(MethodDeclaration node) {
+					currentMethod = node;
+					return super.visit(node);
+				}
+				
+				@Override
+				public void endVisit(MethodDeclaration node) {
+					currentMethod = null;
+					super.endVisit(node);
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private String extractFullText(TagElement tagElement) {
+		StringBuilder builder = new StringBuilder();
+		for (Object fragment : tagElement.fragments()) {
+			if (fragment instanceof TextElement) {
+				TextElement textElement = (TextElement) fragment;
+				builder.append(textElement.getText() + " ");
+			}
+		}
+		return builder.toString().trim();
+	}
+	
 	public void init() {
 		for (Method method : clazz.getMethods()) {
 			addType(method.getReturnType());
@@ -74,11 +177,11 @@ public class SService {
 			methods.put(method.getName(), new SMethod(this, method));
 		}
 	}
-	
+
 	private Class<?> getGenericType(Method method) {
 		Type genericReturnType = method.getGenericReturnType();
 		if (method.getGenericReturnType() instanceof ParameterizedType) {
-			ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
+			ParameterizedType parameterizedTypeImpl = (ParameterizedType) genericReturnType;
 			if (parameterizedTypeImpl.getActualTypeArguments()[0] instanceof Class) {
 				return (Class<?>) parameterizedTypeImpl.getActualTypeArguments()[0];
 			}
@@ -87,7 +190,7 @@ public class SService {
 		}
 		return null;
 	}
-	
+
 	private void addType(Class<?> type) {
 		if (!types.containsKey(type.getSimpleName())) {
 			SClass sClass = new SClass(this, type);
@@ -129,19 +232,19 @@ public class SService {
 	public void addType(SClass type) {
 		types.put(type.getSimpleName(), type);
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public Set<SMethod> getMethods() {
 		return new HashSet<SMethod>(methods.values());
 	}
-	
+
 	public SMethod getSMethod(String name) {
 		return methods.get(name);
 	}
-	
+
 	public Set<SClass> getTypes() {
 		return new HashSet<SClass>(types.values());
 	}

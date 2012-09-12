@@ -101,7 +101,7 @@ public class CodeMigrator {
 	}
 
 	private void generateNotificationInterfaceImplementation(ProtocolBuffersGenerator protocolBuffersGenerator) {
-		SService service = new SService(NotificationInterface.class);
+		SService service = new SService(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java"), NotificationInterface.class);
 		File protoFile = new File("../Builds/build/pb/notification.proto");
 		File descFile = new File("../Builds/build/pb/notification.desc");
 		File reflectorImplementationFile = new File("../BimServer/generated/org/bimserver/pb/NotificationInterfaceReflectorImpl.java");
@@ -116,7 +116,7 @@ public class CodeMigrator {
 	}
 
 	private void generateProtocolBuffersServiceInterface(ProtocolBuffersGenerator protocolBuffersGenerator) {
-		SService service = new SService(ServiceInterface.class);
+		SService service = new SService(new File("../Shared/src/org/bimserver/shared/ServiceInterface.java"), ServiceInterface.class);
 		File protoFile = new File("../Builds/build/pb/service.proto");
 		File descFile = new File("../Builds/build/pb/service.desc");
 		File reflectorImplementationFile = new File("../BimServerClientLib/generated/org/bimserver/pb/ServiceInterfaceReflectorImpl.java");

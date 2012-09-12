@@ -28,10 +28,12 @@ import java.util.Set;
 import javax.jws.WebParam;
 
 public class SMethod {
+	private String doc = "";
 	private final List<SParameter> parameters = new ArrayList<SParameter>();
 	private final Method method;
 	private SClass returnType;
 	private SClass genericReturnType;
+	private String returnDoc;
 	
 	public SMethod(SService service, Method method) {
 		this.method = method;
@@ -123,5 +125,30 @@ public class SMethod {
 			r += "<" + getGenericReturnType().getPrintableName() + ">";
 		}
 		return r;
+	}
+	
+	public SParameter getParameter(String name) {
+		for (SParameter parameter : this.parameters) {
+			if (parameter.getName().equals(name)) {
+				return parameter;
+			}
+		}
+		return null;
+	}
+
+	public void setDoc(String doc) {
+		this.doc = doc;
+	}
+	
+	public String getDoc() {
+		return doc;
+	}
+
+	public void setReturnDoc(String returnDoc) {
+		this.returnDoc = returnDoc;
+	}
+	
+	public String getReturnDoc() {
+		return returnDoc;
 	}
 }

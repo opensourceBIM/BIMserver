@@ -43,6 +43,7 @@ public class SParameter {
 	private final SClass type;
 	private final SClass genericType;
 	private final SMethod sMethod;
+	private String doc = "";
 
 	public SParameter(SMethod sMethod, SClass type, SClass genericType, String name) {
 		this.sMethod = sMethod;
@@ -81,5 +82,13 @@ public class SParameter {
 			r += "<" + getGenericType().getPrintableName() + ">";
 		}
 		return r;
+	}
+
+	public void setDoc(String doc) {
+		this.doc = doc.trim();
+	}
+	
+	public String getDoc() {
+		return doc;
 	}
 }

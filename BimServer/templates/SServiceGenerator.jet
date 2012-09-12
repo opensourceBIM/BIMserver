@@ -23,6 +23,7 @@ package org.bimserver.interfaces;
 import org.bimserver.shared.meta.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.io.File;
 
 <%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
 
@@ -35,8 +36,8 @@ EPackage ePackage = (EPackage)args[1];
 public class S<%=cl.getSimpleName()%>Service extends SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(S<%=cl.getSimpleName()%>Service.class);
 
-	public S<%=cl.getSimpleName()%>Service(Class<?> cl) {
-		super(cl);
+	public S<%=cl.getSimpleName()%>Service(File sourceFile, Class<?> cl) {
+		super(sourceFile, cl);
 	}
 	
 		public void init() {
