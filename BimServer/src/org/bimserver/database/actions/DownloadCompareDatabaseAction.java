@@ -76,7 +76,6 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private long roid2;
 	private int progress;
 	private final BimServer bimServer;
-	private final ObjectIDM objectIDM;
 	private final CompareType compareType;
 	private final Reporter reporter;
 	private final long mcid;
@@ -92,7 +91,6 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 		this.roid2 = iterator.next();
 		this.compareType = compareType;
 		this.actingUoid = actingUoid;
-		this.objectIDM = objectIDM;
 	}
 	
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException {

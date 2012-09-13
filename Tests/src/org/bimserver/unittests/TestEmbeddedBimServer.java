@@ -81,7 +81,7 @@ public class TestEmbeddedBimServer {
 			}
 
 			// Change a setting to normal users can create projects
-			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
+//			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {

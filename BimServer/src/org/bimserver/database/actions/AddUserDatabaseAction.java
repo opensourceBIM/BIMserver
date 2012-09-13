@@ -28,10 +28,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
-import org.bimserver.SettingsManager;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -131,13 +130,12 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			@Override
 			public void execute() throws UserException {
 				try {
-					SettingsManager settingsManager = bimServer.getSettingsManager();
-					if (settingsManager != null && settingsManager.getSettings().isSendConfirmationEmailAfterRegistration()) {
+					if (getSettings().isSendConfirmationEmailAfterRegistration()) {
 						if (MailSystem.isValidEmailAddress(user.getUsername())) {
 							Session mailSession = bimServer.getMailSystem().createMailSession();
 							
 							Message msg = new MimeMessage(mailSession);
-							String emailSenderAddress = settingsManager.getSettings().getEmailSenderAddress();
+							String emailSenderAddress = getSettings().getEmailSenderAddress();
 							InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
 							msg.setFrom(addressFrom);
 							
@@ -148,8 +146,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 							Map<String, Object> context = new HashMap<String, Object>();
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
-							context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
-							String validationLink = settingsManager.getSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token;
+							context.put("siteaddress", getSettings().getSiteAddress());
+							String validationLink = getSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token;
 							context.put("validationlink", validationLink);
 							String body = null;
 							String subject = null;

@@ -66,7 +66,7 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		try {
 			User user = getUserByUoid(actingUoid);
-			String senderAddress = bimServer.getSettingsManager().getSettings().getEmailSenderAddress();
+			String senderAddress = getSettings().getEmailSenderAddress();
 			Session mailSession = bimServer.getMailSystem().createMailSession();
 
 			MimeMessage msg = new MimeMessage(mailSession);
@@ -93,14 +93,14 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 				revisionsString.append(roid + ";");
 			}
 
-			String link = "<a href=\"" + bimServer.getSettingsManager().getSettings().getSiteAddress() + bimServer.getSettingsManager().getSettings().getSiteAddress() + "/project.jsp?tab=cd&poid="
+			String link = "<a href=\"" + getSettings().getSiteAddress() + getSettings().getSiteAddress() + "/project.jsp?tab=cd&poid="
 					+ poid + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignored=" + ignoreString
 					+ "\">Click here for clash detection results</a>";
 			
 			Map<String, Object> context = new HashMap<String, Object>();
 			context.put("name", user.getName());
 			context.put("username", user.getUsername());
-			context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
+			context.put("siteaddress", getSettings().getSiteAddress());
 			context.put("url", link);
 			
 			String body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.CLASH_DETECTION_EMAIL_BODY);

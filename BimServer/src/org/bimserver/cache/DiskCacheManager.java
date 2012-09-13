@@ -24,7 +24,8 @@ import java.io.IOException;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -35,11 +36,11 @@ public class DiskCacheManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DiskCacheManager.class);
 	private final File cacheDir;
-	private final SettingsManager settingsManager;
+	private final BimServer bimServer;
 
-	public DiskCacheManager(File cacheDir, SettingsManager settingsManager) {
+	public DiskCacheManager(BimServer bimServer, File cacheDir) {
+		this.bimServer = bimServer;
 		this.cacheDir = cacheDir;
-		this.settingsManager = settingsManager;
 		if (!cacheDir.exists()) {
 			cacheDir.mkdir();
 		}
@@ -55,7 +56,12 @@ public class DiskCacheManager {
 	}
 	
 	private boolean isEnabled() {
-		return settingsManager.getSettings().getCacheOutputFiles();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return bimServer.getSettings(session).getCacheOutputFiles();
+		} finally {
+			session.close();
+		}
 	}
 
 	public void store(DownloadParameters downloadParameters, DataHandler dataHandler) {

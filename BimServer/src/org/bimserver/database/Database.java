@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.SettingsManager;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProjectDatabaseAction;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -39,7 +38,9 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
@@ -150,7 +151,7 @@ public class Database implements BimDatabase {
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();
 
-				Settings settings = SettingsManager.createDefaultSettings();
+				Settings settings = createDefaultSettings();
 				databaseSession.store(settings);				
 				
 				registry.save("isnew", false, databaseSession);
@@ -177,6 +178,29 @@ public class Database implements BimDatabase {
 		}
 	}
 
+
+	public Settings createDefaultSettings() {
+		Settings settings = StoreFactory.eINSTANCE.createSettings();
+		settings.setCustomLogoAddress("http://www.bimserver.org/version/defaultlogo.gif");
+		settings.setEmailSenderAddress("");
+		settings.setSiteAddress("");
+		settings.setSmtpServer("");
+		settings.setRegistrationAddition("");
+		settings.setHeaderAddition("");
+		settings.setFooterAddition("<script type=\"text/javascript\">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-12034708-3']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>");
+		settings.setProtocolBuffersPort(8020);
+		settings.setAllowSelfRegistration(false);
+		settings.setAllowUsersToCreateTopLevelProjects(false);
+		settings.setAutoTestClashes(false);
+		settings.setCheckinMergingEnabled(false);
+		settings.setIntelligentMerging(false);
+		settings.setHideUserListForNonAdmin(true);
+		settings.setShowVersionUpgradeAvailable(false);
+		settings.setCacheOutputFiles(false);
+		settings.setMergeIdentifier(MergeIdentifier.GUID);
+		return settings;
+	}
+	
 	public synchronized long newOid() {
 		return ++oidCounter;
 	}

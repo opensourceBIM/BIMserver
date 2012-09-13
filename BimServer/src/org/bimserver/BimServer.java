@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,6 +47,7 @@ import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.deserializers.EmfDeserializerFactory;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
@@ -110,7 +112,6 @@ public class BimServer {
 	private JobScheduler bimScheduler;
 	private LongActionManager longActionManager;
 	private ServiceInterface systemService;
-	private SettingsManager settingsManager;
 	private EmfSerializerFactory emfSerializerFactory;
 	private EmfDeserializerFactory emfDeserializerFactory;
 	private MergerFactory mergerFactory;
@@ -278,7 +279,6 @@ public class BimServer {
 			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();
 			
-			settingsManager = new SettingsManager(bimDatabase);
 			serverInfoManager.init(this);
 			serverInfoManager.update();
 
@@ -302,16 +302,16 @@ public class BimServer {
 				initDatabaseDependantItems();
 			}
 
-			mailSystem = new MailSystem(settingsManager);
+			mailSystem = new MailSystem(this);
 
 			serviceFactory = new ServiceInterfaceFactory(this);
 			if (config.isStartEmbeddedWebServer()) {
 				embeddedWebServer.start();
 			}
 
-			diskCacheManager = new DiskCacheManager(new File(config.getHomeDir(), "cache"), settingsManager);
+			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));
 
-			mergerFactory = new MergerFactory(this, settingsManager);
+			mergerFactory = new MergerFactory(this);
 			setSystemService(serviceFactory.newService(AccessMethod.INTERNAL, "internal"));
 			try {
 				if (!((Service) getSystemService()).loginAsSystem()) {
@@ -324,10 +324,11 @@ public class BimServer {
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
 
+			DatabaseSession session = bimDatabase.createSession();
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaceService, settingsManager.getSettings().getProtocolBuffersPort());
+				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaceService, getSettings(session).getProtocolBuffersPort());
 				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, serviceInterfaceService));
 				protocolBuffersServer.start();
 			} catch (Exception e) {
@@ -338,7 +339,6 @@ public class BimServer {
 			serverStarted.setDate(new Date());
 			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
 			serverStarted.setExecutor(null);
-			DatabaseSession session = bimDatabase.createSession();
 			try {
 				session.store(serverStarted);
 				session.commit();
@@ -358,6 +358,22 @@ public class BimServer {
 		}
 	}
 
+	public Settings getSettings(DatabaseSession session) {
+		try {
+			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
+			List<Settings> settingsList = allOfType.getAll(Settings.class);
+			if (settingsList.size() == 1) {
+				Settings settings = settingsList.get(0);
+				return settings;
+			}
+		} catch (BimserverLockConflictException e) {
+			e.printStackTrace();
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	/*
 	 * Serializers, deserializers, ifcengines etc... all have counterparts as
 	 * objects in the database for configuration purposes, this methods syncs
@@ -365,7 +381,7 @@ public class BimServer {
 	 */
 	private void createDatabaseObjects() throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
 		DatabaseSession session = bimDatabase.createSession();
-		Settings settings = getSettingsManager().getSettings();
+		Settings settings = getSettings(session);
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
 			String name = objectIDMPlugin.getDefaultObjectIDMName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getObjectIDM_Name(), new StringLiteral(name));
@@ -540,7 +556,7 @@ public class BimServer {
 				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getClass().getName());
 			}
 		}
-		getSettingsManager().saveSettings();
+		session.store(settings);
 		session.commit();
 	}
 
@@ -558,10 +574,6 @@ public class BimServer {
 
 	public File getHomeDir() {
 		return config.getHomeDir();
-	}
-
-	public SettingsManager getSettingsManager() {
-		return settingsManager;
 	}
 
 	public LongActionManager getLongActionManager() {

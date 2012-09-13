@@ -73,7 +73,7 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 					Message msg = new MimeMessage(mailSession);
 					
 					try {
-						InternetAddress addressFrom = new InternetAddress(bimServer.getSettingsManager().getSettings().getEmailSenderAddress());
+						InternetAddress addressFrom = new InternetAddress(getSettings().getEmailSenderAddress());
 						msg.setFrom(addressFrom);
 						
 						InternetAddress[] addressTo = new InternetAddress[1];
@@ -83,8 +83,8 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						Map<String, Object> context = new HashMap<String, Object>();
 						context.put("name", user.getName());
 						context.put("username", user.getUsername());
-						context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
-						context.put("validationlink", bimServer.getSettingsManager().getSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token);
+						context.put("siteaddress", getSettings().getSiteAddress());
+						context.put("validationlink", getSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token);
 						String body = null;
 						String subject = null;
 						body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);

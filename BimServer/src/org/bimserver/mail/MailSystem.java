@@ -23,22 +23,28 @@ import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
+import org.bimserver.database.DatabaseSession;
 
 public class MailSystem {
-	private final SettingsManager settingsManager;
 
-	public MailSystem(SettingsManager settingsManager) {
-		this.settingsManager = settingsManager;
+	private final BimServer bimServer;
+
+	public MailSystem(BimServer bimServer) {
+		this.bimServer = bimServer;
 	}
 
 	public Session createMailSession() {
-		Properties props = new Properties();
-		props.put("mail.smtp.host", settingsManager.getSettings().getSmtpServer());
-		props.put("mail.smtp.localhost", "bimserver.org");
-
-		Session mailSession = Session.getDefaultInstance(props);
-		return mailSession;
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Properties props = new Properties();
+			props.put("mail.smtp.host", bimServer.getSettings(session).getSmtpServer());
+			props.put("mail.smtp.localhost", "bimserver.org");
+			Session mailSession = Session.getDefaultInstance(props);
+			return mailSession;
+		} finally {
+			session.close();
+		}
 	}
 
 	public static boolean isValidEmailAddress(String aEmailAddress) {

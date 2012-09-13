@@ -17,7 +17,6 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
@@ -92,7 +91,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 			LOGGER.error("", e);
 		}
 		notificationsClient = new SocketNotificationsClient();
-		sService = new SService(new File("ServiceInterface.java"), ServiceInterface.class);
+		sService = new SService(null, ServiceInterface.class);
 	}
 
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {

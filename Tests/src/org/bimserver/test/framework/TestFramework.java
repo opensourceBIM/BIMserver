@@ -70,7 +70,7 @@ public class TestFramework {
 				}
 				
 				// Change a setting so normal users can create projects
-				bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
+//				bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

@@ -41,7 +41,7 @@ public class GuidHighlighterTester {
 		new GuidHighlighterTester().start();
 	}
 
-	private static Set<String> readGuidsFromFile(File file) {
+	public static Set<String> readGuidsFromFile(File file) {
 		Set<String> guids = new HashSet<String>();
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -69,7 +69,7 @@ public class GuidHighlighterTester {
 		return null;
 	}
 
-	private IfcModelInterface readModel(File file) {
+	public IfcModelInterface readModel(File file) {
 		PluginManager pluginManager;
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));

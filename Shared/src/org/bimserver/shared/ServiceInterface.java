@@ -57,7 +57,6 @@ import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.interfaces.objects.SModelCompare;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -1072,14 +1071,6 @@ public interface ServiceInterface {
 	void setSettingFooterAddition(
 			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition) throws ServerException, UserException;
 
-	/**
-	 * @param mergeIdentifier
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingMergeIdentifier")
-	void setSettingMergeIdentifier(
-			@WebParam(name = "mergeIdentifier", partName = "setSettingMergeIdentifier.mergeIdentifier") SMergeIdentifier mergeIdentifier) throws ServerException, UserException;
-
 	@WebMethod(action = "getSettingsEmailSenderAddress")
 	String getSettingEmailSenderAddress() throws ServerException, UserException;
 
@@ -1210,21 +1201,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "setSettingCheckinMergingEnabled")
 	void setSettingCheckinMergingEnabled(
 			@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
-
-	/**
-	 * @return Whether intelligent merging is on
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingIntelligentMerging")
-	Boolean isSettingIntelligentMerging() throws ServerException, UserException;
-
-	/**
-	 * @param intelligentMerging Set intelligent merging on/off
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingIntelligentMerging")
-	void setSettingIntelligentMerging(
-			@WebParam(name = "intelligentMerging", partName = "setSettingIntelligentMerging.intelligentMerging") Boolean intelligentMerging) throws ServerException, UserException;
 
 	/**
 	 * @return Whether a confirmation e-mail should be send after registration
@@ -1720,13 +1696,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllModelMergerPluginDescriptors")
 	List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException;
 	
-	/**
-	 * @return A settings that determines how to merge
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingMergeIdentifier")
-	SMergeIdentifier getSettingMergeIdentifier() throws ServerException, UserException;
-
 	/**
 	 * @param serializerName Name of the Serializer
 	 * @return Serializer
