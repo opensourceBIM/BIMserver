@@ -39,7 +39,7 @@ public class GetIfcEngineByNameDatabaseAction extends BimDatabaseAction<IfcEngin
 
 	@Override
 	public IfcEngine execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
 		return getDatabaseSession().querySingle(condition, IfcEngine.class, false, null);
 	}
 }

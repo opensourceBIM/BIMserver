@@ -8,7 +8,6 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.TreeSet"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
-<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
@@ -46,7 +45,6 @@
 					}
 				}
 	
-				SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(project.getClashDetectionSettingsId());
 				List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
 				Collections.sort(revisions, new SRevisionIdComparator(false));
 				List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
@@ -402,13 +400,6 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 					<th>Date</th>
 					<th>User</th>
 					<th>Comment</th>
-					<%
-						if (project.getParentId() == -1 && sClashDetectionSettings.getEnabled()) {
-					%>
-					<th>Clashes</th>
-					<%
-						}
-					%>
 					<th>Size</th>
 					<th>Download/Checkout</th>
 				</tr>
@@ -454,9 +445,6 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 				<jsp:param name="poid" value="<%=poid %>" />
 				<jsp:param name="roid" value="<%=lastRevision.getOid() %>" />
 			</jsp:include></div>
-		<div id="clashes" class="tabbertab" title="Clashes (obsolete)">
-			<div id="clashdetectiondiv"></div>
-		</div>
 		<%
 			}
 		%>
@@ -713,17 +701,6 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 	$(function(){
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
-		<%String clashesUrl = "clashes.jsp?poid=" + poid;
-		if (request.getParameter("margin") != null) {
-			clashesUrl += "&margin=" + request.getParameter("margin");
-		}
-		if (request.getParameter("revisions") != null) {
-			clashesUrl += "&revisions=" + request.getParameter("revisions");
-		}
-		if (request.getParameter("ignored") != null) {
-			clashesUrl += "&ignored=" + request.getParameter("ignored");
-		}%>
-		$("#clashdetectiondiv").load("<%=clashesUrl%>");
 		$("#compareform").submit(function(){
 			$("#compareform").hide();
 			$("#compareajaxloader").show();

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SSerializer implements SBase
+public class SSerializer extends SPlugin implements SBase
 {
 	private long oid = -1;
 	@XmlTransient
@@ -49,23 +49,20 @@ public class SSerializer implements SBase
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
+		if (sField.getName().equals("enabled")) {
+			return getEnabled();
+		}
 		if (sField.getName().equals("description")) {
 			return getDescription();
+		}
+		if (sField.getName().equals("className")) {
+			return getClassName();
 		}
 		if (sField.getName().equals("extension")) {
 			return getExtension();
 		}
 		if (sField.getName().equals("contentType")) {
 			return getContentType();
-		}
-		if (sField.getName().equals("className")) {
-			return getClassName();
-		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
-		}
-		if (sField.getName().equals("defaultSerializer")) {
-			return getDefaultSerializer();
 		}
 		if (sField.getName().equals("objectIDMId")) {
 			return getObjectIDMId();
@@ -86,8 +83,16 @@ public class SSerializer implements SBase
 			setName((String)val);
 			return;
 		}
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
+			return;
+		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("className")) {
+			setClassName((String)val);
 			return;
 		}
 		if (sField.getName().equals("extension")) {
@@ -96,18 +101,6 @@ public class SSerializer implements SBase
 		}
 		if (sField.getName().equals("contentType")) {
 			setContentType((String)val);
-			return;
-		}
-		if (sField.getName().equals("className")) {
-			setClassName((String)val);
-			return;
-		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
-			return;
-		}
-		if (sField.getName().equals("defaultSerializer")) {
-			setDefaultSerializer((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("objectIDMId")) {
@@ -129,30 +122,11 @@ public class SSerializer implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String description;
 	private java.lang.String extension;
 	private java.lang.String contentType;
-	private java.lang.String className;
-	private java.lang.Boolean enabled;
-	private java.lang.Boolean defaultSerializer;
 	private long objectIDMId;
 	private long settingsId;
 	private long ifcEngineId;
-	public java.lang.String getName() {
-		return name;
-	}
-
-	public void setName(java.lang.String name) {
-		this.name = name;
-	}
-	public java.lang.String getDescription() {
-		return description;
-	}
-
-	public void setDescription(java.lang.String description) {
-		this.description = description;
-	}
 	public java.lang.String getExtension() {
 		return extension;
 	}
@@ -166,27 +140,6 @@ public class SSerializer implements SBase
 
 	public void setContentType(java.lang.String contentType) {
 		this.contentType = contentType;
-	}
-	public java.lang.String getClassName() {
-		return className;
-	}
-
-	public void setClassName(java.lang.String className) {
-		this.className = className;
-	}
-	public java.lang.Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
-	}
-	public java.lang.Boolean getDefaultSerializer() {
-		return defaultSerializer;
-	}
-
-	public void setDefaultSerializer(java.lang.Boolean defaultSerializer) {
-		this.defaultSerializer = defaultSerializer;
 	}
 	public long getObjectIDMId() {
 		return objectIDMId;

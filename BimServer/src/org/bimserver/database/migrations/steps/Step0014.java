@@ -19,17 +19,12 @@ package org.bimserver.database.migrations.steps;
 
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
-import org.bimserver.database.migrations.Schema.Multiplicity;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0014 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass ifcEnginePluginDescriptor = schema.createEClass(schema.getEPackage("store"), "IfcEnginePluginDescriptor");
-		schema.createEAttribute(ifcEnginePluginDescriptor, "pluginClassName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
-		schema.createEAttribute(ifcEnginePluginDescriptor, "defaultName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
+		schema.createEClass(schema.getEPackage("store"), "IfcEnginePluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 	}
 
 	@Override

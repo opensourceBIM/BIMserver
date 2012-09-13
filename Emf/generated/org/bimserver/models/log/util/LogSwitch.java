@@ -274,15 +274,6 @@ public class LogSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED: {
-			ClashDetectionSettingsUpdated clashDetectionSettingsUpdated = (ClashDetectionSettingsUpdated) theEObject;
-			T result = caseClashDetectionSettingsUpdated(clashDetectionSettingsUpdated);
-			if (result == null)
-				result = caseLogAction(clashDetectionSettingsUpdated);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LogPackage.PASSWORD_CHANGED: {
 			PasswordChanged passwordChanged = (PasswordChanged) theEObject;
 			T result = casePasswordChanged(passwordChanged);
@@ -633,21 +624,6 @@ public class LogSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGeoTagUpdated(GeoTagUpdated object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Clash Detection Settings Updated</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Clash Detection Settings Updated</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClashDetectionSettingsUpdated(ClashDetectionSettingsUpdated object) {
 		return null;
 	}
 

@@ -39,7 +39,7 @@ public class GetModelCompareByNameDatabaseAction extends BimDatabaseAction<Model
 
 	@Override
 	public ModelCompare execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getModelCompare_Name(), new StringLiteral(name));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
 		return getDatabaseSession().querySingle(condition, ModelCompare.class, false, null);
 	}
 }

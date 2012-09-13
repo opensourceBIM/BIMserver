@@ -19,9 +19,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.GeoTag;
@@ -31,9 +29,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -58,7 +54,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSubProjects <em>Sub Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getClashDetectionSettings <em>Clash Detection Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getExportLengthMeasurePrefix <em>Export Length Measure Prefix</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -324,24 +319,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.PROJECT__DESCRIPTION, newDescription);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClashDetectionSettings getClashDetectionSettings() {
-		return (ClashDetectionSettings) eGet(StorePackage.Literals.PROJECT__CLASH_DETECTION_SETTINGS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings) {
-		eSet(StorePackage.Literals.PROJECT__CLASH_DETECTION_SETTINGS, newClashDetectionSettings);
 	}
 
 	/**

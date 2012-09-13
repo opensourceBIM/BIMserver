@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspWriter;
 
 import org.bimserver.interfaces.objects.SAccessMethod;
-import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SObjectState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -254,21 +253,6 @@ public class JspHelper {
 			return "Protocol Buffers";
 		}
 		return "unknown";
-	}
-
-	public static SClashDetectionSettings createSClashDetectionSettings(HttpServletRequest request) {
-		double margin = Double.parseDouble(request.getParameter("margin"));
-		SClashDetectionSettings sClashDetectionSettings = new SClashDetectionSettings();
-		sClashDetectionSettings.setMargin(margin);
-		String[] ignoredSplit = request.getParameter("ignored").split(";");
-		for (String ignore : ignoredSplit) {
-			sClashDetectionSettings.getIgnoredClasses().add(ignore);
-		}
-		String[] revisions = request.getParameter("revisions").split(";");
-		for (String revisionOidString : revisions) {
-			sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
-		}
-		return sClashDetectionSettings;
 	}
 
 	public static String showProjectTree(SProject activeProject, ServiceInterface serviceInterface) throws ServiceException {

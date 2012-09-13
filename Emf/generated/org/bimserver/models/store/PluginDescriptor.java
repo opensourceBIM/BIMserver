@@ -26,7 +26,8 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.PluginDescriptor#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginDescriptor#getDefaultName <em>Default Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getEnabled <em>Enabled</em>}</li>
@@ -40,30 +41,56 @@ import org.bimserver.emf.IdEObject;
  */
 public interface PluginDescriptor extends IdEObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Default Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Default Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_Name()
+	 * @return the value of the '<em>Default Name</em>' attribute.
+	 * @see #setDefaultName(String)
+	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_DefaultName()
 	 * @model
 	 * @generated
 	 */
-	String getName();
+	String getDefaultName();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.PluginDescriptor#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginDescriptor#getDefaultName <em>Default Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Default Name</em>' attribute.
+	 * @see #getDefaultName()
 	 * @generated
 	 */
-	void setName(String value);
+	void setDefaultName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Plugin Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Plugin Class Name</em>' attribute.
+	 * @see #setPluginClassName(String)
+	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_PluginClassName()
+	 * @model
+	 * @generated
+	 */
+	String getPluginClassName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Plugin Class Name</em>' attribute.
+	 * @see #getPluginClassName()
+	 * @generated
+	 */
+	void setPluginClassName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.

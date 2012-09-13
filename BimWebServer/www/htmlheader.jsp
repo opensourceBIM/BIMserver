@@ -54,13 +54,6 @@
 					break;
 				}
 			}
-		<%
-			if (request.getParameter("tab") != null && request.getParameter("tab").equals("cd")) {
-				%>
-					activateTabWithTabber(t, "clashes");
-				<%
-			}
-		%>
 		},
 
 		'onClick' : function(argsObj) {

@@ -17,10 +17,8 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -30,7 +28,8 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginClassName <em>Plugin Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getEnabled <em>Enabled</em>}</li>
@@ -74,8 +73,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__NAME, true);
+	public String getDefaultName() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
 	}
 
 	/**
@@ -83,8 +82,26 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__NAME, newName);
+	public void setDefaultName(String newDefaultName) {
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME, newDefaultName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPluginClassName() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPluginClassName(String newPluginClassName) {
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, newPluginClassName);
 	}
 
 	/**

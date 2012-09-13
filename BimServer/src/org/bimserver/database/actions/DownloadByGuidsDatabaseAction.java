@@ -112,7 +112,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet);
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid).merge(project, ifcModelSet);
 			ifcModel.setName("query");
 			for (String guid : guids) {
 				if (!foundGuids.contains(guid)) {

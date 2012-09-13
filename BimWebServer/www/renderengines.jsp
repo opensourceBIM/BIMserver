@@ -1,6 +1,20 @@
 <%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@page import="java.util.List"%>
-<%@ include file="settings.jsp"%>
+<%@ include file="settingsmenu.jsp"%>
+<%
+if (request.getParameter("action") != null) {
+	String action = request.getParameter("action");
+	if (action.equals("disableIfcEngine")) {
+		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
+		ifcEngine.setEnabled(false);
+		loginManager.getService().updateIfcEngine(ifcEngine);
+	} else if (action.equals("enableIfcEngine")) {
+		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
+		ifcEngine.setEnabled(true);
+		loginManager.getService().updateIfcEngine(ifcEngine);
+	}
+}
+%>
 <h1>Render Engines</h1>
 <a href="addrenderengine.jsp">Add RenderEngine</a>
 <table class="formatted">
@@ -19,11 +33,11 @@
 		<%
 	if (!ifcEngine.getEnabled()) {
 %>
-<a href="settings.jsp?action=enableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Enable</a>
+<a href="renderengines.jsp?action=enableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Enable</a>
 <%
 	} else if (ifcEngine.getSerializers().isEmpty()) {
 %>
-<a href="settings.jsp?action=disableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Disable</a>
+<a href="renderengines.jsp?action=disableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Disable</a>
 <%
 	}
 	if (ifcEngine.getSerializers().isEmpty()) {

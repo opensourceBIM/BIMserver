@@ -47,7 +47,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(poid);
-		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && getSettings().isAllowUsersToCreateTopLevelProjects())) {
+		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && getServerSettings().isAllowUsersToCreateTopLevelProjects())) {
 			delete(project);
 			ProjectDeleted projectDeleted = LogFactory.eINSTANCE.createProjectDeleted();
 			projectDeleted.setAccessMethod(getAccessMethod());

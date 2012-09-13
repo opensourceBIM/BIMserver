@@ -2,7 +2,7 @@
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
-<%@ include file="settings.jsp"%>
+<%@ include file="settingsmenu.jsp"%>
 <h1>Serializers</h1>
 <a href="addserializer1.jsp">Add Serializer</a>
 <table class="formatted">
@@ -22,6 +22,7 @@
 	}
 	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
+		boolean isDefault = service.getDefaultSerializer() != null && service.getDefaultSerializer().getOid() == serializer.getOid();
 		SObjectIDM objectIDM = null;
 		if (serializer.getObjectIDMId() != -1) {
 			objectIDM = service.getObjectIDMById(serializer.getObjectIDMId());
@@ -38,10 +39,11 @@
 		<td><%=serializer.getContentType() %></td>
 		<td><%=objectIDM == null ? "none" : objectIDM.getName() %></td>
 		<td><%=ifcEngine == null ? "none" : ifcEngine.getName() %></td>
-		<td><input type="radio" name="default" oid="<%=serializer.getOid()%>" <%=service.getDefaultSerializer() != null && service.getDefaultSerializer().getOid() == serializer.getOid() ? "checked" : "" %>/></td>
+		<td><input type="radio" name="default" oid="<%=serializer.getOid()%>" <%=isDefault ? "checked" : "" %>/></td>
 		<td class="<%=serializer.getEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%
+	if (!isDefault) {
 	if (serializer.getEnabled()) {
 %>
 <a href="serializers.jsp?action=disableSerializer&serializer=<%=serializer.getName() %>">Disable</a>
@@ -53,6 +55,9 @@
 	}
 %>
 			<a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a>
+<%
+}
+%>
 		</td>
 	</tr>
 <%

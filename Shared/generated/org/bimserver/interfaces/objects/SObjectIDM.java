@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SObjectIDM implements SBase
+public class SObjectIDM extends SPlugin implements SBase
 {
 	private long oid = -1;
 	@XmlTransient
@@ -51,11 +51,14 @@ public class SObjectIDM implements SBase
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
-		if (sField.getName().equals("className")) {
-			return getClassName();
-		}
 		if (sField.getName().equals("enabled")) {
 			return getEnabled();
+		}
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("className")) {
+			return getClassName();
 		}
 		if (sField.getName().equals("serializers")) {
 			return getSerializers();
@@ -74,12 +77,16 @@ public class SObjectIDM implements SBase
 			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("className")) {
-			setClassName((String)val);
-			return;
-		}
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("className")) {
+			setClassName((String)val);
 			return;
 		}
 		if (sField.getName().equals("serializers")) {
@@ -97,32 +104,8 @@ public class SObjectIDM implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String className;
-	private java.lang.Boolean enabled;
 	private List<Long> serializers = new ArrayList<Long>();
 	private long settingsId;
-	public java.lang.String getName() {
-		return name;
-	}
-
-	public void setName(java.lang.String name) {
-		this.name = name;
-	}
-	public java.lang.String getClassName() {
-		return className;
-	}
-
-	public void setClassName(java.lang.String className) {
-		this.className = className;
-	}
-	public java.lang.Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
-	}
 	public List<Long> getSerializers() {
 		return serializers;
 	}

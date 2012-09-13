@@ -220,13 +220,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass clashDetectionSettingsUpdatedEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass passwordChangedEClass = null;
 
 	/**
@@ -807,30 +800,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClashDetectionSettingsUpdated() {
-		if (clashDetectionSettingsUpdatedEClass == null) {
-			clashDetectionSettingsUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(23);
-		}
-		return clashDetectionSettingsUpdatedEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClashDetectionSettingsUpdated_ClashDetectionSettings() {
-		return (EReference) getClashDetectionSettingsUpdated().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPasswordChanged() {
 		if (passwordChangedEClass == null) {
-			passwordChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(24);
+			passwordChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(23);
 		}
 		return passwordChangedEClass;
 	}
@@ -851,7 +823,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getUserChanged() {
 		if (userChangedEClass == null) {
-			userChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(25);
+			userChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(24);
 		}
 		return userChangedEClass;
 	}

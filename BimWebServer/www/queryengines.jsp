@@ -1,6 +1,20 @@
 <%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="java.util.List"%>
-<%@ include file="settings.jsp"%>
+<%@ include file="settingsmenu.jsp"%>
+<%
+if (request.getParameter("action") != null) {
+	String action = request.getParameter("action");
+	if (action.equals("enableQueryEngine")) {
+		SQueryEngine queryEngine = loginManager.getService().getQueryEngineByName(request.getParameter("queryEngine"));
+		queryEngine.setEnabled(true);
+		loginManager.getService().updateQueryEngine(queryEngine);
+	} else if (action.equals("disableQueryEngine")) {
+		SQueryEngine queryEngine = loginManager.getService().getQueryEngineByName(request.getParameter("queryEngine"));
+		queryEngine.setEnabled(false);
+		loginManager.getService().updateQueryEngine(queryEngine);
+	}
+}
+%>
 <h1>Query Engines</h1>
 <a href="addqueryengine.jsp">Add Query Engine</a>
 <table class="formatted">
@@ -18,7 +32,11 @@
 		<%
 	if (!queryEngine.getEnabled()) {
 %>
-<a href="settings.jsp?action=enableQueryEngine&ifcEngine=<%=queryEngine.getName() %>">Enable</a>
+<a href="queryengines.jsp?action=enableQueryEngine&queryEngine=<%=queryEngine.getName() %>">Enable</a>
+<%
+	} else {
+%>
+<a href="queryengines.jsp?action=disableQueryEngine&queryEngine=<%=queryEngine.getName() %>">Disable</a>
 <%
 	}
 %>

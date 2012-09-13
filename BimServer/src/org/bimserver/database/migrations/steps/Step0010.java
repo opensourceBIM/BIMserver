@@ -103,16 +103,19 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(databaseInformationClass, "schemaVersion", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEReference(databaseInformationClass, "categories", databaseInformationCategoryClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		
-		EClass serializerPluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "SerializerPluginDescriptor");
-		schema.createEAttribute(serializerPluginDescriptorClass, "pluginClassName", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerPluginDescriptorClass, "defaultName", ecorePackage.getEString(), Multiplicity.SINGLE);
+		EClass pluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "PluginDescriptor");
+		schema.createEAttribute(pluginDescriptorClass, "defaultName", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginDescriptorClass, "pluginClassName", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginDescriptorClass, "description", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginDescriptorClass, "location", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginDescriptorClass, "enabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
+
+		EClass serializerPluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "SerializerPluginDescriptor", pluginDescriptorClass);
 		schema.createEAttribute(serializerPluginDescriptorClass, "defaultExtension", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerPluginDescriptorClass, "defaultContentType", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
-		EClass deserializerPluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "DeserializerPluginDescriptor");
-		schema.createEAttribute(deserializerPluginDescriptorClass, "pluginClassName", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(deserializerPluginDescriptorClass, "defaultName", ecorePackage.getEString(), Multiplicity.SINGLE);
-
+		schema.createEClass(schema.getEPackage("store"), "DeserializerPluginDescriptor", pluginDescriptorClass);
+		
 		EClass revisionSummaryTypeClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummaryType");
 		schema.createEAttribute(revisionSummaryTypeClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionSummaryTypeClass, "count", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
@@ -123,12 +126,6 @@ public class Step0010 extends Migration {
 		
 		EClass revisionSummaryClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummary");
 		schema.createEReference(revisionSummaryClass, "list", revisionSummaryContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());;
-		
-		EClass pluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "PluginDescriptor");
-		schema.createEAttribute(pluginDescriptorClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginDescriptorClass, "description", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginDescriptorClass, "location", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginDescriptorClass, "enabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		
 		EClass longActionClass = schema.createEClass(schema.getEPackage("store"), "LongAction");
 		schema.createEAttribute(longActionClass, "identification", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -142,12 +139,6 @@ public class Step0010 extends Migration {
 		
 		EClass objectIDMPluginDescriptor = schema.createEClass(schema.getEPackage("store"), "ObjectIDMPluginDescriptor");
 		schema.createEAttribute(objectIDMPluginDescriptor, "className", ecorePackage.getEString(), Multiplicity.SINGLE);
-		
-		EEnum compareIdentifier = schema.createEEnum(schema.getEPackage("store"), "CompareIdentifier");
-		
-		// Those are post-fixed with "_ID" because a name conflict occurs with another enum in protocol buffers
-		schema.createEEnumLiteral(compareIdentifier, "NAME_ID");
-		schema.createEEnumLiteral(compareIdentifier, "GUID_ID");
 		
 		EEnum compareTypeEnum = schema.createEEnum(schema.getEPackage("store"), "CompareType");
 		schema.createEEnumLiteral(compareTypeEnum, "ALL");

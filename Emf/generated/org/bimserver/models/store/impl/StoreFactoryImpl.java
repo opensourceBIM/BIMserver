@@ -18,15 +18,77 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.models.store.*;
-
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.CheckinResult;
+import org.bimserver.models.store.CheckinStatus;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.CheckoutResult;
+import org.bimserver.models.store.CompareContainer;
+import org.bimserver.models.store.CompareItem;
+import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.CompareType;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
+import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DeserializerPluginDescriptor;
+import org.bimserver.models.store.DownloadResult;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.ExtendedDataSchemaType;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginDescriptor;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.LongAction;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongCheckinAction;
+import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelComparePluginDescriptor;
+import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginDescriptor;
+import org.bimserver.models.store.NewProjectNotification;
+import org.bimserver.models.store.NewRevisionNotification;
+import org.bimserver.models.store.Notification;
+import org.bimserver.models.store.ObjectAdded;
+import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginDescriptor;
+import org.bimserver.models.store.ObjectModified;
+import org.bimserver.models.store.ObjectRemoved;
+import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.Plugin;
+import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.QueryEnginePluginDescriptor;
+import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginDescriptor;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.ServerState;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSession;
+import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.UserType;
+import org.bimserver.models.store.Version;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -76,14 +138,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createProject();
 		case StorePackage.USER:
 			return (EObject) createUser();
-		case StorePackage.CLASH:
-			return (EObject) createClash();
-		case StorePackage.EID_CLASH:
-			return (EObject) createEidClash();
-		case StorePackage.GUID_CLASH:
-			return (EObject) createGuidClash();
-		case StorePackage.CLASH_DETECTION_SETTINGS:
-			return (EObject) createClashDetectionSettings();
 		case StorePackage.REVISION:
 			return (EObject) createRevision();
 		case StorePackage.CONCRETE_REVISION:
@@ -92,16 +146,18 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createGeoTag();
 		case StorePackage.CHECKOUT:
 			return (EObject) createCheckout();
-		case StorePackage.SETTINGS:
-			return (EObject) createSettings();
+		case StorePackage.SERVER_SETTINGS:
+			return (EObject) createServerSettings();
+		case StorePackage.USER_SETTINGS:
+			return (EObject) createUserSettings();
+		case StorePackage.PLUGIN:
+			return (EObject) createPlugin();
 		case StorePackage.SERIALIZER:
 			return (EObject) createSerializer();
 		case StorePackage.OBJECT_IDM:
 			return (EObject) createObjectIDM();
 		case StorePackage.IFC_ENGINE:
 			return (EObject) createIfcEngine();
-		case StorePackage.PLUGIN:
-			return (EObject) createPlugin();
 		case StorePackage.DESERIALIZER:
 			return (EObject) createDeserializer();
 		case StorePackage.CHECKIN_RESULT:
@@ -130,6 +186,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createDatabaseInformationCategory();
 		case StorePackage.DATABASE_INFORMATION:
 			return (EObject) createDatabaseInformation();
+		case StorePackage.PLUGIN_DESCRIPTOR:
+			return (EObject) createPluginDescriptor();
 		case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR:
 			return (EObject) createSerializerPluginDescriptor();
 		case StorePackage.DESERIALIZER_PLUGIN_DESCRIPTOR:
@@ -140,8 +198,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createRevisionSummaryContainer();
 		case StorePackage.REVISION_SUMMARY:
 			return (EObject) createRevisionSummary();
-		case StorePackage.PLUGIN_DESCRIPTOR:
-			return (EObject) createPluginDescriptor();
 		case StorePackage.LONG_ACTION:
 			return (EObject) createLongAction();
 		case StorePackage.LONG_CHECKIN_ACTION:
@@ -168,10 +224,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createNewProjectNotification();
 		case StorePackage.NEW_REVISION_NOTIFICATION:
 			return (EObject) createNewRevisionNotification();
-		case StorePackage.COMPILE_RESULT:
-			return (EObject) createCompileResult();
-		case StorePackage.RUN_RESULT:
-			return (EObject) createRunResult();
 		case StorePackage.SERVER_INFO:
 			return (EObject) createServerInfo();
 		case StorePackage.VERSION:
@@ -213,10 +265,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createSIPrefixFromString(eDataType, initialValue);
 		case StorePackage.OBJECT_STATE:
 			return createObjectStateFromString(eDataType, initialValue);
-		case StorePackage.MERGE_IDENTIFIER:
-			return createMergeIdentifierFromString(eDataType, initialValue);
-		case StorePackage.COMPARE_IDENTIFIER:
-			return createCompareIdentifierFromString(eDataType, initialValue);
 		case StorePackage.COMPARE_TYPE:
 			return createCompareTypeFromString(eDataType, initialValue);
 		case StorePackage.ACTION_STATE:
@@ -248,10 +296,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertSIPrefixToString(eDataType, instanceValue);
 		case StorePackage.OBJECT_STATE:
 			return convertObjectStateToString(eDataType, instanceValue);
-		case StorePackage.MERGE_IDENTIFIER:
-			return convertMergeIdentifierToString(eDataType, instanceValue);
-		case StorePackage.COMPARE_IDENTIFIER:
-			return convertCompareIdentifierToString(eDataType, instanceValue);
 		case StorePackage.COMPARE_TYPE:
 			return convertCompareTypeToString(eDataType, instanceValue);
 		case StorePackage.ACTION_STATE:
@@ -287,46 +331,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Clash createClash() {
-		ClashImpl clash = new ClashImpl();
-		return clash;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EidClash createEidClash() {
-		EidClashImpl eidClash = new EidClashImpl();
-		return eidClash;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GuidClash createGuidClash() {
-		GuidClashImpl guidClash = new GuidClashImpl();
-		return guidClash;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClashDetectionSettings createClashDetectionSettings() {
-		ClashDetectionSettingsImpl clashDetectionSettings = new ClashDetectionSettingsImpl();
-		return clashDetectionSettings;
 	}
 
 	/**
@@ -374,9 +378,19 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Settings createSettings() {
-		SettingsImpl settings = new SettingsImpl();
-		return settings;
+	public ServerSettings createServerSettings() {
+		ServerSettingsImpl serverSettings = new ServerSettingsImpl();
+		return serverSettings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserSettings createUserSettings() {
+		UserSettingsImpl userSettings = new UserSettingsImpl();
+		return userSettings;
 	}
 
 	/**
@@ -754,26 +768,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompileResult createCompileResult() {
-		CompileResultImpl compileResult = new CompileResultImpl();
-		return compileResult;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RunResult createRunResult() {
-		RunResultImpl runResult = new RunResultImpl();
-		return runResult;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ServerInfo createServerInfo() {
 		ServerInfoImpl serverInfo = new ServerInfoImpl();
 		return serverInfo;
@@ -939,48 +933,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertObjectStateToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MergeIdentifier createMergeIdentifierFromString(EDataType eDataType, String initialValue) {
-		MergeIdentifier result = MergeIdentifier.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertMergeIdentifierToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompareIdentifier createCompareIdentifierFromString(EDataType eDataType, String initialValue) {
-		CompareIdentifier result = CompareIdentifier.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCompareIdentifierToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

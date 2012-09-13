@@ -38,8 +38,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
-import org.bimserver.models.store.MergeIdentifier;
-import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
@@ -138,6 +137,9 @@ public class Database implements BimDatabase {
 				initInternalStructure(databaseSession);
 				initCounters(databaseSession);
 
+				ServerSettings settings = createDefaultSettings();
+				databaseSession.store(settings);
+				
 				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
 				databaseCreated.setExecutor(null);
@@ -151,9 +153,6 @@ public class Database implements BimDatabase {
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();
 
-				Settings settings = createDefaultSettings();
-				databaseSession.store(settings);				
-				
 				registry.save("isnew", false, databaseSession);
 			} else {
 				initInternalStructure(databaseSession);
@@ -179,8 +178,8 @@ public class Database implements BimDatabase {
 	}
 
 
-	public Settings createDefaultSettings() {
-		Settings settings = StoreFactory.eINSTANCE.createSettings();
+	public ServerSettings createDefaultSettings() {
+		ServerSettings settings = StoreFactory.eINSTANCE.createServerSettings();
 		settings.setCustomLogoAddress("http://www.bimserver.org/version/defaultlogo.gif");
 		settings.setEmailSenderAddress("");
 		settings.setSiteAddress("");
@@ -191,13 +190,10 @@ public class Database implements BimDatabase {
 		settings.setProtocolBuffersPort(8020);
 		settings.setAllowSelfRegistration(false);
 		settings.setAllowUsersToCreateTopLevelProjects(false);
-		settings.setAutoTestClashes(false);
 		settings.setCheckinMergingEnabled(false);
-		settings.setIntelligentMerging(false);
 		settings.setHideUserListForNonAdmin(true);
 		settings.setShowVersionUpgradeAvailable(false);
 		settings.setCacheOutputFiles(false);
-		settings.setMergeIdentifier(MergeIdentifier.GUID);
 		return settings;
 	}
 	

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SSerializerPluginDescriptor implements SBase
+public class SSerializerPluginDescriptor extends SPluginDescriptor implements SBase
 {
 	private long oid = -1;
 	@XmlTransient
@@ -46,11 +46,20 @@ public class SSerializerPluginDescriptor implements SBase
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("defaultName")) {
+			return getDefaultName();
+		}
 		if (sField.getName().equals("pluginClassName")) {
 			return getPluginClassName();
 		}
-		if (sField.getName().equals("defaultName")) {
-			return getDefaultName();
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("location")) {
+			return getLocation();
+		}
+		if (sField.getName().equals("enabled")) {
+			return getEnabled();
 		}
 		if (sField.getName().equals("defaultExtension")) {
 			return getDefaultExtension();
@@ -64,12 +73,24 @@ public class SSerializerPluginDescriptor implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("defaultName")) {
+			setDefaultName((String)val);
+			return;
+		}
 		if (sField.getName().equals("pluginClassName")) {
 			setPluginClassName((String)val);
 			return;
 		}
-		if (sField.getName().equals("defaultName")) {
-			setDefaultName((String)val);
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("location")) {
+			setLocation((String)val);
+			return;
+		}
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("defaultExtension")) {
@@ -87,24 +108,8 @@ public class SSerializerPluginDescriptor implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String pluginClassName;
-	private java.lang.String defaultName;
 	private java.lang.String defaultExtension;
 	private java.lang.String defaultContentType;
-	public java.lang.String getPluginClassName() {
-		return pluginClassName;
-	}
-
-	public void setPluginClassName(java.lang.String pluginClassName) {
-		this.pluginClassName = pluginClassName;
-	}
-	public java.lang.String getDefaultName() {
-		return defaultName;
-	}
-
-	public void setDefaultName(java.lang.String defaultName) {
-		this.defaultName = defaultName;
-	}
 	public java.lang.String getDefaultExtension() {
 		return defaultExtension;
 	}

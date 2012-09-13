@@ -45,7 +45,7 @@ public abstract class GenericCache<K extends GenericCacheKey, V extends GenericC
 		while (iterator.hasNext()) {
 			GenericCacheKey key = iterator.next();
 			if (cache.get(key).shouldCleanUp()) {
-				LOGGER.info("Removing one clash detection cache item");
+				LOGGER.info("Removing one cache item");
 				iterator.remove();
 			}
 		}

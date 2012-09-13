@@ -56,8 +56,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#/0/Project"
           eOpposite="#/0/Project/subProjects"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="clashDetectionSettings"
-          eType="#/0/ClashDetectionSettings" eOpposite="#/0/ClashDetectionSettings/projects"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exportLengthMeasurePrefix"
           eType="#/0/SIPrefix"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
@@ -79,37 +77,12 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationTokenCreated"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
           eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/users"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
           eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/user"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Clash">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="revision1" eType="#/0/Revision"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="revision2" eType="#/0/Revision"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="EidClash" eSuperTypes="#/0/Clash">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="eid1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="eid2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GuidClash" eSuperTypes="#/0/Clash">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettings">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
-          eType="#/0/Project" eOpposite="#/0/Project/clashDetectionSettings"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="margin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
-          eType="#/0/Revision"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ignoredClasses" upperBound="-1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -125,12 +98,9 @@
           eType="#/0/Checkout" eOpposite="#/0/Checkout/revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
           eOpposite="#/0/Project/revisions"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="lastClashes" upperBound="-1"
-          eType="#/0/Clash"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrClashes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="laid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
           eType="#/0/ExtendedData"/>
@@ -167,7 +137,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="checkin" eType="#/0/Revision"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Settings">
+    <eClassifiers xsi:type="ecore:EClass" name="ServerSettings">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="showVersionUpgradeAvailable"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sendConfirmationEmailAfterRegistration"
@@ -175,8 +145,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="useCaching" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowSelfRegistration"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="autoTestClashes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="intelligentMerging" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowUsersToCreateTopLevelProjects"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkinMergingEnabled"
@@ -191,22 +159,21 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocolBuffersPort"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheOutputFiles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
+          eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/settings"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
           eType="#/0/Serializer" eOpposite="#/0/Serializer/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDMs" upperBound="-1"
           eType="#/0/ObjectIDM" eOpposite="#/0/ObjectIDM/settings"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="mergeIdentifier" eType="#/0/MergeIdentifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheOutputFiles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngines" upperBound="-1"
           eType="#/0/IfcEngine" eOpposite="#/0/IfcEngine/settings"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="plugins" upperBound="-1"
-          eType="#/0/Plugin" eOpposite="#/0/Plugin/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="deserializers" upperBound="-1"
           eType="#/0/Deserializer" eOpposite="#/0/Deserializer/settings"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
-          eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="queryengines" upperBound="-1"
           eType="#/0/QueryEngine" eOpposite="#/0/QueryEngine/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelmergers" upperBound="-1"
@@ -221,59 +188,37 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultSerializer" eType="#/0/Serializer"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#/0/ObjectIDM"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Serializer">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultSerializer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDM" eType="#/0/ObjectIDM"
-          eOpposite="#/0/ObjectIDM/serializers"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/serializers"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngine" eType="#/0/IfcEngine"
-          eOpposite="#/0/IfcEngine/serializers"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ObjectIDM">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
-          eType="#/0/Serializer" eOpposite="#/0/Serializer/objectIDM"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/objectIDMs"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="MergeIdentifier">
-      <eLiterals name="NAME"/>
-      <eLiterals name="GUID" value="1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IfcEngine">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
-          eType="#/0/Serializer" eOpposite="#/0/Serializer/ifcEngine"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/ifcEngines"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Plugin">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/plugins"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Deserializer">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultDeserializer"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/deserializers"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Serializer" eSuperTypes="#/0/Plugin">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDM" eType="#/0/ObjectIDM"
+          eOpposite="#/0/ObjectIDM/serializers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
+          eOpposite="#/0/UserSettings/serializers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngine" eType="#/0/IfcEngine"
+          eOpposite="#/0/IfcEngine/serializers"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectIDM" eSuperTypes="#/0/Plugin">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
+          eType="#/0/Serializer" eOpposite="#/0/Serializer/objectIDM"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
+          eOpposite="#/0/UserSettings/objectIDMs"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IfcEngine" eSuperTypes="#/0/Plugin">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
+          eType="#/0/Serializer" eOpposite="#/0/Serializer/ifcEngine"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
+          eOpposite="#/0/UserSettings/ifcEngines"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Deserializer" eSuperTypes="#/0/Plugin">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
+          eOpposite="#/0/UserSettings/deserializers"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CheckinResult">
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
@@ -356,16 +301,18 @@
         <eAnnotations source="embedsreference"/>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PluginDescriptor">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginDescriptor" eSuperTypes="#/0/PluginDescriptor">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultExtension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultContentType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
     <eClassifiers xsi:type="ecore:EClass" name="RevisionSummaryType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -383,12 +330,6 @@
         <eAnnotations source="embedsreference"/>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PluginDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LongAction">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="identification" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
@@ -402,10 +343,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectIDMPluginDescriptor">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="CompareIdentifier">
-      <eLiterals name="NAME_ID"/>
-      <eLiterals name="GUID_ID" value="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CompareType">
       <eLiterals name="ALL"/>
@@ -461,22 +398,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CompileResult">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="compileOke" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="warnings" upperBound="-1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="errors" upperBound="-1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RunResult">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="runOke" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="warnings" upperBound="-1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="errors" upperBound="-1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="downloadId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ServerState">
       <eLiterals name="UNDEFINED"/>
       <eLiterals name="NOT_SETUP" value="1"/>
@@ -498,10 +419,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportEmail" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
     <eClassifiers xsi:type="ecore:EEnum" name="CheckinStatus">
       <eLiterals name="CH_NONE"/>
       <eLiterals name="CH_STARTED" value="1"/>
@@ -517,8 +435,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#/0/ExtendedDataSchemaType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/schemas"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/ServerSettings"
+          eOpposite="#/0/ServerSettings/schemas"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
           eType="#/0/User" eOpposite="#/0/User/schemas"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
@@ -534,41 +452,20 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#/0/ExtendedDataSchema"
           eOpposite="#/0/ExtendedDataSchema/extendedData"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
+    <eClassifiers xsi:type="ecore:EClass" name="QueryEngine" eSuperTypes="#/0/Plugin">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
+          eOpposite="#/0/UserSettings/queryengines"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QueryEngine">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/queryengines"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelMerger" eSuperTypes="#/0/Plugin">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
+          eOpposite="#/0/UserSettings/modelmergers"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelMerger">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/modelmergers"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelCompare">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/modelcompares"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCompare" eSuperTypes="#/0/Plugin">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
+          eOpposite="#/0/UserSettings/modelcompares"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="ifc2x3tc1" nsURI="http:///buildingsmart.ifc.ecore" nsPrefix="iai">
@@ -6740,10 +6637,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GeoTagUpdated" eSuperTypes="#/2/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="geoTag" eType="#/0/GeoTag"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettingsUpdated" eSuperTypes="#/2/LogAction">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="clashDetectionSettings"
-          eType="#/0/ClashDetectionSettings"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PasswordChanged" eSuperTypes="#/2/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>

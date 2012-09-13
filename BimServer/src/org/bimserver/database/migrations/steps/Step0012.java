@@ -27,17 +27,6 @@ public class Step0012 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass compileResultClass = schema.createEClass(schema.getEPackage("store"), "CompileResult");
-		schema.createEAttribute(compileResultClass, "compileOke", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(compileResultClass, "warnings", ecorePackage.getEString(), Multiplicity.MANY);
-		schema.createEAttribute(compileResultClass, "errors", ecorePackage.getEString(), Multiplicity.MANY);
-
-		EClass runResultClass = schema.createEClass(schema.getEPackage("store"), "RunResult");
-		schema.createEAttribute(runResultClass, "runOke", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(runResultClass, "warnings", ecorePackage.getEString(), Multiplicity.MANY);
-		schema.createEAttribute(runResultClass, "errors", ecorePackage.getEString(), Multiplicity.MANY);
-		schema.createEAttribute(runResultClass, "output", ecorePackage.getEString(), Multiplicity.SINGLE);
-		
 		EEnum serverState = schema.createEEnum(schema.getEPackage("store"), "ServerState");
 		schema.createEEnumLiteral(serverState, "UNDEFINED");
 		schema.createEEnumLiteral(serverState, "NOT_SETUP");

@@ -16,11 +16,8 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.DeserializerPluginDescriptor;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,16 +25,11 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Deserializer Plugin Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl#getPluginClassName <em>Plugin Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
-public class DeserializerPluginDescriptorImpl extends IdEObjectImpl implements DeserializerPluginDescriptor {
+public class DeserializerPluginDescriptorImpl extends PluginDescriptorImpl implements DeserializerPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,52 +47,6 @@ public class DeserializerPluginDescriptorImpl extends IdEObjectImpl implements D
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.DESERIALIZER_PLUGIN_DESCRIPTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPluginClassName() {
-		return (String) eGet(StorePackage.Literals.DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPluginClassName(String newPluginClassName) {
-		eSet(StorePackage.Literals.DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, newPluginClassName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDefaultName() {
-		return (String) eGet(StorePackage.Literals.DESERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultName(String newDefaultName) {
-		eSet(StorePackage.Literals.DESERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME, newDefaultName);
 	}
 
 } //DeserializerPluginDescriptorImpl

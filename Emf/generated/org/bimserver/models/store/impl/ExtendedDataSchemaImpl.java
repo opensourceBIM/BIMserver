@@ -20,7 +20,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.ExtendedDataSchemaType;
-import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.eclipse.emf.common.util.EList;
@@ -171,8 +171,8 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Settings getSettings() {
-		return (Settings) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SETTINGS, true);
+	public ServerSettings getSettings() {
+		return (ServerSettings) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SETTINGS, true);
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(Settings newSettings) {
+	public void setSettings(ServerSettings newSettings) {
 		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SETTINGS, newSettings);
 	}
 

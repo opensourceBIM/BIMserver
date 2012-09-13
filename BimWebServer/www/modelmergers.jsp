@@ -1,6 +1,20 @@
 <%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
 <%@page import="java.util.List"%>
-<%@ include file="settings.jsp"%>
+<%@ include file="settingsmenu.jsp"%>
+<%
+if (request.getParameter("action") != null) {
+	String action = request.getParameter("action");
+	if (action.equals("enableModelMerger")) {
+		SModelMerger modelMerger = loginManager.getService().getModelMergerByName(request.getParameter("modelMerger"));
+		modelMerger.setEnabled(true);
+		loginManager.getService().updateModelMerger(modelMerger);
+	} else if (action.equals("disableModelMerger")) {
+		SModelMerger modelMerger = loginManager.getService().getModelMergerByName(request.getParameter("modelMerger"));
+		modelMerger.setEnabled(false);
+		loginManager.getService().updateModelMerger(modelMerger);
+	}
+}
+%>
 <h1>Model Mergers</h1>
 <a href="addmodelmerger.jsp">Add Model Merger</a>
 <table class="formatted">
@@ -18,11 +32,11 @@
 		<%
 	if (!modelMerger.getEnabled()) {
 %>
-<a href="settings.jsp?action=enableModelMerger&modelMerger=<%=modelMerger.getName() %>">Enable</a>
+<a href="modelmergers.jsp?action=enableModelMerger&modelMerger=<%=modelMerger.getName() %>">Enable</a>
 <%
 	} else {
 %>
-<a href="settings.jsp?action=disableModelMerger&modelMerger=<%=modelMerger.getName() %>">Disable</a>
+<a href="modelmergers.jsp?action=disableModelMerger&modelMerger=<%=modelMerger.getName() %>">Disable</a>
 <%
 	}
 %>

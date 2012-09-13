@@ -96,7 +96,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet);
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid).merge(project, ifcModelSet);
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

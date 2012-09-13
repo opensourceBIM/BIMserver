@@ -45,7 +45,7 @@ public class EmfDeserializerFactory {
 	public EmfDeserializer createDeserializer(String deserializerName) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getDeserializer_Name(), new StringLiteral(deserializerName));
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(deserializerName));
 			Deserializer found = session.querySingle(condition, Deserializer.class, false, null);
 			if (found != null) {
 				DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin(found.getClassName(), true);

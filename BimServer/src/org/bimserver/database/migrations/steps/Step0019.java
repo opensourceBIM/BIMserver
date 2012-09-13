@@ -22,25 +22,18 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0019 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass modelMergerPluginDescriptor = schema.createEClass(schema.getEPackage("store"), "ModelMergerPluginDescriptor");
-		schema.createEAttribute(modelMergerPluginDescriptor, "pluginClassName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
-		schema.createEAttribute(modelMergerPluginDescriptor, "defaultName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
+		schema.createEClass(schema.getEPackage("store"), "ModelMergerPluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 		
-		EClass modelMergerClass = schema.createEClass(schema.getEPackage("store"), "ModelMerger");
-		EClass settingsClass = schema.getEClass("store", "Settings");
+		EClass modelMergerClass = schema.createEClass(schema.getEPackage("store"), "ModelMerger", schema.getEClass("store", "Plugin"));
+		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		schema.createEAttribute(modelMergerClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(modelMergerClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(modelMergerClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(modelMergerClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
-		EReference modelMergerSettingsReference = schema.createEReference(modelMergerClass, "settings", settingsClass, Multiplicity.SINGLE);
-		EReference settingsModelMergersReference = schema.createEReference(settingsClass, "modelmergers", modelMergerClass, Multiplicity.MANY);
+		EReference modelMergerSettingsReference = schema.createEReference(modelMergerClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference settingsModelMergersReference = schema.createEReference(userSettingsClass, "modelmergers", modelMergerClass, Multiplicity.MANY);
 		
 		modelMergerSettingsReference.setEOpposite(settingsModelMergersReference);
 		settingsModelMergersReference.setEOpposite(modelMergerSettingsReference);

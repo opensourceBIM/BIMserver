@@ -57,7 +57,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	private boolean createSystemUser = false;
 	private final BimServer bimServer;
 
-	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String name, UserType userType,
+			long createrUoid, boolean selfRegistration) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.name = name;
@@ -68,7 +69,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.password = null;
 	}
 
-	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType,
+			long createrUoid, boolean selfRegistration) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.password = password;
@@ -124,30 +126,34 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		newUserAdded.setExecutor(actingUser);
 		newUserAdded.setDate(new Date());
 		newUserAdded.setAccessMethod(getAccessMethod());
+		
+		bimServer.updateUserSettings(getDatabaseSession(), user);
+		
 		getDatabaseSession().store(user);
 		getDatabaseSession().store(newUserAdded);
-		getDatabaseSession().addPostCommitAction(new PostCommitAction(){
-			@Override
-			public void execute() throws UserException {
-				try {
-					if (getSettings().isSendConfirmationEmailAfterRegistration()) {
+		if (getServerSettings() != null && getServerSettings().isSendConfirmationEmailAfterRegistration()) {
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					try {
 						if (MailSystem.isValidEmailAddress(user.getUsername())) {
 							Session mailSession = bimServer.getMailSystem().createMailSession();
-							
+
 							Message msg = new MimeMessage(mailSession);
-							String emailSenderAddress = getSettings().getEmailSenderAddress();
+							String emailSenderAddress = getServerSettings().getEmailSenderAddress();
 							InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
 							msg.setFrom(addressFrom);
-							
+
 							InternetAddress[] addressTo = new InternetAddress[1];
 							addressTo[0] = new InternetAddress(user.getUsername());
 							msg.setRecipients(Message.RecipientType.TO, addressTo);
-							
+
 							Map<String, Object> context = new HashMap<String, Object>();
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
-							context.put("siteaddress", getSettings().getSiteAddress());
-							String validationLink = getSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token;
+							context.put("siteaddress", getServerSettings().getSiteAddress());
+							String validationLink = getServerSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token="
+									+ token;
 							context.put("validationlink", validationLink);
 							String body = null;
 							String subject = null;
@@ -160,21 +166,21 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 							}
 							msg.setContent(body, "text/html");
 							msg.setSubject(subject.trim());
-							
+
 							LOGGER.info("Sending registration e-mail to " + user.getUsername());
-							
+
 							Transport.send(msg);
 						}
+					} catch (Exception e) {
+						LOGGER.error("", e);
 					}
-				} catch (Exception e) {
-					LOGGER.error("", e);
 				}
-			}
-		});
+			});
+		}
 		return user;
 	}
-	
+
 	public void setCreateSystemUser() {
-		createSystemUser  = true;
+		createSystemUser = true;
 	}
 }

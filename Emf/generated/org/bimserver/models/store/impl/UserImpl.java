@@ -26,6 +26,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -49,6 +50,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getLastSeen <em>Last Seen</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationTokenCreated <em>Validation Token Created</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getNotificationUrl <em>Notification Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getExtendedData <em>Extended Data</em>}</li>
@@ -285,6 +287,24 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	public void setValidationTokenCreated(Date newValidationTokenCreated) {
 		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, newValidationTokenCreated);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserSettings getSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.USER__SETTINGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSettings(UserSettings newSettings) {
+		eSet(StorePackage.Literals.USER__SETTINGS, newSettings);
 	}
 
 	/**

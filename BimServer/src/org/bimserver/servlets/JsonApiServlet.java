@@ -38,7 +38,7 @@ public class JsonApiServlet extends HttpServlet {
 			String siteAddress = "";
 			DatabaseSession session = bimServer.getDatabase().createSession();
 			try {
-				siteAddress = bimServer.getSettings(session).getSiteAddress();
+				siteAddress = bimServer.getServerSettings(session).getSiteAddress();
 			} finally {
 				session.close();
 			}

@@ -19,7 +19,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -39,11 +38,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getLastConcreteRevision <em>Last Concrete Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getCheckouts <em>Checkouts</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.models.store.Revision#getLastClashes <em>Last Clashes</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getBmi <em>Bmi</em>}</li>
- *   <li>{@link org.bimserver.models.store.Revision#getNrClashes <em>Nr Clashes</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -276,22 +273,6 @@ public interface Revision extends IdEObject {
 	void setProject(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Last Clashes</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.Clash}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Last Clashes</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Last Clashes</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getRevision_LastClashes()
-	 * @model
-	 * @generated
-	 */
-	EList<Clash> getLastClashes();
-
-	/**
 	 * Returns the value of the '<em><b>Tag</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -368,32 +349,6 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setBmi(Integer value);
-
-	/**
-	 * Returns the value of the '<em><b>Nr Clashes</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nr Clashes</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nr Clashes</em>' attribute.
-	 * @see #setNrClashes(Integer)
-	 * @see org.bimserver.models.store.StorePackage#getRevision_NrClashes()
-	 * @model
-	 * @generated
-	 */
-	Integer getNrClashes();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getNrClashes <em>Nr Clashes</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nr Clashes</em>' attribute.
-	 * @see #getNrClashes()
-	 * @generated
-	 */
-	void setNrClashes(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Laid</b></em>' attribute.

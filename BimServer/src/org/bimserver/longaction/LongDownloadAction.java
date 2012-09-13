@@ -71,7 +71,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		ObjectIDM objectIDM = null;
 		session = getBimServer().getDatabase().createSession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(downloadParameters.getSerializerName()));
 			Serializer serializer = session.querySingle(condition, Serializer.class, false, null);
 			if (serializer != null) {
 				org.bimserver.models.store.ObjectIDM objectIdm = serializer.getObjectIDM();

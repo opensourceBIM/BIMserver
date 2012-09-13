@@ -38,8 +38,6 @@ import javax.xml.bind.annotation.XmlMimeType;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
-import org.bimserver.interfaces.objects.SClash;
-import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDataObject;
@@ -47,11 +45,9 @@ import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
-import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SIfcEngine;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
@@ -754,35 +750,6 @@ public interface ServiceInterface {
 	List<SDataObject> getDataObjects(Long roid) throws ServerException, UserException;
 
 	/**
-	 * Perform clashdetection
-	 * @param sClashDetectionSettings The settings for the ClashDetection, these include the Revisions to use
-	 * @return A list of GuidClash objects describing the found clashes
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "findClashesByGuid")
-	List<SGuidClash> findClashesByGuid(
-			@WebParam(name = "sClashDetectionSettings", partName = "findClashesByGuid.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException;
-
-	/**
-	 * @param sClashDetectionSettings The settings for the ClashDetection, these include the Revisions to use
-	 * @return A list of EidClash objects describing the found clashes
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "findClashesByEid")
-	List<SEidClash> findClashesByEid(
-			@WebParam(name = "sClashDetectionSettings", partName = "findClashesByEid.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException;
-
-	/**
-	 * Get previously calculated clashes
-	 * @param roid ObjectID of the Revision
-	 * @return A list of Clash objects
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLastClashes")
-	List<SClash> getLastClashes(
-			@WebParam(name = "roid", partName = "getLastClashes.roid") Long roid) throws ServerException, UserException;
-
-	/**
 	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous
 	 * @param roid ObjectID of the Revision to branch
 	 * @param projectName Name of the to be created Project
@@ -826,23 +793,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "updateGeoTag")
 	void updateGeoTag(
 			@WebParam(name = "sGeoTag", partName = "updateGeoTag.sGeoTag") SGeoTag sGeoTag) throws ServerException, UserException;
-
-	/**
-	 * @param cdsoid The ObjectID of the ClashDetectionSettings object
-	 * @return The ClashDetectionSettings object
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getClashDetectionSettings")
-	SClashDetectionSettings getClashDetectionSettings(
-			@WebParam(name = "cdsoid", partName = "getClashDetectionSettings.cdsoid") Long cdsoid) throws ServerException, UserException;
-
-	/**
-	 * @param sClashDetectionSettings A ClashDetectionSettings object containing the new properties
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateClashDetectionSettings")
-	void updateClashDetectionSettings(
-			@WebParam(name = "sClashDetectionSettings", partName = "updateClashDetectionSettings.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings) throws ServerException, UserException;
 
 	/**
 	 * @param uoid The ObjectID of the User
@@ -976,19 +926,6 @@ public interface ServiceInterface {
 			@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
 			@WebParam(name = "token", partName = "validateAccount.token") String token,
 			@WebParam(name = "password", partName = "validateAccount.password") String password) throws ServerException, UserException;
-
-	/**
-	 * Send an e-mail to a set of Users with the results of a clashdetection
-	 * @param sClashDetectionSettings The settings to use for the ClashDetection
-	 * @param poid ObjectID of the Project
-	 * @param addressesTo A set of String containing the e-mail addresses
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "sendClashesEmail")
-	void sendClashesEmail(
-			@WebParam(name = "sClashDetectionSettings", partName = "sendClashesEmail.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings,
-			@WebParam(name = "poid", partName = "sendClashesEmail.poid") Long poid,
-			@WebParam(name = "addressesTo", partName = "sendClashesEmail.addressesTo") Set<String> addressesTo) throws ServerException, UserException;
 
 	/**
 	 * Send an e-mail with the results of a compare

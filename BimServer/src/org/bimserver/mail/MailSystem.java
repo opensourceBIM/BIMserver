@@ -38,7 +38,7 @@ public class MailSystem {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Properties props = new Properties();
-			props.put("mail.smtp.host", bimServer.getSettings(session).getSmtpServer());
+			props.put("mail.smtp.host", bimServer.getServerSettings(session).getSmtpServer());
 			props.put("mail.smtp.localhost", "bimserver.org");
 			Session mailSession = Session.getDefaultInstance(props);
 			return mailSession;

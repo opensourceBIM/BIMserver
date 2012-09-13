@@ -16,15 +16,11 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Serializer;
-import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
-
+import org.bimserver.models.store.UserSettings;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,9 +30,6 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectIDMImpl#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -44,7 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ObjectIDMImpl extends IdEObjectImpl implements ObjectIDM {
+public class ObjectIDMImpl extends PluginImpl implements ObjectIDM {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,70 +62,6 @@ public class ObjectIDMImpl extends IdEObjectImpl implements ObjectIDM {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return (String) eGet(StorePackage.Literals.OBJECT_IDM__NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		eSet(StorePackage.Literals.OBJECT_IDM__NAME, newName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getClassName() {
-		return (String) eGet(StorePackage.Literals.OBJECT_IDM__CLASS_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setClassName(String newClassName) {
-		eSet(StorePackage.Literals.OBJECT_IDM__CLASS_NAME, newClassName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Boolean getEnabled() {
-		return (Boolean) eGet(StorePackage.Literals.OBJECT_IDM__ENABLED, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEnabled(Boolean newEnabled) {
-		eSet(StorePackage.Literals.OBJECT_IDM__ENABLED, newEnabled);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public EList<Serializer> getSerializers() {
 		return (EList<Serializer>) eGet(StorePackage.Literals.OBJECT_IDM__SERIALIZERS, true);
@@ -143,8 +72,8 @@ public class ObjectIDMImpl extends IdEObjectImpl implements ObjectIDM {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Settings getSettings() {
-		return (Settings) eGet(StorePackage.Literals.OBJECT_IDM__SETTINGS, true);
+	public UserSettings getSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.OBJECT_IDM__SETTINGS, true);
 	}
 
 	/**
@@ -152,7 +81,7 @@ public class ObjectIDMImpl extends IdEObjectImpl implements ObjectIDM {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(Settings newSettings) {
+	public void setSettings(UserSettings newSettings) {
 		eSet(StorePackage.Literals.OBJECT_IDM__SETTINGS, newSettings);
 	}
 

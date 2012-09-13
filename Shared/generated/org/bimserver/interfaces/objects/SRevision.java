@@ -76,9 +76,6 @@ public class SRevision implements SBase
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
 		}
-		if (sField.getName().equals("lastClashes")) {
-			return getLastClashes();
-		}
 		if (sField.getName().equals("tag")) {
 			return getTag();
 		}
@@ -87,9 +84,6 @@ public class SRevision implements SBase
 		}
 		if (sField.getName().equals("bmi")) {
 			return getBmi();
-		}
-		if (sField.getName().equals("nrClashes")) {
-			return getNrClashes();
 		}
 		if (sField.getName().equals("laid")) {
 			return getLaid();
@@ -140,10 +134,6 @@ public class SRevision implements SBase
 			setProjectId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("lastClashes")) {
-			setLastClashes((List<Long>)val);
-			return;
-		}
 		if (sField.getName().equals("tag")) {
 			setTag((String)val);
 			return;
@@ -154,10 +144,6 @@ public class SRevision implements SBase
 		}
 		if (sField.getName().equals("bmi")) {
 			setBmi((Integer)val);
-			return;
-		}
-		if (sField.getName().equals("nrClashes")) {
-			setNrClashes((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("laid")) {
@@ -184,11 +170,9 @@ public class SRevision implements SBase
 	private long lastConcreteRevisionId;
 	private List<Long> checkouts = new ArrayList<Long>();
 	private long projectId;
-	private List<Long> lastClashes = new ArrayList<Long>();
 	private java.lang.String tag;
 	private java.lang.String lastError;
 	private java.lang.Integer bmi;
-	private java.lang.Integer nrClashes;
 	private java.lang.Long laid;
 	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.Integer getId() {
@@ -257,13 +241,6 @@ public class SRevision implements SBase
 		this.projectId = projectId;
 	}
 	
-	public List<Long> getLastClashes() {
-		return lastClashes;
-	}
-
-	public void setLastClashes(List<Long> lastClashes) {
-		this.lastClashes = lastClashes;
-	}
 	public java.lang.String getTag() {
 		return tag;
 	}
@@ -284,13 +261,6 @@ public class SRevision implements SBase
 
 	public void setBmi(java.lang.Integer bmi) {
 		this.bmi = bmi;
-	}
-	public java.lang.Integer getNrClashes() {
-		return nrClashes;
-	}
-
-	public void setNrClashes(java.lang.Integer nrClashes) {
-		this.nrClashes = nrClashes;
 	}
 	public java.lang.Long getLaid() {
 		return laid;

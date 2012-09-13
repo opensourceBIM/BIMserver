@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SModelCompare implements SBase
+public class SModelCompare extends SPlugin implements SBase
 {
 	private long oid = -1;
 	@XmlTransient
@@ -49,14 +49,14 @@ public class SModelCompare implements SBase
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
+		if (sField.getName().equals("enabled")) {
+			return getEnabled();
+		}
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
 		if (sField.getName().equals("className")) {
 			return getClassName();
-		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
 		}
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
@@ -71,16 +71,16 @@ public class SModelCompare implements SBase
 			setName((String)val);
 			return;
 		}
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
+			return;
+		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
 			return;
 		}
 		if (sField.getName().equals("className")) {
 			setClassName((String)val);
-			return;
-		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("settingsId")) {
@@ -94,39 +94,7 @@ public class SModelCompare implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String description;
-	private java.lang.String className;
-	private java.lang.Boolean enabled;
 	private long settingsId;
-	public java.lang.String getName() {
-		return name;
-	}
-
-	public void setName(java.lang.String name) {
-		this.name = name;
-	}
-	public java.lang.String getDescription() {
-		return description;
-	}
-
-	public void setDescription(java.lang.String description) {
-		this.description = description;
-	}
-	public java.lang.String getClassName() {
-		return className;
-	}
-
-	public void setClassName(java.lang.String className) {
-		this.className = className;
-	}
-	public java.lang.Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
-	}
 	public long getSettingsId() {
 		return settingsId;
 	}

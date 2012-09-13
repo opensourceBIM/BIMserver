@@ -39,7 +39,7 @@ public class GetObjectIDMByNameDatabaseAction extends BimDatabaseAction<ObjectID
 
 	@Override
 	public ObjectIDM execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getObjectIDM_Name(), new StringLiteral(ObjectIDMName));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(ObjectIDMName));
 		return getDatabaseSession().querySingle(condition, ObjectIDM.class, false, null);
 	}
 }

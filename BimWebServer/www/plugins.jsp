@@ -27,7 +27,7 @@
 	for (SPluginDescriptor plugin : plugins) {
 %>
 <tr>
-	<td><%=plugin.getName() %></td>
+	<td><%=plugin.getDefaultName() %></td>
 	<td><%=plugin.getDescription() %></td>
 	<td><%=plugin.getLocation() %></td>
 	<td class="<%=plugin.getEnabled() ? "enabledPlugin" : "disabledPlugin" %>"><%=plugin.getEnabled() ? "Enabled" : "Disabled" %></td>
@@ -35,11 +35,11 @@
 <%
 	if (plugin.getEnabled()) {
 %>
-<a href="plugins.jsp?action=disable&plugin=<%=plugin.getName() %>">Disable</a>
+<a href="plugins.jsp?action=disable&plugin=<%=plugin.getDefaultName() %>">Disable</a>
 <%
 	} else {
 %>
-<a href="plugins.jsp?action=enable&plugin=<%=plugin.getName() %>">Enable</a>
+<a href="plugins.jsp?action=enable&plugin=<%=plugin.getDefaultName() %>">Enable</a>
 <%
 	}
 %>

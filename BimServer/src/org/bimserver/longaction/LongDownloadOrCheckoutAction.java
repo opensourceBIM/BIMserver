@@ -96,7 +96,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			DatabaseSession newSession = getBimServer().getDatabase().createSession();
 			IfcEnginePlugin ifcEnginePlugin  = null;
 			try {
-				Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
+				Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(downloadParameters.getSerializerName()));
 				Serializer found = newSession.querySingle(condition, Serializer.class, false, null);
 				if (found != null) {
 					org.bimserver.models.store.IfcEngine ifcEngine = found.getIfcEngine();

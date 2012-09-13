@@ -34,9 +34,10 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
@@ -52,13 +53,28 @@ public abstract class BimDatabaseAction<T> {
 		this.accessMethod = accessMethod;
 	}
 
-	public Settings getSettings() {
+	public UserSettings getUserSettings() {
 		try {
-			IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
-			List<Settings> settingsList = allOfType.getAll(Settings.class);
+			IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getUserSettings(), false, null);
+			List<UserSettings> settingsList = allOfType.getAll(UserSettings.class);
 			if (settingsList.size() == 1) {
-				Settings settings = settingsList.get(0);
+				UserSettings settings = settingsList.get(0);
 				return settings;
+			}
+		} catch (BimserverLockConflictException e) {
+			e.printStackTrace();
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ServerSettings getServerSettings() {
+		try {
+			IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
+			List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
+			if (settingsList.size() == 1) {
+				return settingsList.get(0);
 			}
 		} catch (BimserverLockConflictException e) {
 			e.printStackTrace();

@@ -17,7 +17,6 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

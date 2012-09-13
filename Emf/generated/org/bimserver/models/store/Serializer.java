@@ -16,8 +16,6 @@
  */
 package org.bimserver.models.store;
 
-import org.bimserver.emf.IdEObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Serializer</b></em>'.
@@ -26,13 +24,8 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.Serializer#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getContentType <em>Content Type</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#getEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getIfcEngine <em>Ifc Engine</em>}</li>
@@ -41,62 +34,9 @@ import org.bimserver.emf.IdEObject;
  *
  * @see org.bimserver.models.store.StorePackage#getSerializer()
  * @model
- * @extends IdEObject
  * @generated
  */
-public interface Serializer extends IdEObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.bimserver.models.store.StorePackage#getSerializer_Name()
-	 * @model
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see org.bimserver.models.store.StorePackage#getSerializer_Description()
-	 * @model
-	 * @generated
-	 */
-	String getDescription();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
-
+public interface Serializer extends Plugin {
 	/**
 	 * Returns the value of the '<em><b>Extension</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -150,84 +90,6 @@ public interface Serializer extends IdEObject {
 	void setContentType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Name</em>' attribute.
-	 * @see #setClassName(String)
-	 * @see org.bimserver.models.store.StorePackage#getSerializer_ClassName()
-	 * @model
-	 * @generated
-	 */
-	String getClassName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Name</em>' attribute.
-	 * @see #getClassName()
-	 * @generated
-	 */
-	void setClassName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(Boolean)
-	 * @see org.bimserver.models.store.StorePackage#getSerializer_Enabled()
-	 * @model
-	 * @generated
-	 */
-	Boolean getEnabled();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getEnabled <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #getEnabled()
-	 * @generated
-	 */
-	void setEnabled(Boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Default Serializer</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default Serializer</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Serializer</em>' attribute.
-	 * @see #setDefaultSerializer(Boolean)
-	 * @see org.bimserver.models.store.StorePackage#getSerializer_DefaultSerializer()
-	 * @model
-	 * @generated
-	 */
-	Boolean getDefaultSerializer();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getDefaultSerializer <em>Default Serializer</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Serializer</em>' attribute.
-	 * @see #getDefaultSerializer()
-	 * @generated
-	 */
-	void setDefaultSerializer(Boolean value);
-
-	/**
 	 * Returns the value of the '<em><b>Object IDM</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ObjectIDM#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
@@ -257,7 +119,7 @@ public interface Serializer extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
@@ -265,13 +127,13 @@ public interface Serializer extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(Settings)
+	 * @see #setSettings(UserSettings)
 	 * @see org.bimserver.models.store.StorePackage#getSerializer_Settings()
-	 * @see org.bimserver.models.store.Settings#getSerializers
+	 * @see org.bimserver.models.store.UserSettings#getSerializers
 	 * @model opposite="serializers"
 	 * @generated
 	 */
-	Settings getSettings();
+	UserSettings getSettings();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}' reference.
@@ -281,7 +143,7 @@ public interface Serializer extends IdEObject {
 	 * @see #getSettings()
 	 * @generated
 	 */
-	void setSettings(Settings value);
+	void setSettings(UserSettings value);
 
 	/**
 	 * Returns the value of the '<em><b>Ifc Engine</b></em>' reference.

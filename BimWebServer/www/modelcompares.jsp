@@ -1,7 +1,20 @@
 <%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@page import="java.util.List"%>
-<%@ include file="settings.jsp"%>
-<h1>Model Compares</h1>
+<%@ include file="usersettings.jsp"%>
+<%
+if (request.getParameter("action") != null) {
+	String action = request.getParameter("action");
+	if (action.equals("enableModelCompare")) {
+		SModelCompare modelCompare = loginManager.getService().getModelCompareByName(request.getParameter("modelCompare"));
+		modelCompare.setEnabled(true);
+		loginManager.getService().updateModelCompare(modelCompare);
+	} else if (action.equals("disableModelCompare")) {
+		SModelCompare modelCompare = loginManager.getService().getModelCompareByName(request.getParameter("modelCompare"));
+		modelCompare.setEnabled(false);
+		loginManager.getService().updateModelCompare(modelCompare);
+	}
+}
+%><h1>Model Compares</h1>
 <a href="addmodelcompare.jsp">Add Model Compare</a>
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Default</th><th>State</th><th>Actions</th></tr>
@@ -18,11 +31,11 @@
 		<%
 	if (!modelCompare.getEnabled()) {
 %>
-<a href="settings.jsp?action=enableModelCompare&modelCompare=<%=modelCompare.getName() %>">Enable</a>
+<a href="modelcompares.jsp?action=enableModelCompare&modelCompare=<%=modelCompare.getName() %>">Enable</a>
 <%
 	} else {
 %>
-<a href="settings.jsp?action=disableModelCompare&modelCompare=<%=modelCompare.getName() %>">Disable</a>
+<a href="modelcompares.jsp?action=disableModelCompare&modelCompare=<%=modelCompare.getName() %>">Disable</a>
 <%
 	}
 %>

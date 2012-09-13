@@ -39,7 +39,7 @@ public class GetDeserializerByNameDatabaseAction extends BimDatabaseAction<Deser
 
 	@Override
 	public Deserializer execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getDeserializer_Name(), new StringLiteral(name));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
 		return getDatabaseSession().querySingle(condition, Deserializer.class, false, null);
 	}
 }

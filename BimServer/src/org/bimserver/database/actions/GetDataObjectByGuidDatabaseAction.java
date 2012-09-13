@@ -33,12 +33,14 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObj
 	private final String guid;
 	private final long roid;
 	private final BimServer bimServer;
+	private final long currentUoid;
 
-	public GetDataObjectByGuidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String guid) {
+	public GetDataObjectByGuidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String guid, long currentUoid) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.guid = guid;
+		this.currentUoid = currentUoid;
 	}
 	
 	@Override
@@ -58,6 +60,6 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObj
 			throw new UserException("Guid " + guid + " not found in this revision/project");
 		}
 		
-		return new GetDataObjectByOidDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), objectIdentifier.getCid()).execute();
+		return new GetDataObjectByOidDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), objectIdentifier.getCid(), currentUoid).execute();
 	}
 }

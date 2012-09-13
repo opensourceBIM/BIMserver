@@ -52,19 +52,6 @@ public class JobScheduler {
 		}
 	}
 	
-	public static class ClashDetectionCacheCleaner implements Job {
-		
-		@Override
-		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-			try {
-				BimServer bimServer = (BimServer) (jobExecutionContext.getScheduler().getContext().get("bimserver"));
-				bimServer.getClashDetectionCache().cleanup();
-			} catch (SchedulerException e) {
-				LOGGER.error("", e);
-			}
-		}
-	}
-	
 	public static class CompareResultCacheCleaner implements Job {
 		@Override
 		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
@@ -105,7 +92,6 @@ public class JobScheduler {
 	public void start() {
 		try {
 			addRecurringJob(TokenCleaner.class, TOKEN_CLEAN_INTERVAL_MILLIS);
-			addRecurringJob(ClashDetectionCacheCleaner.class, CLASH_DETECTION_CLEAN_INTERVAL_MILLIS);
 			addRecurringJob(CompareResultCacheCleaner.class, COMPARE_RESULT_CLEAN_INTERVAL_MILLIS);
 			addRecurringJob(LongActionManagerCleaner.class, LONG_ACTION_MANAGER_CLEANUP_INTERVAL_MILLIS);
 			sched.start();

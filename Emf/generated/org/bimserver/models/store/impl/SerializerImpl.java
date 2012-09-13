@@ -16,14 +16,11 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.Serializer;
-import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
-
+import org.bimserver.models.store.UserSettings;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,13 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getContentType <em>Content Type</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getIfcEngine <em>Ifc Engine</em>}</li>
@@ -48,7 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class SerializerImpl extends IdEObjectImpl implements Serializer {
+public class SerializerImpl extends PluginImpl implements Serializer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,52 +58,6 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.SERIALIZER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER__NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		eSet(StorePackage.Literals.SERIALIZER__NAME, newName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER__DESCRIPTION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.SERIALIZER__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -155,60 +101,6 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getClassName() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER__CLASS_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setClassName(String newClassName) {
-		eSet(StorePackage.Literals.SERIALIZER__CLASS_NAME, newClassName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Boolean getEnabled() {
-		return (Boolean) eGet(StorePackage.Literals.SERIALIZER__ENABLED, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEnabled(Boolean newEnabled) {
-		eSet(StorePackage.Literals.SERIALIZER__ENABLED, newEnabled);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Boolean getDefaultSerializer() {
-		return (Boolean) eGet(StorePackage.Literals.SERIALIZER__DEFAULT_SERIALIZER, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultSerializer(Boolean newDefaultSerializer) {
-		eSet(StorePackage.Literals.SERIALIZER__DEFAULT_SERIALIZER, newDefaultSerializer);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ObjectIDM getObjectIDM() {
 		return (ObjectIDM) eGet(StorePackage.Literals.SERIALIZER__OBJECT_IDM, true);
 	}
@@ -227,8 +119,8 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Settings getSettings() {
-		return (Settings) eGet(StorePackage.Literals.SERIALIZER__SETTINGS, true);
+	public UserSettings getSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.SERIALIZER__SETTINGS, true);
 	}
 
 	/**
@@ -236,7 +128,7 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(Settings newSettings) {
+	public void setSettings(UserSettings newSettings) {
 		eSet(StorePackage.Literals.SERIALIZER__SETTINGS, newSettings);
 	}
 

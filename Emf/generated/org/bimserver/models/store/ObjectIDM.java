@@ -16,8 +16,6 @@
  */
 package org.bimserver.models.store;
 
-import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -28,9 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.ObjectIDM#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.ObjectIDM#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.ObjectIDM#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.ObjectIDM#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.ObjectIDM#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -38,88 +33,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.bimserver.models.store.StorePackage#getObjectIDM()
  * @model
- * @extends IdEObject
  * @generated
  */
-public interface ObjectIDM extends IdEObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.bimserver.models.store.StorePackage#getObjectIDM_Name()
-	 * @model
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ObjectIDM#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Name</em>' attribute.
-	 * @see #setClassName(String)
-	 * @see org.bimserver.models.store.StorePackage#getObjectIDM_ClassName()
-	 * @model
-	 * @generated
-	 */
-	String getClassName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ObjectIDM#getClassName <em>Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Name</em>' attribute.
-	 * @see #getClassName()
-	 * @generated
-	 */
-	void setClassName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(Boolean)
-	 * @see org.bimserver.models.store.StorePackage#getObjectIDM_Enabled()
-	 * @model
-	 * @generated
-	 */
-	Boolean getEnabled();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ObjectIDM#getEnabled <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #getEnabled()
-	 * @generated
-	 */
-	void setEnabled(Boolean value);
-
+public interface ObjectIDM extends Plugin {
 	/**
 	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.store.Serializer}.
@@ -140,7 +56,7 @@ public interface ObjectIDM extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Settings#getObjectIDMs <em>Object ID Ms</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getObjectIDMs <em>Object ID Ms</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
@@ -148,13 +64,13 @@ public interface ObjectIDM extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(Settings)
+	 * @see #setSettings(UserSettings)
 	 * @see org.bimserver.models.store.StorePackage#getObjectIDM_Settings()
-	 * @see org.bimserver.models.store.Settings#getObjectIDMs
+	 * @see org.bimserver.models.store.UserSettings#getObjectIDMs
 	 * @model opposite="objectIDMs"
 	 * @generated
 	 */
-	Settings getSettings();
+	UserSettings getSettings();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.ObjectIDM#getSettings <em>Settings</em>}' reference.
@@ -164,6 +80,6 @@ public interface ObjectIDM extends IdEObject {
 	 * @see #getSettings()
 	 * @generated
 	 */
-	void setSettings(Settings value);
+	void setSettings(UserSettings value);
 
 } // ObjectIDM

@@ -114,8 +114,6 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createRevisionUpdated();
 		case LogPackage.GEO_TAG_UPDATED:
 			return (EObject) createGeoTagUpdated();
-		case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED:
-			return (EObject) createClashDetectionSettingsUpdated();
 		case LogPackage.PASSWORD_CHANGED:
 			return (EObject) createPasswordChanged();
 		case LogPackage.USER_CHANGED:
@@ -373,16 +371,6 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	public GeoTagUpdated createGeoTagUpdated() {
 		GeoTagUpdatedImpl geoTagUpdated = new GeoTagUpdatedImpl();
 		return geoTagUpdated;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClashDetectionSettingsUpdated createClashDetectionSettingsUpdated() {
-		ClashDetectionSettingsUpdatedImpl clashDetectionSettingsUpdated = new ClashDetectionSettingsUpdatedImpl();
-		return clashDetectionSettingsUpdated;
 	}
 
 	/**

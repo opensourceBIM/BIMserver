@@ -1254,61 +1254,6 @@ public interface LogPackage extends EPackage {
 	int GEO_TAG_UPDATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.log.impl.ClashDetectionSettingsUpdatedImpl <em>Clash Detection Settings Updated</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.log.impl.ClashDetectionSettingsUpdatedImpl
-	 * @see org.bimserver.models.log.impl.LogPackageImpl#getClashDetectionSettingsUpdated()
-	 * @generated
-	 */
-	int CLASH_DETECTION_SETTINGS_UPDATED = 22;
-
-	/**
-	 * The feature id for the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH_DETECTION_SETTINGS_UPDATED__DATE = LOG_ACTION__DATE;
-
-	/**
-	 * The feature id for the '<em><b>Executor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH_DETECTION_SETTINGS_UPDATED__EXECUTOR = LOG_ACTION__EXECUTOR;
-
-	/**
-	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH_DETECTION_SETTINGS_UPDATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
-
-	/**
-	 * The feature id for the '<em><b>Clash Detection Settings</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS = LOG_ACTION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Clash Detection Settings Updated</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH_DETECTION_SETTINGS_UPDATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.PasswordChangedImpl <em>Password Changed</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1316,7 +1261,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getPasswordChanged()
 	 * @generated
 	 */
-	int PASSWORD_CHANGED = 23;
+	int PASSWORD_CHANGED = 22;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1371,7 +1316,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserChanged()
 	 * @generated
 	 */
-	int USER_CHANGED = 24;
+	int USER_CHANGED = 23;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1426,7 +1371,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getAccessMethod()
 	 * @generated
 	 */
-	int ACCESS_METHOD = 25;
+	int ACCESS_METHOD = 24;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.LogAction <em>Action</em>}'.
@@ -1924,27 +1869,6 @@ public interface LogPackage extends EPackage {
 	EReference getGeoTagUpdated_GeoTag();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.log.ClashDetectionSettingsUpdated <em>Clash Detection Settings Updated</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Clash Detection Settings Updated</em>'.
-	 * @see org.bimserver.models.log.ClashDetectionSettingsUpdated
-	 * @generated
-	 */
-	EClass getClashDetectionSettingsUpdated();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ClashDetectionSettingsUpdated#getClashDetectionSettings <em>Clash Detection Settings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Clash Detection Settings</em>'.
-	 * @see org.bimserver.models.log.ClashDetectionSettingsUpdated#getClashDetectionSettings()
-	 * @see #getClashDetectionSettingsUpdated()
-	 * @generated
-	 */
-	EReference getClashDetectionSettingsUpdated_ClashDetectionSettings();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.PasswordChanged <em>Password Changed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2437,24 +2361,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEO_TAG_UPDATED__GEO_TAG = eINSTANCE.getGeoTagUpdated_GeoTag();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ClashDetectionSettingsUpdatedImpl <em>Clash Detection Settings Updated</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.log.impl.ClashDetectionSettingsUpdatedImpl
-		 * @see org.bimserver.models.log.impl.LogPackageImpl#getClashDetectionSettingsUpdated()
-		 * @generated
-		 */
-		EClass CLASH_DETECTION_SETTINGS_UPDATED = eINSTANCE.getClashDetectionSettingsUpdated();
-
-		/**
-		 * The meta object literal for the '<em><b>Clash Detection Settings</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS = eINSTANCE.getClashDetectionSettingsUpdated_ClashDetectionSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.PasswordChangedImpl <em>Password Changed</em>}' class.

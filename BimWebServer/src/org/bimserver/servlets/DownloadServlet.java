@@ -20,7 +20,6 @@ package org.bimserver.servlets;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -32,15 +31,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
-import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.web.JspHelper;
 import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,15 +71,6 @@ public class DownloadServlet extends HttpServlet {
 					}
 				}
 				downloadId = loginManager.getService().downloadRevisions(roids, serializerName, true);
-			} else if (request.getParameter("clashes") != null) {
-				SClashDetectionSettings sClashDetectionSettings = JspHelper.createSClashDetectionSettings(request);
-				List<SEidClash> findClashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
-				Set<Long> oids = new HashSet<Long>();
-				for (SEidClash clash : findClashes) {
-					oids.add(clash.getEid1());
-					oids.add(clash.getEid2());
-				}
-				downloadId = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids, serializerName, true);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
