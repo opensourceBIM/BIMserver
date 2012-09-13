@@ -1362,7 +1362,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public String getSettingCustomLogoAddress() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -1380,6 +1379,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setCustomLogoAddress(customLogoAddress);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1407,6 +1407,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setProtocolBuffersPort(port);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1434,6 +1435,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setEmailSenderAddress(emailSenderAddress);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1461,6 +1463,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setRegistrationAddition(registrationAddition);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1495,6 +1498,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setSiteAddress(siteAddress);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1528,6 +1532,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setSmtpServer(smtpServer);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1537,7 +1542,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingAllowSelfRegistration() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -1549,7 +1553,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -1567,6 +1570,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1582,6 +1586,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setAllowSelfRegistration(allowSelfRegistration);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1591,7 +1596,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -1609,6 +1613,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1618,7 +1623,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -1636,6 +1641,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setCheckinMergingEnabled(checkinMergingEnabled);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1663,6 +1669,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1690,6 +1697,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -1717,6 +1725,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setCacheOutputFiles(cacheOutputFiles);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -2148,6 +2157,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setFooterAddition(footerAddition);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -2163,6 +2173,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setHeaderAddition(headerAddition);
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -2172,7 +2183,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public String getSettingFooterAddition() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -2184,7 +2194,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public String getSettingHeaderAddition() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -3122,7 +3131,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public SIfcEngine getDefaultIfcEngine() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -3133,7 +3142,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public SQueryEngine getDefaultQueryEngine() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -3144,7 +3153,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public SModelCompare getDefaultModelCompare() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -3155,7 +3164,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public SModelMerger getDefaultModelMerger() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -3166,7 +3175,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public SSerializer getDefaultSerializer() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -3177,7 +3186,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public SObjectIDM getDefaultObjectIDM() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Settings settings = getSettings(session);
@@ -3194,6 +3203,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setDefaultIfcEngine(find(settings.getIfcEngines(), oid));
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -3208,6 +3218,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setDefaultQueryEngine(find(settings.getQueryengines(), oid));
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -3222,6 +3233,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setDefaultModelCompare(find(settings.getModelcompares(), oid));
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -3236,6 +3248,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setDefaultModelMerger(find(settings.getModelmergers(), oid));
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -3250,6 +3263,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setDefaultSerializer(find(settings.getSerializers(), oid));
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
@@ -3264,6 +3278,7 @@ public class Service implements ServiceInterface {
 			Settings settings = getSettings(session);
 			settings.setDefaultObjectIDM(find(settings.getObjectIDMs(), oid));
 			session.store(settings);
+			session.commit();
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {

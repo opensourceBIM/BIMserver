@@ -207,6 +207,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 			<tr><td class="firstcolumn">SOAP Service Descriptor</td><td><a href="soap?wsdl">WSDL</a></td></tr>
 			<tr><td class="firstcolumn">Rest Service Descriptor</td><td><a href="rest?_wadl">WADL</a></td></tr>
 			<tr><td class="firstcolumn">Protocol Buffers Desriptor File</td><td><a href="/files?file=service.proto">Proto</a></td></tr>
+			<tr><td class="firstcolumn">JSON Documentation</td><td><a href="/jsonapi?doc">JSON Doc</a></td></tr>
 		</table>
 	</div>
 	<div class="tabbertab" id="activesessions" title="Active sessions">
