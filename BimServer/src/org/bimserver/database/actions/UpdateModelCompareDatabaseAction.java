@@ -20,7 +20,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCompare;
-import org.bimserver.models.store.QueryEngine;
 
 public class UpdateModelCompareDatabaseAction extends UpdateDatabaseAction<ModelCompare> {
 

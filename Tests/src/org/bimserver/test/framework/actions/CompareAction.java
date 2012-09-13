@@ -1,11 +1,5 @@
 package org.bimserver.test.framework.actions;
 
-import org.bimserver.interfaces.objects.SCompareContainer;
-import org.bimserver.interfaces.objects.SCompareIdentifier;
-import org.bimserver.interfaces.objects.SCompareItem;
-import org.bimserver.interfaces.objects.SCompareResult;
-import org.bimserver.interfaces.objects.SCompareType;
-import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -13,7 +7,7 @@ import org.bimserver.test.framework.VirtualUser;
 
 public class CompareAction extends Action {
 
-	private static final boolean VERBOSE = false;
+//	private static final boolean VERBOSE = false;
 	
 	public CompareAction(TestFramework testFramework) {
 		super(testFramework);

@@ -107,7 +107,7 @@ Examples: <%
 		$(".examplebutton").click(function(event){
 			event.preventDefault();
 			$.ajax({
-				url: '<%=request.getContextPath() %>/compile?action=example&key=' + $(event.target).attr("key") + '&qeid=' + $(event.target).attr("qeid"),
+				url: 'getqueryexample.jsp?key=' + $(event.target).attr("key") + '&qeid=' + $(event.target).attr("qeid"),
 				context: $(this).parent(),
 				success: function(data) {
 					$(this).find(".code").val(data);
@@ -132,19 +132,6 @@ Examples: <%
 			}
 		}
 		
-		$(".querybutton").click(function(){
-			$(this).parent().find(".ajaxloader").show();
-			$(this).parent().find(".ajaxloadertext").text("Querying...");
-			$.ajax({
-				url: "<%=request.getContextPath() %>/compile",
-				type: "POST",
-				dataType: "json",
-				data: {roid:<%=roid%>, action: "query", code:$(this).parent().parent().find(".code").val(), qeid: $(this).attr("qeid")},
-				context: $(this).parent().parent(),
-				success: success
-			});
-		});
-
 		$(".downloadbutton").click(function(){
 			var params = {
 				downloadType: "query",

@@ -30,8 +30,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.VoidReporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
-import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {

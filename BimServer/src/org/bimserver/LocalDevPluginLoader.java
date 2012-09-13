@@ -30,7 +30,7 @@ public class LocalDevPluginLoader {
 //		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
 	}
 	
-	private static void loadIfExists(PluginManager pluginManager, File file) {
+	public static void loadIfExists(PluginManager pluginManager, File file) {
 		try {
 			pluginManager.loadPluginsFromEclipseProject(file);
 		} catch (PluginException e) {
