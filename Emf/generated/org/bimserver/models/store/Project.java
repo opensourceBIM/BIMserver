@@ -19,7 +19,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -45,7 +44,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getSubProjects <em>Sub Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getParent <em>Parent</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.Project#getClashDetectionSettings <em>Clash Detection Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getExportLengthMeasurePrefix <em>Export Length Measure Prefix</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -413,34 +411,6 @@ public interface Project extends IdEObject {
 	 * @generated
 	 */
 	void setDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Clash Detection Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ClashDetectionSettings#getProjects <em>Projects</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Clash Detection Settings</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Clash Detection Settings</em>' reference.
-	 * @see #setClashDetectionSettings(ClashDetectionSettings)
-	 * @see org.bimserver.models.store.StorePackage#getProject_ClashDetectionSettings()
-	 * @see org.bimserver.models.store.ClashDetectionSettings#getProjects
-	 * @model opposite="projects"
-	 * @generated
-	 */
-	ClashDetectionSettings getClashDetectionSettings();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Project#getClashDetectionSettings <em>Clash Detection Settings</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Clash Detection Settings</em>' reference.
-	 * @see #getClashDetectionSettings()
-	 * @generated
-	 */
-	void setClashDetectionSettings(ClashDetectionSettings value);
 
 	/**
 	 * Returns the value of the '<em><b>Export Length Measure Prefix</b></em>' attribute.

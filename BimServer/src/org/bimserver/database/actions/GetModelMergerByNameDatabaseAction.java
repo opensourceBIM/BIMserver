@@ -39,7 +39,7 @@ public class GetModelMergerByNameDatabaseAction extends BimDatabaseAction<ModelM
 
 	@Override
 	public ModelMerger execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getModelMerger_Name(), new StringLiteral(name));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
 		return getDatabaseSession().querySingle(condition, ModelMerger.class, false, null);
 	}
 }

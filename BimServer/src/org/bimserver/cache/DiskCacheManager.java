@@ -58,7 +58,7 @@ public class DiskCacheManager {
 	private boolean isEnabled() {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			return bimServer.getSettings(session).getCacheOutputFiles();
+			return bimServer.getServerSettings(session).getCacheOutputFiles();
 		} finally {
 			session.close();
 		}

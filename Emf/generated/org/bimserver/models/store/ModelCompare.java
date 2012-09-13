@@ -16,8 +16,6 @@
  */
 package org.bimserver.models.store;
 
-import org.bimserver.emf.IdEObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model Compare</b></em>'.
@@ -26,127 +24,18 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.ModelCompare#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.ModelCompare#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.ModelCompare#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.ModelCompare#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.ModelCompare#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getModelCompare()
  * @model
- * @extends IdEObject
  * @generated
  */
-public interface ModelCompare extends IdEObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.bimserver.models.store.StorePackage#getModelCompare_Name()
-	 * @model
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelCompare#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see org.bimserver.models.store.StorePackage#getModelCompare_Description()
-	 * @model
-	 * @generated
-	 */
-	String getDescription();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelCompare#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Name</em>' attribute.
-	 * @see #setClassName(String)
-	 * @see org.bimserver.models.store.StorePackage#getModelCompare_ClassName()
-	 * @model
-	 * @generated
-	 */
-	String getClassName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelCompare#getClassName <em>Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Name</em>' attribute.
-	 * @see #getClassName()
-	 * @generated
-	 */
-	void setClassName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enabled</em>' attribute.
-	 * @see #setEnabled(Boolean)
-	 * @see org.bimserver.models.store.StorePackage#getModelCompare_Enabled()
-	 * @model
-	 * @generated
-	 */
-	Boolean getEnabled();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelCompare#getEnabled <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enabled</em>' attribute.
-	 * @see #getEnabled()
-	 * @generated
-	 */
-	void setEnabled(Boolean value);
-
+public interface ModelCompare extends Plugin {
 	/**
 	 * Returns the value of the '<em><b>Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Settings#getModelcompares <em>Modelcompares</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getModelcompares <em>Modelcompares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
@@ -154,13 +43,13 @@ public interface ModelCompare extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(Settings)
+	 * @see #setSettings(UserSettings)
 	 * @see org.bimserver.models.store.StorePackage#getModelCompare_Settings()
-	 * @see org.bimserver.models.store.Settings#getModelcompares
+	 * @see org.bimserver.models.store.UserSettings#getModelcompares
 	 * @model opposite="modelcompares"
 	 * @generated
 	 */
-	Settings getSettings();
+	UserSettings getSettings();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.ModelCompare#getSettings <em>Settings</em>}' reference.
@@ -170,6 +59,6 @@ public interface ModelCompare extends IdEObject {
 	 * @see #getSettings()
 	 * @generated
 	 */
-	void setSettings(Settings value);
+	void setSettings(UserSettings value);
 
 } // ModelCompare

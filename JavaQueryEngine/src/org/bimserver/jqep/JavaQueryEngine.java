@@ -15,8 +15,6 @@ import javax.tools.ToolProvider;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.store.CompileResult;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.QueryEngineHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.VirtualClassLoader;
@@ -124,44 +122,4 @@ public class JavaQueryEngine implements QueryEngine {
 		}
 		return null;
 	}
-	
-	public CompileResult compile(String code) {
-		CompileResult compileResult = StoreFactory.eINSTANCE.createCompileResult();
-		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-		if (compiler == null) {
-			compileResult.setCompileOke(false);
-			compileResult.getErrors().add("JDK needed for compile tasks");
-			return compileResult;
-		}
-		JavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-		VirtualFile baseDir = new VirtualFile(null, null);
-		VirtualFile file = baseDir.createFile("org" + File.separator + "bimserver" + File.separator + "jqep" + File.separator + "Query.java");
-		file.setStringContent(code);
-		VirtualFileManager myFileManager = new VirtualFileManager(fileManager, classLoader, baseDir);
-
-		List<VirtualFile> fileList = new ArrayList<VirtualFile>();
-		getJavaFiles(fileList, baseDir);
-		List<VirtualFile> compilationUnits = baseDir.getAllJavaFileObjects();
-
-		List<String> options = new ArrayList<String>();
-		options.add("-cp");
-		options.add(libPath);
-//		options.add("-target");
-//		options.add("7");
-
-		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
-		compiler.getTask(null, myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
-		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
-		compileResult.setCompileOke(true);
-		for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
-			if (d.getKind() == Kind.ERROR) {
-				compileResult.setCompileOke(false);
-				compileResult.getErrors().add(d.getMessage(Locale.ENGLISH));
-			} else if (d.getKind() == Kind.WARNING) {
-				compileResult.getErrors().add(d.getMessage(Locale.ENGLISH));
-			}
-		}
-		return compileResult;
-	}
-
 }

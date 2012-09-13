@@ -54,42 +54,6 @@ public interface StoreFactory extends EFactory {
 	User createUser();
 
 	/**
-	 * Returns a new object of class '<em>Clash</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Clash</em>'.
-	 * @generated
-	 */
-	Clash createClash();
-
-	/**
-	 * Returns a new object of class '<em>Eid Clash</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Eid Clash</em>'.
-	 * @generated
-	 */
-	EidClash createEidClash();
-
-	/**
-	 * Returns a new object of class '<em>Guid Clash</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Guid Clash</em>'.
-	 * @generated
-	 */
-	GuidClash createGuidClash();
-
-	/**
-	 * Returns a new object of class '<em>Clash Detection Settings</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Clash Detection Settings</em>'.
-	 * @generated
-	 */
-	ClashDetectionSettings createClashDetectionSettings();
-
-	/**
 	 * Returns a new object of class '<em>Revision</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,13 +90,22 @@ public interface StoreFactory extends EFactory {
 	Checkout createCheckout();
 
 	/**
-	 * Returns a new object of class '<em>Settings</em>'.
+	 * Returns a new object of class '<em>Server Settings</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Settings</em>'.
+	 * @return a new object of class '<em>Server Settings</em>'.
 	 * @generated
 	 */
-	Settings createSettings();
+	ServerSettings createServerSettings();
+
+	/**
+	 * Returns a new object of class '<em>User Settings</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Settings</em>'.
+	 * @generated
+	 */
+	UserSettings createUserSettings();
 
 	/**
 	 * Returns a new object of class '<em>Serializer</em>'.
@@ -466,24 +439,6 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	NewRevisionNotification createNewRevisionNotification();
-
-	/**
-	 * Returns a new object of class '<em>Compile Result</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Compile Result</em>'.
-	 * @generated
-	 */
-	CompileResult createCompileResult();
-
-	/**
-	 * Returns a new object of class '<em>Run Result</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Run Result</em>'.
-	 * @generated
-	 */
-	RunResult createRunResult();
 
 	/**
 	 * Returns a new object of class '<em>Server Info</em>'.

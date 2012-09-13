@@ -9,6 +9,6 @@
 <a class="menu" href="info.jsp">Info</a> 
 <a class="menu" href="log.jsp">Log</a> 
 <a class="menu" href="serversettings.jsp">Server Settings</a>
-<a class="menu" href="serializers.jsp">Settings</a>
 <%}%>
+<a class="menu" href="usersettings.jsp">Settings</a>
 <a class="menu" href="http://www.bimserver.org/help/" target="_blank">Help</a>

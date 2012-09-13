@@ -39,7 +39,7 @@ public class GetQueryEngineByNameDatabaseAction extends BimDatabaseAction<QueryE
 
 	@Override
 	public QueryEngine execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getQueryEngine_Name(), new StringLiteral(name));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
 		return getDatabaseSession().querySingle(condition, QueryEngine.class, false, null);
 	}
 }

@@ -28,7 +28,8 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.Plugin#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Plugin#getEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.Plugin#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Plugin#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Plugin#getClassName <em>Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,31 +92,55 @@ public interface Plugin extends IdEObject {
 	void setEnabled(Boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Settings#getPlugins <em>Plugins</em>}'.
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(Settings)
-	 * @see org.bimserver.models.store.StorePackage#getPlugin_Settings()
-	 * @see org.bimserver.models.store.Settings#getPlugins
-	 * @model opposite="plugins"
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getPlugin_Description()
+	 * @model
 	 * @generated
 	 */
-	Settings getSettings();
+	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Plugin#getSettings <em>Settings</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.Plugin#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Settings</em>' reference.
-	 * @see #getSettings()
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
 	 * @generated
 	 */
-	void setSettings(Settings value);
+	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Class Name</em>' attribute.
+	 * @see #setClassName(String)
+	 * @see org.bimserver.models.store.StorePackage#getPlugin_ClassName()
+	 * @model
+	 * @generated
+	 */
+	String getClassName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Plugin#getClassName <em>Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class Name</em>' attribute.
+	 * @see #getClassName()
+	 * @generated
+	 */
+	void setClassName(String value);
 
 } // Plugin

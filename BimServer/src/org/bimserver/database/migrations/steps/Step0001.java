@@ -118,9 +118,6 @@ public class Step0001 extends Migration {
 		EClass geoTagUpdatedClass = schema.createEClass(logPackage, "GeoTagUpdated", logActionClass);
 		schema.createEReference(geoTagUpdatedClass, "geoTag", schema.getEClass("store", "GeoTag"), Multiplicity.SINGLE);
 		
-		EClass clashDetectionSettingsUpdatedClass = schema.createEClass(logPackage, "ClashDetectionSettingsUpdated", logActionClass);
-		schema.createEReference(clashDetectionSettingsUpdatedClass, "clashDetectionSettings", schema.getEClass("store", "ClashDetectionSettings"), Multiplicity.SINGLE);
-		
 		EClass passwordChangedClass = schema.createEClass(logPackage, "PasswordChanged", logActionClass);
 		schema.createEReference(passwordChangedClass, "user", userClass, Multiplicity.SINGLE);
 	

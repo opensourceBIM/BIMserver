@@ -94,9 +94,6 @@ public class SProject implements SBase
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
-		if (sField.getName().equals("clashDetectionSettingsId")) {
-			return getClashDetectionSettingsId();
-		}
 		if (sField.getName().equals("exportLengthMeasurePrefix")) {
 			return getExportLengthMeasurePrefix();
 		}
@@ -170,10 +167,6 @@ public class SProject implements SBase
 			setDescription((String)val);
 			return;
 		}
-		if (sField.getName().equals("clashDetectionSettingsId")) {
-			setClashDetectionSettingsId((Long)val);
-			return;
-		}
 		if (sField.getName().equals("exportLengthMeasurePrefix")) {
 			setExportLengthMeasurePrefix((SSIPrefix)val);
 			return;
@@ -204,7 +197,6 @@ public class SProject implements SBase
 	private List<Long> subProjects = new ArrayList<Long>();
 	private long parentId;
 	private java.lang.String description;
-	private long clashDetectionSettingsId;
 	private SSIPrefix exportLengthMeasurePrefix;
 	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.Integer getId() {
@@ -317,14 +309,6 @@ public class SProject implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
-	public long getClashDetectionSettingsId() {
-		return clashDetectionSettingsId;
-	}
-
-	public void setClashDetectionSettingsId(long clashDetectionSettingsId) {
-		this.clashDetectionSettingsId = clashDetectionSettingsId;
-	}
-	
 	public SSIPrefix getExportLengthMeasurePrefix() {
 		return exportLengthMeasurePrefix;
 	}

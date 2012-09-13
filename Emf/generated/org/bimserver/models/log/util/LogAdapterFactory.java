@@ -191,11 +191,6 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseClashDetectionSettingsUpdated(ClashDetectionSettingsUpdated object) {
-			return createClashDetectionSettingsUpdatedAdapter();
-		}
-
-		@Override
 		public Adapter casePasswordChanged(PasswordChanged object) {
 			return createPasswordChangedAdapter();
 		}
@@ -529,20 +524,6 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGeoTagUpdatedAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.ClashDetectionSettingsUpdated <em>Clash Detection Settings Updated</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.log.ClashDetectionSettingsUpdated
-	 * @generated
-	 */
-	public Adapter createClashDetectionSettingsUpdatedAdapter() {
 		return null;
 	}
 

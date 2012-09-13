@@ -29,12 +29,10 @@
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SUserSession"%>
 <%@page import="org.bimserver.web.JspHelper"%>
-<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTagUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SUserChanged"%>
 <%@page import="org.bimserver.interfaces.objects.SPasswordReset"%>
 <%@page import="org.bimserver.interfaces.objects.SPasswordChanged"%>
-<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SDatabaseCreated"%>
 <%@page import="org.bimserver.interfaces.objects.SLongAction"%>

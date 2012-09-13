@@ -77,10 +77,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="GeoTagUpdated" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="geoTag" eType="ecore:EClass store#//GeoTag"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettingsUpdated" eSuperTypes="#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="clashDetectionSettings"
-        eType="ecore:EClass store#//ClashDetectionSettings"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PasswordChanged" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store#//User"/>
   </eClassifiers>

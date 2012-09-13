@@ -79,7 +79,7 @@ public class EmfSerializerFactory {
 	public EmfSerializer get(String name) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(found.getClassName(), true);
@@ -135,7 +135,7 @@ public class EmfSerializerFactory {
 	public String getExtension(String serializerName) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(serializerName));
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(serializerName));
 			Serializer found = session.querySingle(condition, Serializer.class, false, null);
 			if (found != null) {
 				return found.getExtension();
@@ -169,7 +169,7 @@ public class EmfSerializerFactory {
 		}
 		return descriptors;
 	}
-	
+
 	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() {
 		List<SModelMergerPluginDescriptor> descriptors = new ArrayList<SModelMergerPluginDescriptor>();
 		for (ModelMergerPlugin queryEnginePlugin : pluginManager.getAllModelMergerPlugins(true)) {

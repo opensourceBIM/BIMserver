@@ -1,6 +1,6 @@
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
 <%@page import="java.util.List"%>
-<%@ include file="settings.jsp"%>
+<%@ include file="settingsmenu.jsp"%>
 <h1>Extended Data Schemas</h1>
 <a href="addextendeddataschema.jsp">Add Extended Data Schema</a>
 <table class="formatted">

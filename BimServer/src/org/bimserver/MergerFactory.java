@@ -17,15 +17,11 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.List;
-
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.ModelMerger;
-import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 
@@ -36,17 +32,13 @@ public class MergerFactory {
 		this.bimServer = bimServer;
 	}
 
-	public org.bimserver.plugins.modelmerger.ModelMerger createMerger() throws MergeException {
+	public org.bimserver.plugins.modelmerger.ModelMerger createMerger(DatabaseSession databaseSession, Long currentUoid) throws MergeException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IfcModelInterface model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
-			List<Settings> allSettings = model.getAll(Settings.class);
-			Settings settings = null;
-			if (allSettings.size() == 1) {
-				settings = allSettings.get(0);
-			}
+			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+			UserSettings userSettings = user.getSettings();
 
-			ModelMerger modelMergerObject = settings.getDefaultModelMerger();
+			ModelMerger modelMergerObject = userSettings.getDefaultModelMerger();
 			if (modelMergerObject != null) {
 				ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getClassName(), true);
 				if (modelMergerPlugin != null) {
@@ -58,13 +50,8 @@ public class MergerFactory {
 			} else {
 				throw new MergeException("No configured Model Merger found");
 			}
-		} catch (BimserverLockConflictException e) {
-			e.printStackTrace();
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 }

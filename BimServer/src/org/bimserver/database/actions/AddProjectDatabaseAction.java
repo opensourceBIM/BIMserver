@@ -21,13 +21,12 @@ import java.util.Date;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewProjectAdded;
-import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.NewProjectNotification;
 import org.bimserver.models.store.Project;
@@ -72,7 +71,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			getDatabaseSession().store(parentProject);
 		}
 		if (actingUser.getUserType() != UserType.SYSTEM) {
-			if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !getSettings().isAllowUsersToCreateTopLevelProjects()) {
+			if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !getServerSettings().isAllowUsersToCreateTopLevelProjects()) {
 				throw new UserException("Only administrators can create new projects");
 			}
 		}
@@ -89,7 +88,6 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 					throw new UserException("Project name must be unique within parent project (" + parent.getName() + ")");
 				}
 			}
-			project.setClashDetectionSettings(parent.getClashDetectionSettings());
 			project.setGeoTag(parent.getGeoTag());
 		}
 		final NewProjectAdded newProjectAdded = LogFactory.eINSTANCE.createNewProjectAdded();
@@ -118,16 +116,8 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			GeoTag geoTag = StoreFactory.eINSTANCE.createGeoTag();
 			geoTag.setEnabled(false);
 			project.setGeoTag(geoTag);
-			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
-			clashDetectionSettings.setEnabled(false);
-			project.setClashDetectionSettings(clashDetectionSettings);
 			getDatabaseSession().store(geoTag);
-			getDatabaseSession().store(clashDetectionSettings);
 		} else {
-			ClashDetectionSettings clashDetectionSettings = parentProject.getClashDetectionSettings();
-			project.setClashDetectionSettings(clashDetectionSettings);
-			getDatabaseSession().store(clashDetectionSettings);
-
 			GeoTag geoTag = parentProject.getGeoTag();
 			project.setGeoTag(geoTag);
 			getDatabaseSession().store(geoTag);

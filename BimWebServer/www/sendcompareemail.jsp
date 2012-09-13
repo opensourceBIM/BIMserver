@@ -15,7 +15,7 @@
 		long roid1 = Long.parseLong(request.getParameter("roid1"));
 		long roid2 = Long.parseLong(request.getParameter("roid2"));
 
-		loginManager.getService().sendCompareEmail(SCompareType.valueOf(request.getParameter("type")), SCompareIdentifier.valueOf(request.getParameter("identifier")), poid, roid1, roid2, address);
+		loginManager.getService().sendCompareEmail(SCompareType.valueOf(request.getParameter("type")), Long.parseLong(request.getParameter("mcid")), poid, roid1, roid2, address);
 		
 		out.append("Compare results successfully e-mailed to " + address);
 	} catch (Exception e) {

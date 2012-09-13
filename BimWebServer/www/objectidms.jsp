@@ -1,6 +1,20 @@
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <%@page import="java.util.List"%>
-<%@ include file="settings.jsp"%>
+<%@ include file="settingsmenu.jsp"%>
+<%		
+if (request.getParameter("action") != null) {
+	String action = request.getParameter("action");
+	if (action.equals("disableObjectIDM")) {
+		SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
+		objectIDM.setEnabled(false);
+		loginManager.getService().updateObjectIDM(objectIDM);
+	} else if (action.equals("enableObjectIDM")) {
+		SObjectIDM objectIDM = loginManager.getService().getObjectIDMByName(request.getParameter("objectIDM"));
+		objectIDM.setEnabled(true);
+		loginManager.getService().updateObjectIDM(objectIDM);
+	}
+}
+%>
 <h1>Object IDMs</h1>
 <a href="addobjectidm.jsp">Add ObjectIDM</a>
 <table class="formatted">
@@ -19,11 +33,11 @@
 		<%
 	if (!objectIDM.getEnabled()) {
 %>
-<a href="settings.jsp?action=enableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Enable</a>
+<a href="objectidms.jsp?action=enableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Enable</a>
 <%
 	} else if (objectIDM.getSerializers().isEmpty()) {
 %>
-<a href="settings.jsp?action=disableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Disable</a>
+<a href="objectidms.jsp?action=disableObjectIDM&objectIDM=<%=objectIDM.getName() %>">Disable</a>
 <%
 	}
 	if (objectIDM.getSerializers().isEmpty()) {

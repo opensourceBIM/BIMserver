@@ -16,11 +16,8 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.QueryEnginePluginDescriptor;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,16 +25,11 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Query Engine Plugin Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl#getPluginClassName <em>Plugin Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
-public class QueryEnginePluginDescriptorImpl extends IdEObjectImpl implements QueryEnginePluginDescriptor {
+public class QueryEnginePluginDescriptorImpl extends PluginDescriptorImpl implements QueryEnginePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,52 +47,6 @@ public class QueryEnginePluginDescriptorImpl extends IdEObjectImpl implements Qu
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.QUERY_ENGINE_PLUGIN_DESCRIPTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPluginClassName() {
-		return (String) eGet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPluginClassName(String newPluginClassName) {
-		eSet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, newPluginClassName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDefaultName() {
-		return (String) eGet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultName(String newDefaultName) {
-		eSet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME, newDefaultName);
 	}
 
 } //QueryEnginePluginDescriptorImpl

@@ -1,4 +1,4 @@
-package org.bimserver.longaction;
+package org.bimserver.webservices;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -17,33 +17,14 @@ package org.bimserver.longaction;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class ClashDetectionLongActionKey extends LongActionKey {
+import java.util.Comparator;
 
-	private final long poid;
+import org.bimserver.interfaces.objects.SObjectIDM;
 
-	public ClashDetectionLongActionKey(long poid) {
-		this.poid = poid;
-	}
+public class SObjectIDMComparator implements Comparator<SObjectIDM> {
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (poid ^ (poid >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ClashDetectionLongActionKey other = (ClashDetectionLongActionKey) obj;
-		if (poid != other.poid)
-			return false;
-		return true;
+	public int compare(SObjectIDM o1, SObjectIDM o2) {
+		return o1.getName().compareTo(o2.getName());
 	}
 }

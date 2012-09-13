@@ -31,28 +31,20 @@ public class Step0004 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass serializerClass = schema.createEClass(schema.getEPackage("store"), "Serializer");
-		EClass objectIDMClass = schema.createEClass(schema.getEPackage("store"), "ObjectIDM");
-		EClass settingsClass = schema.getEClass("store", "Settings");
+		EClass serializerClass = schema.createEClass(schema.getEPackage("store"), "Serializer", schema.getEClass("store", "Plugin"));
+		EClass objectIDMClass = schema.createEClass(schema.getEPackage("store"), "ObjectIDM", schema.getEClass("store", "Plugin"));
+		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		schema.createEAttribute(serializerClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "extension", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "contentType", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerClass, "defaultSerializer", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		EReference serializerObjectIDMReference = schema.createEReference(serializerClass, "objectIDM", objectIDMClass, Multiplicity.SINGLE);
-		EReference serializerSettingsReference = schema.createEReference(serializerClass, "settings", settingsClass, Multiplicity.SINGLE);
+		EReference serializerSettingsReference = schema.createEReference(serializerClass, "settings", userSettingsClass, Multiplicity.SINGLE);
 		
-		schema.createEAttribute(objectIDMClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(objectIDMClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(objectIDMClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		EReference objectIDMSerializers = schema.createEReference(objectIDMClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference objectIDMSettingsReference = schema.createEReference(objectIDMClass, "settings", settingsClass, Multiplicity.SINGLE);
+		EReference objectIDMSettingsReference = schema.createEReference(objectIDMClass, "settings", userSettingsClass, Multiplicity.SINGLE);
 		
-		EReference settingsSerializersReference = schema.createEReference(settingsClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference settingsObjectIDMReference = schema.createEReference(settingsClass, "objectIDMs", objectIDMClass, Multiplicity.MANY);
+		EReference settingsSerializersReference = schema.createEReference(userSettingsClass, "serializers", serializerClass, Multiplicity.MANY);
+		EReference settingsObjectIDMReference = schema.createEReference(userSettingsClass, "objectIDMs", objectIDMClass, Multiplicity.MANY);
 		
 		serializerSettingsReference.setEOpposite(settingsSerializersReference);
 		objectIDMSettingsReference.setEOpposite(settingsObjectIDMReference);

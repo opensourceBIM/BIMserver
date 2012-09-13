@@ -19,18 +19,14 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -49,11 +45,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastConcreteRevision <em>Last Concrete Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getCheckouts <em>Checkouts</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastClashes <em>Last Clashes</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBmi <em>Bmi</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getNrClashes <em>Nr Clashes</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLaid <em>Laid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -242,16 +236,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<Clash> getLastClashes() {
-		return (EList<Clash>) eGet(StorePackage.Literals.REVISION__LAST_CLASHES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getTag() {
 		return (String) eGet(StorePackage.Literals.REVISION__TAG, true);
 	}
@@ -299,24 +283,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setBmi(Integer newBmi) {
 		eSet(StorePackage.Literals.REVISION__BMI, newBmi);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Integer getNrClashes() {
-		return (Integer) eGet(StorePackage.Literals.REVISION__NR_CLASHES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNrClashes(Integer newNrClashes) {
-		eSet(StorePackage.Literals.REVISION__NR_CLASHES, newNrClashes);
 	}
 
 	/**

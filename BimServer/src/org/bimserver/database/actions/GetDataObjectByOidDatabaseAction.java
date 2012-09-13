@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import com.google.common.collect.BiMap;
+import com.sun.accessibility.internal.resources.accessibility;
 
 public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObject> {
 
@@ -56,13 +57,15 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 	private final short cid;
 	private final long roid;
 	private final BimServer bimServer;
+	private final long currentUoid;
 
-	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, short cid) {
+	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, short cid, long currentUoid) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.oid = oid;
 		this.cid = cid;
+		this.currentUoid = currentUoid;
 	}
 
 	@Override
@@ -81,7 +84,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet);
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid).merge(virtualRevision.getProject(), ifcModelSet);
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

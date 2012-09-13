@@ -22,35 +22,28 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0020 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass modelComparePluginDescriptor = schema.createEClass(schema.getEPackage("store"), "ModelComparePluginDescriptor");
-		schema.createEAttribute(modelComparePluginDescriptor, "pluginClassName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
-		schema.createEAttribute(modelComparePluginDescriptor, "defaultName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
+		schema.createEClass(schema.getEPackage("store"), "ModelComparePluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 
-		EClass modelCompareClass = schema.createEClass(schema.getEPackage("store"), "ModelCompare");
-		EClass settingsClass = schema.getEClass("store", "Settings");
+		EClass modelCompareClass = schema.createEClass(schema.getEPackage("store"), "ModelCompare", schema.getEClass("store", "Plugin"));
+		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		schema.createEAttribute(modelCompareClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(modelCompareClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(modelCompareClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(modelCompareClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
-		EReference modelCompareSettingsReference = schema.createEReference(modelCompareClass, "settings", settingsClass, Multiplicity.SINGLE);
-		EReference settingsModelComparesReference = schema.createEReference(settingsClass, "modelcompares", modelCompareClass, Multiplicity.MANY);
+		EReference modelCompareSettingsReference = schema.createEReference(modelCompareClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference settingsModelComparesReference = schema.createEReference(userSettingsClass, "modelcompares", modelCompareClass, Multiplicity.MANY);
 
 		modelCompareSettingsReference.setEOpposite(settingsModelComparesReference);
 		settingsModelComparesReference.setEOpposite(modelCompareSettingsReference);
 		
-		schema.createEReference(settingsClass, "defaultModelMerger", schema.getEClass("store", "ModelMerger"), Multiplicity.SINGLE);
-		schema.createEReference(settingsClass, "defaultModelCompare", schema.getEClass("store", "ModelCompare"), Multiplicity.SINGLE);
-		schema.createEReference(settingsClass, "defaultQueryEngine", schema.getEClass("store", "QueryEngine"), Multiplicity.SINGLE);
-		schema.createEReference(settingsClass, "defaultIfcEngine", schema.getEClass("store", "IfcEngine"), Multiplicity.SINGLE);
-		schema.createEReference(settingsClass, "defaultSerializer", schema.getEClass("store", "Serializer"), Multiplicity.SINGLE);
-		schema.createEReference(settingsClass, "defaultObjectIDM", schema.getEClass("store", "ObjectIDM"), Multiplicity.SINGLE);
+		schema.createEReference(userSettingsClass, "defaultModelMerger", schema.getEClass("store", "ModelMerger"), Multiplicity.SINGLE);
+		schema.createEReference(userSettingsClass, "defaultModelCompare", schema.getEClass("store", "ModelCompare"), Multiplicity.SINGLE);
+		schema.createEReference(userSettingsClass, "defaultQueryEngine", schema.getEClass("store", "QueryEngine"), Multiplicity.SINGLE);
+		schema.createEReference(userSettingsClass, "defaultIfcEngine", schema.getEClass("store", "IfcEngine"), Multiplicity.SINGLE);
+		schema.createEReference(userSettingsClass, "defaultSerializer", schema.getEClass("store", "Serializer"), Multiplicity.SINGLE);
+		schema.createEReference(userSettingsClass, "defaultObjectIDM", schema.getEClass("store", "ObjectIDM"), Multiplicity.SINGLE);
 	}
 
 	@Override

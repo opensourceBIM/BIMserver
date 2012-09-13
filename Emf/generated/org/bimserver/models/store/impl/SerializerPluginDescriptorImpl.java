@@ -16,11 +16,8 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.SerializerPluginDescriptor;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -30,8 +27,6 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl#getPluginClassName <em>Plugin Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl#getDefaultExtension <em>Default Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl#getDefaultContentType <em>Default Content Type</em>}</li>
  * </ul>
@@ -39,7 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class SerializerPluginDescriptorImpl extends IdEObjectImpl implements SerializerPluginDescriptor {
+public class SerializerPluginDescriptorImpl extends PluginDescriptorImpl implements SerializerPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,52 +52,6 @@ public class SerializerPluginDescriptorImpl extends IdEObjectImpl implements Ser
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPluginClassName() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPluginClassName(String newPluginClassName) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, newPluginClassName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDefaultName() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultName(String newDefaultName) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME, newDefaultName);
 	}
 
 	/**

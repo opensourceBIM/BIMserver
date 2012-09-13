@@ -69,7 +69,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 		}
 		IfcModelInterface model;
 		try {
-			model = bimServer.getMergerFactory().createMerger()
+			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid)
 					.merge(oldRevision.getProject(), ifcModelSet);
 		} catch (MergeException e) {
 			throw new UserException(e);

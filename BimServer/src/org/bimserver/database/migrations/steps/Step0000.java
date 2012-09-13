@@ -34,7 +34,6 @@ public class Step0000 extends Migration {
 	private EPackage storePackage;
 	private EcorePackage ecorePackage = EcorePackage.eINSTANCE;
 	private EClass revisionClass;
-	private EClass clashClass;
 	private EEnum objectStateEnum;
 	private EEnum siPrefixEnum;
 	private EClass userClass;
@@ -42,9 +41,6 @@ public class Step0000 extends Migration {
 	private EEnum userTypeEnum;
 	private EClass geoTagClass;
 	private EClass concreteRevisionClass;
-	private EClass guidClashClass;
-	private EClass clashDetectionsSettingsClass;
-	private EClass eidClashClass;
 	private EClass projectClass;
 	private EReference projectHasAuthorizedUsers;
 	private EReference projectConcreteRevisions;
@@ -53,7 +49,6 @@ public class Step0000 extends Migration {
 	private EReference projectGeoTag;
 	private EReference projectSubProjects;
 	private EReference projectParentProject;
-	private EReference projectClashDetectionSettings;
 	private EReference userHasRightsOn;
 	private EReference concreteRevisionProject;
 	private EReference concreteRevisionRevisions;
@@ -62,10 +57,10 @@ public class Step0000 extends Migration {
 	private EReference revisionProject;
 	private EReference checkoutRevision;
 	private EReference checkoutProject;
-	private EReference clashDetectionSettingsProjects;
 	private EReference geoTagProjects;
 	private Schema schema;
-	private EClass settingsClass;
+	private EClass serverSettingsClass;
+	private EClass userSettings;
 
 	@Override
 	public void migrate(Schema schema) {
@@ -78,15 +73,12 @@ public class Step0000 extends Migration {
 
 		projectClass = schema.createEClass(storePackage, "Project");
 		userClass = schema.createEClass(storePackage, "User");
-		clashClass = schema.createEClass(storePackage, "Clash");
-		eidClashClass = schema.createEClass(storePackage, "EidClash", clashClass);
-		guidClashClass = schema.createEClass(storePackage, "GuidClash", clashClass);
-		clashDetectionsSettingsClass = schema.createEClass(storePackage, "ClashDetectionSettings");
 		revisionClass = schema.createEClass(storePackage, "Revision");
 		concreteRevisionClass = schema.createEClass(storePackage, "ConcreteRevision");
 		geoTagClass = schema.createEClass(storePackage, "GeoTag");
 		checkoutClass = schema.createEClass(storePackage, "Checkout");
-		settingsClass = schema.createEClass(storePackage, "Settings");
+		serverSettingsClass = schema.createEClass(storePackage, "ServerSettings");
+		userSettings = schema.createEClass(storePackage, "UserSettings");
 
 		createProjectClass();
 		createUserClass();
@@ -94,11 +86,8 @@ public class Step0000 extends Migration {
 		createGeoTagClass();
 		createConcreteRevisionClass();
 		createRevisionClass();
-		createClashDetectionSettingsClass();
-		createClashClass();
-		createGuidClashClass();
-		createEidClashClass();
-		createSettingsClass();
+		createServerSettingsClass();
+		createUserSettingsClass();
 		
 		userHasRightsOn.setEOpposite(projectHasAuthorizedUsers);
 		projectHasAuthorizedUsers.setEOpposite(userHasRightsOn);
@@ -118,16 +107,22 @@ public class Step0000 extends Migration {
 		concreteRevisionProject.setEOpposite(projectConcreteRevisions);
 		projectConcreteRevisions.setEOpposite(concreteRevisionProject);
 		
-		projectClashDetectionSettings.setEOpposite(clashDetectionSettingsProjects);
-		clashDetectionSettingsProjects.setEOpposite(projectClashDetectionSettings);
-		
 		projectGeoTag.setEOpposite(geoTagProjects);
 		geoTagProjects.setEOpposite(projectGeoTag);
 		
 		projectParentProject.setEOpposite(projectSubProjects);
 		projectSubProjects.setEOpposite(projectParentProject);
+		
+		EClass pluginClass = schema.createEClass(schema.getEPackage("store"), "Plugin");
+		schema.createEAttribute(pluginClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 	}
 	
+	private void createUserSettingsClass() {
+	}
+
 	private void createSIPrefixEnum() {
 		siPrefixEnum = schema.createEEnum(storePackage, "SIPrefix");
 		schema.createEEnumLiteral(siPrefixEnum, "meter", 0);
@@ -163,33 +158,6 @@ public class Step0000 extends Migration {
 		schema.createEEnumLiteral(objectStateEnum, "DELETED");
 	}
 
-	private void createEidClashClass() {
-		schema.createEAttribute(eidClashClass, "eid1", ecorePackage.getELongObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(eidClashClass, "eid2", ecorePackage.getELongObject(), Multiplicity.SINGLE);
-	}
-
-	private void createClashClass() {
-		schema.createEAttribute(clashClass, "name1", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(clashClass, "name2", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(clashClass, "type1", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(clashClass, "type2", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(clashClass, "revision1", revisionClass, Multiplicity.SINGLE);
-		schema.createEReference(clashClass, "revision2", revisionClass, Multiplicity.SINGLE);
-	}
-
-	private void createClashDetectionSettingsClass() {
-		schema.createEAttribute(clashDetectionsSettingsClass, "enabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		clashDetectionSettingsProjects = schema.createEReference(clashDetectionsSettingsClass, "projects", projectClass, Multiplicity.MANY);
-		schema.createEAttribute(clashDetectionsSettingsClass, "margin", ecorePackage.getEDoubleObject(), Multiplicity.SINGLE);
-		schema.createEReference(clashDetectionsSettingsClass, "revisions", revisionClass, Multiplicity.MANY);
-		schema.createEAttribute(clashDetectionsSettingsClass, "ignoredClasses", ecorePackage.getEString(), Multiplicity.MANY);
-	}
-
-	private void createGuidClashClass() {
-		schema.createEAttribute(guidClashClass, "guid1", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(guidClashClass, "guid2", ecorePackage.getEString(), Multiplicity.SINGLE);
-	}
-
 	private void createRevisionClass() {
 		schema.createEAttribute(revisionClass, "id", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEReference(revisionClass, "user", userClass, Multiplicity.SINGLE);
@@ -200,11 +168,9 @@ public class Step0000 extends Migration {
 		schema.createEReference(revisionClass, "lastConcreteRevision", concreteRevisionClass, Multiplicity.SINGLE);
 		revisionCheckouts = schema.createEReference(revisionClass, "checkouts", checkoutClass, Multiplicity.MANY);
 		revisionProject = schema.createEReference(revisionClass, "project", projectClass, Multiplicity.SINGLE);
-		schema.createEReference(revisionClass, "lastClashes", clashClass, Multiplicity.MANY);
 		schema.createEAttribute(revisionClass, "tag", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "lastError", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "bmi", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(revisionClass, "nrClashes", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 	}
 
 	private void createConcreteRevisionClass() {
@@ -249,24 +215,23 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(userClass, "lastSeen", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(userClass, "validationToken", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(userClass, "validationTokenCreated", ecorePackage.getEDate(), Multiplicity.SINGLE);
+		schema.createEReference(userClass, "settings", userSettings, Multiplicity.SINGLE);
 	}
 
-	private void createSettingsClass() {
-		schema.createEAttribute(settingsClass, "showVersionUpgradeAvailable", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "sendConfirmationEmailAfterRegistration", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "useCaching", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "allowSelfRegistration", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "autoTestClashes", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "intelligentMerging", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "allowUsersToCreateTopLevelProjects", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "checkinMergingEnabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "registrationAddition", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "smtpServer", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "emailSenderAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "customLogoAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "siteAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "hideUserListForNonAdmin", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(settingsClass, "protocolBuffersPort", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+	private void createServerSettingsClass() {
+		schema.createEAttribute(serverSettingsClass, "showVersionUpgradeAvailable", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "sendConfirmationEmailAfterRegistration", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "useCaching", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "allowSelfRegistration", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "allowUsersToCreateTopLevelProjects", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "checkinMergingEnabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "registrationAddition", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "smtpServer", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "emailSenderAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "customLogoAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "siteAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "hideUserListForNonAdmin", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "protocolBuffersPort", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 	}
 	
 	private void createProjectClass() {
@@ -285,7 +250,6 @@ public class Step0000 extends Migration {
 		projectSubProjects = schema.createEReference(projectClass, "subProjects", projectClass, Multiplicity.MANY);
 		projectParentProject = schema.createEReference(projectClass, "parent", projectClass, Multiplicity.SINGLE);
 		schema.createEAttribute(projectClass, "description", ecorePackage.getEString(), Multiplicity.SINGLE);
-		projectClashDetectionSettings = schema.createEReference(projectClass, "clashDetectionSettings", clashDetectionsSettingsClass, Multiplicity.SINGLE);
 		schema.createEAttribute(projectClass, "exportLengthMeasurePrefix", siPrefixEnum, Multiplicity.SINGLE);
 	}
 

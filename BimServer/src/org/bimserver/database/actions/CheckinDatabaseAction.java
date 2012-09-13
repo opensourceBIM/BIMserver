@@ -156,7 +156,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		newModel.fixOids(getDatabaseSession());
 		IfcModelInterface oldModel;
 		try {
-			oldModel = bimServer.getMergerFactory().createMerger()
+			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUid)
 					.merge(project, ifcModelSet);
 		} catch (MergeException e) {
 			throw new UserException(e);

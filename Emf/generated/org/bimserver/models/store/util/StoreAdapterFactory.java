@@ -91,26 +91,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseClash(Clash object) {
-			return createClashAdapter();
-		}
-
-		@Override
-		public Adapter caseEidClash(EidClash object) {
-			return createEidClashAdapter();
-		}
-
-		@Override
-		public Adapter caseGuidClash(GuidClash object) {
-			return createGuidClashAdapter();
-		}
-
-		@Override
-		public Adapter caseClashDetectionSettings(ClashDetectionSettings object) {
-			return createClashDetectionSettingsAdapter();
-		}
-
-		@Override
 		public Adapter caseRevision(Revision object) {
 			return createRevisionAdapter();
 		}
@@ -131,8 +111,18 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSettings(Settings object) {
-			return createSettingsAdapter();
+		public Adapter caseServerSettings(ServerSettings object) {
+			return createServerSettingsAdapter();
+		}
+
+		@Override
+		public Adapter caseUserSettings(UserSettings object) {
+			return createUserSettingsAdapter();
+		}
+
+		@Override
+		public Adapter casePlugin(Plugin object) {
+			return createPluginAdapter();
 		}
 
 		@Override
@@ -148,11 +138,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcEngine(IfcEngine object) {
 			return createIfcEngineAdapter();
-		}
-
-		@Override
-		public Adapter casePlugin(Plugin object) {
-			return createPluginAdapter();
 		}
 
 		@Override
@@ -226,6 +211,11 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePluginDescriptor(PluginDescriptor object) {
+			return createPluginDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter caseSerializerPluginDescriptor(SerializerPluginDescriptor object) {
 			return createSerializerPluginDescriptorAdapter();
 		}
@@ -248,11 +238,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseRevisionSummary(RevisionSummary object) {
 			return createRevisionSummaryAdapter();
-		}
-
-		@Override
-		public Adapter casePluginDescriptor(PluginDescriptor object) {
-			return createPluginDescriptorAdapter();
 		}
 
 		@Override
@@ -318,16 +303,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseNewRevisionNotification(NewRevisionNotification object) {
 			return createNewRevisionNotificationAdapter();
-		}
-
-		@Override
-		public Adapter caseCompileResult(CompileResult object) {
-			return createCompileResultAdapter();
-		}
-
-		@Override
-		public Adapter caseRunResult(RunResult object) {
-			return createRunResultAdapter();
 		}
 
 		@Override
@@ -433,62 +408,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Clash <em>Clash</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Clash
-	 * @generated
-	 */
-	public Adapter createClashAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.EidClash <em>Eid Clash</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.EidClash
-	 * @generated
-	 */
-	public Adapter createEidClashAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.GuidClash <em>Guid Clash</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.GuidClash
-	 * @generated
-	 */
-	public Adapter createGuidClashAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ClashDetectionSettings <em>Clash Detection Settings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ClashDetectionSettings
-	 * @generated
-	 */
-	public Adapter createClashDetectionSettingsAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Revision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -545,16 +464,30 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Settings <em>Settings</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServerSettings <em>Server Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Settings
+	 * @see org.bimserver.models.store.ServerSettings
 	 * @generated
 	 */
-	public Adapter createSettingsAdapter() {
+	public Adapter createServerSettingsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.UserSettings
+	 * @generated
+	 */
+	public Adapter createUserSettingsAdapter() {
 		return null;
 	}
 
@@ -1073,34 +1006,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNewRevisionNotificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.CompileResult <em>Compile Result</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.CompileResult
-	 * @generated
-	 */
-	public Adapter createCompileResultAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RunResult <em>Run Result</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.RunResult
-	 * @generated
-	 */
-	public Adapter createRunResultAdapter() {
 		return null;
 	}
 

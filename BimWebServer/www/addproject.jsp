@@ -6,7 +6,6 @@
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
-<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
@@ -53,12 +52,6 @@
 						if (sGeoTag.getEnabled()) {
 							loginManager.getService().updateGeoTag(sGeoTag);
 						}
-						SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(sProject.getClashDetectionSettingsId());
-						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
-						sClashDetectionSettings.setMargin(Double.parseDouble(request.getParameter("margin")));
-						if (sClashDetectionSettings.getEnabled()) {
-							loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
-						}
 					}
 					if (request.getParameter("parentoid") != null) {
 						response.sendRedirect("project.jsp?poid=" + request.getParameter("parentoid"));
@@ -81,16 +74,6 @@
 	<td><input type="text" name="name" value="<%= request.getParameter("name") != null ? request.getParameter("name") : "" %>"/></td>
 </tr>
 <% if (request.getParameter("parentoid") == null) { %>
-<!--
-<tr>
-	<td><label for="clashdetection">Automatic clashdetection</label></td>
-	<td><input id="clashdetection" name="clashdetection" type="checkbox" class="checkbox" <%=request.getParameter("clashdetection") == null ? "" : "checked=\"checked\"" %>/></td>
-</tr>
--->
-<tr class="clashdetectionrow">
-	<td class="indent first">Margin</td>
-	<td class="indent"><input type="text" name="margin" value="<%=request.getParameter("margin") != null ? request.getParameter("margin") : "0" %>"/></td>
-</tr>
 <tr>
 	<td><label for="coordcheck" class="checkbox">Geolocate</label></td>
 	<td><input id="coordcheck" name="coordcheck" type="checkbox" class="checkbox" <%=request.getParameter("coordcheck") == null ? "" : "checked=\"checked\"" %>/><br/><br/></td>
@@ -145,21 +128,11 @@ $(function(){
 <% if (request.getParameter("coordcheck") == null) { %>
 	$(".coordcheckrow").hide();
 <%}%>
-<% if (request.getParameter("clashdetection") == null) { %>
-	$(".clashdetectionrow").hide();
-<%}%>
 	$("#coordcheck").click(function(){
 		if ($("#coordcheck").attr('checked')) {
 			$(".coordcheckrow").show();
 		} else {
 			$(".coordcheckrow").hide();
-		}
-	});
-	$("#clashdetection").click(function(){
-		if ($("#clashdetection").attr('checked')) {
-			$(".clashdetectionrow").show();
-		} else {
-			$(".clashdetectionrow").hide();
 		}
 	});
 });

@@ -94,38 +94,6 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.CLASH: {
-			Clash clash = (Clash) theEObject;
-			T result = caseClash(clash);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.EID_CLASH: {
-			EidClash eidClash = (EidClash) theEObject;
-			T result = caseEidClash(eidClash);
-			if (result == null)
-				result = caseClash(eidClash);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.GUID_CLASH: {
-			GuidClash guidClash = (GuidClash) theEObject;
-			T result = caseGuidClash(guidClash);
-			if (result == null)
-				result = caseClash(guidClash);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.CLASH_DETECTION_SETTINGS: {
-			ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) theEObject;
-			T result = caseClashDetectionSettings(clashDetectionSettings);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case StorePackage.REVISION: {
 			Revision revision = (Revision) theEObject;
 			T result = caseRevision(revision);
@@ -154,30 +122,16 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.SETTINGS: {
-			Settings settings = (Settings) theEObject;
-			T result = caseSettings(settings);
+		case StorePackage.SERVER_SETTINGS: {
+			ServerSettings serverSettings = (ServerSettings) theEObject;
+			T result = caseServerSettings(serverSettings);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.SERIALIZER: {
-			Serializer serializer = (Serializer) theEObject;
-			T result = caseSerializer(serializer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.OBJECT_IDM: {
-			ObjectIDM objectIDM = (ObjectIDM) theEObject;
-			T result = caseObjectIDM(objectIDM);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.IFC_ENGINE: {
-			IfcEngine ifcEngine = (IfcEngine) theEObject;
-			T result = caseIfcEngine(ifcEngine);
+		case StorePackage.USER_SETTINGS: {
+			UserSettings userSettings = (UserSettings) theEObject;
+			T result = caseUserSettings(userSettings);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -189,9 +143,38 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.SERIALIZER: {
+			Serializer serializer = (Serializer) theEObject;
+			T result = caseSerializer(serializer);
+			if (result == null)
+				result = casePlugin(serializer);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.OBJECT_IDM: {
+			ObjectIDM objectIDM = (ObjectIDM) theEObject;
+			T result = caseObjectIDM(objectIDM);
+			if (result == null)
+				result = casePlugin(objectIDM);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.IFC_ENGINE: {
+			IfcEngine ifcEngine = (IfcEngine) theEObject;
+			T result = caseIfcEngine(ifcEngine);
+			if (result == null)
+				result = casePlugin(ifcEngine);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case StorePackage.DESERIALIZER: {
 			Deserializer deserializer = (Deserializer) theEObject;
 			T result = caseDeserializer(deserializer);
+			if (result == null)
+				result = casePlugin(deserializer);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -295,9 +278,18 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.PLUGIN_DESCRIPTOR: {
+			PluginDescriptor pluginDescriptor = (PluginDescriptor) theEObject;
+			T result = casePluginDescriptor(pluginDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR: {
 			SerializerPluginDescriptor serializerPluginDescriptor = (SerializerPluginDescriptor) theEObject;
 			T result = caseSerializerPluginDescriptor(serializerPluginDescriptor);
+			if (result == null)
+				result = casePluginDescriptor(serializerPluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -305,6 +297,8 @@ public class StoreSwitch<T> extends Switch<T> {
 		case StorePackage.DESERIALIZER_PLUGIN_DESCRIPTOR: {
 			DeserializerPluginDescriptor deserializerPluginDescriptor = (DeserializerPluginDescriptor) theEObject;
 			T result = caseDeserializerPluginDescriptor(deserializerPluginDescriptor);
+			if (result == null)
+				result = casePluginDescriptor(deserializerPluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -326,13 +320,6 @@ public class StoreSwitch<T> extends Switch<T> {
 		case StorePackage.REVISION_SUMMARY: {
 			RevisionSummary revisionSummary = (RevisionSummary) theEObject;
 			T result = caseRevisionSummary(revisionSummary);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.PLUGIN_DESCRIPTOR: {
-			PluginDescriptor pluginDescriptor = (PluginDescriptor) theEObject;
-			T result = casePluginDescriptor(pluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -440,20 +427,6 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.COMPILE_RESULT: {
-			CompileResult compileResult = (CompileResult) theEObject;
-			T result = caseCompileResult(compileResult);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.RUN_RESULT: {
-			RunResult runResult = (RunResult) theEObject;
-			T result = caseRunResult(runResult);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case StorePackage.SERVER_INFO: {
 			ServerInfo serverInfo = (ServerInfo) theEObject;
 			T result = caseServerInfo(serverInfo);
@@ -471,6 +444,8 @@ public class StoreSwitch<T> extends Switch<T> {
 		case StorePackage.IFC_ENGINE_PLUGIN_DESCRIPTOR: {
 			IfcEnginePluginDescriptor ifcEnginePluginDescriptor = (IfcEnginePluginDescriptor) theEObject;
 			T result = caseIfcEnginePluginDescriptor(ifcEnginePluginDescriptor);
+			if (result == null)
+				result = casePluginDescriptor(ifcEnginePluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -493,12 +468,16 @@ public class StoreSwitch<T> extends Switch<T> {
 			QueryEnginePluginDescriptor queryEnginePluginDescriptor = (QueryEnginePluginDescriptor) theEObject;
 			T result = caseQueryEnginePluginDescriptor(queryEnginePluginDescriptor);
 			if (result == null)
+				result = casePluginDescriptor(queryEnginePluginDescriptor);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		case StorePackage.QUERY_ENGINE: {
 			QueryEngine queryEngine = (QueryEngine) theEObject;
 			T result = caseQueryEngine(queryEngine);
+			if (result == null)
+				result = casePlugin(queryEngine);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -507,12 +486,16 @@ public class StoreSwitch<T> extends Switch<T> {
 			ModelMergerPluginDescriptor modelMergerPluginDescriptor = (ModelMergerPluginDescriptor) theEObject;
 			T result = caseModelMergerPluginDescriptor(modelMergerPluginDescriptor);
 			if (result == null)
+				result = casePluginDescriptor(modelMergerPluginDescriptor);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		case StorePackage.MODEL_MERGER: {
 			ModelMerger modelMerger = (ModelMerger) theEObject;
 			T result = caseModelMerger(modelMerger);
+			if (result == null)
+				result = casePlugin(modelMerger);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -521,12 +504,16 @@ public class StoreSwitch<T> extends Switch<T> {
 			ModelComparePluginDescriptor modelComparePluginDescriptor = (ModelComparePluginDescriptor) theEObject;
 			T result = caseModelComparePluginDescriptor(modelComparePluginDescriptor);
 			if (result == null)
+				result = casePluginDescriptor(modelComparePluginDescriptor);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		case StorePackage.MODEL_COMPARE: {
 			ModelCompare modelCompare = (ModelCompare) theEObject;
 			T result = caseModelCompare(modelCompare);
+			if (result == null)
+				result = casePlugin(modelCompare);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -563,66 +550,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUser(User object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Clash</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Clash</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClash(Clash object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Eid Clash</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Eid Clash</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEidClash(EidClash object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Guid Clash</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Guid Clash</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGuidClash(GuidClash object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Clash Detection Settings</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Clash Detection Settings</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClashDetectionSettings(ClashDetectionSettings object) {
 		return null;
 	}
 
@@ -687,17 +614,32 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Settings</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Server Settings</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Settings</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Server Settings</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSettings(Settings object) {
+	public T caseServerSettings(ServerSettings object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Settings</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Settings</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserSettings(UserSettings object) {
 		return null;
 	}
 
@@ -1253,36 +1195,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNewRevisionNotification(NewRevisionNotification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Compile Result</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Compile Result</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompileResult(CompileResult object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Run Result</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Run Result</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRunResult(RunResult object) {
 		return null;
 	}
 

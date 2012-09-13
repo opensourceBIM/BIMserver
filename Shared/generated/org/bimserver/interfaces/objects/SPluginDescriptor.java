@@ -16,12 +16,14 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
+@XmlSeeAlso(value={SModelMergerPluginDescriptor.class, SDeserializerPluginDescriptor.class, SModelComparePluginDescriptor.class, SIfcEnginePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SSerializerPluginDescriptor.class})
 public class SPluginDescriptor implements SBase
 {
 	private long oid = -1;
@@ -46,8 +48,11 @@ public class SPluginDescriptor implements SBase
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("name")) {
-			return getName();
+		if (sField.getName().equals("defaultName")) {
+			return getDefaultName();
+		}
+		if (sField.getName().equals("pluginClassName")) {
+			return getPluginClassName();
 		}
 		if (sField.getName().equals("description")) {
 			return getDescription();
@@ -64,8 +69,12 @@ public class SPluginDescriptor implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("name")) {
-			setName((String)val);
+		if (sField.getName().equals("defaultName")) {
+			setDefaultName((String)val);
+			return;
+		}
+		if (sField.getName().equals("pluginClassName")) {
+			setPluginClassName((String)val);
 			return;
 		}
 		if (sField.getName().equals("description")) {
@@ -87,16 +96,24 @@ public class SPluginDescriptor implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
+	private java.lang.String defaultName;
+	private java.lang.String pluginClassName;
 	private java.lang.String description;
 	private java.lang.String location;
 	private java.lang.Boolean enabled;
-	public java.lang.String getName() {
-		return name;
+	public java.lang.String getDefaultName() {
+		return defaultName;
 	}
 
-	public void setName(java.lang.String name) {
-		this.name = name;
+	public void setDefaultName(java.lang.String defaultName) {
+		this.defaultName = defaultName;
+	}
+	public java.lang.String getPluginClassName() {
+		return pluginClassName;
+	}
+
+	public void setPluginClassName(java.lang.String pluginClassName) {
+		this.pluginClassName = pluginClassName;
 	}
 	public java.lang.String getDescription() {
 		return description;

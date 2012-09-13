@@ -9,8 +9,6 @@
 <%@page import="org.bimserver.interfaces.objects.SPasswordReset"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
-<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTagUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SUserChanged"%>
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
@@ -95,11 +93,6 @@ if (sNewProjectAdded.getParentProjectId() != -1) {
 			} else if (log instanceof SProjectUpdated) {
 				SProject sProject = loginManager.getService().getProjectByPoid(((SProjectUpdated)log).getProjectId());
 %>Project <a href="project.jsp?poid=<%=sProject.getOid()%>"><%=sProject.getName() %></a> updated<%
-			} else if (log instanceof SClashDetectionSettingsUpdated) {
-				SClashDetectionSettingsUpdated sClashDetectionSettingsUpdated =  (SClashDetectionSettingsUpdated)log;
-				SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(sClashDetectionSettingsUpdated.getClashDetectionSettingsId());
-				SProject sProject = loginManager.getService().getProjectByPoid(sClashDetectionSettings.getProjects().get(0));
-%>Clash detection settings of project <a href="project.jsp?poid=<%=sProject.getOid()%>"><%=sProject.getName() %></a> updated<%				
 			} else if (log instanceof SGeoTagUpdated) {
 				SGeoTagUpdated sGeoTagUpdated =  (SGeoTagUpdated)log;
 			    SGeoTag sGeoTag = loginManager.getService().getGeoTag(sGeoTagUpdated.getGeoTagId());

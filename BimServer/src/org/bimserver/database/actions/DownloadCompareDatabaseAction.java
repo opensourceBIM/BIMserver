@@ -127,7 +127,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 			}
 //			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
 
-			ModelMerger merger = bimServer.getMergerFactory().createMerger();
+			ModelMerger merger = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid);
 			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2));
 			mergedModel.setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 

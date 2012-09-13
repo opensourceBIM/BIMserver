@@ -17,11 +17,8 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Plugin;
-import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginImpl#getClassName <em>Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,8 +108,8 @@ public class PluginImpl extends IdEObjectImpl implements Plugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Settings getSettings() {
-		return (Settings) eGet(StorePackage.Literals.PLUGIN__SETTINGS, true);
+	public String getDescription() {
+		return (String) eGet(StorePackage.Literals.PLUGIN__DESCRIPTION, true);
 	}
 
 	/**
@@ -119,8 +117,26 @@ public class PluginImpl extends IdEObjectImpl implements Plugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(Settings newSettings) {
-		eSet(StorePackage.Literals.PLUGIN__SETTINGS, newSettings);
+	public void setDescription(String newDescription) {
+		eSet(StorePackage.Literals.PLUGIN__DESCRIPTION, newDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClassName() {
+		return (String) eGet(StorePackage.Literals.PLUGIN__CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClassName(String newClassName) {
+		eSet(StorePackage.Literals.PLUGIN__CLASS_NAME, newClassName);
 	}
 
 } //PluginImpl

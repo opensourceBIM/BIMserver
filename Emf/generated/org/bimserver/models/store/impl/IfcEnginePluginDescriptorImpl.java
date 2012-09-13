@@ -16,11 +16,8 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,16 +25,11 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Ifc Engine Plugin Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl#getPluginClassName <em>Plugin Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
-public class IfcEnginePluginDescriptorImpl extends IdEObjectImpl implements IfcEnginePluginDescriptor {
+public class IfcEnginePluginDescriptorImpl extends PluginDescriptorImpl implements IfcEnginePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,52 +47,6 @@ public class IfcEnginePluginDescriptorImpl extends IdEObjectImpl implements IfcE
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.IFC_ENGINE_PLUGIN_DESCRIPTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPluginClassName() {
-		return (String) eGet(StorePackage.Literals.IFC_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPluginClassName(String newPluginClassName) {
-		eSet(StorePackage.Literals.IFC_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, newPluginClassName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDefaultName() {
-		return (String) eGet(StorePackage.Literals.IFC_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultName(String newDefaultName) {
-		eSet(StorePackage.Literals.IFC_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME, newDefaultName);
 	}
 
 } //IfcEnginePluginDescriptorImpl

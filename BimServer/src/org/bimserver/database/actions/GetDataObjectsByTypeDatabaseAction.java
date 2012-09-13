@@ -43,12 +43,14 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 	private final String className;
 	private final long roid;
 	private final BimServer bimServer;
+	private final long currentUoid;
 
-	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className) {
+	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, long currentUoid) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.className = className;
+		this.currentUoid = currentUoid;
 	}
 
 	@Override
@@ -66,7 +68,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet);
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid).merge(virtualRevision.getProject(), ifcModelSet);
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

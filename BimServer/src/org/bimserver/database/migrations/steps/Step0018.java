@@ -22,31 +22,21 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0018 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass queryEnginePluginDescriptor = schema.createEClass(schema.getEPackage("store"), "QueryEnginePluginDescriptor");
-		schema.createEAttribute(queryEnginePluginDescriptor, "pluginClassName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
-		schema.createEAttribute(queryEnginePluginDescriptor, "defaultName", EcorePackage.eINSTANCE.getEString(),  Multiplicity.SINGLE);
+		schema.createEClass(schema.getEPackage("store"), "QueryEnginePluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 		
-		EClass queryEngineClass = schema.createEClass(schema.getEPackage("store"), "QueryEngine");
-		EClass settingsClass = schema.getEClass("store", "Settings");
+		EClass queryEngineClass = schema.createEClass(schema.getEPackage("store"), "QueryEngine", schema.getEClass("store", "Plugin"));
+		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		schema.createEAttribute(queryEngineClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(queryEngineClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(queryEngineClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(queryEngineClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
-		EReference queryEngineSettingsReference = schema.createEReference(queryEngineClass, "settings", settingsClass, Multiplicity.SINGLE);
-		EReference settingsQueryEnginesReference = schema.createEReference(settingsClass, "queryengines", queryEngineClass, Multiplicity.MANY);
+		EReference queryEngineSettingsReference = schema.createEReference(queryEngineClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference settingsQueryEnginesReference = schema.createEReference(userSettingsClass, "queryengines", queryEngineClass, Multiplicity.MANY);
 		
 		queryEngineSettingsReference.setEOpposite(settingsQueryEnginesReference);
 		settingsQueryEnginesReference.setEOpposite(queryEngineSettingsReference);
-		
-		EClass runResultClass = schema.getEClass("store", "RunResult");
-		schema.createEAttribute(runResultClass, "downloadId", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
 	}
 
 	@Override

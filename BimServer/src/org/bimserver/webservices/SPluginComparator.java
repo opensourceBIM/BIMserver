@@ -25,6 +25,6 @@ public class SPluginComparator implements Comparator<SPluginDescriptor> {
 
 	@Override
 	public int compare(SPluginDescriptor o1, SPluginDescriptor o2) {
-		return o1.getName().compareTo(o2.getName());
+		return o1.getDefaultName().compareTo(o2.getDefaultName());
 	}
 }

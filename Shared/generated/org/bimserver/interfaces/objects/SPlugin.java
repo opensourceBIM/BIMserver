@@ -16,12 +16,14 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
+@XmlSeeAlso(value={SModelCompare.class, SIfcEngine.class, SSerializer.class, SModelMerger.class, SQueryEngine.class, SObjectIDM.class, SDeserializer.class})
 public class SPlugin implements SBase
 {
 	private long oid = -1;
@@ -52,8 +54,11 @@ public class SPlugin implements SBase
 		if (sField.getName().equals("enabled")) {
 			return getEnabled();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("className")) {
+			return getClassName();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -69,8 +74,12 @@ public class SPlugin implements SBase
 			setEnabled((Boolean)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("className")) {
+			setClassName((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -82,7 +91,8 @@ public class SPlugin implements SBase
 	
 	private java.lang.String name;
 	private java.lang.Boolean enabled;
-	private long settingsId;
+	private java.lang.String description;
+	private java.lang.String className;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -97,14 +107,20 @@ public class SPlugin implements SBase
 	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
-	public long getSettingsId() {
-		return settingsId;
+	public java.lang.String getDescription() {
+		return description;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setDescription(java.lang.String description) {
+		this.description = description;
 	}
-	
+	public java.lang.String getClassName() {
+		return className;
+	}
+
+	public void setClassName(java.lang.String className) {
+		this.className = className;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -16,77 +16,16 @@
  */
 package org.bimserver.models.store;
 
-import org.bimserver.emf.IdEObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model Merger Plugin Descriptor</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.bimserver.models.store.ModelMergerPluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.ModelMergerPluginDescriptor#getDefaultName <em>Default Name</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getModelMergerPluginDescriptor()
  * @model
- * @extends IdEObject
  * @generated
  */
-public interface ModelMergerPluginDescriptor extends IdEObject {
-	/**
-	 * Returns the value of the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Plugin Class Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Plugin Class Name</em>' attribute.
-	 * @see #setPluginClassName(String)
-	 * @see org.bimserver.models.store.StorePackage#getModelMergerPluginDescriptor_PluginClassName()
-	 * @model
-	 * @generated
-	 */
-	String getPluginClassName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelMergerPluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Plugin Class Name</em>' attribute.
-	 * @see #getPluginClassName()
-	 * @generated
-	 */
-	void setPluginClassName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Name</em>' attribute.
-	 * @see #setDefaultName(String)
-	 * @see org.bimserver.models.store.StorePackage#getModelMergerPluginDescriptor_DefaultName()
-	 * @model
-	 * @generated
-	 */
-	String getDefaultName();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelMergerPluginDescriptor#getDefaultName <em>Default Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Name</em>' attribute.
-	 * @see #getDefaultName()
-	 * @generated
-	 */
-	void setDefaultName(String value);
+public interface ModelMergerPluginDescriptor extends PluginDescriptor {
 
 } // ModelMergerPluginDescriptor
