@@ -22,7 +22,6 @@ import java.net.InetSocketAddress;
 
 import org.bimserver.pb.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ConnectDisconnectListener;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.Reflector;

@@ -324,10 +324,10 @@ public class ColladaSerializer extends EmfSerializer {
 			}
 			converted.get(material).add(id);
 
-			String name = "Unknown";
-			if (ifcProductObject.getGlobalId() != null && ifcProductObject.getGlobalId().getWrappedValue() != null) {
-				name = ifcProductObject.getGlobalId().getWrappedValue();
-			}
+//			String name = "Unknown";
+//			if (ifcProductObject.getGlobalId() != null && ifcProductObject.getGlobalId().getWrappedValue() != null) {
+//				name = ifcProductObject.getGlobalId().getWrappedValue();
+//			}
 
 			// out.println(" <geometry id=\"geom-" + id + "\" name=\"_" + name +
 			// "\">");

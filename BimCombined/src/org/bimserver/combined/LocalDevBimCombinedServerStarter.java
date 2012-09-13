@@ -33,7 +33,6 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.servlets.CompileServlet;
 import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.ProgressServlet;
@@ -81,7 +80,6 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(ProgressServlet.class, "/progress/*");
 		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
-		 	embeddedWebServer.getContext().addServlet(CompileServlet.class, "/compile/*");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
 	 		bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
