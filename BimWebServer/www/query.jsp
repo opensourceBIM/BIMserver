@@ -81,7 +81,6 @@
 
 </div>
 <%
-	if (loginManager.getUserType() == SUserType.ADMIN) {
 		for (SQueryEngine queryEngine : loginManager.getService().getAllQueryEngines(true)) {
 %>
 <div class="tabbertab" title="<%=queryEngine.getName()%>" id="<%=queryEngine.getOid() %>">
@@ -210,9 +209,6 @@ Examples: <%
 		}
 	});
 </script>
-<%
-	}
-%>
 </div>
 <script>
 	$(function(){
