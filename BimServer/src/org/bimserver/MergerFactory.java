@@ -17,24 +17,36 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
+
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 
 public class MergerFactory {
-	private SettingsManager settingsManager;
 	private final BimServer bimServer;
 
-	public MergerFactory(BimServer bimServer, SettingsManager settingsManager) {
+	public MergerFactory(BimServer bimServer) {
 		this.bimServer = bimServer;
-		this.settingsManager = settingsManager;
 	}
 
 	public org.bimserver.plugins.modelmerger.ModelMerger createMerger() throws MergeException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			ModelMerger modelMergerObject = settingsManager.getSettings().getDefaultModelMerger();
+			IfcModelInterface model = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
+			List<Settings> allSettings = model.getAll(Settings.class);
+			Settings settings = null;
+			if (allSettings.size() == 1) {
+				settings = allSettings.get(0);
+			}
+
+			ModelMerger modelMergerObject = settings.getDefaultModelMerger();
 			if (modelMergerObject != null) {
 				ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getClassName(), true);
 				if (modelMergerPlugin != null) {
@@ -46,8 +58,13 @@ public class MergerFactory {
 			} else {
 				throw new MergeException("No configured Model Merger found");
 			}
+		} catch (BimserverLockConflictException e) {
+			e.printStackTrace();
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
+		return null;
 	}
 }

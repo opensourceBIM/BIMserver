@@ -49,7 +49,6 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
-	private final Reporter reporter;
 
 	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
@@ -59,7 +58,6 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 		this.actingUoid = actingUoid;
 		this.classNames = classNames;
 		this.objectIDM = objectIDM;
-		this.reporter = reporter;
 	}
 
 	@Override

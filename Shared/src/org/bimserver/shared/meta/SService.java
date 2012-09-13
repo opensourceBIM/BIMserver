@@ -87,7 +87,9 @@ public class SService {
 		this.clazz = clazz;
 		this.name = clazz.getSimpleName();
 		init();
-		extractJavaDoc();
+		if (sourceFile != null) {
+			extractJavaDoc();
+		}
 	}
 
 	private void extractJavaDoc() {

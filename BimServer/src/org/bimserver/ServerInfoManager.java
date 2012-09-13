@@ -56,10 +56,10 @@ public class ServerInfoManager {
 		} else if (bimServer.getDatabase().getMigrator().migrationImpossible()) {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
-			Settings settings = bimServer.getSettingsManager().getSettings();
 			DatabaseSession session = bimServer.getDatabase().createSession();
-			boolean adminFound = false;
 			try {
+				boolean adminFound = false;
+				Settings settings = bimServer.getSettings(session);
 				IfcModelInterface users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
 				for (IdEObject idEObject : users.getValues()) {
 					if (idEObject instanceof User) {
@@ -70,15 +70,15 @@ public class ServerInfoManager {
 						}
 					}
 				}
+				if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty() || !adminFound) {
+					setServerState(ServerState.NOT_SETUP);
+				} else {
+					setServerState(ServerState.RUNNING);
+				}
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 			} finally {
 				session.close();
-			}
-			if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty() || !adminFound) {
-				setServerState(ServerState.NOT_SETUP);
-			} else {
-				setServerState(ServerState.RUNNING);
 			}
 		}
 	}

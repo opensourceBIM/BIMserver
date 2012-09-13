@@ -32,13 +32,11 @@
 				service.setSettingSmtpServer(request.getParameter("smtpServer"));
 				service.setSettingCacheOutputFiles(request.getParameter("cacheOutputFiles") != null);
 				service.setSettingHideUserListForNonAdmin(request.getParameter("hideUserListForNonAdmin") != null);
-				service.setSettingIntelligentMerging(request.getParameter("intelligentMerging") != null);
 				service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
 				service.setSettingSiteAddress(request.getParameter("siteAddress"));
 				service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
 				service.setSettingHeaderAddition(request.getParameter("headerAddition"));
 				service.setSettingFooterAddition(request.getParameter("footerAddition"));
-				service.setSettingMergeIdentifier(SMergeIdentifier.valueOf(request.getParameter("mergeIdentifier")));
 				service.setSettingProtocolBuffersPort(Integer.parseInt(request.getParameter("protocolBuffersPort")));
 				response.sendRedirect(getServletContext().getContextPath() + "/serversettings.jsp?msg=settingschangeok");
 			} catch (ServiceException e) {
@@ -138,26 +136,9 @@
 			<%=(request.getParameter("save") == null ? service.isSettingShowVersionUpgradeAvailable() : request.getParameter("showVersionUpgradeAvailable") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="intelligentMerging">Intelligent modelfusion (tip!)</label></td>
-		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
-			<%=(request.getParameter("save") == null ? service.isSettingIntelligentMerging() : request.getParameter("intelligentMerging") != null) ? " checked=\"checked\"" : ""%>></input></td>
-	</tr>
-	<tr>
 		<td><label for="cacheOutputFiles">Cache output files</label></td>
 		<td><input id="cacheOutputFiles" name="cacheOutputFiles" type="checkbox"
 			<%=(request.getParameter("save") == null ? service.isSettingCacheOutputFiles() : request.getParameter("cacheOutputFiles") != null) ? " checked=\"checked\"" : ""%>></input></td>
-	</tr>
-	<tr>
-		<td><label for="mergeIdentifier">Intelligent merging identifier</label></td>
-		<td><select name="mergeIdentifier">
-<%
-	for (SMergeIdentifier sMergeIdentifier : SMergeIdentifier.values()) {
-%>
-	<option value="<%=sMergeIdentifier.name()%>"<%=request.getParameter("mergeIdentifier") != null && request.getParameter("mergeIdentifier").equals(sMergeIdentifier.name()) ? " SELECTED=\"SELECTED\"" : (service.getSettingMergeIdentifier() == sMergeIdentifier ? " SELECTED=\"SELECTED\"" : "") %>><%=sMergeIdentifier.name() %></option>
-<%
-	}
-%>
-		</select></td>
 	</tr>
 	<tr>
 		<td><label for="checkinMergingEnabled">Checkin merging <span

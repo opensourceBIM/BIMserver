@@ -91,7 +91,7 @@ public class TestLowLevelChanges {
 			}
 			
 			// Change a setting to normal users can create projects
-			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
+//			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (ServiceException e) {

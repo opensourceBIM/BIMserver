@@ -34,7 +34,6 @@ import org.bimserver.shared.exceptions.UserException;
 public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final long actingUoid;
-	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long qeid;

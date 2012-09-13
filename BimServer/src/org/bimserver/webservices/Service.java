@@ -53,6 +53,7 @@ import org.bimserver.changes.RemoveReferenceChange;
 import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.*;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -87,7 +88,6 @@ import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.interfaces.objects.SModelCompare;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -128,7 +128,6 @@ import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.IfcEngine;
-import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ModelCompare;
 import org.bimserver.models.store.ModelMerger;
 import org.bimserver.models.store.Project;
@@ -320,15 +319,31 @@ public class Service implements ServiceInterface {
 		return longDownloadAction.getId();
 	}
 
+	public Settings getSettings(DatabaseSession session) {
+		try {
+			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getSettings(), false, null);
+			List<Settings> settingsList = allOfType.getAll(Settings.class);
+			if (settingsList.size() == 1) {
+				Settings settings = settingsList.get(0);
+				return settings;
+			}
+		} catch (BimserverLockConflictException e) {
+			e.printStackTrace();
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Override
 	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
-		if (!selfRegistration) {
-			requireAuthenticationAndRunningServer();
-		} else if (!bimServer.getSettingsManager().getSettings().getAllowSelfRegistration()) {
-			requireSelfregistrationAllowed();
-		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
+			if (!selfRegistration) {
+				requireAuthenticationAndRunningServer();
+			} else if (!getSettings(session).getAllowSelfRegistration()) {
+				requireSelfregistrationAllowed();
+			}
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(bimServer, session, accessMethod, username, name, converter.convertFromSObject(type), currentUoid,
 					selfRegistration);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
@@ -583,8 +598,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadCompareResults(String serializerName, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException,
-			UserException {
+	public Integer downloadCompareResults(String serializerName, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromCompare(roid1, roid2, converter.convertFromSObject(type), mcid, serializerName), sync);
 	}
@@ -1348,60 +1362,122 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public String getSettingCustomLogoAddress() throws ServerException, UserException {
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		return settings.getCustomLogoAddress();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getCustomLogoAddress();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingCustomLogoAddress(String customLogoAddress) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setCustomLogoAddress(customLogoAddress);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setCustomLogoAddress(customLogoAddress);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public String getSettingEmailSenderAddress() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getEmailSenderAddress();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getEmailSenderAddress();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingProtocolBuffersPort(Integer port) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setProtocolBuffersPort(port);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setProtocolBuffersPort(port);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Integer getSettingProtocolBuffersPort() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getProtocolBuffersPort();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getProtocolBuffersPort();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingEmailSenderAddress(String emailSenderAddress) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setEmailSenderAddress(emailSenderAddress);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setEmailSenderAddress(emailSenderAddress);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public String getSettingRegistrationAddition() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getRegistrationAddition();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getRegistrationAddition();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingRegistrationAddition(String registrationAddition) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setRegistrationAddition(registrationAddition);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setRegistrationAddition(registrationAddition);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public String getSettingSiteAddress() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getSiteAddress();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getSiteAddress();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -1409,19 +1485,33 @@ public class Service implements ServiceInterface {
 		if (bimServer.getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
-		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (siteAddress.trim().isEmpty()) {
 			throw new UserException("Site Address cannot be empty");
 		} else if (!siteAddress.startsWith("http://") && !(siteAddress.startsWith("https://"))) {
 			throw new UserException("Site Address must start with either \"http://\" or \"https://\"");
 		}
-		settings.setSiteAddress(siteAddress);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setSiteAddress(siteAddress);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public String getSettingSmtpServer() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getSmtpServer();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getSmtpServer();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -1429,116 +1519,209 @@ public class Service implements ServiceInterface {
 		if (bimServer.getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
-		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (smtpServer.trim().isEmpty()) {
 			throw new UserException("SMTP server address cannot be empty");
 		}
-		settings.setSmtpServer(smtpServer);
-		bimServer.getSettingsManager().saveSettings();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setSmtpServer(smtpServer);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Boolean isSettingAllowSelfRegistration() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getAllowSelfRegistration();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getAllowSelfRegistration();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getHideUserListForNonAdmin();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getHideUserListForNonAdmin();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingHideUserListForNonAdmin(Boolean hideUserListForNonAdmin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingAllowSelfRegistration(Boolean allowSelfRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setAllowSelfRegistration(allowSelfRegistration);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setAllowSelfRegistration(allowSelfRegistration);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isAllowUsersToCreateTopLevelProjects();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.isAllowUsersToCreateTopLevelProjects();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingAllowUsersToCreateTopLevelProjects(Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getCheckinMergingEnabled();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getCheckinMergingEnabled();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingCheckinMergingEnabled(Boolean checkinMergingEnabled) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setCheckinMergingEnabled(checkinMergingEnabled);
-		bimServer.getSettingsManager().saveSettings();
-	}
-
-	@Override
-	public Boolean isSettingIntelligentMerging() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getIntelligentMerging();
-	}
-
-	@Override
-	public void setSettingIntelligentMerging(Boolean intelligentMerging) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setIntelligentMerging(intelligentMerging);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setCheckinMergingEnabled(checkinMergingEnabled);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().isSendConfirmationEmailAfterRegistration();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.isSendConfirmationEmailAfterRegistration();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingSendConfirmationEmailAfterRegistration(Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Boolean isSettingShowVersionUpgradeAvailable() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getShowVersionUpgradeAvailable();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getShowVersionUpgradeAvailable();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingShowVersionUpgradeAvailable(Boolean showVersionUpgradeAvailable) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Boolean isSettingCacheOutputFiles() throws ServerException, UserException {
-		return bimServer.getSettingsManager().getSettings().getCacheOutputFiles();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getCacheOutputFiles();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingCacheOutputFiles(Boolean cacheOutputFiles) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setCacheOutputFiles(cacheOutputFiles);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setCacheOutputFiles(cacheOutputFiles);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -1572,8 +1755,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void sendCompareEmail(SCompareType sCompareType, Long mcid, Long poid, Long roid1, Long roid2, String address) throws ServerException,
-			UserException {
+	public void sendCompareEmail(SCompareType sCompareType, Long mcid, Long poid, Long roid1, Long roid2, String address) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			SUser currentUser = getCurrentUser(session);
@@ -1582,7 +1764,7 @@ public class Service implements ServiceInterface {
 			String senderName = currentUser.getName();
 			String senderAddress = currentUser.getUsername();
 			if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
-				senderAddress = bimServer.getSettingsManager().getSettings().getEmailSenderAddress();
+				senderAddress = getSettings(session).getEmailSenderAddress();
 			}
 
 			Session mailSession = bimServer.getMailSystem().createMailSession();
@@ -1961,44 +2143,55 @@ public class Service implements ServiceInterface {
 	@Override
 	public void setSettingFooterAddition(String footerAddition) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setFooterAddition(footerAddition);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setFooterAddition(footerAddition);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void setSettingHeaderAddition(String headerAddition) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setHeaderAddition(headerAddition);
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setHeaderAddition(headerAddition);
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public String getSettingFooterAddition() throws ServerException, UserException {
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		return settings.getFooterAddition();
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getFooterAddition();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public String getSettingHeaderAddition() throws ServerException, UserException {
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		return settings.getHeaderAddition();
-	}
-
-	@Override
-	public SMergeIdentifier getSettingMergeIdentifier() throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		return converter.convertToSObject(settings.getMergeIdentifier());
-	}
-
-	@Override
-	public void setSettingMergeIdentifier(SMergeIdentifier mergeIdentifier) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setMergeIdentifier(MergeIdentifier.valueOf(mergeIdentifier.name()));
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return settings.getHeaderAddition();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -2918,7 +3111,7 @@ public class Service implements ServiceInterface {
 		QueryEnginePlugin queryEngine = bimServer.getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
 		return new ArrayList<String>(queryEngine.getExampleKeys());
 	}
-	
+
 	private <T extends IdEObject> T find(List<T> list, long oid) {
 		for (T t : list) {
 			if (t.getOid() == oid) {
@@ -2928,69 +3121,153 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	public SIfcEngine getDefaultIfcEngine() throws ServerException, UserException{
-		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultIfcEngine());
+	public SIfcEngine getDefaultIfcEngine() throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return converter.convertToSObject(settings.getDefaultIfcEngine());
+		} finally {
+			session.close();
+		}
 	}
 
-	public SQueryEngine getDefaultQueryEngine() throws ServerException, UserException{
-		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultQueryEngine());
+	public SQueryEngine getDefaultQueryEngine() throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return converter.convertToSObject(settings.getDefaultQueryEngine());
+		} finally {
+			session.close();
+		}
 	}
 
-	public SModelCompare getDefaultModelCompare() throws ServerException, UserException{
-		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultModelCompare());
+	public SModelCompare getDefaultModelCompare() throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return converter.convertToSObject(settings.getDefaultModelCompare());
+		} finally {
+			session.close();
+		}
 	}
 
-	public SModelMerger getDefaultModelMerger() throws ServerException, UserException{
-		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultModelMerger());
+	public SModelMerger getDefaultModelMerger() throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return converter.convertToSObject(settings.getDefaultModelMerger());
+		} finally {
+			session.close();
+		}
 	}
 
 	public SSerializer getDefaultSerializer() throws ServerException, UserException {
-		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultSerializer());
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return converter.convertToSObject(settings.getDefaultSerializer());
+		} finally {
+			session.close();
+		}
 	}
 
 	public SObjectIDM getDefaultObjectIDM() throws ServerException, UserException {
-		return converter.convertToSObject(bimServer.getSettingsManager().getSettings().getDefaultObjectIDM());
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			return converter.convertToSObject(settings.getDefaultObjectIDM());
+		} finally {
+			session.close();
+		}
 	}
 
 	public void setDefaultIfcEngine(long oid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setDefaultIfcEngine(find(settings.getIfcEngines(), oid));
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setDefaultIfcEngine(find(settings.getIfcEngines(), oid));
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
-	
+
 	public void setDefaultQueryEngine(long oid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setDefaultQueryEngine(find(settings.getQueryengines(), oid));
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setDefaultQueryEngine(find(settings.getQueryengines(), oid));
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	public void setDefaultModelCompare(long oid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setDefaultModelCompare(find(settings.getModelcompares(), oid));
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setDefaultModelCompare(find(settings.getModelcompares(), oid));
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
-	
+
 	public void setDefaultModelMerger(long oid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setDefaultModelMerger(find(settings.getModelmergers(), oid));
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setDefaultModelMerger(find(settings.getModelmergers(), oid));
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
-	
+
 	public void setDefaultSerializer(long oid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setDefaultSerializer(find(settings.getSerializers(), oid));
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setDefaultSerializer(find(settings.getSerializers(), oid));
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 	
 	public void setDefaultObjectIDM(long oid) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		Settings settings = bimServer.getSettingsManager().getSettings();
-		settings.setDefaultObjectIDM(find(settings.getObjectIDMs(), oid));
-		bimServer.getSettingsManager().saveSettings();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Settings settings = getSettings(session);
+			settings.setDefaultObjectIDM(find(settings.getObjectIDMs(), oid));
+			session.store(settings);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

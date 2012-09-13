@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
@@ -34,7 +35,13 @@ public class JsonApiServlet extends HttpServlet {
 		try {
 			PrintWriter writer = response.getWriter();
 			
-			
+			String siteAddress = "";
+			DatabaseSession session = bimServer.getDatabase().createSession();
+			try {
+				siteAddress = bimServer.getSettings(session).getSiteAddress();
+			} finally {
+				session.close();
+			}
 			if (request.getParameter("doc") != null) {
 				writeHeader(writer);
 				writer.println("<h1>BIMserver JSON API Documentation</h1>");
@@ -42,9 +49,9 @@ public class JsonApiServlet extends HttpServlet {
 				writer.println("<div class=\"main\">");
 				String show = request.getParameter("show");
 				if (show == null) {
-					writeAllMethodsDocumentation(writer, request, sService, bimServer);
+					writeAllMethodsDocumentation(writer, request, sService, bimServer, siteAddress);
 				} else if (show.equals("method")) {
-					writeMethodDocumentation(writer, request, sService.getSMethod(request.getParameter("name")), bimServer);
+					writeMethodDocumentation(writer, request, sService.getSMethod(request.getParameter("name")), bimServer, siteAddress);
 				} else if (show.equals("type")) {
 					writeTypeDocumentation(writer, sService.getSType(request.getParameter("name")), bimServer);
 				}
@@ -155,7 +162,7 @@ public class JsonApiServlet extends HttpServlet {
 		writer.println("</pre>");
 	}
 
-	private void writeAllMethodsDocumentation(PrintWriter writer, HttpServletRequest request, SService sService, BimServer bimServer) {
+	private void writeAllMethodsDocumentation(PrintWriter writer, HttpServletRequest request, SService sService, BimServer bimServer, String siteAddress) {
 		List<SMethod> methods = new ArrayList<SMethod>(sService.getMethods());
 		Collections.sort(methods, new Comparator<SMethod>(){
 			@Override
@@ -163,17 +170,17 @@ public class JsonApiServlet extends HttpServlet {
 				return o1.getName().compareTo(o2.getName());
 			}});
 		for (SMethod sMethod : methods) {
-			writeMethodDocumentation(writer, request, sMethod, bimServer);
+			writeMethodDocumentation(writer, request, sMethod, bimServer, siteAddress);
 		}
 	}
 
-	private void writeMethodDocumentation(PrintWriter writer, HttpServletRequest request, SMethod sMethod, BimServer bimServer) {
+	private void writeMethodDocumentation(PrintWriter writer, HttpServletRequest request, SMethod sMethod, BimServer bimServer, String siteAddress) {
 		writer.println("<div class=\"method\">");
 		writer.println("<a name=\"" + sMethod.getName() + "\" href=\"#" + sMethod.getName() + "\"><h1>GET " + sMethod.getName() + "</h1></a>");
 //		writer.println("<h1>GET " + sMethod.getName() + "</h1>");
 		writer.println(sMethod.getDoc());
 		writer.println("<h2>Resource URL</h2>");
-		writer.println(bimServer.getSettingsManager().getSettings().getSiteAddress() + request.getServletPath() + "/" + sMethod.getName());
+		writer.println(siteAddress + request.getServletPath() + "/" + sMethod.getName());
 		writer.println("<h2>Parameters</h2>");
 		if (sMethod.getParameters().isEmpty()) {
 			writer.println("No parameters");

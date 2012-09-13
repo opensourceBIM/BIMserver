@@ -46,7 +46,6 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
-	private final Reporter reporter;
 
 	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long actingUoid,
 			ObjectIDM objectIDM, Reporter reporter) {
@@ -56,7 +55,6 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 		this.ignoreUoid = ignoreUoid;
 		this.actingUoid = actingUoid;
 		this.objectIDM = objectIDM;
-		this.reporter = reporter;
 	}
 
 	@Override

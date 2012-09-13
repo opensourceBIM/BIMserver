@@ -48,7 +48,6 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
-	private final Reporter reporter;
 
 	public DownloadByOidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
@@ -57,7 +56,6 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 		this.oids = oids;
 		this.actingUoid = actingUoid;
 		this.objectIDM = objectIDM;
-		this.reporter = reporter;
 	}
 
 	@Override

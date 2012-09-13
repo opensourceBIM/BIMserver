@@ -17,7 +17,6 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -61,12 +60,6 @@ public class ChangeRandomSettingAction extends Action {
 			break;
 		case 9:
 			serviceInterface.setSettingHideUserListForNonAdmin(nextBoolean());
-			break;
-		case 10:
-			serviceInterface.setSettingIntelligentMerging(nextBoolean());
-			break;
-		case 11:
-			serviceInterface.setSettingMergeIdentifier(SMergeIdentifier.values()[nextInt(SMergeIdentifier.values().length)]);
 			break;
 		case 12:
 			serviceInterface.setSettingProtocolBuffersPort(1024 + nextInt(1024));
