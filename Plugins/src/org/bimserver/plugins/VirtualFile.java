@@ -46,6 +46,7 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.NestingKind;
 import javax.tools.JavaFileObject;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.slf4j.Logger;
@@ -63,6 +64,11 @@ public class VirtualFile implements JavaFileObject {
 	private URI uri;
 	private Set<VirtualFile> sourceFiles = new HashSet<VirtualFile>();
 
+	public VirtualFile() {
+		this.parent = null;
+		this.name = null;
+	}
+	
 	public VirtualFile(VirtualFile parent, String name) {
 		this.parent = parent;
 		this.name = name;
@@ -78,6 +84,26 @@ public class VirtualFile implements JavaFileObject {
 			}
 		} else {
 			uri = null;
+		}
+	}
+
+	public VirtualFile(File file) {
+		this(null, file);
+	}
+	
+	public VirtualFile(VirtualFile parent, File file) {
+		this.parent = parent;
+		this.name = file.getName();
+		if (file.isDirectory()) {
+			for (File f : file.listFiles()) {
+				files.put(f.getName(), new VirtualFile(this, f));
+			}
+		} else {
+			try {
+				setData(FileUtils.readFileToByteArray(file));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -375,15 +401,22 @@ public class VirtualFile implements JavaFileObject {
 		if (name.contains(".")) {
 			return files.get(name.substring(0, name.indexOf("."))).get(name.substring(name.indexOf(".") + 1));
 		}
-		return files.get(name + ".class");
+		return files.get(name);
 	}
 
+	public VirtualFile getClass(String name) {
+		if (name.contains(".")) {
+			return files.get(name.substring(0, name.indexOf("."))).get(name.substring(name.indexOf(".") + 1));
+		}
+		return files.get(name + ".class");
+	}
+	
 	public byte[] getData() {
 		return data;
 	}
 
 	public static VirtualFile fromJar(File file) {
-		VirtualFile result = new VirtualFile(null, null);
+		VirtualFile result = new VirtualFile();
 		try {
 			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
 			JarEntry jarEntry = jarInputStream.getNextJarEntry();
@@ -407,5 +440,13 @@ public class VirtualFile implements JavaFileObject {
 
 	private void setData(byte[] data) {
 		this.data = data;
+	}
+
+	public void add(File file) {
+		
+	}
+	
+	public static VirtualFile fromDirectory(File file) {
+		return new VirtualFile(file);
 	}
 }

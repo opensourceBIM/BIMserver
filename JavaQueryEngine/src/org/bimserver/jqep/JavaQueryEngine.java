@@ -79,7 +79,7 @@ public class JavaQueryEngine implements QueryEngine {
 		if (compiler == null) {
 			throw new CompileException("JDK needed for compile tasks");
 		}
-		VirtualFile baseDir = new VirtualFile(null, null);
+		VirtualFile baseDir = new VirtualFile();
 		VirtualFile file = baseDir.createFile("org" + File.separator + "bimserver" + File.separator + "jqep" + File.separator + "Query.java");
 		file.setStringContent(code);
 		VirtualFileManager myFileManager = new VirtualFileManager(pluginFileManager, classLoader, baseDir);

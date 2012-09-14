@@ -29,7 +29,7 @@ public class VirtualClassLoader extends ClassLoader {
 
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		VirtualFile virtualFile = baseDir.get(name);
+		VirtualFile virtualFile = baseDir.getClass(name);
 		if (virtualFile != null) {
 			byte[] bytes = virtualFile.getData();
 			return defineClass(name, bytes, 0, bytes.length);
