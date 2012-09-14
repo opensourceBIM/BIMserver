@@ -47,6 +47,9 @@ public class SService {
 	private final String name;
 	private final Class<?> clazz;
 	private String sourceCode;
+	
+	// Disabled for now, makes the deployed JAR stop at this point
+	private boolean processJavaDoc = false;
 
 	public void dump() {
 		System.out.println(getMethods().size());
@@ -78,9 +81,8 @@ public class SService {
 		this.clazz = clazz;
 		this.name = clazz.getSimpleName();
 		init();
-		if (sourceCode != null) {
-			// Disabled for now, makes the deployed JAR stop at this point
-//			extractJavaDoc();
+		if (processJavaDoc && sourceCode != null) {
+			extractJavaDoc();
 		}
 	}
 
