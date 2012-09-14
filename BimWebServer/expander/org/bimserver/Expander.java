@@ -368,6 +368,10 @@ public class Expander extends JFrame {
 			command += " -Xmx" + heapsize;
 			command += " -Xss" + stacksize;
 			command += " -XX:MaxPermSize=" + permsize;
+//			boolean debug = true;
+//			if (debug ) {
+//				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
+//			}
 			command += " -classpath";
 			command += " lib" + File.pathSeparator;
 			File dir = new File(destDir + File.separator + "lib");

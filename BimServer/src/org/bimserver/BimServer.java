@@ -233,11 +233,14 @@ public class BimServer {
 		if (url != null) {
 			try {
 				InputStream inputStream = url.openStream();
+				if (inputStream == null) {
+					return null;
+				}
 				StringWriter out = new StringWriter();
 				IOUtils.copy(inputStream, out);
 				return out.toString();
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return null;
@@ -281,7 +284,7 @@ public class BimServer {
 				serverInfoManager.setServerState(ServerState.FATAL_ERROR);
 				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
-
+			
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			try {
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
@@ -290,8 +293,15 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
-			serviceInterfaceService = new SService(getContent(config.getResourceFetcher().getResource("ServiceInterface.java")), ServiceInterface.class);
-			notificationInterfaceService = new SService(getContent(config.getResourceFetcher().getResource("NotificationInterface.java")), NotificationInterface.class);
+			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
+			String content1 = getContent(resource1);
+			serviceInterfaceService = new SService(content1, ServiceInterface.class);
+
+			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
+			String content2 = getContent(resource2);
+			notificationInterfaceService = new SService(content2, NotificationInterface.class);
+
+			LOGGER.info("done loading .java files");
 
 			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();
@@ -340,7 +350,7 @@ public class BimServer {
 
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
-
+			
 			DatabaseSession session = bimDatabase.createSession();
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
@@ -399,7 +409,6 @@ public class BimServer {
 	 */
 	private void createDatabaseObjects() throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
 		DatabaseSession session = bimDatabase.createSession();
-
 		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
 		for (User user : allOfType.getAll(User.class)) {
 			updateUserSettings(session, user);
