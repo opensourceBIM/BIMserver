@@ -60,6 +60,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
@@ -128,7 +129,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 //			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
 
 			ModelMerger merger = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid);
-			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2));
+			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper());
 			mergedModel.setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
 			Set<Long> added = new HashSet<Long>();

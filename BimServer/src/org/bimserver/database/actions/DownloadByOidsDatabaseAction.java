@@ -34,6 +34,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -96,7 +97,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid).merge(project, ifcModelSet);
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

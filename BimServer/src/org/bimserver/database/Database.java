@@ -181,7 +181,7 @@ public class Database implements BimDatabase {
 	public ServerSettings createDefaultSettings() {
 		ServerSettings settings = StoreFactory.eINSTANCE.createServerSettings();
 		settings.setCustomLogoAddress("http://www.bimserver.org/version/defaultlogo.gif");
-		settings.setEmailSenderAddress("");
+		settings.setEmailSenderAddress("no-reply@bimserver.org");
 		settings.setSiteAddress("");
 		settings.setSmtpServer("");
 		settings.setRegistrationAddition("");

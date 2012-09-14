@@ -15,6 +15,7 @@ import org.bimserver.ifc.ReferenceCounter.Reference;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.store.Project;
 import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
@@ -33,7 +34,7 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 	/*
 	 * ifcModels MUST be ordered by date already
 	 */
-	public IfcModelInterface merge(Project project, IfcModelSet modelSet) throws MergeException {
+	public IfcModelInterface merge(Project project, IfcModelSet modelSet, ModelHelper modelHelper) throws MergeException {
 		this.modelSet = modelSet;
 		if (modelSet.size() == 1) {
 			// Do no merging on only 1 model, same in - same out principle of
@@ -41,7 +42,7 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 			return modelSet.iterator().next();
 		}
 		modelSet.sortByDate();
-		model = mergeScales(project, modelSet);
+		model = mergeScales(project, modelSet, modelHelper);
 
 		LOGGER.info("Intelligent merging");
 

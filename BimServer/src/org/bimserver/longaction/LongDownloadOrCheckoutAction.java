@@ -88,10 +88,10 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			checkoutResult = new SCheckoutResult();
 			checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
 		} else {
-			IfcModelInterface ifcModel = null;
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false, null);
 			revision.getProject().getGeoTag().load(); // Little hack to make sure this is lazily loaded, because after the executeAndCommitAction the session won't be usable
-			ifcModel = session.executeAndCommitAction(action);
+			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
+			// Session is closed after this			
 
 			DatabaseSession newSession = getBimServer().getDatabase().createSession();
 			IfcEnginePlugin ifcEnginePlugin  = null;

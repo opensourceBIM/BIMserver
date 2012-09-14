@@ -5,14 +5,17 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enableModelCompare")) {
-		SModelCompare modelCompare = loginManager.getService().getModelCompareByName(request.getParameter("modelCompare"));
+		SModelCompare modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(true);
 		loginManager.getService().updateModelCompare(modelCompare);
 	} else if (action.equals("disableModelCompare")) {
-		SModelCompare modelCompare = loginManager.getService().getModelCompareByName(request.getParameter("modelCompare"));
+		SModelCompare modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(false);
 		loginManager.getService().updateModelCompare(modelCompare);
+	} else if (action.equals("setdefaultmodelcompare")) {
+		loginManager.getService().setDefaultModelCompare(Long.parseLong(request.getParameter("oid")));
 	}
+	response.sendRedirect("modelcompares.jsp");
 }
 %><h1>Model Compares</h1>
 <a href="addmodelcompare.jsp">Add Model Compare</a>
@@ -21,25 +24,30 @@ if (request.getParameter("action") != null) {
 <%
 	List<SModelCompare> modelCompares = service.getAllModelCompares(false);
 	for (SModelCompare modelCompare : modelCompares) {
+		boolean isDefault = service.getDefaultModelCompare() != null && service.getDefaultModelCompare().getOid() == modelCompare.getOid();
 %>
 	<tr>
 		<td><a href="modelcompare.jsp?id=<%=modelCompare.getOid()%>"><%=modelCompare.getName() %></a></td>
 		<td><%=modelCompare.getClassName() %></td>
-		<td><input type="radio" name="default" oid="<%=modelCompare.getOid()%>" <%=service.getDefaultModelCompare() != null && service.getDefaultModelCompare().getOid() == modelCompare.getOid() ? "checked" : "" %>/></td>
+		<td><input type="radio" name="default"<%=modelCompare.getEnabled() ? "" : "disabled=\"disabled\"" %> oid="<%=modelCompare.getOid()%>" <%=service.getDefaultModelCompare() != null && service.getDefaultModelCompare().getOid() == modelCompare.getOid() ? "checked" : "" %>/></td>
 		<td class="<%=modelCompare.getEnabled() ? "enabledModelCompare" : "disabledModelCompare" %>"> <%=modelCompare.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
+	if (!isDefault) {
 	if (!modelCompare.getEnabled()) {
 %>
-<a href="modelcompares.jsp?action=enableModelCompare&modelCompare=<%=modelCompare.getName() %>">Enable</a>
+<a href="modelcompares.jsp?action=enableModelCompare&oid=<%=modelCompare.getOid() %>">Enable</a>
 <%
 	} else {
 %>
-<a href="modelcompares.jsp?action=disableModelCompare&modelCompare=<%=modelCompare.getName() %>">Disable</a>
+<a href="modelcompares.jsp?action=disableModelCompare&oid=<%=modelCompare.getOid() %>">Disable</a>
 <%
 	}
 %>
 			<a href="deletemodelcompare.jsp?ifid=<%=modelCompare.getOid()%>">Delete</a>
+<%
+}
+%>
 		</td>
 	</tr>
 <%
@@ -49,7 +57,7 @@ if (request.getParameter("action") != null) {
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		$.ajax("setdefaultmodelcompare.jsp?oid=" + $(this).attr("oid"));
+		document.location = "modelcompares.jsp?action=setdefaultmodelcompare&oid=" + $(this).attr("oid");
 	});
 });
 </script>

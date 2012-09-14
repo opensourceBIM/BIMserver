@@ -349,8 +349,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 										EClass referenceClass = database.getEClassForCid((short) (-cid));
 										referencedObject = readWrappedValue(feature, buffer, referenceClass);
 									} else if (cid > 0) {
-										// positive cid means value is reference
-										// to other record
+										// positive cid means value is a reference
+										// to another record
 										EClass referenceClass = database.getEClassForCid(cid);
 										referencedObject = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep, objectIDM);
 									}

@@ -12,7 +12,10 @@ if (request.getParameter("action") != null) {
 		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
 		ifcEngine.setEnabled(true);
 		loginManager.getService().updateIfcEngine(ifcEngine);
+	} else if (action.equals("setdefaultrenderengine")) {
+		loginManager.getService().setDefaultIfcEngine(Long.parseLong(request.getParameter("oid")));
 	}
+	response.sendRedirect("renderengines.jsp");
 }
 %>
 <h1>Render Engines</h1>
@@ -22,15 +25,17 @@ if (request.getParameter("action") != null) {
 <%
 	List<SIfcEngine> ifcEngines = service.getAllIfcEngines(false);
 	for (SIfcEngine ifcEngine : ifcEngines) {
+		boolean isDefault = service.getDefaultIfcEngine() != null && service.getDefaultIfcEngine().getOid() == ifcEngine.getOid();
 %>
 	<tr>
 		<td><a href="renderengine.jsp?id=<%=ifcEngine.getOid()%>"><%=ifcEngine.getName() %></a></td>
 		<td><%=ifcEngine.getClassName() %></td>
 		<td><%=ifcEngine.getSerializers().size() %></td>
-		<td><input type="radio" name="default" oid="<%=ifcEngine.getOid()%>" <%=service.getDefaultIfcEngine() != null && service.getDefaultIfcEngine().getOid() == ifcEngine.getOid() ? "checked" : "" %>/></td>
+		<td><input type="radio" name="default"<%=ifcEngine.getEnabled() ? "" : "disabled=\"disabled\"" %> oid="<%=ifcEngine.getOid()%>" <%=service.getDefaultIfcEngine() != null && service.getDefaultIfcEngine().getOid() == ifcEngine.getOid() ? "checked" : "" %>/></td>
 		<td class="<%=ifcEngine.getEnabled() ? "enabledIfcEngine" : "disabledIfcEngine" %>"> <%=ifcEngine.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
+	if (!isDefault) {
 	if (!ifcEngine.getEnabled()) {
 %>
 <a href="renderengines.jsp?action=enableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Enable</a>
@@ -43,7 +48,7 @@ if (request.getParameter("action") != null) {
 	if (ifcEngine.getSerializers().isEmpty()) {
 %>
 			<a href="deleterenderengine.jsp?ifid=<%=ifcEngine.getOid()%>">Delete</a>
-<% } %>
+<% } }%>
 		</td>
 	</tr>
 <%
@@ -53,7 +58,7 @@ if (request.getParameter("action") != null) {
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		$.ajax("setdefaultrenderengine.jsp?oid=" + $(this).attr("oid"));
+		document.location = "renderengines.jsp?action=setdefaultrenderengine&oid=" + $(this).attr("oid");
 	});
 });
 </script>

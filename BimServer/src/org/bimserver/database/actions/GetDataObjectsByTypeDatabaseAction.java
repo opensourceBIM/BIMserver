@@ -33,6 +33,7 @@ import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -68,7 +69,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid).merge(virtualRevision.getProject(), ifcModelSet);
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

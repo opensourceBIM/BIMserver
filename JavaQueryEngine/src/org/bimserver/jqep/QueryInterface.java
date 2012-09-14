@@ -18,9 +18,9 @@ package org.bimserver.jqep;
  *****************************************************************************/
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 
 public interface QueryInterface {
-	void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, QueryEngineHelper queryEngineHelper);
+	void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper);
 }

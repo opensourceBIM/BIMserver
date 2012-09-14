@@ -32,6 +32,7 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
@@ -70,7 +71,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<CheckinR
 		}
 		IfcModelInterface model;
 		try {
-			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid).merge(oldRevision.getProject(), ifcModelSet);
+			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid).merge(oldRevision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
