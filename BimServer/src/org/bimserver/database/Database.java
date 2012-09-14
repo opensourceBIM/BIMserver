@@ -172,6 +172,8 @@ public class Database implements BimDatabase {
 			LOGGER.error("", e);
 			close();
 			throw new DatabaseInitException(e.getMessage());
+		} catch (Exception e) {
+			throw new DatabaseInitException(e);
 		} finally {
 			databaseSession.close();
 		}
