@@ -50,7 +50,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import com.google.common.collect.BiMap;
-import com.sun.accessibility.internal.resources.accessibility;
 
 public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObject> {
 

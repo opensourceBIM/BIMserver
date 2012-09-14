@@ -79,19 +79,24 @@ public class SService {
 		this.name = clazz.getSimpleName();
 		init();
 		if (sourceCode != null) {
-			extractJavaDoc();
+			// Disabled for now, makes the deployed JAR stop at this point
+//			extractJavaDoc();
 		}
 	}
 
 	private void extractJavaDoc() {
+		LOGGER.info("Extracting javadoc");
 		ASTParser parser = ASTParser.newParser(AST.JLS3);
 		parser.setSource(sourceCode.toCharArray());
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
+		LOGGER.info("creating ast");
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
+		LOGGER.info("starting accept");
 		cu.accept(new ASTVisitor() {
 			MethodDeclaration currentMethod = null;
 
 			public boolean visit(Javadoc javaDoc) {
+				LOGGER.info("visit javadoc");
 				if (currentMethod != null) {
 					SMethod method = getSMethod(currentMethod.getName().getIdentifier());
 					if (method == null) {
@@ -125,12 +130,14 @@ public class SService {
 
 			@Override
 			public boolean visit(MethodDeclaration node) {
+				LOGGER.info("visit md");
 				currentMethod = node;
 				return super.visit(node);
 			}
 
 			@Override
 			public void endVisit(MethodDeclaration node) {
+				LOGGER.info("endvisit md");
 				currentMethod = null;
 				super.endVisit(node);
 			}
