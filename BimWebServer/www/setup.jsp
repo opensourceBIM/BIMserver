@@ -15,12 +15,13 @@ if (loginManager.getService().getServerInfo().getServerState() != SServerState.N
 <%
 	String siteAddress = request.getParameter("siteAddress") != null ? request.getParameter("siteAddress") : "http://localhost:8082";
 	String smtpServer = request.getParameter("smtpServer") != null ? request.getParameter("smtpServer") : "";
+	String smtpSender = request.getParameter("smtpSender") != null ? request.getParameter("smtpSender") : "";
 	String adminName = request.getParameter("adminName") != null ? request.getParameter("adminName") : "Administrator";
 	String adminUsername = request.getParameter("adminUsername") != null ? request.getParameter("adminUsername") : "";
 	String adminPassword = request.getParameter("adminPassword") != null ? request.getParameter("adminPassword") : "";
 	if (request.getParameter("setup") != null) {
 		try {
-			loginManager.getService().setup(siteAddress, smtpServer, adminName, adminUsername, adminPassword);
+			loginManager.getService().setup(siteAddress, smtpServer, smtpSender, adminName, adminUsername, adminPassword);
 			response.sendRedirect("login.jsp?username=" + adminUsername);
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
@@ -47,6 +48,13 @@ if (loginManager.getService().getServerInfo().getServerState() != SServerState.N
 		<p class="explain">Address of the SMTP server that should be used for sending e-mail</p>
 	</td>
 	<td><input type="text" id="smtpServer" name="smtpServer" value="<%=smtpServer %>"/></td>
+</tr>
+<tr>
+	<td>
+		<label for="smtpSender">Email sender address</label>
+		<p class="explain">Address from which email from this BIMserver will be send</p>
+	</td>
+	<td><input type="text" id="smtpSender" name="smtpSender" value="<%=smtpSender %>"/></td>
 </tr>
 <tr>
 	<td>

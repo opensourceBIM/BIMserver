@@ -1,10 +1,10 @@
 package org.bimserver.interfaces;
 
 
-import org.bimserver.shared.meta.*;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.File;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

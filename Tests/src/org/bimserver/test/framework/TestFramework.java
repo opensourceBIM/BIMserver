@@ -66,7 +66,7 @@ public class TestFramework {
 				bimServer.start();
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-					bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin");
+					bimServer.getSystemService().setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 				}
 				
 				// Change a setting so normal users can create projects

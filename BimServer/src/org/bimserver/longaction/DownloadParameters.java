@@ -28,13 +28,7 @@ import com.google.common.collect.Sets;
 
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
-		DOWNLOAD_REVISION, 
-		DOWNLOAD_BY_OIDS, 
-		DOWNLOAD_BY_GUIDS, 
-		DOWNLOAD_OF_TYPE, 
-		DOWNLOAD_PROJECTS,
-		DOWNLOAD_COMPARE,
-		DOWNLOAD_QUERY
+		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY
 	};
 
 	private Set<Long> roids;
@@ -65,7 +59,7 @@ public class DownloadParameters extends LongActionKey {
 	public long getIgnoreUoid() {
 		return ignoreUoid;
 	}
-	
+
 	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, long modelCompareIdentifier, String serializerName) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_COMPARE);
@@ -75,7 +69,7 @@ public class DownloadParameters extends LongActionKey {
 		downloadParameters.setSerializerName(serializerName);
 		return downloadParameters;
 	}
-	
+
 	private void setCompareType(CompareType compareType) {
 		this.compareType = compareType;
 	}
@@ -160,11 +154,11 @@ public class DownloadParameters extends LongActionKey {
 	public long getModelCompareIdentifier() {
 		return modelCompareIdentifier;
 	}
-	
+
 	public CompareType getCompareType() {
 		return compareType;
 	}
-	
+
 	public Set<String> getGuids() {
 		return guids;
 	}
@@ -311,6 +305,10 @@ public class DownloadParameters extends LongActionKey {
 			return getRoidsString() + "-" + classNames + "." + extension;
 		case DOWNLOAD_PROJECTS:
 			return getRoidsString() + "." + extension;
+		case DOWNLOAD_COMPARE:
+			return "compare." + extension;
+		case DOWNLOAD_QUERY:
+			return "query." + extension;
 		}
 		return "unknown";
 	}

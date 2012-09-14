@@ -71,22 +71,25 @@ public class XsltSerializer extends EmfSerializer {
 					for (XsltParameter xsltParameter : parameters) {
 						transformer.setParameter(xsltParameter.getKey(), xsltParameter.getValue());
 					}
-//					transformer.setErrorListener(new ErrorListener() {
-//
-//						@Override
-//						public void warning(TransformerException e) throws TransformerException {
-//						}
-//
-//						@Override
-//						public void fatalError(TransformerException e) throws TransformerException {
-//							LOGGER.warn("", e);
-//						}
-//
-//						@Override
-//						public void error(TransformerException e) throws TransformerException {
-//							LOGGER.warn("", e);
-//						}
-//					});
+					// transformer.setErrorListener(new ErrorListener() {
+					//
+					// @Override
+					// public void warning(TransformerException e) throws
+					// TransformerException {
+					// }
+					//
+					// @Override
+					// public void fatalError(TransformerException e) throws
+					// TransformerException {
+					// LOGGER.warn("", e);
+					// }
+					//
+					// @Override
+					// public void error(TransformerException e) throws
+					// TransformerException {
+					// LOGGER.warn("", e);
+					// }
+					// });
 
 					StreamSource in = new StreamSource(ifcXmlSerializer.getInputStream());
 					StreamResult out = new StreamResult(outputStream);
@@ -104,6 +107,7 @@ public class XsltSerializer extends EmfSerializer {
 			return true;
 		case FINISHED:
 			return false;
+		default:
 		}
 		return false;
 	}

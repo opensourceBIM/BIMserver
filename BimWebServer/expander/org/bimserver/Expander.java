@@ -442,7 +442,7 @@ public class Expander extends JFrame {
 	}
 
 	private File expand() {
-		JarFile jar;
+		JarFile jar = null;
 		String jarFileName = getJarFileNameNew();
 		File destDir = new File(jarFileName.substring(0, jarFileName.indexOf(".jar")));
 		if (!destDir.isDirectory()) {
@@ -474,6 +474,14 @@ public class Expander extends JFrame {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					if (jar != null) {
+						jar.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		} else {
 			System.out.println("No expanding necessary");

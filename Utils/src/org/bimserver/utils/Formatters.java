@@ -27,22 +27,26 @@ public class Formatters {
 
 	public static String bytesToString(long bytes) {
 		Formatter formatter = new Formatter();
-		if (bytes > 1024) {
-			if (bytes > 1024L * 1024L) {
-				if (bytes > 1024L * 1024L * 1024L) {
-					if (bytes > 1024L * 1024L * 1024L * 1024L) {
-						return formatter.format("%9.2f %n", ((float) bytes / (float) (1024L * 1024L * 1024L * 1024L))) + " TB";
+		try {
+			if (bytes > 1024) {
+				if (bytes > 1024L * 1024L) {
+					if (bytes > 1024L * 1024L * 1024L) {
+						if (bytes > 1024L * 1024L * 1024L * 1024L) {
+							return formatter.format("%9.2f %n", ((float) bytes / (float) (1024L * 1024L * 1024L * 1024L))) + " TB";
+						} else {
+							return formatter.format("%9.2f %n", (float) bytes / (float) (1024L * 1024L * 1024L)) + " GB";
+						}
 					} else {
-						return formatter.format("%9.2f %n", (float) bytes / (float) (1024L * 1024L * 1024L)) + " GB";
+						return formatter.format("%9.2f %n", ((float) bytes / (float) (1024L * 1024L))) + " MB";
 					}
 				} else {
-					return formatter.format("%9.2f %n", ((float) bytes / (float) (1024L * 1024L))) + " MB";
+					return formatter.format("%9.2f %n", ((float) bytes / (float) 1024L)) + " KB";
 				}
 			} else {
-				return formatter.format("%9.2f %n", ((float) bytes / (float) 1024L)) + " KB";
+				return "" + bytes + " B";
 			}
-		} else {
-			return "" + bytes + " B";
+		} finally {
+			formatter.close();
 		}
 	}
 
