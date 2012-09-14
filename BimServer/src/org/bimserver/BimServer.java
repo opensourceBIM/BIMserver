@@ -19,7 +19,10 @@ package org.bimserver;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.net.URL;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
@@ -29,6 +32,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
@@ -224,6 +228,20 @@ public class BimServer {
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
 	}
+	
+	public String getContent(URL url) {
+		if (url != null) {
+			try {
+				InputStream inputStream = url.openStream();
+				StringWriter out = new StringWriter();
+				IOUtils.copy(inputStream, out);
+				return out.toString();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 
 	public void start() throws DatabaseInitException, BimserverDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
@@ -272,8 +290,8 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
-			serviceInterfaceService = new SService(new File("../Shared/src/org/bimserver/shared/ServiceInterface.java"), ServiceInterface.class);
-			notificationInterfaceService = new SService(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java"), NotificationInterface.class);
+			serviceInterfaceService = new SService(getContent(config.getResourceFetcher().getResource("ServiceInterface.java")), ServiceInterface.class);
+			notificationInterfaceService = new SService(getContent(config.getResourceFetcher().getResource("NotificationInterface.java")), NotificationInterface.class);
 
 			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();

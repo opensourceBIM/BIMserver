@@ -27,8 +27,8 @@ import java.io.File;
 public class SServiceInterfaceService extends SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SServiceInterfaceService.class);
 
-	public SServiceInterfaceService(File sourceFile, Class<?> cl) {
-		super(sourceFile, cl);
+	public SServiceInterfaceService(String sourceCode, Class<?> cl) {
+		super(sourceCode, cl);
 	}
 	
 		public void init() {
