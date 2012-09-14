@@ -24,4 +24,8 @@ public class DatabaseInitException extends Exception {
 	public DatabaseInitException(String message) {
 		super(message);
 	}
+
+	public DatabaseInitException(Exception e) {
+		super(e);
+	}
 }
