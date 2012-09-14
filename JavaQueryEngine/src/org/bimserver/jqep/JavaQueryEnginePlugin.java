@@ -1,18 +1,17 @@
 package org.bimserver.jqep;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.VirtualFile;
 import org.bimserver.plugins.queryengine.QueryEngine;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+
+import com.google.common.base.Charsets;
 
 public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	private boolean initialized = false;
@@ -28,16 +27,8 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 
 	private void initExamples(PluginManager pluginManager) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
-		String[] keys = new String[]{"DefaultQuery.java", "Doors.java", "Plumbing.java", "SlabOpening.java"};
-		for (String key : keys) {
-			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream("examples/" + key);
-			StringWriter sw = new StringWriter();
-			try {
-				IOUtils.copy(resourceAsInputStream, sw);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			examples.put(key, sw.toString());
+		for (VirtualFile virtualFile : pluginContext.listResources("examples")) {
+			examples.put(virtualFile.getSimpleName(), new String(virtualFile.getData(), Charsets.UTF_8));
 		}
 	}
 

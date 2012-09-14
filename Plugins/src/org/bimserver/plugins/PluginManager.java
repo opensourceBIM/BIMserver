@@ -387,9 +387,8 @@ public class PluginManager {
 			implementations.put(interfaceClass, new LinkedHashSet<PluginContext>());
 		}
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
-		PluginContext pluginContext = new PluginContext(this, classLoader, pluginType);
+		PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location);
 		pluginContext.setPlugin(plugin);
-		pluginContext.setLocation(location);
 		pluginContext.setClassLocation(classLocation);
 		set.add(pluginContext);
 	}

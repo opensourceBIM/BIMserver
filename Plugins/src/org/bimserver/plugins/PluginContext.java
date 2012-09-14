@@ -22,6 +22,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager;
@@ -38,10 +41,25 @@ public class PluginContext {
 	private JavaFileManager javaFileManager;
 	private final ClassLoader classLoader;
 
-	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginType pluginType) {
+	private VirtualFile virtualFile;
+
+	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginType pluginType, String location) {
 		this.pluginManager = pluginManager;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;
+		this.location = location;
+		switch (pluginType) {
+		case ECLIPSE_PROJECT:
+			virtualFile = VirtualFile.fromDirectory(new File(location));
+			break;
+		case INTERNAL:
+			break;
+		case JAR_FILE:
+			virtualFile = VirtualFile.fromJar(new File(location));
+			break;
+		default:
+			break;
+		}
 	}
 
 	public void setPlugin(Plugin plugin) {
@@ -115,12 +133,37 @@ public class PluginContext {
 			this.javaFileManager = systemJavaCompiler.getStandardFileManager(null, null, null);
 			break;
 		case JAR_FILE:
-			VirtualFile fromJar = VirtualFile.fromJar(new File(location));
-			this.javaFileManager = new VirtualFileManager(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, fromJar);
+			this.javaFileManager = new VirtualFileManager(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, virtualFile);
 			break;
 		default:
 			break;
 		}
 		return javaFileManager;
+	}
+
+	public Collection<VirtualFile> listResources(String path) {
+		List<VirtualFile> urls = new ArrayList<VirtualFile>();
+		switch (pluginType) {
+		case ECLIPSE_PROJECT: {
+			VirtualFile folder = virtualFile.get(path);
+			if (folder != null) {
+				return folder.listFiles();
+			}
+			break;
+		}
+		case INTERNAL:
+			// Not supported yet
+			break;
+		case JAR_FILE: {
+			VirtualFile folder = virtualFile.get(path);
+			if (folder != null) {
+				return folder.listFiles();
+			}
+			break;
+		}
+		default:
+			break;
+		}
+		return urls;
 	}
 }
