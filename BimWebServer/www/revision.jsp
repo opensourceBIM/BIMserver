@@ -182,6 +182,12 @@
 </form>
 </fieldset>
 </div>
+<div class="tabbertab" id="querytab" title="Query">
+	<jsp:include page="query.jsp">
+		<jsp:param name="poid" value="<%=revision.getProjectId() %>" />
+		<jsp:param name="roid" value="<%=revision.getOid() %>" />
+	</jsp:include>
+</div>
 <%
 	if (checkouts.size() > 0) {
 %>
