@@ -15,7 +15,7 @@ import javax.tools.ToolProvider;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.VirtualClassLoader;
 import org.bimserver.plugins.VirtualFile;
@@ -38,11 +38,11 @@ public class JavaQueryEngine implements QueryEngine {
 	}
 
 	@Override
-	public IfcModelInterface query(IfcModelInterface model, String code, Reporter reporter, QueryEngineHelper queryEngineHelper) {
+	public IfcModelInterface query(IfcModelInterface model, String code, Reporter reporter, ModelHelper modelHelper) {
 		try {
 			QueryInterface queryInterface = createQueryInterface(code);
 			IfcModelInterface dest = new IfcModel();
-			queryInterface.query(model, dest, reporter, queryEngineHelper);
+			queryInterface.query(model, dest, reporter, modelHelper);
 			return dest;
 		} catch (CompileException e) {
 			LOGGER.error("", e);

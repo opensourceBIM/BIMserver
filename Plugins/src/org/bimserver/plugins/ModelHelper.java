@@ -16,22 +16,21 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class QueryEngineHelper {
+public class ModelHelper {
 
 	private final ObjectIDM objectIDM;
-	private HashMap<IdEObject, IdEObject> converted;
+	private final HashMap<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 
-	public QueryEngineHelper(ObjectIDM objectIDM) {
+	public ModelHelper(ObjectIDM objectIDM) {
 		this.objectIDM = objectIDM;
-		this.converted = new HashMap<IdEObject, IdEObject>();
+	}
+	
+	public ModelHelper() {
+		this.objectIDM = null;
 	}
 
-	public void copy(IdEObject object, IfcModelInterface destModel) {
-		try {
-			copy(object.eClass(), object, destModel);
-		} catch (IfcModelInterfaceException e) {
-			e.printStackTrace();
-		}
+	public void copy(IdEObject object, IfcModelInterface destModel) throws IfcModelInterfaceException {
+		copy(object.eClass(), object, destModel);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -46,7 +45,7 @@ public class QueryEngineHelper {
 			newModel.add(newObject.getOid(), newObject);
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			if (objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature)) {
+			if (objectIDM == null ||  objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Double) {

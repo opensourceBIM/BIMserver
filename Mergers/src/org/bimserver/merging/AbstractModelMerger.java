@@ -87,12 +87,14 @@ import org.bimserver.models.ifc2x3tc1.IfcWindowPanelProperties;
 import org.bimserver.models.ifc2x3tc1.IfcZShapeProfileDef;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.eclipse.emf.common.util.EList;
 
 public abstract class AbstractModelMerger implements ModelMerger {
-	protected IfcModelInterface mergeScales(Project project, Set<IfcModelInterface> ifcModels) throws MergeException {
+	// TODO: Actually we should not modify the original objects and then copy them to the destination model, but the other way around...
+	protected IfcModelInterface mergeScales(Project project, Set<IfcModelInterface> ifcModels, ModelHelper modelHelper) throws MergeException {
 		long size = 0;
 		for (IfcModelInterface ifcModel : ifcModels) {
 			size += ifcModel.size();
@@ -110,7 +112,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 							continue;
 					}
 					try {
-						endModel.add(key, (IdEObject) ifcModel.get(key));
+						modelHelper.copy(ideObject, endModel);
 					} catch (IfcModelInterfaceException e) {
 						throw new MergeException(e);
 					}
@@ -270,7 +272,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 						setIfcZShapeProfileDef(idEObject, scale);
 					}
 					try {
-						endModel.add(key, (IdEObject) ifcModel.get(key));
+						modelHelper.copy((IdEObject) ifcModel.get(key), endModel);
 					} catch (IfcModelInterfaceException e) {
 						throw new MergeException(e);
 					}

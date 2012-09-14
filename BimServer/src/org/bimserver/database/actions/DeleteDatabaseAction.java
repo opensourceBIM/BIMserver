@@ -26,7 +26,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 
-public class DeleteDatabaseAction extends BimDatabaseAction<Void> {
+public class DeleteDatabaseAction<T extends IdEObject> extends BimDatabaseAction<Void> {
 
 	private final long oid;
 	private final EClass eClass;
@@ -37,9 +37,17 @@ public class DeleteDatabaseAction extends BimDatabaseAction<Void> {
 		this.oid = oid;
 	}
 
+	public EClass geteClass() {
+		return eClass;
+	}
+	
+	public long getOid() {
+		return oid;
+	}
+	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject object = getDatabaseSession().get(eClass, oid, false, null);
+		T object = getDatabaseSession().get(eClass, oid, false, null);
 		if (object == null) {
 			throw new UserException("Object with oid " + oid + " not found");
 		}

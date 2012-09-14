@@ -42,6 +42,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
@@ -157,7 +158,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		IfcModelInterface oldModel;
 		try {
 			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUid)
-					.merge(project, ifcModelSet);
+					.merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

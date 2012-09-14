@@ -4,3 +4,4 @@
 <%@page import="java.util.List"%>
 <%@ include file="settingsmenu.jsp"%>
 <h1>User Settings</h1>
+User the menu on the left

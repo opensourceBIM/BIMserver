@@ -12,7 +12,10 @@ if (request.getParameter("action") != null) {
 		SModelMerger modelMerger = loginManager.getService().getModelMergerByName(request.getParameter("modelMerger"));
 		modelMerger.setEnabled(false);
 		loginManager.getService().updateModelMerger(modelMerger);
+	} else if (action.equals("setdefaultmodelmerger")) {
+		loginManager.getService().setDefaultModelMerger(Long.parseLong(request.getParameter("oid")));
 	}
+	response.sendRedirect("modelmergers.jsp");
 }
 %>
 <h1>Model Mergers</h1>
@@ -22,6 +25,7 @@ if (request.getParameter("action") != null) {
 <%
 	List<SModelMerger> modelMergers = service.getAllModelMergers(false);
 	for (SModelMerger modelMerger : modelMergers) {
+		boolean isDefault = service.getDefaultModelMerger() != null && service.getDefaultModelMerger().getOid() == modelMerger.getOid();
 %>
 	<tr>
 		<td><a href="modelmerger.jsp?id=<%=modelMerger.getOid()%>"><%=modelMerger.getName() %></a></td>
@@ -30,6 +34,7 @@ if (request.getParameter("action") != null) {
 		<td class="<%=modelMerger.getEnabled() ? "enabledModelMerger" : "disabledModelMerger" %>"> <%=modelMerger.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
+	if (!isDefault) {
 	if (!modelMerger.getEnabled()) {
 %>
 <a href="modelmergers.jsp?action=enableModelMerger&modelMerger=<%=modelMerger.getName() %>">Enable</a>
@@ -41,6 +46,9 @@ if (request.getParameter("action") != null) {
 	}
 %>
 			<a href="deletemodelmerger.jsp?ifid=<%=modelMerger.getOid()%>">Delete</a>
+<%
+}
+%>
 		</td>
 	</tr>
 <%
@@ -50,7 +58,7 @@ if (request.getParameter("action") != null) {
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		$.ajax("setdefaultmodelmerger.jsp?oid=" + $(this).attr("oid"));
+		document.location = "modelmergers.jsp?action=setdefaultmodelmerger&oid=" + $(this).attr("oid");
 	});
 });
 </script>

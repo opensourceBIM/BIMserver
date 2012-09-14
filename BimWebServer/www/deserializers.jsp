@@ -5,14 +5,15 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("disableDeserializer")) {
-		SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(false);
 		loginManager.getService().updateDeserializer(deserializer);
 	} else if (action.equals("enableDeserializer")) {
-		SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(true);
 		loginManager.getService().updateDeserializer(deserializer);
 	}
+	response.sendRedirect("deserializers.jsp");
 }
 %>
 <h1>Deserializers</h1>
@@ -32,11 +33,11 @@ if (request.getParameter("action") != null) {
 <%
 	if (deserializer.getEnabled()) {
 %>
-<a href="deserializers.jsp?action=disableDeserializer&deserializer=<%=deserializer.getName() %>">Disable</a>
+<a href="deserializers.jsp?action=disableDeserializer&oid=<%=deserializer.getOid() %>">Disable</a>
 <%
 	} else {
 %>
-<a href="deserializers.jsp?action=enableDeserializer&deserializer=<%=deserializer.getName() %>">Enable</a>
+<a href="deserializers.jsp?action=enableDeserializer&oid=<%=deserializer.getOid() %>">Enable</a>
 <%
 	}
 %>

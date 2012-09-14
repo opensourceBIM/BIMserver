@@ -304,6 +304,8 @@
 						}
 					}
 					for (SProject subProject : subProjects) {
+						List<SUser> subProjectUsers = loginManager.getService().getAllAuthorizedUsersOfProject(subProject.getOid());
+
 						SRevision lastSubProjectRevision = null;
 						if (subProject.getLastRevisionId() != -1) {
 							lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
@@ -319,7 +321,7 @@
 									+ loginManager.getService().getUserByUoid(lastSubProjectRevision.getUserId()).getUsername() + "</a>")%></td>
 					<td><%=subProject.getRevisions().size()%></td>
 					<td><%=subProject.getCheckouts().size()%></td>
-					<td><%=subProject.getHasAuthorizedUsers().size()%></td>
+					<td><%=subProjectUsers.size()%></td>
 					<%
 						if (userHasCheckinRights) {
 					%>

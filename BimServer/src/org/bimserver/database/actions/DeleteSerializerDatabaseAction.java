@@ -17,13 +17,27 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.UserSettings;
+import org.bimserver.shared.exceptions.UserException;
 
-public class DeleteSerializerDatabaseAction extends DeleteDatabaseAction {
+public class DeleteSerializerDatabaseAction extends DeleteDatabaseAction<Serializer> {
 
 	public DeleteSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long sid) {
 		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getSerializer(), sid);
+	}
+
+	@Override
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Serializer object = getDatabaseSession().get(geteClass(), getOid(), false, null);
+		UserSettings settings = object.getSettings();
+		settings.getSerializers().remove(object);
+		getDatabaseSession().store(settings);
+		return super.execute();
 	}
 }

@@ -36,6 +36,7 @@ import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewUserAdded;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -131,7 +132,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		
 		getDatabaseSession().store(user);
 		getDatabaseSession().store(newUserAdded);
-		if (getServerSettings() != null && getServerSettings().isSendConfirmationEmailAfterRegistration()) {
+		final ServerSettings serverSettings = getServerSettings();
+		if (serverSettings != null && serverSettings.isSendConfirmationEmailAfterRegistration()) {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
@@ -140,7 +142,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 							Session mailSession = bimServer.getMailSystem().createMailSession();
 
 							Message msg = new MimeMessage(mailSession);
-							String emailSenderAddress = getServerSettings().getEmailSenderAddress();
+							String emailSenderAddress = serverSettings.getEmailSenderAddress();
 							InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
 							msg.setFrom(addressFrom);
 
@@ -151,8 +153,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 							Map<String, Object> context = new HashMap<String, Object>();
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
-							context.put("siteaddress", getServerSettings().getSiteAddress());
-							String validationLink = getServerSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token="
+							context.put("siteaddress", serverSettings.getSiteAddress());
+							String validationLink = serverSettings.getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token="
 									+ token;
 							context.put("validationlink", validationLink);
 							String body = null;
