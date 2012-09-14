@@ -36,8 +36,8 @@ EPackage ePackage = (EPackage)args[1];
 public class S<%=cl.getSimpleName()%>Service extends SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(S<%=cl.getSimpleName()%>Service.class);
 
-	public S<%=cl.getSimpleName()%>Service(File sourceFile, Class<?> cl) {
-		super(sourceFile, cl);
+	public S<%=cl.getSimpleName()%>Service(String sourceCode, Class<?> cl) {
+		super(sourceCode, cl);
 	}
 	
 		public void init() {

@@ -82,7 +82,11 @@ public class TestNotifications {
 //				countDownLatch.countDown();
 //			}
 //		};
-		socketNotificationsClient.connect(protocolBuffersMetaData, new SService(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java"), NotificationInterface.class), new InetSocketAddress("localhost", 8055));
+		try {
+			socketNotificationsClient.connect(protocolBuffersMetaData, new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class), new InetSocketAddress("localhost", 8055));
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
 		socketNotificationsClient.start();
 		
 		BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());

@@ -23,7 +23,7 @@ public class SServiceGenerator
   protected final String TEXT_5 = NL + NL + "public class S";
   protected final String TEXT_6 = "Service extends SService {" + NL + "\tprivate static final Logger LOGGER = LoggerFactory.getLogger(S";
   protected final String TEXT_7 = "Service.class);" + NL + "" + NL + "\tpublic S";
-  protected final String TEXT_8 = "Service(File sourceFile, Class<?> cl) {" + NL + "\t\tsuper(sourceFile, cl);" + NL + "\t}" + NL + "\t" + NL + "\t\tpublic void init() {" + NL + "\t\t\ttry {";
+  protected final String TEXT_8 = "Service(String sourceCode, Class<?> cl) {" + NL + "\t\tsuper(sourceCode, cl);" + NL + "\t}" + NL + "\t" + NL + "\t\tpublic void init() {" + NL + "\t\t\ttry {";
   protected final String TEXT_9 = NL + "\t\taddType(new SClass(this, Class.forName(\"org.bimserver.interfaces.objects.S";
   protected final String TEXT_10 = "\")));";
   protected final String TEXT_11 = NL + "\t\t} catch (ClassNotFoundException e) {" + NL + "\t\t\tLOGGER.error(\"\", e);" + NL + "\t\t}" + NL + "\t}" + NL + "}";

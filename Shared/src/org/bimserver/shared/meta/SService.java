@@ -17,8 +17,6 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -29,8 +27,6 @@ import java.util.Set;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-import org.apache.commons.io.FileUtils;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -50,12 +46,7 @@ public class SService {
 	private final Map<String, SClass> types = new HashMap<String, SClass>();
 	private final String name;
 	private final Class<?> clazz;
-	private final File sourceFile;
-
-	public static void main(String[] args) {
-		SService sService = new SService(new File("../Shared/src/org/bimserver/shared/ServiceInterface.java"), ServiceInterface.class);
-		sService.dump();
-	}
+	private String sourceCode;
 
 	public void dump() {
 		System.out.println(getMethods().size());
@@ -82,73 +73,68 @@ public class SService {
 		}
 	}
 
-	public SService(File sourceFile, Class<?> clazz) {
-		this.sourceFile = sourceFile;
+	public SService(String sourceCode, Class<?> clazz) {
+		this.sourceCode = sourceCode;
 		this.clazz = clazz;
 		this.name = clazz.getSimpleName();
 		init();
-		if (sourceFile != null) {
+		if (sourceCode != null) {
 			extractJavaDoc();
 		}
 	}
 
 	private void extractJavaDoc() {
 		ASTParser parser = ASTParser.newParser(AST.JLS3);
-		try {
-			String src = FileUtils.readFileToString(sourceFile);
-			parser.setSource(src.toCharArray());
-			parser.setKind(ASTParser.K_COMPILATION_UNIT);
-			final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
-			cu.accept(new ASTVisitor() {
-				MethodDeclaration currentMethod = null;
+		parser.setSource(sourceCode.toCharArray());
+		parser.setKind(ASTParser.K_COMPILATION_UNIT);
+		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
+		cu.accept(new ASTVisitor() {
+			MethodDeclaration currentMethod = null;
 
-				public boolean visit(Javadoc javaDoc) {
-					if (currentMethod != null) {
-						SMethod method = getSMethod(currentMethod.getName().getIdentifier());
-						if (method == null) {
-							LOGGER.error("Method " + currentMethod.getName().getIdentifier() + " not found in class");
-						} else {
-							for (Object tag : javaDoc.tags()) {
-								if (tag instanceof TagElement) {
-									TagElement tagElement = (TagElement) tag;
-									if ("@param".equals(tagElement.getTagName())) {
-										SParameter parameter = null;
-										for (int i = 0; i < tagElement.fragments().size(); i++) {
-											Object fragment = tagElement.fragments().get(i);
-											if (i == 0 && fragment instanceof SimpleName) {
-												parameter = method.getParameter(((SimpleName) fragment).getIdentifier());
-											} else if (i == 1 && parameter != null && fragment instanceof TextElement) {
-												parameter.setDoc(((TextElement) fragment).getText());
-											}
+			public boolean visit(Javadoc javaDoc) {
+				if (currentMethod != null) {
+					SMethod method = getSMethod(currentMethod.getName().getIdentifier());
+					if (method == null) {
+						LOGGER.error("Method " + currentMethod.getName().getIdentifier() + " not found in class");
+					} else {
+						for (Object tag : javaDoc.tags()) {
+							if (tag instanceof TagElement) {
+								TagElement tagElement = (TagElement) tag;
+								if ("@param".equals(tagElement.getTagName())) {
+									SParameter parameter = null;
+									for (int i = 0; i < tagElement.fragments().size(); i++) {
+										Object fragment = tagElement.fragments().get(i);
+										if (i == 0 && fragment instanceof SimpleName) {
+											parameter = method.getParameter(((SimpleName) fragment).getIdentifier());
+										} else if (i == 1 && parameter != null && fragment instanceof TextElement) {
+											parameter.setDoc(((TextElement) fragment).getText());
 										}
-									} else if ("@return".equals(tagElement.getTagName())) {
-										method.setReturnDoc(extractFullText(tagElement));
-									} else if ("@throws".equals(tagElement.getTagName())) {
-									} else {
-										method.setDoc(extractFullText(tagElement));
 									}
+								} else if ("@return".equals(tagElement.getTagName())) {
+									method.setReturnDoc(extractFullText(tagElement));
+								} else if ("@throws".equals(tagElement.getTagName())) {
+								} else {
+									method.setDoc(extractFullText(tagElement));
 								}
 							}
 						}
 					}
-					return super.visit(javaDoc);
 				}
+				return super.visit(javaDoc);
+			}
 
-				@Override
-				public boolean visit(MethodDeclaration node) {
-					currentMethod = node;
-					return super.visit(node);
-				}
-				
-				@Override
-				public void endVisit(MethodDeclaration node) {
-					currentMethod = null;
-					super.endVisit(node);
-				}
-			});
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			@Override
+			public boolean visit(MethodDeclaration node) {
+				currentMethod = node;
+				return super.visit(node);
+			}
+
+			@Override
+			public void endVisit(MethodDeclaration node) {
+				currentMethod = null;
+				super.endVisit(node);
+			}
+		});
 	}
 
 	private String extractFullText(TagElement tagElement) {
@@ -161,7 +147,7 @@ public class SService {
 		}
 		return builder.toString().trim();
 	}
-	
+
 	public void init() {
 		for (Method method : clazz.getMethods()) {
 			addType(method.getReturnType());
