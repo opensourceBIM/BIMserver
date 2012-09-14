@@ -446,7 +446,8 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 			<jsp:include page="query.jsp">
 				<jsp:param name="poid" value="<%=poid %>" />
 				<jsp:param name="roid" value="<%=lastRevision.getOid() %>" />
-			</jsp:include></div>
+			</jsp:include>
+		</div>
 		<%
 			}
 		%>
