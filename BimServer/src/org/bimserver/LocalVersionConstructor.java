@@ -38,9 +38,10 @@ public class LocalVersionConstructor {
 				File entries = new File(svn, "entries");
 				if (entries.isFile()) {
 					FileInputStream fis = null;
+					BufferedReader reader = null;
 					try {
 						fis = new FileInputStream(entries);
-						BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+						reader = new BufferedReader(new InputStreamReader(fis));
 						reader.readLine();
 						reader.readLine();
 						reader.readLine();
@@ -56,6 +57,12 @@ public class LocalVersionConstructor {
 						if (fis != null) {
 							try {
 								fis.close();
+							} catch (IOException e) {
+							}
+						}
+						if (reader != null) {
+							try {
+								reader.close();
 							} catch (IOException e) {
 							}
 						}

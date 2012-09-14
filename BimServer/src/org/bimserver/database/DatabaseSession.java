@@ -101,10 +101,9 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	private int reads;
 
 	private enum SessionState {
-		OPEN,
-		CLOSED
+		OPEN, CLOSED
 	}
-	
+
 	private SessionState state = SessionState.OPEN;
 
 	public DatabaseSession(Database database, BimTransaction bimTransaction) {
@@ -133,7 +132,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		ByteBuffer searchKeyBuffer = ByteBuffer.allocate(12);
 		for (EClass eClass : database.getClasses()) {
 			byte[] pidArray = BinUtils.intToByteArray(clearProjectPlan.getPid());
-			SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), pidArray, pidArray, this);
+			SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), pidArray, pidArray,
+					this);
 			try {
 				Record next = recordIterator.next();
 				while (next != null) {
@@ -201,7 +201,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 				if (DEVELOPER_DEBUG && StorePackage.eINSTANCE == object.eClass().getEPackage()) {
 					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
 				}
-				database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), convertObjectToByteArray(object).array(), this);
+				database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
+						convertObjectToByteArray(object).array(), this);
 				if (progressHandler != null) {
 					progressHandler.progress(++current, objectsToCommit.size());
 				}
@@ -254,7 +255,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 		return null;
 	}
-	
+
 	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, boolean deep,
 			ObjectIDM objectIDM) throws BimserverDatabaseException, BimserverLockConflictException {
 		if (model.contains(oid)) {
@@ -292,14 +293,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 		if (idEObject == null) {
 			idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
-			((IdEObjectImpl)idEObject).setOid(oid);
-			((IdEObjectImpl)idEObject).setPid(pid);
+			((IdEObjectImpl) idEObject).setOid(oid);
+			((IdEObjectImpl) idEObject).setPid(pid);
 			if (rid == Integer.MAX_VALUE) {
 				throw new RuntimeException("This is not oke");
 			}
-			((IdEObjectImpl)idEObject).setRid(rid);
+			((IdEObjectImpl) idEObject).setRid(rid);
 		} else {
-			((IdEObjectImpl)idEObject).setRid(rid);
+			((IdEObjectImpl) idEObject).setRid(rid);
 		}
 
 		if (DEVELOPER_DEBUG && StorePackage.eINSTANCE == idEObject.eClass().getEPackage()) {
@@ -349,7 +350,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 										EClass referenceClass = database.getEClassForCid((short) (-cid));
 										referencedObject = readWrappedValue(feature, buffer, referenceClass);
 									} else if (cid > 0) {
-										// positive cid means value is a reference
+										// positive cid means value is a
+										// reference
 										// to another record
 										EClass referenceClass = database.getEClassForCid(cid);
 										referencedObject = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep, objectIDM);
@@ -424,7 +426,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			}
 			fieldCounter++;
 		}
-		((IdEObjectImpl)idEObject).setLoaded();
+		((IdEObjectImpl) idEObject).setLoaded();
 		return idEObject;
 	}
 
@@ -606,7 +608,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			throw new BimserverDatabaseException("Database session is closed");
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T get(EClass eClass, IdEObject idEObject, int pid, int rid, long oid, boolean deep, ObjectIDM objectIDM) {
 		try {
@@ -617,7 +619,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return null;
 	}
 
-	public <T extends IdEObject> T get(short cid, IdEObject idEObject, long oid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException, BimserverLockConflictException {
+	public <T extends IdEObject> T get(short cid, IdEObject idEObject, long oid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException,
+			BimserverLockConflictException {
 		return get(cid, idEObject, oid, Database.STORE_PROJECT_ID, Integer.MAX_VALUE, new IfcModel(), deep, objectIDM);
 	}
 
@@ -636,7 +639,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		startSearchWith.putInt(pid);
 		startSearchWith.putLong(oid);
 		startSearchWith.putInt(-rid);
-		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), mustStartWith.array(), startSearchWith.array(), this);
+		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), mustStartWith.array(),
+				startSearchWith.array(), this);
 		try {
 			Record record = recordIterator.next();
 			if (record == null) {
@@ -686,7 +690,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return model;
 	}
 
-	public IfcModelInterface getAllOfTypes(Set<EClass> eClasses, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException, BimserverLockConflictException {
+	public IfcModelInterface getAllOfTypes(Set<EClass> eClasses, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException,
+			BimserverLockConflictException {
 		IfcModelInterface model = new IfcModel();
 		for (EClass eClass : eClasses) {
 			getMap(eClass, pid, rid, model, deep, objectIDM);
@@ -737,7 +742,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 	public int getCount(EClass eClass, IfcModelInterface model, int pid, int rid) throws BimserverDatabaseException, BimserverLockConflictException {
 		int count = 0;
-		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
+				BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
 		try {
 			Record record = recordIterator.next();
 			ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
@@ -795,19 +801,23 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		databaseInformation.setSchemaVersion(database.getRegistry().readInt(Database.SCHEMA_VERSION, this));
 		String stats = database.getKeyValueStore().getStats();
 		Scanner scanner = new Scanner(stats);
-		DatabaseInformationCategory category = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			if (line.contains("=")) {
-				DatabaseInformationItem item = StoreFactory.eINSTANCE.createDatabaseInformationItem();
-				category.getItems().add(item);
-				item.setKey(line.substring(0, line.indexOf("=")));
-				item.setValue(line.substring(line.indexOf("=") + 1));
-			} else {
-				category = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
-				category.setTitle(line);
-				databaseInformation.getCategories().add(category);
+		try {
+			DatabaseInformationCategory category = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if (line.contains("=")) {
+					DatabaseInformationItem item = StoreFactory.eINSTANCE.createDatabaseInformationItem();
+					category.getItems().add(item);
+					item.setKey(line.substring(0, line.indexOf("=")));
+					item.setValue(line.substring(line.indexOf("=") + 1));
+				} else {
+					category = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
+					category.setTitle(line);
+					databaseInformation.getCategories().add(category);
+				}
 			}
+		} finally {
+			scanner.close();
 		}
 		databaseInformation.setLocation(database.getKeyValueStore().getLocation());
 		return databaseInformation;
@@ -906,8 +916,10 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return 0;
 	}
 
-	public void getMap(EClass eClass, int pid, int rid, IfcModelInterface ifcModel, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException, BimserverLockConflictException {
-		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+	public void getMap(EClass eClass, int pid, int rid, IfcModelInterface ifcModel, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException,
+			BimserverLockConflictException {
+		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
+				BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
 		try {
 			Record record = recordIterator.next();
 			ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
@@ -969,7 +981,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return model;
 	}
 
-	public void getMapWithOids(IfcModelInterface model, int pid, int rid, Set<Long> oids, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException, BimserverLockConflictException {
+	public void getMapWithOids(IfcModelInterface model, int pid, int rid, Set<Long> oids, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException,
+			BimserverLockConflictException {
 		for (Long oid : oids) {
 			EClass eClass = getClassOfObjectId(pid, rid, oid, deep, objectIDM);
 			if (eClass != null) {
@@ -991,7 +1004,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimserverLockConflictException, BimserverDatabaseException {
 		EClass ifcGloballyUniqueIdEClass = Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
-		RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(ifcGloballyUniqueIdEClass.getEPackage().getName() + "_" + ifcGloballyUniqueIdEClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+		RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(
+				ifcGloballyUniqueIdEClass.getEPackage().getName() + "_" + ifcGloballyUniqueIdEClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
 		try {
 			Record record = recordIterator.next();
 			while (record != null) {
@@ -1192,7 +1206,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			throw new RuntimeException("Unsupported type " + classifier.getName());
 		}
 	}
-	
+
 	public void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
 		boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
 		if (feature.getUpperBound() > 1 || feature.getUpperBound() == -1) {
@@ -1348,14 +1362,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		if (!objectsToCommit.containsObject(object)) {
 			if (object.getOid() == -1) {
 				long newOid = newOid();
-				((IdEObjectImpl)object).setOid(newOid);
+				((IdEObjectImpl) object).setOid(newOid);
 			}
 			object.load();
-			((IdEObjectImpl)object).setPid(pid);
+			((IdEObjectImpl) object).setPid(pid);
 			if (rid == Integer.MAX_VALUE) {
-				((IdEObjectImpl)object).setRid(object.getRid() + 1);
+				((IdEObjectImpl) object).setRid(object.getRid() + 1);
 			} else {
-				((IdEObjectImpl)object).setRid(rid);
+				((IdEObjectImpl) object).setRid(rid);
 			}
 			addToObjectsToCommit(object);
 		}
@@ -1452,13 +1466,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
 		if (wrappedValue instanceof IfcGloballyUniqueId) {
 			if (wrappedValue.getOid() == -1) {
-				((IdEObjectImpl)wrappedValue).setOid(newOid());
+				((IdEObjectImpl) wrappedValue).setOid(newOid());
 			}
 			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue);
 			ByteBuffer createKeyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);
 			try {
 				EClass ifcGloballyUniqueIdEClass = Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
-				database.getKeyValueStore().storeNoOverwrite(ifcGloballyUniqueIdEClass.getEPackage().getName() + "_" + ifcGloballyUniqueIdEClass.getName(), createKeyBuffer.array(), convertObjectToByteArray.array(), this);
+				database.getKeyValueStore().storeNoOverwrite(ifcGloballyUniqueIdEClass.getEPackage().getName() + "_" + ifcGloballyUniqueIdEClass.getName(),
+						createKeyBuffer.array(), convertObjectToByteArray.array(), this);
 			} catch (BimserverLockConflictException e) {
 				LOGGER.error("", e);
 			}

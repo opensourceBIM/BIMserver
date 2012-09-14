@@ -1363,7 +1363,12 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingEmailSenderAddress(String emailSenderAddress) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		if (bimServer.getServerInfo().getServerState() != ServerState.NOT_SETUP) {
+			requireAdminAuthentication();
+		}
+		if (emailSenderAddress.trim().isEmpty()) {
+			throw new UserException("Email sender address cannot be empty");
+		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			ServerSettings settings = getServerSettings(session);
@@ -1802,9 +1807,10 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword) throws ServerException, UserException {
+	public void setup(String siteAddress, String smtpServer, String smtpSender, String adminName, String adminUsername, String adminPassword) throws ServerException, UserException {
 		setSettingSmtpServer(smtpServer);
 		setSettingSiteAddress(siteAddress);
+		setSettingEmailSenderAddress(smtpSender);
 
 		if (adminUsername.trim().isEmpty()) {
 			throw new UserException("Admin Username cannot be empty");

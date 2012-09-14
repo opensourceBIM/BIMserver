@@ -958,6 +958,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "setup")
 	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
 			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
+			@WebParam(name = "smtpSender", partName = "setup.smtpSender") String smtpSender,
 			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
 			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
 			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;

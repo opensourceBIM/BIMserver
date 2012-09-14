@@ -26,11 +26,11 @@ option optimize_for = SPEED;
 service NotificationInterface {
 	rpc newProject (NewProjectRequest) returns (VoidResponse);
 
-	rpc serverHasStarted (ServerHasStartedRequest) returns (VoidResponse);
-
 	rpc serverWillBeShutdown (ServerWillBeShutdownRequest) returns (VoidResponse);
 
 	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
+
+	rpc serverHasStarted (ServerHasStartedRequest) returns (VoidResponse);
 
 }
 
@@ -41,9 +41,6 @@ message SNewProjectNotification {
 
 message NewProjectRequest {
 	optional SNewProjectNotification arg0 = 1;
-}
-
-message ServerHasStartedRequest {
 }
 
 message ServerWillBeShutdownRequest {
@@ -57,5 +54,8 @@ message SNewRevisionNotification {
 
 message NewRevisionRequest {
 	optional SNewRevisionNotification arg0 = 1;
+}
+
+message ServerHasStartedRequest {
 }
 

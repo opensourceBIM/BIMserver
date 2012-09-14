@@ -21,7 +21,8 @@ public class FullModel extends AbstractModel {
 		this.diff = diff;
 		System.out.println("Reading model " + file.getName());
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
+			FileReader in = new FileReader(file);
+			BufferedReader reader = new BufferedReader(in);
 			String line = reader.readLine();
 			while (line != null) {
 				ModelObject modelObject = new ModelObject(this.diff, this, line.trim());
@@ -31,21 +32,23 @@ public class FullModel extends AbstractModel {
 				line = reader.readLine();
 			}
 
-			reader = new BufferedReader(new FileReader(file));
-			line = reader.readLine();
-			while (line != null) {
-				if (line.startsWith("#")) {
-					if (line.contains("=")) {
-						String idString = line.substring(1, line.indexOf("="));
-						long id = Long.parseLong(idString);
-						ModelObject modelObject = get(id);
-						modelObject.fill(line);
-					}
-				}
+			reader = new BufferedReader(in);
+			try {
 				line = reader.readLine();
+				while (line != null) {
+					if (line.startsWith("#")) {
+						if (line.contains("=")) {
+							String idString = line.substring(1, line.indexOf("="));
+							long id = Long.parseLong(idString);
+							ModelObject modelObject = get(id);
+							modelObject.fill(line);
+						}
+					}
+					line = reader.readLine();
+				}
+			} finally {
+				reader.close();
 			}
-
-			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

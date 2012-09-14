@@ -59,12 +59,16 @@ public class Licenser {
 			String content = FileUtils.readFileToString(file);
 			StringBuilder newContent = new StringBuilder();
 			Scanner scanner = new Scanner(content);
-			newContent.append("/******************************************************************************\n");
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				newContent.append(" * " + line + "\n");
+			try {
+				newContent.append("/******************************************************************************\n");
+				while (scanner.hasNextLine()) {
+					String line = scanner.nextLine();
+					newContent.append(" * " + line + "\n");
+				}
+				newContent.append(" *****************************************************************************/");
+			} finally {
+				scanner.close();
 			}
-			newContent.append(" *****************************************************************************/");
 			return newContent.toString();
 		} catch (IOException e) {
 			LOGGER.error("", e);
