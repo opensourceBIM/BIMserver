@@ -47,6 +47,8 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
+import org.bimserver.interfaces.objects.SExternalProfile;
+import org.bimserver.interfaces.objects.SExternalServer;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEngine;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
@@ -247,7 +249,8 @@ public interface ServiceInterface {
 			@WebParam(name = "sync", partName = "downloadByOids.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
-	 * Download a model in a serialized format by giving a set of revisions and a set of Object IDs 
+	 * Download a model in a serialized format by giving a set of revisions and a set of Object IDs
+	 * NOTE: This is a potentially slow method because the classes of the objects are not given
 	 * @param roids A set of Revision ObjectIDs
 	 * @param oids A set of ObjectIDs
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
@@ -282,6 +285,7 @@ public interface ServiceInterface {
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisins and a set of guids to filter on
+	 * NOTE: This is a potentially slow method because the classes of the objects are not given
 	 * @param roids A set of Revision ObjectIDs
 	 * @param guids A set of IFC guids
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
@@ -2125,6 +2129,8 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllExtendedSchemas")
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 	
+	List<SExternalServer> getRepositoryServers() throws ServerException, UserException;
+	
 	SIfcEngine getDefaultIfcEngine() throws ServerException, UserException;
 
 	SQueryEngine getDefaultQueryEngine() throws ServerException, UserException;
@@ -2148,4 +2154,10 @@ public interface ServiceInterface {
 	void setDefaultSerializer(long oid) throws UserException, ServerException;
 
 	void setDefaultObjectIDM(long oid) throws UserException, ServerException;
+
+	String getServiceRepositoryUrl() throws ServerException, UserException;
+
+	void setServiceRepositoryUrl(String url) throws ServerException, UserException;
+	
+	List<SExternalProfile> getRemoteProfiles(String remoteUrl) throws ServerException, UserException;
 }

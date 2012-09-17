@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -78,6 +79,8 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
+import org.bimserver.interfaces.objects.SExternalProfile;
+import org.bimserver.interfaces.objects.SExternalServer;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEngine;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
@@ -149,6 +152,10 @@ import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.MultiplexingInputStream;
+import org.bimserver.utils.NetUtils;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
+import org.codehaus.jettison.json.JSONTokener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -189,6 +196,8 @@ public class Service implements ServiceInterface {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			username = user.getName();
 			userUsername = user.getUsername();
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}
@@ -298,6 +307,8 @@ public class Service implements ServiceInterface {
 		User user = null;
 		try {
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -313,7 +324,7 @@ public class Service implements ServiceInterface {
 		return longDownloadAction.getId();
 	}
 
-	public UserSettings getUserSettings(DatabaseSession session) {
+	private UserSettings getUserSettings(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException {
 		User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 		return user.getSettings();
 	}
@@ -354,7 +365,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private void handleException(Exception e) throws ServerException, UserException {
+	private <T> T handleException(Exception e) throws ServerException, UserException {
 		if (e instanceof UserException) {
 			throw (UserException) e;
 		} else if (e instanceof ServerException) {
@@ -607,6 +618,8 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+		} catch (BimserverDatabaseException e) {
+			throw new UserException(e);
 		} finally {
 			session.close();
 		}
@@ -1180,12 +1193,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getUsersProjects(Long uoid) throws UserException {
+	public List<SProject> getUsersProjects(Long uoid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 			return new ArrayList<SProject>(converter.convertToSSetProject(user.getHasRightsOn()));
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1262,16 +1277,20 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private SUser getCurrentUser(DatabaseSession databaseSession) throws UserException {
+	private SUser getCurrentUser(DatabaseSession databaseSession) throws UserException, ServerException {
 		if (currentUoid == -1) {
 			return null;
 		}
-		User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
-		return converter.convertToSObject(user);
+		try {
+			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+			return converter.convertToSObject(user);
+		} catch (Exception e) {
+			return handleException(e);
+		}
 	}
 
 	@Override
-	public SUser getCurrentUser() throws UserException {
+	public SUser getCurrentUser() throws UserException, ServerException {
 		if (currentUoid == -1) {
 			return null;
 		}
@@ -1279,6 +1298,8 @@ public class Service implements ServiceInterface {
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			return converter.convertToSObject(user);
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1333,6 +1354,34 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	@Override
+	public String getServiceRepositoryUrl() throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ServerSettings settings = getServerSettings(session);
+			return settings.getServiceRepositoryUrl();
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void setServiceRepositoryUrl(String url) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ServerSettings settings = getServerSettings(session);
+			settings.setServiceRepositoryUrl(url);
+			session.store(settings);
+			session.commit();
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void setSettingProtocolBuffersPort(Integer port) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
@@ -1739,6 +1788,8 @@ public class Service implements ServiceInterface {
 			} catch (MessagingException e) {
 				throw new UserException(e);
 			}
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1774,7 +1825,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SLongAction> getActiveLongActions() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		return converter.convertToSListLongAction(bimServer.getLongActionManager().getActiveLongActions());
+		try {
+			return converter.convertToSListLongAction(bimServer.getLongActionManager().getActiveLongActions());
+		} catch (Exception e) {
+			return handleException(e);
+		}
 	}
 
 	@Override
@@ -3057,6 +3112,8 @@ public class Service implements ServiceInterface {
 		try {
 			UserSettings settings = getUserSettings(session);
 			return converter.convertToSObject(settings.getDefaultIfcEngine());
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -3068,6 +3125,8 @@ public class Service implements ServiceInterface {
 		try {
 			UserSettings settings = getUserSettings(session);
 			return converter.convertToSObject(settings.getDefaultQueryEngine());
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -3079,6 +3138,8 @@ public class Service implements ServiceInterface {
 		try {
 			UserSettings settings = getUserSettings(session);
 			return converter.convertToSObject(settings.getDefaultModelCompare());
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -3090,6 +3151,8 @@ public class Service implements ServiceInterface {
 		try {
 			UserSettings settings = getUserSettings(session);
 			return converter.convertToSObject(settings.getDefaultModelMerger());
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -3101,6 +3164,8 @@ public class Service implements ServiceInterface {
 		try {
 			UserSettings settings = getUserSettings(session);
 			return converter.convertToSObject(settings.getDefaultSerializer());
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -3112,6 +3177,8 @@ public class Service implements ServiceInterface {
 		try {
 			UserSettings settings = getUserSettings(session);
 			return converter.convertToSObject(settings.getDefaultObjectIDM());
+		} catch (BimserverDatabaseException e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -3205,5 +3272,54 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public List<SExternalServer> getRepositoryServers() throws ServerException, UserException {
+		List<SExternalServer> externalServers = new ArrayList<SExternalServer>();
+		try {
+			String url = getServiceRepositoryUrl();
+			String content = NetUtils.getContent(new URL(url));
+			JSONObject root = new JSONObject(new JSONTokener(content));
+			JSONArray services = root.getJSONArray("externalservers");
+			for (int i=0; i<services.length(); i++) {
+				JSONObject service = services.getJSONObject(i);
+				SExternalServer externalServer = new SExternalServer();
+				externalServer.setTitle(service.getString("title"));
+				externalServer.setDescription(service.getString("description"));
+				externalServer.setUrl(service.getString("url"));
+				externalServers.add(externalServer);
+			}
+		} catch (Exception e) {
+			handleException(e);
+		}
+		return externalServers;
+	}
+	
+	@Override
+	public List<SExternalProfile> getRemoteProfiles(String url) throws ServerException, UserException {
+		List<SExternalProfile> externalProfiles = new ArrayList<SExternalProfile>();
+		try {
+			String content = NetUtils.getContent(new URL(url));
+			JSONObject root = new JSONObject(new JSONTokener(content));
+			JSONArray profiles = root.getJSONArray("profiles");
+			for (int i=0; i<profiles.length(); i++) {
+				JSONObject profile = profiles.getJSONObject(i);
+				SExternalProfile externalProfile = new SExternalProfile();
+				externalProfile.setName(profile.getString("name"));
+				externalProfile.setDescription(profile.getString("description"));
+				
+				JSONObject rights = profile.getJSONObject("rights");
+				
+				externalProfile.setReadRevision(rights.getBoolean("readRevision"));
+				externalProfile.setReadExtendedData(rights.getBoolean("readExtendedData"));
+				externalProfile.setWriteRevisionId(rights.getBoolean("writeRevision") ? 1 : 0);
+				externalProfile.setWriteExtendedDataId(rights.getBoolean("writeExtendedData") ? 1 : 0);
+				externalProfiles.add(externalProfile);
+			}
+		} catch (Exception e) {
+			handleException(e);
+		}
+		return externalProfiles;
 	}
 }

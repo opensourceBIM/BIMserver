@@ -60,6 +60,8 @@
           eType="#/0/SIPrefix"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
           eType="#/0/ExtendedData"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="profiles" upperBound="-1"
+          eType="#/0/ExternalProfile" eOpposite="#/0/ExternalProfile/project"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="User">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -83,6 +85,8 @@
           eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/users"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
           eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/user"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="servers" upperBound="-1"
+          eType="#/0/ExternalServer" eOpposite="#/0/ExternalServer/user"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -164,6 +168,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheOutputFiles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
           eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceRepositoryUrl"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
@@ -451,6 +457,7 @@
           eOpposite="#/0/User/extendedData"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#/0/ExtendedDataSchema"
           eOpposite="#/0/ExtendedDataSchema/extendedData"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="mime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
     <eClassifiers xsi:type="ecore:EClass" name="QueryEngine" eSuperTypes="#/0/Plugin">
@@ -466,6 +473,28 @@
     <eClassifiers xsi:type="ecore:EClass" name="ModelCompare" eSuperTypes="#/0/Plugin">
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/modelcompares"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalServer">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="token" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"
+          eOpposite="#/0/User/servers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="profiles" upperBound="-1"
+          eType="#/0/ExternalProfile" eOpposite="#/0/ExternalProfile/server"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalProfile">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="server" eType="#/0/ExternalServer"
+          eOpposite="#/0/ExternalServer/profiles"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="readRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="readExtendedData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="writeRevision" eType="#/0/Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="writeExtendedData" eType="#/0/Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
+          eOpposite="#/0/Project/profiles"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="ifc2x3tc1" nsURI="http:///buildingsmart.ifc.ecore" nsPrefix="iai">

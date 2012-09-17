@@ -99,6 +99,9 @@ public class SServerSettings implements SBase
 		if (sField.getName().equals("schemas")) {
 			return getSchemas();
 		}
+		if (sField.getName().equals("serviceRepositoryUrl")) {
+			return getServiceRepositoryUrl();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -174,6 +177,10 @@ public class SServerSettings implements SBase
 			setSchemas((List<Long>)val);
 			return;
 		}
+		if (sField.getName().equals("serviceRepositoryUrl")) {
+			setServiceRepositoryUrl((String)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -198,6 +205,7 @@ public class SServerSettings implements SBase
 	private java.lang.String footerAddition;
 	private java.lang.Boolean cacheOutputFiles;
 	private List<Long> schemas = new ArrayList<Long>();
+	private java.lang.String serviceRepositoryUrl;
 	public java.lang.Boolean getShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
 	}
@@ -316,6 +324,13 @@ public class SServerSettings implements SBase
 
 	public void setSchemas(List<Long> schemas) {
 		this.schemas = schemas;
+	}
+	public java.lang.String getServiceRepositoryUrl() {
+		return serviceRepositoryUrl;
+	}
+
+	public void setServiceRepositoryUrl(java.lang.String serviceRepositoryUrl) {
+		this.serviceRepositoryUrl = serviceRepositoryUrl;
 	}
 	@Override
 	public int hashCode() {

@@ -17,6 +17,7 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.store.ModelMerger;
 import org.bimserver.models.store.StorePackage;
@@ -32,7 +33,7 @@ public class MergerFactory {
 		this.bimServer = bimServer;
 	}
 
-	public org.bimserver.plugins.modelmerger.ModelMerger createMerger(DatabaseSession databaseSession, Long currentUoid) throws MergeException {
+	public org.bimserver.plugins.modelmerger.ModelMerger createMerger(DatabaseSession databaseSession, Long currentUoid) throws MergeException, BimserverDatabaseException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);

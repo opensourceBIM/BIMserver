@@ -234,11 +234,11 @@
 </tr>
 <tr>
 	<td><label for="title">Title</label></td>
-	<td><input type="text" id="title"/></td>
+	<td><input type="text" name="title" id="title"/></td>
 </tr>
 <tr>
 	<td><label for="url">URL</label></td>
-	<td><input type="text" id="url"/></td>
+	<td><input type="text" name="url" id="url"/></td>
 </tr>
 <tr>
 	<td></td>
@@ -246,7 +246,7 @@
 </tr>
 <tr>
 	<td><label for="data">Data</label></td>
-	<td><input type="file" id="data"/></td>
+	<td><input type="file" name="data" id="data"/></td>
 </tr>
 </table>
 <input type="hidden" name="action" value="addextendeddata"/>
@@ -262,10 +262,11 @@
 	for (long edoid : revision.getExtendedData()) {
 		SExtendedData sExtendedData = loginManager.getService().getExtendedData(edoid);
 		out.println("<tr>");
-		out.println("<td>" + sExtendedData.getTitle() + "</td>");
+		out.println("<td><a href=\"getextendeddata.jsp?edid=" + sExtendedData.getOid() + "\">" + sExtendedData.getTitle() + "</a></td>");
 		if (sExtendedData.getData() != null && sExtendedData.getData().length > 0) {
+			out.println("<td>" + sExtendedData.getData().length + " bytes" + "</td>");
 		} else {
-			out.println("<a href=\"\">" + sExtendedData.getUrl() + "</a>");
+			out.println("<td><a href=\"\">" + sExtendedData.getUrl() + "</a></td>");
 		}
 		out.println("<td>" + dateFormat.format(sExtendedData.getAdded()) + "</td>");
 		out.println("</tr>");

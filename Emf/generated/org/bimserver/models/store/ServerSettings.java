@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSchemas <em>Schemas</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -486,5 +487,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	EList<ExtendedDataSchema> getSchemas();
+
+	/**
+	 * Returns the value of the '<em><b>Service Repository Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service Repository Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Repository Url</em>' attribute.
+	 * @see #setServiceRepositoryUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_ServiceRepositoryUrl()
+	 * @model
+	 * @generated
+	 */
+	String getServiceRepositoryUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Service Repository Url</em>' attribute.
+	 * @see #getServiceRepositoryUrl()
+	 * @generated
+	 */
+	void setServiceRepositoryUrl(String value);
 
 } // ServerSettings

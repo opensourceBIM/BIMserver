@@ -97,6 +97,9 @@ public class SUser implements SBase
 		if (sField.getName().equals("extendedData")) {
 			return getExtendedData();
 		}
+		if (sField.getName().equals("servers")) {
+			return getServers();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -168,6 +171,10 @@ public class SUser implements SBase
 			setExtendedData((List<Long>)val);
 			return;
 		}
+		if (sField.getName().equals("servers")) {
+			setServers((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -191,6 +198,7 @@ public class SUser implements SBase
 	private java.lang.String notificationUrl;
 	private List<Long> schemas = new ArrayList<Long>();
 	private List<Long> extendedData = new ArrayList<Long>();
+	private List<Long> servers = new ArrayList<Long>();
 	public java.lang.String getName() {
 		return name;
 	}
@@ -304,6 +312,13 @@ public class SUser implements SBase
 
 	public void setExtendedData(List<Long> extendedData) {
 		this.extendedData = extendedData;
+	}
+	public List<Long> getServers() {
+		return servers;
+	}
+
+	public void setServers(List<Long> servers) {
+		this.servers = servers;
 	}
 	@Override
 	public int hashCode() {

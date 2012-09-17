@@ -34,6 +34,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ExtendedData#getAdded <em>Added</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getSchema <em>Schema</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedData#getMime <em>Mime</em>}</li>
  * </ul>
  * </p>
  *
@@ -202,5 +203,31 @@ public interface ExtendedData extends IdEObject {
 	 * @generated
 	 */
 	void setSchema(ExtendedDataSchema value);
+
+	/**
+	 * Returns the value of the '<em><b>Mime</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mime</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mime</em>' attribute.
+	 * @see #setMime(String)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedData_Mime()
+	 * @model
+	 * @generated
+	 */
+	String getMime();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getMime <em>Mime</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mime</em>' attribute.
+	 * @see #getMime()
+	 * @generated
+	 */
+	void setMime(String value);
 
 } // ExtendedData

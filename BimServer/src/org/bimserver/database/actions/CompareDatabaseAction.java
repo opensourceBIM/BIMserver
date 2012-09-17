@@ -52,7 +52,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 		this.mcid = mcid;
 	}
 
-	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException {
+	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
 		ModelCompare modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelCompare(), mcid, false, null);
 		if (modelCompareObject != null) {
 			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getClassName(), true);

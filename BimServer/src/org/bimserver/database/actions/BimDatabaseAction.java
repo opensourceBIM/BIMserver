@@ -92,11 +92,11 @@ public abstract class BimDatabaseAction<T> {
 		return databaseSession;
 	}
 	
-	public Project getProjectByPoid(long poid) {
+	public Project getProjectByPoid(long poid) throws BimserverDatabaseException {
 		return (Project) databaseSession.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 	}
 
-	public User getUserByUoid(long uoid) {
+	public User getUserByUoid(long uoid) throws BimserverDatabaseException {
 		return (User) databaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
 	}
 	
@@ -136,7 +136,7 @@ public abstract class BimDatabaseAction<T> {
 		return (Revision) idEObject;
 	}
 
-	public Revision getRevisionByRoid(long roid) {
+	public Revision getRevisionByRoid(long roid) throws BimserverDatabaseException {
 		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 	}
 

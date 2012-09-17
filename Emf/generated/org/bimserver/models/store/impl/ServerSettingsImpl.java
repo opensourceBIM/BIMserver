@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSchemas <em>Schemas</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -378,6 +379,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedDataSchema> getSchemas() {
 		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.SERVER_SETTINGS__SCHEMAS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getServiceRepositoryUrl() {
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServiceRepositoryUrl(String newServiceRepositoryUrl) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, newServiceRepositoryUrl);
 	}
 
 } //ServerSettingsImpl
