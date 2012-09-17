@@ -290,4 +290,8 @@ public class Schema {
 		ePackage.getEClassifiers().add(dataType);
 		return dataType;
 	}
+
+	public EClass createEClass(String packageName, String className) {
+		return createEClass(getEPackage(packageName), className);
+	}
 }

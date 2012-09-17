@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getAdded <em>Added</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getSchema <em>Schema</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getMime <em>Mime</em>}</li>
  * </ul>
  * </p>
  *
@@ -179,6 +180,24 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 */
 	public void setSchema(ExtendedDataSchema newSchema) {
 		eSet(StorePackage.Literals.EXTENDED_DATA__SCHEMA, newSchema);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMime() {
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA__MIME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMime(String newMime) {
+		eSet(StorePackage.Literals.EXTENDED_DATA__MIME, newMime);
 	}
 
 } //ExtendedDataImpl

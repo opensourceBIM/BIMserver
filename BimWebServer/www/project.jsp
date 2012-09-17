@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SUserNameComparator"%>
@@ -598,6 +599,25 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 				}
 			%>
 		</div>
+		
+		<div class="tabbertab" id="servicestab" title="Services">
+			<label for="servers">External Server </label><select id="servers" name="servers" class="servers">
+				<option value="[SELECT]">[Select]</option>
+<%
+	for (SExternalServer externalServer : loginManager.getService().getRepositoryServers()) {
+		out.println("<option value=\"" + externalServer.getUrl() + "\">" + externalServer.getTitle() + "</option>");
+	}
+%>
+			</select>
+			<label for="profiles"></label>
+			<select class="profiles" id="profiles" name="profiles">
+			</select>
+			<div class="profileDescription"></div>
+			<div class="readRevision initialhide">Read Revision</div>
+			<div class="writeRevision initialhide">Write Revision</div>
+			<div class="readExtendedData initialhide">Read Extended Data</div>
+			<div class="writeExtendedData initialhide">Write Extended Data</div>
+		</div>
 	</div>
 
 	<script>
@@ -605,6 +625,43 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 	var lastRevisionOid = <%=lastRevision == null ? -1 : lastRevision.getOid()%>;
 	
 	$(function(){
+		$(".servers").change(function(){
+			$.getJSON("getprofiles.jsp?url=" + $(this).attr("value"), function(data) {
+				$(".profiles").empty();
+				$(".profiles").append($("<option value=\"[Select]\">[Select]</option>"));
+				data.profiles.forEach(function(profile){
+					var option = $("<option value=\"" + profile.name + "\">" + profile.name + "</option>");
+					option.data("profile", profile);
+					$(".profiles").append(option);
+				});
+			});
+		});
+		
+		$(".profiles").change(function(){
+			var profile = $(this).find(":selected").data("profile");
+			$(".profileDescription").html(profile.description);
+			if (profile.readRevision == true) {
+				$(".readRevision").show();
+			} else {
+				$(".readRevision").hide();
+			}
+			if (profile.writeRevision == 1) {
+				$(".writeRevision").show();
+			} else {
+				$(".writeRevision").hide();
+			}
+			if (profile.readExtendedData == true) {
+				$(".readExtendedData").show();
+			} else {
+				$(".readExtendedData").hide();
+			}
+			if (profile.writeExtendedData == 1) {
+				$(".writeExtendedData").show();
+			} else {
+				$(".writeExtendedData").hide();
+			}
+		});
+		
 		$("#inviteButton").click(function(){
 			call({
 				action: "inviteuser",

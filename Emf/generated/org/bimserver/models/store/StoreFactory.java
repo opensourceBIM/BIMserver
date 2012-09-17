@@ -540,6 +540,24 @@ public interface StoreFactory extends EFactory {
 	ModelCompare createModelCompare();
 
 	/**
+	 * Returns a new object of class '<em>External Server</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Server</em>'.
+	 * @generated
+	 */
+	ExternalServer createExternalServer();
+
+	/**
+	 * Returns a new object of class '<em>External Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Profile</em>'.
+	 * @generated
+	 */
+	ExternalProfile createExternalProfile();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

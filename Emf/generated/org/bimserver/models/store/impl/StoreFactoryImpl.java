@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinStatus;
@@ -246,6 +247,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelComparePluginDescriptor();
 		case StorePackage.MODEL_COMPARE:
 			return (EObject) createModelCompare();
+		case StorePackage.EXTERNAL_SERVER:
+			return (EObject) createExternalServer();
+		case StorePackage.EXTERNAL_PROFILE:
+			return (EObject) createExternalProfile();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -871,6 +876,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ModelCompare createModelCompare() {
 		ModelCompareImpl modelCompare = new ModelCompareImpl();
 		return modelCompare;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalServer createExternalServer() {
+		ExternalServerImpl externalServer = new ExternalServerImpl();
+		return externalServer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalProfile createExternalProfile() {
+		ExternalProfileImpl externalProfile = new ExternalProfileImpl();
+		return externalProfile;
 	}
 
 	/**

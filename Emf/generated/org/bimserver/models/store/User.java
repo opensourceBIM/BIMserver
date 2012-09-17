@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getNotificationUrl <em>Notification Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getServers <em>Servers</em>}</li>
  * </ul>
  * </p>
  *
@@ -441,5 +442,23 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	EList<ExtendedData> getExtendedData();
+
+	/**
+	 * Returns the value of the '<em><b>Servers</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ExternalServer}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExternalServer#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Servers</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Servers</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUser_Servers()
+	 * @see org.bimserver.models.store.ExternalServer#getUser
+	 * @model opposite="user"
+	 * @generated
+	 */
+	EList<ExternalServer> getServers();
 
 } // User

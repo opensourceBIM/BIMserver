@@ -22,6 +22,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExternalProfile;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -56,6 +57,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getExportLengthMeasurePrefix <em>Export Length Measure Prefix</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getExtendedData <em>Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getProfiles <em>Profiles</em>}</li>
  * </ul>
  * </p>
  *
@@ -347,6 +349,16 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedData> getExtendedData() {
 		return (EList<ExtendedData>) eGet(StorePackage.Literals.PROJECT__EXTENDED_DATA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ExternalProfile> getProfiles() {
+		return (EList<ExternalProfile>) eGet(StorePackage.Literals.PROJECT__PROFILES, true);
 	}
 
 } //ProjectImpl

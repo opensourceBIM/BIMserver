@@ -65,6 +65,9 @@ public class SExtendedData implements SBase
 		if (sField.getName().equals("schemaId")) {
 			return getSchemaId();
 		}
+		if (sField.getName().equals("mime")) {
+			return getMime();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -95,6 +98,10 @@ public class SExtendedData implements SBase
 			setSchemaId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("mime")) {
+			setMime((String)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -108,6 +115,7 @@ public class SExtendedData implements SBase
 	private java.util.Date added;
 	private long userId;
 	private long schemaId;
+	private java.lang.String mime;
 	public java.lang.String getUrl() {
 		return url;
 	}
@@ -152,6 +160,13 @@ public class SExtendedData implements SBase
 		this.schemaId = schemaId;
 	}
 	
+	public java.lang.String getMime() {
+		return mime;
+	}
+
+	public void setMime(java.lang.String mime) {
+		this.mime = mime;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

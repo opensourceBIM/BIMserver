@@ -27,6 +27,7 @@ import java.util.*;
 import org.bimserver.models.log.*;
 import org.bimserver.models.store.*;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.BimserverDatabaseException;
 
 public class SConverter {
 <%
@@ -47,7 +48,7 @@ public class SConverter {
 		return result;
 	}
 
-	public Set<<%=eClass.getName()%>> convertFromSSet<%=eClass.getName()%>(Collection<S<%=eClass.getName()%>> input, DatabaseSession session) {
+	public Set<<%=eClass.getName()%>> convertFromSSet<%=eClass.getName()%>(Collection<S<%=eClass.getName()%>> input, DatabaseSession session) throws BimserverDatabaseException {
 		Set<<%=eClass.getName()%>> result = new HashSet<<%=eClass.getName()%>>();
 		for (S<%=eClass.getName()%> o : input) {
 			result.add(convertFromSObject(o, session));
@@ -63,7 +64,7 @@ public class SConverter {
 		return result;
 	}
 
-	public List<<%=eClass.getName()%>> convertFromSList<%=eClass.getName()%>(Collection<S<%=eClass.getName()%>> input, DatabaseSession session) {
+	public List<<%=eClass.getName()%>> convertFromSList<%=eClass.getName()%>(Collection<S<%=eClass.getName()%>> input, DatabaseSession session) throws BimserverDatabaseException {
 		List<<%=eClass.getName()%>> result = new ArrayList<<%=eClass.getName()%>>();
 		for (S<%=eClass.getName()%> o : input) {
 			result.add(convertFromSObject(o, session));
@@ -142,7 +143,7 @@ public class SConverter {
 		return result;
 	}
 
-	public <%=eClass.getName()%> convertFromSObject(S<%=eClass.getName()%> input, DatabaseSession session) {
+	public <%=eClass.getName()%> convertFromSObject(S<%=eClass.getName()%> input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
 		}

@@ -22,7 +22,7 @@ public class SConverterGenerator
   protected final String TEXT_1 = "package org.bimserver.interfaces;";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL + NL + "import org.bimserver.emf.IdEObjectImpl;" + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "" + NL + "public class SConverter {";
+  protected final String TEXT_4 = NL + NL + "import org.bimserver.emf.IdEObjectImpl;" + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "import org.bimserver.database.BimserverDatabaseException;" + NL + "" + NL + "public class SConverter {";
   protected final String TEXT_5 = NL + NL + "\tpublic Set<S";
   protected final String TEXT_6 = "> convertToSSet";
   protected final String TEXT_7 = "(Collection<";
@@ -32,7 +32,7 @@ public class SConverterGenerator
   protected final String TEXT_11 = " o : input) {" + NL + "\t\t\tresult.add(convertToSObject(o));" + NL + "\t\t}" + NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic Set<";
   protected final String TEXT_12 = "> convertFromSSet";
   protected final String TEXT_13 = "(Collection<S";
-  protected final String TEXT_14 = "> input, DatabaseSession session) {" + NL + "\t\tSet<";
+  protected final String TEXT_14 = "> input, DatabaseSession session) throws BimserverDatabaseException {" + NL + "\t\tSet<";
   protected final String TEXT_15 = "> result = new HashSet<";
   protected final String TEXT_16 = ">();" + NL + "\t\tfor (S";
   protected final String TEXT_17 = " o : input) {" + NL + "\t\t\tresult.add(convertFromSObject(o, session));" + NL + "\t\t}" + NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic List<S";
@@ -44,7 +44,7 @@ public class SConverterGenerator
   protected final String TEXT_23 = " o : input) {" + NL + "\t\t\tresult.add(convertToSObject(o));" + NL + "\t\t}" + NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic List<";
   protected final String TEXT_24 = "> convertFromSList";
   protected final String TEXT_25 = "(Collection<S";
-  protected final String TEXT_26 = "> input, DatabaseSession session) {" + NL + "\t\tList<";
+  protected final String TEXT_26 = "> input, DatabaseSession session) throws BimserverDatabaseException {" + NL + "\t\tList<";
   protected final String TEXT_27 = "> result = new ArrayList<";
   protected final String TEXT_28 = ">();" + NL + "\t\tfor (S";
   protected final String TEXT_29 = " o : input) {" + NL + "\t\t\tresult.add(convertFromSObject(o, session));" + NL + "\t\t}" + NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic S";
@@ -98,7 +98,7 @@ public class SConverterGenerator
   protected final String TEXT_77 = "Val.getOid());";
   protected final String TEXT_78 = NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic ";
   protected final String TEXT_79 = " convertFromSObject(S";
-  protected final String TEXT_80 = " input, DatabaseSession session) {" + NL + "\t\tif (input == null) {" + NL + "\t\t\treturn null;" + NL + "\t\t}" + NL + "\t\t";
+  protected final String TEXT_80 = " input, DatabaseSession session) throws BimserverDatabaseException {" + NL + "\t\tif (input == null) {" + NL + "\t\t\treturn null;" + NL + "\t\t}" + NL + "\t\t";
   protected final String TEXT_81 = " result = ";
   protected final String TEXT_82 = "Factory.eINSTANCE.create";
   protected final String TEXT_83 = "();" + NL + "\t\t((IdEObjectImpl)result).setOid(input.getOid());";
