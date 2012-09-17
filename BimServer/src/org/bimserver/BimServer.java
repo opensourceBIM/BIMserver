@@ -301,8 +301,6 @@ public class BimServer {
 			String content2 = getContent(resource2);
 			notificationInterfaceService = new SService(content2, NotificationInterface.class);
 
-			LOGGER.info("done loading .java files");
-
 			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();
 
