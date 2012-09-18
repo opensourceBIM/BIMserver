@@ -44,47 +44,9 @@ public class ProtocolBuffersGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersGenerator.class);
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
 
-	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, File reflectorImplementationFile, boolean createBaseMessages, SService service, String... imports) {
+	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, boolean createBaseMessages, SService service, String... imports) {
 		generateProtoFile(serviceInterfaceClass, protoFile, createBaseMessages, service, imports);
 		generateProtocolBuffersObjects(protoFile, descFile, true);
-		generateServiceInterfaceImplementationForReflector(service, reflectorImplementationFile);
-	}
-
-	private void generateServiceInterfaceImplementationForReflector(SService service, File reflectorImplementationFile) {
-		try {
-			PrintWriter out = new PrintWriter(reflectorImplementationFile);
-			out.println("package org.bimserver.pb;\n");
-			out.println(Licenser.getCommentedLicenseText(new File("license.txt")));
-			out.println("import org.bimserver.shared.pb.Reflector;\n");
-			out.println("@SuppressWarnings(\"unchecked\")");
-			out.println("public class " + service.getName() + "ReflectorImpl implements " + service.getInstanceClass().getName() + " {\n");
-			out.println("private Reflector reflector;\n");
-			out.println("\tpublic " + service.getName() + "ReflectorImpl (Reflector reflector) {this.reflector = reflector;}");
-
-			for (SMethod method : service.getMethods()) {
-				String returnType = method.getPrintableName();
-				out.print("\tpublic " + returnType + " " + method.getName() + "(");
-				StringBuilder sb1 = new StringBuilder();
-				StringBuilder sb2 = new StringBuilder();
-				for (SParameter parameter : method.getParameters()) {
-					sb1.append(parameter.getPrintableName() + " " + parameter.getName() + (parameter.isLast() ? "" : ", "));
-					sb2.append(parameter.getName() + (parameter.isLast() ? "" : ", "));
-				}
-				out.println(sb1.toString() + ") throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {");
-				if (method.returnsVoid()) {
-					out.println("\t\treflector.callMethod(\"" + service.getName() + "\", \"" + method.getName() + "\"" + ", " + method.getReturnType().getName() + ".class"
-							+ (method.getParameters().size() > 0 ? ", " : "") + sb2.toString() + ");");
-				} else {
-					out.println("\t\treturn (" + returnType + ") reflector.callMethod(\"" + service.getName() + "\", \"" + method.getName() + "\", "
-							+ method.getReturnType().getName() + ".class" + (method.getParameters().size() > 0 ? (", " + sb2.toString()) : "") + ");");
-				}
-				out.println("\t}");
-			}
-			out.println("}");
-			out.close();
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		}
 	}
 
 	private void generateProtocolBuffersObjects(File protoFile, File protoDestFile, boolean javaOut) {

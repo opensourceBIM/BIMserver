@@ -121,6 +121,13 @@ public class BimServerClient implements ConnectDisconnectListener {
 		}
 	}
 
+	public void connectJson(final String address, boolean useHttpSession) throws ConnectionException {
+		disconnect();
+		JsonChannel jsonChannel = new JsonChannel(sService);
+		this.channel = jsonChannel;
+		jsonChannel.connect(address, useHttpSession, authenticationInfo);
+	}
+	
 	public void connectSoap(final String address, boolean useSoapHeaderSessions) throws ConnectionException {
 //		if (authenticationInfo == null) {
 //			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
@@ -213,11 +220,12 @@ public class BimServerClient implements ConnectDisconnectListener {
 			notificationsClient.connect(protocolBuffersMetaData, sService, new InetSocketAddress("localhost", 8055));
 			notificationsClient.startAndWaitForInit();
 			if (connected) {
-				try {
-					getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
-				} catch (ServiceException e) {
-					LOGGER.error("", e);
-				}
+//				try {
+					// TODO
+//					getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
+//				} catch (ServiceException e) {
+//					LOGGER.error("", e);
+//				}
 			} else {
 				registerConnectDisconnectListener(new ConnectDisconnectListener() {
 					@Override
@@ -226,11 +234,12 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 					@Override
 					public void connected() {
-						try {
-							getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
-						} catch (ServiceException e) {
-							LOGGER.error("", e);
-						}
+//						try {
+							// TODO
+//							getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
+//						} catch (ServiceException e) {
+//							LOGGER.error("", e);
+//						}
 					}
 				});
 			}
@@ -261,7 +270,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 //	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public IfcModelInterface getModel(long roid) {
+	public IfcModelInterface getModel(long roid) throws BimServerClientException {
 		try {
 			List<SDataObject> dataObjects = getServiceInterface().getDataObjects(roid);
 			IfcModelInterface model = new IfcModel(dataObjects.size());
@@ -281,6 +290,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 						idEObject.eSet(eStructuralFeature, convertStringValue(eStructuralFeature, simpleDataValue.getStringValue()));
 					} else if (dataValue instanceof SListDataValue) {
 						EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(dataValue.getFieldName());
+						if (eStructuralFeature == null) {
+							throw new BimServerClientException("Field " + dataValue.getFieldName() + " not found on " + eClass.getName());
+						}
 						SListDataValue listDataValue = (SListDataValue) dataValue;
 						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 							EStructuralFeature asStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");

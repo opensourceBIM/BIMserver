@@ -2028,16 +2028,6 @@ public interface ServiceInterface {
 			@WebParam(name = "oid", partName = "removeReference.oid") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
-	 * @param uoid ObjectID of the User to change the callBack URL for
-	 * @param address Address of the callback server (e.g. localhost:2000)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setHttpCallback")
-	void setHttpCallback(
-			@WebParam(name = "uoid", partName = "setHttpCallback.uoid") Long uoid, 
-			@WebParam(name = "address", partName = "setHttpCallback.address") String address) throws ServerException, UserException;
-	
-	/**
 	 * @param roid ObjectID of the Revision to perform this query on
 	 * @param code The Java code, should be an implementation of the QueryInterface interface
 	 * @return SRunResult

@@ -18,16 +18,23 @@ package org.bimserver.shared.meta;
  *****************************************************************************/
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import javax.jws.WebParam;
 
+import org.bimserver.shared.ServiceInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SMethod {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SMethod.class);
 	private String doc = "";
 	private final List<SParameter> parameters = new ArrayList<SParameter>();
 	private final Method method;
@@ -150,5 +157,33 @@ public class SMethod {
 	
 	public String getReturnDoc() {
 		return returnDoc;
+	}
+
+	public Object invoke(ServiceInterface service, Object[] parameters) {
+		for (Method method : service.getClass().getMethods()) {
+			if (method.getName().equals(getName())) {
+				try {
+					return method.invoke(service, parameters);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					dumpError(parameters, method, e);
+				} catch (InvocationTargetException e) {
+				}
+			}
+		}
+		return null;
+	}
+
+	private void dumpError(Object[] parameters, Method method, Exception e) {
+		LOGGER.error(method.getName());
+		LOGGER.error(Arrays.toString(parameters));
+		StringBuilder sb = new StringBuilder();
+		for (Object o : parameters) {
+			sb.append((o == null ? "null" : o.getClass().getName()) + ", ");
+		}
+		LOGGER.error(sb.toString());
+		LOGGER.error(Arrays.toString(method.getParameterTypes()));
+		e.printStackTrace();
 	}
 }

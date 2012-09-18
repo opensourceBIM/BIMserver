@@ -109,6 +109,7 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
@@ -301,6 +302,9 @@ public class Service implements ServiceInterface {
 	public Integer checkout(Long roid, String serializerName, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerName);
+		if (serializer == null) {
+			throw new UserException("No serializer with name " + serializerName + " could be found");
+		}
 		if (!serializer.getClass().getSimpleName().equals("IfcStepSerializer") && !serializer.getClass().getSimpleName().equals("IfcXmlSerializer")) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
@@ -651,8 +655,9 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SLongActionState getDownloadState(Integer actionId) throws ServerException, UserException {
-		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(actionId);
-		if (longAction != null) {
+		Object longAction2 = bimServer.getLongActionManager().getLongAction(actionId);
+		if (longAction2 != null) {
+			LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longAction2;
 			return converter.convertToSObject(longAction.getState());
 		} else {
 			throw new UserException("No state found for laid " + actionId);
@@ -2466,19 +2471,6 @@ public class Service implements ServiceInterface {
 			descriptors.add(descriptor);
 		}
 		return descriptors;
-	}
-
-	@Override
-	public void setHttpCallback(Long uoid, String address) throws UserException {
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			SetHttpCallbackUrlDatabaseAction action = new SetHttpCallbackUrlDatabaseAction(session, accessMethod, bimServer, currentUoid, uoid, address);
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-		} finally {
-			session.close();
-		}
 	}
 
 	@Override

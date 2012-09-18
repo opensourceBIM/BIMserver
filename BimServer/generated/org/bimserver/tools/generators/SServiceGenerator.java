@@ -17,7 +17,7 @@ public class SServiceGenerator
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "package org.bimserver.interfaces;" + NL;
-  protected final String TEXT_2 = NL + NL + "import org.bimserver.shared.meta.*;" + NL + "import org.slf4j.Logger;" + NL + "import org.slf4j.LoggerFactory;" + NL + "import java.io.File;" + NL;
+  protected final String TEXT_2 = NL + NL + "import org.bimserver.shared.meta.*;" + NL + "import org.slf4j.Logger;" + NL + "import org.slf4j.LoggerFactory;" + NL;
   protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL + NL + "public class S";

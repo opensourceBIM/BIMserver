@@ -88,9 +88,6 @@ public class SUser implements SBase
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
 		}
-		if (sField.getName().equals("notificationUrl")) {
-			return getNotificationUrl();
-		}
 		if (sField.getName().equals("schemas")) {
 			return getSchemas();
 		}
@@ -159,10 +156,6 @@ public class SUser implements SBase
 			setSettingsId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("notificationUrl")) {
-			setNotificationUrl((String)val);
-			return;
-		}
 		if (sField.getName().equals("schemas")) {
 			setSchemas((List<Long>)val);
 			return;
@@ -195,7 +188,6 @@ public class SUser implements SBase
 	private java.lang.String validationToken;
 	private java.util.Date validationTokenCreated;
 	private long settingsId;
-	private java.lang.String notificationUrl;
 	private List<Long> schemas = new ArrayList<Long>();
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> servers = new ArrayList<Long>();
@@ -292,13 +284,6 @@ public class SUser implements SBase
 		this.settingsId = settingsId;
 	}
 	
-	public java.lang.String getNotificationUrl() {
-		return notificationUrl;
-	}
-
-	public void setNotificationUrl(java.lang.String notificationUrl) {
-		this.notificationUrl = notificationUrl;
-	}
 	public List<Long> getSchemas() {
 		return schemas;
 	}

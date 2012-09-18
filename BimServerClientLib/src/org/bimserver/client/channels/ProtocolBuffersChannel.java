@@ -20,11 +20,11 @@ package org.bimserver.client.channels;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-import org.bimserver.pb.ServiceInterfaceReflectorImpl;
+import org.bimserver.interfaces.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.pb.Reflector;
+import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketChannel;
 
 public class ProtocolBuffersChannel extends Channel implements ConnectDisconnectListener {
@@ -41,7 +41,7 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 	public void connect(String address, int port) throws IOException {
 		channel = new SocketChannel();
 		channel.registerConnectDisconnectListener(this);
-		Reflector reflector = new Reflector(protocolBuffersMetaData, sService, channel);
+		ProtocolBuffersReflector reflector = new ProtocolBuffersReflector(protocolBuffersMetaData, sService, channel);
 		setServiceInterface(new ServiceInterfaceReflectorImpl(reflector));
 		channel.connect(new InetSocketAddress(address, port));
 	}

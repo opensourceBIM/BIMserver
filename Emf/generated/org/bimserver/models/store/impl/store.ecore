@@ -77,7 +77,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationTokenCreated"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//UserSettings"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
         eType="#//ExtendedDataSchema" eOpposite="#//ExtendedDataSchema/users"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"

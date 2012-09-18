@@ -27,6 +27,7 @@ import java.util.Random;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientException;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
@@ -111,14 +112,18 @@ public class TestClientEmfModelLocal {
 	}
 
 	private void dumpToFile(long roid) throws SerializerException {
-		IfcModelInterface model = bimServerClient.getModel(roid);
-		IfcStepSerializer serializer = new IfcStepSerializer();
-		serializer.init(model, null, bimServer.getPluginManager(), null);
-		File output = new File("output");
-		if (!output.exists()) {
-			output.mkdir();
+		try {
+			IfcModelInterface model = bimServerClient.getModel(roid);
+			IfcStepSerializer serializer = new IfcStepSerializer();
+			serializer.init(model, null, bimServer.getPluginManager(), null);
+			File output = new File("output");
+			if (!output.exists()) {
+				output.mkdir();
+			}
+			serializer.writeToFile(new File(output, roid + ".ifc"));
+		} catch (BimServerClientException e) {
+			e.printStackTrace();
 		}
-		serializer.writeToFile(new File(output, roid + ".ifc"));
 	}
 
 	public void dumpSummary(long roid) throws ServiceException {

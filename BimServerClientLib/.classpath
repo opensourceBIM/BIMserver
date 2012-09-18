@@ -40,5 +40,7 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-11.0.1.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpclient-4.2.1.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpcore-4.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

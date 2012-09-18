@@ -48,6 +48,7 @@ public class Step0001 extends Migration {
 		schema.createEEnumLiteral(accessMethodEnum, "INTERNAL");
 		schema.createEEnumLiteral(accessMethodEnum, "REST");
 		schema.createEEnumLiteral(accessMethodEnum, "SYNDICATION");
+		schema.createEEnumLiteral(accessMethodEnum, "JSON");
 		
 		logActionClass = schema.createEClass(logPackage, "LogAction");
 		schema.createEAttribute(logActionClass, "date", EcorePackage.eINSTANCE.getEDate(), Multiplicity.SINGLE);

@@ -30,6 +30,8 @@ import java.util.Set;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.shared.KeyValuePair;
+import org.bimserver.shared.Reflector;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SBase;
@@ -49,13 +51,13 @@ import com.google.protobuf.DynamicMessage.Builder;
 import com.google.protobuf.Message;
 import com.google.protobuf.ServiceException;
 
-public class Reflector extends ProtocolBuffersConverter {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Reflector.class);
+public class ProtocolBuffersReflector extends ProtocolBuffersConverter implements Reflector {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersReflector.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final Channel channel;
 	private final SService sService;
 
-	public Reflector(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, Channel channel) {
+	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, Channel channel) {
 		super(sService, protocolBuffersMetaData);
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.sService = sService;
@@ -63,7 +65,8 @@ public class Reflector extends ProtocolBuffersConverter {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, Object... args) throws ServerException, UserException {
+	@Override
+	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
 		try {
 			MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
 			SMethod sMethod = sService.getSMethod(methodName);
@@ -71,7 +74,7 @@ public class Reflector extends ProtocolBuffersConverter {
 			Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
 			int i = 0;
 			for (FieldDescriptor field : inputDescriptor.getFields()) {
-				Object arg = args[i];
+				Object arg = args[i].getValue();
 				if (field.getJavaType() == JavaType.ENUM) {
 					EnumDescriptor enumType = field.getEnumType();
 					builder.setField(field, enumType.findValueByName(arg.toString()));

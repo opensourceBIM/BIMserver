@@ -52,7 +52,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationTokenCreated <em>Validation Token Created</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSettings <em>Settings</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserImpl#getNotificationUrl <em>Notification Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getServers <em>Servers</em>}</li>
@@ -307,24 +306,6 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	public void setSettings(UserSettings newSettings) {
 		eSet(StorePackage.Literals.USER__SETTINGS, newSettings);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getNotificationUrl() {
-		return (String) eGet(StorePackage.Literals.USER__NOTIFICATION_URL, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNotificationUrl(String newNotificationUrl) {
-		eSet(StorePackage.Literals.USER__NOTIFICATION_URL, newNotificationUrl);
 	}
 
 	/**

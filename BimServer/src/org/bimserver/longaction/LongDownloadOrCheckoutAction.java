@@ -52,7 +52,8 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	protected final long currentUoid;
 	protected SCheckoutResult checkoutResult;
 
-	protected LongDownloadOrCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, AccessMethod accessMethod, long currentUoid) {
+	protected LongDownloadOrCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, AccessMethod accessMethod,
+			long currentUoid) {
 		super(bimServer, username, userUsername, currentUoid);
 		this.accessMethod = accessMethod;
 		this.downloadParameters = downloadParameters;
@@ -72,7 +73,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			try {
 				EmfSerializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEngine, downloadParameters);
 				if (serializer == null) {
-					throw new UserException("Error, no serializer found");
+					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerName());
 				}
 				checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer)));
 			} catch (SerializerException e) {
@@ -82,48 +83,57 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		return checkoutResult;
 	}
 
-	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, DatabaseSession session,
-			boolean commit) throws BimserverDatabaseException, UserException, NoSerializerFoundException {
-		if (action == null) {
-			checkoutResult = new SCheckoutResult();
-			checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
-		} else {
-			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false, null);
-			revision.getProject().getGeoTag().load(); // Little hack to make sure this is lazily loaded, because after the executeAndCommitAction the session won't be usable
-			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
-			// Session is closed after this			
+	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, DatabaseSession session, boolean commit)
+			throws BimserverDatabaseException, UserException, NoSerializerFoundException {
+		try {
+			if (action == null) {
+				checkoutResult = new SCheckoutResult();
+				checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
+			} else {
+				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false, null);
+				revision.getProject().getGeoTag().load(); // Little hack to make
+															// sure this is
+															// lazily loaded,
+															// because after the
+															// executeAndCommitAction
+															// the session won't
+															// be usable
+				IfcModelInterface ifcModel = session.executeAndCommitAction(action);
+				// Session is closed after this
 
-			DatabaseSession newSession = getBimServer().getDatabase().createSession();
-			IfcEnginePlugin ifcEnginePlugin  = null;
-			try {
-				Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(downloadParameters.getSerializerName()));
-				Serializer found = newSession.querySingle(condition, Serializer.class, false, null);
-				if (found != null) {
-					org.bimserver.models.store.IfcEngine ifcEngine = found.getIfcEngine();
-					if (ifcEngine != null) {
-						ifcEnginePlugin = (IfcEnginePlugin) getBimServer().getPluginManager().getIfcEngine(ifcEngine.getClassName(), true);
+				DatabaseSession newSession = getBimServer().getDatabase().createSession();
+				IfcEnginePlugin ifcEnginePlugin = null;
+				try {
+					Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(downloadParameters.getSerializerName()));
+					Serializer found = newSession.querySingle(condition, Serializer.class, false, null);
+					if (found != null) {
+						org.bimserver.models.store.IfcEngine ifcEngine = found.getIfcEngine();
+						if (ifcEngine != null) {
+							ifcEnginePlugin = (IfcEnginePlugin) getBimServer().getPluginManager().getIfcEngine(ifcEngine.getClassName(), true);
+						}
+					}
+				} catch (BimserverDatabaseException e) {
+					LOGGER.error("", e);
+				} finally {
+					newSession.close();
+				}
+
+				IfcEngine ifcEngine = null;
+				if (ifcEnginePlugin != null) {
+					try {
+						ifcEngine = ifcEnginePlugin.createIfcEngine();
+					} catch (IfcEngineException e) {
+						LOGGER.error("", e);
 					}
 				}
-			} catch (BimserverDatabaseException e) {
-				LOGGER.error("", e);
-			} finally {
-				newSession.close();
-			}
-			
-			IfcEngine ifcEngine = null;
-			if (ifcEnginePlugin != null) {
-				try {
-					ifcEngine = ifcEnginePlugin.createIfcEngine();
-				} catch (IfcEngineException e) {
-					LOGGER.error("", e);
+
+				checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, ifcEngine, downloadParameters);
+				if (checkoutResult != null) {
+					getBimServer().getDiskCacheManager().store(downloadParameters, checkoutResult.getFile());
 				}
 			}
-			
-			checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, ifcEngine, downloadParameters);
-			if (checkoutResult != null) {
-				getBimServer().getDiskCacheManager().store(downloadParameters, checkoutResult.getFile());
-			}
+		} finally {
+			done();
 		}
-		done();
 	}
 }
