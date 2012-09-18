@@ -31,6 +31,7 @@ public class JsonApiServlet extends HttpServlet {
 
 	private void writeDocumentation(HttpServletRequest request, HttpServletResponse response, BimServer bimServer) {
 		SService sService = bimServer.getServiceInterfaceService();
+		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Content-Type", "text/html");
 		try {
 			PrintWriter writer = response.getWriter();

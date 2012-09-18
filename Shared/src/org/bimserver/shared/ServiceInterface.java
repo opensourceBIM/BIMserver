@@ -2160,4 +2160,10 @@ public interface ServiceInterface {
 	void setServiceRepositoryUrl(String url) throws ServerException, UserException;
 	
 	List<SExternalProfile> getRemoteProfiles(String remoteUrl) throws ServerException, UserException;
+	
+	void addProfileToProject(long poid, SExternalProfile profile) throws ServerException, UserException;
+
+	SExternalProfile getExternalProfile(long epid) throws ServerException, UserException;
+
+	SExternalServer getExternalServer(long esid) throws ServerException, UserException;
 }

@@ -38,6 +38,7 @@
 				service.setSettingHeaderAddition(request.getParameter("headerAddition"));
 				service.setSettingFooterAddition(request.getParameter("footerAddition"));
 				service.setSettingProtocolBuffersPort(Integer.parseInt(request.getParameter("protocolBuffersPort")));
+				service.setServiceRepositoryUrl(request.getParameter("serviceRepositoryUrl"));
 				response.sendRedirect(getServletContext().getContextPath() + "/serversettings.jsp?msg=settingschangeok");
 			} catch (ServiceException e) {
 				JspHelper.showException(out, e);
@@ -122,6 +123,11 @@
 		<td><label for="protocolBuffersPort">Protocol Buffers Port</label></td>
 		<td><input id="protocolBuffersPort" name="protocolBuffersPort"
 			type="text" value="<%=(request.getParameter("save") == null ? service.getSettingProtocolBuffersPort() : request.getParameter("protocolBuffersPort")) %>"></input></td>
+	</tr>
+	<tr>
+		<td><label for="serviceRepositoryUrl">Service Repository URL</label></td>
+		<td><input id="serviceRepositoryUrl" name="serviceRepositoryUrl"
+			type="text" value="<%=(request.getParameter("save") == null ? service.getServiceRepositoryUrl() : request.getParameter("serviceRepositoryUrl")) %>"></input></td>
 	</tr>
 	<tr>
 		<td><label for="allowUsersToCreateTopLevelProjects">Allow non-admin users to create projects</label></td>
