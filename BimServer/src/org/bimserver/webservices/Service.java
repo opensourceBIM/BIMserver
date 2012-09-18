@@ -122,6 +122,8 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.ExternalProfile;
+import org.bimserver.models.store.ExternalServer;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ModelCompare;
@@ -3321,5 +3323,47 @@ public class Service implements ServiceInterface {
 			handleException(e);
 		}
 		return externalProfiles;
+	}
+	
+	public SExternalProfile getExternalProfile(long epid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ExternalProfile externalProfile = session.get(StorePackage.eINSTANCE.getExternalProfile(), epid, false, null);
+			return converter.convertToSObject(externalProfile);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public SExternalServer getExternalServer(long esid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ExternalServer externalServer = session.get(StorePackage.eINSTANCE.getExternalServer(), esid, false, null);
+			return converter.convertToSObject(externalServer);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void addProfileToProject(long poid, SExternalProfile sProfile) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
+			ExternalProfile profile = converter.convertFromSObject(sProfile, session);
+			project.getProfiles().add(profile);
+			profile.setProject(project);
+			session.store(profile);
+			session.store(project);
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

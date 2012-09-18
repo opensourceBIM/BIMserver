@@ -5,6 +5,8 @@
 	for (SExternalProfile profile : profiles) {
 		out.println("{");
 		out.print("\"name\": \"" + profile.getName() + "\",");
+		out.print("\"serveroid\": \"" + profile.getServerId() + "\",");
+		out.print("\"profileoid\": \"" + profile.getOid() + "\",");
 		out.print("\"description\": \"" + profile.getDescription() + "\",");
 		out.print("\"readRevision\": " + profile.isReadRevision() + ",");
 		out.print("\"readExtendedData\": " + profile.isReadExtendedData() + ",");

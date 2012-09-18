@@ -537,3 +537,18 @@ p.explain {
 	color: red;
 	padding: 5px;
 }
+
+.profilediv {
+	padding-top: 10px;
+}
+
+.profilediv label {
+	display: block;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.profilediv label span {
+	display: inline-block;
+	width: 150px;
+}
