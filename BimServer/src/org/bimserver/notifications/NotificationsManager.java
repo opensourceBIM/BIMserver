@@ -29,6 +29,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.store.NewProjectNotification;
 import org.bimserver.models.store.NewRevisionNotification;
@@ -37,10 +38,9 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.pb.NotificationInterfaceReflectorImpl;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.NotificationInterface;
-import org.bimserver.shared.pb.Reflector;
+import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,13 +115,13 @@ public class NotificationsManager extends Thread {
 			for (IdEObject idEObject : allOfType.getValues()) {
 				if (idEObject instanceof User) {
 					User user = (User) idEObject;
-					String url = user.getNotificationUrl();
+					String url = ""; // TODO
 					if (url != null && !url.isEmpty()) {
 						InetSocketAddress address = new InetSocketAddress(url.substring(0, url.indexOf(":")), Integer.parseInt(url.substring(url.indexOf(":") + 1)));
 						try {
 							SocketChannel channel = new SocketChannel();
 							channel.connect(address);
-							register(user, new NotificationInterfaceReflectorImpl(new Reflector(bimServer.getProtocolBuffersMetaData(), bimServer.getNotificationInterfaceService(), channel)));
+							register(user, new NotificationInterfaceReflectorImpl(new ProtocolBuffersReflector(bimServer.getProtocolBuffersMetaData(), bimServer.getNotificationInterfaceService(), channel)));
 						} catch (IOException e) {
 							LOGGER.info("Notification host seems down: " + url);
 						}

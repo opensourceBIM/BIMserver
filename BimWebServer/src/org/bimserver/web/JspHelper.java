@@ -251,6 +251,8 @@ public class JspHelper {
 			return "Syndication";
 		case PROTOCOL_BUFFERS:
 			return "Protocol Buffers";
+		case JSON:
+			return "JSON";
 		}
 		return "unknown";
 	}

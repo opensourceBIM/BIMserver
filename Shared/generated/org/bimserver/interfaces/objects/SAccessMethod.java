@@ -23,7 +23,8 @@ public enum SAccessMethod {
 	INTERNAL(2),
 	REST(3),
 	SYNDICATION(4),
-	PROTOCOL_BUFFERS(5);
+	JSON(5),
+	PROTOCOL_BUFFERS(6);
 	int ordinal;
 
 	SAccessMethod(int ordinal) {

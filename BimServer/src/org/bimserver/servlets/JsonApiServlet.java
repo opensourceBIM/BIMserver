@@ -1,5 +1,6 @@
 package org.bimserver.servlets;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -8,17 +9,31 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.ConvertException;
+import org.bimserver.shared.JsonConverter;
+import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.Token;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+import org.codehaus.jettison.json.JSONTokener;
+
+import com.google.common.base.Charsets;
 
 public class JsonApiServlet extends HttpServlet {
 	private static final long serialVersionUID = 186486233172374336L;
@@ -26,42 +41,114 @@ public class JsonApiServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		writeDocumentation(request, response, bimServer);
-	}
-
-	private void writeDocumentation(HttpServletRequest request, HttpServletResponse response, BimServer bimServer) {
 		SService sService = bimServer.getServiceInterfaceService();
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Content-Type", "text/html");
 		try {
 			PrintWriter writer = response.getWriter();
-			
-			String siteAddress = "";
-			DatabaseSession session = bimServer.getDatabase().createSession();
-			try {
-				siteAddress = bimServer.getServerSettings(session).getSiteAddress();
-			} finally {
-				session.close();
-			}
 			if (request.getParameter("doc") != null) {
-				writeHeader(writer);
-				writer.println("<h1>BIMserver JSON API Documentation</h1>");
-				writeMenu(writer, sService);
-				writer.println("<div class=\"main\">");
-				String show = request.getParameter("show");
-				if (show == null) {
-					writeAllMethodsDocumentation(writer, request, sService, bimServer, siteAddress);
-				} else if (show.equals("method")) {
-					writeMethodDocumentation(writer, request, sService.getSMethod(request.getParameter("name")), bimServer, siteAddress);
-				} else if (show.equals("type")) {
-					writeTypeDocumentation(writer, sService.getSType(request.getParameter("name")), bimServer);
-				}
-				writer.println("</div>");
-				writeFooter(writer);
+				writeDocumentation(request, bimServer, sService, writer);
+			} else {
+				handleRequest(request, response, bimServer);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void handleRequest(HttpServletRequest httpRequest, HttpServletResponse response, BimServer bimServer) {
+		JsonConverter converter = new JsonConverter(bimServer.getServiceInterfaceService());
+		try {
+			ServletInputStream inputStream = httpRequest.getInputStream();
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			IOUtils.copy(inputStream, outputStream);
+			JSONObject request = new JSONObject(new JSONTokener(new String(outputStream.toByteArray(), Charsets.UTF_8)));
+			JSONObject requestObject = request.getJSONObject("request");
+
+			ServiceInterface service = getServiceInterface(httpRequest, bimServer, request);
+			response.setHeader("Content-Type", "application/json");
+			
+			// TODO get the actual ServiceInterface in a generic way (using "interface")
+			SMethod method = bimServer.getServiceInterfaceService().getSMethod(requestObject.getString("method"));
+			Object[] parameters = new Object[method.getParameters().size()];
+			for (int i=0; i<method.getParameters().size(); i++) {
+				SParameter parameter = method.getParameter(i);
+				try {
+					if (requestObject.has(parameter.getName())) {
+						parameters[i] = converter.fromJson(parameter.getType(), requestObject.get(parameter.getName()));
+					}
+				} catch (ConvertException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			try {
+				Object result = method.invoke(service, parameters);
+				JSONObject responseObject = new JSONObject();
+				responseObject.put("response", converter.toJson(result));
+				responseObject.write(response.getWriter());
+			} catch (Exception e) {
+				JSONObject responseObject = new JSONObject();
+				JSONObject exceptionJson = new JSONObject();
+				exceptionJson.put("message", e.getMessage());
+				responseObject.put("exception", exceptionJson);
+				responseObject.write(response.getWriter());
+			}
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private ServiceInterface getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, JSONObject request) throws JSONException, UserException,
+			ServerException {
+		Token token = (Token) httpRequest.getSession().getAttribute("token");
+		ServiceInterface service = null;
+		if (token == null) {
+			// There is no token in the HTTP Session, but we also allow the user to not use sessions and provide the token in the json request
+			if (request.has("token")) {
+				JSONObject jsonToken = request.getJSONObject("token");
+				token = new Token(jsonToken.getString("token"), jsonToken.getLong("expires"));
+				service = bimServer.getServiceFactory().getService(token);
+			}
+		} else {
+			service = bimServer.getServiceFactory().getService(token);
+		}
+		if (service == null) {
+			service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL, "");
+			httpRequest.getSession().setAttribute("token", service.getCurrentToken());
+		}
+		return service;
+	}
+
+	private void writeDocumentation(HttpServletRequest request, BimServer bimServer, SService sService, PrintWriter writer) {
+		String siteAddress = "";
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			siteAddress = bimServer.getServerSettings(session).getSiteAddress();
+		} finally {
+			session.close();
+		}
+		writeHeader(writer);
+		writer.println("<h1>BIMserver JSON API Documentation</h1>");
+		writeMenu(writer, sService);
+		writer.println("<div class=\"main\">");
+		String show = request.getParameter("show");
+		if (show == null) {
+			writeAllMethodsDocumentation(writer, request, sService, bimServer, siteAddress);
+		} else if (show.equals("method")) {
+			writeMethodDocumentation(writer, request, sService.getSMethod(request.getParameter("name")), bimServer, siteAddress);
+		} else if (show.equals("type")) {
+			writeTypeDocumentation(writer, sService.getSType(request.getParameter("name")), bimServer);
+		}
+		writer.println("</div>");
+		writeFooter(writer);
 	}
 	
 	private void writeMenu(PrintWriter writer, SService sService) {

@@ -899,17 +899,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_NotificationUrl() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getUser_Schemas() {
-		return (EReference) getUser().getEStructuralFeatures().get(14);
+		return (EReference) getUser().getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -918,7 +909,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_ExtendedData() {
-		return (EReference) getUser().getEStructuralFeatures().get(15);
+		return (EReference) getUser().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -927,7 +918,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_Servers() {
-		return (EReference) getUser().getEStructuralFeatures().get(16);
+		return (EReference) getUser().getEStructuralFeatures().get(15);
 	}
 
 	/**

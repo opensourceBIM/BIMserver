@@ -1,5 +1,6 @@
 package org.bimserver.satellite.activities;
 
+import org.bimserver.client.BimServerClientException;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SRevision;
@@ -25,22 +26,26 @@ public class NameChangeActivity extends Activity {
 
 	@Override
 	public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
-		IfcModelInterface model = satelliteServer.getBimServerClient().getModel(newRevisionNotification.getRevisionId());
-		ServiceInterface serviceInterface = satelliteServer.getBimServerClient().getServiceInterface();
-		SRevision revision = serviceInterface.getRevision(newRevisionNotification.getRevisionId());
-		if (!revision.getComment().contains(COMMENT_TAG)) {
-			serviceInterface.startTransaction(newRevisionNotification.getProjectId());
-			int changed = 0;
-			for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-				if (ifcProduct.getName() == null) {
-					serviceInterface.setStringAttribute(ifcProduct.getOid(), ifcProduct.eClass().getName(), "Name", "Ruben was here");
-				} else {
-					serviceInterface.setStringAttribute(ifcProduct.getOid(), ifcProduct.eClass().getName(), "Name", "Ruben was here (" + ifcProduct.getName() + ")");
+		try {
+			IfcModelInterface model = satelliteServer.getBimServerClient().getModel(newRevisionNotification.getRevisionId());
+			ServiceInterface serviceInterface = satelliteServer.getBimServerClient().getServiceInterface();
+			SRevision revision = serviceInterface.getRevision(newRevisionNotification.getRevisionId());
+			if (!revision.getComment().contains(COMMENT_TAG)) {
+				serviceInterface.startTransaction(newRevisionNotification.getProjectId());
+				int changed = 0;
+				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+					if (ifcProduct.getName() == null) {
+						serviceInterface.setStringAttribute(ifcProduct.getOid(), ifcProduct.eClass().getName(), "Name", "Ruben was here");
+					} else {
+						serviceInterface.setStringAttribute(ifcProduct.getOid(), ifcProduct.eClass().getName(), "Name", "Ruben was here (" + ifcProduct.getName() + ")");
+					}
+					changed++;
 				}
-				changed++;
+				log("Changed " + changed + " objects");
+				serviceInterface.commitTransaction(COMMENT_TAG);
 			}
-			log("Changed " + changed + " objects");
-			serviceInterface.commitTransaction(COMMENT_TAG);
+		} catch (BimServerClientException e) {
+			e.printStackTrace();
 		}
 	}
 	

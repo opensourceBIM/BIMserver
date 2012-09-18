@@ -225,4 +225,8 @@ public class SClass {
 	public String toString() {
 		return name;
 	}
+
+	public boolean isLong() {
+		return name.equals("java.lang.Long") || name.equals("long");
+	}
 }

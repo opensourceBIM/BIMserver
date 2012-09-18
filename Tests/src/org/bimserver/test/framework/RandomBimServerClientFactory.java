@@ -33,7 +33,9 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	public static enum Type {
 		PROTOCOL_BUFFERS,
 		SOAP_HEADER,
-		SOAP_NO_HEADERS
+		SOAP_NO_HEADERS,
+		JSON_SESSION_BASED,
+		JSON_TOKEN_BASED
 	}
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RandomBimServerClientFactory.class);
@@ -55,15 +57,27 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 			BimServerClient bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(testFramework.getTestConfiguration().getHomeDir()));
 			bimServerClient.setAuthentication(authenticationInfo);
 			Type type = types[current];
-			if (type == Type.PROTOCOL_BUFFERS) {
+			switch (type) {
+			case PROTOCOL_BUFFERS:
 				LOGGER.info("New BimServerClient: Protocol Buffers");
 				bimServerClient.connectProtocolBuffers("localhost", 8020);
-			} else if (type == Type.SOAP_HEADER) {
+				break;
+			case SOAP_HEADER:
 				LOGGER.info("New BimServerClient: SOAP/useSoapHeaderSessions");
 				bimServerClient.connectSoap("http://localhost:8080/soap", true);
-			} else if (type == Type.SOAP_NO_HEADERS){
+				break;
+			case SOAP_NO_HEADERS:
 				LOGGER.info("New BimServerClient: SOAP");
 				bimServerClient.connectSoap("http://localhost:8080/soap", false);
+				break;
+			case JSON_SESSION_BASED:
+				LOGGER.info("New BimServerClient: JSON");
+				bimServerClient.connectJson("http://localhost:8080/jsonapi", true);
+				break;
+			case JSON_TOKEN_BASED:
+				LOGGER.info("New BimServerClient: JSON");
+				bimServerClient.connectJson("http://localhost:8080/jsonapi", false);
+				break;
 			}
 			current = (current + 1) % types.length;
 			return bimServerClient;

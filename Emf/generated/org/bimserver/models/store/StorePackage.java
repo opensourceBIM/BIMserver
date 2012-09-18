@@ -380,22 +380,13 @@ public interface StorePackage extends EPackage {
 	int USER__SETTINGS = 12;
 
 	/**
-	 * The feature id for the '<em><b>Notification Url</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER__NOTIFICATION_URL = 13;
-
-	/**
 	 * The feature id for the '<em><b>Schemas</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__SCHEMAS = 14;
+	int USER__SCHEMAS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
@@ -404,7 +395,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__EXTENDED_DATA = 15;
+	int USER__EXTENDED_DATA = 14;
 
 	/**
 	 * The feature id for the '<em><b>Servers</b></em>' reference list.
@@ -413,7 +404,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__SERVERS = 16;
+	int USER__SERVERS = 15;
 
 	/**
 	 * The number of structural features of the '<em>User</em>' class.
@@ -422,7 +413,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 17;
+	int USER_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -4361,17 +4352,6 @@ public interface StorePackage extends EPackage {
 	EReference getUser_Settings();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.User#getNotificationUrl <em>Notification Url</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Notification Url</em>'.
-	 * @see org.bimserver.models.store.User#getNotificationUrl()
-	 * @see #getUser()
-	 * @generated
-	 */
-	EAttribute getUser_NotificationUrl();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getSchemas <em>Schemas</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7511,14 +7491,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER__SETTINGS = eINSTANCE.getUser_Settings();
-
-		/**
-		 * The meta object literal for the '<em><b>Notification Url</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute USER__NOTIFICATION_URL = eINSTANCE.getUser_NotificationUrl();
 
 		/**
 		 * The meta object literal for the '<em><b>Schemas</b></em>' reference list feature.

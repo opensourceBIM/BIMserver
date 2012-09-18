@@ -80,7 +80,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationTokenCreated"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
           eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/users"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
@@ -6599,7 +6598,8 @@
       <eLiterals name="INTERNAL" value="2"/>
       <eLiterals name="REST" value="3"/>
       <eLiterals name="SYNDICATION" value="4"/>
-      <eLiterals name="PROTOCOL_BUFFERS" value="5"/>
+      <eLiterals name="JSON" value="5"/>
+      <eLiterals name="PROTOCOL_BUFFERS" value="6"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LogAction">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
