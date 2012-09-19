@@ -98,6 +98,12 @@ public class SServiceInterfaceService extends SService {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCompare")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExternalServer")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExternalProfile")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SToken")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceInterface")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceMethod")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceField")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceParameter")));
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

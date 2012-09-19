@@ -17,29 +17,14 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.exceptions.UserException;
 
-public class GetSerializerByNameDatabaseAction extends BimDatabaseAction<Serializer> {
-
-	private final String name;
+public class GetSerializerByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<Serializer> {
 
 	public GetSerializerByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
-		super(databaseSession, accessMethod);
-		this.name = name;
-	}
-
-	@Override
-	public Serializer execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
-		return getDatabaseSession().querySingle(condition, Serializer.class, false, null);
+		super(databaseSession, accessMethod, Serializer.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
 	}
 }

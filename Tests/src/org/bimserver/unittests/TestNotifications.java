@@ -22,6 +22,8 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -83,7 +85,10 @@ public class TestNotifications {
 //			}
 //		};
 		try {
-			socketNotificationsClient.connect(protocolBuffersMetaData, new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class), new InetSocketAddress("localhost", 8055));
+			SService notificationsInterface = new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class);
+			Map<String, SService> services = new HashMap<String, SService>();
+			services.put(NotificationInterface.class.getSimpleName(), notificationsInterface);
+			socketNotificationsClient.connect(protocolBuffersMetaData, services, new InetSocketAddress("localhost", 8055));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}

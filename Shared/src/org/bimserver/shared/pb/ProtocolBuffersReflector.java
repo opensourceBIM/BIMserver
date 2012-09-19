@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -55,12 +56,12 @@ public class ProtocolBuffersReflector extends ProtocolBuffersConverter implement
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersReflector.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final Channel channel;
-	private final SService sService;
+	private Map<String, SService> sServices;
 
-	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, Channel channel) {
-		super(sService, protocolBuffersMetaData);
+	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> sServices, Channel channel) {
+		super(protocolBuffersMetaData);
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.sService = sService;
+		this.sServices = sServices;
 		this.channel = channel;
 	}
 
@@ -69,7 +70,7 @@ public class ProtocolBuffersReflector extends ProtocolBuffersConverter implement
 	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
 		try {
 			MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
-			SMethod sMethod = sService.getSMethod(methodName);
+			SMethod sMethod = sServices.get(interfaceName).getSMethod(methodName);
 			Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
 			Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
 			int i = 0;

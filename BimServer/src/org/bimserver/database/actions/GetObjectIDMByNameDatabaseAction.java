@@ -17,29 +17,14 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectIDM;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.exceptions.UserException;
 
-public class GetObjectIDMByNameDatabaseAction extends BimDatabaseAction<ObjectIDM> {
+public class GetObjectIDMByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<ObjectIDM> {
 
-	private final String ObjectIDMName;
-
-	public GetObjectIDMByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String ObjectIDMName) {
-		super(databaseSession, accessMethod);
-		this.ObjectIDMName = ObjectIDMName;
-	}
-
-	@Override
-	public ObjectIDM execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(ObjectIDMName));
-		return getDatabaseSession().querySingle(condition, ObjectIDM.class, false, null);
+	public GetObjectIDMByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
+		super(databaseSession, accessMethod, ObjectIDM.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
 	}
 }

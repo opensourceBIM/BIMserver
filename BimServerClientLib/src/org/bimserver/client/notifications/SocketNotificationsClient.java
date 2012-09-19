@@ -22,6 +22,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.shared.NotificationInterface;
@@ -35,7 +36,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SocketNotificationsClient.class);
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private InetSocketAddress address;
-	private SService sService;
+	private Map<String, SService> services;
 	private boolean running;
 	private ServerSocket serverSocket;
 	private final Set<Handler> handlers = new HashSet<Handler>();
@@ -50,7 +51,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 					while (running) {
 						Socket socket = serverSocket.accept();
 						notifyConnect();
-						Handler handler = new Handler(SocketNotificationsClient.this, socket, multiCastNotificationImpl, protocolBuffersMetaData, sService);
+						Handler handler = new Handler(SocketNotificationsClient.this, socket, multiCastNotificationImpl, protocolBuffersMetaData, services);
 						handlers.add(handler);
 						handler.start();
 					}
@@ -63,9 +64,9 @@ public class SocketNotificationsClient extends NotificationsClient {
 		thread.start();
 	}
 
-	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, SService sService, InetSocketAddress address) {
+	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> services, InetSocketAddress address) {
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.sService = sService;
+		this.services = services;
 		this.address = address;
 	}
 

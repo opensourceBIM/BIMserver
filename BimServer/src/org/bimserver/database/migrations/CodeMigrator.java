@@ -111,7 +111,7 @@ public class CodeMigrator {
 			SService service = new SService(FileUtils.readFileToString(javaFile), NotificationInterface.class);
 			File protoFile = new File("../Builds/build/pb/notification.proto");
 			File descFile = new File("../Builds/build/pb/notification.desc");
-			File reflectorImplementationFile = new File("../BimServer/generated/org/bimserver/interfaces/NotificationInterfaceReflectorImpl.java");
+			File reflectorImplementationFile = new File("../BimServerClientLib/generated/org/bimserver/interfaces/NotificationInterfaceReflectorImpl.java");
 			interfaceReflectorGenerator.generateServiceInterfaceImplementationForReflector(service, reflectorImplementationFile);
 			protocolBuffersGenerator.generate(NotificationInterface.class, protoFile, descFile, false, service, "service");
 			FileUtils.copyFile(javaFile, new File("../Builds/build/targets/shared/NotificationInterface.java"));

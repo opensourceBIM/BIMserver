@@ -27,8 +27,8 @@ import org.apache.cxf.jaxrs.lifecycle.ResourceProvider;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.apache.cxf.message.Message;
 import org.bimserver.BimServer;
+import org.bimserver.models.store.Token;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.RestAuthentication;
 import org.slf4j.Logger;
@@ -38,7 +38,6 @@ public class RestServlet extends CXFNonSpringJaxrsServlet {
 	private static final long serialVersionUID = 6288864278630843847L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(RestServlet.class);
 	
-	@Override
 	protected void createServerFromApplication(String cName, ServletConfig servletConfig) throws ServletException {
 		
 	}

@@ -25,20 +25,20 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import org.bimserver.BimServer;
+import org.bimserver.client.JsonChannel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.interfaces.SConverter;
+import org.bimserver.models.store.ExternalProfile;
 import org.bimserver.models.store.NewProjectNotification;
 import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Notification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketChannel;
@@ -74,26 +74,25 @@ public class NotificationsManager extends Thread {
 			while (running) {
 				try {
 					Notification notification = queue.take();
-					for (NotificationContainer notificationContainer : listeners) {
-						try {
-							NotificationInterface notificationInterface = notificationContainer.getNotificationInterface();
-							boolean isAdmin = notificationContainer.getUser().getUserType() == UserType.ADMIN;
-							if (notification instanceof NewProjectNotification) {
-								NewProjectNotification newProjectNotification = (NewProjectNotification)notification;
-								Project project = newProjectNotification.getProject();
-								if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
-									notificationInterface.newProject(sConverter.convertToSObject((NewProjectNotification) notification));
-								}
-							} else if (notification instanceof NewRevisionNotification) {
-								NewRevisionNotification newRevisionNotification = (NewRevisionNotification) notification;
-								Project project = newRevisionNotification.getRevision().getProject();
-								if (isAdmin || RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(notificationContainer.getUser(), project)) {
-									notificationInterface.newRevision(sConverter.convertToSObject(newRevisionNotification));
-								}
-							}
-						} catch (Exception e) {
-							LOGGER.error("", e);
+					DatabaseSession session = bimServer.getDatabase().createSession();
+					try {
+						IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getExternalProfile(), false, null);
+						for (ExternalProfile externalProfile : allOfType.getAll(ExternalProfile.class)) {
+							externalProfile.getProject();
 						}
+						if (notification instanceof NewProjectNotification) {
+							NewProjectNotification newProjectNotification = (NewProjectNotification)notification;
+						} else if (notification instanceof NewRevisionNotification) {
+							NewRevisionNotification newRevisionNotification = (NewRevisionNotification) notification;
+							Project project = newRevisionNotification.getRevision().getProject();
+							for (ExternalProfile externalProfile : project.getProfiles()) {
+								JsonChannel jsonChannel = new JsonChannel(bimServer.getServiceInterfaces());
+								jsonChannel.connect(externalProfile.getServer().getUrl(), true, null);
+								jsonChannel.getNotificationInterface().newRevision(sConverter.convertToSObject(newRevisionNotification));
+							}
+						}
+					} finally {
+						session.close();
 					}
 				} catch (InterruptedException e) {
 					throw e;
@@ -121,7 +120,7 @@ public class NotificationsManager extends Thread {
 						try {
 							SocketChannel channel = new SocketChannel();
 							channel.connect(address);
-							register(user, new NotificationInterfaceReflectorImpl(new ProtocolBuffersReflector(bimServer.getProtocolBuffersMetaData(), bimServer.getNotificationInterfaceService(), channel)));
+							register(user, new NotificationInterfaceReflectorImpl(new ProtocolBuffersReflector(bimServer.getProtocolBuffersMetaData(), bimServer.getServiceInterfaces(), channel)));
 						} catch (IOException e) {
 							LOGGER.info("Notification host seems down: " + url);
 						}

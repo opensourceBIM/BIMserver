@@ -27,12 +27,14 @@ import java.util.List;
 
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.Token;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.GeneratorUtils;
 import org.slf4j.Logger;
@@ -41,7 +43,7 @@ import org.slf4j.LoggerFactory;
 public class ServiceInterfaceFactory implements ServiceFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceInterfaceFactory.class);
 	private static final int TOKEN_TTL_SECONDS = 60*60; // one hour
-	private final HashMap<Token, ServiceInterface> tokens = new HashMap<Token, ServiceInterface>();
+	private final HashMap<TokenWrapper, ServiceInterface> tokens = new HashMap<TokenWrapper, ServiceInterface>();
 	private final BimServer bimServer;
 
 	public ServiceInterfaceFactory(BimServer bimServer) {
@@ -51,26 +53,38 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 	public ServiceInterface newService(AccessMethod accessMethod, String remoteAddress) {
 		Service service = new Service(bimServer, accessMethod, remoteAddress, this);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
-		Token token = new Token(GeneratorUtils.generateToken(), expires);
-		tokens.put(token, service);
+		Token token = StoreFactory.eINSTANCE.createToken();
+		token.setTokenString(GeneratorUtils.generateToken());
+		token.setExpires(expires.getTime());
+		tokens.put(new TokenWrapper(token), service);
 		service.setToken(token);
 		return service;
 	}
 
 	public synchronized ServiceInterface getService(Token token) throws UserException {
-		if (tokens.containsKey(token)) {
-			return tokens.get(token);
+		TokenWrapper wrapper = new TokenWrapper(token);
+		if (tokens.containsKey(wrapper)) {
+			return tokens.get(wrapper);
 		}
 		throw new UserException("Invalid token");
 	}
 
+	public synchronized ServiceInterface getService(SToken token) throws UserException {
+		TokenWrapper wrapper = new TokenWrapper(token);
+		if (tokens.containsKey(wrapper)) {
+			return tokens.get(wrapper);
+		}
+		throw new UserException("Invalid token");
+	}
+	
 	public synchronized void cleanup() {
 		int tokensCleaned = 0;
 		Date now = new Date();
-		Iterator<Token> iterator = tokens.keySet().iterator();
+		Iterator<TokenWrapper> iterator = tokens.keySet().iterator();
 		while (iterator.hasNext()) {
-			Token token = iterator.next();
-			if (token.getExpiresAsDate().before(now)) {
+			TokenWrapper tokenWrapper = iterator.next();
+			Token token = tokenWrapper.getToken();
+			if (new Date(token.getExpires()).before(now)) {
 				tokensCleaned++;
 				iterator.remove();
 			}
@@ -90,7 +104,8 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 
 	public List<SUserSession> getActiveUserSessions() throws org.bimserver.shared.exceptions.ServerException, UserException {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
-		for (Token token : tokens.keySet()) {
+		for (TokenWrapper tokenWrapper : tokens.keySet()) {
+			Token token = tokenWrapper.getToken();
 			ServiceInterface serviceInterface = tokens.get(token);
 			if (serviceInterface.isLoggedIn() && serviceInterface.getAccessMethod() != SAccessMethod.INTERNAL) {
 				SUser user = serviceInterface.getCurrentUser();

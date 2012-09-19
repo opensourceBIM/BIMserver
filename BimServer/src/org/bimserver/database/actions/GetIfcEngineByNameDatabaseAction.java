@@ -17,29 +17,14 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.exceptions.UserException;
 
-public class GetIfcEngineByNameDatabaseAction extends BimDatabaseAction<IfcEngine> {
-
-	private final String name;
+public class GetIfcEngineByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<IfcEngine> {
 
 	public GetIfcEngineByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
-		super(databaseSession, accessMethod);
-		this.name = name;
-	}
-
-	@Override
-	public IfcEngine execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
-		return getDatabaseSession().querySingle(condition, IfcEngine.class, false, null);
+		super(databaseSession, accessMethod, IfcEngine.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
 	}
 }

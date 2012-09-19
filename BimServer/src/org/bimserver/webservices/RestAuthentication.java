@@ -38,8 +38,8 @@ import org.apache.cxf.transport.http.AbstractHTTPDestination;
 import org.apache.cxf.ws.addressing.EndpointReferenceType;
 import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.Token;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
@@ -83,7 +83,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 			return;
 		}
 		try {
-			if (newService.login(policy.getUserName(), policy.getPassword())) {
+			if (newService.login(policy.getUserName(), policy.getPassword()) != null) {
                 response.setHeader("Access-Control-Allow-Credentials", "true");
 				return;
 			} else {

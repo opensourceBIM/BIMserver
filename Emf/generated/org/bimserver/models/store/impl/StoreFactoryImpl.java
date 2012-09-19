@@ -251,6 +251,18 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createExternalServer();
 		case StorePackage.EXTERNAL_PROFILE:
 			return (EObject) createExternalProfile();
+		case StorePackage.TOKEN:
+			return (EObject) createToken();
+		case StorePackage.SERVICE_INTERFACE:
+			return (EObject) createServiceInterface();
+		case StorePackage.SERVICE_METHOD:
+			return (EObject) createServiceMethod();
+		case StorePackage.SERVICE_FIELD:
+			return (EObject) createServiceField();
+		case StorePackage.SERVICE_TYPE:
+			return (EObject) createServiceType();
+		case StorePackage.SERVICE_PARAMETER:
+			return (EObject) createServiceParameter();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -896,6 +908,66 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ExternalProfile createExternalProfile() {
 		ExternalProfileImpl externalProfile = new ExternalProfileImpl();
 		return externalProfile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Token createToken() {
+		TokenImpl token = new TokenImpl();
+		return token;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceInterface createServiceInterface() {
+		ServiceInterfaceImpl serviceInterface = new ServiceInterfaceImpl();
+		return serviceInterface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceMethod createServiceMethod() {
+		ServiceMethodImpl serviceMethod = new ServiceMethodImpl();
+		return serviceMethod;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceField createServiceField() {
+		ServiceFieldImpl serviceField = new ServiceFieldImpl();
+		return serviceField;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceType createServiceType() {
+		ServiceTypeImpl serviceType = new ServiceTypeImpl();
+		return serviceType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceParameter createServiceParameter() {
+		ServiceParameterImpl serviceParameter = new ServiceParameterImpl();
+		return serviceParameter;
 	}
 
 	/**

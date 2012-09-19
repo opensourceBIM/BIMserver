@@ -3901,6 +3901,273 @@ public interface StorePackage extends EPackage {
 	int EXTERNAL_PROFILE_FEATURE_COUNT = 8;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.TokenImpl <em>Token</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.TokenImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getToken()
+	 * @generated
+	 */
+	int TOKEN = 58;
+
+	/**
+	 * The feature id for the '<em><b>Token String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN__TOKEN_STRING = 0;
+
+	/**
+	 * The feature id for the '<em><b>Expires</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN__EXPIRES = 1;
+
+	/**
+	 * The number of structural features of the '<em>Token</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ServiceInterfaceImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceInterface()
+	 * @generated
+	 */
+	int SERVICE_INTERFACE = 59;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_INTERFACE__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Service Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_INTERFACE_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceMethodImpl <em>Service Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ServiceMethodImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceMethod()
+	 * @generated
+	 */
+	int SERVICE_METHOD = 60;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_METHOD__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_METHOD__DOC = 1;
+
+	/**
+	 * The feature id for the '<em><b>Return Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_METHOD__RETURN_DOC = 2;
+
+	/**
+	 * The number of structural features of the '<em>Service Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_METHOD_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceFieldImpl <em>Service Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ServiceFieldImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceField()
+	 * @generated
+	 */
+	int SERVICE_FIELD = 61;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FIELD__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FIELD__TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Generic Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FIELD__GENERIC_TYPE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FIELD__DOC = 3;
+
+	/**
+	 * The number of structural features of the '<em>Service Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FIELD_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceTypeImpl <em>Service Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ServiceTypeImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceType()
+	 * @generated
+	 */
+	int SERVICE_TYPE = 62;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TYPE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TYPE__SIMPLE_NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Fields</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TYPE__FIELDS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Service Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TYPE_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceParameterImpl <em>Service Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ServiceParameterImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceParameter()
+	 * @generated
+	 */
+	int SERVICE_PARAMETER = 63;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PARAMETER__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PARAMETER__DOC = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PARAMETER__TYPE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Generic Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PARAMETER__GENERIC_TYPE = 3;
+
+	/**
+	 * The number of structural features of the '<em>Service Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PARAMETER_FEATURE_COUNT = 4;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3908,7 +4175,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 58;
+	int USER_TYPE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -3918,7 +4185,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 59;
+	int SI_PREFIX = 65;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -3928,7 +4195,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 60;
+	int OBJECT_STATE = 66;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -3938,7 +4205,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 61;
+	int COMPARE_TYPE = 67;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -3948,7 +4215,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 62;
+	int ACTION_STATE = 68;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -3958,7 +4225,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 63;
+	int SERVER_STATE = 69;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -3968,7 +4235,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 64;
+	int CHECKIN_STATUS = 70;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -3978,7 +4245,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 65;
+	int EXTENDED_DATA_SCHEMA_TYPE = 71;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -3988,7 +4255,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 66;
+	int DATA_HANDLER = 72;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7112,6 +7379,253 @@ public interface StorePackage extends EPackage {
 	EReference getExternalProfile_Project();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Token <em>Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Token</em>'.
+	 * @see org.bimserver.models.store.Token
+	 * @generated
+	 */
+	EClass getToken();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Token#getTokenString <em>Token String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Token String</em>'.
+	 * @see org.bimserver.models.store.Token#getTokenString()
+	 * @see #getToken()
+	 * @generated
+	 */
+	EAttribute getToken_TokenString();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Token#getExpires <em>Expires</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expires</em>'.
+	 * @see org.bimserver.models.store.Token#getExpires()
+	 * @see #getToken()
+	 * @generated
+	 */
+	EAttribute getToken_Expires();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceInterface <em>Service Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Interface</em>'.
+	 * @see org.bimserver.models.store.ServiceInterface
+	 * @generated
+	 */
+	EClass getServiceInterface();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceInterface#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ServiceInterface#getName()
+	 * @see #getServiceInterface()
+	 * @generated
+	 */
+	EAttribute getServiceInterface_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceMethod <em>Service Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Method</em>'.
+	 * @see org.bimserver.models.store.ServiceMethod
+	 * @generated
+	 */
+	EClass getServiceMethod();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceMethod#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ServiceMethod#getName()
+	 * @see #getServiceMethod()
+	 * @generated
+	 */
+	EAttribute getServiceMethod_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceMethod#getDoc <em>Doc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Doc</em>'.
+	 * @see org.bimserver.models.store.ServiceMethod#getDoc()
+	 * @see #getServiceMethod()
+	 * @generated
+	 */
+	EAttribute getServiceMethod_Doc();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceMethod#getReturnDoc <em>Return Doc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Return Doc</em>'.
+	 * @see org.bimserver.models.store.ServiceMethod#getReturnDoc()
+	 * @see #getServiceMethod()
+	 * @generated
+	 */
+	EAttribute getServiceMethod_ReturnDoc();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceField <em>Service Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Field</em>'.
+	 * @see org.bimserver.models.store.ServiceField
+	 * @generated
+	 */
+	EClass getServiceField();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceField#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ServiceField#getName()
+	 * @see #getServiceField()
+	 * @generated
+	 */
+	EAttribute getServiceField_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ServiceField#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.bimserver.models.store.ServiceField#getType()
+	 * @see #getServiceField()
+	 * @generated
+	 */
+	EReference getServiceField_Type();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ServiceField#getGenericType <em>Generic Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Generic Type</em>'.
+	 * @see org.bimserver.models.store.ServiceField#getGenericType()
+	 * @see #getServiceField()
+	 * @generated
+	 */
+	EReference getServiceField_GenericType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceField#getDoc <em>Doc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Doc</em>'.
+	 * @see org.bimserver.models.store.ServiceField#getDoc()
+	 * @see #getServiceField()
+	 * @generated
+	 */
+	EAttribute getServiceField_Doc();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceType <em>Service Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Type</em>'.
+	 * @see org.bimserver.models.store.ServiceType
+	 * @generated
+	 */
+	EClass getServiceType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceType#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ServiceType#getName()
+	 * @see #getServiceType()
+	 * @generated
+	 */
+	EAttribute getServiceType_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceType#getSimpleName <em>Simple Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Simple Name</em>'.
+	 * @see org.bimserver.models.store.ServiceType#getSimpleName()
+	 * @see #getServiceType()
+	 * @generated
+	 */
+	EAttribute getServiceType_SimpleName();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ServiceType#getFields <em>Fields</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Fields</em>'.
+	 * @see org.bimserver.models.store.ServiceType#getFields()
+	 * @see #getServiceType()
+	 * @generated
+	 */
+	EReference getServiceType_Fields();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceParameter <em>Service Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Parameter</em>'.
+	 * @see org.bimserver.models.store.ServiceParameter
+	 * @generated
+	 */
+	EClass getServiceParameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceParameter#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ServiceParameter#getName()
+	 * @see #getServiceParameter()
+	 * @generated
+	 */
+	EAttribute getServiceParameter_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceParameter#getDoc <em>Doc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Doc</em>'.
+	 * @see org.bimserver.models.store.ServiceParameter#getDoc()
+	 * @see #getServiceParameter()
+	 * @generated
+	 */
+	EAttribute getServiceParameter_Doc();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ServiceParameter#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.bimserver.models.store.ServiceParameter#getType()
+	 * @see #getServiceParameter()
+	 * @generated
+	 */
+	EReference getServiceParameter_Type();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ServiceParameter#getGenericType <em>Generic Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Generic Type</em>'.
+	 * @see org.bimserver.models.store.ServiceParameter#getGenericType()
+	 * @see #getServiceParameter()
+	 * @generated
+	 */
+	EReference getServiceParameter_GenericType();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9651,6 +10165,202 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTERNAL_PROFILE__PROJECT = eINSTANCE.getExternalProfile_Project();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.TokenImpl <em>Token</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.TokenImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getToken()
+		 * @generated
+		 */
+		EClass TOKEN = eINSTANCE.getToken();
+
+		/**
+		 * The meta object literal for the '<em><b>Token String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TOKEN__TOKEN_STRING = eINSTANCE.getToken_TokenString();
+
+		/**
+		 * The meta object literal for the '<em><b>Expires</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TOKEN__EXPIRES = eINSTANCE.getToken_Expires();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServiceInterfaceImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceInterface()
+		 * @generated
+		 */
+		EClass SERVICE_INTERFACE = eINSTANCE.getServiceInterface();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_INTERFACE__NAME = eINSTANCE.getServiceInterface_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceMethodImpl <em>Service Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServiceMethodImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceMethod()
+		 * @generated
+		 */
+		EClass SERVICE_METHOD = eINSTANCE.getServiceMethod();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_METHOD__NAME = eINSTANCE.getServiceMethod_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Doc</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_METHOD__DOC = eINSTANCE.getServiceMethod_Doc();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Doc</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_METHOD__RETURN_DOC = eINSTANCE.getServiceMethod_ReturnDoc();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceFieldImpl <em>Service Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServiceFieldImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceField()
+		 * @generated
+		 */
+		EClass SERVICE_FIELD = eINSTANCE.getServiceField();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_FIELD__NAME = eINSTANCE.getServiceField_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_FIELD__TYPE = eINSTANCE.getServiceField_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Generic Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_FIELD__GENERIC_TYPE = eINSTANCE.getServiceField_GenericType();
+
+		/**
+		 * The meta object literal for the '<em><b>Doc</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_FIELD__DOC = eINSTANCE.getServiceField_Doc();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceTypeImpl <em>Service Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServiceTypeImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceType()
+		 * @generated
+		 */
+		EClass SERVICE_TYPE = eINSTANCE.getServiceType();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_TYPE__NAME = eINSTANCE.getServiceType_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Simple Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_TYPE__SIMPLE_NAME = eINSTANCE.getServiceType_SimpleName();
+
+		/**
+		 * The meta object literal for the '<em><b>Fields</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_TYPE__FIELDS = eINSTANCE.getServiceType_Fields();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceParameterImpl <em>Service Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServiceParameterImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceParameter()
+		 * @generated
+		 */
+		EClass SERVICE_PARAMETER = eINSTANCE.getServiceParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_PARAMETER__NAME = eINSTANCE.getServiceParameter_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Doc</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_PARAMETER__DOC = eINSTANCE.getServiceParameter_Doc();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_PARAMETER__TYPE = eINSTANCE.getServiceParameter_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Generic Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_PARAMETER__GENERIC_TYPE = eINSTANCE.getServiceParameter_GenericType();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

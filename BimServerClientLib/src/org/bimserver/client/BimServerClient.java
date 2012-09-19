@@ -19,8 +19,10 @@ package org.bimserver.client;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -79,7 +81,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private final PluginManager pluginManager;
 	private boolean connected = false;
 	private AuthenticationInfo authenticationInfo;
-	private SService sService;
+	private Map<String, SService> sServices = new HashMap<String, SService>();
 
 	public BimServerClient(PluginManager pluginManager) {
 		this.pluginManager = pluginManager;
@@ -91,7 +93,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 			LOGGER.error("", e);
 		}
 		notificationsClient = new SocketNotificationsClient();
-		sService = new SService(null, ServiceInterface.class);
+		sServices.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
 	}
 
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
@@ -111,7 +113,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 //			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
 //		}
 		disconnect();
-		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData, sService);
+		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData, sServices);
 		this.channel = protocolBuffersChannel;
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
 		try {
@@ -123,7 +125,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void connectJson(final String address, boolean useHttpSession) throws ConnectionException {
 		disconnect();
-		JsonChannel jsonChannel = new JsonChannel(sService);
+		JsonChannel jsonChannel = new JsonChannel(sServices);
 		this.channel = jsonChannel;
 		jsonChannel.connect(address, useHttpSession, authenticationInfo);
 	}
@@ -161,16 +163,17 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public ServiceInterface getServiceInterface() {
 		if (channel != null) {
-			return channel.getServiceInterface();
+			return (ServiceInterface) channel.getServiceInterface("ServiceInterface");
 		}
 		return null;
 	}
 
 	public Session createSession() {
-		if (channel.getServiceInterface() == null) {
+		ServiceInterface serviceInterface = getServiceInterface();
+		if (serviceInterface == null) {
 			throw new RuntimeException("Connect first");
 		}
-		Session session = new Session(channel.getServiceInterface());
+		Session session = new Session(serviceInterface);
 		return session;
 	}
 
@@ -192,7 +195,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		try {
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-				connected = channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword());
+				connected = channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()) != null;
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
 				connected = channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode());
@@ -217,7 +220,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void setNotificationsEnabled(boolean enabled) {
 		if (enabled && !notificationsClient.isRunning()) {
-			notificationsClient.connect(protocolBuffersMetaData, sService, new InetSocketAddress("localhost", 8055));
+			notificationsClient.connect(protocolBuffersMetaData, sServices, new InetSocketAddress("localhost", 8055));
 			notificationsClient.startAndWaitForInit();
 			if (connected) {
 //				try {
