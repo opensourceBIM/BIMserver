@@ -371,6 +371,36 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseToken(Token object) {
+			return createTokenAdapter();
+		}
+
+		@Override
+		public Adapter caseServiceInterface(ServiceInterface object) {
+			return createServiceInterfaceAdapter();
+		}
+
+		@Override
+		public Adapter caseServiceMethod(ServiceMethod object) {
+			return createServiceMethodAdapter();
+		}
+
+		@Override
+		public Adapter caseServiceField(ServiceField object) {
+			return createServiceFieldAdapter();
+		}
+
+		@Override
+		public Adapter caseServiceType(ServiceType object) {
+			return createServiceTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseServiceParameter(ServiceParameter object) {
+			return createServiceParameterAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1198,6 +1228,90 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExternalProfileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Token <em>Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Token
+	 * @generated
+	 */
+	public Adapter createTokenAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServiceInterface <em>Service Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ServiceInterface
+	 * @generated
+	 */
+	public Adapter createServiceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServiceMethod <em>Service Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ServiceMethod
+	 * @generated
+	 */
+	public Adapter createServiceMethodAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServiceField <em>Service Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ServiceField
+	 * @generated
+	 */
+	public Adapter createServiceFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServiceType <em>Service Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ServiceType
+	 * @generated
+	 */
+	public Adapter createServiceTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServiceParameter <em>Service Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ServiceParameter
+	 * @generated
+	 */
+	public Adapter createServiceParameterAdapter() {
 		return null;
 	}
 

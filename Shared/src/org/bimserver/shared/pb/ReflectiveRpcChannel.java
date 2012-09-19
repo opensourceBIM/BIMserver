@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -51,13 +52,13 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final Object service;
-	private final SService sService;
+	private Map<String, SService> services;
 
-	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData, SService sService) {
-		super(sService, protocolBuffersMetaData);
+	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> services) {
+		super(protocolBuffersMetaData);
 		this.service = service;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.sService = sService;
+		this.services = services;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -65,7 +66,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 		FieldDescriptor errorMessageField = methodDescriptor.getOutputField("errorMessage");
 		DynamicMessage response = DynamicMessage.getDefaultInstance(methodDescriptor.getOutputDescriptor());
 		Descriptor inputType = methodDescriptor.getInputDescriptor();
-		SMethod sMethod = sService.getSMethod(methodDescriptor.getName());
+		SMethod sMethod = services.get(methodDescriptor.getServiceDescriptorContainer().getName()).getSMethod(methodDescriptor.getName());
 		if (sMethod == null) {
 			LOGGER.info("Method " + methodDescriptor.getName() + " not found");
 		}

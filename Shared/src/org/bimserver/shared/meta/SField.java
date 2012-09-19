@@ -22,6 +22,7 @@ public class SField {
 	private final SClass type;
 	private final boolean aggregate;
 	private final SClass genericType;
+	private String doc = "";
 	
 	public SField(String name, SClass type, SClass generticType) {
 		this(name, type, generticType, false);
@@ -52,5 +53,9 @@ public class SField {
 	
 	public String getName() {
 		return name;
+	}
+
+	public String getDoc() {
+		return doc;
 	}
 }

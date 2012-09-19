@@ -24,7 +24,7 @@ public class DirectChannel extends Channel {
 	}
 	
 	public void connect(ServiceInterface serviceInterface) {
-		setServiceInterface(serviceInterface);
+		addServiceInterface("ServiceInterface", serviceInterface);
 		notifyOfConnect();
 	}
 

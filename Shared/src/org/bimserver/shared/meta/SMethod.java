@@ -30,6 +30,8 @@ import java.util.Set;
 import javax.jws.WebParam;
 
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -159,16 +161,24 @@ public class SMethod {
 		return returnDoc;
 	}
 
-	public Object invoke(ServiceInterface service, Object[] parameters) {
+	public Object invoke(ServiceInterface service, Object[] parameters) throws ServiceException {
 		for (Method method : service.getClass().getMethods()) {
 			if (method.getName().equals(getName())) {
 				try {
 					return method.invoke(service, parameters);
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					dumpError(parameters, method, e);
-				} catch (InvocationTargetException e) {
+				} catch (Exception e) {
+					if (e instanceof ServiceException) {
+						throw (ServiceException)e;
+					} else if (e instanceof InvocationTargetException) {
+						if (e.getCause() instanceof ServiceException) {
+							throw (ServiceException)(e.getCause());
+						} else {
+							dumpError(parameters, method, e);
+						}
+					} else {
+						dumpError(parameters, method, e);
+						throw new UserException("Invalid arguments");
+					}
 				}
 			}
 		}

@@ -20,6 +20,7 @@ package org.bimserver.client.notifications;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Map;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.NotificationInterface;
@@ -39,16 +40,16 @@ public class Handler extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Handler.class);
 	private final Socket socket;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final SService sService;
 	private final SocketNotificationsClient socketNotificationsClient;
 	private ServiceFactory serviceFactory;
 	private boolean running;
+	private final Map<String, SService> services;
 
-	public Handler(SocketNotificationsClient socketNotificationsClient, Socket socket, final NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, SService sService) {
+	public Handler(SocketNotificationsClient socketNotificationsClient, Socket socket, final NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> services) {
 		this.socketNotificationsClient = socketNotificationsClient;
 		this.socket = socket;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.sService = sService;
+		this.services = services;
 		serviceFactory = new ServiceFactory() {
 			@Override
 			public Object newService(AccessMethod accessMethod, String remoteAddress) {
@@ -65,7 +66,7 @@ public class Handler extends Thread {
 	@Override
 	public void run() {
 		running = true;
-		ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()), protocolBuffersMetaData, sService);
+		ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()), protocolBuffersMetaData, services);
 		try {
 			while (running) {
 				DataInputStream dis = new DataInputStream(socket.getInputStream());

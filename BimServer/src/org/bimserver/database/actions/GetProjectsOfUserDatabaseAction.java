@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -33,25 +33,32 @@ import org.bimserver.shared.exceptions.UserException;
 public class GetProjectsOfUserDatabaseAction extends BimDatabaseAction<List<Project>>{
 
 	private final long actingUoid;
+	private long uoid;
 
-	public GetProjectsOfUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid) {
+	public GetProjectsOfUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long uoid) {
 		super(databaseSession, accessMethod);
 		this.actingUoid = actingUoid;
+		this.uoid = uoid;
 	}
 
 	@Override
 	public List<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(actingUoid);
-		if (user != null) {
-			List<Project> result = new ArrayList<Project>();
-			for (Project project : user.getHasRightsOn()) {
-				if (project.getState() == ObjectState.ACTIVE || user.getUserType() == UserType.ADMIN) {
-					result.add(project);
+		User actingUser = getUserByUoid(actingUoid);
+		if (actingUser.getUserType() == UserType.ADMIN || actingUoid == uoid) {
+			User user = getUserByUoid(uoid);
+			if (user != null) {
+				List<Project> result = new ArrayList<Project>();
+				for (Project project : user.getHasRightsOn()) {
+					if (project.getState() == ObjectState.ACTIVE || user.getUserType() == UserType.ADMIN) {
+						result.add(project);
+					}
 				}
+				return result;
+			} else {
+				throw new UserException("User with id " + uoid + " does not exist");
 			}
-			return result;
 		} else {
-			throw new UserException("User with id " + actingUoid + " does not exist");
+			throw new UserException("No rights");
 		}
 	}
 }

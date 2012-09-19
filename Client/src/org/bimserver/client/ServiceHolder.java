@@ -69,7 +69,7 @@ public class ServiceHolder {
 		if (connected) {
 			try {
 				LOGGER.info("Logging in as " + username);
-				if (bimServerClient.getServiceInterface().login(username, password)) {
+				if (bimServerClient.getServiceInterface().login(username, password) != null) {
 					LOGGER.info("Successfully logged on as " + username);
 					return true;
 				} else {

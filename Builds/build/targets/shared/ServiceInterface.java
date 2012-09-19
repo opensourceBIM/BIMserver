@@ -71,6 +71,11 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SServiceInterface;
+import org.bimserver.interfaces.objects.SServiceMethod;
+import org.bimserver.interfaces.objects.SServiceParameter;
+import org.bimserver.interfaces.objects.SServiceType;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
@@ -111,7 +116,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "login")
-	Boolean login(
+	SToken login(
 			@WebParam(name = "username", partName = "login.username") String username,
 			@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
 
@@ -896,7 +901,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getCurrentToken")
-	Token getCurrentToken() throws ServerException, UserException;
+	SToken getCurrentToken() throws ServerException, UserException;
 
 	/**
 	 * @return The method of access this ServiceInterface is using (SOAP, REST, PB etc...)
@@ -1721,14 +1726,16 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "enablePlugin")
-	void enablePlugin(String name) throws ServerException, UserException;
+	void enablePlugin(
+		@WebParam(name = "name", partName = "enablePlugin.name") String name) throws ServerException, UserException;
 	
 	/**
 	 * @param name Name of the plugin to disable
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "disablePlugin")
-	void disablePlugin(String name) throws ServerException, UserException;
+	void disablePlugin(
+		@WebParam(name = "name", partName = "disablePlugin.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param contentType The ContentType
@@ -1737,7 +1744,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getSerializerByContentType")
 	SSerializer getSerializerByContentType(
-			@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServerException, UserException;
+		@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServerException, UserException;
 	
 	/**
 	 * @param pid ObjectID of the Project to start a transaction on
@@ -2028,16 +2035,6 @@ public interface ServiceInterface {
 			@WebParam(name = "oid", partName = "removeReference.oid") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
-	 * @param uoid ObjectID of the User to change the callBack URL for
-	 * @param address Address of the callback server (e.g. localhost:2000)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setHttpCallback")
-	void setHttpCallback(
-			@WebParam(name = "uoid", partName = "setHttpCallback.uoid") Long uoid, 
-			@WebParam(name = "address", partName = "setHttpCallback.address") String address) throws ServerException, UserException;
-	
-	/**
 	 * @param roid ObjectID of the Revision to perform this query on
 	 * @param code The Java code, should be an implementation of the QueryInterface interface
 	 * @return SRunResult
@@ -2166,4 +2163,16 @@ public interface ServiceInterface {
 	SExternalProfile getExternalProfile(long epid) throws ServerException, UserException;
 
 	SExternalServer getExternalServer(long esid) throws ServerException, UserException;
+	
+	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
+	
+	List<SServiceMethod> getServiceMethods(
+		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethods.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
+	
+	List<SServiceType> getServiceTypes(
+		@WebParam(name = "serviceInterfaceName", partName = "getServiceTypes.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
+	
+	List<SServiceParameter> getServiceMethodParameters(
+		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethodParameters.serviceInterfaceName") String serviceInterfaceName,
+		@WebParam(name = "serviceMethodName", partName = "getServiceMethodParameters.serviceMethodName") String serviceMethodName) throws ServerException, UserException;
 }

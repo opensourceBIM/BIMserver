@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.activation.DataHandler;
 import javax.mail.util.ByteArrayDataSource;
@@ -26,10 +27,10 @@ import com.google.common.base.Charsets;
 
 public class JsonConverter {
 
-	private SService sService;
+	private Map<String, SService> services;
 
-	public JsonConverter(SService sService) {
-		this.sService = sService;
+	public JsonConverter(Map<String, SService> services) {
+		this.services = services;
 	}
 	
 	public Object toJson(Object object) throws JSONException {
@@ -37,7 +38,7 @@ public class JsonConverter {
 			SBase base = (SBase)object;
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("__type", base.getSClass().getName());
-			for (SField field : base.getSClass().getFields()) {
+			for (SField field : base.getSClass().getAllFields()) {
 				jsonObject.put(field.getName(), toJson(base.sGet(field)));
 			}
 			return jsonObject;
@@ -64,14 +65,24 @@ public class JsonConverter {
 		return object;
 	}
 
+	public SClass getType(String name) {
+		for (SService sService : services.values()) {
+			SClass type = sService.getSType(name);
+			if (type != null) {
+				return type;
+			}
+		}
+		return null;
+	}
+	
 	public Object fromJson(SClass definedType, Object object) throws JSONException, ConvertException {
 		if (object instanceof JSONObject) {
 			JSONObject jsonObject = (JSONObject) object;
 			if (jsonObject.has("__type")) {
 				String type = jsonObject.getString("__type");
-				SClass sClass = sService.getSType(type);
+				SClass sClass = getType(type);
 				SBase newObject = sClass.newInstance();
-				for (SField field : newObject.getSClass().getFields()) {
+				for (SField field : newObject.getSClass().getAllFields()) {
 					if (jsonObject.has(field.getName())) {
 						newObject.sSet(field, fromJson(field.getType(), jsonObject.get(field.getName())));
 					}

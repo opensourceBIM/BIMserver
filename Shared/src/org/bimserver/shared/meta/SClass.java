@@ -146,6 +146,14 @@ public class SClass {
 		return new ArrayList<SField>(fields.values());
 	}
 	
+	public List<SField> getAllFields() {
+		List<SField> fields = new ArrayList<SField>(getFields());
+		if (getSuperClass() != null) {
+			fields.addAll(getSuperClass().getAllFields());
+		}
+		return fields;
+	}
+	
 	public SBase newInstance() {
 		try {
 			return (SBase) Class.forName(name).newInstance();

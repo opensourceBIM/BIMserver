@@ -19,6 +19,7 @@ package org.bimserver.database.query.conditions;
 
 import java.util.Set;
 
+import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.ecore.EClass;
 
@@ -32,5 +33,12 @@ public abstract class LiteralCondition extends Condition {
 	@Override
 	public boolean matches(IdEObject object) {
 		return false;
+	}
+
+	public static LiteralCondition from(Object value) {
+		if (value instanceof String) {
+			return new StringLiteral((String)value);
+		}
+		return null;
 	}
 }

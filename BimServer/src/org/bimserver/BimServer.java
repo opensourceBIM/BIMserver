@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -130,8 +131,7 @@ public class BimServer {
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
-	private SService serviceInterfaceService;
-	private SService notificationInterfaceService;
+	private final Map<String, SService> serviceInterfaces = new HashMap<String, SService>();
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
@@ -295,11 +295,11 @@ public class BimServer {
 
 			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
 			String content1 = getContent(resource1);
-			serviceInterfaceService = new SService(content1, ServiceInterface.class);
+			serviceInterfaces.put(ServiceInterface.class.getSimpleName(), new SService(content1, ServiceInterface.class));
 
 			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
 			String content2 = getContent(resource2);
-			notificationInterfaceService = new SService(content2, NotificationInterface.class);
+			serviceInterfaces.put(NotificationInterface.class.getSimpleName(), new SService(content2, NotificationInterface.class));
 
 			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();
@@ -353,9 +353,9 @@ public class BimServer {
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaceService, getServerSettings(session)
+				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaces, getServerSettings(session)
 						.getProtocolBuffersPort());
-				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, serviceInterfaceService));
+				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, serviceInterfaces));
 				protocolBuffersServer.start();
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -762,8 +762,8 @@ public class BimServer {
 		return serverInfoManager;
 	}
 
-	public SService getServiceInterfaceService() {
-		return serviceInterfaceService;
+	public SService getServiceInterface(String name) {
+		return serviceInterfaces.get(name);
 	}
 
 	public ProtocolBuffersMetaData getProtocolBuffersMetaData() {
@@ -778,7 +778,7 @@ public class BimServer {
 		return embeddedWebServer;
 	}
 
-	public SService getNotificationInterfaceService() {
-		return notificationInterfaceService;
+	public Map<String, SService> getServiceInterfaces() {
+		return serviceInterfaces;
 	}
 }

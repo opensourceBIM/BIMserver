@@ -103,13 +103,18 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SServiceField;
+import org.bimserver.interfaces.objects.SServiceInterface;
+import org.bimserver.interfaces.objects.SServiceMethod;
+import org.bimserver.interfaces.objects.SServiceParameter;
+import org.bimserver.interfaces.objects.SServiceType;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
-import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
@@ -137,6 +142,7 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.Token;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
@@ -151,9 +157,13 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.shared.CompareWriter;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.SMethod;
+import org.bimserver.shared.meta.SParameter;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.utils.MultiplexingInputStream;
 import org.bimserver.utils.NetUtils;
 import org.codehaus.jettison.json.JSONArray;
@@ -535,14 +545,19 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Boolean login(String username, String password) throws ServerException, UserException {
+	public SToken login(String username, String password) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			LoginDatabaseAction loginDatabaseAction = new LoginDatabaseAction(session, this, accessMethod, username, password);
-			return session.executeAndCommitAction(loginDatabaseAction);
+			Boolean result = session.executeAndCommitAction(loginDatabaseAction);
+			if (result) {
+				return getCurrentToken();
+			} else {
+				return null;
+			}
 		} catch (Exception e) {
 			handleException(e);
-			return false;
+			return null;
 		} finally {
 			session.close();
 		}
@@ -1204,8 +1219,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
-			return new ArrayList<SProject>(converter.convertToSSetProject(user.getHasRightsOn()));
+			GetProjectsOfUserDatabaseAction action = new GetProjectsOfUserDatabaseAction(session, accessMethod, currentUoid, uoid);
+			return converter.convertToSListProject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1744,8 +1759,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Token getCurrentToken() {
-		return token;
+	public SToken getCurrentToken() {
+		return converter.convertToSObject(token);
 	}
 
 	public void setToken(Token token) {
@@ -2291,9 +2306,10 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void startTransaction(Long poid) throws UserException {
+	public void startTransaction(Long poid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		changes = new LinkedHashSet<Change>();
+		getProjectByPoid(poid); // Throws exception
 		transactionPoid = poid;
 	}
 
@@ -3357,5 +3373,90 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException {
+		List<SServiceInterface> sServiceInterfaces = new ArrayList<SServiceInterface>();
+		for (String name : bimServer.getServiceInterfaces().keySet()) {
+			SServiceInterface sServiceInterface = new SServiceInterface();
+			sServiceInterface.setName(name);
+			sServiceInterfaces.add(sServiceInterface);
+		}
+		return sServiceInterfaces;
+	}
+
+	@Override
+	public List<SServiceMethod> getServiceMethods(String serviceInterfaceName) throws ServerException, UserException {
+		List<SServiceMethod> sServiceMethods = new ArrayList<SServiceMethod>();
+		SService sService = bimServer.getServiceInterfaces().get(serviceInterfaceName);
+		if (sService == null) {
+			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
+		}
+		for (SMethod sMethod : sService.getMethods()) {
+			SServiceMethod sServiceMethod = new SServiceMethod();
+			sServiceMethod.setName(sMethod.getName());
+			sServiceMethod.setDoc(sMethod.getDoc());
+			sServiceMethod.setReturnDoc(sMethod.getReturnDoc());
+//			sServiceMethod.setReturnType(sMethod.getReturnType().getName());
+			sServiceMethods.add(sServiceMethod);
+		}
+		return sServiceMethods;
+	}
+
+	@Override
+	public List<SServiceType> getServiceTypes(String serviceInterfaceName) throws ServerException, UserException {
+		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
+		SService serviceInterface = bimServer.getServiceInterface(serviceInterfaceName);
+		if (serviceInterface == null) {
+			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
+		}
+		for (SClass sType : serviceInterface.getTypes()) {
+			SServiceType sServiceType = new SServiceType();
+			sServiceType.setName(sType.getName());
+			sServiceTypes.add(sServiceType);
+		}
+		return sServiceTypes;
+	}
+
+	// TODO Recursion to same type will result in endless loop
+	public SServiceType createSServiceType(SClass sClass) {
+		if (sClass == null) {
+			return null;
+		}
+		SServiceType sServiceType = new SServiceType();
+		sServiceType.setName(sClass.getName());
+		sServiceType.setSimpleName(sClass.getSimpleName());
+		for (SField field : sClass.getAllFields()) {
+			SServiceField sServiceField = new SServiceField();
+			sServiceField.setName(field.getName());
+			sServiceField.setType(createSServiceType(field.getType()));
+			sServiceField.setGenericType(createSServiceType(field.getGenericType()));
+			sServiceField.setDoc(field.getDoc());
+			sServiceType.getFields().add(sServiceField);
+		}
+		return sServiceType;
+	}
+	
+	@Override
+	public List<SServiceParameter> getServiceMethodParameters(String serviceInterfaceName, String serviceMethodName) throws ServerException, UserException {
+		List<SServiceParameter> sServiceParameters = new ArrayList<SServiceParameter>();
+		SService serviceInterface = bimServer.getServiceInterface(serviceInterfaceName);
+		if (serviceInterface == null) {
+			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
+		}
+		SMethod sMethod = serviceInterface.getSMethod(serviceMethodName);
+		if (sMethod == null) {
+			throw new UserException("Method \"" + serviceMethodName + "\" not found in \"" + serviceInterfaceName + "\"");
+		}
+		for (SParameter sParameter : sMethod.getParameters()) {
+			SServiceParameter sServiceParameter = new SServiceParameter();
+			sServiceParameter.setName(sParameter.getName());
+			sServiceParameter.setDoc(sParameter.getDoc());
+			sServiceParameter.setType(createSServiceType(sParameter.getType()));
+			sServiceParameter.setGenericType(createSServiceType(sParameter.getGenericType()));
+			sServiceParameters.add(sServiceParameter);
+		}
+		return sServiceParameters;
 	}
 }

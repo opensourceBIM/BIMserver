@@ -31,6 +31,7 @@ import org.bimserver.database.query.conditions.Not;
 import org.bimserver.database.query.literals.EnumLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -48,10 +49,14 @@ public class GetAllNonAuthorizedUsersOfProjectDatabaseAction extends BimDatabase
 	
 	@Override
 	public Set<User> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Project project = getProjectByPoid(poid);
+		if (project == null) {
+			throw new UserException("No Project with oid " + poid + " found");
+		}
 		Condition condition = 
 			new AndCondition(
 				new AndCondition(
-						new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getUser_HasRightsOn(), getProjectByPoid(poid))), 
+						new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getUser_HasRightsOn(), project)), 
 						new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE))), 
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getUser_UserType(), new EnumLiteral(UserType.SYSTEM))));
 		return CollectionUtils.mapToSet((Map<Long, User>) getDatabaseSession().query(condition, User.class, false, null));

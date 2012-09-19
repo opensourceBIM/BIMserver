@@ -46,6 +46,9 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(poid);
+		if (project == null) {
+			throw new UserException("No Project with oid " + poid + " found");
+		}
 		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
 			project.setState(ObjectState.ACTIVE);
 			ProjectUndeleted projectUndeleted = LogFactory.eINSTANCE.createProjectUndeleted();

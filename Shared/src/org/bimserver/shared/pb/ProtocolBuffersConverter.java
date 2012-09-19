@@ -30,7 +30,6 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MessageDescriptorContainer;
 import org.bimserver.utils.ByteArrayDataSource;
 import org.slf4j.Logger;
@@ -49,7 +48,7 @@ public class ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConverter.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersConverter(SService sService, ProtocolBuffersMetaData protocolBuffersMetaData) {
+	public ProtocolBuffersConverter(ProtocolBuffersMetaData protocolBuffersMetaData) {
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 	}
 

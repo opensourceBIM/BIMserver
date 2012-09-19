@@ -3,6 +3,7 @@ package org.bimserver.client;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -18,11 +19,11 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
+import org.bimserver.models.store.Token;
 import org.bimserver.shared.ConvertException;
 import org.bimserver.shared.JsonConverter;
 import org.bimserver.shared.KeyValuePair;
 import org.bimserver.shared.Reflector;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SService;
@@ -35,7 +36,6 @@ import com.google.common.base.Charsets;
 
 public class JsonReflector implements Reflector {
 
-	private SService sService;
 	private String remoteAddress;
 	private AuthenticationInfo authenticationInfo;
 	private boolean useHttpSession;
@@ -43,14 +43,15 @@ public class JsonReflector implements Reflector {
 	private DefaultHttpClient httpclient;
 	private HttpContext localContext = new BasicHttpContext();
 	private JsonConverter converter;
+	private Map<String, SService> services;
 
-	public JsonReflector(SService sService, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
-		this.sService = sService;
+	public JsonReflector(Map<String, SService> services, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
+		this.services = services;
 		this.remoteAddress = remoteAddress;
 		this.useHttpSession = useHttpSession;
 		this.authenticationInfo = authenticationInfo;
 		httpclient = new DefaultHttpClient();
-		converter = new JsonConverter(sService);
+		converter = new JsonConverter(services);
 	}
 
 	@Override
@@ -76,7 +77,7 @@ public class JsonReflector implements Reflector {
 				}
 			} else if (jsonResult.has("response")) {
 				Object responseObject = jsonResult.get("response");
-				return converter.fromJson(sService.getSMethod(methodName).getBestReturnType(), responseObject);
+				return converter.fromJson(services.get(interfaceName).getSMethod(methodName).getBestReturnType(), responseObject);
 			} else {
 				return null;
 			}

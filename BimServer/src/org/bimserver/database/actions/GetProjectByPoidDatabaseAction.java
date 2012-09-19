@@ -43,7 +43,7 @@ public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
 	public Project execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		if (project == null) {
-			throw new UserException("Project does not exist");
+			throw new UserException("Project with oid " + poid + " does not exist");
 		}
 		User user = getUserByUoid(actionUoid);
 		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {

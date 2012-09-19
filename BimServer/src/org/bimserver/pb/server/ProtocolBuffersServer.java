@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.shared.meta.SService;
@@ -37,10 +38,10 @@ public class ProtocolBuffersServer extends Thread {
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final int port;
 	private ServerSocket serverSocket;
-	private final SService sService;
+	private final Map<String, SService> services;
 
-	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, SService sService, int port) {
-		this.sService = sService;
+	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, Map<String, SService> services, int port) {
+		this.services = services;
 		setName("ProtocolBuffersServer");
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.serviceFactoryRegistry = serviceFactoryRegistry;
@@ -54,7 +55,7 @@ public class ProtocolBuffersServer extends Thread {
 			serverSocket = new ServerSocket(port);
 			while (running) {
 				Socket socket = serverSocket.accept();
-				ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler = new ProtocolBuffersConnectionHandler(socket, this, sService);
+				ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler = new ProtocolBuffersConnectionHandler(socket, this, services);
 				activeHandlers.add(protocolBuffersConnectionHandler);
 				protocolBuffersConnectionHandler.start();
 			}

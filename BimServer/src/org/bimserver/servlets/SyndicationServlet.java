@@ -76,7 +76,7 @@ public class SyndicationServlet extends HttpServlet {
 				service = bimServer.getServiceFactory().newService(AccessMethod.SYNDICATION, request.getRemoteAddr());
 			}
 			try {
-				if (service.login(username, password)) {
+				if (service.login(username, password) != null) {
 					String requestURI = request.getRequestURI();
 					response.setContentType("application/atom+xml");
 					try {

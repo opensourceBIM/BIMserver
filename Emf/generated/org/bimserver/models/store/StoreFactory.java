@@ -558,6 +558,60 @@ public interface StoreFactory extends EFactory {
 	ExternalProfile createExternalProfile();
 
 	/**
+	 * Returns a new object of class '<em>Token</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Token</em>'.
+	 * @generated
+	 */
+	Token createToken();
+
+	/**
+	 * Returns a new object of class '<em>Service Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Interface</em>'.
+	 * @generated
+	 */
+	ServiceInterface createServiceInterface();
+
+	/**
+	 * Returns a new object of class '<em>Service Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Method</em>'.
+	 * @generated
+	 */
+	ServiceMethod createServiceMethod();
+
+	/**
+	 * Returns a new object of class '<em>Service Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Field</em>'.
+	 * @generated
+	 */
+	ServiceField createServiceField();
+
+	/**
+	 * Returns a new object of class '<em>Service Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Type</em>'.
+	 * @generated
+	 */
+	ServiceType createServiceType();
+
+	/**
+	 * Returns a new object of class '<em>Service Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Parameter</em>'.
+	 * @generated
+	 */
+	ServiceParameter createServiceParameter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

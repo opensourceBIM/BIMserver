@@ -20,10 +20,11 @@ package org.bimserver.shared.meta;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
@@ -42,14 +43,14 @@ import org.slf4j.LoggerFactory;
 
 public class SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SService.class);
-	private final Map<String, SMethod> methods = new HashMap<String, SMethod>();
-	private final Map<String, SClass> types = new HashMap<String, SClass>();
+	private final Map<String, SMethod> methods = new TreeMap<String, SMethod>();
+	private final Map<String, SClass> types = new TreeMap<String, SClass>();
 	private final String name;
 	private final Class<?> clazz;
 	private String sourceCode;
 	
 	// Disabled for now, makes the deployed JAR stop at this point
-	private boolean processJavaDoc = false;
+	private boolean processJavaDoc = true;
 
 	public void dump() {
 		System.out.println(getMethods().size());
@@ -87,18 +88,14 @@ public class SService {
 	}
 
 	private void extractJavaDoc() {
-		LOGGER.info("Extracting javadoc");
 		ASTParser parser = ASTParser.newParser(AST.JLS3);
 		parser.setSource(sourceCode.toCharArray());
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
-		LOGGER.info("creating ast");
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
-		LOGGER.info("starting accept");
 		cu.accept(new ASTVisitor() {
 			MethodDeclaration currentMethod = null;
 
 			public boolean visit(Javadoc javaDoc) {
-				LOGGER.info("visit javadoc");
 				if (currentMethod != null) {
 					SMethod method = getSMethod(currentMethod.getName().getIdentifier());
 					if (method == null) {
@@ -132,14 +129,12 @@ public class SService {
 
 			@Override
 			public boolean visit(MethodDeclaration node) {
-				LOGGER.info("visit md");
 				currentMethod = node;
 				return super.visit(node);
 			}
 
 			@Override
 			public void endVisit(MethodDeclaration node) {
-				LOGGER.info("endvisit md");
 				currentMethod = null;
 				super.endVisit(node);
 			}
@@ -235,7 +230,7 @@ public class SService {
 	}
 
 	public Set<SMethod> getMethods() {
-		return new HashSet<SMethod>(methods.values());
+		return new LinkedHashSet<SMethod>(methods.values());
 	}
 
 	public SMethod getSMethod(String name) {

@@ -44,6 +44,9 @@ public class DeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 			throw new UserException("Only administrators can delete users accounts");
 		}
 		final User user = getUserByUoid(uoid);
+		if (user == null) {
+			throw new UserException("No user found with oid " + uoid);
+		}
 		if (user.getUserType() == UserType.SYSTEM) {
 			throw new UserException("System user cannot be deleted");
 		}

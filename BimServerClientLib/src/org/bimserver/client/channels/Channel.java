@@ -17,22 +17,36 @@ package org.bimserver.client.channels;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
+import org.bimserver.interfaces.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.Reflector;
 import org.bimserver.shared.ServiceInterface;
 
 public abstract class Channel {
-	private ServiceInterface serviceInterface;
+	private final Map<String, Object> serviceInterfaces = new HashMap<String, Object>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 
-	protected void setServiceInterface(ServiceInterface serviceInterface) {
-		this.serviceInterface = serviceInterface;
+	protected void addServiceInterface(String name, Object object) {
+		serviceInterfaces.put(name, object);
 	}
 
+	public NotificationInterface getNotificationInterface() {
+		return (NotificationInterface) getServiceInterface("NotificationInterface");
+	}
+	
 	public ServiceInterface getServiceInterface() {
-		return serviceInterface;
+		return (ServiceInterface) getServiceInterface("ServiceInterface");
+	}
+	
+	public Object getServiceInterface(String name) {
+		return serviceInterfaces.get(name);
 	}
 	
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
@@ -51,5 +65,10 @@ public abstract class Channel {
 		}
 	}
 
+	protected void finish(Reflector reflector) {
+		serviceInterfaces.put("ServiceInterface", new ServiceInterfaceReflectorImpl(reflector));
+		serviceInterfaces.put("NotificationInterface", new NotificationInterfaceReflectorImpl(reflector));
+	}
+	
 	public abstract void disconnect();
 }
