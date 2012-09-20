@@ -36,7 +36,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.web.LoginManager;
+import org.bimwebserver.jsp.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

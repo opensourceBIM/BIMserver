@@ -6,9 +6,9 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
-<%@page import="org.bimserver.web.LoginManager"%>
+<%@page import="org.bimwebserver.jsp.LoginManager"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject sProject = loginManager.getService().getProjectByPoid(poid);

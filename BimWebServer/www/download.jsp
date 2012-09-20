@@ -7,8 +7,8 @@
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
-<%@page import="org.bimserver.web.LoginManager"%>
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
+<%@page import="org.bimwebserver.jsp.LoginManager"%>
 <div class="downloadpopup">
 <div class="checkoutMessage"></div>
 <%

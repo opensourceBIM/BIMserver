@@ -6,7 +6,7 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>

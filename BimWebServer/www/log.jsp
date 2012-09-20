@@ -2,7 +2,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.shared.comparators.SLogActionDateComparator"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SDatabaseCreated"%>
 <%@page import="org.bimserver.interfaces.objects.SPasswordChanged"%>

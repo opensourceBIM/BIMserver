@@ -1,4 +1,4 @@
-package org.bimserver.servlets;
+package org.bimwebserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.web.LoginManager;
+import org.bimwebserver.jsp.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;

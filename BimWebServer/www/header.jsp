@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.client.factories.AutologinAuthenticationInfo"%>
 <%@page import="org.bimserver.interfaces.objects.SVersion"%>
@@ -9,8 +9,8 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
-<jsp:useBean id="errorMessages" scope="request" class="org.bimserver.web.ErrorMessages" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
+<jsp:useBean id="errorMessages" scope="request" class="org.bimwebserver.jsp.ErrorMessages" />
 <jsp:include page="htmlheader.jsp" />
 <body class="default">
 <%

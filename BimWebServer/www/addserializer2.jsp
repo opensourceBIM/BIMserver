@@ -1,6 +1,6 @@
 <%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>

@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="org.bimserver.web.JspHelper"%>
+<%@ page import="org.bimwebserver.jsp.JspHelper"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.bimserver.interfaces.objects.SProject"%>
 <%@ page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@ page import="org.bimserver.shared.exceptions.ServiceException"%>
 <jsp:useBean id="loginManager" scope="session"
-	class="org.bimserver.web.LoginManager" />
+	class="org.bimwebserver.jsp.LoginManager" />
 
 <%
 	try {

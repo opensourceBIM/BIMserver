@@ -3,8 +3,8 @@
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>
-<%@page import="org.bimserver.web.LoginManager"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.LoginManager"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>

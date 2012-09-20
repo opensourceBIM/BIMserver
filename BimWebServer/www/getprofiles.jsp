@@ -1,4 +1,4 @@
-<%@page import="org.bimserver.interfaces.objects.SExternalProfile"%><%@page import="java.util.List"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />{
+<%@page import="org.bimserver.interfaces.objects.SExternalProfile"%><%@page import="java.util.List"%><jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />{
 	"profiles": [
 <%
 	List<SExternalProfile> profiles = loginManager.getService().getRemoteProfiles(request.getParameter("url"));

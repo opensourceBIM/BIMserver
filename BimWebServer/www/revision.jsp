@@ -13,7 +13,7 @@
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>

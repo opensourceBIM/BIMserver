@@ -11,7 +11,7 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <jsp:useBean id="loginManager" scope="session"
-	class="org.bimserver.web.LoginManager" />
+	class="org.bimwebserver.jsp.LoginManager" />
 <%
 	try {
 		JSONObject data = new JSONObject(new JSONTokener(request.getParameter("data")));

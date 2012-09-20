@@ -1,4 +1,4 @@
-package org.bimserver.servlets;
+package org.bimwebserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.web.LoginManager;
+import org.bimwebserver.jsp.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

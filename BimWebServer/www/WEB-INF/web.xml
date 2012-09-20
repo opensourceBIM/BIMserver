@@ -9,7 +9,7 @@
 
 	<servlet>
 		<servlet-name>ProgressServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.ProgressServlet</servlet-class>
+		<servlet-class>org.bimwebserver.servlets.ProgressServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -19,7 +19,7 @@
 
 	<servlet>
 		<servlet-name>FileServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.FileServlet</servlet-class>
+		<servlet-class>org.bimwebserver.servlets.FileServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -29,7 +29,7 @@
 
 	<servlet>
 		<servlet-name>DownloadServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.DownloadServlet</servlet-class>
+		<servlet-class>org.bimwebserver.servlets.DownloadServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -39,7 +39,7 @@
 
 	<servlet>
 		<servlet-name>UploadServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
+		<servlet-class>org.bimwebserver.servlets.UploadServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -49,7 +49,7 @@
 
 	<servlet>
 		<servlet-name>JsonServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.JsonServlet</servlet-class>
+		<servlet-class>org.bimwebserver.servlets.JsonServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -65,5 +65,25 @@
 	<servlet-mapping>
 		<servlet-name>JsonApiServlet</servlet-name>
 		<url-pattern>/jsonapi/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>StreamingServlet</servlet-name>
+		<servlet-class>org.bimwebserver.servlets.StreamingServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StreamingServlet</servlet-name>
+		<url-pattern>/stream/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>NotificationServlet</servlet-name>
+		<servlet-class>org.bimwebserver.servlets.NotificationServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NotificationServlet</servlet-name>
+		<url-pattern>/notifications/*</url-pattern>
 	</servlet-mapping>
 </web-app>

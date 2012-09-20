@@ -33,14 +33,15 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
-import org.bimserver.servlets.ProgressServlet;
-import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.web.LocalDevBimWebServerStarter;
-import org.bimserver.web.LoginManager;
+import org.bimwebserver.jsp.LocalDevBimWebServerStarter;
+import org.bimwebserver.jsp.LoginManager;
+import org.bimwebserver.servlets.DownloadServlet;
+import org.bimwebserver.servlets.ProgressServlet;
+import org.bimwebserver.servlets.StreamingServlet;
+import org.bimwebserver.servlets.UploadServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,6 +81,7 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(ProgressServlet.class, "/progress/*");
 		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
+		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
 	 		bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {

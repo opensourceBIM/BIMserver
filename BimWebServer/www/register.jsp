@@ -15,7 +15,7 @@
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <jsp:include page="htmlheader.jsp" />
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	if (loginManager.getService().isSettingAllowSelfRegistration()) {
 		List<String> errorMessages = new ArrayList<String>();
