@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.web.Message"%>
+<%@page import="org.bimwebserver.jsp.Message"%>
 <%@page import="java.util.List" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -13,9 +13,9 @@
 <%@page import="org.bimserver.shared.comparators.SCheckoutDateComparator"%>
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="java.util.Comparator"%>
-<%@page import="org.bimserver.web.SProjectComparator"%>
+<%@page import="org.bimwebserver.jsp.SProjectComparator"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.comparators.SRevisionDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>

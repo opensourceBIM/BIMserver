@@ -28,7 +28,7 @@
 <%@page import="org.bimserver.interfaces.objects.SServerStarted"%>
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SUserSession"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTagUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SUserChanged"%>
 <%@page import="org.bimserver.interfaces.objects.SPasswordReset"%>

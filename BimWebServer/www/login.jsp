@@ -13,8 +13,8 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.net.URLEncoder"%>
 <jsp:include page="htmlheader.jsp" />
-<jsp:useBean id="errorMessages" scope="request" class="org.bimserver.web.ErrorMessages" />
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="errorMessages" scope="request" class="org.bimwebserver.jsp.ErrorMessages" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <body>
 	<%
 	try {

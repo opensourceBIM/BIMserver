@@ -1,4 +1,4 @@
-package org.bimserver.servlets;
+package org.bimwebserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -29,7 +29,7 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.web.LoginManager;
+import org.bimwebserver.jsp.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;

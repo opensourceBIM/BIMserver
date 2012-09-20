@@ -3,7 +3,7 @@
 <%@page import="org.bimserver.interfaces.objects.SMigration"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Set"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <h1>Migrations</h1>
 <%
 	if (request.getParameter("migrate") != null) {

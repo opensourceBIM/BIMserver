@@ -5,7 +5,7 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Properties"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <div class="sidebar">

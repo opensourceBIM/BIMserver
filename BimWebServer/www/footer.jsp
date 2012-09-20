@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.web.LoginManager"%>
+<%@page import="org.bimwebserver.jsp.LoginManager"%>
 </div>
 <div class="footer">    
 	<%=((LoginManager)request.getSession().getAttribute("loginManager")).getService().getSettingFooterAddition() %>

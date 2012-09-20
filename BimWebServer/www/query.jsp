@@ -6,7 +6,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
 	SRevision revision = loginManager.getService().getRevision(roid);

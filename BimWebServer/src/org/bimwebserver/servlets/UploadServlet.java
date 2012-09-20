@@ -1,4 +1,4 @@
-package org.bimserver.servlets;
+package org.bimwebserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -32,7 +32,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bimserver.utils.InputStreamDataSource;
-import org.bimserver.web.LoginManager;
+import org.bimwebserver.jsp.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;

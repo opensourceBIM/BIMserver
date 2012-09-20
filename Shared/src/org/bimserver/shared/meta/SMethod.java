@@ -161,7 +161,7 @@ public class SMethod {
 		return returnDoc;
 	}
 
-	public Object invoke(ServiceInterface service, Object[] parameters) throws ServiceException {
+	public Object invoke(Object service, Object[] parameters) throws ServiceException {
 		for (Method method : service.getClass().getMethods()) {
 			if (method.getName().equals(getName())) {
 				try {

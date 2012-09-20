@@ -7,13 +7,13 @@
 <%@page import="org.bimserver.interfaces.objects.SSimpleDataValue"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SRevisionSummary"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.shared.comparators.SRevisionIdComparator"%><div id="browser">
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
 	SRevision revision = loginManager.getService().getRevision(roid);

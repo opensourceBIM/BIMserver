@@ -4,7 +4,7 @@
 <%@page import="org.bimserver.interfaces.objects.SLongActionState"%>
 <%@page import="org.bimserver.interfaces.objects.SActionState"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	int laid = Integer.parseInt(request.getParameter("laid"));
 	String zip = request.getParameter("zip");

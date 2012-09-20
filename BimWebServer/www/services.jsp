@@ -1,7 +1,7 @@
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <%@page import="org.bimserver.interfaces.objects.SExternalProfile"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	SProject project = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("oid")));
 %>

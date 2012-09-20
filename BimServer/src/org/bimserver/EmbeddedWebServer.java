@@ -23,7 +23,7 @@ import org.bimserver.servlets.RestServlet;
 import org.bimserver.servlets.SyndicationServlet;
 import org.bimserver.servlets.WebServiceServlet;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.bio.SocketConnector;
+import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -39,7 +39,7 @@ public class EmbeddedWebServer {
 		server = new Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
 		server.setSessionIdManager(hashSessionIdManager);
-		SocketConnector socketConnector = new SocketConnector();
+		SelectChannelConnector socketConnector = new SelectChannelConnector();
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");

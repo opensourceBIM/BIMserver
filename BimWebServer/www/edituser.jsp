@@ -2,7 +2,7 @@
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <div class="sidebar">
 </div>
 <div class="content">

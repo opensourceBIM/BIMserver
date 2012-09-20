@@ -32,12 +32,12 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.resources.JarResourceFetcher;
-import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
-import org.bimserver.servlets.ProgressServlet;
-import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.web.LoginManager;
+import org.bimwebserver.jsp.LoginManager;
+import org.bimwebserver.servlets.DownloadServlet;
+import org.bimwebserver.servlets.ProgressServlet;
+import org.bimwebserver.servlets.UploadServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>

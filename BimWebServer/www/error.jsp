@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="java.util.Set"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <jsp:include page="htmlheader.jsp" />
 <body>
 <div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 20px">

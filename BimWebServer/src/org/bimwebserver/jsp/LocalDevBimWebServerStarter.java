@@ -1,4 +1,4 @@
-package org.bimserver.web;
+package org.bimwebserver.jsp;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
