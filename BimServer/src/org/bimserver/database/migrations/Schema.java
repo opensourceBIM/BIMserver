@@ -294,4 +294,8 @@ public class Schema {
 	public EClass createEClass(String packageName, String className) {
 		return createEClass(getEPackage(packageName), className);
 	}
+
+	public EEnum createEEnum(String packageName, String enumName) {
+		return createEEnum(getEPackage(packageName), enumName);
+	}
 }
