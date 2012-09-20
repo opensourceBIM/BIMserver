@@ -2,7 +2,6 @@ package org.bimwebserver.servlets;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -13,11 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.ConvertException;
 import org.bimserver.shared.JsonConverter;
-import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
-import org.bimserver.shared.meta.SService;
+import org.bimwebserver.BimWebServer;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
@@ -27,12 +25,13 @@ import com.google.common.base.Charsets;
 public class NotificationServlet extends HttpServlet {
 
 	private JsonConverter converter;
-	private HashMap<String, SService> sServices = new HashMap<String, SService>();
-	private HashMap<String, Object> services = new HashMap<String, Object>();
-
-	public NotificationServlet() {
-		sServices.put(NotificationInterface.class.getSimpleName(), new SService(null, NotificationInterface.class));
-		converter = new JsonConverter(sServices);
+	private BimWebServer bimWebServer;
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		bimWebServer = (BimWebServer)getServletContext().getAttribute("bimwebserver");
+		converter = new JsonConverter(bimWebServer.getServicesInterfaces());
 	}
 	
 	@Override
@@ -55,7 +54,7 @@ public class NotificationServlet extends HttpServlet {
 			
 			String interfaceName = requestObject.getString("interface");
 			String methodName = requestObject.getString("method");
-			SMethod method = sServices.get(NotificationInterface.class.getSimpleName()).getSMethod(methodName);
+			SMethod method = bimWebServer.getServiceInterface(interfaceName).getSMethod(methodName);
 			if (method == null) {
 				throw new UserException("Method " + methodName + " not found on " + interfaceName);
 			}
@@ -72,7 +71,7 @@ public class NotificationServlet extends HttpServlet {
 			}
 
 			try {
-				Object result = method.invoke(services.get(interfaceName), parameters);
+				Object result = method.invoke(bimWebServer.getService(interfaceName), parameters);
 				JSONObject responseObject = new JSONObject();
 				responseObject.put("response", converter.toJson(result));
 				responseObject.write(response.getWriter());

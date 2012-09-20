@@ -29,7 +29,6 @@ import java.util.Set;
 
 import javax.jws.WebParam;
 
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;

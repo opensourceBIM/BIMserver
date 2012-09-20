@@ -100,8 +100,8 @@ public class SProject implements SBase
 		if (sField.getName().equals("extendedData")) {
 			return getExtendedData();
 		}
-		if (sField.getName().equals("profiles")) {
-			return getProfiles();
+		if (sField.getName().equals("services")) {
+			return getServices();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -178,8 +178,8 @@ public class SProject implements SBase
 			setExtendedData((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("profiles")) {
-			setProfiles((List<Long>)val);
+		if (sField.getName().equals("services")) {
+			setServices((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -206,7 +206,7 @@ public class SProject implements SBase
 	private java.lang.String description;
 	private SSIPrefix exportLengthMeasurePrefix;
 	private List<Long> extendedData = new ArrayList<Long>();
-	private List<Long> profiles = new ArrayList<Long>();
+	private List<Long> services = new ArrayList<Long>();
 	public java.lang.Integer getId() {
 		return id;
 	}
@@ -331,12 +331,12 @@ public class SProject implements SBase
 	public void setExtendedData(List<Long> extendedData) {
 		this.extendedData = extendedData;
 	}
-	public List<Long> getProfiles() {
-		return profiles;
+	public List<Long> getServices() {
+		return services;
 	}
 
-	public void setProfiles(List<Long> profiles) {
-		this.profiles = profiles;
+	public void setServices(List<Long> services) {
+		this.services = services;
 	}
 	@Override
 	public int hashCode() {

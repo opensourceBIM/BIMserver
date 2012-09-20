@@ -5,3 +5,12 @@
 <%@ include file="settingsmenu.jsp"%>
 <h1>User Settings</h1>
 User the menu on the left
+Click <a class="desktopNotificationsLink" href="#">here</a> to enable desktop notifications.
+<script>
+$(function(){
+	$(".desktopNotificationsLink").click(function(event){
+		event.preventDefault();
+		window.webkitNotifications.requestPermission();
+	});
+});
+</script>

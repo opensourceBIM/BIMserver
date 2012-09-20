@@ -538,17 +538,17 @@ p.explain {
 	padding: 5px;
 }
 
-.profilediv {
+.servicediv {
 	padding-top: 10px;
 }
 
-.profilediv label {
+.servicediv label {
 	display: block;
 	padding-top: 6px;
 	padding-bottom: 6px;
 }
 
-.profilediv label span {
+.servicediv label span {
 	display: inline-block;
 	width: 150px;
 }

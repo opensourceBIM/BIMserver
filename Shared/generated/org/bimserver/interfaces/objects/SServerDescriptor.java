@@ -16,15 +16,13 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SObjectModified.class, SObjectAdded.class, SObjectRemoved.class})
-public class SCompareItem implements SBase
+public class SServerDescriptor implements SBase
 {
 	private long oid = -1;
 	@XmlTransient
@@ -44,12 +42,18 @@ public class SCompareItem implements SBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SCompareItem.sClass = sClass;
+		SServerDescriptor.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("dataObject")) {
-			return getDataObject();
+		if (sField.getName().equals("title")) {
+			return getTitle();
+		}
+		if (sField.getName().equals("url")) {
+			return getUrl();
+		}
+		if (sField.getName().equals("description")) {
+			return getDescription();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -57,8 +61,16 @@ public class SCompareItem implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("dataObject")) {
-			setDataObject((SDataObject)val);
+		if (sField.getName().equals("title")) {
+			setTitle((String)val);
+			return;
+		}
+		if (sField.getName().equals("url")) {
+			setUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -68,15 +80,30 @@ public class SCompareItem implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private SDataObject dataObject;
-	public SDataObject getDataObject() {
-		return dataObject;
+	private java.lang.String title;
+	private java.lang.String url;
+	private java.lang.String description;
+	public java.lang.String getTitle() {
+		return title;
 	}
 
-	public void setDataObject(SDataObject dataObject) {
-		this.dataObject = dataObject;
+	public void setTitle(java.lang.String title) {
+		this.title = title;
 	}
-	
+	public java.lang.String getUrl() {
+		return url;
+	}
+
+	public void setUrl(java.lang.String url) {
+		this.url = url;
+	}
+	public java.lang.String getDescription() {
+		return description;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,7 +120,7 @@ public class SCompareItem implements SBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SCompareItem other = (SCompareItem) obj;
+		SServerDescriptor other = (SServerDescriptor) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

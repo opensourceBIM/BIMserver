@@ -29,6 +29,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
@@ -36,10 +37,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.NewRevisionNotification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
@@ -118,9 +117,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					NewRevisionNotification newRevisionNotification = StoreFactory.eINSTANCE.createNewRevisionNotification();
-					newRevisionNotification.setRevision(concreteRevision.getRevisions().get(0));
-					newRevisionNotification.setProject(concreteRevision.getProject());
+					SNewRevisionNotification newRevisionNotification = new SNewRevisionNotification();
+					newRevisionNotification.setRevisionId(concreteRevision.getRevisions().get(0).getOid());
+					newRevisionNotification.setProjectId(concreteRevision.getProject().getOid());
 					bimServer.getNotificationsManager().notify(newRevisionNotification);
 				}
 			});

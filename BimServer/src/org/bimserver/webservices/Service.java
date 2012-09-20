@@ -108,6 +108,7 @@ import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
 import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
@@ -3309,20 +3310,23 @@ public class Service implements ServiceInterface {
 		try {
 			String content = NetUtils.getContent(new URL(url));
 			JSONObject root = new JSONObject(new JSONTokener(content));
-			JSONArray profiles = root.getJSONArray("profiles");
-			for (int i=0; i<profiles.length(); i++) {
-				JSONObject profile = profiles.getJSONObject(i);
-				org.bimserver.interfaces.objects.SService externalProfile = new org.bimserver.interfaces.objects.SService();
-				externalProfile.setName(profile.getString("name"));
-				externalProfile.setDescription(profile.getString("description"));
+			JSONArray services = root.getJSONArray("services");
+			for (int i=0; i<services.length(); i++) {
+				JSONObject service = services.getJSONObject(i);
+				org.bimserver.interfaces.objects.SService sService = new org.bimserver.interfaces.objects.SService();
+				sService.setName(service.getString("name"));
+				sService.setDescription(service.getString("description"));
+				sService.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
+				sService.setTrigger(STrigger.valueOf(service.getString("trigger")));
+				sService.setUrl(service.getString("url"));
 				
-				JSONObject rights = profile.getJSONObject("rights");
+				JSONObject rights = service.getJSONObject("rights");
 				
-				externalProfile.setReadRevision(rights.getBoolean("readRevision"));
-				externalProfile.setReadExtendedData(rights.getBoolean("readExtendedData"));
-				externalProfile.setWriteRevisionId(rights.getBoolean("writeRevision") ? 1 : 0);
-				externalProfile.setWriteExtendedDataId(rights.getBoolean("writeExtendedData") ? 1 : 0);
-				externalProfiles.add(externalProfile);
+				sService.setReadRevision(rights.getBoolean("readRevision"));
+				sService.setReadExtendedData(rights.getBoolean("readExtendedData"));
+				sService.setWriteRevisionId(rights.getBoolean("writeRevision") ? 1 : 0);
+				sService.setWriteExtendedDataId(rights.getBoolean("writeExtendedData") ? 1 : 0);
+				externalProfiles.add(sService);
 			}
 		} catch (Exception e) {
 			handleException(e);
@@ -3347,6 +3351,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
+			sService.setUserId(getCurrentUser().getOid());
 			org.bimserver.models.store.Service service = converter.convertFromSObject(sService, session);
 			project.getServices().add(service);
 			service.setProject(project);
