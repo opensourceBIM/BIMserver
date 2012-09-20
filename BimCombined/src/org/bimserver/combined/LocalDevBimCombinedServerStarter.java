@@ -36,6 +36,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimwebserver.BimWebServer;
 import org.bimwebserver.jsp.LocalDevBimWebServerStarter;
 import org.bimwebserver.jsp.LoginManager;
 import org.bimwebserver.servlets.DownloadServlet;
@@ -83,6 +84,7 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
+		 	embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", new BimWebServer());
 	 		bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");

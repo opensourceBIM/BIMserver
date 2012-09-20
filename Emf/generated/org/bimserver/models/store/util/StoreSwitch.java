@@ -518,16 +518,16 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.EXTERNAL_SERVER: {
-			ExternalServer externalServer = (ExternalServer) theEObject;
-			T result = caseExternalServer(externalServer);
+		case StorePackage.SERVER_DESCRIPTOR: {
+			ServerDescriptor serverDescriptor = (ServerDescriptor) theEObject;
+			T result = caseServerDescriptor(serverDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.EXTERNAL_PROFILE: {
-			ExternalProfile externalProfile = (ExternalProfile) theEObject;
-			T result = caseExternalProfile(externalProfile);
+		case StorePackage.SERVICE: {
+			Service service = (Service) theEObject;
+			T result = caseService(service);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1420,32 +1420,32 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Server</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Server Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Server</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Server Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExternalServer(ExternalServer object) {
+	public T caseServerDescriptor(ServerDescriptor object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Profile</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Service</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Profile</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Service</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExternalProfile(ExternalProfile object) {
+	public T caseService(Service object) {
 		return null;
 	}
 

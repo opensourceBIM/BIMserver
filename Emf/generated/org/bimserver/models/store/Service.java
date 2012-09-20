@@ -1,0 +1,373 @@
+/**
+ * Copyright (C) 2011  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.bimserver.models.store;
+
+import org.bimserver.emf.IdEObject;
+import org.bimserver.models.log.AccessMethod;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Service</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.bimserver.models.store.Service#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getToken <em>Token</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getNotificationProtocol <em>Notification Protocol</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getTrigger <em>Trigger</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#isReadRevision <em>Read Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getWriteRevision <em>Write Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getUser <em>User</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.bimserver.models.store.StorePackage#getService()
+ * @model
+ * @extends IdEObject
+ * @generated
+ */
+public interface Service extends IdEObject {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Url</em>' attribute.
+	 * @see #setUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_Url()
+	 * @model
+	 * @generated
+	 */
+	String getUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getUrl <em>Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Url</em>' attribute.
+	 * @see #getUrl()
+	 * @generated
+	 */
+	void setUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Token</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Token</em>' attribute.
+	 * @see #setToken(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_Token()
+	 * @model
+	 * @generated
+	 */
+	String getToken();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getToken <em>Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Token</em>' attribute.
+	 * @see #getToken()
+	 * @generated
+	 */
+	void setToken(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Notification Protocol</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.log.AccessMethod}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Notification Protocol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Notification Protocol</em>' attribute.
+	 * @see org.bimserver.models.log.AccessMethod
+	 * @see #setNotificationProtocol(AccessMethod)
+	 * @see org.bimserver.models.store.StorePackage#getService_NotificationProtocol()
+	 * @model
+	 * @generated
+	 */
+	AccessMethod getNotificationProtocol();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getNotificationProtocol <em>Notification Protocol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Notification Protocol</em>' attribute.
+	 * @see org.bimserver.models.log.AccessMethod
+	 * @see #getNotificationProtocol()
+	 * @generated
+	 */
+	void setNotificationProtocol(AccessMethod value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Trigger</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.Trigger}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Trigger</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Trigger</em>' attribute.
+	 * @see org.bimserver.models.store.Trigger
+	 * @see #setTrigger(Trigger)
+	 * @see org.bimserver.models.store.StorePackage#getService_Trigger()
+	 * @model
+	 * @generated
+	 */
+	Trigger getTrigger();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getTrigger <em>Trigger</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Trigger</em>' attribute.
+	 * @see org.bimserver.models.store.Trigger
+	 * @see #getTrigger()
+	 * @generated
+	 */
+	void setTrigger(Trigger value);
+
+	/**
+	 * Returns the value of the '<em><b>Read Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Read Revision</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Read Revision</em>' attribute.
+	 * @see #setReadRevision(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getService_ReadRevision()
+	 * @model
+	 * @generated
+	 */
+	boolean isReadRevision();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#isReadRevision <em>Read Revision</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Read Revision</em>' attribute.
+	 * @see #isReadRevision()
+	 * @generated
+	 */
+	void setReadRevision(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Read Extended Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Read Extended Data</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Read Extended Data</em>' attribute.
+	 * @see #setReadExtendedData(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getService_ReadExtendedData()
+	 * @model
+	 * @generated
+	 */
+	boolean isReadExtendedData();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Read Extended Data</em>' attribute.
+	 * @see #isReadExtendedData()
+	 * @generated
+	 */
+	void setReadExtendedData(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Write Revision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Write Revision</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Write Revision</em>' reference.
+	 * @see #setWriteRevision(Project)
+	 * @see org.bimserver.models.store.StorePackage#getService_WriteRevision()
+	 * @model
+	 * @generated
+	 */
+	Project getWriteRevision();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getWriteRevision <em>Write Revision</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Write Revision</em>' reference.
+	 * @see #getWriteRevision()
+	 * @generated
+	 */
+	void setWriteRevision(Project value);
+
+	/**
+	 * Returns the value of the '<em><b>Write Extended Data</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Write Extended Data</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Write Extended Data</em>' reference.
+	 * @see #setWriteExtendedData(Project)
+	 * @see org.bimserver.models.store.StorePackage#getService_WriteExtendedData()
+	 * @model
+	 * @generated
+	 */
+	Project getWriteExtendedData();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getWriteExtendedData <em>Write Extended Data</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Write Extended Data</em>' reference.
+	 * @see #getWriteExtendedData()
+	 * @generated
+	 */
+	void setWriteExtendedData(Project value);
+
+	/**
+	 * Returns the value of the '<em><b>Project</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Project#getServices <em>Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Project</em>' reference.
+	 * @see #setProject(Project)
+	 * @see org.bimserver.models.store.StorePackage#getService_Project()
+	 * @see org.bimserver.models.store.Project#getServices
+	 * @model opposite="services"
+	 * @generated
+	 */
+	Project getProject();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getProject <em>Project</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project</em>' reference.
+	 * @see #getProject()
+	 * @generated
+	 */
+	void setProject(Project value);
+
+	/**
+	 * Returns the value of the '<em><b>User</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.User#getServices <em>Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User</em>' reference.
+	 * @see #setUser(User)
+	 * @see org.bimserver.models.store.StorePackage#getService_User()
+	 * @see org.bimserver.models.store.User#getServices
+	 * @model opposite="services"
+	 * @generated
+	 */
+	User getUser();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getUser <em>User</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>User</em>' reference.
+	 * @see #getUser()
+	 * @generated
+	 */
+	void setUser(User value);
+
+} // Service

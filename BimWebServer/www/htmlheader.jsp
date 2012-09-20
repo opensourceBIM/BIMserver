@@ -121,17 +121,14 @@
 					server._send(text);
 			},
 
-			_onmessage : function(m) {
-				if (m.data) {
-					var messageBox = $('messageBox');
-					var spanText = document.createElement('span');
-					spanText.className = 'text';
-					spanText.innerHTML = m.data;
-					var lineBreak = document.createElement('br');
-					messageBox.appendChild(spanText);
-					messageBox.appendChild(lineBreak);
-					messageBox.scrollTop = messageBox.scrollHeight
-							- messageBox.clientHeight;
+			_onmessage : function(message) {
+				if (window.webkitNotifications.checkPermission() == 0) {
+					var jsonMessage = JSON.parse(message.data);
+					if (window.webkitNotifications) {
+						window.webkitNotifications.createNotification(null, jsonMessage.title, jsonMessage.message);
+					}
+			 	} else {
+					console.log(message.data);
 				}
 			},
 

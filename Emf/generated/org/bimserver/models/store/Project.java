@@ -46,7 +46,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getExportLengthMeasurePrefix <em>Export Length Measure Prefix</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getExtendedData <em>Extended Data</em>}</li>
- *   <li>{@link org.bimserver.models.store.Project#getProfiles <em>Profiles</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Project#getServices <em>Services</em>}</li>
  * </ul>
  * </p>
  *
@@ -459,21 +459,21 @@ public interface Project extends IdEObject {
 	EList<ExtendedData> getExtendedData();
 
 	/**
-	 * Returns the value of the '<em><b>Profiles</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.ExternalProfile}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExternalProfile#getProject <em>Project</em>}'.
+	 * Returns the value of the '<em><b>Services</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.Service}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Service#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Profiles</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Services</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Profiles</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getProject_Profiles()
-	 * @see org.bimserver.models.store.ExternalProfile#getProject
+	 * @return the value of the '<em>Services</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getProject_Services()
+	 * @see org.bimserver.models.store.Service#getProject
 	 * @model opposite="project"
 	 * @generated
 	 */
-	EList<ExternalProfile> getProfiles();
+	EList<Service> getServices();
 
 } // Project

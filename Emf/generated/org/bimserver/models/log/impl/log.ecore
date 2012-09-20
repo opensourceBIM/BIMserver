@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="log"
-    nsURI="log" nsPrefix="log">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="log" nsURI="log" nsPrefix="log">
   <eClassifiers xsi:type="ecore:EEnum" name="AccessMethod">
     <eLiterals name="SOAP"/>
     <eLiterals name="WEB_INTERFACE" value="1"/>
     <eLiterals name="INTERNAL" value="2"/>
     <eLiterals name="REST" value="3"/>
     <eLiterals name="SYNDICATION" value="4"/>
-    <eLiterals name="PROTOCOL_BUFFERS" value="5"/>
+    <eLiterals name="JSON" value="5"/>
+    <eLiterals name="PROTOCOL_BUFFERS" value="6"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LogAction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>

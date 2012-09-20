@@ -21,10 +21,10 @@ import java.util.Date;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
-import org.bimserver.models.store.ExternalServer;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -54,7 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getExtendedData <em>Extended Data</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserImpl#getServers <em>Servers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getServices <em>Services</em>}</li>
  * </ul>
  * </p>
  *
@@ -334,8 +334,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ExternalServer> getServers() {
-		return (EList<ExternalServer>) eGet(StorePackage.Literals.USER__SERVERS, true);
+	public EList<Service> getServices() {
+		return (EList<Service>) eGet(StorePackage.Literals.USER__SERVICES, true);
 	}
 
 } //UserImpl

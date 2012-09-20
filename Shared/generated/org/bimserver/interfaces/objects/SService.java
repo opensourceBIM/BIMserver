@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SExternalProfile implements SBase
+public class SService implements SBase
 {
 	private long oid = -1;
 	@XmlTransient
@@ -42,18 +42,27 @@ public class SExternalProfile implements SBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SExternalProfile.sClass = sClass;
+		SService.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("serverId")) {
-			return getServerId();
-		}
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
+		if (sField.getName().equals("url")) {
+			return getUrl();
+		}
+		if (sField.getName().equals("token")) {
+			return getToken();
+		}
+		if (sField.getName().equals("notificationProtocol")) {
+			return getNotificationProtocol();
+		}
 		if (sField.getName().equals("description")) {
 			return getDescription();
+		}
+		if (sField.getName().equals("trigger")) {
+			return getTrigger();
 		}
 		if (sField.getName().equals("readRevision")) {
 			return isReadRevision();
@@ -70,22 +79,37 @@ public class SExternalProfile implements SBase
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
 		}
+		if (sField.getName().equals("userId")) {
+			return getUserId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("serverId")) {
-			setServerId((Long)val);
-			return;
-		}
 		if (sField.getName().equals("name")) {
 			setName((String)val);
 			return;
 		}
+		if (sField.getName().equals("url")) {
+			setUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("token")) {
+			setToken((String)val);
+			return;
+		}
+		if (sField.getName().equals("notificationProtocol")) {
+			setNotificationProtocol((SAccessMethod)val);
+			return;
+		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("trigger")) {
+			setTrigger((STrigger)val);
 			return;
 		}
 		if (sField.getName().equals("readRevision")) {
@@ -108,6 +132,10 @@ public class SExternalProfile implements SBase
 			setProjectId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("userId")) {
+			setUserId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -115,22 +143,18 @@ public class SExternalProfile implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long serverId;
 	private java.lang.String name;
+	private java.lang.String url;
+	private java.lang.String token;
+	private SAccessMethod notificationProtocol;
 	private java.lang.String description;
+	private STrigger trigger;
 	private boolean readRevision;
 	private boolean readExtendedData;
 	private long writeRevisionId;
 	private long writeExtendedDataId;
 	private long projectId;
-	public long getServerId() {
-		return serverId;
-	}
-
-	public void setServerId(long serverId) {
-		this.serverId = serverId;
-	}
-	
+	private long userId;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -138,12 +162,40 @@ public class SExternalProfile implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	public java.lang.String getUrl() {
+		return url;
+	}
+
+	public void setUrl(java.lang.String url) {
+		this.url = url;
+	}
+	public java.lang.String getToken() {
+		return token;
+	}
+
+	public void setToken(java.lang.String token) {
+		this.token = token;
+	}
+	public SAccessMethod getNotificationProtocol() {
+		return notificationProtocol;
+	}
+
+	public void setNotificationProtocol(SAccessMethod notificationProtocol) {
+		this.notificationProtocol = notificationProtocol;
+	}
 	public java.lang.String getDescription() {
 		return description;
 	}
 
 	public void setDescription(java.lang.String description) {
 		this.description = description;
+	}
+	public STrigger getTrigger() {
+		return trigger;
+	}
+
+	public void setTrigger(STrigger trigger) {
+		this.trigger = trigger;
 	}
 	public boolean isReadRevision() {
 		return readRevision;
@@ -183,6 +235,14 @@ public class SExternalProfile implements SBase
 		this.projectId = projectId;
 	}
 	
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -199,7 +259,7 @@ public class SExternalProfile implements SBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SExternalProfile other = (SExternalProfile) obj;
+		SService other = (SService) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

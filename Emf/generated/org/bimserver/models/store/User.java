@@ -44,7 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}</li>
- *   <li>{@link org.bimserver.models.store.User#getServers <em>Servers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getServices <em>Services</em>}</li>
  * </ul>
  * </p>
  *
@@ -417,21 +417,21 @@ public interface User extends IdEObject {
 	EList<ExtendedData> getExtendedData();
 
 	/**
-	 * Returns the value of the '<em><b>Servers</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.ExternalServer}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExternalServer#getUser <em>User</em>}'.
+	 * Returns the value of the '<em><b>Services</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.Service}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Service#getUser <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Servers</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Services</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Servers</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getUser_Servers()
-	 * @see org.bimserver.models.store.ExternalServer#getUser
+	 * @return the value of the '<em>Services</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUser_Services()
+	 * @see org.bimserver.models.store.Service#getUser
 	 * @model opposite="user"
 	 * @generated
 	 */
-	EList<ExternalServer> getServers();
+	EList<Service> getServices();
 
 } // User

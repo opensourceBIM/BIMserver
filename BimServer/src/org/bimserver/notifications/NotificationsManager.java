@@ -32,11 +32,9 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
-import org.bimserver.interfaces.SConverter;
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.NewProjectNotification;
-import org.bimserver.models.store.NewRevisionNotification;
-import org.bimserver.models.store.Notification;
+import org.bimserver.interfaces.objects.SNewProjectNotification;
+import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SNotification;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
@@ -51,7 +49,7 @@ import org.slf4j.LoggerFactory;
 public class NotificationsManager extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
 	private final Set<NotificationContainer> listeners = new HashSet<NotificationContainer>();
-	private final BlockingQueue<Notification> queue = new ArrayBlockingQueue<Notification>(1000);
+	private final BlockingQueue<SNotification> queue = new ArrayBlockingQueue<SNotification>(1000);
 	private final BimServer bimServer;
 	private volatile boolean running;
 
@@ -64,34 +62,33 @@ public class NotificationsManager extends Thread {
 		listeners.add(new NotificationContainer(user, notificationInterface));
 	}
 
-	public void notify(Notification notification) {
+	public void notify(SNotification notification) {
 		queue.add(notification);
 	}
 
 	@Override
 	public void run() {
 		initConnections();
-		SConverter sConverter = new SConverter();
 		running = true;
 		try {
 			while (running) {
 				try {
-					Notification notification = queue.take();
+					SNotification notification = queue.take();
 					DatabaseSession session = bimServer.getDatabase().createSession();
 					try {
 						IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getService(), false, null);
 						for (Service service : allOfType.getAll(Service.class)) {
 							service.getProject();
 						}
-						if (notification instanceof NewProjectNotification) {
-							NewProjectNotification newProjectNotification = (NewProjectNotification) notification;
-						} else if (notification instanceof NewRevisionNotification) {
-							NewRevisionNotification newRevisionNotification = (NewRevisionNotification) notification;
-							Project project = newRevisionNotification.getRevision().getProject();
+						if (notification instanceof SNewProjectNotification) {
+							SNewProjectNotification newProjectNotification = (SNewProjectNotification) notification;
+						} else if (notification instanceof SNewRevisionNotification) {
+							SNewRevisionNotification newRevisionNotification = (SNewRevisionNotification) notification;
+							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), false, null);
 							for (Service service : project.getServices()) {
 								if (service.getTrigger() == Trigger.NEW_REVISION) {
 									Channel channel = getChannel(service);
-									channel.getNotificationInterface().newRevision(sConverter.convertToSObject(newRevisionNotification));
+									channel.getNotificationInterface().newRevision(newRevisionNotification);
 								}
 							}
 						}

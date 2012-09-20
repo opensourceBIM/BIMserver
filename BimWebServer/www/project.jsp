@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.interfaces.objects.SExternalProfile"%>
 <%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@ page contentType="text/html; charset=UTF-8" %>

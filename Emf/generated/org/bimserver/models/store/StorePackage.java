@@ -235,13 +235,13 @@ public interface StorePackage extends EPackage {
 	int PROJECT__EXTENDED_DATA = 16;
 
 	/**
-	 * The feature id for the '<em><b>Profiles</b></em>' reference list.
+	 * The feature id for the '<em><b>Services</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__PROFILES = 17;
+	int PROJECT__SERVICES = 17;
 
 	/**
 	 * The number of structural features of the '<em>Project</em>' class.
@@ -398,13 +398,13 @@ public interface StorePackage extends EPackage {
 	int USER__EXTENDED_DATA = 14;
 
 	/**
-	 * The feature id for the '<em><b>Servers</b></em>' reference list.
+	 * The feature id for the '<em><b>Services</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__SERVERS = 15;
+	int USER__SERVICES = 15;
 
 	/**
 	 * The number of structural features of the '<em>User</em>' class.
@@ -3737,14 +3737,14 @@ public interface StorePackage extends EPackage {
 	int MODEL_COMPARE_FEATURE_COUNT = PLUGIN_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExternalServerImpl <em>External Server</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerDescriptorImpl <em>Server Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ExternalServerImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalServer()
+	 * @see org.bimserver.models.store.impl.ServerDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerDescriptor()
 	 * @generated
 	 */
-	int EXTERNAL_SERVER = 56;
+	int SERVER_DESCRIPTOR = 56;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -3753,7 +3753,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVER__TITLE = 0;
+	int SERVER_DESCRIPTOR__TITLE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -3762,7 +3762,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVER__URL = 1;
+	int SERVER_DESCRIPTOR__URL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -3771,62 +3771,26 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVER__DESCRIPTION = 2;
+	int SERVER_DESCRIPTOR__DESCRIPTION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Token</b></em>' attribute.
+	 * The number of structural features of the '<em>Server Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVER__TOKEN = 3;
+	int SERVER_DESCRIPTOR_FEATURE_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_SERVER__USER = 4;
-
-	/**
-	 * The feature id for the '<em><b>Profiles</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_SERVER__PROFILES = 5;
-
-	/**
-	 * The number of structural features of the '<em>External Server</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_SERVER_FEATURE_COUNT = 6;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExternalProfileImpl <em>External Profile</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ExternalProfileImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalProfile()
+	 * @see org.bimserver.models.store.impl.ServiceImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getService()
 	 * @generated
 	 */
-	int EXTERNAL_PROFILE = 57;
-
-	/**
-	 * The feature id for the '<em><b>Server</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_PROFILE__SERVER = 0;
+	int SERVICE = 57;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3835,7 +3799,34 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE__NAME = 1;
+	int SERVICE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__URL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__TOKEN = 2;
+
+	/**
+	 * The feature id for the '<em><b>Notification Protocol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__NOTIFICATION_PROTOCOL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -3844,7 +3835,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE__DESCRIPTION = 2;
+	int SERVICE__DESCRIPTION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__TRIGGER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Read Revision</b></em>' attribute.
@@ -3853,7 +3853,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE__READ_REVISION = 3;
+	int SERVICE__READ_REVISION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Read Extended Data</b></em>' attribute.
@@ -3862,7 +3862,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE__READ_EXTENDED_DATA = 4;
+	int SERVICE__READ_EXTENDED_DATA = 7;
 
 	/**
 	 * The feature id for the '<em><b>Write Revision</b></em>' reference.
@@ -3871,7 +3871,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE__WRITE_REVISION = 5;
+	int SERVICE__WRITE_REVISION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Write Extended Data</b></em>' reference.
@@ -3880,7 +3880,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE__WRITE_EXTENDED_DATA = 6;
+	int SERVICE__WRITE_EXTENDED_DATA = 9;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -3889,16 +3889,25 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE__PROJECT = 7;
+	int SERVICE__PROJECT = 10;
 
 	/**
-	 * The number of structural features of the '<em>External Profile</em>' class.
+	 * The feature id for the '<em><b>User</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_PROFILE_FEATURE_COUNT = 8;
+	int SERVICE__USER = 11;
+
+	/**
+	 * The number of structural features of the '<em>Service</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.TokenImpl <em>Token</em>}' class.
@@ -4248,6 +4257,16 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_SCHEMA_TYPE = 71;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.Trigger
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
+	 * @generated
+	 */
+	int TRIGGER = 72;
+
+	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4255,7 +4274,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 72;
+	int DATA_HANDLER = 73;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -4455,15 +4474,15 @@ public interface StorePackage extends EPackage {
 	EReference getProject_ExtendedData();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Project#getProfiles <em>Profiles</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Project#getServices <em>Services</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Profiles</em>'.
-	 * @see org.bimserver.models.store.Project#getProfiles()
+	 * @return the meta object for the reference list '<em>Services</em>'.
+	 * @see org.bimserver.models.store.Project#getServices()
 	 * @see #getProject()
 	 * @generated
 	 */
-	EReference getProject_Profiles();
+	EReference getProject_Services();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
@@ -4641,15 +4660,15 @@ public interface StorePackage extends EPackage {
 	EReference getUser_ExtendedData();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getServers <em>Servers</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getServices <em>Services</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Servers</em>'.
-	 * @see org.bimserver.models.store.User#getServers()
+	 * @return the meta object for the reference list '<em>Services</em>'.
+	 * @see org.bimserver.models.store.User#getServices()
 	 * @see #getUser()
 	 * @generated
 	 */
-	EReference getUser_Servers();
+	EReference getUser_Services();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Revision <em>Revision</em>}'.
@@ -7205,178 +7224,189 @@ public interface StorePackage extends EPackage {
 	EReference getModelCompare_Settings();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ExternalServer <em>External Server</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServerDescriptor <em>Server Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>External Server</em>'.
-	 * @see org.bimserver.models.store.ExternalServer
+	 * @return the meta object for class '<em>Server Descriptor</em>'.
+	 * @see org.bimserver.models.store.ServerDescriptor
 	 * @generated
 	 */
-	EClass getExternalServer();
+	EClass getServerDescriptor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalServer#getTitle <em>Title</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerDescriptor#getTitle <em>Title</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Title</em>'.
-	 * @see org.bimserver.models.store.ExternalServer#getTitle()
-	 * @see #getExternalServer()
+	 * @see org.bimserver.models.store.ServerDescriptor#getTitle()
+	 * @see #getServerDescriptor()
 	 * @generated
 	 */
-	EAttribute getExternalServer_Title();
+	EAttribute getServerDescriptor_Title();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalServer#getUrl <em>Url</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerDescriptor#getUrl <em>Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Url</em>'.
-	 * @see org.bimserver.models.store.ExternalServer#getUrl()
-	 * @see #getExternalServer()
+	 * @see org.bimserver.models.store.ServerDescriptor#getUrl()
+	 * @see #getServerDescriptor()
 	 * @generated
 	 */
-	EAttribute getExternalServer_Url();
+	EAttribute getServerDescriptor_Url();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalServer#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerDescriptor#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.bimserver.models.store.ExternalServer#getDescription()
-	 * @see #getExternalServer()
+	 * @see org.bimserver.models.store.ServerDescriptor#getDescription()
+	 * @see #getServerDescriptor()
 	 * @generated
 	 */
-	EAttribute getExternalServer_Description();
+	EAttribute getServerDescriptor_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalServer#getToken <em>Token</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Service <em>Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Token</em>'.
-	 * @see org.bimserver.models.store.ExternalServer#getToken()
-	 * @see #getExternalServer()
+	 * @return the meta object for class '<em>Service</em>'.
+	 * @see org.bimserver.models.store.Service
 	 * @generated
 	 */
-	EAttribute getExternalServer_Token();
+	EClass getService();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExternalServer#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.store.ExternalServer#getUser()
-	 * @see #getExternalServer()
-	 * @generated
-	 */
-	EReference getExternalServer_User();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ExternalServer#getProfiles <em>Profiles</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Profiles</em>'.
-	 * @see org.bimserver.models.store.ExternalServer#getProfiles()
-	 * @see #getExternalServer()
-	 * @generated
-	 */
-	EReference getExternalServer_Profiles();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ExternalProfile <em>External Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>External Profile</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile
-	 * @generated
-	 */
-	EClass getExternalProfile();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExternalProfile#getServer <em>Server</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Server</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#getServer()
-	 * @see #getExternalProfile()
-	 * @generated
-	 */
-	EReference getExternalProfile_Server();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalProfile#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#getName()
-	 * @see #getExternalProfile()
+	 * @see org.bimserver.models.store.Service#getName()
+	 * @see #getService()
 	 * @generated
 	 */
-	EAttribute getExternalProfile_Name();
+	EAttribute getService_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalProfile#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see org.bimserver.models.store.Service#getUrl()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_Url();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getToken <em>Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Token</em>'.
+	 * @see org.bimserver.models.store.Service#getToken()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_Token();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getNotificationProtocol <em>Notification Protocol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Notification Protocol</em>'.
+	 * @see org.bimserver.models.store.Service#getNotificationProtocol()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_NotificationProtocol();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#getDescription()
-	 * @see #getExternalProfile()
+	 * @see org.bimserver.models.store.Service#getDescription()
+	 * @see #getService()
 	 * @generated
 	 */
-	EAttribute getExternalProfile_Description();
+	EAttribute getService_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalProfile#isReadRevision <em>Read Revision</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getTrigger <em>Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Trigger</em>'.
+	 * @see org.bimserver.models.store.Service#getTrigger()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_Trigger();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#isReadRevision <em>Read Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Read Revision</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#isReadRevision()
-	 * @see #getExternalProfile()
+	 * @see org.bimserver.models.store.Service#isReadRevision()
+	 * @see #getService()
 	 * @generated
 	 */
-	EAttribute getExternalProfile_ReadRevision();
+	EAttribute getService_ReadRevision();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExternalProfile#isReadExtendedData <em>Read Extended Data</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Read Extended Data</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#isReadExtendedData()
-	 * @see #getExternalProfile()
+	 * @see org.bimserver.models.store.Service#isReadExtendedData()
+	 * @see #getService()
 	 * @generated
 	 */
-	EAttribute getExternalProfile_ReadExtendedData();
+	EAttribute getService_ReadExtendedData();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExternalProfile#getWriteRevision <em>Write Revision</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getWriteRevision <em>Write Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Write Revision</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#getWriteRevision()
-	 * @see #getExternalProfile()
+	 * @see org.bimserver.models.store.Service#getWriteRevision()
+	 * @see #getService()
 	 * @generated
 	 */
-	EReference getExternalProfile_WriteRevision();
+	EReference getService_WriteRevision();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExternalProfile#getWriteExtendedData <em>Write Extended Data</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getWriteExtendedData <em>Write Extended Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Write Extended Data</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#getWriteExtendedData()
-	 * @see #getExternalProfile()
+	 * @see org.bimserver.models.store.Service#getWriteExtendedData()
+	 * @see #getService()
 	 * @generated
 	 */
-	EReference getExternalProfile_WriteExtendedData();
+	EReference getService_WriteExtendedData();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExternalProfile#getProject <em>Project</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Project</em>'.
-	 * @see org.bimserver.models.store.ExternalProfile#getProject()
-	 * @see #getExternalProfile()
+	 * @see org.bimserver.models.store.Service#getProject()
+	 * @see #getService()
 	 * @generated
 	 */
-	EReference getExternalProfile_Project();
+	EReference getService_Project();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.models.store.Service#getUser()
+	 * @see #getService()
+	 * @generated
+	 */
+	EReference getService_User();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Token <em>Token</em>}'.
@@ -7706,6 +7736,16 @@ public interface StorePackage extends EPackage {
 	EEnum getExtendedDataSchemaType();
 
 	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Trigger</em>'.
+	 * @see org.bimserver.models.store.Trigger
+	 * @generated
+	 */
+	EEnum getTrigger();
+
+	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7885,12 +7925,12 @@ public interface StorePackage extends EPackage {
 		EReference PROJECT__EXTENDED_DATA = eINSTANCE.getProject_ExtendedData();
 
 		/**
-		 * The meta object literal for the '<em><b>Profiles</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Services</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROJECT__PROFILES = eINSTANCE.getProject_Profiles();
+		EReference PROJECT__SERVICES = eINSTANCE.getProject_Services();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -8023,12 +8063,12 @@ public interface StorePackage extends EPackage {
 		EReference USER__EXTENDED_DATA = eINSTANCE.getUser_ExtendedData();
 
 		/**
-		 * The meta object literal for the '<em><b>Servers</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Services</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER__SERVERS = eINSTANCE.getUser_Servers();
+		EReference USER__SERVICES = eINSTANCE.getUser_Services();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -10035,14 +10075,14 @@ public interface StorePackage extends EPackage {
 		EReference MODEL_COMPARE__SETTINGS = eINSTANCE.getModelCompare_Settings();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExternalServerImpl <em>External Server</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServerDescriptorImpl <em>Server Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ExternalServerImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalServer()
+		 * @see org.bimserver.models.store.impl.ServerDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerDescriptor()
 		 * @generated
 		 */
-		EClass EXTERNAL_SERVER = eINSTANCE.getExternalServer();
+		EClass SERVER_DESCRIPTOR = eINSTANCE.getServerDescriptor();
 
 		/**
 		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
@@ -10050,7 +10090,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVER__TITLE = eINSTANCE.getExternalServer_Title();
+		EAttribute SERVER_DESCRIPTOR__TITLE = eINSTANCE.getServerDescriptor_Title();
 
 		/**
 		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
@@ -10058,7 +10098,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVER__URL = eINSTANCE.getExternalServer_Url();
+		EAttribute SERVER_DESCRIPTOR__URL = eINSTANCE.getServerDescriptor_Url();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -10066,49 +10106,17 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVER__DESCRIPTION = eINSTANCE.getExternalServer_Description();
+		EAttribute SERVER_DESCRIPTOR__DESCRIPTION = eINSTANCE.getServerDescriptor_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Token</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServiceImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getService()
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVER__TOKEN = eINSTANCE.getExternalServer_Token();
-
-		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXTERNAL_SERVER__USER = eINSTANCE.getExternalServer_User();
-
-		/**
-		 * The meta object literal for the '<em><b>Profiles</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXTERNAL_SERVER__PROFILES = eINSTANCE.getExternalServer_Profiles();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExternalProfileImpl <em>External Profile</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ExternalProfileImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalProfile()
-		 * @generated
-		 */
-		EClass EXTERNAL_PROFILE = eINSTANCE.getExternalProfile();
-
-		/**
-		 * The meta object literal for the '<em><b>Server</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXTERNAL_PROFILE__SERVER = eINSTANCE.getExternalProfile_Server();
+		EClass SERVICE = eINSTANCE.getService();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -10116,7 +10124,31 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_PROFILE__NAME = eINSTANCE.getExternalProfile_Name();
+		EAttribute SERVICE__NAME = eINSTANCE.getService_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__URL = eINSTANCE.getService_Url();
+
+		/**
+		 * The meta object literal for the '<em><b>Token</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__TOKEN = eINSTANCE.getService_Token();
+
+		/**
+		 * The meta object literal for the '<em><b>Notification Protocol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__NOTIFICATION_PROTOCOL = eINSTANCE.getService_NotificationProtocol();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -10124,7 +10156,15 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_PROFILE__DESCRIPTION = eINSTANCE.getExternalProfile_Description();
+		EAttribute SERVICE__DESCRIPTION = eINSTANCE.getService_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Trigger</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__TRIGGER = eINSTANCE.getService_Trigger();
 
 		/**
 		 * The meta object literal for the '<em><b>Read Revision</b></em>' attribute feature.
@@ -10132,7 +10172,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_PROFILE__READ_REVISION = eINSTANCE.getExternalProfile_ReadRevision();
+		EAttribute SERVICE__READ_REVISION = eINSTANCE.getService_ReadRevision();
 
 		/**
 		 * The meta object literal for the '<em><b>Read Extended Data</b></em>' attribute feature.
@@ -10140,7 +10180,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_PROFILE__READ_EXTENDED_DATA = eINSTANCE.getExternalProfile_ReadExtendedData();
+		EAttribute SERVICE__READ_EXTENDED_DATA = eINSTANCE.getService_ReadExtendedData();
 
 		/**
 		 * The meta object literal for the '<em><b>Write Revision</b></em>' reference feature.
@@ -10148,7 +10188,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTERNAL_PROFILE__WRITE_REVISION = eINSTANCE.getExternalProfile_WriteRevision();
+		EReference SERVICE__WRITE_REVISION = eINSTANCE.getService_WriteRevision();
 
 		/**
 		 * The meta object literal for the '<em><b>Write Extended Data</b></em>' reference feature.
@@ -10156,7 +10196,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTERNAL_PROFILE__WRITE_EXTENDED_DATA = eINSTANCE.getExternalProfile_WriteExtendedData();
+		EReference SERVICE__WRITE_EXTENDED_DATA = eINSTANCE.getService_WriteExtendedData();
 
 		/**
 		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
@@ -10164,7 +10204,15 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTERNAL_PROFILE__PROJECT = eINSTANCE.getExternalProfile_Project();
+		EReference SERVICE__PROJECT = eINSTANCE.getService_Project();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE__USER = eINSTANCE.getService_User();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.TokenImpl <em>Token</em>}' class.
@@ -10441,6 +10489,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum EXTENDED_DATA_SCHEMA_TYPE = eINSTANCE.getExtendedDataSchemaType();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.Trigger
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
+		 * @generated
+		 */
+		EEnum TRIGGER = eINSTANCE.getTrigger();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.

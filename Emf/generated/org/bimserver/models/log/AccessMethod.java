@@ -83,14 +83,22 @@ public enum AccessMethod implements Enumerator {
 	SYNDICATION(4, "SYNDICATION", "SYNDICATION"),
 
 	/**
-	 * The '<em><b>PROTOCOL BUFFERS</b></em>' literal object.
+	 * The '<em><b>JSON</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PROTOCOL_BUFFERS_VALUE
+	 * @see #JSON_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROTOCOL_BUFFERS(5, "PROTOCOL_BUFFERS", "PROTOCOL_BUFFERS");
+	JSON(5, "JSON", "JSON"), /**
+								 * The '<em><b>PROTOCOL BUFFERS</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #PROTOCOL_BUFFERS_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	PROTOCOL_BUFFERS(6, "PROTOCOL_BUFFERS", "PROTOCOL_BUFFERS");
 
 	/**
 	 * The '<em><b>SOAP</b></em>' literal value.
@@ -168,6 +176,21 @@ public enum AccessMethod implements Enumerator {
 	public static final int SYNDICATION_VALUE = 4;
 
 	/**
+	 * The '<em><b>JSON</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>JSON</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #JSON
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int JSON_VALUE = 5;
+
+	/**
 	 * The '<em><b>PROTOCOL BUFFERS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +203,7 @@ public enum AccessMethod implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROTOCOL_BUFFERS_VALUE = 5;
+	public static final int PROTOCOL_BUFFERS_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Access Method</b></em>' enumerators.
@@ -188,7 +211,7 @@ public enum AccessMethod implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AccessMethod[] VALUES_ARRAY = new AccessMethod[] { SOAP, WEB_INTERFACE, INTERNAL, REST, SYNDICATION, PROTOCOL_BUFFERS, };
+	private static final AccessMethod[] VALUES_ARRAY = new AccessMethod[] { SOAP, WEB_INTERFACE, INTERNAL, REST, SYNDICATION, JSON, PROTOCOL_BUFFERS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Access Method</b></em>' enumerators.
@@ -248,6 +271,8 @@ public enum AccessMethod implements Enumerator {
 			return REST;
 		case SYNDICATION_VALUE:
 			return SYNDICATION;
+		case JSON_VALUE:
+			return JSON;
 		case PROTOCOL_BUFFERS_VALUE:
 			return PROTOCOL_BUFFERS;
 		}

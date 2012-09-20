@@ -361,13 +361,13 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseExternalServer(ExternalServer object) {
-			return createExternalServerAdapter();
+		public Adapter caseServerDescriptor(ServerDescriptor object) {
+			return createServerDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseExternalProfile(ExternalProfile object) {
-			return createExternalProfileAdapter();
+		public Adapter caseService(Service object) {
+			return createServiceAdapter();
 		}
 
 		@Override
@@ -1204,30 +1204,30 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ExternalServer <em>External Server</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServerDescriptor <em>Server Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ExternalServer
+	 * @see org.bimserver.models.store.ServerDescriptor
 	 * @generated
 	 */
-	public Adapter createExternalServerAdapter() {
+	public Adapter createServerDescriptorAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ExternalProfile <em>External Profile</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Service <em>Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ExternalProfile
+	 * @see org.bimserver.models.store.Service
 	 * @generated
 	 */
-	public Adapter createExternalProfileAdapter() {
+	public Adapter createServiceAdapter() {
 		return null;
 	}
 

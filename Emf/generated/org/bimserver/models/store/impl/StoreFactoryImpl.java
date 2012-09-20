@@ -247,10 +247,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelComparePluginDescriptor();
 		case StorePackage.MODEL_COMPARE:
 			return (EObject) createModelCompare();
-		case StorePackage.EXTERNAL_SERVER:
-			return (EObject) createExternalServer();
-		case StorePackage.EXTERNAL_PROFILE:
-			return (EObject) createExternalProfile();
+		case StorePackage.SERVER_DESCRIPTOR:
+			return (EObject) createServerDescriptor();
+		case StorePackage.SERVICE:
+			return (EObject) createService();
 		case StorePackage.TOKEN:
 			return (EObject) createToken();
 		case StorePackage.SERVICE_INTERFACE:
@@ -292,6 +292,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createCheckinStatusFromString(eDataType, initialValue);
 		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
 			return createExtendedDataSchemaTypeFromString(eDataType, initialValue);
+		case StorePackage.TRIGGER:
+			return createTriggerFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -323,6 +325,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertCheckinStatusToString(eDataType, instanceValue);
 		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
 			return convertExtendedDataSchemaTypeToString(eDataType, instanceValue);
+		case StorePackage.TRIGGER:
+			return convertTriggerToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -895,9 +899,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalServer createExternalServer() {
-		ExternalServerImpl externalServer = new ExternalServerImpl();
-		return externalServer;
+	public ServerDescriptor createServerDescriptor() {
+		ServerDescriptorImpl serverDescriptor = new ServerDescriptorImpl();
+		return serverDescriptor;
 	}
 
 	/**
@@ -905,9 +909,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalProfile createExternalProfile() {
-		ExternalProfileImpl externalProfile = new ExternalProfileImpl();
-		return externalProfile;
+	public Service createService() {
+		ServiceImpl service = new ServiceImpl();
+		return service;
 	}
 
 	/**
@@ -1135,6 +1139,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertExtendedDataSchemaTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Trigger createTriggerFromString(EDataType eDataType, String initialValue) {
+		Trigger result = Trigger.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTriggerToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
