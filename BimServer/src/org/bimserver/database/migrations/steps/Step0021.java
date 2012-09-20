@@ -4,6 +4,7 @@ import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -11,36 +12,41 @@ public class Step0021 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass externalServer = schema.createEClass(schema.getEPackage("store"), "ExternalServer");
-		schema.createEAttribute(externalServer, "title", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(externalServer, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(externalServer, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(externalServer, "token", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		EClass userClass = schema.getEClass("store", "User");
-		EReference userExternalServer = schema.createEReference(externalServer, "user", userClass, Multiplicity.SINGLE);
-		EReference serverUser = schema.createEReference(userClass, "servers", externalServer, Multiplicity.MANY);
-		
-		userExternalServer.setEOpposite(serverUser);
-		serverUser.setEOpposite(userExternalServer);
+		EClass user = schema.getEClass("store", "User");
+		EClass project = schema.getEClass("store", "Project");
 
-		EClass externalProfile = schema.createEClass("store", "ExternalProfile");
-		EReference externalServerProfiles = schema.createEReference(externalServer, "profiles", externalProfile, Multiplicity.MANY);
-		EReference externalProfileServer = schema.createEReference(externalProfile, "server", externalServer, Multiplicity.SINGLE);
+		EEnum trigger = schema.createEEnum("store", "Trigger");
+		schema.createEEnumLiteral(trigger, "NEW_REVISION");
+		schema.createEEnumLiteral(trigger, "NEW_PROJECT");
+		
+		EClass serverDescriptor = schema.createEClass(schema.getEPackage("store"), "ServerDescriptor");
+		schema.createEAttribute(serverDescriptor, "title", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverDescriptor, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 
-		externalServerProfiles.setEOpposite(externalProfileServer);
-		externalProfileServer.setEOpposite(externalServerProfiles);
+		EClass service = schema.createEClass("store", "Service");
+		schema.createEAttribute(service, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "token", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "notificationProtocol", schema.getEEnum("log", "AccessMethod"), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "trigger", trigger, Multiplicity.SINGLE);
+		schema.createEAttribute(service, "readRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "readExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEReference(service, "writeRevision", project, Multiplicity.SINGLE);
+		schema.createEReference(service, "writeExtendedData", project, Multiplicity.SINGLE);
 		
-		schema.createEAttribute(externalProfile, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(externalProfile, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(externalProfile, "readRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(externalProfile, "readExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEReference(externalProfile, "writeRevision", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
-		schema.createEReference(externalProfile, "writeExtendedData", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
-		EReference externalProfileProject = schema.createEReference(externalProfile, "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
-		EReference projectProfiles = schema.createEReference(schema.getEClass("store", "Project"), "profiles", externalProfile, Multiplicity.MANY);
+		EReference serviceProject = schema.createEReference(service, "project", project, Multiplicity.SINGLE);
+		EReference projectServices = schema.createEReference(project, "services", service, Multiplicity.MANY);
 		
-		externalProfileProject.setEOpposite(projectProfiles);
-		projectProfiles.setEOpposite(externalProfileProject);
+		serviceProject.setEOpposite(projectServices);
+		projectServices.setEOpposite(serviceProject);
+		
+		EReference serviceUser = schema.createEReference(service, "user", user, Multiplicity.SINGLE);
+		EReference userServices = schema.createEReference(user, "services", service, Multiplicity.MANY);
+		
+		serviceUser.setEOpposite(userServices);
+		userServices.setEOpposite(serviceUser);
 		
 		EClass serverSettings = schema.getEClass("store", "ServerSettings");
 		schema.createEAttribute(serverSettings, "serviceRepositoryUrl", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

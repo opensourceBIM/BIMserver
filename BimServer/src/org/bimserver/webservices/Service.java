@@ -79,8 +79,6 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
-import org.bimserver.interfaces.objects.SExternalProfile;
-import org.bimserver.interfaces.objects.SExternalServer;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEngine;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
@@ -102,6 +100,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
+import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.interfaces.objects.SServiceField;
 import org.bimserver.interfaces.objects.SServiceInterface;
@@ -128,8 +127,6 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
-import org.bimserver.models.store.ExternalProfile;
-import org.bimserver.models.store.ExternalServer;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ModelCompare;
@@ -3285,8 +3282,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SExternalServer> getRepositoryServers() throws ServerException, UserException {
-		List<SExternalServer> externalServers = new ArrayList<SExternalServer>();
+	public List<SServerDescriptor> getRepositoryServers() throws ServerException, UserException {
+		List<SServerDescriptor> externalServers = new ArrayList<SServerDescriptor>();
 		try {
 			String url = getServiceRepositoryUrl();
 			String content = NetUtils.getContent(new URL(url));
@@ -3294,7 +3291,7 @@ public class Service implements ServiceInterface {
 			JSONArray services = root.getJSONArray("externalservers");
 			for (int i=0; i<services.length(); i++) {
 				JSONObject service = services.getJSONObject(i);
-				SExternalServer externalServer = new SExternalServer();
+				SServerDescriptor externalServer = new SServerDescriptor();
 				externalServer.setTitle(service.getString("title"));
 				externalServer.setDescription(service.getString("description"));
 				externalServer.setUrl(service.getString("url"));
@@ -3307,15 +3304,15 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public List<SExternalProfile> getRemoteProfiles(String url) throws ServerException, UserException {
-		List<SExternalProfile> externalProfiles = new ArrayList<SExternalProfile>();
+	public List<org.bimserver.interfaces.objects.SService> getRemoteServices(String url) throws ServerException, UserException {
+		List<org.bimserver.interfaces.objects.SService> externalProfiles = new ArrayList<org.bimserver.interfaces.objects.SService>();
 		try {
 			String content = NetUtils.getContent(new URL(url));
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray profiles = root.getJSONArray("profiles");
 			for (int i=0; i<profiles.length(); i++) {
 				JSONObject profile = profiles.getJSONObject(i);
-				SExternalProfile externalProfile = new SExternalProfile();
+				org.bimserver.interfaces.objects.SService externalProfile = new org.bimserver.interfaces.objects.SService();
 				externalProfile.setName(profile.getString("name"));
 				externalProfile.setDescription(profile.getString("description"));
 				
@@ -3332,11 +3329,11 @@ public class Service implements ServiceInterface {
 		}
 		return externalProfiles;
 	}
-	
-	public SExternalProfile getExternalProfile(long epid) throws ServerException, UserException {
+
+	public org.bimserver.interfaces.objects.SService getService(long epid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			ExternalProfile externalProfile = session.get(StorePackage.eINSTANCE.getExternalProfile(), epid, false, null);
+			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), epid, false, null);
 			return converter.convertToSObject(externalProfile);
 		} catch (Exception e) {
 			return handleException(e);
@@ -3345,27 +3342,15 @@ public class Service implements ServiceInterface {
 		}
 	}
 	
-	public SExternalServer getExternalServer(long esid) throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ExternalServer externalServer = session.get(StorePackage.eINSTANCE.getExternalServer(), esid, false, null);
-			return converter.convertToSObject(externalServer);
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-	
 	@Override
-	public void addProfileToProject(long poid, SExternalProfile sProfile) throws ServerException, UserException {
+	public void addServiceToProject(long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
-			ExternalProfile profile = converter.convertFromSObject(sProfile, session);
-			project.getProfiles().add(profile);
-			profile.setProject(project);
-			session.store(profile);
+			org.bimserver.models.store.Service service = converter.convertFromSObject(sService, session);
+			project.getServices().add(service);
+			service.setProject(project);
+			session.store(service);
 			session.store(project);
 			session.commit();
 		} catch (Exception e) {
