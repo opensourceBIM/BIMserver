@@ -29,21 +29,22 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>> {
 
-	private final long actingUoid;
 	private final long poid;
+	private Authorization authorization;
 
-	public GetSubProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long poid) {
+	public GetSubProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long poid) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.poid = poid;
 	}
 
 	@Override
 	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		Project project = getProjectByPoid(poid);
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			throw new UserException("User has no rights on project");

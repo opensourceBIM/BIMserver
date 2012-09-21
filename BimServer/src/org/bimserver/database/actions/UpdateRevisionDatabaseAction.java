@@ -31,21 +31,22 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final SRevision sRevision;
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public UpdateRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, SRevision sRevision) {
+	public UpdateRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SRevision sRevision) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.sRevision = sRevision;
 	}
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		final Revision revision = getRevisionByRoid(sRevision.getOid());
 		if (revision == null) {
 			throw new UserException("Revision with pid " + sRevision.getOid() + " not found");

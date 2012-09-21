@@ -35,12 +35,14 @@ import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SNotification;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketChannel;
 import org.slf4j.Logger;
@@ -88,7 +90,14 @@ public class NotificationsManager extends Thread {
 							for (Service service : project.getServices()) {
 								if (service.getTrigger() == Trigger.NEW_REVISION) {
 									Channel channel = getChannel(service);
-									channel.getNotificationInterface().newRevision(newRevisionNotification);
+									if (service.isReadExtendedData() || service.isReadRevision() || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
+										// This service will be needing a token
+										ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
+										((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization());
+										channel.getNotificationInterface().newRevision(newRevisionNotification, newService.getCurrentToken(), bimServer.getServerSettings(session).getSiteAddress() + "/jsonapi");
+									} else {
+										channel.getNotificationInterface().newRevision(newRevisionNotification, null, null);
+									}
 								}
 							}
 						}

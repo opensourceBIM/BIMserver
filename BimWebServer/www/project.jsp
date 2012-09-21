@@ -67,7 +67,7 @@
 					lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 				}
 				boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.READ_ONLY;
-				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
+				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(loginManager.getUoid(), project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
 				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
 				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
 				boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
@@ -313,7 +313,7 @@
 						}
 				%>
 				<tr
-					<%=(loginManager.getService().userHasCheckinRights(subProject.getOid()) == true ? "" : " class=\"checkinrights\"")%>
+					<%=(loginManager.getService().userHasCheckinRights(loginManager.getUoid(), subProject.getOid()) == true ? "" : " class=\"checkinrights\"")%>
 					<%=subProject.getState() == SObjectState.DELETED ? " class=\"deleted\"" : ""%>>
 					<td><a href="project.jsp?poid=<%=subProject.getOid()%>"><%=subProject.getName()%></a>
 					</td>
@@ -609,7 +609,7 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 	var lastRevisionOid = <%=lastRevision == null ? -1 : lastRevision.getOid()%>;
 	
 	$(function(){
-		$("#servicestab").load("services.jsp?oid=<%=project.getOid()%>");
+		$("#servicestab").load("services.jsp?poid=<%=project.getOid()%>");
 
 		$("#inviteButton").click(function(){
 			call({

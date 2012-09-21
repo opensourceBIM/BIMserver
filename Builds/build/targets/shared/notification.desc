@@ -1,5 +1,5 @@
 
-¬
+è
 notification.protoorg.bimserver.pbservice.proto"9
 SNewProjectNotification
 oid (
@@ -10,9 +10,11 @@
 oid (
 	projectId (
 
-revisionId ("N
-NewRevisionRequest8
-arg0 (2*.org.bimserver.pb.SNewRevisionNotification"
+revisionId ("ö
+NewRevisionRequestK
+newRevisionNotification (2*.org.bimserver.pb.SNewRevisionNotification'
+token (2.org.bimserver.pb.SToken
+apiUrl (	"
 ServerHasStartedRequest"
 ServerWillBeShutdownRequest2Ö
 NotificationInterfaceQ

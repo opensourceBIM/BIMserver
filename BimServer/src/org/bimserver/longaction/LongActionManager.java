@@ -86,7 +86,7 @@ public class LongActionManager {
 //			} else {
 				storeLongAction = StoreFactory.eINSTANCE.createLongAction();
 //			}
-				User user = session.get(StorePackage.eINSTANCE.getUser(), longAction.getUoid(), false, null);
+				User user = session.get(StorePackage.eINSTANCE.getUser(), longAction.getAuthorization().getUoid(), false, null);
 				storeLongAction.setIdentification(longAction.getDescription());
 				storeLongAction.setUser(user);
 				storeLongAction.setStart(longAction.getStart().getTime());

@@ -42,6 +42,7 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,15 +50,13 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	protected static final Logger LOGGER = LoggerFactory.getLogger(LongDownloadAction.class);
 	protected final AccessMethod accessMethod;
 	protected final DownloadParameters downloadParameters;
-	protected final long currentUoid;
 	protected SCheckoutResult checkoutResult;
 
 	protected LongDownloadOrCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, AccessMethod accessMethod,
-			long currentUoid) {
-		super(bimServer, username, userUsername, currentUoid);
+			Authorization authorization) {
+		super(bimServer, username, userUsername, authorization);
 		this.accessMethod = accessMethod;
 		this.downloadParameters = downloadParameters;
-		this.currentUoid = currentUoid;
 	}
 
 	public SCheckoutResult getCheckoutResult() {

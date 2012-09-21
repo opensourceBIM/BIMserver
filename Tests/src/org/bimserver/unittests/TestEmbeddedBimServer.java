@@ -44,6 +44,7 @@ import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.tests.TestFile;
+import org.bimserver.webservices.Service;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -156,8 +157,7 @@ public class TestEmbeddedBimServer {
 			}
 			if (firstProjectWithRevisions != null) {
 				long roid = firstProjectWithRevisions.getLastRevisionId();
-				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, service.getCurrentUser().getOid(),
-						null, new VoidReporter());
+				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, ((Service)service).getAuthorization(), null, new VoidReporter());
 				IfcModelInterface ifcModelInterface = downloadDatabaseAction.execute();
 				for (IfcWall ifcWall : ifcModelInterface.getAllWithSubTypes(IfcWall.class)) {
 					System.out.println(ifcWall.getName());

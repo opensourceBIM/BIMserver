@@ -50,7 +50,9 @@ message SNewRevisionNotification {
 }
 
 message NewRevisionRequest {
-	optional SNewRevisionNotification arg0 = 1;
+	optional SNewRevisionNotification newRevisionNotification = 1;
+	optional SToken token = 2;
+	optional string apiUrl = 3;
 }
 
 message ServerHasStartedRequest {

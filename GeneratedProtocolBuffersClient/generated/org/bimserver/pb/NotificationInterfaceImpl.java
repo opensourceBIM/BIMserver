@@ -1276,10 +1276,19 @@ public final class NotificationInterfaceImpl {
   public interface NewRevisionRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional .org.bimserver.pb.SNewRevisionNotification arg0 = 1;
-    boolean hasArg0();
-    org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getArg0();
-    org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getArg0OrBuilder();
+    // optional .org.bimserver.pb.SNewRevisionNotification newRevisionNotification = 1;
+    boolean hasNewRevisionNotification();
+    org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getNewRevisionNotification();
+    org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getNewRevisionNotificationOrBuilder();
+    
+    // optional .org.bimserver.pb.SToken token = 2;
+    boolean hasToken();
+    org.bimserver.pb.ServiceInterfaceImpl.SToken getToken();
+    org.bimserver.pb.ServiceInterfaceImpl.STokenOrBuilder getTokenOrBuilder();
+    
+    // optional string apiUrl = 3;
+    boolean hasApiUrl();
+    String getApiUrl();
   }
   public static final class NewRevisionRequest extends
       com.google.protobuf.GeneratedMessage
@@ -1310,21 +1319,68 @@ public final class NotificationInterfaceImpl {
     }
     
     private int bitField0_;
-    // optional .org.bimserver.pb.SNewRevisionNotification arg0 = 1;
-    public static final int ARG0_FIELD_NUMBER = 1;
-    private org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification arg0_;
-    public boolean hasArg0() {
+    // optional .org.bimserver.pb.SNewRevisionNotification newRevisionNotification = 1;
+    public static final int NEWREVISIONNOTIFICATION_FIELD_NUMBER = 1;
+    private org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification newRevisionNotification_;
+    public boolean hasNewRevisionNotification() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getArg0() {
-      return arg0_;
+    public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getNewRevisionNotification() {
+      return newRevisionNotification_;
     }
-    public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getArg0OrBuilder() {
-      return arg0_;
+    public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getNewRevisionNotificationOrBuilder() {
+      return newRevisionNotification_;
+    }
+    
+    // optional .org.bimserver.pb.SToken token = 2;
+    public static final int TOKEN_FIELD_NUMBER = 2;
+    private org.bimserver.pb.ServiceInterfaceImpl.SToken token_;
+    public boolean hasToken() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public org.bimserver.pb.ServiceInterfaceImpl.SToken getToken() {
+      return token_;
+    }
+    public org.bimserver.pb.ServiceInterfaceImpl.STokenOrBuilder getTokenOrBuilder() {
+      return token_;
+    }
+    
+    // optional string apiUrl = 3;
+    public static final int APIURL_FIELD_NUMBER = 3;
+    private Object apiUrl_;
+    public boolean hasApiUrl() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getApiUrl() {
+      Object ref = apiUrl_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          apiUrl_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getApiUrlBytes() {
+      Object ref = apiUrl_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        apiUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
-      arg0_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+      newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+      token_ = org.bimserver.pb.ServiceInterfaceImpl.SToken.getDefaultInstance();
+      apiUrl_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1339,7 +1395,13 @@ public final class NotificationInterfaceImpl {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, arg0_);
+        output.writeMessage(1, newRevisionNotification_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, token_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getApiUrlBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1352,7 +1414,15 @@ public final class NotificationInterfaceImpl {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, arg0_);
+          .computeMessageSize(1, newRevisionNotification_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, token_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getApiUrlBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1468,7 +1538,8 @@ public final class NotificationInterfaceImpl {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getArg0FieldBuilder();
+          getNewRevisionNotificationFieldBuilder();
+          getTokenFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1477,12 +1548,20 @@ public final class NotificationInterfaceImpl {
       
       public Builder clear() {
         super.clear();
-        if (arg0Builder_ == null) {
-          arg0_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+        if (newRevisionNotificationBuilder_ == null) {
+          newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
         } else {
-          arg0Builder_.clear();
+          newRevisionNotificationBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
+        if (tokenBuilder_ == null) {
+          token_ = org.bimserver.pb.ServiceInterfaceImpl.SToken.getDefaultInstance();
+        } else {
+          tokenBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        apiUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -1524,11 +1603,23 @@ public final class NotificationInterfaceImpl {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        if (arg0Builder_ == null) {
-          result.arg0_ = arg0_;
+        if (newRevisionNotificationBuilder_ == null) {
+          result.newRevisionNotification_ = newRevisionNotification_;
         } else {
-          result.arg0_ = arg0Builder_.build();
+          result.newRevisionNotification_ = newRevisionNotificationBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (tokenBuilder_ == null) {
+          result.token_ = token_;
+        } else {
+          result.token_ = tokenBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.apiUrl_ = apiUrl_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1545,8 +1636,14 @@ public final class NotificationInterfaceImpl {
       
       public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest other) {
         if (other == org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.getDefaultInstance()) return this;
-        if (other.hasArg0()) {
-          mergeArg0(other.getArg0());
+        if (other.hasNewRevisionNotification()) {
+          mergeNewRevisionNotification(other.getNewRevisionNotification());
+        }
+        if (other.hasToken()) {
+          mergeToken(other.getToken());
+        }
+        if (other.hasApiUrl()) {
+          setApiUrl(other.getApiUrl());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1581,11 +1678,25 @@ public final class NotificationInterfaceImpl {
             }
             case 10: {
               org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder subBuilder = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.newBuilder();
-              if (hasArg0()) {
-                subBuilder.mergeFrom(getArg0());
+              if (hasNewRevisionNotification()) {
+                subBuilder.mergeFrom(getNewRevisionNotification());
               }
               input.readMessage(subBuilder, extensionRegistry);
-              setArg0(subBuilder.buildPartial());
+              setNewRevisionNotification(subBuilder.buildPartial());
+              break;
+            }
+            case 18: {
+              org.bimserver.pb.ServiceInterfaceImpl.SToken.Builder subBuilder = org.bimserver.pb.ServiceInterfaceImpl.SToken.newBuilder();
+              if (hasToken()) {
+                subBuilder.mergeFrom(getToken());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setToken(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              apiUrl_ = input.readBytes();
               break;
             }
           }
@@ -1594,94 +1705,220 @@ public final class NotificationInterfaceImpl {
       
       private int bitField0_;
       
-      // optional .org.bimserver.pb.SNewRevisionNotification arg0 = 1;
-      private org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification arg0_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+      // optional .org.bimserver.pb.SNewRevisionNotification newRevisionNotification = 1;
+      private org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder> arg0Builder_;
-      public boolean hasArg0() {
+          org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder> newRevisionNotificationBuilder_;
+      public boolean hasNewRevisionNotification() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getArg0() {
-        if (arg0Builder_ == null) {
-          return arg0_;
+      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getNewRevisionNotification() {
+        if (newRevisionNotificationBuilder_ == null) {
+          return newRevisionNotification_;
         } else {
-          return arg0Builder_.getMessage();
+          return newRevisionNotificationBuilder_.getMessage();
         }
       }
-      public Builder setArg0(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification value) {
-        if (arg0Builder_ == null) {
+      public Builder setNewRevisionNotification(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification value) {
+        if (newRevisionNotificationBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          arg0_ = value;
+          newRevisionNotification_ = value;
           onChanged();
         } else {
-          arg0Builder_.setMessage(value);
+          newRevisionNotificationBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder setArg0(
+      public Builder setNewRevisionNotification(
           org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder builderForValue) {
-        if (arg0Builder_ == null) {
-          arg0_ = builderForValue.build();
+        if (newRevisionNotificationBuilder_ == null) {
+          newRevisionNotification_ = builderForValue.build();
           onChanged();
         } else {
-          arg0Builder_.setMessage(builderForValue.build());
+          newRevisionNotificationBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder mergeArg0(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification value) {
-        if (arg0Builder_ == null) {
+      public Builder mergeNewRevisionNotification(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification value) {
+        if (newRevisionNotificationBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              arg0_ != org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance()) {
-            arg0_ =
-              org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.newBuilder(arg0_).mergeFrom(value).buildPartial();
+              newRevisionNotification_ != org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance()) {
+            newRevisionNotification_ =
+              org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.newBuilder(newRevisionNotification_).mergeFrom(value).buildPartial();
           } else {
-            arg0_ = value;
+            newRevisionNotification_ = value;
           }
           onChanged();
         } else {
-          arg0Builder_.mergeFrom(value);
+          newRevisionNotificationBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder clearArg0() {
-        if (arg0Builder_ == null) {
-          arg0_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+      public Builder clearNewRevisionNotification() {
+        if (newRevisionNotificationBuilder_ == null) {
+          newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
           onChanged();
         } else {
-          arg0Builder_.clear();
+          newRevisionNotificationBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder getArg0Builder() {
+      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder getNewRevisionNotificationBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return getArg0FieldBuilder().getBuilder();
+        return getNewRevisionNotificationFieldBuilder().getBuilder();
       }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getArg0OrBuilder() {
-        if (arg0Builder_ != null) {
-          return arg0Builder_.getMessageOrBuilder();
+      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getNewRevisionNotificationOrBuilder() {
+        if (newRevisionNotificationBuilder_ != null) {
+          return newRevisionNotificationBuilder_.getMessageOrBuilder();
         } else {
-          return arg0_;
+          return newRevisionNotification_;
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
           org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder> 
-          getArg0FieldBuilder() {
-        if (arg0Builder_ == null) {
-          arg0Builder_ = new com.google.protobuf.SingleFieldBuilder<
+          getNewRevisionNotificationFieldBuilder() {
+        if (newRevisionNotificationBuilder_ == null) {
+          newRevisionNotificationBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder>(
-                  arg0_,
+                  newRevisionNotification_,
                   getParentForChildren(),
                   isClean());
-          arg0_ = null;
+          newRevisionNotification_ = null;
         }
-        return arg0Builder_;
+        return newRevisionNotificationBuilder_;
+      }
+      
+      // optional .org.bimserver.pb.SToken token = 2;
+      private org.bimserver.pb.ServiceInterfaceImpl.SToken token_ = org.bimserver.pb.ServiceInterfaceImpl.SToken.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.ServiceInterfaceImpl.SToken, org.bimserver.pb.ServiceInterfaceImpl.SToken.Builder, org.bimserver.pb.ServiceInterfaceImpl.STokenOrBuilder> tokenBuilder_;
+      public boolean hasToken() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public org.bimserver.pb.ServiceInterfaceImpl.SToken getToken() {
+        if (tokenBuilder_ == null) {
+          return token_;
+        } else {
+          return tokenBuilder_.getMessage();
+        }
+      }
+      public Builder setToken(org.bimserver.pb.ServiceInterfaceImpl.SToken value) {
+        if (tokenBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          token_ = value;
+          onChanged();
+        } else {
+          tokenBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder setToken(
+          org.bimserver.pb.ServiceInterfaceImpl.SToken.Builder builderForValue) {
+        if (tokenBuilder_ == null) {
+          token_ = builderForValue.build();
+          onChanged();
+        } else {
+          tokenBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder mergeToken(org.bimserver.pb.ServiceInterfaceImpl.SToken value) {
+        if (tokenBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              token_ != org.bimserver.pb.ServiceInterfaceImpl.SToken.getDefaultInstance()) {
+            token_ =
+              org.bimserver.pb.ServiceInterfaceImpl.SToken.newBuilder(token_).mergeFrom(value).buildPartial();
+          } else {
+            token_ = value;
+          }
+          onChanged();
+        } else {
+          tokenBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder clearToken() {
+        if (tokenBuilder_ == null) {
+          token_ = org.bimserver.pb.ServiceInterfaceImpl.SToken.getDefaultInstance();
+          onChanged();
+        } else {
+          tokenBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      public org.bimserver.pb.ServiceInterfaceImpl.SToken.Builder getTokenBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getTokenFieldBuilder().getBuilder();
+      }
+      public org.bimserver.pb.ServiceInterfaceImpl.STokenOrBuilder getTokenOrBuilder() {
+        if (tokenBuilder_ != null) {
+          return tokenBuilder_.getMessageOrBuilder();
+        } else {
+          return token_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.ServiceInterfaceImpl.SToken, org.bimserver.pb.ServiceInterfaceImpl.SToken.Builder, org.bimserver.pb.ServiceInterfaceImpl.STokenOrBuilder> 
+          getTokenFieldBuilder() {
+        if (tokenBuilder_ == null) {
+          tokenBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.ServiceInterfaceImpl.SToken, org.bimserver.pb.ServiceInterfaceImpl.SToken.Builder, org.bimserver.pb.ServiceInterfaceImpl.STokenOrBuilder>(
+                  token_,
+                  getParentForChildren(),
+                  isClean());
+          token_ = null;
+        }
+        return tokenBuilder_;
+      }
+      
+      // optional string apiUrl = 3;
+      private Object apiUrl_ = "";
+      public boolean hasApiUrl() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getApiUrl() {
+        Object ref = apiUrl_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          apiUrl_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setApiUrl(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        apiUrl_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearApiUrl() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        apiUrl_ = getDefaultInstance().getApiUrl();
+        onChanged();
+        return this;
+      }
+      void setApiUrl(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        apiUrl_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:org.bimserver.pb.NewRevisionRequest)
@@ -2704,21 +2941,23 @@ public final class NotificationInterfaceImpl {
       "rojectRequest\0227\n\004arg0\030\001 \001(\0132).org.bimser" +
       "ver.pb.SNewProjectNotification\"N\n\030SNewRe" +
       "visionNotification\022\013\n\003oid\030\001 \001(\003\022\021\n\tproje" +
-      "ctId\030\002 \001(\003\022\022\n\nrevisionId\030\003 \001(\003\"N\n\022NewRev" +
-      "isionRequest\0228\n\004arg0\030\001 \001(\0132*.org.bimserv" +
-      "er.pb.SNewRevisionNotification\"\031\n\027Server" +
-      "HasStartedRequest\"\035\n\033ServerWillBeShutdow",
-      "nRequest2\205\003\n\025NotificationInterface\022Q\n\nne" +
-      "wProject\022#.org.bimserver.pb.NewProjectRe" +
-      "quest\032\036.org.bimserver.pb.VoidResponse\022S\n" +
-      "\013newRevision\022$.org.bimserver.pb.NewRevis" +
-      "ionRequest\032\036.org.bimserver.pb.VoidRespon" +
-      "se\022]\n\020serverHasStarted\022).org.bimserver.p" +
-      "b.ServerHasStartedRequest\032\036.org.bimserve" +
-      "r.pb.VoidResponse\022e\n\024serverWillBeShutdow" +
-      "n\022-.org.bimserver.pb.ServerWillBeShutdow" +
-      "nRequest\032\036.org.bimserver.pb.VoidResponse",
-      "B B\031NotificationInterfaceImplH\001\210\001\001"
+      "ctId\030\002 \001(\003\022\022\n\nrevisionId\030\003 \001(\003\"\232\001\n\022NewRe" +
+      "visionRequest\022K\n\027newRevisionNotification" +
+      "\030\001 \001(\0132*.org.bimserver.pb.SNewRevisionNo" +
+      "tification\022\'\n\005token\030\002 \001(\0132\030.org.bimserve",
+      "r.pb.SToken\022\016\n\006apiUrl\030\003 \001(\t\"\031\n\027ServerHas" +
+      "StartedRequest\"\035\n\033ServerWillBeShutdownRe" +
+      "quest2\205\003\n\025NotificationInterface\022Q\n\nnewPr" +
+      "oject\022#.org.bimserver.pb.NewProjectReque" +
+      "st\032\036.org.bimserver.pb.VoidResponse\022S\n\013ne" +
+      "wRevision\022$.org.bimserver.pb.NewRevision" +
+      "Request\032\036.org.bimserver.pb.VoidResponse\022" +
+      "]\n\020serverHasStarted\022).org.bimserver.pb.S" +
+      "erverHasStartedRequest\032\036.org.bimserver.p" +
+      "b.VoidResponse\022e\n\024serverWillBeShutdown\022-",
+      ".org.bimserver.pb.ServerWillBeShutdownRe" +
+      "quest\032\036.org.bimserver.pb.VoidResponseB B" +
+      "\031NotificationInterfaceImplH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2754,7 +2993,7 @@ public final class NotificationInterfaceImpl {
           internal_static_org_bimserver_pb_NewRevisionRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_NewRevisionRequest_descriptor,
-              new java.lang.String[] { "Arg0", },
+              new java.lang.String[] { "NewRevisionNotification", "Token", "ApiUrl", },
               org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.class,
               org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.Builder.class);
           internal_static_org_bimserver_pb_ServerHasStartedRequest_descriptor =

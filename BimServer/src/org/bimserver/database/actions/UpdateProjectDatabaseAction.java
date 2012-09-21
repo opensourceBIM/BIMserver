@@ -31,21 +31,22 @@ import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final SProject sProject;
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public UpdateProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, SProject sProject) {
+	public UpdateProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SProject sProject) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.sProject = sProject;
 	}
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		final Project project = getProjectByPoid(sProject.getOid());
 		if (project == null) {
 			throw new UserException("Project with pid " + sProject.getOid() + " not found");

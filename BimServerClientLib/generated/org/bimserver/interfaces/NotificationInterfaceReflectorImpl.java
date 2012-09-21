@@ -20,6 +20,7 @@ import org.bimserver.shared.Reflector;
 
 import org.bimserver.shared.KeyValuePair;
 
+@SuppressWarnings("unchecked")
 public class NotificationInterfaceReflectorImpl implements org.bimserver.shared.NotificationInterface {
 
 private Reflector reflector;
@@ -28,8 +29,8 @@ private Reflector reflector;
 	public void newProject(org.bimserver.interfaces.objects.SNewProjectNotification arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "newProject", void.class, new KeyValuePair("arg0", arg0));
 	}
-	public void newRevision(org.bimserver.interfaces.objects.SNewRevisionNotification arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "newRevision", void.class, new KeyValuePair("arg0", arg0));
+	public void newRevision(org.bimserver.interfaces.objects.SNewRevisionNotification newRevisionNotification, org.bimserver.interfaces.objects.SToken token, java.lang.String apiUrl) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("NotificationInterface", "newRevision", void.class, new KeyValuePair("newRevisionNotification", newRevisionNotification), new KeyValuePair("token", token), new KeyValuePair("apiUrl", apiUrl));
 	}
 	public void serverHasStarted() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "serverHasStarted", void.class);

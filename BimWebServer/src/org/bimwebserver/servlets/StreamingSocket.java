@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimwebserver.BimWebServer;
@@ -20,12 +21,10 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 	public StreamingSocket(BimWebServer bimWebServer, long uoid) {
 		this.bimWebServer = bimWebServer;
 		this.uoid = uoid;
-		System.out.println("new streaming socket");
 	}
 	
 	@Override
 	public void onClose(int arg0, String arg1) {
-		System.out.println("close");
 		bimWebServer.unregisterForNotification(uoid);
 	}
 
@@ -45,7 +44,6 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 
 	@Override
 	public void onMessage(String message) {
-		System.out.println(message);
 	}
 
 	private void send(JSONObject object) {
@@ -76,7 +74,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 	}
 
 	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
+	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
 		JSONObject object = new JSONObject();
 		try {
 			object.put("type", "newRevision");

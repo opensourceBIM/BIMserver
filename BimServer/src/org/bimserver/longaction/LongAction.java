@@ -27,6 +27,7 @@ import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.webservices.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,17 +41,17 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 	private final BimServer bimServer;
 	private final String username;
 	private final String userUsername;
-	private final long uoid;
 	private ActionState actionState = ActionState.UNKNOWN;
 	private GregorianCalendar stop;
 	private final List<String> errors = new ArrayList<String>();
 	private final List<String> warnings = new ArrayList<String>();
 	private final List<String> infos = new ArrayList<String>();
+	private Authorization authorization;
 
-	public LongAction(BimServer bimServer, String username, String userUsername, long uoid) {
+	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
 		start = new GregorianCalendar();
+		this.authorization = authorization;
 		this.userUsername = userUsername;
-		this.uoid = uoid;
 		this.username = username;
 		this.bimServer = bimServer;
 	}
@@ -74,8 +75,8 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 		return userUsername;
 	}
 
-	public long getUoid() {
-		return uoid;
+	public Authorization getAuthorization() {
+		return authorization;
 	}
 
 	public BimServer getBimServer() {

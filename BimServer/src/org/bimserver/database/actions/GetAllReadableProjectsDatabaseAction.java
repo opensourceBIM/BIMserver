@@ -33,19 +33,20 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<Project>> {
 
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public GetAllReadableProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid) {
+	public GetAllReadableProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		IfcModelInterface projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), false, null);
 		Set<Project> result = new HashSet<Project>();
 		for (IdEObject idEObject : projectsModel.getValues()) {

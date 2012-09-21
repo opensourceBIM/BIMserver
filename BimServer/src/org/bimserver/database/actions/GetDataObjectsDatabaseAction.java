@@ -37,19 +37,20 @@ import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.ecore.EObject;
 
 public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObject>> {
 
 	private final long roid;
 	private final BimServer bimServer;
-	private final long currentUoid;
+	private Authorization authorization;
 
-	public GetDataObjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long roid, long currentUoid) {
+	public GetDataObjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long roid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
-		this.currentUoid = currentUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObj
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

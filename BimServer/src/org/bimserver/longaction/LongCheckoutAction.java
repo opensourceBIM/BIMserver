@@ -23,14 +23,15 @@ import org.bimserver.database.actions.CheckoutDatabaseAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	private CheckoutDatabaseAction action;
 	private DatabaseSession session;
 
-	public LongCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, long currentUoid, AccessMethod accessMethod) {
-		super(bimServer, username, userUsername, downloadParameters, accessMethod, currentUoid);
+	public LongCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
+		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
 	}
 
 	@Override
@@ -58,6 +59,6 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	@Override
 	public void init() {
 		session = getBimServer().getDatabase().createSession();
-		action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
+		action = new CheckoutDatabaseAction(session, accessMethod, getAuthorization(), downloadParameters.getRoid());
 	}
 }

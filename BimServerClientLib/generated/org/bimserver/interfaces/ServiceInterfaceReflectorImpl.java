@@ -152,6 +152,9 @@ private Reflector reflector;
 	public void deleteSerializer(java.lang.Long sid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "deleteSerializer", void.class, new KeyValuePair("sid", sid));
 	}
+	public void deleteService(long arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "deleteService", void.class, new KeyValuePair("arg0", arg0));
+	}
 	public java.lang.Boolean deleteUser(java.lang.Long uoid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "deleteUser", java.lang.Boolean.class, new KeyValuePair("uoid", uoid));
 	}
@@ -710,8 +713,8 @@ private Reflector reflector;
 	public java.lang.Boolean upgradePossible() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "upgradePossible", java.lang.Boolean.class);
 	}
-	public java.lang.Boolean userHasCheckinRights(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "userHasCheckinRights", java.lang.Boolean.class, new KeyValuePair("poid", poid));
+	public java.lang.Boolean userHasCheckinRights(java.lang.Long uoid, java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "userHasCheckinRights", java.lang.Boolean.class, new KeyValuePair("uoid", uoid), new KeyValuePair("poid", poid));
 	}
 	public java.lang.Boolean userHasRights(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "userHasRights", java.lang.Boolean.class, new KeyValuePair("poid", poid));

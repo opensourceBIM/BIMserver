@@ -4,14 +4,22 @@
 <%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
-	SProject project = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("oid")));
+	if (request.getParameter("action") != null) {
+		String action = request.getParameter("action");
+		if (action.equals("delete")) {
+			loginManager.getService().deleteService(Long.parseLong(request.getParameter("oid")));
+			response.sendRedirect("project.jsp?poid=" + request.getParameter("poid"));
+		}
+	}
+
+	SProject project = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("poid")));
 %>
 			<a href="#" class="addServiceButton">Add service</a>
 <% if (project.getServices().isEmpty()) { %>
 <p>No configured services</p>
 <% } else { %>
 			<table>
-				<tr><th>Server</th><th>Service</th><th>User</th><th>Description</th></tr><tr>
+				<tr><th>Server</th><th>Service</th><th>User</th><th>Description</th><th>Actions</th></tr>
 <%
 	for (long epid : project.getServices()) {
 		SService sService = loginManager.getService().getService(epid);
@@ -22,6 +30,11 @@
 	<td><%=sService.getName() %></td>
 	<td><%=user.getName() %></td>
 	<td><%=sService.getDescription() %></td>
+	<td>
+<% if (sService.getUserId() == loginManager.getUoid()) { %>
+<a href="services.jsp?action=delete&poid=<%=project.getOid() %>&oid=<%=sService.getOid() %>">Delete</a>
+<% } %>
+	</td>
 	</tr>
 <%
 	}

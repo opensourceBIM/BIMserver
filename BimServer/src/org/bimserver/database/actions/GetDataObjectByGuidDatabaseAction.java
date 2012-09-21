@@ -27,20 +27,21 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObject>{
 
 	private final String guid;
 	private final long roid;
 	private final BimServer bimServer;
-	private final long currentUoid;
+	private Authorization authorization;
 
-	public GetDataObjectByGuidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String guid, long currentUoid) {
+	public GetDataObjectByGuidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String guid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.guid = guid;
-		this.currentUoid = currentUoid;
+		this.authorization = authorization;
 	}
 	
 	@Override
@@ -60,6 +61,6 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObj
 			throw new UserException("Guid " + guid + " not found in this revision/project");
 		}
 		
-		return new GetDataObjectByOidDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), objectIdentifier.getCid(), currentUoid).execute();
+		return new GetDataObjectByOidDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), objectIdentifier.getCid(), authorization).execute();
 	}
 }

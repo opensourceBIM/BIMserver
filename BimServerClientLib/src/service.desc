@@ -1,5 +1,5 @@
 
-£
+∞Ò
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -90,15 +90,15 @@ settingsId (
 state (2.org.bimserver.pb.SObjectState
 concreteRevisions (
 
-id (
-extendedData (
-hasAuthorizedUsers (
-parentId	 (
+id (
+parentId (
+extendedData (
+hasAuthorizedUsers	 (
 description
- (	
-oid (>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
-geoTagId (
+ (	
+geoTagId (
+oid (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
 name (	
 subProjects (
 lastRevisionId (
@@ -144,9 +144,9 @@ serializer (2.org.bimserver.pb.SSerializer"õ
 token (	
 description (	
 oid (
-name (	
-writeRevisionId (
-userId (
+name (	
+userId (
+writeRevisionId (
 writeExtendedDataId	 (
 	projectId
  (
@@ -344,7 +344,9 @@ dataObject (2.org.bimserver.pb.SDataObject"]
 DeleteQueryEngineRequest
 iid ("&
 DeleteSerializerRequest
-sid ("!
+sid ("$
+DeleteServiceRequest
+arg0 ("!
 DeleteUserRequest
 uoid ("9
 DeleteUserResponse
@@ -1432,9 +1434,10 @@ serializer (2.org.bimserver.pb.SSerializer"
 UpgradePossibleRequest">
 UpgradePossibleResponse
 errorMessage (	
-value ("+
+value ("9
 UserHasCheckinRightsRequest
-poid ("C
+uoid (
+poid ("C
 UserHasCheckinRightsResponse
 errorMessage (	
 value ("$
@@ -1520,7 +1523,7 @@ CH_STARTED
 MIGRATION_REQUIRED
 MIGRATION_IMPOSSIBLE
 FATAL_ERROR
-RUNNING2è 
+RUNNING2Ë 
 ServiceInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponse[
@@ -1565,6 +1568,7 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponse_
 deleteQueryEngine*.org.bimserver.pb.DeleteQueryEngineRequest.org.bimserver.pb.VoidResponse]
 deleteSerializer).org.bimserver.pb.DeleteSerializerRequest.org.bimserver.pb.VoidResponseW
+deleteService&.org.bimserver.pb.DeleteServiceRequest.org.bimserver.pb.VoidResponseW
 
 deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponseW
 disablePlugin&.org.bimserver.pb.DisablePluginRequest.org.bimserver.pb.VoidResponseQ

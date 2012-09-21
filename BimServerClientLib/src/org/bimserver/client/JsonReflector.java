@@ -93,7 +93,7 @@ public class JsonReflector implements Reflector {
 		httpclient.getConnectionManager().shutdown();
 	}
 
-	public JSONObject call(JSONObject request) {
+	public JSONObject call(JSONObject request) throws JSONException {
 		try {
 			if (authenticationInfo != null && authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
@@ -129,8 +129,6 @@ public class JsonReflector implements Reflector {
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return null;

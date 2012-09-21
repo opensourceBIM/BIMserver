@@ -31,21 +31,22 @@ import org.bimserver.plugins.VoidReporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
-	private final long actingUoid;
 	private final long roid1;
 	private final long roid2;
 	private final CompareType sCompareType;
 	private final BimServer bimServer;
 	private final long mcid;
+	private Authorization authorization;
 
-	public CompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long roid1, long roid2,
+	public CompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long roid1, long roid2,
 			CompareType sCompareType, long mcid) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.roid1 = roid1;
 		this.roid2 = roid2;
 		this.sCompareType = sCompareType;
@@ -73,8 +74,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 											// roid2, sCompareType,
 											// sCompareIdentifier);
 		if (compareResults == null) {
-			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, actingUoid, null, new VoidReporter()).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, actingUoid, null, new VoidReporter()).execute();
+			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, authorization, null, new VoidReporter()).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, authorization, null, new VoidReporter()).execute();
 			try {
 				compareResults =  getModelCompare().compare(model1, model2, sCompareType);
 			} catch (ModelCompareException e) {

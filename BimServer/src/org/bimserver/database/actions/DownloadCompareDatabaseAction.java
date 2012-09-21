@@ -68,11 +68,11 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.common.util.EList;
 
 public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
-	private final long actingUoid;
 	private long roid1;
 	private long roid2;
 	private int progress;
@@ -80,18 +80,19 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final CompareType compareType;
 	private final Reporter reporter;
 	private final long mcid;
+	private Authorization authorization;
 
 	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long mcid,
-			CompareType compareType, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
+			CompareType compareType, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.mcid = mcid;
+		this.authorization = authorization;
 		this.reporter = reporter;
 		Iterator<Long> iterator = roids.iterator();
 		this.roid1 = iterator.next();
 		this.roid2 = iterator.next();
 		this.compareType = compareType;
-		this.actingUoid = actingUoid;
 	}
 	
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
@@ -118,8 +119,8 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 			CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
 												// roid2, compareType,
 												// compareIdentifier);
-			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, actingUoid, null, reporter).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, actingUoid, null, reporter).execute();
+			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, authorization, null, reporter).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, authorization, null, reporter).execute();
 
 			try {
 				compareResults = getModelCompare().compare(model1, model2, compareType);
@@ -128,7 +129,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 			}
 //			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
 
-			ModelMerger merger = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid);
+			ModelMerger merger = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid());
 			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper());
 			mergedModel.setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 

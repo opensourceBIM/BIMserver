@@ -149,7 +149,7 @@ public class Database implements BimDatabase {
 				databaseSession.store(databaseCreated);
 
 				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, -1, false);
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, null, false);
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();
 

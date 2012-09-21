@@ -27,16 +27,17 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
 
-	private final long actionUoid;
 	private final long poid;
+	private Authorization authorization;
 
-	public GetProjectByPoidDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, long actionUoid) {
+	public GetProjectByPoidDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
-		this.actionUoid = actionUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
 		if (project == null) {
 			throw new UserException("Project with oid " + poid + " does not exist");
 		}
-		User user = getUserByUoid(actionUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Project has been deleted");
 		}

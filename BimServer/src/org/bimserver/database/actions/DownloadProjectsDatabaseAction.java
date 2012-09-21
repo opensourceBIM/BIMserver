@@ -39,26 +39,27 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
-	private final long actingUoid;
 	private final Set<Long> roids;
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
+	private Authorization authorization;
 
-	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		Project project = null;
 		String projectName = "";
 		IfcModelSet ifcModelSet = new IfcModelSet();
@@ -96,7 +97,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid).merge(project, ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

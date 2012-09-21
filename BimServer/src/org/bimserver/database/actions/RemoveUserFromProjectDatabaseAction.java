@@ -30,26 +30,27 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long uoid;
 	private final long poid;
-	private final long actingUoid;
+	private Authorization authorization;
 
 	public RemoveUserFromProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long poid,
-			long actingUoid) {
+			Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 		this.poid = poid;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		if (RightsManager.hasRightsOnProject(actingUser, project)) {
 			if (user.getUserType() == UserType.ADMIN) {
 				int nrAdmins = 0;

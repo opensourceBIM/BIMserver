@@ -30,23 +30,24 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetProjectsByNameDatabaseAction extends BimDatabaseAction<List<Project>> {
 
-	private final long actionUoid;
 	private final String name;
+	private Authorization authorization;
 
-	public GetProjectsByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name, long actionUoid) {
+	public GetProjectsByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.name = name;
-		this.actionUoid = actionUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public List<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Set<Project> projects = getProjectsByName(name);
 		List<Project> result = new ArrayList<Project>();
-		User user = getUserByUoid(actionUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		for (Project project : projects) {
 			if ((project.getState() == ObjectState.ACTIVE && RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
 				result.add(project);

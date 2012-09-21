@@ -17,13 +17,22 @@ package org.bimserver.shared;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import javax.jws.WebParam;
+
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface NotificationInterface {
 	void serverHasStarted() throws ServiceException;
+	
 	void serverWillBeShutdown() throws ServiceException;
+	
 	void newProject(SNewProjectNotification newProjectNotification) throws ServiceException;
-	void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException;
+	
+	void newRevision(
+		@WebParam(name = "newRevisionNotification", partName = "newRevision.newRevisionNotification") SNewRevisionNotification newRevisionNotification,
+		@WebParam(name = "token", partName = "newRevision.token") SToken token,
+		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws ServiceException;
 }
