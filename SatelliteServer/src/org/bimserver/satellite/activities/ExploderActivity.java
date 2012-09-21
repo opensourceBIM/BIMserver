@@ -26,6 +26,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
@@ -49,7 +50,7 @@ public class ExploderActivity extends Activity {
 	}
 	
 	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
+	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
 		SRevision revision = satelliteServer.getBimServerClient().getServiceInterface().getRevision(newRevisionNotification.getRevisionId());
 		if (!revision.getComment().contains(COMMENT_TAG)) {
 			SProject project = satelliteServer.getBimServerClient().getServiceInterface().getProjectByPoid(revision.getProjectId());

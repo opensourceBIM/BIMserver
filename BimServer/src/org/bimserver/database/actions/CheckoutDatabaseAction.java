@@ -34,23 +34,24 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 
-	private final long uoid;
 	private final long roid;
 	private int progress;
+	private Authorization authorization;
 
-	public CheckoutDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long roid) {
+	public CheckoutDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long roid) {
 		super(databaseSession, accessMethod);
-		this.uoid = uoid;
+		this.authorization = authorization;
 		this.roid = roid;
 	}
 
 	@Override
 	public IfcModel execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		User user = getUserByUoid(uoid);
+		User user = getUserByUoid(authorization.getUoid());
 		Revision revision = getVirtualRevision(roid);
 		Project project = revision.getProject();
 		if (user.getHasRightsOn().contains(project)) {

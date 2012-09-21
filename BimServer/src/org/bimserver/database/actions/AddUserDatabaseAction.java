@@ -44,6 +44,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
+import org.bimserver.webservices.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,33 +53,33 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	private final String name;
 	private final UserType userType;
 	private final String username;
-	private final long createrUoid;
 	private final boolean selfRegistration;
 	private final String password;
 	private boolean createSystemUser = false;
 	private final BimServer bimServer;
+	private Authorization authorization;
 
 	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String name, UserType userType,
-			long createrUoid, boolean selfRegistration) {
+			Authorization authorization, boolean selfRegistration) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
-		this.createrUoid = createrUoid;
+		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
 		this.password = null;
 	}
 
 	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType,
-			long createrUoid, boolean selfRegistration) {
+			Authorization authorization, boolean selfRegistration) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.password = password;
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
-		this.createrUoid = createrUoid;
+		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
 	}
 
@@ -103,9 +104,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		if (getUserByUserName(trimmedUserName) != null) {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
-		User actingUser = getUserByUoid(createrUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
-			if (createrUoid != -1 && actingUser.getUserType() != UserType.ADMIN) {
+			if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
 				throw new UserException("Only admin users can create other users");
 			}
 		}
@@ -116,7 +117,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		user.setName(trimmedName);
 		user.setUsername(trimmedUserName);
 		user.setCreatedOn(new Date());
-		user.setCreatedBy(getUserByUoid(createrUoid));
+		user.setCreatedBy(getUserByUoid(authorization.getUoid()));
 		user.setUserType(userType);
 		user.setLastSeen(null);
 		final String token = GeneratorUtils.generateToken();

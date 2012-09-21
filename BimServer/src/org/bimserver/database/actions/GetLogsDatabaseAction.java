@@ -31,19 +31,20 @@ import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetLogsDatabaseAction extends BimDatabaseAction<List<LogAction>> {
 
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public GetLogsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid) {
+	public GetLogsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public List<LogAction> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		if (user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can retrieve log");
 		}

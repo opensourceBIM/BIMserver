@@ -79,7 +79,7 @@ public class JspHelper {
 			result.append("<th>Actions</th>");
 			result.append("</tr>");
 		}
-		result.append("<tr class=\"" + (loginManager.getService().userHasCheckinRights(project.getOid()) ? "" : "checkinrights")
+		result.append("<tr class=\"" + (loginManager.getService().userHasCheckinRights(loginManager.getService().getCurrentUser().getOid(), project.getOid()) ? "" : "checkinrights")
 				+ (project.getState() == SObjectState.DELETED ? " deleted" : "") + "\">");
 		result.append("<td>");
 		for (int i = 0; i < level; i++) {
@@ -271,7 +271,7 @@ public class JspHelper {
 
 	private static void showProjectTree(StringBuilder sb, SProject mainProject, SProject activeProject, ServiceInterface serviceInterface, boolean isLast) throws ServiceException {
 		sb.append("<li" + (isLast ? " class=\"last\"" : "") + ">");
-		boolean hasRights = serviceInterface.userHasCheckinRights(mainProject.getOid());
+		boolean hasRights = serviceInterface.userHasCheckinRights(serviceInterface.getCurrentUser().getOid(), mainProject.getOid());
 		sb.append("<a class=\"projectTreeItem" + (activeProject.getOid() == mainProject.getOid() ? " activeTreeItem" : "") + (hasRights ? "" : " norightsTreeItem")
 				+ "\" href=\"project.jsp?poid=" + mainProject.getOid() + "\"/>" + mainProject.getName() + "</a>");
 		List<SProject> subProjects = serviceInterface.getSubProjects(mainProject.getOid());

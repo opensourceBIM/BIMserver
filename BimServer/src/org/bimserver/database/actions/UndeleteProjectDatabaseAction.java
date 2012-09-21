@@ -30,21 +30,22 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
-	private final long actingUoid;
 	private final long poid;
+	private Authorization authorization;
 
-	public UndeleteProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, long actingUoid) {
+	public UndeleteProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		final Project project = getProjectByPoid(poid);
 		if (project == null) {
 			throw new UserException("No Project with oid " + poid + " found");

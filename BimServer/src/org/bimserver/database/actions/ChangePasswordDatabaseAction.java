@@ -29,30 +29,31 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Hashers;
+import org.bimserver.webservices.Authorization;
 
 public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final String oldPassword;
 	private final String newPassword;
 	private final long uoid;
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public ChangePasswordDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, long actingUoid) {
+	public ChangePasswordDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.uoid = uoid;
 		this.oldPassword = oldPassword;
 		this.newPassword = newPassword;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Boolean execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		User user = getUserByUoid(uoid);
 		if (user.getUserType() == UserType.SYSTEM) {
 			throw new UserException("Password of system user cannot be changed");
 		}
-		if (uoid == actingUoid) {
+		if (uoid == authorization.getUoid()) {
 			return changePassword(getDatabaseSession(), actingUser, false);
 		} else {
 			if (actingUser.getUserType() == UserType.ADMIN || actingUser.getUserType() == UserType.SYSTEM) {

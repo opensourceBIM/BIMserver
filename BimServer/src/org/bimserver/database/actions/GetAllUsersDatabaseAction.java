@@ -35,19 +35,20 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.webservices.Authorization;
 
 public class GetAllUsersDatabaseAction extends BimDatabaseAction<Set<User>> {
 
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public GetAllUsersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid) {
+	public GetAllUsersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Set<User> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getUser());
 		condition = condition.and(new Not(new AttributeCondition(StorePackage.eINSTANCE.getUser_UserType(), new EnumLiteral(UserType.SYSTEM))));
 		if (actingUser.getUserType() != UserType.ADMIN) {

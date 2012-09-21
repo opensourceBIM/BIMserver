@@ -45,13 +45,13 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CheckinDatabaseAction.class);
-	private final long actingUid;
 	private final String comment;
 	private final long poid;
 	private ConcreteRevision concreteRevision;
@@ -59,12 +59,13 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final BimServer bimServer;
 	private final boolean clean;
 	private Project project;
+	private Authorization authorization;
 
-	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, long actingUid, IfcModelInterface model, String comment, boolean merge, boolean clean) {
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, boolean merge, boolean clean) {
 		super(databaseSession, accessMethod, model);
 		this.bimServer = bimServer;
 		this.poid = poid;
-		this.actingUid = actingUid;
+		this.authorization = authorization;
 		this.comment = comment;
 		this.merge = merge;
 		this.clean = clean;
@@ -75,7 +76,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		try {
 			project = getProjectByPoid(poid);
 			int nrConcreteRevisionsBefore = project.getConcreteRevisions().size();
-			User user = getUserByUoid(actingUid);
+			User user = getUserByUoid(authorization.getUoid());
 			if (project == null) {
 				throw new UserException("Project with poid " + poid + " not found");
 			}
@@ -156,7 +157,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		newModel.fixOids(getDatabaseSession());
 		IfcModelInterface oldModel;
 		try {
-			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUid)
+			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
 					.merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
@@ -196,7 +197,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 
 	public long getActingUid() {
-		return actingUid;
+		return authorization.getUoid();
 	}
 
 	public Project getProject() {

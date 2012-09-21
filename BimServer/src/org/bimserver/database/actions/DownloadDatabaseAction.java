@@ -38,23 +38,24 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final long roid;
-	private final long actingUoid;
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
+	private Authorization authorization;
 
-	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long actingUoid,
+	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, Authorization authorization,
 			ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.ignoreUoid = ignoreUoid;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
 
@@ -65,7 +66,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 			throw new UserException("Revision with oid " + roid + " not found");
 		}
 		Project project = revision.getProject();
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
@@ -97,7 +98,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid)
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
 					.merge(revision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);

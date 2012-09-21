@@ -39,19 +39,20 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.webservices.Authorization;
 
 public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>> {
 
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public GetAllProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid) {
+	public GetAllProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		Not notStoreProject = new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)));
 		HasReferenceToCondition authorized = new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user);
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(notStoreProject);

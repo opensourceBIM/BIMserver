@@ -28,22 +28,23 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<String>> {
 
 	private final long poid;
-	private final long uoid;
+	private Authorization authorization;
 
-	public GetCheckoutWarningsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, long uoid) {
+	public GetCheckoutWarningsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
-		this.uoid = uoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Set<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
-		User user = getUserByUoid(uoid);
+		User user = getUserByUoid(authorization.getUoid());
 		Set<String> warnings = new HashSet<String>();
 		checkOtherUsersCheckouts(project, user, warnings);
 		return warnings;

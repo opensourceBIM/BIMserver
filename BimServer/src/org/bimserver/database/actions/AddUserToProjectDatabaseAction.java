@@ -29,17 +29,18 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long uoid;
 	private final long poid;
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public AddUserToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long uoid,
+	public AddUserToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid,
 			long poid) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.uoid = uoid;
 		this.poid = poid;
 	}
@@ -47,7 +48,7 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		final Project project = getProjectByPoid(poid);
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		if (RightsManager.hasRightsOnProject(actingUser, project)) {
 			User user = getUserByUoid(uoid);
 			project.getHasAuthorizedUsers().add(user);

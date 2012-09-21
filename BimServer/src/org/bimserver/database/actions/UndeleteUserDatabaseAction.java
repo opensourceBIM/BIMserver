@@ -29,21 +29,22 @@ import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 
-	private final long actingUoid;
 	private final long uoid;
+	private Authorization authorization;
 
-	public UndeleteUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long uoid) {
+	public UndeleteUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.uoid = uoid;
 	}
 
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only administrators can undelete users");
 		}

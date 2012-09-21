@@ -4,6 +4,7 @@ import org.bimserver.client.BimServerClientException;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.satellite.SatelliteServer;
 import org.bimserver.shared.ServiceInterface;
@@ -25,7 +26,7 @@ public class NameChangeActivity extends Activity {
 	}
 
 	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
+	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
 		try {
 			IfcModelInterface model = satelliteServer.getBimServerClient().getModel(newRevisionNotification.getRevisionId());
 			ServiceInterface serviceInterface = satelliteServer.getBimServerClient().getServiceInterface();

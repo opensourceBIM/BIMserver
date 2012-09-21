@@ -25,7 +25,7 @@
 		}
 	}
 %>
-<label for="servers">External Server </label><select id="servers" name="servers" class="servers">
+<label for="servers">Server </label><select id="servers" name="servers" class="servers">
 				<option value="[SELECT]">[Select]</option>
 <%
 	for (SServerDescriptor externalServer : loginManager.getService().getRepositoryServers()) {
@@ -33,7 +33,7 @@
 	} 
 %>
 			</select>
-			<label for="services"></label>
+			<label class="serviceslabel initialhide" for="services">Service </label>
 			<select class="services initialhide" id="services" name="services">
 			</select>
 			<div class="servicediv initialhide">
@@ -54,7 +54,7 @@ $(function(){
 	$(".servers").change(function(){
 		var val = $(this).attr("value");
 		if (val == "[SELECT]") {
-			$(".services, .servicediv").hide();
+			$(".services, .serviceslabel, .servicediv").hide();
 		} else {
 			$.getJSON("getservices.jsp?url=" + val, function(data) {
 				$(".services").empty();
@@ -64,7 +64,7 @@ $(function(){
 					option.data("service", service);
 					$(".services").append(option);
 				});
-				$(".services").show();
+				$(".services, .serviceslabel").show();
 			});
 		}
 	});
@@ -118,7 +118,7 @@ $(function(){
 				writeRevision: $(".writeRevision select").val(),
 				writeExtendedData: $(".writeExtendedData select").val()
 			}, success: function(){
-				$("#servicestab").load("services.jsp?oid=<%=project.getOid()%>");
+				$("#servicestab").load("services.jsp?poid=<%=project.getOid()%>");
 			}
 		});
 	});

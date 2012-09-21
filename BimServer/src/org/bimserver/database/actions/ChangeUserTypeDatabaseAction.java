@@ -29,23 +29,24 @@ import org.bimserver.models.log.UserChanged;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 
-	private final long actingUoid;
 	private final long uoid;
 	private final SUserType userType;
+	private Authorization authorization;
 
-	public ChangeUserTypeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long uoid, SUserType userType) {
+	public ChangeUserTypeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid, SUserType userType) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.uoid = uoid;
 		this.userType = userType;
 	}
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can change other user's types");
 		}

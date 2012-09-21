@@ -39,20 +39,21 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseAction {
 
 	private final Set<Change> changes;
-	private final long currentUoid;
 	private final String comment;
 	private Revision revision;
 	private final long poid;
+	private Authorization authorization;
 
-	public CommitTransactionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Set<Change> changes, long currentUoid, long poid,
+	public CommitTransactionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Set<Change> changes, Authorization authorization, long poid,
 			String comment) {
 		super(databaseSession, accessMethod, null);
 		this.changes = changes;
-		this.currentUoid = currentUoid;
+		this.authorization = authorization;
 		this.poid = poid;
 		this.comment = comment;
 	}
@@ -60,7 +61,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
-		User user = getUserByUoid(currentUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		if (project == null) {
 			throw new UserException("Project with poid " + poid + " not found");
 		}

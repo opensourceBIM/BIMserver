@@ -29,22 +29,23 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetProjectsOfUserDatabaseAction extends BimDatabaseAction<List<Project>>{
 
-	private final long actingUoid;
 	private long uoid;
+	private Authorization authorization;
 
-	public GetProjectsOfUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long actingUoid, long uoid) {
+	public GetProjectsOfUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid) {
 		super(databaseSession, accessMethod);
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.uoid = uoid;
 	}
 
 	@Override
 	public List<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User actingUser = getUserByUoid(actingUoid);
-		if (actingUser.getUserType() == UserType.ADMIN || actingUoid == uoid) {
+		User actingUser = getUserByUoid(authorization.getUoid());
+		if (actingUser.getUserType() == UserType.ADMIN || authorization.getUoid() == uoid) {
 			User user = getUserByUoid(uoid);
 			if (user != null) {
 				List<Project> result = new ArrayList<Project>();

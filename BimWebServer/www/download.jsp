@@ -32,7 +32,7 @@
 	if (request.getParameter("poid") != null && data.has("poid")) {
 		poid = data.getLong("poid");
 	}
-	boolean userHasCheckinRights = poid == -1 || loginManager.getService().userHasCheckinRights(poid);
+	boolean userHasCheckinRights = poid == -1 || loginManager.getService().userHasCheckinRights(loginManager.getUoid(), poid);
 %>
 <div class="message"></div>
 <div class="progressbar"></div>

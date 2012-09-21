@@ -693,6 +693,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "userHasCheckinRights")
 	Boolean userHasCheckinRights(
+			@WebParam(name = "uoid", partName = "userHasCheckinRights.uoid") Long uoid, 
 			@WebParam(name = "poid", partName = "userHasCheckinRights.poid") Long poid) throws ServerException, UserException;
 
 	/**
@@ -2158,6 +2159,8 @@ public interface ServiceInterface {
 	List<org.bimserver.interfaces.objects.SService> getRemoteServices(String remoteUrl) throws ServerException, UserException;
 	
 	void addServiceToProject(long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException;
+
+	void deleteService(long oid) throws ServerException, UserException;
 
 	org.bimserver.interfaces.objects.SService getService(long epid) throws ServerException, UserException;
 

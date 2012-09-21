@@ -39,6 +39,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,7 +77,7 @@ public class CommandLine extends Thread {
 						long roid = Long.parseLong(line.substring(9).trim());
 						DatabaseSession databaseSession = bimServer.getDatabase().createSession();	
 						try {
-							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, bimServer.getSystemService().getCurrentUser().getOid(), null, new Reporter(){
+							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, ((Service)bimServer.getSystemService()).getAuthorization(), null, new Reporter(){
 								@Override
 								public void error(String error) {
 								}
@@ -101,8 +102,6 @@ public class CommandLine extends Thread {
 							LOGGER.info("Projects: " + projects.size());
 							LOGGER.info("Slabs: " + slabs.size());
 						} catch (UserException e) {
-							LOGGER.error("", e);
-						} catch (ServerException e) {
 							LOGGER.error("", e);
 						} catch (BimserverLockConflictException e) {
 							LOGGER.error("", e);

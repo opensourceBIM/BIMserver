@@ -40,14 +40,15 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.webservices.Authorization;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction implements ProgressListener {
 
 	private BimDatabaseAction<? extends IfcModelInterface> action;
 	private DatabaseSession session;
 
-	public LongDownloadAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, long currentUoid, AccessMethod accessMethod) {
-		super(bimServer, username, userUsername, downloadParameters, accessMethod, currentUoid);
+	public LongDownloadAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
+		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
 	}
 
 	public void execute() {
@@ -92,25 +93,25 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		Reporter reporter = this;
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_REVISION:
-			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), currentUoid, objectIDM, reporter);
+			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid, objectIDM, reporter);
+			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid, objectIDM, reporter);
+			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.isIncludeAllSubtypes(), currentUoid, objectIDM, reporter);
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.isIncludeAllSubtypes(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid, objectIDM, reporter);
+			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_COMPARE:
-			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), currentUoid, objectIDM, reporter);
+			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_QUERY:
-			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getCode(), currentUoid, objectIDM, reporter);
+			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getCode(), getAuthorization(), objectIDM, reporter);
 			break;
 		}
 		action.addProgressListener(this);

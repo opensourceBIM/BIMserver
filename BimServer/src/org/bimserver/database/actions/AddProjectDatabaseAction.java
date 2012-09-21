@@ -35,29 +35,30 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 
 	private final String name;
-	private final long owningUoid;
 	private final long parentPoid;
 	private final BimServer bimServer;
+	private Authorization authorization;
 
-	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String name, long owningUoid) {
-		this(bimServer, databaseSession, accessMethod, name, -1, owningUoid);
+	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String name, Authorization authorization) {
+		this(bimServer, databaseSession, accessMethod, name, -1, authorization);
 	}
 
-	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String projectName, long parentPoid, long owningUoid) {
+	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String projectName, long parentPoid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.name = projectName;
 		this.parentPoid = parentPoid;
-		this.owningUoid = owningUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Project execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		User actingUser = getUserByUoid(owningUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		String trimmedName = name.trim();
 		if (trimmedName.equals("")) {
 			throw new UserException("Invalid project name");

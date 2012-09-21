@@ -39,24 +39,25 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.ecore.EClass;
 
 public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final Set<String> classNames;
 	private final Set<Long> roids;
-	private final long actingUoid;
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
+	private Authorization authorization;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.includeAllSubtypes = includeAllSubtypes;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 		this.classNames = classNames;
 		this.objectIDM = objectIDM;
 	}
@@ -64,7 +65,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IfcModelSet ifcModelSet = new IfcModelSet();
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		Project project = null;
 		Set<EClass> eClasses = new HashSet<EClass>();
 //		eClasses.add(getDatabaseSession().getEClassForName("IfcProject"));
@@ -94,18 +95,18 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 			}
 			IfcModelInterface ifcModel;
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid).merge(project, ifcModelSet, new ModelHelper());
+				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}
 			ifcModel.setName("Unknown");
 			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
-			ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
+			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 			ifcModel.setDate(virtualRevision.getDate());
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), actingUoid).merge(project, ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
@@ -114,7 +115,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 		}
 		ifcModel.setName(name);
 		ifcModel.setRevisionNr(1);
-		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
+		ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 		ifcModel.setDate(new Date());
 		return ifcModel;
 	}

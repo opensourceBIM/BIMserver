@@ -36,18 +36,19 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<CheckinResult> {
 	private final Long roid;
 	private final Long destPoid;
 	private final String comment;
 	private final BimServer bimServer;
-	private final Long currentUoid;
+	private Authorization authorization;
 	
-	public BranchToExistingProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, Long currentUoid, Long roid, Long destPoid, String comment) {
+	public BranchToExistingProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, Authorization authorization, Long roid, Long destPoid, String comment) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
-		this.currentUoid = currentUoid;
+		this.authorization = authorization;
 		this.roid = roid;
 		this.destPoid = destPoid;
 		this.comment = comment;
@@ -57,7 +58,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 	public CheckinResult execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
@@ -70,13 +71,13 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 		}
 		IfcModelInterface model;
 		try {
-			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), currentUoid)
+			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
 					.merge(oldRevision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
 		model.resetOids();
-		CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, currentUoid, model, comment, false, true);
+		CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, authorization, model, comment, false, true);
 		ConcreteRevision execute = checkinDatabaseAction.execute();
 		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
 		checkinResult.setProject(oldProject);

@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 
@@ -56,9 +57,9 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 	}
 
 	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification) throws ServiceException {
+	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
 		for (NotificationInterface notificationInterface : notificationInterfaces) {
-			notificationInterface.newRevision(newRevisionNotification);
+			notificationInterface.newRevision(newRevisionNotification, token, apiUrl);
 		}
 	}
 

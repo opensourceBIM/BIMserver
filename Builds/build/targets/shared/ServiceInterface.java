@@ -47,8 +47,6 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
-import org.bimserver.interfaces.objects.SExternalProfile;
-import org.bimserver.interfaces.objects.SExternalServer;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEngine;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
@@ -70,6 +68,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
+import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.interfaces.objects.SServiceInterface;
 import org.bimserver.interfaces.objects.SServiceMethod;
@@ -694,6 +693,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "userHasCheckinRights")
 	Boolean userHasCheckinRights(
+			@WebParam(name = "uoid", partName = "userHasCheckinRights.uoid") Long uoid, 
 			@WebParam(name = "poid", partName = "userHasCheckinRights.poid") Long poid) throws ServerException, UserException;
 
 	/**
@@ -2126,7 +2126,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllExtendedSchemas")
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 	
-	List<SExternalServer> getRepositoryServers() throws ServerException, UserException;
+	List<SServerDescriptor> getRepositoryServers() throws ServerException, UserException;
 	
 	SIfcEngine getDefaultIfcEngine() throws ServerException, UserException;
 
@@ -2156,14 +2156,14 @@ public interface ServiceInterface {
 
 	void setServiceRepositoryUrl(String url) throws ServerException, UserException;
 	
-	List<SExternalProfile> getRemoteProfiles(String remoteUrl) throws ServerException, UserException;
+	List<org.bimserver.interfaces.objects.SService> getRemoteServices(String remoteUrl) throws ServerException, UserException;
 	
-	void addProfileToProject(long poid, SExternalProfile profile) throws ServerException, UserException;
+	void addServiceToProject(long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException;
 
-	SExternalProfile getExternalProfile(long epid) throws ServerException, UserException;
+	void deleteService(long oid) throws ServerException, UserException;
 
-	SExternalServer getExternalServer(long esid) throws ServerException, UserException;
-	
+	org.bimserver.interfaces.objects.SService getService(long epid) throws ServerException, UserException;
+
 	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
 	
 	List<SServiceMethod> getServiceMethods(

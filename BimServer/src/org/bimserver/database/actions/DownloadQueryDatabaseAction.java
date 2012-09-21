@@ -31,24 +31,24 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
-	private final long actingUoid;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long qeid;
 	private final String code;
 	private final long roid;
 	private final Reporter reporter;
+	private Authorization authorization;
 
-	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, String code, long actingUoid, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, String code, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.qeid = qeid;
 		this.code = code;
-		this.actingUoid = actingUoid;
 		this.objectIDM = objectIDM;
 		this.reporter = reporter;
 	}
@@ -57,7 +57,7 @@ public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInter
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, actingUoid, null, reporter);
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, authorization, null, reporter);
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 			QueryEngine queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEngine(), qeid, false, null);
 			if (queryEngineObject != null) {

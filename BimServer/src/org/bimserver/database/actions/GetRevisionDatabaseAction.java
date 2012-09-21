@@ -26,16 +26,17 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 
 	private final long roid;
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public GetRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long actingUoid) {
+	public GetRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.roid = roid;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class GetRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 			throw new UserException("Revision does not exist");
 		}
 		Project project = revision.getProject();
-		User user = getUserByUoid(actingUoid);
+		User user = getUserByUoid(authorization.getUoid());
 		if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			return revision;
 		}

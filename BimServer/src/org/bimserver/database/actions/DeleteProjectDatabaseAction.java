@@ -31,21 +31,22 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long poid;
-	private final long actingUoid;
+	private Authorization authorization;
 
-	public DeleteProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long poid, long actingUoid) {
+	public DeleteProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long poid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
-		this.actingUoid = actingUoid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		User actingUser = getUserByUoid(actingUoid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		final Project project = getProjectByPoid(poid);
 		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && getServerSettings().isAllowUsersToCreateTopLevelProjects())) {
 			delete(project);
