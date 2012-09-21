@@ -45,6 +45,9 @@ public class SClass {
 	private Set<SClass> subClasses = new HashSet<SClass>();
 	
 	public SClass(SService sService, Class<?> instanceClass) {
+		if (instanceClass == null) {
+			throw new RuntimeException("InstanceClass cannot be null " + sService.getName());
+		}
 		this.sService = sService;
 		this.instanceClass = instanceClass;
 		this.name = instanceClass.getName();
@@ -236,5 +239,9 @@ public class SClass {
 
 	public boolean isLong() {
 		return name.equals("java.lang.Long") || name.equals("long");
+	}
+
+	public boolean isByteArray() {
+		return instanceClass == byte[].class;
 	}
 }

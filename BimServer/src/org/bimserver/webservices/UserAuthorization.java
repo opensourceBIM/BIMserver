@@ -7,8 +7,12 @@ public class UserAuthorization extends Authorization {
 
 	private UserType userType;
 
+	public UserAuthorization(long uoid) {
+		super(uoid);
+	}
+	
 	public UserAuthorization(User user) {
-		setUoid(user.getOid());
+		super(user.getOid());
 		userType = user.getUserType();
 	}
 	

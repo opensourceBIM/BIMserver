@@ -3208,13 +3208,22 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_SCHEMA__URL = 1;
 
 	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__NAMESPACE = 2;
+
+	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__DATA = 2;
+	int EXTENDED_DATA_SCHEMA__DATA = 3;
 
 	/**
 	 * The feature id for the '<em><b>Validate</b></em>' attribute.
@@ -3223,7 +3232,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__VALIDATE = 3;
+	int EXTENDED_DATA_SCHEMA__VALIDATE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3232,7 +3241,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__TYPE = 4;
+	int EXTENDED_DATA_SCHEMA__TYPE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -3241,7 +3250,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__SETTINGS = 5;
+	int EXTENDED_DATA_SCHEMA__SETTINGS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Users</b></em>' reference list.
@@ -3250,7 +3259,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__USERS = 6;
+	int EXTENDED_DATA_SCHEMA__USERS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
@@ -3259,7 +3268,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 7;
+	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 8;
 
 	/**
 	 * The number of structural features of the '<em>Extended Data Schema</em>' class.
@@ -3268,7 +3277,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 8;
+	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataImpl <em>Extended Data</em>}' class.
@@ -6978,6 +6987,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getExtendedDataSchema_Url();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getNamespace <em>Namespace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Namespace</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getNamespace()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EAttribute getExtendedDataSchema_Namespace();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9875,6 +9895,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDED_DATA_SCHEMA__URL = eINSTANCE.getExtendedDataSchema_Url();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespace</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA_SCHEMA__NAMESPACE = eINSTANCE.getExtendedDataSchema_Namespace();
 
 		/**
 		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.

@@ -54,6 +54,9 @@ public class SExtendedDataSchema implements SBase
 		if (sField.getName().equals("url")) {
 			return getUrl();
 		}
+		if (sField.getName().equals("namespace")) {
+			return getNamespace();
+		}
 		if (sField.getName().equals("data")) {
 			return getData();
 		}
@@ -85,6 +88,10 @@ public class SExtendedDataSchema implements SBase
 		}
 		if (sField.getName().equals("url")) {
 			setUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("namespace")) {
+			setNamespace((String)val);
 			return;
 		}
 		if (sField.getName().equals("data")) {
@@ -120,6 +127,7 @@ public class SExtendedDataSchema implements SBase
 	
 	private java.lang.String name;
 	private java.lang.String url;
+	private java.lang.String namespace;
 	private byte[] data;
 	private boolean validate;
 	private SExtendedDataSchemaType type;
@@ -139,6 +147,13 @@ public class SExtendedDataSchema implements SBase
 
 	public void setUrl(java.lang.String url) {
 		this.url = url;
+	}
+	public java.lang.String getNamespace() {
+		return namespace;
+	}
+
+	public void setNamespace(java.lang.String namespace) {
+		this.namespace = namespace;
 	}
 	public byte[] getData() {
 		return data;

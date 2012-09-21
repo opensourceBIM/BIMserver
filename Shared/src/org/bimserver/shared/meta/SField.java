@@ -30,6 +30,9 @@ public class SField {
 
 	public SField(String name, SClass type, SClass genericType, boolean aggregate) {
 		this.name = name;
+		if (type == null) {
+			throw new RuntimeException("Type cannot be null " + name);
+		}
 		this.type = type;
 		this.genericType = genericType;
 		this.aggregate = aggregate;

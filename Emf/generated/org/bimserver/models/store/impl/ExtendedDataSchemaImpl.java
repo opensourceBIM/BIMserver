@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#isValidate <em>Validate</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getType <em>Type</em>}</li>
@@ -110,6 +111,24 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 */
 	public void setUrl(String newUrl) {
 		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__URL, newUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNamespace() {
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNamespace(String newNamespace) {
+		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE, newNamespace);
 	}
 
 	/**

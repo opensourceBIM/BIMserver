@@ -3042,7 +3042,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendedDataSchema_Data() {
+	public EAttribute getExtendedDataSchema_Namespace() {
 		return (EAttribute) getExtendedDataSchema().getEStructuralFeatures().get(2);
 	}
 
@@ -3051,7 +3051,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendedDataSchema_Validate() {
+	public EAttribute getExtendedDataSchema_Data() {
 		return (EAttribute) getExtendedDataSchema().getEStructuralFeatures().get(3);
 	}
 
@@ -3060,7 +3060,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendedDataSchema_Type() {
+	public EAttribute getExtendedDataSchema_Validate() {
 		return (EAttribute) getExtendedDataSchema().getEStructuralFeatures().get(4);
 	}
 
@@ -3069,8 +3069,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedDataSchema_Settings() {
-		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(5);
+	public EAttribute getExtendedDataSchema_Type() {
+		return (EAttribute) getExtendedDataSchema().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -3078,7 +3078,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedDataSchema_Users() {
+	public EReference getExtendedDataSchema_Settings() {
 		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(6);
 	}
 
@@ -3087,8 +3087,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedDataSchema_ExtendedData() {
+	public EReference getExtendedDataSchema_Users() {
 		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtendedDataSchema_ExtendedData() {
+		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(8);
 	}
 
 	/**

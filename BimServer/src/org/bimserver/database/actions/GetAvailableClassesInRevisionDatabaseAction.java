@@ -17,11 +17,12 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
@@ -38,6 +39,6 @@ public class GetAvailableClassesInRevisionDatabaseAction extends BimDatabaseActi
 	@Override
 	public List<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
-		return getDatabaseSession().getAvailableClassesInRevision(revision.getProject().getId(), revision.getId());
+		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(revision.getProject().getId(), revision.getId()));
 	}
 }

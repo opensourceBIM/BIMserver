@@ -257,10 +257,11 @@
 	if (!revision.getExtendedData().isEmpty()) {
 %>
 <table>
-<tr><th>Title</th><th>URL/Data</th><th>Date</th></tr>
+<tr><th>Title</th><th>URL/Data</th><th>Namespace</th><th>Date</th></tr>
 <%
 	for (long edoid : revision.getExtendedData()) {
 		SExtendedData sExtendedData = loginManager.getService().getExtendedData(edoid);
+		SExtendedDataSchema sExtendedDataSchema = loginManager.getService().getExtendedDataSchemaById(sExtendedData.getSchemaId());
 		out.println("<tr>");
 		out.println("<td><a href=\"getextendeddata.jsp?edid=" + sExtendedData.getOid() + "\">" + sExtendedData.getTitle() + "</a></td>");
 		if (sExtendedData.getData() != null && sExtendedData.getData().length > 0) {
@@ -268,6 +269,7 @@
 		} else {
 			out.println("<td><a href=\"\">" + sExtendedData.getUrl() + "</a></td>");
 		}
+		out.println("<td>" + sExtendedDataSchema.getNamespace() + "</td>");
 		out.println("<td>" + dateFormat.format(sExtendedData.getAdded()) + "</td>");
 		out.println("</tr>");
 	}

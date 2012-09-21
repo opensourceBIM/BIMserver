@@ -47,6 +47,9 @@ public class SParameter {
 
 	public SParameter(SMethod sMethod, SClass type, SClass genericType, String name) {
 		this.sMethod = sMethod;
+		if (type == null) {
+			throw new RuntimeException("Type cannot be null " + sMethod.getName() + "." + name);
+		}
 		this.type = type;
 		this.genericType = genericType;
 		this.name = name;

@@ -756,7 +756,8 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDataObjects")
-	List<SDataObject> getDataObjects(Long roid) throws ServerException, UserException;
+	List<SDataObject> getDataObjects(
+		@WebParam(name = "roid", partName = "getDataObjects.roid") Long roid) throws ServerException, UserException;
 
 	/**
 	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous
@@ -1413,6 +1414,10 @@ public interface ServiceInterface {
 			@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
 			@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
 
+	@WebMethod(action = "getExtendedDataSchemaByNamespace")
+	SExtendedDataSchema getExtendedDataSchemaByNamespace(
+			@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
+	
 	/**
 	 * @param roid ObjectID of the Revision
 	 * @param extendedData ExtendedData to add

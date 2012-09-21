@@ -96,6 +96,9 @@ public class JsonConverter {
 				list.add(fromJson(definedType, array.get(i)));
 			}
 			return list;
+		} else if (definedType.isByteArray()) {
+			String dataString = (String)object;
+			return Base64.decodeBase64(dataString.getBytes(Charsets.UTF_8));
 		} else if (definedType.isDataHandler()) {
 			String dataString = (String)object;
 			byte[] data = Base64.decodeBase64(dataString.getBytes(Charsets.UTF_8));

@@ -51,6 +51,8 @@
 					extendedDataSchema.setValidate(true);
 				} else if ("url".equals(fieldName)) {
 					extendedDataSchema.setUrl(next.getString());
+				} else if ("namespace".equals(fieldName)) {
+					extendedDataSchema.setNamespace(next.getString());
 				} else if ("type".equals(fieldName)) {
 					extendedDataSchema.setType(SExtendedDataSchemaType.valueOf(next.getString()));
 				}
@@ -65,6 +67,10 @@
 <tr>
 	<td><label for="name">Name</label></td>
 	<td><input name="name" id="name" class="focusme"></input></td>
+</tr>
+<tr>
+	<td><label for="namespace">Namespace</label></td>
+	<td><input name="namespace" id="namespace"></input></td>
 </tr>
 <tr>
 	<td><label for="url">URL to Schema</label></td>

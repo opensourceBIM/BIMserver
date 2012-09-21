@@ -45,6 +45,7 @@ import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
 import org.bimserver.utils.DoubleHashMap;
+import org.bimserver.webservices.UserAuthorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
@@ -149,7 +150,7 @@ public class Database implements BimDatabase {
 				databaseSession.store(databaseCreated);
 
 				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, null, false);
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new UserAuthorization(-1), false);
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();
 
@@ -198,7 +199,7 @@ public class Database implements BimDatabase {
 		settings.setHideUserListForNonAdmin(true);
 		settings.setShowVersionUpgradeAvailable(false);
 		settings.setCacheOutputFiles(false);
-		settings.setServiceRepositoryUrl("http://extend.bimserver.org/services");
+		settings.setServiceRepositoryUrl("http://extend.bimserver.org/servers");
 		return settings;
 	}
 	
