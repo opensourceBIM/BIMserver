@@ -18,6 +18,7 @@ public class Step0017 extends Migration {
 		EClass extendedDataSchemaClass = extendedDataSschema.createEClass(extendedDataSschema.getEPackage("store"), "ExtendedDataSchema");
 		extendedDataSschema.createEAttribute(extendedDataSchemaClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		extendedDataSschema.createEAttribute(extendedDataSchemaClass, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		extendedDataSschema.createEAttribute(extendedDataSchemaClass, "namespace", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		extendedDataSschema.createEAttribute(extendedDataSchemaClass, "data", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		extendedDataSschema.createEAttribute(extendedDataSchemaClass, "validate", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		extendedDataSschema.createEAttribute(extendedDataSchemaClass, "type", extendedDataSchemaType, Multiplicity.SINGLE);

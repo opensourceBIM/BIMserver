@@ -890,26 +890,26 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ModelCompare) {
-			return convertToSObject((ModelCompare)input);
-		}
-		else if (input instanceof Serializer) {
-			return convertToSObject((Serializer)input);
-		}
-		else if (input instanceof Deserializer) {
-			return convertToSObject((Deserializer)input);
+		if (input instanceof QueryEngine) {
+			return convertToSObject((QueryEngine)input);
 		}
 		else if (input instanceof IfcEngine) {
 			return convertToSObject((IfcEngine)input);
 		}
+		else if (input instanceof Serializer) {
+			return convertToSObject((Serializer)input);
+		}
 		else if (input instanceof ObjectIDM) {
 			return convertToSObject((ObjectIDM)input);
 		}
-		else if (input instanceof QueryEngine) {
-			return convertToSObject((QueryEngine)input);
-		}
 		else if (input instanceof ModelMerger) {
 			return convertToSObject((ModelMerger)input);
+		}
+		else if (input instanceof ModelCompare) {
+			return convertToSObject((ModelCompare)input);
+		}
+		else if (input instanceof Deserializer) {
+			return convertToSObject((Deserializer)input);
 		}
 		SPlugin result = new SPlugin();
 		result.setOid(input.getOid());
@@ -1426,14 +1426,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof SimpleDataValue) {
-			return convertToSObject((SimpleDataValue)input);
+		if (input instanceof ReferenceDataValue) {
+			return convertToSObject((ReferenceDataValue)input);
 		}
 		else if (input instanceof ListDataValue) {
 			return convertToSObject((ListDataValue)input);
 		}
-		else if (input instanceof ReferenceDataValue) {
-			return convertToSObject((ReferenceDataValue)input);
+		else if (input instanceof SimpleDataValue) {
+			return convertToSObject((SimpleDataValue)input);
 		}
 		SDataValue result = new SDataValue();
 		result.setOid(input.getOid());
@@ -2048,23 +2048,23 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ModelComparePluginDescriptor) {
+		if (input instanceof ModelMergerPluginDescriptor) {
+			return convertToSObject((ModelMergerPluginDescriptor)input);
+		}
+		else if (input instanceof ModelComparePluginDescriptor) {
 			return convertToSObject((ModelComparePluginDescriptor)input);
+		}
+		else if (input instanceof IfcEnginePluginDescriptor) {
+			return convertToSObject((IfcEnginePluginDescriptor)input);
+		}
+		else if (input instanceof DeserializerPluginDescriptor) {
+			return convertToSObject((DeserializerPluginDescriptor)input);
 		}
 		else if (input instanceof SerializerPluginDescriptor) {
 			return convertToSObject((SerializerPluginDescriptor)input);
 		}
 		else if (input instanceof QueryEnginePluginDescriptor) {
 			return convertToSObject((QueryEnginePluginDescriptor)input);
-		}
-		else if (input instanceof DeserializerPluginDescriptor) {
-			return convertToSObject((DeserializerPluginDescriptor)input);
-		}
-		else if (input instanceof IfcEnginePluginDescriptor) {
-			return convertToSObject((IfcEnginePluginDescriptor)input);
-		}
-		else if (input instanceof ModelMergerPluginDescriptor) {
-			return convertToSObject((ModelMergerPluginDescriptor)input);
 		}
 		SPluginDescriptor result = new SPluginDescriptor();
 		result.setOid(input.getOid());
@@ -3421,6 +3421,7 @@ public class SConverter {
 		result.setOid(input.getOid());
 		result.setName(input.getName());
 		result.setUrl(input.getUrl());
+		result.setNamespace(input.getNamespace());
 		result.setData(input.getData());
 		result.setValidate(input.isValidate());
 		result.setType(SExtendedDataSchemaType.values()[input.getType().ordinal()]);
@@ -3447,6 +3448,7 @@ public class SConverter {
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setUrl(input.getUrl());
+		result.setNamespace(input.getNamespace());
 		result.setData(input.getData());
 		result.setValidate(input.isValidate());
 		result.setType(ExtendedDataSchemaType.values()[input.getType().ordinal()]);
@@ -4436,71 +4438,71 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof NewUserAdded) {
-			return convertToSObject((NewUserAdded)input);
-		}
-		else if (input instanceof ProjectUndeleted) {
+		if (input instanceof ProjectUndeleted) {
 			return convertToSObject((ProjectUndeleted)input);
-		}
-		else if (input instanceof NewCheckoutAdded) {
-			return convertToSObject((NewCheckoutAdded)input);
-		}
-		else if (input instanceof ProjectDeleted) {
-			return convertToSObject((ProjectDeleted)input);
-		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof Download) {
-			return convertToSObject((Download)input);
-		}
-		else if (input instanceof RevisionBranched) {
-			return convertToSObject((RevisionBranched)input);
-		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
-		}
-		else if (input instanceof UserUndeleted) {
-			return convertToSObject((UserUndeleted)input);
-		}
-		else if (input instanceof NewRevisionAdded) {
-			return convertToSObject((NewRevisionAdded)input);
-		}
-		else if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
-		}
-		else if (input instanceof PasswordReset) {
-			return convertToSObject((PasswordReset)input);
-		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
-		}
-		else if (input instanceof NewObjectIDMUploaded) {
-			return convertToSObject((NewObjectIDMUploaded)input);
 		}
 		else if (input instanceof ServerStarted) {
 			return convertToSObject((ServerStarted)input);
 		}
-		else if (input instanceof GeoTagUpdated) {
-			return convertToSObject((GeoTagUpdated)input);
+		else if (input instanceof NewProjectAdded) {
+			return convertToSObject((NewProjectAdded)input);
 		}
-		else if (input instanceof RevisionUpdated) {
-			return convertToSObject((RevisionUpdated)input);
+		else if (input instanceof NewObjectIDMUploaded) {
+			return convertToSObject((NewObjectIDMUploaded)input);
+		}
+		else if (input instanceof Download) {
+			return convertToSObject((Download)input);
 		}
 		else if (input instanceof SettingsSaved) {
 			return convertToSObject((SettingsSaved)input);
 		}
+		else if (input instanceof PasswordReset) {
+			return convertToSObject((PasswordReset)input);
+		}
+		else if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof NewUserAdded) {
+			return convertToSObject((NewUserAdded)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
+		}
+		else if (input instanceof ProjectDeleted) {
+			return convertToSObject((ProjectDeleted)input);
+		}
 		else if (input instanceof UserAddedToProject) {
 			return convertToSObject((UserAddedToProject)input);
+		}
+		else if (input instanceof NewCheckoutAdded) {
+			return convertToSObject((NewCheckoutAdded)input);
+		}
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
 		}
 		else if (input instanceof UserChanged) {
 			return convertToSObject((UserChanged)input);
 		}
-		else if (input instanceof NewProjectAdded) {
-			return convertToSObject((NewProjectAdded)input);
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
+		}
+		else if (input instanceof UserUndeleted) {
+			return convertToSObject((UserUndeleted)input);
+		}
+		else if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
+		}
+		else if (input instanceof NewRevisionAdded) {
+			return convertToSObject((NewRevisionAdded)input);
+		}
+		else if (input instanceof RevisionUpdated) {
+			return convertToSObject((RevisionUpdated)input);
+		}
+		else if (input instanceof GeoTagUpdated) {
+			return convertToSObject((GeoTagUpdated)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());

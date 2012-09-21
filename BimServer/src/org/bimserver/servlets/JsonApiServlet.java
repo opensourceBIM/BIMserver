@@ -63,7 +63,8 @@ public class JsonApiServlet extends HttpServlet {
 			ServletInputStream inputStream = httpRequest.getInputStream();
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			IOUtils.copy(inputStream, outputStream);
-			JSONObject request = new JSONObject(new JSONTokener(new String(outputStream.toByteArray(), Charsets.UTF_8)));
+			String incomingText = new String(outputStream.toByteArray(), Charsets.UTF_8);
+			JSONObject request = new JSONObject(new JSONTokener(incomingText));
 			JSONObject requestObject = request.getJSONObject("request");
 
 			ServiceInterface service = getServiceInterface(httpRequest, bimServer, request);
@@ -88,15 +89,14 @@ public class JsonApiServlet extends HttpServlet {
 				}
 			}
 
-			try {
-				Object result = method.invoke(service, parameters);
-				JSONObject responseObject = new JSONObject();
+			Object result = method.invoke(service, parameters);
+			JSONObject responseObject = new JSONObject();
+			if (result == null) {
+				responseObject.put("response", new JSONObject());
+			} else {
 				responseObject.put("response", converter.toJson(result));
-				responseObject.write(response.getWriter());
-			} catch (Exception e) {
-				sendException(response, e);
 			}
-			
+			responseObject.write(response.getWriter());
 		} catch (Exception e) {
 			sendException(response, e);
 		}

@@ -43,7 +43,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.cxf.rs.security.oauth2.grants.code.AuthorizationCodeDataProvider;
 import org.bimserver.BimServer;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
@@ -3027,7 +3026,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void addExtendedDataToRevision(Long roid, SExtendedData extendedData) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			ExtendedData convert = converter.convertFromSObject(extendedData, session);
@@ -3295,7 +3294,7 @@ public class Service implements ServiceInterface {
 			String url = getServiceRepositoryUrl();
 			String content = NetUtils.getContent(new URL(url));
 			JSONObject root = new JSONObject(new JSONTokener(content));
-			JSONArray services = root.getJSONArray("externalservers");
+			JSONArray services = root.getJSONArray("servers");
 			for (int i=0; i<services.length(); i++) {
 				JSONObject service = services.getJSONObject(i);
 				SServerDescriptor externalServer = new SServerDescriptor();
@@ -3476,5 +3475,17 @@ public class Service implements ServiceInterface {
 
 	public Authorization getAuthorization() {
 		return authorization;
+	}
+	
+	public SExtendedDataSchema getExtendedDataSchemaByNamespace(String nameSpace) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetExtendedDataSchemaByNamespaceDatabaseAction(session, accessMethod, nameSpace)));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

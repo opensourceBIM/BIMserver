@@ -28,6 +28,7 @@ import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
+import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -187,6 +188,7 @@ public class SService {
 		if (!types.containsKey(type.getSimpleName())) {
 			SClass sClass = new SClass(this, type);
 			types.put(sClass.getSimpleName(), sClass);
+			types.put(sClass.getName(), sClass);
 			addRelatedTypes(type);
 		}
 	}

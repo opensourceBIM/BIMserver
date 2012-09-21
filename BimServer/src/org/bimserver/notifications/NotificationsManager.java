@@ -93,7 +93,7 @@ public class NotificationsManager extends Thread {
 									if (service.isReadExtendedData() || service.isReadRevision() || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 										// This service will be needing a token
 										ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
-										((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization());
+										((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization(service.getUser().getOid()));
 										channel.getNotificationInterface().newRevision(newRevisionNotification, newService.getCurrentToken(), bimServer.getServerSettings(session).getSiteAddress() + "/jsonapi");
 									} else {
 										channel.getNotificationInterface().newRevision(newRevisionNotification, null, null);
