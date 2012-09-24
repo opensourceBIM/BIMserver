@@ -10,16 +10,11 @@ import org.apache.commons.io.IOUtils;
 import com.google.common.base.Charsets;
 
 public class NetUtils {
-	public static String getContent(URL url) {
-		try {
-			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			InputStream in = url.openStream();
-			IOUtils.copy(in, byteArrayOutputStream);
-			in.close();
-			return new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+	public static String getContent(URL url) throws IOException {
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		InputStream in = url.openStream();
+		IOUtils.copy(in, byteArrayOutputStream);
+		in.close();
+		return new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8);
 	}
 }
