@@ -23,10 +23,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SObjectAdded.class, SObjectModified.class, SObjectRemoved.class})
-public class SCompareItem implements SBase
+@XmlSeeAlso(value={SObjectAdded.class, SObjectRemoved.class, SObjectModified.class})
+public class SCompareItem implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

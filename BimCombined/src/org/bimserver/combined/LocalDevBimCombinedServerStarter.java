@@ -31,7 +31,11 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.ServerState;
+import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -84,11 +88,25 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
-		 	embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", new BimWebServer());
+		 	BimWebServer bimWebServer = new BimWebServer();
+			embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", bimWebServer);
 	 		bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			}
+			
+			ServerDescriptor serverDescriptor = StoreFactory.eINSTANCE.createServerDescriptor();
+			serverDescriptor.setTitle("BIMWebServer");
+			bimServer.getNotificationsManager().register(serverDescriptor);
+			
+			ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
+			serviceDescriptor.setUrl("");
+			serviceDescriptor.setName("Desktop Notifications");
+			serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
+			serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
+			serviceDescriptor.setDescription("Desktop Notifications");
+			
+			bimServer.getNotificationsManager().register(serverDescriptor, serviceDescriptor, bimWebServer);
 		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (ServiceException e) {

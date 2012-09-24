@@ -53,7 +53,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.osgi_3.7.2.v20120110-1415.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/XsltSerializer"/>
@@ -68,7 +67,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-api-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-log4j12-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/je-5.0.34.jar" sourcepath="libsrc/je-5.0.34-src.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/guava-11.0.1.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>

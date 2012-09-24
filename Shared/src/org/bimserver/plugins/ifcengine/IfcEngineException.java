@@ -1,4 +1,4 @@
-package org.bimserver.client.notifications;
+package org.bimserver.plugins.ifcengine;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -17,27 +17,16 @@ package org.bimserver.client.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.interfaces.objects.SNewProjectNotification;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
-import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.NotificationInterface;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.plugins.PluginException;
 
-public class NotificationInterfaceAdapter implements NotificationInterface {
+public class IfcEngineException extends PluginException {
+	private static final long serialVersionUID = 4485210826117178542L;
 
-	@Override
-	public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
+	public IfcEngineException(String message) {
+		super(message);
 	}
-
-	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
-	}
-
-	@Override
-	public void serverHasStarted() {
-	}
-
-	@Override
-	public void serverWillBeShutdown() {
+	
+	public IfcEngineException(Exception e) {
+		super(e);
 	}
 }

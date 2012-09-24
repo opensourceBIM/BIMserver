@@ -31,15 +31,15 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 	@Override
 	public void onOpen(Connection connection) {
 		this.connection = connection;
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("type", "Welcome");
-			jsonObject.put("title", "Welcome");
-			jsonObject.put("message", "Welcome to the BimWebServer!");
-			send(jsonObject);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+//		JSONObject jsonObject = new JSONObject();
+//		try {
+//			jsonObject.put("type", "Welcome");
+//			jsonObject.put("title", "Welcome");
+//			jsonObject.put("message", "Welcome to the BimWebServer!");
+//			send(jsonObject);
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override
@@ -50,7 +50,6 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 		try {
 			connection.sendMessage(object.toString());
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -78,6 +77,8 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 		JSONObject object = new JSONObject();
 		try {
 			object.put("type", "newRevision");
+			object.put("title", "New revision!");
+			object.put("message", "Project: " + newRevisionNotification.getProjectId() + ", Revision: " + newRevisionNotification.getRevisionId());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

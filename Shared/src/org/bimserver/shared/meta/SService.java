@@ -28,7 +28,6 @@ import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;

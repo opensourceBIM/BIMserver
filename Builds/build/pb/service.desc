@@ -1,5 +1,5 @@
 
-∞Ò
+Ä˙
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -20,25 +20,28 @@ settingsId (
 oid (
 	className (	
 attributeName (	
-value ("›
+value ("‚
 SExtendedDataSchema
 extendedData (
 
 settingsId (
 users (
 oid (
-name (	,
-data (2.org.bimserver.pb.VoidResponse7
-type (2).org.bimserver.pb.SExtendedDataSchemaType
-url (	"a
+name (	
+data (7
+type (2).org.bimserver.pb.SExtendedDataSchemaType
+validate (
+url	 (	
+	namespace
+ (	"a
 AddExtendedDataSchemaRequestA
-extendedDataSchema (2%.org.bimserver.pb.SExtendedDataSchema"•
+extendedDataSchema (2%.org.bimserver.pb.SExtendedDataSchema"Ö
 SExtendedData
 title (	
 added (
 oid (
-userId (,
-data (2.org.bimserver.pb.VoidResponse
+userId (
+data (
 schemaId (
 mime (	
 url (	"f
@@ -90,15 +93,15 @@ settingsId (
 state (2.org.bimserver.pb.SObjectState
 concreteRevisions (
 
-id (
-parentId (
-extendedData (
-hasAuthorizedUsers	 (
+id (
+extendedData (
+hasAuthorizedUsers (
+parentId	 (
 description
- (	
-geoTagId (
-oid (>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+ (	
+oid (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+geoTagId (
 name (	
 subProjects (
 lastRevisionId (
@@ -137,20 +140,22 @@ settingsId (
 ifcEngineId ("I
 AddSerializerRequest1
 
-serializer (2.org.bimserver.pb.SSerializer"õ
+serializer (2.org.bimserver.pb.SSerializer"À
 SService+
-trigger (2.org.bimserver.pb.STrigger=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod
-token (	
-description (	
-oid (
-name (	
-userId (
-writeRevisionId (
-writeExtendedDataId	 (
-	projectId
- (
-url (	"T
+trigger (2.org.bimserver.pb.STrigger
+readExtendedData (
+readRevision (
+	projectId (
+url (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod
+token (	
+description (	
+oid	 (
+userId
+ (
+writeRevisionId (
+name (	
+writeExtendedDataId ("T
 AddServiceToProjectRequest
 arg0 ((
 arg1 (2.org.bimserver.pb.SService"a
@@ -244,17 +249,17 @@ revisionId ("h
 sync ("6
 CheckinResponse
 errorMessage (	
-value ("E
+value ("D
 CheckoutRequest
-roid (
-serializerName (	
+roid (
+serializerOid (
 sync ("7
 CheckoutResponse
 errorMessage (	
-value ("Q
+value ("P
 CheckoutLastRevisionRequest
-poid (
-serializerName (	
+poid (
+serializerOid (
 sync ("C
 CheckoutLastRevisionResponse
 errorMessage (	
@@ -269,32 +274,32 @@ revisionId ("h
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("
-SObjectRemoved
-oid ("
-SObjectAdded
-oid ("U
+mcid ("U
 SObjectModified
 newValue (	
 oid (
 oldValue (	
-	fieldName (	"B
+	fieldName (	"
+SObjectAdded
+oid ("
+SObjectRemoved
+oid ("K
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+oid ("4
+SSimpleDataValue
+oid (
+stringValue (	"B
 SReferenceDataValue
 typeName (	
 guid (	
-oid ("4
-SSimpleDataValue
-oid (
-stringValue (	"K
-SListDataValue,
-values (2.org.bimserver.pb.SDataValue
-oid ("Ö
+oid ("Ö
 
 SDataValue
-__actual_type (	D
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue
+__actual_type (	:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
 oid (
 	fieldName (	"r
 SDataObject
@@ -304,10 +309,10 @@ SDataValue
 name (	
 type (	"ó
 SCompareItem
-__actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified
+__actual_type (	<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved
 oid (1
 
 dataObject (2.org.bimserver.pb.SDataObject"]
@@ -353,43 +358,43 @@ dataObject (2.org.bimserver.pb.SDataObject"]
 errorMessage (	
 value ("$
 DisablePluginRequest
-name (	"V
+name (	"U
 DownloadRequest
-roid (
-serializerName (	
+roid (
+serializerOid (
 showOwn (
 sync ("7
 DownloadResponse
 errorMessage (	
-value ("\
+value ("[
 DownloadByGuidsRequest
 roids (
-guids (	
-serializerName (	
+guids (	
+serializerOid (
 sync (">
 DownloadByGuidsResponse
 errorMessage (	
-value ("Z
+value ("Y
 DownloadByOidsRequest
 roids (
-oids (
-serializerName (	
+oids (
+serializerOid (
 sync ("=
 DownloadByOidsResponse
 errorMessage (	
-value ("}
+value ("|
 DownloadByTypesRequest
 roids (
 
-classNames (	
-serializerName (	
+classNames (	
+serializerOid (
 includeAllSubtypes (
 sync (">
 DownloadByTypesResponse
 errorMessage (	
-value ("ü
-DownloadCompareResultsRequest
-serializerName (	
+value ("û
+DownloadCompareResultsRequest
+serializerOid (
 roid1 (
 roid2 (
 mcid (,
@@ -397,19 +402,19 @@ classNames (	
 sync ("E
 DownloadCompareResultsResponse
 errorMessage (	
-value ("f
+value ("e
 DownloadQueryRequest
 roid (
 qeid (
 code (	
-sync (
-serializerName (	"<
+sync (
+serializerOid ("<
 DownloadQueryResponse
 errorMessage (	
-value ("O
+value ("N
 DownloadRevisionsRequest
-roids (
-serializerName (	
+roids (
+serializerOid (
 sync ("@
 DownloadRevisionsResponse
 errorMessage (	
@@ -567,13 +572,13 @@ revisionId ("a
 oid (
 defaultContentType (	"´
 SPluginDescriptor
-__actual_type (	V
-__SQueryEnginePluginDescriptor (2..org.bimserver.pb.SQueryEnginePluginDescriptorT
-__SSerializerPluginDescriptor (2-.org.bimserver.pb.SSerializerPluginDescriptorR
-__SIfcEnginePluginDescriptor (2,.org.bimserver.pb.SIfcEnginePluginDescriptorX
-__SDeserializerPluginDescriptor (2/.org.bimserver.pb.SDeserializerPluginDescriptorV
-__SModelMergerPluginDescriptor (2..org.bimserver.pb.SModelMergerPluginDescriptorX
-__SModelComparePluginDescriptor (2/.org.bimserver.pb.SModelComparePluginDescriptor
+__actual_type (	X
+__SModelComparePluginDescriptor (2/.org.bimserver.pb.SModelComparePluginDescriptorV
+__SModelMergerPluginDescriptor (2..org.bimserver.pb.SModelMergerPluginDescriptorX
+__SDeserializerPluginDescriptor (2/.org.bimserver.pb.SDeserializerPluginDescriptorV
+__SQueryEnginePluginDescriptor (2..org.bimserver.pb.SQueryEnginePluginDescriptorR
+__SIfcEnginePluginDescriptor (2,.org.bimserver.pb.SIfcEnginePluginDescriptorT
+__SSerializerPluginDescriptor (2-.org.bimserver.pb.SSerializerPluginDescriptor
 defaultName (	
 enabled	 (
 location
@@ -692,7 +697,7 @@ $GetAvailableClassesInRevisionRequest
 errorMessage (	,
 value (2.org.bimserver.pb.SDataObject"%
 GetDataObjectsRequest
-arg0 ("\
+roid ("\
 GetDataObjectsResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SDataObject">
@@ -798,7 +803,37 @@ revisionNr (
 oid ("o
 !GetExtendedDataSchemaByIdResponse
 errorMessage (	4
-value (2%.org.bimserver.pb.SExtendedDataSchema" 
+value (2%.org.bimserver.pb.SExtendedDataSchema"<
+'GetExtendedDataSchemaByNamespaceRequest
+	namespace (	"v
+(GetExtendedDataSchemaByNamespaceResponse
+errorMessage (	4
+value (2%.org.bimserver.pb.SExtendedDataSchema"
+GetExternalServersRequest"D
+SServerDescriptor
+title (	
+description (	
+url (	"f
+GetExternalServersResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SServerDescriptor"/
+GetExternalServicesRequest
+	remoteUrl (	"°
+SServiceDescriptor+
+trigger (2.org.bimserver.pb.STrigger=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod
+writeExtendedData (
+writeRevision (
+readExtendedData (
+token (	
+description (	
+name (	
+readRevision	 (
+url
+ (	"h
+GetExternalServicesResponse
+errorMessage (	3
+value (2$.org.bimserver.pb.SServiceDescriptor" 
 GetGeoTagRequest
 goid ("Ä
 SGeoTag
@@ -822,7 +857,16 @@ revisionNr (
 name (	"_
 GetIfcEngineByNameResponse
 errorMessage (	+
-value (2.org.bimserver.pb.SIfcEngine"
+value (2.org.bimserver.pb.SIfcEngine"
+GetInternalServersRequest"f
+GetInternalServersResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SServerDescriptor"*
+GetInternalServicesRequest
+arg0 (	"h
+GetInternalServicesResponse
+errorMessage (	3
+value (2$.org.bimserver.pb.SServiceDescriptor"
 GetLastActiveRequest"<
 GetLastActiveResponse
 errorMessage (	
@@ -849,103 +893,103 @@ supportUrl (	
 GetLoggedInUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"
-GetLogsRequest"
-SServerStarted
-oid ("
-SSettingsSaved
-oid ("-
-SPasswordReset
+GetLogsRequest"I
+SUserRemovedFromProject
 oid (
-userId ("N
-SRevisionBranched
-newrevisionId (
-oid (
-oldrevisionId (">
+userId (
+	projectId ("
+	SDownload
+oid ("K
+SNewProjectAdded
+oid (
+	projectId (
+parentProjectId ("/
+SPasswordChanged
+oid (
+userId (">
 SDatabaseCreated
 oid (
 path (	
-version ("1
+version ("+
+SUserDeleted
+oid (
+userId ("1
+SProjectUpdated
+oid (
+	projectId ("E
+SUserAddedToProject
+oid (
+userId (
+	projectId ("$
+SNewObjectIDMUploaded
+oid ("1
 SProjectDeleted
 oid (
-	projectId ("/
-SPasswordChanged
+	projectId ("
+SServerStarted
+oid ("-
+SPasswordReset
+oid (
+userId (",
+SNewUserAdded
 oid (
 userId ("-
 SUserUndeleted
 oid (
 userId ("+
-SUserDeleted
-oid (
-userId ("+
 SUserChanged
 oid (
-userId ("K
-SNewProjectAdded
-oid (
-	projectId (
-parentProjectId ("3
-SProjectUndeleted
-oid (
-	projectId ("
-	SDownload
-oid ("I
-SUserRemovedFromProject
-oid (
-userId (
-	projectId ("4
-SNewCheckoutAdded
-oid (
-
-checkoutId (",
-SNewUserAdded
-oid (
-userId ("E
-SUserAddedToProject
-oid (
-userId (
-	projectId ("1
-SProjectUpdated
-oid (
-	projectId ("/
-SGeoTagUpdated
-geoTagId (
-oid ("$
-SNewObjectIDMUploaded
-oid ("3
-SRevisionUpdated
-oid (
-
-revisionId ("4
+userId ("
+SSettingsSaved
+oid ("4
 SNewRevisionAdded
 oid (
 
-revisionId ("Û
+revisionId ("3
+SRevisionUpdated
+oid (
+
+revisionId ("N
+SRevisionBranched
+newrevisionId (
+oid (
+oldrevisionId ("4
+SNewCheckoutAdded
+oid (
+
+checkoutId ("/
+SGeoTagUpdated
+geoTagId (
+oid ("3
+SProjectUndeleted
+oid (
+	projectId ("Û
 
 SLogAction
-__actual_type (	:
-__SServerStarted (2 .org.bimserver.pb.SServerStarted:
-__SSettingsSaved (2 .org.bimserver.pb.SSettingsSaved:
-__SPasswordReset (2 .org.bimserver.pb.SPasswordReset@
-__SRevisionBranched (2#.org.bimserver.pb.SRevisionBranched>
-__SDatabaseCreated (2".org.bimserver.pb.SDatabaseCreated<
-__SProjectDeleted (2!.org.bimserver.pb.SProjectDeleted>
-__SPasswordChanged (2".org.bimserver.pb.SPasswordChanged:
-__SUserUndeleted	 (2 .org.bimserver.pb.SUserUndeleted6
-__SUserDeleted
- (2.org.bimserver.pb.SUserDeleted6
-__SUserChanged (2.org.bimserver.pb.SUserChanged>
-__SNewProjectAdded (2".org.bimserver.pb.SNewProjectAdded@
-__SProjectUndeleted (2#.org.bimserver.pb.SProjectUndeleted0
-__SDownload (2.org.bimserver.pb.SDownloadL
-__SUserRemovedFromProject (2).org.bimserver.pb.SUserRemovedFromProject@
-__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded8
-__SNewUserAdded (2.org.bimserver.pb.SNewUserAddedD
-__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProject<
-__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated:
-__SGeoTagUpdated (2 .org.bimserver.pb.SGeoTagUpdatedH
-__SNewObjectIDMUploaded (2'.org.bimserver.pb.SNewObjectIDMUploaded>
-__SRevisionUpdated (2".org.bimserver.pb.SRevisionUpdated@
-__SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAdded
+__actual_type (	L
+__SUserRemovedFromProject (2).org.bimserver.pb.SUserRemovedFromProject0
+__SDownload (2.org.bimserver.pb.SDownload>
+__SNewProjectAdded (2".org.bimserver.pb.SNewProjectAdded>
+__SPasswordChanged (2".org.bimserver.pb.SPasswordChanged>
+__SDatabaseCreated (2".org.bimserver.pb.SDatabaseCreated6
+__SUserDeleted (2.org.bimserver.pb.SUserDeleted<
+__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdatedD
+__SUserAddedToProject	 (2%.org.bimserver.pb.SUserAddedToProjectH
+__SNewObjectIDMUploaded
+ (2'.org.bimserver.pb.SNewObjectIDMUploaded<
+__SProjectDeleted (2!.org.bimserver.pb.SProjectDeleted:
+__SServerStarted (2 .org.bimserver.pb.SServerStarted:
+__SPasswordReset (2 .org.bimserver.pb.SPasswordReset8
+__SNewUserAdded (2.org.bimserver.pb.SNewUserAdded:
+__SUserUndeleted (2 .org.bimserver.pb.SUserUndeleted6
+__SUserChanged (2.org.bimserver.pb.SUserChanged:
+__SSettingsSaved (2 .org.bimserver.pb.SSettingsSaved@
+__SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAdded>
+__SRevisionUpdated (2".org.bimserver.pb.SRevisionUpdated@
+__SRevisionBranched (2#.org.bimserver.pb.SRevisionBranched@
+__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded:
+__SGeoTagUpdated (2 .org.bimserver.pb.SGeoTagUpdated@
+__SProjectUndeleted (2#.org.bimserver.pb.SProjectUndeleted
 
 executorId (
 oid (5
@@ -1032,21 +1076,7 @@ SMigration
 GetRemoteAddressRequest"?
 GetRemoteAddressResponse
 errorMessage (	
-value (	"(
-GetRemoteServicesRequest
-arg0 (	"\
-GetRemoteServicesResponse
-errorMessage (	)
-value (2.org.bimserver.pb.SService"
-GetRepositoryServersRequest"Q
-SServerDescriptor
-title (	
-description (	
-oid (
-url (	"h
-GetRepositoryServersResponse
-errorMessage (	2
-value (2#.org.bimserver.pb.SServerDescriptor""
+value (	""
 GetRevisionRequest
 roid ("W
 GetRevisionResponse
@@ -1109,44 +1139,40 @@ $GetSerializerPluginDescriptorRequest
 GetServiceResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SService"
-GetServiceInterfacesRequest".
-SServiceInterface
-oid (
-name (	"h
+GetServiceInterfacesRequest"!
+SServiceInterface
+name (	"h
 GetServiceInterfacesResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SServiceInterface"\
 !GetServiceMethodParametersRequest
 serviceInterfaceName (	
-serviceMethodName (	"ö
-SServiceField
-oid (3
-genericType (2.org.bimserver.pb.SServiceType
-name (	
-doc (	,
-type (2.org.bimserver.pb.SServiceType"n
+serviceMethodName (	"ç
+SServiceField3
+genericType (2.org.bimserver.pb.SServiceType
+name (	
+doc (	,
+type (2.org.bimserver.pb.SServiceType"n
 SServiceType
 
 simpleName (	
 oid (
 name (	/
-fields (2.org.bimserver.pb.SServiceField"û
-SServiceParameter
-oid (3
-genericType (2.org.bimserver.pb.SServiceType
-name (	
-doc (	,
-type (2.org.bimserver.pb.SServiceType"n
+fields (2.org.bimserver.pb.SServiceField"ë
+SServiceParameter3
+genericType (2.org.bimserver.pb.SServiceType
+name (	
+doc (	,
+type (2.org.bimserver.pb.SServiceType"n
 "GetServiceMethodParametersResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SServiceParameter"8
 GetServiceMethodsRequest
-serviceInterfaceName (	"K
-SServiceMethod
-oid (
-name (	
-doc (	
-	returnDoc (	"b
+serviceInterfaceName (	">
+SServiceMethod
+name (	
+doc (	
+	returnDoc (	"b
 GetServiceMethodsResponse
 errorMessage (	/
 value (2 .org.bimserver.pb.SServiceMethod" 
@@ -1523,7 +1549,7 @@ CH_STARTED
 MIGRATION_REQUIRED
 MIGRATION_IMPOSSIBLE
 FATAL_ERROR
-RUNNING2Ë 
+RUNNING2ÈÕ
 ServiceInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponse[
@@ -1635,10 +1661,15 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getDownloadData(.org.bimserver.pb.GetDownloadDataRequest).org.bimserver.pb.GetDownloadDataResponsei
 getDownloadState).org.bimserver.pb.GetDownloadStateRequest*.org.bimserver.pb.GetDownloadStateResponsef
 getExtendedData(.org.bimserver.pb.GetExtendedDataRequest).org.bimserver.pb.GetExtendedDataResponseÑ
-getExtendedDataSchemaById2.org.bimserver.pb.GetExtendedDataSchemaByIdRequest3.org.bimserver.pb.GetExtendedDataSchemaByIdResponseT
+getExtendedDataSchemaById2.org.bimserver.pb.GetExtendedDataSchemaByIdRequest3.org.bimserver.pb.GetExtendedDataSchemaByIdResponseô
+ getExtendedDataSchemaByNamespace9.org.bimserver.pb.GetExtendedDataSchemaByNamespaceRequest:.org.bimserver.pb.GetExtendedDataSchemaByNamespaceResponseo
+getExternalServers+.org.bimserver.pb.GetExternalServersRequest,.org.bimserver.pb.GetExternalServersResponser
+getExternalServices,.org.bimserver.pb.GetExternalServicesRequest-.org.bimserver.pb.GetExternalServicesResponseT
 	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponsei
 getIfcEngineById).org.bimserver.pb.GetIfcEngineByIdRequest*.org.bimserver.pb.GetIfcEngineByIdResponseo
-getIfcEngineByName+.org.bimserver.pb.GetIfcEngineByNameRequest,.org.bimserver.pb.GetIfcEngineByNameResponse`
+getIfcEngineByName+.org.bimserver.pb.GetIfcEngineByNameRequest,.org.bimserver.pb.GetIfcEngineByNameResponseo
+getInternalServers+.org.bimserver.pb.GetInternalServersRequest,.org.bimserver.pb.GetInternalServersResponser
+getInternalServices,.org.bimserver.pb.GetInternalServicesRequest-.org.bimserver.pb.GetInternalServicesResponse`
 getLastActive&.org.bimserver.pb.GetLastActiveRequest'.org.bimserver.pb.GetLastActiveResponseu
 getLastDatabaseReset-.org.bimserver.pb.GetLastDatabaseResetRequest..org.bimserver.pb.GetLastDatabaseResetResponsei
 getLatestVersion).org.bimserver.pb.GetLatestVersionRequest*.org.bimserver.pb.GetLatestVersionResponsef
@@ -1658,9 +1689,7 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getQueryEngineByName-.org.bimserver.pb.GetQueryEngineByNameRequest..org.bimserver.pb.GetQueryEngineByNameResponsex
 getQueryEngineExample..org.bimserver.pb.GetQueryEngineExampleRequest/.org.bimserver.pb.GetQueryEngineExampleResponseÑ
 getQueryEngineExampleKeys2.org.bimserver.pb.GetQueryEngineExampleKeysRequest3.org.bimserver.pb.GetQueryEngineExampleKeysResponsei
-getRemoteAddress).org.bimserver.pb.GetRemoteAddressRequest*.org.bimserver.pb.GetRemoteAddressResponsel
-getRemoteServices*.org.bimserver.pb.GetRemoteServicesRequest+.org.bimserver.pb.GetRemoteServicesResponseu
-getRepositoryServers-.org.bimserver.pb.GetRepositoryServersRequest..org.bimserver.pb.GetRepositoryServersResponseZ
+getRemoteAddress).org.bimserver.pb.GetRemoteAddressRequest*.org.bimserver.pb.GetRemoteAddressResponseZ
 getRevision$.org.bimserver.pb.GetRevisionRequest%.org.bimserver.pb.GetRevisionResponseo
 getRevisionSummary+.org.bimserver.pb.GetRevisionSummaryRequest,.org.bimserver.pb.GetRevisionSummaryResponseá
 getSerializerByContentType3.org.bimserver.pb.GetSerializerByContentTypeRequest4.org.bimserver.pb.GetSerializerByContentTypeResponsel

@@ -30,9 +30,7 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-11.0.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpclient-4.2.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpcore-4.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>

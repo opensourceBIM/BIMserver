@@ -52,11 +52,11 @@ public class DownloadServlet extends HttpServlet {
 			if (loginManager == null) {
 				loginManager = new LoginManager();
 			}
-			String serializerName = "Ifc2x3";
-			if (request.getParameter("serializerName") != null) {
-				serializerName = request.getParameter("serializerName");
+			long serializerOid = -1;
+			if (request.getParameter("serializerOid") != null) {
+				serializerOid = Long.parseLong(request.getParameter("serializerOid"));
 			}
-			SSerializer serializer = loginManager.getService().getSerializerByName(serializerName);
+			SSerializer serializer = loginManager.getService().getSerializerById(serializerOid);
 			int downloadId = -1;
 			if (request.getParameter("longActionId") != null) {
 				downloadId = Integer.parseInt(request.getParameter("longActionId"));
@@ -70,12 +70,12 @@ public class DownloadServlet extends HttpServlet {
 						}
 					}
 				}
-				downloadId = loginManager.getService().downloadRevisions(roids, serializerName, true);
+				downloadId = loginManager.getService().downloadRevisions(roids, serializerOid, true);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
 				Long roid2 = Long.parseLong(request.getParameter("roid2"));
-				downloadId = loginManager.getService().downloadCompareResults(serializerName, roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
+				downloadId = loginManager.getService().downloadCompareResults(serializerOid, roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {
@@ -96,7 +96,7 @@ public class DownloadServlet extends HttpServlet {
 					roid = Long.parseLong(request.getParameter("roid"));
 				}
 				if (request.getParameter("checkout") != null) {
-					downloadId = loginManager.getService().checkout(roid, serializerName, true);
+					downloadId = loginManager.getService().checkout(roid, serializerOid, true);
 				} else {
 					if (request.getParameter("classses") != null) {
 						Set<String> classes = new HashSet<String>();
@@ -105,7 +105,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = loginManager.getService().downloadByTypes(roids, classes, serializerName, false, true);
+						downloadId = loginManager.getService().downloadByTypes(roids, classes, serializerOid, false, true);
 					} else if (request.getParameter("oids") != null) {
 						Set<Long> oids = new HashSet<Long>();
 						for (String oidString : request.getParameter("oids").split(";")) {
@@ -113,7 +113,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = loginManager.getService().downloadByOids(roids, oids, serializerName, true);
+						downloadId = loginManager.getService().downloadByOids(roids, oids, serializerOid, true);
 					} else if (request.getParameter("guids") != null) {
 						Set<String> guids = new HashSet<String>();
 						for (String guid : request.getParameter("guids").split(";")) {
@@ -121,9 +121,9 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = loginManager.getService().downloadByGuids(roids, guids, serializerName, true);
+						downloadId = loginManager.getService().downloadByGuids(roids, guids, serializerOid, true);
 					} else {
-						downloadId = loginManager.getService().download(roid, serializerName, true, true);
+						downloadId = loginManager.getService().download(roid, serializerOid, true, true);
 					}
 				}
 			}

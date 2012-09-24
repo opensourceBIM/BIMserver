@@ -21,6 +21,7 @@
 <script src="js/jquery.iframe.transport.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/String.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/base64.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bimserverapi.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.fileupload.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.ui.progressbar.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
@@ -34,11 +35,12 @@
 	 * http://www.gnu.org/licenses/gpl-3.0.txt
 	 * For more information mail to license@bimserver.org
 	 ***********************************************************/
+	var bimServerApi = new BimServerApi("<%=getServletContext().getContextPath() %>");
 	 
-	 $.ajaxSetup ({
-		    // Disable caching of AJAX responses
-		    cache: false
-		});
+	$.ajaxSetup ({
+	    // Disable caching of AJAX responses
+	    cache: false
+	});
 	 
 	var tabberOptions = {
 		'cookie' :"tabber",
@@ -125,7 +127,12 @@
 				if (window.webkitNotifications.checkPermission() == 0) {
 					var jsonMessage = JSON.parse(message.data);
 					if (window.webkitNotifications) {
-						window.webkitNotifications.createNotification(null, jsonMessage.title, jsonMessage.message);
+						var not = window.webkitNotifications.createNotification("/images/logo_small.png", jsonMessage.title, jsonMessage.message);
+						not.onclick = function(){
+						    this.cancel();
+						    window.focus();
+						};
+						not.show();
 					}
 			 	} else {
 					console.log(message.data);

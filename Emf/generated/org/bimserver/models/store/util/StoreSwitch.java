@@ -525,6 +525,13 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.SERVICE_DESCRIPTOR: {
+			ServiceDescriptor serviceDescriptor = (ServiceDescriptor) theEObject;
+			T result = caseServiceDescriptor(serviceDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case StorePackage.SERVICE: {
 			Service service = (Service) theEObject;
 			T result = caseService(service);
@@ -1431,6 +1438,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseServerDescriptor(ServerDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServiceDescriptor(ServiceDescriptor object) {
 		return null;
 	}
 

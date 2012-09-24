@@ -549,6 +549,15 @@ public interface StoreFactory extends EFactory {
 	ServerDescriptor createServerDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Service Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Descriptor</em>'.
+	 * @generated
+	 */
+	ServiceDescriptor createServiceDescriptor();
+
+	/**
 	 * Returns a new object of class '<em>Service</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

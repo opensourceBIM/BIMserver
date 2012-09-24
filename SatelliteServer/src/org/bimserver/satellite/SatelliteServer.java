@@ -36,7 +36,7 @@ public class SatelliteServer {
 	private final Set<Activity> activities = new HashSet<Activity>();
 
 	public SatelliteServer() {
-		pluginManager = new PluginManager(new File("tmp"), null);
+		pluginManager = new PluginManager(new File("tmp"), null, null, null);
 		try {
 			pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 		} catch (PluginException e) {

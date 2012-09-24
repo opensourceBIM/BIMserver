@@ -20,9 +20,9 @@ package org.bimserver.satellite.activities;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.client.notifications.NotificationInterfaceAdapter;
 import org.bimserver.satellite.SatelliteServer;
 import org.bimserver.satellite.gui.ActivityLogger;
+import org.bimserver.shared.NotificationInterfaceAdapter;
 
 public abstract class Activity extends NotificationInterfaceAdapter {
 	private final Set<ActivityLogger> activityLoggers = new HashSet<ActivityLogger>();

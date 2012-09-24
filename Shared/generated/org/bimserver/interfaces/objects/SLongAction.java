@@ -25,9 +25,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlSeeAlso(value={SLongCheckinAction.class})
-public class SLongAction implements SBase
+public class SLongAction implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

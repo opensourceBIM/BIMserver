@@ -36,6 +36,12 @@ public abstract class Migration {
 		embedsReferenceAnnotation.setSource("embedsreference");
 		return embedsReferenceAnnotation;
 	}
+
+	protected EAnnotation createNoDatabase() {
+		EAnnotation embedsReferenceAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		embedsReferenceAnnotation.setSource("nodatabase");
+		return embedsReferenceAnnotation;
+	}
 	
 	public abstract String getDescription();
 }

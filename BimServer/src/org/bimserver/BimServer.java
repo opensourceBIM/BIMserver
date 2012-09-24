@@ -154,18 +154,6 @@ public class BimServer {
 			}
 
 			fixLogging();
-
-			LOGGER = LoggerFactory.getLogger(BimServer.class);
-
-			LOGGER.info("Starting BIMserver");
-			if (config.getHomeDir() != null) {
-				LOGGER.info("Using \"" + config.getHomeDir().getAbsolutePath() + "\" as homedir");
-			} else {
-				LOGGER.info("Not using a homedir");
-			}
-
-			serverInfoManager = new ServerInfoManager();
-
 			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
@@ -180,41 +168,22 @@ public class BimServer {
 			};
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
+			LOGGER = LoggerFactory.getLogger(BimServer.class);
 
-			versionChecker = new VersionChecker(config.getResourceFetcher());
-
-			try {
-				pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath());
-				pluginManager.addPluginChangeListener(new PluginChangeListener() {
-					@Override
-					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
-						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
-								.getName()));
-						DatabaseSession session = bimDatabase.createSession();
-						try {
-							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
-							if (pluginsFound.size() == 0) {
-								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
-							} else if (pluginsFound.size() == 1) {
-								org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
-								pluginFound.setEnabled(pluginContext.isEnabled());
-								session.store(pluginFound);
-							} else {
-								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
-							}
-							session.commit();
-						} catch (BimserverDatabaseException e) {
-							LOGGER.error("", e);
-						} finally {
-							session.close();
-						}
-					}
-				});
-				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginType.INTERNAL);
-			} catch (Exception e) {
-				LOGGER.error("", e);
+			LOGGER.info("Starting BIMserver");
+			if (config.getHomeDir() != null) {
+				LOGGER.info("Using \"" + config.getHomeDir().getAbsolutePath() + "\" as homedir");
+			} else {
+				LOGGER.info("Not using a homedir");
 			}
+
+			serverInfoManager = new ServerInfoManager();
+			notificationsManager = new NotificationsManager(this);
+			serviceFactory = new ServiceInterfaceFactory(this);
+
+			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager);
+			
+			versionChecker = new VersionChecker(config.getResourceFetcher());
 
 			compareCache = new CompareCache();
 			if (config.isStartEmbeddedWebServer()) {
@@ -255,6 +224,38 @@ public class BimServer {
 				LOGGER.info("Unknown version");
 			}
 
+			try {
+				pluginManager.addPluginChangeListener(new PluginChangeListener() {
+					@Override
+					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
+						// Reflect this change also in the database
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
+								.getName()));
+						DatabaseSession session = bimDatabase.createSession();
+						try {
+							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
+							if (pluginsFound.size() == 0) {
+								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
+							} else if (pluginsFound.size() == 1) {
+								org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
+								pluginFound.setEnabled(pluginContext.isEnabled());
+								session.store(pluginFound);
+							} else {
+								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
+							}
+							session.commit();
+						} catch (BimserverDatabaseException e) {
+							LOGGER.error("", e);
+						} finally {
+							session.close();
+						}
+					}
+				});
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginType.INTERNAL);
+			} catch (Exception e) {
+				LOGGER.error("", e);
+			}
+			
 			pluginManager.initAllLoadedPlugins();
 			serverStartTime = new GregorianCalendar();
 
@@ -301,7 +302,6 @@ public class BimServer {
 			String content2 = getContent(resource2);
 			serviceInterfaces.put(NotificationInterface.class.getSimpleName(), new SService(content2, NotificationInterface.class));
 
-			notificationsManager = new NotificationsManager(this);
 			notificationsManager.start();
 
 			serverInfoManager.init(this);
@@ -329,7 +329,6 @@ public class BimServer {
 
 			mailSystem = new MailSystem(this);
 
-			serviceFactory = new ServiceInterfaceFactory(this);
 			if (config.isStartEmbeddedWebServer()) {
 				embeddedWebServer.start();
 			}
