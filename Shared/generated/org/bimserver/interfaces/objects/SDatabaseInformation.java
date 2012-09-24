@@ -25,9 +25,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SDatabaseInformation implements SBase
+public class SDatabaseInformation implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

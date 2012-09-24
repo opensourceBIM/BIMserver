@@ -101,6 +101,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SModelCompare");
 		Class.forName("org.bimserver.interfaces.objects.STrigger");
 		Class.forName("org.bimserver.interfaces.objects.SServerDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SServiceDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SService");
 		Class.forName("org.bimserver.interfaces.objects.SToken");
 		Class.forName("org.bimserver.interfaces.objects.SServiceInterface");

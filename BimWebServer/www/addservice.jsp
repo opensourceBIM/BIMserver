@@ -27,9 +27,16 @@
 %>
 <label for="servers">Server </label><select id="servers" name="servers" class="servers">
 				<option value="[SELECT]">[Select]</option>
+	<optgroup label="Internal"></optgroup>
 <%
-	for (SServerDescriptor externalServer : loginManager.getService().getRepositoryServers()) {
-		out.println("<option value=\"" + externalServer.getUrl() + "\">" + externalServer.getTitle() + "</option>");
+	for (SServerDescriptor internalServer : loginManager.getService().getInternalServers()) {
+		out.println("<option class=\"internal\" value=\"" + internalServer.getTitle() + "\">" + internalServer.getTitle() + "</option>");
+	}
+%>
+	<optgroup label="External"></optgroup>
+<%
+	for (SServerDescriptor externalServer : loginManager.getService().getExternalServers()) {
+		out.println("<option class=\"external\" value=\"" + externalServer.getUrl() + "\">" + externalServer.getTitle() + "</option>");
 	} 
 %>
 			</select>
@@ -56,16 +63,29 @@ $(function(){
 		if (val == "[SELECT]") {
 			$(".services, .serviceslabel, .servicediv").hide();
 		} else {
-			$.getJSON("getservices.jsp?url=" + val, function(data) {
-				$(".services").empty();
-				$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
-				data.services.forEach(function(service){
-					var option = $("<option value=\"" + service.name + "\">" + service.name + "</option>");
-					option.data("service", service);
-					$(".services").append(option);
+			if ($(this).hasClass("internal") != null) {
+				bimServerApi.call("getInternalServices", {name: val}, function(data){
+					$(".services").empty();
+					$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
+					data.forEach(function(service){
+						var option = $("<option value=\"" + service.name + "\">" + service.name + "</option>");
+						option.data("service", service);
+						$(".services").append(option);
+					});
+					$(".services, .serviceslabel").show();
 				});
-				$(".services, .serviceslabel").show();
-			});
+			} else if ($(this).hasClass("external") != null) {
+				bimServerApi.call("getExternalServices", {remoteUrl: val}, function(data){
+					$(".services").empty();
+					$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
+					data.forEach(function(service){
+						var option = $("<option value=\"" + service.name + "\">" + service.name + "</option>");
+						option.data("service", service);
+						$(".services").append(option);
+					});
+					$(".services, .serviceslabel").show();
+				});
+			}
 		}
 	});
 	
@@ -85,7 +105,7 @@ $(function(){
 			} else {
 				$(".readRevision").hide();
 			}
-			if (service.writeRevision == 1) {
+			if (service.writeRevision == true) {
 				$(".writeRevision").show();
 			} else {
 				$(".writeRevision").hide();
@@ -95,7 +115,7 @@ $(function(){
 			} else {
 				$(".readExtendedData").hide();
 			}
-			if (service.writeExtendedData == 1) {
+			if (service.writeExtendedData == true) {
 				$(".writeExtendedData").show();
 			} else {
 				$(".writeExtendedData").hide();

@@ -70,6 +70,7 @@ import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SServiceInterface;
 import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
@@ -188,7 +189,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "checkout")
 	Integer checkout(
 			@QueryParam("roid") @WebParam(name = "roid", partName = "checkout.roid") Long roid,
-			@QueryParam("serializerName") @WebParam(name = "serializerName", partName = "checkout.serializerName") String serializerName,
+			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "checkout.serializerOid") Long serializerOid,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkout.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -208,7 +209,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "checkoutLastRevision")
 	Integer checkoutLastRevision(
 			@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
-			@QueryParam("serializerName") @WebParam(name = "serializerName", partName = "checkoutLastRevision.serializerName") String serializerName,
+			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "checkoutLastRevision.serializerOid") Long serializerOid,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkoutLastRevision.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -229,7 +230,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "download")
 	Integer download(
 			@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") Long roid,
-			@QueryParam("serializerName") @WebParam(name = "serializerName", partName = "download.serializerName") String serializerName,
+			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@QueryParam("showOwn") @WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
@@ -245,7 +246,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "downloadCompareResults")
 	Integer downloadCompareResults(
-			@WebParam(name = "serializerName", partName = "downloadByOids.serializerName") String serializerName,
+			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "roid1", partName = "downloadByOids.roid1") Long roid1,
 			@WebParam(name = "roid2", partName = "downloadByOids.roid2") Long roid2,
 			@WebParam(name = "mcid", partName = "downloadByOids.mcid") Long mcid,
@@ -266,7 +267,7 @@ public interface ServiceInterface {
 	Integer downloadByOids(
 			@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
 			@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
-			@WebParam(name = "serializerName", partName = "downloadCompareResults.serializerName") String serializerName,
+			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -283,7 +284,7 @@ public interface ServiceInterface {
 	Integer downloadByTypes(
 			@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
 			@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
-			@WebParam(name = "serializerName", partName = "downloadByTypes.serializerName") String serializerName,
+			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
 			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
@@ -301,7 +302,7 @@ public interface ServiceInterface {
 	Integer downloadByGuids(
 			@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-			@WebParam(name = "serializerName", partName = "downloadByGuids.serializerName") String serializerName,
+			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -315,7 +316,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "downloadRevisions")
 	Integer downloadRevisions(
 			@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
-			@WebParam(name = "serializerName", partName = "downloadRevisions.serializerName") String serializerName,
+			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -756,7 +757,8 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDataObjects")
-	List<SDataObject> getDataObjects(Long roid) throws ServerException, UserException;
+	List<SDataObject> getDataObjects(
+		@WebParam(name = "roid", partName = "getDataObjects.roid") Long roid) throws ServerException, UserException;
 
 	/**
 	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous
@@ -1413,6 +1415,10 @@ public interface ServiceInterface {
 			@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
 			@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
 
+	@WebMethod(action = "getExtendedDataSchemaByNamespace")
+	SExtendedDataSchema getExtendedDataSchemaByNamespace(
+			@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
+	
 	/**
 	 * @param roid ObjectID of the Revision
 	 * @param extendedData ExtendedData to add
@@ -2046,7 +2052,7 @@ public interface ServiceInterface {
 			@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
 			@WebParam(name = "code", partName = "downloadQuery.code") String code,
 			@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
-			@WebParam(name = "serializerName", partName = "downloadQuery.serializerName") String serializerName) throws ServerException, UserException;
+			@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
 
 	/**
 	 * Thsi will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
@@ -2126,7 +2132,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllExtendedSchemas")
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 	
-	List<SServerDescriptor> getRepositoryServers() throws ServerException, UserException;
 	
 	SIfcEngine getDefaultIfcEngine() throws ServerException, UserException;
 
@@ -2156,7 +2161,14 @@ public interface ServiceInterface {
 
 	void setServiceRepositoryUrl(String url) throws ServerException, UserException;
 	
-	List<org.bimserver.interfaces.objects.SService> getRemoteServices(String remoteUrl) throws ServerException, UserException;
+	List<SServerDescriptor> getExternalServers() throws ServerException, UserException;
+
+	List<SServerDescriptor> getInternalServers() throws ServerException, UserException;
+	
+	List<SServiceDescriptor> getExternalServices(
+		@WebParam(name = "remoteUrl", partName = "getExternalServices.remoteUrl") String remoteUrl) throws ServerException, UserException;
+
+	List<SServiceDescriptor> getInternalServices(String name) throws ServerException, UserException;
 	
 	void addServiceToProject(long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException;
 

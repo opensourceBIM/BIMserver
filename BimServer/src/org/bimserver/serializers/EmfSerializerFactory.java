@@ -23,9 +23,6 @@ import java.util.List;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -76,13 +73,12 @@ public class EmfSerializerFactory {
 		return descriptors;
 	}
 
-	public EmfSerializer get(String name) {
+	public EmfSerializer get(long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(name));
-			Serializer found = session.querySingle(condition, Serializer.class, false, null);
-			if (found != null) {
-				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(found.getClassName(), true);
+			Serializer serializerObject = session.get(StorePackage.eINSTANCE.getSerializer(), serializerOid, false, null);
+			if (serializerObject != null) {
+				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerObject.getClassName(), true);
 				if (serializerPlugin != null) {
 					return serializerPlugin.createSerializer();
 				}
@@ -96,7 +92,7 @@ public class EmfSerializerFactory {
 	}
 	
 	public EmfSerializer create(Project project, String username, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
-		EmfSerializer serializer = get(downloadParameters.getSerializerName());
+		EmfSerializer serializer = get(downloadParameters.getSerializerOid());
 		if (serializer != null) {
 			try {
 				ProjectInfo projectInfo = new ProjectInfo();
@@ -132,11 +128,10 @@ public class EmfSerializerFactory {
 		return null;
 	}
 
-	public String getExtension(String serializerName) {
+	public String getExtension(Long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(serializerName));
-			Serializer found = session.querySingle(condition, Serializer.class, false, null);
+			Serializer found = session.get(StorePackage.eINSTANCE.getSerializer(), serializerOid, false, null);
 			if (found != null) {
 				return found.getExtension();
 			}

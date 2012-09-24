@@ -3,10 +3,14 @@ package org.bimwebserver;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.NotificationInterfaceAdapter;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SService;
 
-public class BimWebServer {
+public class BimWebServer extends NotificationInterfaceAdapter {
 
 	private final Map<Long, NotificationInterface> notificationHandlers = new HashMap<Long, NotificationInterface>();
 	private final HashMap<String, SService> sServices = new HashMap<String, SService>();
@@ -26,7 +30,7 @@ public class BimWebServer {
 	}
 
 	public Map<String, SService> getServicesInterfaces() {
-		return null;
+		return sServices;
 	}
 
 	public SService getServiceInterface(String interfaceName) {
@@ -35,5 +39,12 @@ public class BimWebServer {
 
 	public Object getService(String interfaceName) {
 		return services.get(interfaceName);
+	}
+	
+	@Override
+	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
+		for (NotificationInterface notificationInterface : notificationHandlers.values()) {
+			notificationInterface.newRevision(newRevisionNotification, token, apiUrl);
+		}
 	}
 }

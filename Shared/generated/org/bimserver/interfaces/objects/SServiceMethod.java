@@ -24,17 +24,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SServiceMethod implements SBase
 {
-	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	
-	public long getOid() {
-		return oid;
-	}
-	
-	public void setOid(long oid) {
-		this.oid = oid;
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -55,9 +48,6 @@ public class SServiceMethod implements SBase
 		if (sField.getName().equals("returnDoc")) {
 			return getReturnDoc();
 		}
-		if (sField.getName().equals("oid")) {
-			return getOid();
-		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	public void sSet(SField sField, Object val) {
@@ -71,10 +61,6 @@ public class SServiceMethod implements SBase
 		}
 		if (sField.getName().equals("returnDoc")) {
 			setReturnDoc((String)val);
-			return;
-		}
-		if (sField.getName().equals("oid")) {
-			setOid((Long)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
@@ -103,26 +89,5 @@ public class SServiceMethod implements SBase
 
 	public void setReturnDoc(java.lang.String returnDoc) {
 		this.returnDoc = returnDoc;
-	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (oid ^ (oid >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SServiceMethod other = (SServiceMethod) obj;
-		if (oid != other.oid)
-			return false;
-		return true;
 	}
 }

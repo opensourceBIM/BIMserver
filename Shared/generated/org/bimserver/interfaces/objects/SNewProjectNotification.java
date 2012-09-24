@@ -22,9 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SNewProjectNotification extends SNotification implements SBase
+public class SNewProjectNotification extends SNotification implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

@@ -23,9 +23,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SProjectUpdated extends SLogAction implements SBase
+public class SProjectUpdated extends SLogAction implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

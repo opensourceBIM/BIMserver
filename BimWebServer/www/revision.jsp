@@ -219,7 +219,7 @@
 <%
 	}
 %>
-<div class="tabbertab" id="extendeddatatab" title="Extended Data">
+<div class="tabbertab" id="extendeddatatab" title="Extended Data<%=revision.getExtendedData().isEmpty() ? "" : (" (" + revision.getExtendedData().size() + ")") %>">
 <form enctype="multipart/form-data" method="post">
 <table>
 <tr>

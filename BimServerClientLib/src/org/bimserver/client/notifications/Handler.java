@@ -22,9 +22,12 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Map;
 
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
@@ -59,6 +62,11 @@ public class Handler extends Thread {
 			@Override
 			public String getName() {
 				return "NotifierInterface";
+			}
+
+			@Override
+			public ServiceInterface getService(SToken token) throws UserException {
+				return null;
 			}
 		};
 	}

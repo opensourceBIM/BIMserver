@@ -23,9 +23,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SCheckoutResult extends SDownloadResult implements SBase
+public class SCheckoutResult extends SDownloadResult implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

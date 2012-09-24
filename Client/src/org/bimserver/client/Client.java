@@ -143,7 +143,7 @@ public class Client extends JFrame {
 	void checkout(SRevision revision, OutputStream out, boolean report) {
 		try {
 			SProject sProject = serviceHolder.getService().getProjectByPoid(revision.getProjectId());
-			int longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), "IFC", true);
+			int longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), -1L, true); // TODO select serializer oid
 			SDownloadResult checkout = serviceHolder.getService().getDownloadData(longCheckoutActionId);
 			try {
 				InputStream inputStream = checkout.getFile().getInputStream();
@@ -254,7 +254,7 @@ public class Client extends JFrame {
 
 	public void download(long roid, FileOutputStream out, boolean report) {
 		try {
-			int downloadId = serviceHolder.getService().download(roid, "IFC", true, true);
+			int downloadId = serviceHolder.getService().download(roid, -1L, true, true); // TODO
 			SDownloadResult download = serviceHolder.getService().getDownloadData(downloadId);
 			try {
 				InputStream inputStream = download.getFile().getInputStream();

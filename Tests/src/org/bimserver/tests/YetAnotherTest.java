@@ -55,7 +55,7 @@ public class YetAnotherTest {
 			ifcProject.setName("This is a test");
 			long roid = session.commitTransaction("This is a test commitTransaction");
 
-			Integer downloadId = bimServerClient.getServiceInterface().download(roid, "Ifc2x3", true, false);
+			Integer downloadId = bimServerClient.getServiceInterface().download(roid, -1L, true, false); // TODO
 			SDownloadResult downloadData = bimServerClient.getServiceInterface().getDownloadData(downloadId);
 			IOUtils.copy(downloadData.getFile().getInputStream(), new FileOutputStream(new File("model.ifc")));
 		} catch (ServerException e) {

@@ -24,9 +24,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SListDataValue extends SDataValue implements SBase
+public class SListDataValue extends SDataValue implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

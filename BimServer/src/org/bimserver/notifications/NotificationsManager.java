@@ -19,7 +19,10 @@ package org.bimserver.notifications;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -35,12 +38,14 @@ import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SNotification;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.Service;
+import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
@@ -48,9 +53,12 @@ import org.bimserver.shared.pb.SocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NotificationsManager extends Thread {
+public class NotificationsManager extends Thread implements NotificationsManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
 	private final Set<NotificationContainer> listeners = new HashSet<NotificationContainer>();
+	private final Map<String, Map<String, ServiceDescriptor>> internalServices = new HashMap<String, Map<String, ServiceDescriptor>>();
+	private final Map<String, ServerDescriptor> internalServers = new HashMap<String, ServerDescriptor>();
+	private final Map<String, NotificationInterface> x = new HashMap<String, NotificationInterface>();
 	private final BlockingQueue<SNotification> queue = new ArrayBlockingQueue<SNotification>(1000);
 	private final BimServer bimServer;
 	private volatile boolean running;
@@ -78,10 +86,6 @@ public class NotificationsManager extends Thread {
 					SNotification notification = queue.take();
 					DatabaseSession session = bimServer.getDatabase().createSession();
 					try {
-						IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getService(), false, null);
-						for (Service service : allOfType.getAll(Service.class)) {
-							service.getProject();
-						}
 						if (notification instanceof SNewProjectNotification) {
 							SNewProjectNotification newProjectNotification = (SNewProjectNotification) notification;
 						} else if (notification instanceof SNewRevisionNotification) {
@@ -90,13 +94,17 @@ public class NotificationsManager extends Thread {
 							for (Service service : project.getServices()) {
 								if (service.getTrigger() == Trigger.NEW_REVISION) {
 									Channel channel = getChannel(service);
-									if (service.isReadExtendedData() || service.isReadRevision() || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
-										// This service will be needing a token
-										ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
-										((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization(service.getUser().getOid()));
-										channel.getNotificationInterface().newRevision(newRevisionNotification, newService.getCurrentToken(), bimServer.getServerSettings(session).getSiteAddress() + "/jsonapi");
-									} else {
-										channel.getNotificationInterface().newRevision(newRevisionNotification, null, null);
+									try {
+										if (service.isReadExtendedData() || service.isReadRevision() || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
+											// This service will be needing a token
+											ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
+											((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization(service.getUser().getOid()));
+											channel.getNotificationInterface().newRevision(newRevisionNotification, newService.getCurrentToken(), bimServer.getServerSettings(session).getSiteAddress() + "/jsonapi");
+										} else {
+											channel.getNotificationInterface().newRevision(newRevisionNotification, null, null);
+										}
+									} finally {
+										channel.disconnect();
 									}
 								}
 							}
@@ -119,11 +127,13 @@ public class NotificationsManager extends Thread {
 
 	private Channel getChannel(Service service) {
 		switch (service.getNotificationProtocol()) {
-		case JSON: {
+		case JSON:
 			JsonChannel jsonChannel = new JsonChannel(bimServer.getServiceInterfaces());
 			jsonChannel.connect(service.getUrl(), true, null);
 			return jsonChannel;
-		} default: 
+		case INTERNAL:
+			return new InternalChannel(x.get(service.getName()));
+		default: 
 			LOGGER.error("Unimplemented AccessMethod: " + service.getNotificationProtocol());
 			return null;
 		}
@@ -162,5 +172,27 @@ public class NotificationsManager extends Thread {
 	public void shutdown() {
 		running = false;
 		this.interrupt();
+	}
+
+	public void register(ServerDescriptor serverDescriptor) {
+		internalServers.put(serverDescriptor.getTitle(), serverDescriptor);
+		internalServices.put(serverDescriptor.getTitle(), new HashMap<String, ServiceDescriptor>());
+	}
+	
+	@Override
+	public void register(ServerDescriptor serverDescriptor, ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
+		if (!internalServices.containsKey(serverDescriptor.getTitle())) {
+			register(serverDescriptor);
+		}
+		internalServices.get(serverDescriptor.getTitle()).put(serviceDescriptor.getName(), serviceDescriptor);
+		x.put(serviceDescriptor.getName(), notificationInterface);
+	}
+	
+	public Map<String, ServiceDescriptor> getInternalServices(String serverName) {
+		return internalServices.get(serverName);
+	}
+
+	public Collection<ServerDescriptor> getInternalServers() {
+		return internalServers.values();
 	}
 }

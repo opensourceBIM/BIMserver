@@ -102,6 +102,7 @@ import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SServiceField;
 import org.bimserver.interfaces.objects.SServiceInterface;
 import org.bimserver.interfaces.objects.SServiceMethod;
@@ -293,12 +294,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkoutLastRevision(Long poid, String formatIdentifier, Boolean sync) throws ServerException, UserException {
+	public Integer checkoutLastRevision(Long poid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
-			return checkout(project.getLastRevision().getOid(), formatIdentifier, sync);
+			return checkout(project.getLastRevision().getOid(), serializerOid, sync);
 		} catch (Exception e) {
 			handleException(e);
 			return -1;
@@ -308,16 +309,16 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkout(Long roid, String serializerName, Boolean sync) throws ServerException, UserException {
+	public Integer checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerName);
+		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid);
 		if (serializer == null) {
-			throw new UserException("No serializer with name " + serializerName + " could be found");
+			throw new UserException("No serializer with id " + serializerOid + " could be found");
 		}
 		if (!serializer.getClass().getSimpleName().equals("IfcStepSerializer") && !serializer.getClass().getSimpleName().equals("IfcXmlSerializer")) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
-		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerName, -1);
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerOid, -1);
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		User user = null;
 		try {
@@ -627,15 +628,15 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public Integer download(Long roid, String resultTypeName, Boolean showOwn, Boolean sync) throws ServerException, UserException {
+	public Integer download(Long roid, Long serializerOid, Boolean showOwn, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(bimServer, roid, resultTypeName, showOwn ? -1 : authorization.getUoid()), sync);
+		return download(new DownloadParameters(bimServer, roid, serializerOid, showOwn ? -1 : authorization.getUoid()), sync);
 	}
 
 	@Override
-	public Integer downloadCompareResults(String serializerName, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
+	public Integer downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromCompare(roid1, roid2, converter.convertFromSObject(type), mcid, serializerName), sync);
+		return download(DownloadParameters.fromCompare(roid1, roid2, converter.convertFromSObject(type), mcid, serializerOid), sync);
 	}
 
 	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
@@ -729,15 +730,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadByOids(Set<Long> roids, Set<Long> oids, String serializerName, Boolean sync) throws ServerException, UserException {
+	public Integer downloadByOids(Set<Long> roids, Set<Long> oids, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromOids(bimServer, serializerName, roids, oids), sync);
+		return download(DownloadParameters.fromOids(bimServer, serializerOid, roids, oids), sync);
 	}
 
 	@Override
-	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, String serializerName, Boolean includeAllSubtypes, Boolean sync) throws ServerException, UserException {
+	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerName), sync);
+		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerOid), sync);
 	}
 
 	@Override
@@ -771,9 +772,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadByGuids(Set<Long> roids, Set<String> guids, String serializerName, Boolean sync) throws ServerException, UserException {
+	public Integer downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromGuids(bimServer, roids, guids, serializerName), sync);
+		return download(DownloadParameters.fromGuids(bimServer, roids, guids, serializerOid), sync);
 	}
 
 	@Override
@@ -1026,9 +1027,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadRevisions(Set<Long> roids, String resultTypeName, Boolean sync) throws ServerException, UserException {
+	public Integer downloadRevisions(Set<Long> roids, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromRoids(bimServer, roids, resultTypeName), sync);
+		return download(DownloadParameters.fromRoids(bimServer, roids, serializerOid), sync);
 	}
 
 	@Override
@@ -2494,9 +2495,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadQuery(Long roid, Long qeid, String code, Boolean sync, String serializerName) throws ServerException, UserException {
+	public Integer downloadQuery(Long roid, Long qeid, String code, Boolean sync, Long serializerOid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromQuery(roid, qeid, code, serializerName), sync);
+		return download(DownloadParameters.fromQuery(roid, qeid, code, serializerOid), sync);
 	}
 
 	@Override
@@ -3288,7 +3289,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SServerDescriptor> getRepositoryServers() throws ServerException, UserException {
+	public List<SServerDescriptor> getExternalServers() throws ServerException, UserException {
 		List<SServerDescriptor> externalServers = new ArrayList<SServerDescriptor>();
 		try {
 			String url = getServiceRepositoryUrl();
@@ -3310,33 +3311,33 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public List<org.bimserver.interfaces.objects.SService> getRemoteServices(String url) throws ServerException, UserException {
-		List<org.bimserver.interfaces.objects.SService> externalProfiles = new ArrayList<org.bimserver.interfaces.objects.SService>();
+	public List<SServiceDescriptor> getExternalServices(String url) throws ServerException, UserException {
+		List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
 		try {
 			String content = NetUtils.getContent(new URL(url));
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
 			for (int i=0; i<services.length(); i++) {
 				JSONObject service = services.getJSONObject(i);
-				org.bimserver.interfaces.objects.SService sService = new org.bimserver.interfaces.objects.SService();
-				sService.setName(service.getString("name"));
-				sService.setDescription(service.getString("description"));
-				sService.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
-				sService.setTrigger(STrigger.valueOf(service.getString("trigger")));
-				sService.setUrl(service.getString("url"));
-				
+				SServiceDescriptor sServiceDescriptor = new SServiceDescriptor();
+				sServiceDescriptor.setName(service.getString("name"));
+				sServiceDescriptor.setDescription(service.getString("description"));
+				sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
+				sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
+				sServiceDescriptor.setUrl(service.getString("url"));
+
 				JSONObject rights = service.getJSONObject("rights");
-				
-				sService.setReadRevision(rights.getBoolean("readRevision"));
-				sService.setReadExtendedData(rights.getBoolean("readExtendedData"));
-				sService.setWriteRevisionId(rights.getBoolean("writeRevision") ? 1 : 0);
-				sService.setWriteExtendedDataId(rights.getBoolean("writeExtendedData") ? 1 : 0);
-				externalProfiles.add(sService);
+
+				sServiceDescriptor.setReadRevision(rights.getBoolean("readRevision"));
+				sServiceDescriptor.setReadExtendedData(rights.getBoolean("readExtendedData"));
+				sServiceDescriptor.setWriteRevision(rights.getBoolean("writeRevision"));
+				sServiceDescriptor.setWriteExtendedData(rights.getBoolean("writeExtendedData"));
+				sServiceDescriptors.add(sServiceDescriptor);
 			}
 		} catch (Exception e) {
 			handleException(e);
 		}
-		return externalProfiles;
+		return sServiceDescriptors;
 	}
 
 	public org.bimserver.interfaces.objects.SService getService(long epid) throws ServerException, UserException {
@@ -3487,5 +3488,15 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public List<SServerDescriptor> getInternalServers() throws ServerException, UserException {
+		return converter.convertToSListServerDescriptor(bimServer.getNotificationsManager().getInternalServers());
+	}
+
+	@Override
+	public List<SServiceDescriptor> getInternalServices(String name) throws ServerException, UserException {
+		return converter.convertToSListServiceDescriptor(bimServer.getNotificationsManager().getInternalServices(name).values());
 	}
 }

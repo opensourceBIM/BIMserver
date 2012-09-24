@@ -20,10 +20,24 @@ public class Step0021 extends Migration {
 		schema.createEEnumLiteral(trigger, "NEW_PROJECT");
 		
 		EClass serverDescriptor = schema.createEClass(schema.getEPackage("store"), "ServerDescriptor");
+		serverDescriptor.getEAnnotations().add(createNoDatabase());
 		schema.createEAttribute(serverDescriptor, "title", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverDescriptor, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 
+		EClass serviceDescriptor = schema.createEClass(schema.getEPackage("store"), "ServiceDescriptor");
+		serviceDescriptor.getEAnnotations().add(createNoDatabase());
+		schema.createEAttribute(serviceDescriptor, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "token", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "notificationProtocol", schema.getEEnum("log", "AccessMethod"), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "trigger", trigger, Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "readRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "readExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "writeRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "writeExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		
 		EClass service = schema.createEClass("store", "Service");
 		schema.createEAttribute(service, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

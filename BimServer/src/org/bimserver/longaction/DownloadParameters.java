@@ -36,7 +36,6 @@ public class DownloadParameters extends LongActionKey {
 	private Set<Long> oids;
 	private Set<String> guids;
 	private Set<String> classNames;
-	private String serializerName;
 	private DownloadType downloadType;
 	private BimServer bimServer;
 	private long modelCompareIdentifier;
@@ -44,13 +43,22 @@ public class DownloadParameters extends LongActionKey {
 	private long ignoreUoid = -1;
 	private String code;
 	private long qeid;
+	private long serializerOid;
 
-	public DownloadParameters(BimServer bimServer, long roid, String serializerName, long ignoreUoid) {
+	public DownloadParameters(BimServer bimServer, long roid, long serializerOid, long ignoreUoid) {
 		this.bimServer = bimServer;
 		this.ignoreUoid = ignoreUoid;
 		setRoid(roid);
 		setDownloadType(DownloadType.DOWNLOAD_REVISION);
-		setSerializerName(serializerName);
+		setSerializerOid(serializerOid);
+	}
+
+	public void setSerializerOid(long serializerOid) {
+		this.serializerOid = serializerOid;
+	}
+	
+	public long getSerializerOid() {
+		return serializerOid;
 	}
 
 	public DownloadParameters() {
@@ -60,13 +68,13 @@ public class DownloadParameters extends LongActionKey {
 		return ignoreUoid;
 	}
 
-	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, long modelCompareIdentifier, String serializerName) {
+	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, long modelCompareIdentifier, long serializerOid) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_COMPARE);
 		downloadParameters.setRoids(Sets.newHashSet(roid1, roid2));
 		downloadParameters.setCompareType(type);
 		downloadParameters.setModelCompareIdentifier(modelCompareIdentifier);
-		downloadParameters.setSerializerName(serializerName);
+		downloadParameters.setSerializerOid(serializerOid);
 		return downloadParameters;
 	}
 
@@ -74,13 +82,13 @@ public class DownloadParameters extends LongActionKey {
 		this.compareType = compareType;
 	}
 
-	public static DownloadParameters fromGuids(BimServer bimServer, Set<Long> roids, Set<String> guids, String serializerName) {
+	public static DownloadParameters fromGuids(BimServer bimServer, Set<Long> roids, Set<String> guids, long serializerOid) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setBimServer(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setGuids(guids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_GUIDS);
-		downloadParameters.setSerializerName(serializerName);
+		downloadParameters.setSerializerOid(serializerOid);
 		return downloadParameters;
 	}
 
@@ -88,33 +96,33 @@ public class DownloadParameters extends LongActionKey {
 		this.bimServer = bimServer;
 	}
 
-	public static DownloadParameters fromOids(BimServer bimServer, String serializerName, Set<Long> roids, Set<Long> oids) {
+	public static DownloadParameters fromOids(BimServer bimServer, long serializerOid, Set<Long> roids, Set<Long> oids) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.bimServer = bimServer;
 		downloadParameters.setRoids(roids);
 		downloadParameters.setOids(oids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_OIDS);
-		downloadParameters.setSerializerName(serializerName);
+		downloadParameters.setSerializerOid(serializerOid);
 		return downloadParameters;
 	}
 
-	public static DownloadParameters fromClassNames(BimServer bimServer, Set<Long> roids, Set<String> classNames, Boolean includeAllSubtypes, String serializerName) {
+	public static DownloadParameters fromClassNames(BimServer bimServer, Set<Long> roids, Set<String> classNames, Boolean includeAllSubtypes, long serializerOid) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setIncludeAllSubtypes(includeAllSubtypes);
 		downloadParameters.setBimServer(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setClassNames(classNames);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
-		downloadParameters.setSerializerName(serializerName);
+		downloadParameters.setSerializerOid(serializerOid);
 		return downloadParameters;
 	}
 
-	public static DownloadParameters fromRoids(BimServer bimServer, Set<Long> roids, String serializerName) {
+	public static DownloadParameters fromRoids(BimServer bimServer, Set<Long> roids, long serializerOid) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setBimServer(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_PROJECTS);
-		downloadParameters.setSerializerName(serializerName);
+		downloadParameters.setSerializerOid(serializerOid);
 		return downloadParameters;
 	}
 
@@ -189,17 +197,42 @@ public class DownloadParameters extends LongActionKey {
 	 * between JVM restarts... actually it is not guaranteed, should be
 	 * implemented differently)
 	 */
+	
+	
+	
+
+	private String getRoidsString() {
+		StringBuilder sb = new StringBuilder();
+		int i = 0;
+		for (Long roid : roids) {
+			sb.append(roid + "-");
+			i++;
+			if (i > 5) {
+				break;
+			}
+		}
+		if (sb.length() > 0) {
+			sb.delete(sb.length() - 1, sb.length());
+		}
+		return sb.toString();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((classNames == null) ? 0 : classNames.hashCode());
-		result = prime * result + ((downloadType == null) ? 0 : downloadType.ordinal());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((compareType == null) ? 0 : compareType.hashCode());
+		result = prime * result + ((downloadType == null) ? 0 : downloadType.hashCode());
 		result = prime * result + ((guids == null) ? 0 : guids.hashCode());
+		result = prime * result + (int) (ignoreUoid ^ (ignoreUoid >>> 32));
 		result = prime * result + (includeAllSubtypes ? 1231 : 1237);
+		result = prime * result + (int) (modelCompareIdentifier ^ (modelCompareIdentifier >>> 32));
 		result = prime * result + ((oids == null) ? 0 : oids.hashCode());
+		result = prime * result + (int) (qeid ^ (qeid >>> 32));
 		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
-		result = prime * result + ((serializerName == null) ? 0 : serializerName.hashCode());
+		result = prime * result + (int) (serializerOid ^ (serializerOid >>> 32));
 		return result;
 	}
 
@@ -217,6 +250,13 @@ public class DownloadParameters extends LongActionKey {
 				return false;
 		} else if (!classNames.equals(other.classNames))
 			return false;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		if (compareType != other.compareType)
+			return false;
 		if (downloadType != other.downloadType)
 			return false;
 		if (guids == null) {
@@ -224,40 +264,27 @@ public class DownloadParameters extends LongActionKey {
 				return false;
 		} else if (!guids.equals(other.guids))
 			return false;
+		if (ignoreUoid != other.ignoreUoid)
+			return false;
 		if (includeAllSubtypes != other.includeAllSubtypes)
+			return false;
+		if (modelCompareIdentifier != other.modelCompareIdentifier)
 			return false;
 		if (oids == null) {
 			if (other.oids != null)
 				return false;
 		} else if (!oids.equals(other.oids))
 			return false;
+		if (qeid != other.qeid)
+			return false;
 		if (roids == null) {
 			if (other.roids != null)
 				return false;
 		} else if (!roids.equals(other.roids))
 			return false;
-		if (serializerName == null) {
-			if (other.serializerName != null)
-				return false;
-		} else if (!serializerName.equals(other.serializerName))
+		if (serializerOid != other.serializerOid)
 			return false;
 		return true;
-	}
-
-	private String getRoidsString() {
-		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		for (Long roid : roids) {
-			sb.append(roid + "-");
-			i++;
-			if (i > 5) {
-				break;
-			}
-		}
-		if (sb.length() > 0) {
-			sb.delete(sb.length() - 1, sb.length());
-		}
-		return sb.toString();
 	}
 
 	private String getOidsString() {
@@ -293,7 +320,7 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public String getFileName() {
-		String extension = bimServer.getEmfSerializerFactory().getExtension(serializerName);
+		String extension = bimServer.getEmfSerializerFactory().getExtension(serializerOid);
 		switch (downloadType) {
 		case DOWNLOAD_REVISION:
 			return getRoidsString() + "." + extension;
@@ -311,14 +338,6 @@ public class DownloadParameters extends LongActionKey {
 			return "query." + extension;
 		}
 		return "unknown";
-	}
-
-	public void setSerializerName(String serializerName) {
-		this.serializerName = serializerName;
-	}
-
-	public String getSerializerName() {
-		return serializerName;
 	}
 
 	public boolean isIncludeAllSubtypes() {
@@ -345,13 +364,13 @@ public class DownloadParameters extends LongActionKey {
 		this.qeid = qeid;
 	}
 
-	public static DownloadParameters fromQuery(Long roid, Long qeid, String code, String serializerName) {
+	public static DownloadParameters fromQuery(Long roid, Long qeid, String code, long serializerOid) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setRoid(roid);
 		downloadParameters.setQeid(qeid);
 		downloadParameters.setCode(code);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_QUERY);
-		downloadParameters.setSerializerName(serializerName);
+		downloadParameters.setSerializerOid(serializerOid);
 		return downloadParameters;
 	}
 

@@ -23,9 +23,6 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
@@ -72,7 +69,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			try {
 				EmfSerializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEngine, downloadParameters);
 				if (serializer == null) {
-					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerName());
+					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}
 				checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer)));
 			} catch (SerializerException e) {
@@ -103,8 +100,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				DatabaseSession newSession = getBimServer().getDatabase().createSession();
 				IfcEnginePlugin ifcEnginePlugin = null;
 				try {
-					Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(downloadParameters.getSerializerName()));
-					Serializer found = newSession.querySingle(condition, Serializer.class, false, null);
+					Serializer found = newSession.get(StorePackage.eINSTANCE.getSerializer(), downloadParameters.getSerializerOid(), false, null);
 					if (found != null) {
 						org.bimserver.models.store.IfcEngine ifcEngine = found.getIfcEngine();
 						if (ifcEngine != null) {

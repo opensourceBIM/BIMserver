@@ -63,7 +63,7 @@ public class LocalDevBimWebServerStarter {
 		socketConnector.setHost(address);
 		server.addConnector(socketConnector);
 
-		final PluginManager pluginManager = new PluginManager(new File("tmp"), null);
+		final PluginManager pluginManager = new PluginManager(new File("tmp"), null, null, null);
 		
 		LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override

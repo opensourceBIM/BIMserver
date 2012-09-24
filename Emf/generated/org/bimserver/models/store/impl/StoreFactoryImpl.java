@@ -249,6 +249,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelCompare();
 		case StorePackage.SERVER_DESCRIPTOR:
 			return (EObject) createServerDescriptor();
+		case StorePackage.SERVICE_DESCRIPTOR:
+			return (EObject) createServiceDescriptor();
 		case StorePackage.SERVICE:
 			return (EObject) createService();
 		case StorePackage.TOKEN:
@@ -902,6 +904,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ServerDescriptor createServerDescriptor() {
 		ServerDescriptorImpl serverDescriptor = new ServerDescriptorImpl();
 		return serverDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceDescriptor createServiceDescriptor() {
+		ServiceDescriptorImpl serviceDescriptor = new ServiceDescriptorImpl();
+		return serviceDescriptor;
 	}
 
 	/**

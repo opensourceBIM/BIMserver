@@ -22,9 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SModelComparePluginDescriptor extends SPluginDescriptor implements SBase
+public class SModelComparePluginDescriptor extends SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

@@ -25,9 +25,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SLongCheckinAction extends SLongAction implements SBase
+public class SLongCheckinAction extends SLongAction implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
 	

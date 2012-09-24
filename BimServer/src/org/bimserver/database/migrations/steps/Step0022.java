@@ -11,14 +11,17 @@ public class Step0022 extends Migration {
 	@Override
 	public void migrate(Schema schema) {
 		EClass serviceInterface = schema.createEClass("store", "ServiceInterface");
+		serviceInterface.getEAnnotations().add(createNoDatabase());
 		schema.createEAttribute(serviceInterface, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		
 		EClass serviceMethod = schema.createEClass("store", "ServiceMethod");
+		serviceMethod.getEAnnotations().add(createNoDatabase());
 		schema.createEAttribute(serviceMethod, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceMethod, "doc", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceMethod, "returnDoc", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 
 		EClass serviceField = schema.createEClass("store", "ServiceField");
+		serviceField.getEAnnotations().add(createNoDatabase());
 		EClass serviceType = schema.createEClass("store", "ServiceType");
 
 		schema.createEAttribute(serviceField, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
@@ -31,6 +34,7 @@ public class Step0022 extends Migration {
 		schema.createEReference(serviceType, "fields", serviceField, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 
 		EClass serviceParameter = schema.createEClass("store", "ServiceParameter");
+		serviceParameter.getEAnnotations().add(createNoDatabase());
 		schema.createEAttribute(serviceParameter, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceParameter, "doc", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(serviceParameter, "type", serviceType, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReference());

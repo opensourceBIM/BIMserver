@@ -29,9 +29,6 @@ import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.database.actions.DownloadQueryDatabaseAction;
 import org.bimserver.database.actions.ProgressListener;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
@@ -72,12 +69,11 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		ObjectIDM objectIDM = null;
 		session = getBimServer().getDatabase().createSession();
 		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(downloadParameters.getSerializerName()));
-			Serializer serializer = session.querySingle(condition, Serializer.class, false, null);
+			Serializer serializer = session.get(StorePackage.eINSTANCE.getSerializer(), downloadParameters.getSerializerOid(), false, null);
 			if (serializer != null) {
 				org.bimserver.models.store.ObjectIDM objectIdm = serializer.getObjectIDM();
 				if (objectIdm != null) {
-					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getClassName());
+					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getClassName(), true);
 					if (objectIDMPlugin != null) {
 						objectIDM = objectIDMPlugin.getObjectIDM();
 					}
