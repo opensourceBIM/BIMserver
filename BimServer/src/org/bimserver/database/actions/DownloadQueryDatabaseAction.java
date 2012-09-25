@@ -49,6 +49,7 @@ public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInter
 		this.roid = roid;
 		this.qeid = qeid;
 		this.code = code;
+		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 		this.reporter = reporter;
 	}
