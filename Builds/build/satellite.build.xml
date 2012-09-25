@@ -11,8 +11,8 @@
 		<mkdir dir="builds/pluginlibs" />
 		<antcall target="Utils"/>
 		<antcall target="Emf"/>
-		<antcall target="buildingSMARTLibrary"/>
 		<antcall target="Shared"/>
+		<antcall target="buildingSMARTLibrary"/>
 		<antcall target="Ifc"/>
 		<antcall target="BimServerClientLib"/>
 		<antcall target="SatelliteServer"/>
