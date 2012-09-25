@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
 import org.bimserver.shared.exceptions.ServiceException;
@@ -42,15 +43,27 @@ public class SMethod {
 	private SClass returnType;
 	private SClass genericReturnType;
 	private String returnDoc;
+	private String name;
 	
 	public SMethod(SService service, Method method) {
 		this.method = method;
+		
+		WebMethod webMethod = method.getAnnotation(WebMethod.class);
+		if (webMethod == null) {
+			this.name = method.getName();
+			LOGGER.warn("Method " + method.getName() + " has no @WebMethod annotation");
+		} else {
+			this.name = webMethod.action();
+		}
+		
 		int parameterCounter = 0;
 		for (Class<?> parameterType : method.getParameterTypes()) {
 			String paramName = "arg" + parameterCounter;
 			WebParam webParam = extractAnnotation(parameterCounter, WebParam.class);
 			if (webParam != null) {
 				paramName = webParam.name();
+			} else {
+				LOGGER.warn("Method " + method.getName() + " parameter " + parameterCounter + " has no @WebParam annotation");
 			}
 			Class<?> genericType = getGenericType(parameterCounter);
 			parameters.add(new SParameter(this, service.getSType(parameterType.getName()), genericType == null ? null : service.getSType(genericType.getName()), paramName));
@@ -88,7 +101,7 @@ public class SMethod {
 	}
 	
 	public String getName() {
-		return method.getName();
+		return name;
 	}
 	
 	public SParameter getParameter(int index) {

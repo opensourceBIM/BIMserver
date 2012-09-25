@@ -570,7 +570,8 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAvailableClassesInRevision")
-	List<String> getAvailableClassesInRevision(Long roid) throws ServerException, UserException;
+	List<String> getAvailableClassesInRevision(
+		@WebParam(name = "roid", partName = "getAvailableClassesInRevision.roid") Long roid) throws ServerException, UserException;
 	
 	/**
 	 * Get information about the BIMserver database
@@ -978,14 +979,14 @@ public interface ServiceInterface {
 	 * @return The location of a custom Logo (URL) for the BIMserver
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getSettingsCustomLogoAddress")
+	@WebMethod(action = "getSettingCustomLogoAddress")
 	String getSettingCustomLogoAddress() throws ServerException, UserException;
 
 	/**
 	 * @param customLogoAddress The new location for the custom logo
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setSettingsCustomLogoAddress")
+	@WebMethod(action = "setSettingCustomLogoAddress")
 	void setSettingCustomLogoAddress(
 			@WebParam(name = "customLogoAddress", partName = "setSettingsCustomLogoAddress.customLogoAddress") String customLogoAddress) throws ServerException, UserException;
 
@@ -1020,14 +1021,14 @@ public interface ServiceInterface {
 	void setSettingFooterAddition(
 			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition) throws ServerException, UserException;
 
-	@WebMethod(action = "getSettingsEmailSenderAddress")
+	@WebMethod(action = "getSettingEmailSenderAddress")
 	String getSettingEmailSenderAddress() throws ServerException, UserException;
 
 	/**
 	 * @param emailSenderAddress The new e-mail address e-mail will be sent from
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setSettingsEmailSenderAddress")
+	@WebMethod(action = "setSettingEmailSenderAddress")
 	void setSettingEmailSenderAddress(
 			@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServerException, UserException;
 
@@ -1035,14 +1036,14 @@ public interface ServiceInterface {
 	 * @return The registration addition text
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getSettingsRegistrationAddition")
+	@WebMethod(action = "getSettingRegistrationAddition")
 	String getSettingRegistrationAddition() throws ServerException, UserException;
 
 	/**
 	 * @param registrationAddition The new registration addition text
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setSettingsRegistrationAddition")
+	@WebMethod(action = "setSettingRegistrationAddition")
 	void setSettingRegistrationAddition(
 			@WebParam(name = "registrationAddition", partName = "setSettingsRegistrationAddition.registrationAddition") String registrationAddition) throws ServerException, UserException;
 
@@ -1057,7 +1058,7 @@ public interface ServiceInterface {
 	 * @param port Set the port the ProtocolBuffers server runs on
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setSettingsProtocolBuffersPort")
+	@WebMethod(action = "setSettingProtocolBuffersPort")
 	void setSettingProtocolBuffersPort(
 			@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port) throws ServerException, UserException;
 	
@@ -1065,14 +1066,14 @@ public interface ServiceInterface {
 	 * @return The address the BIMserver is running on (used for links in e-mail for example)
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getSettingsSiteAddress")
+	@WebMethod(action = "getSettingSiteAddress")
 	String getSettingSiteAddress() throws ServerException, UserException;
 
 	/**
 	 * @param siteAddress The new address the BIMserver is running on (used for links in e-mail for example)
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setSettingsSiteAddress")
+	@WebMethod(action = "setSettingSiteAddress")
 	void setSettingSiteAddress(
 			@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress) throws ServerException, UserException;
 
@@ -1080,14 +1081,14 @@ public interface ServiceInterface {
 	 * @return Address of the SMTP server used for sending e-mails
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getSettingsSmtpServer")
+	@WebMethod(action = "getSettingSmtpServer")
 	String getSettingSmtpServer() throws ServerException, UserException;
 
 	/**
 	 * @param smtpServer New address of the SMTP server used for sending e-mails
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setSettingsSmtpServer")
+	@WebMethod(action = "setSettingSmtpServer")
 	void setSettingSmtpServer(
 			@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer) throws ServerException, UserException;
 
@@ -1185,14 +1186,14 @@ public interface ServiceInterface {
 	 * @return Whether output files (serialized version) should be cached on disk
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "isCacheOutputFiles")
+	@WebMethod(action = "isSettingCacheOutputFiles")
 	Boolean isSettingCacheOutputFiles() throws ServerException, UserException;
 
 	/**
 	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setCacheOutputFiles")
+	@WebMethod(action = "setSettingCacheOutputFiles")
 	void setSettingCacheOutputFiles(
 			@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
 	
@@ -1465,7 +1466,7 @@ public interface ServiceInterface {
 	 * @param deserializer Deserializer to add
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "addSerializer")
+	@WebMethod(action = "addDeserializer")
 	void addDeserializer(
 			@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializer deserializer) throws ServerException, UserException;
 
@@ -1718,7 +1719,8 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "hasActiveSerializer")
-	Boolean hasActiveSerializer(String contentType) throws ServerException, UserException;
+	Boolean hasActiveSerializer(
+		@WebParam(name = "contentType", partName = "hasActiveSerializer.contentType") String contentType) throws ServerException, UserException;
 	
 	/**
 	 * @return A list of all plugins
@@ -2114,7 +2116,8 @@ public interface ServiceInterface {
 	 * @throws ServerException 
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
-	String getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException;
+	String getSuggestedDeserializerForExtension(
+		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
 
 	/**
 	 * Checkin warnings are given to users
@@ -2123,68 +2126,104 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getCheckinWarnings")
-	Set<String> getCheckinWarnings(@WebParam(name = "poid", partName = "getCheckinWarnings.poid") Long poid) throws ServerException, UserException;
+	Set<String> getCheckinWarnings(
+		@WebParam(name = "poid", partName = "getCheckinWarnings.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @return A list of ExtendedDataSchemas
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getAllExtendedSchemas")
+	@WebMethod(action = "getAllExtendedDataSchemas")
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 	
-	
+	@WebMethod(action="getDefaultIfcEngine")
 	SIfcEngine getDefaultIfcEngine() throws ServerException, UserException;
 
+	@WebMethod(action="getDefaultQueryEngine")
 	SQueryEngine getDefaultQueryEngine() throws ServerException, UserException;
 
+	@WebMethod(action="getDefaultModelCompare")
 	SModelCompare getDefaultModelCompare() throws ServerException, UserException;
 
+	@WebMethod(action="getDefaultModelMerger")
 	SModelMerger getDefaultModelMerger() throws ServerException, UserException;
 
+	@WebMethod(action="getDefaultSerializer")
 	SSerializer getDefaultSerializer() throws ServerException, UserException;
 
+	@WebMethod(action="getDefaultObjectIDM")
 	SObjectIDM getDefaultObjectIDM() throws ServerException, UserException;
 
-	void setDefaultIfcEngine(long oid) throws UserException, ServerException;
+	@WebMethod(action="setDefaultIfcEngine")
+	void setDefaultIfcEngine(
+		@WebParam(name = "oid", partName = "setDefaultIfcEngine.oid")	long oid) throws UserException, ServerException;
 
-	void setDefaultQueryEngine(long oid) throws UserException, ServerException;
+	@WebMethod(action="setDefaultQueryEngine")
+	void setDefaultQueryEngine(
+		@WebParam(name = "oid", partName = "setDefaultQueryEngine.oid") long oid) throws UserException, ServerException;
 
-	void setDefaultModelCompare(long oid) throws UserException, ServerException;
+	@WebMethod(action="setDefaultModelCompare")
+	void setDefaultModelCompare(
+		@WebParam(name = "oid", partName = "setDefaultModelCompare.oid") long oid) throws UserException, ServerException;
 
-	void setDefaultModelMerger(long oid) throws UserException, ServerException;
+	@WebMethod(action="setDefaultModelMerger")
+	void setDefaultModelMerger(
+		@WebParam(name = "oid", partName = "setDefaultModelMerger.oid") long oid) throws UserException, ServerException;
 
-	void setDefaultSerializer(long oid) throws UserException, ServerException;
+	@WebMethod(action="setDefaultSerializer")
+	void setDefaultSerializer(
+		@WebParam(name = "oid", partName = "setDefaultSerializer.oid") long oid) throws UserException, ServerException;
 
-	void setDefaultObjectIDM(long oid) throws UserException, ServerException;
+	@WebMethod(action="setDefaultObjectIDM")
+	void setDefaultObjectIDM(
+		@WebParam(name = "oid", partName = "setDefaultObjectIDM.oid") long oid) throws UserException, ServerException;
 
+	@WebMethod(action="getServiceRepositoryUrl")
 	String getServiceRepositoryUrl() throws ServerException, UserException;
 
-	void setServiceRepositoryUrl(String url) throws ServerException, UserException;
+	@WebMethod(action="setServiceRepositoryUrl")
+	void setServiceRepositoryUrl(
+		@WebParam(name = "url", partName = "setServiceRepositoryUrl.url") String url) throws ServerException, UserException;
 	
+	@WebMethod(action="getExternalServers")
 	List<SServerDescriptor> getExternalServers() throws ServerException, UserException;
 
+	@WebMethod(action="getInternalServers")
 	List<SServerDescriptor> getInternalServers() throws ServerException, UserException;
 	
+	@WebMethod(action="getExternalServices")
 	List<SServiceDescriptor> getExternalServices(
 		@WebParam(name = "remoteUrl", partName = "getExternalServices.remoteUrl") String remoteUrl) throws ServerException, UserException;
 
+	@WebMethod(action="getInternalServices")
 	List<SServiceDescriptor> getInternalServices(
-			@WebParam(name = "name", partName = "getInternalServices.name") String name) throws ServerException, UserException;
+		@WebParam(name = "name", partName = "getInternalServices.name") String name) throws ServerException, UserException;
 	
-	void addServiceToProject(long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException;
+	@WebMethod(action="addServiceToProject")
+	void addServiceToProject(
+		@WebParam(name = "poid", partName = "addServiceToProject.poid") Long poid, 
+		@WebParam(name = "sService", partName = "addServiceToProject.sService") org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException;
 
-	void deleteService(long oid) throws ServerException, UserException;
+	@WebMethod(action="deleteService")
+	void deleteService(
+		@WebParam(name = "oid", partName = "deleteService.oid") Long oid) throws ServerException, UserException;
 
-	org.bimserver.interfaces.objects.SService getService(long epid) throws ServerException, UserException;
+	@WebMethod(action="getService")
+	org.bimserver.interfaces.objects.SService getService(
+		@WebParam(name = "epid", partName = "getService.epid") Long epid) throws ServerException, UserException;
 
+	@WebMethod(action="getServiceInterfaces")
 	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
 	
+	@WebMethod(action="getServiceMethods")
 	List<SServiceMethod> getServiceMethods(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethods.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
 	
+	@WebMethod(action="getServiceTypes")
 	List<SServiceType> getServiceTypes(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceTypes.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
 	
+	@WebMethod(action="getServiceMethodParameters")
 	List<SServiceParameter> getServiceMethodParameters(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethodParameters.serviceInterfaceName") String serviceInterfaceName,
 		@WebParam(name = "serviceMethodName", partName = "getServiceMethodParameters.serviceMethodName") String serviceMethodName) throws ServerException, UserException;
