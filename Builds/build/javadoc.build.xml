@@ -1,0 +1,14 @@
+<project name="JavaDoc">
+	<import file="common.build.xml"/>
+	<target name="Build JavaDoc">
+		<javadoc destdir="builds/bimserver-javadoc-${version}.zip">
+			<fileset dir="BimCombined/src"/>
+			<fileset dir="BimServer/src"/>
+			<fileset dir="BimServerClientLib/src"/>
+			<fileset dir="Emf/src"/>
+			<fileset dir="Ifc/src"/>
+			<fileset dir="Shared/src"/>
+			<fileset dir="Utils/src"/>
+		</javadoc>
+	</target>
+</project>
