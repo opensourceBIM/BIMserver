@@ -1,19 +1,21 @@
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <%@page import="java.util.List"%>
-<%@ include file="settingsmenu.jsp"%>
+<%@ include file="usersettingsmenu.jsp"%>
 <%		
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
-	if (action.equals("disableObjectIDM")) {
+	if (action.equals("disable")) {
 		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
 		objectIDM.setEnabled(false);
 		loginManager.getService().updateObjectIDM(objectIDM);
-	} else if (action.equals("enableObjectIDM")) {
+	} else if (action.equals("enable")) {
 		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
 		objectIDM.setEnabled(true);
 		loginManager.getService().updateObjectIDM(objectIDM);
-	} else if (action.equals("setdefaultobjectidm")) {
+	} else if (action.equals("setdefault")) {
 		loginManager.getService().setDefaultObjectIDM(Long.parseLong(request.getParameter("oid")));
+	} else if (action.equals("delete")) {
+		loginManager.getService().deleteObjectIDM(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("objectidms.jsp");
 }
@@ -32,22 +34,22 @@ if (request.getParameter("action") != null) {
 		<td><%=objectIDM.getClassName() %></td>
 		<td><%=objectIDM.getSerializers().size() %></td>
 		<td><input type="radio" name="default"<%=objectIDM.getEnabled() ? "" : "disabled=\"disabled\"" %> oid="<%=objectIDM.getOid()%>" <%=service.getDefaultObjectIDM() != null && service.getDefaultObjectIDM().getOid() == objectIDM.getOid() ? "checked" : "" %>/></td>
-		<td class="<%=objectIDM.getEnabled() ? "enabledObjectIDM" : "disabledObjectIDM" %>"> <%=objectIDM.getEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=objectIDM.getEnabled() ? "enabled" : "disabled" %>"> <%=objectIDM.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
 	if (!isDefault) {
 	if (!objectIDM.getEnabled()) {
 %>
-<a href="objectidms.jsp?action=enableObjectIDM&oid=<%=objectIDM.getOid() %>">Enable</a>
+<a href="objectidms.jsp?action=enable&oid=<%=objectIDM.getOid() %>">Enable</a>
 <%
 	} else if (objectIDM.getSerializers().isEmpty()) {
 %>
-<a href="objectidms.jsp?action=disableObjectIDM&oid=<%=objectIDM.getOid() %>">Disable</a>
+<a href="objectidms.jsp?action=disable&oid=<%=objectIDM.getOid() %>">Disable</a>
 <%
 	}
 	if (objectIDM.getSerializers().isEmpty()) {
 %>
-			<a href="deleteobjectidm.jsp?ifid=<%=objectIDM.getOid()%>">Delete</a>
+			<a href="objectidms.jsp?action=delete&oid=<%=objectIDM.getOid()%>">Delete</a>
 <%} }%>
 		</td>
 	</tr>
@@ -58,7 +60,7 @@ if (request.getParameter("action") != null) {
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		document.location = "objectidms.jsp?action=setdefaultobjectidm&oid=" + $(this).attr("oid");
+		document.location = "objectidms.jsp?action=setdefault&oid=" + $(this).attr("oid");
 	});
 });
 </script>

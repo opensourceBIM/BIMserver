@@ -27,12 +27,11 @@ public class Step0008 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass deserializerClass = schema.createEClass(schema.getEPackage("store"), "Deserializer", schema.getEClass("store", "Plugin"));
-		deserializerClass.getESuperTypes().add(schema.getEClass("store", "Plugin"));
+		EClass deserializerPluginClass = schema.createEClass(schema.getEPackage("store"), "Deserializer", schema.getEClass("store", "Plugin"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		EReference deserializerSettingsReference = schema.createEReference(deserializerClass, "settings", userSettingsClass, Multiplicity.SINGLE);
-		EReference settingsDeserializersReference = schema.createEReference(userSettingsClass, "deserializers", deserializerClass, Multiplicity.MANY);
+		EReference deserializerSettingsReference = schema.createEReference(deserializerPluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference settingsDeserializersReference = schema.createEReference(userSettingsClass, "deserializers", deserializerPluginClass, Multiplicity.MANY);
 		
 		deserializerSettingsReference.setEOpposite(settingsDeserializersReference);
 		settingsDeserializersReference.setEOpposite(deserializerSettingsReference);

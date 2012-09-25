@@ -184,6 +184,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultIfcEngine" eType="#//IfcEngine"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultSerializer" eType="#//Serializer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#//ObjectIDM"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
+        eType="#//EService" eOpposite="#//EService/settings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Plugin">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -504,6 +506,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Token">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expires" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServicePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EService" eSuperTypes="#//Plugin">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//UserSettings"
+        eOpposite="#//UserSettings/services"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceInterface">
     <eAnnotations source="nodatabase"/>

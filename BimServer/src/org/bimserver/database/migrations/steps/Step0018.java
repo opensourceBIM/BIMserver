@@ -29,11 +29,11 @@ public class Step0018 extends Migration {
 	public void migrate(Schema schema) {
 		schema.createEClass(schema.getEPackage("store"), "QueryEnginePluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 		
-		EClass queryEngineClass = schema.createEClass(schema.getEPackage("store"), "QueryEngine", schema.getEClass("store", "Plugin"));
+		EClass queryEnginePluginClass = schema.createEClass(schema.getEPackage("store"), "QueryEngine", schema.getEClass("store", "Plugin"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		EReference queryEngineSettingsReference = schema.createEReference(queryEngineClass, "settings", userSettingsClass, Multiplicity.SINGLE);
-		EReference settingsQueryEnginesReference = schema.createEReference(userSettingsClass, "queryengines", queryEngineClass, Multiplicity.MANY);
+		EReference queryEngineSettingsReference = schema.createEReference(queryEnginePluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference settingsQueryEnginesReference = schema.createEReference(userSettingsClass, "queryengines", queryEnginePluginClass, Multiplicity.MANY);
 		
 		queryEngineSettingsReference.setEOpposite(settingsQueryEnginesReference);
 		settingsQueryEnginesReference.setEOpposite(queryEngineSettingsReference);

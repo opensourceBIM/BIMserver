@@ -88,6 +88,9 @@ public class SUserSettings implements SDataBase
 		if (sField.getName().equals("defaultObjectIDMId")) {
 			return getDefaultObjectIDMId();
 		}
+		if (sField.getName().equals("services")) {
+			return getServices();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -147,6 +150,10 @@ public class SUserSettings implements SDataBase
 			setDefaultObjectIDMId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("services")) {
+			setServices((List<Long>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -167,6 +174,7 @@ public class SUserSettings implements SDataBase
 	private long defaultIfcEngineId;
 	private long defaultSerializerId;
 	private long defaultObjectIDMId;
+	private List<Long> services = new ArrayList<Long>();
 	public List<Long> getSerializers() {
 		return serializers;
 	}
@@ -264,6 +272,13 @@ public class SUserSettings implements SDataBase
 		this.defaultObjectIDMId = defaultObjectIDMId;
 	}
 	
+	public List<Long> getServices() {
+		return services;
+	}
+
+	public void setServices(List<Long> services) {
+		this.services = services;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,19 +1,21 @@
 <%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@page import="java.util.List"%>
-<%@ include file="usersettings.jsp"%>
+<%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
-	if (action.equals("enableModelCompare")) {
+	if (action.equals("enable")) {
 		SModelCompare modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(true);
 		loginManager.getService().updateModelCompare(modelCompare);
-	} else if (action.equals("disableModelCompare")) {
+	} else if (action.equals("disable")) {
 		SModelCompare modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(false);
 		loginManager.getService().updateModelCompare(modelCompare);
-	} else if (action.equals("setdefaultmodelcompare")) {
+	} else if (action.equals("setdefault")) {
 		loginManager.getService().setDefaultModelCompare(Long.parseLong(request.getParameter("oid")));
+	} else if (action.equals("delete")) {
+		loginManager.getService().deleteModelCompare(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("modelcompares.jsp");
 }
@@ -30,21 +32,21 @@ if (request.getParameter("action") != null) {
 		<td><a href="modelcompare.jsp?id=<%=modelCompare.getOid()%>"><%=modelCompare.getName() %></a></td>
 		<td><%=modelCompare.getClassName() %></td>
 		<td><input type="radio" name="default"<%=modelCompare.getEnabled() ? "" : "disabled=\"disabled\"" %> oid="<%=modelCompare.getOid()%>" <%=service.getDefaultModelCompare() != null && service.getDefaultModelCompare().getOid() == modelCompare.getOid() ? "checked" : "" %>/></td>
-		<td class="<%=modelCompare.getEnabled() ? "enabledModelCompare" : "disabledModelCompare" %>"> <%=modelCompare.getEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=modelCompare.getEnabled() ? "enabled" : "disabled" %>"> <%=modelCompare.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
 	if (!isDefault) {
 	if (!modelCompare.getEnabled()) {
 %>
-<a href="modelcompares.jsp?action=enableModelCompare&oid=<%=modelCompare.getOid() %>">Enable</a>
+<a href="modelcompares.jsp?action=enable&oid=<%=modelCompare.getOid() %>">Enable</a>
 <%
 	} else {
 %>
-<a href="modelcompares.jsp?action=disableModelCompare&oid=<%=modelCompare.getOid() %>">Disable</a>
+<a href="modelcompares.jsp?action=disable&oid=<%=modelCompare.getOid() %>">Disable</a>
 <%
 	}
 %>
-			<a href="deletemodelcompare.jsp?ifid=<%=modelCompare.getOid()%>">Delete</a>
+			<a href="modelcompares.jsp?action=delete&oid=<%=modelCompare.getOid()%>">Delete</a>
 <%
 }
 %>
@@ -57,7 +59,7 @@ if (request.getParameter("action") != null) {
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		document.location = "modelcompares.jsp?action=setdefaultmodelcompare&oid=" + $(this).attr("oid");
+		document.location = "modelcompares.jsp?action=setdefault&oid=" + $(this).attr("oid");
 	});
 });
 </script>

@@ -2,7 +2,7 @@
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
-<%@ include file="settingsmenu.jsp"%>
+<%@ include file="usersettingsmenu.jsp"%>
 <h1>Serializers</h1>
 <a href="addserializer1.jsp">Add Serializer</a>
 <table class="formatted">
@@ -10,16 +10,18 @@
 <%
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
-		if (action.equals("disableSerializer")) {
+		if (action.equals("disable")) {
 			SSerializer serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
 			serializer.setEnabled(false);
 			loginManager.getService().updateSerializer(serializer);
-		} else if (action.equals("enableSerializer")) {
+		} else if (action.equals("enable")) {
 			SSerializer serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
 			serializer.setEnabled(true);
 			loginManager.getService().updateSerializer(serializer);
-		} else if (action.equals("setdefaultserializer")) {
+		} else if (action.equals("setdefault")) {
 			loginManager.getService().setDefaultSerializer(Long.parseLong(request.getParameter("oid")));
+		} else if (action.equals("delete")) {
+			loginManager.getService().deleteSerializer(Long.parseLong(request.getParameter("oid")));
 		}
 		response.sendRedirect("serializers.jsp");
 	}
@@ -43,21 +45,21 @@
 		<td><%=objectIDM == null ? "none" : objectIDM.getName() %></td>
 		<td><%=ifcEngine == null ? "none" : ifcEngine.getName() %></td>
 		<td><input type="radio" name="default"<%=serializer.getEnabled() ? "" : "disabled=\"disabled\"" %> oid="<%=serializer.getOid()%>" <%=isDefault ? "checked" : "" %>/></td>
-		<td class="<%=serializer.getEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.getEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=serializer.getEnabled() ? "enabled" : "disabled" %>"> <%=serializer.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%
 	if (!isDefault) {
 	if (serializer.getEnabled()) {
 %>
-<a href="serializers.jsp?action=disableSerializer&oid=<%=serializer.getOid() %>">Disable</a>
+<a href="serializers.jsp?action=disable&oid=<%=serializer.getOid() %>">Disable</a>
 <%
 	} else {
 %>
-<a href="serializers.jsp?action=enableSerializer&oid=<%=serializer.getOid() %>">Enable</a>
+<a href="serializers.jsp?action=enable&oid=<%=serializer.getOid() %>">Enable</a>
 <%
 	}
 %>
-			<a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a>
+			<a href="serializers.jsp?action=delete&oid=<%=serializer.getOid()%>">Delete</a>
 <%
 }
 %>
@@ -70,7 +72,7 @@
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		document.location = "serializers.jsp?action=setdefaultserializer&oid=" + $(this).attr("oid");
+		document.location = "serializers.jsp?action=setdefault&oid=" + $(this).attr("oid");
 	});
 });
 </script>

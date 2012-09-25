@@ -32,18 +32,19 @@ public class Step0007 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass ifcEngineClass = schema.createEClass(schema.getEPackage("store"), "IfcEngine", schema.getEClass("store", "Plugin"));
+		EClass ifcEnginePluginClass = schema.createEClass(schema.getEPackage("store"), "IfcEngine", schema.getEClass("store", "Plugin"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		EReference ifcEngineSerializersReference = schema.createEReference(ifcEngineClass, "serializers", schema.getEClass("store", "Serializer"), Multiplicity.MANY);
-		EReference serializerIfcEngineReference = schema.createEReference(schema.getEClass("store", "Serializer"), "ifcEngine", ifcEngineClass, Multiplicity.SINGLE);
+		EClass serializerPluginClass = schema.getEClass("store", "Serializer");
+		EReference ifcEngineSerializersReference = schema.createEReference(ifcEnginePluginClass, "serializers", serializerPluginClass, Multiplicity.MANY);
+		EReference serializerIfcEngineReference = schema.createEReference(serializerPluginClass, "ifcEngine", ifcEnginePluginClass, Multiplicity.SINGLE);
 		
 		serializerIfcEngineReference.setEOpposite(ifcEngineSerializersReference);
 		ifcEngineSerializersReference.setEOpposite(serializerIfcEngineReference);
 		
-		EReference ifcEngineSettings = schema.createEReference(ifcEngineClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference ifcEngineSettings = schema.createEReference(ifcEnginePluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
 
-		EReference settingsIfcEngines = schema.createEReference(userSettingsClass, "ifcEngines", ifcEngineClass, Multiplicity.MANY);
+		EReference settingsIfcEngines = schema.createEReference(userSettingsClass, "ifcEngines", ifcEnginePluginClass, Multiplicity.MANY);
 
 		settingsIfcEngines.setEOpposite(ifcEngineSettings);
 		ifcEngineSettings.setEOpposite(settingsIfcEngines);

@@ -17,13 +17,30 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddIfcEngineDatabaseAction extends AddDatabaseAction<IfcEngine> {
 
-	public AddIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcEngine ifcEngine) {
+	private Authorization authorization;
+
+	public AddIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, IfcEngine ifcEngine) {
 		super(databaseSession, accessMethod, ifcEngine);
+		this.authorization = authorization;
+	}
+	
+	@Override
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+		user.getSettings().getIfcEngines().add(getIdEObject());
+		getDatabaseSession().store(user.getSettings());
+		return super.execute();
 	}
 }

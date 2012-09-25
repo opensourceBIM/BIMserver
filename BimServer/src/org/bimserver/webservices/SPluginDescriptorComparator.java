@@ -19,12 +19,12 @@ package org.bimserver.webservices;
 
 import java.util.Comparator;
 
-import org.bimserver.interfaces.objects.SIfcEngine;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 
-public class SIfcEngineComparator implements Comparator<SIfcEngine> {
+public class SPluginDescriptorComparator implements Comparator<SPluginDescriptor> {
 
 	@Override
-	public int compare(SIfcEngine o1, SIfcEngine o2) {
-		return o1.getName().compareTo(o2.getName());
+	public int compare(SPluginDescriptor o1, SPluginDescriptor o2) {
+		return o1.getDefaultName().compareTo(o2.getDefaultName());
 	}
 }

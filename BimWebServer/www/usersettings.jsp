@@ -2,7 +2,7 @@
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
-<%@ include file="settingsmenu.jsp"%>
+<%@ include file="usersettingsmenu.jsp"%>
 <h1>User Settings</h1>
 User the menu on the left.<br/><br/>
 <div class="not initialhide">

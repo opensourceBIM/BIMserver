@@ -17,13 +17,30 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddModelCompareDatabaseAction extends AddDatabaseAction<ModelCompare> {
 
-	public AddModelCompareDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelCompare modelCompare) {
+	private Authorization authorization;
+
+	public AddModelCompareDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, ModelCompare modelCompare) {
 		super(databaseSession, accessMethod, modelCompare);
+		this.authorization = authorization;
+	}
+	
+	@Override
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+		user.getSettings().getModelcompares().add(getIdEObject());
+		getDatabaseSession().store(user.getSettings());
+		return super.execute();
 	}
 }

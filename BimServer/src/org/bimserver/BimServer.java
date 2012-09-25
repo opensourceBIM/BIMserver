@@ -61,6 +61,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.EService;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ModelCompare;
 import org.bimserver.models.store.ModelMerger;
@@ -91,6 +92,7 @@ import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceInterface;
@@ -566,6 +568,19 @@ public class BimServer {
 		}
 		if (userSettings.getDefaultSerializer() == null && !userSettings.getSerializers().isEmpty()) {
 			userSettings.setDefaultSerializer(userSettings.getSerializers().get(0));
+		}
+		for (ServicePlugin servicePlugin : pluginManager.getAllServicePlugins(true)) {
+			String name = servicePlugin.getTitle();
+			EService found = find(userSettings.getServices(), name);
+			if (found == null) {
+				EService service = StoreFactory.eINSTANCE.createEService();
+				userSettings.getServices().add(service);
+				service.setClassName(servicePlugin.getClass().getName());
+				service.setName(name);
+				service.setEnabled(true);
+				service.setDescription(servicePlugin.getDescription());
+				session.store(service);
+			}
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
 			String name = deserializerPlugin.getDefaultDeserializerName();

@@ -255,6 +255,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createService();
 		case StorePackage.TOKEN:
 			return (EObject) createToken();
+		case StorePackage.SERVICE_PLUGIN_DESCRIPTOR:
+			return (EObject) createServicePluginDescriptor();
+		case StorePackage.ESERVICE:
+			return (EObject) createEService();
 		case StorePackage.SERVICE_INTERFACE:
 			return (EObject) createServiceInterface();
 		case StorePackage.SERVICE_METHOD:
@@ -421,6 +425,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Plugin createPlugin() {
+		PluginImpl plugin = new PluginImpl();
+		return plugin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Serializer createSerializer() {
 		SerializerImpl serializer = new SerializerImpl();
 		return serializer;
@@ -444,16 +458,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public IfcEngine createIfcEngine() {
 		IfcEngineImpl ifcEngine = new IfcEngineImpl();
 		return ifcEngine;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Plugin createPlugin() {
-		PluginImpl plugin = new PluginImpl();
-		return plugin;
 	}
 
 	/**
@@ -934,6 +938,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Token createToken() {
 		TokenImpl token = new TokenImpl();
 		return token;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServicePluginDescriptor createServicePluginDescriptor() {
+		ServicePluginDescriptorImpl servicePluginDescriptor = new ServicePluginDescriptorImpl();
+		return servicePluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EService createEService() {
+		EServiceImpl eService = new EServiceImpl();
+		return eService;
 	}
 
 	/**

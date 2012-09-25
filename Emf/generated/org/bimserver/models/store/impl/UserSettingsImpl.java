@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.EService;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.ModelCompare;
 import org.bimserver.models.store.ModelMerger;
@@ -49,6 +50,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultIfcEngine <em>Default Ifc Engine</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getServices <em>Services</em>}</li>
  * </ul>
  * </p>
  *
@@ -260,6 +262,16 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	public void setDefaultObjectIDM(ObjectIDM newDefaultObjectIDM) {
 		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_OBJECT_IDM, newDefaultObjectIDM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<EService> getServices() {
+		return (EList<EService>) eGet(StorePackage.Literals.USER_SETTINGS__SERVICES, true);
 	}
 
 } //UserSettingsImpl

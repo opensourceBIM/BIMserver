@@ -1,11 +1,11 @@
 
-è
+°
 notification.protoorg.bimserver.pbservice.proto"9
 SNewProjectNotification
 oid (
-	projectId ("L
-NewProjectRequest7
-arg0 (2).org.bimserver.pb.SNewProjectNotification"N
+	projectId ("^
+NewProjectRequestI
+newProjectNotification (2).org.bimserver.pb.SNewProjectNotification"N
 SNewRevisionNotification
 oid (
 	projectId (
