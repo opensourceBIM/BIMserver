@@ -88,7 +88,7 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
-		 	BimWebServer bimWebServer = new BimWebServer();
+		 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServiceInterfaces());
 			embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", bimWebServer);
 	 		bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {

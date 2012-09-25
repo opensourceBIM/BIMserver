@@ -31,14 +31,14 @@ import java.util.Set;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.shared.KeyValuePair;
-import org.bimserver.shared.Reflector;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
+import org.bimserver.shared.reflector.KeyValuePair;
+import org.bimserver.shared.reflector.Reflector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

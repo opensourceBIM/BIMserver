@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="lib" path="lib/jetty/servlet-api-3.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/servlet-api-3.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.jobs_3.5.200.v20120521-2346.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.resources_3.8.0.v20120522-2034.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.runtime_3.8.0.v20120521-2346.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="generated"/>
@@ -42,15 +50,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/stax2-api-3.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jna.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.xsd_2.7.0.v20110606-0949.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.contenttype_3.4.100.v20110423-0524.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.jobs_3.5.101.v20120113-1953.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.resources_3.7.101.v20120125-1505.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.runtime_3.7.0.v20110110.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.common_3.6.0.v20110523.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.preferences_3.4.2.v20120111-2020.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.jdt.core_3.7.3.v20120119-1537.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.osgi_3.7.2.v20120110-1415.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>

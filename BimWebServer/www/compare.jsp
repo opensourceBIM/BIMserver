@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.shared.CompareWriter"%>
+<%@page import="org.bimserver.shared.compare.CompareWriter"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareIdentifier"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareType"%>

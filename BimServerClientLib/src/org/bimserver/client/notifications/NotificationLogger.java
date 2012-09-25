@@ -22,8 +22,8 @@ import java.io.PrintWriter;
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class NotificationLogger implements NotificationInterface {
 

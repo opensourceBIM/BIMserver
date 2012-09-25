@@ -59,8 +59,8 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
-import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.interfaces.NotificationInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

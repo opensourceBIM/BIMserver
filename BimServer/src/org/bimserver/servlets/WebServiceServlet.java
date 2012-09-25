@@ -34,7 +34,7 @@ import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 import org.bimserver.BimServer;
 import org.bimserver.models.store.Token;
-import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.CustomInvoker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -2,7 +2,7 @@ package org.bimserver.plugins;
 
 import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.ServiceDescriptor;
-import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public interface NotificationsManagerInterface {
 

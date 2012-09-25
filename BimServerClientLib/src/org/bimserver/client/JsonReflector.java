@@ -20,13 +20,12 @@ import org.apache.http.protocol.HttpContext;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.models.store.Token;
-import org.bimserver.shared.ConvertException;
-import org.bimserver.shared.JsonConverter;
-import org.bimserver.shared.KeyValuePair;
-import org.bimserver.shared.Reflector;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.reflector.KeyValuePair;
+import org.bimserver.shared.reflector.Reflector;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
@@ -82,8 +81,6 @@ public class JsonReflector implements Reflector {
 				return null;
 			}
 		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (ConvertException e) {
 			e.printStackTrace();
 		}
 		return null;

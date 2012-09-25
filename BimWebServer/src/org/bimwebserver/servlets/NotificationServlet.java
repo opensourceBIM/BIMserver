@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.shared.ConvertException;
-import org.bimserver.shared.JsonConverter;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimwebserver.BimWebServer;
@@ -61,12 +60,8 @@ public class NotificationServlet extends HttpServlet {
 			Object[] parameters = new Object[method.getParameters().size()];
 			for (int i=0; i<method.getParameters().size(); i++) {
 				SParameter parameter = method.getParameter(i);
-				try {
-					if (requestObject.has(parameter.getName())) {
-						parameters[i] = converter.fromJson(parameter.getType(), requestObject.get(parameter.getName()));
-					}
-				} catch (ConvertException e) {
-					e.printStackTrace();
+				if (requestObject.has(parameter.getName())) {
+					parameters[i] = converter.fromJson(parameter.getType(), requestObject.get(parameter.getName()));
 				}
 			}
 

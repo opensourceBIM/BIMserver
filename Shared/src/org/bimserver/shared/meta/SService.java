@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import javax.jws.WebMethod;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 import org.bimserver.utils.StringUtils;
@@ -169,6 +168,7 @@ public class SService {
 		for (Method method : clazz.getMethods()) {
 			methods.put(method.getName(), new SMethod(this, method));
 		}
+		LOGGER.info(methods.size() + " methods in " + getName());
 	}
 
 	private Class<?> getGenericType(Method method) {

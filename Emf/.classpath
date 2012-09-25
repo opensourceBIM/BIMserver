@@ -2,15 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.6.0.v20110606-0949.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.6.0.v20110606-0949.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.7.0.v20110606-0949.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.7.0.v20110605-0747.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.7.0.v20110605-0747.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.7.0.v20110520-1406.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.compare.diff_1.2.0.v20110607-2028.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.compare.match_1.2.0.v20110607-2028.jar"/>
 	<classpathentry kind="src" path="generated"/>
-	<classpathentry kind="lib" path="/BimServer/lib/guava-13.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-13.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.6.0.v20120608-0554.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.8.0.v20120608-0554.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.8.0.v20120608-0554.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.8.0.v20120606-0717.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.8.0.v20120606-0717.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.8.0.v20120606-0717.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -25,9 +25,9 @@ import java.util.Set;
 import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.interfaces.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ConnectDisconnectListener;
-import org.bimserver.shared.NotificationInterface;
-import org.bimserver.shared.Reflector;
-import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.reflector.Reflector;
 
 public abstract class Channel {
 	private final Map<String, Object> serviceInterfaces = new HashMap<String, Object>();

@@ -23,8 +23,8 @@ import java.util.Set;
 import org.bimserver.interfaces.objects.SNewProjectNotification;
 import org.bimserver.interfaces.objects.SNewRevisionNotification;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class MultiCastNotificationImpl implements NotificationInterface {
 	private final Set<NotificationInterface> notificationInterfaces = new HashSet<NotificationInterface>();

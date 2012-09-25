@@ -3,6 +3,7 @@ package org.bimserver.shared;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

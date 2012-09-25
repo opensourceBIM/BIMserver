@@ -19,8 +19,8 @@ package org.bimserver.client.factories;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class DirectBimServerClientFactory implements BimServerClientFactory {
 

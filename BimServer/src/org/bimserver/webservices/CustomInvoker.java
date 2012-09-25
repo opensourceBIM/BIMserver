@@ -28,9 +28,9 @@ import org.apache.cxf.service.invoker.AbstractInvoker;
 import org.apache.cxf.transport.http.AbstractHTTPDestination;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Token;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

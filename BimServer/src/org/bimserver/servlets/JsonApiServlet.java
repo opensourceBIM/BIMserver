@@ -20,11 +20,10 @@ import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.ConvertException;
-import org.bimserver.shared.JsonConverter;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
@@ -80,12 +79,8 @@ public class JsonApiServlet extends HttpServlet {
 			Object[] parameters = new Object[method.getParameters().size()];
 			for (int i=0; i<method.getParameters().size(); i++) {
 				SParameter parameter = method.getParameter(i);
-				try {
-					if (requestObject.has(parameter.getName())) {
-						parameters[i] = converter.fromJson(parameter.getType(), requestObject.get(parameter.getName()));
-					}
-				} catch (ConvertException e) {
-					e.printStackTrace();
+				if (requestObject.has(parameter.getName())) {
+					parameters[i] = converter.fromJson(parameter.getType(), requestObject.get(parameter.getName()));
 				}
 			}
 

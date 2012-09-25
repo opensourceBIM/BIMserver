@@ -34,8 +34,8 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.store.Token;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

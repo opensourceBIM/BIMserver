@@ -17,9 +17,9 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
 
