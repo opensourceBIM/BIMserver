@@ -2,13 +2,14 @@
 	<import file="common.build.xml"/>
 	<target name="Build JavaDoc">
 		<javadoc destdir="builds/bimserver-javadoc-${version}">
-			<fileset dir="BimCombined/src"/>
-			<fileset dir="BimServer/src"/>
-			<fileset dir="BimServerClientLib/src"/>
-			<fileset dir="Emf/src"/>
-			<fileset dir="Ifc/src"/>
-			<fileset dir="Shared/src"/>
-			<fileset dir="Utils/src"/>
+			<fileset dir="../BimCombined/src"/>
+			<fileset dir="../BimServer/src"/>
+			<fileset dir="../BimServerClientLib/src"/>
+			<fileset dir="../BimWebServer/src"/>
+			<fileset dir="../Emf/src"/>
+			<fileset dir="../Ifc/src"/>
+			<fileset dir="../Shared/src"/>
+			<fileset dir="../Utils/src"/>
 		</javadoc>
 		<zip destfile="buids/bimserver-javadoc-${version}.zip">
 			<fileset dir="builds/bimserver-javadoc-${version}"></fileset>
