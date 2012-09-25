@@ -38,12 +38,12 @@
 <div class="progressbar"></div>
 <div class="fields">
 <table>
-<tr><td><label for="serializerName">Serializer</label></td>
-<td><select name="serializerName" class="revisionsdownloadcheckoutselect">
+<tr><td><label for="serializerOid">Serializer</label></td>
+<td><select name="serializerOid" class="revisionsdownloadcheckoutselect">
 <%
 	for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
-	<option value="<%=serializer.getName()%>"
+	<option value="<%=serializer.getOid()%>"
 		<%=loginManager.getService().getDefaultSerializer() != null && loginManager.getService().getDefaultSerializer().getOid() == serializer.getOid() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 	<%
 	}
@@ -114,8 +114,8 @@ function update() {
 					$(".downloadpopup .progressbar").hide();
 					$(".downloadpopup .fields, .downloadpopup .checkoutMessage").show();
 					var zip = $("#downloadCheckoutZip").attr('checked') == undefined ? "" : "&zip=on";
-					var serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-					var url = "<%=request.getContextPath()%>/download?longActionId=" + laid + zip + "&serializerName=" + serializerName;
+					var serializerOid = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+					var url = "<%=request.getContextPath()%>/download?longActionId=" + laid + zip + "&serializerOid=" + serializerOid;
 					if (mimeTypeOverride != null) {
 						url += "&mime=" + mimeTypeOverride;
 						window.open(url);
@@ -165,20 +165,20 @@ function start(url, data) {
 }
 
 function initCheckout() {
-	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	data.serializerOid = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	mimeTypeOverride = null;
 	data.downloadType = "checkout";
 	start('initiatedownload.jsp', data);
 }
 
 function initDownload() {
-	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	data.serializerOid = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	mimeTypeOverride = null;
 	start('initiatedownload.jsp', data);
 }
 
 function initTextDownload() {
-	data.serializerName = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	data.serializerOid = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
 	mimeTypeOverride = "text/plain";
 	start('initiatedownload.jsp', data);
 }
