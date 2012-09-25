@@ -7,8 +7,8 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.satellite.SatelliteServer;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class NameChangeActivity extends Activity {
 	private static final String COMMENT_TAG = "NameChange";

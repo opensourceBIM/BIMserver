@@ -16,7 +16,7 @@
 <%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="org.bimwebserver.jsp.SProjectComparator"%>
-<%@page import="org.bimserver.shared.ServiceInterface"%>
+<%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.comparators.SRevisionDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>

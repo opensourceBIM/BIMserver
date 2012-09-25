@@ -18,7 +18,7 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.models.store.User;
-import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class NotificationContainer {
 

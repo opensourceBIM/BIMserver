@@ -1,4 +1,4 @@
-<%@page import="org.bimserver.shared.ServiceInterface"%>
+<%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
 <%@page import="java.util.List"%>

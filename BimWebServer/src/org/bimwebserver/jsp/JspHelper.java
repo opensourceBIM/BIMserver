@@ -34,11 +34,11 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.comparators.SProjectNameComparator;
 import org.bimserver.shared.comparators.SRevisionIdComparator;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

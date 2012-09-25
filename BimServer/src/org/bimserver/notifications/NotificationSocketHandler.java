@@ -20,7 +20,7 @@ package org.bimserver.notifications;
 import java.net.Socket;
 
 import org.bimserver.models.store.User;
-import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class NotificationSocketHandler extends NotificationContainer implements Runnable {
 

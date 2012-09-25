@@ -28,7 +28,7 @@ import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.satellite.activities.Activity;
-import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class SatelliteServer {
 	private PluginManager pluginManager;

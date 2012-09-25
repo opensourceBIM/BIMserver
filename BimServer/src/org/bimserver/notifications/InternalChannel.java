@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 import org.bimserver.client.channels.Channel;
-import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class InternalChannel extends Channel {
 

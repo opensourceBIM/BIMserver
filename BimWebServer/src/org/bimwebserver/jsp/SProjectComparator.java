@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class SProjectComparator implements Comparator<SProject> {
 

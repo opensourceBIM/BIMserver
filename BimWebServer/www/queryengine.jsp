@@ -16,7 +16,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.shared.ServiceInterface"%>
+<%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">

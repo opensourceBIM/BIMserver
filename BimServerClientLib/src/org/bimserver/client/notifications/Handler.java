@@ -24,10 +24,10 @@ import java.util.Map;
 
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.NotificationInterface;
 import org.bimserver.shared.ServiceFactory;
-import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
