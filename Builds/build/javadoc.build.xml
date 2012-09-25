@@ -21,7 +21,7 @@
 				</path>
 			</classpath>
 		</javadoc>
-		<zip destfile="buids/bimserver-javadoc-${version}.zip">
+		<zip destfile="builds/bimserver-javadoc-${version}.zip">
 			<fileset dir="builds/bimserver-javadoc-${version}"></fileset>
 		</zip>
 	</target>
