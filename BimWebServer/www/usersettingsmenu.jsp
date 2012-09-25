@@ -30,7 +30,7 @@
 <li><a href="queryengines.jsp">Query Engines</a></li>
 <li><a href="modelmergers.jsp">Model Mergers</a></li>
 <li><a href="modelcompares.jsp">Model Compares</a></li>
-<li><a href="extendeddataschemas.jsp">Extended Data Schemas</a></li>
+<li><a href="internalservices.jsp">Internal Services</a></li>
 </ul>
 </div>
 <div class="content">

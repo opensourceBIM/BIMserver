@@ -108,6 +108,15 @@ public interface StoreFactory extends EFactory {
 	UserSettings createUserSettings();
 
 	/**
+	 * Returns a new object of class '<em>Plugin</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Plugin</em>'.
+	 * @generated
+	 */
+	Plugin createPlugin();
+
+	/**
 	 * Returns a new object of class '<em>Serializer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -133,15 +142,6 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	IfcEngine createIfcEngine();
-
-	/**
-	 * Returns a new object of class '<em>Plugin</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugin</em>'.
-	 * @generated
-	 */
-	Plugin createPlugin();
 
 	/**
 	 * Returns a new object of class '<em>Deserializer</em>'.
@@ -574,6 +574,24 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	Token createToken();
+
+	/**
+	 * Returns a new object of class '<em>Service Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	ServicePluginDescriptor createServicePluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>EService</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EService</em>'.
+	 * @generated
+	 */
+	EService createEService();
 
 	/**
 	 * Returns a new object of class '<em>Service Interface</em>'.

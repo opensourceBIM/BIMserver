@@ -1,17 +1,19 @@
 <%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="java.util.List"%>
-<%@ include file="settingsmenu.jsp"%>
+<%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
-	if (action.equals("disableDeserializer")) {
+	if (action.equals("disable")) {
 		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(false);
 		loginManager.getService().updateDeserializer(deserializer);
-	} else if (action.equals("enableDeserializer")) {
+	} else if (action.equals("enable")) {
 		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(true);
 		loginManager.getService().updateDeserializer(deserializer);
+	} else if (action.equals("delete")) {
+		loginManager.getService().deleteDeserializer(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("deserializers.jsp");
 }
@@ -28,20 +30,20 @@ if (request.getParameter("action") != null) {
 		<td><a href="deserializer.jsp?id=<%=deserializer.getOid()%>"><%=deserializer.getName() %></a></td>
 		<td><%=deserializer.getDescription() %></td>
 		<td><%=deserializer.getClassName() %></td>
-		<td class="<%=deserializer.getEnabled() ? "enabledDeserializer" : "disabledDeserializer" %>"> <%=deserializer.getEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=deserializer.getEnabled() ? "enabled" : "disabled" %>"> <%=deserializer.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%
 	if (deserializer.getEnabled()) {
 %>
-<a href="deserializers.jsp?action=disableDeserializer&oid=<%=deserializer.getOid() %>">Disable</a>
+<a href="deserializers.jsp?action=disable&oid=<%=deserializer.getOid() %>">Disable</a>
 <%
 	} else {
 %>
-<a href="deserializers.jsp?action=enableDeserializer&oid=<%=deserializer.getOid() %>">Enable</a>
+<a href="deserializers.jsp?action=enable&oid=<%=deserializer.getOid() %>">Enable</a>
 <%
 	}
 %>
-			<a href="deletedeserializer.jsp?sid=<%=deserializer.getOid()%>">Delete</a>
+			<a href="deserializers.jsp?action=delete&oid=<%=deserializer.getOid()%>">Delete</a>
 		</td>
 	</tr>
 <%

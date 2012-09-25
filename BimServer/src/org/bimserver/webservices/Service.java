@@ -77,6 +77,7 @@ import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.interfaces.objects.SEService;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SGeoTag;
@@ -107,6 +108,7 @@ import org.bimserver.interfaces.objects.SServiceField;
 import org.bimserver.interfaces.objects.SServiceInterface;
 import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
+import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.STrigger;
@@ -127,6 +129,7 @@ import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.EService;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
@@ -1942,7 +1945,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<SSerializer> serializers = converter.convertToSListSerializer(getUserSettings(session).getSerializers());
-			Collections.sort(serializers, new SSerializerComparator());
+			Collections.sort(serializers, new SPluginComparator());
 			return serializers;
 		} catch (Exception e) {
 			handleException(e);
@@ -1958,7 +1961,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<SDeserializer> deserializers = converter.convertToSListDeserializer(getUserSettings(session).getDeserializers());
-			Collections.sort(deserializers, new SDeserializerComparator());
+			Collections.sort(deserializers, new SPluginComparator());
 			return deserializers;
 		} catch (Exception e) {
 			handleException(e);
@@ -1974,7 +1977,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Serializer convert = converter.convertFromSObject(serializer, session);
-			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, accessMethod, convert));
+			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1988,7 +1991,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Deserializer convert = converter.convertFromSObject(deserializer, session);
-			session.executeAndCommitAction(new AddDeserializerDatabaseAction(session, accessMethod, convert));
+			session.executeAndCommitAction(new AddDeserializerDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2030,7 +2033,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<SObjectIDM> objectIdms = converter.convertToSListObjectIDM(getUserSettings(session).getObjectIDMs());
-			Collections.sort(objectIdms, new SObjectIDMComparator());
+			Collections.sort(objectIdms, new SPluginComparator());
 			return objectIdms;
 		} catch (Exception e) {
 			handleException(e);
@@ -2045,7 +2048,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new AddObjectIDMDatabaseAction(session, accessMethod, converter.convertFromSObject(objectIDM, session)));
+			session.executeAndCommitAction(new AddObjectIDMDatabaseAction(session, accessMethod, authorization, converter.convertFromSObject(objectIDM, session)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2294,7 +2297,7 @@ public class Service implements ServiceInterface {
 			sPlugin.setEnabled(pluginContext.isEnabled());
 			result.add(sPlugin);
 		}
-		Collections.sort(result, new SPluginComparator());
+		Collections.sort(result, new SPluginDescriptorComparator());
 		return result;
 	}
 
@@ -2602,6 +2605,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public List<SServicePluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return bimServer.getEmfSerializerFactory().getAllServicePluginDescriptors();
+	}
+	
+	@Override
 	public List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return bimServer.getEmfSerializerFactory().getAllModelComparePluginDescriptors();
@@ -2619,7 +2628,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<SIfcEngine> ifcEngines = converter.convertToSListIfcEngine(getUserSettings(session).getIfcEngines());
-			Collections.sort(ifcEngines, new SIfcEngineComparator());
+			Collections.sort(ifcEngines, new SPluginComparator());
 			return ifcEngines;
 		} catch (Exception e) {
 			handleException(e);
@@ -2635,7 +2644,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<SQueryEngine> queryEngines = converter.convertToSListQueryEngine(getUserSettings(session).getQueryengines());
-			Collections.sort(queryEngines, new SQueryEngineComparator());
+			Collections.sort(queryEngines, new SPluginComparator());
 			return queryEngines;
 		} catch (Exception e) {
 			handleException(e);
@@ -2651,7 +2660,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<SModelCompare> modelCompares = converter.convertToSListModelCompare(getUserSettings(session).getModelcompares());
-			Collections.sort(modelCompares, new SModelCompareComparator());
+			Collections.sort(modelCompares, new SPluginComparator());
 			return modelCompares;
 		} catch (Exception e) {
 			handleException(e);
@@ -2667,7 +2676,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			List<SModelMerger> modelMergers = converter.convertToSListModelMerger(getUserSettings(session).getModelmergers());
-			Collections.sort(modelMergers, new SModelMergerComparator());
+			Collections.sort(modelMergers, new SPluginComparator());
 			return modelMergers;
 		} catch (Exception e) {
 			handleException(e);
@@ -2907,7 +2916,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
-			session.executeAndCommitAction(new AddIfcEngineDatabaseAction(session, accessMethod, convert));
+			session.executeAndCommitAction(new AddIfcEngineDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2921,7 +2930,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			QueryEngine convert = converter.convertFromSObject(queryEngine, session);
-			session.executeAndCommitAction(new AddQueryEngineDatabaseAction(session, accessMethod, convert));
+			session.executeAndCommitAction(new AddQueryEngineDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2935,7 +2944,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			ModelCompare convert = converter.convertFromSObject(modelCompare, session);
-			session.executeAndCommitAction(new AddModelCompareDatabaseAction(session, accessMethod, convert));
+			session.executeAndCommitAction(new AddModelCompareDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2949,7 +2958,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			ModelMerger convert = converter.convertFromSObject(modelMerger, session);
-			session.executeAndCommitAction(new AddModelMergerDatabaseAction(session, accessMethod, convert));
+			session.executeAndCommitAction(new AddModelMergerDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3498,5 +3507,72 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SServiceDescriptor> getInternalServices(String name) throws ServerException, UserException {
 		return converter.convertToSListServiceDescriptor(bimServer.getNotificationsManager().getInternalServices(name).values());
+	}
+	
+	@Override
+	public SEService getEServiceById(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return converter.convertToSObject(session.executeAndCommitAction(new GetByIdDatabaseAction<EService>(session, accessMethod, oid, StorePackage.eINSTANCE.getEService())));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void updateSEService(SEService seService) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new UpdateDatabaseAction<EService>(session, accessMethod, converter.convertFromSObject(seService, session)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addSEService(SEService seService) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new AddServiceDatabaseAction(session, accessMethod, authorization, converter.convertFromSObject(seService, session)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void deleteEService(Long oid) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new DeleteEServiceDatabaseAction(session, accessMethod, oid));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SEService> getAllSEServices(Boolean onlyEnabled) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			List<SEService> services = converter.convertToSListEService(getUserSettings(session).getServices());
+			Collections.sort(services, new SPluginComparator());
+			return services;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

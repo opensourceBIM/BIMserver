@@ -505,11 +505,11 @@ p.explain {
 	height: 14px;
 }
 
-.enabledPlugin, .enabledSerializer, .enabledDeserializer, .enabledObjectIDM, .enabledIfcEngine, .enabledModelMerger, .enabledModelCompare {
+.enabledPlugin, .enabled {
 	background-color: #AAFFAA;
 }
 
-.disabledPlugin, .disabledSerializer, .disabledDeserializer, .disabledObjectIDM, .disabledIfcEngine, .disabledModelMerger, .disabledModelCompare {
+.disabledPlugin, .disabled {
 	background-color: #FFAAAA;
 }
 

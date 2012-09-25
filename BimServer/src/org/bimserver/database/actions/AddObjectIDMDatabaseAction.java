@@ -17,13 +17,30 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddObjectIDMDatabaseAction extends AddDatabaseAction<ObjectIDM> {
 
-	public AddObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ObjectIDM objectIDM) {
+	private Authorization authorization;
+
+	public AddObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, ObjectIDM objectIDM) {
 		super(databaseSession, accessMethod, objectIDM);
+		this.authorization = authorization;
+	}
+	
+	@Override
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+		user.getSettings().getObjectIDMs().add(getIdEObject());
+		getDatabaseSession().store(user.getSettings());
+		return super.execute();
 	}
 }

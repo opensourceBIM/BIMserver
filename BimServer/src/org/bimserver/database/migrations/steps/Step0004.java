@@ -31,20 +31,20 @@ public class Step0004 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass serializerClass = schema.createEClass(schema.getEPackage("store"), "Serializer", schema.getEClass("store", "Plugin"));
-		EClass objectIDMClass = schema.createEClass(schema.getEPackage("store"), "ObjectIDM", schema.getEClass("store", "Plugin"));
+		EClass serializerPluginClass = schema.createEClass(schema.getEPackage("store"), "Serializer", schema.getEClass("store", "Plugin"));
+		EClass objectIDMPluginClass = schema.createEClass(schema.getEPackage("store"), "ObjectIDM", schema.getEClass("store", "Plugin"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		schema.createEAttribute(serializerClass, "extension", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerClass, "contentType", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		EReference serializerObjectIDMReference = schema.createEReference(serializerClass, "objectIDM", objectIDMClass, Multiplicity.SINGLE);
-		EReference serializerSettingsReference = schema.createEReference(serializerClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		schema.createEAttribute(serializerPluginClass, "extension", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serializerPluginClass, "contentType", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		EReference serializerObjectIDMReference = schema.createEReference(serializerPluginClass, "objectIDM", objectIDMPluginClass, Multiplicity.SINGLE);
+		EReference serializerSettingsReference = schema.createEReference(serializerPluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
 		
-		EReference objectIDMSerializers = schema.createEReference(objectIDMClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference objectIDMSettingsReference = schema.createEReference(objectIDMClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference objectIDMSerializers = schema.createEReference(objectIDMPluginClass, "serializers", serializerPluginClass, Multiplicity.MANY);
+		EReference objectIDMSettingsReference = schema.createEReference(objectIDMPluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
 		
-		EReference settingsSerializersReference = schema.createEReference(userSettingsClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference settingsObjectIDMReference = schema.createEReference(userSettingsClass, "objectIDMs", objectIDMClass, Multiplicity.MANY);
+		EReference settingsSerializersReference = schema.createEReference(userSettingsClass, "serializers", serializerPluginClass, Multiplicity.MANY);
+		EReference settingsObjectIDMReference = schema.createEReference(userSettingsClass, "objectIDMs", objectIDMPluginClass, Multiplicity.MANY);
 		
 		serializerSettingsReference.setEOpposite(settingsSerializersReference);
 		objectIDMSettingsReference.setEOpposite(settingsObjectIDMReference);

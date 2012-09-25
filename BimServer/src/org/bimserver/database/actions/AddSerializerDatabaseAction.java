@@ -22,12 +22,18 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddSerializerDatabaseAction extends AddDatabaseAction<Serializer> {
 
-	public AddSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Serializer serializer) {
+	private Authorization authorization;
+
+	public AddSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, Serializer serializer) {
 		super(databaseSession, accessMethod, serializer);
+		this.authorization = authorization;
 	}
 	
 	@Override
@@ -40,6 +46,10 @@ public class AddSerializerDatabaseAction extends AddDatabaseAction<Serializer> {
 		if (getIdEObject().getObjectIDM() != null) {
 			getDatabaseSession().store(getIdEObject().getObjectIDM());
 		}
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+		user.getSettings().getSerializers().add(getIdEObject());
+		getDatabaseSession().store(user.getSettings());
+
 		return execute;
 	}
 }

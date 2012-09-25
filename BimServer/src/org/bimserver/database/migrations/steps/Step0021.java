@@ -70,6 +70,18 @@ public class Step0021 extends Migration {
 		EClass tokenClass = schema.createEClass("store", "Token");
 		schema.createEAttribute(tokenClass, "tokenString", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(tokenClass, "expires", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
+		
+		schema.createEClass(schema.getEPackage("store"), "ServicePluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
+		
+		EClass servicePluginClass = schema.createEClass(schema.getEPackage("store"), "EService", schema.getEClass("store", "Plugin"));
+		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
+
+		EReference serviceSettingsReference = schema.createEReference(servicePluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference settingsServicesReference = schema.createEReference(userSettingsClass, "services", servicePluginClass, Multiplicity.MANY);
+		
+		serviceSettingsReference.setEOpposite(settingsServicesReference);
+		settingsServicesReference.setEOpposite(serviceSettingsReference);
+
 	}
 
 	@Override

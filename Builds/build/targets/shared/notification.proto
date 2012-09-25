@@ -40,7 +40,7 @@ message SNewProjectNotification {
 }
 
 message NewProjectRequest {
-	optional SNewProjectNotification arg0 = 1;
+	optional SNewProjectNotification newProjectNotification = 1;
 }
 
 message SNewRevisionNotification {

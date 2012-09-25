@@ -1,19 +1,21 @@
 <%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
 <%@page import="java.util.List"%>
-<%@ include file="settingsmenu.jsp"%>
+<%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
-	if (action.equals("enableModelMerger")) {
-		SModelMerger modelMerger = loginManager.getService().getModelMergerByName(request.getParameter("modelMerger"));
+	if (action.equals("enable")) {
+		SModelMerger modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
 		modelMerger.setEnabled(true);
 		loginManager.getService().updateModelMerger(modelMerger);
-	} else if (action.equals("disableModelMerger")) {
-		SModelMerger modelMerger = loginManager.getService().getModelMergerByName(request.getParameter("modelMerger"));
+	} else if (action.equals("disable")) {
+		SModelMerger modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
 		modelMerger.setEnabled(false);
 		loginManager.getService().updateModelMerger(modelMerger);
-	} else if (action.equals("setdefaultmodelmerger")) {
+	} else if (action.equals("setdefault")) {
 		loginManager.getService().setDefaultModelMerger(Long.parseLong(request.getParameter("oid")));
+	} else if (action.equals("delete")) {
+		loginManager.getService().deleteModelMerger(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("modelmergers.jsp");
 }
@@ -30,22 +32,22 @@ if (request.getParameter("action") != null) {
 	<tr>
 		<td><a href="modelmerger.jsp?id=<%=modelMerger.getOid()%>"><%=modelMerger.getName() %></a></td>
 		<td><%=modelMerger.getClassName() %></td>
-		<td><input type="radio" name="default" oid="<%=modelMerger.getOid()%>" <%=service.getDefaultModelMerger() != null && service.getDefaultModelMerger().getOid() == modelMerger.getOid() ? "checked" : "" %>/></td>
-		<td class="<%=modelMerger.getEnabled() ? "enabledModelMerger" : "disabledModelMerger" %>"> <%=modelMerger.getEnabled() ? "Enabled" : "Disabled" %></td>
+		<td><input type="radio" name="default"<%=modelMerger.getEnabled() ? "" : "disabled=\"disabled\"" %> oid="<%=modelMerger.getOid()%>" <%=service.getDefaultModelMerger() != null && service.getDefaultModelMerger().getOid() == modelMerger.getOid() ? "checked" : "" %>/></td>
+		<td class="<%=modelMerger.getEnabled() ? "enabled" : "disabled" %>"> <%=modelMerger.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
 	if (!isDefault) {
 	if (!modelMerger.getEnabled()) {
 %>
-<a href="modelmergers.jsp?action=enableModelMerger&modelMerger=<%=modelMerger.getName() %>">Enable</a>
+<a href="modelmergers.jsp?action=enable&oid=<%=modelMerger.getOid() %>">Enable</a>
 <%
 	} else {
 %>
-<a href="modelmergers.jsp?action=disableModelMerger&modelMerger=<%=modelMerger.getName() %>">Disable</a>
+<a href="modelmergers.jsp?action=disable&oid=<%=modelMerger.getOid() %>">Disable</a>
 <%
 	}
 %>
-			<a href="deletemodelmerger.jsp?ifid=<%=modelMerger.getOid()%>">Delete</a>
+			<a href="modelmergers.jsp?action=delete&oid=<%=modelMerger.getOid()%>">Delete</a>
 <%
 }
 %>
@@ -58,7 +60,7 @@ if (request.getParameter("action") != null) {
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		document.location = "modelmergers.jsp?action=setdefaultmodelmerger&oid=" + $(this).attr("oid");
+		document.location = "modelmergers.jsp?action=setdefault&oid=" + $(this).attr("oid");
 	});
 });
 </script>

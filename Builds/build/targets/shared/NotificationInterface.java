@@ -34,7 +34,8 @@ public interface NotificationInterface {
 	void serverWillBeShutdown() throws ServiceException;
 	
 	@WebMethod(action = "newProject")
-	void newProject(SNewProjectNotification newProjectNotification) throws ServiceException;
+	void newProject(
+		@WebParam(name = "newProjectNotification", partName = "newProject.newProjectNotification") SNewProjectNotification newProjectNotification) throws ServiceException;
 	
 	@WebMethod(action = "newRevision")
 	void newRevision(

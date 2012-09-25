@@ -17,13 +17,30 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddDeserializerDatabaseAction extends AddDatabaseAction<Deserializer> {
 
-	public AddDeserializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Deserializer deserializer) {
+	private Authorization authorization;
+
+	public AddDeserializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, Deserializer deserializer) {
 		super(databaseSession, accessMethod, deserializer);
+		this.authorization = authorization;
+	}
+	
+	@Override
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+		user.getSettings().getDeserializers().add(getIdEObject());
+		getDatabaseSession().store(user.getSettings());
+		return super.execute();
 	}
 }

@@ -1,19 +1,21 @@
 <%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@page import="java.util.List"%>
-<%@ include file="settingsmenu.jsp"%>
+<%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
-	if (action.equals("disableIfcEngine")) {
-		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
+	if (action.equals("disable")) {
+		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
 		ifcEngine.setEnabled(false);
 		loginManager.getService().updateIfcEngine(ifcEngine);
-	} else if (action.equals("enableIfcEngine")) {
-		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineByName(request.getParameter("ifcEngine"));
+	} else if (action.equals("enable")) {
+		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
 		ifcEngine.setEnabled(true);
 		loginManager.getService().updateIfcEngine(ifcEngine);
-	} else if (action.equals("setdefaultrenderengine")) {
+	} else if (action.equals("setdefault")) {
 		loginManager.getService().setDefaultIfcEngine(Long.parseLong(request.getParameter("oid")));
+	} else if (action.equals("delete")) {
+		loginManager.getService().deleteIfcEngine(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("renderengines.jsp");
 }
@@ -32,22 +34,22 @@ if (request.getParameter("action") != null) {
 		<td><%=ifcEngine.getClassName() %></td>
 		<td><%=ifcEngine.getSerializers().size() %></td>
 		<td><input type="radio" name="default"<%=ifcEngine.getEnabled() ? "" : "disabled=\"disabled\"" %> oid="<%=ifcEngine.getOid()%>" <%=service.getDefaultIfcEngine() != null && service.getDefaultIfcEngine().getOid() == ifcEngine.getOid() ? "checked" : "" %>/></td>
-		<td class="<%=ifcEngine.getEnabled() ? "enabledIfcEngine" : "disabledIfcEngine" %>"> <%=ifcEngine.getEnabled() ? "Enabled" : "Disabled" %></td>
+		<td class="<%=ifcEngine.getEnabled() ? "enabled" : "disabled" %>"> <%=ifcEngine.getEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 		<%
 	if (!isDefault) {
 	if (!ifcEngine.getEnabled()) {
 %>
-<a href="renderengines.jsp?action=enableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Enable</a>
+<a href="renderengines.jsp?action=enable&oid=<%=ifcEngine.getOid() %>">Enable</a>
 <%
 	} else if (ifcEngine.getSerializers().isEmpty()) {
 %>
-<a href="renderengines.jsp?action=disableIfcEngine&ifcEngine=<%=ifcEngine.getName() %>">Disable</a>
+<a href="renderengines.jsp?action=disable&oid=<%=ifcEngine.getOid() %>">Disable</a>
 <%
 	}
 	if (ifcEngine.getSerializers().isEmpty()) {
 %>
-			<a href="deleterenderengine.jsp?ifid=<%=ifcEngine.getOid()%>">Delete</a>
+			<a href="renderengines.jsp?action=delete&oid=<%=ifcEngine.getOid()%>">Delete</a>
 <% } }%>
 		</td>
 	</tr>
@@ -58,7 +60,7 @@ if (request.getParameter("action") != null) {
 <script>
 $(function(){
 	$("input[name=\"default\"]").change(function(){
-		document.location = "renderengines.jsp?action=setdefaultrenderengine&oid=" + $(this).attr("oid");
+		document.location = "renderengines.jsp?action=setdefault&oid=" + $(this).attr("oid");
 	});
 });
 </script>

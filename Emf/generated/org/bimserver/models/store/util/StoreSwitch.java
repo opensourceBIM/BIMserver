@@ -546,6 +546,24 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.SERVICE_PLUGIN_DESCRIPTOR: {
+			ServicePluginDescriptor servicePluginDescriptor = (ServicePluginDescriptor) theEObject;
+			T result = caseServicePluginDescriptor(servicePluginDescriptor);
+			if (result == null)
+				result = casePluginDescriptor(servicePluginDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.ESERVICE: {
+			EService eService = (EService) theEObject;
+			T result = caseEService(eService);
+			if (result == null)
+				result = casePlugin(eService);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case StorePackage.SERVICE_INTERFACE: {
 			ServiceInterface serviceInterface = (ServiceInterface) theEObject;
 			T result = caseServiceInterface(serviceInterface);
@@ -707,6 +725,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePlugin(Plugin object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Serializer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -748,21 +781,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcEngine(IfcEngine object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugin</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugin</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePlugin(Plugin object) {
 		return null;
 	}
 
@@ -1483,6 +1501,36 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseToken(Token object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Plugin Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServicePluginDescriptor(ServicePluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EService</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EService</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEService(EService object) {
 		return null;
 	}
 

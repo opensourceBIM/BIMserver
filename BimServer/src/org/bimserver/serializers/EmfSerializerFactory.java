@@ -29,6 +29,7 @@ import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
+import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
@@ -44,6 +45,7 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.services.ServicePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,6 +75,16 @@ public class EmfSerializerFactory {
 		return descriptors;
 	}
 
+	public List<SServicePluginDescriptor> getAllServicePluginDescriptors() {
+		List<SServicePluginDescriptor> descriptors = new ArrayList<SServicePluginDescriptor>();
+		for (ServicePlugin servicePlugin : pluginManager.getAllServicePlugins(true)) {
+			SServicePluginDescriptor descriptor = new SServicePluginDescriptor();
+			descriptor.setPluginClassName(servicePlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
+	}
+	
 	public EmfSerializer get(long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {

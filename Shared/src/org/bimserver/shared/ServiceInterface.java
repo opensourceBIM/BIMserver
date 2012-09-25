@@ -45,6 +45,7 @@ import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.interfaces.objects.SEService;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SGeoTag;
@@ -74,6 +75,7 @@ import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SServiceInterface;
 import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
+import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.SUser;
@@ -1637,6 +1639,13 @@ public interface ServiceInterface {
 	List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
+	 * @return List of all getAllServicePluginDescriptors
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllServicePluginDescriptors")
+	List<SServicePluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException;
+	
+	/**
 	 * @return List of all SModelComparePluginDescriptor
 	 * @throws ServerException, UserException
 	 */
@@ -2227,4 +2236,24 @@ public interface ServiceInterface {
 	List<SServiceParameter> getServiceMethodParameters(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethodParameters.serviceInterfaceName") String serviceInterfaceName,
 		@WebParam(name = "serviceMethodName", partName = "getServiceMethodParameters.serviceMethodName") String serviceMethodName) throws ServerException, UserException;
+	
+	@WebMethod(action="getEServiceById")
+	SEService getEServiceById(
+		@WebParam(name = "oid", partName = "getEServiceById.oid") Long oid) throws ServerException, UserException;
+	
+	@WebMethod(action="updateSEService")
+	void updateSEService(
+		@WebParam(name = "seService", partName = "updateSEService.seService") SEService seService) throws ServerException, UserException;
+	
+	@WebMethod(action="addSEService")
+	void addSEService(
+		@WebParam(name = "seService", partName = "addSEService.seService") SEService seService) throws ServerException, UserException;
+	
+	@WebMethod(action="deleteEService")
+	void deleteEService(
+		@WebParam(name = "oid", partName = "deleteEService.oid") Long oid) throws ServerException, UserException;
+	
+	@WebMethod(action="getAllSEServices")
+	List<SEService> getAllSEServices(
+		@WebParam(name = "onlyEnabled", partName = "getAllSEServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
 }

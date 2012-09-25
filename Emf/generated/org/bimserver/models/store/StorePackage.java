@@ -1115,43 +1115,22 @@ public interface StorePackage extends EPackage {
 	int USER_SETTINGS__DEFAULT_OBJECT_IDM = 12;
 
 	/**
+	 * The feature id for the '<em><b>Services</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SETTINGS__SERVICES = 13;
+
+	/**
 	 * The number of structural features of the '<em>User Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS_FEATURE_COUNT = 13;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.SerializerImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializer()
-	 * @generated
-	 */
-	int SERIALIZER = 9;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectIDMImpl <em>Object IDM</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ObjectIDMImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectIDM()
-	 * @generated
-	 */
-	int OBJECT_IDM = 10;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEngineImpl <em>Ifc Engine</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.IfcEngineImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEngine()
-	 * @generated
-	 */
-	int IFC_ENGINE = 11;
+	int USER_SETTINGS_FEATURE_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginImpl <em>Plugin</em>}' class.
@@ -1207,6 +1186,16 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int PLUGIN_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.SerializerImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializer()
+	 * @generated
+	 */
+	int SERIALIZER = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1299,6 +1288,16 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_FEATURE_COUNT = PLUGIN_FEATURE_COUNT + 5;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectIDMImpl <em>Object IDM</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ObjectIDMImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectIDM()
+	 * @generated
+	 */
+	int OBJECT_IDM = 10;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1360,6 +1359,16 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_IDM_FEATURE_COUNT = PLUGIN_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEngineImpl <em>Ifc Engine</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.IfcEngineImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEngine()
+	 * @generated
+	 */
+	int IFC_ENGINE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4065,6 +4074,134 @@ public interface StorePackage extends EPackage {
 	int TOKEN_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServicePluginDescriptorImpl <em>Service Plugin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ServicePluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServicePluginDescriptor()
+	 * @generated
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR = 60;
+
+	/**
+	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
+
+	/**
+	 * The number of structural features of the '<em>Service Plugin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.EServiceImpl <em>EService</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.EServiceImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getEService()
+	 * @generated
+	 */
+	int ESERVICE = 61;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESERVICE__NAME = PLUGIN__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESERVICE__ENABLED = PLUGIN__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESERVICE__DESCRIPTION = PLUGIN__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESERVICE__CLASS_NAME = PLUGIN__CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESERVICE__SETTINGS = PLUGIN_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>EService</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESERVICE_FEATURE_COUNT = PLUGIN_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4072,7 +4209,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceInterface()
 	 * @generated
 	 */
-	int SERVICE_INTERFACE = 60;
+	int SERVICE_INTERFACE = 62;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4100,7 +4237,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceMethod()
 	 * @generated
 	 */
-	int SERVICE_METHOD = 61;
+	int SERVICE_METHOD = 63;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4146,7 +4283,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceField()
 	 * @generated
 	 */
-	int SERVICE_FIELD = 62;
+	int SERVICE_FIELD = 64;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4201,7 +4338,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceType()
 	 * @generated
 	 */
-	int SERVICE_TYPE = 63;
+	int SERVICE_TYPE = 65;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4247,7 +4384,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceParameter()
 	 * @generated
 	 */
-	int SERVICE_PARAMETER = 64;
+	int SERVICE_PARAMETER = 66;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4302,7 +4439,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 65;
+	int USER_TYPE = 67;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -4312,7 +4449,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 66;
+	int SI_PREFIX = 68;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -4322,7 +4459,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 67;
+	int OBJECT_STATE = 69;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -4332,7 +4469,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 68;
+	int COMPARE_TYPE = 70;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -4342,7 +4479,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 69;
+	int ACTION_STATE = 71;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -4352,7 +4489,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 70;
+	int SERVER_STATE = 72;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -4362,7 +4499,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 71;
+	int CHECKIN_STATUS = 73;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -4372,7 +4509,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 72;
+	int EXTENDED_DATA_SCHEMA_TYPE = 74;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -4382,7 +4519,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 73;
+	int TRIGGER = 75;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -4392,7 +4529,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 74;
+	int DATA_HANDLER = 76;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -5575,6 +5712,71 @@ public interface StorePackage extends EPackage {
 	EReference getUserSettings_DefaultObjectIDM();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getServices <em>Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Services</em>'.
+	 * @see org.bimserver.models.store.UserSettings#getServices()
+	 * @see #getUserSettings()
+	 * @generated
+	 */
+	EReference getUserSettings_Services();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Plugin <em>Plugin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Plugin</em>'.
+	 * @see org.bimserver.models.store.Plugin
+	 * @generated
+	 */
+	EClass getPlugin();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.Plugin#getName()
+	 * @see #getPlugin()
+	 * @generated
+	 */
+	EAttribute getPlugin_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.Plugin#getEnabled()
+	 * @see #getPlugin()
+	 * @generated
+	 */
+	EAttribute getPlugin_Enabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.Plugin#getDescription()
+	 * @see #getPlugin()
+	 * @generated
+	 */
+	EAttribute getPlugin_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.bimserver.models.store.Plugin#getClassName()
+	 * @see #getPlugin()
+	 * @generated
+	 */
+	EAttribute getPlugin_ClassName();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5702,60 +5904,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIfcEngine_Settings();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.Plugin <em>Plugin</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Plugin</em>'.
-	 * @see org.bimserver.models.store.Plugin
-	 * @generated
-	 */
-	EClass getPlugin();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.bimserver.models.store.Plugin#getName()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getEnabled <em>Enabled</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Enabled</em>'.
-	 * @see org.bimserver.models.store.Plugin#getEnabled()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_Enabled();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getDescription <em>Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.bimserver.models.store.Plugin#getDescription()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_Description();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Plugin#getClassName <em>Class Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Class Name</em>'.
-	 * @see org.bimserver.models.store.Plugin#getClassName()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_ClassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Deserializer <em>Deserializer</em>}'.
@@ -7690,6 +7838,37 @@ public interface StorePackage extends EPackage {
 	EAttribute getToken_Expires();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ServicePluginDescriptor <em>Service Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.ServicePluginDescriptor
+	 * @generated
+	 */
+	EClass getServicePluginDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.EService <em>EService</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EService</em>'.
+	 * @see org.bimserver.models.store.EService
+	 * @generated
+	 */
+	EClass getEService();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.EService#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.EService#getSettings()
+	 * @see #getEService()
+	 * @generated
+	 */
+	EReference getEService_Settings();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceInterface <em>Service Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8908,6 +9087,56 @@ public interface StorePackage extends EPackage {
 		EReference USER_SETTINGS__DEFAULT_OBJECT_IDM = eINSTANCE.getUserSettings_DefaultObjectIDM();
 
 		/**
+		 * The meta object literal for the '<em><b>Services</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_SETTINGS__SERVICES = eINSTANCE.getUserSettings_Services();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginImpl <em>Plugin</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.PluginImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPlugin()
+		 * @generated
+		 */
+		EClass PLUGIN = eINSTANCE.getPlugin();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN__NAME = eINSTANCE.getPlugin_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN__ENABLED = eINSTANCE.getPlugin_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN__DESCRIPTION = eINSTANCE.getPlugin_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN__CLASS_NAME = eINSTANCE.getPlugin_ClassName();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9008,48 +9237,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference IFC_ENGINE__SETTINGS = eINSTANCE.getIfcEngine_Settings();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginImpl <em>Plugin</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.PluginImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPlugin()
-		 * @generated
-		 */
-		EClass PLUGIN = eINSTANCE.getPlugin();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLUGIN__NAME = eINSTANCE.getPlugin_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLUGIN__ENABLED = eINSTANCE.getPlugin_Enabled();
-
-		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLUGIN__DESCRIPTION = eINSTANCE.getPlugin_Description();
-
-		/**
-		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLUGIN__CLASS_NAME = eINSTANCE.getPlugin_ClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerImpl <em>Deserializer</em>}' class.
@@ -10586,6 +10773,34 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TOKEN__EXPIRES = eINSTANCE.getToken_Expires();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServicePluginDescriptorImpl <em>Service Plugin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ServicePluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServicePluginDescriptor()
+		 * @generated
+		 */
+		EClass SERVICE_PLUGIN_DESCRIPTOR = eINSTANCE.getServicePluginDescriptor();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.EServiceImpl <em>EService</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.EServiceImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getEService()
+		 * @generated
+		 */
+		EClass ESERVICE = eINSTANCE.getEService();
+
+		/**
+		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ESERVICE__SETTINGS = eINSTANCE.getEService_Settings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
