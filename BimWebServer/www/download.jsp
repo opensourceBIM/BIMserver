@@ -71,15 +71,17 @@ function checkRevisionsCheckoutButton(event) {
 		$(".checkoutButton").hide();
 		return;
 	}
-	var val = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
-	if ((val != "Ifc2x3" && val != "IfcXML") || !userHasCheckinRights) {
+	var el = $(".downloadpopup .revisionsdownloadcheckoutselect");
+	var val = el.val();
+	var text = el.find(":selected").text();
+	if ((text != "Ifc2x3" && text != "IfcXML") || !userHasCheckinRights) {
 		$(".downloadpopup .checkoutButton").button("disable");
 	} else {
 		$(".downloadpopup .checkoutButton").button("enable");
 	}
 	if (!userHasCheckinRights) {
 		$(".checkoutMessage").html("Checkout unavailable because you have no rights on the project");
-	} else if (val != "Ifc2x3" && val != "IfcXML") {
+	} else if (text != "Ifc2x3" && text != "IfcXML") {
 		$(".checkoutMessage").html("Checkout unavailable for formats other than Ifc2x3 and IfcXML");
 	} else {
 		$(".checkoutMessage").html("");
