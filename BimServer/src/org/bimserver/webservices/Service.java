@@ -3340,7 +3340,7 @@ public class Service implements ServiceInterface {
 		return sServiceDescriptors;
 	}
 
-	public org.bimserver.interfaces.objects.SService getService(long epid) throws ServerException, UserException {
+	public org.bimserver.interfaces.objects.SService getService(Long epid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), epid, false, null);
@@ -3353,7 +3353,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void addServiceToProject(long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException {
+	public void addServiceToProject(Long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
@@ -3457,7 +3457,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void deleteService(long oid) throws ServerException, UserException {
+	public void deleteService(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {

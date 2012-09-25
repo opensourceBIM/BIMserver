@@ -17,6 +17,7 @@ package org.bimserver.shared;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
 import org.bimserver.interfaces.objects.SNewProjectNotification;
@@ -25,12 +26,18 @@ import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface NotificationInterface {
+	
+	@WebMethod(action = "serverHasStarted")
 	void serverHasStarted() throws ServiceException;
 	
+	@WebMethod(action = "serverWillBeShutdown")
 	void serverWillBeShutdown() throws ServiceException;
 	
-	void newProject(SNewProjectNotification newProjectNotification) throws ServiceException;
+	@WebMethod(action = "newProject")
+	void newProject(
+		@WebParam(name = "newProjectNotification", partName = "newProject.newProjectNotification") SNewProjectNotification newProjectNotification) throws ServiceException;
 	
+	@WebMethod(action = "newRevision")
 	void newRevision(
 		@WebParam(name = "newRevisionNotification", partName = "newRevision.newRevisionNotification") SNewRevisionNotification newRevisionNotification,
 		@WebParam(name = "token", partName = "newRevision.token") SToken token,
