@@ -4,11 +4,14 @@
 		<javadoc destdir="builds/bimserver-javadoc-${version}">
 			<fileset dir="../../BimCombined/src"/>
 			<fileset dir="../../BimServer/src"/>
+			<fileset dir="../../BimServer/generated"/>
 			<fileset dir="../../BimServerClientLib/src"/>
 			<fileset dir="../../BimWebServer/src"/>
 			<fileset dir="../../Emf/src"/>
+			<fileset dir="../../Emf/generated"/>
 			<fileset dir="../../Ifc/src"/>
 			<fileset dir="../../Shared/src"/>
+			<fileset dir="../../Shared/generated"/>
 			<fileset dir="../../Utils/src"/>
 		</javadoc>
 		<zip destfile="buids/bimserver-javadoc-${version}.zip">
