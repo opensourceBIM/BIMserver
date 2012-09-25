@@ -17,11 +17,8 @@
 		</ftp>
 		
 		<ant antfile="javadoc.build.xml" target="Build JavaDoc"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
-			<fileset file="builds/bimserver-javadoc-${version}.zip" />
-		</ftp>
 
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}/javadoc">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly build javadoc">
 			<fileset dir="builds/bimserver-javadoc-${version}" />
 		</ftp>
 
