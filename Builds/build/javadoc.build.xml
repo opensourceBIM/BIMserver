@@ -17,7 +17,6 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
-					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javadoc>
