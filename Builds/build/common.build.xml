@@ -11,7 +11,6 @@
 		<mkdir dir="builds/pluginlibs" />
 		<antcall target="Utils" />
 		<antcall target="Emf" />
-		<antcall target="Plugins" />
 		<antcall target="Shared" />
 		<antcall target="Ifc" />
 		<antcall target="BimServerClientLib" />
@@ -115,21 +114,6 @@
 		<mkdir dir="builds/bimserver/plugin"/>
 		<jar destfile="builds/lib/bimserver-${version}.jar">
 			<fileset dir="builds/bimserver"/>
-		</jar>
-	</target>
-	<target name="Plugins">
-		<mkdir dir="builds/plugins" />
-		<javac destdir="builds/plugins" debug="on" includeantruntime="false">
-			<src path="../../Plugins/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/lib/bimserver-${version}-plugins.jar">
-			<fileset dir="builds/plugins"/>
 		</jar>
 	</target>
 	<target name="BimServerClientLib">
