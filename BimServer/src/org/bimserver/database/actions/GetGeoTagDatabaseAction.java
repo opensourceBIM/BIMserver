@@ -18,14 +18,13 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -46,7 +45,7 @@ public class GetGeoTagDatabaseAction extends BimDatabaseAction<GeoTag> {
 		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), goid, false, null);
 		boolean hasRights = false;
 		for (Project project : geoTag.getProjects()) {
-			if (RightsManager.hasRightsOnProject(actingUser, project)) {
+			if (authorization.hasRightsOnProject(actingUser, project)) {
 				hasRights = true;
 				continue;
 			}

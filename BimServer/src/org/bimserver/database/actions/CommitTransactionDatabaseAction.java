@@ -26,8 +26,8 @@ import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
 import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -37,7 +37,6 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -65,7 +64,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		if (project == null) {
 			throw new UserException("Project with poid " + poid + " not found");
 		}
-		if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
+		if (!authorization.hasRightsOnProjectOrSuperProjects(user, project)) {
 			throw new UserException("User has no rights to checkin models to this project");
 		}
 		if (!MailSystem.isValidEmailAddress(user.getUsername())) {

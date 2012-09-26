@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
@@ -38,8 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getNotificationProtocol <em>Notification Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getTrigger <em>Trigger</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isReadRevision <em>Read Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getReadRevision <em>Read Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getReadExtendedData <em>Read Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getWriteRevision <em>Write Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getWriteExtendedData <em>Write Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProject <em>Project</em>}</li>
@@ -192,8 +193,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReadRevision() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_REVISION, true);
+	public Revision getReadRevision() {
+		return (Revision) eGet(StorePackage.Literals.SERVICE__READ_REVISION, true);
 	}
 
 	/**
@@ -201,7 +202,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadRevision(boolean newReadRevision) {
+	public void setReadRevision(Revision newReadRevision) {
 		eSet(StorePackage.Literals.SERVICE__READ_REVISION, newReadRevision);
 	}
 
@@ -210,8 +211,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReadExtendedData() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
+	public Revision getReadExtendedData() {
+		return (Revision) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -219,7 +220,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadExtendedData(boolean newReadExtendedData) {
+	public void setReadExtendedData(Revision newReadExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, newReadExtendedData);
 	}
 
@@ -246,8 +247,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Project getWriteExtendedData() {
-		return (Project) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
+	public Revision getWriteExtendedData() {
+		return (Revision) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -255,7 +256,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWriteExtendedData(Project newWriteExtendedData) {
+	public void setWriteExtendedData(Revision newWriteExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, newWriteExtendedData);
 	}
 

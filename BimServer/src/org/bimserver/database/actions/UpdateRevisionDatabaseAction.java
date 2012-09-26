@@ -20,8 +20,8 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -29,7 +29,6 @@ import org.bimserver.models.log.RevisionUpdated;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -52,7 +51,7 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 			throw new UserException("Revision with pid " + sRevision.getOid() + " not found");
 		}
 		Project project = revision.getProject();
-		if (!RightsManager.hasRightsOnProjectOrSuperProjects(actingUser, project)) {
+		if (!authorization.hasRightsOnProjectOrSuperProjects(actingUser, project)) {
 			throw new UserException("User has no rights to update project properties");
 		}
 		RevisionUpdated revisionUpdated = LogFactory.eINSTANCE.createRevisionUpdated();

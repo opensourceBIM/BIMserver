@@ -42,7 +42,6 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -74,7 +73,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
-			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			Map<ConcreteRevision, Set<Long>> map = new HashMap<ConcreteRevision, Set<Long>>();

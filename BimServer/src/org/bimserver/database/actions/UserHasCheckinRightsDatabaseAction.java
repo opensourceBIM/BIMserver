@@ -18,21 +18,23 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class UserHasCheckinRightsDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long uoid;
 	private final long poid;
+	private Authorization authorization;
 
-	public UserHasCheckinRightsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long poid) {
+	public UserHasCheckinRightsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid, long poid) {
 		super(databaseSession, accessMethod);
+		this.authorization = authorization;
 		this.uoid = uoid;
 		this.poid = poid;
 	}
@@ -43,6 +45,6 @@ public class UserHasCheckinRightsDatabaseAction extends BimDatabaseAction<Boolea
 		if (!MailSystem.isValidEmailAddress(user.getUsername())) {
 			return false;
 		}
-		return RightsManager.hasRightsOnProject(user, getProjectByPoid(poid));
+		return authorization.hasRightsOnProject(user, getProjectByPoid(poid));
 	}
 }

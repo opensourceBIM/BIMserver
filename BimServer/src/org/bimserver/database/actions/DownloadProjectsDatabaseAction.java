@@ -37,7 +37,6 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -76,7 +75,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModelIn
 		for (long roid : roids) {
 			Revision revision = getVirtualRevision(roid);
 			project = revision.getProject();
-			if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					IfcModel subModel = new IfcModel();
 					subModel.addChangeListener(new IfcModelChangeListener() {

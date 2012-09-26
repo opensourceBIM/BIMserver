@@ -31,7 +31,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -52,7 +51,7 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {
 				Project project = (Project)idEObject;
-				if ((user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
+				if ((user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
 					result.add(project);
 				}
 			}

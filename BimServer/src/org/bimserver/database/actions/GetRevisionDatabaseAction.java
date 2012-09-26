@@ -18,13 +18,12 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -47,7 +46,7 @@ public class GetRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 		}
 		Project project = revision.getProject();
 		User user = getUserByUoid(authorization.getUoid());
-		if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+		if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			return revision;
 		}
 		throw new UserException("User has no rights on this revision's project");

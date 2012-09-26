@@ -20,14 +20,13 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserAddedToProject;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -49,7 +48,7 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		final Project project = getProjectByPoid(poid);
 		User actingUser = getUserByUoid(authorization.getUoid());
-		if (RightsManager.hasRightsOnProject(actingUser, project)) {
+		if (authorization.hasRightsOnProject(actingUser, project)) {
 			User user = getUserByUoid(uoid);
 			project.getHasAuthorizedUsers().add(user);
 			UserAddedToProject userAddedToProject = LogFactory.eINSTANCE.createUserAddedToProject();

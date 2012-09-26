@@ -18,8 +18,8 @@ public class InterfaceReflectorGenerator {
 			PrintWriter out = new PrintWriter(reflectorImplementationFile);
 			out.println("package org.bimserver.interfaces;\n");
 			out.println(Licenser.getCommentedLicenseText(new File("license.txt")));
-			out.println("import org.bimserver.shared.Reflector;\n");
-			out.println("import org.bimserver.shared.KeyValuePair;\n");
+			out.println("import org.bimserver.shared.reflector.Reflector;\n");
+			out.println("import org.bimserver.shared.reflector.KeyValuePair;\n");
 			out.println("@SuppressWarnings(\"unchecked\")");
 			out.println("public class " + service.getName() + "ReflectorImpl implements " + service.getInstanceClass().getName() + " {\n");
 			out.println("private Reflector reflector;\n");
