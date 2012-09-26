@@ -453,6 +453,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="added" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"
           eOpposite="#/0/User/extendedData"/>
@@ -511,10 +512,10 @@
           eType="#/2/AccessMethod"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="trigger" eType="#/0/Trigger"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="readRevision" eType="#/0/Revision"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="readExtendedData" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="readRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="readExtendedData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="writeRevision" eType="#/0/Project"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="writeExtendedData" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="writeExtendedData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
           eOpposite="#/0/Project/services"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"

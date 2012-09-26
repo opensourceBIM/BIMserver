@@ -95,10 +95,10 @@ public class NotificationsManager extends Thread implements NotificationsManager
 								if (service.getTrigger() == Trigger.NEW_REVISION) {
 									Channel channel = getChannel(service);
 									try {
-										if (service.getReadRevision() != null || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
+										if (service.isReadRevision() || service.isReadExtendedData() || service.isWriteExtendedData() || service.getWriteRevision() != null) {
 											// This service will be needing a token
 											ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
-											((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization(service.getUser().getOid(), service));
+											((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization(service.getUser().getOid(), service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1, service.getWriteRevision().getOid(), service.isReadExtendedData() ? newRevisionNotification.getRevisionId() : -1, service.isWriteExtendedData() ? newRevisionNotification.getRevisionId() : -1));
 											channel.getNotificationInterface().newRevision(newRevisionNotification, newService.getCurrentToken(), bimServer.getServerSettings(session).getSiteAddress() + "/jsonapi");
 										} else {
 											channel.getNotificationInterface().newRevision(newRevisionNotification, null, null);

@@ -1,4 +1,4 @@
-package org.bimserver.shared;
+package org.bimserver.shared.interfaces;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

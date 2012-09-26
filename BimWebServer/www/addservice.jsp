@@ -19,7 +19,7 @@
 			sService.setReadExtendedData(request.getParameter("readExtendedData") != null);
 			sService.setReadRevision(request.getParameter("readRevision") != null);
 			sService.setWriteRevisionId(Long.parseLong(request.getParameter("writeRevision")));
-			sService.setWriteRevisionId(Long.parseLong(request.getParameter("writeExtendedData")));
+			sService.setWriteExtendedData(request.getParameter("writeExtendedData") != null);
 			sService.setUrl(request.getParameter("url"));
 			loginManager.getService().addServiceToProject(project.getOid(), sService);
 		}
@@ -51,9 +51,15 @@
 				<input type="hidden" class="url"/>
 				<div class="description"></div>
 				<div class="readRevision initialhide"><label><span>Read Revision</span><input type="checkbox" disabled="disabled" checked="checked"/></label></div>
-				<div class="writeRevision initialhide"><label><span>Write Revision</span><select><option value="<%=project.getOid()%>"><%=project.getName() %></option></select></label></div>
+				<div class="writeRevision initialhide"><label><span>Write Revision</span><select>
+<%
+	for (SProject sProject : loginManager.getService().getAllProjects()) {
+%><option value="<%=sProject.getOid()%>"><%=sProject.getName() %></option><%
+	}
+%>
+				</select></label></div>
 				<div class="readExtendedData initialhide"><label><span>Read Extended Data</span><input type="checkbox" disabled="disabled" checked="checked"/></label></div>
-				<div class="writeExtendedData initialhide"><label><span>Write Extended Data</span><select><option value="<%=project.getOid()%>"><%=project.getName() %></option></select></label></div>
+				<div class="writeExtendedData initialhide"><label><span>Write Extended Data</span><input type="checkbox" disabled="disabled" checked="checked"/></label></div>
 				<input type="button" class="saveButton" value="Save"/>
 			</div>
 <script>
@@ -136,7 +142,7 @@ $(function(){
 				readRevision: $(".readRevision input").is(":checked"),
 				readExtendedData: $(".readExtendedData input").is(":checked"),
 				writeRevision: $(".writeRevision select").val(),
-				writeExtendedData: $(".writeExtendedData select").val()
+				writeExtendedData: $(".writeExtendedData input").is(":checked")
 			}, success: function(){
 				$("#servicestab").load("services.jsp?poid=<%=project.getOid()%>");
 			}

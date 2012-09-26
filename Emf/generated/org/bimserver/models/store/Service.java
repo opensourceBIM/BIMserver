@@ -33,10 +33,10 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.Service#getNotificationProtocol <em>Notification Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getTrigger <em>Trigger</em>}</li>
- *   <li>{@link org.bimserver.models.store.Service#getReadRevision <em>Read Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.Service#getReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#isReadRevision <em>Read Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getWriteRevision <em>Write Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.Service#getWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#isWriteExtendedData <em>Write Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getUser <em>User</em>}</li>
  * </ul>
@@ -211,56 +211,56 @@ public interface Service extends IdEObject {
 	void setTrigger(Trigger value);
 
 	/**
-	 * Returns the value of the '<em><b>Read Revision</b></em>' reference.
+	 * Returns the value of the '<em><b>Read Revision</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Read Revision</em>' reference isn't clear,
+	 * If the meaning of the '<em>Read Revision</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Read Revision</em>' reference.
-	 * @see #setReadRevision(Revision)
+	 * @return the value of the '<em>Read Revision</em>' attribute.
+	 * @see #setReadRevision(boolean)
 	 * @see org.bimserver.models.store.StorePackage#getService_ReadRevision()
 	 * @model
 	 * @generated
 	 */
-	Revision getReadRevision();
+	boolean isReadRevision();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Service#getReadRevision <em>Read Revision</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#isReadRevision <em>Read Revision</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Read Revision</em>' reference.
-	 * @see #getReadRevision()
+	 * @param value the new value of the '<em>Read Revision</em>' attribute.
+	 * @see #isReadRevision()
 	 * @generated
 	 */
-	void setReadRevision(Revision value);
+	void setReadRevision(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Read Extended Data</b></em>' reference.
+	 * Returns the value of the '<em><b>Read Extended Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Read Extended Data</em>' reference isn't clear,
+	 * If the meaning of the '<em>Read Extended Data</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Read Extended Data</em>' reference.
-	 * @see #setReadExtendedData(Revision)
+	 * @return the value of the '<em>Read Extended Data</em>' attribute.
+	 * @see #setReadExtendedData(boolean)
 	 * @see org.bimserver.models.store.StorePackage#getService_ReadExtendedData()
 	 * @model
 	 * @generated
 	 */
-	Revision getReadExtendedData();
+	boolean isReadExtendedData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Service#getReadExtendedData <em>Read Extended Data</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Read Extended Data</em>' reference.
-	 * @see #getReadExtendedData()
+	 * @param value the new value of the '<em>Read Extended Data</em>' attribute.
+	 * @see #isReadExtendedData()
 	 * @generated
 	 */
-	void setReadExtendedData(Revision value);
+	void setReadExtendedData(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Write Revision</b></em>' reference.
@@ -289,30 +289,30 @@ public interface Service extends IdEObject {
 	void setWriteRevision(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Write Extended Data</b></em>' reference.
+	 * Returns the value of the '<em><b>Write Extended Data</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Write Extended Data</em>' reference isn't clear,
+	 * If the meaning of the '<em>Write Extended Data</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Write Extended Data</em>' reference.
-	 * @see #setWriteExtendedData(Revision)
+	 * @return the value of the '<em>Write Extended Data</em>' attribute.
+	 * @see #setWriteExtendedData(boolean)
 	 * @see org.bimserver.models.store.StorePackage#getService_WriteExtendedData()
 	 * @model
 	 * @generated
 	 */
-	Revision getWriteExtendedData();
+	boolean isWriteExtendedData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Service#getWriteExtendedData <em>Write Extended Data</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#isWriteExtendedData <em>Write Extended Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Write Extended Data</em>' reference.
-	 * @see #getWriteExtendedData()
+	 * @param value the new value of the '<em>Write Extended Data</em>' attribute.
+	 * @see #isWriteExtendedData()
 	 * @generated
 	 */
-	void setWriteExtendedData(Revision value);
+	void setWriteExtendedData(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Project</b></em>' reference.

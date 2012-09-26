@@ -3,4 +3,7 @@
 if (sExtendedData.getMime() != null) {
 	response.setContentType(sExtendedData.getMime());
 }
+if (sExtendedData.getFilename() != null) {
+	response.setHeader("Content-Disposition", "inline; filename=\"" + sExtendedData.getFilename()+ "\"");
+}
   response.getOutputStream().write(sExtendedData.getData());%>
