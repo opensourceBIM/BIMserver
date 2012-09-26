@@ -190,7 +190,7 @@
 				<%
 					if (kmzEnabled) {
 								String url = WebUtils.getWebServer(request.getRequestURL().toString());
-								String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid() + "&serializerName=KMZ";
+								String link = "http://" + url + getServletContext().getContextPath() + "/download?poid=" + project.getOid() + "&serializerName=KMZ";
 				%>
 				<tr>
 					<td class="first">Google Earth Link</td>
