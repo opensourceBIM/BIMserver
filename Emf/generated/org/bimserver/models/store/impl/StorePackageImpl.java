@@ -3174,7 +3174,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendedData_Added() {
+	public EAttribute getExtendedData_Filename() {
 		return (EAttribute) getExtendedData().getEStructuralFeatures().get(3);
 	}
 
@@ -3183,8 +3183,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedData_User() {
-		return (EReference) getExtendedData().getEStructuralFeatures().get(4);
+	public EAttribute getExtendedData_Added() {
+		return (EAttribute) getExtendedData().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3192,7 +3192,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedData_Schema() {
+	public EReference getExtendedData_User() {
 		return (EReference) getExtendedData().getEStructuralFeatures().get(5);
 	}
 
@@ -3201,7 +3201,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedData_Revision() {
+	public EReference getExtendedData_Schema() {
 		return (EReference) getExtendedData().getEStructuralFeatures().get(6);
 	}
 
@@ -3210,7 +3210,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedData_Project() {
+	public EReference getExtendedData_Revision() {
 		return (EReference) getExtendedData().getEStructuralFeatures().get(7);
 	}
 
@@ -3219,8 +3219,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getExtendedData_Project() {
+		return (EReference) getExtendedData().getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getExtendedData_Mime() {
-		return (EAttribute) getExtendedData().getEStructuralFeatures().get(8);
+		return (EAttribute) getExtendedData().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -3534,8 +3543,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getService_ReadRevision() {
-		return (EReference) getService().getEStructuralFeatures().get(6);
+	public EAttribute getService_ReadRevision() {
+		return (EAttribute) getService().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -3543,8 +3552,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getService_ReadExtendedData() {
-		return (EReference) getService().getEStructuralFeatures().get(7);
+	public EAttribute getService_ReadExtendedData() {
+		return (EAttribute) getService().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -3561,8 +3570,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getService_WriteExtendedData() {
-		return (EReference) getService().getEStructuralFeatures().get(9);
+	public EAttribute getService_WriteExtendedData() {
+		return (EAttribute) getService().getEStructuralFeatures().get(9);
 	}
 
 	/**

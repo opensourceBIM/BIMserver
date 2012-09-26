@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getFilename <em>Filename</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getAdded <em>Added</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getSchema <em>Schema</em>}</li>
@@ -130,6 +131,24 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 */
 	public void setTitle(String newTitle) {
 		eSet(StorePackage.Literals.EXTENDED_DATA__TITLE, newTitle);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFilename() {
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA__FILENAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFilename(String newFilename) {
+		eSet(StorePackage.Literals.EXTENDED_DATA__FILENAME, newFilename);
 	}
 
 	/**

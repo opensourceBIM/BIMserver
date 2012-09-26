@@ -57,6 +57,9 @@ public class SExtendedData implements SDataBase
 		if (sField.getName().equals("title")) {
 			return getTitle();
 		}
+		if (sField.getName().equals("filename")) {
+			return getFilename();
+		}
 		if (sField.getName().equals("added")) {
 			return getAdded();
 		}
@@ -93,6 +96,10 @@ public class SExtendedData implements SDataBase
 			setTitle((String)val);
 			return;
 		}
+		if (sField.getName().equals("filename")) {
+			setFilename((String)val);
+			return;
+		}
 		if (sField.getName().equals("added")) {
 			setAdded((Date)val);
 			return;
@@ -127,6 +134,7 @@ public class SExtendedData implements SDataBase
 	private java.lang.String url;
 	private byte[] data;
 	private java.lang.String title;
+	private java.lang.String filename;
 	private java.util.Date added;
 	private long userId;
 	private long schemaId;
@@ -153,6 +161,13 @@ public class SExtendedData implements SDataBase
 
 	public void setTitle(java.lang.String title) {
 		this.title = title;
+	}
+	public java.lang.String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(java.lang.String filename) {
+		this.filename = filename;
 	}
 	public java.util.Date getAdded() {
 		return added;

@@ -14,7 +14,6 @@ public class Step0021 extends Migration {
 	public void migrate(Schema schema) {
 		EClass user = schema.getEClass("store", "User");
 		EClass project = schema.getEClass("store", "Project");
-		EClass revision = schema.getEClass("store", "Revision");
 
 		EEnum trigger = schema.createEEnum("store", "Trigger");
 		schema.createEEnumLiteral(trigger, "NEW_REVISION");
@@ -46,10 +45,10 @@ public class Step0021 extends Migration {
 		schema.createEAttribute(service, "notificationProtocol", schema.getEEnum("log", "AccessMethod"), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "trigger", trigger, Multiplicity.SINGLE);
-		schema.createEReference(service, "readRevision", revision, Multiplicity.SINGLE);
-		schema.createEReference(service, "readExtendedData", revision, Multiplicity.SINGLE);
+		schema.createEAttribute(service, "readRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "readExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		schema.createEReference(service, "writeRevision", project, Multiplicity.SINGLE);
-		schema.createEReference(service, "writeExtendedData", revision, Multiplicity.SINGLE);
+		schema.createEAttribute(service, "writeExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		
 		EReference serviceProject = schema.createEReference(service, "project", project, Multiplicity.SINGLE);
 		EReference projectServices = schema.createEReference(project, "services", service, Multiplicity.MANY);

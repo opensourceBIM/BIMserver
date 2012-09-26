@@ -1,4 +1,4 @@
-package org.bimserver.shared;
+package org.bimserver.shared.interfaces;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -576,21 +576,6 @@ public interface ServiceInterface {
 		@WebParam(name = "roid", partName = "getAvailableClassesInRevision.roid") Long roid) throws ServerException, UserException;
 	
 	/**
-	 * Get information about the BIMserver database
-	 * @return A SDatabaseInformation Object containing the information
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDatabaseInformation")
-	SDatabaseInformation getDatabaseInformation() throws ServerException, UserException;
-
-	/**
-	 * @return When the last database reset occurred
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLastDatabaseReset")
-	Date getLastDatabaseReset() throws ServerException, UserException;
-
-	/**
 	 * @return The User that it currently loggedin on this ServiceInterface
 	 * @throws ServerException, UserException
 	 */
@@ -960,280 +945,6 @@ public interface ServiceInterface {
 			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") Long roid2,
 			@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws ServerException, UserException;
 	
-	/**
-	 * Setup this BIMserver
-	 * @param siteAddress The address the server will be reachable at (for example: http://demo.bimserver.org)
-	 * @param smtpServer The address of the SMTP server that wil be used for sending e-mails
-	 * @param adminName Name of the admin User (e.g. "Administrator")
-	 * @param adminUsername Username of the admin User (must be a valid e-mail address)
-	 * @param adminPassword Password of the admin User
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setup")
-	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
-			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
-			@WebParam(name = "smtpSender", partName = "setup.smtpSender") String smtpSender,
-			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
-			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
-			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;
-
-	/**
-	 * @return The location of a custom Logo (URL) for the BIMserver
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingCustomLogoAddress")
-	String getSettingCustomLogoAddress() throws ServerException, UserException;
-
-	/**
-	 * @param customLogoAddress The new location for the custom logo
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingCustomLogoAddress")
-	void setSettingCustomLogoAddress(
-			@WebParam(name = "customLogoAddress", partName = "setSettingsCustomLogoAddress.customLogoAddress") String customLogoAddress) throws ServerException, UserException;
-
-	/**
-	 * @return An addition to the JSP header
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingHeaderAddition")
-	String getSettingHeaderAddition() throws ServerException, UserException;
-
-	
-	/**
-	 * @param headerAddition The new header addition
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingHeaderAddition")
-	void setSettingHeaderAddition (
-			@WebParam(name = "headerAddition", partName = "setSettingHeaderAddition.headerAddition") String headerAddition) throws ServerException, UserException;
-
-	/**
-	 * @return An addition to the JSP footer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingFooterAddition")
-	String getSettingFooterAddition() throws ServerException, UserException;
-
-	/**
-	 * @param footerAddition The new footer addition
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingFooterAddition")
-	void setSettingFooterAddition(
-			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition) throws ServerException, UserException;
-
-	@WebMethod(action = "getSettingEmailSenderAddress")
-	String getSettingEmailSenderAddress() throws ServerException, UserException;
-
-	/**
-	 * @param emailSenderAddress The new e-mail address e-mail will be sent from
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingEmailSenderAddress")
-	void setSettingEmailSenderAddress(
-			@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServerException, UserException;
-
-	/**
-	 * @return The registration addition text
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingRegistrationAddition")
-	String getSettingRegistrationAddition() throws ServerException, UserException;
-
-	/**
-	 * @param registrationAddition The new registration addition text
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingRegistrationAddition")
-	void setSettingRegistrationAddition(
-			@WebParam(name = "registrationAddition", partName = "setSettingsRegistrationAddition.registrationAddition") String registrationAddition) throws ServerException, UserException;
-
-	/**
-	 * @return The port on which the ProtocolBuffers server runs
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingProtocolBuffersPort")
-	Integer getSettingProtocolBuffersPort() throws ServerException, UserException;
-
-	/**
-	 * @param port Set the port the ProtocolBuffers server runs on
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingProtocolBuffersPort")
-	void setSettingProtocolBuffersPort(
-			@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port) throws ServerException, UserException;
-	
-	/**
-	 * @return The address the BIMserver is running on (used for links in e-mail for example)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingSiteAddress")
-	String getSettingSiteAddress() throws ServerException, UserException;
-
-	/**
-	 * @param siteAddress The new address the BIMserver is running on (used for links in e-mail for example)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingSiteAddress")
-	void setSettingSiteAddress(
-			@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress) throws ServerException, UserException;
-
-	/**
-	 * @return Address of the SMTP server used for sending e-mails
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingSmtpServer")
-	String getSettingSmtpServer() throws ServerException, UserException;
-
-	/**
-	 * @param smtpServer New address of the SMTP server used for sending e-mails
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingSmtpServer")
-	void setSettingSmtpServer(
-			@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer) throws ServerException, UserException;
-
-	/**
-	 * @return Whether self-registration is enabled
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingAllowSelfRegistration")
-	Boolean isSettingAllowSelfRegistration() throws ServerException, UserException;
-
-	/**
-	 * @param allowSelfRegistration Change whether self-registration is enabled
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingAllowSelfRegistration")
-	void setSettingAllowSelfRegistration(
-			@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)throws ServerException, UserException;
-
-	/**
-	 * @return Whether to hide user lists (pricacy)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingHideUserListForNonAdmin")
-	Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException;
-
-	/**
-	 * @param hideUserListForNonAdmin Set whether user lists should be hidden (privacy)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingHideUserListForNonAdmin")
-	void setSettingHideUserListForNonAdmin(
-			@WebParam(name = "hideUserListForNonAdmin", partName = "setSettingHideUserListForNonAdmin.hideUserListForNonAdmin") Boolean hideUserListForNonAdmin) throws ServerException, UserException;
-
-	/**
-	 * @return Whether a user can create top level projects
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingAllowUsersToCreateTopLevelProjects")
-	Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException;
-
-	/**
-	 * @param allowUsersToCreateTopLevelProjects Set if users can create top level projects
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingAllowUsersToCreateTopLevelProjects")
-	void setSettingAllowUsersToCreateTopLevelProjects(
-			@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException;
-
-	/**
-	 * @return Whether the BIMserver should do checkin merging (warning: this will alter your models)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingCheckinMergingEnabled")
-	Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException;
-
-	/**
-	 * @param checkinMergingEnabled Set whether the BIMserver should do checkin merging (warning: this wil alter your models)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingCheckinMergingEnabled")
-	void setSettingCheckinMergingEnabled(
-			@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
-
-	/**
-	 * @return Whether a confirmation e-mail should be send after registration
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingSendConfirmationEmailAfterRegistration")
-	Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServerException, UserException;
-
-	/**
-	 * @param sendConfirmationEmailAfterRegistration Set whether a confirmation e-mail should be send after registration
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingSendConfirmationEmailAfterRegistration")
-	void setSettingSendConfirmationEmailAfterRegistration(
-			@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException;
-
-	/**
-	 * @return Whether it should be shown to the user that a new version of the BIMserver is available
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingShowVersionUpgradeAvailable")
-	Boolean isSettingShowVersionUpgradeAvailable() throws ServerException, UserException;
-
-	/**
-	 * @param showVersionUpgradeAvailable Set whether it should be shown to the user that a new version of the BIMserver is available
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingShowVersionUpgradeAvailable")
-	void setSettingShowVersionUpgradeAvailable(
-			@WebParam(name = "showVersionUpgradeAvailable", partName = "setSettingShowVersionUpgradeAvailable.showVersionUpgradeAvailable") Boolean showVersionUpgradeAvailable) throws ServerException, UserException;
-
-	/**
-	 * @return Whether output files (serialized version) should be cached on disk
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingCacheOutputFiles")
-	Boolean isSettingCacheOutputFiles() throws ServerException, UserException;
-
-	/**
-	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingCacheOutputFiles")
-	void setSettingCacheOutputFiles(
-			@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
-	
-	/**
-	 * @return A list with all Log objects, Log objects contain information about action performed on the BIMserver like ProjectAdded, UserAdded etc...
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLogs")
-	List<SLogAction> getLogs() throws ServerException, UserException;
-
-	/**
-	 * @return A list with the currently active User sessions
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getActiveUserSessions")
-	List<SUserSession> getActiveUserSessions() throws ServerException, UserException;
-
-	/**
-	 * @return A list with the currently running Long actions
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getActiveLongActions")
-	List<SLongAction> getActiveLongActions() throws ServerException, UserException;
-
-	/**
-	 * @return A list of all Migrations (either executed or not)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getMigrations")
-	List<SMigration> getMigrations() throws ServerException, UserException;
-
-	/**
-	 * This will try to upgrade the database to the latest revision, this method will do nothing if the database schema is already up-to-date
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "migrateDatabase")
-	void migrateDatabase() throws ServerException, UserException;
-
 	/**
 	 * @param onlyEnabled Whether to only include enabled serializers
 	 * @return A list of Serializers
@@ -1732,29 +1443,6 @@ public interface ServiceInterface {
 		@WebParam(name = "contentType", partName = "hasActiveSerializer.contentType") String contentType) throws ServerException, UserException;
 	
 	/**
-	 * @return A list of all plugins
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllPlugins")
-	List<SPluginDescriptor> getAllPlugins() throws ServerException, UserException;
-	
-	/**
-	 * @param name Name of the plugin to enable
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "enablePlugin")
-	void enablePlugin(
-		@WebParam(name = "name", partName = "enablePlugin.name") String name) throws ServerException, UserException;
-	
-	/**
-	 * @param name Name of the plugin to disable
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "disablePlugin")
-	void disablePlugin(
-		@WebParam(name = "name", partName = "disablePlugin.name") String name) throws ServerException, UserException;
-
-	/**
 	 * @param contentType The ContentType
 	 * @return Serializer supporting the given ContentType
 	 * @throws ServerException, UserException
@@ -2074,14 +1762,6 @@ public interface ServiceInterface {
 	String getProtocolBuffersFile() throws ServerException, UserException;
 	
 	/**
-	 * Get information about this BIMserver's state
-	 * @return A SServerInfo object containing information about the current state
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getServerInfo")
-	SServerInfo getServerInfo() throws ServerException, UserException;
-	
-	/**
 	 * Get the actual version of this BIMserver
 	 * @return A SVersion object containg the version information
 	 * @throws ServerException, UserException
@@ -2256,4 +1936,324 @@ public interface ServiceInterface {
 	@WebMethod(action="getAllSEServices")
 	List<SEService> getAllSEServices(
 		@WebParam(name = "onlyEnabled", partName = "getAllSEServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
+	
+	/**
+	 * @return The location of a custom Logo (URL) for the BIMserver
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSettingCustomLogoAddress")
+	String getSettingCustomLogoAddress() throws ServerException, UserException;
+
+	/**
+	 * @param customLogoAddress The new location for the custom logo
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingCustomLogoAddress")
+	void setSettingCustomLogoAddress(
+			@WebParam(name = "customLogoAddress", partName = "setSettingsCustomLogoAddress.customLogoAddress") String customLogoAddress) throws ServerException, UserException;
+
+	/**
+	 * @return An addition to the JSP header
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSettingHeaderAddition")
+	String getSettingHeaderAddition() throws ServerException, UserException;
+	
+	/**
+	 * @param headerAddition The new header addition
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingHeaderAddition")
+	void setSettingHeaderAddition (
+			@WebParam(name = "headerAddition", partName = "setSettingHeaderAddition.headerAddition") String headerAddition) throws ServerException, UserException;
+
+	/**
+	 * @return An addition to the JSP footer
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSettingFooterAddition")
+	String getSettingFooterAddition() throws ServerException, UserException;
+
+	/**
+	 * @param footerAddition The new footer addition
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingFooterAddition")
+	void setSettingFooterAddition(
+			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition) throws ServerException, UserException;
+
+	@WebMethod(action = "getSettingEmailSenderAddress")
+	String getSettingEmailSenderAddress() throws ServerException, UserException;
+
+	/**
+	 * @param emailSenderAddress The new e-mail address e-mail will be sent from
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingEmailSenderAddress")
+	void setSettingEmailSenderAddress(
+			@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServerException, UserException;
+
+	/**
+	 * @return The registration addition text
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSettingRegistrationAddition")
+	String getSettingRegistrationAddition() throws ServerException, UserException;
+
+	/**
+	 * @param registrationAddition The new registration addition text
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingRegistrationAddition")
+	void setSettingRegistrationAddition(
+			@WebParam(name = "registrationAddition", partName = "setSettingsRegistrationAddition.registrationAddition") String registrationAddition) throws ServerException, UserException;
+
+	/**
+	 * @return The port on which the ProtocolBuffers server runs
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSettingProtocolBuffersPort")
+	Integer getSettingProtocolBuffersPort() throws ServerException, UserException;
+
+	/**
+	 * @param port Set the port the ProtocolBuffers server runs on
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingProtocolBuffersPort")
+	void setSettingProtocolBuffersPort(
+			@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port) throws ServerException, UserException;
+	
+	/**
+	 * @return The address the BIMserver is running on (used for links in e-mail for example)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSettingSiteAddress")
+	String getSettingSiteAddress() throws ServerException, UserException;
+
+	/**
+	 * @param siteAddress The new address the BIMserver is running on (used for links in e-mail for example)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingSiteAddress")
+	void setSettingSiteAddress(
+			@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress) throws ServerException, UserException;
+
+	/**
+	 * @return Address of the SMTP server used for sending e-mails
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSettingSmtpServer")
+	String getSettingSmtpServer() throws ServerException, UserException;
+
+	/**
+	 * @param smtpServer New address of the SMTP server used for sending e-mails
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingSmtpServer")
+	void setSettingSmtpServer(
+			@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer) throws ServerException, UserException;
+
+	/**
+	 * @return Whether self-registration is enabled
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingAllowSelfRegistration")
+	Boolean isSettingAllowSelfRegistration() throws ServerException, UserException;
+
+	/**
+	 * @param allowSelfRegistration Change whether self-registration is enabled
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingAllowSelfRegistration")
+	void setSettingAllowSelfRegistration(
+			@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)throws ServerException, UserException;
+
+	/**
+	 * @return Whether to hide user lists (pricacy)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingHideUserListForNonAdmin")
+	Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException;
+
+	/**
+	 * @param hideUserListForNonAdmin Set whether user lists should be hidden (privacy)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingHideUserListForNonAdmin")
+	void setSettingHideUserListForNonAdmin(
+			@WebParam(name = "hideUserListForNonAdmin", partName = "setSettingHideUserListForNonAdmin.hideUserListForNonAdmin") Boolean hideUserListForNonAdmin) throws ServerException, UserException;
+
+	/**
+	 * @return Whether a user can create top level projects
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingAllowUsersToCreateTopLevelProjects")
+	Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException;
+
+	/**
+	 * @param allowUsersToCreateTopLevelProjects Set if users can create top level projects
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingAllowUsersToCreateTopLevelProjects")
+	void setSettingAllowUsersToCreateTopLevelProjects(
+			@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException;
+
+	/**
+	 * @return Whether the BIMserver should do checkin merging (warning: this will alter your models)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingCheckinMergingEnabled")
+	Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException;
+
+	/**
+	 * @param checkinMergingEnabled Set whether the BIMserver should do checkin merging (warning: this wil alter your models)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingCheckinMergingEnabled")
+	void setSettingCheckinMergingEnabled(
+			@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
+
+	/**
+	 * @return Whether a confirmation e-mail should be send after registration
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingSendConfirmationEmailAfterRegistration")
+	Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServerException, UserException;
+
+	/**
+	 * @param sendConfirmationEmailAfterRegistration Set whether a confirmation e-mail should be send after registration
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingSendConfirmationEmailAfterRegistration")
+	void setSettingSendConfirmationEmailAfterRegistration(
+			@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException;
+
+	/**
+	 * @return Whether it should be shown to the user that a new version of the BIMserver is available
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingShowVersionUpgradeAvailable")
+	Boolean isSettingShowVersionUpgradeAvailable() throws ServerException, UserException;
+
+	/**
+	 * @param showVersionUpgradeAvailable Set whether it should be shown to the user that a new version of the BIMserver is available
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingShowVersionUpgradeAvailable")
+	void setSettingShowVersionUpgradeAvailable(
+			@WebParam(name = "showVersionUpgradeAvailable", partName = "setSettingShowVersionUpgradeAvailable.showVersionUpgradeAvailable") Boolean showVersionUpgradeAvailable) throws ServerException, UserException;
+
+	/**
+	 * @return Whether output files (serialized version) should be cached on disk
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingCacheOutputFiles")
+	Boolean isSettingCacheOutputFiles() throws ServerException, UserException;
+
+	/**
+	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingCacheOutputFiles")
+	void setSettingCacheOutputFiles(
+			@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
+
+	/**
+	 * @return A list of all plugins
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllPlugins")
+	List<SPluginDescriptor> getAllPlugins() throws ServerException, UserException;
+	
+	/**
+	 * @param name Name of the plugin to enable
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "enablePlugin")
+	void enablePlugin(
+		@WebParam(name = "name", partName = "enablePlugin.name") String name) throws ServerException, UserException;
+	
+	/**
+	 * @param name Name of the plugin to disable
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "disablePlugin")
+	void disablePlugin(
+		@WebParam(name = "name", partName = "disablePlugin.name") String name) throws ServerException, UserException;
+	
+	/**
+	 * Get information about the BIMserver database
+	 * @return A SDatabaseInformation Object containing the information
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getDatabaseInformation")
+	SDatabaseInformation getDatabaseInformation() throws ServerException, UserException;
+
+	/**
+	 * @return When the last database reset occurred
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getLastDatabaseReset")
+	Date getLastDatabaseReset() throws ServerException, UserException;
+
+	/**
+	 * Setup this BIMserver
+	 * @param siteAddress The address the server will be reachable at (for example: http://demo.bimserver.org)
+	 * @param smtpServer The address of the SMTP server that wil be used for sending e-mails
+	 * @param adminName Name of the admin User (e.g. "Administrator")
+	 * @param adminUsername Username of the admin User (must be a valid e-mail address)
+	 * @param adminPassword Password of the admin User
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setup")
+	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
+			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
+			@WebParam(name = "smtpSender", partName = "setup.smtpSender") String smtpSender,
+			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
+			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
+			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;
+	
+	/**
+	 * @return A list with all Log objects, Log objects contain information about action performed on the BIMserver like ProjectAdded, UserAdded etc...
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getLogs")
+	List<SLogAction> getLogs() throws ServerException, UserException;
+
+	/**
+	 * @return A list with the currently active User sessions
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getActiveUserSessions")
+	List<SUserSession> getActiveUserSessions() throws ServerException, UserException;
+
+	/**
+	 * @return A list with the currently running Long actions
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getActiveLongActions")
+	List<SLongAction> getActiveLongActions() throws ServerException, UserException;
+
+	/**
+	 * @return A list of all Migrations (either executed or not)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getMigrations")
+	List<SMigration> getMigrations() throws ServerException, UserException;
+
+	/**
+	 * This will try to upgrade the database to the latest revision, this method will do nothing if the database schema is already up-to-date
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "migrateDatabase")
+	void migrateDatabase() throws ServerException, UserException;
+	
+	
+	/**
+	 * Get information about this BIMserver's state
+	 * @return A SServerInfo object containing information about the current state
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getServerInfo")
+	SServerInfo getServerInfo() throws ServerException, UserException;
 }

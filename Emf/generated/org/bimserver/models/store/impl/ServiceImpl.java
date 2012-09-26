@@ -39,10 +39,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getNotificationProtocol <em>Notification Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getTrigger <em>Trigger</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getReadRevision <em>Read Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isReadRevision <em>Read Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isReadExtendedData <em>Read Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getWriteRevision <em>Write Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isWriteExtendedData <em>Write Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getUser <em>User</em>}</li>
  * </ul>
@@ -193,8 +193,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Revision getReadRevision() {
-		return (Revision) eGet(StorePackage.Literals.SERVICE__READ_REVISION, true);
+	public boolean isReadRevision() {
+		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_REVISION, true);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadRevision(Revision newReadRevision) {
+	public void setReadRevision(boolean newReadRevision) {
 		eSet(StorePackage.Literals.SERVICE__READ_REVISION, newReadRevision);
 	}
 
@@ -211,8 +211,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Revision getReadExtendedData() {
-		return (Revision) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
+	public boolean isReadExtendedData() {
+		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadExtendedData(Revision newReadExtendedData) {
+	public void setReadExtendedData(boolean newReadExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, newReadExtendedData);
 	}
 
@@ -247,8 +247,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Revision getWriteExtendedData() {
-		return (Revision) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
+	public boolean isWriteExtendedData() {
+		return (Boolean) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -256,7 +256,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWriteExtendedData(Revision newWriteExtendedData) {
+	public void setWriteExtendedData(boolean newWriteExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, newWriteExtendedData);
 	}
 
