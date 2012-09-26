@@ -3353,13 +3353,31 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA__SCHEMA = 5;
 
 	/**
+	 * The feature id for the '<em><b>Revision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__REVISION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__PROJECT = 7;
+
+	/**
 	 * The feature id for the '<em><b>Mime</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA__MIME = 6;
+	int EXTENDED_DATA__MIME = 8;
 
 	/**
 	 * The number of structural features of the '<em>Extended Data</em>' class.
@@ -3368,7 +3386,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_FEATURE_COUNT = 7;
+	int EXTENDED_DATA_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl <em>Query Engine Plugin Descriptor</em>}' class.
@@ -3974,7 +3992,7 @@ public interface StorePackage extends EPackage {
 	int SERVICE__TRIGGER = 5;
 
 	/**
-	 * The feature id for the '<em><b>Read Revision</b></em>' attribute.
+	 * The feature id for the '<em><b>Read Revision</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3983,7 +4001,7 @@ public interface StorePackage extends EPackage {
 	int SERVICE__READ_REVISION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Read Extended Data</b></em>' attribute.
+	 * The feature id for the '<em><b>Read Extended Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7397,6 +7415,28 @@ public interface StorePackage extends EPackage {
 	EReference getExtendedData_Schema();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedData#getRevision <em>Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Revision</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getRevision()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EReference getExtendedData_Revision();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedData#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getProject()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EReference getExtendedData_Project();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getMime <em>Mime</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7740,26 +7780,26 @@ public interface StorePackage extends EPackage {
 	EAttribute getService_Trigger();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#isReadRevision <em>Read Revision</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getReadRevision <em>Read Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Read Revision</em>'.
-	 * @see org.bimserver.models.store.Service#isReadRevision()
+	 * @return the meta object for the reference '<em>Read Revision</em>'.
+	 * @see org.bimserver.models.store.Service#getReadRevision()
 	 * @see #getService()
 	 * @generated
 	 */
-	EAttribute getService_ReadRevision();
+	EReference getService_ReadRevision();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getReadExtendedData <em>Read Extended Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Read Extended Data</em>'.
-	 * @see org.bimserver.models.store.Service#isReadExtendedData()
+	 * @return the meta object for the reference '<em>Read Extended Data</em>'.
+	 * @see org.bimserver.models.store.Service#getReadExtendedData()
 	 * @see #getService()
 	 * @generated
 	 */
-	EAttribute getService_ReadExtendedData();
+	EReference getService_ReadExtendedData();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getWriteRevision <em>Write Revision</em>}'.
@@ -10427,6 +10467,22 @@ public interface StorePackage extends EPackage {
 		EReference EXTENDED_DATA__SCHEMA = eINSTANCE.getExtendedData_Schema();
 
 		/**
+		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA__REVISION = eINSTANCE.getExtendedData_Revision();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA__PROJECT = eINSTANCE.getExtendedData_Project();
+
+		/**
 		 * The meta object literal for the '<em><b>Mime</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10701,20 +10757,20 @@ public interface StorePackage extends EPackage {
 		EAttribute SERVICE__TRIGGER = eINSTANCE.getService_Trigger();
 
 		/**
-		 * The meta object literal for the '<em><b>Read Revision</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Read Revision</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVICE__READ_REVISION = eINSTANCE.getService_ReadRevision();
+		EReference SERVICE__READ_REVISION = eINSTANCE.getService_ReadRevision();
 
 		/**
-		 * The meta object literal for the '<em><b>Read Extended Data</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Read Extended Data</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVICE__READ_EXTENDED_DATA = eINSTANCE.getService_ReadExtendedData();
+		EReference SERVICE__READ_EXTENDED_DATA = eINSTANCE.getService_ReadExtendedData();
 
 		/**
 		 * The meta object literal for the '<em><b>Write Revision</b></em>' reference feature.

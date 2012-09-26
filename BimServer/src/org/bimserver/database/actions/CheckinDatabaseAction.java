@@ -43,7 +43,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 import org.slf4j.Logger;
@@ -74,13 +73,14 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
+			authorization.canCheckin(poid);
 			project = getProjectByPoid(poid);
 			int nrConcreteRevisionsBefore = project.getConcreteRevisions().size();
 			User user = getUserByUoid(authorization.getUoid());
 			if (project == null) {
 				throw new UserException("Project with poid " + poid + " not found");
 			}
-			if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
+			if (!authorization.hasRightsOnProjectOrSuperProjects(user, project)) {
 				throw new UserException("User has no rights to checkin models to this project");
 			}
 			if (!MailSystem.isValidEmailAddress(user.getUsername())) {

@@ -19,8 +19,8 @@ package org.bimserver.database.actions;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;

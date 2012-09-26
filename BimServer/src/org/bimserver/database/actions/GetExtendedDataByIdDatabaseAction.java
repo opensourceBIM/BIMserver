@@ -17,14 +17,28 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class GetExtendedDataByIdDatabaseAction extends GetByIdDatabaseAction<ExtendedData> {
 
-	public GetExtendedDataByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
+	private Authorization authorization;
+
+	public GetExtendedDataByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long oid) {
 		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getExtendedData());
+		this.authorization = authorization;
+	}
+	
+	@Override
+	public ExtendedData execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		ExtendedData extendedData = super.execute();
+		authorization.canReadExtendedData(extendedData.getRevision().getOid());
+		return extendedData;
 	}
 }

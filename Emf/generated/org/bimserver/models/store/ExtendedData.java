@@ -34,6 +34,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ExtendedData#getAdded <em>Added</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getSchema <em>Schema</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedData#getRevision <em>Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedData#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getMime <em>Mime</em>}</li>
  * </ul>
  * </p>
@@ -203,6 +205,62 @@ public interface ExtendedData extends IdEObject {
 	 * @generated
 	 */
 	void setSchema(ExtendedDataSchema value);
+
+	/**
+	 * Returns the value of the '<em><b>Revision</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Revision</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Revision</em>' reference.
+	 * @see #setRevision(Revision)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedData_Revision()
+	 * @see org.bimserver.models.store.Revision#getExtendedData
+	 * @model opposite="extendedData"
+	 * @generated
+	 */
+	Revision getRevision();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getRevision <em>Revision</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Revision</em>' reference.
+	 * @see #getRevision()
+	 * @generated
+	 */
+	void setRevision(Revision value);
+
+	/**
+	 * Returns the value of the '<em><b>Project</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Project#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Project</em>' reference.
+	 * @see #setProject(Project)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedData_Project()
+	 * @see org.bimserver.models.store.Project#getExtendedData
+	 * @model opposite="extendedData"
+	 * @generated
+	 */
+	Project getProject();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getProject <em>Project</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project</em>' reference.
+	 * @see #getProject()
+	 * @generated
+	 */
+	void setProject(Project value);
 
 	/**
 	 * Returns the value of the '<em><b>Mime</b></em>' attribute.

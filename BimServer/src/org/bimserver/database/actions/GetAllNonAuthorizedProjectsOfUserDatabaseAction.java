@@ -21,9 +21,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;

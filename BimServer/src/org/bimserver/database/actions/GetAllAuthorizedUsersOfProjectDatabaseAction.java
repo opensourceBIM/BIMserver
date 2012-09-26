@@ -21,8 +21,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;

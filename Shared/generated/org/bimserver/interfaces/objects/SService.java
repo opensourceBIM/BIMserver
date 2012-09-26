@@ -65,11 +65,11 @@ public class SService implements SDataBase
 		if (sField.getName().equals("trigger")) {
 			return getTrigger();
 		}
-		if (sField.getName().equals("readRevision")) {
-			return isReadRevision();
+		if (sField.getName().equals("readRevisionId")) {
+			return getReadRevisionId();
 		}
-		if (sField.getName().equals("readExtendedData")) {
-			return isReadExtendedData();
+		if (sField.getName().equals("readExtendedDataId")) {
+			return getReadExtendedDataId();
 		}
 		if (sField.getName().equals("writeRevisionId")) {
 			return getWriteRevisionId();
@@ -113,12 +113,12 @@ public class SService implements SDataBase
 			setTrigger((STrigger)val);
 			return;
 		}
-		if (sField.getName().equals("readRevision")) {
-			setReadRevision((Boolean)val);
+		if (sField.getName().equals("readRevisionId")) {
+			setReadRevisionId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("readExtendedData")) {
-			setReadExtendedData((Boolean)val);
+		if (sField.getName().equals("readExtendedDataId")) {
+			setReadExtendedDataId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("writeRevisionId")) {
@@ -150,8 +150,8 @@ public class SService implements SDataBase
 	private SAccessMethod notificationProtocol;
 	private java.lang.String description;
 	private STrigger trigger;
-	private boolean readRevision;
-	private boolean readExtendedData;
+	private long readRevisionId;
+	private long readExtendedDataId;
 	private long writeRevisionId;
 	private long writeExtendedDataId;
 	private long projectId;
@@ -198,20 +198,22 @@ public class SService implements SDataBase
 	public void setTrigger(STrigger trigger) {
 		this.trigger = trigger;
 	}
-	public boolean isReadRevision() {
-		return readRevision;
+	public long getReadRevisionId() {
+		return readRevisionId;
 	}
 
-	public void setReadRevision(boolean readRevision) {
-		this.readRevision = readRevision;
+	public void setReadRevisionId(long readRevisionId) {
+		this.readRevisionId = readRevisionId;
 	}
-	public boolean isReadExtendedData() {
-		return readExtendedData;
+	
+	public long getReadExtendedDataId() {
+		return readExtendedDataId;
 	}
 
-	public void setReadExtendedData(boolean readExtendedData) {
-		this.readExtendedData = readExtendedData;
+	public void setReadExtendedDataId(long readExtendedDataId) {
+		this.readExtendedDataId = readExtendedDataId;
 	}
+	
 	public long getWriteRevisionId() {
 		return writeRevisionId;
 	}

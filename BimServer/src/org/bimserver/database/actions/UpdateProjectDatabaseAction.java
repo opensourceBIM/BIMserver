@@ -20,8 +20,8 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -29,7 +29,6 @@ import org.bimserver.models.log.ProjectUpdated;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -54,7 +53,7 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		if (sProject.getName().trim().equals("")) {
 			throw new UserException("Project name cannot be empty");
 		}
-		if (!RightsManager.hasRightsOnProjectOrSuperProjects(actingUser, project)) {
+		if (!authorization.hasRightsOnProjectOrSuperProjects(actingUser, project)) {
 			throw new UserException("User has no rights to update project properties");
 		}
 		if (project.getParent() == null) {

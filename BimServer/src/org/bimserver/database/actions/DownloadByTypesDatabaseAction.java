@@ -37,7 +37,6 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.ecore.EClass;
@@ -82,10 +81,10 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
-			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
-			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {

@@ -22,13 +22,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -49,7 +48,7 @@ public class GetProjectsByNameDatabaseAction extends BimDatabaseAction<List<Proj
 		List<Project> result = new ArrayList<Project>();
 		User user = getUserByUoid(authorization.getUoid());
 		for (Project project : projects) {
-			if ((project.getState() == ObjectState.ACTIVE && RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
+			if ((project.getState() == ObjectState.ACTIVE && authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
 				result.add(project);
 			}
 		}

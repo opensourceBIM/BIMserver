@@ -16,9 +16,9 @@ package org.bimserver.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import org.bimserver.shared.reflector.Reflector;
 
 import org.bimserver.shared.reflector.KeyValuePair;
-import org.bimserver.shared.reflector.Reflector;
 
 @SuppressWarnings("unchecked")
 public class ServiceInterfaceReflectorImpl implements org.bimserver.shared.interfaces.ServiceInterface {

@@ -20,15 +20,14 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserRemovedFromProject;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -51,7 +50,7 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		User actingUser = getUserByUoid(authorization.getUoid());
-		if (RightsManager.hasRightsOnProject(actingUser, project)) {
+		if (authorization.hasRightsOnProject(actingUser, project)) {
 			if (user.getUserType() == UserType.ADMIN) {
 				int nrAdmins = 0;
 				for (User authUser : project.getHasAuthorizedUsers()) {

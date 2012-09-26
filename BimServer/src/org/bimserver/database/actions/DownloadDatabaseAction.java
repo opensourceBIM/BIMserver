@@ -36,7 +36,6 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -62,12 +61,13 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getVirtualRevision(roid);
+		authorization.canDownload(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");
 		}
 		Project project = revision.getProject();
 		User user = getUserByUoid(authorization.getUoid());
-		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();

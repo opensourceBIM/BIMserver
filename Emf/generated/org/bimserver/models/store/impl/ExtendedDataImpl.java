@@ -21,6 +21,8 @@ import java.util.Date;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.eclipse.emf.ecore.EClass;
@@ -38,6 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getAdded <em>Added</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getSchema <em>Schema</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getRevision <em>Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getMime <em>Mime</em>}</li>
  * </ul>
  * </p>
@@ -180,6 +184,42 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 */
 	public void setSchema(ExtendedDataSchema newSchema) {
 		eSet(StorePackage.Literals.EXTENDED_DATA__SCHEMA, newSchema);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Revision getRevision() {
+		return (Revision) eGet(StorePackage.Literals.EXTENDED_DATA__REVISION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRevision(Revision newRevision) {
+		eSet(StorePackage.Literals.EXTENDED_DATA__REVISION, newRevision);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project getProject() {
+		return (Project) eGet(StorePackage.Literals.EXTENDED_DATA__PROJECT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProject(Project newProject) {
+		eSet(StorePackage.Literals.EXTENDED_DATA__PROJECT, newProject);
 	}
 
 	/**

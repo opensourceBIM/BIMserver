@@ -26,18 +26,22 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<ExtendedData> {
 
 	private final Long roid;
+	private Authorization authorization;
 
-	public AddExtendedDataToRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, ExtendedData extendedData) {
+	public AddExtendedDataToRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, Authorization authorization, ExtendedData extendedData) {
 		super(databaseSession, accessMethod, extendedData);
 		this.roid = roid;
+		this.authorization = authorization;
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		authorization.canWriteExtendedData(roid);
 		getIdEObject().setAdded(new Date());
 		super.execute();
 		Revision revision = getRevisionByRoid(roid);

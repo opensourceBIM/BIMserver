@@ -140,8 +140,9 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public Long getRoid() {
-		if (roids == null)
+		if (roids == null) {
 			return null;
+		}
 		Iterator<Long> iterator = roids.iterator();
 		return iterator.hasNext() ? iterator.next() : null;
 	}

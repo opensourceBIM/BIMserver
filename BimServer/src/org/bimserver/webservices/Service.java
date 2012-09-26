@@ -314,6 +314,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
+		authorization.canDownload(roid);
 		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid);
 		if (serializer == null) {
 			throw new UserException("No serializer with id " + serializerOid + " could be found");
@@ -644,6 +645,9 @@ public class Service implements ServiceInterface {
 
 	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
 		User user = null;
+		for (long roid : downloadParameters.getRoids()) {
+			authorization.canDownload(roid);
+		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
@@ -974,7 +978,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<Boolean> action = new UserHasCheckinRightsDatabaseAction(session, accessMethod, uoid, poid);
+			BimDatabaseAction<Boolean> action = new UserHasCheckinRightsDatabaseAction(session, accessMethod, authorization, uoid, poid);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
@@ -1019,7 +1023,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(session, accessMethod, getCurrentUser(session).getOid(), poid);
+			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(session, accessMethod, getCurrentUser(session).getOid(), authorization, poid);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
@@ -3040,7 +3044,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			ExtendedData convert = converter.convertFromSObject(extendedData, session);
-			session.executeAndCommitAction(new AddExtendedDataToRevisionDatabaseAction(session, accessMethod, roid, convert));
+			session.executeAndCommitAction(new AddExtendedDataToRevisionDatabaseAction(session, accessMethod, roid, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3081,7 +3085,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			return converter.convertToSObject(session.executeAndCommitAction(new GetExtendedDataByIdDatabaseAction(session, accessMethod, oid)));
+			return converter.convertToSObject(session.executeAndCommitAction(new GetExtendedDataByIdDatabaseAction(session, accessMethod, authorization, oid)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

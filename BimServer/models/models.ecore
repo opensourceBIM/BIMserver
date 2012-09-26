@@ -58,7 +58,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exportLengthMeasurePrefix"
           eType="#/0/SIPrefix"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
-          eType="#/0/ExtendedData"/>
+          eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/project"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
           eType="#/0/Service" eOpposite="#/0/Service/project"/>
     </eClassifiers>
@@ -105,7 +105,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="laid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
-          eType="#/0/ExtendedData"/>
+          eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/revision"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -458,6 +458,10 @@
           eOpposite="#/0/User/extendedData"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#/0/ExtendedDataSchema"
           eOpposite="#/0/ExtendedDataSchema/extendedData"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"
+          eOpposite="#/0/Revision/extendedData"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
+          eOpposite="#/0/Project/extendedData"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
@@ -507,10 +511,10 @@
           eType="#/2/AccessMethod"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="trigger" eType="#/0/Trigger"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="readRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="readExtendedData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="readRevision" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="readExtendedData" eType="#/0/Revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="writeRevision" eType="#/0/Project"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="writeExtendedData" eType="#/0/Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="writeExtendedData" eType="#/0/Revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
           eOpposite="#/0/Project/services"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"

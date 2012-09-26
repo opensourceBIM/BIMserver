@@ -379,6 +379,7 @@ public interface Revision extends IdEObject {
 	/**
 	 * Returns the value of the '<em><b>Extended Data</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.store.ExtendedData}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExtendedData#getRevision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extended Data</em>' reference list isn't clear,
@@ -387,7 +388,8 @@ public interface Revision extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extended Data</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getRevision_ExtendedData()
-	 * @model
+	 * @see org.bimserver.models.store.ExtendedData#getRevision
+	 * @model opposite="revision"
 	 * @generated
 	 */
 	EList<ExtendedData> getExtendedData();

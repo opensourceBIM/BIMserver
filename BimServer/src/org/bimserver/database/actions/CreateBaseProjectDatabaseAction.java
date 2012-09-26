@@ -20,9 +20,9 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;

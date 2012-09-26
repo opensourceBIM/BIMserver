@@ -18,14 +18,13 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -50,7 +49,7 @@ public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
 		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Project has been deleted");
 		}
-		if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+		if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			return project;
 		} else {
 			throw new UserException("User '" + user.getUsername() + "' has no rights on this project");

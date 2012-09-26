@@ -66,6 +66,12 @@ public class SExtendedData implements SDataBase
 		if (sField.getName().equals("schemaId")) {
 			return getSchemaId();
 		}
+		if (sField.getName().equals("revisionId")) {
+			return getRevisionId();
+		}
+		if (sField.getName().equals("projectId")) {
+			return getProjectId();
+		}
 		if (sField.getName().equals("mime")) {
 			return getMime();
 		}
@@ -99,6 +105,14 @@ public class SExtendedData implements SDataBase
 			setSchemaId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("revisionId")) {
+			setRevisionId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("projectId")) {
+			setProjectId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("mime")) {
 			setMime((String)val);
 			return;
@@ -116,6 +130,8 @@ public class SExtendedData implements SDataBase
 	private java.util.Date added;
 	private long userId;
 	private long schemaId;
+	private long revisionId;
+	private long projectId;
 	private java.lang.String mime;
 	public java.lang.String getUrl() {
 		return url;
@@ -159,6 +175,22 @@ public class SExtendedData implements SDataBase
 
 	public void setSchemaId(long schemaId) {
 		this.schemaId = schemaId;
+	}
+	
+	public long getRevisionId() {
+		return revisionId;
+	}
+
+	public void setRevisionId(long revisionId) {
+		this.revisionId = revisionId;
+	}
+	
+	public long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
 	
 	public java.lang.String getMime() {
