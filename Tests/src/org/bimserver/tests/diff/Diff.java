@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.eclipse.emf.ecore.EClass;
@@ -72,29 +73,42 @@ public class Diff {
 	}
 
 	private void start() throws CompareException, NoSuchAlgorithmException {
-		FullModel model1 = new FullModel(this, new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
-		FullModel model2 = new FullModel(this, new File("C:\\Users\\Ruben de Laat\\Downloads\\test.2 (1).ifc"));
-		// Model model1 = new Model(new
-		// File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserverNewest\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
-		// Model model2 = new Model(new
-		// File("C:\\Users\\Ruben de Laat\\Downloads\\test.1 (10).ifc"));
-		System.out.println("Starting diff");
+		CountDownLatch countDownLatch = new CountDownLatch(2);
+		
+		DiffReader diffReader1 = new DiffReader(1, this, countDownLatch, new File("C:\\Users\\Ruben de Laat\\Downloads\\dgdfgdfgdfgf.1.ifc"));
+		DiffReader diffReader2 = new DiffReader(2, this, countDownLatch, new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"));
 
-		List<Model> subModels1 = new ArrayList<Model>(model1.getSubModelsNew());
-		List<Model> subModels2 = new ArrayList<Model>(model2.getSubModelsNew());
-		Collections.sort(subModels1, modelComparator());
-		Collections.sort(subModels2, modelComparator());
+		diffReader1.start();
+		diffReader2.start();
+		
+		try {
+			countDownLatch.await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		List<Model> subModels1 = diffReader1.getSubModels();
+		List<Model> subModels2 = diffReader2.getSubModels();
 
-		if (subModels1.size() != subModels2.size()) {
-			throw new CompareException("Submodels not of same size: " + subModels1.size() + " / " + subModels2.size());
+		Map<String, Set<Model>> sizeMapped1 = diffReader1.getSizeMapped();
+		Map<String, Set<Model>> sizeMapped2 = diffReader2.getSizeMapped();
+		
+		FullModel model1 = diffReader1.getModel();
+		FullModel model2 = diffReader2.getModel();
+		
+		if (diffReader1.getSubModels().size() != diffReader2.getSubModels().size()) {
+			throw new CompareException("Submodels not of same size: " + model1.size() + " / " + model2.size());
 		}
 
-		Map<String, Set<Model>> sizeMapped1 = mapSize(subModels1);
-		Map<String, Set<Model>> sizeMapped2 = mapSize(subModels2);
 		Set<Model> unmatchedModels1 = new HashSet<Model>(subModels1);
 		Set<Model> unmatchedModels2 = new HashSet<Model>(subModels2);
 		for (String key : sizeMapped1.keySet()) {
 			Set<Model> set1 = sizeMapped1.get(key);
+			if (!sizeMapped2.containsKey(key)) {
+				dumpSizeMapped(sizeMapped1);
+				dumpSizeMapped(sizeMapped2);
+				throw new CompareException("Key " + key + " not found in 2nd model");
+			}
 			Set<Model> set2 = sizeMapped2.get(key);
 			if (set1.size() == 1 && set2.size() == 1) {
 				Model m1 = set1.iterator().next();
@@ -146,6 +160,12 @@ public class Diff {
 
 		for (ModelObject modelObject : model1.getUnmatchedObjects()) {
 			System.out.println(modelObject);
+		}
+	}
+
+	private void dumpSizeMapped(Map<String, Set<Model>> sizeMapped) {
+		for (String key : sizeMapped.keySet()) {
+			System.out.println(key + sizeMapped.get(key).size());
 		}
 	}
 
@@ -209,25 +229,11 @@ public class Diff {
 		}
 	}
 
-	private Map<String, Set<Model>> mapSize(List<Model> models) {
-		Map<String, Set<Model>> map = new HashMap<String, Set<Model>>();
-		for (Model model : models) {
-			if (map.containsKey(model.size() + "_" + model.nrEdges())) {
-				map.get(model.size() + "_" + model.nrEdges()).add(model);
-			} else {
-				HashSet<Model> set = new HashSet<Model>();
-				set.add(model);
-				map.put(model.size() + "_" + model.nrEdges(), set);
-			}
-		}
-		return map;
-	}
-
-	private Comparator<Model> modelComparator() {
+	public Comparator<Model> modelComparator() {
 		return new Comparator<Model>() {
 			@Override
 			public int compare(Model o1, Model o2) {
-				return (o1.size() - o2.size()) * 10000000 - (o1.nrEdges() - o2.nrEdges());
+				return (o1.size() - o2.size()) * 1000000000 - (o1.nrEdges() - o2.nrEdges());
 			}
 		};
 	}
