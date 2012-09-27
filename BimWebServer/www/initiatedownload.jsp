@@ -21,7 +21,7 @@
 		}
 		long serializerOid = -1L;
 		if (data.has("serializerOid")) {
-			serializerOid = data.getLong("serializerOid");
+			serializerOid = Long.parseLong(data.getString("serializerOid"));
 		}
 		boolean sync = false;
 		if (data.has("sync") && data.getBoolean("sync")) {

@@ -591,7 +591,7 @@ public class IfcModel implements IfcModelInterface {
 		if (temp.containsValue(idEObject)) {
 			return;
 		}
-		((IdEObjectImpl) idEObject).setOid(oidProvider.newOid());
+		((IdEObjectImpl) idEObject).setOid(oidProvider.newOid(idEObject.eClass()));
 		if (objects.containsValue(idEObject)) {
 			temp.put(idEObject.getOid(), idEObject);
 		}

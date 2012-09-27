@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -158,12 +159,12 @@ public class SClass {
 		return instanceClass;
 	}
 	
-	public List<SField> getFields() {
-		return new ArrayList<SField>(fields.values());
+	public Set<SField> getFields() {
+		return new LinkedHashSet<SField>(fields.values());
 	}
 	
-	public List<SField> getAllFields() {
-		List<SField> fields = new ArrayList<SField>(getFields());
+	public Set<SField> getAllFields() {
+		Set<SField> fields = new LinkedHashSet<SField>(getFields());
 		if (getSuperClass() != null) {
 			fields.addAll(getSuperClass().getAllFields());
 		}

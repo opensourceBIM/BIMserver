@@ -45,6 +45,7 @@ import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
 import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,10 +105,13 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		if (getUserByUserName(trimmedUserName) != null) {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
-		User actingUser = getUserByUoid(authorization.getUoid());
-		if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
-			if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
-				throw new UserException("Only admin users can create other users");
+		User actingUser = null;
+		if (!(authorization instanceof SystemAuthorization)) {
+			actingUser = getUserByUoid(authorization.getUoid());
+			if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
+				if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
+					throw new UserException("Only admin users can create other users");
+				}
 			}
 		}
 		final User user = StoreFactory.eINSTANCE.createUser();
@@ -117,7 +121,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		user.setName(trimmedName);
 		user.setUsername(trimmedUserName);
 		user.setCreatedOn(new Date());
-		user.setCreatedBy(getUserByUoid(authorization.getUoid()));
+		user.setCreatedBy(actingUser);
 		user.setUserType(userType);
 		user.setLastSeen(null);
 		final String token = GeneratorUtils.generateToken();

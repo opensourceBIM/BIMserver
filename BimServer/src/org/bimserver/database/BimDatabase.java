@@ -21,6 +21,7 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.MetaDataManager;
+import org.eclipse.emf.ecore.EClass;
 
 public interface BimDatabase {
 	DatabaseSession createSession();
@@ -31,7 +32,7 @@ public interface BimDatabase {
 
 	void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException;
 
-	long newOid();
+	long newOid(EClass eClass);
 	
 	MetaDataManager getMetaDataManager();
 }

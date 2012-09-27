@@ -175,6 +175,7 @@ function initCheckout() {
 
 function initDownload() {
 	data.serializerOid = $(".downloadpopup .revisionsdownloadcheckoutselect").val();
+	console.log(data.serializerOid);
 	mimeTypeOverride = null;
 	start('initiatedownload.jsp', data);
 }

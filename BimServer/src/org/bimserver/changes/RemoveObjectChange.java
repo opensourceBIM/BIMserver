@@ -20,29 +20,22 @@ package org.bimserver.changes;
 import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
-import org.eclipse.emf.ecore.EClass;
 
 public class RemoveObjectChange implements Change {
 
 	private final long oid;
-	private final String className;
 
-	public RemoveObjectChange(String className, long oid) {
-		this.className = className;
+	public RemoveObjectChange(long oid) {
 		this.oid = oid;
 	}
 
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		EClass eClass = databaseSession.getEClassForName(className);
-		if (eClass == null) {
-			throw new UserException("Unknown classname " + className);
-		}
-		IdEObject idEObject = databaseSession.get(eClass, pid, rid-1, oid, false, null);
+		IdEObject idEObject = databaseSession.get(pid, rid-1, oid, false, null);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}

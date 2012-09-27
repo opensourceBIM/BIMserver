@@ -36,9 +36,9 @@ public class NameChangeActivity extends Activity {
 				int changed = 0;
 				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 					if (ifcProduct.getName() == null) {
-						serviceInterface.setStringAttribute(ifcProduct.getOid(), ifcProduct.eClass().getName(), "Name", "Ruben was here");
+						serviceInterface.setStringAttribute(ifcProduct.getOid(), "Name", "Ruben was here");
 					} else {
-						serviceInterface.setStringAttribute(ifcProduct.getOid(), ifcProduct.eClass().getName(), "Name", "Ruben was here (" + ifcProduct.getName() + ")");
+						serviceInterface.setStringAttribute(ifcProduct.getOid(), "Name", "Ruben was here (" + ifcProduct.getName() + ")");
 					}
 					changed++;
 				}

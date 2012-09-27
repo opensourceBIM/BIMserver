@@ -37,7 +37,7 @@ for (SRevision sRevision : revisionsInc) {
 	  		if (request.getParameter("oid") != null) {
 	  			long oid = Long.parseLong(request.getParameter("oid"));
 	  			String className = request.getParameter("className");
-		  		dataObject = loginManager.getService().getDataObjectByOid(roid, oid, className);
+		  		dataObject = loginManager.getService().getDataObjectByOid(roid, oid);
 	  			out.println("<br/><br/><h1>" + dataObject.getType() + "</h1>");
 	  			out.println("<table>");
 	  			for (SDataValue dataValue : dataObject.getValues()) {

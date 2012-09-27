@@ -130,7 +130,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "autologin")
-	Boolean autologin(
+	SToken autologin(
 			@WebParam(name = "username", partName = "autologin.username") String username,
 			@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
 
@@ -707,8 +707,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "getDataObjectByOid")
 	SDataObject getDataObjectByOid(
 			@WebParam(name = "roid", partName = "getDataObjectByOid.roid") Long roid,
-			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid,
-			@WebParam(name = "className", partName = "getDataObjectByOid.className") String className) throws ServerException, UserException;
+			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * Get DataObjects based on a list of GUIDs
@@ -1488,18 +1487,15 @@ public interface ServiceInterface {
 	
 	/**
 	 * Remove an object
-	 * @param className ClassName of the Object, this parameter is required for performance reasons only, but is required 
 	 * @param oid ObjectID of the object to remove
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "removeObject")
 	void removeObject(
-			@WebParam(name = "className", partName = "removeObject.className") String className, 
 			@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
 	 * @throws ServerException, UserException
@@ -1507,13 +1503,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "setStringAttribute")
 	void setStringAttribute(
 			@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "setStringAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
 	 * @throws ServerException, UserException
@@ -1521,13 +1515,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "setDoubleAttribute")
 	void setDoubleAttribute(
 			@WebParam(name = "oid", partName = "setDoubleAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "setDoubleAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Enum value (name of the enum item)
 	 * @throws ServerException, UserException
@@ -1535,13 +1527,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "setEnumAttribute")
 	void setEnumAttribute(
 			@WebParam(name = "oid", partName = "setEnumAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "setEnumAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setEnumAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
@@ -1549,13 +1539,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "setIntegerAttribute")
 	void setIntegerAttribute(
 			@WebParam(name = "oid", partName = "setIntegerAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "setIntegerAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Boolean value
 	 * @throws ServerException, UserException
@@ -1563,53 +1551,43 @@ public interface ServiceInterface {
 	@WebMethod(action = "setBooleanAttribute")
 	void setBooleanAttribute(
 			@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "setBooleanAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param referenceName Name of the reference
 	 * @param referenceOid ObjectID of the newly referred object
-	 * @param referenceClassName Type of the newly referred object
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setReference")
 	void setReference(
 			@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
-			@WebParam(name = "className", partName = "setReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
-			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid, 
-			@WebParam(name = "referenceClassName", partName = "setReference.referenceClassName") String referenceClassName) throws ServerException, UserException;
+			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute to unset
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "unsetAttribute")
 	void unsetAttribute(
 			@WebParam(name = "oid", partName = "unsetAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "unsetAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param referenceName Name of the reference to unset (null)
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "unsetReference")
 	void unsetReference(
 			@WebParam(name = "oid", partName = "unsetReference.oid") Long oid,
-			@WebParam(name = "className", partName = "unsetReference.className") String className,
 			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New String value
 	 * @throws ServerException, UserException
@@ -1617,13 +1595,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "addStringAttribute")
 	void addStringAttribute(
 			@WebParam(name = "oid", partName = "addStringAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "addStringAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Double value
 	 * @throws ServerException, UserException
@@ -1631,13 +1607,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "addDoubleAttribute")
 	void addDoubleAttribute(
 			@WebParam(name = "oid", partName = "addDoubleAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "addDoubleAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addDoubleAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Integer value
 	 * @throws ServerException, UserException
@@ -1645,13 +1619,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "addIntegerAttribute")
 	void addIntegerAttribute(
 			@WebParam(name = "oid", partName = "addIntegerAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "addIntegerAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Boolean value
 	 * @throws ServerException, UserException
@@ -1659,29 +1631,23 @@ public interface ServiceInterface {
 	@WebMethod(action = "addBooleanAttribute")
 	void addBooleanAttribute(
 			@WebParam(name = "oid", partName = "addBooleanAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "addBooleanAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param referenceName Name of the reference to add a reference to
 	 * @param referenceOid ObjectID of the newly referenced Object
-	 * @param referenceClassName Type of the newly referenced Object
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addReference")
 	void addReference(
 			@WebParam(name = "oid", partName = "addReference.oid") Long oid, 
-			@WebParam(name = "className", partName = "addReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
-			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid,
-			@WebParam(name = "referenceClassName", partName = "addReference.referenceClassName") String referenceClassName) throws ServerException, UserException;
+			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param attributeName Name of the attribute from which to remove an item
 	 * @param index Index of the item to remove
 	 * @throws ServerException, UserException
@@ -1689,13 +1655,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "removeAttribute")
 	void removeAttribute(
 			@WebParam(name = "oid", partName = "removeAttribute.oid") Long oid, 
-			@WebParam(name = "className", partName = "removeAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
 			@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
-	 * @param className Type of the object to change
 	 * @param referenceName Name of the reference from which to remove an item
 	 * @param index Index of the item to remove
 	 * @throws ServerException, UserException
@@ -1703,7 +1667,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "removeReference")
 	void removeReference(
 			@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
-			@WebParam(name = "className", partName = "removeReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
 			@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
 	

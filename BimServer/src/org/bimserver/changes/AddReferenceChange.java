@@ -21,10 +21,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
 public class AddReferenceChange implements Change {
@@ -32,37 +33,35 @@ public class AddReferenceChange implements Change {
 	private final long oid;
 	private final String referenceName;
 	private final long referenceOid;
-	private final String className;
-	private final String referenceClassName;
 
-	public AddReferenceChange(long oid, String className, String referenceName, long referenceOid, String referenceClassName) {
+	public AddReferenceChange(long oid, String referenceName, long referenceOid) {
 		this.oid = oid;
-		this.className = className;
 		this.referenceName = referenceName;
 		this.referenceOid = referenceOid;
-		this.referenceClassName = referenceClassName;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(databaseSession.getEClassForName(className), pid, rid, oid, false, null);
+		IdEObject idEObject = databaseSession.get(pid, rid, oid, false, null);
+		EClass eClass = databaseSession.getEClassForOid(oid);
+		EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
-			throw new UserException("No object of type " + className + " with oid " + oid + " found in project with pid " + pid);
+			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + pid);
 		}
-		EReference eReference = databaseSession.getMetaDataManager().getEReference(className, referenceName);
+		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
-			throw new UserException("No reference with the name " + referenceName + " found in class " + className);
+			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
 		}
 		if (!eReference.isMany()) {
 			throw new UserException("Reference is not of type 'many'");
 		}
-		IdEObject referencedObject = databaseSession.get(databaseSession.getEClassForName(referenceClassName), pid, rid, referenceOid, false, null);
+		IdEObject referencedObject = databaseSession.get(pid, rid, referenceOid, false, null);
 		if (referencedObject == null) {
-			throw new UserException("Referenced object of type " + referenceClassName + " with oid " + referenceOid + " not found");
+			throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
 		}
 		List list = (List) idEObject.eGet(eReference);
 		list.add(referencedObject);

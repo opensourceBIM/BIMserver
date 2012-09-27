@@ -21,22 +21,21 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 
 public class RemoveAttributeChange implements Change {
 
 	private final long oid;
 	private final String attributeName;
 	private final int index;
-	private final String className;
 
-	public RemoveAttributeChange(long oid, String className, String attributeName, int index) {
+	public RemoveAttributeChange(long oid, String attributeName, int index) {
 		this.oid = oid;
-		this.className = className;
 		this.attributeName = attributeName;
 		this.index = index;
 	}
@@ -44,16 +43,17 @@ public class RemoveAttributeChange implements Change {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(databaseSession.getEClassForName(className), pid, rid, oid, false, null);
+		IdEObject idEObject = databaseSession.get(pid, rid, oid, false, null);
+		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
-			throw new UserException("No object of type " + className + " with oid " + oid + " found in project with pid " + pid);
+			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + pid);
 		}
-		EAttribute eAttribute = databaseSession.getMetaDataManager().getEAttribute(className, attributeName);
+		EAttribute eAttribute = databaseSession.getMetaDataManager().getEAttribute(eClass.getName(), attributeName);
 		if (eAttribute == null) {
-			throw new UserException("No attribute with the name " + attributeName + " found in class " + className);
+			throw new UserException("No attribute with the name " + attributeName + " found in class " + eClass.getName());
 		}
 		if (!eAttribute.isMany()) {
 			throw new UserException("Attribute is not of type 'many'");

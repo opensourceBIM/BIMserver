@@ -26,6 +26,7 @@ import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
+import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -67,6 +68,8 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getRevisionNr());
 			try {
+				model.fixOids(new IncrementingOidProvider(1L));
+				
 				EmfSerializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEngine, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());

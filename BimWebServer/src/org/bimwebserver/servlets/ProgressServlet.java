@@ -29,12 +29,9 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimwebserver.jsp.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ProgressServlet extends HttpServlet {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProgressServlet.class);
 	private static final long serialVersionUID = -1957923502114983147L;
 
 	@Override
@@ -42,7 +39,6 @@ public class ProgressServlet extends HttpServlet {
 		JSONObject result = new JSONObject();
 		response.setContentType("text/json");
 		try {
-			LOGGER.info("Progress request");
 			response.setContentType("application/json");
 			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
 			if (loginManager != null) {
