@@ -56,7 +56,7 @@ public class FullModel extends AbstractModel {
 		}
 	}
 
-	public Set<Model> getSubModels() {
+	public Set<Model> getSubModelsOld() {
 		if (subModels == null) {
 			subModels = new HashSet<Model>();
 			Iterator<? extends ModelObject> iterator = getObjects().iterator();
@@ -88,6 +88,31 @@ public class FullModel extends AbstractModel {
 		return subModels;
 	}
 	
+	public Set<Model> getSubModelsNew() {
+		if (subModels == null) {
+			subModels = new HashSet<Model>();
+			Set<ModelObject> unplaced = new HashSet<ModelObject>(getObjects());
+			while (!unplaced.isEmpty()) {
+				ModelObject firstUnlabelled = unplaced.iterator().next();
+				SubModel subModel = new SubModel(this);
+				floodFill(subModel, firstUnlabelled, unplaced);
+				subModels.add(subModel);
+			}
+		}
+		return subModels;
+	}
+
+	private void floodFill(SubModel subModel, ModelObject firstUnlabelled, Set<ModelObject> placed) {
+		if (subModel.contains(firstUnlabelled)) {
+			return;
+		}
+		subModel.add(firstUnlabelled);
+		placed.remove(firstUnlabelled);
+		for (ModelObject object : firstUnlabelled.getReferencesTo()) {
+			floodFill(subModel, object, placed);
+		}
+	}
+
 	private void addAll(ModelObject modelObject, Model model) {
 		if (!model.contains(modelObject)) {
 			model.add(modelObject);
