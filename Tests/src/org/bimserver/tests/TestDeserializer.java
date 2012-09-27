@@ -20,6 +20,8 @@ package org.bimserver.tests;
 import java.io.File;
 
 import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -36,23 +38,16 @@ public class TestDeserializer {
 			final PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 
-			for (int i=0; i<6; i++) {
-				new Thread(){
-					@Override
-					public void run() {
-						try {
-							EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
-							deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition());
-							deserializer.read(TestFile.HITOS_SOURCE_FILE.getFile(), true);
-						} catch (PluginException e) {
-							e.printStackTrace();
-						} catch (DeserializeException e) {
-							e.printStackTrace();
-						}
-					}
-				}.start();
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition());
+			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"), true);
+			
+			for (IdEObject idEObject : model.getValues()) {
+				System.out.println(idEObject);
 			}
 		} catch (PluginException e) {
+			e.printStackTrace();
+		} catch (DeserializeException e) {
 			e.printStackTrace();
 		}
 	}

@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Queue;
 import java.util.Set;
 
 public class FullModel extends AbstractModel {
@@ -31,7 +32,8 @@ public class FullModel extends AbstractModel {
 				}
 				line = reader.readLine();
 			}
-
+			reader.close();
+			in = new FileReader(file);
 			reader = new BufferedReader(in);
 			try {
 				line = reader.readLine();
@@ -95,21 +97,37 @@ public class FullModel extends AbstractModel {
 			while (!unplaced.isEmpty()) {
 				ModelObject firstUnlabelled = unplaced.iterator().next();
 				SubModel subModel = new SubModel(this);
-				floodFill(subModel, firstUnlabelled, unplaced);
+				Set<ModelObject> todo = new HashSet<ModelObject>();
+				todo.add(firstUnlabelled);
+				while (!todo.isEmpty()) {
+					System.out.println(unplaced.size() + " " + subModels.size());
+					Iterator<ModelObject> iterator = todo.iterator();
+					ModelObject item = iterator.next();
+					iterator.remove();
+					floodFill(subModel, item, unplaced, todo);
+				}
 				subModels.add(subModel);
 			}
 		}
 		return subModels;
 	}
 
-	private void floodFill(SubModel subModel, ModelObject firstUnlabelled, Set<ModelObject> placed) {
-		if (subModel.contains(firstUnlabelled)) {
-			return;
-		}
+	private void floodFill(SubModel subModel, ModelObject firstUnlabelled, Set<ModelObject> unplaced, Set<ModelObject> todo) {
 		subModel.add(firstUnlabelled);
-		placed.remove(firstUnlabelled);
+		unplaced.remove(firstUnlabelled);
 		for (ModelObject object : firstUnlabelled.getReferencesTo()) {
-			floodFill(subModel, object, placed);
+			if (!subModel.contains(object)) {
+				if (!todo.contains(object)) {
+					todo.add(object);
+				}
+			}
+		}
+		for (ModelObject object : firstUnlabelled.getReferencesFrom()) {
+			if (!subModel.contains(object)) {
+				if (!todo.contains(object)) {
+					todo.add(object);
+				}
+			}
 		}
 	}
 
