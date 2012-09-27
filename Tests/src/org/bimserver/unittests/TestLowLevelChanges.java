@@ -178,7 +178,7 @@ public class TestLowLevelChanges {
 			service.startTransaction(poid);
 			long windowOid = service.createObject("IfcWindow");
 			String name = "TestX";
-			service.setStringAttribute(windowOid, "IfcWindow", "Name", name);
+			service.setStringAttribute(windowOid, "Name", name);
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
@@ -206,7 +206,7 @@ public class TestLowLevelChanges {
 			service.startTransaction(poid);
 			long windowOid = service.createObject("IfcWindow");
 			double overallHeight = 200.5;
-			service.setDoubleAttribute(windowOid, "IfcWindow", "OverallHeight", overallHeight);
+			service.setDoubleAttribute(windowOid, "OverallHeight", overallHeight);
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
@@ -234,7 +234,7 @@ public class TestLowLevelChanges {
 			service.startTransaction(poid);
 			long siteId = service.createObject("IfcSite");
 			long ownerHistoryId = service.createObject("IfcOwnerHistory");
-			service.setReference(siteId, "IfcSite", "OwnerHistory", ownerHistoryId, "IfcOwnerHistory");
+			service.setReference(siteId, "OwnerHistory", ownerHistoryId); // TODO test
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 2) {
@@ -264,11 +264,11 @@ public class TestLowLevelChanges {
 			service.startTransaction(poid);
 			long cartesianPointId = service.createObject("IfcCartesianPoint");
 			double firstVal = 5.1;
-			service.addDoubleAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", firstVal);
+			service.addDoubleAttribute(cartesianPointId, "Coordinates", firstVal);
 			double secondVal = 6.2;
-			service.addDoubleAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", secondVal);
+			service.addDoubleAttribute(cartesianPointId, "Coordinates", secondVal);
 			double thirdVal = 7.3;
-			service.addDoubleAttribute(cartesianPointId, "IfcCartesianPoint", "Coordinates", thirdVal);
+			service.addDoubleAttribute(cartesianPointId, "Coordinates", thirdVal);
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
 			List<IfcCartesianPoint> cartesianPoints = model.getAll(IfcCartesianPoint.class);
@@ -296,7 +296,7 @@ public class TestLowLevelChanges {
 			long windowId = service.createObject("IfcWindow");
 			service.commitTransaction("test");
 			service.startTransaction(poid);
-			service.removeObject("IfcWindow", windowId);
+			service.removeObject(windowId);
 			long roid = service.commitTransaction("test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 0) {

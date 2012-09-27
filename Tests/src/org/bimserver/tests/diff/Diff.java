@@ -72,16 +72,16 @@ public class Diff {
 	}
 
 	private void start() throws CompareException, NoSuchAlgorithmException {
-		FullModel model1 = new FullModel(this, new File("C:\\Users\\Ruben de  Laat\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
-		FullModel model2 = new FullModel(this, new File("C:\\Users\\Ruben de  Laat\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
+		FullModel model1 = new FullModel(this, new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
+		FullModel model2 = new FullModel(this, new File("C:\\Users\\Ruben de Laat\\Downloads\\test.2 (1).ifc"));
 		// Model model1 = new Model(new
 		// File("C:\\Users\\Ruben de Laat\\Workspaces\\BIMserverNewest\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 		// Model model2 = new Model(new
 		// File("C:\\Users\\Ruben de Laat\\Downloads\\test.1 (10).ifc"));
 		System.out.println("Starting diff");
 
-		List<Model> subModels1 = new ArrayList<Model>(model1.getSubModels());
-		List<Model> subModels2 = new ArrayList<Model>(model2.getSubModels());
+		List<Model> subModels1 = new ArrayList<Model>(model1.getSubModelsNew());
+		List<Model> subModels2 = new ArrayList<Model>(model2.getSubModelsNew());
 		Collections.sort(subModels1, modelComparator());
 		Collections.sort(subModels2, modelComparator());
 
