@@ -1496,7 +1496,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
 		if (idEObject.getOid() == -1) {
-			((IdEObjectImpl)idEObject).setOid(newOid());
+			((IdEObjectImpl)idEObject).setOid(newOid(object.eClass()));
 			((IdEObjectImpl)idEObject).setPid(object.getPid());
 			((IdEObjectImpl)idEObject).setRid(object.getRid());
 		}
