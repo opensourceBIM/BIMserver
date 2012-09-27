@@ -464,9 +464,9 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 								IdEObject listObject = (IdEObject) o;
 								boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(listObject.eClass());
 								if (wrappedValue) {
-									writeWrappedValue(object.getPid(), object.getRid(), o, buffer);
+									writeWrappedValue(object.getPid(), object.getRid(), listObject, buffer);
 								} else {
-									writeReference(object.getPid(), object.getRid(), o, buffer, object, feature);
+									writeReference(object, listObject, buffer, feature);
 								}
 							}
 						}
@@ -502,7 +502,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 							if (wrappedValue) {
 								writeWrappedValue(object.getPid(), object.getRid(), value, buffer);
 							} else {
-								writeReference(object.getPid(), object.getRid(), value, buffer, object, feature);
+								writeReference(object, value, buffer, feature);
 							}
 						}
 					} else if (feature.getEType() instanceof EDataType) {
@@ -1476,14 +1476,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 	}
 
-	private void writeReference(int pid, int rid, Object value, ByteBuffer buffer, IdEObject object, EStructuralFeature feature) throws BimserverDatabaseException {
+	private void writeReference(IdEObject object, Object value, ByteBuffer buffer, EStructuralFeature feature) throws BimserverDatabaseException {
 		Short cid = database.getCidOfEClass(((EObject) value).eClass());
 		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
 		if (idEObject.getOid() == -1) {
-			throw new BimserverDatabaseException("Cannot store reference to object " + idEObject.eClass().getName() + " with oid=" + idEObject.getOid() + ", pid="
-					+ idEObject.getPid() + ", rid=" + idEObject.getRid() + " referenced from " + object.eClass().getName() + " with oid=" + object.getOid() + ", feature "
-					+ feature.getName());
+			((IdEObjectImpl)idEObject).setOid(newOid());
+			((IdEObjectImpl)idEObject).setPid(object.getPid());
+			((IdEObjectImpl)idEObject).setRid(object.getRid());
 		}
 		buffer.putLong(idEObject.getOid());
 	}
