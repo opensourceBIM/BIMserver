@@ -21,10 +21,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
 public class RemoveReferenceChange implements Change {
@@ -32,11 +33,9 @@ public class RemoveReferenceChange implements Change {
 	private final long oid;
 	private final String referenceName;
 	private final int index;
-	private final String className;
 
-	public RemoveReferenceChange(long oid, String className, String referenceName, int index) {
+	public RemoveReferenceChange(long oid, String referenceName, int index) {
 		this.oid = oid;
-		this.className = className;
 		this.referenceName = referenceName;
 		this.index = index;
 	}
@@ -44,16 +43,17 @@ public class RemoveReferenceChange implements Change {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(databaseSession.getEClassForName(className), pid, rid, oid, false, null);
+		IdEObject idEObject = databaseSession.get(pid, rid, oid, false, null);
+		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
-			throw new UserException("No object of type " + className + " with oid " + oid + " found in project with pid " + pid);
+			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + pid);
 		}
-		EReference eReference = databaseSession.getMetaDataManager().getEReference(className, referenceName);
+		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
-			throw new UserException("No reference with the name " + referenceName + " found in class " + className);
+			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
 		}
 		if (!eReference.isMany()) {
 			throw new UserException("Reference is not of type 'many'");

@@ -109,6 +109,9 @@ public class JsonConverter {
 				e.printStackTrace();
 			}
 		} else if (definedType.isLong()) {
+			if (object instanceof String) {
+				return Long.parseLong((String)object);
+			}
 			return ((Integer)object).longValue();
 		} else if (definedType.isEnum()) {
 			for (Object enumConstantObject : definedType.getInstanceClass().getEnumConstants()) {

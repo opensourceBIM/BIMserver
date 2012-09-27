@@ -20,9 +20,11 @@ package org.bimserver.database;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -45,7 +47,7 @@ import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
 import org.bimserver.utils.DoubleHashMap;
-import org.bimserver.webservices.UserAuthorization;
+import org.bimserver.webservices.SystemAuthorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
@@ -64,7 +66,7 @@ public class Database implements BimDatabase {
 	private final KeyValueStore keyValueStore;
 	private final DoubleHashMap<Short, EClass> classifiers = new DoubleHashMap<Short, EClass>();
 	private final List<String> realClasses = new ArrayList<String>();
-	private volatile long oidCounter;
+	private final Map<EClass, Long> oidCounters = new HashMap<EClass, Long>();
 	private volatile int pidCounter = 1;
 	private final Registry registry;
 	private Date created;
@@ -150,7 +152,7 @@ public class Database implements BimDatabase {
 				databaseSession.store(databaseCreated);
 
 				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new UserAuthorization(-1), false);
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new SystemAuthorization(), false);
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();
 
@@ -203,8 +205,11 @@ public class Database implements BimDatabase {
 		return settings;
 	}
 	
-	public synchronized long newOid() {
-		return ++oidCounter;
+	public synchronized long newOid(EClass eClass) {
+		long id = oidCounters.get(eClass);
+		long newId = id + 65536;
+		oidCounters.put(eClass, newId);
+		return newId;
 	}
 
 	private EClassifier getEClassifier(String classifierName) {
@@ -240,13 +245,15 @@ public class Database implements BimDatabase {
 				RecordIterator iterator = keyValueStore.getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
 				try {
 					Record record = iterator.last();
+					initCounter(eClass);
 					if (record != null) {
 						ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
 						int pid = buffer.getInt();
 						long oid = buffer.getLong();
-						if (oid > oidCounter) {
-							oidCounter = oid;
+						if (oid > oidCounters.get(eClass)) {
+							oidCounters.put(eClass, oid);
 						}
+						LOGGER.info(eClass.getName() + " starts at " + oidCounters.get(eClass));
 						if (pid > pidCounter) {
 							pidCounter = pid;
 						}
@@ -258,7 +265,13 @@ public class Database implements BimDatabase {
 		} finally {
 			session.close();
 		}
-		LOGGER.info("Inititialising oid as " + oidCounter + ", pid as " + pidCounter);
+	}
+
+	private void initCounter(EClass eClass) {
+		ByteBuffer cidBuffer = ByteBuffer.wrap(new byte[8]);
+		cidBuffer.putShort(6, getCidOfEClass(eClass));
+		long startOid = cidBuffer.getLong(0);
+		oidCounters.put(eClass, startOid);
 	}
 
 	public synchronized int newPid() {
@@ -298,10 +311,6 @@ public class Database implements BimDatabase {
 
 	public EClass getEClassForCid(short cid) {
 		return classifiers.getB(cid);
-	}
-
-	public long getOidCounter() {
-		return oidCounter;
 	}
 
 	public int getPidCounter() {

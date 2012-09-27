@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import org.eclipse.emf.ecore.EClass;
+
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
  * 
@@ -18,5 +20,5 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 public interface OidProvider {
-	long newOid();
+	long newOid(EClass eClass);
 }

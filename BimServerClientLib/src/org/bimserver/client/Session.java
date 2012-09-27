@@ -88,24 +88,24 @@ public class Session {
 								List list = (List) val;
 								for (Object o : list) {
 									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-										serviceInterface.addStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) o);
+										serviceInterface.addStringAttribute(eObject.getOid(), eAttribute.getName(), (String) o);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-										serviceInterface.addIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) o);
+										serviceInterface.addIntegerAttribute(eObject.getOid(), eAttribute.getName(), (Integer) o);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-										serviceInterface.addDoubleAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Double) o);
+										serviceInterface.addDoubleAttribute(eObject.getOid(), eAttribute.getName(), (Double) o);
 									} else {
 										throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
 									}
 								}
 							} else {
 								if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-									serviceInterface.setStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) val);
+									serviceInterface.setStringAttribute(eObject.getOid(), eAttribute.getName(), (String) val);
 								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-									serviceInterface.setIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) val);
+									serviceInterface.setIntegerAttribute(eObject.getOid(), eAttribute.getName(), (Integer) val);
 								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-									serviceInterface.setDoubleAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Double) val);
+									serviceInterface.setDoubleAttribute(eObject.getOid(), eAttribute.getName(), (Double) val);
 								} else if (eAttribute.getEType() instanceof EEnum) {
-									serviceInterface.setEnumAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), val.toString());
+									serviceInterface.setEnumAttribute(eObject.getOid(), eAttribute.getName(), val.toString());
 								} else {
 									throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
 								}
@@ -116,12 +116,11 @@ public class Session {
 								@SuppressWarnings("unchecked")
 								List<IdEObject> list = (List<IdEObject>) val;
 								for (IdEObject object : list) {
-									serviceInterface.addReference(eObject.getOid(), eObject.eClass().getName(), eReference.getName(), object.getOid(), object.eClass().getName());
+									serviceInterface.addReference(eObject.getOid(), eReference.getName(), object.getOid());
 								}
 							} else {
 								IdEObject referredObject = (IdEObject) val;
-								serviceInterface.setReference(eObject.getOid(), eObject.eClass().getName(), eReference.getName(), referredObject.getOid(), referredObject.eClass()
-										.getName());
+								serviceInterface.setReference(eObject.getOid(), eReference.getName(), referredObject.getOid());
 							}
 						}
 					}

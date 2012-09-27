@@ -55,17 +55,15 @@ import com.google.common.collect.BiMap;
 public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObject> {
 
 	private final long oid;
-	private final short cid;
 	private final long roid;
 	private final BimServer bimServer;
 	private Authorization authorization;
 
-	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, short cid, Authorization authorization) {
+	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.oid = oid;
-		this.cid = cid;
 		this.authorization = authorization;
 	}
 
@@ -76,7 +74,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			IfcModel subModel = new IfcModel();
-			eObject = getDatabaseSession().get(cid, null, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel, false, null);
+			eObject = getDatabaseSession().get(null, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel, false, null);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 			if (eObject != null) {

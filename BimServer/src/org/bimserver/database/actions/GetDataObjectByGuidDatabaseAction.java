@@ -61,6 +61,6 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObj
 			throw new UserException("Guid " + guid + " not found in this revision/project");
 		}
 		
-		return new GetDataObjectByOidDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), objectIdentifier.getCid(), authorization).execute();
+		return new GetDataObjectByOidDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), authorization).execute();
 	}
 }

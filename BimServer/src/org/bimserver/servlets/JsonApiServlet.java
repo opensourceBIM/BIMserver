@@ -249,7 +249,7 @@ public class JsonApiServlet extends HttpServlet {
 				} else {
 					writer.print("  " + sField.getName() + ": " + getJsonTypeName(sField.getType()));
 				}
-				if (sField != sType.getFields().get(sType.getFields().size() - 1)) {
+				if (sField != new ArrayList<SField>(sType.getAllFields()).get(sType.getFields().size() - 1)) {
 					writer.println(", ");
 				} else {
 					writer.println();

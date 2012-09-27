@@ -18,6 +18,7 @@ package org.bimserver.merging;
  *****************************************************************************/
 
 import org.bimserver.emf.OidProvider;
+import org.eclipse.emf.ecore.EClass;
 
 public class IncrementingOidProvider implements OidProvider {
 
@@ -28,7 +29,7 @@ public class IncrementingOidProvider implements OidProvider {
 	}
 
 	@Override
-	public long newOid() {
+	public long newOid(EClass eClass) {
 		return counter++;
 	}
 }
