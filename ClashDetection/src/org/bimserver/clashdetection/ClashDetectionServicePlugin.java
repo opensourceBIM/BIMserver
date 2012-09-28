@@ -30,7 +30,8 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
@@ -52,7 +53,8 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.NotificationInterfaceAdapter;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class ClashDetectionServicePlugin extends ServicePlugin {
@@ -77,14 +79,15 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		
 		register(serverDescriptor, clashDetection, new NotificationInterfaceAdapter(){
 			@Override
-			public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
+			public void newLogAction(SLogAction newRevisionNotification, SToken token, String apiUrl) throws UserException, ServerException {
+				SNewRevisionAdded sNewRevisionAdded = (SNewRevisionAdded)newRevisionNotification;
 				Bcf bcf = new Bcf();
 				
 				ServiceInterface serviceInterface = getServiceInterface(token);
 			
 				SSerializer sSerializer = serviceInterface.getSerializerByContentType("application/ifc");
 				
-				Integer download = serviceInterface.download(newRevisionNotification.getRevisionId(), sSerializer.getOid(), true, true);
+				Integer download = serviceInterface.download(sNewRevisionAdded.getRevisionId(), sSerializer.getOid(), true, true);
 				SDownloadResult downloadData = serviceInterface.getDownloadData(download);
 				
 				try {
@@ -201,7 +204,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				}
 				extendedData.setMime("application/bcf");
 				
-				serviceInterface.addExtendedDataToRevision(newRevisionNotification.getRevisionId(), extendedData);
+				serviceInterface.addExtendedDataToRevision(sNewRevisionAdded.getRevisionId(), extendedData);
 			}
 		});
 	}
