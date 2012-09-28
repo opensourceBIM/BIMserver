@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -36,9 +39,11 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 	private final long uoid;
 	private final SUserType userType;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public ChangeUserTypeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid, SUserType userType) {
+	public ChangeUserTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid, SUserType userType) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.uoid = uoid;
 		this.userType = userType;
@@ -55,11 +60,17 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 			throw new UserException("Type of system user cannot be changed");
 		}
 		user.setUserType(UserType.get(userType.getOrdinal()));
-		UserChanged userChanged = LogFactory.eINSTANCE.createUserChanged();
+		final UserChanged userChanged = LogFactory.eINSTANCE.createUserChanged();
 		userChanged.setAccessMethod(getAccessMethod());
 		userChanged.setDate(new Date());
 		userChanged.setExecutor(actingUser);
 		userChanged.setUser(user);
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(userChanged));
+			}
+		});
 		getDatabaseSession().store(userChanged);
 		getDatabaseSession().store(user);
 		return null;

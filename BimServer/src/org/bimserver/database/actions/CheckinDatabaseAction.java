@@ -18,6 +18,8 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -29,22 +31,28 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,8 +67,14 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final boolean clean;
 	private Project project;
 	private Authorization authorization;
+	private RevisionSummaryContainer revisionSummaryContainerEntities;
+	private RevisionSummaryContainer revisionSummaryContainerRelations;
+	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
+	private RevisionSummaryContainer revisionSummaryContainerOther;
+	private Map<EClass, Integer> map = new HashMap<EClass, Integer>();
 
-	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, boolean merge, boolean clean) {
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
+			String comment, boolean merge, boolean clean) {
 		super(databaseSession, accessMethod, model);
 		this.bimServer = bimServer;
 		this.poid = poid;
@@ -94,10 +108,15 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (getModel() != null) {
 				concreteRevision.setChecksum(getModel().getChecksum());
 			}
-			NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
+			final NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 			newRevisionAdded.setDate(new Date());
 			newRevisionAdded.setExecutor(user);
-			newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
+			Revision revision = concreteRevision.getRevisions().get(0);
+			
+			revision.setSummary(createSummary(getModel()));
+			
+			newRevisionAdded.setRevision(revision);
+			newRevisionAdded.setProject(project);
 			newRevisionAdded.setAccessMethod(getAccessMethod());
 
 			Revision lastRevision = project.getLastRevision();
@@ -118,10 +137,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					SNewRevisionNotification newRevisionNotification = new SNewRevisionNotification();
-					newRevisionNotification.setRevisionId(concreteRevision.getRevisions().get(0).getOid());
-					newRevisionNotification.setProjectId(concreteRevision.getProject().getOid());
-					bimServer.getNotificationsManager().notify(newRevisionNotification);
+					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
 				}
 			});
 			getDatabaseSession().store(concreteRevision);
@@ -133,7 +149,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				throw (BimserverDatabaseException) e;
 			}
 			if (e instanceof UserException) {
-				throw (UserException)e;
+				throw (UserException) e;
 			}
 			LOGGER.error("", e);
 			throw new UserException(e);
@@ -141,6 +157,53 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return concreteRevision;
 	}
 
+	private RevisionSummary createSummary(IfcModelInterface model) throws BimserverDatabaseException {
+		RevisionSummary revisionSummary = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummary());
+		revisionSummaryContainerEntities = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		revisionSummaryContainerEntities.setName("IFC Entities");
+		revisionSummary.getList().add(revisionSummaryContainerEntities);
+		revisionSummaryContainerRelations = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		revisionSummaryContainerRelations.setName("IFC Relations");
+		revisionSummary.getList().add(revisionSummaryContainerRelations);
+		revisionSummaryContainerPrimitives = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		revisionSummaryContainerPrimitives.setName("IFC Primitives");
+		revisionSummary.getList().add(revisionSummaryContainerPrimitives);
+		revisionSummaryContainerOther = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		revisionSummaryContainerOther.setName("Rest");
+		revisionSummary.getList().add(revisionSummaryContainerOther);
+		
+		for (EClass eClass : getDatabaseSession().getClasses()) {
+			add(revisionSummary, eClass, model.count(eClass));
+		}
+		for (EClass eClass : map.keySet()) {
+			RevisionSummaryContainer subMap = null;
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
+				subMap = revisionSummaryContainerEntities;
+			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRelationship().isSuperTypeOf(eClass)) {
+				subMap = revisionSummaryContainerRelations;
+			} else if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
+				subMap = revisionSummaryContainerPrimitives;
+			} else {
+				subMap = revisionSummaryContainerOther;
+			}
+			RevisionSummaryType createRevisionSummaryType = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryType());
+			createRevisionSummaryType.setCount(map.get(eClass));
+			createRevisionSummaryType.setName(eClass.getName());
+			subMap.getTypes().add(createRevisionSummaryType);
+		}
+		return revisionSummary;
+	}
+
+	public void add(RevisionSummary revisionSummary, EClass eClass, int count) {
+		if (count == 0) {
+			return;
+		}
+		if (!map.containsKey(eClass)) {
+			map.put(eClass, count);
+		}
+		map.put(eClass, count);
+	}
+	
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
 		IfcModelInterface ifcModel;
 		IfcModelSet ifcModelSet = new IfcModelSet();
@@ -157,8 +220,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		newModel.fixOids(getDatabaseSession());
 		IfcModelInterface oldModel;
 		try {
-			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
-					.merge(project, ifcModelSet, new ModelHelper());
+			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
@@ -178,8 +240,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		revisionMerger.cleanupUnmodified();
 
 		for (IdEObject idEObject : ifcModel.getValues()) {
-			((IdEObjectImpl)idEObject).setRid(concreteRevision.getId());
-			((IdEObjectImpl)idEObject).setPid(concreteRevision.getProject().getId());
+			((IdEObjectImpl) idEObject).setRid(concreteRevision.getId());
+			((IdEObjectImpl) idEObject).setPid(concreteRevision.getProject().getId());
 		}
 		return ifcModel;
 	}

@@ -40,7 +40,7 @@ You are logged in as: <a href="user.jsp?uoid=<%=loggedInUser.getOid()%>"><%=logg
  				}
  				if (cookies.containsKey("autologin") && cookies.containsKey("username")) {
  					AutologinAuthenticationInfo auth = new AutologinAuthenticationInfo(cookies.get("username"), cookies.get("autologin"));
- 					if (loginManager.login(auth, request.getRemoteAddr())) {
+ 					if (loginManager.login(auth, request.getRemoteAddr(), request)) {
  %>
 <div class="menubar">
 You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLoggedInUser().getOid()%>"><%=loginManager.getService().getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>

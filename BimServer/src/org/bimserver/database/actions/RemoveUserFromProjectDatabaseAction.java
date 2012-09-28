@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserRemovedFromProject;
@@ -36,10 +39,12 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 	private final long uoid;
 	private final long poid;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public RemoveUserFromProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long poid,
+	public RemoveUserFromProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, long poid,
 			Authorization authorization) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.uoid = uoid;
 		this.poid = poid;
 		this.authorization = authorization;
@@ -65,12 +70,18 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 			}
 			project.getHasAuthorizedUsers().remove(user);
 			user.getHasRightsOn().remove(project);
-			UserRemovedFromProject userRemovedFromProject = LogFactory.eINSTANCE.createUserRemovedFromProject();
+			final UserRemovedFromProject userRemovedFromProject = LogFactory.eINSTANCE.createUserRemovedFromProject();
 			userRemovedFromProject.setDate(new Date());
 			userRemovedFromProject.setExecutor(actingUser);
 			userRemovedFromProject.setAccessMethod(getAccessMethod());
 			userRemovedFromProject.setProject(project);
 			userRemovedFromProject.setUser(user);
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(userRemovedFromProject));
+				}
+			});
 			getDatabaseSession().store(userRemovedFromProject);
 			getDatabaseSession().store(user);
 			getDatabaseSession().store(project);

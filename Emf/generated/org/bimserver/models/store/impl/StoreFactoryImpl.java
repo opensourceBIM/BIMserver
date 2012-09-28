@@ -219,12 +219,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createCompareResult();
 		case StorePackage.LONG_ACTION_STATE:
 			return (EObject) createLongActionState();
-		case StorePackage.NOTIFICATION:
-			return (EObject) createNotification();
-		case StorePackage.NEW_PROJECT_NOTIFICATION:
-			return (EObject) createNewProjectNotification();
-		case StorePackage.NEW_REVISION_NOTIFICATION:
-			return (EObject) createNewRevisionNotification();
 		case StorePackage.SERVER_INFO:
 			return (EObject) createServerInfo();
 		case StorePackage.VERSION:
@@ -758,36 +752,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public LongActionState createLongActionState() {
 		LongActionStateImpl longActionState = new LongActionStateImpl();
 		return longActionState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Notification createNotification() {
-		NotificationImpl notification = new NotificationImpl();
-		return notification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NewProjectNotification createNewProjectNotification() {
-		NewProjectNotificationImpl newProjectNotification = new NewProjectNotificationImpl();
-		return newProjectNotification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NewRevisionNotification createNewRevisionNotification() {
-		NewRevisionNotificationImpl newRevisionNotification = new NewRevisionNotificationImpl();
-		return newRevisionNotification;
 	}
 
 	/**

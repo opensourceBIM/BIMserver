@@ -60,6 +60,9 @@ public class SNewRevisionAdded extends SLogAction implements SDataBase
 		if (sField.getName().equals("revisionId")) {
 			return getRevisionId();
 		}
+		if (sField.getName().equals("projectId")) {
+			return getProjectId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -82,6 +85,10 @@ public class SNewRevisionAdded extends SLogAction implements SDataBase
 			setRevisionId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("projectId")) {
+			setProjectId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -90,12 +97,21 @@ public class SNewRevisionAdded extends SLogAction implements SDataBase
 	}
 	
 	private long revisionId;
+	private long projectId;
 	public long getRevisionId() {
 		return revisionId;
 	}
 
 	public void setRevisionId(long revisionId) {
 		this.revisionId = revisionId;
+	}
+	
+	public long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
 	
 	@Override

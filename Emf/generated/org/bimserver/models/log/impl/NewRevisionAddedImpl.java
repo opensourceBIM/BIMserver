@@ -19,6 +19,7 @@ package org.bimserver.models.log.impl;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewRevisionAdded;
 
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 
 import org.eclipse.emf.ecore.EClass;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.log.impl.NewRevisionAddedImpl#getRevision <em>Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.log.impl.NewRevisionAddedImpl#getProject <em>Project</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +74,24 @@ public class NewRevisionAddedImpl extends LogActionImpl implements NewRevisionAd
 	 */
 	public void setRevision(Revision newRevision) {
 		eSet(LogPackage.Literals.NEW_REVISION_ADDED__REVISION, newRevision);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project getProject() {
+		return (Project) eGet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProject(Project newProject) {
+		eSet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT, newProject);
 	}
 
 } //NewRevisionAddedImpl

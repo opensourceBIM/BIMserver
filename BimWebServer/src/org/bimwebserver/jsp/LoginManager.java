@@ -17,6 +17,8 @@ package org.bimwebserver.jsp;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.AuthenticationInfo;
@@ -37,13 +39,14 @@ public class LoginManager {
 		return getService().getCurrentUser().getOid();
 	}
 
-	public boolean login(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
+	public boolean login(AuthenticationInfo authenticationInfo, String remoteAddress, HttpServletRequest request) throws ServiceException {
 		try {
 			if (bimServerClient != null) {
 				bimServerClient.disconnect();
 			}
 			bimServerClient = bimServerClientFactory.create(authenticationInfo, remoteAddress);
 			loggedIn = bimServerClient.isConnected();
+			request.getSession().setAttribute("token", bimServerClient.getServiceInterface().getCurrentToken());
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		} catch (ConnectionException e) {

@@ -486,6 +486,9 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private String createEnum(StringBuilder sb, Class<?> clazz) {
+		if (clazz.getSimpleName().equals("AccessMethod")) {
+			System.out.println();
+		}
 		if (generatedClasses.containsKey(clazz)) {
 			return generatedClasses.get(clazz);
 		} else {

@@ -543,13 +543,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__LAID = 12;
 
 	/**
+	 * The feature id for the '<em><b>Summary</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__SUMMARY = 13;
+
+	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__EXTENDED_DATA = 13;
+	int REVISION__EXTENDED_DATA = 14;
 
 	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
@@ -558,7 +567,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 14;
+	int REVISION_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -2922,90 +2931,6 @@ public interface StorePackage extends EPackage {
 	int LONG_ACTION_STATE_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.NotificationImpl <em>Notification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.NotificationImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotification()
-	 * @generated
-	 */
-	int NOTIFICATION = 42;
-
-	/**
-	 * The number of structural features of the '<em>Notification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOTIFICATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.NewProjectNotificationImpl <em>New Project Notification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.NewProjectNotificationImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewProjectNotification()
-	 * @generated
-	 */
-	int NEW_PROJECT_NOTIFICATION = 43;
-
-	/**
-	 * The feature id for the '<em><b>Project</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_PROJECT_NOTIFICATION__PROJECT = NOTIFICATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>New Project Notification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_PROJECT_NOTIFICATION_FEATURE_COUNT = NOTIFICATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.NewRevisionNotificationImpl <em>New Revision Notification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.NewRevisionNotificationImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewRevisionNotification()
-	 * @generated
-	 */
-	int NEW_REVISION_NOTIFICATION = 44;
-
-	/**
-	 * The feature id for the '<em><b>Revision</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_REVISION_NOTIFICATION__REVISION = NOTIFICATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Project</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_REVISION_NOTIFICATION__PROJECT = NOTIFICATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>New Revision Notification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_REVISION_NOTIFICATION_FEATURE_COUNT = NOTIFICATION_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3013,7 +2938,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerInfo()
 	 * @generated
 	 */
-	int SERVER_INFO = 45;
+	int SERVER_INFO = 42;
 
 	/**
 	 * The feature id for the '<em><b>Server State</b></em>' attribute.
@@ -3050,7 +2975,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getVersion()
 	 * @generated
 	 */
-	int VERSION = 46;
+	int VERSION = 43;
 
 	/**
 	 * The feature id for the '<em><b>Major</b></em>' attribute.
@@ -3132,7 +3057,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEnginePluginDescriptor()
 	 * @generated
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR = 47;
+	int IFC_ENGINE_PLUGIN_DESCRIPTOR = 44;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3196,7 +3121,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchema()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA = 48;
+	int EXTENDED_DATA_SCHEMA = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3296,7 +3221,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedData()
 	 * @generated
 	 */
-	int EXTENDED_DATA = 49;
+	int EXTENDED_DATA = 46;
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -3405,7 +3330,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginDescriptor()
 	 * @generated
 	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR = 50;
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR = 47;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3469,7 +3394,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEngine()
 	 * @generated
 	 */
-	int QUERY_ENGINE = 51;
+	int QUERY_ENGINE = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3533,7 +3458,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelMergerPluginDescriptor()
 	 * @generated
 	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR = 52;
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR = 49;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3597,7 +3522,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelMerger()
 	 * @generated
 	 */
-	int MODEL_MERGER = 53;
+	int MODEL_MERGER = 50;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3661,7 +3586,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelComparePluginDescriptor()
 	 * @generated
 	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR = 54;
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR = 51;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3725,7 +3650,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCompare()
 	 * @generated
 	 */
-	int MODEL_COMPARE = 55;
+	int MODEL_COMPARE = 52;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3789,7 +3714,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerDescriptor()
 	 * @generated
 	 */
-	int SERVER_DESCRIPTOR = 56;
+	int SERVER_DESCRIPTOR = 53;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -3835,7 +3760,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceDescriptor()
 	 * @generated
 	 */
-	int SERVICE_DESCRIPTOR = 57;
+	int SERVICE_DESCRIPTOR = 54;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3944,7 +3869,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getService()
 	 * @generated
 	 */
-	int SERVICE = 58;
+	int SERVICE = 55;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4071,7 +3996,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getToken()
 	 * @generated
 	 */
-	int TOKEN = 59;
+	int TOKEN = 56;
 
 	/**
 	 * The feature id for the '<em><b>Token String</b></em>' attribute.
@@ -4108,7 +4033,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServicePluginDescriptor()
 	 * @generated
 	 */
-	int SERVICE_PLUGIN_DESCRIPTOR = 60;
+	int SERVICE_PLUGIN_DESCRIPTOR = 57;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -4172,7 +4097,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getEService()
 	 * @generated
 	 */
-	int ESERVICE = 61;
+	int ESERVICE = 58;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4236,7 +4161,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceInterface()
 	 * @generated
 	 */
-	int SERVICE_INTERFACE = 62;
+	int SERVICE_INTERFACE = 59;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4264,7 +4189,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceMethod()
 	 * @generated
 	 */
-	int SERVICE_METHOD = 63;
+	int SERVICE_METHOD = 60;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4310,7 +4235,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceField()
 	 * @generated
 	 */
-	int SERVICE_FIELD = 64;
+	int SERVICE_FIELD = 61;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4365,7 +4290,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceType()
 	 * @generated
 	 */
-	int SERVICE_TYPE = 65;
+	int SERVICE_TYPE = 62;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4411,7 +4336,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceParameter()
 	 * @generated
 	 */
-	int SERVICE_PARAMETER = 66;
+	int SERVICE_PARAMETER = 63;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4466,7 +4391,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 67;
+	int USER_TYPE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -4476,7 +4401,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 68;
+	int SI_PREFIX = 65;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -4486,7 +4411,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 69;
+	int OBJECT_STATE = 66;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -4496,7 +4421,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 70;
+	int COMPARE_TYPE = 67;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -4506,7 +4431,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 71;
+	int ACTION_STATE = 68;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -4516,7 +4441,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 72;
+	int SERVER_STATE = 69;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -4526,7 +4451,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 73;
+	int CHECKIN_STATUS = 70;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -4536,7 +4461,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 74;
+	int EXTENDED_DATA_SCHEMA_TYPE = 71;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -4546,7 +4471,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 75;
+	int TRIGGER = 72;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -4556,7 +4481,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 76;
+	int DATA_HANDLER = 73;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -5104,6 +5029,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevision_Laid();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getSummary <em>Summary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Summary</em>'.
+	 * @see org.bimserver.models.store.Revision#getSummary()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_Summary();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}'.
@@ -7047,69 +6983,6 @@ public interface StorePackage extends EPackage {
 	EAttribute getLongActionState_Infos();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.Notification <em>Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Notification</em>'.
-	 * @see org.bimserver.models.store.Notification
-	 * @generated
-	 */
-	EClass getNotification();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.NewProjectNotification <em>New Project Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>New Project Notification</em>'.
-	 * @see org.bimserver.models.store.NewProjectNotification
-	 * @generated
-	 */
-	EClass getNewProjectNotification();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewProjectNotification#getProject <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project</em>'.
-	 * @see org.bimserver.models.store.NewProjectNotification#getProject()
-	 * @see #getNewProjectNotification()
-	 * @generated
-	 */
-	EReference getNewProjectNotification_Project();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.NewRevisionNotification <em>New Revision Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>New Revision Notification</em>'.
-	 * @see org.bimserver.models.store.NewRevisionNotification
-	 * @generated
-	 */
-	EClass getNewRevisionNotification();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewRevisionNotification#getRevision <em>Revision</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Revision</em>'.
-	 * @see org.bimserver.models.store.NewRevisionNotification#getRevision()
-	 * @see #getNewRevisionNotification()
-	 * @generated
-	 */
-	EReference getNewRevisionNotification_Revision();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewRevisionNotification#getProject <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project</em>'.
-	 * @see org.bimserver.models.store.NewRevisionNotification#getProject()
-	 * @see #getNewRevisionNotification()
-	 * @generated
-	 */
-	EReference getNewRevisionNotification_Project();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServerInfo <em>Server Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8673,6 +8546,14 @@ public interface StorePackage extends EPackage {
 		EAttribute REVISION__LAID = eINSTANCE.getRevision_Laid();
 
 		/**
+		 * The meta object literal for the '<em><b>Summary</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__SUMMARY = eINSTANCE.getRevision_Summary();
+
+		/**
 		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10189,60 +10070,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LONG_ACTION_STATE__INFOS = eINSTANCE.getLongActionState_Infos();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NotificationImpl <em>Notification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.NotificationImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotification()
-		 * @generated
-		 */
-		EClass NOTIFICATION = eINSTANCE.getNotification();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NewProjectNotificationImpl <em>New Project Notification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.NewProjectNotificationImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewProjectNotification()
-		 * @generated
-		 */
-		EClass NEW_PROJECT_NOTIFICATION = eINSTANCE.getNewProjectNotification();
-
-		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NEW_PROJECT_NOTIFICATION__PROJECT = eINSTANCE.getNewProjectNotification_Project();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NewRevisionNotificationImpl <em>New Revision Notification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.NewRevisionNotificationImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewRevisionNotification()
-		 * @generated
-		 */
-		EClass NEW_REVISION_NOTIFICATION = eINSTANCE.getNewRevisionNotification();
-
-		/**
-		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NEW_REVISION_NOTIFICATION__REVISION = eINSTANCE.getNewRevisionNotification_Revision();
-
-		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NEW_REVISION_NOTIFICATION__PROJECT = eINSTANCE.getNewRevisionNotification_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.

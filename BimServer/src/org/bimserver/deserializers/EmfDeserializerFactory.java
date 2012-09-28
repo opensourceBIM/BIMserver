@@ -17,50 +17,28 @@ package org.bimserver.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.models.store.Deserializer;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class EmfDeserializerFactory {
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializerFactory.class);
 	private PluginManager pluginManager;
-	private BimDatabase bimDatabase;
 
-	public void init(PluginManager pluginManager, BimDatabase bimDatabase) {
+	public void init(PluginManager pluginManager) {
 		this.pluginManager = pluginManager;
-		this.bimDatabase = bimDatabase;
 	}
-	
-	public EmfDeserializer createDeserializer(String deserializerName) {
-		DatabaseSession session = bimDatabase.createSession();
-		try {
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(deserializerName));
-			Deserializer found = session.querySingle(condition, Deserializer.class, false, null);
-			if (found != null) {
-				DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin(found.getClassName(), true);
-				if (deserializerPlugin != null) {
-					EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
-					deserializer.init(pluginManager.requireSchemaDefinition());
-					return deserializer;
-				}
+
+	public EmfDeserializer createDeserializer(String deserializerClassname) {
+		DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin(deserializerClassname, true);
+		if (deserializerPlugin != null) {
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			try {
+				deserializer.init(pluginManager.requireSchemaDefinition());
+			} catch (PluginException e) {
+				e.printStackTrace();
 			}
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
+			return deserializer;
 		}
 		return null;
 	}

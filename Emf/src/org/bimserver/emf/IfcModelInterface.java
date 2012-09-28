@@ -75,4 +75,5 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void fixOidCounter();
 	void setUseDoubleStrings(boolean useDoubleStrings);
 	boolean isUseDoubleStrings();
+	int count(EClass eClass);
 }

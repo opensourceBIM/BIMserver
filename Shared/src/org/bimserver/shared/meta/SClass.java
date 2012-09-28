@@ -21,6 +21,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -123,7 +124,14 @@ public class SClass {
 		Type genericReturnType = method.getGenericReturnType();
 		if (method.getGenericReturnType() instanceof ParameterizedType) {
 			ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
-			return (Class<?>) parameterizedTypeImpl.getActualTypeArguments()[0];
+			Type first = parameterizedTypeImpl.getActualTypeArguments()[0];
+			if (first instanceof WildcardType) {
+				return null;
+			} else if (first instanceof ParameterizedType) {
+				return null;
+			} else {
+				return (Class<?>) first;
+			}
 		}
 		return (Class<?>) method.getGenericReturnType();
 	}

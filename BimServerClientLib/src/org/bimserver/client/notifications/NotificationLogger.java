@@ -19,10 +19,8 @@ package org.bimserver.client.notifications;
 
 import java.io.PrintWriter;
 
-import org.bimserver.interfaces.objects.SNewProjectNotification;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class NotificationLogger implements NotificationInterface {
@@ -34,26 +32,8 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
-		out.println("New project " + newProjectNotification.getProjectId());
-		out.flush();
-	}
-
-	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
-		out.println("New revision " + newRevisionNotification.getRevisionId());
-		out.flush();
-	}
-
-	@Override
-	public void serverHasStarted() {
-		out.println("BIMserver started");
-		out.flush();
-	}
-
-	@Override
-	public void serverWillBeShutdown() {
-		out.println("BIMserver will be shut down");
+	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) {
+		out.println(logAction);
 		out.flush();
 	}
 }

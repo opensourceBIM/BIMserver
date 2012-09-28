@@ -24,6 +24,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.eclipse.emf.common.util.EList;
@@ -49,6 +50,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBmi <em>Bmi</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLaid <em>Laid</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
  * </p>
@@ -301,6 +303,24 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setLaid(Long newLaid) {
 		eSet(StorePackage.Literals.REVISION__LAID, newLaid);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionSummary getSummary() {
+		return (RevisionSummary) eGet(StorePackage.Literals.REVISION__SUMMARY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSummary(RevisionSummary newSummary) {
+		eSet(StorePackage.Literals.REVISION__SUMMARY, newSummary);
 	}
 
 	/**

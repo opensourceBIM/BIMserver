@@ -39,7 +39,7 @@
 
 	<servlet>
 		<servlet-name>UploadServlet</servlet-name>
-		<servlet-class>org.bimwebserver.servlets.UploadServlet</servlet-class>
+		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -69,7 +69,7 @@
 
 	<servlet>
 		<servlet-name>StreamingServlet</servlet-name>
-		<servlet-class>org.bimwebserver.servlets.StreamingServlet</servlet-class>
+		<servlet-class>org.bimserver.servlets.StreamingServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

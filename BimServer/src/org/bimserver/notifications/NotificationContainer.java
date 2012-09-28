@@ -17,24 +17,23 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.models.store.User;
-import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.servlets.EndPoint;
 
 public class NotificationContainer {
 
-	private final User user;
-	private final NotificationInterface notificationInterface;
+	private final long uoid;
+	private EndPoint endPoint;
 
-	public NotificationContainer(User user, NotificationInterface notificationInterface) {
-		this.user = user;
-		this.notificationInterface = notificationInterface;
+	public NotificationContainer(long uoid, EndPoint endPoint) {
+		this.uoid = uoid;
+		this.endPoint = endPoint;
 	}
 	
-	public User getUser() {
-		return user;
+	public long getUoid() {
+		return uoid;
 	}
 	
-	public NotificationInterface getNotificationInterface() {
-		return notificationInterface;
+	public EndPoint getEndPoint() {
+		return endPoint;
 	}
 }

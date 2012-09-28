@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.PasswordChanged;
@@ -37,9 +40,11 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final String newPassword;
 	private final long uoid;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public ChangePasswordDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, Authorization authorization) {
+	public ChangePasswordDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, Authorization authorization) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.uoid = uoid;
 		this.oldPassword = oldPassword;
 		this.newPassword = newPassword;
@@ -68,11 +73,17 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 		User user = getUserByUoid(uoid);
 		if (skipCheck || Hashers.getSha256Hash(oldPassword).equals(user.getPassword())) {
 			user.setPassword(Hashers.getSha256Hash(newPassword));
-			PasswordChanged passwordchanged = LogFactory.eINSTANCE.createPasswordChanged();
+			final PasswordChanged passwordchanged = LogFactory.eINSTANCE.createPasswordChanged();
 			passwordchanged.setAccessMethod(getAccessMethod());
 			passwordchanged.setDate(new Date());
 			passwordchanged.setExecutor(actingUser);
 			passwordchanged.setUser(user);
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(passwordchanged));
+				}
+			});
 			databaseSession.store(user);
 			databaseSession.store(passwordchanged);
 			return true;

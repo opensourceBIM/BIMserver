@@ -3,10 +3,12 @@ package org.bimwebserver;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.NotificationInterfaceAdapter;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.meta.SService;
 
@@ -18,7 +20,7 @@ public class BimWebServer extends NotificationInterfaceAdapter {
 	
 	public BimWebServer(Map<String, SService> sServices) {
 		this.sServices = sServices;
-		services.put(NotificationInterface.class.getSimpleName(), new NotificationInterfaceImpl());
+		services.put(NotificationInterface.class.getSimpleName(), new NotificationInterfaceAdapter());
 	}
 	
 	public void registerForNotifications(long uoid, NotificationInterface notificationInterface) {
@@ -42,9 +44,9 @@ public class BimWebServer extends NotificationInterfaceAdapter {
 	}
 	
 	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
+	public void newLogAction(SLogAction newRevisionNotification, SToken token, String apiUrl) throws UserException, ServerException {
 		for (NotificationInterface notificationInterface : notificationHandlers.values()) {
-			notificationInterface.newRevision(newRevisionNotification, token, apiUrl);
+			notificationInterface.newLogAction(newRevisionNotification, token, apiUrl);
 		}
 	}
 }

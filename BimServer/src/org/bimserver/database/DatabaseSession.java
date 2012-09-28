@@ -679,7 +679,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		checkOpen();
 		if (oid == -1) {
-			throw new RuntimeException("Cannot get object for oid = " + oid);
+			throw new RuntimeException("Cannot get object for oid " + oid);
 		}
 		if (objectsToCommit.containsOid(oid)) {
 			return (T) objectsToCommit.getByOid(oid);
@@ -1551,5 +1551,12 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 	public void planClearProject(int pid, int oldRid, int newRid) {
 		clearProjectPlan = new ClearProjectPlan(pid, oldRid, newRid);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T create(EClass eClass) throws BimserverDatabaseException {
+		IdEObject idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		store(idEObject);
+		return (T) idEObject;
 	}
 }

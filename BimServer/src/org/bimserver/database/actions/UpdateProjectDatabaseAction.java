@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -36,9 +39,11 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final SProject sProject;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public UpdateProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SProject sProject) {
+	public UpdateProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SProject sProject) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.sProject = sProject;
 	}
@@ -75,11 +80,17 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		project.setName(sProject.getName());
 		project.setDescription(sProject.getDescription());
 		project.setExportLengthMeasurePrefix(SIPrefix.get(sProject.getExportLengthMeasurePrefix().getOrdinal()));
-		ProjectUpdated projectUpdated = LogFactory.eINSTANCE.createProjectUpdated();
+		final ProjectUpdated projectUpdated = LogFactory.eINSTANCE.createProjectUpdated();
 		projectUpdated.setAccessMethod(getAccessMethod());
 		projectUpdated.setDate(new Date());
 		projectUpdated.setExecutor(actingUser);
 		projectUpdated.setProject(project);
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(projectUpdated));
+			}
+		});
 		getDatabaseSession().store(projectUpdated);
 		getDatabaseSession().store(project);
 		return null;

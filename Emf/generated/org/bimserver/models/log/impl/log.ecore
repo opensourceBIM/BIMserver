@@ -32,6 +32,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NewRevisionAdded" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass store#//Revision"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store#//Project"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NewCheckoutAdded" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="checkout" eType="ecore:EClass store#//Checkout"/>

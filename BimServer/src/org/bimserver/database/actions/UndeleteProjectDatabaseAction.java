@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ProjectUndeleted;
@@ -36,9 +39,11 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long poid;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public UndeleteProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization) {
+	public UndeleteProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.poid = poid;
 		this.authorization = authorization;
 	}
@@ -52,11 +57,17 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 		}
 		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
 			project.setState(ObjectState.ACTIVE);
-			ProjectUndeleted projectUndeleted = LogFactory.eINSTANCE.createProjectUndeleted();
+			final ProjectUndeleted projectUndeleted = LogFactory.eINSTANCE.createProjectUndeleted();
 			projectUndeleted.setAccessMethod(getAccessMethod());
 			projectUndeleted.setDate(new Date());
 			projectUndeleted.setExecutor(actingUser);
 			projectUndeleted.setProject(project);
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(projectUndeleted));
+				}
+			});
 			getDatabaseSession().store(project);
 			getDatabaseSession().store(projectUndeleted);
 			return true;

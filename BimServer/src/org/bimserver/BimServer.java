@@ -94,6 +94,7 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
+import org.bimserver.servlets.EndPointManager;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -137,7 +138,10 @@ public class BimServer {
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
+	private JsonHandler jsonHandler = new JsonHandler(this);
 	private CommandLine commandLine;
+
+	private EndPointManager endPointManager = new EndPointManager();
 
 	/**
 	 * Create a new BIMserver
@@ -362,10 +366,13 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
+			User systemUser = session.querySingle(condition, User.class, false, null);
+			
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
 			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
-			serverStarted.setExecutor(null);
+			serverStarted.setExecutor(systemUser);
 			try {
 				session.store(serverStarted);
 				session.commit();
@@ -617,7 +624,7 @@ public class BimServer {
 
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
 		getEmfSerializerFactory().init(pluginManager, bimDatabase);
-		getEmfDeserializerFactory().init(pluginManager, bimDatabase);
+		getEmfDeserializerFactory().init(pluginManager);
 		try {
 			createDatabaseObjects();
 		} catch (BimserverLockConflictException e) {
@@ -794,5 +801,13 @@ public class BimServer {
 
 	public Map<String, SService> getServiceInterfaces() {
 		return serviceInterfaces;
+	}
+
+	public JsonHandler getJsonHandler() {
+		return jsonHandler;
+	}
+
+	public EndPointManager getEndPointManager() {
+		return endPointManager ;
 	}
 }

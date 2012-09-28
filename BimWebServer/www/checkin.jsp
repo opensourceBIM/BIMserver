@@ -26,11 +26,11 @@
 <div id="uploadProgressBar"></div>
 <table id="uploadTable">
 <tr><td><label for="file">File</label></td><td><input id="fileupload" type="file" name="data"/></td></tr>
-<tr><td><label for="deserializerName">Deserializer</label></td><td><select id="deserializerName" name="deserializerName">
+<tr><td><label for="deserializerOid">Deserializer</label></td><td><select id="deserializerOid" name="deserializerOid">
 <option value="[NONE]">Select a deserializer</option>
 <%
 	for (SDeserializer deserializer : loginManager.getService().getAllDeserializers(true)) {
-		out.println("<option value=\"" + deserializer.getName() + "\">" + deserializer.getName() + "</option>");
+		out.println("<option value=\"" + deserializer.getOid() + "\">" + deserializer.getName() + "</option>");
 	}
 %>
 </select></td></tr>
@@ -153,14 +153,14 @@
 		};
 		
 		function updateSubmitButton() {
-	        if ($("#deserializerName").val() != "[NONE]" && fileselected) {
+	        if ($("#deserializerOid").val() != "[NONE]" && fileselected) {
 		        $("#uploadButton").show();
 	        } else {
 		        $("#uploadButton").hide();
 	        }
 		}
 		
-		$("#deserializerName").change(updateSubmitButton);
+		$("#deserializerOid").change(updateSubmitButton);
 		
 		$("#fileupload").fileupload({
 			dataType: "json",
@@ -202,7 +202,7 @@
 						context: document.body,
 						success: function(data){
 							if (data.error == null) {
-								$("#deserializerName").val(data.trim());
+								$("#deserializerOid").val(data.trim());
 								updateSubmitButton();
 							} else {
 								$("#uploadStatus").html("Error: " + data.error);
@@ -239,7 +239,7 @@
 		$("#uploadButton").click(function(event){
 			shouldsend = true;
 			submitdata.formData = {
-				deserializerName: $("#deserializerName").val(),
+				deserializerOid: $("#deserializerOid").val(),
 				comment: $("#comment").val(),
 				merge: $("#merge").is(':checked'),
 				poid: $("#poid").val()

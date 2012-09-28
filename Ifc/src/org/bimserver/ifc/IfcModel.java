@@ -775,4 +775,13 @@ public class IfcModel implements IfcModelInterface {
 	public Iterator<IdEObject> iterator() {
 		return objects.values().iterator();
 	}
+
+	@Override
+	public int count(EClass eClass) {
+		List<EObject> list = getAll(eClass);
+		if (list == null) {
+			return 0;
+		}
+		return list.size();
+	}
 }

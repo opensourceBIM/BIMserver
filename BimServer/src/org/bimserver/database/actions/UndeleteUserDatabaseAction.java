@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserUndeleted;
@@ -35,9 +38,11 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long uoid;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public UndeleteUserDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid) {
+	public UndeleteUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.uoid = uoid;
 	}
@@ -52,11 +57,17 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (user == null) {
 			throw new UserException("No User with oid " + uoid + " found");
 		}
-		UserUndeleted userUndeleted = LogFactory.eINSTANCE.createUserUndeleted();
+		final UserUndeleted userUndeleted = LogFactory.eINSTANCE.createUserUndeleted();
 		userUndeleted.setAccessMethod(getAccessMethod());
 		userUndeleted.setDate(new Date());
 		userUndeleted.setExecutor(actingUser);
 		userUndeleted.setUser(user);
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(userUndeleted));
+			}
+		});
 		user.setState(ObjectState.ACTIVE);
 		getDatabaseSession().store(user);
 		getDatabaseSession().store(userUndeleted);

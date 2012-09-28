@@ -25,7 +25,6 @@ public class Step0016 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		schema.createEReference(schema.getEClass("store", "NewRevisionNotification"), "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
 	}
 
 	@Override

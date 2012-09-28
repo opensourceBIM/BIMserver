@@ -1,9 +1,10 @@
+<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimwebserver.jsp.LoginManager"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
-	String name = loginManager.getService().getSuggestedDeserializerForExtension(request.getParameter("extension"));
-	if (name != null) {
-		out.print(name);
+	SDeserializer deserializer = loginManager.getService().getSuggestedDeserializerForExtension(request.getParameter("extension"));
+	if (deserializer != null) {
+		out.print(deserializer.getOid());
 	} else {
 		out.print("[NONE]");
 	}
