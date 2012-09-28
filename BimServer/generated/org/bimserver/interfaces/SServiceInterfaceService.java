@@ -79,9 +79,6 @@ public class SServiceInterfaceService extends SService {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCompareResult")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SActionState")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SLongActionState")));
-		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SNotification")));
-		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SNewProjectNotification")));
-		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SNewRevisionNotification")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServerState")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServerInfo")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SVersion")));

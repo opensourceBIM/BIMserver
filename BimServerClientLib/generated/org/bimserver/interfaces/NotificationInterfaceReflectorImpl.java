@@ -26,16 +26,7 @@ public class NotificationInterfaceReflectorImpl implements org.bimserver.shared.
 private Reflector reflector;
 
 	public NotificationInterfaceReflectorImpl (Reflector reflector) {this.reflector = reflector;}
-	public void newProject(org.bimserver.interfaces.objects.SNewProjectNotification newProjectNotification) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "newProject", void.class, new KeyValuePair("newProjectNotification", newProjectNotification));
-	}
-	public void newRevision(org.bimserver.interfaces.objects.SNewRevisionNotification newRevisionNotification, org.bimserver.interfaces.objects.SToken token, java.lang.String apiUrl) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "newRevision", void.class, new KeyValuePair("newRevisionNotification", newRevisionNotification), new KeyValuePair("token", token), new KeyValuePair("apiUrl", apiUrl));
-	}
-	public void serverHasStarted() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "serverHasStarted", void.class);
-	}
-	public void serverWillBeShutdown() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("NotificationInterface", "serverWillBeShutdown", void.class);
+	public void newLogAction(org.bimserver.interfaces.objects.SLogAction logAction, org.bimserver.interfaces.objects.SToken token, java.lang.String apiUrl) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("NotificationInterface", "newLogAction", void.class, new KeyValuePair("logAction", logAction), new KeyValuePair("token", token), new KeyValuePair("apiUrl", apiUrl));
 	}
 }

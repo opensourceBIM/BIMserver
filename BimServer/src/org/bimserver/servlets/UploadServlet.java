@@ -1,4 +1,4 @@
-package org.bimwebserver.servlets;
+package org.bimserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -31,8 +31,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.bimserver.BimServer;
+import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
-import org.bimwebserver.jsp.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -52,18 +54,20 @@ public class UploadServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+		
+		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+		SToken token = (SToken)request.getSession().getAttribute("token");
+		String tokenString = null;
+		long tokenExpires = -1;
+		
 		JSONObject result = new JSONObject();
 		response.setContentType("text/json");
 		try {
-			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
-			if (loginManager == null) {
-				response.sendRedirect("login.jsp");
-				return;
-			}
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 			long poid = -1;
 			String comment = null;
-			String deserializerName = null;
 			if (isMultipart) {
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				List<FileItem> items = (List<FileItem>) upload.parseRequest(request);
@@ -71,10 +75,17 @@ public class UploadServlet extends HttpServlet {
 				InputStream in = null;
 				long size = 0;
 				String name = "";
+				long deserializerOid = -1;
 				boolean merge = false;
 				while (iter.hasNext()) {
 					FileItem item = iter.next();
 					if (item.isFormField()) {
+						if ("tokenString".equals(item.getFieldName())) {
+							tokenString = item.getString();
+						}
+						if ("tokenExpires".equals(item.getFieldName())) {
+							tokenExpires = Long.parseLong(item.getString());
+						}
 						if ("poid".equals(item.getFieldName())) {
 							poid = Long.parseLong(item.getString());
 						}
@@ -84,8 +95,8 @@ public class UploadServlet extends HttpServlet {
 						if ("merge".equals(item.getFieldName())) {
 							merge = item.getString().equals("true");
 						}
-						if ("deserializerName".equals(item.getFieldName())) {
-							deserializerName = item.getString();
+						if ("deserializerOid".equals(item.getFieldName())) {
+							deserializerOid = Long.parseLong(item.getString());
 						}
 					} else {
 						size = item.getSize();
@@ -101,8 +112,17 @@ public class UploadServlet extends HttpServlet {
 						InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
 						inputStreamDataSource.setName(name);
 						DataHandler ifcFile = new DataHandler(inputStreamDataSource);
-						int checkinId = loginManager.getService().checkin(poid, comment, deserializerName, size, ifcFile, merge, false);
-						result.put("checkinid", checkinId);
+						
+						if (token == null && tokenString != null && tokenExpires != -1) {
+							token = new SToken();
+							token.setTokenString(tokenString);
+							token.setExpires(tokenExpires);
+						}
+						if (token != null) {
+							ServiceInterface service = bimServer.getServiceFactory().getService(token);
+							int checkinId = service.checkin(poid, comment, deserializerOid, size, ifcFile, merge, false);
+							result.put("checkinid", checkinId);
+						}
 					}
 				} else {
 					result.put("error", "No poid");

@@ -24,7 +24,7 @@
 			if (request.getParameter("login") != null) {
 				try {
 					AuthenticationInfo authenticationInfo = new UsernamePasswordAuthenticationInfo(request.getParameter("username"), request.getParameter("password"));
-					if (loginManager.login(authenticationInfo, request.getRemoteAddr())) {
+					if (loginManager.login(authenticationInfo, request.getRemoteAddr(), request)) {
 						if (request.getParameter("rememberme") != null) {
 							String rememberHash = Hashers.getSha256Hash(request.getParameter("username") + Hashers.getSha256Hash(request.getParameter("password")));
 							Cookie autologinCookie = new Cookie("autologin", rememberHash);
@@ -55,7 +55,7 @@
 				}
 				if (request.getSession().getAttribute("loggingout") == null && cookies.containsKey("autologin") && cookies.containsKey("username")) {
 					AuthenticationInfo authenticationInfo = new AutologinAuthenticationInfo(cookies.get("username"), cookies.get("autologin"));
-					if (loginManager.login(authenticationInfo, request.getRemoteAddr())) {
+					if (loginManager.login(authenticationInfo, request.getRemoteAddr(), request)) {
 						if (!loginManager.isLoggedIn()) {
 							response.sendRedirect(request.getContextPath() + "/login.jsp?origurl=" + URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
 						} else {

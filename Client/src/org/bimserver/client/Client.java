@@ -130,7 +130,7 @@ public class Client extends JFrame {
 				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 		try {
 			DataHandler ifcFile = new DataHandler(dataSource);
-			int checkinId = serviceHolder.getService().checkin(project.getOid(), comment, "TODO", fileSize, ifcFile, false, true);
+			int checkinId = serviceHolder.getService().checkin(project.getOid(), comment, -1L, fileSize, ifcFile, false, true); // TODO
 			SCheckinResult sCheckinResult = serviceHolder.getService().getCheckinState(checkinId);
 			JOptionPane.showMessageDialog(this, "New revision number: " + sCheckinResult.getRevisionId(), "Checkin successful", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);

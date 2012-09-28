@@ -43,6 +43,7 @@ import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
@@ -143,18 +144,20 @@ public class Database implements BimDatabase {
 				ServerSettings settings = createDefaultSettings();
 				databaseSession.store(settings);
 				
+				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new SystemAuthorization(), false);
+				addUserDatabaseAction.setCreateSystemUser();
+				User systemUser = addUserDatabaseAction.execute();
+				systemUser.setCreatedBy(systemUser);
+				databaseSession.store(systemUser);
+
 				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
-				databaseCreated.setExecutor(null);
+				databaseCreated.setExecutor(systemUser);
 				databaseCreated.setDate(new Date());
 				databaseCreated.setPath(getKeyValueStore().getLocation());
 				databaseCreated.setVersion(databaseSchemaVersion);
 				databaseSession.store(databaseCreated);
-
-				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new SystemAuthorization(), false);
-				addUserDatabaseAction.setCreateSystemUser();
-				addUserDatabaseAction.execute();
 
 				registry.save("isnew", false, databaseSession);
 			} else {

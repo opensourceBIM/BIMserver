@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserAddedToProject;
@@ -35,10 +38,12 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long uoid;
 	private final long poid;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public AddUserToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid,
+	public AddUserToProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long uoid,
 			long poid) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.uoid = uoid;
 		this.poid = poid;
@@ -51,12 +56,18 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (authorization.hasRightsOnProject(actingUser, project)) {
 			User user = getUserByUoid(uoid);
 			project.getHasAuthorizedUsers().add(user);
-			UserAddedToProject userAddedToProject = LogFactory.eINSTANCE.createUserAddedToProject();
+			final UserAddedToProject userAddedToProject = LogFactory.eINSTANCE.createUserAddedToProject();
 			userAddedToProject.setExecutor(actingUser);
 			userAddedToProject.setDate(new Date());
 			userAddedToProject.setAccessMethod(getAccessMethod());
 			userAddedToProject.setUser(user);
 			userAddedToProject.setProject(project);
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(userAddedToProject));
+				}
+			});
 			getDatabaseSession().store(user);
 			getDatabaseSession().store(project);
 			getDatabaseSession().store(userAddedToProject);

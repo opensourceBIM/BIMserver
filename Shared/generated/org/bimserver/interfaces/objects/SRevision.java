@@ -89,6 +89,9 @@ public class SRevision implements SDataBase
 		if (sField.getName().equals("laid")) {
 			return getLaid();
 		}
+		if (sField.getName().equals("summaryId")) {
+			return getSummaryId();
+		}
 		if (sField.getName().equals("extendedData")) {
 			return getExtendedData();
 		}
@@ -151,6 +154,10 @@ public class SRevision implements SDataBase
 			setLaid((Long)val);
 			return;
 		}
+		if (sField.getName().equals("summaryId")) {
+			setSummaryId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("extendedData")) {
 			setExtendedData((List<Long>)val);
 			return;
@@ -175,6 +182,7 @@ public class SRevision implements SDataBase
 	private java.lang.String lastError;
 	private java.lang.Integer bmi;
 	private java.lang.Long laid;
+	private long summaryId;
 	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.Integer getId() {
 		return id;
@@ -270,6 +278,14 @@ public class SRevision implements SDataBase
 	public void setLaid(java.lang.Long laid) {
 		this.laid = laid;
 	}
+	public long getSummaryId() {
+		return summaryId;
+	}
+
+	public void setSummaryId(long summaryId) {
+		this.summaryId = summaryId;
+	}
+	
 	public List<Long> getExtendedData() {
 		return extendedData;
 	}

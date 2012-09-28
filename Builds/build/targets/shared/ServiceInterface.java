@@ -153,12 +153,12 @@ public interface ServiceInterface {
 	@Path("/checkin")
 	@Produces("text/plain")
 	@WebMethod(action = "checkin")
-	Integer checkin(@WebParam(name = "poid", partName = "checkinSync.poid") Long poid,
-			@QueryParam("comment") @WebParam(name = "comment", partName = "checkinSync.comment") String comment,
-			@QueryParam("deserializerName") @WebParam(name = "deserializerName", partName = "checkinSync.deserializerName") String deserializerName,
-			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
-			@QueryParam("ifcFile") @WebParam(name = "ifcFile", partName = "checkinSync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
-			@QueryParam("merge") @WebParam(name = "merge", partName = "checkinSync.merge") Boolean merge,
+	Integer checkin(@WebParam(name = "poid", partName = "checkin.poid") Long poid,
+			@QueryParam("comment") @WebParam(name = "comment", partName = "checkin.comment") String comment,
+			@QueryParam("deserializerOid") @WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
+			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
+			@QueryParam("ifcFile") @WebParam(name = "ifcFile", partName = "checkin.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
+			@QueryParam("merge") @WebParam(name = "merge", partName = "checkin.merge") Boolean merge,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -1700,7 +1700,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getAllDeserializers")
 	List<SDeserializer> getAllDeserializers(
-			@WebParam(name = "oid", partName = "removeReference.oid") Boolean onlyEnabled) throws ServerException, UserException;
+			@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
 	 * @param roid ObjectID of the Revision to perform this query on
@@ -1768,7 +1768,7 @@ public interface ServiceInterface {
 	 * @throws ServerException 
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
-	String getSuggestedDeserializerForExtension(
+	SDeserializer getSuggestedDeserializerForExtension(
 		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
 
 	/**
@@ -2219,4 +2219,8 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getServerInfo")
 	SServerInfo getServerInfo() throws ServerException, UserException;
+	
+	@WebMethod(action = "registerAll")
+	void registerAll(
+		@WebParam(name = "endPointId", partName = "registerAll.endPointId") long endPointId) throws ServerException, UserException;
 }

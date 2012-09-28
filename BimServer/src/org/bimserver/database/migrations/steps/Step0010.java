@@ -122,10 +122,11 @@ public class Step0010 extends Migration {
 		
 		EClass revisionSummaryContainerClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummaryContainer");
 		schema.createEAttribute(revisionSummaryContainerClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(revisionSummaryContainerClass, "types", revisionSummaryTypeClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());;
+		schema.createEReference(revisionSummaryContainerClass, "types", revisionSummaryTypeClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		
 		EClass revisionSummaryClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummary");
-		schema.createEReference(revisionSummaryClass, "list", revisionSummaryContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());;
+		schema.createEReference(revisionSummaryClass, "list", revisionSummaryContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(schema.getEClass("store", "Revision"), "summary", revisionSummaryClass, Multiplicity.SINGLE);
 		
 		EClass longActionClass = schema.createEClass(schema.getEPackage("store"), "LongAction");
 		schema.createEAttribute(longActionClass, "identification", ecorePackage.getEString(), Multiplicity.SINGLE);

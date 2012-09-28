@@ -20,26 +20,17 @@ package org.bimserver.shared.interfaces;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
-import org.bimserver.interfaces.objects.SNewProjectNotification;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 
 public interface NotificationInterface {
 	
-	@WebMethod(action = "serverHasStarted")
-	void serverHasStarted() throws ServiceException;
-	
-	@WebMethod(action = "serverWillBeShutdown")
-	void serverWillBeShutdown() throws ServiceException;
-	
-	@WebMethod(action = "newProject")
-	void newProject(
-		@WebParam(name = "newProjectNotification", partName = "newProject.newProjectNotification") SNewProjectNotification newProjectNotification) throws ServiceException;
-	
-	@WebMethod(action = "newRevision")
-	void newRevision(
-		@WebParam(name = "newRevisionNotification", partName = "newRevision.newRevisionNotification") SNewRevisionNotification newRevisionNotification,
+	@WebMethod(action = "newLogAction")
+	void newLogAction(
+		@WebParam(name = "logAction", partName = "newLogAction.logAction") SLogAction logAction,
 		@WebParam(name = "token", partName = "newRevision.token") SToken token,
-		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws ServiceException;
+		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 }

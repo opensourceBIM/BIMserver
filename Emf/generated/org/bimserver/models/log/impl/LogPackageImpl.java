@@ -473,6 +473,15 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getNewRevisionAdded_Project() {
+		return (EReference) getNewRevisionAdded().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNewCheckoutAdded() {
 		if (newCheckoutAddedEClass == null) {
 			newCheckoutAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(7);

@@ -17,27 +17,15 @@ package org.bimserver.shared;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.interfaces.objects.SNewProjectNotification;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class NotificationInterfaceAdapter implements NotificationInterface {
 
 	@Override
-	public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
-	}
-
-	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
-	}
-
-	@Override
-	public void serverHasStarted() {
-	}
-
-	@Override
-	public void serverWillBeShutdown() {
+	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) throws UserException, ServerException {
 	}
 }

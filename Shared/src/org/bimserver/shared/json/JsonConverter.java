@@ -37,7 +37,7 @@ public class JsonConverter {
 		if (object instanceof SBase) {
 			SBase base = (SBase)object;
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("__type", base.getSClass().getName());
+			jsonObject.put("__type", base.getSClass().getSimpleName());
 			for (SField field : base.getSClass().getAllFields()) {
 				jsonObject.put(field.getName(), toJson(base.sGet(field)));
 			}

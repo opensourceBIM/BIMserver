@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -36,9 +39,11 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final SRevision sRevision;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public UpdateRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SRevision sRevision) {
+	public UpdateRevisionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SRevision sRevision) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.sRevision = sRevision;
 	}
@@ -54,11 +59,17 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 		if (!authorization.hasRightsOnProjectOrSuperProjects(actingUser, project)) {
 			throw new UserException("User has no rights to update project properties");
 		}
-		RevisionUpdated revisionUpdated = LogFactory.eINSTANCE.createRevisionUpdated();
+		final RevisionUpdated revisionUpdated = LogFactory.eINSTANCE.createRevisionUpdated();
 		revisionUpdated.setRevision(revision);
 		revisionUpdated.setDate(new Date());
 		revisionUpdated.setExecutor(actingUser);
 		revisionUpdated.setAccessMethod(getAccessMethod());
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(revisionUpdated));
+			}
+		});
 		revision.setTag(sRevision.getTag());
 		getDatabaseSession().store(revisionUpdated);
 		getDatabaseSession().store(revision);

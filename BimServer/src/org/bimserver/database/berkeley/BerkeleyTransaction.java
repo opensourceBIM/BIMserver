@@ -17,9 +17,9 @@ package org.bimserver.database.berkeley;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimTransaction;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.database.BimTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

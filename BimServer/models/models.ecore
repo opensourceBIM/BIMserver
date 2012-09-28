@@ -104,6 +104,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="laid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#/0/RevisionSummary"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
           eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/revision"/>
     </eClassifiers>
@@ -395,14 +396,6 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="infos" upperBound="-1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Notification"/>
-    <eClassifiers xsi:type="ecore:EClass" name="NewProjectNotification" eSuperTypes="#/0/Notification">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NewRevisionNotification" eSuperTypes="#/0/Notification">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ServerState">
       <eLiterals name="UNDEFINED"/>
@@ -6698,6 +6691,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NewRevisionAdded" eSuperTypes="#/2/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NewCheckoutAdded" eSuperTypes="#/2/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="checkout" eType="#/0/Checkout"/>

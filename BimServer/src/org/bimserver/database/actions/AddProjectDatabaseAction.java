@@ -24,7 +24,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
-import org.bimserver.interfaces.objects.SNewProjectNotification;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewProjectAdded;
@@ -100,9 +100,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
-				SNewProjectNotification newProjectNotification = new SNewProjectNotification();
-				newProjectNotification.setProjectId(project.getOid());
-				bimServer.getNotificationsManager().notify(newProjectNotification);
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newProjectAdded));
 			}
 		});
 		project.setId(getDatabaseSession().newPid());

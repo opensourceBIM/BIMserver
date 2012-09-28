@@ -17,9 +17,11 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -178,6 +180,8 @@ public class SService {
 			if (parameterizedTypeImpl.getActualTypeArguments()[0] instanceof Class) {
 				return (Class<?>) parameterizedTypeImpl.getActualTypeArguments()[0];
 			}
+		} else if (method.getGenericReturnType() instanceof TypeVariable) {
+		} else if (method.getGenericReturnType() instanceof GenericArrayType) {
 		} else {
 			return (Class<?>) method.getGenericReturnType();
 		}

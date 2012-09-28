@@ -51,6 +51,10 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 
 	@Override
 	public RevisionSummary execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Revision revision = getVirtualRevision(roid);
+		if (revision.getSummary() != null) {
+			return revision.getSummary();
+		}
 		RevisionSummary revisionSummary = StoreFactory.eINSTANCE.createRevisionSummary();
 		revisionSummaryContainerEntities = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerEntities.setName("IFC Entities");
@@ -64,7 +68,6 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		revisionSummaryContainerOther = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerOther.setName("Rest");
 		revisionSummary.getList().add(revisionSummaryContainerOther);
-		Revision revision = getVirtualRevision(roid);
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			for (EClass eClass : getDatabaseSession().getClasses()) {
 				int count = getDatabaseSession().getCount(eClass, new IfcModel(), subRevision.getProject().getId(), subRevision.getId());

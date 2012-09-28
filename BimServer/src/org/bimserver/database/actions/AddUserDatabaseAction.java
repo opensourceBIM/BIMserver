@@ -32,6 +32,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -127,16 +128,25 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		final String token = GeneratorUtils.generateToken();
 		user.setValidationToken(Hashers.getSha256Hash(token));
 		user.setValidationTokenCreated(new Date());
-		NewUserAdded newUserAdded = LogFactory.eINSTANCE.createNewUserAdded();
-		newUserAdded.setUser(user);
-		newUserAdded.setExecutor(actingUser);
-		newUserAdded.setDate(new Date());
-		newUserAdded.setAccessMethod(getAccessMethod());
+		
+		if (!createSystemUser) {
+			final NewUserAdded newUserAdded = LogFactory.eINSTANCE.createNewUserAdded();
+			newUserAdded.setUser(user);
+			newUserAdded.setExecutor(actingUser);
+			newUserAdded.setDate(new Date());
+			newUserAdded.setAccessMethod(getAccessMethod());
+			getDatabaseSession().store(newUserAdded);
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newUserAdded));
+				}
+			});
+		}
 		
 		bimServer.updateUserSettings(getDatabaseSession(), user);
 		
 		getDatabaseSession().store(user);
-		getDatabaseSession().store(newUserAdded);
 		final ServerSettings serverSettings = getServerSettings();
 		if (serverSettings != null && serverSettings.isSendConfirmationEmailAfterRegistration()) {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {

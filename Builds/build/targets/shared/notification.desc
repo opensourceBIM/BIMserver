@@ -1,25 +1,9 @@
 
-¡
-notification.protoorg.bimserver.pbservice.proto"9
-SNewProjectNotification
-oid (
-	projectId ("^
-NewProjectRequestI
-newProjectNotification (2).org.bimserver.pb.SNewProjectNotification"N
-SNewRevisionNotification
-oid (
-	projectId (
-
-revisionId ("š
-NewRevisionRequestK
-newRevisionNotification (2*.org.bimserver.pb.SNewRevisionNotification'
+È
+notification.protoorg.bimserver.pbservice.proto"
+NewLogActionRequest/
+	logAction (2.org.bimserver.pb.SLogAction'
 token (2.org.bimserver.pb.SToken
-apiUrl (	"
-ServerHasStartedRequest"
-ServerWillBeShutdownRequest2…
-NotificationInterfaceQ
-
-newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseS
-newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponse]
-serverHasStarted).org.bimserver.pb.ServerHasStartedRequest.org.bimserver.pb.VoidResponsee
-serverWillBeShutdown-.org.bimserver.pb.ServerWillBeShutdownRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
+apiUrl (	2n
+NotificationInterfaceU
+newLogAction%.org.bimserver.pb.NewLogActionRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ

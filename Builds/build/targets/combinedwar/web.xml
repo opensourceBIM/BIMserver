@@ -43,7 +43,7 @@
 
 	<servlet>
 		<servlet-name>UploadServlet</servlet-name>
-		<servlet-class>org.bimwebserver.servlets.UploadServlet</servlet-class>
+		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

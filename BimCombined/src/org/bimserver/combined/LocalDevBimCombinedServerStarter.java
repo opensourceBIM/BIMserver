@@ -38,6 +38,8 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.servlets.JsonApiServlet;
+import org.bimserver.servlets.StreamingServlet;
+import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimwebserver.BimWebServer;
@@ -45,8 +47,6 @@ import org.bimwebserver.jsp.LocalDevBimWebServerStarter;
 import org.bimwebserver.jsp.LoginManager;
 import org.bimwebserver.servlets.DownloadServlet;
 import org.bimwebserver.servlets.ProgressServlet;
-import org.bimwebserver.servlets.StreamingServlet;
-import org.bimwebserver.servlets.UploadServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

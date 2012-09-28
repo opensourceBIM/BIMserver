@@ -42,6 +42,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getBmi <em>Bmi</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
  * </p>
@@ -375,6 +376,32 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setLaid(Long value);
+
+	/**
+	 * Returns the value of the '<em><b>Summary</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Summary</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Summary</em>' reference.
+	 * @see #setSummary(RevisionSummary)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_Summary()
+	 * @model
+	 * @generated
+	 */
+	RevisionSummary getSummary();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getSummary <em>Summary</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Summary</em>' reference.
+	 * @see #getSummary()
+	 * @generated
+	 */
+	void setSummary(RevisionSummary value);
 
 	/**
 	 * Returns the value of the '<em><b>Extended Data</b></em>' reference list.

@@ -101,6 +101,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="laid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#//RevisionSummary"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
         eType="#//ExtendedData" eOpposite="#//ExtendedData/revision"/>
   </eClassifiers>
@@ -386,14 +387,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="infos" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Notification"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NewProjectNotification" eSuperTypes="#//Notification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewRevisionNotification" eSuperTypes="#//Notification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#//Revision"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ServerState">
     <eLiterals name="UNDEFINED"/>

@@ -23,7 +23,8 @@ import java.util.Set;
 import org.bimserver.client.BimServerClientException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SToken;
@@ -33,7 +34,8 @@ import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.satellite.SatelliteServer;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class ExploderActivity extends Activity {
 	private static final String COMMENT_TAG = "Exploder";
@@ -50,39 +52,42 @@ public class ExploderActivity extends Activity {
 	}
 	
 	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
-		SRevision revision = satelliteServer.getBimServerClient().getServiceInterface().getRevision(newRevisionNotification.getRevisionId());
-		if (!revision.getComment().contains(COMMENT_TAG)) {
-			SProject project = satelliteServer.getBimServerClient().getServiceInterface().getProjectByPoid(revision.getProjectId());
-			log("Downloading revision " + revision.getId() + " of project " + project.getName());
-			try {
-				IfcModelInterface model = satelliteServer.getBimServerClient().getModel(newRevisionNotification.getRevisionId());
-				Set<IfcCartesianPoint> changed = new HashSet<IfcCartesianPoint>();
-				for (IdEObject idEObject : model.getValues()) {
-					if (idEObject instanceof IfcObjectPlacement) {
-						IfcObjectPlacement ifcObjectPlacement = (IfcObjectPlacement)idEObject;
-						for (IfcLocalPlacement ifcLocalPlacement : ifcObjectPlacement.getReferencedByPlacements()) {
-							IfcAxis2Placement relativePlacement = ifcLocalPlacement.getRelativePlacement();
-							if (relativePlacement instanceof IfcAxis2Placement3D) {
-								IfcAxis2Placement3D ifcAxis2Placement3D = (IfcAxis2Placement3D)relativePlacement;
-								IfcCartesianPoint ifcCartesianPoint = ifcAxis2Placement3D.getLocation();
-								if (!changed.contains(ifcCartesianPoint)) {
-									int i=0;
-									for (double val : ifcCartesianPoint.getCoordinates()) {
-										ifcCartesianPoint.getCoordinates().set(i, val * 1.5d);
+	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) throws UserException, ServerException {
+		if (logAction instanceof SNewRevisionAdded) {
+			SNewRevisionAdded sNewRevisionAdded = (SNewRevisionAdded)logAction;
+			SRevision revision = satelliteServer.getBimServerClient().getServiceInterface().getRevision(sNewRevisionAdded.getRevisionId());
+			if (!revision.getComment().contains(COMMENT_TAG)) {
+				SProject project = satelliteServer.getBimServerClient().getServiceInterface().getProjectByPoid(revision.getProjectId());
+				log("Downloading revision " + revision.getId() + " of project " + project.getName());
+				try {
+					IfcModelInterface model = satelliteServer.getBimServerClient().getModel(sNewRevisionAdded.getRevisionId());
+					Set<IfcCartesianPoint> changed = new HashSet<IfcCartesianPoint>();
+					for (IdEObject idEObject : model.getValues()) {
+						if (idEObject instanceof IfcObjectPlacement) {
+							IfcObjectPlacement ifcObjectPlacement = (IfcObjectPlacement)idEObject;
+							for (IfcLocalPlacement ifcLocalPlacement : ifcObjectPlacement.getReferencedByPlacements()) {
+								IfcAxis2Placement relativePlacement = ifcLocalPlacement.getRelativePlacement();
+								if (relativePlacement instanceof IfcAxis2Placement3D) {
+									IfcAxis2Placement3D ifcAxis2Placement3D = (IfcAxis2Placement3D)relativePlacement;
+									IfcCartesianPoint ifcCartesianPoint = ifcAxis2Placement3D.getLocation();
+									if (!changed.contains(ifcCartesianPoint)) {
+										int i=0;
+										for (double val : ifcCartesianPoint.getCoordinates()) {
+											ifcCartesianPoint.getCoordinates().set(i, val * 1.5d);
+										}
+										changed.add(ifcCartesianPoint);
 									}
-									changed.add(ifcCartesianPoint);
 								}
 							}
 						}
 					}
+					log("Changed " + changed.size() + " IfcCartesianPoints");
+					long newRoid = satelliteServer.getBimServerClient().uploadModel(revision.getProjectId(), "Update by " + COMMENT_TAG, model);
+					SRevision newRevision = satelliteServer.getBimServerClient().getServiceInterface().getRevision(newRoid);
+					log("Checked in new revision " + newRevision.getId() + " for project " + project.getName());
+				} catch (BimServerClientException e) {
+					e.printStackTrace();
 				}
-				log("Changed " + changed.size() + " IfcCartesianPoints");
-				long newRoid = satelliteServer.getBimServerClient().uploadModel(revision.getProjectId(), "Update by " + COMMENT_TAG, model);
-				SRevision newRevision = satelliteServer.getBimServerClient().getServiceInterface().getRevision(newRoid);
-				log("Checked in new revision " + newRevision.getId() + " for project " + project.getName());
-			} catch (BimServerClientException e) {
-				e.printStackTrace();
 			}
 		}
 	}

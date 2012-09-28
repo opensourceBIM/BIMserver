@@ -20,10 +20,10 @@ package org.bimserver.client.notifications;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.interfaces.objects.SNewProjectNotification;
-import org.bimserver.interfaces.objects.SNewRevisionNotification;
+import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class MultiCastNotificationImpl implements NotificationInterface {
@@ -35,39 +35,18 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 		}
 	}
 
-	@Override
-	public void serverHasStarted() throws ServiceException {
-		for (NotificationInterface notificationInterface : notificationInterfaces) {
-			notificationInterface.serverHasStarted();
-		}
-	}
-
-	@Override
-	public void serverWillBeShutdown() throws ServiceException {
-		for (NotificationInterface notificationInterface : notificationInterfaces) {
-			notificationInterface.serverWillBeShutdown();
-		}
-	}
-
-	@Override
-	public void newProject(SNewProjectNotification newProjectNotification) throws ServiceException {
-		for (NotificationInterface notificationInterface : notificationInterfaces) {
-			notificationInterface.newProject(newProjectNotification);
-		}
-	}
-
-	@Override
-	public void newRevision(SNewRevisionNotification newRevisionNotification, SToken token, String apiUrl) throws ServiceException {
-		for (NotificationInterface notificationInterface : notificationInterfaces) {
-			notificationInterface.newRevision(newRevisionNotification, token, apiUrl);
-		}
-	}
-
 	public void add(NotificationInterface notificationInterface) {
 		notificationInterfaces.add(notificationInterface);
 	}
 
 	public void remove(NotificationInterface notificationInterface) {
 		notificationInterfaces.remove(notificationInterface);
+	}
+
+	@Override
+	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) throws UserException, ServerException {
+		for (NotificationInterface notificationInterface : notificationInterfaces) {
+			notificationInterface.newLogAction(logAction, token, apiUrl);
+		}
 	}
 }

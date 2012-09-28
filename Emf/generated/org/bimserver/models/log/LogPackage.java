@@ -374,13 +374,22 @@ public interface LogPackage extends EPackage {
 	int NEW_REVISION_ADDED__REVISION = LOG_ACTION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_REVISION_ADDED__PROJECT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>New Revision Added</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int NEW_REVISION_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewCheckoutAddedImpl <em>New Checkout Added</em>}' class.
@@ -1544,6 +1553,17 @@ public interface LogPackage extends EPackage {
 	EReference getNewRevisionAdded_Revision();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.NewRevisionAdded#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.log.NewRevisionAdded#getProject()
+	 * @see #getNewRevisionAdded()
+	 * @generated
+	 */
+	EReference getNewRevisionAdded_Project();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.NewCheckoutAdded <em>New Checkout Added</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2081,6 +2101,14 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NEW_REVISION_ADDED__REVISION = eINSTANCE.getNewRevisionAdded_Revision();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_REVISION_ADDED__PROJECT = eINSTANCE.getNewRevisionAdded_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewCheckoutAddedImpl <em>New Checkout Added</em>}' class.

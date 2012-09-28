@@ -19,9 +19,12 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.GeoTagUpdated;
@@ -37,9 +40,11 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final SGeoTag sGeoTag;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public UpdateGeoTagDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SGeoTag sGeoTag) {
+	public UpdateGeoTagDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SGeoTag sGeoTag) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.sGeoTag = sGeoTag;
 	}
@@ -62,11 +67,17 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 			geoTag.setZ(sGeoTag.getZ());
 			geoTag.setDirectionAngle(sGeoTag.getDirectionAngle());
 			geoTag.setEpsg(sGeoTag.getEpsg());
-			GeoTagUpdated geoTagUpdated = LogFactory.eINSTANCE.createGeoTagUpdated();
+			final GeoTagUpdated geoTagUpdated = LogFactory.eINSTANCE.createGeoTagUpdated();
 			geoTagUpdated.setGeoTag(geoTag);
 			geoTagUpdated.setAccessMethod(getAccessMethod());
 			geoTagUpdated.setDate(new Date());
 			geoTagUpdated.setExecutor(actingUser);
+			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+				@Override
+				public void execute() throws UserException {
+					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(geoTagUpdated));
+				}
+			});
 			getDatabaseSession().store(geoTagUpdated);
 			getDatabaseSession().store(geoTag);
 		} else {

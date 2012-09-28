@@ -22,13 +22,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.BimServer;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
 import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -47,10 +50,12 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	private Revision revision;
 	private final long poid;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public CommitTransactionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Set<Change> changes, Authorization authorization, long poid,
+	public CommitTransactionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Change> changes, Authorization authorization, long poid,
 			String comment) {
 		super(databaseSession, accessMethod, null);
+		this.bimServer = bimServer;
 		this.changes = changes;
 		this.authorization = authorization;
 		this.poid = poid;
@@ -86,11 +91,18 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 		revision = concreteRevision.getRevisions().get(0);
 		project.setLastRevision(revision);
-		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
+		final NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);
 		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
 		newRevisionAdded.setAccessMethod(getAccessMethod());
+		
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
+			}
+		});
 		
 		// First create all new objects
 		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
