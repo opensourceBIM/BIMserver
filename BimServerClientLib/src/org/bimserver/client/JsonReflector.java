@@ -5,13 +5,13 @@ import java.util.Map;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.json.JsonConverter;
+import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.LoggerFactory;
 
 public abstract class JsonReflector implements Reflector {
 
@@ -40,20 +40,21 @@ public abstract class JsonReflector implements Reflector {
 			requestObject.put("requests", requests);
 			JSONObject jsonResult = call(requestObject);
 			if (!isOneWay()) {
-				LoggerFactory.getLogger(JsonReflector.class).info(jsonResult.toString(2));
 				JSONArray responses = jsonResult.getJSONArray("responses");
 				JSONObject response = responses.getJSONObject(0);
 				if (response.has("exception")) {
-					JSONObject exceptionJson = jsonResult.getJSONObject("exception");
+					JSONObject exceptionJson = response.getJSONObject("exception");
 					String exceptionType = exceptionJson.getString("__type");
-					if (exceptionType.equals(UserException.class.getName())) {
-						throw new UserException(exceptionJson.getString("message"));
-					} else if (exceptionType.equals(ServerException.class.getName())) {
-						throw new ServerException(exceptionJson.getString("message"));
+					String message = exceptionJson.has("message") ? exceptionJson.getString("message") : "unknown";
+					if (exceptionType.equals(UserException.class.getSimpleName())) {
+						throw new UserException(message);
+					} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
+						throw new ServerException(message);
 					}
 				} else if (response.has("result")) {
-					Object result = jsonResult.get("result");
-					return converter.fromJson(services.get(interfaceName).getSMethod(methodName).getBestReturnType(), result);
+					Object result = response.get("result");
+					SMethod method = services.get(interfaceName).getSMethod(methodName);
+					return converter.fromJson(method.getReturnType(), method.getGenericReturnType(), result);
 				} else {
 					return null;
 				}

@@ -72,11 +72,15 @@ public class DownloadRevisionAction extends Action {
 				virtualUser.getLogger().info("Done preparing download, downloading");
 				SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);
 				try {
-					String filename = project.getName() + "." + revision.getId() + "." + serializer.getExtension();
-					FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
-					IOUtils.copy(downloadData.getFile().getInputStream(), fos);
-					virtualUser.getLogger().info(filename + " downloaded");
-					fos.close();
+					if (downloadData != null) {
+						String filename = project.getName() + "." + revision.getId() + "." + serializer.getExtension();
+						FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
+						IOUtils.copy(downloadData.getFile().getInputStream(), fos);
+						virtualUser.getLogger().info(filename + " downloaded");
+						fos.close();
+					} else {
+						virtualUser.getLogger().warn("Downloaddata = null...");
+					}
 				} catch (IOException e) {
 					virtualUser.getLogger().error("", e);
 				}

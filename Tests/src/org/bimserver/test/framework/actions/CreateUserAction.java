@@ -38,4 +38,9 @@ public class CreateUserAction extends Action {
 		virtualUser.getBimServerClient().getServiceInterface().changePassword(user.getOid(), "", "test");
 		virtualUser.addUsername(username);
 	}
+	
+	@Override
+	public int getWeight() {
+		return 10;
+	}
 }

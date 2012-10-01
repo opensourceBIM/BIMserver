@@ -39,7 +39,9 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -123,6 +125,10 @@ public class TestClientEmfModelLocal {
 			serializer.writeToFile(new File(output, roid + ".ifc"));
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -136,5 +142,4 @@ public class TestClientEmfModelLocal {
 			}
 		}
 	}
-
 }

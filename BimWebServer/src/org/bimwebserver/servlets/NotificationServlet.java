@@ -61,7 +61,7 @@ public class NotificationServlet extends HttpServlet {
 			for (int i=0; i<method.getParameters().size(); i++) {
 				SParameter parameter = method.getParameter(i);
 				if (requestObject.has(parameter.getName())) {
-					parameters[i] = converter.fromJson(parameter.getType(), requestObject.get(parameter.getName()));
+					parameters[i] = converter.fromJson(parameter.getType(), parameter.getGenericType(), requestObject.get(parameter.getName()));
 				}
 			}
 

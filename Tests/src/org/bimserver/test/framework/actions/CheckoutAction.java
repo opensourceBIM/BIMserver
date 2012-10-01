@@ -24,6 +24,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.shared.exceptions.ServerException;
@@ -47,20 +48,26 @@ public class CheckoutAction extends Action {
 			boolean sync = nextBoolean();
 			getActionResults().setText("Checking out revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
 			long download = virtualUser.getBimServerClient().getServiceInterface().checkout(project.getLastRevisionId(), serializer.getOid(), sync);
-			while (virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download).getState() != SActionState.FINISHED) {
+			SLongActionState downloadState = virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download);
+			while (downloadState.getState() != SActionState.FINISHED) {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 				}
+				downloadState = virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download);
 			}
 			virtualUser.getLogger().info("Done preparing checkout, downloading");
 			SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);
-			try {
-				ByteArrayOutputStream data = new ByteArrayOutputStream();
-				IOUtils.copy(downloadData.getFile().getInputStream(), data);
-				virtualUser.getLogger().info(data.size() + " bytes downloaded");
-			} catch (IOException e) {
-				virtualUser.getLogger().error("", e);
+			if (downloadData != null) {
+				try {
+					ByteArrayOutputStream data = new ByteArrayOutputStream();
+					IOUtils.copy(downloadData.getFile().getInputStream(), data);
+					virtualUser.getLogger().info(data.size() + " bytes downloaded");
+				} catch (IOException e) {
+					virtualUser.getLogger().error("", e);
+				}
+			} else {
+				virtualUser.getLogger().warn("No download results...");
 			}
 		}
 	}

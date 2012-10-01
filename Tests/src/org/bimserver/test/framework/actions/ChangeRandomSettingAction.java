@@ -35,15 +35,19 @@ public class ChangeRandomSettingAction extends Action {
 		ServiceInterface serviceInterface = virtualUser.getBimServerClient().getServiceInterface();
 		switch (random) {
 		case 0:
+			getActionResults().setText("Setting allow self registration");
 			serviceInterface.setSettingAllowSelfRegistration(nextBoolean());
 			break;
 		case 1:
+			getActionResults().setText("Setting allow self registration");
 			serviceInterface.setSettingAllowUsersToCreateTopLevelProjects(nextBoolean());
 			break;
 		case 3:
+			getActionResults().setText("Setting allow self registration");
 			serviceInterface.setSettingCacheOutputFiles(nextBoolean());
 			break;
 		case 4:
+			getActionResults().setText("Setting checkin merin enabled");
 			serviceInterface.setSettingCheckinMergingEnabled(nextBoolean());
 			break;
 		case 5:

@@ -266,4 +266,8 @@ public class SClass {
 	public boolean isByteArray() {
 		return instanceClass == byte[].class;
 	}
+
+	public boolean isBoolean() {
+		return name.equals("java.lang.Boolean") || name.equals("boolean");
+	}
 }
