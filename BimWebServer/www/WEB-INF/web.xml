@@ -29,7 +29,7 @@
 
 	<servlet>
 		<servlet-name>DownloadServlet</servlet-name>
-		<servlet-class>org.bimwebserver.servlets.DownloadServlet</servlet-class>
+		<servlet-class>org.bimserver.servlets.DownloadServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -45,16 +45,6 @@
 	<servlet-mapping>
 		<servlet-name>UploadServlet</servlet-name>
 		<url-pattern>/upload/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>JsonServlet</servlet-name>
-		<servlet-class>org.bimwebserver.servlets.JsonServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>JsonServlet</servlet-name>
-		<url-pattern>/json/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

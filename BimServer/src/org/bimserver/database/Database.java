@@ -256,7 +256,6 @@ public class Database implements BimDatabase {
 						if (oid > oidCounters.get(eClass)) {
 							oidCounters.put(eClass, oid);
 						}
-						LOGGER.info(eClass.getName() + " starts at " + oidCounters.get(eClass));
 						if (pid > pidCounter) {
 							pidCounter = pid;
 						}

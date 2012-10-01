@@ -311,7 +311,7 @@ public class TestLowLevelChanges {
 	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
 		SRevision revision = service.getRevision(roid);
 		SSerializer serializerByContentType = service.getSerializerByContentType("application/ifc");
-		int downloadId = service.download(revision.getOid(), serializerByContentType.getOid(), true, true);
+		long downloadId = service.download(revision.getOid(), serializerByContentType.getOid(), true, true);
 		SDownloadResult downloadData = service.getDownloadData(downloadId);
 		DataHandler dataHandler = downloadData.getFile();
 		try {

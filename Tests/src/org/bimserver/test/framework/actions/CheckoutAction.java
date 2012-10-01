@@ -46,7 +46,7 @@ public class CheckoutAction extends Action {
 			SSerializer serializer = allSerializers.get(nextInt(allSerializers.size()));
 			boolean sync = nextBoolean();
 			getActionResults().setText("Checking out revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
-			Integer download = virtualUser.getBimServerClient().getServiceInterface().checkout(project.getLastRevisionId(), serializer.getOid(), sync);
+			long download = virtualUser.getBimServerClient().getServiceInterface().checkout(project.getLastRevisionId(), serializer.getOid(), sync);
 			while (virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download).getState() != SActionState.FINISHED) {
 				try {
 					Thread.sleep(1000);

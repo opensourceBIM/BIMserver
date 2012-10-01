@@ -19,7 +19,7 @@ public class JsonChannel extends Channel {
 	}
 
 	public void connect(String address, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
-		JsonReflector reflector = new JsonReflector(sServices, address, useHttpSession, authenticationInfo);
+		JsonReflector reflector = new JsonSocketReflector(sServices, address, useHttpSession, authenticationInfo);
 		finish(reflector);
 	}
 }

@@ -153,7 +153,7 @@ public interface ServiceInterface {
 	@Path("/checkin")
 	@Produces("text/plain")
 	@WebMethod(action = "checkin")
-	Integer checkin(@WebParam(name = "poid", partName = "checkin.poid") Long poid,
+	Long checkin(@WebParam(name = "poid", partName = "checkin.poid") Long poid,
 			@QueryParam("comment") @WebParam(name = "comment", partName = "checkin.comment") String comment,
 			@QueryParam("deserializerOid") @WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
 			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
@@ -172,7 +172,7 @@ public interface ServiceInterface {
 	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getCheckinState")
 	SCheckinResult getCheckinState(
-			@QueryParam("actionID") @WebParam(name = "actionID", partName = "getCheckinState.actionID") Integer actionId) throws ServerException, UserException;
+			@QueryParam("actionID") @WebParam(name = "actionID", partName = "getCheckinState.actionID") Long actionId) throws ServerException, UserException;
 	
 	/**
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
@@ -189,7 +189,7 @@ public interface ServiceInterface {
 	@Path("/checkout")
 	@Produces("text/plain")
 	@WebMethod(action = "checkout")
-	Integer checkout(
+	Long checkout(
 			@QueryParam("roid") @WebParam(name = "roid", partName = "checkout.roid") Long roid,
 			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "checkout.serializerOid") Long serializerOid,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkout.sync") Boolean sync) throws ServerException, UserException;
@@ -209,7 +209,7 @@ public interface ServiceInterface {
 	@Path("/checkoutLastRevision")
 	@Produces("text/plain")
 	@WebMethod(action = "checkoutLastRevision")
-	Integer checkoutLastRevision(
+	Long checkoutLastRevision(
 			@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
 			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "checkoutLastRevision.serializerOid") Long serializerOid,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkoutLastRevision.sync") Boolean sync) throws ServerException, UserException;
@@ -230,7 +230,7 @@ public interface ServiceInterface {
 	@Path("/download")
 	@Produces({"text/plain"})
 	@WebMethod(action = "download")
-	Integer download(
+	Long download(
 			@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") Long roid,
 			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@QueryParam("showOwn") @WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
@@ -247,7 +247,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadCompareResults")
-	Integer downloadCompareResults(
+	Long downloadCompareResults(
 			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "roid1", partName = "downloadByOids.roid1") Long roid1,
 			@WebParam(name = "roid2", partName = "downloadByOids.roid2") Long roid2,
@@ -266,7 +266,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadByOids")
-	Integer downloadByOids(
+	Long downloadByOids(
 			@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
 			@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
 			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
@@ -283,7 +283,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadByTypes")
-	Integer downloadByTypes(
+	Long downloadByTypes(
 			@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
 			@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
 			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
@@ -301,7 +301,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadByGuids")
-	Integer downloadByGuids(
+	Long downloadByGuids(
 			@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
 			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
@@ -316,7 +316,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadRevisions")
-	Integer downloadRevisions(
+	Long downloadRevisions(
 			@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
 			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
@@ -335,7 +335,7 @@ public interface ServiceInterface {
 	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getDownloadData")
 	SDownloadResult getDownloadData(
-			@QueryParam("actionId") @WebParam(name = "actionId", partName = "getDownloadData.actionId") Integer actionId) throws ServerException, UserException;
+			@QueryParam("actionId") @WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
 
 	/**
 	 * Get the current state of a download/checkout
@@ -345,7 +345,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "getDownloadState")
 	SLongActionState getDownloadState(
-			@WebParam(name = "actionId", partName = "getDownloadState.actionId") Integer actionId) throws ServerException, UserException;
+			@WebParam(name = "actionId", partName = "getDownloadState.actionId") Long actionId) throws ServerException, UserException;
 
 	/**
 	 * Add a new user
@@ -470,7 +470,8 @@ public interface ServiceInterface {
 	@Path("/getAllProjects")
 	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllProjects")
-	List<SProject> getAllProjects() throws ServerException, UserException;
+	List<SProject> getAllProjects(
+		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") boolean onlyTopLevel) throws ServerException, UserException;
 
 	/**
 	 * 
@@ -1709,7 +1710,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadQuery")
-	Integer downloadQuery(
+	Long downloadQuery(
 			@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
 			@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
 			@WebParam(name = "code", partName = "downloadQuery.code") String code,

@@ -351,7 +351,7 @@ public class TreePanel extends JPanel {
 
 	private void updateProjects(ServerTreeNode serverTreeNode) {
 		try {
-			List<SProject> projectList = serviceHolder.getService().getAllProjects();
+			List<SProject> projectList = serviceHolder.getService().getAllProjects(false);
 			serverTreeNode.clearProjects();
 			if (projectList != null) {
 				for (SProject p : projectList) {

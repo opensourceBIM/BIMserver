@@ -55,10 +55,11 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 
 	@Override
 	public void handleMessage(Message message) throws Fault {
-		Token token = (Token)message.getExchange().getSession().get("token");
 		HttpServletRequest httpRequest = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
-		HttpServletResponse response = (HttpServletResponse) message.get(AbstractHTTPDestination.HTTP_RESPONSE);
-		response.setHeader("Access-Control-Allow-Origin", httpRequest.getHeader("Origin"));
+		HttpServletResponse httpResponse = (HttpServletResponse) message.get(AbstractHTTPDestination.HTTP_RESPONSE);
+		httpResponse.setHeader("Access-Control-Allow-Origin", httpRequest.getHeader("Origin"));
+		httpResponse.setHeader("Access-Control-Allow-Headers", "Content-Type");
+		Token token = (Token)message.getExchange().getSession().get("token");
 		ServiceInterface newService = null;
 		if (token == null) {
 			newService = bimServer.getServiceFactory().newService(AccessMethod.REST, httpRequest.getRemoteAddr());
@@ -84,7 +85,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 		}
 		try {
 			if (newService.login(policy.getUserName(), policy.getPassword()) != null) {
-                response.setHeader("Access-Control-Allow-Credentials", "true");
+                httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
 				return;
 			} else {
 				LOGGER.warn("Invalid username or password for user: " + policy.getUserName());

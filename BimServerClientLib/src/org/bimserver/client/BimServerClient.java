@@ -84,7 +84,18 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private Map<String, SService> sServices = new HashMap<String, SService>();
 
 	public BimServerClient(PluginManager pluginManager) {
+		this(pluginManager, createDefaultSServices());
+	}
+
+	private static Map<String, SService> createDefaultSServices() {
+		Map<String, SService> map = new HashMap<String, SService>();
+		map.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
+		return map;
+	}
+	
+	public BimServerClient(PluginManager pluginManager, Map<String, SService> sServices) {
 		this.pluginManager = pluginManager;
+		this.sServices = sServices;
 		protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
 			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
@@ -93,7 +104,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 			LOGGER.error("", e);
 		}
 		notificationsClient = new SocketNotificationsClient();
-		sServices.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
 	}
 
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
@@ -390,7 +400,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			EmfSerializer serializer = serializerPlugin.createSerializer();
 			serializer.init(model, null, pluginManager, null);
-			int checkinId = getServiceInterface().checkin(poid, comment, -1L, 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false, true); // TODO
+			long checkinId = getServiceInterface().checkin(poid, comment, -1L, 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false, true); // TODO
 			SCheckinResult checkinResult = getServiceInterface().getCheckinState(checkinId);
 			return checkinResult.getRevisionId();
 		} catch (ServiceException e) {

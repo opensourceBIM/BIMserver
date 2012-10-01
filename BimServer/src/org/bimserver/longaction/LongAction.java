@@ -35,7 +35,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
 	private final GregorianCalendar start;
-	private int id;
+	private long id;
 	private int progress;
 	private final CountDownLatch latch = new CountDownLatch(1);
 	private final BimServer bimServer;
@@ -57,10 +57,14 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 	}
 
 	protected void changeActionState(ActionState actiontState) {
+		ActionState oldState = this.actionState;
 		if (actiontState == ActionState.FINISHED) {
 			stop = new GregorianCalendar();
 		}
 		this.actionState = actiontState;
+		if (oldState != actiontState) {
+			bimServer.getNotificationsManager().updateProgress(id, getState());
+		}
 	}
 
 	public GregorianCalendar getStop() {
@@ -89,7 +93,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 
 	public abstract void execute();
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -99,6 +103,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 
 	protected void done() {
 		latch.countDown();
+		bimServer.getNotificationsManager().updateProgress(id, getState());
 	}
 
 	public void waitForCompletion() {
@@ -118,7 +123,11 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 	}
 
 	public void updateProgress(int progress) {
+		int oldProgress = this.progress;
 		this.progress = progress;
+		if (progress != oldProgress) {
+			bimServer.getNotificationsManager().updateProgress(id, getState());
+		}
 	}
 
 	public int getProgress() {
@@ -130,6 +139,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 		ds.setProgress(getProgress());
 		ds.setState(getActionState());
 		ds.getErrors().addAll(errors);
+		ds.getInfos().addAll(infos);
 		ds.getWarnings().addAll(warnings);
 		if (getActionState() == ActionState.FINISHED) {
 			ds.setProgress(100);

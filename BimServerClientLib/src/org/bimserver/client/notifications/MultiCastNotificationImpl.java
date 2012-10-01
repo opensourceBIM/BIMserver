@@ -20,7 +20,11 @@ package org.bimserver.client.notifications;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -47,6 +51,13 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) throws UserException, ServerException {
 		for (NotificationInterface notificationInterface : notificationInterfaces) {
 			notificationInterface.newLogAction(logAction, token, apiUrl);
+		}
+	}
+
+	@Override
+	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {
+		for (NotificationInterface notificationInterface : notificationInterfaces) {
+			notificationInterface.progress(topicId, state);
 		}
 	}
 }

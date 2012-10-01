@@ -127,12 +127,12 @@ public class VirtualUser extends Thread {
 
 	public SProject getRandomProject() {
 		try {
-			List<SProject> allProjects = bimServerClient.getServiceInterface().getAllProjects();
+			List<SProject> allProjects = bimServerClient.getServiceInterface().getAllProjects(false);
 			if (allProjects == null || allProjects.isEmpty()) {
 				CreateProjectAction createProjectAction = new CreateProjectAction(testFramework);
 				createProjectAction.execute(this);
 			}
-			allProjects = bimServerClient.getServiceInterface().getAllProjects();
+			allProjects = bimServerClient.getServiceInterface().getAllProjects(false);
 			if (!allProjects.isEmpty()) {
 				return allProjects.get(random.nextInt(allProjects.size()));
 			}

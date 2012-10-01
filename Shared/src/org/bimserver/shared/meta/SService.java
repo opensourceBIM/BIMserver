@@ -50,7 +50,7 @@ public class SService {
 	private final String name;
 	private final Class<?> clazz;
 	private String sourceCode;
-	
+
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
 
@@ -90,7 +90,7 @@ public class SService {
 	}
 
 	private void extractJavaDoc() {
-		ASTParser parser = ASTParser.newParser(AST.JLS3);
+		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setSource(sourceCode.toCharArray());
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);

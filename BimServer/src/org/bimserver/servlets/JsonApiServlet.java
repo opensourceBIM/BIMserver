@@ -34,9 +34,9 @@ public class JsonApiServlet extends HttpServlet {
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
 		response.setHeader("Content-Type", "text/html");
 		try {
 			PrintWriter writer = response.getWriter();

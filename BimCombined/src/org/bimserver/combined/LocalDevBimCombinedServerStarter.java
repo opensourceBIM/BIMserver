@@ -37,6 +37,7 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginException;
+import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.StreamingServlet;
 import org.bimserver.servlets.UploadServlet;
@@ -45,7 +46,6 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimwebserver.BimWebServer;
 import org.bimwebserver.jsp.LocalDevBimWebServerStarter;
 import org.bimwebserver.jsp.LoginManager;
-import org.bimwebserver.servlets.DownloadServlet;
 import org.bimwebserver.servlets.ProgressServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,7 +122,7 @@ public class LocalDevBimCombinedServerStarter {
 	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
-				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
 				bimServerClient.setAuthentication(authenticationInfo);
 //				try {
 //					bimServerClient.connectProtocolBuffers("localhost", 8020);

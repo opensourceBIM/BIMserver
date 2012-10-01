@@ -42,7 +42,6 @@ import org.bimserver.webservices.Authorization;
 public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final long roid;
-	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
@@ -85,9 +84,9 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 					public void objectAdded() {
 						total.incrementAndGet();
 						if (totalSize == 0) {
-							progress = 0;
+							setProgress(0);
 						} else {
-							progress = Math.round(100L * total.get() / totalSize);
+							setProgress(Math.round(100L * total.get() / totalSize));
 						}
 					}
 				});
@@ -140,9 +139,5 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 			// }
 		}
 		return ifcModel;
-	}
-
-	public int getProgress() {
-		return progress;
 	}
 }

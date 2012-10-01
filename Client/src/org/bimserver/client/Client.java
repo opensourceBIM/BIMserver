@@ -130,7 +130,7 @@ public class Client extends JFrame {
 				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 		try {
 			DataHandler ifcFile = new DataHandler(dataSource);
-			int checkinId = serviceHolder.getService().checkin(project.getOid(), comment, -1L, fileSize, ifcFile, false, true); // TODO
+			long checkinId = serviceHolder.getService().checkin(project.getOid(), comment, -1L, fileSize, ifcFile, false, true); // TODO
 			SCheckinResult sCheckinResult = serviceHolder.getService().getCheckinState(checkinId);
 			JOptionPane.showMessageDialog(this, "New revision number: " + sCheckinResult.getRevisionId(), "Checkin successful", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);
@@ -143,7 +143,7 @@ public class Client extends JFrame {
 	void checkout(SRevision revision, OutputStream out, boolean report) {
 		try {
 			SProject sProject = serviceHolder.getService().getProjectByPoid(revision.getProjectId());
-			int longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), -1L, true); // TODO select serializer oid
+			long longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), -1L, true); // TODO select serializer oid
 			SDownloadResult checkout = serviceHolder.getService().getDownloadData(longCheckoutActionId);
 			try {
 				InputStream inputStream = checkout.getFile().getInputStream();
@@ -254,7 +254,7 @@ public class Client extends JFrame {
 
 	public void download(long roid, FileOutputStream out, boolean report) {
 		try {
-			int downloadId = serviceHolder.getService().download(roid, -1L, true, true); // TODO
+			long downloadId = serviceHolder.getService().download(roid, -1L, true, true); // TODO
 			SDownloadResult download = serviceHolder.getService().getDownloadData(downloadId);
 			try {
 				InputStream inputStream = download.getFile().getInputStream();

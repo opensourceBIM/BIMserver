@@ -21,9 +21,9 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 
 public interface NotificationInterface {
@@ -33,4 +33,9 @@ public interface NotificationInterface {
 		@WebParam(name = "logAction", partName = "newLogAction.logAction") SLogAction logAction,
 		@WebParam(name = "token", partName = "newRevision.token") SToken token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
+
+	@WebMethod(action = "progress")
+	void progress(
+		@WebParam(name = "topicId", partName = "progress.topicId") long topicId, 
+		@WebParam(name = "state", partName = "progress.state") SLongActionState state) throws UserException, ServerException;
 }

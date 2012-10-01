@@ -41,7 +41,7 @@ public class LongActionManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
 	private static final int FIVE_MINUTES_IN_MS = 5;
-	private final BiMap<Integer, LongAction<?>> actions = HashBiMap.create();
+	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
 	private int actionNumberCounter = 0;
 	private final BimServer bimServer;
@@ -106,15 +106,15 @@ public class LongActionManager {
 		}
 	}
 
-	public synchronized LongAction<?> getLongAction(int id) {
+	public synchronized LongAction<?> getLongAction(long id) {
 		return actions.get(id);
 	}
 
 	public synchronized void cleanup() {
-		Iterator<Integer> iterator = actions.keySet().iterator();
+		Iterator<Long> iterator = actions.keySet().iterator();
 		GregorianCalendar now = new GregorianCalendar();
 		while (iterator.hasNext()) {
-			int id = iterator.next();
+			long id = iterator.next();
 			LongAction<?> longAction = actions.get(id);
 			if (longAction.getActionState() == ActionState.FINISHED) {
 				GregorianCalendar stop = longAction.getStop();

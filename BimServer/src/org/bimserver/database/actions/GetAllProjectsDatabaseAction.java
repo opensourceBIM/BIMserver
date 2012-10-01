@@ -24,6 +24,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.query.conditions.AndCondition;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
@@ -44,9 +45,11 @@ import org.bimserver.webservices.Authorization;
 public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>> {
 
 	private Authorization authorization;
+	private boolean onlyTopLevel;
 
-	public GetAllProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
+	public GetAllProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, boolean onlyTopLevel, Authorization authorization) {
 		super(databaseSession, accessMethod);
+		this.onlyTopLevel = onlyTopLevel;
 		this.authorization = authorization;
 	}
 
@@ -56,6 +59,9 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 		Not notStoreProject = new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)));
 		HasReferenceToCondition authorized = new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user);
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(notStoreProject);
+		if (onlyTopLevel) {
+			condition = new AndCondition(condition, new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_Parent(), null));
+		}
 		if (user.getUserType() != UserType.ADMIN && user.getUserType() != UserType.SYSTEM) {
 			condition = condition.and(authorized);
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));

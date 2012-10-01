@@ -110,14 +110,14 @@ private Reflector reflector;
 	public void changeUserType(java.lang.Long uoid, org.bimserver.interfaces.objects.SUserType userType) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "changeUserType", void.class, new KeyValuePair("uoid", uoid), new KeyValuePair("userType", userType));
 	}
-	public java.lang.Integer checkin(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, javax.activation.DataHandler ifcFile, java.lang.Boolean merge, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "checkin", java.lang.Integer.class, new KeyValuePair("poid", poid), new KeyValuePair("comment", comment), new KeyValuePair("deserializerOid", deserializerOid), new KeyValuePair("fileSize", fileSize), new KeyValuePair("ifcFile", ifcFile), new KeyValuePair("merge", merge), new KeyValuePair("sync", sync));
+	public java.lang.Long checkin(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, javax.activation.DataHandler ifcFile, java.lang.Boolean merge, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "checkin", java.lang.Long.class, new KeyValuePair("poid", poid), new KeyValuePair("comment", comment), new KeyValuePair("deserializerOid", deserializerOid), new KeyValuePair("fileSize", fileSize), new KeyValuePair("ifcFile", ifcFile), new KeyValuePair("merge", merge), new KeyValuePair("sync", sync));
 	}
-	public java.lang.Integer checkout(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "checkout", java.lang.Integer.class, new KeyValuePair("roid", roid), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
+	public java.lang.Long checkout(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "checkout", java.lang.Long.class, new KeyValuePair("roid", roid), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
 	}
-	public java.lang.Integer checkoutLastRevision(java.lang.Long poid, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "checkoutLastRevision", java.lang.Integer.class, new KeyValuePair("poid", poid), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
+	public java.lang.Long checkoutLastRevision(java.lang.Long poid, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "checkoutLastRevision", java.lang.Long.class, new KeyValuePair("poid", poid), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
 	}
 	public void close() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "close", void.class);
@@ -167,26 +167,26 @@ private Reflector reflector;
 	public void disablePlugin(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "disablePlugin", void.class, new KeyValuePair("name", name));
 	}
-	public java.lang.Integer download(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean showOwn, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "download", java.lang.Integer.class, new KeyValuePair("roid", roid), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("showOwn", showOwn), new KeyValuePair("sync", sync));
+	public java.lang.Long download(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean showOwn, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "download", java.lang.Long.class, new KeyValuePair("roid", roid), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("showOwn", showOwn), new KeyValuePair("sync", sync));
 	}
-	public java.lang.Integer downloadByGuids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> guids, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadByGuids", java.lang.Integer.class, new KeyValuePair("roids", roids), new KeyValuePair("guids", guids), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
+	public java.lang.Long downloadByGuids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> guids, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "downloadByGuids", java.lang.Long.class, new KeyValuePair("roids", roids), new KeyValuePair("guids", guids), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
 	}
-	public java.lang.Integer downloadByOids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.Long> oids, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadByOids", java.lang.Integer.class, new KeyValuePair("roids", roids), new KeyValuePair("oids", oids), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
+	public java.lang.Long downloadByOids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.Long> oids, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "downloadByOids", java.lang.Long.class, new KeyValuePair("roids", roids), new KeyValuePair("oids", oids), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
 	}
-	public java.lang.Integer downloadByTypes(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadByTypes", java.lang.Integer.class, new KeyValuePair("roids", roids), new KeyValuePair("classNames", classNames), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("includeAllSubtypes", includeAllSubtypes), new KeyValuePair("sync", sync));
+	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "downloadByTypes", java.lang.Long.class, new KeyValuePair("roids", roids), new KeyValuePair("classNames", classNames), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("includeAllSubtypes", includeAllSubtypes), new KeyValuePair("sync", sync));
 	}
-	public java.lang.Integer downloadCompareResults(java.lang.Long serializerOid, java.lang.Long roid1, java.lang.Long roid2, java.lang.Long mcid, org.bimserver.interfaces.objects.SCompareType type, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadCompareResults", java.lang.Integer.class, new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("roid1", roid1), new KeyValuePair("roid2", roid2), new KeyValuePair("mcid", mcid), new KeyValuePair("type", type), new KeyValuePair("sync", sync));
+	public java.lang.Long downloadCompareResults(java.lang.Long serializerOid, java.lang.Long roid1, java.lang.Long roid2, java.lang.Long mcid, org.bimserver.interfaces.objects.SCompareType type, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "downloadCompareResults", java.lang.Long.class, new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("roid1", roid1), new KeyValuePair("roid2", roid2), new KeyValuePair("mcid", mcid), new KeyValuePair("type", type), new KeyValuePair("sync", sync));
 	}
-	public java.lang.Integer downloadQuery(java.lang.Long roid, java.lang.Long qeid, java.lang.String code, java.lang.Boolean sync, java.lang.Long serializerOid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadQuery", java.lang.Integer.class, new KeyValuePair("roid", roid), new KeyValuePair("qeid", qeid), new KeyValuePair("code", code), new KeyValuePair("sync", sync), new KeyValuePair("serializerOid", serializerOid));
+	public java.lang.Long downloadQuery(java.lang.Long roid, java.lang.Long qeid, java.lang.String code, java.lang.Boolean sync, java.lang.Long serializerOid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "downloadQuery", java.lang.Long.class, new KeyValuePair("roid", roid), new KeyValuePair("qeid", qeid), new KeyValuePair("code", code), new KeyValuePair("sync", sync), new KeyValuePair("serializerOid", serializerOid));
 	}
-	public java.lang.Integer downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.lang.Integer) reflector.callMethod("ServiceInterface", "downloadRevisions", java.lang.Integer.class, new KeyValuePair("roids", roids), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
+	public java.lang.Long downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.Long serializerOid, java.lang.Boolean sync) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "downloadRevisions", java.lang.Long.class, new KeyValuePair("roids", roids), new KeyValuePair("serializerOid", serializerOid), new KeyValuePair("sync", sync));
 	}
 	public void enablePlugin(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "enablePlugin", void.class, new KeyValuePair("name", name));
@@ -260,8 +260,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllPlugins", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllProjects", java.util.List.class);
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(boolean onlyTopLevel) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllProjects", java.util.List.class, new KeyValuePair("onlyTopLevel", onlyTopLevel));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllQueryEnginePluginDescriptors", java.util.List.class);
@@ -299,7 +299,7 @@ private Reflector reflector;
 	public java.util.List<java.lang.String> getAvailableClassesInRevision(java.lang.Long roid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<java.lang.String>) reflector.callMethod("ServiceInterface", "getAvailableClassesInRevision", java.util.List.class, new KeyValuePair("roid", roid));
 	}
-	public org.bimserver.interfaces.objects.SCheckinResult getCheckinState(java.lang.Integer actionID) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public org.bimserver.interfaces.objects.SCheckinResult getCheckinState(java.lang.Long actionID) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SCheckinResult) reflector.callMethod("ServiceInterface", "getCheckinState", org.bimserver.interfaces.objects.SCheckinResult.class, new KeyValuePair("actionID", actionID));
 	}
 	public java.util.Set<java.lang.String> getCheckinWarnings(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
@@ -353,10 +353,10 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SDeserializer getDeserializerByName(java.lang.String deserializerName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SDeserializer) reflector.callMethod("ServiceInterface", "getDeserializerByName", org.bimserver.interfaces.objects.SDeserializer.class, new KeyValuePair("deserializerName", deserializerName));
 	}
-	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Integer actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Long actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SDownloadResult) reflector.callMethod("ServiceInterface", "getDownloadData", org.bimserver.interfaces.objects.SDownloadResult.class, new KeyValuePair("actionId", actionId));
 	}
-	public org.bimserver.interfaces.objects.SLongActionState getDownloadState(java.lang.Integer actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public org.bimserver.interfaces.objects.SLongActionState getDownloadState(java.lang.Long actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SLongActionState) reflector.callMethod("ServiceInterface", "getDownloadState", org.bimserver.interfaces.objects.SLongActionState.class, new KeyValuePair("actionId", actionId));
 	}
 	public org.bimserver.interfaces.objects.SEService getEServiceById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {

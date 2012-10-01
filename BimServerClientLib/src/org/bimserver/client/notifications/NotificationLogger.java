@@ -20,7 +20,10 @@ package org.bimserver.client.notifications;
 import java.io.PrintWriter;
 
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class NotificationLogger implements NotificationInterface {
@@ -35,5 +38,9 @@ public class NotificationLogger implements NotificationInterface {
 	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) {
 		out.println(logAction);
 		out.flush();
+	}
+	
+	@Override
+	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {
 	}
 }
