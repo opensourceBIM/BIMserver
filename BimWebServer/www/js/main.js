@@ -39,18 +39,6 @@ function trim(s)
 	return s.substring(l, r+1);
 }
 
-function call(request, callback) {
-	$.ajax({
-		type: 'POST',
-		url: "/json",
-		data: JSON.stringify(request),
-		success: function(data){
-			callback(data);
-		},
-		dataType: "json"
-	});
-}
-
 function showDownloadCheckoutPopup(params) {
 	$("#downloadcheckoutpopup").dialog({
 		title: "Download/Checkout",

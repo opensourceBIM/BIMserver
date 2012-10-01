@@ -104,6 +104,12 @@ public abstract class BimDatabaseAction<T> {
 		return getUserByUserName("admin");
 	}
 
+	public void setProgress(int progress) {
+		for (ProgressListener progressListener : progressListeners) {
+			progressListener.updateProgress(progress);
+		}
+	}
+	
 	public void addProgressListener(ProgressListener progressListener) {
 		progressListeners.add(progressListener);
 	}

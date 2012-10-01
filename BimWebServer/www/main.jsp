@@ -25,7 +25,7 @@ try {
 <div class="content">
 <h1>Projects</h1>
 <%
-	List<SProject> projects = loginManager.getService().getAllProjects();
+	List<SProject> projects = loginManager.getService().getAllProjects(false);
 	Collections.sort(projects, new SProjectNameComparator());
 	if (projects.size() > 0) {
 %>

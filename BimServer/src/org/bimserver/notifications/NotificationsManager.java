@@ -30,9 +30,11 @@ import org.bimserver.BimServer;
 import org.bimserver.client.JsonChannel;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
+import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.Service;
@@ -41,6 +43,8 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.servlets.EndPoint;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
@@ -177,5 +181,19 @@ public class NotificationsManager extends Thread implements NotificationsManager
 
 	public Collection<ServerDescriptor> getInternalServers() {
 		return internalServers.values();
+	}
+
+	public void updateProgress(long id, LongActionState actionState) {
+		for (Entry<Long, Set<EndPoint>> endPoints : this.endPoints.entrySet()) {
+			for (EndPoint endPoint : endPoints.getValue()) {
+				try {
+					endPoint.getNotificationInterface().progress(id, new SConverter().convertToSObject(actionState));
+				} catch (UserException e) {
+					e.printStackTrace();
+				} catch (ServerException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

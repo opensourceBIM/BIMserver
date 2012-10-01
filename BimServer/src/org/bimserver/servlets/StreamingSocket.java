@@ -3,31 +3,30 @@ package org.bimserver.servlets;
 import java.io.IOException;
 
 import org.bimserver.BimServer;
-import org.bimserver.interfaces.objects.SLogAction;
-import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.client.JsonReflector;
+import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.json.JsonConverter;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
 import org.eclipse.jetty.websocket.WebSocket;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInterface, EndPoint {
+public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StreamingSocket.class);
 	private Connection connection;
 	private BimServer bimServer;
 	private long uoid;
 	private long endpointid;
-	private ServiceInterface service;
+	private NotificationInterfaceReflectorImpl reflectorImpl;
 
 	public StreamingSocket(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
+		JsonReflector jsonReflector = new JsonWebsocketReflector(bimServer.getServiceInterfaces(), this);
+		reflectorImpl = new NotificationInterfaceReflectorImpl(jsonReflector);
 	}
 
 	@Override
@@ -54,27 +53,15 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 			bimServer.getJsonHandler().execute(request, null);
 		} catch (JSONException e) {
 			LOGGER.error("", e);
-		} catch (ServiceException e) {
-			LOGGER.error("", e);
 		}
 	}
 
-	private void send(JSONObject object) {
+	public void send(JSONObject object) {
 		try {
+//			LOGGER.info("sending " + object.toString(2));
 			connection.sendMessage(object.toString());
 		} catch (IOException e) {
 		}
-	}
-
-	@Override
-	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) {
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("logAction", bimServer.getJsonHandler().getJsonConverter().toJson(logAction));
-		} catch (JSONException e) {
-			LOGGER.error("", e);
-		}
-		send(jsonObject);
 	}
 
 	@Override
@@ -84,7 +71,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, NotificationInt
 
 	@Override
 	public NotificationInterface getNotificationInterface() {
-		return this;
+		return reflectorImpl;
 	}
 
 	@Override

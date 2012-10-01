@@ -18,6 +18,7 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -27,5 +28,8 @@ public class NotificationInterfaceAdapter implements NotificationInterface {
 
 	@Override
 	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) throws UserException, ServerException {
+	}
+	
+	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {
 	}
 }

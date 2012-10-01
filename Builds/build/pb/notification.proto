@@ -26,11 +26,18 @@ option optimize_for = SPEED;
 service NotificationInterface {
 	rpc newLogAction (NewLogActionRequest) returns (VoidResponse);
 
+	rpc progress (ProgressRequest) returns (VoidResponse);
+
 }
 
 message NewLogActionRequest {
 	optional SLogAction logAction = 1;
 	optional SToken token = 2;
 	optional string apiUrl = 3;
+}
+
+message ProgressRequest {
+	optional int64 topicId = 1;
+	optional SLongActionState state = 2;
 }
 

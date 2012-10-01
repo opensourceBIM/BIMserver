@@ -116,7 +116,7 @@ public class SyndicationServlet extends HttpServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SProject> allProjects = service.getAllProjects();
+			List<SProject> allProjects = service.getAllProjects(false);
 			for (SProject sProject : allProjects) {
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setAuthor(service.getUserByUoid(sProject.getCreatedById()).getName());

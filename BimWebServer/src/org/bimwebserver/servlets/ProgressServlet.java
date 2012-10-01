@@ -43,13 +43,13 @@ public class ProgressServlet extends HttpServlet {
 			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
 			if (loginManager != null) {
 				if (request.getParameter("checkinid") != null) {
-					int checkinId = Integer.parseInt(request.getParameter("checkinid"));
+					long checkinId = Integer.parseInt(request.getParameter("checkinid"));
 					SCheckinResult checkinState = loginManager.getService().getCheckinState(checkinId);
 					result.put("progress", checkinState.getProgress());
 					result.put("status", checkinState.getStatus());
 					result.put("lastError", checkinState.getLastError());
 				} else if (request.getParameter("laid") != null) {
-					SLongActionState downloadState = loginManager.getService().getDownloadState(Integer.parseInt(request.getParameter("laid")));
+					SLongActionState downloadState = loginManager.getService().getDownloadState(Long.parseLong(request.getParameter("laid")));
 					result.put("state", downloadState.getState());
 					result.put("progress", downloadState.getProgress());
 				}

@@ -149,7 +149,7 @@ public class TestEmbeddedBimServer {
 			BimDatabase database = bimServer.getDatabase();
 			DatabaseSession session = database.createSession();
 			SProject firstProjectWithRevisions = null;
-			for (SProject project : service.getAllProjects()) {
+			for (SProject project : service.getAllProjects(false)) {
 				System.out.println(project.getName());
 				if (!project.getRevisions().isEmpty() && firstProjectWithRevisions == null) {
 					firstProjectWithRevisions = project;

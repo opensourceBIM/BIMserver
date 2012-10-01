@@ -612,18 +612,19 @@ for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(
 		$("#servicestab").load("services.jsp?poid=<%=project.getOid()%>");
 
 		$("#inviteButton").click(function(){
-			call({
-				action: "inviteuser",
-				username: $("#usernamefield").val(),
-				name: $("#namefield").val(),
-				type: "USER"
-			}, function(data){
-				if (data.error == null) {
-					document.location = "addusertoproject.jsp?uoid=" + data.uoid + "&poid=<%=project.getOid()%>&type=project";
-				} else {
-					alert(data.error);
-				}
-			});
+			// TODO enable
+//			bimServerApi.call({
+//				action: "inviteuser",
+//				username: $("#usernamefield").val(),
+//				name: $("#namefield").val(),
+//				type: "USER"
+//			}, function(data){
+//				if (data.error == null) {
+//					document.location = "addusertoproject.jsp?uoid=" + data.uoid + "&poid=<%=project.getOid()%>&type=project";
+//				} else {
+//					alert(data.error);
+//				}
+//			});
 		});
 		
 		$(".downloadCheckoutButtonAdvanced").click(function(event){

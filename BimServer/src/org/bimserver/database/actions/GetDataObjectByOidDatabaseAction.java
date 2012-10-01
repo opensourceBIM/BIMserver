@@ -166,10 +166,10 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 						}
 					} else {
 						EList<? extends EObject> list = (EList<EObject>) eGet;
+						ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
+						dataObject.getValues().add(dataValue);
+						dataValue.setFieldName(eStructuralFeature.getName());
 						for (EObject item : list) {
-							ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
-							dataValue.setFieldName(eStructuralFeature.getName());
-							dataObject.getValues().add(dataValue);
 							if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
 								EObject referenceEObject = (EObject) item;
 								SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();

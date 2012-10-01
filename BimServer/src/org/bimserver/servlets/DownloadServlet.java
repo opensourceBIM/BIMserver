@@ -1,4 +1,4 @@
-package org.bimwebserver.servlets;
+package org.bimserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -31,13 +31,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimwebserver.jsp.LoginManager;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,18 +50,28 @@ public class DownloadServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
-			if (loginManager == null) {
-				loginManager = new LoginManager();
+			response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+			BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+			SToken token = (SToken)request.getSession().getAttribute("token");
+			
+			if (token == null) {
+				String tokenString = request.getParameter("tokenString");
+				long expires = Long.parseLong(request.getParameter("tokenExpires"));
+				token = new SToken();
+				token.setTokenString(tokenString);
+				token.setExpires(expires);
 			}
+			ServiceInterface service = bimServer.getServiceFactory().getService(token);
+
 			SSerializer serializer = null;
 			if (request.getParameter("serializerOid") != null) {
 				long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
-				serializer = loginManager.getService().getSerializerById(serializerOid);
+				serializer = service.getSerializerById(serializerOid);
 			} else {
-				serializer = loginManager.getService().getSerializerByName(request.getParameter("serializerName"));
+				serializer = service.getSerializerByName(request.getParameter("serializerName"));
 			}
-			int downloadId = -1;
+			long downloadId = -1;
 			if (request.getParameter("longActionId") != null) {
 				downloadId = Integer.parseInt(request.getParameter("longActionId"));
 			} else if (request.getParameter("multiple") != null) {
@@ -72,18 +84,18 @@ public class DownloadServlet extends HttpServlet {
 						}
 					}
 				}
-				downloadId = loginManager.getService().downloadRevisions(roids, serializer.getOid(), true);
+				downloadId = service.downloadRevisions(roids, serializer.getOid(), true);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
 				Long roid2 = Long.parseLong(request.getParameter("roid2"));
-				downloadId = loginManager.getService().downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
+				downloadId = service.downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {
 					if (request.getParameter("poid") != null) {
 						long poid = Long.parseLong(request.getParameter("poid"));
-						SProject projectByPoid = loginManager.getService().getProjectByPoid(poid);
+						SProject projectByPoid = service.getProjectByPoid(poid);
 						if (projectByPoid == null) {
 							throw new UserException("Project with oid " + poid + " not found");
 						}
@@ -98,7 +110,7 @@ public class DownloadServlet extends HttpServlet {
 					roid = Long.parseLong(request.getParameter("roid"));
 				}
 				if (request.getParameter("checkout") != null) {
-					downloadId = loginManager.getService().checkout(roid, serializer.getOid(), true);
+					downloadId = service.checkout(roid, serializer.getOid(), true);
 				} else {
 					if (request.getParameter("classses") != null) {
 						Set<String> classes = new HashSet<String>();
@@ -107,7 +119,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = loginManager.getService().downloadByTypes(roids, classes, serializer.getOid(), false, true);
+						downloadId = service.downloadByTypes(roids, classes, serializer.getOid(), false, true);
 					} else if (request.getParameter("oids") != null) {
 						Set<Long> oids = new HashSet<Long>();
 						for (String oidString : request.getParameter("oids").split(";")) {
@@ -115,7 +127,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = loginManager.getService().downloadByOids(roids, oids, serializer.getOid(), true);
+						downloadId = service.downloadByOids(roids, oids, serializer.getOid(), true);
 					} else if (request.getParameter("guids") != null) {
 						Set<String> guids = new HashSet<String>();
 						for (String guid : request.getParameter("guids").split(";")) {
@@ -123,9 +135,9 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = loginManager.getService().downloadByGuids(roids, guids, serializer.getOid(), true);
+						downloadId = service.downloadByGuids(roids, guids, serializer.getOid(), true);
 					} else {
-						downloadId = loginManager.getService().download(roid, serializer.getOid(), true, true);
+						downloadId = service.download(roid, serializer.getOid(), true, true);
 					}
 				}
 			}
@@ -133,7 +145,7 @@ public class DownloadServlet extends HttpServlet {
 				response.getWriter().println("No valid download");
 				return;
 			}
-			SDownloadResult checkoutResult = loginManager.getService().getDownloadData(downloadId);
+			SDownloadResult checkoutResult = service.getDownloadData(downloadId);
 			DataSource dataSource = checkoutResult.getFile().getDataSource();
 			if (request.getParameter("zip") != null && request.getParameter("zip").equals("on")) {
 				if (serializer.getClassName().equals("IfcStepSerializer")) {

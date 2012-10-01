@@ -132,6 +132,7 @@ import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.ModelCompare;
 import org.bimserver.models.store.ModelMerger;
 import org.bimserver.models.store.Project;
@@ -202,7 +203,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync)
+	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync)
 			throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = bimServer.getDatabase().createSession();
@@ -276,7 +277,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckinResult getCheckinState(Integer actionId) throws ServerException, UserException {
+	public SCheckinResult getCheckinState(Long actionId) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
 		try {
 			LongCheckinAction longAction = (LongCheckinAction) bimServer.getLongActionManager().getLongAction(actionId);
 			if (longAction != null) {
@@ -292,22 +294,21 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer checkoutLastRevision(Long poid, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long checkoutLastRevision(Long poid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			return checkout(project.getLastRevision().getOid(), serializerOid, sync);
 		} catch (Exception e) {
-			handleException(e);
-			return -1;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public Integer checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		authorization.canDownload(roid);
 		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid);
@@ -344,18 +345,12 @@ public class Service implements ServiceInterface {
 		return user.getSettings();
 	}
 
-	public ServerSettings getServerSettings(DatabaseSession session) {
-		try {
-			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
-			List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
-			if (settingsList.size() == 1) {
-				ServerSettings settings = settingsList.get(0);
-				return settings;
-			}
-		} catch (BimserverLockConflictException e) {
-			e.printStackTrace();
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+	private ServerSettings getServerSettings(DatabaseSession session) throws BimserverDatabaseException {
+		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
+		List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
+		if (settingsList.size() == 1) {
+			ServerSettings settings = settingsList.get(0);
+			return settings;
 		}
 		return null;
 	}
@@ -373,8 +368,7 @@ public class Service implements ServiceInterface {
 					selfRegistration);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -402,8 +396,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(bimServer, session, accessMethod, projectName, authorization);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -417,25 +410,23 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new AddUserToProjectDatabaseAction(bimServer, session, accessMethod, authorization, uoid, poid);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public List<SProject> getAllProjects() throws ServerException, UserException {
+	public List<SProject> getAllProjects(boolean onlyTopLevel) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<Set<Project>> action = new GetAllProjectsDatabaseAction(session, accessMethod, authorization);
+			BimDatabaseAction<Set<Project>> action = new GetAllProjectsDatabaseAction(session, accessMethod, onlyTopLevel, authorization);
 			List<SProject> convertToSListProject = converter.convertToSListProject(session.executeAndCommitAction(action));
 			Collections.sort(convertToSListProject, new SProjectComparator());
 			return convertToSListProject;
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -500,8 +491,7 @@ public class Service implements ServiceInterface {
 			Collections.sort(convertToSListRevision, new SRevisionComparator(true));
 			return convertToSListRevision;
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -515,8 +505,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, accessMethod, poid, false);
 			return converter.convertToSListCheckout(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -530,8 +519,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, accessMethod, poid, true);
 			return converter.convertToSListCheckout(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -545,8 +533,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<User>> action = new GetAllUsersDatabaseAction(session, accessMethod, authorization);
 			return converter.convertToSListUser(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -564,8 +551,7 @@ public class Service implements ServiceInterface {
 				return null;
 			}
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -579,8 +565,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsByUserDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSListCheckout(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -594,8 +579,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsByUserDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSListRevision(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -609,8 +593,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Revision> action = new GetRevisionDatabaseAction(session, accessMethod, roid, authorization);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -624,25 +607,24 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(session, accessMethod, roid);
 			return converter.convertToSListCheckout(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
-	public Integer download(Long roid, Long serializerOid, Boolean showOwn, Boolean sync) throws ServerException, UserException {
+	public Long download(Long roid, Long serializerOid, Boolean showOwn, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(new DownloadParameters(bimServer, roid, serializerOid, showOwn ? -1 : authorization.getUoid()), sync);
 	}
 
 	@Override
-	public Integer downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
+	public Long downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromCompare(roid1, roid2, converter.convertFromSObject(type), mcid, serializerOid), sync);
 	}
 
-	private Integer download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
+	private Long download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
 		User user = null;
 		for (long roid : downloadParameters.getRoids()) {
 			authorization.canDownload(roid);
@@ -668,7 +650,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDownloadResult getDownloadData(final Integer actionId) throws ServerException, UserException {
+	public SDownloadResult getDownloadData(final Long actionId) throws ServerException, UserException {
 		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
 			longAction.waitForCompletion();
@@ -680,11 +662,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SLongActionState getDownloadState(Integer actionId) throws ServerException, UserException {
+	public SLongActionState getDownloadState(Long actionId) throws ServerException, UserException {
 		Object longAction2 = bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction2 != null) {
 			LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longAction2;
-			return converter.convertToSObject(longAction.getState());
+			LongActionState state = longAction.getState();
+			return converter.convertToSObject(state);
 		} else {
 			throw new UserException("No state found for laid " + actionId);
 		}
@@ -698,8 +681,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new DeleteProjectDatabaseAction(bimServer, session, accessMethod, poid, authorization);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -713,8 +695,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new DeleteUserDatabaseAction(session, accessMethod, authorization, uoid);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -728,21 +709,20 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new RemoveUserFromProjectDatabaseAction(bimServer, session, accessMethod, uoid, poid, authorization);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public Integer downloadByOids(Set<Long> roids, Set<Long> oids, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long downloadByOids(Set<Long> roids, Set<Long> oids, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromOids(bimServer, serializerOid, roids, oids), sync);
 	}
 
 	@Override
-	public Integer downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean sync) throws ServerException, UserException {
+	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerOid), sync);
 	}
@@ -755,8 +735,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<List<String>> action = new GetAvailableClassesDatabaseAction(session, accessMethod);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -770,15 +749,14 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<DatabaseInformation> action = new GetDatabaseInformationAction(session, accessMethod);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public Integer downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromGuids(bimServer, roids, guids, serializerOid), sync);
 	}
@@ -797,8 +775,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<Project>> action = new GetAllNonAuthorizedProjectsOfUserDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSListProject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -818,8 +795,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new ChangePasswordDatabaseAction(bimServer, session, accessMethod, uoid, oldPassword, newPassword, authorization);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -837,8 +813,7 @@ public class Service implements ServiceInterface {
 			}
 			return convert;
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -860,8 +835,7 @@ public class Service implements ServiceInterface {
 				return false;
 			}
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -875,8 +849,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new UndeleteProjectDatabaseAction(bimServer, session, accessMethod, poid, authorization);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -890,8 +863,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new UndeleteUserDatabaseAction(bimServer, session, accessMethod, authorization, uoid);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -905,8 +877,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(bimServer, session, accessMethod, projectName, parentPoid, authorization);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -949,8 +920,7 @@ public class Service implements ServiceInterface {
 					converter.convertFromSObject(sCompareType), mcid);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -965,8 +935,7 @@ public class Service implements ServiceInterface {
 			RevisionSummary revisionSummary = session.executeAndCommitAction(action);
 			return converter.convertToSObject(revisionSummary);
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -980,8 +949,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new UserHasCheckinRightsDatabaseAction(session, accessMethod, authorization, uoid, poid);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -995,8 +963,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<String>> action = new GetCheckoutWarningsDatabaseAction(session, accessMethod, poid, authorization);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1010,8 +977,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<String>> action = new GetCheckinWarningsDatabaseAction(session, accessMethod, poid, authorization);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1025,15 +991,14 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(session, accessMethod, getCurrentUser(session).getOid(), authorization, poid);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
-			return false;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public Integer downloadRevisions(Set<Long> roids, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long downloadRevisions(Set<Long> roids, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromRoids(bimServer, roids, serializerOid), sync);
 	}
@@ -1047,8 +1012,7 @@ public class Service implements ServiceInterface {
 			SDataObject dataObject = converter.convertToSObject(session.executeAndCommitAction(action));
 			return dataObject;
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1063,8 +1027,7 @@ public class Service implements ServiceInterface {
 			SDataObject dataObject = converter.convertToSObject(session.executeAndCommitAction(action));
 			return dataObject;
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1079,41 +1042,38 @@ public class Service implements ServiceInterface {
 			List<DataObject> dataObjects = session.executeAndCommitAction(action);
 			return converter.convertToSListDataObject(dataObjects);
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public SCheckinResult branchToNewProject(Long roid, String projectName, String comment) throws UserException {
+	public SCheckinResult branchToNewProject(Long roid, String projectName, String comment) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToNewProjectDatabaseAction action = new BranchToNewProjectDatabaseAction(session, accessMethod, bimServer, authorization, roid, projectName, comment);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 
 	@Override
-	public SCheckinResult branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException {
+	public SCheckinResult branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToExistingProjectDatabaseAction action = new BranchToExistingProjectDatabaseAction(session, accessMethod, bimServer, authorization, roid, destPoid, comment);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 
 	@Override
@@ -1127,8 +1087,7 @@ public class Service implements ServiceInterface {
 			Collections.sort(convertToSListLogAction, new SLogComparator(true));
 			return convertToSListLogAction;
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1142,8 +1101,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<GeoTag> action = new GetGeoTagDatabaseAction(session, accessMethod, authorization, goid);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1171,8 +1129,7 @@ public class Service implements ServiceInterface {
 			GetUserByUoidDatabaseAction action = new GetUserByUoidDatabaseAction(session, accessMethod, uoid);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1186,8 +1143,7 @@ public class Service implements ServiceInterface {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, accessMethod, poid, authorization);
 			return converter.convertToSObject(action.execute());
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1205,8 +1161,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<User>> action = new GetAllNonAuthorizedUsersOfProjectDatabaseAction(session, accessMethod, poid);
 			return new ArrayList<SUser>(converter.convertToSSetUser((session.executeAndCommitAction(action))));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1220,8 +1175,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<Set<User>> action = new GetAllAuthorizedUsersOfProjectDatabaseAction(session, accessMethod, poid);
 			return new ArrayList<SUser>(converter.convertToSSetUser(session.executeAndCommitAction(action)));
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1242,14 +1196,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getProjectsByName(String name) throws UserException {
+	public List<SProject> getProjectsByName(String name) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			GetProjectsByNameDatabaseAction action = new GetProjectsByNameDatabaseAction(session, accessMethod, name, authorization);
 			return (List<SProject>) converter.convertToSListProject(session.executeAndCommitAction(action));
-		} catch (BimserverDatabaseException e) {
-			throw new UserException(e);
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1297,8 +1251,7 @@ public class Service implements ServiceInterface {
 			Collections.sort(convertToSListProject, new SProjectComparator());
 			return convertToSListProject;
 		} catch (Exception e) {
-			handleException(e);
-			return null;
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1362,6 +1315,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getCustomLogoAddress();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1390,6 +1345,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getEmailSenderAddress();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1402,6 +1359,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getServiceRepositoryUrl();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1446,6 +1405,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getProtocolBuffersPort();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1479,6 +1440,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getRegistrationAddition();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1507,6 +1470,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getSiteAddress();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1542,6 +1507,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getSmtpServer();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1574,6 +1541,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getAllowSelfRegistration();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1585,6 +1554,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getHideUserListForNonAdmin();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1628,6 +1599,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.isAllowUsersToCreateTopLevelProjects();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1656,6 +1629,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getCheckinMergingEnabled();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1684,6 +1659,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.isSendConfirmationEmailAfterRegistration();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1712,6 +1689,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getShowVersionUpgradeAvailable();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1740,6 +1719,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getCacheOutputFiles();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -2208,6 +2189,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getFooterAddition();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -2219,6 +2202,8 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			return settings.getHeaderAddition();
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -2510,7 +2495,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Integer downloadQuery(Long roid, Long qeid, String code, Boolean sync, Long serializerOid) throws ServerException, UserException {
+	public Long downloadQuery(Long roid, Long qeid, String code, Boolean sync, Long serializerOid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(DownloadParameters.fromQuery(roid, qeid, code, serializerOid), sync);
 	}
@@ -3112,11 +3097,10 @@ public class Service implements ServiceInterface {
 					accessMethod)));
 			return serializers;
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 
 	@Override
@@ -3312,8 +3296,8 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SServerDescriptor> getExternalServers() throws ServerException, UserException {
-		List<SServerDescriptor> externalServers = new ArrayList<SServerDescriptor>();
 		try {
+			List<SServerDescriptor> externalServers = new ArrayList<SServerDescriptor>();
 			String url = getServiceRepositoryUrl();
 			String content = NetUtils.getContent(new URL(url));
 			JSONObject root = new JSONObject(new JSONTokener(content));
@@ -3326,16 +3310,16 @@ public class Service implements ServiceInterface {
 				externalServer.setUrl(service.getString("url"));
 				externalServers.add(externalServer);
 			}
+			return externalServers;
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		}
-		return externalServers;
 	}
 
 	@Override
 	public List<SServiceDescriptor> getExternalServices(String url) throws ServerException, UserException {
-		List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
 		try {
+			List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
 			String content = NetUtils.getContent(new URL(url));
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
@@ -3356,10 +3340,10 @@ public class Service implements ServiceInterface {
 				sServiceDescriptor.setWriteExtendedData(rights.getBoolean("writeExtendedData"));
 				sServiceDescriptors.add(sServiceDescriptor);
 			}
+			return sServiceDescriptors;
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		}
-		return sServiceDescriptors;
 	}
 
 	public org.bimserver.interfaces.objects.SService getService(Long epid) throws ServerException, UserException {

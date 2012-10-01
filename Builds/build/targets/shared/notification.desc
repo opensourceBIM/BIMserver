@@ -1,9 +1,13 @@
 
-È
+ï
 notification.protoorg.bimserver.pbservice.proto"
 NewLogActionRequest/
 	logAction (2.org.bimserver.pb.SLogAction'
 token (2.org.bimserver.pb.SToken
-apiUrl (	2n
+apiUrl (	"U
+ProgressRequest
+topicId (1
+state (2".org.bimserver.pb.SLongActionState2½
 NotificationInterfaceU
-newLogAction%.org.bimserver.pb.NewLogActionRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
+newLogAction%.org.bimserver.pb.NewLogActionRequest.org.bimserver.pb.VoidResponseM
+progress!.org.bimserver.pb.ProgressRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ

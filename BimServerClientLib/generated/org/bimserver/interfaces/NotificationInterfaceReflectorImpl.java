@@ -29,4 +29,7 @@ private Reflector reflector;
 	public void newLogAction(org.bimserver.interfaces.objects.SLogAction logAction, org.bimserver.interfaces.objects.SToken token, java.lang.String apiUrl) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "newLogAction", void.class, new KeyValuePair("logAction", logAction), new KeyValuePair("token", token), new KeyValuePair("apiUrl", apiUrl));
 	}
+	public void progress(long topicId, org.bimserver.interfaces.objects.SLongActionState state) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("NotificationInterface", "progress", void.class, new KeyValuePair("topicId", topicId), new KeyValuePair("state", state));
+	}
 }
