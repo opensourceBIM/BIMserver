@@ -75,7 +75,7 @@ public class JsonConverter {
 		return null;
 	}
 	
-	public Object fromJson(SClass definedType, Object object) throws JSONException {
+	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException {
 		if (object instanceof JSONObject) {
 			JSONObject jsonObject = (JSONObject) object;
 			if (jsonObject.has("__type")) {
@@ -84,16 +84,18 @@ public class JsonConverter {
 				SBase newObject = sClass.newInstance();
 				for (SField field : newObject.getSClass().getAllFields()) {
 					if (jsonObject.has(field.getName())) {
-						newObject.sSet(field, fromJson(field.getType(), jsonObject.get(field.getName())));
+						newObject.sSet(field, fromJson(field.getType(), field.getGenericType(), jsonObject.get(field.getName())));
 					}
 				}
 				return newObject;
+			} else {
+				return null;
 			}
 		} else if (object instanceof JSONArray) {
 			JSONArray array = (JSONArray)object;
 			List<Object> list = new ArrayList<Object>();
 			for (int i=0; i<array.length(); i++) {
-				list.add(fromJson(definedType, array.get(i)));
+				list.add(fromJson(definedType, genericType, array.get(i)));
 			}
 			return list;
 		} else if (definedType.isByteArray()) {
@@ -111,8 +113,11 @@ public class JsonConverter {
 		} else if (definedType.isLong()) {
 			if (object instanceof String) {
 				return Long.parseLong((String)object);
+			} else if (object instanceof Long) {
+				return (Long)object;
+			} else {
+				return ((Integer)object).longValue();
 			}
-			return ((Integer)object).longValue();
 		} else if (definedType.isEnum()) {
 			for (Object enumConstantObject : definedType.getInstanceClass().getEnumConstants()) {
 				Enum<?> enumConstant = (Enum<?>)enumConstantObject;
@@ -122,6 +127,28 @@ public class JsonConverter {
 			}
 		} else if (definedType.isDate()) {
 			return new Date((Long)object);
+		} else if (definedType.isString() || definedType.isBoolean()) {
+			return object;
+		} else if (definedType.isList()) {
+			if (genericType.isLong()) {
+				if (object instanceof String) {
+					return Long.parseLong((String)object);
+				} else if (object instanceof Long) {
+					return (Long)object;
+				} else {
+					return ((Integer)object).longValue();
+				}
+			}
+		} else if (object instanceof Integer) {
+			if (genericType.isLong()) {
+				if (object instanceof String) {
+					return Long.parseLong((String)object);
+				} else if (object instanceof Long) {
+					return (Long)object;
+				} else {
+					return ((Integer)object).longValue();
+				}
+			}
 		}
 		return object;
 	}

@@ -18,13 +18,16 @@ package org.bimserver.test.framework.actions;
  *****************************************************************************/
 
 import java.io.File;
+import java.util.List;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckinStatus;
+import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -44,23 +47,20 @@ public class CheckinAction extends Action {
 		SProject project = virtualUser.getRandomProject();
 		File randomFile = getTestFramework().getTestFile();
 		FileDataSource dataSource = new FileDataSource(randomFile);
-		String deserializerName = null;
-		if (randomFile.getName().endsWith(".ifc")) {
-			deserializerName = "IfcStepDeserializer";
-		} else if (randomFile.getName().endsWith(".ifcxml")) {
-			deserializerName = "IfcXmlDeserializer";
-		} else if (randomFile.getName().endsWith(".ifczip")) {
-			deserializerName = "IfcStepDeserializer";
-		} else if (randomFile.getName().endsWith(".ifcxmlzip")) {
-			deserializerName = "IfcXmlDeserializer";
-		} else {
+		String fileName = randomFile.getName();
+		String extension = fileName.substring(fileName.indexOf(".") + 1);
+		SDeserializer suggestedDeserializerForExtension = virtualUser.getBimServerClient().getServiceInterface().getSuggestedDeserializerForExtension(extension);
+		
+		if (suggestedDeserializerForExtension == null) {
+			getActionResults().setText("No deserializer found for extension " + extension + " in file " + fileName);
 			return;
 		}
+		
 		boolean sync = !settings.shouldAsync();
 		boolean merge = settings.shouldMerge();
-		getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + randomFile.getName() + ") " + "sync: " + sync + ", merge: " + merge);
+		getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + fileName + ") " + "sync: " + sync + ", merge: " + merge);
 		long checkinId = virtualUser.getBimServerClient().getServiceInterface()
-				.checkin(project.getOid(), randomString(), -1L, randomFile.length(), new DataHandler(dataSource), merge, sync); // TODO
+				.checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), randomFile.length(), new DataHandler(dataSource), merge, sync); // TODO
 		if (sync) {
 			virtualUser.getBimServerClient().getServiceInterface().getCheckinState(checkinId);
 		} else {

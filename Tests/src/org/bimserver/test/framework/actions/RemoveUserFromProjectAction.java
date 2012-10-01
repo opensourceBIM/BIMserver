@@ -17,6 +17,8 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
+
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -32,8 +34,9 @@ public class RemoveUserFromProjectAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SProject project = virtualUser.getRandomProject();
-		if (!project.getHasAuthorizedUsers().isEmpty()) {
-			Long uoid = project.getHasAuthorizedUsers().get(nextInt(project.getHasAuthorizedUsers().size()));
+		List<Long> hasAuthorizedUsers = project.getHasAuthorizedUsers();
+		if (!hasAuthorizedUsers.isEmpty()) {
+			Long uoid = hasAuthorizedUsers.get(nextInt(hasAuthorizedUsers.size()));
 			virtualUser.getLogger().info("Removing user " + uoid + " from project " + project.getName());
 			virtualUser.getBimServerClient().getServiceInterface().removeUserFromProject(uoid, project.getOid());
 		}

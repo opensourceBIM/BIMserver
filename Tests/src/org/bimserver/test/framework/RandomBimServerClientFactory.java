@@ -17,12 +17,18 @@ package org.bimserver.test.framework;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.meta.SService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +48,8 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private int current = 0;
 	private final Type[] types;
 	private final TestFramework testFramework;
+	private Map<String, SService> map;
+	private PluginManager pluginManager;
 	
 	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
 		this.testFramework = testFramework;
@@ -50,11 +58,19 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		} else {
 			this.types = types;
 		}
+		map = new HashMap<String, SService>();
+		map.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
+		try {
+			pluginManager = LocalDevPluginLoader.createPluginManager(testFramework.getTestConfiguration().getHomeDir());
+		} catch (PluginException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(testFramework.getTestConfiguration().getHomeDir()));
+			BimServerClient bimServerClient = new BimServerClient(pluginManager, map);
 			bimServerClient.setAuthentication(authenticationInfo);
 			Type type = types[current];
 			switch (type) {
@@ -81,8 +97,6 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 			}
 			current = (current + 1) % types.length;
 			return bimServerClient;
-		} catch (PluginException e) {
-			LOGGER.error("", e);
 		} catch (ConnectionException e) {
 			LOGGER.error("", e);
 		}

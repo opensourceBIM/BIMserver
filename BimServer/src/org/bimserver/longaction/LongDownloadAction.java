@@ -37,6 +37,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction implements ProgressListener {
@@ -52,7 +53,10 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		changeActionState(ActionState.STARTED);
 		try {
 			executeAction(action, downloadParameters, session, false);
+ 		} catch (UserException e) {
+ 			error(e.getMessage());
  		} catch (Exception e) {
+ 			error(e.getMessage());
 			LOGGER.error("", e);
 		} finally {
 			if (session != null) {

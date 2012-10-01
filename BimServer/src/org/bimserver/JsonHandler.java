@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.json.JsonConverter;
@@ -46,7 +47,7 @@ public class JsonHandler {
 					for (int i = 0; i < method.getParameters().size(); i++) {
 						SParameter parameter = method.getParameter(i);
 						if (parametersJson.has(parameter.getName())) {
-							parameters[i] = converter.fromJson(parameter.getType(), parametersJson.get(parameter.getName()));
+							parameters[i] = converter.fromJson(parameter.getType(), parameter.getGenericType(), parametersJson.get(parameter.getName()));
 						}
 					}
 				}
@@ -58,9 +59,17 @@ public class JsonHandler {
 					responseObject.put("result", converter.toJson(result));
 				}
 			} catch (Exception exception) {
-				JSONObject exceptionJson = new JSONObject();
-				exceptionJson.put("message", exception.getMessage());
-				responseObject.put("exception", exceptionJson);
+				if (exception instanceof ServiceException) {
+					ServiceException serviceException = (ServiceException)exception;
+					JSONObject exceptionJson = new JSONObject();
+					exceptionJson.put("message", exception.getMessage());
+					exceptionJson.put("__type", serviceException.getClass().getSimpleName());
+					responseObject.put("exception", exceptionJson);
+				} else {
+					JSONObject exceptionJson = new JSONObject();
+					exceptionJson.put("message", exception.getMessage());
+					responseObject.put("exception", exceptionJson);
+				}
 			}
 			responses.put(responseObject);
 		}

@@ -283,7 +283,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 //	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public IfcModelInterface getModel(long roid) throws BimServerClientException {
+	public IfcModelInterface getModel(long roid) throws BimServerClientException, UserException, ServerException {
 		try {
 			List<SDataObject> dataObjects = getServiceInterface().getDataObjects(roid);
 			IfcModelInterface model = new IfcModel(dataObjects.size());
@@ -356,14 +356,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 				}
 			}
 			return model;
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
 		} catch (IfcModelInterfaceException e) {
-			e.printStackTrace();
+			throw new BimServerClientException(e);
 		}
-		return null;
 	}
 
 	private Object convertStringValue(EStructuralFeature eStructuralFeature, String stringValue) {

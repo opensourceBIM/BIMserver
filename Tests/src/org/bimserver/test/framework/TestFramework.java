@@ -25,8 +25,10 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
+import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.models.store.ServerState;
+import org.bimserver.servlets.StreamingServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +63,8 @@ public class TestFramework {
 			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 			bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 			bimServer = new BimServer(bimServerConfig);
+			EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
+		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 			try {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 				bimServer.start();
@@ -70,7 +74,7 @@ public class TestFramework {
 				}
 				
 				// Change a setting so normal users can create projects
-//				bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
+				bimServer.getSystemService().setSettingAllowUsersToCreateTopLevelProjects(true);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

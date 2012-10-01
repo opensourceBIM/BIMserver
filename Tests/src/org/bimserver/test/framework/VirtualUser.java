@@ -73,7 +73,8 @@ public class VirtualUser extends Thread {
 						action = testFramework.getTestConfiguration().getActionFactory().createAction();
 						action.execute(this);
 						action.getActionResults().setType("OKE");
-						LOGGER.info("Succes: " + action.getActionResults().getText());
+						String text = action.getActionResults().getText();
+						LOGGER.info("Success: " + (text == null || text.equals("") ? action.getClass().getSimpleName() : text));
 						testFramework.getResults().addRow(action.getActionResults(), this, action);
 					}
 				} catch (UserException e) {
