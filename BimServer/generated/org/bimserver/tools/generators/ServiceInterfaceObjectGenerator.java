@@ -74,7 +74,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_53 = " ";
   protected final String TEXT_54 = ";";
   protected final String TEXT_55 = NL + "\tprivate long ";
-  protected final String TEXT_56 = "Id;";
+  protected final String TEXT_56 = "Id = -1;";
   protected final String TEXT_57 = NL + "\tpublic S";
   protected final String TEXT_58 = " ";
   protected final String TEXT_59 = "() {" + NL + "\t\treturn ";

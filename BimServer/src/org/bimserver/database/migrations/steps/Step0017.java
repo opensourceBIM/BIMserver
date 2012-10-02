@@ -30,12 +30,6 @@ public class Step0017 extends Migration {
 		schema.createEAttribute(extendedDataClass, "filename", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataClass, "added", EcorePackage.eINSTANCE.getEDate(), Multiplicity.SINGLE);
 		
-		EClass serverSettingsClass = schema.getEClass("store", "ServerSettings");
-		EReference settingsToExtendedDataSchema = schema.createEReference(serverSettingsClass, "schemas", extendedDataSchemaClass, Multiplicity.MANY);
-		EReference extendedDataSchemaToSettings = schema.createEReference(extendedDataSchemaClass, "settings", serverSettingsClass, Multiplicity.SINGLE);
-		settingsToExtendedDataSchema.setEOpposite(extendedDataSchemaToSettings);
-		extendedDataSchemaToSettings.setEOpposite(settingsToExtendedDataSchema);
-		
 		EClass userClass = schema.getEClass("store", "User");
 		EReference userToExtendedDataSchema = schema.createEReference(userClass, "schemas", extendedDataSchemaClass, Multiplicity.MANY);
 		EReference extendedDataSchemaToUser = schema.createEReference(extendedDataSchemaClass, "users", userClass, Multiplicity.MANY);

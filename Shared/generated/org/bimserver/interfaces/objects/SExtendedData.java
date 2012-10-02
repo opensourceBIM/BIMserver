@@ -136,10 +136,10 @@ public class SExtendedData implements SDataBase
 	private java.lang.String title;
 	private java.lang.String filename;
 	private java.util.Date added;
-	private long userId;
-	private long schemaId;
-	private long revisionId;
-	private long projectId;
+	private long userId = -1;
+	private long schemaId = -1;
+	private long revisionId = -1;
+	private long projectId = -1;
 	private java.lang.String mime;
 	public java.lang.String getUrl() {
 		return url;

@@ -970,22 +970,13 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__CACHE_OUTPUT_FILES = 15;
 
 	/**
-	 * The feature id for the '<em><b>Schemas</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_SETTINGS__SCHEMAS = 16;
-
-	/**
 	 * The feature id for the '<em><b>Service Repository Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 17;
+	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 16;
 
 	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
@@ -994,7 +985,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 18;
+	int SERVER_SETTINGS_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -3178,22 +3169,13 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_SCHEMA__TYPE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Settings</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDED_DATA_SCHEMA__SETTINGS = 6;
-
-	/**
 	 * The feature id for the '<em><b>Users</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__USERS = 7;
+	int EXTENDED_DATA_SCHEMA__USERS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
@@ -3202,7 +3184,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 8;
+	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 7;
 
 	/**
 	 * The number of structural features of the '<em>Extended Data Schema</em>' class.
@@ -3211,7 +3193,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 9;
+	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataImpl <em>Extended Data</em>}' class.
@@ -5500,17 +5482,6 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_CacheOutputFiles();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ServerSettings#getSchemas <em>Schemas</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Schemas</em>'.
-	 * @see org.bimserver.models.store.ServerSettings#getSchemas()
-	 * @see #getServerSettings()
-	 * @generated
-	 */
-	EReference getServerSettings_Schemas();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7186,17 +7157,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtendedDataSchema_Type();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedDataSchema#getSettings <em>Settings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Settings</em>'.
-	 * @see org.bimserver.models.store.ExtendedDataSchema#getSettings()
-	 * @see #getExtendedDataSchema()
-	 * @generated
-	 */
-	EReference getExtendedDataSchema_Settings();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}'.
@@ -8898,14 +8858,6 @@ public interface StorePackage extends EPackage {
 		EAttribute SERVER_SETTINGS__CACHE_OUTPUT_FILES = eINSTANCE.getServerSettings_CacheOutputFiles();
 
 		/**
-		 * The meta object literal for the '<em><b>Schemas</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVER_SETTINGS__SCHEMAS = eINSTANCE.getServerSettings_Schemas();
-
-		/**
 		 * The meta object literal for the '<em><b>Service Repository Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10230,14 +10182,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDED_DATA_SCHEMA__TYPE = eINSTANCE.getExtendedDataSchema_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXTENDED_DATA_SCHEMA__SETTINGS = eINSTANCE.getExtendedDataSchema_Settings();
 
 		/**
 		 * The meta object literal for the '<em><b>Users</b></em>' reference list feature.

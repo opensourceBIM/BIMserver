@@ -89,7 +89,7 @@ public class SProjectDeleted extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long projectId;
+	private long projectId = -1;
 	public long getProjectId() {
 		return projectId;
 	}

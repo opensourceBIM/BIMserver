@@ -76,7 +76,7 @@ public class JsonHandler {
 
 		JSONObject outgoingMessage = new JSONObject();
 		outgoingMessage.put("responses", responses);
-
+		
 		return outgoingMessage;
 	}
 

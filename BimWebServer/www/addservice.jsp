@@ -69,8 +69,8 @@ $(function(){
 		if (val == "[SELECT]") {
 			$(".services, .serviceslabel, .servicediv").hide();
 		} else {
-			if ($(this).hasClass("internal") != null) {
-				bimServerApi.call("getInternalServices", {name: val}, function(data){
+			if ($(this).hasClass("internal")) {
+				bimServerApi.call("ServiceInterface", "getInternalServices", {name: val}, function(data){
 					$(".services").empty();
 					$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
 					data.forEach(function(service){
@@ -81,7 +81,7 @@ $(function(){
 					$(".services, .serviceslabel").show();
 				});
 			} else if ($(this).hasClass("external") != null) {
-				bimServerApi.call("getExternalServices", {remoteUrl: val}, function(data){
+				bimServerApi.call("ServiceInterface", "getExternalServices", {remoteUrl: val}, function(data){
 					$(".services").empty();
 					$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
 					data.forEach(function(service){

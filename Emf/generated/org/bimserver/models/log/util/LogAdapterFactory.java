@@ -201,6 +201,16 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseExtendedDataAddedToRevision(ExtendedDataAddedToRevision object) {
+			return createExtendedDataAddedToRevisionAdapter();
+		}
+
+		@Override
+		public Adapter caseExtendedDataAddedToProject(ExtendedDataAddedToProject object) {
+			return createExtendedDataAddedToProjectAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -552,6 +562,34 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserChangedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.ExtendedDataAddedToRevision <em>Extended Data Added To Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToRevision
+	 * @generated
+	 */
+	public Adapter createExtendedDataAddedToRevisionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.ExtendedDataAddedToProject <em>Extended Data Added To Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToProject
+	 * @generated
+	 */
+	public Adapter createExtendedDataAddedToProjectAdapter() {
 		return null;
 	}
 

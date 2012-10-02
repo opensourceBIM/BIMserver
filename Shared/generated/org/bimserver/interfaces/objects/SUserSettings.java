@@ -168,12 +168,12 @@ public class SUserSettings implements SDataBase
 	private List<Long> queryengines = new ArrayList<Long>();
 	private List<Long> modelmergers = new ArrayList<Long>();
 	private List<Long> modelcompares = new ArrayList<Long>();
-	private long defaultModelMergerId;
-	private long defaultModelCompareId;
-	private long defaultQueryEngineId;
-	private long defaultIfcEngineId;
-	private long defaultSerializerId;
-	private long defaultObjectIDMId;
+	private long defaultModelMergerId = -1;
+	private long defaultModelCompareId = -1;
+	private long defaultQueryEngineId = -1;
+	private long defaultIfcEngineId = -1;
+	private long defaultSerializerId = -1;
+	private long defaultObjectIDMId = -1;
 	private List<Long> services = new ArrayList<Long>();
 	public List<Long> getSerializers() {
 		return serializers;

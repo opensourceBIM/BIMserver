@@ -103,11 +103,11 @@ public class SCheckout implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long userId;
-	private long revisionId;
-	private long projectId;
+	private long userId = -1;
+	private long revisionId = -1;
+	private long projectId = -1;
 	private java.util.Date date;
-	private long checkinId;
+	private long checkinId = -1;
 	private java.lang.Boolean active;
 	public long getUserId() {
 		return userId;

@@ -96,8 +96,8 @@ public class SNewRevisionAdded extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long revisionId;
-	private long projectId;
+	private long revisionId = -1;
+	private long projectId = -1;
 	public long getRevisionId() {
 		return revisionId;
 	}

@@ -166,8 +166,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheOutputFiles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
-          eType="#/0/ExtendedDataSchema" eOpposite="#/0/ExtendedDataSchema/settings"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceRepositoryUrl"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -436,8 +434,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#/0/ExtendedDataSchemaType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/ServerSettings"
-          eOpposite="#/0/ServerSettings/schemas"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
           eType="#/0/User" eOpposite="#/0/User/schemas"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
@@ -6742,6 +6738,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserChanged" eSuperTypes="#/2/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendedDataAddedToRevision" eSuperTypes="#/2/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="#/0/ExtendedData"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendedDataAddedToProject" eSuperTypes="#/2/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="#/0/ExtendedData"/>
     </eClassifiers>
   </ecore:EPackage>
 </xmi:XMI>

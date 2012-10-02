@@ -195,7 +195,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 <%
 					} else {
 %>
-	private long <%=eReference.getName()%>Id;
+	private long <%=eReference.getName()%>Id = -1;
 <%
 					}
 				}

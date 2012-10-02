@@ -35,7 +35,14 @@
 	 * http://www.gnu.org/licenses/gpl-3.0.txt
 	 * For more information mail to license@bimserver.org
 	 ***********************************************************/
-	var bimServerApi = new BimServerApi("<%=getServletContext().getContextPath() %>");
+	var bimServerApi = new BimServerApi("<%=getServletContext().getContextPath() %>", {
+		error: function(message){
+		},
+		info: function(message) {
+		},
+		clear: function() {
+		}
+	});
 	 
 	$.ajaxSetup ({
 	    // Disable caching of AJAX responses

@@ -1503,17 +1503,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getServerSettings_Schemas() {
-		return (EReference) getServerSettings().getEStructuralFeatures().get(16);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getServerSettings_ServiceRepositoryUrl() {
-		return (EAttribute) getServerSettings().getEStructuralFeatures().get(17);
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -3033,7 +3024,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedDataSchema_Settings() {
+	public EReference getExtendedDataSchema_Users() {
 		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(6);
 	}
 
@@ -3042,17 +3033,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendedDataSchema_Users() {
-		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getExtendedDataSchema_ExtendedData() {
-		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(8);
+		return (EReference) getExtendedDataSchema().getEStructuralFeatures().get(7);
 	}
 
 	/**

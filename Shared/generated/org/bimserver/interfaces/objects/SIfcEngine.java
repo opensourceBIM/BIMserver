@@ -106,7 +106,7 @@ public class SIfcEngine extends SPlugin implements SDataBase
 	}
 	
 	private List<Long> serializers = new ArrayList<Long>();
-	private long settingsId;
+	private long settingsId = -1;
 	public List<Long> getSerializers() {
 		return serializers;
 	}

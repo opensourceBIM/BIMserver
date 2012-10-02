@@ -127,6 +127,7 @@ public interface User extends IdEObject {
 	/**
 	 * Returns the value of the '<em><b>Revisions</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.store.Revision}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Revision#getUser <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Revisions</em>' reference list isn't clear,
@@ -135,7 +136,8 @@ public interface User extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Revisions</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getUser_Revisions()
-	 * @model
+	 * @see org.bimserver.models.store.Revision#getUser
+	 * @model opposite="user"
 	 * @generated
 	 */
 	EList<Revision> getRevisions();

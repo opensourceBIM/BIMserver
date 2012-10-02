@@ -89,7 +89,7 @@ public class SGeoTagUpdated extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long geoTagId;
+	private long geoTagId = -1;
 	public long getGeoTagId() {
 		return geoTagId;
 	}

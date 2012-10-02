@@ -117,7 +117,7 @@ public class SUserSession implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long userId;
+	private long userId = -1;
 	private java.lang.String username;
 	private java.lang.String name;
 	private SUserType type;

@@ -46,7 +46,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getCacheOutputFiles <em>Cache Output Files</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
  * </p>
@@ -369,16 +368,6 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setCacheOutputFiles(Boolean newCacheOutputFiles) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES, newCacheOutputFiles);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<ExtendedDataSchema> getSchemas() {
-		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.SERVER_SETTINGS__SCHEMAS, true);
 	}
 
 	/**

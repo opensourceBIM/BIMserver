@@ -96,8 +96,8 @@ public class SUserRemovedFromProject extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long userId;
-	private long projectId;
+	private long userId = -1;
+	private long projectId = -1;
 	public long getUserId() {
 		return userId;
 	}
