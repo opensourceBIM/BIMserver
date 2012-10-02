@@ -71,53 +71,53 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof ProjectDeleted) {
-			return convertToSObject((ProjectDeleted)input);
-		}
-		else if (input instanceof NewRevisionAdded) {
-			return convertToSObject((NewRevisionAdded)input);
-		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof RevisionUpdated) {
-			return convertToSObject((RevisionUpdated)input);
-		}
-		else if (input instanceof UserUndeleted) {
+		if (input instanceof UserUndeleted) {
 			return convertToSObject((UserUndeleted)input);
 		}
-		else if (input instanceof PasswordReset) {
-			return convertToSObject((PasswordReset)input);
-		}
-		else if (input instanceof NewUserAdded) {
-			return convertToSObject((NewUserAdded)input);
-		}
-		else if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
+		else if (input instanceof ServerStarted) {
+			return convertToSObject((ServerStarted)input);
 		}
 		else if (input instanceof SettingsSaved) {
 			return convertToSObject((SettingsSaved)input);
 		}
-		else if (input instanceof Download) {
-			return convertToSObject((Download)input);
-		}
-		else if (input instanceof GeoTagUpdated) {
-			return convertToSObject((GeoTagUpdated)input);
-		}
-		else if (input instanceof ProjectUndeleted) {
-			return convertToSObject((ProjectUndeleted)input);
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
 		}
 		else if (input instanceof RevisionBranched) {
 			return convertToSObject((RevisionBranched)input);
 		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
+		else if (input instanceof NewObjectIDMUploaded) {
+			return convertToSObject((NewObjectIDMUploaded)input);
+		}
+		else if (input instanceof NewRevisionAdded) {
+			return convertToSObject((NewRevisionAdded)input);
+		}
+		else if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
 		}
 		else if (input instanceof UserChanged) {
 			return convertToSObject((UserChanged)input);
+		}
+		else if (input instanceof RevisionUpdated) {
+			return convertToSObject((RevisionUpdated)input);
+		}
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
+		}
+		else if (input instanceof GeoTagUpdated) {
+			return convertToSObject((GeoTagUpdated)input);
+		}
+		else if (input instanceof Download) {
+			return convertToSObject((Download)input);
+		}
+		else if (input instanceof ProjectDeleted) {
+			return convertToSObject((ProjectDeleted)input);
+		}
+		else if (input instanceof ProjectUndeleted) {
+			return convertToSObject((ProjectUndeleted)input);
+		}
+		else if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
 		}
 		else if (input instanceof NewCheckoutAdded) {
 			return convertToSObject((NewCheckoutAdded)input);
@@ -125,17 +125,17 @@ public class SConverter {
 		else if (input instanceof UserAddedToProject) {
 			return convertToSObject((UserAddedToProject)input);
 		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
+		else if (input instanceof NewUserAdded) {
+			return convertToSObject((NewUserAdded)input);
+		}
+		else if (input instanceof PasswordReset) {
+			return convertToSObject((PasswordReset)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
 		}
 		else if (input instanceof NewProjectAdded) {
 			return convertToSObject((NewProjectAdded)input);
-		}
-		else if (input instanceof NewObjectIDMUploaded) {
-			return convertToSObject((NewObjectIDMUploaded)input);
-		}
-		else if (input instanceof ServerStarted) {
-			return convertToSObject((ServerStarted)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());
@@ -2439,29 +2439,29 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof QueryEngine) {
-			return convertToSObject((QueryEngine)input);
-		}
-		else if (input instanceof ObjectIDM) {
+		if (input instanceof ObjectIDM) {
 			return convertToSObject((ObjectIDM)input);
 		}
-		else if (input instanceof ModelCompare) {
-			return convertToSObject((ModelCompare)input);
+		else if (input instanceof ModelMerger) {
+			return convertToSObject((ModelMerger)input);
 		}
-		else if (input instanceof IfcEngine) {
-			return convertToSObject((IfcEngine)input);
-		}
-		else if (input instanceof Deserializer) {
-			return convertToSObject((Deserializer)input);
+		else if (input instanceof QueryEngine) {
+			return convertToSObject((QueryEngine)input);
 		}
 		else if (input instanceof Serializer) {
 			return convertToSObject((Serializer)input);
 		}
+		else if (input instanceof IfcEngine) {
+			return convertToSObject((IfcEngine)input);
+		}
 		else if (input instanceof EService) {
 			return convertToSObject((EService)input);
 		}
-		else if (input instanceof ModelMerger) {
-			return convertToSObject((ModelMerger)input);
+		else if (input instanceof Deserializer) {
+			return convertToSObject((Deserializer)input);
+		}
+		else if (input instanceof ModelCompare) {
+			return convertToSObject((ModelCompare)input);
 		}
 		SPlugin result = new SPlugin();
 		result.setOid(input.getOid());
@@ -2978,11 +2978,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof SimpleDataValue) {
-			return convertToSObject((SimpleDataValue)input);
-		}
-		else if (input instanceof ListDataValue) {
+		if (input instanceof ListDataValue) {
 			return convertToSObject((ListDataValue)input);
+		}
+		else if (input instanceof SimpleDataValue) {
+			return convertToSObject((SimpleDataValue)input);
 		}
 		else if (input instanceof ReferenceDataValue) {
 			return convertToSObject((ReferenceDataValue)input);
@@ -3600,8 +3600,8 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ModelComparePluginDescriptor) {
-			return convertToSObject((ModelComparePluginDescriptor)input);
+		if (input instanceof IfcEnginePluginDescriptor) {
+			return convertToSObject((IfcEnginePluginDescriptor)input);
 		}
 		else if (input instanceof DeserializerPluginDescriptor) {
 			return convertToSObject((DeserializerPluginDescriptor)input);
@@ -3609,17 +3609,17 @@ public class SConverter {
 		else if (input instanceof SerializerPluginDescriptor) {
 			return convertToSObject((SerializerPluginDescriptor)input);
 		}
+		else if (input instanceof ModelMergerPluginDescriptor) {
+			return convertToSObject((ModelMergerPluginDescriptor)input);
+		}
+		else if (input instanceof ModelComparePluginDescriptor) {
+			return convertToSObject((ModelComparePluginDescriptor)input);
+		}
 		else if (input instanceof QueryEnginePluginDescriptor) {
 			return convertToSObject((QueryEnginePluginDescriptor)input);
 		}
 		else if (input instanceof ServicePluginDescriptor) {
 			return convertToSObject((ServicePluginDescriptor)input);
-		}
-		else if (input instanceof ModelMergerPluginDescriptor) {
-			return convertToSObject((ModelMergerPluginDescriptor)input);
-		}
-		else if (input instanceof IfcEnginePluginDescriptor) {
-			return convertToSObject((IfcEnginePluginDescriptor)input);
 		}
 		SPluginDescriptor result = new SPluginDescriptor();
 		result.setOid(input.getOid());
@@ -4181,14 +4181,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ObjectModified) {
+		if (input instanceof ObjectRemoved) {
+			return convertToSObject((ObjectRemoved)input);
+		}
+		else if (input instanceof ObjectModified) {
 			return convertToSObject((ObjectModified)input);
 		}
 		else if (input instanceof ObjectAdded) {
 			return convertToSObject((ObjectAdded)input);
-		}
-		else if (input instanceof ObjectRemoved) {
-			return convertToSObject((ObjectRemoved)input);
 		}
 		SCompareItem result = new SCompareItem();
 		result.setOid(input.getOid());

@@ -6,7 +6,7 @@
 <%@page import="org.slf4j.LoggerFactory"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
-	int laid = Integer.parseInt(request.getParameter("laid"));
+	long laid = Long.parseLong(request.getParameter("laid"));
 	String zip = request.getParameter("zip");
 	SLongActionState dls = loginManager.getService().getDownloadState(laid);
 	JSONObject result = new JSONObject();

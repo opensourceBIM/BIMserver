@@ -14,6 +14,6 @@ public class SRevisionComparator implements Comparator<SRevision> {
 
 	@Override
 	public int compare(SRevision o1, SRevision o2) {
-		return (o1.getId() - o2.getId()) * (increment ? 1 : -1);
+		return (o1.getDate().compareTo(o2.getDate())) * (increment ? 1 : -1);
 	}
 }

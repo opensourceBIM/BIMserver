@@ -21,7 +21,7 @@ $(function(){
 </script>
 Project <select id="projectSelect">
 <%
-	for (SProject project : loginManager.getService().getAllProjects()) {
+	for (SProject project : loginManager.getService().getAllProjects(true)) {
 %><option><%=project.getName() %></option><%
 	}
 %>
